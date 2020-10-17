@@ -1,0 +1,34 @@
+"""
+Module: 'flowlib.faces._keyboard' on M5 FlowUI v1.4.0-beta
+"""
+# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
+# Stubber: 1.3.1
+
+class Keyboard:
+    ''
+    def _available():
+        pass
+
+    def _update():
+        pass
+
+    def clearStr():
+        pass
+
+    def deinit():
+        pass
+
+    def deleteStrLast():
+        pass
+
+    def isNewKeyPress():
+        pass
+
+    def readKey():
+        pass
+
+    def readStr():
+        pass
+
+i2c_bus = None
+time = None

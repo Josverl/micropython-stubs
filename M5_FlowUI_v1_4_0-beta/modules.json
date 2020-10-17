@@ -1,0 +1,531 @@
+{
+    "firmware": {
+        "machine": "ESP32 module with ESP32",
+        "firmware": "M5 FlowUI v1.4.0-beta",
+        "nodename": "esp32",
+        "version": "1.11.0",
+        "release": "1.11.0",
+        "sysname": "esp32"
+    },
+    "stubber": {
+        "version": "1.3.1"
+    },
+    "modules": [
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/app_manage.py",
+            "module": "flowlib.app_manage"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/button.py",
+            "module": "flowlib.button"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/face.py",
+            "module": "flowlib.face"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/faces/_calc.py",
+            "module": "flowlib.faces._calc"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/faces/_encode.py",
+            "module": "flowlib.faces._encode"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/faces/_joystick.py",
+            "module": "flowlib.faces._joystick"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/faces/_keyboard.py",
+            "module": "flowlib.faces._keyboard"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/faces/_rfid.py",
+            "module": "flowlib.faces._rfid"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/flowSetup.py",
+            "module": "flowlib.flowSetup"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/i2c_bus.py",
+            "module": "flowlib.i2c_bus"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/bmm150.py",
+            "module": "flowlib.lib.bmm150"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/bmp280.py",
+            "module": "flowlib.lib.bmp280"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/chunk.py",
+            "module": "flowlib.lib.chunk"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/dht12.py",
+            "module": "flowlib.lib.dht12"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/easyIO.py",
+            "module": "flowlib.lib.easyIO"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/emoji.py",
+            "module": "flowlib.lib.emoji"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/imu.py",
+            "module": "flowlib.lib.imu"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/mpu6050.py",
+            "module": "flowlib.lib.mpu6050"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/mstate.py",
+            "module": "flowlib.lib.mstate"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/numbers.py",
+            "module": "flowlib.lib.numbers"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/pid.py",
+            "module": "flowlib.lib.pid"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/sh200q.py",
+            "module": "flowlib.lib.sh200q"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/speak.py",
+            "module": "flowlib.lib.speak"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/time_ex.py",
+            "module": "flowlib.lib.time_ex"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/urequests.py",
+            "module": "flowlib.lib.urequests"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/wave.py",
+            "module": "flowlib.lib.wave"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/wavplayer.py",
+            "module": "flowlib.lib.wavplayer"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/wifiCardKB.py",
+            "module": "flowlib.lib.wifiCardKB"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/wifiCfg.py",
+            "module": "flowlib.lib.wifiCfg"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/lib/wifiWebCfg.py",
+            "module": "flowlib.lib.wifiWebCfg"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/m5cloud.py",
+            "module": "flowlib.m5cloud"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/m5mqtt.py",
+            "module": "flowlib.m5mqtt"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/m5stack.py",
+            "module": "flowlib.m5stack"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/m5ucloud.py",
+            "module": "flowlib.m5ucloud"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/module.py",
+            "module": "flowlib.module"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/modules/_cellular.py",
+            "module": "flowlib.modules._cellular"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/modules/_lego.py",
+            "module": "flowlib.modules._lego"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/modules/_legoBoard.py",
+            "module": "flowlib.modules._legoBoard"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/modules/_lidarBot.py",
+            "module": "flowlib.modules._lidarBot"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/modules/_lorawan.py",
+            "module": "flowlib.modules._lorawan"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/modules/_m5bala.py",
+            "module": "flowlib.modules._m5bala"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/modules/_stepMotor.py",
+            "module": "flowlib.modules._stepMotor"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/peripheral.py",
+            "module": "flowlib.peripheral"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/power.py",
+            "module": "flowlib.power"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/remote.py",
+            "module": "flowlib.remote"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/simple.py",
+            "module": "flowlib.simple"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/timeSchedule.py",
+            "module": "flowlib.timeSchedule"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/uiflow.py",
+            "module": "flowlib.uiflow"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/unit.py",
+            "module": "flowlib.unit"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_adc.py",
+            "module": "flowlib.units._adc"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_angle.py",
+            "module": "flowlib.units._angle"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_button.py",
+            "module": "flowlib.units._button"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_cardKB.py",
+            "module": "flowlib.units._cardKB"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_color.py",
+            "module": "flowlib.units._color"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_dac.py",
+            "module": "flowlib.units._dac"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_dual_button.py",
+            "module": "flowlib.units._dual_button"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_earth.py",
+            "module": "flowlib.units._earth"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_env.py",
+            "module": "flowlib.units._env"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_ext_io.py",
+            "module": "flowlib.units._ext_io"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_finger.py",
+            "module": "flowlib.units._finger"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_gps.py",
+            "module": "flowlib.units._gps"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_ir.py",
+            "module": "flowlib.units._ir"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_joystick.py",
+            "module": "flowlib.units._joystick"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_light.py",
+            "module": "flowlib.units._light"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_makey.py",
+            "module": "flowlib.units._makey"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_mlx90640.py",
+            "module": "flowlib.units._mlx90640"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_ncir.py",
+            "module": "flowlib.units._ncir"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_pahub.py",
+            "module": "flowlib.units._pahub"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_pbhub.py",
+            "module": "flowlib.units._pbhub"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/flowlib/units/_pir.py",
+            "module": "flowlib.units._pir"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/_thread.py",
+            "module": "_thread"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/array.py",
+            "module": "array"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/binascii.py",
+            "module": "binascii"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/btree.py",
+            "module": "btree"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/builtins.py",
+            "module": "builtins"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/cmath.py",
+            "module": "cmath"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/collections.py",
+            "module": "collections"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/display.py",
+            "module": "display"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/errno.py",
+            "module": "errno"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/esp.py",
+            "module": "esp"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/esp32.py",
+            "module": "esp32"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/gc.py",
+            "module": "gc"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/hashlib.py",
+            "module": "hashlib"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/heapq.py",
+            "module": "heapq"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/io.py",
+            "module": "io"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/json.py",
+            "module": "json"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/logging.py",
+            "module": "logging"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/m5base.py",
+            "module": "m5base"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/m5ui.py",
+            "module": "m5ui"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/machine.py",
+            "module": "machine"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/math.py",
+            "module": "math"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/microWebSocket.py",
+            "module": "microWebSocket"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/microWebSrv.py",
+            "module": "microWebSrv"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/microWebTemplate.py",
+            "module": "microWebTemplate"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/micropython.py",
+            "module": "micropython"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/neopixel.py",
+            "module": "neopixel"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/network.py",
+            "module": "network"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/os.py",
+            "module": "os"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/random.py",
+            "module": "random"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/re.py",
+            "module": "re"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/select.py",
+            "module": "select"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/socket.py",
+            "module": "socket"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/ssl.py",
+            "module": "ssl"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/struct.py",
+            "module": "struct"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/sys.py",
+            "module": "sys"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/time.py",
+            "module": "time"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/ubinascii.py",
+            "module": "ubinascii"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/ucollections.py",
+            "module": "ucollections"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/ucryptolib.py",
+            "module": "ucryptolib"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/uctypes.py",
+            "module": "uctypes"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/uerrno.py",
+            "module": "uerrno"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/uhashlib.py",
+            "module": "uhashlib"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/uheapq.py",
+            "module": "uheapq"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/uio.py",
+            "module": "uio"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/ujson.py",
+            "module": "ujson"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/uos.py",
+            "module": "uos"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/upip_utarfile.py",
+            "module": "upip_utarfile"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/urandom.py",
+            "module": "urandom"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/ure.py",
+            "module": "ure"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/uselect.py",
+            "module": "uselect"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/usocket.py",
+            "module": "usocket"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/ussl.py",
+            "module": "ussl"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/ustruct.py",
+            "module": "ustruct"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/utime.py",
+            "module": "utime"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/utimeq.py",
+            "module": "utimeq"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/uwebsocket.py",
+            "module": "uwebsocket"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/uzlib.py",
+            "module": "uzlib"
+        },
+        {
+            "file": "/flash/stubs/M5_FlowUI_v1_4_0-beta/zlib.py",
+            "module": "zlib"
+        }
+    ]
+}
