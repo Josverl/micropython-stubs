@@ -4,7 +4,7 @@
     "firmware": "LEGO EV3 v1.0.0",
     "nodename": "ev3",
     "version": "1.9.4",
-    "release": ["v1.0.0"],
+    "release": "v1.0.0",
     "sysname": "ev3"
   },
   "stubber": { "version": "1.3.2" },
