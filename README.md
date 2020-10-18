@@ -8,13 +8,21 @@ Whatever works best for you.
 
 ## current boards and stubs 
 
-| Folder        | version| family | Description    
-----------------|--------|--------|-----------------
-| cpython_core  | any    | any    | modules that patch the standard cpython modules to look more like theyr MicrpPython counterparts
-| esp32_1_10_0  | 1.10   | mpy    | ... 
-| pycopy_frozen | ....   | pycopy | ....
+| Folder                | family | version| Description    
+------------------------|--------|--------|-----------------
+| cpython_core          | any    | any    | modules that patch the standard cpython modules to look more like theyr MicrpPython counterparts
+| esp32_1_12_0          | mpy    | 1.12   | ... 
+| esp32_1_12_0_frozen   | mpy    | 1.12   | rich stubs precisly targeted based on the manifests.py used in the build process
+| esp32_1_11_0          | mpy    | 1.11   | ... 
+| esp32_1_11_0_frozen   | mpy    | 1.11   | rich stubs precisly targeted based on the manifests.py used in the build process
+| esp32_1_10_0          | mpy    | 1.10   | ... 
+| esp32_1_10_0_frozen   | mpy    | 1.10   | No Stubs , as the manuifests were only introduced after v1.10
+| pycopy_frozen         | pycopy | ....   | ....
 
 
+## types of stubs 
+
+- chip_X_X_X_frozen  - stubs for fozen modules are generated using a copy of the modules. These make for rich code completion including parameters and comments if provided in the source. 
 
 
 ## Credits 
