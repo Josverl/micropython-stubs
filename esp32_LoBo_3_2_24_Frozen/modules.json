@@ -1,0 +1,15 @@
+{
+    "firmware": {
+        "machine": "included frozen modules",
+        "firmware": "esp32_LoBo",
+        "nodename": "esp32",
+        "version": "3.2.24",
+        "release": "?",
+        "sysname": "esp32_LoBo"
+    },
+    "stubber": {
+        "version": "manual"
+    },
+    "modules": [
+    ]
+}

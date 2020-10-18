@@ -1,0 +1,19 @@
+{
+    "firmware": {
+        "machine": "micropython-pyb by Daryl Schults",
+        "firmware": "-",
+        "nodename": "pyboard",
+        "version": "-",
+        "release": "-",
+        "sysname": "pyb"
+    },
+    "stubber": {
+        "version": "manual"
+    },
+    "modules": [
+        {
+            "file": "pyb.py",
+            "module": "pyb"
+        }
+    ]
+}

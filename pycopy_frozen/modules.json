@@ -1,0 +1,15 @@
+{
+    "firmware": {
+        "machine": "included frozen modules",
+        "firmware": "pycopy",
+        "nodename": "",
+        "version": "",
+        "release": "",
+        "sysname": "pycopy"
+    },
+    "stubber": {
+        "version": "manual"
+    },
+    "modules": [
+    ]
+}
