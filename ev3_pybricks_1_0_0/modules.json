@@ -1,0 +1,141 @@
+{
+  "firmware": {
+    "machine": "ev3",
+    "firmware": "LEGO EV3 v1.0.0",
+    "nodename": "ev3",
+    "version": "1.9.4",
+    "release": ["v1.0.0"],
+    "sysname": "ev3"
+  },
+  "stubber": { "version": "1.3.2" },
+  "modules": [
+    {
+      "file": "/home/robot/stubs/pybricks/display.py",
+      "module": "pybricks.display"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/ev3brick.py",
+      "module": "pybricks.ev3brick"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/ev3devices.py",
+      "module": "pybricks.ev3devices"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/ev3devio.py",
+      "module": "pybricks.ev3devio"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/parameters.py",
+      "module": "pybricks.parameters"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/robotics.py",
+      "module": "pybricks.robotics"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/speaker.py",
+      "module": "pybricks.speaker"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/tools.py",
+      "module": "pybricks.tools"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/uev3dev/_alsa.py",
+      "module": "pybricks.uev3dev._alsa"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/uev3dev/_wand.py",
+      "module": "pybricks.uev3dev._wand"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/uev3dev/display.py",
+      "module": "pybricks.uev3dev.display"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/uev3dev/i2c.py",
+      "module": "pybricks.uev3dev.i2c"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/uev3dev/messaging.py",
+      "module": "pybricks.uev3dev.messaging"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/uev3dev/sound.py",
+      "module": "pybricks.uev3dev.sound"
+    },
+    {
+      "file": "/home/robot/stubs/pybricks/uev3dev/util.py",
+      "module": "pybricks.uev3dev.util"
+    },
+    { "file": "/home/robot/stubs/uasyncio/core.py", "module": "uasyncio.core" },
+    { "file": "/home/robot/stubs/umqtt/robust.py", "module": "umqtt.robust" },
+    { "file": "/home/robot/stubs/umqtt/simple.py", "module": "umqtt.simple" },
+    {
+      "file": "/home/robot/stubs/urllib/urequest.py",
+      "module": "urllib.urequest"
+    },
+    { "file": "/home/robot/stubs/_thread.py", "module": "_thread" },
+    { "file": "/home/robot/stubs/array.py", "module": "array" },
+    { "file": "/home/robot/stubs/binascii.py", "module": "binascii" },
+    { "file": "/home/robot/stubs/boot.py", "module": "boot" },
+    { "file": "/home/robot/stubs/btree.py", "module": "btree" },
+    { "file": "/home/robot/stubs/builtins.py", "module": "builtins" },
+    { "file": "/home/robot/stubs/cmath.py", "module": "cmath" },
+    { "file": "/home/robot/stubs/collections.py", "module": "collections" },
+    { "file": "/home/robot/stubs/errno.py", "module": "errno" },
+    { "file": "/home/robot/stubs/ev3brick_c.py", "module": "ev3brick_c" },
+    { "file": "/home/robot/stubs/ev3devices_c.py", "module": "ev3devices_c" },
+    { "file": "/home/robot/stubs/ffi.py", "module": "ffi" },
+    { "file": "/home/robot/stubs/framebuf.py", "module": "framebuf" },
+    { "file": "/home/robot/stubs/functools.py", "module": "functools" },
+    { "file": "/home/robot/stubs/gc.py", "module": "gc" },
+    { "file": "/home/robot/stubs/hashlib.py", "module": "hashlib" },
+    { "file": "/home/robot/stubs/heapq.py", "module": "heapq" },
+    { "file": "/home/robot/stubs/io.py", "module": "io" },
+    { "file": "/home/robot/stubs/json.py", "module": "json" },
+    { "file": "/home/robot/stubs/logging.py", "module": "logging" },
+    { "file": "/home/robot/stubs/machine.py", "module": "machine" },
+    { "file": "/home/robot/stubs/math.py", "module": "math" },
+    { "file": "/home/robot/stubs/micropython.py", "module": "micropython" },
+    { "file": "/home/robot/stubs/mmap.py", "module": "mmap" },
+    { "file": "/home/robot/stubs/os.py", "module": "os" },
+    { "file": "/home/robot/stubs/parameters_c.py", "module": "parameters_c" },
+    { "file": "/home/robot/stubs/random.py", "module": "random" },
+    { "file": "/home/robot/stubs/re.py", "module": "re" },
+    { "file": "/home/robot/stubs/select.py", "module": "select" },
+    { "file": "/home/robot/stubs/socket.py", "module": "socket" },
+    { "file": "/home/robot/stubs/ssl.py", "module": "ssl" },
+    { "file": "/home/robot/stubs/struct.py", "module": "struct" },
+    { "file": "/home/robot/stubs/sys.py", "module": "sys" },
+    { "file": "/home/robot/stubs/termios.py", "module": "termios" },
+    { "file": "/home/robot/stubs/time.py", "module": "time" },
+    { "file": "/home/robot/stubs/tools.py", "module": "tools" },
+    { "file": "/home/robot/stubs/ubinascii.py", "module": "ubinascii" },
+    { "file": "/home/robot/stubs/ucollections.py", "module": "ucollections" },
+    { "file": "/home/robot/stubs/ucryptolib.py", "module": "ucryptolib" },
+    { "file": "/home/robot/stubs/uctypes.py", "module": "uctypes" },
+    { "file": "/home/robot/stubs/uerrno.py", "module": "uerrno" },
+    { "file": "/home/robot/stubs/uhashlib.py", "module": "uhashlib" },
+    { "file": "/home/robot/stubs/uheapq.py", "module": "uheapq" },
+    { "file": "/home/robot/stubs/uio.py", "module": "uio" },
+    { "file": "/home/robot/stubs/ujson.py", "module": "ujson" },
+    { "file": "/home/robot/stubs/umachine.py", "module": "umachine" },
+    { "file": "/home/robot/stubs/uos.py", "module": "uos" },
+    { "file": "/home/robot/stubs/upip.py", "module": "upip" },
+    { "file": "/home/robot/stubs/upip_utarfile.py", "module": "upip_utarfile" },
+    { "file": "/home/robot/stubs/urandom.py", "module": "urandom" },
+    { "file": "/home/robot/stubs/ure.py", "module": "ure" },
+    { "file": "/home/robot/stubs/urequests.py", "module": "urequests" },
+    { "file": "/home/robot/stubs/uselect.py", "module": "uselect" },
+    { "file": "/home/robot/stubs/usocket.py", "module": "usocket" },
+    { "file": "/home/robot/stubs/ussl.py", "module": "ussl" },
+    { "file": "/home/robot/stubs/ustruct.py", "module": "ustruct" },
+    { "file": "/home/robot/stubs/utime.py", "module": "utime" },
+    { "file": "/home/robot/stubs/utimeq.py", "module": "utimeq" },
+    { "file": "/home/robot/stubs/uzlib.py", "module": "uzlib" },
+    { "file": "/home/robot/stubs/websocket.py", "module": "websocket" },
+    { "file": "/home/robot/stubs/zlib.py", "module": "zlib" }
+  ]
+}
