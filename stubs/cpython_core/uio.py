@@ -1,5 +1,4 @@
 import io
-from io import BytesIO, StringIO
 
 
 class UioStream:
@@ -28,6 +27,20 @@ class UioStream:
 
     def __exit__(self, *args):
         return self._s.__exit__(*args)
+
+
+class StringIO(io.StringIO):
+
+    def __iadd__(self, s):
+        self.write(s)
+        return self
+
+
+class BytesIO(io.BytesIO):
+
+    def __iadd__(self, s):
+        self.write(s)
+        return self
 
 
 def open(name, mode="r", *args, **kw):

@@ -13,7 +13,7 @@
 | [esp32_LoBo_3_2_9](C:\develop\MyPython\micropython-stubs\stubs\esp32_LoBo_3_2_9\modules.json)| esp32_LoBo | ESP32_LoBo_v3.2.9 on 2018-04-12 | 3.2.9 | ESP32 board with ESP32 | 68 | 1.1.2
 | [esp32_1_10_0](C:\develop\MyPython\micropython-stubs\stubs\esp32_1_10_0\modules.json)| esp32 | 1.10.0 | 1.10.0 | ESP32 module with ESP32 | 65 | 1.3.2
 | [esp32_1_11_0](C:\develop\MyPython\micropython-stubs\stubs\esp32_1_11_0\modules.json)| esp32 | 1.11.0 | 1.11.0 | ESP32 module with ESP32 | 65 | 1.3.2
-| [cpython_core](C:\develop\MyPython\micropython-stubs\stubs\cpython_core\modules.json)| mpy | any | any | cpython core patchfiles | 11 | manual
+| [cpython_core](C:\develop\MyPython\micropython-stubs\stubs\cpython_core\modules.json)| mpy | any | any | cpython core patchfiles | 22 | manual
 | [cpython_pyboard](C:\develop\MyPython\micropython-stubs\stubs\cpython_pyboard\modules.json)| pyb | - | - | micropython-pyb by Daryl Schults | 1 | manual
 | [esp32_LoBo_3_2_24](C:\develop\MyPython\micropython-stubs\stubs\esp32_LoBo_3_2_24\modules.json)| esp32_LoBo | ESP32_LoBo_v3.2.24 on 2018-09-06 | 3.2.24 | ESP32 board with ESP32 | 68 | 1.0.0
 | [esp32_LoBo_3_2_24_Frozen](C:\develop\MyPython\micropython-stubs\stubs\esp32_LoBo_3_2_24_Frozen\modules.json)| esp32_LoBo | 3.2.24 | ? | included frozen modules | 0 | manual
