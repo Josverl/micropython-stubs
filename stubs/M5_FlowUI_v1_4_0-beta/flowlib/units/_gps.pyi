@@ -1,0 +1,6 @@
+
+from typing import Any, Dict, Optional, Sequence, Tuple, Union
+Node = Any
+class Gps:
+    def _monitor() -> None: ...
+    def deinit() -> None: ...

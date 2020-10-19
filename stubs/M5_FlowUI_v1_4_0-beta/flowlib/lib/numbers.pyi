@@ -1,0 +1,6 @@
+
+from typing import Any, Dict, Optional, Sequence, Tuple, Union
+Node = Any
+class Number:
+    def from_bytes() -> None: ...
+    def to_bytes() -> None: ...

@@ -1,0 +1,6 @@
+
+from typing import Any, Dict, Optional, Sequence, Tuple, Union
+Node = Any
+class ADC:
+    def read() -> None: ...
+class I2C: ...

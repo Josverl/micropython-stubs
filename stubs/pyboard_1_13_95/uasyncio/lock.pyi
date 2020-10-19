@@ -1,0 +1,6 @@
+
+from typing import Any, Dict, Optional, Sequence, Tuple, Union
+Node = Any
+class Lock:
+    def locked() -> None: ...
+    def release() -> None: ...
