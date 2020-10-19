@@ -18,7 +18,8 @@ $_ = new-item -Path $docfile -Value $header -Force
 
 foreach ($file in $configs) {
     $mods = Get-Content $file.FullName | convertfrom-json
-    $path = $file.DirectoryName.replace($pwd.Path,'.').replace('\','/')
+    $path = $file.DirectoryName.replace($pwd.Path,'.')
+    $path = $path.replace('\','/')
     
     if ([string]::IsNullOrEmpty($mods.firmware.version )) {
         # old format 
@@ -36,7 +37,7 @@ foreach ($file in $configs) {
     $line = "| [{0}]({7})| {1} | {2} | {3} | {4} | {5} | {6}" -f `
         $file.Directory.BaseName, $firmware.sysname, `
         $firmware.version, $firmware.release, `
-        $firmware.machine, $mod_count, $stub_ver, $file
+        $firmware.machine, $mod_count, $stub_ver, $path
     #write-host $line
     Add-Content -Value $line -Path $docfile
 }
