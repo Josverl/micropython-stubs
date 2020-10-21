@@ -1,0 +1,24 @@
+{
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.languageServer": "Microsoft",
+    "python.jediEnabled": false,
+    "python.autoComplete.extraPaths": [
+        "./src/lib",
+         "all-stubs/cpython_patch",
+         "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", 
+         "all-stubs/esp32_1_13_0-103",
+    ],
+    "python.autoComplete.typeshedPaths": [
+        "./src/lib",
+        "all-stubs/cpython_patch",
+        "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", 
+        "all-stubs/esp32_1_13_0-103",
+    ],
+    "python.analysis.typeshedPaths": [
+        "./src/lib",
+         "all-stubs/cpython_patch",
+         "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", 
+         "all-stubs/esp32_1_13_0-103",
+    ]
+}

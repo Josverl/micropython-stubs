@@ -2,23 +2,72 @@
   "files": [
     "README.md"
   ],
+  "types": {
+    "stubs": {
+      "symbol": "📝",
+      "description": "MicroPython stubs"
+    }
+  },
   "imageSize": 100,
   "commit": false,
-  "contributors": [
-    {
-      "login": "JOSVERL",
-      "name": "Jos Verlinde",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/981654?v=4",
-      "profile": "https://github.com/Josverl",
-      "contributions": [
-        "code"
-      ]
-    }
-  ],
   "contributorsPerLine": 7,
   "projectName": "micropython-stubs",
   "projectOwner": "Josverl",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "contributors": [
+    {
+      "login": "josverl",
+      "name": "Jos Verlinde",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/981654?v=4",
+      "profile": "https://github.com/Josverl",
+      "contributions": [
+        "code",
+        "stubs",
+        "test",
+        "tool"
+      ]
+    },
+    {
+      "login": "BradenM",
+      "name": "Braden Mars",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5913808?v=4",
+      "profile": "https://github.com/BradenM",
+      "contributions": [
+        "stubs",
+        "test",
+        "tool"
+      ]
+    },
+    {
+      "login": "pfalcon",
+      "name": "Paul Sokolovsky",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/500451?v=4",
+      "profile": "https://github.com/pfalcon",
+      "contributions": [
+        "stubs"
+      ]
+    },
+    {
+      "login": "dastultz",
+      "name": "Daryl Stultz",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4334042?v=4",
+      "profile": "https://github.com/dastultz",
+      "contributions": [
+        "stubs"
+      ]
+    },
+    {
+      "login": "askpatrickw",
+      "name": "Patrick",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/4002194?v=4",
+      "profile": "http://patrickwalters.us/",
+      "contributions": [
+        "test",
+        "stubs"
+      ]
+    }
+  ],
+  "commitConvention": "none"
 }
