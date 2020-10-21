@@ -3,10 +3,8 @@
     "README.md"
   ],
   "types": {
-    "stubs": {
-      "symbol": "📝",
-      "description": "MicroPython stubs"
-    }
+    "stubs": { "symbol": "📝","description": "MicroPython stubs" },
+    "test": { "symbol": "✔","description": "Test" }
   },
   "imageSize": 100,
   "commit": false,
