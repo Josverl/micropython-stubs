@@ -3,8 +3,14 @@
     "README.md"
   ],
   "types": {
-    "stubs": { "symbol": "📝","description": "MicroPython stubs" },
-    "test": { "symbol": "✔","description": "Test" }
+    "stubs": {
+      "symbol": "📝",
+      "description": "MicroPython stubs"
+    },
+    "test": {
+      "symbol": "✔",
+      "description": "Test"
+    }
   },
   "imageSize": 100,
   "commit": false,
@@ -28,6 +34,55 @@
       ]
     },
     {
+      "login": "micropython",
+      "name": "MicroPython",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6298560?v=4",
+      "profile": "https://micropython.org/",
+      "contributions": [
+        "data",
+        "stubs"
+      ]
+    },
+    {
+      "login": "loboris",
+      "name": "Boris Lovosevic",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/6280349?v=4",
+      "profile": "https://github.com/loboris",
+      "contributions": [
+        "data",
+        "stubs"
+      ]
+    },
+    {
+      "login": "pfalcon",
+      "name": "Paul Sokolovsky",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/500451?v=4",
+      "profile": "https://github.com/pfalcon",
+      "contributions": [
+        "data",
+        "stubs"
+      ]
+    },
+    {
+      "login": "pycopy",
+      "name": "pycopy",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/67273174?v=4",
+      "profile": "https://github.com/pycopy",
+      "contributions": [
+        "data",
+        "stubs"
+      ]
+    },
+    {
+      "login": "pycom",
+      "name": "Pycom",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/16415153?v=4",
+      "profile": "https://github.com/pycom",
+      "contributions": [
+        "infra"
+      ]
+    },
+    {
       "login": "BradenM",
       "name": "Braden Mars",
       "avatar_url": "https://avatars1.githubusercontent.com/u/5913808?v=4",
@@ -35,7 +90,8 @@
       "contributions": [
         "stubs",
         "test",
-        "tool"
+        "tool",
+        "platform"
       ]
     },
     {

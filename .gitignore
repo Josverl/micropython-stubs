@@ -1,2 +1,6 @@
+
+# no compiled stuff
 **/__pycache__
 
+# no documentaion artefacts 
+*/~*.pptx
