@@ -1,6 +1,7 @@
 
 # no compiled stuff
 **/__pycache__
+.pytest_cache
 
 # no documentaion artefacts 
 */~*.pptx
