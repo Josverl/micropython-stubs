@@ -1,6 +1,0 @@
-
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
-class APA102(NeoPixel):
-    def __init__(self, clock_pin: Any, data_pin: Any, n: int, bpp: Any=) -> None: ...
-    def write(self) -> None: ...
