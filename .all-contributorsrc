@@ -121,6 +121,16 @@
         "test",
         "stubs"
       ]
+    },
+    {
+      "login": "CallumJHays",
+      "name": "Callum Jacob Hays",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/13251689?v=4",
+      "profile": "http://comingsoon.tm/",
+      "contributions": [
+        "example",
+        "research"
+      ]
     }
   ],
   "commitConvention": "none"
