@@ -10,7 +10,7 @@ Currently over a 1.000 stubfiles of common MicroPython modules are available in 
 
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-10-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![demo](docs/img/demo.gif)
@@ -49,52 +49,56 @@ this is not as complex as it seems,
      - Use forward slashes `/` rather than backslashes, also on Windows.
      - for example for micropython 1.13 on an ESP32 select:
          1. "./src/lib",
+         
          2. "all-stubs/cpython_patch",
-         3. "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", 
+         
+    3. "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", 
+         
          4. "all-stubs/esp32_1_13_0-103",
-
+         
+            
+     
  3.  **Configure VSCode to use the selected stub folders**  
-      This instructs VSCode to consider your libs folder and the stubs for static code evaluation.
-      VSCode allows this configuration to be set on **_workspace_** or _user_ level. I prefer setting it per workspace as that allows different settings for different projects, but you could do either.
+     This instructs the VSCode Pylance to consider your libs folder and the stubs for static code evaluation.
+     VSCode allows this configuration to be set on **_workspace_** or _user_ level. I prefer setting it per workspace as that allows different settings for different projects, but you could do either.
+     
+     the configuration is [Pylance]([Pylance - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)) specific, and is simplifed compared to the now depricated 'Microsoft Mython Language Server' 
+     
      - use the [`.VSCode/settings.json` sample file](docs/samples/.VSCode/settings.json) located in the sample folder
      - you can open this file in VSCode itself, or use the settings menu 
-     - place the folders in the 3 sections. 
-          - each section should contain the same folders. 
-          - it can be on a single line or split across lines. 
+     - add the folders to the `python.autoComplete.extraPaths` section. 
+     - it can be on a single line or split across lines. 
           - make sure it is a valid json array 
-
-          ```
+          
+     ```json
+          "python.languageServer": "Pylance",
           "python.autoComplete.extraPaths": [
-               "./src/lib", "all-stubs/cpython_patch", 
-               "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", "all-stubs/esp32_1_13_0-103",
-          ],
-          "python.autoComplete.typeshedPaths": [
-               "./src/lib", "all-stubs/cpython_patch", 
-               "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", "all-stubs/esp32_1_13_0-103",
-          ],
-          "python.analysis.typeshedPaths": [
-               "./src/lib", "all-stubs/cpython_patch", 
-               "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", "all-stubs/esp32_1_13_0-103",
+               "src/lib", 
+               "all-stubs/cpython_patch", 
+               "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", 
+               "all-stubs/esp32_1_13_0-103",
           ]
           ```
- 3.  **Configure pylint to use the selected stub folders**  
-     This instructs pylint to insert the list of paths into `sys.path` before performing linting, thus allowing it to find the stubs and use them to better validate your code. 
+     
+ 5. **Configure pylint to use the selected stub folders**  
+    This instructs pylint to insert the list of paths into `sys.path` before performing linting, thus allowing it to find the stubs and use them to better validate your code. 
 
-     - use the [.pylintcr sample file](docs/sample/.pylintrc) located in the sample folder
-     - edit the line that starts with `init-hook=`  
-          ``` ini
-          init-hook='import sys;sys.path[1:1] = ["src/lib", "folder1","folder2", "folder3",];'
-          ```
-     - replace the folders with your selection of stub folders. **In this case they MUST be on a single line**
-     - the result should look like:
-          ``` ini
-          init-hook='import sys;sys.path[1:1] = ["src/lib", "all-stubs/cpython_patch","all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", "all-stubs/esp32_1_13_0-103",];'
-          ```
- 4.  **Restart VSCode**  
-     VSCode must be restated for the Python language engine and Pylint to read the updated configuration.
-     you can use: 
-     - the `Developer: Reload Window` command.
-     - or stop / start the editor
+    - use the [.pylintcr sample file](docs/sample/.pylintrc) located in the sample folder
+    - edit the line that starts with `init-hook=`  
+         ``` ini
+         init-hook='import sys;sys.path[1:1] = ["src/lib", "folder1","folder2", "folder3",];'
+         ```
+    - replace the folders with your selection of stub folders. **In this case they MUST be on a single line**
+    - the result should look like:
+         ``` ini
+         init-hook='import sys;sys.path[1:1] = ["src/lib", "all-stubs/cpython_patch","all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", "all-stubs/esp32_1_13_0-103",];'
+         ```
+
+ 6. **Restart VSCode**  
+    VSCode must be restated for the Python language engine and Pylint to read the updated configuration.
+    you can use: 
+    - the `Developer: Reload Window` command.
+    - or stop / start the editor
 
 ## Order of the stub folders
 
@@ -172,6 +176,7 @@ Thanks to everyone that has submitted stubs or other relevant pieces of code and
     <td align="center"><a href="https://github.com/pfalcon"><img src="https://avatars3.githubusercontent.com/u/500451?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Paul Sokolovsky</b></sub></a><br /><a href="#stubs-pfalcon" title="MicroPython stubs">📝</a></td>
     <td align="center"><a href="https://github.com/dastultz"><img src="https://avatars3.githubusercontent.com/u/4334042?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Daryl Stultz</b></sub></a><br /><a href="#stubs-dastultz" title="MicroPython stubs">📝</a></td>
     <td align="center"><a href="http://patrickwalters.us/"><img src="https://avatars0.githubusercontent.com/u/4002194?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Patrick</b></sub></a><br /><a href="#test-askpatrickw" title="Test">✔</a> <a href="#stubs-askpatrickw" title="MicroPython stubs">📝</a></td>
+    <td align="center"><a href="http://comingsoon.tm/"><img src="https://avatars0.githubusercontent.com/u/13251689?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Callum Jacob Hays</b></sub></a><br /><a href="#example-CallumJHays" title="Examples">💡</a> <a href="#research-CallumJHays" title="Research">🔬</a></td>
   </tr>
 </table>
 
