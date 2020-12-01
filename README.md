@@ -53,11 +53,11 @@ this is not as complex as it seems,
          2. "all-stubs/cpython_patch",
          
     3. "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", 
-         
+       
          4. "all-stubs/esp32_1_13_0-103",
          
             
-     
+    
  3.  **Configure VSCode to use the selected stub folders**  
      This instructs the VSCode Pylance to consider your libs folder and the stubs for static code evaluation.
      VSCode allows this configuration to be set on **_workspace_** or _user_ level. I prefer setting it per workspace as that allows different settings for different projects, but you could do either.
@@ -72,13 +72,16 @@ this is not as complex as it seems,
           
      ```json
           "python.languageServer": "Pylance",
+          "python.analysis.autoSearchPath": true,
           "python.autoComplete.extraPaths": [
                "src/lib", 
                "all-stubs/cpython_patch", 
                "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", 
                "all-stubs/esp32_1_13_0-103",
           ]
-          ```
+         "python.linting.enabled": true,
+         "python.linting.pylintEnabled": true,
+     ```
      
  5. **Configure pylint to use the selected stub folders**  
     This instructs pylint to insert the list of paths into `sys.path` before performing linting, thus allowing it to find the stubs and use them to better validate your code. 
@@ -104,9 +107,9 @@ this is not as complex as it seems,
 
 The stubs are used by 3 components.
 
- 1. **pylint**
- 2. the VSCode Autocompletion service
- 3. the VSCode Analysis server
+ 1. pylint
+ 2. the VSCode Pylance Language Server
+  3. the VSCode Python add-in
 
 These 3 tools work together to provide code completion/prediction, type checking and all the other good things.
 For this the order in which these tools use  the stub folders is significant, and best results are when they use the same order. 
