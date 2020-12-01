@@ -3,7 +3,8 @@
     // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
     // List of extensions which should be recommended for users of this workspace.
     "recommendations": [
-        "ms-python.python", 
-        "VisualStudioExptTeam.vscodeintellicode"
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "VisualStudioExptTeam.vscodeintellicode",
     ]
 }
