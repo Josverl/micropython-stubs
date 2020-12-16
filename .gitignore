@@ -5,3 +5,6 @@
 
 # no documentaion artefacts 
 */~*.pptx
+
+# exclude ulab/user module to allow this to be stubbed on a specific firmware
+stubs/micropython-ulab/ulab/user/__init__.pyi

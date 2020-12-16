@@ -25,6 +25,10 @@ This includes stubs from the following micropython families:
  - M5Stack
  - EV3 / Lego
 
+ modules: 
+ - commonly frozen MicroPython modules
+ - ulab native module
+
 ## Using the stubs 
 
 In order to use the stubs you need to do a few things:  

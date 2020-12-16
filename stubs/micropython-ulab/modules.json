@@ -1,0 +1,58 @@
+{
+    "firmware": {
+        "ver": "-",
+        "port": "",
+        "arch": "",
+        "sysname": "generic",
+        "release": "",
+        "name": "ulab",
+        "version": "unknown",
+        "machine": "generic",
+        "build": "",
+        "nodename": "unknown",
+        "platform": "generic",
+        "family": ""
+    },
+    "stubber": {
+        "version": "1.3.7"
+    },
+    "modules": [
+        {
+            "file": "ulab",
+            "module": "ulab"
+        },
+        {
+            "file": "ulab/approx",
+            "module": "ulab/approx"
+        },
+        {
+            "file": "ulab/compare",
+            "module": "ulab/compare"
+        },
+        {
+            "file": "ulab/fft",
+            "module": "ulab/fft"
+        },
+        {
+            "file": "ulab/filter",
+            "module": "ulab/filter"
+        },
+        {
+            "file": "ulab/linalg",
+            "module": "ulab/linalg"
+        },
+        {
+            "file": "ulab/numerical",
+            "module": "ulab/numerical"
+        },
+        {
+            "file": "ulab/poly",
+            "module": "ulab/poly"
+        },
+        {
+            "file": "ulab/vector",
+            "module": "ulab/vector"
+        }
+
+    ]
+}
