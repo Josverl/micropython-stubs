@@ -41,7 +41,7 @@ this is not as complex as it seems,
      This will allow you to reference the same stub files from multiple projects, and limit the space needed. This a recommendation, and things work equally well if you copy the `stubs` folder into your project.  
      For details on how to create a symlink, please see : [_Create a symbolic link_](###create-a-symbolic-link)
 
- 2.  **Copy the [samples](doc/samples) folder to your project**  
+ 2.  **Copy the [samples](docs/samples) folder to your project**  
  this contains the base files you need to improve syntax highlighting and linting.
 
  2.  **Select which stub folders you need to reference**  
