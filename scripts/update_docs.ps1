@@ -1,6 +1,5 @@
 
 
-$docfile = "firmwares.md"
 
 
 $header = @"
@@ -11,12 +10,16 @@ $header = @"
 
 "@ 
 
-$configs = Get-ChildItem modules.json -Recurse | Sort-Object -Property BaseName
+$Workspace = split-path $PSScriptRoot -Parent
+
+$configs = Get-ChildItem ( join-path $Workspace 'modules.json' )  -Recurse | Sort-Object -Property BaseName
 # new file with header 
+$docfile = join-path $Workspace "firmwares.md"
 $_ = new-item -Path $docfile -Value $header -Force
 
 
 foreach ($file in $configs) {
+    Write-Host( $file.Directory.BaseName)
     $mods = Get-Content $file.FullName | convertfrom-json
     $path = $file.DirectoryName.replace($pwd.Path,'.')
     $path = $path.replace('\','/')
