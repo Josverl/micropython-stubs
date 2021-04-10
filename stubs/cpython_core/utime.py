@@ -3,11 +3,12 @@ import time as _time
 
 MICROPY_PY_UTIME_TICKS_PERIOD = 2**30
 
-_PASSTHRU = ("time", "sleep", "clock", "localtime")
+_PASSTHRU = ("time", "sleep", "localtime")
 
 for f in _PASSTHRU:
     globals()[f] = getattr(_time, f)
 
+clock = _time.process_time()
 
 def sleep_ms(t):
     _time.sleep(t / 1000)
