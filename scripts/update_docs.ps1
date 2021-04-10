@@ -5,8 +5,8 @@
 $header = @"
 # Overview of firmware stubs 
 
-| folder | sysname | version | release | machine | # stubs | stubber version 
-|--------|---------|---------|---------|---------|---------|----------------
+| folder | sysname | version |  machine | # stubs | stubber version 
+|--------|---------|---------|----------|---------|----------------
 
 "@ 
 
@@ -37,9 +37,9 @@ foreach ($file in $configs) {
         
     }
 
-    $line = "| [{0}]({7})| {1} | {2} | {3} | {4} | {5} | {6}" -f `
+    $line = "| [{0}]({6})| {1} | {2} | {3} | {4} | {5} " -f `
         $file.Directory.BaseName, $firmware.sysname, `
-        $firmware.version, $firmware.release, `
+        $firmware.version, `
         $firmware.machine, $mod_count, $stub_ver, $path
     #write-host $line
     Add-Content -Value $line -Path $docfile
