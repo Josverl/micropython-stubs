@@ -131,6 +131,15 @@
         "example",
         "research"
       ]
+    },
+    {
+      "login": "ronaldHiemstra",
+      "name": "Ronald Hiemstra",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17012831?v=4",
+      "profile": "https://github.com/RonaldHiemstra",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "commitConvention": "none"
