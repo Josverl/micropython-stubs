@@ -1,0 +1,1 @@
+{"firmware": {"family": "micropython", "port": "unix", "platform": "unix", "machine": "micropython", "firmware": "micropython-unix-1_9_3", "nodename": "micropython", "version": "v1.9.3", "release": "v1.9.3", "sysname": "micropython"}, "stubber": {"version": "1.3.7"}, "modules": [{"file": "upip.py", "module": "upip"}, {"file": "upip_utarfile.py", "module": "upip_utarfile"}]}
