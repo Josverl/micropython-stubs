@@ -1,0 +1,1 @@
+{"firmware": {"family": "micropython", "port": "rp2", "platform": "rp2", "machine": "micropython", "firmware": "micropython-rp2-1_15", "nodename": "micropython", "version": "v1.15", "release": "v1.15", "sysname": "micropython"}, "stubber": {"version": "1.3.7"}, "modules": [{"file": "rp2.py", "module": "rp2"}, {"file": "_boot.py", "module": "_boot"}]}
