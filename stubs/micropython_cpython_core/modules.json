@@ -1,0 +1,91 @@
+{
+    "firmware": {
+        "machine": "cpython core patchfiles",
+        "firmware": "mpy",
+        "nodename": "",
+        "version": "any",
+        "release": "any",
+        "sysname": "mpy"
+    },
+    "stubber": {
+        "version": "manual"
+    },
+    "modules": [
+        {
+            "file":   "micropython.py",
+            "module": "micropython"
+        },
+        {
+            "file":   "uerrno.py",
+            "module": "uerrno"
+        },
+        {
+            "file":   "uio.py",
+            "module": "uio"
+        },
+        {
+            "file":   "ujson.py",
+            "module": "ujson"
+        },
+        {
+            "file":   "uos.py",
+            "module": "uos"
+        },
+        {
+            "file":   "upip_utarfile.py",
+            "module": "upip_utarfile"
+        },
+        {
+            "file":   "upip.py",
+            "module": "upip"
+        },
+        {
+            "file":   "ure.py",
+            "module": "ure"
+        },
+        {
+            "file":   "usocket.py",
+            "module": "usocket"
+        },
+        {
+            "file":   "ussl.py",
+            "module": "ussl"
+        },
+        {
+            "file":   "uzlib.py",       "module": "uzlib"
+        },
+        {
+            "file":   "ffi.py",       "module": "ffi"
+        },
+        {
+            "file":   "uarray.py",       "module": "uarray"
+        },
+        {
+            "file":   "asyncio.py",       "module": "asyncio"
+        },
+        {
+            "file":   "ucollaections.py",       "module": "ucollaections"
+        },
+        {
+            "file":   "uctypes.py",       "module": "uctypes"
+        },
+        {
+            "file":   "uhashlib.py",       "module": "uhashlib"
+        },
+        {
+            "file":   "ulogging.py",       "module": "ulogging"
+        },
+        {
+            "file":   "uselect.py",       "module": "uselect"
+        },
+        {
+            "file":   "utime.py",       "module": "utime"
+        },
+        {
+            "file":   "utimeq.py",       "module": "utimeq"
+        },
+        {
+            "file":   "utokenize.py",       "module": "utokenize"
+        }
+    ]
+}
