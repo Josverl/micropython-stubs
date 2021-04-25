@@ -81,13 +81,16 @@ jobs:
       - name: Extract branch name (for potential PR)
         id: extract_branch
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        run: |
+          cd ${{github.workspace}}/micropython-stubs
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
 
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
+          path: micropython-stubs
           title: '${{ steps.extract_branch.outputs.branch }} : add frozen modules for ${{ matrix.version }}'
           commit-message: add/update frozen modules for micropython ${{ matrix.version }}
           branch: ${{ steps.extract_branch.outputs.branch }}-frozen-${{ matrix.version }}
