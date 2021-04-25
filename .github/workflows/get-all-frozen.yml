@@ -13,9 +13,10 @@ jobs:
   get-frozen:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    continue-on-error: true
     strategy:
       matrix:
-        version: ['v1.9.3','v1.9.4','v1.10','v1.11','v1.12','v1.13','v1.14','v1.15']
+        version: ['v1.9.3','v1.9.4','v1.10','v1.11','v1.12','v1.13','v1.14','v1.15','v.1.16']
 
   # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -59,7 +60,6 @@ jobs:
         run: |
           cd ${{github.workspace}}/micropython-stubber
           python -m pip install --upgrade pip
-          pip install pytest pylint
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi          
 
@@ -69,21 +69,14 @@ jobs:
           git checkout tags/${{ matrix.version }}
       
       - name: get frozen modules for ${{ matrix.version }}
+        cwd: ${{github.workspace}}/micropython-stubber
         run: |
-          cd ${{github.workspace}}/micropython-stubber
           python ./src/get_all_frozen.py
 
       - name: update stubs with .pyi ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython-stubber
         run: |
-          cd ${{github.workspace}}/micropython-stubber
           python ./src/update_stubs.py
-
-      - name: Extract branch name (for potential PR)
-        id: extract_branch
-        shell: bash
-        run: |
-          cd ${{github.workspace}}/micropython-stubs
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
 
       - name: Create Pull Request
         id: cpr
@@ -91,11 +84,11 @@ jobs:
         # ref: https://github.com/peter-evans/create-pull-request
         with:
           path: micropython-stubs
-          title: '${{ steps.extract_branch.outputs.branch }} : add frozen modules for ${{ matrix.version }}'
+          title: '${{ steps.extract_branch.outputs.branch }} : add frozen modules for micropython ${{ matrix.version }}'
           commit-message: add/update frozen modules for micropython ${{ matrix.version }}
-          branch: ${{ steps.extract_branch.outputs.branch }}-frozen-${{ matrix.version }}
+          branch: micropython-frozen-${{ matrix.version }}
           labels: |
-            'automated pr','frozen stubs'
+            'automated pr','frozen stubs','micropython' ,'${{ matrix.version }}'
 
       # Todo: Create PR 
 
