@@ -10,7 +10,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # job prepare sets everything up 
-  prepare:
+  get-frozen:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     strategy:
@@ -71,9 +71,29 @@ jobs:
       - name: get frozen modules for ${{ matrix.version }}
         run: |
           cd ${{github.workspace}}/micropython-stubber
-          python src/get_mpy.py
+          python ./src/get_all_frozen.py
 
-      # Todo: create .pyi
+      - name: update stubs with .pyi ${{ matrix.version }}
+        run: |
+          cd ${{github.workspace}}/micropython-stubber
+          python ./src/update_stubs.py
+
+      - name: Extract branch name (for potential PR)
+        id: extract_branch
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        # ref: https://github.com/peter-evans/create-pull-request
+        with:
+          title: '${{ steps.extract_branch.outputs.branch }} : add frozen modules for ${{ matrix.version }}'
+          commit-message: add/update frozen modules for micropython ${{ matrix.version }}
+          branch: ${{ steps.extract_branch.outputs.branch }}-frozen-${{ matrix.version }}
+          labels: |
+            'automated pr','frozen stubs'
+
       # Todo: Create PR 
 
   
