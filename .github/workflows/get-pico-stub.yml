@@ -69,7 +69,7 @@ jobs:
       # This is where the actual work starts
       ######################################
 
-      - name: add/update Pico-Stub stubs ${{ matrix.version }}
+      - name: add/update Pico-Stub/dist/pylance/*.*
         working-directory: ${{github.workspace}}
         shell: pwsh
         run: |
@@ -83,7 +83,7 @@ jobs:
       #     python ./src/update_stubs.py
 
       - name: Update Documentation
-        working-directory: ${{github.workspace}}
+        working-directory: ${{github.workspace}}/micropython-stubber
         shell: pwsh
         run: |
           scripts/update_docs.ps1
@@ -101,8 +101,9 @@ jobs:
             'automated pr','`Pico-Stub','micropython'
           delete-branch: true
 
-      - name: exit gracefully
-        run: |
-          echo 'avoid throwing a fit when an existing PR was updated'
-        if: ${{ failure() }}
+      # - name: exit gracefully
+      #   run: |
+      #     echo 'avoid throwing a fit when an existing PR was updated'
+      #   if: ${{steps.cpr.exit == 1 }}
+      #   # if: ${{ failure() }}
 
