@@ -45,7 +45,7 @@ jobs:
           repository: josverl/micropython-stubs
           path: micropython-stubs
 
-      - name: Checkout stubs repo
+      - name: Checkout micropython-lib repo
         uses: actions/checkout@v2
         with:
           repository: micropython/micropython-lib
