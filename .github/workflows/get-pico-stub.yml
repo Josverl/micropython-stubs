@@ -1,6 +1,6 @@
 # This will attempt to retrieve and import the excelent handcoded stubs from cpwood/Pico-Stub
 
-name: get-all-frozen
+name: Get pico-go stubs
 
 on:
   workflow_dispatch:
