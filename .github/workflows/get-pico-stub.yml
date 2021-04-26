@@ -1,15 +1,15 @@
-# This will attempt to retrieve and import the excelent handcoded stubs from cpwood/Pico-Stub
+# This will attempt to retrieve and add/update the hand coded stubs from cpwood/Pico-Stub
 
 name: Get pico-go stubs
 
 on:
   workflow_dispatch:
-  schedule: 
+  schedule:
     - cron: "0 1 * * *"   # Run everyday at 01:00
 
 jobs:
-  # job prepare sets everything up 
-  get-frozen:
+  # job prepare sets everything up
+  get-stubs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -40,10 +40,10 @@ jobs:
           repository: josverl/micropython-stubber
           path: micropython-stubber
 
-      # simplify processing using symlink 
+      # simplify processing using symlink
       - name: create symlink for all_stubs
         run: |
-          ln -s ${{github.workspace}}/micropython-stubs/stubs all-stubs --force          
+          ln -s ${{github.workspace}}/micropython-stubs/stubs all-stubs --force
 
 
       # integrate stubs from this repo
@@ -69,11 +69,12 @@ jobs:
       # This is where the actual work starts
       ######################################
 
-      - name: add/update Pico-Stub stubs ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython-stubs
+      - name: add/update Pico-Stub/dist/pylance/*.*
+        working-directory: ${{github.workspace}}
         shell: pwsh
         run: |
-          copy Pico-Go\stubs .\micropython-stubs\stubs\micropython-pico-go -Recurse -Force
+          copy-item ./Pico-Stub/dist/pylance ./micropython-stubs/stubs/micropython-pico-go -Recurse -Force -Container
+          copy-item ./Pico-Stub/LICENSE ./micropython-stubs/stubs/micropython-pico-go/LICENSE
 
       # Todo: add manifest.json
 
@@ -82,7 +83,7 @@ jobs:
       #     python ./src/update_stubs.py
 
       - name: Update Documentation
-        working-directory: ${{github.workspace}}
+        working-directory: ${{github.workspace}}/micropython-stubber
         shell: pwsh
         run: |
           scripts/update_docs.ps1
@@ -100,8 +101,9 @@ jobs:
             'automated pr','`Pico-Stub','micropython'
           delete-branch: true
 
-      - name: exit gracefully
-        run: |
-          echo 'avoid throwing a fit when an existing PR was updated'
-        if: ${{ cpr.failure() }}
+      # - name: exit gracefully
+      #   run: |
+      #     echo 'avoid throwing a fit when an existing PR was updated'
+      #   if: ${{steps.cpr.exit == 1 }}
+      #   # if: ${{ failure() }}
 
