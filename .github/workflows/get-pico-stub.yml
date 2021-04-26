@@ -73,7 +73,8 @@ jobs:
         working-directory: ${{github.workspace}}
         shell: pwsh
         run: |
-          copy-item ${{github.workspace}}/Pico-Stub/stubs ${{github.workspace}}/micropython-stubs/stubs/micropython-pico-go -Recurse -Force -Container
+          copy-item ./Pico-Stub/dist/pylance ./micropython-stubs/stubs/micropython-pico-go -Recurse -Force -Container
+          copy-item ./Pico-Stub/LICENSE ./micropython-stubs/stubs/micropython-pico-go/LICENSE
 
       # Todo: add manifest.json
 
