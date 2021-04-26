@@ -10,7 +10,7 @@ Currently over a 1.000 stubfiles of common MicroPython modules are available in 
 
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![demo](docs/img/demo.gif)
@@ -181,6 +181,8 @@ Thanks to everyone that has submitted stubs or other relevant pieces of code and
     <td align="center"><a href="http://patrickwalters.us/"><img src="https://avatars0.githubusercontent.com/u/4002194?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Patrick</b></sub></a><br /><a href="#test-askpatrickw" title="Test">✔</a> <a href="#stubs-askpatrickw" title="MicroPython stubs">📝</a></td>
     <td align="center"><a href="http://comingsoon.tm/"><img src="https://avatars0.githubusercontent.com/u/13251689?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Callum Jacob Hays</b></sub></a><br /><a href="#example-CallumJHays" title="Examples">💡</a> <a href="#research-CallumJHays" title="Research">🔬</a></td>
     <td align="center"><a href="https://github.com/RonaldHiemstra"><img src="https://avatars.githubusercontent.com/u/17012831?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Ronald Hiemstra</b></sub></a><br /><a href="https://github.com/Josverl/micropython-stubs/commits?author=ronaldHiemstra" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/cpwood"><img src="https://avatars.githubusercontent.com/u/13966104?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Chris Wood</b></sub></a><br /><a href="#stubs-cpwood" title="MicroPython stubs">📝</a> <a href="#tool-cpwood" title="Tools">🔧</a></td>
+    <td align="center"><a href="https://github.com/thingslu"><img src="https://avatars.githubusercontent.com/u/34967785?v=4?s=100" width="100px;" alt=""/><br /><sub><b>thingslu</b></sub></a><br /><a href="#stubs-thingslu" title="MicroPython stubs">📝</a> <a href="#test-thingslu" title="Test">✔</a></td>
   </tr>
 </table>
 
