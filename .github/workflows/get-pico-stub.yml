@@ -4,11 +4,11 @@ name: Get pico-go stubs
 
 on:
   workflow_dispatch:
-  schedule: 
+  schedule:
     - cron: "0 1 * * *"   # Run everyday at 01:00
 
 jobs:
-  # job prepare sets everything up 
+  # job prepare sets everything up
   get-frozen:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -40,10 +40,10 @@ jobs:
           repository: josverl/micropython-stubber
           path: micropython-stubber
 
-      # simplify processing using symlink 
+      # simplify processing using symlink
       - name: create symlink for all_stubs
         run: |
-          ln -s ${{github.workspace}}/micropython-stubs/stubs all-stubs --force          
+          ln -s ${{github.workspace}}/micropython-stubs/stubs all-stubs --force
 
 
       # integrate stubs from this repo
@@ -70,10 +70,10 @@ jobs:
       ######################################
 
       - name: add/update Pico-Stub stubs ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython-stubs
+        working-directory: ${{github.workspace}}
         shell: pwsh
         run: |
-          copy Pico-Go\stubs .\micropython-stubs\stubs\micropython-pico-go -Recurse -Force
+          copy ./Pico-Go/stubs ./micropython-stubs/stubs/micropython-pico-go -Recurse -Force
 
       # Todo: add manifest.json
 
