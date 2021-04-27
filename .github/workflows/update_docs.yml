@@ -54,7 +54,7 @@ jobs:
       ######################################
 
       - name: Update Documentation
-        working-directory: ${{github.workspace}}/micropython-stubber
+        working-directory: ${{github.workspace}}/micropython-stubs
         shell: pwsh
         run: |
           scripts/update_docs.ps1
