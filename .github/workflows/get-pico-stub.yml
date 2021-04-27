@@ -82,11 +82,11 @@ jobs:
       #   run: |
       #     python ./src/update_stubs.py
 
-      - name: Update Documentation
-        working-directory: ${{github.workspace}}/micropython-stubber
-        shell: pwsh
-        run: |
-          scripts/update_docs.ps1
+      # - name: Update Documentation
+      #  working-directory: ${{github.workspace}}/micropython-stubber
+      #  shell: pwsh
+      #  run: |
+      #    scripts/update_docs.ps1
 
       - name: Create Pull Request
         id: cpr
