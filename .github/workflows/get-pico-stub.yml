@@ -42,6 +42,7 @@ jobs:
 
       # simplify processing using symlink
       - name: create symlink for all_stubs
+        working-directory: ${{github.workspace}}/micropython-stubber
         run: |
           ln -s ${{github.workspace}}/micropython-stubs/stubs all-stubs --force
 
