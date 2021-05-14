@@ -22,6 +22,9 @@ class UioStream:
     def __getattr__(self, attr):
         return getattr(self._s, attr)
 
+    def __iter__(self):
+        return self._s.__iter__()
+
     def __enter__(self):
         return self
 

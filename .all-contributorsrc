@@ -131,6 +131,35 @@
         "example",
         "research"
       ]
+    },
+    {
+      "login": "ronaldHiemstra",
+      "name": "Ronald Hiemstra",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17012831?v=4",
+      "profile": "https://github.com/RonaldHiemstra",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "cpwood",
+      "name": "Chris Wood",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13966104?v=4",
+      "profile": "https://github.com/cpwood",
+      "contributions": [
+        "stubs",
+        "tool"
+      ]
+    },
+    {
+      "login": "thingslu",
+      "name": "thingslu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34967785?v=4",
+      "profile": "https://github.com/thingslu",
+      "contributions": [
+        "stubs",
+        "test"
+      ]
     }
   ],
   "commitConvention": "none"

@@ -1,0 +1,109 @@
+# This will attempt to retrieve and generate stubs from all known versions of MicroPython
+
+name: get-all-frozen
+
+on:
+  workflow_dispatch:
+  schedule: 
+    - cron: "0 1 * * *"   # Run everyday at 01:00
+
+jobs:
+  # job prepare sets everything up 
+  get-frozen:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix:
+        version: ['v1.9.3','v1.9.4','v1.10','v1.11','v1.12','v1.13','v1.14','v1.15','v.1.16','v.2.0']
+
+    # Most scripts will be run from the stubber, set that as default
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{github.workspace}}/micropython-stubber
+  # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+      ######################################
+      # Check out repos side-by-side:
+      # micropython-stubs
+      # micropython-stubber
+      # micropython
+      # micropython-lib
+      ######################################
+
+      - name: Checkout 
+        uses: actions/checkout@v2
+        with:
+          repository: josverl/micropython-stubber
+          path: micropython-stubber
+
+      - name: Checkout stubs repo
+        uses: actions/checkout@v2
+        with:
+          repository: josverl/micropython-stubs
+          path: micropython-stubs
+
+      - name: Checkout micropython-lib repo
+        uses: actions/checkout@v2
+        with:
+          repository: micropython/micropython-lib
+          path: micropython-lib
+
+      - name: Checkout micropython
+        uses: actions/checkout@v2
+        with:
+          repository: micropython/micropython
+          path: micropython
+          fetch-depth: 0
+
+      # simplify processing using symlink 
+      - name: create symlink for all_stubs
+        run: |
+          ln -s ${{github.workspace}}/micropython-stubs/stubs all-stubs --force
+
+      # make Python work
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+
+      ######################################
+      # This is where the actual work starts
+      ######################################
+
+      - name: checkout micropython ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython
+        run: |
+          git checkout tags/${{ matrix.version }}
+
+      - name: Get frozen modules for ${{ matrix.version }}
+        run: |
+          python ./src/get_all_frozen.py
+
+      - name: Update stubs with .pyi ${{ matrix.version }}
+        run: |
+          python ./src/update_stubs.py
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        # ref: https://github.com/peter-evans/create-pull-request
+        with:
+          path: micropython-stubs
+          title: '${{ steps.extract_branch.outputs.branch }} : add frozen modules for micropython ${{ matrix.version }}'
+          commit-message: add/update frozen modules for micropython ${{ matrix.version }}
+          branch: micropython-frozen-${{ matrix.version }}
+          labels: |
+            'automated pr','frozen stubs','micropython' ,'${{ matrix.version }}'
+          delete-branch: true
+
+
+  

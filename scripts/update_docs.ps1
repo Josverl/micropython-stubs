@@ -1,22 +1,25 @@
 
 
-$docfile = "firmwares.md"
 
 
 $header = @"
 # Overview of firmware stubs 
 
-| folder | sysname | version | release | machine | # stubs | stubber version 
-|--------|---------|---------|---------|---------|---------|----------------
+| folder | sysname | version |  machine | # stubs | stubber version 
+|--------|---------|---------|----------|---------|----------------
 
 "@ 
 
-$configs = Get-ChildItem modules.json -Recurse | Sort-Object -Property BaseName
+$Workspace = split-path $PSScriptRoot -Parent
+
+$configs = Get-ChildItem ( join-path $Workspace 'modules.json' )  -Recurse | Sort-Object -Property BaseName
 # new file with header 
+$docfile = join-path $Workspace "firmwares.md"
 $_ = new-item -Path $docfile -Value $header -Force
 
 
 foreach ($file in $configs) {
+    Write-Host( $file.Directory.BaseName)
     $mods = Get-Content $file.FullName | convertfrom-json
     $path = $file.DirectoryName.replace($pwd.Path,'.')
     $path = $path.replace('\','/')
@@ -34,9 +37,9 @@ foreach ($file in $configs) {
         
     }
 
-    $line = "| [{0}]({7})| {1} | {2} | {3} | {4} | {5} | {6}" -f `
+    $line = "| [{0}]({6})| {1} | {2} | {3} | {4} | {5} " -f `
         $file.Directory.BaseName, $firmware.sysname, `
-        $firmware.version, $firmware.release, `
+        $firmware.version, `
         $firmware.machine, $mod_count, $stub_ver, $path
     #write-host $line
     Add-Content -Value $line -Path $docfile
