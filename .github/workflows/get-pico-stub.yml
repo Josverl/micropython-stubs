@@ -42,6 +42,7 @@ jobs:
 
       # simplify processing using symlink
       - name: create symlink for all_stubs
+        working-directory: ${{github.workspace}}/micropython-stubber
         run: |
           ln -s ${{github.workspace}}/micropython-stubs/stubs all-stubs --force
 
@@ -73,7 +74,7 @@ jobs:
         working-directory: ${{github.workspace}}
         shell: pwsh
         run: |
-          copy-item ./Pico-Stub/dist/pylance ./micropython-stubs/stubs/micropython-pico-go -Recurse -Force -Container
+          copy-item ./Pico-Stub/dist/pylance/*.* ./micropython-stubs/stubs/micropython-pico-go -Recurse -Force
           copy-item ./Pico-Stub/LICENSE ./micropython-stubs/stubs/micropython-pico-go/LICENSE
 
       # Todo: add manifest.json
@@ -82,11 +83,11 @@ jobs:
       #   run: |
       #     python ./src/update_stubs.py
 
-      - name: Update Documentation
-        working-directory: ${{github.workspace}}/micropython-stubber
-        shell: pwsh
-        run: |
-          scripts/update_docs.ps1
+      # - name: Update Documentation
+      #  working-directory: ${{github.workspace}}/micropython-stubber
+      #  shell: pwsh
+      #  run: |
+      #    scripts/update_docs.ps1
 
       - name: Create Pull Request
         id: cpr
