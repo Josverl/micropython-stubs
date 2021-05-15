@@ -70,7 +70,7 @@ jobs:
       # This is where the actual work starts
       ######################################
 
-      - name: add/update Pico-Stub/dist/pylance/*.*
+      - name: extract stubs using ulab's extract script
         working-directory: ${{github.workspace}}/micropython-ulab
         shell: bash
         run: |
@@ -99,7 +99,7 @@ jobs:
           labels: |
             'automated pr','ulab','micropython'
           delete-branch: true
-          
+
       # - name: exit gracefully
       #   run: |
       #     echo 'avoid throwing a fit when an existing PR was updated'
