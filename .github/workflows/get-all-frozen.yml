@@ -108,4 +108,4 @@ jobs:
       - name: exit gracefully
         run: |
           echo 'avoid throwing a fit when an existing PR was updated'
-        if: ${{ steps.cpr.failure() }}
+        if: ${{ steps.cpr.failure }}
