@@ -5,8 +5,11 @@
 # No venv
 .venv
 
-# no documentaion artefacts 
+# no documentation artefacts 
 */~*.pptx
+
+# no test files from frozen stubs 
+ stubs/**/*_test.p*
 
 # exclude ulab/user module to allow this to be stubbed on a specific firmware
 stubs/micropython-ulab/ulab/user/__init__.pyi
