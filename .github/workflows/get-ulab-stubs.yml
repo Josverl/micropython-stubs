@@ -101,7 +101,7 @@ jobs:
             ulab
             micropython
           delete-branch: true
-          
+
       # - name: exit gracefully
       #   run: |
       #     echo 'avoid throwing a fit when an existing PR was updated'
