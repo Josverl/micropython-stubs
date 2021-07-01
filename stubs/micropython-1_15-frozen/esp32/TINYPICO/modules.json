@@ -1,1 +1,26 @@
-{"firmware": {"family": "micropython", "port": "esp32", "platform": "esp32", "machine": "micropython", "firmware": "micropython-esp32-1_15", "nodename": "micropython", "version": "v1.15", "release": "v1.15", "sysname": "micropython"}, "stubber": {"version": "1.3.7"}, "modules": [{"file": "dotstar.py", "module": "dotstar"}, {"file": "tinypico.py", "module": "tinypico"}]}
+{
+    "firmware": {
+        "family": "micropython",
+        "firmware": "micropython-esp32-1_15",
+        "machine": "micropython",
+        "nodename": "micropython",
+        "platform": "esp32",
+        "port": "esp32",
+        "release": "v1.15",
+        "sysname": "micropython",
+        "version": "v1.15"
+    },
+    "modules": [
+        {
+            "file": "dotstar.py",
+            "module": "dotstar"
+        },
+        {
+            "file": "tinypico.py",
+            "module": "tinypico"
+        }
+    ],
+    "stubber": {
+        "version": "1.3.7"
+    }
+}
