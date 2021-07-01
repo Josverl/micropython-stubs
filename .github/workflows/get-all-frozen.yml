@@ -98,7 +98,7 @@ jobs:
         # ref: https://github.com/peter-evans/create-pull-request
         with:
           path: micropython-stubs
-          title: '${{ steps.extract_branch.outputs.branch }} : add frozen modules for micropython ${{ matrix.version }}'
+          title: 'add frozen modules for micropython ${{ matrix.version }}'
           commit-message: add/update frozen modules for micropython ${{ matrix.version }}
           branch: micropython-frozen-${{ matrix.version }}
           labels: |
@@ -111,4 +111,4 @@ jobs:
       - name: exit gracefully
         run: |
           echo 'avoid throwing a fit when an existing PR was updated'
-        if: ${{ steps.cpr.failure }}
+        if: always()
