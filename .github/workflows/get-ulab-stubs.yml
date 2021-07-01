@@ -70,7 +70,7 @@ jobs:
       # This is where the actual work starts
       ######################################
 
-      - name: add/update Pico-Stub/dist/pylance/*.*
+      - name: extract stubs using ulab's extract script
         working-directory: ${{github.workspace}}/micropython-ulab
         shell: bash
         run: |
