@@ -69,7 +69,8 @@ jobs:
           commit-message: updated the documentation regarding the covered modules
           branch: document-updates
           labels: |
-            'automated pr','documentation'
+            automated pr
+            documentation
           delete-branch: true
 
       # - name: exit gracefully

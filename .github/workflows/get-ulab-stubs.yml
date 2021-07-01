@@ -97,7 +97,9 @@ jobs:
           title: 'add/update micropython-ulab modules'
           branch: micropython-ulab-updates
           labels: |
-            'automated pr','ulab','micropython'
+            automated pr
+            ulab
+            micropython
           delete-branch: true
           
       # - name: exit gracefully
