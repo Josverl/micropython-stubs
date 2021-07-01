@@ -1,1 +1,22 @@
-{"firmware": {"family": "micropython", "port": "esp32", "platform": "esp32", "machine": "micropython", "firmware": "micropython-esp32-1_16", "nodename": "micropython", "version": "v1.16", "release": "v1.16", "sysname": "micropython"}, "stubber": {"version": "1.3.7"}, "modules": [{"file": "feathers2.py", "module": "feathers2"}]}
+{
+    "firmware": {
+        "family": "micropython",
+        "firmware": "micropython-esp32-1_16",
+        "machine": "micropython",
+        "nodename": "micropython",
+        "platform": "esp32",
+        "port": "esp32",
+        "release": "v1.16",
+        "sysname": "micropython",
+        "version": "v1.16"
+    },
+    "modules": [
+        {
+            "file": "feathers2.py",
+            "module": "feathers2"
+        }
+    ],
+    "stubber": {
+        "version": "1.3.7"
+    }
+}
