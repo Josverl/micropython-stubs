@@ -1,0 +1,42 @@
+{
+    "firmware": {
+        "family": "micropython",
+        "firmware": "micropython-esp8266-1_17",
+        "machine": "micropython",
+        "nodename": "micropython",
+        "platform": "esp8266",
+        "port": "esp8266",
+        "release": "v1.17",
+        "sysname": "micropython",
+        "version": "v1.17"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "apa102.py",
+            "module": "apa102"
+        },
+        {
+            "file": "flashbdev.py",
+            "module": "flashbdev"
+        },
+        {
+            "file": "inisetup.py",
+            "module": "inisetup"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "port_diag.py",
+            "module": "port_diag"
+        }
+    ],
+    "stubber": {
+        "version": "1.3.7"
+    }
+}

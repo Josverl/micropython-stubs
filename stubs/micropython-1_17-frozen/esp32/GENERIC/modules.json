@@ -1,0 +1,34 @@
+{
+    "firmware": {
+        "family": "micropython",
+        "firmware": "micropython-esp32-1_17",
+        "machine": "micropython",
+        "nodename": "micropython",
+        "platform": "esp32",
+        "port": "esp32",
+        "release": "v1.17",
+        "sysname": "micropython",
+        "version": "v1.17"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "apa106.py",
+            "module": "apa106"
+        },
+        {
+            "file": "flashbdev.py",
+            "module": "flashbdev"
+        },
+        {
+            "file": "inisetup.py",
+            "module": "inisetup"
+        }
+    ],
+    "stubber": {
+        "version": "1.3.7"
+    }
+}

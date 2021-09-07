@@ -1,0 +1,22 @@
+{
+    "firmware": {
+        "family": "micropython",
+        "firmware": "micropython-esp32-1_17",
+        "machine": "micropython",
+        "nodename": "micropython",
+        "platform": "esp32",
+        "port": "esp32",
+        "release": "v1.17",
+        "sysname": "micropython",
+        "version": "v1.17"
+    },
+    "modules": [
+        {
+            "file": "atom.py",
+            "module": "atom"
+        }
+    ],
+    "stubber": {
+        "version": "1.3.7"
+    }
+}
