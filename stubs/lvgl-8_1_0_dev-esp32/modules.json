@@ -1,0 +1,7 @@
+{"firmware": {"ver": "1.17-564", "port": "esp32", "arch": "xtensawin", "sysname": "esp32", "release": "1.17.0", "name": "micropython", "mpy": 10757, "version": "1.17.0", "machine": "ESP32 module (spiram) with ESP32", "build": "564", "nodename": "esp32", "platform": "esp32", "family": "micropython"},
+"stubber": {"version": "1.4.0.beta"},
+"modules" :[
+{"file": "/sd/stubs/lvgl-8_1_0_dev-esp32/lvgl.py", "module": "lvgl"},
+{"file": "/sd/stubs/lvgl-8_1_0_dev-esp32/lodepng.py", "module": "lodepng"},
+{"file": "/sd/stubs/lvgl-8_1_0_dev-esp32/rtch.py", "module": "rtch"}
+]}
