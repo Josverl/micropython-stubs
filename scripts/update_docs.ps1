@@ -12,7 +12,7 @@ $header = @"
 
 $Workspace = split-path $PSScriptRoot -Parent
 
-$configs = Get-ChildItem ( join-path $Workspace 'modules.json' )  -Recurse | Sort-Object -Property BaseName
+$configs = Get-ChildItem ( join-path $Workspace 'modules.json' )  -Recurse | Sort-Object # -Property PSParentPat
 # new file with header 
 $docfile = join-path $Workspace "firmwares.md"
 $_ = new-item -Path $docfile -Value $header -Force
