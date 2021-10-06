@@ -2,13 +2,13 @@
 
 | folder | sysname | version |  machine | # stubs | stubber version 
 |--------|---------|---------|----------|---------|----------------
-| [cpython_core](./stubs/cpython_core)| micropython | 1.3.7 | common | 24 | 1.3.7 
+| [cpython_core](./stubs/cpython_core)|  | 1.3.7 | common | 24 | 1.3.7 
 | [cpython_pyboard](./stubs/cpython_pyboard)| common | - | micropython-pyb by Daryl Schults | 1 | manual 
 | [ev3_pybricks_1_0_0](./stubs/ev3_pybricks_1_0_0)| micropython-pyb by Daryl Schults | 1.9.4 | ev3 | 80 | 1.3.2 
 | [loboris-esp32_lobo_3_2_24-frozen](./stubs/loboris-esp32_lobo_3_2_24-frozen)| stubs | 3.2.24 | loboris | 17 | 1.3.7 
-| [loboris-esp32_lobo-3_2_24](./stubs/loboris-esp32_lobo-3_2_24)| loboris | ESP32_LoBo_v3.2.24 on 2018-09-06 | ESP32 board with ESP32 | 68 | 1.0.0 
 | [loboris-esp32_lobo-3_2_24-frozen](./stubs/loboris-esp32_lobo-3_2_24-frozen)| stubs | 3.2.24 | included frozen modules | 0 | manual 
-| [loboris-esp32_lobo-3_2_9](./stubs/loboris-esp32_lobo-3_2_9)| included frozen modules | ESP32_LoBo_v3.2.9 on 2018-04-12 | ESP32 board with ESP32 | 68 | 1.1.2 
+| [loboris-esp32_lobo-3_2_24](./stubs/loboris-esp32_lobo-3_2_24)| included frozen modules | ESP32_LoBo_v3.2.24 on 2018-09-06 | ESP32 board with ESP32 | 68 | 1.0.0 
+| [loboris-esp32_lobo-3_2_9](./stubs/loboris-esp32_lobo-3_2_9)| ESP32 board with ESP32 | ESP32_LoBo_v3.2.9 on 2018-04-12 | ESP32 board with ESP32 | 68 | 1.1.2 
 | [lvgl-8_1_0_dev-esp32](./stubs/lvgl-8_1_0_dev-esp32)| ESP32 board with ESP32 | 1.17.0 | ESP32 module (spiram) with ESP32 | 3 | 1.4.0.beta 
 | [m5stack_flowui-1_4_0-beta](./stubs/m5stack_flowui-1_4_0-beta)| ESP32 module (spiram) with ESP32 | 1.11.0 | ESP32 module with ESP32 | 129 | 1.3.1 
 | [micropython_cpython_core](./stubs/micropython_cpython_core)| ESP32 module with ESP32 | any | cpython core patchfiles | 22 | manual 
@@ -75,4 +75,4 @@
 | [micropython-esp8266-1_9_4](./stubs/micropython-esp8266-1_9_4)| ESP module with ESP8266 | v1.9.4-8-ga9a3caad0 on 2018-05-11 | ESP module with ESP8266 | 43 | 1.1.2 
 | [micropython-pyboard-1_13-95](./stubs/micropython-pyboard-1_13-95)| ESP module with ESP8266 | 1.13.0 | PYBv1.1 with STM32F405RG | 47 | 1.3.4 
 | [micropython-ulab](./stubs/micropython-ulab)| PYBv1.1 with STM32F405RG | unknown | generic | 9 | 1.3.7 
-| [pycopy-0_0_0-frozen](./stubs/pycopy-0_0_0-frozen)| stubs |  |  | -2 |  
+| [pycopy-0_0_0-frozen](./stubs/pycopy-0_0_0-frozen)| stubs |  |  | -1 |  
