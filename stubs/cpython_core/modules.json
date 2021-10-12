@@ -12,100 +12,100 @@
     },
     "modules": [
         {
-            "file": "usocket.py",
-            "module": "usocket"
-        },
-        {
-            "file": "ure.py",
-            "module": "ure"
-        },
-        {
-            "file": "utimeq.py",
-            "module": "utimeq"
-        },
-        {
-            "file": "ucollections.py",
-            "module": "ucollections"
-        },
-        {
-            "file": "uos.py",
-            "module": "uos"
-        },
-        {
-            "file": "uselect.py",
-            "module": "uselect"
-        },
-        {
-            "file": "ujson.py",
-            "module": "ujson"
-        },
-        {
-            "file": "ussl.py",
-            "module": "ussl"
-        },
-        {
-            "file": "uio.py",
-            "module": "uio"
-        },
-        {
-            "file": "uasyncio.py",
-            "module": "uasyncio"
-        },
-        {
-            "file": "uctypes.py",
-            "module": "uctypes"
-        },
-        {
-            "file": "uzlib.py",
-            "module": "uzlib"
-        },
-        {
-            "file": "micropython.py",
-            "module": "micropython"
-        },
-        {
-            "file": "utime.py",
-            "module": "utime"
-        },
-        {
-            "file": "ffi.py",
-            "module": "ffi"
-        },
-        {
             "file": "uhashlib.py",
             "module": "uhashlib"
-        },
-        {
-            "file": "uerrno.py",
-            "module": "uerrno"
         },
         {
             "file": "pycopy_imphook.py",
             "module": "pycopy_imphook"
         },
         {
+            "file": "utime.py",
+            "module": "utime"
+        },
+        {
+            "file": "uerrno.py",
+            "module": "uerrno"
+        },
+        {
+            "file": "ujson.py",
+            "module": "ujson"
+        },
+        {
             "file": "utokenize.py",
             "module": "utokenize"
         },
         {
-            "file": "ulogging.py",
-            "module": "ulogging"
+            "file": "uctypes.py",
+            "module": "uctypes"
         },
         {
-            "file": "uarray.py",
-            "module": "uarray"
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        },
+        {
+            "file": "ure.py",
+            "module": "ure"
+        },
+        {
+            "file": "uzlib.py",
+            "module": "uzlib"
+        },
+        {
+            "file": "uio.py",
+            "module": "uio"
+        },
+        {
+            "file": "uos.py",
+            "module": "uos"
+        },
+        {
+            "file": "utimeq.py",
+            "module": "utimeq"
         },
         {
             "file": "upip.py",
             "module": "upip"
         },
         {
+            "file": "ussl.py",
+            "module": "ussl"
+        },
+        {
+            "file": "ulogging.py",
+            "module": "ulogging"
+        },
+        {
             "file": "pycopy.py",
             "module": "pycopy"
         },
         {
-            "file": "upip_utarfile.py",
-            "module": "upip_utarfile"
+            "file": "uasyncio.py",
+            "module": "uasyncio"
+        },
+        {
+            "file": "ffi.py",
+            "module": "ffi"
+        },
+        {
+            "file": "uarray.py",
+            "module": "uarray"
+        },
+        {
+            "file": "usocket.py",
+            "module": "usocket"
+        },
+        {
+            "file": "uselect.py",
+            "module": "uselect"
+        },
+        {
+            "file": "ucollections.py",
+            "module": "ucollections"
+        },
+        {
+            "file": "micropython.py",
+            "module": "micropython"
         }
     ],
     "stubber": {
