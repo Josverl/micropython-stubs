@@ -1,6 +1,4 @@
-
-
-
+# generate an overview of the 
 
 $header = @"
 # Overview of firmware stubs 
@@ -14,7 +12,7 @@ $Workspace = split-path $PSScriptRoot -Parent
 
 $configs = Get-ChildItem ( join-path $Workspace 'modules.json' )  -Recurse | Sort-Object # -Property PSParentPat
 # new file with header 
-$docfile = join-path $Workspace "firmwares.md"
+$docfile = join-path $Workspace "docs/firmwares.md"
 $_ = new-item -Path $docfile -Value $header -Force
 
 

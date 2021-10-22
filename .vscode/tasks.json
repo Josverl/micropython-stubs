@@ -1,0 +1,30 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Sphinx: build documentation",
+            "detail": "make html",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/docs"
+            },
+            "command": "${workspaceFolder}/.venv/Scripts/Activate.ps1;&./make.bat html",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Sphinx: clean build documentation",
+            "detail": "make clean html",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/docs"
+            },
+            "command": "${workspaceFolder}/.venv/Scripts/Activate.ps1;&./make.bat clean;&./make.bat html"
+        }
+    ]
+}
