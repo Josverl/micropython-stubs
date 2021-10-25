@@ -83,4 +83,4 @@ This instructs pylint to insert the list of paths into `sys.path` before perform
     - or stop / start the editor
 
 [Pylance]: https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance
-[samples]: https://github.com/josverl/micropython-stubs/docs/samples
+[samples]: https://github.com/josverl/micropython-stubs/tree/master/docs/samples

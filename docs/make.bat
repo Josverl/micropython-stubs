@@ -32,4 +32,7 @@ goto end
 %SPHINXBUILD% -M help %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
 
 :end
+
+rem sphinx-build -b linkcheck . _build
+%SPHINXBUILD% -b linkcheck %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
 popd
