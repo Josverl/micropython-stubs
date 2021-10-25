@@ -1,4 +1,7 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
+CERT_NONE: Any
+_ussl: Any
+sym: str
+
 def wrap_socket() -> None: ...

@@ -1,7 +1,9 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class Relay:
     def deinit() -> None: ...
     def off() -> None: ...
     def on() -> None: ...
+
+machine: Any
+unit: Any

@@ -1,6 +1,13 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
+ACK_FAIL: int
+ACK_FULL: int
+ACK_NOUSER: int
+ACK_SUCCESS: int
+ACK_TIMEOUT: int
+ACK_USER_EXIST: int
+ACK_USER_OCCUPIED: int
+
 class Finger:
     def _monitor() -> None: ...
     def _write() -> None: ...
@@ -11,3 +18,8 @@ class Finger:
     def readUser() -> None: ...
     def removeAllUser() -> None: ...
     def removeUser() -> None: ...
+
+machine: Any
+timEx: Any
+time: Any
+unit: Any

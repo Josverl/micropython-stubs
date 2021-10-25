@@ -1,6 +1,5 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class Lorawan:
     def _monitor() -> None: ...
     def _reset() -> None: ...
@@ -12,3 +11,8 @@ class Lorawan:
     def initP2PMode() -> None: ...
     def initRxMode() -> None: ...
     def txStr() -> None: ...
+
+machine: Any
+module: Any
+timEx: Any
+time: Any

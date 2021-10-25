@@ -1,6 +1,7 @@
+SLEEP_LIGHT: int
+SLEEP_MODEM: int
+SLEEP_NONE: int
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 def apa102_write() -> None: ...
 def check_fw() -> None: ...
 def deepsleep() -> None: ...

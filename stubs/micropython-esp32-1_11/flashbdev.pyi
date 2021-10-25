@@ -1,6 +1,7 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
 Node = Any
+
 class FlashBdev:
     def ioctl() -> None: ...
     def readblocks() -> None: ...

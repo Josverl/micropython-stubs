@@ -1,5 +1,8 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class Light:
+    analogValue: Any
     def deinit() -> None: ...
+    digitalValue: Any
+
+unit: Any

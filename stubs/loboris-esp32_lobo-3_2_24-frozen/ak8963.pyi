@@ -1,30 +1,47 @@
-# make_stub_files: Tue 23 Apr 2019 at 22:52:00
+from machine import I2C as I2C, Pin as Pin
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
+__version__: str
+_WIA: Any
+_HXL: Any
+_HXH: Any
+_HYL: Any
+_HYH: Any
+_HZL: Any
+_HZH: Any
+_ST2: Any
+_CNTL1: Any
+_ASAX: Any
+_ASAY: Any
+_ASAZ: Any
+_MODE_POWER_DOWN: int
+MODE_SINGLE_MEASURE: int
+MODE_CONTINOUS_MEASURE_1: int
+MODE_CONTINOUS_MEASURE_2: int
+MODE_EXTERNAL_TRIGGER_MEASURE: int
+_MODE_SELF_TEST: int
+_MODE_FUSE_ROM_ACCESS: int
+OUTPUT_14_BIT: int
+OUTPUT_16_BIT: int
+_SO_14BIT: float
+_SO_16BIT: float
+
 class AK8963:
-    def __init__(self, i2c: Any, address: Any=12, mode: Any=MODE_CONTINOUS_MEASURE_1, output: Any=OUTPUT_16_BIT, offset: Any=(0, 0, 0), scale: Any=(1, 1, 1)) -> None: ...
-    def magnetic(self) -> Tuple[Any]: ...
-    def adjustement(self) -> Any: ...
-        #   0: return self._adjustement
-        # ? 0: return self._adjustement
-    def whoami(self) -> Any: ...
-        #   0: return self._register_char(_WIA)
-        # ? 0: return self._register_char(_WIA)
-    def _register_short(self, register: Any, value: Any=None, buf: Any=bytearray(2)) -> Any: ...
-        #   0: return ustruct.unpack('<h',buf)[0]
-        # ? 0: return ustruct.unpack(str, buf)[number]
-        #   1: return self.i2c.writeto_mem(self.address,register,buf)
-        # ? 1: return self.i2c.writeto_mem(self.address, register, buf)
-    def _register_three_shorts(self, register: Any, buf: Any=bytearray(6)) -> Any: ...
-        #   0: return ustruct.unpack('<hhh',buf)
-        # ? 0: return ustruct.unpack(str, buf)
-    def _register_char(self, register: Any, value: Any=None, buf: Any=bytearray(1)) -> Any: ...
-        #   0: return buf[0]
-        # ? 0: return buf[number]
-        #   1: return self.i2c.writeto_mem(self.address,register,buf)
-        # ? 1: return self.i2c.writeto_mem(self.address, register, buf)
-    def __enter__(self) -> Any: ...
-        #   0: return self
-        # ? 0: return self
-    def __exit__(self, exception_type: Any, exception_value: Any, traceback: Any) -> None: ...
+    i2c: Any
+    address: Any
+    _offset: Any
+    _scale: Any
+    _adjustement: Any
+    _so: Any
+    def __init__(self, i2c, address: int = ..., mode=..., output=..., offset=..., scale=...) -> None: ...
+    @property
+    def magnetic(self): ...
+    @property
+    def adjustement(self): ...
+    @property
+    def whoami(self): ...
+    def _register_short(self, register, value: Any | None = ..., buf=...): ...
+    def _register_three_shorts(self, register, buf=...): ...
+    def _register_char(self, register, value: Any | None = ..., buf=...): ...
+    def __enter__(self): ...
+    def __exit__(self, exception_type, exception_value, traceback) -> None: ...

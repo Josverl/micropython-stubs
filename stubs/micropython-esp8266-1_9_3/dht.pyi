@@ -1,11 +1,14 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class DHT11:
     def humidity() -> None: ...
     def temperature() -> None: ...
+
 class DHT22:
     def humidity() -> None: ...
     def temperature() -> None: ...
+
 class DHTBase:
     def measure() -> None: ...
+
+esp: Any

@@ -1,4 +1,9 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class Error: ...
+
+WAVE_FORMAT_PCM: int
+_array_fmts: Any
+builtins: Any
+struct: Any
+sys: Any

@@ -1,5 +1,6 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
 Node = Any
+
 def getaddrinfo() -> None: ...
 def socket() -> None: ...

@@ -1,9 +1,14 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class PinBase: ...
+
 class Signal:
     def off() -> None: ...
     def on() -> None: ...
     def value() -> None: ...
+
+mem16: Any
+mem32: Any
+mem8: Any
+
 def time_pulse_us() -> None: ...

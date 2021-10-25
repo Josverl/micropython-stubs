@@ -1,14 +1,15 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class FlashBdev:
-    def __init__(self, blocks: Any=NUM_BLK) -> None: ...
-    def readblocks(self, n: int, buf: Any, off: Any=) -> None: ...
-    def writeblocks(self, n: int, buf: Any, off: Any=) -> None: ...
-    def ioctl(self, op: Any, arg: Any) -> Optional[Any]: ...
-        #   0: return self.blocks
-        # ? 0: return self.blocks
-        #   1: return self.SEC_SIZE
-        # ? 1: return self.SEC_SIZE
-        #   2: return
-        #   2: return
+    SEC_SIZE: int
+    RESERVED_SECS: int
+    START_SEC: Any
+    NUM_BLK: Any
+    blocks: Any
+    def __init__(self, blocks=...) -> None: ...
+    def readblocks(self, n, buf, off: int = ...) -> None: ...
+    def writeblocks(self, n, buf, off: Any | None = ...) -> None: ...
+    def ioctl(self, op, arg): ...
+
+size: Any
+bdev: Any

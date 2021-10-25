@@ -1,4 +1,8 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 def const() -> None: ...
+
+machine: Any
+os: Any
+time: Any
+ustruct: Any

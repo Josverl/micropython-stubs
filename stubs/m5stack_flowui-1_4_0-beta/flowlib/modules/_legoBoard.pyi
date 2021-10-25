@@ -1,4 +1,10 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 def const() -> None: ...
+
+i2c_bus: Any
+machine: Any
+math: Any
+os: Any
+time: Any
+ustruct: Any
