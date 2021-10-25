@@ -1,6 +1,9 @@
+import itertools
 from pathlib import Path
 import json
 from natsort import natsorted
+import jinja2
+from collections import defaultdict
 
 
 def read_manifests(path: Path):
@@ -20,40 +23,54 @@ def read_manifests(path: Path):
             stub_ver = modules["stubber"]["version"]
             mod_count = len(modules["modules"])
 
+        # avoid getting Key not found errors
+        firmware = defaultdict(lambda: None, firmware)
+
         # for frozen modules use the parent folder name (stm32, esp32, rp2) to identify the system
         # todo: update logic in generating the frozen manifest files
         if "-frozen" in file.as_posix():
             sysname = file.parent.parent.name + "-" + file.parent.name
         else:
             sysname = firmware["sysname"]
+        v_version = version = firmware["version"] or "-"
+        if v_version[0].isdecimal():
+            v_version = "v" + version
 
-        yield (
-            firmware["machine"],  # micropython
-            firmware["version"],
-            sysname,
-            mod_count,
-            stub_ver,
-            firmware,
-            file.parent.name,
-            file.parent.as_posix(),
+        fw = defaultdict(
+            lambda: "default",
+            {
+                "family": firmware["family"] or "micropython",
+                "version": version,  # version no v-prefix
+                "v_version": v_version,  # version with v-prefix
+                "port": firmware["port"] or "-",
+                "sysname": sysname,
+                "module_count": mod_count,
+                "stubber_version": stub_ver,
+                "firmware": firmware,
+                "path": file.parent.as_posix(),
+            },
         )
+        yield fw
 
 
-all = read_manifests(Path("./stubs"))
-# ('UM_TINYPICO', 'esp32-UM_TINYPICO',  'micropython','v1.17', 2, '1.3.7', 'stubs/micropython-1_17-frozen/esp32/UM_TINYPICO')
-all = natsorted(all, key=lambda tup: (tup[0], tup[1], tup[2]), reverse=True)
+all = list(read_manifests(Path("./stubs")))
 
-for m in all:
-    line = "| [{0}]({6})| {1} | {2} | {3} | {4} | {5} ".format(*m)
-    print(line)
-    pass
-# line = "| [{0}]({6})| {1} | {2} | {3} | {4} | {5} ".format(
-#     file.parent.name,
-#     sysname,
-#     firmware["version"],
-#     firmware["machine"],
-#     mod_count,
-#     stub_ver,
-#     file.parent.as_posix(),
-# )
-# print(line)
+
+from jinja2 import Environment, FileSystemLoader
+from itertools import groupby
+
+file_loader = FileSystemLoader("docs/templates")
+env = Environment(
+    loader=file_loader,
+    trim_blocks=True,  # trim indents
+    lstrip_blocks=True,  # trim left whitespace
+)
+
+template = env.get_template("firmwares.j2")
+output = template.render(firmwares=all)
+print(output)
+
+template = env.get_template("firmware_grp.j2")
+output = template.render(firmwares=all)
+with open("docs/firmwares_2.md", "w") as myfile:
+    myfile.write(output)
