@@ -1,7 +1,12 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class Ncir:
     def _available() -> None: ...
     def deinit() -> None: ...
+    temperature: Any
+
 def const() -> None: ...
+
+i2c_bus: Any
+unit: Any
+ustruct: Any

@@ -1,10 +1,19 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class IMU:
     def _accel_fs() -> None: ...
     def _gyro_fs() -> None: ...
     def _register_char() -> None: ...
     def _register_short() -> None: ...
     def _register_three_shorts() -> None: ...
+    acceleration: Any
+    gyro: Any
     def setGyroOffsets() -> None: ...
+    whoami: Any
+    ypr: Any
+
+MPU6050_ADDR: int
+SH200Q_ADDR: int
+i2c_bus: Any
+imu_i2c: Any
+mpu6050: Any

@@ -1,6 +1,13 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class Env:
     def _available() -> None: ...
     def deinit() -> None: ...
+    humidity: Any
+    pressure: Any
+    temperature: Any
+    values: Any
+
+i2c_bus: Any
+time: Any
+unit: Any

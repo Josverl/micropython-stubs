@@ -1,0 +1,9 @@
+import ulab
+from typing import overload
+from ulab import _ArrayLike as _ArrayLike
+
+@overload
+def polyfit(y: _ArrayLike, degree: int) -> ulab.array: ...
+@overload
+def polyfit(x: _ArrayLike, y: _ArrayLike, degree: int) -> ulab.array: ...
+def polyval(p: _ArrayLike, x: _ArrayLike) -> ulab.array: ...

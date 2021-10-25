@@ -1,5 +1,8 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class Dual_button:
     def deinit() -> None: ...
+    portMethod: int
+
+btn: Any
+unit: Any

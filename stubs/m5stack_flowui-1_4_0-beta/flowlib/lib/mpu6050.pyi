@@ -1,7 +1,23 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
+ACCEL_FS_SEL_16G: int
+ACCEL_FS_SEL_2G: int
+ACCEL_FS_SEL_4G: int
+ACCEL_FS_SEL_8G: int
+GYRO_FS_SEL_1000DPS: int
+GYRO_FS_SEL_2000DPS: int
+GYRO_FS_SEL_250DPS: int
+GYRO_FS_SEL_500DPS: int
+
 class I2C:
+    CBTYPE_ADDR: int
+    CBTYPE_NONE: int
+    CBTYPE_RXDATA: int
+    CBTYPE_TXDATA: int
+    MASTER: int
+    READ: int
+    SLAVE: int
+    WRITE: int
     def address() -> None: ...
     def begin() -> None: ...
     def callback() -> None: ...
@@ -30,18 +46,55 @@ class I2C:
     def write_bytes() -> None: ...
     def writeto() -> None: ...
     def writeto_mem() -> None: ...
+
 class MPU6050:
     def _accel_fs() -> None: ...
     def _gyro_fs() -> None: ...
     def _register_char() -> None: ...
     def _register_short() -> None: ...
     def _register_three_shorts() -> None: ...
+    acceleration: Any
+    gyro: Any
     def setGyroOffsets() -> None: ...
+    whoami: Any
+    ypr: Any
+
 class Pin:
+    IN: int
+    INOUT: int
+    IRQ_FALLING: int
+    IRQ_RISING: int
+    OPEN_DRAIN: int
+    OUT: int
+    OUT_OD: int
+    PULL_DOWN: int
+    PULL_FLOAT: int
+    PULL_HOLD: int
+    PULL_UP: int
+    WAKE_HIGH: int
+    WAKE_LOW: int
     def deinit() -> None: ...
     def init() -> None: ...
     def irq() -> None: ...
     def off() -> None: ...
     def on() -> None: ...
     def value() -> None: ...
+
+SF_DEG_S: int
+SF_G: int
+SF_M_S2: float
+SF_RAD_S: float
+_ACCEL_SO_16G: int
+_ACCEL_SO_2G: int
+_ACCEL_SO_4G: int
+_ACCEL_SO_8G: int
+_GYRO_SO_1000DPS: float
+_GYRO_SO_2000DPS: float
+_GYRO_SO_250DPS: int
+_GYRO_SO_500DPS: float
+
 def const() -> None: ...
+
+math: Any
+time: Any
+ustruct: Any

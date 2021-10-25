@@ -1,9 +1,15 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class Dac:
+    WRITE: int
+    WRITE_EEPROM: int
     def _available() -> None: ...
     def deinit() -> None: ...
+    portMethod: int
     def setVoltage() -> None: ...
     def writeData() -> None: ...
+
 def const() -> None: ...
+
+i2c_bus: Any
+unit: Any

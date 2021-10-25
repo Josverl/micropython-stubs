@@ -1,9 +1,12 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class APA102:
+    ORDER: Any
     def write() -> None: ...
+
 class NeoPixel:
+    ORDER: Any
     def fill() -> None: ...
     def write() -> None: ...
+
 def apa102_write() -> None: ...

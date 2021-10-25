@@ -1,3 +1,38 @@
-
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
+E2BIG: int
+EACCES: int
+EAFNOSUPPORT: int
+EAGAIN: int
+EBADF: int
+EBUSY: int
+ECHILD: int
+ECONNRESET: int
+EDOM: int
+EEXIST: int
+EFAULT: int
+EFBIG: int
+EINPROGRESS: int
+EINTR: int
+EINVAL: int
+EIO: int
+EISDIR: int
+EMFILE: int
+EMLINK: int
+ENFILE: int
+ENODEV: int
+ENOENT: int
+ENOEXEC: int
+ENOMEM: int
+ENOSPC: int
+ENOTBLK: int
+ENOTDIR: int
+ENOTTY: int
+ENXIO: int
+EPERM: int
+EPIPE: int
+ERANGE: int
+EROFS: int
+ESPIPE: int
+ESRCH: int
+ETIMEDOUT: int
+ETXTBSY: int
+EXDEV: int

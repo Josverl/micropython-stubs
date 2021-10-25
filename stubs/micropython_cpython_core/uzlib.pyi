@@ -1,8 +1,9 @@
+from zlib import *
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class DecompIO:
-    def __init__(self, stream: Any, dict_bits: Any, dictbuf: Any=None) -> None: ...
-    def read(self, size: Any) -> Any: ...
-        #   0: return outp
-        # ? 0: return outp
+    stream: Any
+    decomp: Any
+    pending: bytes
+    def __init__(self, stream, dict_bits, dictbuf: Any | None = ...) -> None: ...
+    def read(self, size): ...

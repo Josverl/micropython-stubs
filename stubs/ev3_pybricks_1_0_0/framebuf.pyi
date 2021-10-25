@@ -1,6 +1,3 @@
-
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class FrameBuffer:
     def blit() -> None: ...
     def fill() -> None: ...
@@ -12,4 +9,15 @@ class FrameBuffer:
     def scroll() -> None: ...
     def text() -> None: ...
     def vline() -> None: ...
+
 def FrameBuffer1() -> None: ...
+
+GS2_HMSB: int
+GS4_HMSB: int
+GS8: int
+MONO_HLSB: int
+MONO_HMSB: int
+MONO_VLSB: int
+MVLSB: int
+RGB565: int
+XRGB8888: int

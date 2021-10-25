@@ -1,5 +1,6 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
+battery: Any
+
 def buttons() -> None: ...
 def light() -> None: ...
