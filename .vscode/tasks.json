@@ -2,6 +2,19 @@
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
+    // Activate .venv for windows
+    // "windows": {
+    //     "options": {
+    //         "shell": {
+    //             "executable": "pwsh.exe",
+    //             "args": [
+    //                 "-NoExit",
+    //                 "-Command",
+    //                 "${workspaceFolder}\\.venv\\Scripts\\Activate.ps1"
+    //             ]
+    //         }
+    //     }
+    // },
     "tasks": [
         {
             "label": "Sphinx: build documentation",
@@ -25,6 +38,14 @@
                 "cwd": "${workspaceFolder}/docs"
             },
             "command": "${workspaceFolder}/.venv/Scripts/Activate.ps1;&./make.bat clean;&./make.bat html"
+        },
+        {
+            "label": "Sphinx: get link info",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/docs"
+            },
+            "command": "${workspaceFolder}/.venv/Scripts/Activate.ps1;python -m sphinx.ext.intersphinx _build/html/objects.inv"
         }
     ]
 }
