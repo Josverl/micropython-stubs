@@ -1,5 +1,6 @@
 {
     "firmware": {
+        "family": "m5stack",
         "machine": "ESP32 module with ESP32",
         "firmware": "M5 FlowUI v1.4.0-beta",
         "nodename": "esp32",

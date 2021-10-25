@@ -1,5 +1,6 @@
 {
     "firmware": {
+        "family": "loboris",
         "machine": "included frozen modules",
         "firmware": "esp32_LoBo",
         "nodename": "esp32",
@@ -10,6 +11,5 @@
     "stubber": {
         "version": "manual"
     },
-    "modules": [
-    ]
+    "modules": []
 }

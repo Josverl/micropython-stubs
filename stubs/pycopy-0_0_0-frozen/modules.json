@@ -5,11 +5,11 @@
         "nodename": "",
         "version": "",
         "release": "",
-        "sysname": "pycopy"
+        "sysname": "pycopy",
+        "family": "pycopy"
     },
     "stubber": {
         "version": "manual"
     },
-    "modules": [
-    ]
+    "modules": []
 }
