@@ -22,7 +22,7 @@ This will allow you to reference the same stub files from multiple projects, and
 needed. This a recommendation, and things work equally well if you copy or clone the `stubs` folder into your project.  
 For details on how to create a symlink, please see : {ref}`create-symbolic-link`
 
-##  **Copy the [samples](samples) folder to your project**  
+##  **Copy the [samples][] folder to your project**  
 This contains the template files you need to improve syntax highlighting and linting.
 
 ##  **Select which stub folders you need to reference**  
@@ -39,7 +39,7 @@ This contains the template files you need to improve syntax highlighting and lin
 This instructs the VSCode Pylance to consider your libs folder and the stubs for static code evaluation.
 VSCode allows this configuration to be set on **_workspace_** or _user_ level. I prefer setting it per workspace as that allows different settings for different projects, but you could do either.
      
-The below configuration is [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) specific
+The below configuration is [Pylance][] specific
 , and is simplified compared to the now deprecated 'Microsoft Python Language Server' 
      
     - use the {download}`samples/.VSCode/settings.json`  located in the sample folder
@@ -82,3 +82,5 @@ This instructs pylint to insert the list of paths into `sys.path` before perform
     - the `Developer: Reload Window` command.
     - or stop / start the editor
 
+[Pylance]: https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance
+[samples]: https://github.com/josverl/micropython-stubs/docs/samples
