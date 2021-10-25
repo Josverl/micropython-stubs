@@ -131,4 +131,9 @@ except ImportError:
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = []  # ["_static"]
+html_static_path = ["_static"]
+
+# -- set custom width -------------------------------------------------
+# ref: https://stackoverflow.com/questions/23211695/modifying-content-width-of-the-sphinx-theme-read-the-docs
+def setup(app):
+    app.add_css_file('wide_theme.css')
