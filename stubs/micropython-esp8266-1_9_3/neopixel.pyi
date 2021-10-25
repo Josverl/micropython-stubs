@@ -1,7 +1,8 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class NeoPixel:
+    ORDER: Any
     def fill() -> None: ...
     def write() -> None: ...
+
 def neopixel_write() -> None: ...

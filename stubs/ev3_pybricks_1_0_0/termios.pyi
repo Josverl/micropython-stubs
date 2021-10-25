@@ -1,6 +1,8 @@
+B115200: int
+B57600: int
+B9600: int
+TCSANOW: int
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 def setraw() -> None: ...
 def tcgetattr() -> None: ...
 def tcsetattr() -> None: ...

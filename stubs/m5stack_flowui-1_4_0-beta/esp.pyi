@@ -1,6 +1,10 @@
+LOG_DEBUG: int
+LOG_ERROR: int
+LOG_INFO: int
+LOG_NONE: int
+LOG_VERBOSE: int
+LOG_WARNING: int
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 def dht_readinto() -> None: ...
 def flash_erase() -> None: ...
 def flash_read() -> None: ...

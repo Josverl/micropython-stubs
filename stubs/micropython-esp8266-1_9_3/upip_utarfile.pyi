@@ -1,12 +1,21 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
+DIRTYPE: str
+
 class FileSection:
     def read() -> None: ...
     def readinto() -> None: ...
     def skip() -> None: ...
+
+REGTYPE: str
+TAR_HEADER: Any
+
 class TarFile:
     def extractfile() -> None: ...
     def next() -> None: ...
+
 class TarInfo: ...
+
 def roundup() -> None: ...
+
+uctypes: Any

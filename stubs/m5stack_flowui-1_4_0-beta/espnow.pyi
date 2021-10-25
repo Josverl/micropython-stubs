@@ -1,6 +1,7 @@
+IF_MAX: int
+IF_WIFI_AP: int
+IF_WIFI_STA: int
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 def add_peer() -> None: ...
 def broadcast() -> None: ...
 def deinit() -> None: ...

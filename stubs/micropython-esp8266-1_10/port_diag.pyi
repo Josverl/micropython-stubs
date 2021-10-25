@@ -1,4 +1,9 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
+esp: Any
+lwip: Any
+
 def main() -> None: ...
+
+network: Any
+uctypes: Any

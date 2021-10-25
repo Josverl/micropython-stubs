@@ -1,7 +1,11 @@
+AF_INET: int
+AF_INET6: int
+SOCK_DGRAM: int
+SOCK_RAW: int
+SOCK_STREAM: int
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 def getaddrinfo() -> None: ...
+
 class socket:
     def accept() -> None: ...
     def bind() -> None: ...

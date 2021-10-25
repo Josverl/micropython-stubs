@@ -1,6 +1,7 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
 Node = Any
+
 class TFT:
     def arc() -> None: ...
     def attrib7seg() -> None: ...

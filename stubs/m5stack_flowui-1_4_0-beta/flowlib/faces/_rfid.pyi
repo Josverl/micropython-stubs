@@ -1,6 +1,13 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
+AUTHENT1A: int
+AUTHENT1B: int
+ERR: int
+NOTAGERR: int
+OK: int
+REQALL: int
+REQIDL: int
+
 class Rfid:
     def _antenna_on() -> None: ...
     def _anticoll() -> None: ...
@@ -26,4 +33,8 @@ class Rfid:
     def readBlockStr() -> None: ...
     def readUid() -> None: ...
     def writeBlock() -> None: ...
+
 def const() -> None: ...
+
+i2c_bus: Any
+time: Any

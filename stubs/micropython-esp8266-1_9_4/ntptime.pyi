@@ -1,5 +1,11 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
+NTP_DELTA: int
+host: str
+
 def settime() -> None: ...
+
+socket: Any
+struct: Any
+
 def time() -> None: ...

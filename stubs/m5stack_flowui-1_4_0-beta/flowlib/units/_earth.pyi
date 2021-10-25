@@ -1,5 +1,8 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class Earth:
+    analogValue: Any
     def deinit() -> None: ...
+    digitalValue: Any
+
+_light: Any

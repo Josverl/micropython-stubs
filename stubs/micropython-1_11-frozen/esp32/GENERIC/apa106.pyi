@@ -1,4 +1,5 @@
+from neopixel import NeoPixel
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
-class APA106(NeoPixel): ...
+class APA106(NeoPixel):
+    ORDER: Any

@@ -1,6 +1,7 @@
+SDMODE_1LINE: int
+SDMODE_4LINE: int
+SDMODE_SPI: int
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 def chdir() -> None: ...
 def dupterm() -> None: ...
 def dupterm_notify() -> None: ...

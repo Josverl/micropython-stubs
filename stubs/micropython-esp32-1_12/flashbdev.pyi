@@ -1,6 +1,7 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
 Node = Any
+
 class Partition:
     def find() -> None: ...
     def get_next_update() -> None: ...

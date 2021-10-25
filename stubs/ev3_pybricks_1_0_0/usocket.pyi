@@ -1,10 +1,23 @@
+AF_INET: int
+AF_INET6: int
+AF_UNIX: int
+MSG_DONTROUTE: int
+MSG_DONTWAIT: int
+SOCK_DGRAM: int
+SOCK_RAW: int
+SOCK_STREAM: int
+SOL_SOCKET: int
+SO_BROADCAST: int
+SO_ERROR: int
+SO_KEEPALIVE: int
+SO_LINGER: int
+SO_REUSEADDR: int
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 def getaddrinfo() -> None: ...
 def inet_ntop() -> None: ...
 def inet_pton() -> None: ...
 def sockaddr() -> None: ...
+
 class socket:
     def accept() -> None: ...
     def bind() -> None: ...

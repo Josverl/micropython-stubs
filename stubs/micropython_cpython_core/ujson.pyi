@@ -1,9 +1,7 @@
+from json import dump as dump, dumps as dumps
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
-def load(stream: Any) -> Any: ...
-    #   0: return json.load(stream)
-    # ? 0: return json.load(stream)
-def loads(s: str) -> Any: ...
-    #   0: return json.loads(s)
-    # ? 0: return json.loads(str)
+_json_only_str: Any
+
+def load(stream): ...
+def loads(s): ...
