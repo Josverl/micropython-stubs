@@ -3,7 +3,7 @@
 # Overview of firmware stubs 
 
 {% for family, items1 in firmwares | groupby('family') %}
-
+({{ family }}-stubs)=
 ## {{ family | title}} 
 | family | version | port    |type | path
 |--------|---------|---------|-----|-----
