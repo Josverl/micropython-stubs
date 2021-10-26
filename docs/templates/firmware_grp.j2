@@ -1,15 +1,18 @@
+(all-stubs)=
+# Overview of firmware stubs 
 
-{# kkk #}
 {% for family, items1 in firmwares | groupby('family') %}
-==================
-{{ family }} 
-    {% for version, items in items1 | groupby('version' ) %}
-        {% for fw in items | sort(attribute="port") %}
-    {{ "{0:12} {1:8.8} {2:8}".format(family, fw.v_version, fw.port) }}  {{ fw.path }}
-        {% endfor -%}
-    ....
 
-    {% endfor %}
+## {{ family }} 
+    {% for version, items in items1 | groupby('version' ) %}
+| family | version | port    | path
+|--------|---------|---------|------
+        {% for fw in items | sort(attribute="port") %}
+{{ "|{0:12}|{1:8.8}|{2:8}|".format(family, fw.v_version, fw.port) }}  {{ fw.path }}
+        {% endfor %}
+    
+
+{%+ endfor %}
 {% endfor %}
 
 Total modules  {{ firmwares | sum(attribute='module_count') }}
