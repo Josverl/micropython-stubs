@@ -26,16 +26,23 @@ def read_manifests(path: Path):
         # avoid getting Key not found errors
         firmware = defaultdict(lambda: None, firmware)
 
+        if "-frozen" in file.as_posix():
+            stub_type = "frozen"
+        elif "cpython" in file.as_posix():
+            stub_type = "CPython"
+        else:
+            stub_type = "board"
+
         # for frozen modules use the parent folder name (stm32, esp32, rp2) to identify the system
         # todo: update logic in generating the frozen manifest files
         if "-frozen" in file.as_posix():
             sysname = file.parent.parent.name + "-" + file.parent.name
         else:
             sysname = firmware["sysname"]
+
         v_version = version = firmware["version"] or "-"
         if v_version[0].isdecimal():
             v_version = "v" + version
-
         fw = defaultdict(
             lambda: "default",
             {
@@ -43,6 +50,7 @@ def read_manifests(path: Path):
                 "version": version,  # version no v-prefix
                 "v_version": v_version,  # version with v-prefix
                 "port": firmware["port"] or "-",
+                "type": stub_type,
                 "sysname": sysname,
                 "module_count": mod_count,
                 "stubber_version": stub_ver,
