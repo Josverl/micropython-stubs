@@ -2,32 +2,35 @@
 
 # Overview of stubs by family and version
 
+{# Same section repeats twice with a filter #}
+{# only micropython #}
 {% for fam in info_list | groupby('family') if fam.grouper == 'micropython'%}
 ({{ fam.grouper }}-stubs)=
 ## {{ fam.grouper | title}} 
-| family | version | port    |type | path
-|--------|---------|---------|-----|-----
+|family | version | type    |port |count |path
+|--------|---------|---------|-----|-----:|----
     {% for ver in fam.list | groupby('version' ) %}
         {% for fw in ver.list | sort(attribute="port") %}
-{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}".format(fam.grouper, ver.grouper, fw.port, fw.type, fw.path) }}
+{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}|{5}".format(fam.grouper, ver.grouper, fw.type, fw.port, fw.module_count,  fw.path) }}
         {% endfor -%}
     {%- endfor %}
 
 {%+ endfor %}
 
-
+{# all others #}
 {% for fam in info_list | groupby('family') if fam.grouper != 'micropython'%}
 ({{ fam.grouper }}-stubs)=
 ## {{ fam.grouper | title}} 
-| family | version | port    |type | path
-|--------|---------|---------|-----|-----
+|family | version | type    |port |count |path
+|--------|---------|---------|-----|-----:|----
     {% for ver in fam.list | groupby('version' ) %}
         {% for fw in ver.list | sort(attribute="port") %}
-{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}".format(fam.grouper, ver.grouper, fw.port, fw.type, fw.path) }}
+{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}|{5}".format(fam.grouper, ver.grouper, fw.type, fw.port, fw.module_count,  fw.path) }}
         {% endfor -%}
     {%- endfor %}
 
 {%+ endfor %}
+
 
 
 # Metrics
