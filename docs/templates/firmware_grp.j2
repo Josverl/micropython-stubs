@@ -1,19 +1,35 @@
 (all-stubs)=
 
-# Overview of firmware stubs 
+# Overview of stubs by family and version
 
-{% for family, items1 in firmwares | groupby('family') %}
-({{ family }}-stubs)=
-## {{ family | title}} 
+{% for fam in info_list | groupby('family') if fam.grouper == 'micropython'%}
+({{ fam.grouper }}-stubs)=
+## {{ fam.grouper | title}} 
 | family | version | port    |type | path
 |--------|---------|---------|-----|-----
-    {% for version, items in items1 | groupby('version' ) %}
-        {% for fw in items | sort(attribute="port") %}
-{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}".format(family, fw.v_version, fw.port, fw.type, fw.path) }}
-        {% endfor %}
+    {% for ver in fam.list | groupby('version' ) %}
+        {% for fw in ver.list | sort(attribute="port") %}
+{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}".format(fam.grouper, ver.grouper, fw.port, fw.type, fw.path) }}
+        {% endfor -%}
     {%- endfor %}
-{% endfor %}
 
-## Metrics
+{%+ endfor %}
 
-Total stub modules:  {{ firmwares | sum(attribute='module_count') }}
+
+{% for fam in info_list | groupby('family') if fam.grouper != 'micropython'%}
+({{ fam.grouper }}-stubs)=
+## {{ fam.grouper | title}} 
+| family | version | port    |type | path
+|--------|---------|---------|-----|-----
+    {% for ver in fam.list | groupby('version' ) %}
+        {% for fw in ver.list | sort(attribute="port") %}
+{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}".format(fam.grouper, ver.grouper, fw.port, fw.type, fw.path) }}
+        {% endfor -%}
+    {%- endfor %}
+
+{%+ endfor %}
+
+
+# Metrics
+
+Total stub modules:  {{ info_list | sum(attribute='module_count') }}

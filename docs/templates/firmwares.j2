@@ -1,6 +1,0 @@
-{% for firmware in firmwares|sort(attribute="family,version") -%}
-    {{ firmware.family}}  {{ firmware.version }} {{ firmware.port }} {{ firmware.path }}
-{% endfor %}
-Total modules  {{ firmwares | sum(attribute='module_count') }}
-
-

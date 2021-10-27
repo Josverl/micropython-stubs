@@ -1,9 +1,8 @@
-import itertools
 from pathlib import Path
 import json
-from natsort import natsorted
-import jinja2
 from collections import defaultdict
+from utils import clean_version
+from jinja2 import Environment, FileSystemLoader
 
 
 def read_manifests(path: Path):
@@ -16,12 +15,12 @@ def read_manifests(path: Path):
             # Old module manifest format
             firmware = modules[0]
             stub_ver = modules[1]["stubber"]
-            mod_count = max(len(modules) - 2, 0)
+            module_count = max(len(modules) - 2, 0)
         else:
             # new module manifest format
             firmware = modules["firmware"]
             stub_ver = modules["stubber"]["version"]
-            mod_count = len(modules["modules"])
+            module_count = len(modules["modules"])
 
         # avoid getting Key not found errors
         firmware = defaultdict(lambda: None, firmware)
@@ -29,7 +28,12 @@ def read_manifests(path: Path):
         if "-frozen" in file.as_posix():
             stub_type = "frozen"
         elif "cpython" in file.as_posix():
-            stub_type = "CPython"
+            stub_type = "cpython"
+        elif firmware["family"] in [
+            "lvgl",
+            "ulab",
+        ]:
+            stub_type = "library"
         else:
             stub_type = "board"
 
@@ -40,19 +44,18 @@ def read_manifests(path: Path):
         else:
             sysname = firmware["sysname"]
 
-        v_version = version = firmware["version"] or "-"
-        if v_version[0].isdecimal():
-            v_version = "v" + version
         fw = defaultdict(
-            lambda: "default",
+            lambda: "-",
             {
                 "family": firmware["family"] or "micropython",
-                "version": version,  # version no v-prefix
-                "v_version": v_version,  # version with v-prefix
+                "version": clean_version(firmware["version"] or "-"),
+                # version without v-prefix
+                # "bare_version": clean_version(firmware["version"] or "-", drop_v=True),
                 "port": firmware["port"] or "-",
+                "variant": firmware["variant"] or "",
                 "type": stub_type,
                 "sysname": sysname,
-                "module_count": mod_count,
+                "module_count": module_count,
                 "stubber_version": stub_ver,
                 "firmware": firmware,
                 "path": file.parent.as_posix(),
@@ -61,24 +64,24 @@ def read_manifests(path: Path):
         yield fw
 
 
-all = list(read_manifests(Path("./stubs")))
+def update_firmware_docs():
+    all = list(read_manifests(Path("./stubs")))
 
-
-from jinja2 import Environment, FileSystemLoader
-from itertools import groupby
-
-file_loader = FileSystemLoader("docs/templates")
-env = Environment(
-    loader=file_loader,
-    trim_blocks=True,  # trim indents
-    lstrip_blocks=True,  # trim left whitespace
-)
-
-template = env.get_template("firmwares.j2")
-output = template.render(firmwares=all)
-print(output)
-
-template = env.get_template("firmware_grp.j2")
-output = template.render(firmwares=all)
-with open("docs/firmwares_2.md", "w") as myfile:
-    myfile.write(output)
+    file_loader = FileSystemLoader("docs/templates")
+    env = Environment(
+        loader=file_loader,
+        trim_blocks=True,  # trim indents
+        lstrip_blocks=True,  # trim left whitespace
+    )
+    # Process all template files
+    for template_file in Path("./docs/templates").glob("*.j2"):
+        template = env.get_template(template_file.name)
+        output = template.render(info_list=all)
+        # output to doc folder
+        with open(
+            Path("./docs") / template_file.with_suffix(".md").name, "w"
+        ) as md_file:
+            md_file.write(output)
+        # output to root folder
+        with open(Path(".") / template_file.with_suffix(".md").name, "w") as md_file:
+            md_file.write(output)

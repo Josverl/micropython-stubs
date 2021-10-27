@@ -1,0 +1,8 @@
+|fam|version|type|-|firmware.release|port|f 
+|-|-|-|-|-|-|-
+{%+ for info in info_list|sort(attribute="family,version") %}
+|{{ info.family}} | {{ info.version }} | {{ info.type }}| . |{{ info.firmware.release }}|{{ info.port }} | {{ info.path }}
+{%+ endfor %}
+Total modules  {{ infos | sum(attribute='module_count') }}
+
+

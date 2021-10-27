@@ -13,9 +13,10 @@
 import os
 import sys
 
-# sys.path.insert(0, os.path.abspath("../src"))
-# sys.path[1:1] = [os.path.abspath("../src")]
 
+# sys.path.insert(0, os.path.abspath("../src"))
+sys.path[1:1] = [os.path.abspath("../docs")]
+from update_docs import update_firmware_docs
 
 # -- Project information -----------------------------------------------------
 
@@ -136,4 +137,9 @@ html_static_path = ["_static"]
 # -- set custom width -------------------------------------------------
 # ref: https://stackoverflow.com/questions/23211695/modifying-content-width-of-the-sphinx-theme-read-the-docs
 def setup(app):
-    app.add_css_file('wide_theme.css')
+    app.add_css_file("wide_theme.css")
+
+
+# --------------------------
+# side effect : Update documentation
+update_firmware_docs()

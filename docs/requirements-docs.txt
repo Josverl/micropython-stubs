@@ -4,4 +4,4 @@ sphinxcontrib-mermaid
 sphinx_rtd_theme
 sphinx-autoapi              >= 1.8
 
-
+Jinja2                      >= 3.0

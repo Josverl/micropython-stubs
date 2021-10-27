@@ -14,7 +14,7 @@
 03_order.md
 04_symlink.md
 
-firmwares.md
+firmware_grp.md
 ```
 
 
