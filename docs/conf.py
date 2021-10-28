@@ -141,5 +141,10 @@ def setup(app):
 
 
 # --------------------------
-# side effect : Update documentation
+# side effect : generate Stub documentation from json
+
+sys.path[1:1] = [".", os.path.abspath("../docs")]
+from update_docs import update_firmware_docs
+
+print("update_firmware_docs....")
 update_firmware_docs()

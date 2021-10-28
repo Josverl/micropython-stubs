@@ -1,8 +1,13 @@
-|fam|version|type|-|firmware.release|port|f 
+
+# Stubs by type 
+
+|Type|fam|version|-|firmware.release|port|f 
 |-|-|-|-|-|-|-
-{%+ for info in info_list|sort(attribute="family,version") %}
-|{{ info.family}} | {{ info.version }} | {{ info.type }}| . |{{ info.firmware.release }}|{{ info.port }} | {{ info.path }}
+{%+ for info in info_list|sort(attribute="type,family,version,port,path") %}
+|{{ info.type }}|{{ info.family}} | {{ info.version }} |  {{ info.module_count }} |{{ info.firmware.release }}|{{ info.port }} | {{ info.path }}
 {%+ endfor %}
-Total modules  {{ infos | sum(attribute='module_count') }}
+
+
+Total modules  {{ info_list | sum(attribute='module_count') }}
 
 

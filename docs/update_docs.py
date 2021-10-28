@@ -65,23 +65,33 @@ def read_manifests(path: Path):
 
 
 def update_firmware_docs():
-    all = list(read_manifests(Path("./stubs")))
+    # module can be started from two different locations
+    if Path.cwd().stem == "docs":
+        workspace_root = Path.cwd().parent
+    else:
+        workspace_root = Path.cwd()
 
-    file_loader = FileSystemLoader("docs/templates")
+    all = list(read_manifests(workspace_root / "stubs"))
+
+    file_loader = FileSystemLoader(str(workspace_root / "docs/templates"))
     env = Environment(
         loader=file_loader,
         trim_blocks=True,  # trim indents
         lstrip_blocks=True,  # trim left whitespace
     )
     # Process all template files
-    for template_file in Path("./docs/templates").glob("*.j2"):
+    for template_file in (workspace_root / "docs/templates").glob("*.j2"):
         template = env.get_template(template_file.name)
         output = template.render(info_list=all)
         # output to doc folder
-        with open(
-            Path("./docs") / template_file.with_suffix(".md").name, "w"
-        ) as md_file:
+        md_filename = template_file.with_suffix(".md").name
+        print(" - updating:", md_filename)
+        with open(workspace_root / "docs" / md_filename, "w") as md_file:
             md_file.write(output)
-        # output to root folder
-        with open(Path(".") / template_file.with_suffix(".md").name, "w") as md_file:
-            md_file.write(output)
+        # # output to root folder
+        # with open(workspace_root / md_filename, "w") as md_file:
+        #     md_file.write(output)
+
+
+if __name__ == "__main__":
+    update_firmware_docs()

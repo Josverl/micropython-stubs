@@ -13,16 +13,17 @@
 02_using.md
 03_order.md
 04_symlink.md
+changelog.md
 
-firmware_grp.md
 ```
 
 
 ```{toctree}
-:caption: 'versions and changes'
-:maxdepth: 1
+:caption: 'Stub index'
+:maxdepth: 2
+firmware_grp.md
+firmware_flat.md
 
-changelog.md
 
 ```
 
