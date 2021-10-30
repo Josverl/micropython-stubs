@@ -2,8 +2,9 @@
     {
         "family": "loboris",
         "nodename": "esp32_LoBo",
-        "release": "3.2.24",
-        "version": "ESP32_LoBo_v3.2.24 on 2018-09-06",
+        "version": "3.2.24",
+        "release": "ESP32_LoBo_v3.2.24 on 2018-09-06",
+        "port": "esp32",
         "machine": "ESP32 board with ESP32",
         "sysname": "esp32_LoBo"
     },

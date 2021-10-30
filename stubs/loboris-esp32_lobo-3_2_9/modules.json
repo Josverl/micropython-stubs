@@ -4,6 +4,7 @@
         "release": "3.2.9",
         "version": "v3.2.9",
         "machine": "ESP32 board with ESP32",
+        "port": "esp32",
         "sysname": "esp32_LoBo",
         "family": "loboris"
     },

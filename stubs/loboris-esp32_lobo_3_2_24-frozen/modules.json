@@ -5,7 +5,7 @@
         "machine": "loboris",
         "nodename": "loboris",
         "platform": "frozen",
-        "port": "frozen",
+        "port": "esp32",
         "release": "3.2.24",
         "sysname": "loboris",
         "version": "v3.2.24"
