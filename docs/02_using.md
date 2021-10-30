@@ -1,5 +1,5 @@
 (using-the-stubs)=
-# Using the stubs
+# Using the MicroPython stubs
 
 In order to use the stubs you need to do a few things:  
 ## Clone or download a copy of the Micropython-Stubs repo
@@ -15,21 +15,21 @@ In order to use the stubs you need to do a few things:
     git fetch && git pull
     ```
 
-# Project configuration 
-For each project where you want to use the stubs you 
-this is not as complex as it seems,
+## Project configuration 
+For each project where you want to use the stubs you need to configure vscode and any linters that you use to use the correct stubs.
+This is not as complex as it seems initially, and once you have configured your first project, you can copy /paste that structure for other projects. 
 
-##  **Create a symlink to the stubs folder**  
+## Create a symlink to the stubs folder  
 Create a symlink to the `c:\develop\micropython-stubs\stubs` from inside your project.
 This will allow you to reference the same stub files from multiple projects, and limit the space
 needed. This a recommendation, and things work equally well if you copy or clone the `stubs` folder into your project.  
 For details on how to create a symlink, please see : {ref}`create-symbolic-link`
 
-##  **Quick start:** 
+## Quick start: 
 Copy the [samples][] folder to your project  
 This contains the template files you need to improve syntax highlighting wyioth Pylance and linting with pylint.
 
-##  **Select which stub folders you need to reference**  
+## Select which stub folders you need to reference
 - The order will influence results. place the 'higher quality' folders first.
 - Use forward slashes `/` rather than backslashes, also on Windows.
 - for example for micropython 1.13 on an ESP32 select:
@@ -39,7 +39,7 @@ This contains the template files you need to improve syntax highlighting wyioth 
     4. "all-stubs/esp32_1_13_0-103",
 
 
-##  **Configure Pylance to use the selected stub folders**  
+## Configure Pylance to use the selected stub folders  
 This instructs the VSCode Pylance to consider your libs folder and the stubs for static code evaluation.
 VSCode allows this configuration to be set on **_workspace_** or _user_ level. I prefer setting it per workspace as that allows different settings for different projects, but you could do either.
      
@@ -114,7 +114,7 @@ To avoid the "all-stubs" folder to be uploaded to your Micropython MCU
  ```
 
 
-## **Restart VSCode**  
+## Restart VSCode  
 VSCode must be restated for so that Pylance and linters such as Pylint to read the updated configuration.
 
 You can use: 

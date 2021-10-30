@@ -3,9 +3,7 @@
 The stubs are used by 2 or 3 components.
  1. the VSCode Pylance Language Server
  2. the VSCode Python add-in
- 3. and optionally by an additional linter such as: 
-   - pylint
-   - mypy
+ 3. and optionally by an additional [Python linter](https://code.visualstudio.com/docs/python/linting#_specific-linters) such as **pylint** or **mypy**
  
 These  tools work together to provide code completion/prediction, type checking and all the other good things.
 For this the order in which these tools use  the stub folders is significant, and best results are when they use the same order. 
