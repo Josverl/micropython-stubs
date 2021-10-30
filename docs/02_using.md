@@ -60,6 +60,38 @@ The below configuration is [Pylance][] specific
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
 ```
+ ## update pymakr.conf 
+ 
+Depending on the tools and configuration you are using it may be needed to exclude the 
+To avoid the "all-stubs" folder to be uploaded to your Micropython MCU
+
+**Pymakr:**
+
+ - add "all-stubs" to the "py_ignore" section
+
+ ``` json 
+{
+    "address": "192.168.4.1",
+    "username": "micro",
+    "password": "python",
+    "sync_folder": "",
+    "open_on_start": true,
+    "safe_boot_on_upload": false,
+    "py_ignore": [
+        "all-stubs",
+        "pymakr.conf",
+        ".vscode",
+        ".gitignore",
+        ".git",
+        "project.pymakr",
+        "env",
+        "venv",
+        ".venv"
+    ],
+    "fast_upload": false
+}
+ ```
+
 
 ## Optional: Configure pylint to use the selected stub folders
 This instructs pylint to insert the list of paths into `sys.path` before performing linting, thus allowing it to find the stubs and use them to better validate your code. 
