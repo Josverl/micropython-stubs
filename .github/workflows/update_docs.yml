@@ -37,7 +37,7 @@ jobs:
           repository: josverl/micropython-stubs
           path: micropython-stubs
 
-      make Python work
+      # make Python work
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
