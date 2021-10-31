@@ -1,0 +1,6 @@
+
+
+queries:
+- exclude: py/clear-text-storage-sensitive-data
+- exclude: py/illegal-raise
+
