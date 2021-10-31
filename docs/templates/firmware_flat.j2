@@ -1,10 +1,10 @@
 
 # Stubs by type 
 
-|Type|fam|version|-|firmware.release|port|f 
+|Type|famely|version|port| # |firmware release|stub folder 
 |-|-|-|-|-|-|-
 {%+ for info in info_list|sort(attribute="type,family,version,port,path") %}
-|{{ info.type }}|{{ info.family}} | {{ info.version }} |  {{ info.module_count }} |{{ info.firmware.release }}|{{ info.port }} | {{ info.path }}
+|{{ info.type }}|{{ info.family}} | {{ info.version }} | {{info.port}} | {{ info.module_count }} |{{ info.firmware.release }}|[{{ info.path }}](https://github.com/Josverl/micropython-stubs/tree/master/{{ info.path }})
 {%+ endfor %}
 
 

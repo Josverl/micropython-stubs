@@ -5,8 +5,8 @@ from utils import clean_version
 from jinja2 import Environment, FileSystemLoader
 
 
-def read_manifests(path: Path):
-    configs = path.rglob("modules.json")
+def read_manifests(workspace_root: Path):
+    configs = (workspace_root / "stubs").rglob("modules.json")
     for file in configs:
         with open(file) as f:
             modules = json.load(f)
@@ -58,7 +58,7 @@ def read_manifests(path: Path):
                 "module_count": module_count,
                 "stubber_version": stub_ver,
                 "firmware": firmware,
-                "path": file.parent.as_posix(),
+                "path": file.parent.relative_to(workspace_root).as_posix(),
             },
         )
         yield fw
@@ -71,7 +71,7 @@ def update_firmware_docs():
     else:
         workspace_root = Path.cwd()
 
-    all = list(read_manifests(workspace_root / "stubs"))
+    all = list(read_manifests(workspace_root ))
 
     file_loader = FileSystemLoader(str(workspace_root / "docs/templates"))
     env = Environment(

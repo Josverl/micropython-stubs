@@ -11,7 +11,7 @@
 |--------|---------|---------|-----|-----:|----
     {% for ver in fam.list | groupby('version' ) %}
         {% for fw in ver.list | sort(attribute="port,path") %}
-{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}|{5}".format(fam.grouper, ver.grouper, fw.type, fw.port, fw.module_count,  fw.path) }}
+{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}|[{5}](https://github.com/Josverl/micropython-stubs/tree/master/{5})".format(fam.grouper, ver.grouper, fw.type, fw.port, fw.module_count,  fw.path) }}
         {% endfor -%}
     {%- endfor %}
 
@@ -25,7 +25,7 @@
 |--------|---------|---------|-----|-----:|----
     {% for ver in fam.list | groupby('version' ) %}
         {% for fw in ver.list | sort(attribute="port,path") %}
-{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}|{5}".format(fam.grouper, ver.grouper, fw.type, fw.port, fw.module_count,  fw.path) }}
+{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}|[{5}](https://github.com/Josverl/micropython-stubs/tree/master/{5})".format(fam.grouper, ver.grouper, fw.type, fw.port, fw.module_count,  fw.path) }}
         {% endfor -%}
     {%- endfor %}
 
