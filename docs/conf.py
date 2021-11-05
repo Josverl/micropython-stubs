@@ -110,11 +110,14 @@ extlinks = {
 # Mapping to other documentation sets
 # https://www.sphinx-doc.org/en/master/usage/extensions/intersphinx.html
 
+
 intersphinx_mapping = {
-    "python": ("https://docs.python.org/3", None),
-    "upy": ("http://docs.micropython.org/en/latest", None),
     "stubber": ("https://micropython-stubber.readthedocs.io/en/latest/", None),
+    "micropython": ("http://docs.micropython.org/en/latest", None),
+    "sphinx": ("https://www.sphinx-doc.org/en/master/", None),
+    "python": ("https://docs.python.org/3/", None),
 }
+
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
