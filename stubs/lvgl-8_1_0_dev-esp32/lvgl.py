@@ -1,8 +1,8 @@
 """
-Module: 'lvgl' on lvgl-8_1_0_dev-esp32
+Module: 'lvgl' on lvgl-8_1_0-dev-esp32
 """
 # MCU: {'ver': '1.17-564', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.17.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.17.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '564', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.4.0.beta
+# Stubber: 1.4.2
 from typing import Any
 
 
@@ -1140,10 +1140,10 @@ class list:
     def update_snap(self, *args) -> Any:
         ...
 
-def map(self, *args) -> Any:
+def map(*args) -> Any:
     ...
 
-def pow(self, *args) -> Any:
+def pow(*args) -> Any:
     ...
 
 
@@ -1457,8 +1457,8 @@ class LABEL_POS:
 class LABEL_TEXT_SELECTION:
     ''
     OFF = 65535 # type: int
-LAYOUT_FLEX: Any
-LAYOUT_GRID: Any
+LAYOUT_FLEX : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+LAYOUT_GRID : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
 
 class LOG_LEVEL:
     ''
@@ -1682,21 +1682,21 @@ class STYLE:
     WIDTH = 4097 # type: int
     X = 4103 # type: int
     Y = 4104 # type: int
-STYLE_FLEX_CROSS_PLACE: Any
-STYLE_FLEX_FLOW: Any
-STYLE_FLEX_GROW: Any
-STYLE_FLEX_MAIN_PLACE: Any
-STYLE_FLEX_TRACK_PLACE: Any
-STYLE_GRID_CELL_COLUMN_POS: Any
-STYLE_GRID_CELL_COLUMN_SPAN: Any
-STYLE_GRID_CELL_ROW_POS: Any
-STYLE_GRID_CELL_ROW_SPAN: Any
-STYLE_GRID_CELL_X_ALIGN: Any
-STYLE_GRID_CELL_Y_ALIGN: Any
-STYLE_GRID_COLUMN_ALIGN: Any
-STYLE_GRID_COLUMN_DSC_ARRAY: Any
-STYLE_GRID_ROW_ALIGN: Any
-STYLE_GRID_ROW_DSC_ARRAY: Any
+STYLE_FLEX_CROSS_PLACE : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_FLEX_FLOW : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_FLEX_GROW : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_FLEX_MAIN_PLACE : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_FLEX_TRACK_PLACE : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_COLUMN_POS : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_COLUMN_SPAN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_ROW_POS : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_ROW_SPAN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_X_ALIGN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_Y_ALIGN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_COLUMN_ALIGN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_COLUMN_DSC_ARRAY : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_ROW_ALIGN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_ROW_DSC_ARRAY : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
 
 class SYMBOL:
     ''
@@ -1793,22 +1793,22 @@ class TEXT_FLAG:
     FIT = 4 # type: int
     NONE = 0 # type: int
     RECOLOR = 1 # type: int
-def anim_count_running(self, *args) -> Any:
+def anim_count_running(*args) -> Any:
     ...
 
-def anim_del(self, *args) -> Any:
+def anim_del(*args) -> Any:
     ...
 
-def anim_del_all(self, *args) -> Any:
+def anim_del_all(*args) -> Any:
     ...
 
-def anim_get(self, *args) -> Any:
+def anim_get(*args) -> Any:
     ...
 
-def anim_refr_now(self, *args) -> Any:
+def anim_refr_now(*args) -> Any:
     ...
 
-def anim_speed_to_time(self, *args) -> Any:
+def anim_speed_to_time(*args) -> Any:
     ...
 
 
@@ -1898,31 +1898,31 @@ class anim_t:
     def set_var(self, *args) -> Any:
         ...
 
-def anim_timeline_add(self, *args) -> Any:
+def anim_timeline_add(*args) -> Any:
     ...
 
-def anim_timeline_create(self, *args) -> Any:
+def anim_timeline_create(*args) -> Any:
     ...
 
-def anim_timeline_del(self, *args) -> Any:
+def anim_timeline_del(*args) -> Any:
     ...
 
-def anim_timeline_get_playtime(self, *args) -> Any:
+def anim_timeline_get_playtime(*args) -> Any:
     ...
 
-def anim_timeline_get_reverse(self, *args) -> Any:
+def anim_timeline_get_reverse(*args) -> Any:
     ...
 
-def anim_timeline_set_progress(self, *args) -> Any:
+def anim_timeline_set_progress(*args) -> Any:
     ...
 
-def anim_timeline_set_reverse(self, *args) -> Any:
+def anim_timeline_set_reverse(*args) -> Any:
     ...
 
-def anim_timeline_start(self, *args) -> Any:
+def anim_timeline_start(*args) -> Any:
     ...
 
-def anim_timeline_stop(self, *args) -> Any:
+def anim_timeline_stop(*args) -> Any:
     ...
 
 
@@ -3063,7 +3063,7 @@ class animimg:
     def update_snap(self, *args) -> Any:
         ...
 
-animimg_class: Any
+animimg_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class arc:
     ''
@@ -4253,7 +4253,7 @@ class arc:
     def update_snap(self, *args) -> Any:
         ...
 
-arc_class: Any
+arc_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class area_t:
     ''
@@ -4287,10 +4287,10 @@ class area_t:
     def set_width(self, *args) -> Any:
         ...
 
-def async_call(self, *args) -> Any:
+def async_call(*args) -> Any:
     ...
 
-def atan2(self, *args) -> Any:
+def atan2(*args) -> Any:
     ...
 
 
@@ -5450,11 +5450,11 @@ class bar:
     def update_snap(self, *args) -> Any:
         ...
 
-bar_class: Any
-def bezier3(self, *args) -> Any:
+bar_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def bezier3(*args) -> Any:
     ...
 
-def bidi_calculate_align(self, *args) -> Any:
+def bidi_calculate_align(*args) -> Any:
     ...
 
 
@@ -6583,7 +6583,7 @@ class btn:
     def update_snap(self, *args) -> Any:
         ...
 
-btn_class: Any
+btn_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class btnmatrix:
     ''
@@ -7762,7 +7762,7 @@ class btnmatrix:
     def update_snap(self, *args) -> Any:
         ...
 
-btnmatrix_class: Any
+btnmatrix_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class calendar:
     ''
@@ -8916,7 +8916,7 @@ class calendar:
     def update_snap(self, *args) -> Any:
         ...
 
-calendar_class: Any
+calendar_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class calendar_date_t:
     ''
@@ -10046,7 +10046,7 @@ class calendar_header_arrow:
     def update_snap(self, *args) -> Any:
         ...
 
-calendar_header_arrow_class: Any
+calendar_header_arrow_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class calendar_header_dropdown:
     ''
@@ -11173,7 +11173,7 @@ class calendar_header_dropdown:
     def update_snap(self, *args) -> Any:
         ...
 
-calendar_header_dropdown_class: Any
+calendar_header_dropdown_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class canvas:
     ''
@@ -12348,7 +12348,7 @@ class canvas:
     def update_snap(self, *args) -> Any:
         ...
 
-canvas_class: Any
+canvas_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class chart:
     ''
@@ -13603,7 +13603,7 @@ class chart:
     def update_snap(self, *args) -> Any:
         ...
 
-chart_class: Any
+chart_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class chart_cursor_t:
     ''
@@ -14743,11 +14743,11 @@ class checkbox:
     def update_snap(self, *args) -> Any:
         ...
 
-checkbox_class: Any
-def clamp_height(self, *args) -> Any:
+checkbox_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def clamp_height(*args) -> Any:
     ...
 
-def clamp_width(self, *args) -> Any:
+def clamp_width(*args) -> Any:
     ...
 
 
@@ -14795,10 +14795,10 @@ class color16_t:
     def color_to_hsv(self, *args) -> Any:
         ...
 
-def color_black(self, *args) -> Any:
+def color_black(*args) -> Any:
     ...
 
-def color_chroma_key(self, *args) -> Any:
+def color_chroma_key(*args) -> Any:
     ...
 
 
@@ -14807,25 +14807,25 @@ class color_filter_dsc_t:
     def init(self, *args) -> Any:
         ...
 
-def color_hex(self, *args) -> Any:
+def color_hex(*args) -> Any:
     ...
 
-def color_hex3(self, *args) -> Any:
+def color_hex3(*args) -> Any:
     ...
 
 
 class color_hsv_t:
     ''
-def color_hsv_to_rgb(self, *args) -> Any:
+def color_hsv_to_rgb(*args) -> Any:
     ...
 
-def color_make(self, *args) -> Any:
+def color_make(*args) -> Any:
     ...
 
-def color_mix_premult(self, *args) -> Any:
+def color_mix_premult(*args) -> Any:
     ...
 
-def color_rgb_to_hsv(self, *args) -> Any:
+def color_rgb_to_hsv(*args) -> Any:
     ...
 
 
@@ -14870,7 +14870,7 @@ class color_t:
     def color_to_hsv(self, *args) -> Any:
         ...
 
-def color_white(self, *args) -> Any:
+def color_white(*args) -> Any:
     ...
 
 
@@ -16029,8 +16029,8 @@ class colorwheel:
     def update_snap(self, *args) -> Any:
         ...
 
-colorwheel_class: Any
-def deinit(self, *args) -> Any:
+colorwheel_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def deinit(*args) -> Any:
     ...
 
 
@@ -16057,10 +16057,10 @@ class disp_drv_t:
     def use_generic_set_px_cb(self, *args) -> Any:
         ...
 
-def disp_get_default(self, *args) -> Any:
+def disp_get_default(*args) -> Any:
     ...
 
-def disp_load_scr(self, *args) -> Any:
+def disp_load_scr(*args) -> Any:
     ...
 
 
@@ -16138,10 +16138,10 @@ class disp_t:
     def trig_activity(self, *args) -> Any:
         ...
 
-def dpx(self, *args) -> Any:
+def dpx(*args) -> Any:
     ...
 
-def draw_arc(self, *args) -> Any:
+def draw_arc(*args) -> Any:
     ...
 
 
@@ -16150,10 +16150,10 @@ class draw_arc_dsc_t:
     def init(self, *args) -> Any:
         ...
 
-def draw_arc_get_area(self, *args) -> Any:
+def draw_arc_get_area(*args) -> Any:
     ...
 
-def draw_img(self, *args) -> Any:
+def draw_img(*args) -> Any:
     ...
 
 
@@ -16162,7 +16162,7 @@ class draw_img_dsc_t:
     def init(self, *args) -> Any:
         ...
 
-def draw_label(self, *args) -> Any:
+def draw_label(*args) -> Any:
     ...
 
 
@@ -16174,10 +16174,10 @@ class draw_label_dsc_t:
 
 class draw_label_hint_t:
     ''
-def draw_letter(self, *args) -> Any:
+def draw_letter(*args) -> Any:
     ...
 
-def draw_line(self, *args) -> Any:
+def draw_line(*args) -> Any:
     ...
 
 
@@ -16186,7 +16186,7 @@ class draw_line_dsc_t:
     def init(self, *args) -> Any:
         ...
 
-def draw_mask_add(self, *args) -> Any:
+def draw_mask_add(*args) -> Any:
     ...
 
 
@@ -16198,7 +16198,7 @@ class draw_mask_angle_param_t:
     def init(self, *args) -> Any:
         ...
 
-def draw_mask_apply(self, *args) -> Any:
+def draw_mask_apply(*args) -> Any:
     ...
 
 
@@ -16210,13 +16210,13 @@ class draw_mask_fade_param_t:
     def init(self, *args) -> Any:
         ...
 
-def draw_mask_free_param(self, *args) -> Any:
+def draw_mask_free_param(*args) -> Any:
     ...
 
-def draw_mask_get_cnt(self, *args) -> Any:
+def draw_mask_get_cnt(*args) -> Any:
     ...
 
-def draw_mask_is_any(self, *args) -> Any:
+def draw_mask_is_any(*args) -> Any:
     ...
 
 
@@ -16249,16 +16249,16 @@ class draw_mask_radius_param_t:
     def init(self, *args) -> Any:
         ...
 
-def draw_mask_remove_custom(self, *args) -> Any:
+def draw_mask_remove_custom(*args) -> Any:
     ...
 
-def draw_mask_remove_id(self, *args) -> Any:
+def draw_mask_remove_id(*args) -> Any:
     ...
 
-def draw_polygon(self, *args) -> Any:
+def draw_polygon(*args) -> Any:
     ...
 
-def draw_rect(self, *args) -> Any:
+def draw_rect(*args) -> Any:
     ...
 
 
@@ -16267,7 +16267,7 @@ class draw_rect_dsc_t:
     def init(self, *args) -> Any:
         ...
 
-def draw_triangle(self, *args) -> Any:
+def draw_triangle(*args) -> Any:
     ...
 
 
@@ -17456,12 +17456,12 @@ class dropdown:
     def update_snap(self, *args) -> Any:
         ...
 
-dropdown_class: Any
-dropdownlist_class: Any
-def event_register_id(self, *args) -> Any:
+dropdown_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+dropdownlist_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def event_register_id(*args) -> Any:
     ...
 
-def event_send(self, *args) -> Any:
+def event_send(*args) -> Any:
     ...
 
 
@@ -17515,24 +17515,24 @@ class event_t:
     def set_ext_draw_size(self, *args) -> Any:
         ...
 
-def extra_init(self, *args) -> Any:
+def extra_init(*args) -> Any:
     ...
 
-def flex_init(self, *args) -> Any:
+def flex_init(*args) -> Any:
     ...
 
-def font_default(self, *args) -> Any:
+def font_default(*args) -> Any:
     ...
 
-font_dejavu_16_persian_hebrew: Any
+font_dejavu_16_persian_hebrew : Any ## <class 'lv_font_t'> = struct lv_font_t
 
 class font_glyph_dsc_t:
     ''
-def font_load(self, *args) -> Any:
+def font_load(*args) -> Any:
     ...
 
-font_montserrat_14: Any
-font_montserrat_16: Any
+font_montserrat_14 : Any ## <class 'lv_font_t'> = struct lv_font_t
+font_montserrat_16 : Any ## <class 'lv_font_t'> = struct lv_font_t
 
 class font_t:
     ''
@@ -17599,43 +17599,43 @@ class fs_file_t:
     def tell(self, *args) -> Any:
         ...
 
-def fs_get_drv(self, *args) -> Any:
+def fs_get_drv(*args) -> Any:
     ...
 
-def fs_get_ext(self, *args) -> Any:
+def fs_get_ext(*args) -> Any:
     ...
 
-def fs_get_last(self, *args) -> Any:
+def fs_get_last(*args) -> Any:
     ...
 
-def fs_get_letters(self, *args) -> Any:
+def fs_get_letters(*args) -> Any:
     ...
 
-def fs_is_ready(self, *args) -> Any:
+def fs_is_ready(*args) -> Any:
     ...
 
-def fs_up(self, *args) -> Any:
+def fs_up(*args) -> Any:
     ...
 
-def grid_fr(self, *args) -> Any:
+def grid_fr(*args) -> Any:
     ...
 
-def grid_init(self, *args) -> Any:
+def grid_init(*args) -> Any:
     ...
 
-def group_create(self, *args) -> Any:
+def group_create(*args) -> Any:
     ...
 
-def group_focus_obj(self, *args) -> Any:
+def group_focus_obj(*args) -> Any:
     ...
 
-def group_get_default(self, *args) -> Any:
+def group_get_default(*args) -> Any:
     ...
 
-def group_remove_obj(self, *args) -> Any:
+def group_remove_obj(*args) -> Any:
     ...
 
-def group_swap_obj(self, *args) -> Any:
+def group_swap_obj(*args) -> Any:
     ...
 
 
@@ -18997,7 +18997,7 @@ class img:
     def update_snap(self, *args) -> Any:
         ...
 
-img_class: Any
+img_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class img_decoder_dsc_t:
     ''
@@ -20214,7 +20214,7 @@ class imgbtn:
     def update_snap(self, *args) -> Any:
         ...
 
-imgbtn_class: Any
+imgbtn_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class indev_data_t:
     ''
@@ -20227,19 +20227,19 @@ class indev_drv_t:
     def register(self, *args) -> Any:
         ...
 
-def indev_get_act(self, *args) -> Any:
+def indev_get_act(*args) -> Any:
     ...
 
-def indev_get_obj_act(self, *args) -> Any:
+def indev_get_obj_act(*args) -> Any:
     ...
 
-def indev_get_read_timer(self, *args) -> Any:
+def indev_get_read_timer(*args) -> Any:
     ...
 
-def indev_read_timer_cb(self, *args) -> Any:
+def indev_read_timer_cb(*args) -> Any:
     ...
 
-def indev_search_obj(self, *args) -> Any:
+def indev_search_obj(*args) -> Any:
     ...
 
 
@@ -20293,10 +20293,10 @@ class indev_t:
     def wait_release(self, *args) -> Any:
         ...
 
-def init(self, *args) -> Any:
+def init(*args) -> Any:
     ...
 
-def is_initialized(self, *args) -> Any:
+def is_initialized(*args) -> Any:
     ...
 
 
@@ -21453,7 +21453,7 @@ class keyboard:
     def update_snap(self, *args) -> Any:
         ...
 
-keyboard_class: Any
+keyboard_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class label:
     ''
@@ -22636,14 +22636,14 @@ class label:
     def update_snap(self, *args) -> Any:
         ...
 
-label_class: Any
-def layer_sys(self, *args) -> Any:
+label_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def layer_sys(*args) -> Any:
     ...
 
-def layer_top(self, *args) -> Any:
+def layer_top(*args) -> Any:
     ...
 
-def layout_register(self, *args) -> Any:
+def layout_register(*args) -> Any:
     ...
 
 
@@ -23788,7 +23788,7 @@ class led:
     def update_snap(self, *args) -> Any:
         ...
 
-led_class: Any
+led_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class line:
     ''
@@ -24924,38 +24924,38 @@ class line:
     def update_snap(self, *args) -> Any:
         ...
 
-line_class: Any
-list_btn_class: Any
-list_class: Any
-list_text_class: Any
+line_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+list_btn_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+list_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+list_text_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class ll_t:
     ''
-def log(self, *args) -> Any:
+def log(*args) -> Any:
     ...
 
-def log_register_print_cb(self, *args) -> Any:
+def log_register_print_cb(*args) -> Any:
     ...
 
-def mem_alloc(self, *args) -> Any:
+def mem_alloc(*args) -> Any:
     ...
 
-def mem_buf_free_all(self, *args) -> Any:
+def mem_buf_free_all(*args) -> Any:
     ...
 
-def mem_buf_get(self, *args) -> Any:
+def mem_buf_get(*args) -> Any:
     ...
 
-def mem_buf_release(self, *args) -> Any:
+def mem_buf_release(*args) -> Any:
     ...
 
-def mem_deinit(self, *args) -> Any:
+def mem_deinit(*args) -> Any:
     ...
 
-def mem_free(self, *args) -> Any:
+def mem_free(*args) -> Any:
     ...
 
-def mem_init(self, *args) -> Any:
+def mem_init(*args) -> Any:
     ...
 
 
@@ -24964,25 +24964,25 @@ class mem_monitor_t:
     def monitor(self, *args) -> Any:
         ...
 
-def mem_realloc(self, *args) -> Any:
+def mem_realloc(*args) -> Any:
     ...
 
-def mem_test(self, *args) -> Any:
+def mem_test(*args) -> Any:
     ...
 
-def memcpy(self, *args) -> Any:
+def memcpy(*args) -> Any:
     ...
 
-def memcpy_small(self, *args) -> Any:
+def memcpy_small(*args) -> Any:
     ...
 
-def memset(self, *args) -> Any:
+def memset(*args) -> Any:
     ...
 
-def memset_00(self, *args) -> Any:
+def memset_00(*args) -> Any:
     ...
 
-def memset_ff(self, *args) -> Any:
+def memset_ff(*args) -> Any:
     ...
 
 
@@ -26152,7 +26152,7 @@ class meter:
     def update_snap(self, *args) -> Any:
         ...
 
-meter_class: Any
+meter_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class meter_indicator_t:
     ''
@@ -27321,7 +27321,7 @@ class msgbox:
     def update_snap(self, *args) -> Any:
         ...
 
-msgbox_class: Any
+msgbox_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class obj:
     ''
@@ -28448,7 +28448,7 @@ class obj:
     def update_snap(self, *args) -> Any:
         ...
 
-obj_class: Any
+obj_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class obj_class_t:
     ''
@@ -28467,25 +28467,25 @@ class obj_draw_part_dsc_t:
     def dsc_init(self, *args) -> Any:
         ...
 
-def palette_darken(self, *args) -> Any:
+def palette_darken(*args) -> Any:
     ...
 
-def palette_lighten(self, *args) -> Any:
+def palette_lighten(*args) -> Any:
     ...
 
-def palette_main(self, *args) -> Any:
+def palette_main(*args) -> Any:
     ...
 
-def pct(self, *args) -> Any:
+def pct(*args) -> Any:
     ...
 
 
 class point_t:
     ''
-def rand(self, *args) -> Any:
+def rand(*args) -> Any:
     ...
 
-def refr_now(self, *args) -> Any:
+def refr_now(*args) -> Any:
     ...
 
 
@@ -29640,14 +29640,14 @@ class roller:
     def update_snap(self, *args) -> Any:
         ...
 
-roller_class: Any
-def scr_act(self, *args) -> Any:
+roller_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def scr_act(*args) -> Any:
     ...
 
-def scr_load(self, *args) -> Any:
+def scr_load(*args) -> Any:
     ...
 
-def scr_load_anim(self, *args) -> Any:
+def scr_load_anim(*args) -> Any:
     ...
 
 
@@ -30811,17 +30811,17 @@ class slider:
     def update_snap(self, *args) -> Any:
         ...
 
-slider_class: Any
-def snapshot_buf_size_needed(self, *args) -> Any:
+slider_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def snapshot_buf_size_needed(*args) -> Any:
     ...
 
-def snapshot_free(self, *args) -> Any:
+def snapshot_free(*args) -> Any:
     ...
 
-def snapshot_take(self, *args) -> Any:
+def snapshot_take(*args) -> Any:
     ...
 
-def snapshot_take_to_buf(self, *args) -> Any:
+def snapshot_take_to_buf(*args) -> Any:
     ...
 
 
@@ -31998,7 +31998,7 @@ class spangroup:
     def update_snap(self, *args) -> Any:
         ...
 
-spangroup_class: Any
+spangroup_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class spinbox:
     ''
@@ -33161,7 +33161,7 @@ class spinbox:
     def update_snap(self, *args) -> Any:
         ...
 
-spinbox_class: Any
+spinbox_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class spinner:
     ''
@@ -34288,8 +34288,8 @@ class spinner:
     def update_snap(self, *args) -> Any:
         ...
 
-spinner_class: Any
-def sqrt(self, *args) -> Any:
+spinner_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def sqrt(*args) -> Any:
     ...
 
 
@@ -34298,10 +34298,10 @@ class sqrt_res_t:
 
 class style_const_prop_t:
     ''
-def style_prop_get_default(self, *args) -> Any:
+def style_prop_get_default(*args) -> Any:
     ...
 
-def style_register_prop(self, *args) -> Any:
+def style_register_prop(*args) -> Any:
     ...
 
 
@@ -35793,7 +35793,7 @@ class switch:
     def update_snap(self, *args) -> Any:
         ...
 
-switch_class: Any
+switch_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class table:
     ''
@@ -36963,7 +36963,7 @@ class table:
     def update_snap(self, *args) -> Any:
         ...
 
-table_class: Any
+table_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
 
 class tabview:
     ''
@@ -38105,8 +38105,8 @@ class tabview:
     def update_snap(self, *args) -> Any:
         ...
 
-tabview_class: Any
-def task_handler(self, *args) -> Any:
+tabview_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def task_handler(*args) -> Any:
     ...
 
 
@@ -39331,38 +39331,38 @@ class textarea:
     def update_snap(self, *args) -> Any:
         ...
 
-textarea_class: Any
-def theme_apply(self, *args) -> Any:
+textarea_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def theme_apply(*args) -> Any:
     ...
 
-def theme_basic_init(self, *args) -> Any:
+def theme_basic_init(*args) -> Any:
     ...
 
-def theme_default_init(self, *args) -> Any:
+def theme_default_init(*args) -> Any:
     ...
 
-def theme_default_is_inited(self, *args) -> Any:
+def theme_default_is_inited(*args) -> Any:
     ...
 
-def theme_get_color_primary(self, *args) -> Any:
+def theme_get_color_primary(*args) -> Any:
     ...
 
-def theme_get_color_secondary(self, *args) -> Any:
+def theme_get_color_secondary(*args) -> Any:
     ...
 
-def theme_get_font_large(self, *args) -> Any:
+def theme_get_font_large(*args) -> Any:
     ...
 
-def theme_get_font_normal(self, *args) -> Any:
+def theme_get_font_normal(*args) -> Any:
     ...
 
-def theme_get_font_small(self, *args) -> Any:
+def theme_get_font_small(*args) -> Any:
     ...
 
-def theme_get_from_obj(self, *args) -> Any:
+def theme_get_from_obj(*args) -> Any:
     ...
 
-def theme_mono_init(self, *args) -> Any:
+def theme_mono_init(*args) -> Any:
     ...
 
 
@@ -39374,13 +39374,13 @@ class theme_t:
     def set_parent(self, *args) -> Any:
         ...
 
-def tick_elaps(self, *args) -> Any:
+def tick_elaps(*args) -> Any:
     ...
 
-def tick_get(self, *args) -> Any:
+def tick_get(*args) -> Any:
     ...
 
-def tick_inc(self, *args) -> Any:
+def tick_inc(*args) -> Any:
     ...
 
 
@@ -40515,21 +40515,21 @@ class tileview:
     def update_snap(self, *args) -> Any:
         ...
 
-tileview_class: Any
-tileview_tile_class: Any
-def timer_create(self, *args) -> Any:
+tileview_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+tileview_tile_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+def timer_create(*args) -> Any:
     ...
 
-def timer_create_basic(self, *args) -> Any:
+def timer_create_basic(*args) -> Any:
     ...
 
-def timer_enable(self, *args) -> Any:
+def timer_enable(*args) -> Any:
     ...
 
-def timer_get_idle(self, *args) -> Any:
+def timer_get_idle(*args) -> Any:
     ...
 
-def timer_handler(self, *args) -> Any:
+def timer_handler(*args) -> Any:
     ...
 
 
@@ -40559,28 +40559,28 @@ class timer_t:
     def set_repeat_count(self, *args) -> Any:
         ...
 
-def trigo_cos(self, *args) -> Any:
+def trigo_cos(*args) -> Any:
     ...
 
-def trigo_sin(self, *args) -> Any:
+def trigo_sin(*args) -> Any:
     ...
 
-def txt_get_size(self, *args) -> Any:
+def txt_get_size(*args) -> Any:
     ...
 
-def txt_get_width(self, *args) -> Any:
+def txt_get_width(*args) -> Any:
     ...
 
-def version_info(self, *args) -> Any:
+def version_info(*args) -> Any:
     ...
 
-def version_major(self, *args) -> Any:
+def version_major(*args) -> Any:
     ...
 
-def version_minor(self, *args) -> Any:
+def version_minor(*args) -> Any:
     ...
 
-def version_patch(self, *args) -> Any:
+def version_patch(*args) -> Any:
     ...
 
 
@@ -41721,4 +41721,4 @@ class win:
     def update_snap(self, *args) -> Any:
         ...
 
-win_class: Any
+win_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
