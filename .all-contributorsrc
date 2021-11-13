@@ -166,7 +166,7 @@
       "name": "Matin Tat",
       "avatar_url": "https://avatars.githubusercontent.com/u/32638453?v=4",
       "profile": "https://github.com/WerdoxDev",
-            "contributions": [
+      "contributions": [
         "test"
       ]
     },
@@ -175,16 +175,24 @@
       "name": "Roberto Jose Etcheverry Romero",
       "avatar_url": "https://avatars.githubusercontent.com/u/63941860?v=4",
       "profile": "https://github.com/robertoetcheverryr",
-            "contributions": [
+      "contributions": [
         "test"
       ]
     },
     {
-
       "login": "jdsmith",
       "name": "jdsmith",
       "avatar_url": "https://avatars.githubusercontent.com/u/1379246?v=4",
       "profile": "https://github.com/jdsmith",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "mrkeuz",
+      "name": "Mr Keuz",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6247921?v=4",
+      "profile": "https://github.com/mrkeuz",
       "contributions": [
         "test"
       ]
