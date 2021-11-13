@@ -28,10 +28,11 @@ The list of the current included firmwares, ports and boards includes stubs from
  - EV3 / Lego
  - LVGL
 
-For a full [overview of the stubs](https://micropython-stubs.readthedocs.io/en/moduledocs/firmware_grp.htm) check out the documentation on read the docs, or [docs/firmware_grp.md](docs/firmware_grp.md)
+For a full overview of all stubs check out [the documentation on read the docs](https://micropython-stubs.readthedocs.io/en/latest/firmware_grp.html), or int the repo in  [docs/firmware_grp.md](docs/firmware_grp.md)
 
 # Using the stubs 
 
+To learn how to use the stubs please refer to [the documentaion on RTD](https://micropython-stubs.readthedocs.io/en/latest/02_using.html)
 I
 ## Contributors
 Thanks to everyone that has submitted stubs or other relevant pieces of code and information, or published relevant stubs on pypi or github.
