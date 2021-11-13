@@ -60,6 +60,7 @@ Thanks to everyone that has submitted stubs or other relevant pieces of code and
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/robertoetcheverryr"><img src="https://avatars.githubusercontent.com/u/63941860?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Roberto Jose Etcheverry Romero</b></sub></a><br /><a href="#test-robertoetcheverryr" title="Test">✔</a></td>
+    <td align="center"><a href="https://github.com/jdsmith"><img src="https://avatars.githubusercontent.com/u/1379246?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jdsmith</b></sub></a><br /><a href="#test-jdsmith" title="Test">✔</a></td>
   </tr>
 </table>
 
