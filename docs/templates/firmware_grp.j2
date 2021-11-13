@@ -7,11 +7,11 @@
 {% for fam in info_list | groupby('family') if fam.grouper == 'micropython'%}
 ({{ fam.grouper }}-stubs)=
 ## {{ fam.grouper | title}} 
-|family | version | type    |port |count |path
-|--------|---------|---------|-----|-----:|----
+|family | version | type    |port |count | stubber version|path
+|--------|---------|---------|-----|-----:|-|----
     {% for ver in fam.list | groupby('version' ) %}
         {% for fw in ver.list | sort(attribute="port,path") %}
-{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}|[{5}](https://github.com/Josverl/micropython-stubs/tree/master/{5})".format(fam.grouper, ver.grouper, fw.type, fw.port, fw.module_count,  fw.path) }}
+{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}|{6}|[{5}](https://github.com/Josverl/micropython-stubs/tree/master/{5})".format(fam.grouper, ver.grouper, fw.type, fw.port, fw.module_count,  fw.path, fw.stubber_version) }}
         {% endfor -%}
     {%- endfor %}
 
@@ -21,11 +21,11 @@
 {% for fam in info_list | groupby('family') if fam.grouper != 'micropython'%}
 ({{ fam.grouper }}-stubs)=
 ## {{ fam.grouper | title}} 
-|family | version | type    |port |count |path
-|--------|---------|---------|-----|-----:|----
+|family | version | type    |port |count | stubber version|path
+|--------|---------|---------|-----|-----:|-|----
     {% for ver in fam.list | groupby('version' ) %}
         {% for fw in ver.list | sort(attribute="port,path") %}
-{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}|[{5}](https://github.com/Josverl/micropython-stubs/tree/master/{5})".format(fam.grouper, ver.grouper, fw.type, fw.port, fw.module_count,  fw.path) }}
+{{ "|{0:12}|{1:8.8}|{2:8}|{3}|{4}|{6}|[{5}](https://github.com/Josverl/micropython-stubs/tree/master/{5})".format(fam.grouper, ver.grouper, fw.type, fw.port, fw.module_count,  fw.path, fw.stubber_version) }}
         {% endfor -%}
     {%- endfor %}
 
