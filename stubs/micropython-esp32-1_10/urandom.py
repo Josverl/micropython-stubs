@@ -1,26 +1,28 @@
 """
-Module: 'urandom' on esp32 1.10.0
+Module: 'urandom' on micropython-esp32-1.10
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.10.0', version='v1.10 on 2019-01-25', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-def choice():
-    pass
+# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-def getrandbits():
-    pass
+def choice(*args) -> Any:
+    ...
 
-def randint():
-    pass
+def getrandbits(*args) -> Any:
+    ...
 
-def random():
-    pass
+def randint(*args) -> Any:
+    ...
 
-def randrange():
-    pass
+def random(*args) -> Any:
+    ...
 
-def seed():
-    pass
+def randrange(*args) -> Any:
+    ...
 
-def uniform():
-    pass
+def seed(*args) -> Any:
+    ...
+
+def uniform(*args) -> Any:
+    ...
 

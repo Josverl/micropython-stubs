@@ -1,20 +1,22 @@
 """
-Module: 'struct' on esp32 1.12.0
+Module: 'struct' on micropython-esp32-1.12
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.12.0', version='v1.12 on 2019-12-20', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.2
-def calcsize():
-    pass
+# MCU: {'ver': '1.12', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.12.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.12.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.4.2
+from typing import Any
 
-def pack():
-    pass
+def calcsize(*args) -> Any:
+    ...
 
-def pack_into():
-    pass
+def pack(*args) -> Any:
+    ...
 
-def unpack():
-    pass
+def pack_into(*args) -> Any:
+    ...
 
-def unpack_from():
-    pass
+def unpack(*args) -> Any:
+    ...
+
+def unpack_from(*args) -> Any:
+    ...
 

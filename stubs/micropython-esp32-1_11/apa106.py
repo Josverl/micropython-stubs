@@ -1,25 +1,33 @@
 """
-Module: 'apa106' on esp32 1.11.0
+Module: 'apa106' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-
-class APA106:
-    ''
-    ORDER = None
-    def fill():
-        pass
-
-    def write():
-        pass
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
 
 
 class NeoPixel:
     ''
-    ORDER = None
-    def fill():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    def write():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
+    def fill(self, *args) -> Any:
+        ...
+
+    ORDER = () # type: tuple
+
+class APA106:
+    ''
+    def __init__(self, *args) -> None:
+        ...
+
+    def write(self, *args) -> Any:
+        ...
+
+    def fill(self, *args) -> Any:
+        ...
+
+    ORDER = () # type: tuple

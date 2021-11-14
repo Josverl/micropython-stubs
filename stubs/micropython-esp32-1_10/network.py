@@ -1,38 +1,43 @@
 """
-Module: 'network' on esp32 1.10.0
+Module: 'network' on micropython-esp32-1.10
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.10.0', version='v1.10 on 2019-01-25', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-AP_IF = 1
-AUTH_MAX = 6
-AUTH_OPEN = 0
-AUTH_WEP = 1
-AUTH_WPA2_PSK = 3
-AUTH_WPA_PSK = 2
-AUTH_WPA_WPA2_PSK = 4
-def LAN():
-    pass
+# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-MODE_11B = 1
-MODE_11G = 2
-MODE_11N = 4
-PHY_LAN8720 = 0
-PHY_TLK110 = 1
-def PPP():
-    pass
+def __init__(*args) -> Any:
+    ...
 
-STAT_ASSOC_FAIL = 203
-STAT_BEACON_TIMEOUT = 200
-STAT_CONNECTING = 1001
-STAT_GOT_IP = 1010
-STAT_HANDSHAKE_TIMEOUT = 204
-STAT_IDLE = 1000
-STAT_NO_AP_FOUND = 201
-STAT_WRONG_PASSWORD = 202
-STA_IF = 0
-def WLAN():
-    pass
+AP_IF = 1 # type: int
+AUTH_MAX = 6 # type: int
+AUTH_OPEN = 0 # type: int
+AUTH_WEP = 1 # type: int
+AUTH_WPA2_PSK = 3 # type: int
+AUTH_WPA_PSK = 2 # type: int
+AUTH_WPA_WPA2_PSK = 4 # type: int
+def LAN(*args) -> Any:
+    ...
 
-def phy_mode():
-    pass
+MODE_11B = 1 # type: int
+MODE_11G = 2 # type: int
+MODE_11N = 4 # type: int
+PHY_LAN8720 = 0 # type: int
+PHY_TLK110 = 1 # type: int
+def PPP(*args) -> Any:
+    ...
+
+STAT_ASSOC_FAIL = 203 # type: int
+STAT_BEACON_TIMEOUT = 200 # type: int
+STAT_CONNECTING = 1001 # type: int
+STAT_GOT_IP = 1010 # type: int
+STAT_HANDSHAKE_TIMEOUT = 204 # type: int
+STAT_IDLE = 1000 # type: int
+STAT_NO_AP_FOUND = 201 # type: int
+STAT_WRONG_PASSWORD = 202 # type: int
+STA_IF = 0 # type: int
+def WLAN(*args) -> Any:
+    ...
+
+def phy_mode(*args) -> Any:
+    ...
 

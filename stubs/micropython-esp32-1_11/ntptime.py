@@ -1,15 +1,17 @@
 """
-Module: 'ntptime' on esp32 1.11.0
+Module: 'ntptime' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-NTP_DELTA = 3155673600
-host = 'pool.ntp.org'
-def settime():
-    pass
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-socket = None
-struct = None
-def time():
-    pass
+# import socket
+# import struct
+def time(*args) -> Any:
+    ...
+
+NTP_DELTA = 3155673600 # type: int
+host = 'pool.ntp.org' # type: str
+def settime(*args) -> Any:
+    ...
 

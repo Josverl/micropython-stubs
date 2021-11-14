@@ -1,34 +1,36 @@
 """
-Module: 'cmath' on esp32 1.10.0
+Module: 'cmath' on micropython-esp32-1.10
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.10.0', version='v1.10 on 2019-01-25', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-def cos():
-    pass
+# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-e = 2.718282
-def exp():
-    pass
+def cos(*args) -> Any:
+    ...
 
-def log():
-    pass
+e = 2.718282 # type: float
+def exp(*args) -> Any:
+    ...
 
-def log10():
-    pass
+def log(*args) -> Any:
+    ...
 
-def phase():
-    pass
+def log10(*args) -> Any:
+    ...
 
-pi = 3.141593
-def polar():
-    pass
+def phase(*args) -> Any:
+    ...
 
-def rect():
-    pass
+pi = 3.141593 # type: float
+def polar(*args) -> Any:
+    ...
 
-def sin():
-    pass
+def rect(*args) -> Any:
+    ...
 
-def sqrt():
-    pass
+def sin(*args) -> Any:
+    ...
+
+def sqrt(*args) -> Any:
+    ...
 

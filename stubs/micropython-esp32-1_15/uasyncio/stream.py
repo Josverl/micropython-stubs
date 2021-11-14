@@ -1,77 +1,87 @@
 """
 Module: 'uasyncio.stream' on micropython-esp32-1.15
 """
-# MCU: {'ver': '1.15', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.15.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.15.0', 'machine': 'ESP32 module with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.3.9
+# MCU: {'ver': '1.15', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.15.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.15.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.4.2
+from typing import Any
 
-class Server:
-    ''
-    _serve = None
-    def close():
-        pass
-
-    wait_closed = None
+# import core
 
 class Stream:
     ''
-    aclose = None
-    awrite = None
-    awritestr = None
-    def close():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    drain = None
-    def get_extra_info():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    read = None
-    readexactly = None
-    readline = None
-    wait_closed = None
-    def write():
-        pass
+    read : Any ## <class 'generator'> = <generator>
+    readline : Any ## <class 'generator'> = <generator>
+    def write(self, *args) -> Any:
+        ...
 
+    wait_closed : Any ## <class 'generator'> = <generator>
+    aclose : Any ## <class 'generator'> = <generator>
+    awrite : Any ## <class 'generator'> = <generator>
+    awritestr : Any ## <class 'generator'> = <generator>
+    def get_extra_info(self, *args) -> Any:
+        ...
+
+    readexactly : Any ## <class 'generator'> = <generator>
+    drain : Any ## <class 'generator'> = <generator>
 
 class StreamReader:
     ''
-    aclose = None
-    awrite = None
-    awritestr = None
-    def close():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    drain = None
-    def get_extra_info():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    read = None
-    readexactly = None
-    readline = None
-    wait_closed = None
-    def write():
-        pass
+    read : Any ## <class 'generator'> = <generator>
+    readline : Any ## <class 'generator'> = <generator>
+    def write(self, *args) -> Any:
+        ...
 
+    wait_closed : Any ## <class 'generator'> = <generator>
+    aclose : Any ## <class 'generator'> = <generator>
+    awrite : Any ## <class 'generator'> = <generator>
+    awritestr : Any ## <class 'generator'> = <generator>
+    def get_extra_info(self, *args) -> Any:
+        ...
+
+    readexactly : Any ## <class 'generator'> = <generator>
+    drain : Any ## <class 'generator'> = <generator>
 
 class StreamWriter:
     ''
-    aclose = None
-    awrite = None
-    awritestr = None
-    def close():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    drain = None
-    def get_extra_info():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    read = None
-    readexactly = None
-    readline = None
-    wait_closed = None
-    def write():
-        pass
+    read : Any ## <class 'generator'> = <generator>
+    readline : Any ## <class 'generator'> = <generator>
+    def write(self, *args) -> Any:
+        ...
 
-core = None
-open_connection = None
-start_server = None
-stream_awrite = None
+    wait_closed : Any ## <class 'generator'> = <generator>
+    aclose : Any ## <class 'generator'> = <generator>
+    awrite : Any ## <class 'generator'> = <generator>
+    awritestr : Any ## <class 'generator'> = <generator>
+    def get_extra_info(self, *args) -> Any:
+        ...
+
+    readexactly : Any ## <class 'generator'> = <generator>
+    drain : Any ## <class 'generator'> = <generator>
+open_connection : Any ## <class 'generator'> = <generator>
+
+class Server:
+    ''
+    def close(self, *args) -> Any:
+        ...
+
+    wait_closed : Any ## <class 'generator'> = <generator>
+start_server : Any ## <class 'generator'> = <generator>
+stream_awrite : Any ## <class 'generator'> = <generator>

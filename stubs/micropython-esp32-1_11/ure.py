@@ -1,18 +1,20 @@
 """
-Module: 'ure' on esp32 1.11.0
+Module: 'ure' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-DEBUG = 4096
-def compile():
-    pass
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-def match():
-    pass
+DEBUG = 4096 # type: int
+def compile(*args) -> Any:
+    ...
 
-def search():
-    pass
+def match(*args) -> Any:
+    ...
 
-def sub():
-    pass
+def search(*args) -> Any:
+    ...
+
+def sub(*args) -> Any:
+    ...
 

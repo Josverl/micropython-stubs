@@ -1,22 +1,27 @@
 """
-Module: 'usocket' on esp32 1.10.0
+Module: 'usocket' on micropython-esp32-1.10
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.10.0', version='v1.10 on 2019-01-25', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-AF_INET = 2
-AF_INET6 = 10
-IPPROTO_IP = 0
-IPPROTO_TCP = 6
-IPPROTO_UDP = 17
-IP_ADD_MEMBERSHIP = 3
-SOCK_DGRAM = 2
-SOCK_RAW = 3
-SOCK_STREAM = 1
-SOL_SOCKET = 4095
-SO_REUSEADDR = 4
-def getaddrinfo():
-    pass
+# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-def socket():
-    pass
+def __init__(*args) -> Any:
+    ...
+
+AF_INET = 2 # type: int
+AF_INET6 = 10 # type: int
+IPPROTO_IP = 0 # type: int
+IPPROTO_TCP = 6 # type: int
+IPPROTO_UDP = 17 # type: int
+IP_ADD_MEMBERSHIP = 3 # type: int
+SOCK_DGRAM = 2 # type: int
+SOCK_RAW = 3 # type: int
+SOCK_STREAM = 1 # type: int
+SOL_SOCKET = 4095 # type: int
+SO_REUSEADDR = 4 # type: int
+def getaddrinfo(*args) -> Any:
+    ...
+
+def socket(*args) -> Any:
+    ...
 

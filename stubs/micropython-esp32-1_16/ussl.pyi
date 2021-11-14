@@ -1,5 +1,3 @@
 from typing import Any
 
-Node = Any
-
-def wrap_socket() -> None: ...
+def wrap_socket(*args) -> Any: ...

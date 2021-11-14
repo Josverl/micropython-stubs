@@ -1,38 +1,40 @@
 """
-Module: 'time' on esp32 1.10.0
+Module: 'time' on micropython-esp32-1.10
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.10.0', version='v1.10 on 2019-01-25', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-def localtime():
-    pass
+# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-def mktime():
-    pass
+def localtime(*args) -> Any:
+    ...
 
-def sleep():
-    pass
+def mktime(*args) -> Any:
+    ...
 
-def sleep_ms():
-    pass
+def sleep(*args) -> Any:
+    ...
 
-def sleep_us():
-    pass
+def sleep_ms(*args) -> Any:
+    ...
 
-def ticks_add():
-    pass
+def sleep_us(*args) -> Any:
+    ...
 
-def ticks_cpu():
-    pass
+def ticks_add(*args) -> Any:
+    ...
 
-def ticks_diff():
-    pass
+def ticks_cpu(*args) -> Any:
+    ...
 
-def ticks_ms():
-    pass
+def ticks_diff(*args) -> Any:
+    ...
 
-def ticks_us():
-    pass
+def ticks_ms(*args) -> Any:
+    ...
 
-def time():
-    pass
+def ticks_us(*args) -> Any:
+    ...
+
+def time(*args) -> Any:
+    ...
 

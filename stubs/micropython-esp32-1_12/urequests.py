@@ -1,38 +1,43 @@
 """
-Module: 'urequests' on esp32 1.12.0
+Module: 'urequests' on micropython-esp32-1.12
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.12.0', version='v1.12 on 2019-12-20', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.12', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.12.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.12.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.4.2
+from typing import Any
+
+def get(*args) -> Any:
+    ...
+
+def put(*args) -> Any:
+    ...
+
+# import usocket
+def head(*args) -> Any:
+    ...
+
 
 class Response:
     ''
-    def close():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    content = None
-    def json():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    text = None
-def delete():
-    pass
+    text : Any ## <class 'property'> = <property>
+    def json(self, *args) -> Any:
+        ...
 
-def get():
-    pass
+    content : Any ## <class 'property'> = <property>
+def request(*args) -> Any:
+    ...
 
-def head():
-    pass
+def post(*args) -> Any:
+    ...
 
-def patch():
-    pass
+def patch(*args) -> Any:
+    ...
 
-def post():
-    pass
+def delete(*args) -> Any:
+    ...
 
-def put():
-    pass
-
-def request():
-    pass
-
-usocket = None

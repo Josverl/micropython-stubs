@@ -1,18 +1,23 @@
 """
-Module: 'neopixel' on esp32 1.10.0
+Module: 'neopixel' on micropython-esp32-1.10
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.10.0', version='v1.10 on 2019-01-25', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.4.2
+from typing import Any
+
+def neopixel_write(*args) -> Any:
+    ...
+
 
 class NeoPixel:
     ''
-    ORDER = None
-    def fill():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    def write():
-        pass
+    def fill(self, *args) -> Any:
+        ...
 
-def neopixel_write():
-    pass
+    def write(self, *args) -> Any:
+        ...
 
+    ORDER = () # type: tuple

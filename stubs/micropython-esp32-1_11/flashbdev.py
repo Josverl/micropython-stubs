@@ -1,22 +1,27 @@
 """
-Module: 'flashbdev' on esp32 1.11.0
+Module: 'flashbdev' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
+
+# import esp
+bdev : Any ## <class 'FlashBdev'> = <FlashBdev object at 3f817800>
+size = 4194304 # type: int
 
 class FlashBdev:
     ''
-    SEC_SIZE = 4096
-    START_SEC = 512
-    def ioctl():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    def readblocks():
-        pass
+    def ioctl(self, *args) -> Any:
+        ...
 
-    def writeblocks():
-        pass
+    def readblocks(self, *args) -> Any:
+        ...
 
-bdev = None
-esp = None
-size = 4194304
+    def writeblocks(self, *args) -> Any:
+        ...
+
+    SEC_SIZE = 4096 # type: int
+    START_SEC = 512 # type: int

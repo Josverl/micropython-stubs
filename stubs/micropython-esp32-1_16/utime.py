@@ -1,44 +1,46 @@
 """
 Module: 'utime' on micropython-esp32-1.16
 """
-# MCU: {'ver': '1.16', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.16.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.16.0', 'machine': 'ESP32 module with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.3.9
-def gmtime():
-    pass
+# MCU: {'ver': '1.16', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.16.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.16.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.4.2
+from typing import Any
 
-def localtime():
-    pass
+def gmtime(*args) -> Any:
+    ...
 
-def mktime():
-    pass
+def localtime(*args) -> Any:
+    ...
 
-def sleep():
-    pass
+def mktime(*args) -> Any:
+    ...
 
-def sleep_ms():
-    pass
+def sleep(*args) -> Any:
+    ...
 
-def sleep_us():
-    pass
+def sleep_ms(*args) -> Any:
+    ...
 
-def ticks_add():
-    pass
+def sleep_us(*args) -> Any:
+    ...
 
-def ticks_cpu():
-    pass
+def ticks_add(*args) -> Any:
+    ...
 
-def ticks_diff():
-    pass
+def ticks_cpu(*args) -> Any:
+    ...
 
-def ticks_ms():
-    pass
+def ticks_diff(*args) -> Any:
+    ...
 
-def ticks_us():
-    pass
+def ticks_ms(*args) -> Any:
+    ...
 
-def time():
-    pass
+def ticks_us(*args) -> Any:
+    ...
 
-def time_ns():
-    pass
+def time(*args) -> Any:
+    ...
+
+def time_ns(*args) -> Any:
+    ...
 

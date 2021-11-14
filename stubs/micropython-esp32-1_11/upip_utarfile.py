@@ -1,36 +1,44 @@
 """
-Module: 'upip_utarfile' on esp32 1.11.0
+Module: 'upip_utarfile' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-DIRTYPE = 'dir'
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-class FileSection:
-    ''
-    def read():
-        pass
-
-    def readinto():
-        pass
-
-    def skip():
-        pass
-
-REGTYPE = 'file'
-TAR_HEADER = None
+# import uctypes
+DIRTYPE = 'dir' # type: str
 
 class TarFile:
     ''
-    def extractfile():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    def next():
-        pass
+    def next(self, *args) -> Any:
+        ...
+
+    def extractfile(self, *args) -> Any:
+        ...
+
+TAR_HEADER = {} # type: dict
+REGTYPE = 'file' # type: str
+def roundup(*args) -> Any:
+    ...
+
+
+class FileSection:
+    ''
+    def __init__(self, *args) -> None:
+        ...
+
+    def read(self, *args) -> Any:
+        ...
+
+    def readinto(self, *args) -> Any:
+        ...
+
+    def skip(self, *args) -> Any:
+        ...
 
 
 class TarInfo:
     ''
-def roundup():
-    pass
-
-uctypes = None

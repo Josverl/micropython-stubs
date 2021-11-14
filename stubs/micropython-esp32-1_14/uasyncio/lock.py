@@ -2,15 +2,20 @@
 Module: 'uasyncio.lock' on micropython-esp32-1.14
 """
 # MCU: {'ver': '1.14', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.14.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.14.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.3.9
+# Stubber: 1.4.2
+from typing import Any
+
+# import core
 
 class Lock:
     ''
-    acquire = None
-    def locked():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    def release():
-        pass
+    acquire : Any ## <class 'generator'> = <generator>
+    def locked(self, *args) -> Any:
+        ...
 
-core = None
+    def release(self, *args) -> Any:
+        ...
+

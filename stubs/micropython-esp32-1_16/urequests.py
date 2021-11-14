@@ -1,38 +1,43 @@
 """
 Module: 'urequests' on micropython-esp32-1.16
 """
-# MCU: {'ver': '1.16', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.16.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.16.0', 'machine': 'ESP32 module with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.3.9
+# MCU: {'ver': '1.16', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.16.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.16.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.4.2
+from typing import Any
+
+def get(*args) -> Any:
+    ...
+
+def put(*args) -> Any:
+    ...
+
+# import usocket
 
 class Response:
     ''
-    def close():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    content = None
-    def json():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    text = None
-def delete():
-    pass
+    text : Any ## <class 'property'> = <property>
+    def json(self, *args) -> Any:
+        ...
 
-def get():
-    pass
+    content : Any ## <class 'property'> = <property>
+def request(*args) -> Any:
+    ...
 
-def head():
-    pass
+def head(*args) -> Any:
+    ...
 
-def patch():
-    pass
+def post(*args) -> Any:
+    ...
 
-def post():
-    pass
+def patch(*args) -> Any:
+    ...
 
-def put():
-    pass
+def delete(*args) -> Any:
+    ...
 
-def request():
-    pass
-
-usocket = None

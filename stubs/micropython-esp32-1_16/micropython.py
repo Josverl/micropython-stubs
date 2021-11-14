@@ -1,35 +1,37 @@
 """
 Module: 'micropython' on micropython-esp32-1.16
 """
-# MCU: {'ver': '1.16', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.16.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.16.0', 'machine': 'ESP32 module with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.3.9
-def alloc_emergency_exception_buf():
-    pass
+# MCU: {'ver': '1.16', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.16.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.16.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.4.2
+from typing import Any
 
-def const():
-    pass
+def const(*args) -> Any:
+    ...
 
-def heap_lock():
-    pass
+def alloc_emergency_exception_buf(*args) -> Any:
+    ...
 
-def heap_unlock():
-    pass
+def heap_lock(*args) -> Any:
+    ...
 
-def kbd_intr():
-    pass
+def heap_unlock(*args) -> Any:
+    ...
 
-def mem_info():
-    pass
+def kbd_intr(*args) -> Any:
+    ...
 
-def opt_level():
-    pass
+def mem_info(*args) -> Any:
+    ...
 
-def qstr_info():
-    pass
+def opt_level(*args) -> Any:
+    ...
 
-def schedule():
-    pass
+def qstr_info(*args) -> Any:
+    ...
 
-def stack_use():
-    pass
+def schedule(*args) -> Any:
+    ...
+
+def stack_use(*args) -> Any:
+    ...
 

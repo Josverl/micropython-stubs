@@ -1,48 +1,47 @@
 """
-Module: 'umqtt.robust' on esp32 1.11.0
+Module: 'umqtt.robust' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
+
+# import utime
+# import simple
 
 class MQTTClient:
     ''
-    DEBUG = None
-    DELAY = 2
-    def _recv_len():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    def _send_str():
-        pass
+    DEBUG = False # type: bool
+    def connect(self, *args) -> Any:
+        ...
 
-    def check_msg():
-        pass
+    def disconnect(self, *args) -> Any:
+        ...
 
-    def connect():
-        pass
+    def log(self, *args) -> Any:
+        ...
 
-    def delay():
-        pass
+    DELAY = 2 # type: int
+    def delay(self, *args) -> Any:
+        ...
 
-    def disconnect():
-        pass
+    reconnect : Any ## <class 'closure'> = <closure>
+    publish : Any ## <class 'closure'> = <closure>
+    wait_msg : Any ## <class 'closure'> = <closure>
+    def set_callback(self, *args) -> Any:
+        ...
 
-    def log():
-        pass
+    def set_last_will(self, *args) -> Any:
+        ...
 
-    def ping():
-        pass
+    def ping(self, *args) -> Any:
+        ...
 
-    publish = None
-    reconnect = None
-    def set_callback():
-        pass
+    def subscribe(self, *args) -> Any:
+        ...
 
-    def set_last_will():
-        pass
+    def check_msg(self, *args) -> Any:
+        ...
 
-    def subscribe():
-        pass
-
-    wait_msg = None
-simple = None
-utime = None

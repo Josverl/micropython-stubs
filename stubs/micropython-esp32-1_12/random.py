@@ -1,26 +1,28 @@
 """
-Module: 'random' on esp32 1.12.0
+Module: 'random' on micropython-esp32-1.12
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.12.0', version='v1.12 on 2019-12-20', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.2
-def choice():
-    pass
+# MCU: {'ver': '1.12', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.12.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.12.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.4.2
+from typing import Any
 
-def getrandbits():
-    pass
+def choice(*args) -> Any:
+    ...
 
-def randint():
-    pass
+def getrandbits(*args) -> Any:
+    ...
 
-def random():
-    pass
+def randint(*args) -> Any:
+    ...
 
-def randrange():
-    pass
+def random(*args) -> Any:
+    ...
 
-def seed():
-    pass
+def randrange(*args) -> Any:
+    ...
 
-def uniform():
-    pass
+def seed(*args) -> Any:
+    ...
+
+def uniform(*args) -> Any:
+    ...
 

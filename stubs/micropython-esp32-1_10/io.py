@@ -1,73 +1,75 @@
 """
-Module: 'io' on esp32 1.10.0
+Module: 'io' on micropython-esp32-1.10
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.10.0', version='v1.10 on 2019-01-25', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.4.2
+from typing import Any
+
 
 class BufferedWriter:
     ''
-    def flush():
-        pass
+    def flush(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
 
 class BytesIO:
     ''
-    def close():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    def flush():
-        pass
+    def flush(self, *args) -> Any:
+        ...
 
-    def getvalue():
-        pass
+    def getvalue(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readline():
-        pass
+    def readline(self, *args) -> Any:
+        ...
 
-    def seek():
-        pass
+    def seek(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
 
 class FileIO:
     ''
-    def close():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    def flush():
-        pass
+    def flush(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readline():
-        pass
+    def readline(self, *args) -> Any:
+        ...
 
-    def readlines():
-        pass
+    def readlines(self, *args) -> Any:
+        ...
 
-    def seek():
-        pass
+    def seek(self, *args) -> Any:
+        ...
 
-    def tell():
-        pass
+    def tell(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
 
 class IOBase:
@@ -75,60 +77,60 @@ class IOBase:
 
 class StringIO:
     ''
-    def close():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    def flush():
-        pass
+    def flush(self, *args) -> Any:
+        ...
 
-    def getvalue():
-        pass
+    def getvalue(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readline():
-        pass
+    def readline(self, *args) -> Any:
+        ...
 
-    def seek():
-        pass
+    def seek(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
 
 class TextIOWrapper:
     ''
-    def close():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    def flush():
-        pass
+    def flush(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readline():
-        pass
+    def readline(self, *args) -> Any:
+        ...
 
-    def readlines():
-        pass
+    def readlines(self, *args) -> Any:
+        ...
 
-    def seek():
-        pass
+    def seek(self, *args) -> Any:
+        ...
 
-    def tell():
-        pass
+    def tell(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-def open():
-    pass
+def open(*args) -> Any:
+    ...
 

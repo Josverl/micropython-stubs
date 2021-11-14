@@ -1,26 +1,31 @@
 """
-Module: 'ds18x20' on esp32 1.11.0
+Module: 'ds18x20' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
+
+def const(*args) -> Any:
+    ...
+
 
 class DS18X20:
     ''
-    def convert_temp():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    def read_scratch():
-        pass
+    def scan(self, *args) -> Any:
+        ...
 
-    def read_temp():
-        pass
+    def convert_temp(self, *args) -> Any:
+        ...
 
-    def scan():
-        pass
+    def read_scratch(self, *args) -> Any:
+        ...
 
-    def write_scratch():
-        pass
+    def write_scratch(self, *args) -> Any:
+        ...
 
-def const():
-    pass
+    def read_temp(self, *args) -> Any:
+        ...
 

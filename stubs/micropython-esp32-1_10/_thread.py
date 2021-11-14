@@ -1,32 +1,34 @@
 """
-Module: '_thread' on esp32 1.10.0
+Module: '_thread' on micropython-esp32-1.10
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.10.0', version='v1.10 on 2019-01-25', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.4.2
+from typing import Any
+
 
 class LockType:
     ''
-    def acquire():
-        pass
+    def acquire(self, *args) -> Any:
+        ...
 
-    def locked():
-        pass
+    def locked(self, *args) -> Any:
+        ...
 
-    def release():
-        pass
+    def release(self, *args) -> Any:
+        ...
 
-def allocate_lock():
-    pass
+def allocate_lock(*args) -> Any:
+    ...
 
-def exit():
-    pass
+def exit(*args) -> Any:
+    ...
 
-def get_ident():
-    pass
+def get_ident(*args) -> Any:
+    ...
 
-def stack_size():
-    pass
+def stack_size(*args) -> Any:
+    ...
 
-def start_new_thread():
-    pass
+def start_new_thread(*args) -> Any:
+    ...
 

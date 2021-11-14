@@ -1,15 +1,17 @@
 """
 Module: 'select' on micropython-esp32-1.16
 """
-# MCU: {'ver': '1.16', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.16.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.16.0', 'machine': 'ESP32 module with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.3.9
-POLLERR = 8
-POLLHUP = 16
-POLLIN = 1
-POLLOUT = 4
-def poll():
-    pass
+# MCU: {'ver': '1.16', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.16.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.16.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.4.2
+from typing import Any
 
-def select():
-    pass
+POLLERR = 8 # type: int
+POLLHUP = 16 # type: int
+POLLIN = 1 # type: int
+POLLOUT = 4 # type: int
+def poll(*args) -> Any:
+    ...
+
+def select(*args) -> Any:
+    ...
 

@@ -1,79 +1,84 @@
 """
-Module: 'usocket' on esp32 1.11.0
+Module: 'usocket' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-AF_INET = 2
-AF_INET6 = 10
-IPPROTO_IP = 0
-IPPROTO_TCP = 6
-IPPROTO_UDP = 17
-IP_ADD_MEMBERSHIP = 3
-SOCK_DGRAM = 2
-SOCK_RAW = 3
-SOCK_STREAM = 1
-SOL_SOCKET = 4095
-SO_REUSEADDR = 4
-def getaddrinfo():
-    pass
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
+
+def __init__(*args) -> Any:
+    ...
+
+AF_INET = 2 # type: int
+AF_INET6 = 10 # type: int
+IPPROTO_IP = 0 # type: int
+IPPROTO_TCP = 6 # type: int
+IPPROTO_UDP = 17 # type: int
+IP_ADD_MEMBERSHIP = 3 # type: int
+SOCK_DGRAM = 2 # type: int
+SOCK_RAW = 3 # type: int
+SOCK_STREAM = 1 # type: int
+SOL_SOCKET = 4095 # type: int
+SO_REUSEADDR = 4 # type: int
+def getaddrinfo(*args) -> Any:
+    ...
 
 
 class socket:
     ''
-    def accept():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    def bind():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def close():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def connect():
-        pass
+    def readline(self, *args) -> Any:
+        ...
 
-    def fileno():
-        pass
+    def send(self, *args) -> Any:
+        ...
 
-    def listen():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-    def makefile():
-        pass
+    def accept(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def bind(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def connect(self, *args) -> Any:
+        ...
 
-    def readline():
-        pass
+    def fileno(self, *args) -> Any:
+        ...
 
-    def recv():
-        pass
+    def listen(self, *args) -> Any:
+        ...
 
-    def recvfrom():
-        pass
+    def makefile(self, *args) -> Any:
+        ...
 
-    def send():
-        pass
+    def recv(self, *args) -> Any:
+        ...
 
-    def sendall():
-        pass
+    def recvfrom(self, *args) -> Any:
+        ...
 
-    def sendto():
-        pass
+    def sendall(self, *args) -> Any:
+        ...
 
-    def setblocking():
-        pass
+    def sendto(self, *args) -> Any:
+        ...
 
-    def setsockopt():
-        pass
+    def setblocking(self, *args) -> Any:
+        ...
 
-    def settimeout():
-        pass
+    def setsockopt(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def settimeout(self, *args) -> Any:
+        ...
 

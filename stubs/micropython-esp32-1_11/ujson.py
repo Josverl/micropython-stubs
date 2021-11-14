@@ -1,17 +1,19 @@
 """
-Module: 'ujson' on esp32 1.11.0
+Module: 'ujson' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-def dump():
-    pass
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-def dumps():
-    pass
+def dump(*args) -> Any:
+    ...
 
-def load():
-    pass
+def dumps(*args) -> Any:
+    ...
 
-def loads():
-    pass
+def load(*args) -> Any:
+    ...
+
+def loads(*args) -> Any:
+    ...
 

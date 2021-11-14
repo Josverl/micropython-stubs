@@ -1,17 +1,19 @@
 """
-Module: 'utimeq' on esp32 1.11.0
+Module: 'utimeq' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
+
 
 class utimeq:
     ''
-    def peektime():
-        pass
+    def pop(self, *args) -> Any:
+        ...
 
-    def pop():
-        pass
+    def peektime(self, *args) -> Any:
+        ...
 
-    def push():
-        pass
+    def push(self, *args) -> Any:
+        ...
 

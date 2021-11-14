@@ -1,41 +1,43 @@
 """
 Module: 'esp' on micropython-esp32-1.15
 """
-# MCU: {'ver': '1.15', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.15.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.15.0', 'machine': 'ESP32 module with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.3.9
-LOG_DEBUG = 4
-LOG_ERROR = 1
-LOG_INFO = 3
-LOG_NONE = 0
-LOG_VERBOSE = 5
-LOG_WARNING = 2
-def dht_readinto():
-    pass
+# MCU: {'ver': '1.15', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.15.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.15.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.4.2
+from typing import Any
 
-def flash_erase():
-    pass
+LOG_DEBUG = 4 # type: int
+LOG_ERROR = 1 # type: int
+LOG_INFO = 3 # type: int
+LOG_NONE = 0 # type: int
+LOG_VERBOSE = 5 # type: int
+LOG_WARNING = 2 # type: int
+def dht_readinto(*args) -> Any:
+    ...
 
-def flash_read():
-    pass
+def flash_erase(*args) -> Any:
+    ...
 
-def flash_size():
-    pass
+def flash_read(*args) -> Any:
+    ...
 
-def flash_user_start():
-    pass
+def flash_size(*args) -> Any:
+    ...
 
-def flash_write():
-    pass
+def flash_user_start(*args) -> Any:
+    ...
 
-def gpio_matrix_in():
-    pass
+def flash_write(*args) -> Any:
+    ...
 
-def gpio_matrix_out():
-    pass
+def gpio_matrix_in(*args) -> Any:
+    ...
 
-def neopixel_write():
-    pass
+def gpio_matrix_out(*args) -> Any:
+    ...
 
-def osdebug():
-    pass
+def neopixel_write(*args) -> Any:
+    ...
+
+def osdebug(*args) -> Any:
+    ...
 

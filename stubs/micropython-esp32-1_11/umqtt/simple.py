@@ -1,49 +1,48 @@
 """
-Module: 'umqtt.simple' on esp32 1.11.0
+Module: 'umqtt.simple' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
+
+def hexlify(*args) -> Any:
+    ...
+
+# import socket
+# import struct
 
 class MQTTClient:
     ''
-    def _recv_len():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-    def _send_str():
-        pass
+    def connect(self, *args) -> Any:
+        ...
 
-    def check_msg():
-        pass
+    def disconnect(self, *args) -> Any:
+        ...
 
-    def connect():
-        pass
+    def publish(self, *args) -> Any:
+        ...
 
-    def disconnect():
-        pass
+    def wait_msg(self, *args) -> Any:
+        ...
 
-    def ping():
-        pass
+    def set_callback(self, *args) -> Any:
+        ...
 
-    def publish():
-        pass
+    def set_last_will(self, *args) -> Any:
+        ...
 
-    def set_callback():
-        pass
+    def ping(self, *args) -> Any:
+        ...
 
-    def set_last_will():
-        pass
+    def subscribe(self, *args) -> Any:
+        ...
 
-    def subscribe():
-        pass
-
-    def wait_msg():
-        pass
+    def check_msg(self, *args) -> Any:
+        ...
 
 
 class MQTTException:
     ''
-def hexlify():
-    pass
-
-socket = None
-struct = None

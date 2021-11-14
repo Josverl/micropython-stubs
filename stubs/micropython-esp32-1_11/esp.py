@@ -1,41 +1,43 @@
 """
-Module: 'esp' on esp32 1.11.0
+Module: 'esp' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-LOG_DEBUG = 4
-LOG_ERROR = 1
-LOG_INFO = 3
-LOG_NONE = 0
-LOG_VERBOSE = 5
-LOG_WARNING = 2
-def dht_readinto():
-    pass
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-def flash_erase():
-    pass
+LOG_DEBUG = 4 # type: int
+LOG_ERROR = 1 # type: int
+LOG_INFO = 3 # type: int
+LOG_NONE = 0 # type: int
+LOG_VERBOSE = 5 # type: int
+LOG_WARNING = 2 # type: int
+def dht_readinto(*args) -> Any:
+    ...
 
-def flash_read():
-    pass
+def flash_erase(*args) -> Any:
+    ...
 
-def flash_size():
-    pass
+def flash_read(*args) -> Any:
+    ...
 
-def flash_user_start():
-    pass
+def flash_size(*args) -> Any:
+    ...
 
-def flash_write():
-    pass
+def flash_user_start(*args) -> Any:
+    ...
 
-def gpio_matrix_in():
-    pass
+def flash_write(*args) -> Any:
+    ...
 
-def gpio_matrix_out():
-    pass
+def gpio_matrix_in(*args) -> Any:
+    ...
 
-def neopixel_write():
-    pass
+def gpio_matrix_out(*args) -> Any:
+    ...
 
-def osdebug():
-    pass
+def neopixel_write(*args) -> Any:
+    ...
+
+def osdebug(*args) -> Any:
+    ...
 

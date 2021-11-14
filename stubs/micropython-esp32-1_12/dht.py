@@ -1,38 +1,49 @@
 """
-Module: 'dht' on esp32 1.12.0
+Module: 'dht' on micropython-esp32-1.12
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.12.0', version='v1.12 on 2019-12-20', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.12', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.12.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.12.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.4.2
+from typing import Any
 
-class DHT11:
-    ''
-    def humidity():
-        pass
-
-    def measure():
-        pass
-
-    def temperature():
-        pass
-
-
-class DHT22:
-    ''
-    def humidity():
-        pass
-
-    def measure():
-        pass
-
-    def temperature():
-        pass
+def dht_readinto(*args) -> Any:
+    ...
 
 
 class DHTBase:
     ''
-    def measure():
-        pass
+    def __init__(self, *args) -> None:
+        ...
 
-def dht_readinto():
-    pass
+    def measure(self, *args) -> Any:
+        ...
+
+
+class DHT11:
+    ''
+    def __init__(self, *args) -> None:
+        ...
+
+    def measure(self, *args) -> Any:
+        ...
+
+    def humidity(self, *args) -> Any:
+        ...
+
+    def temperature(self, *args) -> Any:
+        ...
+
+
+class DHT22:
+    ''
+    def __init__(self, *args) -> None:
+        ...
+
+    def measure(self, *args) -> Any:
+        ...
+
+    def humidity(self, *args) -> Any:
+        ...
+
+    def temperature(self, *args) -> Any:
+        ...
 

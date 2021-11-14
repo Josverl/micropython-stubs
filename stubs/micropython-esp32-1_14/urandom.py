@@ -2,25 +2,30 @@
 Module: 'urandom' on micropython-esp32-1.14
 """
 # MCU: {'ver': '1.14', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.14.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.14.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.3.9
-def choice():
-    pass
+# Stubber: 1.4.2
+from typing import Any
 
-def getrandbits():
-    pass
+def __init__(*args) -> Any:
+    ...
 
-def randint():
-    pass
+def choice(*args) -> Any:
+    ...
 
-def random():
-    pass
+def getrandbits(*args) -> Any:
+    ...
 
-def randrange():
-    pass
+def randint(*args) -> Any:
+    ...
 
-def seed():
-    pass
+def random(*args) -> Any:
+    ...
 
-def uniform():
-    pass
+def randrange(*args) -> Any:
+    ...
+
+def seed(*args) -> Any:
+    ...
+
+def uniform(*args) -> Any:
+    ...
 

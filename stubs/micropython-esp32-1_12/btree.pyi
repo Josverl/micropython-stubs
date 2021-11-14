@@ -1,5 +1,6 @@
 from typing import Any
 
-Node = Any
+def open(*args) -> Any: ...
 
-def open() -> None: ...
+DESC: int
+INCL: int

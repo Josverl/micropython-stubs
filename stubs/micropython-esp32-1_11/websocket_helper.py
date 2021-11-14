@@ -1,15 +1,17 @@
 """
-Module: 'websocket_helper' on esp32 1.11.0
+Module: 'websocket_helper' on micropython-esp32-1.11
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11 on 2019-05-29', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
-DEBUG = 0
-binascii = None
-def client_handshake():
-    pass
+# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-hashlib = None
-def server_handshake():
-    pass
+DEBUG = 0 # type: int
+# import binascii
+# import hashlib
+# import sys
+def server_handshake(*args) -> Any:
+    ...
 
-sys = None
+def client_handshake(*args) -> Any:
+    ...
+

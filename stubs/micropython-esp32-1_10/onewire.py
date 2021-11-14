@@ -1,51 +1,52 @@
 """
-Module: 'onewire' on esp32 1.10.0
+Module: 'onewire' on micropython-esp32-1.10
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.10.0', version='v1.10 on 2019-01-25', machine='ESP32 module with ESP32')
-# Stubber: 1.3.2
+# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.4.2
+from typing import Any
 
-class OneWire:
-    ''
-    MATCH_ROM = 85
-    SEARCH_ROM = 240
-    SKIP_ROM = 204
-    def _search_rom():
-        pass
-
-    def crc8():
-        pass
-
-    def readbit():
-        pass
-
-    def readbyte():
-        pass
-
-    def readinto():
-        pass
-
-    def reset():
-        pass
-
-    def scan():
-        pass
-
-    def select_rom():
-        pass
-
-    def write():
-        pass
-
-    def writebit():
-        pass
-
-    def writebyte():
-        pass
+def const(*args) -> Any:
+    ...
 
 
 class OneWireError:
     ''
-_ow = None
-def const():
-    pass
+
+class OneWire:
+    ''
+    def __init__(self, *args) -> None:
+        ...
+
+    def crc8(self, *args) -> Any:
+        ...
+
+    def readbit(self, *args) -> Any:
+        ...
+
+    def readbyte(self, *args) -> Any:
+        ...
+
+    def readinto(self, *args) -> Any:
+        ...
+
+    def reset(self, *args) -> Any:
+        ...
+
+    def scan(self, *args) -> Any:
+        ...
+
+    def write(self, *args) -> Any:
+        ...
+
+    def writebit(self, *args) -> Any:
+        ...
+
+    def writebyte(self, *args) -> Any:
+        ...
+
+    SEARCH_ROM = 240 # type: int
+    MATCH_ROM = 85 # type: int
+    SKIP_ROM = 204 # type: int
+    def select_rom(self, *args) -> Any:
+        ...
 
