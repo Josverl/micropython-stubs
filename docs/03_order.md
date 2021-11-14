@@ -42,8 +42,17 @@ sequenceDiagram
    This are the stubs that are generated on the board.
    While they have they have a low level of detail, they do contain a comprehensive overview of the modules, classes and functions available even on custom and one-off firmwares.
 
-in most cases using ths order provides a good mix between richness and coverage of the functionality provided by your board.
+In most cases using ths order provides a good mix between richness and coverage of the functionality provided by your board.
+As an example : 
+```
+    "python.autoComplete.extraPaths": [
+        "board/lib",
+        "all-stubs/cpython-core",
+        "all-stubs/micropython-1_17-frozen/esp32/GENERIC",
+        "all-stubs/micropython-esp32-1_17"
+    ],
 
+```
 
  1. **Your own source files**, including any libraries you add to your project.
  This can be a single libs folder or multiple directories
