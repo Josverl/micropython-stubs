@@ -6,16 +6,21 @@
 |board|loboris | v3.2.24 | esp32 | 68 | 1.0.0|[stubs/loboris-esp32_lobo-3_2_24](https://github.com/Josverl/micropython-stubs/tree/master/stubs/loboris-esp32_lobo-3_2_24)
 |board|loboris | v3.2.9 | esp32 | 68 | 1.1.2|[stubs/loboris-esp32_lobo-3_2_9](https://github.com/Josverl/micropython-stubs/tree/master/stubs/loboris-esp32_lobo-3_2_9)
 |board|m5stack | v1.11 | - | 129 | 1.3.1|[stubs/m5stack_flowui-1_4_0-beta](https://github.com/Josverl/micropython-stubs/tree/master/stubs/m5stack_flowui-1_4_0-beta)
-|board|micropython | v1.10 | - | 65 | 1.3.2|[stubs/micropython-esp32-1_10](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_10)
+|board|micropython | v1.10 | esp32 | 64 | 1.4.2|[stubs/micropython-esp32-1_10](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_10)
 |board|micropython | v1.10-Latest | - | 67 | 1.1.0|[stubs/micropython-esp8266-1_10](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp8266-1_10)
-|board|micropython | v1.11 | - | 65 | 1.3.2|[stubs/micropython-esp32-1_11](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_11)
+|board|micropython | v1.11 | esp32 | 64 | 1.4.2|[stubs/micropython-esp32-1_11](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_11)
 |board|micropython | v1.11-Latest | - | 65 | 1.1.0|[stubs/micropython-esp8266-1_11](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp8266-1_11)
-|board|micropython | v1.12 | - | 66 | 1.3.2|[stubs/micropython-esp32-1_12](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_12)
+|board|micropython | v1.12 | esp32 | 66 | 1.4.2|[stubs/micropython-esp32-1_12](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_12)
 |board|micropython | v1.13 | - | 70 | 1.3.4|[stubs/micropython-esp32-1_13-103](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_13-103)
 |board|micropython | v1.13 | - | 47 | 1.3.4|[stubs/micropython-pyboard-1_13-95](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-pyboard-1_13-95)
-|board|micropython | v1.14 | esp32 | 75 | 1.3.9|[stubs/micropython-esp32-1_14](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_14)
-|board|micropython | v1.15 | esp32 | 72 | 1.3.9|[stubs/micropython-esp32-1_15](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_15)
-|board|micropython | v1.16 | esp32 | 75 | 1.3.9|[stubs/micropython-esp32-1_16](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_16)
+|board|micropython | v1.14 | esp32 | 74 | 1.4.2|[stubs/micropython-esp32-1_14](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_14)
+|board|micropython | v1.14 | esp8266 | 72 | 1.4.3|[stubs/micropython-esp8266-1_14](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp8266-1_14)
+|board|micropython | v1.15 | esp32 | 71 | 1.4.2|[stubs/micropython-esp32-1_15](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_15)
+|board|micropython | v1.15 | esp8266 | 72 | 1.4.3|[stubs/micropython-esp8266-1_15](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp8266-1_15)
+|board|micropython | v1.16 | esp32 | 74 | 1.4.2|[stubs/micropython-esp32-1_16](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_16)
+|board|micropython | v1.16 | esp8266 | 72 | 1.4.3|[stubs/micropython-esp8266-1_16](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp8266-1_16)
+|board|micropython | v1.17 | esp32 | 74 | 1.4.2|[stubs/micropython-esp32-1_17](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_17)
+|board|micropython | v1.17 | esp8266 | 72 | 1.4.3|[stubs/micropython-esp8266-1_17](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp8266-1_17)
 |board|micropython | v1.9.3-Latest | - | 57 | 1.1.2|[stubs/micropython-esp8266-1_9_3](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp8266-1_9_3)
 |board|micropython | v1.9.4 | - | 80 | 1.3.2|[stubs/ev3_pybricks_1_0_0](https://github.com/Josverl/micropython-stubs/tree/master/stubs/ev3_pybricks_1_0_0)
 |board|micropython | v1.9.4-Latest | - | 43 | 1.1.2|[stubs/micropython-esp8266-1_9_4](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp8266-1_9_4)
@@ -78,5 +83,5 @@
 |library|ulab | - | - | 9 | 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-ulab)
 
 
-Total modules  1553
+Total modules  1910
 
