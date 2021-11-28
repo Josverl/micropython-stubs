@@ -1,7 +1,7 @@
 
 # Stubs by type 
 
-|Type|famely|version|port| # |stubber version|stub folder 
+|Type|family|version|port| # |stubber version|stub folder 
 |-|-|-|-|-|-|-
 {%+ for info in info_list|sort(attribute="type,family,version,port,path") %}
 |{{ info.type }}|{{ info.family}} | {{ info.version }} | {{info.port}} | {{ info.module_count }} | {{ info.stubber_version }}|[{{ info.path }}](https://github.com/Josverl/micropython-stubs/tree/master/{{ info.path }})
