@@ -1,7 +1,7 @@
 
 # Stubs by type 
 
-|Type|famely|version|port| # |stubber version|stub folder 
+|Type|family|version|port| # |stubber version|stub folder 
 |-|-|-|-|-|-|-
 |board|loboris | v3.2.24 | esp32 | 68 | 1.0.0|[stubs/loboris-esp32_lobo-3_2_24](https://github.com/Josverl/micropython-stubs/tree/master/stubs/loboris-esp32_lobo-3_2_24)
 |board|loboris | v3.2.9 | esp32 | 68 | 1.1.2|[stubs/loboris-esp32_lobo-3_2_9](https://github.com/Josverl/micropython-stubs/tree/master/stubs/loboris-esp32_lobo-3_2_9)
