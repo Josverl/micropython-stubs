@@ -38,6 +38,8 @@ jobs:
         with:
           repository: josverl/micropython-stubber
           path: micropython-stubber
+          submodules: recursive
+          
 
       - name: Checkout stubs repo
         uses: actions/checkout@v2
@@ -59,7 +61,7 @@ jobs:
           fetch-depth: 0
 
       # simplify processing using symlink 
-      - name: create symlink for all_stubs
+      - name: create symlink for all-stubs
         run: |
           ln -s ${{github.workspace}}/micropython-stubs/stubs all-stubs --force
 
@@ -84,9 +86,15 @@ jobs:
       ######################################
       # This is where the actual work starts
       ######################################
-
-      - name: checkout micropython ${{ matrix.version }}
+      # top level 
+      - name: checkout micropython - top level ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython
+        run: |
+          git checkout tags/${{ matrix.version }}
+      # micropython as a sub-module of micropython-stubber 
+      # Q&D do both levels - more than needed 
+      - name: checkout micropython - sub level ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
           git checkout tags/${{ matrix.version }}
 
