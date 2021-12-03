@@ -33,13 +33,18 @@ jobs:
       # micropython-lib
       ######################################
 
-      - name: Checkout 
+      - name: Checkout Stubber
         uses: actions/checkout@v2
         with:
           repository: josverl/micropython-stubber
           path: micropython-stubber
-          submodules: recursive
-          
+          # recursive is very expensive
+          # submodules: recursive 
+
+      - name: Checkout stubber submodules
+        working-directory: ${{github.workspace}}/micropython-stubber
+        run: git submodule update --init 
+        # --recursive          
 
       - name: Checkout stubs repo
         uses: actions/checkout@v2
