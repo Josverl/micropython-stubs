@@ -98,6 +98,7 @@ jobs:
           title: '${{ steps.extract_branch.outputs.branch }} : add/update Pico-Stub modules'
           commit-message: add/update Pico-Stub modules
           branch: pico-stub-updates
+          reviewers: josverl          
           labels: |
             automated pr
             micropython

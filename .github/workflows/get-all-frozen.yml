@@ -69,6 +69,12 @@ jobs:
         with:
           python-version: 3.8
 
+      - name: restore Python from cache 
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements-dev.txt') }}
+
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip
@@ -101,6 +107,7 @@ jobs:
           title: 'add frozen modules for micropython ${{ matrix.version }}'
           commit-message: add/update frozen modules for micropython ${{ matrix.version }}
           branch: micropython-frozen-${{ matrix.version }}
+          reviewers: josverl
           labels: |
             automated pr
             frozen stubs
