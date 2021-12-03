@@ -1,7 +1,3 @@
-from typing import Any
-
-Node = Any
-
 class LockType:
     def acquire() -> None: ...
     def locked() -> None: ...

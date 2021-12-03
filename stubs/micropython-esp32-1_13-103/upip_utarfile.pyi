@@ -1,11 +1,14 @@
 from typing import Any
 
-Node = Any
+DIRTYPE: str
 
 class FileSection:
     def read() -> None: ...
     def readinto() -> None: ...
     def skip() -> None: ...
+
+REGTYPE: str
+TAR_HEADER: Any
 
 class TarFile:
     def extractfile() -> None: ...
@@ -14,3 +17,5 @@ class TarFile:
 class TarInfo: ...
 
 def roundup() -> None: ...
+
+uctypes: Any

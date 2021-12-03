@@ -1,8 +1,59 @@
-from typing import Any
-
-Node = Any
-
 class TFT:
+    BLACK: int
+    BLUE: int
+    BMP: int
+    BOTTOM: int
+    CENTER: int
+    COLOR_BITS16: int
+    COLOR_BITS24: int
+    CYAN: int
+    DARKCYAN: int
+    DARKGREEN: int
+    DARKGREY: int
+    FONT_7seg: int
+    FONT_Comic: int
+    FONT_Default: int
+    FONT_DefaultSmall: int
+    FONT_DejaVu18: int
+    FONT_DejaVu24: int
+    FONT_Minya: int
+    FONT_Small: int
+    FONT_Tooney: int
+    FONT_Ubuntu: int
+    GENERIC: int
+    GREEN: int
+    GREENYELLOW: int
+    HSPI: int
+    ILI9341: int
+    ILI9488: int
+    JPG: int
+    LANDSCAPE: int
+    LANDSCAPE_FLIP: int
+    LASTX: int
+    LASTY: int
+    LIGHTGREY: int
+    M5STACK: int
+    MAGENTA: int
+    MAROON: int
+    NAVY: int
+    OLIVE: int
+    ORANGE: int
+    PINK: int
+    PORTRAIT: int
+    PORTRAIT_FLIP: int
+    PURPLE: int
+    RED: int
+    RIGHT: int
+    ST7735: int
+    ST7735B: int
+    ST7735R: int
+    ST7789: int
+    TOUCH_NONE: int
+    TOUCH_STMPE: int
+    TOUCH_XPT: int
+    VSPI: int
+    WHITE: int
+    YELLOW: int
     def arc() -> None: ...
     def attrib7seg() -> None: ...
     def backlight() -> None: ...
