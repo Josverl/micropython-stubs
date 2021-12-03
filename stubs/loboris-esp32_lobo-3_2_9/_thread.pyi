@@ -1,6 +1,13 @@
-from typing import Any
-
-Node = Any
+EXIT: int
+PAUSE: int
+RESUME: int
+RUNNING: int
+STATUS: int
+STOP: int
+SUSPEND: int
+SUSPENDED: int
+TERMINATED: int
+WAITING: int
 
 def allowsuspend() -> None: ...
 def getReplID() -> None: ...

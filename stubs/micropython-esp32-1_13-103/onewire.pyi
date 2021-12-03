@@ -1,8 +1,9 @@
 from typing import Any
 
-Node = Any
-
 class OneWire:
+    MATCH_ROM: int
+    SEARCH_ROM: int
+    SKIP_ROM: int
     def _search_rom() -> None: ...
     def crc8() -> None: ...
     def readbit() -> None: ...
@@ -16,3 +17,5 @@ class OneWire:
     def writebyte() -> None: ...
 
 class OneWireError: ...
+
+_ow: Any

@@ -1,6 +1,9 @@
-from typing import Any
-
-Node = Any
+LOG_DEBUG: int
+LOG_ERROR: int
+LOG_INFO: int
+LOG_NONE: int
+LOG_VERBOSE: int
+LOG_WARNING: int
 
 def dht_readinto() -> None: ...
 def flash_erase() -> None: ...

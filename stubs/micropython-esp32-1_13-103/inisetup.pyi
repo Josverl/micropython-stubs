@@ -1,7 +1,9 @@
 from typing import Any
 
-Node = Any
+bdev: Any
 
 def check_bootsec() -> None: ...
 def fs_corrupted() -> None: ...
 def setup() -> None: ...
+
+uos: Any

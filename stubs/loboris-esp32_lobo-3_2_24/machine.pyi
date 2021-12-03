@@ -1,8 +1,15 @@
 from typing import Any
 
-Node = Any
-
 class ADC:
+    ATTN_0DB: int
+    ATTN_11DB: int
+    ATTN_2_5DB: int
+    ATTN_6DB: int
+    HALL: int
+    WIDTH_10BIT: int
+    WIDTH_11BIT: int
+    WIDTH_12BIT: int
+    WIDTH_9BIT: int
     def atten() -> None: ...
     def collect() -> None: ...
     def collected() -> None: ...
@@ -16,6 +23,13 @@ class ADC:
     def width() -> None: ...
 
 class DAC:
+    CIRCULAR: int
+    NOISE: int
+    NORMAL: int
+    RAMP: int
+    SAWTOOTH: int
+    SINE: int
+    TRIANGLE: int
     def beep() -> None: ...
     def deinit() -> None: ...
     def freq() -> None: ...
@@ -27,8 +41,14 @@ class DAC:
     def write_timed() -> None: ...
 
 class DHT:
+    DHT11: int
+    DHT2X: int
     def read() -> None: ...
     def readinto() -> None: ...
+
+EXT1_ALLLOW: int
+EXT1_ANYHIGH: int
+EXT1_ANYLOW: int
 
 class GPS:
     def distance() -> None: ...
@@ -42,6 +62,14 @@ class GPS:
     def stopservice() -> None: ...
 
 class I2C:
+    CBTYPE_ADDR: int
+    CBTYPE_NONE: int
+    CBTYPE_RXDATA: int
+    CBTYPE_TXDATA: int
+    MASTER: int
+    READ: int
+    SLAVE: int
+    WRITE: int
     def address() -> None: ...
     def begin() -> None: ...
     def callback() -> None: ...
@@ -71,10 +99,35 @@ class I2C:
     def writeto() -> None: ...
     def writeto_mem() -> None: ...
 
+LOG_DEBUG: int
+LOG_ERROR: int
+LOG_INFO: int
+LOG_NONE: int
+LOG_VERBOSE: int
+LOG_WARN: int
+
 class Neopixel:
+    BLACK: int
+    BLUE: int
+    CYAN: int
+    GRAY: int
+    GREEN: int
     def HSBtoRGB() -> None: ...
     def HSBtoRGBint() -> None: ...
+    LIME: int
+    MAGENTA: int
+    MAROON: int
+    NAVY: int
+    OLIVE: int
+    PURPLE: int
+    RED: int
     def RGBtoHSB() -> None: ...
+    SILVER: int
+    TEAL: int
+    TYPE_RGB: int
+    TYPE_RGBW: int
+    WHITE: int
+    YELLOW: int
     def brightness() -> None: ...
     def clear() -> None: ...
     def color_order() -> None: ...
@@ -92,6 +145,7 @@ class Neopixel:
 class Onewire:
     def crc8() -> None: ...
     def deinit() -> None: ...
+    ds18x20: Any
     def readbyte() -> None: ...
     def readbytes() -> None: ...
     def reset() -> None: ...
@@ -111,11 +165,29 @@ class PWM:
     def resume() -> None: ...
 
 class Pin:
+    IN: int
+    INOUT: int
+    INOUT_OD: int
+    IRQ_ANYEDGE: int
+    IRQ_DISABLE: int
+    IRQ_FALLING: int
+    IRQ_HILEVEL: int
+    IRQ_LOLEVEL: int
+    IRQ_RISING: int
+    OUT: int
+    OUT_OD: int
+    PULL_DOWN: int
+    PULL_FLOAT: int
+    PULL_UP: int
+    PULL_UPDOWN: int
     def init() -> None: ...
     def irqvalue() -> None: ...
     def value() -> None: ...
 
 class RTC:
+    EXT1_ALLHIGH: int
+    EXT1_ALLLOW: int
+    EXT1_ANYHIGH: int
     def clear() -> None: ...
     def init() -> None: ...
     def now() -> None: ...
@@ -130,6 +202,10 @@ class RTC:
     def write_string() -> None: ...
 
 class SPI:
+    HSPI: int
+    LSB: int
+    MSB: int
+    VSPI: int
     def deinit() -> None: ...
     def deselect() -> None: ...
     def init() -> None: ...
@@ -149,6 +225,11 @@ class Signal:
     def value() -> None: ...
 
 class Timer:
+    CHRONO: int
+    EXTBASE: int
+    EXTENDED: int
+    ONE_SHOT: int
+    PERIODIC: int
     def callback() -> None: ...
     def deinit() -> None: ...
     def events() -> None: ...
@@ -168,6 +249,14 @@ class TouchPad:
     def read() -> None: ...
 
 class UART:
+    CBTYPE_DATA: int
+    CBTYPE_ERROR: int
+    CBTYPE_PATTERN: int
+    INV_CTS: int
+    INV_NONE: int
+    INV_RTS: int
+    INV_RX: int
+    INV_TX: int
     def any() -> None: ...
     def callback() -> None: ...
     def deinit() -> None: ...
@@ -190,6 +279,11 @@ def idle() -> None: ...
 def internal_temp() -> None: ...
 def internal_vdd() -> None: ...
 def loglevel() -> None: ...
+
+mem16: Any
+mem32: Any
+mem8: Any
+
 def nvs_erase() -> None: ...
 def nvs_erase_all() -> None: ...
 def nvs_getint() -> None: ...

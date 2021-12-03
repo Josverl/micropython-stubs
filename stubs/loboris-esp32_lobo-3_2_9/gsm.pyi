@@ -1,6 +1,9 @@
-from typing import Any
-
-Node = Any
+SMS_ALL: int
+SMS_READ: int
+SMS_UNREAD: int
+SORT_ASC: int
+SORT_DESC: int
+SORT_NONE: int
 
 def atcmd() -> None: ...
 def checkSMS() -> None: ...

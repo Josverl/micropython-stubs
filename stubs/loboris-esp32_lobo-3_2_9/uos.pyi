@@ -1,6 +1,6 @@
-from typing import Any
-
-Node = Any
+SDMODE_1LINE: int
+SDMODE_4LINE: int
+SDMODE_SPI: int
 
 def chdir() -> None: ...
 def getcwd() -> None: ...

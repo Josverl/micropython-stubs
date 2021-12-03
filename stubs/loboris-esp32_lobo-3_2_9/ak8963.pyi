@@ -1,13 +1,21 @@
 from typing import Any
 
-Node = Any
-
 class AK8963:
     def _register_char() -> None: ...
     def _register_short() -> None: ...
     def _register_three_shorts() -> None: ...
+    adjustement: Any
+    magnetic: Any
+    whoami: Any
 
 class I2C:
+    CB_DATA: int
+    CB_READ: int
+    CB_WRITE: int
+    MASTER: int
+    READ: int
+    SLAVE: int
+    WRITE: int
     def address() -> None: ...
     def begin() -> None: ...
     def callback() -> None: ...
@@ -31,9 +39,38 @@ class I2C:
     def writeto() -> None: ...
     def writeto_mem() -> None: ...
 
+MODE_CONTINOUS_MEASURE_1: int
+MODE_CONTINOUS_MEASURE_2: int
+MODE_EXTERNAL_TRIGGER_MEASURE: int
+MODE_SINGLE_MEASURE: int
+OUTPUT_14_BIT: int
+OUTPUT_16_BIT: int
+
 class Pin:
+    IN: int
+    INOUT: int
+    INOUT_OD: int
+    IRQ_ANYEDGE: int
+    IRQ_FALLING: int
+    IRQ_HILEVEL: int
+    IRQ_LOLEVEL: int
+    IRQ_RISING: int
+    OUT: int
+    OUT_OD: int
+    PULL_DOWN: int
+    PULL_FLOAT: int
+    PULL_UP: int
+    PULL_UPDOWN: int
     def init() -> None: ...
     def irq() -> None: ...
     def value() -> None: ...
 
+_MODE_FUSE_ROM_ACCESS: int
+_MODE_POWER_DOWN: int
+_MODE_SELF_TEST: int
+_SO_14BIT: float
+_SO_16BIT: float
+
 def const() -> None: ...
+
+ustruct: Any
