@@ -48,9 +48,9 @@ jobs:
 
       - name: sync with micropython upstream 
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
-        run: 
-          - git remote add --tags micropython https://github.com/micropython/micropython.git
-          - git fetch --all --tags
+        run: |
+          git remote add --tags micropython https://github.com/micropython/micropython.git
+          git fetch --all --tags
 
       # micropython as a sub-module of micropython-stubber 
       # Q&D do both levels - more than needed 
