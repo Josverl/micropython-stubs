@@ -1,6 +1,5 @@
-from typing import Any
-
-Node = Any
+SMTP: int
+SMTPS: int
 
 def ftp_get() -> None: ...
 def ftp_list() -> None: ...

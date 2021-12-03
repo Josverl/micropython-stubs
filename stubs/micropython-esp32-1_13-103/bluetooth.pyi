@@ -1,7 +1,3 @@
-from typing import Any
-
-Node = Any
-
 class BLE:
     def active() -> None: ...
     def config() -> None: ...
@@ -22,5 +18,11 @@ class BLE:
     def gatts_set_buffer() -> None: ...
     def gatts_write() -> None: ...
     def irq() -> None: ...
+
+FLAG_INDICATE: int
+FLAG_NOTIFY: int
+FLAG_READ: int
+FLAG_WRITE: int
+FLAG_WRITE_NO_RESPONSE: int
 
 class UUID: ...

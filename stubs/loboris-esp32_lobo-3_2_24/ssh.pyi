@@ -1,6 +1,14 @@
-from typing import Any
-
-Node = Any
+TRACE_ALL: int
+TRACE_AUTH: int
+TRACE_CONN: int
+TRACE_ERROR: int
+TRACE_KEX: int
+TRACE_NONE: int
+TRACE_PUBLICKEY: int
+TRACE_SCP: int
+TRACE_SFTP: int
+TRACE_SOCKET: int
+TRACE_TRANS: int
 
 def exec() -> None: ...
 def get() -> None: ...

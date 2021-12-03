@@ -1,7 +1,3 @@
-from typing import Any
-
-Node = Any
-
 class websocket:
     def close() -> None: ...
     def ioctl() -> None: ...

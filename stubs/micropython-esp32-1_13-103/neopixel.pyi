@@ -1,8 +1,7 @@
 from typing import Any
 
-Node = Any
-
 class NeoPixel:
+    ORDER: Any
     def fill() -> None: ...
     def write() -> None: ...
 

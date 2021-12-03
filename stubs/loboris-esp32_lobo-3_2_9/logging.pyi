@@ -1,6 +1,9 @@
 from typing import Any
 
-Node = Any
+CRITICAL: int
+DEBUG: int
+ERROR: int
+INFO: int
 
 class Logger:
     def _level_str() -> None: ...
@@ -11,7 +14,16 @@ class Logger:
     def log() -> None: ...
     def warning() -> None: ...
 
+NOTSET: int
+WARNING: int
+_level: int
+_level_dict: Any
+_loggers: Any
+_stream: Any
+
 def basicConfig() -> None: ...
 def debug() -> None: ...
 def getLogger() -> None: ...
 def info() -> None: ...
+
+sys: Any
