@@ -95,13 +95,13 @@ jobs:
       - name: checkout micropython - top level ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython
         run: |
-          git checkout tags/${{ matrix.version }}
+          git checkout ${{ matrix.version }}
       # micropython as a sub-module of micropython-stubber 
       # Q&D do both levels - more than needed 
       - name: checkout micropython - sub level ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
-          git checkout tags/${{ matrix.version }}
+          git checkout ${{ matrix.version }}
 
       - name: Get frozen modules for ${{ matrix.version }}
         run: |
