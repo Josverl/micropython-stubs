@@ -1,7 +1,3 @@
-from typing import Any
-
-Node = Any
-
 class DHT11:
     def humidity() -> None: ...
     def measure() -> None: ...

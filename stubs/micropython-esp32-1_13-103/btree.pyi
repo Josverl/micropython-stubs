@@ -1,5 +1,4 @@
-from typing import Any
-
-Node = Any
+DESC: int
+INCL: int
 
 def open() -> None: ...

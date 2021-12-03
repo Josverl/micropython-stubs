@@ -1,7 +1,3 @@
-from typing import Any
-
-Node = Any
-
 class VfsFat:
     def chdir() -> None: ...
     def getcwd() -> None: ...

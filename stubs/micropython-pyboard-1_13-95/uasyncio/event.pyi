@@ -1,7 +1,9 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
 class Event:
     def clear() -> None: ...
     def is_set() -> None: ...
     def set() -> None: ...
+    wait: Any
+
+core: Any

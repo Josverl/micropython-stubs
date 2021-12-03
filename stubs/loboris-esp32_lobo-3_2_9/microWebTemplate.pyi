@@ -1,9 +1,18 @@
 from typing import Any
 
-Node = Any
-
 class MicroWebTemplate:
     def Execute() -> None: ...
+    INSTRUCTION_ELIF: str
+    INSTRUCTION_ELSE: str
+    INSTRUCTION_END: str
+    INSTRUCTION_FOR: str
+    INSTRUCTION_IF: str
+    INSTRUCTION_INCLUDE: str
+    INSTRUCTION_PYTHON: str
+    TOKEN_CLOSE: str
+    TOKEN_CLOSE_LEN: int
+    TOKEN_OPEN: str
+    TOKEN_OPEN_LEN: int
     def Validate() -> None: ...
     def _parseBloc() -> None: ...
     def _parseCode() -> None: ...
@@ -15,3 +24,5 @@ class MicroWebTemplate:
     def _processInstructionINCLUDE() -> None: ...
     def _processInstructionPYTHON() -> None: ...
     def _processToken() -> None: ...
+
+re: Any
