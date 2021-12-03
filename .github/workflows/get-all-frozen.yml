@@ -121,7 +121,7 @@ jobs:
 
       - name: Update stubs with .pyi ${{ matrix.version }}
         run: |
-          python ./src/update_stubs.py
+          python ./src/update_pyi.py
 
       - name: Create Pull Request
         id: cpr
