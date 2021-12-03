@@ -46,12 +46,26 @@ jobs:
         run: git submodule update --init 
         # --recursive          
 
+      - name: sync with micropython upstream 
+        working-directory: ${{github.workspace}}/micropython-stubber/micropython
+        run: 
+          - git remote add --tags micropython https://github.com/micropython/micropython.git
+          - git fetch --all --tags
+
+      # micropython as a sub-module of micropython-stubber 
+      # Q&D do both levels - more than needed 
+      - name: checkout micropython - sub level ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython-stubber/micropython
+        run: |
+          git checkout ${{ matrix.version }}
+
       - name: Checkout stubs repo
         uses: actions/checkout@v2
         with:
           repository: josverl/micropython-stubs
           path: micropython-stubs
 
+# todo: is this still needed ?
       - name: Checkout micropython-lib repo
         uses: actions/checkout@v2
         with:
@@ -64,6 +78,14 @@ jobs:
           repository: micropython/micropython
           path: micropython
           fetch-depth: 0
+
+      # top level 
+      - name: checkout micropython - top level ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython
+        run: |
+          git checkout ${{ matrix.version }}
+
+
 
       # simplify processing using symlink 
       - name: create symlink for all-stubs
@@ -91,17 +113,7 @@ jobs:
       ######################################
       # This is where the actual work starts
       ######################################
-      # top level 
-      - name: checkout micropython - top level ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython
-        run: |
-          git checkout ${{ matrix.version }}
-      # micropython as a sub-module of micropython-stubber 
-      # Q&D do both levels - more than needed 
-      - name: checkout micropython - sub level ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython-stubber/micropython
-        run: |
-          git checkout ${{ matrix.version }}
+
 
       - name: Get frozen modules for ${{ matrix.version }}
         run: |
