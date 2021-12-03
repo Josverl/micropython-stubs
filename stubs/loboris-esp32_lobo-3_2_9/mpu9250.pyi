@@ -1,11 +1,12 @@
 from typing import Any
 
-Node = Any
-
 class AK8963:
     def _register_char() -> None: ...
     def _register_short() -> None: ...
     def _register_three_shorts() -> None: ...
+    adjustement: Any
+    magnetic: Any
+    whoami: Any
 
 class MPU6500:
     def _accel_fs() -> None: ...
@@ -13,7 +14,14 @@ class MPU6500:
     def _register_char() -> None: ...
     def _register_short() -> None: ...
     def _register_three_shorts() -> None: ...
+    acceleration: Any
+    gyro: Any
+    whoami: Any
 
-class MPU9250: ...
+class MPU9250:
+    acceleration: Any
+    gyro: Any
+    magnetic: Any
+    whoami: Any
 
 def const() -> None: ...

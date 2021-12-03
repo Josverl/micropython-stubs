@@ -1,6 +1,4 @@
-from typing import Any
-
-Node = Any
+DEBUG: int
 
 def compile() -> None: ...
 def match() -> None: ...

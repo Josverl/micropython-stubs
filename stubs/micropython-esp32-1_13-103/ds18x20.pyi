@@ -1,7 +1,3 @@
-from typing import Any
-
-Node = Any
-
 class DS18X20:
     def convert_temp() -> None: ...
     def read_scratch() -> None: ...

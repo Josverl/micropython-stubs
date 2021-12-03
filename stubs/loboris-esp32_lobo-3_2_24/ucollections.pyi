@@ -1,7 +1,3 @@
-from typing import Any
-
-Node = Any
-
 class OrderedDict:
     def clear() -> None: ...
     def copy() -> None: ...

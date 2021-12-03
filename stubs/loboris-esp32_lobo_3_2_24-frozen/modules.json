@@ -1,86 +1,88 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "loboris",
-        "firmware": "loboris-frozen-3_2_24",
+        "firmware": "loboris-esp32-3_2_24",
         "machine": "loboris",
         "nodename": "loboris",
-        "platform": "frozen",
+        "platform": "esp32",
         "port": "esp32",
         "release": "3.2.24",
         "sysname": "loboris",
-        "version": "v3.2.24"
+        "version": "3.2.24"
     },
     "modules": [
         {
-            "file": "ak8963.py",
-            "module": "ak8963"
+            "file": "urequests.py",
+            "module": "urequests"
         },
         {
             "file": "freesans20.py",
             "module": "freesans20"
         },
         {
-            "file": "functools.py",
-            "module": "functools"
-        },
-        {
-            "file": "logging.py",
-            "module": "logging"
-        },
-        {
-            "file": "microWebSocket.py",
-            "module": "microWebSocket"
-        },
-        {
-            "file": "microWebSrv.py",
-            "module": "microWebSrv"
-        },
-        {
-            "file": "microWebTemplate.py",
-            "module": "microWebTemplate"
-        },
-        {
             "file": "mpu6500.py",
             "module": "mpu6500"
-        },
-        {
-            "file": "mpu9250.py",
-            "module": "mpu9250"
-        },
-        {
-            "file": "pye.py",
-            "module": "pye"
-        },
-        {
-            "file": "ssd1306.py",
-            "module": "ssd1306"
-        },
-        {
-            "file": "tpcalib.py",
-            "module": "tpcalib"
         },
         {
             "file": "upip.py",
             "module": "upip"
         },
         {
-            "file": "upip_utarfile.py",
-            "module": "upip_utarfile"
+            "file": "ak8963.py",
+            "module": "ak8963"
+        },
+        {
+            "file": "microWebSrv.py",
+            "module": "microWebSrv"
+        },
+        {
+            "file": "pye.py",
+            "module": "pye"
+        },
+        {
+            "file": "functools.py",
+            "module": "functools"
+        },
+        {
+            "file": "tpcalib.py",
+            "module": "tpcalib"
+        },
+        {
+            "file": "mpu9250.py",
+            "module": "mpu9250"
+        },
+        {
+            "file": "writer.py",
+            "module": "writer"
+        },
+        {
+            "file": "microWebSocket.py",
+            "module": "microWebSocket"
+        },
+        {
+            "file": "ssd1306.py",
+            "module": "ssd1306"
+        },
+        {
+            "file": "microWebTemplate.py",
+            "module": "microWebTemplate"
         },
         {
             "file": "upysh.py",
             "module": "upysh"
         },
         {
-            "file": "urequests.py",
-            "module": "urequests"
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
         },
         {
-            "file": "writer.py",
-            "module": "writer"
+            "file": "logging.py",
+            "module": "logging"
         }
     ],
     "stubber": {
-        "version": "1.3.7"
+        "stubtype": "frozen",
+        "version": "1.3.8"
     }
 }

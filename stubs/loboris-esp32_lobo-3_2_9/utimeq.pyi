@@ -1,7 +1,3 @@
-from typing import Any
-
-Node = Any
-
 class utimeq:
     def peektime() -> None: ...
     def pop() -> None: ...
