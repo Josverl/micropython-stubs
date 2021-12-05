@@ -104,11 +104,10 @@ jobs:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements-dev.txt') }}
 
-      - name: Install Python dependencies
+      - name: Install Python dependencies (stubber)
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
 
       ######################################
       # This is where the actual work starts
@@ -117,11 +116,7 @@ jobs:
 
       - name: Get frozen modules for ${{ matrix.version }}
         run: |
-          python ./src/get_all_frozen.py
-
-      - name: Update stubs with .pyi ${{ matrix.version }}
-        run: |
-          python ./src/update_pyi.py
+          python ./src/get_all_frozen.py --mpy 
 
       - name: Create Pull Request
         id: cpr
