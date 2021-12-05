@@ -13,60 +13,20 @@
     },
     "modules": [
         {
-            "file": "ds18x20.py",
-            "module": "ds18x20"
-        },
-        {
             "file": "onewire.py",
             "module": "onewire"
         },
         {
-            "file": "upip.py",
-            "module": "upip"
+            "file": "lcd160cr.py",
+            "module": "lcd160cr"
         },
         {
-            "file": "webrepl.py",
-            "module": "webrepl"
-        },
-        {
-            "file": "inisetup.py",
-            "module": "inisetup"
-        },
-        {
-            "file": "neopixel.py",
-            "module": "neopixel"
+            "file": "lcd160cr_test.py",
+            "module": "lcd160cr_test"
         },
         {
             "file": "dht.py",
             "module": "dht"
-        },
-        {
-            "file": "websocket_helper.py",
-            "module": "websocket_helper"
-        },
-        {
-            "file": "_boot.py",
-            "module": "_boot"
-        },
-        {
-            "file": "flashbdev.py",
-            "module": "flashbdev"
-        },
-        {
-            "file": "ntptime.py",
-            "module": "ntptime"
-        },
-        {
-            "file": "upip_utarfile.py",
-            "module": "upip_utarfile"
-        },
-        {
-            "file": "webrepl_setup.py",
-            "module": "webrepl_setup"
-        },
-        {
-            "file": "apa106.py",
-            "module": "apa106"
         },
         {
             "file": "uasyncio/funcs.py",
