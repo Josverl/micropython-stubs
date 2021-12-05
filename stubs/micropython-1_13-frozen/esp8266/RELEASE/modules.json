@@ -1,0 +1,100 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "firmware": "micropython--1_13",
+        "machine": "micropython",
+        "nodename": "micropython",
+        "platform": "",
+        "port": "",
+        "release": "v1.13",
+        "sysname": "micropython",
+        "version": "v1.13"
+    },
+    "modules": [
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "http_server_ssl.py",
+            "module": "http_server_ssl"
+        },
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "http_client_ssl.py",
+            "module": "http_client_ssl"
+        },
+        {
+            "file": "inisetup.py",
+            "module": "inisetup"
+        },
+        {
+            "file": "neopixel.py",
+            "module": "neopixel"
+        },
+        {
+            "file": "apa102.py",
+            "module": "apa102"
+        },
+        {
+            "file": "http_client.py",
+            "module": "http_client"
+        },
+        {
+            "file": "port_diag.py",
+            "module": "port_diag"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "websocket_helper.py",
+            "module": "websocket_helper"
+        },
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "ssd1306.py",
+            "module": "ssd1306"
+        },
+        {
+            "file": "flashbdev.py",
+            "module": "flashbdev"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "http_server.py",
+            "module": "http_server"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        }
+    ],
+    "stubber": {
+        "stubtype": "frozen",
+        "version": "1.3.8"
+    }
+}
