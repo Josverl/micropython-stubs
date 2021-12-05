@@ -1,1 +1,28 @@
-{"firmware": {"family": "micropython", "port": "unix", "platform": "unix", "machine": "micropython", "firmware": "micropython-unix-1_10", "nodename": "micropython", "version": "v1.10", "release": "v1.10", "sysname": "micropython"}, "stubber": {"version": "1.3.7"}, "modules": [{"file": "upip.py", "module": "upip"}, {"file": "upip_utarfile.py", "module": "upip_utarfile"}]}
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "firmware": "micropython-unix-1_10",
+        "machine": "micropython",
+        "nodename": "micropython",
+        "platform": "unix",
+        "port": "unix",
+        "release": "v1.10",
+        "sysname": "micropython",
+        "version": "v1.10"
+    },
+    "modules": [
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        }
+    ],
+    "stubber": {
+        "stubtype": "frozen",
+        "version": "1.3.8"
+    }
+}
