@@ -13,12 +13,20 @@
     },
     "modules": [
         {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
             "file": "ds18x20.py",
             "module": "ds18x20"
         },
         {
             "file": "onewire.py",
             "module": "onewire"
+        },
+        {
+            "file": "http_server_ssl.py",
+            "module": "http_server_ssl"
         },
         {
             "file": "upip.py",
@@ -29,12 +37,52 @@
             "module": "webrepl"
         },
         {
+            "file": "__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "robust.py",
+            "module": "robust"
+        },
+        {
+            "file": "simple.py",
+            "module": "simple"
+        },
+        {
+            "file": "http_client_ssl.py",
+            "module": "http_client_ssl"
+        },
+        {
             "file": "inisetup.py",
             "module": "inisetup"
         },
         {
+            "file": "example_sub_led.py",
+            "module": "example_sub_led"
+        },
+        {
+            "file": "example_pub_button.py",
+            "module": "example_pub_button"
+        },
+        {
             "file": "neopixel.py",
             "module": "neopixel"
+        },
+        {
+            "file": "urequest.py",
+            "module": "urequest"
+        },
+        {
+            "file": "apa102.py",
+            "module": "apa102"
+        },
+        {
+            "file": "http_client.py",
+            "module": "http_client"
+        },
+        {
+            "file": "port_diag.py",
+            "module": "port_diag"
         },
         {
             "file": "dht.py",
@@ -49,6 +97,14 @@
             "module": "_boot"
         },
         {
+            "file": "core.py",
+            "module": "core"
+        },
+        {
+            "file": "ssd1306.py",
+            "module": "ssd1306"
+        },
+        {
             "file": "flashbdev.py",
             "module": "flashbdev"
         },
@@ -57,16 +113,20 @@
             "module": "ntptime"
         },
         {
+            "file": "http_server.py",
+            "module": "http_server"
+        },
+        {
+            "file": "upysh.py",
+            "module": "upysh"
+        },
+        {
             "file": "upip_utarfile.py",
             "module": "upip_utarfile"
         },
         {
             "file": "webrepl_setup.py",
             "module": "webrepl_setup"
-        },
-        {
-            "file": "apa106.py",
-            "module": "apa106"
         }
     ],
     "stubber": {

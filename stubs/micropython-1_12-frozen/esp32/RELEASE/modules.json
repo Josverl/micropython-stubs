@@ -13,6 +13,10 @@
     },
     "modules": [
         {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
             "file": "ds18x20.py",
             "module": "ds18x20"
         },
@@ -27,6 +31,14 @@
         {
             "file": "webrepl.py",
             "module": "webrepl"
+        },
+        {
+            "file": "robust.py",
+            "module": "robust"
+        },
+        {
+            "file": "simple.py",
+            "module": "simple"
         },
         {
             "file": "inisetup.py",
@@ -55,6 +67,10 @@
         {
             "file": "ntptime.py",
             "module": "ntptime"
+        },
+        {
+            "file": "upysh.py",
+            "module": "upysh"
         },
         {
             "file": "upip_utarfile.py",
