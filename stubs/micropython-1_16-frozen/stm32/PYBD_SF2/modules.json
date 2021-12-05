@@ -1,0 +1,72 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "firmware": "micropython--1_16",
+        "machine": "micropython",
+        "nodename": "micropython",
+        "platform": "",
+        "port": "",
+        "release": "v1.16",
+        "sysname": "micropython",
+        "version": "v1.16"
+    },
+    "modules": [
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "lcd160cr.py",
+            "module": "lcd160cr"
+        },
+        {
+            "file": "lcd160cr_test.py",
+            "module": "lcd160cr_test"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "websocket_helper.py",
+            "module": "websocket_helper"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        },
+        {
+            "file": "uasyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "uasyncio/lock.py",
+            "module": "lock"
+        }
+    ],
+    "stubber": {
+        "stubtype": "frozen",
+        "version": "1.3.8"
+    }
+}
