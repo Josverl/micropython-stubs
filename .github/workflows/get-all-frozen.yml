@@ -17,8 +17,8 @@ on:
     - cron: "0 1 * * *"   # Run everyday at 01:00
 
 jobs:
-  # job prepare sets everything up 
-  get-frozen:
+  ########################################################################################################################################
+  get-micropython-frozen:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -43,11 +43,9 @@ jobs:
           repository: josverl/micropython-stubber
           path: micropython-stubber
 
-
       - name: Checkout stubber submodules
         working-directory: ${{github.workspace}}/micropython-stubber
         run: git submodule update --init 
-        # --recursive          
 
       - name: sync with micropython upstream 
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
@@ -72,11 +70,6 @@ jobs:
           $version = "${{ matrix.version }}".replace('v','')
           if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
      
-      # # simplify processing using symlink 
-      # - name: create symlink for all-stubs
-      #   run: |
-      #     ln -s ${{github.workspace}}/micropython-stubs/stubs ${{github.workspace}}/micropython-stubber/all-stubs --force
-
       # make Python work
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
