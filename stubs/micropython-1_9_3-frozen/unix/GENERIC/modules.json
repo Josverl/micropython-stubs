@@ -1,14 +1,19 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "firmware": "micropython-unix-1_9_3",
-        "machine": "micropython",
-        "nodename": "micropython",
-        "platform": "unix",
         "port": "unix",
+        "platform": "unix",
+        "machine": "",
+        "firmware": "micropython-unix-1_9_3",
+        "nodename": "micropython",
+        "version": "v1.9.3",
         "release": "v1.9.3",
-        "sysname": "micropython",
-        "version": "v1.9.3"
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.3.8",
+        "stubtype": "frozen"
     },
     "modules": [
         {
@@ -19,8 +24,5 @@
             "file": "upip_utarfile.py",
             "module": "upip_utarfile"
         }
-    ],
-    "stubber": {
-        "version": "1.3.7"
-    }
+    ]
 }
