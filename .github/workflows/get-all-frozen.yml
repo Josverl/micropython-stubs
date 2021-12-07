@@ -29,8 +29,8 @@ jobs:
       # Check out repos side-by-side:
       # micropython-stubs
       # micropython-stubber
-      # micropython
-      # micropython-lib
+      #   +-- micropython
+      #    -- micropython-lib
       ######################################
 
       - name: Checkout Stubber
@@ -77,25 +77,25 @@ jobs:
           repository: josverl/micropython-stubs
           path: micropython-stubs
 
-# todo: is this still needed ?
-      - name: Checkout micropython-lib repo
-        uses: actions/checkout@v2
-        with:
-          repository: micropython/micropython-lib
-          path: micropython-lib
+# # todo: is this still needed ?
+#       - name: Checkout micropython-lib repo
+#         uses: actions/checkout@v2
+#         with:
+#           repository: micropython/micropython-lib
+#           path: micropython-lib
 
-      - name: Checkout micropython
-        uses: actions/checkout@v2
-        with:
-          repository: micropython/micropython
-          path: micropython
-          fetch-depth: 0
+#       - name: Checkout micropython
+#         uses: actions/checkout@v2
+#         with:
+#           repository: micropython/micropython
+#           path: micropython
+#           fetch-depth: 0
 
-      # top level 
-      - name: checkout micropython - top level ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython
-        run: |
-          git checkout ${{ matrix.version }}
+#       # top level 
+#       - name: checkout micropython - top level ${{ matrix.version }}
+#         working-directory: ${{github.workspace}}/micropython
+#         run: |
+#           git checkout ${{ matrix.version }}
 
 
 
