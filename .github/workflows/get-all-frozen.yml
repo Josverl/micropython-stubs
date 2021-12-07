@@ -32,12 +32,10 @@ jobs:
         shell: bash
         working-directory: ${{github.workspace}}/micropython-stubber
   # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
+    s teps:
 
       - name: Checkout stubs repo
         uses: actions/checkout@v2
-        with:
-          repository: josverl/micropython-stubs
 
       - name: Checkout Stubber
         uses: actions/checkout@v2
@@ -114,7 +112,7 @@ jobs:
           title: "${{ steps.extract_branch.outputs.branch }} : add/update MicroPython ${{ matrix.version }} stubs"
           commit-message: add/update MicroPython ${{ matrix.version }} stubs
           branch: "micropython-${{ matrix.version }}-stubs"
-          reviewers: josverl          
+          reviewers: josverl
           labels: |
             automated pr
             frozen stubs 
