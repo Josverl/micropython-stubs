@@ -118,7 +118,7 @@ jobs:
             frozen stubs 
             micropython
             ${{ matrix.version }}
-          assignees: josverl
+          reviewers: josverl
           delete-branch: true
 
 
