@@ -38,15 +38,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: josverl/micropython-stubs
-          # path: micropython-stubs
 
       - name: Checkout Stubber
         uses: actions/checkout@v2
         with:
           repository: josverl/micropython-stubber
           path: micropython-stubber
-          # recursive is very expensive
-          # submodules: recursive 
+
 
       - name: Checkout stubber submodules
         working-directory: ${{github.workspace}}/micropython-stubber
@@ -60,7 +58,6 @@ jobs:
           git fetch --all --tags
 
       # micropython as a sub-module of micropython-stubber 
-      # Q&D do both levels - more than needed 
       - name: checkout micropython - sub level ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
@@ -77,34 +74,10 @@ jobs:
           $version = "${{ matrix.version }}".replace('v','')
           if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
      
-
-
-# # todo: is this still needed ?
-#       - name: Checkout micropython-lib repo
-#         uses: actions/checkout@v2
-#         with:
-#           repository: micropython/micropython-lib
-#           path: micropython-lib
-
-#       - name: Checkout micropython
-#         uses: actions/checkout@v2
-#         with:
-#           repository: micropython/micropython
-#           path: micropython
-#           fetch-depth: 0
-
-#       # top level 
-#       - name: checkout micropython - top level ${{ matrix.version }}
-#         working-directory: ${{github.workspace}}/micropython
-#         run: |
-#           git checkout ${{ matrix.version }}
-
-
-
-      # simplify processing using symlink 
-      - name: create symlink for all-stubs
-        run: |
-          ln -s ${{github.workspace}}/stubs ${{github.workspace}}/micropython-stubber/all-stubs --force
+      # # simplify processing using symlink 
+      # - name: create symlink for all-stubs
+      #   run: |
+      #     ln -s ${{github.workspace}}/micropython-stubs/stubs ${{github.workspace}}/micropython-stubber/all-stubs --force
 
       # make Python work
       - name: Set up Python 3.8
@@ -127,11 +100,10 @@ jobs:
       # This is where the actual work starts
       ######################################
 
-
       - name: Get frozen modules for ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber
         run: |
-          python ./src/get_all_frozen.py --mpy 
+          python ./src/get_all_frozen.py --mpy --micropython-lib ${{github.workspace}}/micropython-stubs/stubs
 
       - name: Create Pull Request
         uses: gr2m/create-or-update-pull-request-action@v1
@@ -153,7 +125,3 @@ jobs:
           assignees: josverl
           auto-merge: squash          
 
-      - name: exit gracefully
-        run: |
-          echo 'avoid throwing a fit when an existing PR was updated'
-        if: always()
