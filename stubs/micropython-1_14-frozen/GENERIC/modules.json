@@ -33,16 +33,28 @@
             "module": "frzmpy2"
         },
         {
-            "file": "frzmpy_pkg1\\__init__.py",
+            "file": "frzmpy_pkg1/__init__.py",
             "module": "__init__"
         },
         {
-            "file": "frzmpy_pkg2\\mod.py",
+            "file": "frzmpy_pkg2/mod.py",
             "module": "mod"
         },
         {
             "file": "frzqstr.py",
             "module": "frzqstr"
+        },
+        {
+            "file": "frzstr1.py",
+            "module": "frzstr1"
+        },
+        {
+            "file": "frzstr_pkg1/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "frzstr_pkg2/mod.py",
+            "module": "mod"
         },
         {
             "file": "onewire.py",
@@ -53,27 +65,27 @@
             "module": "rp2"
         },
         {
-            "file": "uasyncio\\__init__.py",
+            "file": "uasyncio/__init__.py",
             "module": "__init__"
         },
         {
-            "file": "uasyncio\\core.py",
+            "file": "uasyncio/core.py",
             "module": "core"
         },
         {
-            "file": "uasyncio\\event.py",
+            "file": "uasyncio/event.py",
             "module": "event"
         },
         {
-            "file": "uasyncio\\funcs.py",
+            "file": "uasyncio/funcs.py",
             "module": "funcs"
         },
         {
-            "file": "uasyncio\\lock.py",
+            "file": "uasyncio/lock.py",
             "module": "lock"
         },
         {
-            "file": "uasyncio\\stream.py",
+            "file": "uasyncio/stream.py",
             "module": "stream"
         },
         {
