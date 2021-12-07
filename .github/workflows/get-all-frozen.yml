@@ -1,14 +1,14 @@
-######################################
+########################################################################################################################################
 # This will attempt to retrieve and generate stubs from all known versions of MicroPython
-######################################
+########################################################################################################################################
 # Check out repos in this structure 
 # micropython-stubs
 #     + - stubs [ <-- Alias: all-stubs]
 #   +-- micropython-stubber
 #       +-- micropython
 #        -- micropython-lib
-# repro structure used to allow automatic PR creation to work
-######################################
+# repro structure needed to allow automatic PR creation to work
+########################################################################################################################################
 name: get-all-frozen
 
 on:
@@ -31,7 +31,7 @@ jobs:
       run:
         shell: bash
         working-directory: ${{github.workspace}}/micropython-stubber
-  # Steps represent a sequence of tasks that will be executed as part of the job
+  
     steps:
 
       - name: Checkout stubs repo
@@ -109,7 +109,7 @@ jobs:
           labels: |
             automated pr
             frozen stubs 
-            micropython
+            MicroPython
             ${{ matrix.version }}
           delete-branch: true
   ########################################################################################################################################
@@ -122,7 +122,7 @@ jobs:
       run:
         shell: bash
         working-directory: ${{github.workspace}}/micropython-stubber
-  # Steps represent a sequence of tasks that will be executed as part of the job
+  
     steps:
 
       - name: Checkout stubs repo
@@ -172,9 +172,72 @@ jobs:
           reviewers: josverl
           labels: |
             automated pr
-            frozen stubs 
-            micropython
+            CPython
+            MicroPython
           delete-branch: true
 
 
+  ########################################################################################################################################
+  get-loboris-frozen-stubs:
+    runs-on: ubuntu-latest
+
+    # Most scripts will be run from the stubber, set that as default
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{github.workspace}}/micropython-stubber
+    
+    steps:
+
+      - name: Checkout stubs repo
+        uses: actions/checkout@v2
+
+      - name: Checkout Stubber
+        uses: actions/checkout@v2
+        with:
+          repository: josverl/micropython-stubber
+          path: micropython-stubber
+
+      # make Python work
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: restore Python from cache 
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements-dev.txt') }}
+
+      - name: Install Python dependencies (stubber)
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      ######################################
+      # This is where the actual work starts
+      ######################################
+
+      - name: Get frozen modules for ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython-stubber
+        run: |
+          python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --lobo
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        # ref: https://github.com/peter-evans/create-pull-request
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
+          title: "add/update Loboris frozen stubs"
+          commit-message: add/update Loboris frozen stubs
+          branch: "micropython-core-stubs"
+          reviewers: josverl
+          labels: |
+            automated pr
+            frozen stubs
+            Loboris
+          delete-branch: true
+  ########################################################################################################################################
 
