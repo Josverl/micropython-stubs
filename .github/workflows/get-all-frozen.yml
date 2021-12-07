@@ -106,22 +106,22 @@ jobs:
           python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --mpy 
 
       - name: Create Pull Request
-        uses: gr2m/create-or-update-pull-request-action@v1
-        #ref: https://github.com/marketplace/actions/create-or-update-pull-request
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        # ref: https://github.com/peter-evans/create-pull-request
         with:
-          title: "micropython ${{ matrix.version }} - frozen"
-          body: "Add frozen modules for micropython ${{ matrix.version }}"
-          commit-message: "workflow update of frozen modules for micropython ${{ matrix.version }}"
-          branch: "micropython-frozen-${{ matrix.version }}"
-          author: "jos Verlinde <jos_verlinde@hotmail.com>"
+          path: stubs
+          title: "${{ steps.extract_branch.outputs.branch }} : add/update MicroPython ${{ matrix.version }} stubs"
+          commit-message: add/update MicroPython ${{ matrix.version }} stubs
+          branch: "micropython-${{ matrix.version }}-stubs"
+          reviewers: josverl          
           labels: |
             automated pr
             frozen stubs 
             micropython
             ${{ matrix.version }}
           assignees: josverl
-          auto-merge: merge
-          path: stubs
+          delete-branch: true
+
+
 
