@@ -1,6 +1,8 @@
 
-
 queries:
 - exclude: py/clear-text-storage-sensitive-data
 - exclude: py/illegal-raise
+- exclude: py/not-named-self
+- exclude: py/catch-base-exception
+- exclude: py/insecure-default-protocol
 
