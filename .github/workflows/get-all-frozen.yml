@@ -1,5 +1,14 @@
+######################################
 # This will attempt to retrieve and generate stubs from all known versions of MicroPython
-
+######################################
+# Check out repos in this structure 
+# micropython-stubs
+#     + - stubs [ <-- Alias: all-stubs]
+#   +-- micropython-stubber
+#       +-- micropython
+#        -- micropython-lib
+# repro structure used to allow automatic PR creation to work
+######################################
 name: get-all-frozen
 
 on:
@@ -25,13 +34,14 @@ jobs:
   # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-      ######################################
-      # Check out repos side-by-side:
-      # micropython-stubs
-      # micropython-stubber
-      #   +-- micropython
-      #    -- micropython-lib
-      ######################################
+
+
+      - name: Checkout stubs repo
+        uses: actions/checkout@v2
+        with:
+          repository: josverl/micropython-stubs
+          path: micropython-stubs
+
 
       - name: Checkout Stubber
         uses: actions/checkout@v2
@@ -71,11 +81,6 @@ jobs:
           if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
      
 
-      - name: Checkout stubs repo
-        uses: actions/checkout@v2
-        with:
-          repository: josverl/micropython-stubs
-          path: micropython-stubs
 
 # # todo: is this still needed ?
 #       - name: Checkout micropython-lib repo
@@ -102,7 +107,7 @@ jobs:
       # simplify processing using symlink 
       - name: create symlink for all-stubs
         run: |
-          ln -s ${{github.workspace}}/micropython-stubs/stubs all-stubs --force
+          ln -s ${{github.workspace}}/stubs ${{github.workspace}}/micropython-stubber/all-stubs --force
 
       # make Python work
       - name: Set up Python 3.8
