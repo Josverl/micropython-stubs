@@ -8,34 +8,40 @@ from jinja2 import Environment, FileSystemLoader
 def read_manifests(workspace_root: Path):
     configs = (workspace_root / "stubs").rglob("modules.json")
     for file in configs:
-        with open(file) as f:
-            modules = json.load(f)
-
-        if isinstance(modules, list):
+        try:
+            with open(file) as f:
+                module_manifest = json.load(f)
+        except (OSError, json.JSONDecodeError):
+            continue
+        stub_type = ""
+        if isinstance(module_manifest, list):
             # Old module manifest format
-            firmware = modules[0]
-            stub_ver = modules[1]["stubber"]
-            module_count = max(len(modules) - 2, 0)
+            firmware = module_manifest[0]
+            stub_ver = module_manifest[1]["stubber"]
+            module_count = max(len(module_manifest) - 2, 0)
         else:
             # new module manifest format
-            firmware = modules["firmware"]
-            stub_ver = modules["stubber"]["version"]
-            module_count = len(modules["modules"])
+            firmware = module_manifest["firmware"]
+            stub_ver = module_manifest["stubber"]["version"]
+            module_count = len(module_manifest["modules"])
+            # Stubtype added in manifest 1_4_0
+            if "stubtype" in module_manifest["stubber"]:
+                stub_type = module_manifest["stubber"]["stubtype"]
 
         # avoid getting Key not found errors
         firmware = defaultdict(lambda: None, firmware)
-
-        if "-frozen" in file.as_posix():
-            stub_type = "frozen"
-        elif "cpython" in file.as_posix():
-            stub_type = "cpython"
-        elif firmware["family"] in [
-            "lvgl",
-            "ulab",
-        ]:
-            stub_type = "library"
-        else:
-            stub_type = "board"
+        if stub_type == "":
+            if "-frozen" in file.as_posix():
+                stub_type = "frozen"
+            elif "cpython" in file.as_posix():
+                stub_type = "cpython"
+            elif firmware["family"] in [
+                "lvgl",
+                "ulab",
+            ]:
+                stub_type = "library"
+            else:
+                stub_type = "board"
 
         # for frozen modules use the parent folder name (stm32, esp32, rp2) to identify the system
         # todo: update logic in generating the frozen manifest files
@@ -71,7 +77,7 @@ def update_firmware_docs():
     else:
         workspace_root = Path.cwd()
 
-    all = list(read_manifests(workspace_root ))
+    all = list(read_manifests(workspace_root))
 
     file_loader = FileSystemLoader(str(workspace_root / "docs/templates"))
     env = Environment(

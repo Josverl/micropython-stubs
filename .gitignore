@@ -1,7 +1,11 @@
+# avoid including micropython-stubber in workflows.
+micropython-stubber
+
 
 # no compiled stuff
 **/__pycache__
 .pytest_cache
+
 # No venv
 .venv
 
