@@ -103,7 +103,7 @@ jobs:
       - name: Get frozen modules for ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber
         run: |
-          python ./src/get_all_frozen.py --mpy --micropython-lib ${{github.workspace}}/stubs
+          python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --mpy 
 
       - name: Create Pull Request
         uses: gr2m/create-or-update-pull-request-action@v1
