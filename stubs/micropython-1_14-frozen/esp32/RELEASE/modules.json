@@ -1,19 +1,25 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "port": "frozen",
+        "port": "esp32",
         "platform": "esp32",
-        "machine": "micropython",
-        "firmware": "micropython-frozen-1_14",
+        "machine": "RELEASE",
+        "firmware": "micropython-esp32-1_14",
         "nodename": "micropython",
         "version": "v1.14",
         "release": "v1.14",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.3.7"
+        "version": "1.3.8",
+        "stubtype": "frozen"
     },
     "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
         {
             "file": "apa106.py",
             "module": "apa106"
@@ -47,6 +53,38 @@
             "module": "onewire"
         },
         {
+            "file": "uasyncio\\__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio\\core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio\\event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio\\funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio\\lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio\\stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "umqtt\\robust.py",
+            "module": "robust"
+        },
+        {
+            "file": "umqtt\\simple.py",
+            "module": "simple"
+        },
+        {
             "file": "upip.py",
             "module": "upip"
         },
@@ -73,10 +111,6 @@
         {
             "file": "websocket_helper.py",
             "module": "websocket_helper"
-        },
-        {
-            "file": "_boot.py",
-            "module": "_boot"
         }
     ]
 }
