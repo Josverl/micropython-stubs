@@ -1,5 +1,10 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
-def sub_cb(topic: Any, msg: Any) -> None: ...
-def main(server: Any=SERVER) -> None: ...
+led: Any
+SERVER: str
+CLIENT_ID: Any
+TOPIC: bytes
+state: int
+
+def sub_cb(topic, msg) -> None: ...
+def main(server=...) -> None: ...
