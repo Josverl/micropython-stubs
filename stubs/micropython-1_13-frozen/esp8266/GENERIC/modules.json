@@ -1,14 +1,19 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "firmware": "micropython-esp8266-1_13",
-        "machine": "micropython",
-        "nodename": "micropython",
-        "platform": "esp8266",
         "port": "esp8266",
+        "platform": "esp8266",
+        "machine": "GENERIC",
+        "firmware": "micropython-esp8266-1_13",
+        "nodename": "micropython",
+        "version": "v1.13",
         "release": "v1.13",
-        "sysname": "micropython",
-        "version": "v1.13"
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.3.8",
+        "stubtype": "frozen"
     },
     "modules": [
         {
@@ -56,6 +61,38 @@
             "module": "ssd1306"
         },
         {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "umqtt/robust.py",
+            "module": "robust"
+        },
+        {
+            "file": "umqtt/simple.py",
+            "module": "simple"
+        },
+        {
             "file": "upip.py",
             "module": "upip"
         },
@@ -72,6 +109,10 @@
             "module": "urequests"
         },
         {
+            "file": "urllib/urequest.py",
+            "module": "urequest"
+        },
+        {
             "file": "webrepl.py",
             "module": "webrepl"
         },
@@ -83,8 +124,5 @@
             "file": "websocket_helper.py",
             "module": "websocket_helper"
         }
-    ],
-    "stubber": {
-        "version": "1.3.7"
-    }
+    ]
 }
