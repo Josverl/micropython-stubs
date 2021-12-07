@@ -110,6 +110,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
+          token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
           title: "${{ steps.extract_branch.outputs.branch }} : add/update MicroPython ${{ matrix.version }} stubs"
           commit-message: add/update MicroPython ${{ matrix.version }} stubs
           branch: "micropython-${{ matrix.version }}-stubs"
