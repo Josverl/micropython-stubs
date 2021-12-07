@@ -67,7 +67,8 @@ jobs:
         working-directory: ${{github.workspace}}/micropython-stubber/micropython-lib
         shell: pwsh
         run: |
-          if( [version]"${{ matrix.version }}" -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
+          $version = "${{ matrix.version }}".replace('v','')
+          if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
      
 
       - name: Checkout stubs repo
