@@ -111,7 +111,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          path: micropython-stubs
           title: "micropython ${{ matrix.version }} - frozen"
           body: "Add frozen modules for micropython ${{ matrix.version }}"
           commit-message: "workflow update of frozen modules for micropython ${{ matrix.version }}"
