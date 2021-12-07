@@ -32,7 +32,7 @@ jobs:
         shell: bash
         working-directory: ${{github.workspace}}/micropython-stubber
   # Steps represent a sequence of tasks that will be executed as part of the job
-    s teps:
+    steps:
 
       - name: Checkout stubs repo
         uses: actions/checkout@v2
