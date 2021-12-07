@@ -118,9 +118,10 @@ jobs:
           author: "jos Verlinde <jos_verlinde@hotmail.com>"
           labels: |
             automated pr
-            frozen stubs
+            frozen stubs 
             micropython
             ${{ matrix.version }}
           assignees: josverl
-          auto-merge: squash          
+          auto-merge: merge
+          path: stubs
 
