@@ -1,14 +1,19 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "firmware": "micropython-esp8266-1_9_3",
-        "machine": "micropython",
-        "nodename": "micropython",
-        "platform": "esp8266",
         "port": "esp8266",
+        "platform": "esp8266",
+        "machine": "",
+        "firmware": "micropython-esp8266-1_9_3",
+        "nodename": "micropython",
+        "version": "v1.9.3",
         "release": "v1.9.3",
-        "sysname": "micropython",
-        "version": "v1.9.3"
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.3.8",
+        "stubtype": "frozen"
     },
     "modules": [
         {
@@ -71,8 +76,5 @@
             "file": "websocket_helper.py",
             "module": "websocket_helper"
         }
-    ],
-    "stubber": {
-        "version": "1.3.7"
-    }
+    ]
 }
