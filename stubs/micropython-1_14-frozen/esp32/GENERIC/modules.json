@@ -1,14 +1,19 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "firmware": "micropython-esp32-1_14",
-        "machine": "micropython",
-        "nodename": "micropython",
-        "platform": "esp32",
         "port": "esp32",
+        "platform": "esp32",
+        "machine": "GENERIC",
+        "firmware": "micropython-esp32-1_14",
+        "nodename": "micropython",
+        "version": "v1.14",
         "release": "v1.14",
-        "sysname": "micropython",
-        "version": "v1.14"
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.3.8",
+        "stubtype": "frozen"
     },
     "modules": [
         {
@@ -48,6 +53,30 @@
             "module": "onewire"
         },
         {
+            "file": "uasyncio\\__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio\\core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio\\event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio\\funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio\\lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio\\stream.py",
+            "module": "stream"
+        },
+        {
             "file": "upip.py",
             "module": "upip"
         },
@@ -67,8 +96,5 @@
             "file": "websocket_helper.py",
             "module": "websocket_helper"
         }
-    ],
-    "stubber": {
-        "version": "1.3.7"
-    }
+    ]
 }
