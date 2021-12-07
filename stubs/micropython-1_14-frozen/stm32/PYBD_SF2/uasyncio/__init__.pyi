@@ -1,6 +1,7 @@
+from .core import *
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
-def __getattr__(attr: Any) -> Any: ...
-    #   0: return value
-    # ? 0: return value
+__version__: Any
+_attrs: Any
+
+def __getattr__(attr): ...

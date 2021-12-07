@@ -37,31 +37,3 @@ def clean_version(
         if not version.startswith("v"):
             version = "v" + version
     return version
-
-
-# def __test():
-# print(clean_version("1.9.3"))
-# print(clean_version("-"))
-#     print(clean_version("1.9.3"))
-#     print(clean_version("v1.9.3"))
-#     print(clean_version("v1.10.0"))
-#     print(clean_version("v1.13.0"))
-#     print(clean_version("v1.13.0-103-gb137d064e"))
-#     print(clean_version("v1.13.0-103-gb137d064e", patch=True))
-#     print(clean_version("v1.13.0-103-gb137d064e", patch=True, build=True))
-#     print(clean_version("v1.13.0-103-gb137d064e", patch=True, build=True, commit=True))
-#     print(
-#         clean_version(
-#             "v1.13.0-103-gb137d064e", patch=True, build=True, commit=True, flat=True
-#         )
-#     )
-#     print(
-#         clean_version(
-#             "v1.13.0-103-gb137d064e",
-#             patch=True,
-#             build=True,
-#             commit=True,
-#             flat=True,
-#             drop_v=True,
-#         )
-#     )
