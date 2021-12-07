@@ -34,14 +34,11 @@ jobs:
   # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-
-
       - name: Checkout stubs repo
         uses: actions/checkout@v2
         with:
           repository: josverl/micropython-stubs
-          path: micropython-stubs
-
+          # path: micropython-stubs
 
       - name: Checkout Stubber
         uses: actions/checkout@v2
