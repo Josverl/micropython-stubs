@@ -1,5 +1,14 @@
+########################################################################################################################################
 # This will attempt to retrieve and generate stubs from all known versions of MicroPython
-
+########################################################################################################################################
+# Check out repos in this structure 
+# micropython-stubs
+#     + - stubs [ <-- Alias: all-stubs]
+#   +-- micropython-stubber
+#       +-- micropython
+#        -- micropython-lib
+# repro structure needed to allow automatic PR creation to work
+########################################################################################################################################
 name: get-all-frozen
 
 on:
@@ -8,8 +17,8 @@ on:
     - cron: "0 1 * * *"   # Run everyday at 01:00
 
 jobs:
-  # job prepare sets everything up 
-  get-frozen:
+  ########################################################################################################################################
+  get-micropython-frozen:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -22,48 +31,108 @@ jobs:
       run:
         shell: bash
         working-directory: ${{github.workspace}}/micropython-stubber
-  # Steps represent a sequence of tasks that will be executed as part of the job
+  
     steps:
 
-      ######################################
-      # Check out repos side-by-side:
-      # micropython-stubs
-      # micropython-stubber
-      # micropython
-      # micropython-lib
-      ######################################
+      - name: Checkout stubs repo
+        uses: actions/checkout@v2
 
-      - name: Checkout 
+      - name: Checkout Stubber
         uses: actions/checkout@v2
         with:
           repository: josverl/micropython-stubber
           path: micropython-stubber
-          submodules: recursive
-          
+
+      - name: Checkout stubber submodules
+        working-directory: ${{github.workspace}}/micropython-stubber
+        run: git submodule update --init 
+
+      - name: sync with micropython upstream 
+        working-directory: ${{github.workspace}}/micropython-stubber/micropython
+        run: |
+          git remote add --tags micropython https://github.com/micropython/micropython.git
+          git fetch --all --tags
+
+      # micropython as a sub-module of micropython-stubber 
+      - name: checkout micropython - sub level ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython-stubber/micropython
+        run: |
+          git checkout ${{ matrix.version }}
+
+      # if micropython older than v1.16 , need older micropython-lib version 
+      # there are no tags on micropython-lib to synchronize 
+      # just use 
+      # v1.15 or older :  git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd
+      - name: checkout micropython-lib - sub level ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython-stubber/micropython-lib
+        shell: pwsh
+        run: |
+          $version = "${{ matrix.version }}".replace('v','')
+          if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
+     
+      # make Python work
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: restore Python from cache 
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements-dev.txt') }}
+
+      - name: Install Python dependencies (stubber)
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      ######################################
+      # This is where the actual work starts
+      ######################################
+
+      - name: Get frozen modules for ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython-stubber
+        run: |
+          python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --mpy 
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        # ref: https://github.com/peter-evans/create-pull-request
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
+          title: "Add/update MicroPython ${{ matrix.version }} stubs"
+          commit-message: add/update MicroPython ${{ matrix.version }} stubs
+          branch: "micropython-${{ matrix.version }}-stubs"
+          reviewers: josverl
+          labels: |
+            automated pr
+            frozen stubs 
+            MicroPython
+            ${{ matrix.version }}
+          delete-branch: true
+  ########################################################################################################################################
+  get-core-cpython-stubs:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Most scripts will be run from the stubber, set that as default
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{github.workspace}}/micropython-stubber
+  
+    steps:
 
       - name: Checkout stubs repo
         uses: actions/checkout@v2
-        with:
-          repository: josverl/micropython-stubs
-          path: micropython-stubs
 
-      - name: Checkout micropython-lib repo
+      - name: Checkout Stubber
         uses: actions/checkout@v2
         with:
-          repository: micropython/micropython-lib
-          path: micropython-lib
-
-      - name: Checkout micropython
-        uses: actions/checkout@v2
-        with:
-          repository: micropython/micropython
-          path: micropython
-          fetch-depth: 0
-
-      # simplify processing using symlink 
-      - name: create symlink for all-stubs
-        run: |
-          ln -s ${{github.workspace}}/micropython-stubs/stubs all-stubs --force
+          repository: josverl/micropython-stubber
+          path: micropython-stubber
 
       # make Python work
       - name: Set up Python 3.8
@@ -77,53 +146,98 @@ jobs:
           path: ${{ env.pythonLocation }}
           key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements-dev.txt') }}
 
-      - name: Install Python dependencies
+      - name: Install Python dependencies (stubber)
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
 
       ######################################
       # This is where the actual work starts
       ######################################
-      # top level 
-      - name: checkout micropython - top level ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython
-        run: |
-          git checkout tags/${{ matrix.version }}
-      # micropython as a sub-module of micropython-stubber 
-      # Q&D do both levels - more than needed 
-      - name: checkout micropython - sub level ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython-stubber/micropython
-        run: |
-          git checkout tags/${{ matrix.version }}
 
       - name: Get frozen modules for ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython-stubber
         run: |
-          python ./src/get_all_frozen.py
-
-      - name: Update stubs with .pyi ${{ matrix.version }}
-        run: |
-          python ./src/update_stubs.py
+          python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --core
 
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
-          path: micropython-stubs
-          title: 'add frozen modules for micropython ${{ matrix.version }}'
-          commit-message: add/update frozen modules for micropython ${{ matrix.version }}
-          branch: micropython-frozen-${{ matrix.version }}
+          token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
+          title: "add/update MicroPython core stubs"
+          commit-message: add/update MicroPython core stubs
+          branch: "micropython-core-stubs"
+          reviewers: josverl
+          labels: |
+            automated pr
+            CPython
+            MicroPython
+          delete-branch: true
+
+
+  ########################################################################################################################################
+  get-loboris-frozen-stubs:
+    runs-on: ubuntu-latest
+
+    # Most scripts will be run from the stubber, set that as default
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{github.workspace}}/micropython-stubber
+    
+    steps:
+
+      - name: Checkout stubs repo
+        uses: actions/checkout@v2
+
+      - name: Checkout Stubber
+        uses: actions/checkout@v2
+        with:
+          repository: josverl/micropython-stubber
+          path: micropython-stubber
+
+      # make Python work
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: restore Python from cache 
+        uses: actions/cache@v2
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements-dev.txt') }}
+
+      - name: Install Python dependencies (stubber)
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      ######################################
+      # This is where the actual work starts
+      ######################################
+
+      - name: Get frozen modules for ${{ matrix.version }}
+        working-directory: ${{github.workspace}}/micropython-stubber
+        run: |
+          python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --lobo
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        # ref: https://github.com/peter-evans/create-pull-request
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
+          title: "add/update Loboris frozen stubs"
+          commit-message: add/update Loboris frozen stubs
+          branch: "micropython-core-stubs"
           reviewers: josverl
           labels: |
             automated pr
             frozen stubs
-            micropython
-            ${{ matrix.version }}
+            Loboris
           delete-branch: true
+  ########################################################################################################################################
 
-      - name: exit gracefully
-        run: |
-          echo 'avoid throwing a fit when an existing PR was updated'
-        if: always()
