@@ -56,7 +56,7 @@ jobs:
       # micropython as a sub-module of micropython-stubber 
       - name: checkout micropython - sub level ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
-        if: ${{ matrix.version }} != "Latest"
+        if: ${{ matrix.version != "Latest" }}
         run: |
           git checkout ${{ matrix.version }}
 
@@ -67,7 +67,7 @@ jobs:
       - name: checkout micropython-lib - sub level ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber/micropython-lib
         shell: pwsh
-        if: ${{ matrix.version }} != "Latest"
+        if: ${{ matrix.version != "Latest" }}
         run: |
           $version = "${{ matrix.version }}".replace('v','')
           if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
