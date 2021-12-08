@@ -112,7 +112,7 @@ jobs:
           reviewers: josverl
           labels: |
             automated pr
-            Documentation stubs 
+            Doc stubs 
             MicroPython
             ${{ matrix.version }}
           delete-branch: true
