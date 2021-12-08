@@ -1,13 +1,14 @@
 
 # Stubs by type 
 
-|Type|family|version|port| # |stubber version|stub folder 
-|-|-|-|-|-|-|-
-{%+ for info in info_list|sort(attribute="type,family,version,port,path") %}
-|{{ info.type }}|{{ info.family}} | {{ info.version }} | {{info.port}} | {{ info.module_count }} | {{ info.stubber_version }}|[{{ info.path }}](https://github.com/Josverl/micropython-stubs/tree/master/{{ info.path }})
+v2
+
+|Type|family|version|port|board| # |stubber version|stub folder 
+|----|------|-------|----|-----|---|---------------|-----
+{%+ for info in info_list|sort(attribute="type,family,version,port,board,path") %}
+|{{ info.type }}| {{ info.family}}| {{ info.version }}| {{info.port}}| {{info.board}}| {{ info.module_count }}| {{ info.stubber_version }}|[{{ info.path }}](https://github.com/Josverl/micropython-stubs/tree/master/{{ info.path }})
 {%+ endfor %}
 
 
 Total modules  {{ info_list | sum(attribute='module_count') }}
-
 

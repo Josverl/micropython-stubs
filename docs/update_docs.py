@@ -45,7 +45,7 @@ def read_manifests(workspace_root: Path):
 
         # for frozen modules use the parent folder name (stm32, esp32, rp2) to identify the system
         # todo: update logic in generating the frozen manifest files
-        if "-frozen" in file.as_posix():
+        if stub_type == "frozen":
             sysname = file.parent.parent.name + "-" + file.parent.name
         else:
             sysname = firmware["sysname"]
@@ -53,12 +53,13 @@ def read_manifests(workspace_root: Path):
         fw = defaultdict(
             lambda: "-",
             {
+                "type": stub_type,
                 "family": firmware["family"] or "micropython",
                 "version": clean_version(firmware["version"] or "-"),
                 # version without v-prefix
                 # "bare_version": clean_version(firmware["version"] or "-", drop_v=True),
                 "port": firmware["port"] or "-",
-                "variant": firmware["variant"] or "",
+                "board": firmware["machine"] or "generic",
                 "type": stub_type,
                 "sysname": sysname,
                 "module_count": module_count,
