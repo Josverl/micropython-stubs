@@ -1,7 +1,5 @@
+NTP_DELTA: int
+host: str
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
-def time() -> Any: ...
-    #   0: return val-NTP_DELTA
-    # ? 0: return val-NTP_DELTA
+def time(): ...
 def settime() -> None: ...

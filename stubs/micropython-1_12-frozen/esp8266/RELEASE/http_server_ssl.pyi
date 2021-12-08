@@ -1,4 +1,7 @@
+from typing import Any
 
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
-Node = Any
-def main(use_stream: Any=) -> None: ...
+key: Any
+cert: Any
+CONTENT: bytes
+
+def main(use_stream: bool = ...) -> None: ...
