@@ -3,7 +3,7 @@
 ########################################################################################################################################
 # Check out repos in this structure 
 # micropython-stubs
-#     + - stubs [ <-- Alias: all-stubs]
+#     + - stubs 
 #   +-- micropython-stubber
 #       +-- micropython
 #        -- micropython-lib
@@ -55,8 +55,8 @@ jobs:
 
       # micropython as a sub-module of micropython-stubber 
       - name: checkout micropython - sub level ${{ matrix.version }}
+        if: matrix.version!='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
-        if: ${{ matrix.version != "Latest" }}
         run: |
           git checkout ${{ matrix.version }}
 
@@ -65,9 +65,9 @@ jobs:
       # just use 
       # v1.15 or older :  git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd
       - name: checkout micropython-lib - sub level ${{ matrix.version }}
+        if: matrix.version!='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython-lib
         shell: pwsh
-        if: ${{ matrix.version != "Latest" }}
         run: |
           $version = "${{ matrix.version }}".replace('v','')
           if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
