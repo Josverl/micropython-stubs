@@ -26,7 +26,7 @@ jobs:
       matrix:
         # version: ['v1.9.3','v1.9.4','v1.10','v1.11','v1.12','v1.13','v1.14','v1.15','v1.16','v1.17','v1.18','v1.19','v2.0','Latest']
         # version: ['v1.17','Latest','fix_lib_documentation']
-        version: ['v1.17',]
+        version: ['v1.15','v1.16','v1.17','Latest','fix_lib_documentation']
 
     # Most scripts will be run from the stubber, set that as default
     defaults:
@@ -62,17 +62,17 @@ jobs:
         run: |
           git checkout ${{ matrix.version }}
 
-      # if micropython older than v1.16 , need older micropython-lib version 
-      # there are no tags on micropython-lib to synchronize 
-      # just use 
-      # v1.15 or older :  git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd
-      - name: checkout micropython-lib - sub level ${{ matrix.version }}
-        if: matrix.version!='Latest'
-        working-directory: ${{github.workspace}}/micropython-stubber/micropython-lib
-        shell: pwsh
-        run: |
-          $version = "${{ matrix.version }}".replace('v','')
-          if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
+      # # if micropython older than v1.16 , need older micropython-lib version 
+      # # there are no tags on micropython-lib to synchronize 
+      # # just use 
+      # # v1.15 or older :  git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd
+      # - name: checkout micropython-lib - sub level ${{ matrix.version }}
+      #   if: matrix.version!='Latest'
+      #   working-directory: ${{github.workspace}}/micropython-stubber/micropython-lib
+      #   shell: pwsh
+      #   run: |
+      #     $version = "${{ matrix.version }}".replace('v','')
+      #     if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
      
       # make Python work
       - name: Set up Python 3.8
@@ -98,7 +98,7 @@ jobs:
       - name: Get frozen modules for ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber
         run: |
-          python ./src/stubs_from_docs.py  --stub-folder ${{github.workspace}}/stubs 
+          python ./src/stubs_from_docs.py --stub-folder ${{github.workspace}}/stubs 
 
       - name: Create Pull Request
         id: cpr
@@ -107,12 +107,12 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
           title: "Add/update MicroPython ${{ matrix.version }} documentation stubs"
-          commit-message: add/update MicroPython ${{ matrix.version }} documentationstubs
+          commit-message: add/update MicroPython ${{ matrix.version }} documentation stubs
           branch: "micropython-${{ matrix.version }}-doc-stubs"
           reviewers: josverl
           labels: |
             automated pr
-            frozen stubs 
+            Documentation stubs 
             MicroPython
             ${{ matrix.version }}
           delete-branch: true
