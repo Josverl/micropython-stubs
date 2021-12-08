@@ -80,7 +80,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements-dev.txt') }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements-dev.txt') }}-${{ hashFiles('micropython-stubber/requirements.txt') }}
 
       - name: Install Python dependencies (stubber)
         run: |
