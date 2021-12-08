@@ -1,0 +1,60 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "",
+        "platform": "",
+        "machine": "GENERIC",
+        "firmware": "micropython--1_17-Latest",
+        "nodename": "micropython",
+        "version": "v1.17-Latest",
+        "release": "v1.17-Latest",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.3.8",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "frzmpy1.py",
+            "module": "frzmpy1"
+        },
+        {
+            "file": "frzmpy2.py",
+            "module": "frzmpy2"
+        },
+        {
+            "file": "frzmpy_pkg1/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "frzmpy_pkg2/mod.py",
+            "module": "mod"
+        },
+        {
+            "file": "frzqstr.py",
+            "module": "frzqstr"
+        },
+        {
+            "file": "frzstr1.py",
+            "module": "frzstr1"
+        },
+        {
+            "file": "frzstr_pkg1/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "frzstr_pkg2/mod.py",
+            "module": "mod"
+        },
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        }
+    ]
+}
