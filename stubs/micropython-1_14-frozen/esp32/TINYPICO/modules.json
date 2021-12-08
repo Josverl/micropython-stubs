@@ -61,27 +61,27 @@
             "module": "tinypico"
         },
         {
-            "file": "uasyncio\\__init__.py",
+            "file": "uasyncio/__init__.py",
             "module": "__init__"
         },
         {
-            "file": "uasyncio\\core.py",
+            "file": "uasyncio/core.py",
             "module": "core"
         },
         {
-            "file": "uasyncio\\event.py",
+            "file": "uasyncio/event.py",
             "module": "event"
         },
         {
-            "file": "uasyncio\\funcs.py",
+            "file": "uasyncio/funcs.py",
             "module": "funcs"
         },
         {
-            "file": "uasyncio\\lock.py",
+            "file": "uasyncio/lock.py",
             "module": "lock"
         },
         {
-            "file": "uasyncio\\stream.py",
+            "file": "uasyncio/stream.py",
             "module": "stream"
         },
         {

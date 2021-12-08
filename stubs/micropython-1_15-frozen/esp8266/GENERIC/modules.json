@@ -1,14 +1,19 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "firmware": "micropython-esp8266-1_15",
-        "machine": "micropython",
-        "nodename": "micropython",
-        "platform": "esp8266",
         "port": "esp8266",
+        "platform": "esp8266",
+        "machine": "GENERIC",
+        "firmware": "micropython-esp8266-1_15",
+        "nodename": "micropython",
+        "version": "v1.15",
         "release": "v1.15",
-        "sysname": "micropython",
-        "version": "v1.15"
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.3.8",
+        "stubtype": "frozen"
     },
     "modules": [
         {
@@ -18,6 +23,14 @@
         {
             "file": "apa102.py",
             "module": "apa102"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
         },
         {
             "file": "flashbdev.py",
@@ -36,11 +49,80 @@
             "module": "ntptime"
         },
         {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
             "file": "port_diag.py",
             "module": "port_diag"
+        },
+        {
+            "file": "ssd1306.py",
+            "module": "ssd1306"
+        },
+        {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "umqtt/robust.py",
+            "module": "robust"
+        },
+        {
+            "file": "umqtt/simple.py",
+            "module": "simple"
+        },
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        },
+        {
+            "file": "upysh.py",
+            "module": "upysh"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
+            "file": "urllib/urequest.py",
+            "module": "urequest"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        },
+        {
+            "file": "websocket_helper.py",
+            "module": "websocket_helper"
         }
-    ],
-    "stubber": {
-        "version": "1.3.7"
-    }
+    ]
 }
