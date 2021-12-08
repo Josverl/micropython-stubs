@@ -24,7 +24,7 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        version: ['v1.9.3','v1.9.4','v1.10','v1.11','v1.12','v1.13','v1.14','v1.15','v1.16','v1.17','v1.18','v1.19','v2.0']
+        version: ['v1.9.3','v1.9.4','v1.10','v1.11','v1.12','v1.13','v1.14','v1.15','v1.16','v1.17','v1.18','v1.19','v2.0','Latest']
 
     # Most scripts will be run from the stubber, set that as default
     defaults:
@@ -56,6 +56,7 @@ jobs:
       # micropython as a sub-module of micropython-stubber 
       - name: checkout micropython - sub level ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
+        if: ${{ matrix.version }} != "Latest"
         run: |
           git checkout ${{ matrix.version }}
 
@@ -66,6 +67,7 @@ jobs:
       - name: checkout micropython-lib - sub level ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber/micropython-lib
         shell: pwsh
+        if: ${{ matrix.version }} != "Latest"
         run: |
           $version = "${{ matrix.version }}".replace('v','')
           if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
