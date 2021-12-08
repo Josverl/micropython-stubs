@@ -2,10 +2,10 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "port": "esp32",
-        "platform": "esp32",
-        "machine": "GENERIC",
-        "firmware": "micropython-esp32-1_15",
+        "port": "stm32",
+        "platform": "stm32",
+        "machine": "PYBD_SF2",
+        "firmware": "micropython-stm32-1_15",
         "nodename": "micropython",
         "version": "v1.15",
         "release": "v1.15",
@@ -17,36 +17,16 @@
     },
     "modules": [
         {
-            "file": "_boot.py",
-            "module": "_boot"
-        },
-        {
-            "file": "apa106.py",
-            "module": "apa106"
-        },
-        {
             "file": "dht.py",
             "module": "dht"
         },
         {
-            "file": "ds18x20.py",
-            "module": "ds18x20"
+            "file": "lcd160cr.py",
+            "module": "lcd160cr"
         },
         {
-            "file": "flashbdev.py",
-            "module": "flashbdev"
-        },
-        {
-            "file": "inisetup.py",
-            "module": "inisetup"
-        },
-        {
-            "file": "neopixel.py",
-            "module": "neopixel"
-        },
-        {
-            "file": "ntptime.py",
-            "module": "ntptime"
+            "file": "lcd160cr_test.py",
+            "module": "lcd160cr_test"
         },
         {
             "file": "onewire.py",
@@ -75,14 +55,6 @@
         {
             "file": "uasyncio/stream.py",
             "module": "stream"
-        },
-        {
-            "file": "upip.py",
-            "module": "upip"
-        },
-        {
-            "file": "upip_utarfile.py",
-            "module": "upip_utarfile"
         },
         {
             "file": "webrepl.py",
