@@ -90,6 +90,25 @@
 |micropython |v1.17   |frozen  |rp2|GENERIC|10|1.3.8|[stubs/micropython-1_17-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-frozen/rp2/GENERIC)
 |micropython |v1.17   |frozen  |stm32|GENERIC|10|1.3.8|[stubs/micropython-1_17-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-frozen/stm32/GENERIC)
 |micropython |v1.17   |frozen  |stm32|PYBD_SF2|13|1.3.8|[stubs/micropython-1_17-frozen/stm32/PYBD_SF2](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-frozen/stm32/PYBD_SF2)
+|micropython |v1.17-La|frozen  |-|GENERIC|10|1.3.8|[stubs/micropython-1_17-Latest-frozen/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/GENERIC)
+|micropython |v1.17-La|frozen  |esp32|GENERIC|20|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/GENERIC)
+|micropython |v1.17-La|frozen  |esp32|LOLIN_S2_MINI|21|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_MINI](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_MINI)
+|micropython |v1.17-La|frozen  |esp32|LOLIN_S2_PICO|23|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_PICO](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_PICO)
+|micropython |v1.17-La|frozen  |esp32|M5STACK_ATOM|21|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/M5STACK_ATOM](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/M5STACK_ATOM)
+|micropython |v1.17-La|frozen  |esp32|RELEASE|24|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/RELEASE](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/RELEASE)
+|micropython |v1.17-La|frozen  |esp32|UM_FEATHERS2|22|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/UM_FEATHERS2](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/UM_FEATHERS2)
+|micropython |v1.17-La|frozen  |esp32|UM_FEATHERS2NEO|21|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/UM_FEATHERS2NEO](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/UM_FEATHERS2NEO)
+|micropython |v1.17-La|frozen  |esp32|UM_TINYPICO|22|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/UM_TINYPICO](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/UM_TINYPICO)
+|micropython |v1.17-La|frozen  |esp32|UM_TINYS2|21|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/UM_TINYS2](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/UM_TINYS2)
+|micropython |v1.17-La|frozen  |esp8266|GENERIC|27|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp8266/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp8266/GENERIC)
+|micropython |v1.17-La|frozen  |esp8266|GENERIC_512K|11|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp8266/GENERIC_512K](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp8266/GENERIC_512K)
+|micropython |v1.17-La|frozen  |mimxrt|GENERIC|10|1.3.8|[stubs/micropython-1_17-Latest-frozen/mimxrt/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/mimxrt/GENERIC)
+|micropython |v1.17-La|frozen  |rp2|ARDUINO_NANO_RP2040_CONNECT|21|1.3.8|[stubs/micropython-1_17-Latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT)
+|micropython |v1.17-La|frozen  |rp2|GENERIC|11|1.3.8|[stubs/micropython-1_17-Latest-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/rp2/GENERIC)
+|micropython |v1.17-La|frozen  |samd|GENERIC|1|1.3.8|[stubs/micropython-1_17-Latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/samd/GENERIC)
+|micropython |v1.17-La|frozen  |stm32|GARATRONIC_PYBSTICK26_F411|7|1.3.8|[stubs/micropython-1_17-Latest-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
+|micropython |v1.17-La|frozen  |stm32|GENERIC|10|1.3.8|[stubs/micropython-1_17-Latest-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/stm32/GENERIC)
+|micropython |v1.17-La|frozen  |stm32|PYBD_SF2|13|1.3.8|[stubs/micropython-1_17-Latest-frozen/stm32/PYBD_SF2](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/stm32/PYBD_SF2)
 |micropython |v1.3.8  |frozen  |common|common|24|1.3.8|[stubs/cpython_core](https://github.com/Josverl/micropython-stubs/tree/master/stubs/cpython_core)
 |micropython |v1.9.3  |frozen  |esp8266|generic|15|1.3.8|[stubs/micropython-1_9_3-frozen/esp8266/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_9_3-frozen/esp8266/GENERIC)
 |micropython |v1.9.3  |frozen  |stm32|generic|3|1.3.8|[stubs/micropython-1_9_3-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_9_3-frozen/stm32/GENERIC)
@@ -140,4 +159,4 @@
 
 ## Metrics
 
-Total stub modules:  2658
+Total stub modules:  2974
