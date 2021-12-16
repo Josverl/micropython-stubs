@@ -99,7 +99,6 @@ jobs:
           python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --mpy 
 
       - name: Create Pull Request
-        id: cpr
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
@@ -163,7 +162,6 @@ jobs:
           python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --core
 
       - name: Create Pull Request
-        id: cpr
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
@@ -227,7 +225,6 @@ jobs:
           python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --lobo
 
       - name: Create Pull Request
-        id: cpr
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
