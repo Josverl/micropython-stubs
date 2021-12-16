@@ -231,7 +231,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
           title: "add/update Loboris frozen stubs"
           commit-message: add/update Loboris frozen stubs
-          branch: "micropython-core-stubs"
+          branch: "micropython-lobo-stubs"
           reviewers: josverl
           labels: |
             automated pr
