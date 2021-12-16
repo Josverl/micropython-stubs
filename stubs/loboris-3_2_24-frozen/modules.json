@@ -1,14 +1,19 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "loboris",
-        "firmware": "loboris-frozen-3_2_24",
-        "machine": "loboris",
-        "nodename": "loboris",
-        "platform": "frozen",
         "port": "esp32",
+        "platform": "esp32",
+        "machine": "",
+        "firmware": "loboris-esp32-3_2_24",
+        "nodename": "loboris",
+        "version": "3.2.24",
         "release": "3.2.24",
-        "sysname": "loboris",
-        "version": "v3.2.24"
+        "sysname": "loboris"
+    },
+    "stubber": {
+        "version": "1.3.8",
+        "stubtype": "frozen"
     },
     "modules": [
         {
@@ -79,8 +84,5 @@
             "file": "writer.py",
             "module": "writer"
         }
-    ],
-    "stubber": {
-        "version": "1.3.7"
-    }
+    ]
 }
