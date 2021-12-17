@@ -91,6 +91,7 @@
 |micropython |v1.17   |frozen  |stm32|GENERIC|10|1.3.8|[stubs/micropython-1_17-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-frozen/stm32/GENERIC)
 |micropython |v1.17   |frozen  |stm32|PYBD_SF2|13|1.3.8|[stubs/micropython-1_17-frozen/stm32/PYBD_SF2](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-frozen/stm32/PYBD_SF2)
 |micropython |v1.17-La|frozen  |-|GENERIC|10|1.3.8|[stubs/micropython-1_17-Latest-frozen/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/GENERIC)
+|micropython |v1.17-La|documentation|-|generic|41|1.3.8|[stubs/micropython-v1_17-Latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-v1_17-Latest-docstubs)
 |micropython |v1.17-La|frozen  |esp32|GENERIC|20|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/GENERIC)
 |micropython |v1.17-La|frozen  |esp32|LOLIN_S2_MINI|21|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_MINI](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_MINI)
 |micropython |v1.17-La|frozen  |esp32|LOLIN_S2_PICO|23|1.3.8|[stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_PICO](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_PICO)
@@ -126,8 +127,8 @@
 ## Loboris 
 |family | version | type    |port |board |count | stubber version|path
 |-------|---------|---------|-----|------|-----:|-|----
+|loboris     |v3.2.24 |frozen  |esp32|generic|17|1.3.8|[stubs/loboris-3_2_24-frozen](https://github.com/Josverl/micropython-stubs/tree/master/stubs/loboris-3_2_24-frozen)
 |loboris     |v3.2.24 |board   |esp32|ESP32 board with ESP32|68|1.0.0|[stubs/loboris-esp32_lobo-3_2_24](https://github.com/Josverl/micropython-stubs/tree/master/stubs/loboris-esp32_lobo-3_2_24)
-|loboris     |v3.2.24 |frozen  |esp32|loboris|17|1.3.7|[stubs/loboris-esp32_lobo_3_2_24-frozen](https://github.com/Josverl/micropython-stubs/tree/master/stubs/loboris-esp32_lobo_3_2_24-frozen)
 |loboris     |v3.2.9  |board   |esp32|ESP32 board with ESP32|68|1.1.2|[stubs/loboris-esp32_lobo-3_2_9](https://github.com/Josverl/micropython-stubs/tree/master/stubs/loboris-esp32_lobo-3_2_9)
 
 (lvgl-stubs)=
@@ -159,4 +160,4 @@
 
 ## Metrics
 
-Total stub modules:  2974
+Total stub modules:  3015
