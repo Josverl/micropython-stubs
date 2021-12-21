@@ -79,11 +79,11 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: restore Python from cache 
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('micropython-stubber/requirements.txt') }}
+      #- name: restore Python from cache 
+      #  uses: actions/cache@v2
+      #  with:
+      #    path: ${{ env.pythonLocation }}
+      #    key: ${{ env.pythonLocation }}-${{ hashFiles('micropython-stubber/requirements.txt') }}
 
       - name: Install Python dependencies (stubber)
         run: |
