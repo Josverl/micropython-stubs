@@ -34,6 +34,7 @@ def clean_version(
     if drop_v:
         version = version.lstrip("v")
     else:
-        if not version.startswith("v"):
+        # prefix with `v` but not before latest
+        if not version.startswith("v") and version.lower() != "latest":
             version = "v" + version
     return version
