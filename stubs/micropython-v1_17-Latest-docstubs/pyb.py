@@ -1,10 +1,10 @@
 """
-functions related to the board. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/pyb.html
+functions related to the board. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/pyb.html
 
 The ``pyb`` module contains specific functions related to the board.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/pyb.rst
 # + module: pyb.Accel.rst
 # + module: pyb.ADC.rst
@@ -25,12 +25,6 @@ The ``pyb`` module contains specific functions related to the board.
 # + module: pyb.USB_HID.rst
 # + module: pyb.USB_VCP.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
-#    A tuple of (subclass, protocol, max packet length, polling interval, report descriptor) to set appropriate values for a USB
-#    mouse or keyboard.
-hid_mouse : int
-#    A tuple of (subclass, protocol, max packet length, polling interval, report descriptor) to set appropriate values for a USB
-#    mouse or keyboard.
-hid_keyboard : int
 class Accel():
     """
        Create and return an accelerometer object.
@@ -486,12 +480,6 @@ class DAC():
        to be less than 1.5MΩ.  Using the buffer incurs a penalty in accuracy,
        especially near the extremes of range.
     """
-    #    A tuple of (subclass, protocol, max packet length, polling interval, report descriptor) to set appropriate values for a USB
-    #    mouse or keyboard.
-    NORMAL : int
-    #    A tuple of (subclass, protocol, max packet length, polling interval, report descriptor) to set appropriate values for a USB
-    #    mouse or keyboard.
-    CIRCULAR : int
     def __init__(self, port, bits=8, *, buffering=None) -> None:
         ...
     def init(self, bits=8, *, buffering=None) -> Any:
@@ -1232,12 +1220,6 @@ class Timer():
        arguments are given, then the timer is initialised by ``init(...)``.
        ``id`` can be 1 to 14.
     """
-    #    Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0.
-    UP : int
-    #    Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0.
-    DOWN : int
-    #    Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0.
-    CENTER : int
     def __init__(self, id, *args) -> None:
         ...
     def init(self, *, freq, prescaler, period, mode=UP, div=1, callback=None, deadtime=0) -> None:
@@ -1445,7 +1427,6 @@ class timerchannel():
            for which the pulse is active.  The value can be an integer or
            floating-point number for more accuracy.  For example, a value of 25 gives
            a duty cycle of 25%.
-        
         """
         ...
 class UART():

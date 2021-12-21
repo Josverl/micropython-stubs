@@ -1,8 +1,8 @@
 """
-access and control MicroPython internals. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/micropython.html
+access and control MicroPython internals. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/micropython.html
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/micropython.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 def const(expr) -> Any:

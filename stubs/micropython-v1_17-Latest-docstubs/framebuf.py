@@ -1,11 +1,11 @@
 """
-Frame buffer manipulation. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/framebuf.html
+Frame buffer manipulation. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/framebuf.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 #     Monochrome (1-bit) color format

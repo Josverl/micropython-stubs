@@ -1,5 +1,5 @@
 """
-asynchronous I/O scheduler for writing concurrent code. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/uasyncio.html
+asynchronous I/O scheduler for writing concurrent code. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/uasyncio.html
 
 |see_cpython_module|
 `asyncio `<https://docs.python.org/3.8/library/asyncio.html>
@@ -29,7 +29,7 @@ Example::
     uasyncio.run(main(Pin(1), Pin(2)))
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/uasyncio.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 class Task():
@@ -44,8 +44,9 @@ class Task():
         ...
     def cancel(self) -> None:
         """
-            Cancel the task by injecting a ``CancelledError`` into it.  The task may
-            or may not ignore this exception.
+            Cancel the task by injecting ``asyncio.CancelledError`` into it.  The task may
+            ignore this exception.  Cleanup code may be run by trapping it, or via
+            ``try ... finally``.
         """
         ...
 class Event():
@@ -317,11 +318,13 @@ def sleep_ms(t) -> Coroutine[Any, Any, Any]:
 def wait_for(awaitable, timeout) -> Coroutine[Any, Any, Any]:
     """
         Wait for the *awaitable* to complete, but cancel it if it takes longer
-        that *timeout* seconds.  If *awaitable* is not a task then a task will be
+        than *timeout* seconds.  If *awaitable* is not a task then a task will be
         created from it.
     
         If a timeout occurs, it cancels the task and raises ``asyncio.TimeoutError``:
-        this should be trapped by the caller.
+        this should be trapped by the caller.  The task receives
+        ``asyncio.CancelledError`` which may be ignored or trapped using ``try...except``
+        or ``try...finally`` to run cleanup code.
     
         Returns the return value of *awaitable*.
     

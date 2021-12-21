@@ -1,5 +1,5 @@
 """
-heap queue algorithm. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/heapq.html
+heap queue algorithm. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/heapq.html
 
 |see_cpython_module| :mod:`python:heapq` https://docs.python.org/3/library/heapq.html .
 
@@ -10,7 +10,7 @@ A heap queue is essentially a list that has its elements stored in such a way
 that the first item of the list is always the smallest.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/heapq.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 def heappush(heap, item) -> Any:

@@ -1,5 +1,5 @@
 """
-JSON encoding and decoding. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/json.html
+JSON encoding and decoding. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/json.html
 
 |see_cpython_module| :mod:`python:json` https://docs.python.org/3/library/json.html .
 
@@ -7,7 +7,7 @@ This modules allows to convert between Python objects and the JSON
 data format.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/json.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 def dump(obj, stream, separators=None) -> Any:

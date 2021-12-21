@@ -1,5 +1,5 @@
 """
-functionality specific to the ESP32. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/esp32.html
+functionality specific to the ESP32. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/esp32.html
 
 The ``esp32`` module contains functions and classes specifically aimed at
 controlling ESP32 modules.
@@ -7,7 +7,7 @@ controlling ESP32 modules.
 """
 
 # + module: esp32.rst
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/esp32.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 from __future__ import annotations

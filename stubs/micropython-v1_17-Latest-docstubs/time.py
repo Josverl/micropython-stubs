@@ -1,5 +1,5 @@
 """
-time related functions. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/time.html
+time related functions. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/time.html
 
 |see_cpython_module| :mod:`python:time` https://docs.python.org/3/library/time.html .
 
@@ -31,7 +31,7 @@ functions below which require reference to current absolute time may
 behave not as expected.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/time.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 class time():

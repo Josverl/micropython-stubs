@@ -1,5 +1,5 @@
 """
-binary/ASCII conversions. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/binascii.html
+binary/ASCII conversions. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/binascii.html
 
 |see_cpython_module| :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
 
@@ -7,7 +7,7 @@ This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/binascii.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 def hexlify(data, sep: Optional[Any]) -> bytes:

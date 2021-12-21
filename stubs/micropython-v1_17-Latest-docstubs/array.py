@@ -1,5 +1,5 @@
 """
-efficient arrays of numeric data. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/array.html
+efficient arrays of numeric data. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/array.html
 
 |see_cpython_module| :mod:`python:array` https://docs.python.org/3/library/array.html .
 
@@ -8,7 +8,7 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 floating-point support).
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/array.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 class array():

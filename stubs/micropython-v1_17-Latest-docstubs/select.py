@@ -1,5 +1,5 @@
 """
-wait for events on a set of streams. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/select.html
+wait for events on a set of streams. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/select.html
 
 |see_cpython_module| :mod:`python:select` https://docs.python.org/3/library/select.html .
 
@@ -7,7 +7,7 @@ This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/select.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 class select():
@@ -16,16 +16,11 @@ class select():
     
        This function is provided by some MicroPython ports for compatibility
        and is not efficient. Usage of :class:`Poll` is recommended instead.
-    
     """
     def __init__(self, rlist, wlist, xlist, timeout: Optional[Any]) -> None:
         ...
 class poll():
-    """
-    Create an instance of the `poll` class.
-    """
-    def __init__(self) -> None:
-        ...
+    """ """
     def register(self, obj, eventmask: Optional[Any]) -> None:
         """
            Register `stream` *obj* for polling. *eventmask* is logical OR of:
@@ -88,3 +83,8 @@ class poll():
            behaviour is useful for asynchronous I/O schedulers.
         """
         ...
+def poll() -> Any:
+    """
+       Create an instance of the Poll class.
+    """
+    ...

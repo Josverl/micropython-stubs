@@ -1,5 +1,5 @@
 """
-collection and container types. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/collections.html
+collection and container types. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/collections.html
 
 |see_cpython_module| :mod:`python:collections` https://docs.python.org/3/library/collections.html .
 
@@ -7,10 +7,24 @@ This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/collections.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 class deque():
+    """ """
+    def append(self, x) -> Any:
+        """
+                Add *x* to the right side of the deque.
+                Raises IndexError if overflow checking is enabled and there is no more room left.
+        """
+        ...
+    def popleft(self) -> Any:
+        """
+                Remove and return an item from the left side of the deque.
+                Raises IndexError if no items are present.
+        """
+        ...
+def deque(iterable, maxlen, flags: Optional[Any]) -> Any:
     """
         Deques (double-ended queues) are a list-like container that support O(1)
         appends and pops from either side of the deque.  New deques are created
@@ -27,21 +41,8 @@ class deque():
         As well as supporting `bool` and `len`, deque objects have the following
         methods:
     """
-    def __init__(self, iterable, maxlen, flags: Optional[Any]) -> None:
-        ...
-    def append(self, x) -> Any:
-        """
-                Add *x* to the right side of the deque.
-                Raises IndexError if overflow checking is enabled and there is no more room left.
-        """
-        ...
-    def popleft(self) -> Any:
-        """
-                Remove and return an item from the left side of the deque.
-                Raises IndexError if no items are present.
-        """
-        ...
-class namedtuple():
+    ...
+def namedtuple(name, fields) -> Any:
     """
         This is factory function to create a new namedtuple type with a specific
         name and set of fields. A namedtuple is a subclass of tuple which allows
@@ -59,9 +60,8 @@ class namedtuple():
             print(t1.name)
             assert t2.name == t2[1]
     """
-    def __init__(self, name, fields) -> None:
-        ...
-class OrderedDict():
+    ...
+def OrderedDict(*args) -> Any:
     """
         ``dict`` type subclass which remembers and preserves the order of keys
         added. When ordered dict is iterated over, keys/items are returned in
@@ -85,5 +85,4 @@ class OrderedDict():
             w 5
             b 3
     """
-    def __init__(self, *args) -> None:
-        ...
+    ...

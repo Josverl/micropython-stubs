@@ -1,10 +1,10 @@
 """
-control the garbage collector. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/gc.html
+control the garbage collector. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/gc.html
 
 |see_cpython_module| :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/gc.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 def enable() -> None:

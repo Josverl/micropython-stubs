@@ -1,5 +1,5 @@
 """
-hashing algorithms. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/hashlib.html
+hashing algorithms. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/hashlib.html
 
 |see_cpython_module| :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
 
@@ -22,7 +22,7 @@ be implemented:
   will offer this.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/hashlib.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 class sha256():

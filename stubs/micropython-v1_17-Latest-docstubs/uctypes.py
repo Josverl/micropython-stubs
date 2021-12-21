@@ -1,5 +1,5 @@
 """
-access binary data in a structured way. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/uctypes.html
+access binary data in a structured way. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/uctypes.html
 
 This module implements "foreign data interface" for MicroPython. The idea
 behind it is similar to CPython's ``ctypes`` modules, but the actual API is
@@ -9,7 +9,7 @@ C language allows, and then access it using familiar dot-syntax to reference
 sub-fields.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/uctypes.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 #    Layout type for a little-endian packed structure. (Packed means that every

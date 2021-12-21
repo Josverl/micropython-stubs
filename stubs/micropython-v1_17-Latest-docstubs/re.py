@@ -1,5 +1,5 @@
 """
-regular expressions. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/re.html
+regular expressions. See: https://docs.micropython.org/en/v1.17-220-gb491967bb/library/re.html
 
 |see_cpython_module| :mod:`python:re` https://docs.python.org/3/library/re.html .
 
@@ -104,7 +104,7 @@ Example::
     # ['line1', 'line2', 'line3', '', '']
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1.17-220-gb491967bb
 # origin module:: micropython/docs/library/re.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 #    Flag value, display debug information about compiled expression.
