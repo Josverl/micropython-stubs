@@ -1,8 +1,8 @@
 """
-cryptographic ciphers. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/cryptolib.html
+cryptographic ciphers. See: https://docs.micropython.org/en/v1.17-Latest/library/cryptolib.html
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/cryptolib.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 class aes():

@@ -1,12 +1,12 @@
 """
-functionality specific to STM32 MCUs. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/stm.html
+functionality specific to STM32 MCUs. See: https://docs.micropython.org/en/v1.17-Latest/library/stm.html
 
 This module provides functionality specific to STM32 microcontrollers, including
 direct access to peripheral registers.
 """
 
 # + module: stm.rst
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/stm.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 #     Read/write 8 bits of memory.

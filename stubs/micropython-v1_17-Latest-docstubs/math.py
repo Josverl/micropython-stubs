@@ -1,5 +1,5 @@
 """
-mathematical functions. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/math.html
+mathematical functions. See: https://docs.micropython.org/en/v1.17-Latest/library/math.html
 
 |see_cpython_module| :mod:`python:math` https://docs.python.org/3/library/math.html .
 
@@ -12,7 +12,7 @@ Availability: not available on WiPy. Floating point support required
 for this module.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/math.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 #    base of the natural logarithm

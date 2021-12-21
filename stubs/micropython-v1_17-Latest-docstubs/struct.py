@@ -1,5 +1,5 @@
 """
-pack and unpack primitive data types. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/struct.html
+pack and unpack primitive data types. See: https://docs.micropython.org/en/v1.17-Latest/library/struct.html
 
 |see_cpython_module| :mod:`python:struct` https://docs.python.org/3/library/struct.html .
 
@@ -10,7 +10,7 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 on the floating-point support).
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/struct.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 def calcsize(fmt) -> int:

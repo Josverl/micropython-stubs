@@ -1,10 +1,10 @@
 """
-system specific functions. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/sys.html
+system specific functions. See: https://docs.micropython.org/en/v1.17-Latest/library/sys.html
 
 |see_cpython_module| :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/sys.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 #    A mutable list of arguments the current program was started with.

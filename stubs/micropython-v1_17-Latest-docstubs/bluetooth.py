@@ -1,5 +1,5 @@
 """
-Low-level Bluetooth radio functionality. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/bluetooth.html
+Low-level Bluetooth radio functionality. See: https://docs.micropython.org/en/v1.17-Latest/library/bluetooth.html
 
 This module provides an interface to a Bluetooth controller on a board.
 Currently this supports Bluetooth Low Energy (BLE) in Central, Peripheral,
@@ -11,7 +11,7 @@ This API is intended to match the low-level Bluetooth protocol and provide
 building-blocks for higher-level abstractions such as specific device types.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/bluetooth.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 class BLE():
@@ -346,7 +346,12 @@ class BLE():
         
             See :meth:`gap_scan <BLE.gap_scan>` for details about address types.
         
-            On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised.
+            To cancel an outstanding connection attempt early, call
+            ``gap_connect(None)``.
+        
+            On success, the ``_IRQ_PERIPHERAL_CONNECT`` event will be raised. If
+            cancelling a connection attempt, the ``_IRQ_PERIPHERAL_DISCONNECT`` event
+            will be raised.
         
             The device will wait up to *scan_duration_ms* to receive an advertising
             payload from the device.

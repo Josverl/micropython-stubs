@@ -1,10 +1,10 @@
 """
-control of LCD160CR display. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/lcd160cr.html
+control of LCD160CR display. See: https://docs.micropython.org/en/v1.17-Latest/library/lcd160cr.html
 
 This module provides control of the MicroPython LCD160CR display.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/lcd160cr.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 from .machine import SPI

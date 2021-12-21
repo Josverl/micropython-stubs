@@ -1,5 +1,5 @@
 """
-functionality specific to the RP2. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/rp2.html
+functionality specific to the RP2. See: https://docs.micropython.org/en/v1.17-Latest/library/rp2.html
 
 The ``rp2`` module contains functions and classes specific to the RP2040, as
 used in the Raspberry Pi Pico.
@@ -13,7 +13,7 @@ for example code.
 """
 
 # + module: rp2.rst
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/rp2.rst
 # + module: rp2.Flash.rst
 # + module: rp2.PIO.rst

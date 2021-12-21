@@ -1,5 +1,5 @@
 """
-system error codes. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/errno.html
+system error codes. See: https://docs.micropython.org/en/v1.17-Latest/library/errno.html
 
 |see_cpython_module| :mod:`python:errno` https://docs.python.org/3/library/errno.html .
 
@@ -7,7 +7,7 @@ This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/errno.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 #     Error codes, based on ANSI C/POSIX standard. All error codes start with

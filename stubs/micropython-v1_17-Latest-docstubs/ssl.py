@@ -1,5 +1,5 @@
 """
-TLS/SSL wrapper for socket objects. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/ssl.html
+TLS/SSL wrapper for socket objects. See: https://docs.micropython.org/en/v1.17-Latest/library/ssl.html
 
 |see_cpython_module| :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
@@ -8,7 +8,7 @@ widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/ssl.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 #    This exception does NOT exist. Instead its base class, OSError, is used.

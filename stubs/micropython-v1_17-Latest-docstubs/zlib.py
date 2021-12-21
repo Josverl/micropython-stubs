@@ -1,5 +1,5 @@
 """
-zlib decompression. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/zlib.html
+zlib decompression. See: https://docs.micropython.org/en/v1.17-Latest/library/zlib.html
 
 |see_cpython_module| :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
 
@@ -9,7 +9,7 @@ This module allows to decompress binary data compressed with
 is not yet implemented.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/zlib.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 class DecompIO(IO):

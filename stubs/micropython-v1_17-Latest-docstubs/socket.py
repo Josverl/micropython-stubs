@@ -1,12 +1,12 @@
 """
-socket module. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/socket.html
+socket module. See: https://docs.micropython.org/en/v1.17-Latest/library/socket.html
 
 |see_cpython_module| :mod:`python:socket` https://docs.python.org/3/library/socket.html .
 
 This module provides access to the BSD socket interface.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/socket.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 #    Address family types. Availability depends on a particular :term:`MicroPython port`.

@@ -1,5 +1,5 @@
 """
-functions related to the ESP8266 and ESP32. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/esp.html
+functions related to the ESP8266 and ESP32. See: https://docs.micropython.org/en/v1.17-Latest/library/esp.html
 
 The ``esp`` module contains specific functions related to both the ESP8266 and
 ESP32 modules.  Some functions are only available on one or the other of these
@@ -7,7 +7,7 @@ ports.
 
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/esp.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 def sleep_type(sleep_type: Optional[Any]) -> Any:

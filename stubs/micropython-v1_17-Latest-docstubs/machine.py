@@ -1,5 +1,5 @@
 """
-functions related to the hardware. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/machine.html
+functions related to the hardware. See: https://docs.micropython.org/en/v1.17-Latest/library/machine.html
 
 The ``machine`` module contains specific functions related to the hardware
 on a particular board. Most functions in this module allow to achieve direct
@@ -9,7 +9,7 @@ malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/machine.rst
 # + module: machine.Pin.rst
 # + module: machine.Signal.rst
@@ -79,6 +79,8 @@ class Pin():
            - ``Pin.ALT_OPEN_DRAIN`` - The Same as ``Pin.ALT``, but the pin is configured as
              open-drain.  Not all ports implement this mode.
     
+           - ``Pin.ANALOG`` - Pin is configured for analog input, see the :class:`ADC` class.
+    
          - ``pull`` specifies if the pin has a (weak) pull resistor attached, and can be
            one of:
     
@@ -118,6 +120,8 @@ class Pin():
     ALT : Any
     #    Selects the pin mode.
     ALT_OPEN_DRAIN : Any
+    #    Selects the pin mode.
+    ANALOG : Any
     #    Selects whether there is a pull up/down resistor.  Use the value
     #    ``None`` for no pull.
     PULL_UP : Any
@@ -617,10 +621,6 @@ class SoftSPI(SPI):
        given, usually at least *sck*, *mosi* and *miso*, and these are used
        to initialise the bus.  See `SPI.init` for a description of the parameters.
     """
-    #    set the first bit to be the most significant bit
-    MSB : Any
-    #    set the first bit to be the least significant bit
-    LSB : Any
     def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None:
         ...
 class I2C():
@@ -921,8 +921,9 @@ class RTC():
         ...
 class Timer():
     """
-       Construct a new timer object of the given id. Id of -1 constructs a
+       Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
        virtual timer (if supported by a board).
+       ``id`` shall not be passed as a keyword argument.
     
        See ``init`` for parameters of initialisation.
     """
@@ -930,14 +931,20 @@ class Timer():
     ONE_SHOT : Any
     #    Timer operating mode.
     PERIODIC : Any
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, /, *args) -> None:
         ...
     def init(self, *, mode=PERIODIC, period=-1, callback=None) -> None:
         """
            Initialise the timer. Example::
         
-               tim.init(period=100)                         # periodic with 100ms period
-               tim.init(mode=Timer.ONE_SHOT, period=1000)   # one shot firing after 1000ms
+               def mycallback(t):
+                   pass
+        
+               # periodic with 100ms period
+               tim.init(period=100, callback=mycallback)
+        
+               # one shot firing after 1000ms
+               tim.init(mode=Timer.ONE_SHOT, period=1000, callback=mycallback)
         
            Keyword arguments:
         
@@ -947,6 +954,14 @@ class Timer():
                  period of the channel expires.
                - ``Timer.PERIODIC`` - The timer runs periodically at the configured
                  frequency of the channel.
+        
+             - ``period`` - The timer period, in milliseconds.
+        
+             - ``callback`` - The callable to call upon expiration of the timer period.
+               The callback must take one argument, which is passed the Timer object.
+               The ``callback`` argument shall be specified. Otherwise an exception
+               will occurr upon timer expiration:
+               ``TypeError: 'NoneType' object isn't callable``
         """
         ...
     def deinit(self) -> None:
@@ -964,6 +979,8 @@ class WDT():
     """
     def __init__(self, id=0, timeout=5000) -> None:
         ...
+class wdt():
+    """ """
     def feed(self) -> None:
         """
            Feed the WDT to prevent it from resetting the system. The application
@@ -1079,7 +1096,7 @@ def idle() -> Any:
     ...
 def sleep() -> Any:
     ...
-def lightsleep(time_ms: Optional[Any]) -> None:
+def lightsleep(time_ms: Optional[Any]) -> Any:
     """
        Stops execution in an attempt to enter a low power state.
     
@@ -1095,6 +1112,12 @@ def lightsleep(time_ms: Optional[Any]) -> None:
     
        * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
          from the point where the sleep was requested, with all subsystems operational.
+    
+       * A deepsleep may not retain RAM or any other state of the system (for example
+         peripherals or network interfaces).  Upon wake execution is resumed from the main
+         script, similar to a hard or power-on reset. The `reset_cause()` function will
+         return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
+         from other resets.
     """
     ...
 def deepsleep(time_ms: Optional[Any]) -> None:
@@ -1110,6 +1133,9 @@ def deepsleep(time_ms: Optional[Any]) -> None:
     
        The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
        highly dependent on the underlying hardware, but the general properties are:
+    
+       * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
+         from the point where the sleep was requested, with all subsystems operational.
     
        * A deepsleep may not retain RAM or any other state of the system (for example
          peripherals or network interfaces).  Upon wake execution is resumed from the main

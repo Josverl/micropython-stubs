@@ -1,5 +1,5 @@
 """
-mathematical functions for complex numbers. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/cmath.html
+mathematical functions for complex numbers. See: https://docs.micropython.org/en/v1.17-Latest/library/cmath.html
 
 |see_cpython_module| :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
 
@@ -10,7 +10,7 @@ Availability: not available on WiPy and ESP8266. Floating point support
 required for this module.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/cmath.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 #    base of the natural logarithm

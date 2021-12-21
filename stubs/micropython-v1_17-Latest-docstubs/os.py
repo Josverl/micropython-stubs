@@ -1,5 +1,5 @@
 """
-basic "operating system" services. See: https://docs.micropython.org/en/v1.17-223-g2c7c5fdd0/library/os.html
+basic "operating system" services. See: https://docs.micropython.org/en/v1.17-Latest/library/os.html
 
 |see_cpython_module| :mod:`python:os` https://docs.python.org/3/library/os.html .
 
@@ -8,7 +8,7 @@ terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
 
-# source version: v1.17-223-g2c7c5fdd0
+# source version: v1_17-Latest
 # origin module:: micropython/docs/library/os.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 class VfsFat():
