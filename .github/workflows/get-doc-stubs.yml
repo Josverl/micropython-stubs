@@ -55,36 +55,25 @@ jobs:
           git fetch --all --tags
 
       # micropython as a sub-module of micropython-stubber 
-      - name: checkout micropython - sub level ${{ matrix.version }}
+      - name: 'checkout micropython  ${{ matrix.version }}
         if: matrix.version!='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
           git checkout ${{ matrix.version }}
 
-      # # if micropython older than v1.16 , need older micropython-lib version 
-      # # there are no tags on micropython-lib to synchronize 
-      # # just use 
-      # # v1.15 or older :  git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd
-      # - name: checkout micropython-lib - sub level ${{ matrix.version }}
-      #   if: matrix.version!='Latest'
-      #   working-directory: ${{github.workspace}}/micropython-stubber/micropython-lib
-      #   shell: pwsh
-      #   run: |
-      #     $version = "${{ matrix.version }}".replace('v','')
-      #     if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
+      - name: checkout micropython - master
+        if: matrix.version=='Latest'
+        working-directory: ${{github.workspace}}/micropython-stubber/micropython
+        run: |
+          git checkout master
+
      
       # make Python work
-      - name: Set up Python 3.8
+      - name: Set up Python 
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
           cache: 'pip'
-
-      #- name: restore Python from cache 
-      #  uses: actions/cache@v2
-      #  with:
-      #    path: ${{ env.pythonLocation }}
-      #    key: ${{ env.pythonLocation }}-${{ hashFiles('micropython-stubber/requirements.txt') }}
 
       - name: Install Python dependencies (stubber)
         run: |
