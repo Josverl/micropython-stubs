@@ -18,7 +18,7 @@ on:
 
 jobs:
   ########################################################################################################################################
-  get-micropython-frozen:
+  get-micropython-doc-stubs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -94,7 +94,7 @@ jobs:
       # This is where the actual work starts
       ######################################
 
-      - name: Get frozen modules for ${{ matrix.version }}
+      - name: Generate document stubs for ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber
         run: |
           python ./src/stubs_from_docs.py --stub-folder ${{github.workspace}}/stubs 
