@@ -1,4 +1,5 @@
 from asyncio import *
+from collections.abc import Generator
 from typing import Any
 
 OrgTask = Task
@@ -11,4 +12,4 @@ OrgStreamWriter = StreamWriter
 
 class StreamWriter(OrgStreamWriter):
     def awrite(self, data) -> None: ...
-    def aclose(self) -> None: ...
+    def aclose(self) -> Generator[None, None, None]: ...
