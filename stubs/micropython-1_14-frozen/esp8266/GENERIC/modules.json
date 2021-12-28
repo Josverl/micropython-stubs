@@ -8,7 +8,7 @@
         "firmware": "micropython-esp8266-1_14",
         "nodename": "micropython",
         "version": "v1.14",
-        "release": "v1.14",
+        "release": "",
         "sysname": "micropython"
     },
     "stubber": {
