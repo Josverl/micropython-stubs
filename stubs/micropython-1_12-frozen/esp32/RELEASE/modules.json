@@ -8,7 +8,7 @@
         "firmware": "micropython-esp32-1_12",
         "nodename": "micropython",
         "version": "v1.12",
-        "release": "v1.12",
+        "release": "",
         "sysname": "micropython"
     },
     "stubber": {
