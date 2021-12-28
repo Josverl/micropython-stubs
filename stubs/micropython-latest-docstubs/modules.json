@@ -1,0 +1,184 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/master/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "-",
+        "platform": "-",
+        "machine": "",
+        "firmware": "micropython---latest",
+        "nodename": "micropython",
+        "version": "latest",
+        "release": "v1.17-220-gb491967bb",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.4.5",
+        "stubtype": "documentation"
+    },
+    "modules": [
+        {
+            "file": "_thread.py",
+            "module": "_thread"
+        },
+        {
+            "file": "array.py",
+            "module": "array"
+        },
+        {
+            "file": "binascii.py",
+            "module": "binascii"
+        },
+        {
+            "file": "bluetooth.py",
+            "module": "bluetooth"
+        },
+        {
+            "file": "btree.py",
+            "module": "btree"
+        },
+        {
+            "file": "builtins.py",
+            "module": "builtins"
+        },
+        {
+            "file": "cmath.py",
+            "module": "cmath"
+        },
+        {
+            "file": "collections.py",
+            "module": "collections"
+        },
+        {
+            "file": "cryptolib.py",
+            "module": "cryptolib"
+        },
+        {
+            "file": "errno.py",
+            "module": "errno"
+        },
+        {
+            "file": "esp.py",
+            "module": "esp"
+        },
+        {
+            "file": "esp32.py",
+            "module": "esp32"
+        },
+        {
+            "file": "framebuf.py",
+            "module": "framebuf"
+        },
+        {
+            "file": "gc.py",
+            "module": "gc"
+        },
+        {
+            "file": "hashlib.py",
+            "module": "hashlib"
+        },
+        {
+            "file": "heapq.py",
+            "module": "heapq"
+        },
+        {
+            "file": "io.py",
+            "module": "io"
+        },
+        {
+            "file": "json.py",
+            "module": "json"
+        },
+        {
+            "file": "lcd160cr.py",
+            "module": "lcd160cr"
+        },
+        {
+            "file": "machine.py",
+            "module": "machine"
+        },
+        {
+            "file": "math.py",
+            "module": "math"
+        },
+        {
+            "file": "micropython.py",
+            "module": "micropython"
+        },
+        {
+            "file": "neopixel.py",
+            "module": "neopixel"
+        },
+        {
+            "file": "network.py",
+            "module": "network"
+        },
+        {
+            "file": "os.py",
+            "module": "os"
+        },
+        {
+            "file": "pyb.py",
+            "module": "pyb"
+        },
+        {
+            "file": "random.py",
+            "module": "random"
+        },
+        {
+            "file": "re.py",
+            "module": "re"
+        },
+        {
+            "file": "rp2.py",
+            "module": "rp2"
+        },
+        {
+            "file": "select.py",
+            "module": "select"
+        },
+        {
+            "file": "socket.py",
+            "module": "socket"
+        },
+        {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
+            "file": "stm.py",
+            "module": "stm"
+        },
+        {
+            "file": "struct.py",
+            "module": "struct"
+        },
+        {
+            "file": "sys.py",
+            "module": "sys"
+        },
+        {
+            "file": "time.py",
+            "module": "time"
+        },
+        {
+            "file": "uasyncio.py",
+            "module": "uasyncio"
+        },
+        {
+            "file": "uctypes.py",
+            "module": "uctypes"
+        },
+        {
+            "file": "wipy.py",
+            "module": "wipy"
+        },
+        {
+            "file": "zephyr.py",
+            "module": "zephyr"
+        },
+        {
+            "file": "zlib.py",
+            "module": "zlib"
+        }
+    ]
+}
