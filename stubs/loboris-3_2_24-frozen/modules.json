@@ -8,7 +8,7 @@
         "firmware": "loboris-esp32-3_2_24",
         "nodename": "loboris",
         "version": "3.2.24",
-        "release": "3.2.24",
+        "release": "",
         "sysname": "loboris"
     },
     "stubber": {
