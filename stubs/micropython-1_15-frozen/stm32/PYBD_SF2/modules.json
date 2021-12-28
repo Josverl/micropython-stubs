@@ -8,7 +8,7 @@
         "firmware": "micropython-stm32-1_15",
         "nodename": "micropython",
         "version": "v1.15",
-        "release": "v1.15",
+        "release": "",
         "sysname": "micropython"
     },
     "stubber": {
