@@ -37,7 +37,8 @@
             "options": {
                 "cwd": "${workspaceFolder}/docs"
             },
-            "command": "${workspaceFolder}/.venv/Scripts/Activate.ps1;&./make.bat clean;&./make.bat html"
+            "command": "${workspaceFolder}/.venv/Scripts/Activate.ps1;&./make.bat clean;&./make.bat html",
+            "problemMatcher": []
         },
         {
             "label": "Sphinx: get link info",

@@ -9,10 +9,13 @@
 :caption: 'Contents:'
 :maxdepth: 3
 
-01_intro_stubs.md
-02_using.md
-03_order.md
-04_symlink.md
+10_intro_stubs.md
+15_order.md
+20_using.md
+22_vscode.md
+24_pycharm.md
+26_pylint.md
+40_symlink.md
 changelog.md
 
 ```
