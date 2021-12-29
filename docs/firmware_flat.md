@@ -28,7 +28,7 @@ v2
 |board| micropython| v1.9.4-Latest| -| ESP module with ESP8266| 43| 1.1.2|[stubs/micropython-esp8266-1_9_4](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp8266-1_9_4)
 |cpython| micropython| -| -| cpython core patchfiles| 22| manual|[stubs/micropython_cpython_core](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython_cpython_core)
 |cpython| micropython| -| -| micropython-pyb by Daryl Schults| 1| manual|[stubs/cpython_pyboard](https://github.com/Josverl/micropython-stubs/tree/master/stubs/cpython_pyboard)
-|documentation| micropython| v1.17-Latest| -| generic| 41| 1.3.8|[stubs/micropython-v1_17-Latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-v1_17-Latest-docstubs)
+|documentation| micropython| latest| -| generic| 41| 1.4.5|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-latest-docstubs)
 |frozen| loboris| v3.2.24| esp32| generic| 17| 1.4.5|[stubs/loboris-3_2_24-frozen](https://github.com/Josverl/micropython-stubs/tree/master/stubs/loboris-3_2_24-frozen)
 |frozen| micropython| v1.10| esp32| generic| 16| 1.4.5|[stubs/micropython-1_10-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_10-frozen/esp32/GENERIC)
 |frozen| micropython| v1.10| esp8266| generic| 15| 1.4.5|[stubs/micropython-1_10-frozen/esp8266/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_10-frozen/esp8266/GENERIC)

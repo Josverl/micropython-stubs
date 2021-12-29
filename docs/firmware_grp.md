@@ -8,6 +8,7 @@
 |-------|---------|---------|-----|------|-----:|-|----
 |micropython |-       |cpython |-|micropython-pyb by Daryl Schults|1|manual|[stubs/cpython_pyboard](https://github.com/Josverl/micropython-stubs/tree/master/stubs/cpython_pyboard)
 |micropython |-       |cpython |-|cpython core patchfiles|22|manual|[stubs/micropython_cpython_core](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython_cpython_core)
+|micropython |latest  |documentation|-|generic|41|1.4.5|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-latest-docstubs)
 |micropython |v1.10   |frozen  |esp32|generic|16|1.4.5|[stubs/micropython-1_10-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_10-frozen/esp32/GENERIC)
 |micropython |v1.10   |board   |esp32|ESP32 module with ESP32|64|1.4.2|[stubs/micropython-esp32-1_10](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-esp32-1_10)
 |micropython |v1.10   |frozen  |esp8266|generic|15|1.4.5|[stubs/micropython-1_10-frozen/esp8266/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_10-frozen/esp8266/GENERIC)
@@ -91,7 +92,6 @@
 |micropython |v1.17   |frozen  |stm32|GENERIC|10|1.4.5|[stubs/micropython-1_17-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-frozen/stm32/GENERIC)
 |micropython |v1.17   |frozen  |stm32|PYBD_SF2|13|1.4.5|[stubs/micropython-1_17-frozen/stm32/PYBD_SF2](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-frozen/stm32/PYBD_SF2)
 |micropython |v1.17-La|frozen  |-|GENERIC|10|1.4.5|[stubs/micropython-1_17-Latest-frozen/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/GENERIC)
-|micropython |v1.17-La|documentation|-|generic|41|1.3.8|[stubs/micropython-v1_17-Latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-v1_17-Latest-docstubs)
 |micropython |v1.17-La|frozen  |esp32|GENERIC|20|1.4.5|[stubs/micropython-1_17-Latest-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/GENERIC)
 |micropython |v1.17-La|frozen  |esp32|LOLIN_S2_MINI|21|1.4.5|[stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_MINI](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_MINI)
 |micropython |v1.17-La|frozen  |esp32|LOLIN_S2_PICO|23|1.4.5|[stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_PICO](https://github.com/Josverl/micropython-stubs/tree/master/stubs/micropython-1_17-Latest-frozen/esp32/LOLIN_S2_PICO)
