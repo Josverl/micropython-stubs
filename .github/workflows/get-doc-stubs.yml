@@ -35,7 +35,7 @@ jobs:
   
     steps:
 
-      - name: Checkout stubs repo
+      - name: Checkout stubs repocha
         uses: actions/checkout@v2
 
       - name: Checkout Stubber
@@ -61,11 +61,11 @@ jobs:
         run: |
           git checkout ${{ matrix.version }}
 
-      - name: checkout micropython - master
+      - name: checkout micropython - main
         if: matrix.version=='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
-          git checkout master
+          git checkout main
 
      
       # make Python work

@@ -73,4 +73,4 @@ To avoid the "all-stubs" folder to be uploaded to your Micropython MCU
 
 
 [Pylance]: https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance
-[samples]: https://github.com/josverl/micropython-stubs/tree/master/docs/samples
+[samples]: https://github.com/josverl/micropython-stubs/tree/main/docs/samples
