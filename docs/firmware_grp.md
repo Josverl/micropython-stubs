@@ -1,4 +1,4 @@
-tree/main/stubstree/main/stubstree/main/stubs(all-stubs)=
+(all-stubs)=
 
 # Stubs by family and version
 
