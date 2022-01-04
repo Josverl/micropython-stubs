@@ -5,7 +5,7 @@
         "port": "esp32",
         "platform": "esp32",
         "machine": "",
-        "firmware": "loboris-esp32-3_2_24",
+        "firmware": "loboris-esp32-v3_2_24",
         "nodename": "loboris",
         "version": "3.2.24",
         "release": "",

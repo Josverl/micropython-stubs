@@ -1,6 +1,0 @@
-from typing import Any
-
-Node = Any
-
-def recv() -> None: ...
-def send() -> None: ...
