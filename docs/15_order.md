@@ -18,28 +18,42 @@ sequenceDiagram
     Pylance --x Source code: check 
     Pylance --x CPython stubs: check 
     Pylance --x Frozen stubs: check 
-    Pylance --x RST Stubs: check 
+    Pylance --x Doc Stubs: check 
     rect rgba(0, 0, 255, .3)
     Pylance ->>+Board Stubs: check
     Board Stubs ->>-Pylance: return info 
     end
 ```
+
+## Stub Types
+
  1. **Source code:**  
    example: `['src', 'src/lib'] `  
    This should include the path to your source files and any libraries used.  
+   This should be the fist location any tool should check. Also this allows you to override any library if needed.
 
  2. **Cpython stubs:**  
    `['all-stubs/cpython-core'] `  
    These are Python files that are intended to allow Micropython files to be run. with some limitations, on CPython. They also help resolve most MicroPython stdlib uses.
+   There are currenly two different sources for these stubs : 
+    - the micropython-lib 
+    - the **pycopy-lib**
+    The default cpython core is based off the pycopy libs as, in my opinion, they offer most functionality.
 
- 3. **Frozen stubs - Micropython - [Version] - [Port]-frozen:**  
-    `['all-stubs/micropython-{Version}-{Port}-Frozen']`  
+ 3. **Frozen stubs - Micropython - [Version] - frozen / [Port] / [Board]:**  
+    `['all-stubs/micropython-{Version}-Frozen/{Port}/{Board}']`  
     MicroPython for most boards has a number of Python modulesFrozen (included) as part of the firmware.
     For common firmwares and ports, these modules have been collected, and stubs have been generated for these modules.
+    If you select the correct **Port** and **Board** you should getresults that exactly match your firmware. 
 
- 4. **Board stubs - Micropython - [Version] - [Port]:**  
+ 4. **Doc stubs - Micropython - [Version] -docstubs:**  
+    `['all-stubs/micropython-{Version}-docstubs']`  
+    These stubs are generated based on the Micropython formal documentation.
+    This type of stub is very rich in parameter and class descriptions, but as they are generic by definition, they may/will not follow the nuances of your firmware.
+    
+ 5. **Board stubs - Micropython - [Version] - [Port]:**  
    ` 'all-stubs/micropython-{Version}-{Port}-Frozen' `  
-   This are the stubs that are generated on the board.
+   This type of stubs that is generated on the micropython board with the specific firmware, and therefore **very closely matches** the capabilities of your board and firmware.
    While they have they have a low level of detail, they do contain a comprehensive overview of the modules, classes and functions available even on custom and one-off firmwares.
 
 In most cases using ths order provides a good mix between richness and coverage of the functionality provided by your board.
