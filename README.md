@@ -33,7 +33,21 @@ For a full overview of all stubs check out [the documentation on read the docs](
 # Using the stubs 
 
 To learn how to use the stubs please refer to [the documentaion on RTD](https://micropython-stubs.readthedocs.io/en/latest/02_using.html)
-I
+
+## Branch Main
+The name of the default branch has been changed to `main`.
+If you have cloned this repo before you main need to adjust the local repro to be aware of this, or create a fresh clone.
+
+To update run the below command:  
+``` bash
+git branch -m master main                    
+git fetch origin
+git branch -u origin/main main                      
+git remote set-head origin -a
+```
+
+for more info see [**Renaming a branch**](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/renaming-a-branch#updating-a-local-clone-after-a-branch-name-changes)
+
 ## Contributors
 Thanks to everyone that has submitted stubs or other relevant pieces of code and information, or published relevant stubs on pypi or github.
 
