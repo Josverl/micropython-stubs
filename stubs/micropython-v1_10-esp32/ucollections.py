@@ -1,13 +1,14 @@
 """
-Module: 'ucollections' on micropython-esp32-1.10
+Module: 'ucollections' on micropython-v1.10-esp32
 """
-# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.5.0
 from typing import Any
 
 
 class OrderedDict:
-    ''
+    """"""
+
     def clear(self, *args) -> Any:
         ...
 
@@ -44,13 +45,14 @@ class OrderedDict:
 
 
 class deque:
-    ''
+    """"""
+
     def append(self, *args) -> Any:
         ...
 
     def popleft(self, *args) -> Any:
         ...
 
+
 def namedtuple(*args) -> Any:
     ...
-

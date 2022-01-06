@@ -1,15 +1,16 @@
 """
-Module: 'upip_utarfile' on micropython-esp32-1.16
+Module: 'upip_utarfile' on micropython-v1.16-esp32
 """
-# MCU: {'ver': '1.16', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.16.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.16.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.16', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.16.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.16.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
 from typing import Any
 
-# import uctypes
-DIRTYPE = 'dir' # type: str
+DIRTYPE = "dir"  # type: str
+
 
 class TarFile:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -19,14 +20,18 @@ class TarFile:
     def extractfile(self, *args) -> Any:
         ...
 
-TAR_HEADER = {} # type: dict
-REGTYPE = 'file' # type: str
+
+TAR_HEADER = {}  # type: dict
+REGTYPE = "file"  # type: str
+
+
 def roundup(*args) -> Any:
     ...
 
 
 class FileSection:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -41,4 +46,4 @@ class FileSection:
 
 
 class TarInfo:
-    ''
+    """"""

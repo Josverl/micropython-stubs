@@ -1,28 +1,30 @@
 """
-Module: 'errno' on esp32 1.13.0-103
+Module: 'errno' on micropython-v1.13-266-esp32
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.13.0', version='v1.13-103-gb137d064e on 2020-10-09', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.4
-EACCES = 13
-EADDRINUSE = 98
-EAGAIN = 11
-EALREADY = 114
-EBADF = 9
-ECONNABORTED = 103
-ECONNREFUSED = 111
-ECONNRESET = 104
-EEXIST = 17
-EHOSTUNREACH = 113
-EINPROGRESS = 115
-EINVAL = 22
-EIO = 5
-EISDIR = 21
-ENOBUFS = 105
-ENODEV = 19
-ENOENT = 2
-ENOMEM = 12
-ENOTCONN = 107
-EOPNOTSUPP = 95
-EPERM = 1
-ETIMEDOUT = 110
-errorcode = None
+# MCU: {'ver': 'v1.13-266', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.13.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.13.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '266', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
+from typing import Any
+
+EACCES = 13  # type: int
+EADDRINUSE = 98  # type: int
+EAGAIN = 11  # type: int
+EALREADY = 114  # type: int
+EBADF = 9  # type: int
+ECONNABORTED = 103  # type: int
+ECONNREFUSED = 111  # type: int
+ECONNRESET = 104  # type: int
+EEXIST = 17  # type: int
+EHOSTUNREACH = 113  # type: int
+EINPROGRESS = 115  # type: int
+EINVAL = 22  # type: int
+EIO = 5  # type: int
+EISDIR = 21  # type: int
+ENOBUFS = 105  # type: int
+ENODEV = 19  # type: int
+ENOENT = 2  # type: int
+ENOMEM = 12  # type: int
+ENOTCONN = 107  # type: int
+EOPNOTSUPP = 95  # type: int
+EPERM = 1  # type: int
+ETIMEDOUT = 110  # type: int
+errorcode = {}  # type: dict

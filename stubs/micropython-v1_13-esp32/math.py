@@ -1,124 +1,168 @@
 """
-Module: 'math' on esp32 1.13.0-103
+Module: 'math' on micropython-v1.13-266-esp32
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.13.0', version='v1.13-103-gb137d064e on 2020-10-09', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.4
-def acos():
-    pass
+# MCU: {'ver': 'v1.13-266', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.13.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.13.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '266', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
+from typing import Any
 
-def acosh():
-    pass
 
-def asin():
-    pass
+def pow(*args) -> Any:
+    ...
 
-def asinh():
-    pass
 
-def atan():
-    pass
+def acos(*args) -> Any:
+    ...
 
-def atan2():
-    pass
 
-def atanh():
-    pass
+def acosh(*args) -> Any:
+    ...
 
-def ceil():
-    pass
 
-def copysign():
-    pass
+def asin(*args) -> Any:
+    ...
 
-def cos():
-    pass
 
-def cosh():
-    pass
+def asinh(*args) -> Any:
+    ...
 
-def degrees():
-    pass
 
-e = 2.718282
-def erf():
-    pass
+def atan(*args) -> Any:
+    ...
 
-def erfc():
-    pass
 
-def exp():
-    pass
+def atan2(*args) -> Any:
+    ...
 
-def expm1():
-    pass
 
-def fabs():
-    pass
+def atanh(*args) -> Any:
+    ...
 
-def floor():
-    pass
 
-def fmod():
-    pass
+def ceil(*args) -> Any:
+    ...
 
-def frexp():
-    pass
 
-def gamma():
-    pass
+def copysign(*args) -> Any:
+    ...
 
-def isclose():
-    pass
 
-def isfinite():
-    pass
+def cos(*args) -> Any:
+    ...
 
-def isinf():
-    pass
 
-def isnan():
-    pass
+def cosh(*args) -> Any:
+    ...
 
-def ldexp():
-    pass
 
-def lgamma():
-    pass
+def degrees(*args) -> Any:
+    ...
 
-def log():
-    pass
 
-def log10():
-    pass
+e = 2.718282  # type: float
 
-def log2():
-    pass
 
-def modf():
-    pass
+def erf(*args) -> Any:
+    ...
 
-pi = 3.141593
-def pow():
-    pass
 
-def radians():
-    pass
+def erfc(*args) -> Any:
+    ...
 
-def sin():
-    pass
 
-def sinh():
-    pass
+def exp(*args) -> Any:
+    ...
 
-def sqrt():
-    pass
 
-def tan():
-    pass
+def expm1(*args) -> Any:
+    ...
 
-def tanh():
-    pass
 
-def trunc():
-    pass
+def fabs(*args) -> Any:
+    ...
 
+
+def floor(*args) -> Any:
+    ...
+
+
+def fmod(*args) -> Any:
+    ...
+
+
+def frexp(*args) -> Any:
+    ...
+
+
+def gamma(*args) -> Any:
+    ...
+
+
+def isclose(*args) -> Any:
+    ...
+
+
+def isfinite(*args) -> Any:
+    ...
+
+
+def isinf(*args) -> Any:
+    ...
+
+
+def isnan(*args) -> Any:
+    ...
+
+
+def ldexp(*args) -> Any:
+    ...
+
+
+def lgamma(*args) -> Any:
+    ...
+
+
+def log(*args) -> Any:
+    ...
+
+
+def log10(*args) -> Any:
+    ...
+
+
+def log2(*args) -> Any:
+    ...
+
+
+def modf(*args) -> Any:
+    ...
+
+
+pi = 3.141593  # type: float
+
+
+def radians(*args) -> Any:
+    ...
+
+
+def sin(*args) -> Any:
+    ...
+
+
+def sinh(*args) -> Any:
+    ...
+
+
+def sqrt(*args) -> Any:
+    ...
+
+
+def tan(*args) -> Any:
+    ...
+
+
+def tanh(*args) -> Any:
+    ...
+
+
+def trunc(*args) -> Any:
+    ...

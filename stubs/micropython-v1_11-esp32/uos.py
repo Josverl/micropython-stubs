@@ -1,16 +1,18 @@
 """
-Module: 'uos' on micropython-esp32-1.11
+Module: 'uos' on micropython-v1.11-esp32
 """
-# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.5.0
 from typing import Any
+
 
 def remove(*args) -> Any:
     ...
 
 
 class VfsFat:
-    ''
+    """"""
+
     def open(self, *args) -> Any:
         ...
 
@@ -50,48 +52,62 @@ class VfsFat:
     def umount(self, *args) -> Any:
         ...
 
+
 def chdir(*args) -> Any:
     ...
+
 
 def dupterm(*args) -> Any:
     ...
 
+
 def dupterm_notify(*args) -> Any:
     ...
+
 
 def getcwd(*args) -> Any:
     ...
 
+
 def ilistdir(*args) -> Any:
     ...
+
 
 def listdir(*args) -> Any:
     ...
 
+
 def mkdir(*args) -> Any:
     ...
+
 
 def mount(*args) -> Any:
     ...
 
+
 def rename(*args) -> Any:
     ...
+
 
 def rmdir(*args) -> Any:
     ...
 
+
 def stat(*args) -> Any:
     ...
+
 
 def statvfs(*args) -> Any:
     ...
 
+
 def umount(*args) -> Any:
     ...
+
 
 def uname(*args) -> Any:
     ...
 
+
 def urandom(*args) -> Any:
     ...
-

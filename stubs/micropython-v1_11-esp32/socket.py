@@ -1,30 +1,35 @@
 """
-Module: 'socket' on micropython-esp32-1.11
+Module: 'socket' on micropython-v1.11-esp32
 """
-# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.5.0
 from typing import Any
+
 
 def __init__(*args) -> Any:
     ...
 
-AF_INET = 2 # type: int
-AF_INET6 = 10 # type: int
-IPPROTO_IP = 0 # type: int
-IPPROTO_TCP = 6 # type: int
-IPPROTO_UDP = 17 # type: int
-IP_ADD_MEMBERSHIP = 3 # type: int
-SOCK_DGRAM = 2 # type: int
-SOCK_RAW = 3 # type: int
-SOCK_STREAM = 1 # type: int
-SOL_SOCKET = 4095 # type: int
-SO_REUSEADDR = 4 # type: int
+
+AF_INET = 2  # type: int
+AF_INET6 = 10  # type: int
+IPPROTO_IP = 0  # type: int
+IPPROTO_TCP = 6  # type: int
+IPPROTO_UDP = 17  # type: int
+IP_ADD_MEMBERSHIP = 3  # type: int
+SOCK_DGRAM = 2  # type: int
+SOCK_RAW = 3  # type: int
+SOCK_STREAM = 1  # type: int
+SOL_SOCKET = 4095  # type: int
+SO_REUSEADDR = 4  # type: int
+
+
 def getaddrinfo(*args) -> Any:
     ...
 
 
 class socket:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
@@ -81,4 +86,3 @@ class socket:
 
     def settimeout(self, *args) -> Any:
         ...
-

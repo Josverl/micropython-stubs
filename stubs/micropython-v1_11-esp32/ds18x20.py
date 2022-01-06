@@ -1,16 +1,18 @@
 """
-Module: 'ds18x20' on micropython-esp32-1.11
+Module: 'ds18x20' on micropython-v1.11-esp32
 """
-# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.5.0
 from typing import Any
+
 
 def const(*args) -> Any:
     ...
 
 
 class DS18X20:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -28,4 +30,3 @@ class DS18X20:
 
     def read_temp(self, *args) -> Any:
         ...
-

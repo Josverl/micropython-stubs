@@ -1,5 +1,6 @@
 from typing import Any
 
-Node = Any
+wait_for: Any
+gather: Any
 
-def wait_for_ms() -> None: ...
+def wait_for_ms(*args) -> Any: ...

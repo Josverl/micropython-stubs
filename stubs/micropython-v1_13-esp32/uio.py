@@ -1,140 +1,148 @@
 """
-Module: 'uio' on esp32 1.13.0-103
+Module: 'uio' on micropython-v1.13-266-esp32
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.13.0', version='v1.13-103-gb137d064e on 2020-10-09', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.4
+# MCU: {'ver': 'v1.13-266', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.13.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.13.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '266', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
+from typing import Any
+
+
+def open(*args) -> Any:
+    ...
+
 
 class BufferedWriter:
-    ''
-    def flush():
-        pass
+    """"""
 
-    def write():
-        pass
+    def write(self, *args) -> Any:
+        ...
+
+    def flush(self, *args) -> Any:
+        ...
 
 
 class BytesIO:
-    ''
-    def close():
-        pass
+    """"""
 
-    def flush():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    def getvalue():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def readline(self, *args) -> Any:
+        ...
 
-    def readline():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-    def seek():
-        pass
+    def flush(self, *args) -> Any:
+        ...
 
-    def tell():
-        pass
+    def getvalue(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def seek(self, *args) -> Any:
+        ...
+
+    def tell(self, *args) -> Any:
+        ...
 
 
 class FileIO:
-    ''
-    def close():
-        pass
+    """"""
 
-    def flush():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readline():
-        pass
+    def readline(self, *args) -> Any:
+        ...
 
-    def readlines():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-    def seek():
-        pass
+    def flush(self, *args) -> Any:
+        ...
 
-    def tell():
-        pass
+    def readlines(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def seek(self, *args) -> Any:
+        ...
+
+    def tell(self, *args) -> Any:
+        ...
 
 
 class IOBase:
-    ''
+    """"""
+
 
 class StringIO:
-    ''
-    def close():
-        pass
+    """"""
 
-    def flush():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    def getvalue():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def readline(self, *args) -> Any:
+        ...
 
-    def readline():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-    def seek():
-        pass
+    def flush(self, *args) -> Any:
+        ...
 
-    def tell():
-        pass
+    def getvalue(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def seek(self, *args) -> Any:
+        ...
+
+    def tell(self, *args) -> Any:
+        ...
 
 
 class TextIOWrapper:
-    ''
-    def close():
-        pass
+    """"""
 
-    def flush():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readline():
-        pass
+    def readline(self, *args) -> Any:
+        ...
 
-    def readlines():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-    def seek():
-        pass
+    def flush(self, *args) -> Any:
+        ...
 
-    def tell():
-        pass
+    def readlines(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def seek(self, *args) -> Any:
+        ...
 
-def open():
-    pass
-
+    def tell(self, *args) -> Any:
+        ...

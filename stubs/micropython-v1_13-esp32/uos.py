@@ -1,137 +1,156 @@
 """
-Module: 'uos' on esp32 1.13.0-103
+Module: 'uos' on micropython-v1.13-266-esp32
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.13.0', version='v1.13-103-gb137d064e on 2020-10-09', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.4
+# MCU: {'ver': 'v1.13-266', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.13.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.13.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '266', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
+from typing import Any
+
+
+def remove(*args) -> Any:
+    ...
+
 
 class VfsFat:
-    ''
-    def chdir():
-        pass
+    """"""
 
-    def getcwd():
-        pass
+    def open(self, *args) -> Any:
+        ...
 
-    def ilistdir():
-        pass
+    def remove(self, *args) -> Any:
+        ...
 
-    def mkdir():
-        pass
+    def chdir(self, *args) -> Any:
+        ...
 
-    def mkfs():
-        pass
+    def getcwd(self, *args) -> Any:
+        ...
 
-    def mount():
-        pass
+    def ilistdir(self, *args) -> Any:
+        ...
 
-    def open():
-        pass
+    def mkdir(self, *args) -> Any:
+        ...
 
-    def remove():
-        pass
+    def mkfs(self, *args) -> Any:
+        ...
 
-    def rename():
-        pass
+    def mount(self, *args) -> Any:
+        ...
 
-    def rmdir():
-        pass
+    def rename(self, *args) -> Any:
+        ...
 
-    def stat():
-        pass
+    def rmdir(self, *args) -> Any:
+        ...
 
-    def statvfs():
-        pass
+    def stat(self, *args) -> Any:
+        ...
 
-    def umount():
-        pass
+    def statvfs(self, *args) -> Any:
+        ...
+
+    def umount(self, *args) -> Any:
+        ...
 
 
 class VfsLfs2:
-    ''
-    def chdir():
-        pass
+    """"""
 
-    def getcwd():
-        pass
+    def open(self, *args) -> Any:
+        ...
 
-    def ilistdir():
-        pass
+    def remove(self, *args) -> Any:
+        ...
 
-    def mkdir():
-        pass
+    def chdir(self, *args) -> Any:
+        ...
 
-    def mkfs():
-        pass
+    def getcwd(self, *args) -> Any:
+        ...
 
-    def mount():
-        pass
+    def ilistdir(self, *args) -> Any:
+        ...
 
-    def open():
-        pass
+    def mkdir(self, *args) -> Any:
+        ...
 
-    def remove():
-        pass
+    def mkfs(self, *args) -> Any:
+        ...
 
-    def rename():
-        pass
+    def mount(self, *args) -> Any:
+        ...
 
-    def rmdir():
-        pass
+    def rename(self, *args) -> Any:
+        ...
 
-    def stat():
-        pass
+    def rmdir(self, *args) -> Any:
+        ...
 
-    def statvfs():
-        pass
+    def stat(self, *args) -> Any:
+        ...
 
-    def umount():
-        pass
+    def statvfs(self, *args) -> Any:
+        ...
 
-def chdir():
-    pass
+    def umount(self, *args) -> Any:
+        ...
 
-def dupterm():
-    pass
 
-def dupterm_notify():
-    pass
+def chdir(*args) -> Any:
+    ...
 
-def getcwd():
-    pass
 
-def ilistdir():
-    pass
+def dupterm(*args) -> Any:
+    ...
 
-def listdir():
-    pass
 
-def mkdir():
-    pass
+def dupterm_notify(*args) -> Any:
+    ...
 
-def mount():
-    pass
 
-def remove():
-    pass
+def getcwd(*args) -> Any:
+    ...
 
-def rename():
-    pass
 
-def rmdir():
-    pass
+def ilistdir(*args) -> Any:
+    ...
 
-def stat():
-    pass
 
-def statvfs():
-    pass
+def listdir(*args) -> Any:
+    ...
 
-def umount():
-    pass
 
-def uname():
-    pass
+def mkdir(*args) -> Any:
+    ...
 
-def urandom():
-    pass
 
+def mount(*args) -> Any:
+    ...
+
+
+def rename(*args) -> Any:
+    ...
+
+
+def rmdir(*args) -> Any:
+    ...
+
+
+def stat(*args) -> Any:
+    ...
+
+
+def statvfs(*args) -> Any:
+    ...
+
+
+def umount(*args) -> Any:
+    ...
+
+
+def uname(*args) -> Any:
+    ...
+
+
+def urandom(*args) -> Any:
+    ...

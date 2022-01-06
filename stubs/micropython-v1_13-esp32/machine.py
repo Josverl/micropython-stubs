@@ -1,364 +1,416 @@
 """
-Module: 'machine' on esp32 1.13.0-103
+Module: 'machine' on micropython-v1.13-266-esp32
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.13.0', version='v1.13-103-gb137d064e on 2020-10-09', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.4
+# MCU: {'ver': 'v1.13-266', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.13.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.13.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '266', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
+from typing import Any
+
 
 class ADC:
-    ''
-    ATTN_0DB = 0
-    ATTN_11DB = 3
-    ATTN_2_5DB = 1
-    ATTN_6DB = 2
-    WIDTH_10BIT = 1
-    WIDTH_11BIT = 2
-    WIDTH_12BIT = 3
-    WIDTH_9BIT = 0
-    def atten():
-        pass
+    """"""
 
-    def read():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def read_u16():
-        pass
+    ATTN_0DB = 0  # type: int
+    ATTN_11DB = 3  # type: int
+    ATTN_2_5DB = 1  # type: int
+    ATTN_6DB = 2  # type: int
+    WIDTH_10BIT = 1  # type: int
+    WIDTH_11BIT = 2  # type: int
+    WIDTH_12BIT = 3  # type: int
+    WIDTH_9BIT = 0  # type: int
 
-    def width():
-        pass
+    def atten(self, *args) -> Any:
+        ...
+
+    def read_u16(self, *args) -> Any:
+        ...
+
+    @classmethod
+    def width(cls, *args) -> Any:
+        ...
 
 
 class DAC:
-    ''
-    def write():
-        pass
+    """"""
 
-DEEPSLEEP = 4
-DEEPSLEEP_RESET = 4
-EXT0_WAKE = 2
-EXT1_WAKE = 3
-HARD_RESET = 2
+    def write(self, *args) -> Any:
+        ...
+
+
+DEEPSLEEP = 4  # type: int
+DEEPSLEEP_RESET = 4  # type: int
+EXT0_WAKE = 2  # type: int
+EXT1_WAKE = 3  # type: int
+HARD_RESET = 2  # type: int
+
 
 class I2C:
-    ''
-    def init():
-        pass
+    """"""
 
-    def readfrom():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readfrom_into():
-        pass
+    def start(self, *args) -> Any:
+        ...
 
-    def readfrom_mem():
-        pass
+    def stop(self, *args) -> Any:
+        ...
 
-    def readfrom_mem_into():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def init(self, *args) -> Any:
+        ...
 
-    def scan():
-        pass
+    def readfrom(self, *args) -> Any:
+        ...
 
-    def start():
-        pass
+    def readfrom_into(self, *args) -> Any:
+        ...
 
-    def stop():
-        pass
+    def readfrom_mem(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def readfrom_mem_into(self, *args) -> Any:
+        ...
 
-    def writeto():
-        pass
+    def scan(self, *args) -> Any:
+        ...
 
-    def writeto_mem():
-        pass
+    def writeto(self, *args) -> Any:
+        ...
 
-    def writevto():
-        pass
+    def writeto_mem(self, *args) -> Any:
+        ...
 
-PIN_WAKE = 2
+    def writevto(self, *args) -> Any:
+        ...
+
+
+PIN_WAKE = 2  # type: int
+
 
 class PWM:
-    ''
-    def deinit():
-        pass
+    """"""
 
-    def duty():
-        pass
+    def deinit(self, *args) -> Any:
+        ...
 
-    def freq():
-        pass
+    def duty(self, *args) -> Any:
+        ...
 
-    def init():
-        pass
+    def freq(self, *args) -> Any:
+        ...
 
-PWRON_RESET = 1
+    def init(self, *args) -> Any:
+        ...
+
+
+PWRON_RESET = 1  # type: int
+
 
 class Pin:
-    ''
-    IN = 1
-    IRQ_FALLING = 2
-    IRQ_RISING = 1
-    OPEN_DRAIN = 7
-    OUT = 3
-    PULL_DOWN = 1
-    PULL_HOLD = 4
-    PULL_UP = 2
-    WAKE_HIGH = 5
-    WAKE_LOW = 4
-    def init():
-        pass
+    """"""
 
-    def irq():
-        pass
+    def value(self, *args) -> Any:
+        ...
 
-    def off():
-        pass
+    IN = 1  # type: int
+    IRQ_FALLING = 2  # type: int
+    IRQ_RISING = 1  # type: int
+    OPEN_DRAIN = 7  # type: int
+    OUT = 3  # type: int
+    PULL_DOWN = 1  # type: int
+    PULL_HOLD = 4  # type: int
+    PULL_UP = 2  # type: int
+    WAKE_HIGH = 5  # type: int
+    WAKE_LOW = 4  # type: int
 
-    def on():
-        pass
+    def init(self, *args) -> Any:
+        ...
 
-    def value():
-        pass
+    def irq(self, *args) -> Any:
+        ...
+
+    def off(self, *args) -> Any:
+        ...
+
+    def on(self, *args) -> Any:
+        ...
 
 
 class RTC:
-    ''
-    def datetime():
-        pass
+    """"""
 
-    def init():
-        pass
+    def datetime(self, *args) -> Any:
+        ...
 
-    def memory():
-        pass
+    def init(self, *args) -> Any:
+        ...
+
+    def memory(self, *args) -> Any:
+        ...
 
 
 class SDCard:
-    ''
-    def deinit():
-        pass
+    """"""
 
-    def info():
-        pass
+    def deinit(self, *args) -> Any:
+        ...
 
-    def ioctl():
-        pass
+    def info(self, *args) -> Any:
+        ...
 
-    def readblocks():
-        pass
+    def ioctl(self, *args) -> Any:
+        ...
 
-    def writeblocks():
-        pass
+    def readblocks(self, *args) -> Any:
+        ...
 
-SLEEP = 2
-SOFT_RESET = 5
+    def writeblocks(self, *args) -> Any:
+        ...
+
+
+SLEEP = 2  # type: int
+SOFT_RESET = 5  # type: int
+
 
 class SPI:
-    ''
-    LSB = 1
-    MSB = 0
-    def deinit():
-        pass
+    """"""
 
-    def init():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    LSB = 1  # type: int
+    MSB = 0  # type: int
 
-    def write_readinto():
-        pass
+    def deinit(self, *args) -> Any:
+        ...
+
+    def init(self, *args) -> Any:
+        ...
+
+    def write_readinto(self, *args) -> Any:
+        ...
 
 
 class Signal:
-    ''
-    def off():
-        pass
+    """"""
 
-    def on():
-        pass
+    def value(self, *args) -> Any:
+        ...
 
-    def value():
-        pass
+    def off(self, *args) -> Any:
+        ...
+
+    def on(self, *args) -> Any:
+        ...
 
 
 class SoftI2C:
-    ''
-    def init():
-        pass
+    """"""
 
-    def readfrom():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readfrom_into():
-        pass
+    def start(self, *args) -> Any:
+        ...
 
-    def readfrom_mem():
-        pass
+    def stop(self, *args) -> Any:
+        ...
 
-    def readfrom_mem_into():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def init(self, *args) -> Any:
+        ...
 
-    def scan():
-        pass
+    def readfrom(self, *args) -> Any:
+        ...
 
-    def start():
-        pass
+    def readfrom_into(self, *args) -> Any:
+        ...
 
-    def stop():
-        pass
+    def readfrom_mem(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    def readfrom_mem_into(self, *args) -> Any:
+        ...
 
-    def writeto():
-        pass
+    def scan(self, *args) -> Any:
+        ...
 
-    def writeto_mem():
-        pass
+    def writeto(self, *args) -> Any:
+        ...
 
-    def writevto():
-        pass
+    def writeto_mem(self, *args) -> Any:
+        ...
+
+    def writevto(self, *args) -> Any:
+        ...
 
 
 class SoftSPI:
-    ''
-    LSB = 1
-    MSB = 0
-    def deinit():
-        pass
+    """"""
 
-    def init():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-    def write():
-        pass
+    LSB = 1  # type: int
+    MSB = 0  # type: int
 
-    def write_readinto():
-        pass
+    def deinit(self, *args) -> Any:
+        ...
 
-TIMER_WAKE = 4
-TOUCHPAD_WAKE = 5
+    def init(self, *args) -> Any:
+        ...
+
+    def write_readinto(self, *args) -> Any:
+        ...
+
+
+TIMER_WAKE = 4  # type: int
+TOUCHPAD_WAKE = 5  # type: int
+
 
 class Timer:
-    ''
-    ONE_SHOT = 0
-    PERIODIC = 1
-    def deinit():
-        pass
+    """"""
 
-    def init():
-        pass
+    def value(self, *args) -> Any:
+        ...
 
-    def value():
-        pass
+    ONE_SHOT = 0  # type: int
+    PERIODIC = 1  # type: int
+
+    def deinit(self, *args) -> Any:
+        ...
+
+    def init(self, *args) -> Any:
+        ...
 
 
 class TouchPad:
-    ''
-    def config():
-        pass
+    """"""
 
-    def read():
-        pass
+    def read(self, *args) -> Any:
+        ...
+
+    def config(self, *args) -> Any:
+        ...
 
 
 class UART:
-    ''
-    INV_CTS = 1048576
-    INV_RTS = 8388608
-    INV_RX = 524288
-    INV_TX = 4194304
-    def any():
-        pass
+    """"""
 
-    def deinit():
-        pass
+    def any(self, *args) -> Any:
+        ...
 
-    def init():
-        pass
+    def read(self, *args) -> Any:
+        ...
 
-    def read():
-        pass
+    def readinto(self, *args) -> Any:
+        ...
 
-    def readinto():
-        pass
+    def readline(self, *args) -> Any:
+        ...
 
-    def readline():
-        pass
+    def write(self, *args) -> Any:
+        ...
 
-    def sendbreak():
-        pass
+    INV_CTS = 1048576  # type: int
+    INV_RTS = 8388608  # type: int
+    INV_RX = 524288  # type: int
+    INV_TX = 4194304  # type: int
 
-    def write():
-        pass
+    def deinit(self, *args) -> Any:
+        ...
 
-ULP_WAKE = 6
+    def init(self, *args) -> Any:
+        ...
+
+    def sendbreak(self, *args) -> Any:
+        ...
+
+
+ULP_WAKE = 6  # type: int
+
 
 class WDT:
-    ''
-    def feed():
-        pass
+    """"""
 
-WDT_RESET = 3
-def deepsleep():
-    pass
+    def feed(self, *args) -> Any:
+        ...
 
-def disable_irq():
-    pass
 
-def enable_irq():
-    pass
+WDT_RESET = 3  # type: int
 
-def freq():
-    pass
 
-def idle():
-    pass
+def deepsleep(*args) -> Any:
+    ...
 
-def lightsleep():
-    pass
 
-mem16 = None
-mem32 = None
-mem8 = None
-def reset():
-    pass
+def disable_irq(*args) -> Any:
+    ...
 
-def reset_cause():
-    pass
 
-def sleep():
-    pass
+def enable_irq(*args) -> Any:
+    ...
 
-def soft_reset():
-    pass
 
-def time_pulse_us():
-    pass
+def freq(*args) -> Any:
+    ...
 
-def unique_id():
-    pass
 
-def wake_reason():
-    pass
+def idle(*args) -> Any:
+    ...
 
+
+def lightsleep(*args) -> Any:
+    ...
+
+
+mem16: Any  ## <class 'mem'> = <16-bit memory>
+mem32: Any  ## <class 'mem'> = <32-bit memory>
+mem8: Any  ## <class 'mem'> = <8-bit memory>
+
+
+def reset(*args) -> Any:
+    ...
+
+
+def reset_cause(*args) -> Any:
+    ...
+
+
+def sleep(*args) -> Any:
+    ...
+
+
+def soft_reset(*args) -> Any:
+    ...
+
+
+def time_pulse_us(*args) -> Any:
+    ...
+
+
+def unique_id(*args) -> Any:
+    ...
+
+
+def wake_reason(*args) -> Any:
+    ...

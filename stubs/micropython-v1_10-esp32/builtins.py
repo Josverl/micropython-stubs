@@ -1,111 +1,148 @@
 """
-Module: 'builtins' on micropython-esp32-1.10
+Module: 'builtins' on micropython-v1.10-esp32
 """
-# MCU: {'ver': '1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
+# Stubber: 1.5.0
 from typing import Any
 
 
 class ArithmeticError:
-    ''
+    """"""
+
 
 class AssertionError:
-    ''
+    """"""
+
 
 class AttributeError:
-    ''
+    """"""
+
 
 class BaseException:
-    ''
+    """"""
+
 
 class EOFError:
-    ''
-Ellipsis : Any ## <class ''> = Ellipsis
+    """"""
+
+
+Ellipsis: Any  ## <class ''> = Ellipsis
+
 
 class Exception:
-    ''
+    """"""
+
 
 class GeneratorExit:
-    ''
+    """"""
+
 
 class ImportError:
-    ''
+    """"""
+
 
 class IndentationError:
-    ''
+    """"""
+
 
 class IndexError:
-    ''
+    """"""
+
 
 class KeyError:
-    ''
+    """"""
+
 
 class KeyboardInterrupt:
-    ''
+    """"""
+
 
 class LookupError:
-    ''
+    """"""
+
 
 class MemoryError:
-    ''
+    """"""
+
 
 class NameError:
-    ''
-NotImplemented : Any ## <class ''> = NotImplemented
+    """"""
+
+
+NotImplemented: Any  ## <class ''> = NotImplemented
+
 
 class NotImplementedError:
-    ''
+    """"""
+
 
 class OSError:
-    ''
+    """"""
+
 
 class OverflowError:
-    ''
+    """"""
+
 
 class RuntimeError:
-    ''
+    """"""
+
 
 class StopAsyncIteration:
-    ''
+    """"""
+
 
 class StopIteration:
-    ''
+    """"""
+
 
 class SyntaxError:
-    ''
+    """"""
+
 
 class SystemExit:
-    ''
+    """"""
+
 
 class TypeError:
-    ''
+    """"""
+
 
 class UnicodeError:
-    ''
+    """"""
+
 
 class ValueError:
-    ''
+    """"""
+
 
 class ZeroDivisionError:
-    ''
+    """"""
+
+
 def abs(*args) -> Any:
     ...
+
 
 def all(*args) -> Any:
     ...
 
+
 def any(*args) -> Any:
     ...
+
 
 def bin(*args) -> Any:
     ...
 
 
 class bool:
-    ''
+    """"""
+
 
 class bytearray:
-    ''
+    """"""
+
     def append(self, *args) -> Any:
         ...
 
@@ -114,7 +151,8 @@ class bytearray:
 
 
 class bytes:
-    ''
+    """"""
+
     def center(self, *args) -> Any:
         ...
 
@@ -196,24 +234,30 @@ class bytes:
     def upper(self, *args) -> Any:
         ...
 
+
 def callable(*args) -> Any:
     ...
 
+
 def chr(*args) -> Any:
     ...
+
 
 def compile(*args) -> Any:
     ...
 
 
 class complex:
-    ''
+    """"""
+
+
 def delattr(*args) -> Any:
     ...
 
 
 class dict:
-    ''
+    """"""
+
     def clear(self, *args) -> Any:
         ...
 
@@ -248,33 +292,42 @@ class dict:
     def values(self, *args) -> Any:
         ...
 
+
 def dir(*args) -> Any:
     ...
+
 
 def divmod(*args) -> Any:
     ...
 
 
 class enumerate:
-    ''
+    """"""
+
+
 def eval(*args) -> Any:
     ...
 
+
 def exec(*args) -> Any:
     ...
+
 
 def execfile(*args) -> Any:
     ...
 
 
 class filter:
-    ''
+    """"""
+
 
 class float:
-    ''
+    """"""
+
 
 class frozenset:
-    ''
+    """"""
+
     def copy(self, *args) -> Any:
         ...
 
@@ -299,33 +352,42 @@ class frozenset:
     def union(self, *args) -> Any:
         ...
 
+
 def getattr(*args) -> Any:
     ...
+
 
 def globals(*args) -> Any:
     ...
 
+
 def hasattr(*args) -> Any:
     ...
+
 
 def hash(*args) -> Any:
     ...
 
+
 def help(*args) -> Any:
     ...
+
 
 def hex(*args) -> Any:
     ...
 
+
 def id(*args) -> Any:
     ...
+
 
 def input(*args) -> Any:
     ...
 
 
 class int:
-    ''
+    """"""
+
     @classmethod
     def from_bytes(cls, *args) -> Any:
         ...
@@ -333,21 +395,26 @@ class int:
     def to_bytes(self, *args) -> Any:
         ...
 
+
 def isinstance(*args) -> Any:
     ...
+
 
 def issubclass(*args) -> Any:
     ...
 
+
 def iter(*args) -> Any:
     ...
+
 
 def len(*args) -> Any:
     ...
 
 
 class list:
-    ''
+    """"""
+
     def append(self, *args) -> Any:
         ...
 
@@ -381,48 +448,61 @@ class list:
     def sort(self, *args) -> Any:
         ...
 
+
 def locals(*args) -> Any:
     ...
 
 
 class map:
-    ''
+    """"""
+
+
 def max(*args) -> Any:
     ...
 
 
 class memoryview:
-    ''
+    """"""
+
+
 def min(*args) -> Any:
     ...
+
 
 def next(*args) -> Any:
     ...
 
 
 class object:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
+
 
 def oct(*args) -> Any:
     ...
 
+
 def open(*args) -> Any:
     ...
+
 
 def ord(*args) -> Any:
     ...
 
+
 def pow(*args) -> Any:
     ...
+
 
 def print(*args) -> Any:
     ...
 
 
 class property:
-    ''
+    """"""
+
     def deleter(self, *args) -> Any:
         ...
 
@@ -434,19 +514,24 @@ class property:
 
 
 class range:
-    ''
+    """"""
+
+
 def repr(*args) -> Any:
     ...
 
 
 class reversed:
-    ''
+    """"""
+
+
 def round(*args) -> Any:
     ...
 
 
 class set:
-    ''
+    """"""
+
     def add(self, *args) -> Any:
         ...
 
@@ -498,18 +583,22 @@ class set:
     def update(self, *args) -> Any:
         ...
 
+
 def setattr(*args) -> Any:
     ...
 
 
 class slice:
-    ''
+    """"""
+
+
 def sorted(*args) -> Any:
     ...
 
 
 class str:
-    ''
+    """"""
+
     def center(self, *args) -> Any:
         ...
 
@@ -591,15 +680,18 @@ class str:
     def upper(self, *args) -> Any:
         ...
 
+
 def sum(*args) -> Any:
     ...
 
 
 class super:
-    ''
+    """"""
+
 
 class tuple:
-    ''
+    """"""
+
     def count(self, *args) -> Any:
         ...
 
@@ -608,7 +700,8 @@ class tuple:
 
 
 class type:
-    ''
+    """"""
+
 
 class zip:
-    ''
+    """"""

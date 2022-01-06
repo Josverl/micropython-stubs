@@ -1,20 +1,22 @@
 """
-Module: 'esp32' on micropython-esp32-1.12
+Module: 'esp32' on micropython-v1.12-esp32
 """
-# MCU: {'ver': '1.12', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.12.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.12.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.12', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.12.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.12.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
 from typing import Any
 
 
 class Partition:
-    ''
+    """"""
+
     def find(self, *args) -> Any:
         ...
 
-    BOOT = 0 # type: int
-    RUNNING = 1 # type: int
-    TYPE_APP = 0 # type: int
-    TYPE_DATA = 1 # type: int
+    BOOT = 0  # type: int
+    RUNNING = 1  # type: int
+    TYPE_APP = 0  # type: int
+    TYPE_DATA = 1  # type: int
+
     def get_next_update(self, *args) -> Any:
         ...
 
@@ -35,7 +37,8 @@ class Partition:
 
 
 class RMT:
-    ''
+    """"""
+
     def clock_div(self, *args) -> Any:
         ...
 
@@ -56,8 +59,10 @@ class RMT:
 
 
 class ULP:
-    ''
-    RESERVE_MEM = 512 # type: int
+    """"""
+
+    RESERVE_MEM = 512  # type: int
+
     def load_binary(self, *args) -> Any:
         ...
 
@@ -67,20 +72,26 @@ class ULP:
     def set_wakeup_period(self, *args) -> Any:
         ...
 
-WAKEUP_ALL_LOW = False # type: bool
-WAKEUP_ANY_HIGH = True # type: bool
+
+WAKEUP_ALL_LOW = False  # type: bool
+WAKEUP_ANY_HIGH = True  # type: bool
+
+
 def hall_sensor(*args) -> Any:
     ...
+
 
 def raw_temperature(*args) -> Any:
     ...
 
+
 def wake_on_ext0(*args) -> Any:
     ...
+
 
 def wake_on_ext1(*args) -> Any:
     ...
 
+
 def wake_on_touch(*args) -> Any:
     ...
-

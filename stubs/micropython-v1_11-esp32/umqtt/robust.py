@@ -1,19 +1,19 @@
 """
-Module: 'umqtt.robust' on micropython-esp32-1.11
+Module: 'umqtt.robust' on micropython-v1.11-esp32
 """
-# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.5.0
 from typing import Any
 
-# import utime
-# import simple
 
 class MQTTClient:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
-    DEBUG = False # type: bool
+    DEBUG = False  # type: bool
+
     def connect(self, *args) -> Any:
         ...
 
@@ -23,13 +23,15 @@ class MQTTClient:
     def log(self, *args) -> Any:
         ...
 
-    DELAY = 2 # type: int
+    DELAY = 2  # type: int
+
     def delay(self, *args) -> Any:
         ...
 
-    reconnect : Any ## <class 'closure'> = <closure>
-    publish : Any ## <class 'closure'> = <closure>
-    wait_msg : Any ## <class 'closure'> = <closure>
+    reconnect: Any  ## <class 'closure'> = <closure>
+    publish: Any  ## <class 'closure'> = <closure>
+    wait_msg: Any  ## <class 'closure'> = <closure>
+
     def set_callback(self, *args) -> Any:
         ...
 
@@ -44,4 +46,3 @@ class MQTTClient:
 
     def check_msg(self, *args) -> Any:
         ...
-

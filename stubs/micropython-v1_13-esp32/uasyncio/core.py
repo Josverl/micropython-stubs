@@ -1,127 +1,134 @@
 """
-Module: 'uasyncio.core' on esp32 1.13.0-103
+Module: 'uasyncio.core' on micropython-v1.13-266-esp32
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.13.0', version='v1.13-103-gb137d064e on 2020-10-09', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.4
+# MCU: {'ver': 'v1.13-266', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.13.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.13.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '266', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
+from typing import Any
+
 
 class CancelledError:
-    ''
-
-class IOQueue:
-    ''
-    def _dequeue():
-        pass
-
-    def _enqueue():
-        pass
-
-    def queue_read():
-        pass
-
-    def queue_write():
-        pass
-
-    def remove():
-        pass
-
-    def wait_io_event():
-        pass
+    """"""
 
 
 class Loop:
-    ''
-    _exc_handler = None
-    def call_exception_handler():
-        pass
+    """"""
 
-    def close():
-        pass
+    def close(self, *args) -> Any:
+        ...
 
-    def create_task():
-        pass
+    def stop(self, *args) -> Any:
+        ...
 
-    def default_exception_handler():
-        pass
+    def call_exception_handler(self, *args) -> Any:
+        ...
 
-    def get_exception_handler():
-        pass
+    def create_task(self, *args) -> Any:
+        ...
 
-    def run_forever():
-        pass
+    def run_until_complete(self, *args) -> Any:
+        ...
 
-    def run_until_complete():
-        pass
+    def run_forever(self, *args) -> Any:
+        ...
 
-    def set_exception_handler():
-        pass
+    def set_exception_handler(self, *args) -> Any:
+        ...
 
-    def stop():
-        pass
+    def get_exception_handler(self, *args) -> Any:
+        ...
 
+    def default_exception_handler(self, *args) -> Any:
+        ...
 
-class SingletonGenerator:
-    ''
 
 class Task:
-    ''
+    """"""
+
 
 class TaskQueue:
-    ''
-    def peek():
-        pass
+    """"""
 
-    def pop_head():
-        pass
+    def remove(self, *args) -> Any:
+        ...
 
-    def push_head():
-        pass
+    def peek(self, *args) -> Any:
+        ...
 
-    def push_sorted():
-        pass
+    def pop_head(self, *args) -> Any:
+        ...
 
-    def remove():
-        pass
+    def push_head(self, *args) -> Any:
+        ...
+
+    def push_sorted(self, *args) -> Any:
+        ...
+
+
+def run(*args) -> Any:
+    ...
+
+
+def sleep(*args) -> Any:
+    ...
+
+
+def sleep_ms(*args) -> Any:
+    ...
+
+
+def ticks_add(*args) -> Any:
+    ...
+
+
+def ticks_diff(*args) -> Any:
+    ...
+
+
+def ticks(*args) -> Any:
+    ...
 
 
 class TimeoutError:
-    ''
-_exc_context = None
-_io_queue = None
-def _promote_to_task():
-    pass
+    """"""
 
-_stop_task = None
-_stopper = None
-_task_queue = None
-def create_task():
-    pass
 
-def get_event_loop():
-    pass
+class SingletonGenerator:
+    """"""
 
-def new_event_loop():
-    pass
+    def __init__(self, *args) -> None:
+        ...
 
-def run():
-    pass
 
-def run_until_complete():
-    pass
+class IOQueue:
+    """"""
 
-select = None
-def sleep():
-    pass
+    def __init__(self, *args) -> None:
+        ...
 
-def sleep_ms():
-    pass
+    def remove(self, *args) -> Any:
+        ...
 
-sys = None
-def ticks():
-    pass
+    def queue_read(self, *args) -> Any:
+        ...
 
-def ticks_add():
-    pass
+    def queue_write(self, *args) -> Any:
+        ...
 
-def ticks_diff():
-    pass
+    def wait_io_event(self, *args) -> Any:
+        ...
 
+
+def create_task(*args) -> Any:
+    ...
+
+
+def run_until_complete(*args) -> Any:
+    ...
+
+
+def get_event_loop(*args) -> Any:
+    ...
+
+
+def new_event_loop(*args) -> Any:
+    ...

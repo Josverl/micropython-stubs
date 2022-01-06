@@ -1,49 +1,54 @@
 """
-Module: 'framebuf' on esp32 1.13.0-103
+Module: 'framebuf' on micropython-v1.13-266-esp32
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.13.0', version='v1.13-103-gb137d064e on 2020-10-09', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.4
+# MCU: {'ver': 'v1.13-266', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.13.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.13.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '266', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
+from typing import Any
+
 
 class FrameBuffer:
-    ''
-    def blit():
-        pass
+    """"""
 
-    def fill():
-        pass
+    def blit(self, *args) -> Any:
+        ...
 
-    def fill_rect():
-        pass
+    def fill(self, *args) -> Any:
+        ...
 
-    def hline():
-        pass
+    def fill_rect(self, *args) -> Any:
+        ...
 
-    def line():
-        pass
+    def hline(self, *args) -> Any:
+        ...
 
-    def pixel():
-        pass
+    def line(self, *args) -> Any:
+        ...
 
-    def rect():
-        pass
+    def pixel(self, *args) -> Any:
+        ...
 
-    def scroll():
-        pass
+    def rect(self, *args) -> Any:
+        ...
 
-    def text():
-        pass
+    def scroll(self, *args) -> Any:
+        ...
 
-    def vline():
-        pass
+    def text(self, *args) -> Any:
+        ...
 
-def FrameBuffer1():
-    pass
+    def vline(self, *args) -> Any:
+        ...
 
-GS2_HMSB = 5
-GS4_HMSB = 2
-GS8 = 6
-MONO_HLSB = 3
-MONO_HMSB = 4
-MONO_VLSB = 0
-MVLSB = 0
-RGB565 = 1
+
+def FrameBuffer1(*args) -> Any:
+    ...
+
+
+GS2_HMSB = 5  # type: int
+GS4_HMSB = 2  # type: int
+GS8 = 6  # type: int
+MONO_HLSB = 3  # type: int
+MONO_HMSB = 4  # type: int
+MONO_VLSB = 0  # type: int
+MVLSB = 0  # type: int
+RGB565 = 1  # type: int

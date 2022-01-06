@@ -1,15 +1,16 @@
 """
-Module: 'upip_utarfile' on micropython-esp32-1.11
+Module: 'upip_utarfile' on micropython-v1.11-esp32
 """
-# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.5.0
 from typing import Any
 
-# import uctypes
-DIRTYPE = 'dir' # type: str
+DIRTYPE = "dir"  # type: str
+
 
 class TarFile:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -19,14 +20,18 @@ class TarFile:
     def extractfile(self, *args) -> Any:
         ...
 
-TAR_HEADER = {} # type: dict
-REGTYPE = 'file' # type: str
+
+TAR_HEADER = {}  # type: dict
+REGTYPE = "file"  # type: str
+
+
 def roundup(*args) -> Any:
     ...
 
 
 class FileSection:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -41,4 +46,4 @@ class FileSection:
 
 
 class TarInfo:
-    ''
+    """"""

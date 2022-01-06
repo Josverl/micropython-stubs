@@ -1,53 +1,58 @@
 """
-Module: 'collections' on esp32 1.13.0-103
+Module: 'collections' on micropython-v1.13-266-esp32
 """
-# MCU: (sysname='esp32', nodename='esp32', release='1.13.0', version='v1.13-103-gb137d064e on 2020-10-09', machine='ESP32 module (spiram) with ESP32')
-# Stubber: 1.3.4
+# MCU: {'ver': 'v1.13-266', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.13.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.13.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '266', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
+from typing import Any
+
 
 class OrderedDict:
-    ''
-    def clear():
-        pass
+    """"""
 
-    def copy():
-        pass
+    def clear(self, *args) -> Any:
+        ...
 
-    def fromkeys():
-        pass
+    def copy(self, *args) -> Any:
+        ...
 
-    def get():
-        pass
+    def get(self, *args) -> Any:
+        ...
 
-    def items():
-        pass
+    def items(self, *args) -> Any:
+        ...
 
-    def keys():
-        pass
+    def keys(self, *args) -> Any:
+        ...
 
-    def pop():
-        pass
+    def pop(self, *args) -> Any:
+        ...
 
-    def popitem():
-        pass
+    def popitem(self, *args) -> Any:
+        ...
 
-    def setdefault():
-        pass
+    def setdefault(self, *args) -> Any:
+        ...
 
-    def update():
-        pass
+    def update(self, *args) -> Any:
+        ...
 
-    def values():
-        pass
+    def values(self, *args) -> Any:
+        ...
+
+    @classmethod
+    def fromkeys(cls, *args) -> Any:
+        ...
 
 
 class deque:
-    ''
-    def append():
-        pass
+    """"""
 
-    def popleft():
-        pass
+    def append(self, *args) -> Any:
+        ...
 
-def namedtuple():
-    pass
+    def popleft(self, *args) -> Any:
+        ...
 
+
+def namedtuple(*args) -> Any:
+    ...

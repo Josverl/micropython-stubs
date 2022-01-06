@@ -1,13 +1,14 @@
 """
-Module: 'ubluetooth' on micropython-esp32-1.17
+Module: 'ubluetooth' on micropython-v1.17-esp32
 """
-# MCU: {'ver': '1.17', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.17.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.17.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.17', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.17.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.17.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
 from typing import Any
 
 
 class BLE:
-    ''
+    """"""
+
     def active(self, *args) -> Any:
         ...
 
@@ -65,11 +66,13 @@ class BLE:
     def irq(self, *args) -> Any:
         ...
 
-FLAG_INDICATE = 32 # type: int
-FLAG_NOTIFY = 16 # type: int
-FLAG_READ = 2 # type: int
-FLAG_WRITE = 8 # type: int
-FLAG_WRITE_NO_RESPONSE = 4 # type: int
+
+FLAG_INDICATE = 32  # type: int
+FLAG_NOTIFY = 16  # type: int
+FLAG_READ = 2  # type: int
+FLAG_WRITE = 8  # type: int
+FLAG_WRITE_NO_RESPONSE = 4  # type: int
+
 
 class UUID:
-    ''
+    """"""

@@ -1,19 +1,22 @@
 """
-Module: 'onewire' on micropython-esp32-1.11
+Module: 'onewire' on micropython-v1.11-esp32
 """
-# MCU: {'ver': '1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
+# Stubber: 1.5.0
 from typing import Any
+
 
 def const(*args) -> Any:
     ...
 
 
 class OneWireError:
-    ''
+    """"""
+
 
 class OneWire:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -44,9 +47,9 @@ class OneWire:
     def writebyte(self, *args) -> Any:
         ...
 
-    SEARCH_ROM = 240 # type: int
-    MATCH_ROM = 85 # type: int
-    SKIP_ROM = 204 # type: int
+    SEARCH_ROM = 240  # type: int
+    MATCH_ROM = 85  # type: int
+    SKIP_ROM = 204  # type: int
+
     def select_rom(self, *args) -> Any:
         ...
-

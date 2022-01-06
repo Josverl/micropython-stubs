@@ -1,13 +1,14 @@
 """
-Module: 'framebuf' on micropython-esp32-1.12
+Module: 'framebuf' on micropython-v1.12-esp32
 """
-# MCU: {'ver': '1.12', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.12.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.12.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.4.2
+# MCU: {'ver': 'v1.12', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.12.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.12.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
+# Stubber: 1.5.0
 from typing import Any
 
 
 class FrameBuffer:
-    ''
+    """"""
+
     def blit(self, *args) -> Any:
         ...
 
@@ -38,14 +39,16 @@ class FrameBuffer:
     def vline(self, *args) -> Any:
         ...
 
+
 def FrameBuffer1(*args) -> Any:
     ...
 
-GS2_HMSB = 5 # type: int
-GS4_HMSB = 2 # type: int
-GS8 = 6 # type: int
-MONO_HLSB = 3 # type: int
-MONO_HMSB = 4 # type: int
-MONO_VLSB = 0 # type: int
-MVLSB = 0 # type: int
-RGB565 = 1 # type: int
+
+GS2_HMSB = 5  # type: int
+GS4_HMSB = 2  # type: int
+GS8 = 6  # type: int
+MONO_HLSB = 3  # type: int
+MONO_HMSB = 4  # type: int
+MONO_VLSB = 0  # type: int
+MVLSB = 0  # type: int
+RGB565 = 1  # type: int
