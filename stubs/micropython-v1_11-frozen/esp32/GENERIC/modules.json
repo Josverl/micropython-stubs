@@ -2,10 +2,10 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "port": "esp8266",
-        "platform": "esp8266",
+        "port": "esp32",
+        "platform": "esp32",
         "machine": "",
-        "firmware": "micropython-esp8266-1_11",
+        "firmware": "micropython-esp32-v1_11",
         "nodename": "micropython",
         "version": "v1.11",
         "release": "",
@@ -21,8 +21,8 @@
             "module": "_boot"
         },
         {
-            "file": "apa102.py",
-            "module": "apa102"
+            "file": "apa106.py",
+            "module": "apa106"
         },
         {
             "file": "dht.py",
@@ -53,16 +53,20 @@
             "module": "onewire"
         },
         {
-            "file": "port_diag.py",
-            "module": "port_diag"
-        },
-        {
             "file": "upip.py",
             "module": "upip"
         },
         {
             "file": "upip_utarfile.py",
             "module": "upip_utarfile"
+        },
+        {
+            "file": "upysh.py",
+            "module": "upysh"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
         },
         {
             "file": "webrepl.py",

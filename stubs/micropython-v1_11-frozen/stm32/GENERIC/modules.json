@@ -2,10 +2,10 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "port": "unix",
-        "platform": "unix",
+        "port": "stm32",
+        "platform": "stm32",
         "machine": "",
-        "firmware": "micropython-unix-1_11",
+        "firmware": "micropython-stm32-v1_11",
         "nodename": "micropython",
         "version": "v1.11",
         "release": "",
@@ -17,12 +17,20 @@
     },
     "modules": [
         {
-            "file": "upip.py",
-            "module": "upip"
+            "file": "dht.py",
+            "module": "dht"
         },
         {
-            "file": "upip_utarfile.py",
-            "module": "upip_utarfile"
+            "file": "lcd160cr.py",
+            "module": "lcd160cr"
+        },
+        {
+            "file": "lcd160cr_test.py",
+            "module": "lcd160cr_test"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
         }
     ]
 }
