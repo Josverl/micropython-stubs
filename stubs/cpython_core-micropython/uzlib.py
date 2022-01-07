@@ -4,7 +4,7 @@ from zlib import *
 
 class DecompIO:
 
-    def __init__(self, stream, dict_bits, dictbuf=None):
+    def __init__(self, stream, dict_bits):
         self.stream = stream
         self.decomp = decompressobj(dict_bits)
         self.pending = b""

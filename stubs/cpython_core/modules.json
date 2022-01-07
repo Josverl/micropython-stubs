@@ -2,7 +2,7 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "firmware": "micropython-common-1_4_5",
+        "firmware": "micropython-common-v1_4_5",
         "machine": "common",
         "nodename": null,
         "platform": "common",
