@@ -6,8 +6,6 @@
 ## Micropython 
 |family | version | type    |port |board |count | stubber version|path
 |-------|---------|---------|-----|------|-----:|-|----
-|micropython |-       |cpython |-|micropython-pyb by Daryl Schults|1|manual|[stubs/cpython_pyboard](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/cpython_pyboard)
-|micropython |-       |cpython |-|cpython core patchfiles|22|manual|[stubs/micropython_cpython_core](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython_cpython_core)
 |micropython |latest  |documentation|-|generic|41|1.4.5|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-latest-docstubs)
 |micropython |latest  |frozen  |-|GENERIC|10|1.4.5|[stubs/micropython-latest-frozen/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-latest-frozen/GENERIC)
 |micropython |latest  |frozen  |esp32|GENERIC|20|1.4.5|[stubs/micropython-latest-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-latest-frozen/esp32/GENERIC)
@@ -105,7 +103,6 @@
 |micropython |v1.17   |frozen  |rp2|GENERIC|10|1.4.5|[stubs/micropython-v1_17-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_17-frozen/rp2/GENERIC)
 |micropython |v1.17   |frozen  |stm32|GENERIC|10|1.4.5|[stubs/micropython-v1_17-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_17-frozen/stm32/GENERIC)
 |micropython |v1.17   |frozen  |stm32|PYBD_SF2|13|1.4.5|[stubs/micropython-v1_17-frozen/stm32/PYBD_SF2](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_17-frozen/stm32/PYBD_SF2)
-|micropython |v1.4.5  |frozen  |common|common|24|1.4.5|[stubs/cpython_core](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/cpython_core)
 |micropython |v1.9.3  |frozen  |esp8266|generic|15|1.4.5|[stubs/micropython-v1_9_3-frozen/esp8266/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_3-frozen/esp8266/GENERIC)
 |micropython |v1.9.3  |frozen  |stm32|generic|3|1.4.5|[stubs/micropython-v1_9_3-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_3-frozen/stm32/GENERIC)
 |micropython |v1.9.3  |frozen  |unix|generic|2|1.4.5|[stubs/micropython-v1_9_3-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_3-frozen/unix/GENERIC)
@@ -117,6 +114,13 @@
 |micropython |v1.9.4  |frozen  |unix|generic|2|1.4.5|[stubs/micropython-v1_9_4-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_4-frozen/unix/GENERIC)
 |micropython |v1.9.4-L|board   |-|ESP module with ESP8266|43|1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_4-esp8266)
 
+
+(cpython-core-stubs)=
+## Cpython-Core 
+|family | version | type    |port |board |count | stubber version|path
+|-------|---------|---------|-----|------|-----:|-|----
+|cpython-core|v1.4.5  |core    |micropython|cpython-core|15|1.4.5|[stubs/cpython_core-micropython](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/cpython_core-micropython)
+|cpython-core|v1.4.5  |core    |pycopy|cpython-core|24|1.4.5|[stubs/cpython_core-pycopy](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/cpython_core-pycopy)
 
 (loboris-stubs)=
 ## Loboris 
@@ -137,6 +141,12 @@
 |-------|---------|---------|-----|------|-----:|-|----
 |m5stack     |v1.11   |board   |-|ESP32 module with ESP32|129|1.3.1|[stubs/m5stack_flowui-v1_4_0-beta](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/m5stack_flowui-v1_4_0-beta)
 
+(pyb-stubs)=
+## Pyb 
+|family | version | type    |port |board |count | stubber version|path
+|-------|---------|---------|-----|------|-----:|-|----
+|pyb         |-       |library |pyb|micropython-pyb by Daryl Schults|1|manual|[stubs/cpython_pyboard](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/cpython_pyboard)
+
 (pycopy-stubs)=
 ## Pycopy 
 |family | version | type    |port |board |count | stubber version|path
@@ -154,4 +164,4 @@
 
 ## Metrics
 
-Total stub modules:  3087
+Total stub modules:  3080

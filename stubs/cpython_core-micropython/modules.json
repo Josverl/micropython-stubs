@@ -1,14 +1,14 @@
 {
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
-        "family": "micropython",
-        "firmware": "micropython-common-v1_4_5",
-        "machine": "common",
-        "nodename": null,
-        "platform": "common",
-        "port": "common",
+        "family": "cpython-core",
+        "firmware": "cpython-core-micropython-v1_4_5",
+        "machine": "cpython-core",
+        "nodename": "",
+        "platform": "cpython",
+        "port": "micropython",
         "release": "1.4.5",
-        "sysname": null,
+        "sysname": "",
         "version": "1.4.5"
     },
     "modules": [
@@ -74,7 +74,7 @@
         }
     ],
     "stubber": {
-        "stubtype": "frozen",
+        "stubtype": "core",
         "version": "1.4.5"
     }
 }

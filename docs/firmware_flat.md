@@ -28,8 +28,8 @@ v2
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/ev3_pybricks_v1_0_0)
 |board| micropython| v1.9.4-Latest| -| ESP module with ESP8266| 43| 1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_4-esp8266)
-|cpython| micropython| -| -| cpython core patchfiles| 22| manual|[stubs/micropython_cpython_core](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython_cpython_core)
-|cpython| micropython| -| -| micropython-pyb by Daryl Schults| 1| manual|[stubs/cpython_pyboard](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/cpython_pyboard)
+|core| cpython-core| v1.4.5| micropython| cpython-core| 15| 1.4.5|[stubs/cpython_core-micropython](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/cpython_core-micropython)
+|core| cpython-core| v1.4.5| pycopy| cpython-core| 24| 1.4.5|[stubs/cpython_core-pycopy](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/cpython_core-pycopy)
 |documentation| micropython| latest| -| generic| 41| 1.4.5|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-latest-docstubs)
 |frozen| loboris| v3.2.24| esp32| generic| 17| 1.4.5|[stubs/loboris-v3_2_24-frozen](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/loboris-v3_2_24-frozen)
 |frozen| loboris| v3.2.9| esp32| ESP32 board with ESP32| 68| 1.1.2|[stubs/loboris-v3_2_9-frozen](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/loboris-v3_2_9-frozen)
@@ -110,7 +110,6 @@ v2
 |frozen| micropython| v1.17| rp2| GENERIC| 10| 1.4.5|[stubs/micropython-v1_17-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_17-frozen/rp2/GENERIC)
 |frozen| micropython| v1.17| stm32| GENERIC| 10| 1.4.5|[stubs/micropython-v1_17-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_17-frozen/stm32/GENERIC)
 |frozen| micropython| v1.17| stm32| PYBD_SF2| 13| 1.4.5|[stubs/micropython-v1_17-frozen/stm32/PYBD_SF2](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_17-frozen/stm32/PYBD_SF2)
-|frozen| micropython| v1.4.5| common| common| 24| 1.4.5|[stubs/cpython_core](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/cpython_core)
 |frozen| micropython| v1.9.3| esp8266| generic| 15| 1.4.5|[stubs/micropython-v1_9_3-frozen/esp8266/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_3-frozen/esp8266/GENERIC)
 |frozen| micropython| v1.9.3| stm32| generic| 3| 1.4.5|[stubs/micropython-v1_9_3-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_3-frozen/stm32/GENERIC)
 |frozen| micropython| v1.9.3| unix| generic| 2| 1.4.5|[stubs/micropython-v1_9_3-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_3-frozen/unix/GENERIC)
@@ -120,7 +119,8 @@ v2
 |frozen| micropython| v1.9.4| unix| generic| 2| 1.4.5|[stubs/micropython-v1_9_4-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-v1_9_4-frozen/unix/GENERIC)
 |frozen| pycopy| -| -| included frozen modules| 0| manual|[stubs/pycopy-v0_0_0-frozen](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/pycopy-v0_0_0-frozen)
 |library| lvgl| v8.1| esp32| ESP32 module (spiram) with ESP32| 3| 1.4.2|[stubs/lvgl-v8_1_0_dev-esp32](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/lvgl-v8_1_0_dev-esp32)
+|library| pyb| -| pyb| micropython-pyb by Daryl Schults| 1| manual|[stubs/cpython_pyboard](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/cpython_pyboard)
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/v_version/stubs/micropython-ulab)
 
 
-Total modules  3087
+Total modules  3080
