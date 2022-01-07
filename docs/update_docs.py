@@ -86,10 +86,12 @@ def update_firmware_docs():
         trim_blocks=True,  # trim indents
         lstrip_blocks=True,  # trim left whitespace
     )
+    # TODO: Get current git branch
+    # git rev-parse --abbrev-ref HEAD
     # Process all template files
     for template_file in (workspace_root / "docs/templates").glob("*.j2"):
         template = env.get_template(template_file.name)
-        output = template.render(info_list=all)
+        output = template.render(info_list=all, branch="v_version")
         # output to doc folder
         md_filename = template_file.with_suffix(".md").name
         print(" - updating:", md_filename)
