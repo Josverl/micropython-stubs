@@ -32,10 +32,11 @@ This contains the template files you need to improve syntax highlighting with Py
 ## Select which stub folders you need to reference
 - The order will influence results. place the 'higher quality' folders first.
 - Use forward slashes `/` rather than backslashes, also on Windows.
-- for example for micropython 1.13 on an ESP32 select:
+- for example for micropython 1.17 on an ESP32 select:
     1. "./src/lib",
-    2. "all-stubs/cpython_patch",
-    3. "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", 
-    4. "all-stubs/esp32_1_13_0-103",
+    2. "all-stubs/cpython_core",
+    3. "all-stubs/micropython-v1_17-frozen/esp32/GENERIC", 
+    4. "all-stubs/micropython-v1_17-esp32",
 
 
+[samples]: https://github.com/josverl/micropython-stubs/tree/main/docs/samples

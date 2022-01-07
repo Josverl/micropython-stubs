@@ -20,9 +20,9 @@ Example from `.vscode/settings.json`
     "python.analysis.autoSearchPath": true,
     "python.autoComplete.extraPaths": [
         "src/lib", 
-        "all-stubs/cpython_patch", 
-        "all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", 
-        "all-stubs/esp32_1_13_0-103",
+        "all-stubs/cpython_core", 
+        "all-stubs/micropyton-1_17-frozen/esp32/GENERIC", 
+        "all-stubs/micropyton-1_17-esp32",
     ]
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
@@ -34,9 +34,6 @@ VSCode must be restated for so that Pylance and linters such as Pylint to read t
 You can use: 
 - the `Developer: Reload Window` command.
 - or stop / start the editor
-
-
-
 
 
 ```{note} Pymakr: Update pymakr.conf 
@@ -73,4 +70,4 @@ To avoid the "all-stubs" folder to be uploaded to your Micropython MCU
 
 
 [Pylance]: https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance
-[samples]: https://github.com/josverl/micropython-stubs/tree/main/docs/samples
+
