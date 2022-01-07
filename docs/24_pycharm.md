@@ -14,7 +14,7 @@ Copy some or all the stubs into a directory in your project, or use a symlink to
 - Mark the relevant directories as a source root by choosing **Mark Directory as | Sources Root** from the context menu of the directory.  
 For example: 
 
-  - all-stubs/cpython_core
+  - all-stubs/cpython_core-pycopy
   - all-stubs/micropython-v1_17-frozen/esp32/GENERIC
   - all-stubs/micropython-v1_17-esp32
 

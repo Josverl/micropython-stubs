@@ -34,7 +34,7 @@ This contains the template files you need to improve syntax highlighting with Py
 - Use forward slashes `/` rather than backslashes, also on Windows.
 - for example for micropython 1.17 on an ESP32 select:
     1. "./src/lib",
-    2. "all-stubs/cpython_core",
+    2. "all-stubs/cpython_core-pycopy",
     3. "all-stubs/micropython-v1_17-frozen/esp32/GENERIC", 
     4. "all-stubs/micropython-v1_17-esp32",
 

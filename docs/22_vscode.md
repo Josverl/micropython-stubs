@@ -20,7 +20,7 @@ Example from `.vscode/settings.json`
     "python.analysis.autoSearchPath": true,
     "python.autoComplete.extraPaths": [
         "src/lib", 
-        "all-stubs/cpython_core", 
+        "all-stubs/cpython_core-pycopy", 
         "all-stubs/micropyton-1_17-frozen/esp32/GENERIC", 
         "all-stubs/micropyton-1_17-esp32",
     ]
