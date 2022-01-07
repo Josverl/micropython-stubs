@@ -8,7 +8,7 @@ def clean_version(
     patch: bool = False,
     commit: bool = False,
     drop_v: bool = False,
-    flat: bool = False
+    flat: bool = False,
 ):
     "Clean up and transform the many flavours of versions"
     # 'v1.13.0-103-gb137d064e' --> 'v1.13-103'
@@ -38,3 +38,30 @@ def clean_version(
         if not version.startswith("v") and version.lower() != "latest":
             version = "v" + version
     return version
+
+
+from typing import Union
+import subprocess
+import os
+from typing import Union, List
+
+
+def git_branch():
+    "run a external (git) command in the repo's folder and deal with some of the errors"
+    try:
+        cmd = "git rev-parse --abbrev-ref HEAD".split()
+        result = subprocess.run(cmd, capture_output=True, check=True)
+    except subprocess.CalledProcessError as e:
+        # add some logging for github actions
+        print("Exception on process, rc=", e.returncode, "output=", e.output)
+        if e.returncode == 128:
+            pwd = os.system("pwd")
+            print(f"current directory: {pwd}")
+        return ""
+    if result.stderr != b"":
+        print(result.stderr.decode("utf-8"))
+        raise Exception(result.stderr.decode("utf-8"))
+
+    if result.returncode < 0:
+        raise Exception(result.stderr.decode("utf-8"))
+    return result.stdout.decode().strip()

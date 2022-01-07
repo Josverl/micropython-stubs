@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 from collections import defaultdict
-from utils import clean_version
+from utils import clean_version, git_branch
 from jinja2 import Environment, FileSystemLoader
 
 
@@ -86,20 +86,18 @@ def update_firmware_docs():
         trim_blocks=True,  # trim indents
         lstrip_blocks=True,  # trim left whitespace
     )
-    # TODO: Get current git branch
+    # Get current git branch name
     # git rev-parse --abbrev-ref HEAD
+    branchname = git_branch()
     # Process all template files
     for template_file in (workspace_root / "docs/templates").glob("*.j2"):
         template = env.get_template(template_file.name)
-        output = template.render(info_list=all, branch="v_version")
+        output = template.render(info_list=all, branch=branchname)
         # output to doc folder
         md_filename = template_file.with_suffix(".md").name
         print(" - updating:", md_filename)
         with open(workspace_root / "docs" / md_filename, "w") as md_file:
             md_file.write(output)
-        # # output to root folder
-        # with open(workspace_root / md_filename, "w") as md_file:
-        #     md_file.write(output)
 
 
 if __name__ == "__main__":
