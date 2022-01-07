@@ -50,7 +50,7 @@ def git_branch():
     "run a external (git) command in the repo's folder and deal with some of the errors"
     try:
         cmd = "git rev-parse --abbrev-ref HEAD".split()
-        cmd = "git show -s --pretty=%D"
+        cmd = "git show -s --pretty=%D".split()
         result = subprocess.run(cmd, capture_output=True, check=True)
     except subprocess.CalledProcessError as e:
         # add some logging for github actions
