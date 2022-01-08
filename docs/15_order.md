@@ -33,12 +33,12 @@ sequenceDiagram
    This should be the fist location any tool should check. Also this allows you to override any library if needed.
 
  2. **Cpython stubs:**  
-   `['all-stubs/cpython-core'] `  
+   `['all-stubs/cpython_core-pycopy', 'all-stubs/cpython_core-micropython'] `  
    These are Python files that are intended to allow Micropython files to be run. with some limitations, on CPython. They also help resolve most MicroPython stdlib uses.
    There are currenly two different sources for these stubs : 
-    - the micropython-lib 
-    - the **pycopy-lib**
-    The default cpython core is based off the pycopy libs as, in my opinion, they offer most functionality.
+    - the micropython-lib version :  'all-stubs/cpython_core-micropython'
+    - the **pycopy-lib** version :  'all-stubs/cpython_core-pycopy'
+    The recommended cpython core is based off the pycopy libs as, in my opinion, they offer most functionality. 
 
  3. **Frozen stubs - Micropython - [Version] - frozen / [Port] / [Board]:**  
     `['all-stubs/micropython-{Version}-Frozen/{Port}/{Board}']`  

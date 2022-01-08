@@ -1,0 +1,80 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "cpython-core",
+        "firmware": "cpython-core-micropython-v1_4_5",
+        "machine": "cpython-core",
+        "nodename": "",
+        "platform": "cpython",
+        "port": "micropython",
+        "release": "1.4.5",
+        "sysname": "",
+        "version": "1.4.5"
+    },
+    "modules": [
+        {
+            "file": "micropython.py",
+            "module": "micropython"
+        },
+        {
+            "file": "uasyncio.py",
+            "module": "uasyncio"
+        },
+        {
+            "file": "uctypes.py",
+            "module": "uctypes"
+        },
+        {
+            "file": "uerrno.py",
+            "module": "uerrno"
+        },
+        {
+            "file": "uhashlib.py",
+            "module": "uhashlib"
+        },
+        {
+            "file": "uio.py",
+            "module": "uio"
+        },
+        {
+            "file": "ujson.py",
+            "module": "ujson"
+        },
+        {
+            "file": "uos.py",
+            "module": "uos"
+        },
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        },
+        {
+            "file": "ure.py",
+            "module": "ure"
+        },
+        {
+            "file": "usocket.py",
+            "module": "usocket"
+        },
+        {
+            "file": "ussl.py",
+            "module": "ussl"
+        },
+        {
+            "file": "utime.py",
+            "module": "utime"
+        },
+        {
+            "file": "uzlib.py",
+            "module": "uzlib"
+        }
+    ],
+    "stubber": {
+        "stubtype": "core",
+        "version": "1.4.5"
+    }
+}

@@ -1,5 +1,9 @@
 {
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
+        "family": "pyb",
+        "platform": "ST32",
+        "port": "pyb",
         "machine": "micropython-pyb by Daryl Schults",
         "firmware": "-",
         "nodename": "pyboard",
@@ -8,7 +12,8 @@
         "sysname": "pyb"
     },
     "stubber": {
-        "version": "manual"
+        "version": "-",
+        "stubtype": "library"
     },
     "modules": [
         {

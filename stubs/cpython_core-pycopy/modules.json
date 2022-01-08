@@ -1,0 +1,116 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "cpython-core",
+        "firmware": "cpython-core-pycopy-v1_4_5",
+        "machine": "cpython-core",
+        "nodename": "",
+        "platform": "cpython",
+        "port": "pycopy",
+        "release": "1.4.5",
+        "sysname": "",
+        "version": "1.4.5"
+    },
+    "modules": [
+        {
+            "file": "ffi.py",
+            "module": "ffi"
+        },
+        {
+            "file": "micropython.py",
+            "module": "micropython"
+        },
+        {
+            "file": "pycopy.py",
+            "module": "pycopy"
+        },
+        {
+            "file": "pycopy_imphook.py",
+            "module": "pycopy_imphook"
+        },
+        {
+            "file": "uarray.py",
+            "module": "uarray"
+        },
+        {
+            "file": "uasyncio.py",
+            "module": "uasyncio"
+        },
+        {
+            "file": "ucollections.py",
+            "module": "ucollections"
+        },
+        {
+            "file": "uctypes.py",
+            "module": "uctypes"
+        },
+        {
+            "file": "uerrno.py",
+            "module": "uerrno"
+        },
+        {
+            "file": "uhashlib.py",
+            "module": "uhashlib"
+        },
+        {
+            "file": "uio.py",
+            "module": "uio"
+        },
+        {
+            "file": "ujson.py",
+            "module": "ujson"
+        },
+        {
+            "file": "ulogging.py",
+            "module": "ulogging"
+        },
+        {
+            "file": "uos.py",
+            "module": "uos"
+        },
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        },
+        {
+            "file": "ure.py",
+            "module": "ure"
+        },
+        {
+            "file": "uselect.py",
+            "module": "uselect"
+        },
+        {
+            "file": "usocket.py",
+            "module": "usocket"
+        },
+        {
+            "file": "ussl.py",
+            "module": "ussl"
+        },
+        {
+            "file": "utime.py",
+            "module": "utime"
+        },
+        {
+            "file": "utimeq.py",
+            "module": "utimeq"
+        },
+        {
+            "file": "utokenize.py",
+            "module": "utokenize"
+        },
+        {
+            "file": "uzlib.py",
+            "module": "uzlib"
+        }
+    ],
+    "stubber": {
+        "stubtype": "core",
+        "version": "1.4.5"
+    }
+}

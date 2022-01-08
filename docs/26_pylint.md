@@ -11,5 +11,5 @@ This instructs pylint to insert the list of paths into `sys.path` before perform
 **Note that in `.pylintrc` the list of folders MUST be on a single line**
 - the result should look like:  
         ```
-        init-hook='import sys;sys.path[1:1] = ["src/lib", "all-stubs/cpython_patch","all-stubs/mpy_1_13-nightly_frozen/esp32/GENERIC", "all-stubs/esp32_1_13_0-103",];'
+        init-hook='import sys;sys.path[1:1] = ["src/lib", "all-stubs/cpython_core-pycopy","all-stubs/micropython-v1_17-frozen/esp32/GENERIC", "all-stubs/micropython-v1_17-esp32",];'
         ```

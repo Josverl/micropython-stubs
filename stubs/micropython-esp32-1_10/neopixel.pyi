@@ -1,9 +1,0 @@
-from typing import Any
-
-Node = Any
-
-class NeoPixel:
-    def fill() -> None: ...
-    def write() -> None: ...
-
-def neopixel_write() -> None: ...

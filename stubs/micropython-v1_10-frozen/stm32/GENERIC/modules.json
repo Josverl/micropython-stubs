@@ -1,0 +1,36 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "stm32",
+        "platform": "stm32",
+        "machine": "",
+        "firmware": "micropython-stm32-v1_10",
+        "nodename": "micropython",
+        "version": "v1.10",
+        "release": "",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.4.5",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "lcd160cr.py",
+            "module": "lcd160cr"
+        },
+        {
+            "file": "lcd160cr_test.py",
+            "module": "lcd160cr_test"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        }
+    ]
+}

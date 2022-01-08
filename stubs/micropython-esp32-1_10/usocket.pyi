@@ -1,6 +1,0 @@
-from typing import Any
-
-Node = Any
-
-def getaddrinfo() -> None: ...
-def socket() -> None: ...

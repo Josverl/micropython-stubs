@@ -1,6 +1,0 @@
-from typing import Any
-
-Node = Any
-
-def client_handshake() -> None: ...
-def server_handshake() -> None: ...
