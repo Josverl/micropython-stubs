@@ -16,10 +16,10 @@ sequenceDiagram
     participant Pylance
     autonumber
     Pylance --x Source code: check 
+    rect rgba(0, 0, 255, .3)
     Pylance --x CPython stubs: check 
     Pylance --x Frozen stubs: check 
     Pylance --x Doc Stubs: check 
-    rect rgba(0, 0, 255, .3)
     Pylance ->>+Board Stubs: check
     Board Stubs ->>-Pylance: return info 
     end
