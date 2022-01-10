@@ -4,11 +4,11 @@
         "family": "micropython",
         "port": "unix",
         "platform": "unix",
-        "machine": "",
+        "machine": "micropython",
         "firmware": "micropython-unix-v1_9_3",
         "nodename": "micropython",
         "version": "v1.9.3",
-        "release": "",
+        "release": "v1.9.3",
         "sysname": "micropython"
     },
     "stubber": {
