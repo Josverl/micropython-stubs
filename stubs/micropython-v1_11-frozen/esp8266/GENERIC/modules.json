@@ -4,11 +4,11 @@
         "family": "micropython",
         "port": "esp8266",
         "platform": "esp8266",
-        "machine": "",
+        "machine": "micropython",
         "firmware": "micropython-esp8266-v1_11",
         "nodename": "micropython",
         "version": "v1.11",
-        "release": "",
+        "release": "v1.11",
         "sysname": "micropython"
     },
     "stubber": {

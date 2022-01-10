@@ -4,11 +4,11 @@
         "family": "micropython",
         "port": "esp32",
         "platform": "esp32",
-        "machine": "",
+        "machine": "micropython",
         "firmware": "micropython-esp32-v1_9_4",
         "nodename": "micropython",
         "version": "v1.9.4",
-        "release": "",
+        "release": "v1.9.4",
         "sysname": "micropython"
     },
     "stubber": {

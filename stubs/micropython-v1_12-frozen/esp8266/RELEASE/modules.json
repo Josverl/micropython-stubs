@@ -1,0 +1,136 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "esp8266",
+        "platform": "esp8266",
+        "machine": "RELEASE",
+        "firmware": "micropython-esp8266-v1_12",
+        "nodename": "micropython",
+        "version": "v1.12",
+        "release": "v1.12",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.4.5",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "apa102.py",
+            "module": "apa102"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "example_pub_button.py",
+            "module": "example_pub_button"
+        },
+        {
+            "file": "example_sub_led.py",
+            "module": "example_sub_led"
+        },
+        {
+            "file": "flashbdev.py",
+            "module": "flashbdev"
+        },
+        {
+            "file": "http_client.py",
+            "module": "http_client"
+        },
+        {
+            "file": "http_client_ssl.py",
+            "module": "http_client_ssl"
+        },
+        {
+            "file": "http_server.py",
+            "module": "http_server"
+        },
+        {
+            "file": "http_server_ssl.py",
+            "module": "http_server_ssl"
+        },
+        {
+            "file": "inisetup.py",
+            "module": "inisetup"
+        },
+        {
+            "file": "neopixel.py",
+            "module": "neopixel"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "port_diag.py",
+            "module": "port_diag"
+        },
+        {
+            "file": "ssd1306.py",
+            "module": "ssd1306"
+        },
+        {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "umqtt/robust.py",
+            "module": "robust"
+        },
+        {
+            "file": "umqtt/simple.py",
+            "module": "simple"
+        },
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        },
+        {
+            "file": "upysh.py",
+            "module": "upysh"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
+            "file": "urllib/urequest.py",
+            "module": "urequest"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        },
+        {
+            "file": "websocket_helper.py",
+            "module": "websocket_helper"
+        }
+    ]
+}
