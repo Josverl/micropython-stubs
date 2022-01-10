@@ -10,90 +10,102 @@ sub-fields.
 """
 
 # source version: latest
-# origin module:: micropython/docs/library/uctypes.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+# origin module:: micropython\docs\library\uctypes.rst
+from typing import Any
+
 #    Layout type for a little-endian packed structure. (Packed means that every
 #    field occupies exactly as many bytes as defined in the descriptor, i.e.
 #    the alignment is 1).
-LITTLE_ENDIAN : bytes
+LITTLE_ENDIAN: bytes
 #    Layout type for a big-endian packed structure.
-BIG_ENDIAN : Any
+BIG_ENDIAN: Any
 #    Layout type for a native structure - with data endianness and alignment
 #    conforming to the ABI of the system on which MicroPython runs.
-NATIVE : Any
+NATIVE: Any
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-UINT8 : int
+UINT8: int
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-INT8 : int
+INT8: int
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-UINT16 : int
+UINT16: int
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-INT16 : int
+INT16: int
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-UINT32 : int
+UINT32: int
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-INT32 : int
+INT32: int
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-UINT64 : int
+UINT64: int
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-INT64 : int
+INT64: int
 #    Floating-point types for structure descriptors.
-FLOAT32 : Any
+FLOAT32: Any
 #    Floating-point types for structure descriptors.
-FLOAT64 : Any
+FLOAT64: Any
 #    ``VOID`` is an alias for ``UINT8``, and is provided to conveniently define
 #    C's void pointers: ``(uctypes.PTR, uctypes.VOID)``.
-VOID : Any
+VOID: Any
 #    Type constants for pointers and arrays. Note that there is no explicit
 #    constant for structures, it's implicit: an aggregate type without ``PTR``
 #    or ``ARRAY`` flags is a structure.
-PTR : Any
+PTR: Any
 #    Type constants for pointers and arrays. Note that there is no explicit
 #    constant for structures, it's implicit: an aggregate type without ``PTR``
 #    or ``ARRAY`` flags is a structure.
-ARRAY : Any
-class struct():
+ARRAY: Any
+
+
+class struct:
     """
-       Instantiate a "foreign data structure" object based on structure address in
-       memory, descriptor (encoded as a dictionary), and layout type (see below).
+    Instantiate a "foreign data structure" object based on structure address in
+    memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
+
     def __init__(self, addr, descriptor, layout_type=NATIVE, /) -> None:
         ...
+
+
 def sizeof(struct, layout_type=NATIVE, /) -> int:
     """
-       Return size of data structure in bytes. The *struct* argument can be
-       either a structure class or a specific instantiated structure object
-       (or its aggregate field).
+    Return size of data structure in bytes. The *struct* argument can be
+    either a structure class or a specific instantiated structure object
+    (or its aggregate field).
     """
     ...
+
+
 def addressof(obj) -> int:
     """
-       Return address of an object. Argument should be bytes, bytearray or
-       other object supporting buffer protocol (and address of this buffer
-       is what actually returned).
+    Return address of an object. Argument should be bytes, bytearray or
+    other object supporting buffer protocol (and address of this buffer
+    is what actually returned).
     """
     ...
+
+
 def bytes_at(addr, size) -> bytes:
     """
-       Capture memory at the given address and size as bytes object. As bytes
-       object is immutable, memory is actually duplicated and copied into
-       bytes object, so if memory contents change later, created object
-       retains original value.
+    Capture memory at the given address and size as bytes object. As bytes
+    object is immutable, memory is actually duplicated and copied into
+    bytes object, so if memory contents change later, created object
+    retains original value.
     """
     ...
+
+
 def bytearray_at(addr, size) -> bytearray:
     """
-       Capture memory at the given address and size as bytearray object.
-       Unlike bytes_at() function above, memory is captured by reference,
-       so it can be both written too, and you will access current value
-       at the given memory address.
+    Capture memory at the given address and size as bytearray object.
+    Unlike bytes_at() function above, memory is captured by reference,
+    so it can be both written too, and you will access current value
+    at the given memory address.
     """
     ...
