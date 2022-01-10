@@ -61,11 +61,11 @@ jobs:
         run: |
           git checkout ${{ matrix.version }}
 
-      - name: checkout micropython - main
+      - name: checkout micropython Latest - master
         if: matrix.version=='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
-          git checkout main
+          git checkout master
 
      
       # make Python work
