@@ -8,7 +8,7 @@
         "firmware": "micropython-esp8266-v1_14",
         "nodename": "micropython",
         "version": "v1.14",
-        "release": "",
+        "release": "v1.14",
         "sysname": "micropython"
     },
     "stubber": {
@@ -61,35 +61,35 @@
             "module": "ssd1306"
         },
         {
-            "file": "uasyncio\\__init__.py",
+            "file": "uasyncio/__init__.py",
             "module": "__init__"
         },
         {
-            "file": "uasyncio\\core.py",
+            "file": "uasyncio/core.py",
             "module": "core"
         },
         {
-            "file": "uasyncio\\event.py",
+            "file": "uasyncio/event.py",
             "module": "event"
         },
         {
-            "file": "uasyncio\\funcs.py",
+            "file": "uasyncio/funcs.py",
             "module": "funcs"
         },
         {
-            "file": "uasyncio\\lock.py",
+            "file": "uasyncio/lock.py",
             "module": "lock"
         },
         {
-            "file": "uasyncio\\stream.py",
+            "file": "uasyncio/stream.py",
             "module": "stream"
         },
         {
-            "file": "umqtt\\robust.py",
+            "file": "umqtt/robust.py",
             "module": "robust"
         },
         {
-            "file": "umqtt\\simple.py",
+            "file": "umqtt/simple.py",
             "module": "simple"
         },
         {
@@ -109,7 +109,7 @@
             "module": "urequests"
         },
         {
-            "file": "urllib\\urequest.py",
+            "file": "urllib/urequest.py",
             "module": "urequest"
         },
         {
