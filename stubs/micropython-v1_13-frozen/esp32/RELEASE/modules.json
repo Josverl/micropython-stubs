@@ -2,10 +2,10 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "port": "stm32",
-        "platform": "stm32",
-        "machine": "PYBD_SF2",
-        "firmware": "micropython-stm32-v1_13",
+        "port": "esp32",
+        "platform": "esp32",
+        "machine": "RELEASE",
+        "firmware": "micropython-esp32-v1_13",
         "nodename": "micropython",
         "version": "v1.13",
         "release": "v1.13",
@@ -17,16 +17,36 @@
     },
     "modules": [
         {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "apa106.py",
+            "module": "apa106"
+        },
+        {
             "file": "dht.py",
             "module": "dht"
         },
         {
-            "file": "lcd160cr.py",
-            "module": "lcd160cr"
+            "file": "ds18x20.py",
+            "module": "ds18x20"
         },
         {
-            "file": "lcd160cr_test.py",
-            "module": "lcd160cr_test"
+            "file": "flashbdev.py",
+            "module": "flashbdev"
+        },
+        {
+            "file": "inisetup.py",
+            "module": "inisetup"
+        },
+        {
+            "file": "neopixel.py",
+            "module": "neopixel"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
         },
         {
             "file": "onewire.py",
@@ -55,6 +75,30 @@
         {
             "file": "uasyncio/stream.py",
             "module": "stream"
+        },
+        {
+            "file": "umqtt/robust.py",
+            "module": "robust"
+        },
+        {
+            "file": "umqtt/simple.py",
+            "module": "simple"
+        },
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        },
+        {
+            "file": "upysh.py",
+            "module": "upysh"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
         },
         {
             "file": "webrepl.py",

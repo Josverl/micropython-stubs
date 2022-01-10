@@ -4,7 +4,7 @@
         "family": "micropython",
         "port": "esp8266",
         "platform": "esp8266",
-        "machine": "GENERIC",
+        "machine": "RELEASE",
         "firmware": "micropython-esp8266-v1_13",
         "nodename": "micropython",
         "version": "v1.13",
@@ -33,8 +33,32 @@
             "module": "ds18x20"
         },
         {
+            "file": "example_pub_button.py",
+            "module": "example_pub_button"
+        },
+        {
+            "file": "example_sub_led.py",
+            "module": "example_sub_led"
+        },
+        {
             "file": "flashbdev.py",
             "module": "flashbdev"
+        },
+        {
+            "file": "http_client.py",
+            "module": "http_client"
+        },
+        {
+            "file": "http_client_ssl.py",
+            "module": "http_client_ssl"
+        },
+        {
+            "file": "http_server.py",
+            "module": "http_server"
+        },
+        {
+            "file": "http_server_ssl.py",
+            "module": "http_server_ssl"
         },
         {
             "file": "inisetup.py",
@@ -57,28 +81,16 @@
             "module": "port_diag"
         },
         {
-            "file": "uasyncio/__init__.py",
-            "module": "__init__"
+            "file": "ssd1306.py",
+            "module": "ssd1306"
         },
         {
-            "file": "uasyncio/core.py",
-            "module": "core"
+            "file": "umqtt/robust.py",
+            "module": "robust"
         },
         {
-            "file": "uasyncio/event.py",
-            "module": "event"
-        },
-        {
-            "file": "uasyncio/funcs.py",
-            "module": "funcs"
-        },
-        {
-            "file": "uasyncio/lock.py",
-            "module": "lock"
-        },
-        {
-            "file": "uasyncio/stream.py",
-            "module": "stream"
+            "file": "umqtt/simple.py",
+            "module": "simple"
         },
         {
             "file": "upip.py",
@@ -87,6 +99,18 @@
         {
             "file": "upip_utarfile.py",
             "module": "upip_utarfile"
+        },
+        {
+            "file": "upysh.py",
+            "module": "upysh"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
+            "file": "urllib/urequest.py",
+            "module": "urequest"
         },
         {
             "file": "webrepl.py",
