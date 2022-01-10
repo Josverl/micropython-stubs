@@ -8,7 +8,7 @@
         "firmware": "micropython-esp8266-v1_17",
         "nodename": "micropython",
         "version": "v1.17",
-        "release": "",
+        "release": "v1.17",
         "sysname": "micropython"
     },
     "stubber": {
