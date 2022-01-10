@@ -4,11 +4,11 @@
         "family": "micropython",
         "port": "stm32",
         "platform": "stm32",
-        "machine": "",
+        "machine": "micropython",
         "firmware": "micropython-stm32-v1_11",
         "nodename": "micropython",
         "version": "v1.11",
-        "release": "",
+        "release": "v1.11",
         "sysname": "micropython"
     },
     "stubber": {
