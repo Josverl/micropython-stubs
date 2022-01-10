@@ -8,7 +8,7 @@
         "firmware": "micropython-esp32-v1_17",
         "nodename": "micropython",
         "version": "v1.17",
-        "release": "",
+        "release": "v1.17",
         "sysname": "micropython"
     },
     "stubber": {
@@ -53,35 +53,35 @@
             "module": "onewire"
         },
         {
-            "file": "uasyncio\\__init__.py",
+            "file": "uasyncio/__init__.py",
             "module": "__init__"
         },
         {
-            "file": "uasyncio\\core.py",
+            "file": "uasyncio/core.py",
             "module": "core"
         },
         {
-            "file": "uasyncio\\event.py",
+            "file": "uasyncio/event.py",
             "module": "event"
         },
         {
-            "file": "uasyncio\\funcs.py",
+            "file": "uasyncio/funcs.py",
             "module": "funcs"
         },
         {
-            "file": "uasyncio\\lock.py",
+            "file": "uasyncio/lock.py",
             "module": "lock"
         },
         {
-            "file": "uasyncio\\stream.py",
+            "file": "uasyncio/stream.py",
             "module": "stream"
         },
         {
-            "file": "umqtt\\robust.py",
+            "file": "umqtt/robust.py",
             "module": "robust"
         },
         {
-            "file": "umqtt\\simple.py",
+            "file": "umqtt/simple.py",
             "module": "simple"
         },
         {
