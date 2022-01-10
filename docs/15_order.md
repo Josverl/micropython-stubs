@@ -61,7 +61,7 @@ As an example :
 ```
     "python.autoComplete.extraPaths": [
         "board/lib",
-        "all-stubs/cpython-core",
+        "all-stubs/cpython_core",
         "all-stubs/micropython-1_17-frozen/esp32/GENERIC",
         "all-stubs/micropython-esp32-1_17"
     ],
