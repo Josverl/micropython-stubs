@@ -1,10 +1,11 @@
-# Configure VSCode & Pylance to use the selected stub folders  
 # VSCode 
-VSCode uses Pylance, and optionally a linter suchc as pylint or mypy.
+
+VSCode  uses Pylance, and optionally a linter such as pylint or mypy.
 
 ## Configure VSCode & Pylance to use the selected stub folders  
-This instructs the VSCode Pylance to consider your libs folder and the stubs for static code evaluation.
-VSCode allows this configuration to be set on **_workspace_** or _user_ level. I prefer setting it per workspace as that allows different settings for different projects, but you could do either.
+This instructs the VSCode Pylance extension to consider your libs folder and the stubs for code completion and static type-checking.
+
+VSCode allows this configuration to be set on **_workspace_** , folder or _user_ level. I prefer setting it per workspace or folder as that allows different settings for different projects, but you could do either.
      
 The below configuration is [Pylance][] specific  
      
