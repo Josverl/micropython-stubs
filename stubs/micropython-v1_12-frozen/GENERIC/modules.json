@@ -2,13 +2,13 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "port": "",
-        "platform": "",
+        "port": "common",
+        "platform": "common",
         "machine": "GENERIC",
-        "firmware": "micropython--v1_12",
+        "firmware": "micropython-common-v1_12",
         "nodename": "micropython",
         "version": "v1.12",
-        "release": "",
+        "release": "v1.12",
         "sysname": "micropython"
     },
     "stubber": {
