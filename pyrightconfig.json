@@ -17,7 +17,7 @@
     "reportInvalidStringEscapeSequence": "information",
     "reportUnboundVariable": "warning",
     "reportOptionalSubscript": "information", // old firmware stubs
-    "verboseOutput": true,
+    "verboseOutput": false,
     "extraPaths": [
         "stubs/cpython_core-micropython",
         "all-stubs/micropython-latest-docstubs",

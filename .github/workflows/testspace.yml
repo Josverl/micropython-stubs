@@ -36,7 +36,7 @@ jobs:
 
       - name: run pyright on stubs
         run: |
-          pyright stubs > pyright-all-stubs.log
+          pyright stubs | tee pyright-all-stubs.log
 
       - name: Fixup pyright logs 
         shell: pwsh
