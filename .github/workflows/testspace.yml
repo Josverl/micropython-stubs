@@ -48,4 +48,4 @@ jobs:
           }
 
       - name: Testspace push test content
-        run: testspace "[all-stubs].\pyright-all-stubs.log{lint}" 
+        run: testspace "[all-stubs]./pyright-all-stubs.log{lint}" 
