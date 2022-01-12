@@ -3,7 +3,7 @@ cryptographic ciphers. See: https://docs.micropython.org/en/latest/library/crypt
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\cryptolib.rst
+# origin module:: micropython/docs/library/cryptolib.rst
 from typing import Any, Optional
 
 

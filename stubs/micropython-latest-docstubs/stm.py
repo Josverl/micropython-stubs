@@ -7,7 +7,7 @@ direct access to peripheral registers.
 
 # + module: stm.rst
 # source version: latest
-# origin module:: micropython\docs\library\stm.rst
+# origin module:: micropython/docs/library/stm.rst
 from typing import Any, Tuple
 
 #     Read/write 8 bits of memory.

@@ -5,7 +5,7 @@ system specific functions. See: https://docs.micropython.org/en/latest/library/s
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\sys.rst
+# origin module:: micropython/docs/library/sys.rst
 from typing import Any, Dict, List, Tuple
 
 #    A mutable list of arguments the current program was started with.

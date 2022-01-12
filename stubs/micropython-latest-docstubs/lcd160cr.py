@@ -5,7 +5,7 @@ This module provides control of the MicroPython LCD160CR display.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\lcd160cr.rst
+# origin module:: micropython/docs/library/lcd160cr.rst
 from typing import Any, Tuple
 from .machine import SPI
 

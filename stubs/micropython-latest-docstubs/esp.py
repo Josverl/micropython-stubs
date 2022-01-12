@@ -8,7 +8,7 @@ ports.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\esp.rst
+# origin module:: micropython/docs/library/esp.rst
 from typing import Any, Optional
 
 

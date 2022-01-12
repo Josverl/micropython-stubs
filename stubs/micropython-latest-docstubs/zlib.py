@@ -10,7 +10,7 @@ is not yet implemented.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\zlib.rst
+# origin module:: micropython/docs/library/zlib.rst
 from typing import IO
 
 

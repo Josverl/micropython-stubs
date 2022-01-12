@@ -11,7 +11,7 @@ required for this module.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\cmath.rst
+# origin module:: micropython/docs/library/cmath.rst
 from typing import Any, Tuple
 
 #    base of the natural logarithm

@@ -5,7 +5,7 @@ control the garbage collector. See: https://docs.micropython.org/en/latest/libra
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\gc.rst
+# origin module:: micropython/docs/library/gc.rst
 from typing import Any, Optional
 
 

@@ -32,7 +32,7 @@ behave not as expected.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\time.rst
+# origin module:: micropython/docs/library/time.rst
 from typing import Any, Optional, Tuple
 
 

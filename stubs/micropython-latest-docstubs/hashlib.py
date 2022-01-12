@@ -23,7 +23,7 @@ be implemented:
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\hashlib.rst
+# origin module:: micropython/docs/library/hashlib.rst
 from typing import Any, Optional
 
 

@@ -3,7 +3,7 @@ access and control MicroPython internals. See: https://docs.micropython.org/en/l
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\micropython.rst
+# origin module:: micropython/docs/library/micropython.rst
 from typing import Any, Optional
 
 

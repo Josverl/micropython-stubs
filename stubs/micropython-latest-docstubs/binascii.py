@@ -8,7 +8,7 @@ encodings of it in ASCII form (in both directions).
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\binascii.rst
+# origin module:: micropython/docs/library/binascii.rst
 from typing import Any, Optional
 
 

@@ -9,7 +9,7 @@ floating-point support).
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\array.rst
+# origin module:: micropython/docs/library/array.rst
 from typing import Any, Optional
 
 

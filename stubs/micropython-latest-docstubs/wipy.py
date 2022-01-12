@@ -6,7 +6,7 @@ WiPy, such as the heartbeat LED.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\wipy.rst
+# origin module:: micropython/docs/library/wipy.rst
 from typing import Any, Optional
 
 

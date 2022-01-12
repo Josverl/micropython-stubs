@@ -105,7 +105,7 @@ Example::
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\re.rst
+# origin module:: micropython/docs/library/re.rst
 from typing import Any, List, Optional, Tuple
 
 #    Flag value, display debug information about compiled expression.

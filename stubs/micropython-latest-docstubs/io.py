@@ -8,7 +8,7 @@ and helper functions.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\io.rst
+# origin module:: micropython/docs/library/io.rst
 from typing import Any, IO, Optional
 
 

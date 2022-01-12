@@ -7,7 +7,7 @@ This module implements a pseudo-random number generator (PRNG).
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\random.rst
+# origin module:: micropython/docs/library/random.rst
 from typing import Any, Optional
 
 

@@ -8,7 +8,7 @@ controlling ESP32 modules.
 
 # + module: esp32.rst
 # source version: latest
-# origin module:: micropython\docs\library\esp32.rst
+# origin module:: micropython/docs/library/esp32.rst
 from __future__ import annotations
 from typing import Any, List, Optional, Tuple
 

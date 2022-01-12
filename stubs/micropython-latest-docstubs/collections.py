@@ -8,7 +8,7 @@ hold/accumulate various objects.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\collections.rst
+# origin module:: micropython/docs/library/collections.rst
 from typing import Any, Optional
 
 

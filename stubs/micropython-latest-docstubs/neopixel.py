@@ -5,7 +5,7 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\neopixel.rst
+# origin module:: micropython/docs/library/neopixel.rst
 from typing import Tuple
 
 

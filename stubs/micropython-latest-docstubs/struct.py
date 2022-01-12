@@ -11,7 +11,7 @@ on the floating-point support).
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\struct.rst
+# origin module:: micropython/docs/library/struct.rst
 from typing import Any, Tuple
 
 

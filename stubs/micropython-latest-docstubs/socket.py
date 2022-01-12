@@ -7,7 +7,7 @@ This module provides access to the BSD socket interface.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\socket.rst
+# origin module:: micropython/docs/library/socket.rst
 from typing import Any, IO, Optional, Tuple
 
 #    Address family types. Availability depends on a particular :term:`MicroPython port`.

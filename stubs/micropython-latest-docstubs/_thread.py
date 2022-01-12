@@ -10,4 +10,4 @@ and not yet described in this documentation.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\_thread.rst
+# origin module:: micropython/docs/library/_thread.rst

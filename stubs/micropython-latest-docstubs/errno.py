@@ -8,7 +8,7 @@ A particular inventory of codes depends on :term:`MicroPython port`.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\errno.rst
+# origin module:: micropython/docs/library/errno.rst
 from typing import Any, Dict
 
 #     Error codes, based on ANSI C/POSIX standard. All error codes start with

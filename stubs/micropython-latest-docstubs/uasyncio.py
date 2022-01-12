@@ -30,7 +30,7 @@ Example::
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\uasyncio.rst
+# origin module:: micropython/docs/library/uasyncio.rst
 from typing import Any, Coroutine, List, Tuple
 
 

@@ -6,7 +6,7 @@ bitmap images, which can then be sent to a display.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\framebuf.rst
+# origin module:: micropython/docs/library/framebuf.rst
 from typing import Any, Optional
 
 #     Monochrome (1-bit) color format

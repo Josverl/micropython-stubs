@@ -72,7 +72,7 @@ Example::
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\btree.rst
+# origin module:: micropython/docs/library/btree.rst
 from typing import Any, Dict, Optional
 
 #    A flag for `keys()`, `values()`, `items()` methods to specify that

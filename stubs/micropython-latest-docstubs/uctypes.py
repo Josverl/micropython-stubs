@@ -10,7 +10,7 @@ sub-fields.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\uctypes.rst
+# origin module:: micropython/docs/library/uctypes.rst
 from typing import Any
 
 #    Layout type for a little-endian packed structure. (Packed means that every

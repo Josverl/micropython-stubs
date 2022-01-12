@@ -9,7 +9,7 @@ functions.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\os.rst
+# origin module:: micropython/docs/library/os.rst
 from typing import Any, IO, Iterator, Optional, Tuple
 
 

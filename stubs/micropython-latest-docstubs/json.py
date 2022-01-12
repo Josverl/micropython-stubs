@@ -8,7 +8,7 @@ data format.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\json.rst
+# origin module:: micropython/docs/library/json.rst
 from typing import Any
 
 

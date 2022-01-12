@@ -11,7 +11,7 @@ that the first item of the list is always the smallest.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\heapq.rst
+# origin module:: micropython/docs/library/heapq.rst
 from typing import Any
 
 

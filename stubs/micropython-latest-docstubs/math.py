@@ -13,7 +13,7 @@ for this module.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\math.rst
+# origin module:: micropython/docs/library/math.rst
 from typing import Any, Tuple
 
 #    base of the natural logarithm

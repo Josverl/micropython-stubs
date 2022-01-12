@@ -4,7 +4,7 @@
         "family": "micropython",
         "port": "-",
         "platform": "-",
-        "machine": "",
+        "machine": "micropython",
         "firmware": "micropython---latest",
         "nodename": "micropython",
         "version": "latest",
