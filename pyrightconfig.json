@@ -7,17 +7,21 @@
         // other artefacts
         "**/node_modules",
         "**/__pycache__",
+        //
+        "stubs/micropython-v1_9_*",
     ],
     "ignore": [],
     "pythonVersion": "3.8",
     "pythonPlatform": "Linux",
     "stubPath": "./typings",
-    "reportMissingImports": true,
+    "reportMissingImports": false,
     "reportMissingTypeStubs": false,
+    "verboseOutput": false,
     "reportInvalidStringEscapeSequence": "information",
     "reportUnboundVariable": "warning",
     "reportOptionalSubscript": "information", // old firmware stubs
-    "verboseOutput": false,
+    "ReportSelfClsParameterName": "information",
+    "reportMissingModuleSource": "none",
     "extraPaths": [
         "stubs/cpython_core-micropython",
         "all-stubs/micropython-latest-docstubs",
