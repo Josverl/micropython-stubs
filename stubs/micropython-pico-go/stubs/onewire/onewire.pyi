@@ -1,5 +1,5 @@
 from typing import Tuple, Sequence
-from machine import Pin
+from .machine import Pin
 
 class OneWire:
     """
