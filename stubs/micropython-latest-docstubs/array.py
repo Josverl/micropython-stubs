@@ -10,23 +10,28 @@ floating-point support).
 
 # source version: latest
 # origin module:: micropython/docs/library/array.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
-class array():
+from typing import Any, Optional
+
+
+class array:
     """
-        Create array with elements of given type. Initial contents of the
-        array are given by *iterable*. If it is not provided, an empty
-        array is created.
+    Create array with elements of given type. Initial contents of the
+    array are given by *iterable*. If it is not provided, an empty
+    array is created.
     """
+
     def __init__(self, typecode, iterable: Optional[Any]) -> None:
         ...
+
     def append(self, val) -> Any:
         """
-                Append new element *val* to the end of array, growing it.
+        Append new element *val* to the end of array, growing it.
         """
         ...
+
     def extend(self, iterable) -> Any:
         """
-                Append new elements as contained in *iterable* to the end of
-                array, growing it.
+        Append new elements as contained in *iterable* to the end of
+        array, growing it.
         """
         ...
