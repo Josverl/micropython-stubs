@@ -1,0 +1,60 @@
+name: test stub quality
+on: 
+  workflow_dispatch:
+  push:
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  # pull_request:
+  #   - main
+  #   paths-ignore:
+  #     - '**.md'
+  #     - 'docs/**'
+
+jobs:
+  one-more:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout stubs repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Testspace client install & config
+        uses: testspace-com/setup-testspace@v1
+        with:
+          domain: ${{github.repository_owner}}
+
+      - name: run pyright on stubs
+        run: |
+          pyright stubs > pyright-all-stubs.log
+
+      - name: Fixup pyright logs 
+        shell: pwsh
+        run: |
+          foreach ( $file in @('pyright-all-stubs.log')) {
+            (Get-Content $file) `
+            -replace ' - (info|warning|error):', ': $1:' | `
+            Out-File $file
+          }
+
+      - name: Testspace push test content
+        run: testspace "[all-stubs].\pyright-all-stubs.log{lint}" 
+
+steps:
+  - uses: testspace-com/setup-testspace@v1
+    with:
+      domain: ${{github.repository_owner}}
+      token: ${{ secrets.TESTSPACE_TOKEN }} # optional, only required for private repos
+  ..
+  - name: Publish Results to Testspace
+    run: testspace "path/to/*.xml"
