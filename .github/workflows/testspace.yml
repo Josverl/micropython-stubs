@@ -12,7 +12,7 @@ on:
   #     - 'docs/**'
 
 jobs:
-  one-more:
+  pyright:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout stubs repo
