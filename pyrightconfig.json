@@ -1,0 +1,26 @@
+// https://github.com/microsoft/pyright/blob/main/docs/configuration.md
+{
+    "include": [
+        "stubs",
+    ],
+    "exclude": [
+        // other artefacts
+        "**/node_modules",
+        "**/__pycache__",
+    ],
+    "ignore": [],
+    "pythonVersion": "3.8",
+    "pythonPlatform": "Linux",
+    "stubPath": "./typings",
+    "reportMissingImports": true,
+    "reportMissingTypeStubs": false,
+    "reportInvalidStringEscapeSequence": "information",
+    "reportUnboundVariable": "warning",
+    "reportOptionalSubscript": "information", // old firmware stubs
+    "verboseOutput": true,
+    "extraPaths": [
+        "stubs/cpython_core-micropython",
+        "all-stubs/micropython-latest-docstubs",
+    ],
+    "reportWildcardImportFromLibrary": "information",
+}
