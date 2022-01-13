@@ -7,24 +7,54 @@
         // other artefacts
         "**/node_modules",
         "**/__pycache__",
-        //
-        "stubs/micropython-v1_9_*",
     ],
-    "ignore": [],
+    "ignore": [
+        // the 1.9.3 stubs for now
+        "stubs/micropython-v1_9_*",
+        // pycopy stubs 
+        "stubs/pycopy-v0_0_0-frozen"
+    ],
     "pythonVersion": "3.8",
-    "pythonPlatform": "Linux",
-    "stubPath": "./typings",
+    "pythonPlatform": "All",
+    "verboseOutput": false,
+
+    //"stubPath": "./typings",
+
     "reportMissingImports": false,
     "reportMissingTypeStubs": false,
-    "verboseOutput": false,
     "reportInvalidStringEscapeSequence": "information",
     "reportUnboundVariable": "warning",
-    "reportOptionalSubscript": "information", // old firmware stubs
     "ReportSelfClsParameterName": "information",
     "reportMissingModuleSource": "none",
-    "extraPaths": [
-        "stubs/cpython_core-micropython",
-        "all-stubs/micropython-latest-docstubs",
-    ],
     "reportWildcardImportFromLibrary": "information",
+    "reportOptionalSubscript": "information", // old firmware stubs
+    
+    "executionEnvironments": [
+        // CPython core should not have dependencies other that CPython
+        {
+            "root": "stubs/cpython_core-micropython",
+            "extraPaths": []
+        },
+        {
+            "root": "stubs/cpython_core-pycopy",
+            "extraPaths": []
+        },
+        // frozen must be able to refer to micropython-lib 
+        {
+            "root": "stubs/*-frozen",
+            "extraPaths": [
+                "stubs/cpython_core-micropython",
+                "all-stubs/micropython-v_1_17-esp32", // should be only some core libraries ?
+                "all-stubs/micropython-latest-docstubs",
+            ],
+        },
+        // default 
+        {
+            "root": "stubs",
+            "extraPaths": [
+                "stubs/cpython_core-micropython",
+                "all-stubs/micropython-latest-docstubs",
+            ],
+        },
+    ]
 }
