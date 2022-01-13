@@ -14,7 +14,7 @@ name: get-doc-stubs
 on:
   workflow_dispatch:
   schedule: 
-    - cron: "0 1 * * *"   # Run everyday at 01:00
+    - cron: "0 1 * * 5"   # Run every Friday at 01:00
 
 jobs:
   ########################################################################################################################################
