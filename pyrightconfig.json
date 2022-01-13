@@ -29,9 +29,12 @@
         "**/uasyncio/tasks.py*",
         // ignore pip and friends
         "**/upip*.py*",
-        // 
+        // webrepl 
         "**/webrepl*.py*",
-        // access of unknown frame
+        // lobo microwebsrv and pye
+        "**/microWebSrv.py*",
+        "**/microWebTemplate.py*",
+        "**/pye.py*",
     ],
     "pythonVersion": "3.8",
     "pythonPlatform": "All",
