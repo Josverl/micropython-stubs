@@ -43,8 +43,9 @@ jobs:
         run: |
           foreach ( $file in @('pyright-all-stubs.log')) {
             (Get-Content $file) `
-            -replace ' - (info|warning|error):', ': $1:' | `
-            Out-File $file
+            -replace ' - (warning|error):', ': $1:' `
+            -replace ' - (info):', ': information:' `
+            | Out-File $file
           }
 
       - name: Testspace push test content
