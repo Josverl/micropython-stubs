@@ -129,8 +129,15 @@
                 "stubs/typings_fallback"
             ],
         },
+        // BUG: - Latest is duplicated
         {
             "root": "stubs/micropython-v1_17-Latest-frozen",
+            "extraPaths": [
+                "stubs/typings_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-Latest-frozen",
             "extraPaths": [
                 "stubs/typings_fallback"
             ],
