@@ -70,6 +70,12 @@
         },
         // frozen must be able to refer to micropython-lib 
         {
+            "root": "stubs/micropython-v1_10-frozen",
+            "extraPaths": [
+                "stubs/typings_fallback"
+            ],
+        },
+        {
             "root": "stubs/micropython-v1_11-frozen",
             "extraPaths": [
                 "stubs/typings_fallback"
@@ -137,7 +143,7 @@
             ],
         },
         {
-            "root": "stubs/micropython-Latest-frozen",
+            "root": "stubs/micropython-latest-frozen",
             "extraPaths": [
                 "stubs/typings_fallback"
             ],
@@ -160,6 +166,14 @@
             "root": "stubs/loboris-v3_2_24-frozen",
             "extraPaths": [
                 "stubs/loboris-v3_2_24-esp32"
+            ],
+        },
+        // ## Pico-go has its own stubs #############################################
+        {
+            "root": "stubs/micropython-pico-go",
+            "extraPaths": [
+                "stubs/micropython-pico-go/stubs",
+                "stubs/micropython-pico-go/stdlib"
             ],
         },
         // default 

@@ -1,4 +1,4 @@
-from .machine import Pin
+from machine import Pin
 from typing import Sequence, Any, Iterable, Union
 
 # make_stub_files: Wed 03 Feb 2021 at 08:12:32
