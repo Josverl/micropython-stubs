@@ -6,7 +6,7 @@
 ## Micropython 
 |family | version | type    |port |board |count | stubber version|path
 |-------|---------|---------|-----|------|-----:|-|----
-|micropython |latest  |documentation|-|generic|41|1.4.5|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
+|micropython |latest  |documentation|-|micropython|41|1.4.5|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
 |micropython |latest  |frozen  |-|GENERIC|10|1.4.5|[stubs/micropython-latest-frozen/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/GENERIC)
 |micropython |latest  |frozen  |esp32|GENERIC|20|1.4.5|[stubs/micropython-latest-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/GENERIC)
 |micropython |latest  |frozen  |esp32|LOLIN_S2_MINI|21|1.4.5|[stubs/micropython-latest-frozen/esp32/LOLIN_S2_MINI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/LOLIN_S2_MINI)
