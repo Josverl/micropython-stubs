@@ -61,6 +61,12 @@
             "root": "stubs/cpython_core-micropython",
             "extraPaths": []
         },
+        {
+            "root": "stubs/cpython_pyboard",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
         // frozen must be able to refer to micropython-lib 
         {
             "root": "stubs/micropython-v1_11-frozen",
