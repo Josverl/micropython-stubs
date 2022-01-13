@@ -10,7 +10,7 @@ damage.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\machine.rst
+# origin module:: micropython/docs/library/machine.rst
 # + module: machine.Pin.rst
 # + module: machine.Signal.rst
 # + module: machine.ADC.rst

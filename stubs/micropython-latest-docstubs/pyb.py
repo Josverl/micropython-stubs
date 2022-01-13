@@ -5,7 +5,7 @@ The ``pyb`` module contains specific functions related to the board.
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\pyb.rst
+# origin module:: micropython/docs/library/pyb.rst
 # + module: pyb.Accel.rst
 # + module: pyb.ADC.rst
 # + module: pyb.CAN.rst

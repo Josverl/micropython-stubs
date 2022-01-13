@@ -14,7 +14,7 @@ for example code.
 
 # + module: rp2.rst
 # source version: latest
-# origin module:: micropython\docs\library\rp2.rst
+# origin module:: micropython/docs/library/rp2.rst
 # + module: rp2.Flash.rst
 # + module: rp2.PIO.rst
 # + module: rp2.StateMachine.rst
