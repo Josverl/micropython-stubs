@@ -7,28 +7,50 @@
         // other artefacts
         "**/node_modules",
         "**/__pycache__",
+        // no need to check the port diag module : 
+        // TODO: Exclude from stubs
+        "**/port_diag.py*",
+        "**/lcd160cr_test.py*"
     ],
     "ignore": [
         // the 1.9.3 stubs for now
         "stubs/micropython-v1_9_*",
         // pycopy stubs 
-        "stubs/pycopy-v0_0_0-frozen"
+        "stubs/pycopy-v0_0_0-frozen",
+        //
+        // TODO: Improve uasyncio
+        // TODO: add .tasks.py module explicitly
+        "**/uasyncio/__init__py",
+        "**/uasyncio/core.py*",
+        "**/uasyncio/stream.py*",
+        "**/uasyncio/lock.py*",
+        "**/uasyncio/event.py*",
+        "**/uasyncio/funcs.py*",
+        "**/uasyncio/tasks.py*",
+        // ignore pip and friends
+        "**/upip*.py*",
+        // 
+        "**/webrepl*.py*",
     ],
     "pythonVersion": "3.8",
     "pythonPlatform": "All",
     "verboseOutput": false,
-
     //"stubPath": "./typings",
-
-    "reportMissingImports": false,
-    "reportMissingTypeStubs": false,
+    "reportMissingImports": "error",
+    "reportMissingModuleSource": "error",
+    "reportMissingTypeStubs": "warning",
     "reportInvalidStringEscapeSequence": "information",
-    "reportUnboundVariable": "warning",
+    "reportUndefinedVariable": "warning", // "_WHO_AM_I_REG" is not defined - Not a showstopper
+    "reportUnboundVariable": "information",
     "ReportSelfClsParameterName": "information",
-    "reportMissingModuleSource": "none",
     "reportWildcardImportFromLibrary": "information",
-    "reportOptionalSubscript": "information", // old firmware stubs
-    
+    "reportOptionalMemberAccess": "warning", // "read" is not a known member of "None"
+    "reportOptionalCall": "warning", //  Object of type "None" cannot be called
+    "reportGeneralTypeIssues": "warning", // Expected no arguments to "Pin" constructor and a lot of others
+    // old firmware stubs
+    "reportOptionalSubscript": "information",
+    // 
+    // "typeshedPath": "stubs/typing_fallback",
     "executionEnvironments": [
         // CPython core should not have dependencies other that CPython
         {
@@ -36,25 +58,96 @@
             "extraPaths": []
         },
         {
-            "root": "stubs/cpython_core-pycopy",
+            "root": "stubs/cpython_core-micropython",
             "extraPaths": []
         },
         // frozen must be able to refer to micropython-lib 
         {
-            "root": "stubs/*-frozen",
+            "root": "stubs/micropython-v1_11-frozen",
             "extraPaths": [
-                "stubs/cpython_core-micropython",
-                "all-stubs/micropython-v_1_17-esp32", // should be only some core libraries ?
-                "all-stubs/micropython-latest-docstubs",
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v1_9_3-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v1_9_4-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v1_11-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v1_12-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v1_13-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v1_14-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v1_15-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v1_16-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v1_17-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v1_17-Latest-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        // future versions
+        {
+            "root": "stubs/micropython-v1_18-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
+            ],
+        },
+        {
+            "root": "stubs/micropython-v2_0-frozen",
+            "extraPaths": [
+                "stubs/typing_fallback"
             ],
         },
         // default 
-        {
-            "root": "stubs",
-            "extraPaths": [
-                "stubs/cpython_core-micropython",
-                "all-stubs/micropython-latest-docstubs",
-            ],
-        },
+        // {
+        //     "root": "stubs",
+        //     "extraPaths": [
+        //         "stubs/cpython_core-pycopy",
+        //         "all-stubs/micropython-latest-docstubs",
+        //     ],
+        // },
     ]
 }
