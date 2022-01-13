@@ -30,7 +30,7 @@ v2
 |board| micropython| v1.9.4-Latest| -| ESP module with ESP8266| 43| 1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-esp8266)
 |core| cpython-core| v1.4.5| micropython| cpython-core| 15| 1.4.5|[stubs/cpython_core-micropython](https://github.com/Josverl/micropython-stubs/tree/main/stubs/cpython_core-micropython)
 |core| cpython-core| v1.4.5| pycopy| cpython-core| 24| 1.4.5|[stubs/cpython_core-pycopy](https://github.com/Josverl/micropython-stubs/tree/main/stubs/cpython_core-pycopy)
-|documentation| micropython| latest| -| generic| 41| 1.4.5|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
+|documentation| micropython| latest| -| micropython| 41| 1.4.5|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
 |frozen| loboris| v3.2.24| esp32| loboris| 17| 1.4.5|[stubs/loboris-v3_2_24-frozen](https://github.com/Josverl/micropython-stubs/tree/main/stubs/loboris-v3_2_24-frozen)
 |frozen| loboris| v3.2.9| esp32| ESP32 board with ESP32| 68| 1.1.2|[stubs/loboris-v3_2_9-frozen](https://github.com/Josverl/micropython-stubs/tree/main/stubs/loboris-v3_2_9-frozen)
 |frozen| micropython| latest| -| GENERIC| 10| 1.4.5|[stubs/micropython-latest-frozen/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/GENERIC)
