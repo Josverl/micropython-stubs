@@ -1,3 +1,0 @@
-from tarfile import DIRTYPE as DIRTYPE, REGTYPE as REGTYPE, TarInfo as TarInfo
-
-def TarFile(fileobj): ...
