@@ -46,7 +46,7 @@
     "reportInvalidStringEscapeSequence": "information",
     "reportUndefinedVariable": "warning", // "_WHO_AM_I_REG" is not defined - Not a showstopper
     "reportUnboundVariable": "information",
-    "ReportSelfClsParameterName": "information",
+    "ReportSelfClsParameterName": "information", // TODO: Is still reported as a warning
     "reportWildcardImportFromLibrary": "information",
     "reportOptionalMemberAccess": "warning", // "read" is not a known member of "None"
     "reportOptionalCall": "warning", //  Object of type "None" cannot be called
