@@ -6,7 +6,7 @@ The ``zephyr`` module contains functions and classes specific to the Zephyr port
 
 # + module: zephyr.rst
 # source version: latest
-# origin module:: micropython\docs\library\zephyr.rst
+# origin module:: micropython/docs/library/zephyr.rst
 # + module: zephyr.DiskAccess.rst
 # + module: zephyr.FlashArea.rst
 from typing import Any, Optional

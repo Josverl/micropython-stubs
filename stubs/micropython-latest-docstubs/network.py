@@ -33,7 +33,7 @@ For example::
 """
 
 # source version: latest
-# origin module:: micropython\docs\library\network.rst
+# origin module:: micropython/docs/library/network.rst
 # + module: network.WLAN.rst
 # + module: network.WLANWiPy.rst
 # + module: network.CC3K.rst
