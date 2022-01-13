@@ -31,6 +31,7 @@
         "**/upip*.py*",
         // 
         "**/webrepl*.py*",
+        // access of unknown frame
     ],
     "pythonVersion": "3.8",
     "pythonPlatform": "All",
