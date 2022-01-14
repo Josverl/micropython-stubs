@@ -143,17 +143,12 @@
                 "stubs/typings_fallback"
             ],
         },
-        // BUG: - Latest is duplicated
-        {
-            "root": "stubs/micropython-v1_17-Latest-frozen",
-            "extraPaths": [
-                "stubs/typings_fallback"
-            ],
-        },
         {
             "root": "stubs/micropython-latest-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings_fallback",
+                // and perhaps to a newly documented module 
+                "stubs/micropython-latest-docstubs"
             ],
         },
         // future versions
