@@ -3,42 +3,53 @@ Module: 'time' on pyboard 1.13.0-95
 """
 # MCU: (sysname='pyboard', nodename='pyboard', release='1.13.0', version='v1.13-95-g0fff2e03f on 2020-10-03', machine='PYBv1.1 with STM32F405RG')
 # Stubber: 1.3.4
-def gmtime():
+def gmtime(*args) -> Any:
     pass
 
-def localtime():
+
+def localtime(*args) -> Any:
     pass
 
-def mktime():
+
+def mktime(*args) -> Any:
     pass
 
-def sleep():
+
+def sleep(*args) -> Any:
     pass
 
-def sleep_ms():
+
+def sleep_ms(*args) -> Any:
     pass
 
-def sleep_us():
+
+def sleep_us(*args) -> Any:
     pass
 
-def ticks_add():
+
+def ticks_add(*args) -> Any:
     pass
 
-def ticks_cpu():
+
+def ticks_cpu(*args) -> Any:
     pass
 
-def ticks_diff():
+
+def ticks_diff(*args) -> Any:
     pass
 
-def ticks_ms():
+
+def ticks_ms(*args) -> Any:
     pass
 
-def ticks_us():
+
+def ticks_us(*args) -> Any:
     pass
 
-def time():
+
+def time(*args) -> Any:
     pass
 
-def time_ns():
-    pass
 
+def time_ns(*args) -> Any:
+    pass

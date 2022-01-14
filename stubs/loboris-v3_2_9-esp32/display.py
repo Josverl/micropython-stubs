@@ -4,8 +4,10 @@ Module: 'display' on esp32_LoBo 3.2.9
 # MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.9', version='ESP32_LoBo_v3.2.9 on 2018-04-12', machine='ESP32 board with ESP32')
 # Stubber: 1.1.2
 
+
 class TFT:
-    ''
+    """"""
+
     BLACK = 0
     BLUE = 255
     BMP = 2
@@ -61,141 +63,141 @@ class TFT:
     VSPI = 2
     WHITE = 16579836
     YELLOW = 16579584
-    def arc():
+
+    def arc(self, *args) -> Any:
         pass
 
-    def attrib7seg():
+    def attrib7seg(self, *args) -> Any:
         pass
 
-    def backlight():
+    def backlight(self, *args) -> Any:
         pass
 
-    def circle():
+    def circle(self, *args) -> Any:
         pass
 
-    def clear():
+    def clear(self, *args) -> Any:
         pass
 
-    def clearwin():
+    def clearwin(self, *args) -> Any:
         pass
 
-    def compileFont():
+    def compileFont(self, *args) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *args) -> Any:
         pass
 
-    def ellipse():
+    def ellipse(self, *args) -> Any:
         pass
 
-    def font():
+    def font(self, *args) -> Any:
         pass
 
-    def fontSize():
+    def fontSize(self, *args) -> Any:
         pass
 
-    def getCalib():
+    def getCalib(self, *args) -> Any:
         pass
 
-    def getTouchType():
+    def getTouchType(self, *args) -> Any:
         pass
 
-    def get_bg():
+    def get_bg(self, *args) -> Any:
         pass
 
-    def get_fg():
+    def get_fg(self, *args) -> Any:
         pass
 
-    def gettouch():
+    def gettouch(self, *args) -> Any:
         pass
 
-    def hsb2rgb():
+    def hsb2rgb(self, *args) -> Any:
         pass
 
-    def image():
+    def image(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def line():
+    def line(self, *args) -> Any:
         pass
 
-    def lineByAngle():
+    def lineByAngle(self, *args) -> Any:
         pass
 
-    def orient():
+    def orient(self, *args) -> Any:
         pass
 
-    def pixel():
+    def pixel(self, *args) -> Any:
         pass
 
-    def polygon():
+    def polygon(self, *args) -> Any:
         pass
 
-    def readPixel():
+    def readPixel(self, *args) -> Any:
         pass
 
-    def rect():
+    def rect(self, *args) -> Any:
         pass
 
-    def resetwin():
+    def resetwin(self, *args) -> Any:
         pass
 
-    def restorewin():
+    def restorewin(self, *args) -> Any:
         pass
 
-    def roundrect():
+    def roundrect(self, *args) -> Any:
         pass
 
-    def savewin():
+    def savewin(self, *args) -> Any:
         pass
 
-    def screensize():
+    def screensize(self, *args) -> Any:
         pass
 
-    def setCalib():
+    def setCalib(self, *args) -> Any:
         pass
 
-    def set_bg():
+    def set_bg(self, *args) -> Any:
         pass
 
-    def set_fg():
+    def set_fg(self, *args) -> Any:
         pass
 
-    def setwin():
+    def setwin(self, *args) -> Any:
         pass
 
-    def text():
+    def text(self, *args) -> Any:
         pass
 
-    def textClear():
+    def textClear(self, *args) -> Any:
         pass
 
-    def textWidth():
+    def textWidth(self, *args) -> Any:
         pass
 
-    def tft_deselect():
+    def tft_deselect(self, *args) -> Any:
         pass
 
-    def tft_readcmd():
+    def tft_readcmd(self, *args) -> Any:
         pass
 
-    def tft_select():
+    def tft_select(self, *args) -> Any:
         pass
 
-    def tft_setspeed():
+    def tft_setspeed(self, *args) -> Any:
         pass
 
-    def tft_writecmd():
+    def tft_writecmd(self, *args) -> Any:
         pass
 
-    def tft_writecmddata():
+    def tft_writecmddata(self, *args) -> Any:
         pass
 
-    def triangle():
+    def triangle(self, *args) -> Any:
         pass
 
-    def winsize():
+    def winsize(self, *args) -> Any:
         pass
-

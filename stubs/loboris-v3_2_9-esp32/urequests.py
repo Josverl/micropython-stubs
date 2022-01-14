@@ -4,35 +4,47 @@ Module: 'urequests' on esp32_LoBo 3.2.9
 # MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.9', version='ESP32_LoBo_v3.2.9 on 2018-04-12', machine='ESP32 board with ESP32')
 # Stubber: 1.1.2
 
+
 class Response:
-    ''
-    def close():
+    """"""
+
+    def close(self, *args) -> Any:
         pass
 
     content = None
-    def json():
+
+    def json(self, *args) -> Any:
         pass
 
     text = None
-def delete():
+
+
+def delete(*args) -> Any:
     pass
 
-def get():
+
+def get(*args) -> Any:
     pass
 
-def head():
+
+def head(*args) -> Any:
     pass
 
-def patch():
+
+def patch(*args) -> Any:
     pass
 
-def post():
+
+def post(*args) -> Any:
     pass
 
-def put():
+
+def put(*args) -> Any:
     pass
 
-def request():
+
+def request(*args) -> Any:
     pass
+
 
 usocket = None

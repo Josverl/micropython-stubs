@@ -12,30 +12,35 @@ SOCK_RAW = 3
 SOCK_STREAM = 1
 SOL_SOCKET = 1
 SO_REUSEADDR = 4
-def callback():
+
+
+def callback(*args) -> Any:
     pass
 
-def getaddrinfo():
+
+def getaddrinfo(*args) -> Any:
     pass
 
-def print_pcbs():
+
+def print_pcbs(*args) -> Any:
     pass
 
-def reset():
+
+def reset(*args) -> Any:
     pass
 
 
 class socket:
-    ''
-    def accept():
+    """"""
+
+    def accept(self, *args) -> Any:
         pass
 
-    def bind():
+    def bind(self, *args) -> Any:
         pass
 
-    def close():
+    def close(self, *args) -> Any:
         pass
 
-    def connect():
+    def connect(self, *args) -> Any:
         pass
-

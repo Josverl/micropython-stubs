@@ -1,8 +1,24 @@
 from typing import Any
 
-Node = Any
+argv: Any
+byteorder: str
 
-def exc_info() -> None: ...
-def exit() -> None: ...
-def mpycore() -> None: ...
-def print_exception() -> None: ...
+def exc_info(*args) -> Any: ...
+def exit(*args) -> Any: ...
+
+implementation: Any
+maxsize: int
+modules: Any
+
+def mpycore(*args) -> Any: ...
+
+path: Any
+platform: str
+
+def print_exception(*args) -> Any: ...
+
+stderr: Any
+stdin: Any
+stdout: Any
+version: str
+version_info: Any

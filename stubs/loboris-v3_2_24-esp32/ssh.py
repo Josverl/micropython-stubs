@@ -14,24 +14,31 @@ TRACE_SCP = 32
 TRACE_SFTP = 64
 TRACE_SOCKET = 512
 TRACE_TRANS = 2
-def exec():
+
+
+def exec(*args) -> Any:
     pass
 
-def get():
+
+def get(*args) -> Any:
     pass
 
-def list():
+
+def list(*args) -> Any:
     pass
 
-def llist():
+
+def llist(*args) -> Any:
     pass
 
-def mkdir():
+
+def mkdir(*args) -> Any:
     pass
 
-def options():
+
+def options(*args) -> Any:
     pass
 
-def put():
-    pass
 
+def put(*args) -> Any:
+    pass

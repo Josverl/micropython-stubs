@@ -5,6 +5,7 @@ Module: 'btree' on esp32_LoBo 3.2.9
 # Stubber: 1.1.2
 DESC = 2
 INCL = 1
-def open():
-    pass
 
+
+def open(*args) -> Any:
+    pass

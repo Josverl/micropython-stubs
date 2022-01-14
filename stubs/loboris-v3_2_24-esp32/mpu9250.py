@@ -4,48 +4,55 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class AK8963:
-    ''
-    def _register_char():
+    """"""
+
+    def _register_char(self, *args) -> Any:
         pass
 
-    def _register_short():
+    def _register_short(self, *args) -> Any:
         pass
 
-    def _register_three_shorts():
+    def _register_three_shorts(self, *args) -> Any:
         pass
 
     adjustement = None
     magnetic = None
     whoami = None
 
+
 class MPU6500:
-    ''
-    def _accel_fs():
+    """"""
+
+    def _accel_fs(self, *args) -> Any:
         pass
 
-    def _gyro_fs():
+    def _gyro_fs(self, *args) -> Any:
         pass
 
-    def _register_char():
+    def _register_char(self, *args) -> Any:
         pass
 
-    def _register_short():
+    def _register_short(self, *args) -> Any:
         pass
 
-    def _register_three_shorts():
+    def _register_three_shorts(self, *args) -> Any:
         pass
 
     acceleration = None
     gyro = None
     whoami = None
 
+
 class MPU9250:
-    ''
+    """"""
+
     acceleration = None
     gyro = None
     magnetic = None
     whoami = None
-def const():
-    pass
 
+
+def const(*args) -> Any:
+    pass

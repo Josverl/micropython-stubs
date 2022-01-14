@@ -4,24 +4,26 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class MicroWebSocket:
-    ''
-    def Close():
+    """"""
+
+    def Close(self, *args) -> Any:
         pass
 
-    def IsClosed():
+    def IsClosed(self, *args) -> Any:
         pass
 
-    def SendBinary():
+    def SendBinary(self, *args) -> Any:
         pass
 
-    def SendText():
+    def SendText(self, *args) -> Any:
         pass
 
-    def _handshake():
+    def _handshake(self, *args) -> Any:
         pass
 
-    _handshakeSign = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
+    _handshakeSign = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
     _msgTypeBin = 2
     _msgTypeText = 1
     _opBinFrame = 2
@@ -30,153 +32,172 @@ class MicroWebSocket:
     _opPingFrame = 9
     _opPongFrame = 10
     _opTextFrame = 1
-    def _receiveFrame():
+
+    def _receiveFrame(self, *args) -> Any:
         pass
 
-    def _sendFrame():
+    def _sendFrame(self, *args) -> Any:
         pass
 
-    def _tryAllocByteArray():
+    def _tryAllocByteArray(self, *args) -> Any:
         pass
 
-    def _tryStartThread():
+    def _tryStartThread(self, *args) -> Any:
         pass
 
-    def _wsProcess():
+    def _wsProcess(self, *args) -> Any:
         pass
 
-    def threadID():
+    def threadID(self, *args) -> Any:
         pass
 
 
 class MicroWebSrv:
-    ''
-    def GetMimeTypeFromFilename():
+    """"""
+
+    def GetMimeTypeFromFilename(self, *args) -> Any:
         pass
 
-    def GetRouteHandler():
+    def GetRouteHandler(self, *args) -> Any:
         pass
 
-    def HTMLEscape():
+    def HTMLEscape(self, *args) -> Any:
         pass
 
-    def IsStarted():
+    def IsStarted(self, *args) -> Any:
         pass
 
-    def SetNotFoundPageUrl():
+    def SetNotFoundPageUrl(self, *args) -> Any:
         pass
 
-    def Start():
+    def Start(self, *args) -> Any:
         pass
 
-    def State():
+    def State(self, *args) -> Any:
         pass
 
-    def Stop():
+    def Stop(self, *args) -> Any:
         pass
 
     _client = None
     _docoratedRouteHandlers = None
-    def _fileExists():
+
+    def _fileExists(self, *args) -> Any:
         pass
 
     _html_escape_chars = None
     _indexPages = None
-    def _isPyHTMLFile():
+
+    def _isPyHTMLFile(self, *args) -> Any:
         pass
 
     _mimeTypes = None
-    def _physPathFromURLPath():
+
+    def _physPathFromURLPath(self, *args) -> Any:
         pass
 
-    _pyhtmlPagesExt = '.pyhtml'
+    _pyhtmlPagesExt = ".pyhtml"
     _response = None
-    def _serverProcess():
+
+    def _serverProcess(self, *args) -> Any:
         pass
 
-    def _tryAllocByteArray():
+    def _tryAllocByteArray(self, *args) -> Any:
         pass
 
-    def _tryStartThread():
+    def _tryStartThread(self, *args) -> Any:
         pass
 
-    def _unquote():
+    def _unquote(self, *args) -> Any:
         pass
 
-    def _unquote_plus():
+    def _unquote_plus(self, *args) -> Any:
         pass
 
-    def route():
+    def route(self, *args) -> Any:
         pass
 
-    def threadID():
+    def threadID(self, *args) -> Any:
         pass
 
 
 class MicroWebSrvRoute:
-    ''
+    """"""
+
 
 class MicroWebTemplate:
-    ''
-    def Execute():
+    """"""
+
+    def Execute(self, *args) -> Any:
         pass
 
-    INSTRUCTION_ELIF = 'elif'
-    INSTRUCTION_ELSE = 'else'
-    INSTRUCTION_END = 'end'
-    INSTRUCTION_FOR = 'for'
-    INSTRUCTION_IF = 'if'
-    INSTRUCTION_INCLUDE = 'include'
-    INSTRUCTION_PYTHON = 'py'
-    TOKEN_CLOSE = '}}'
+    INSTRUCTION_ELIF = "elif"
+    INSTRUCTION_ELSE = "else"
+    INSTRUCTION_END = "end"
+    INSTRUCTION_FOR = "for"
+    INSTRUCTION_IF = "if"
+    INSTRUCTION_INCLUDE = "include"
+    INSTRUCTION_PYTHON = "py"
+    TOKEN_CLOSE = "}}"
     TOKEN_CLOSE_LEN = 2
-    TOKEN_OPEN = '{{'
+    TOKEN_OPEN = "{{"
     TOKEN_OPEN_LEN = 2
-    def Validate():
+
+    def Validate(self, *args) -> Any:
         pass
 
-    def _parseBloc():
+    def _parseBloc(self, *args) -> Any:
         pass
 
-    def _parseCode():
+    def _parseCode(self, *args) -> Any:
         pass
 
-    def _processInstructionELIF():
+    def _processInstructionELIF(self, *args) -> Any:
         pass
 
-    def _processInstructionELSE():
+    def _processInstructionELSE(self, *args) -> Any:
         pass
 
-    def _processInstructionEND():
+    def _processInstructionEND(self, *args) -> Any:
         pass
 
-    def _processInstructionFOR():
+    def _processInstructionFOR(self, *args) -> Any:
         pass
 
-    def _processInstructionIF():
+    def _processInstructionIF(self, *args) -> Any:
         pass
 
-    def _processInstructionINCLUDE():
+    def _processInstructionINCLUDE(self, *args) -> Any:
         pass
 
-    def _processInstructionPYTHON():
+    def _processInstructionPYTHON(self, *args) -> Any:
         pass
 
-    def _processToken():
+    def _processToken(self, *args) -> Any:
         pass
+
 
 _thread = None
-def dumps():
+
+
+def dumps(*args) -> Any:
     pass
 
+
 gc = None
-def loads():
+
+
+def loads(*args) -> Any:
     pass
+
 
 network = None
 re = None
 socket = None
-def stat():
+
+
+def stat(*args) -> Any:
     pass
+
 
 time = None

@@ -8,28 +8,31 @@ DEBUG = 10
 ERROR = 40
 INFO = 20
 
+
 class Logger:
-    ''
-    def _level_str():
+    """"""
+
+    def _level_str(self, *args) -> Any:
         pass
 
-    def critical():
+    def critical(self, *args) -> Any:
         pass
 
-    def debug():
+    def debug(self, *args) -> Any:
         pass
 
-    def error():
+    def error(self, *args) -> Any:
         pass
 
-    def info():
+    def info(self, *args) -> Any:
         pass
 
-    def log():
+    def log(self, *args) -> Any:
         pass
 
-    def warning():
+    def warning(self, *args) -> Any:
         pass
+
 
 NOTSET = 0
 WARNING = 30
@@ -37,16 +40,22 @@ _level = 20
 _level_dict = None
 _loggers = None
 _stream = None
-def basicConfig():
+
+
+def basicConfig(*args) -> Any:
     pass
 
-def debug():
+
+def debug(*args) -> Any:
     pass
 
-def getLogger():
+
+def getLogger(*args) -> Any:
     pass
 
-def info():
+
+def info(*args) -> Any:
     pass
+
 
 sys = None

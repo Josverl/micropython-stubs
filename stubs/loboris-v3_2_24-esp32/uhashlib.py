@@ -4,20 +4,22 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class sha1:
-    ''
-    def digest():
+    """"""
+
+    def digest(self, *args) -> Any:
         pass
 
-    def update():
+    def update(self, *args) -> Any:
         pass
 
 
 class sha256:
-    ''
-    def digest():
+    """"""
+
+    def digest(self, *args) -> Any:
         pass
 
-    def update():
+    def update(self, *args) -> Any:
         pass
-

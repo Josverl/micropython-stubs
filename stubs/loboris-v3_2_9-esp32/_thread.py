@@ -13,63 +13,83 @@ SUSPEND = 16777216
 SUSPENDED = 1
 TERMINATED = -1
 WAITING = 2
-def allowsuspend():
+
+
+def allowsuspend(*args) -> Any:
     pass
 
-def getReplID():
+
+def getReplID(*args) -> Any:
     pass
 
-def getSelfName():
+
+def getSelfName(*args) -> Any:
     pass
 
-def getThreadName():
+
+def getThreadName(*args) -> Any:
     pass
 
-def getmsg():
+
+def getmsg(*args) -> Any:
     pass
 
-def getnotification():
+
+def getnotification(*args) -> Any:
     pass
 
-def isnotified():
+
+def isnotified(*args) -> Any:
     pass
 
-def list():
+
+def list(*args) -> Any:
     pass
 
-def lock():
+
+def lock(*args) -> Any:
     pass
 
-def notify():
+
+def notify(*args) -> Any:
     pass
 
-def replAcceptMsg():
+
+def replAcceptMsg(*args) -> Any:
     pass
 
-def resume():
+
+def resume(*args) -> Any:
     pass
 
-def sendmsg():
+
+def sendmsg(*args) -> Any:
     pass
 
-def stack_size():
+
+def stack_size(*args) -> Any:
     pass
 
-def start_new_thread():
+
+def start_new_thread(*args) -> Any:
     pass
 
-def status():
+
+def status(*args) -> Any:
     pass
 
-def stop():
+
+def stop(*args) -> Any:
     pass
 
-def suspend():
+
+def suspend(*args) -> Any:
     pass
 
-def unlock():
+
+def unlock(*args) -> Any:
     pass
 
-def wait():
-    pass
 
+def wait(*args) -> Any:
+    pass

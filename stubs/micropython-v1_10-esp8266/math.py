@@ -3,80 +3,107 @@ Module: 'math' on esp8266 v1.10
 """
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.10-8-g8b7039d7d on 2019-01-26', machine='ESP module with ESP8266')
 # Stubber: 1.1.0
-def acos():
+def acos(*args) -> Any:
     pass
 
-def asin():
+
+def asin(*args) -> Any:
     pass
 
-def atan():
+
+def atan(*args) -> Any:
     pass
 
-def atan2():
+
+def atan2(*args) -> Any:
     pass
 
-def ceil():
+
+def ceil(*args) -> Any:
     pass
 
-def copysign():
+
+def copysign(*args) -> Any:
     pass
 
-def cos():
+
+def cos(*args) -> Any:
     pass
 
-def degrees():
+
+def degrees(*args) -> Any:
     pass
+
 
 e = 2.71828
-def exp():
+
+
+def exp(*args) -> Any:
     pass
 
-def fabs():
+
+def fabs(*args) -> Any:
     pass
 
-def floor():
+
+def floor(*args) -> Any:
     pass
 
-def fmod():
+
+def fmod(*args) -> Any:
     pass
 
-def frexp():
+
+def frexp(*args) -> Any:
     pass
 
-def isfinite():
+
+def isfinite(*args) -> Any:
     pass
 
-def isinf():
+
+def isinf(*args) -> Any:
     pass
 
-def isnan():
+
+def isnan(*args) -> Any:
     pass
 
-def ldexp():
+
+def ldexp(*args) -> Any:
     pass
 
-def log():
+
+def log(*args) -> Any:
     pass
 
-def modf():
+
+def modf(*args) -> Any:
     pass
+
 
 pi = 3.14159
-def pow():
+
+
+def pow(*args) -> Any:
     pass
 
-def radians():
+
+def radians(*args) -> Any:
     pass
 
-def sin():
+
+def sin(*args) -> Any:
     pass
 
-def sqrt():
+
+def sqrt(*args) -> Any:
     pass
 
-def tan():
+
+def tan(*args) -> Any:
     pass
 
-def trunc():
-    pass
 
+def trunc(*args) -> Any:
+    pass

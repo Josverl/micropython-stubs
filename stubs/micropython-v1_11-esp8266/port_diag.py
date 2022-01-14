@@ -5,8 +5,11 @@ Module: 'port_diag' on esp8266 v1.11
 # Stubber: 1.1.0
 esp = None
 lwip = None
-def main():
+
+
+def main(*args) -> Any:
     pass
+
 
 network = None
 uctypes = None

@@ -4,23 +4,24 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class utimeq:
-    ''
-    def dump():
+    """"""
+
+    def dump(self, *args) -> Any:
         pass
 
-    def len():
+    def len(self, *args) -> Any:
         pass
 
-    def peek():
+    def peek(self, *args) -> Any:
         pass
 
-    def peektime():
+    def peektime(self, *args) -> Any:
         pass
 
-    def pop():
+    def pop(self, *args) -> Any:
         pass
 
-    def push():
+    def push(self, *args) -> Any:
         pass
-

@@ -6,6 +6,7 @@ Module: 'uasyncio.funcs' on pyboard 1.13.0-95
 core = None
 gather = None
 wait_for = None
-def wait_for_ms():
-    pass
 
+
+def wait_for_ms(*args) -> Any:
+    pass

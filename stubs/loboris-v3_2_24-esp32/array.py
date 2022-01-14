@@ -4,11 +4,12 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class array:
-    ''
-    def append():
+    """"""
+
+    def append(self, *args) -> Any:
         pass
 
-    def extend():
+    def extend(self, *args) -> Any:
         pass
-

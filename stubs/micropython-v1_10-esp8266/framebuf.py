@@ -4,40 +4,44 @@ Module: 'framebuf' on esp8266 v1.10
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.10-8-g8b7039d7d on 2019-01-26', machine='ESP module with ESP8266')
 # Stubber: 1.1.0
 
+
 class FrameBuffer:
-    ''
-    def blit():
+    """"""
+
+    def blit(self, *args) -> Any:
         pass
 
-    def fill():
+    def fill(self, *args) -> Any:
         pass
 
-    def fill_rect():
+    def fill_rect(self, *args) -> Any:
         pass
 
-    def hline():
+    def hline(self, *args) -> Any:
         pass
 
-    def line():
+    def line(self, *args) -> Any:
         pass
 
-    def pixel():
+    def pixel(self, *args) -> Any:
         pass
 
-    def rect():
+    def rect(self, *args) -> Any:
         pass
 
-    def scroll():
+    def scroll(self, *args) -> Any:
         pass
 
-    def text():
+    def text(self, *args) -> Any:
         pass
 
-    def vline():
+    def vline(self, *args) -> Any:
         pass
 
-def FrameBuffer1():
+
+def FrameBuffer1(*args) -> Any:
     pass
+
 
 GS2_HMSB = 5
 GS4_HMSB = 2

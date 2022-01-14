@@ -9,39 +9,51 @@ SMS_UNREAD = 1
 SORT_ASC = 1
 SORT_DESC = 2
 SORT_NONE = 0
-def atcmd():
+
+
+def atcmd(*args) -> Any:
     pass
 
-def checkSMS():
+
+def checkSMS(*args) -> Any:
     pass
 
-def connect():
+
+def connect(*args) -> Any:
     pass
 
-def debug():
+
+def debug(*args) -> Any:
     pass
 
-def deleteSMS():
+
+def deleteSMS(*args) -> Any:
     pass
 
-def disconnect():
+
+def disconnect(*args) -> Any:
     pass
 
-def readSMS():
+
+def readSMS(*args) -> Any:
     pass
 
-def sendSMS():
+
+def sendSMS(*args) -> Any:
     pass
 
-def sms_cb():
+
+def sms_cb(*args) -> Any:
     pass
 
-def start():
+
+def start(*args) -> Any:
     pass
 
-def status():
+
+def status(*args) -> Any:
     pass
 
-def stop():
-    pass
 
+def stop(*args) -> Any:
+    pass

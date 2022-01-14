@@ -5,11 +5,17 @@ Module: 'websocket_helper' on esp8266 v1.11
 # Stubber: 1.1.0
 DEBUG = 0
 binascii = None
-def client_handshake():
+
+
+def client_handshake(*args) -> Any:
     pass
 
+
 hashlib = None
-def server_handshake():
+
+
+def server_handshake(*args) -> Any:
     pass
+
 
 sys = None

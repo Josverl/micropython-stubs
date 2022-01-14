@@ -4,22 +4,25 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class Calibrate:
-    ''
-    def calibError():
+    """"""
+
+    def calibError(self, *args) -> Any:
         pass
 
-    def calibrate():
+    def calibrate(self, *args) -> Any:
         pass
 
-    def drawCrossHair():
+    def drawCrossHair(self, *args) -> Any:
         pass
 
-    def readCoordinates():
+    def readCoordinates(self, *args) -> Any:
         pass
 
-    def tpcalib():
+    def tpcalib(self, *args) -> Any:
         pass
+
 
 display = None
 machine = None

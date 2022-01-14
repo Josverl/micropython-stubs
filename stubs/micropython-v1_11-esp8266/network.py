@@ -19,9 +19,11 @@ STAT_IDLE = 0
 STAT_NO_AP_FOUND = 3
 STAT_WRONG_PASSWORD = 2
 STA_IF = 0
-def WLAN():
+
+
+def WLAN(*args) -> Any:
     pass
 
-def phy_mode():
-    pass
 
+def phy_mode(*args) -> Any:
+    pass

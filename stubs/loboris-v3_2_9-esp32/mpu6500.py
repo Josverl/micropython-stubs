@@ -12,8 +12,10 @@ GYRO_FS_SEL_2000DPS = 24
 GYRO_FS_SEL_250DPS = 0
 GYRO_FS_SEL_500DPS = 8
 
+
 class I2C:
-    ''
+    """"""
+
     CB_DATA = 3
     CB_READ = 1
     CB_WRITE = 2
@@ -21,96 +23,100 @@ class I2C:
     READ = 1
     SLAVE = 0
     WRITE = 0
-    def address():
+
+    def address(self, *args) -> Any:
         pass
 
-    def begin():
+    def begin(self, *args) -> Any:
         pass
 
-    def callback():
+    def callback(self, *args) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *args) -> Any:
         pass
 
-    def end():
+    def end(self, *args) -> Any:
         pass
 
-    def getdata():
+    def getdata(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def read_byte():
+    def read_byte(self, *args) -> Any:
         pass
 
-    def read_bytes():
+    def read_bytes(self, *args) -> Any:
         pass
 
-    def readfrom():
+    def readfrom(self, *args) -> Any:
         pass
 
-    def readfrom_into():
+    def readfrom_into(self, *args) -> Any:
         pass
 
-    def readfrom_mem():
+    def readfrom_mem(self, *args) -> Any:
         pass
 
-    def readfrom_mem_into():
+    def readfrom_mem_into(self, *args) -> Any:
         pass
 
-    def scan():
+    def scan(self, *args) -> Any:
         pass
 
-    def setdata():
+    def setdata(self, *args) -> Any:
         pass
 
-    def slavewrite():
+    def slavewrite(self, *args) -> Any:
         pass
 
-    def start():
+    def start(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
 
-    def write_byte():
+    def write_byte(self, *args) -> Any:
         pass
 
-    def write_bytes():
+    def write_bytes(self, *args) -> Any:
         pass
 
-    def writeto():
+    def writeto(self, *args) -> Any:
         pass
 
-    def writeto_mem():
+    def writeto_mem(self, *args) -> Any:
         pass
 
 
 class MPU6500:
-    ''
-    def _accel_fs():
+    """"""
+
+    def _accel_fs(self, *args) -> Any:
         pass
 
-    def _gyro_fs():
+    def _gyro_fs(self, *args) -> Any:
         pass
 
-    def _register_char():
+    def _register_char(self, *args) -> Any:
         pass
 
-    def _register_short():
+    def _register_short(self, *args) -> Any:
         pass
 
-    def _register_three_shorts():
+    def _register_three_shorts(self, *args) -> Any:
         pass
 
     acceleration = None
     gyro = None
     whoami = None
 
+
 class Pin:
-    ''
+    """"""
+
     IN = 1
     INOUT = 3
     INOUT_OD = 7
@@ -125,14 +131,16 @@ class Pin:
     PULL_FLOAT = 3
     PULL_UP = 0
     PULL_UPDOWN = 2
-    def init():
+
+    def init(self, *args) -> Any:
         pass
 
-    def irq():
+    def irq(self, *args) -> Any:
         pass
 
-    def value():
+    def value(self, *args) -> Any:
         pass
+
 
 SF_DEG_S = 1
 SF_G = 1
@@ -146,7 +154,10 @@ _GYRO_SO_1000DPS = 32.8
 _GYRO_SO_2000DPS = 16.4
 _GYRO_SO_250DPS = 131
 _GYRO_SO_500DPS = 62.5
-def const():
+
+
+def const(*args) -> Any:
     pass
+
 
 ustruct = None

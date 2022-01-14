@@ -4,29 +4,42 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 argv = None
-byteorder = 'little'
-def espidf_info():
+byteorder = "little"
+
+
+def espidf_info(*args) -> Any:
     pass
 
-def exit():
+
+def exit(*args) -> Any:
     pass
+
 
 implementation = None
 maxsize = 2147483647
 modules = None
-def mpycore():
+
+
+def mpycore(*args) -> Any:
     pass
 
+
 path = None
-platform = 'esp32_LoBo'
-def print_exception():
+platform = "esp32_LoBo"
+
+
+def print_exception(*args) -> Any:
     pass
+
 
 stderr = None
 stdin = None
 stdout = None
-def tz():
+
+
+def tz(*args) -> Any:
     pass
 
-version = '3.4.0'
+
+version = "3.4.0"
 version_info = None

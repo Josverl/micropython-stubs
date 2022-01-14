@@ -27,18 +27,23 @@ UINT32 = 536870912
 UINT64 = 805306368
 UINT8 = 0
 VOID = 0
-def addressof():
+
+
+def addressof(*args) -> Any:
     pass
 
-def bytearray_at():
+
+def bytearray_at(*args) -> Any:
     pass
 
-def bytes_at():
+
+def bytes_at(*args) -> Any:
     pass
 
-def sizeof():
+
+def sizeof(*args) -> Any:
     pass
 
 
 class struct:
-    ''
+    """"""

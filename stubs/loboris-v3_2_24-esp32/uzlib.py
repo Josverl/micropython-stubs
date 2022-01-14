@@ -4,17 +4,19 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class DecompIO:
-    ''
-    def read():
+    """"""
+
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def readline():
+    def readline(self, *args) -> Any:
         pass
 
-def decompress():
+
+def decompress(*args) -> Any:
     pass
-

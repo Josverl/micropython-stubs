@@ -4,210 +4,249 @@ Module: 'uasyncio.core' on esp8266 v1.10
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.10-8-g8b7039d7d on 2019-01-26', machine='ESP module with ESP8266')
 # Stubber: 1.1.0
 
+
 class CancelledError:
-    ''
+    """"""
+
+
 DEBUG = 0
 
+
 class EventLoop:
-    ''
-    def call_at_():
+    """"""
+
+    def call_at_(self, *args) -> Any:
         pass
 
-    def call_later():
+    def call_later(self, *args) -> Any:
         pass
 
-    def call_later_ms():
+    def call_later_ms(self, *args) -> Any:
         pass
 
-    def call_soon():
+    def call_soon(self, *args) -> Any:
         pass
 
-    def close():
+    def close(self, *args) -> Any:
         pass
 
-    def create_task():
+    def create_task(self, *args) -> Any:
         pass
 
-    def run_forever():
+    def run_forever(self, *args) -> Any:
         pass
 
-    def run_until_complete():
+    def run_until_complete(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
 
-    def time():
+    def time(self, *args) -> Any:
         pass
 
-    def wait():
+    def wait(self, *args) -> Any:
         pass
 
 
 class IORead:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class IOReadDone:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class IOWrite:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class IOWriteDone:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class PollEventLoop:
-    ''
-    def add_reader():
+    """"""
+
+    def add_reader(self, *args) -> Any:
         pass
 
-    def add_writer():
+    def add_writer(self, *args) -> Any:
         pass
 
-    def call_at_():
+    def call_at_(self, *args) -> Any:
         pass
 
-    def call_later():
+    def call_later(self, *args) -> Any:
         pass
 
-    def call_later_ms():
+    def call_later_ms(self, *args) -> Any:
         pass
 
-    def call_soon():
+    def call_soon(self, *args) -> Any:
         pass
 
-    def close():
+    def close(self, *args) -> Any:
         pass
 
-    def create_task():
+    def create_task(self, *args) -> Any:
         pass
 
-    def remove_reader():
+    def remove_reader(self, *args) -> Any:
         pass
 
-    def remove_writer():
+    def remove_writer(self, *args) -> Any:
         pass
 
-    def run_forever():
+    def run_forever(self, *args) -> Any:
         pass
 
-    def run_until_complete():
+    def run_until_complete(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
 
-    def time():
+    def time(self, *args) -> Any:
         pass
 
-    def wait():
+    def wait(self, *args) -> Any:
         pass
 
 
 class SleepMs:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class StopLoop:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class StreamReader:
-    ''
+    """"""
+
     aclose = None
     read = None
     readexactly = None
     readline = None
 
+
 class StreamWriter:
-    ''
+    """"""
+
     aclose = None
     awrite = None
     awriteiter = None
-    def get_extra_info():
+
+    def get_extra_info(self, *args) -> Any:
         pass
 
 
 class SysCall:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class SysCall1:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
-def Task():
+
+def Task(*args) -> Any:
     pass
 
 
 class TimeoutError:
-    ''
+    """"""
+
 
 class TimeoutObj:
-    ''
+    """"""
+
+
 _socket = None
-def cancel():
+
+
+def cancel(*args) -> Any:
     pass
+
 
 core = None
-def coroutine():
+
+
+def coroutine(*args) -> Any:
     pass
 
-def ensure_future():
+
+def ensure_future(*args) -> Any:
     pass
 
-def get_event_loop():
+
+def get_event_loop(*args) -> Any:
     pass
+
 
 log = None
 open_connection = None
 select = None
-def set_debug():
+
+
+def set_debug(*args) -> Any:
     pass
+
 
 sleep = None
 sleep_ms = None
 start_server = None
 time = None
 
+
 class type_gen:
-    ''
-    def close():
+    """"""
+
+    def close(self, *args) -> Any:
         pass
 
-    def pend_throw():
+    def pend_throw(self, *args) -> Any:
         pass
 
-    def send():
+    def send(self, *args) -> Any:
         pass
 
-    def throw():
+    def throw(self, *args) -> Any:
         pass
+
 
 uasyncio = None
 ucollections = None
 uerrno = None
 utimeq = None
-def wait_for():
+
+
+def wait_for(*args) -> Any:
     pass
+
 
 wait_for_ms = None

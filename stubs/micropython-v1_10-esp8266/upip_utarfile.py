@@ -3,34 +3,42 @@ Module: 'upip_utarfile' on esp8266 v1.10
 """
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.10-8-g8b7039d7d on 2019-01-26', machine='ESP module with ESP8266')
 # Stubber: 1.1.0
-DIRTYPE = 'dir'
+DIRTYPE = "dir"
+
 
 class FileSection:
-    ''
-    def read():
+    """"""
+
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def skip():
+    def skip(self, *args) -> Any:
         pass
 
-REGTYPE = 'file'
+
+REGTYPE = "file"
 TAR_HEADER = None
 
+
 class TarFile:
-    ''
-    def extractfile():
+    """"""
+
+    def extractfile(self, *args) -> Any:
         pass
 
-    def next():
+    def next(self, *args) -> Any:
         pass
 
 
 class TarInfo:
-    ''
-def roundup():
+    """"""
+
+
+def roundup(*args) -> Any:
     pass
+
 
 uctypes = None

@@ -4,613 +4,710 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class ArithmeticError:
-    ''
+    """"""
+
 
 class AssertionError:
-    ''
+    """"""
+
 
 class AttributeError:
-    ''
+    """"""
+
 
 class BaseException:
-    ''
+    """"""
+
 
 class EOFError:
-    ''
+    """"""
+
+
 Ellipsis = None
 
+
 class Exception:
-    ''
+    """"""
+
 
 class GeneratorExit:
-    ''
+    """"""
+
 
 class ImportError:
-    ''
+    """"""
+
 
 class IndentationError:
-    ''
+    """"""
+
 
 class IndexError:
-    ''
+    """"""
+
 
 class KeyError:
-    ''
+    """"""
+
 
 class KeyboardInterrupt:
-    ''
+    """"""
+
 
 class LookupError:
-    ''
+    """"""
+
 
 class MemoryError:
-    ''
+    """"""
+
 
 class NameError:
-    ''
+    """"""
+
+
 NotImplemented = None
 
+
 class NotImplementedError:
-    ''
+    """"""
+
 
 class OSError:
-    ''
+    """"""
+
 
 class OverflowError:
-    ''
+    """"""
+
 
 class RuntimeError:
-    ''
+    """"""
+
 
 class StopAsyncIteration:
-    ''
+    """"""
+
 
 class StopIteration:
-    ''
+    """"""
+
 
 class SyntaxError:
-    ''
+    """"""
+
 
 class SystemExit:
-    ''
+    """"""
+
 
 class TypeError:
-    ''
+    """"""
+
 
 class UnicodeError:
-    ''
+    """"""
+
 
 class ValueError:
-    ''
+    """"""
+
 
 class ZeroDivisionError:
-    ''
-def abs():
+    """"""
+
+
+def abs(*args) -> Any:
     pass
 
-def all():
+
+def all(*args) -> Any:
     pass
 
-def any():
+
+def any(*args) -> Any:
     pass
 
-def bin():
+
+def bin(*args) -> Any:
     pass
 
 
 class bool:
-    ''
+    """"""
+
 
 class bytearray:
-    ''
-    def append():
+    """"""
+
+    def append(self, *args) -> Any:
         pass
 
-    def extend():
+    def extend(self, *args) -> Any:
         pass
 
 
 class bytes:
-    ''
-    def center():
+    """"""
+
+    def center(self, *args) -> Any:
         pass
 
-    def count():
+    def count(self, *args) -> Any:
         pass
 
-    def decode():
+    def decode(self, *args) -> Any:
         pass
 
-    def endswith():
+    def endswith(self, *args) -> Any:
         pass
 
-    def find():
+    def find(self, *args) -> Any:
         pass
 
-    def format():
+    def format(self, *args) -> Any:
         pass
 
-    def index():
+    def index(self, *args) -> Any:
         pass
 
-    def isalpha():
+    def isalpha(self, *args) -> Any:
         pass
 
-    def isdigit():
+    def isdigit(self, *args) -> Any:
         pass
 
-    def islower():
+    def islower(self, *args) -> Any:
         pass
 
-    def isspace():
+    def isspace(self, *args) -> Any:
         pass
 
-    def isupper():
+    def isupper(self, *args) -> Any:
         pass
 
-    def join():
+    def join(self, *args) -> Any:
         pass
 
-    def lower():
+    def lower(self, *args) -> Any:
         pass
 
-    def lstrip():
+    def lstrip(self, *args) -> Any:
         pass
 
-    def partition():
+    def partition(self, *args) -> Any:
         pass
 
-    def replace():
+    def replace(self, *args) -> Any:
         pass
 
-    def rfind():
+    def rfind(self, *args) -> Any:
         pass
 
-    def rindex():
+    def rindex(self, *args) -> Any:
         pass
 
-    def rpartition():
+    def rpartition(self, *args) -> Any:
         pass
 
-    def rsplit():
+    def rsplit(self, *args) -> Any:
         pass
 
-    def rstrip():
+    def rstrip(self, *args) -> Any:
         pass
 
-    def split():
+    def split(self, *args) -> Any:
         pass
 
-    def splitlines():
+    def splitlines(self, *args) -> Any:
         pass
 
-    def startswith():
+    def startswith(self, *args) -> Any:
         pass
 
-    def strip():
+    def strip(self, *args) -> Any:
         pass
 
-    def upper():
+    def upper(self, *args) -> Any:
         pass
 
-def callable():
+
+def callable(*args) -> Any:
     pass
 
-def chr():
+
+def chr(*args) -> Any:
     pass
 
 
 class classmethod:
-    ''
-def compile():
+    """"""
+
+
+def compile(*args) -> Any:
     pass
 
 
 class complex:
-    ''
-def delattr():
+    """"""
+
+
+def delattr(*args) -> Any:
     pass
 
 
 class dict:
-    ''
-    def clear():
+    """"""
+
+    def clear(self, *args) -> Any:
         pass
 
-    def copy():
+    def copy(self, *args) -> Any:
         pass
 
-    def fromkeys():
+    def fromkeys(self, *args) -> Any:
         pass
 
-    def get():
+    def get(self, *args) -> Any:
         pass
 
-    def items():
+    def items(self, *args) -> Any:
         pass
 
-    def keys():
+    def keys(self, *args) -> Any:
         pass
 
-    def pop():
+    def pop(self, *args) -> Any:
         pass
 
-    def popitem():
+    def popitem(self, *args) -> Any:
         pass
 
-    def setdefault():
+    def setdefault(self, *args) -> Any:
         pass
 
-    def update():
+    def update(self, *args) -> Any:
         pass
 
-    def values():
+    def values(self, *args) -> Any:
         pass
 
-def dir():
+
+def dir(*args) -> Any:
     pass
 
-def divmod():
+
+def divmod(*args) -> Any:
     pass
 
 
 class enumerate:
-    ''
-def eval():
+    """"""
+
+
+def eval(*args) -> Any:
     pass
 
-def exec():
+
+def exec(*args) -> Any:
     pass
 
-def execfile():
+
+def execfile(*args) -> Any:
     pass
 
 
 class filter:
-    ''
+    """"""
+
 
 class float:
-    ''
-def float_precision():
+    """"""
+
+
+def float_precision(*args) -> Any:
     pass
 
 
 class frozenset:
-    ''
-    def copy():
+    """"""
+
+    def copy(self, *args) -> Any:
         pass
 
-    def difference():
+    def difference(self, *args) -> Any:
         pass
 
-    def intersection():
+    def intersection(self, *args) -> Any:
         pass
 
-    def isdisjoint():
+    def isdisjoint(self, *args) -> Any:
         pass
 
-    def issubset():
+    def issubset(self, *args) -> Any:
         pass
 
-    def issuperset():
+    def issuperset(self, *args) -> Any:
         pass
 
-    def symmetric_difference():
+    def symmetric_difference(self, *args) -> Any:
         pass
 
-    def union():
+    def union(self, *args) -> Any:
         pass
 
-def getattr():
+
+def getattr(*args) -> Any:
     pass
 
-def globals():
+
+def globals(*args) -> Any:
     pass
 
-def hasattr():
+
+def hasattr(*args) -> Any:
     pass
 
-def hash():
+
+def hash(*args) -> Any:
     pass
 
-def help():
+
+def help(*args) -> Any:
     pass
 
-def hex():
+
+def hex(*args) -> Any:
     pass
 
-def id():
+
+def id(*args) -> Any:
     pass
 
-def input():
+
+def input(*args) -> Any:
     pass
 
 
 class int:
-    ''
-    def from_bytes():
+    """"""
+
+    def from_bytes(self, *args) -> Any:
         pass
 
-    def to_bytes():
+    def to_bytes(self, *args) -> Any:
         pass
 
-def isinstance():
+
+def isinstance(*args) -> Any:
     pass
 
-def issubclass():
+
+def issubclass(*args) -> Any:
     pass
 
-def iter():
+
+def iter(*args) -> Any:
     pass
 
-def len():
+
+def len(*args) -> Any:
     pass
 
 
 class list:
-    ''
-    def append():
+    """"""
+
+    def append(self, *args) -> Any:
         pass
 
-    def clear():
+    def clear(self, *args) -> Any:
         pass
 
-    def copy():
+    def copy(self, *args) -> Any:
         pass
 
-    def count():
+    def count(self, *args) -> Any:
         pass
 
-    def extend():
+    def extend(self, *args) -> Any:
         pass
 
-    def index():
+    def index(self, *args) -> Any:
         pass
 
-    def insert():
+    def insert(self, *args) -> Any:
         pass
 
-    def pop():
+    def pop(self, *args) -> Any:
         pass
 
-    def remove():
+    def remove(self, *args) -> Any:
         pass
 
-    def reverse():
+    def reverse(self, *args) -> Any:
         pass
 
-    def sort():
+    def sort(self, *args) -> Any:
         pass
 
-def locals():
+
+def locals(*args) -> Any:
     pass
 
 
 class map:
-    ''
-def max():
+    """"""
+
+
+def max(*args) -> Any:
     pass
 
 
 class memoryview:
-    ''
-def min():
+    """"""
+
+
+def min(*args) -> Any:
     pass
 
-def next():
+
+def next(*args) -> Any:
     pass
 
 
 class object:
-    ''
-def oct():
+    """"""
+
+
+def oct(*args) -> Any:
     pass
 
-def open():
+
+def open(*args) -> Any:
     pass
 
-def ord():
+
+def ord(*args) -> Any:
     pass
 
-def pow():
+
+def pow(*args) -> Any:
     pass
 
-def print():
+
+def print(*args) -> Any:
     pass
 
 
 class property:
-    ''
-    def deleter():
+    """"""
+
+    def deleter(self, *args) -> Any:
         pass
 
-    def getter():
+    def getter(self, *args) -> Any:
         pass
 
-    def setter():
+    def setter(self, *args) -> Any:
         pass
 
 
 class range:
-    ''
-def repr():
+    """"""
+
+
+def repr(*args) -> Any:
     pass
 
 
 class reversed:
-    ''
-def round():
+    """"""
+
+
+def round(*args) -> Any:
     pass
 
 
 class set:
-    ''
-    def add():
+    """"""
+
+    def add(self, *args) -> Any:
         pass
 
-    def clear():
+    def clear(self, *args) -> Any:
         pass
 
-    def copy():
+    def copy(self, *args) -> Any:
         pass
 
-    def difference():
+    def difference(self, *args) -> Any:
         pass
 
-    def difference_update():
+    def difference_update(self, *args) -> Any:
         pass
 
-    def discard():
+    def discard(self, *args) -> Any:
         pass
 
-    def intersection():
+    def intersection(self, *args) -> Any:
         pass
 
-    def intersection_update():
+    def intersection_update(self, *args) -> Any:
         pass
 
-    def isdisjoint():
+    def isdisjoint(self, *args) -> Any:
         pass
 
-    def issubset():
+    def issubset(self, *args) -> Any:
         pass
 
-    def issuperset():
+    def issuperset(self, *args) -> Any:
         pass
 
-    def pop():
+    def pop(self, *args) -> Any:
         pass
 
-    def remove():
+    def remove(self, *args) -> Any:
         pass
 
-    def symmetric_difference():
+    def symmetric_difference(self, *args) -> Any:
         pass
 
-    def symmetric_difference_update():
+    def symmetric_difference_update(self, *args) -> Any:
         pass
 
-    def union():
+    def union(self, *args) -> Any:
         pass
 
-    def update():
+    def update(self, *args) -> Any:
         pass
 
-def setattr():
+
+def setattr(*args) -> Any:
     pass
 
 
 class slice:
-    ''
-def sorted():
+    """"""
+
+
+def sorted(*args) -> Any:
     pass
 
 
 class staticmethod:
-    ''
+    """"""
+
 
 class str:
-    ''
-    def center():
+    """"""
+
+    def center(self, *args) -> Any:
         pass
 
-    def count():
+    def count(self, *args) -> Any:
         pass
 
-    def encode():
+    def encode(self, *args) -> Any:
         pass
 
-    def endswith():
+    def endswith(self, *args) -> Any:
         pass
 
-    def find():
+    def find(self, *args) -> Any:
         pass
 
-    def format():
+    def format(self, *args) -> Any:
         pass
 
-    def index():
+    def index(self, *args) -> Any:
         pass
 
-    def isalpha():
+    def isalpha(self, *args) -> Any:
         pass
 
-    def isdigit():
+    def isdigit(self, *args) -> Any:
         pass
 
-    def islower():
+    def islower(self, *args) -> Any:
         pass
 
-    def isspace():
+    def isspace(self, *args) -> Any:
         pass
 
-    def isupper():
+    def isupper(self, *args) -> Any:
         pass
 
-    def join():
+    def join(self, *args) -> Any:
         pass
 
-    def lower():
+    def lower(self, *args) -> Any:
         pass
 
-    def lstrip():
+    def lstrip(self, *args) -> Any:
         pass
 
-    def partition():
+    def partition(self, *args) -> Any:
         pass
 
-    def replace():
+    def replace(self, *args) -> Any:
         pass
 
-    def rfind():
+    def rfind(self, *args) -> Any:
         pass
 
-    def rindex():
+    def rindex(self, *args) -> Any:
         pass
 
-    def rpartition():
+    def rpartition(self, *args) -> Any:
         pass
 
-    def rsplit():
+    def rsplit(self, *args) -> Any:
         pass
 
-    def rstrip():
+    def rstrip(self, *args) -> Any:
         pass
 
-    def split():
+    def split(self, *args) -> Any:
         pass
 
-    def splitlines():
+    def splitlines(self, *args) -> Any:
         pass
 
-    def startswith():
+    def startswith(self, *args) -> Any:
         pass
 
-    def strip():
+    def strip(self, *args) -> Any:
         pass
 
-    def upper():
+    def upper(self, *args) -> Any:
         pass
 
-def sum():
+
+def sum(*args) -> Any:
     pass
 
 
 class super:
-    ''
+    """"""
+
 
 class tuple:
-    ''
-    def count():
+    """"""
+
+    def count(self, *args) -> Any:
         pass
 
-    def index():
+    def index(self, *args) -> Any:
         pass
 
 
 class type:
-    ''
+    """"""
+
 
 class zip:
-    ''
+    """"""

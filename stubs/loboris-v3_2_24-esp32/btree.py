@@ -5,6 +5,7 @@ Stubber: 1.0.0
 """
 DESC = 2
 INCL = 1
-def open():
-    pass
 
+
+def open(*args) -> Any:
+    pass

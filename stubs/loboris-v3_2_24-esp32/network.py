@@ -13,102 +13,109 @@ MODE_11B = 1
 MODE_11G = 2
 MODE_11N = 4
 STA_IF = 0
-def WLAN():
+
+
+def WLAN(*args) -> Any:
     pass
 
-def WLANcallback():
+
+def WLANcallback(*args) -> Any:
     pass
 
 
 class ftp:
-    ''
-    def pause():
+    """"""
+
+    def pause(self, *args) -> Any:
         pass
 
-    def resume():
+    def resume(self, *args) -> Any:
         pass
 
-    def stack():
+    def stack(self, *args) -> Any:
         pass
 
-    def start():
+    def start(self, *args) -> Any:
         pass
 
-    def status():
+    def status(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
 
 
 class mDNS:
-    ''
-    def addService():
+    """"""
+
+    def addService(self, *args) -> Any:
         pass
 
-    def queryHost():
+    def queryHost(self, *args) -> Any:
         pass
 
-    def queryService():
+    def queryService(self, *args) -> Any:
         pass
 
-    def removeService():
+    def removeService(self, *args) -> Any:
         pass
 
-    def start():
+    def start(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
 
 
 class mqtt:
-    ''
-    def config():
+    """"""
+
+    def config(self, *args) -> Any:
         pass
 
-    def free():
+    def free(self, *args) -> Any:
         pass
 
-    def publish():
+    def publish(self, *args) -> Any:
         pass
 
-    def start():
+    def start(self, *args) -> Any:
         pass
 
-    def status():
+    def status(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
 
-    def subscribe():
+    def subscribe(self, *args) -> Any:
         pass
 
-    def unsubscribe():
+    def unsubscribe(self, *args) -> Any:
         pass
 
-def phy_mode():
+
+def phy_mode(*args) -> Any:
     pass
 
 
 class telnet:
-    ''
-    def pause():
+    """"""
+
+    def pause(self, *args) -> Any:
         pass
 
-    def resume():
+    def resume(self, *args) -> Any:
         pass
 
-    def stack():
+    def stack(self, *args) -> Any:
         pass
 
-    def start():
+    def start(self, *args) -> Any:
         pass
 
-    def status():
+    def status(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
-

@@ -5,27 +5,35 @@ Module: 'curl' on esp32_LoBo 3.2.9
 # Stubber: 1.1.2
 SMTP = 1
 SMTPS = 2
-def ftp_get():
+
+
+def ftp_get(*args) -> Any:
     pass
 
-def ftp_list():
+
+def ftp_list(*args) -> Any:
     pass
 
-def ftp_put():
+
+def ftp_put(*args) -> Any:
     pass
 
-def get():
+
+def get(*args) -> Any:
     pass
 
-def info():
+
+def info(*args) -> Any:
     pass
 
-def options():
+
+def options(*args) -> Any:
     pass
 
-def post():
+
+def post(*args) -> Any:
     pass
 
-def sendmail():
-    pass
 
+def sendmail(*args) -> Any:
+    pass

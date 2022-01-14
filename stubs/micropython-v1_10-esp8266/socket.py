@@ -12,72 +12,77 @@ SOCK_RAW = 3
 SOCK_STREAM = 1
 SOL_SOCKET = 1
 SO_REUSEADDR = 4
-def callback():
+
+
+def callback(*args) -> Any:
     pass
 
-def getaddrinfo():
+
+def getaddrinfo(*args) -> Any:
     pass
 
-def print_pcbs():
+
+def print_pcbs(*args) -> Any:
     pass
 
-def reset():
+
+def reset(*args) -> Any:
     pass
 
 
 class socket:
-    ''
-    def accept():
+    """"""
+
+    def accept(self, *args) -> Any:
         pass
 
-    def bind():
+    def bind(self, *args) -> Any:
         pass
 
-    def close():
+    def close(self, *args) -> Any:
         pass
 
-    def connect():
+    def connect(self, *args) -> Any:
         pass
 
-    def listen():
+    def listen(self, *args) -> Any:
         pass
 
-    def makefile():
+    def makefile(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def readline():
+    def readline(self, *args) -> Any:
         pass
 
-    def recv():
+    def recv(self, *args) -> Any:
         pass
 
-    def recvfrom():
+    def recvfrom(self, *args) -> Any:
         pass
 
-    def send():
+    def send(self, *args) -> Any:
         pass
 
-    def sendall():
+    def sendall(self, *args) -> Any:
         pass
 
-    def sendto():
+    def sendto(self, *args) -> Any:
         pass
 
-    def setblocking():
+    def setblocking(self, *args) -> Any:
         pass
 
-    def setsockopt():
+    def setsockopt(self, *args) -> Any:
         pass
 
-    def settimeout():
+    def settimeout(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
-

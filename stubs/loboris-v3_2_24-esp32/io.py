@@ -4,128 +4,134 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class BufferedWriter:
-    ''
-    def flush():
+    """"""
+
+    def flush(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
 
 class BytesIO:
-    ''
-    def close():
+    """"""
+
+    def close(self, *args) -> Any:
         pass
 
-    def flush():
+    def flush(self, *args) -> Any:
         pass
 
-    def getvalue():
+    def getvalue(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def readline():
+    def readline(self, *args) -> Any:
         pass
 
-    def seek():
+    def seek(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
 
 class FileIO:
-    ''
-    def close():
+    """"""
+
+    def close(self, *args) -> Any:
         pass
 
-    def flush():
+    def flush(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def readline():
+    def readline(self, *args) -> Any:
         pass
 
-    def readlines():
+    def readlines(self, *args) -> Any:
         pass
 
-    def seek():
+    def seek(self, *args) -> Any:
         pass
 
-    def tell():
+    def tell(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
 
 class StringIO:
-    ''
-    def close():
+    """"""
+
+    def close(self, *args) -> Any:
         pass
 
-    def flush():
+    def flush(self, *args) -> Any:
         pass
 
-    def getvalue():
+    def getvalue(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def readline():
+    def readline(self, *args) -> Any:
         pass
 
-    def seek():
+    def seek(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
 
 class TextIOWrapper:
-    ''
-    def close():
+    """"""
+
+    def close(self, *args) -> Any:
         pass
 
-    def flush():
+    def flush(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def readline():
+    def readline(self, *args) -> Any:
         pass
 
-    def readlines():
+    def readlines(self, *args) -> Any:
         pass
 
-    def seek():
+    def seek(self, *args) -> Any:
         pass
 
-    def tell():
+    def tell(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
-def open():
+
+def open(*args) -> Any:
     pass
-

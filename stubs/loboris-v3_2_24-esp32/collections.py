@@ -4,50 +4,53 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class OrderedDict:
-    ''
-    def clear():
+    """"""
+
+    def clear(self, *args) -> Any:
         pass
 
-    def copy():
+    def copy(self, *args) -> Any:
         pass
 
-    def fromkeys():
+    def fromkeys(self, *args) -> Any:
         pass
 
-    def get():
+    def get(self, *args) -> Any:
         pass
 
-    def items():
+    def items(self, *args) -> Any:
         pass
 
-    def keys():
+    def keys(self, *args) -> Any:
         pass
 
-    def pop():
+    def pop(self, *args) -> Any:
         pass
 
-    def popitem():
+    def popitem(self, *args) -> Any:
         pass
 
-    def setdefault():
+    def setdefault(self, *args) -> Any:
         pass
 
-    def update():
+    def update(self, *args) -> Any:
         pass
 
-    def values():
+    def values(self, *args) -> Any:
         pass
 
 
 class deque:
-    ''
-    def append():
+    """"""
+
+    def append(self, *args) -> Any:
         pass
 
-    def popleft():
+    def popleft(self, *args) -> Any:
         pass
 
-def namedtuple():
+
+def namedtuple(*args) -> Any:
     pass
-

@@ -5,6 +5,7 @@ Module: 'btree' on esp8266 v1.11
 # Stubber: 1.1.0
 DESC = 2
 INCL = 1
-def open():
-    pass
 
+
+def open(*args) -> Any:
+    pass

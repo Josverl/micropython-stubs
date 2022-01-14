@@ -4,23 +4,24 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class websocket:
-    ''
-    def close():
+    """"""
+
+    def close(self, *args) -> Any:
         pass
 
-    def ioctl():
+    def ioctl(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def readline():
+    def readline(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
-

@@ -5,75 +5,86 @@ Module: 'example_sub_led' on esp8266 v1.11
 # Stubber: 1.1.0
 CLIENT_ID = None
 
+
 class MQTTClient:
-    ''
-    def _recv_len():
+    """"""
+
+    def _recv_len(self, *args) -> Any:
         pass
 
-    def _send_str():
+    def _send_str(self, *args) -> Any:
         pass
 
-    def check_msg():
+    def check_msg(self, *args) -> Any:
         pass
 
-    def connect():
+    def connect(self, *args) -> Any:
         pass
 
-    def disconnect():
+    def disconnect(self, *args) -> Any:
         pass
 
-    def ping():
+    def ping(self, *args) -> Any:
         pass
 
-    def publish():
+    def publish(self, *args) -> Any:
         pass
 
-    def set_callback():
+    def set_callback(self, *args) -> Any:
         pass
 
-    def set_last_will():
+    def set_last_will(self, *args) -> Any:
         pass
 
-    def subscribe():
+    def subscribe(self, *args) -> Any:
         pass
 
-    def wait_msg():
+    def wait_msg(self, *args) -> Any:
         pass
 
 
 class Pin:
-    ''
+    """"""
+
     IN = 0
     IRQ_FALLING = 2
     IRQ_RISING = 1
     OPEN_DRAIN = 2
     OUT = 1
     PULL_UP = 1
-    def init():
+
+    def init(self, *args) -> Any:
         pass
 
-    def irq():
+    def irq(self, *args) -> Any:
         pass
 
-    def off():
+    def off(self, *args) -> Any:
         pass
 
-    def on():
+    def on(self, *args) -> Any:
         pass
 
-    def value():
+    def value(self, *args) -> Any:
         pass
 
-SERVER = '192.168.1.35'
+
+SERVER = "192.168.1.35"
 TOPIC = None
 led = None
 machine = None
-def main():
+
+
+def main(*args) -> Any:
     pass
+
 
 micropython = None
 state = 0
-def sub_cb():
+
+
+def sub_cb(*args) -> Any:
     pass
+
 
 ubinascii = None

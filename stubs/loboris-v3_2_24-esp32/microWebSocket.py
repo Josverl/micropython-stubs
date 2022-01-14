@@ -4,24 +4,26 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 
+
 class MicroWebSocket:
-    ''
-    def Close():
+    """"""
+
+    def Close(self, *args) -> Any:
         pass
 
-    def IsClosed():
+    def IsClosed(self, *args) -> Any:
         pass
 
-    def SendBinary():
+    def SendBinary(self, *args) -> Any:
         pass
 
-    def SendText():
+    def SendText(self, *args) -> Any:
         pass
 
-    def _handshake():
+    def _handshake(self, *args) -> Any:
         pass
 
-    _handshakeSign = '258EAFA5-E914-47DA-95CA-C5AB0DC85B11'
+    _handshakeSign = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
     _msgTypeBin = 2
     _msgTypeText = 1
     _opBinFrame = 2
@@ -30,39 +32,48 @@ class MicroWebSocket:
     _opPingFrame = 9
     _opPongFrame = 10
     _opTextFrame = 1
-    def _receiveFrame():
+
+    def _receiveFrame(self, *args) -> Any:
         pass
 
-    def _sendFrame():
+    def _sendFrame(self, *args) -> Any:
         pass
 
-    def _tryAllocByteArray():
+    def _tryAllocByteArray(self, *args) -> Any:
         pass
 
-    def _tryStartThread():
+    def _tryStartThread(self, *args) -> Any:
         pass
 
-    def _wsProcess():
+    def _wsProcess(self, *args) -> Any:
         pass
 
-    def threadID():
+    def threadID(self, *args) -> Any:
         pass
+
 
 _thread = None
-def b2a_base64():
+
+
+def b2a_base64(*args) -> Any:
     pass
 
+
 gc = None
-def pack():
+
+
+def pack(*args) -> Any:
     pass
 
 
 class sha1:
-    ''
-    def digest():
+    """"""
+
+    def digest(self, *args) -> Any:
         pass
 
-    def update():
+    def update(self, *args) -> Any:
         pass
+
 
 time = None

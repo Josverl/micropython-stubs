@@ -6,51 +6,67 @@ Module: 'uos' on esp32_LoBo 3.2.9
 SDMODE_1LINE = 2
 SDMODE_4LINE = 3
 SDMODE_SPI = 1
-def chdir():
+
+
+def chdir(*args) -> Any:
     pass
 
-def getcwd():
+
+def getcwd(*args) -> Any:
     pass
 
-def getdrive():
+
+def getdrive(*args) -> Any:
     pass
 
-def ilistdir():
+
+def ilistdir(*args) -> Any:
     pass
 
-def listdir():
+
+def listdir(*args) -> Any:
     pass
 
-def mkdir():
+
+def mkdir(*args) -> Any:
     pass
 
-def mountsd():
+
+def mountsd(*args) -> Any:
     pass
 
-def remove():
+
+def remove(*args) -> Any:
     pass
 
-def rename():
+
+def rename(*args) -> Any:
     pass
 
-def rmdir():
+
+def rmdir(*args) -> Any:
     pass
 
-def sdconfig():
+
+def sdconfig(*args) -> Any:
     pass
 
-def stat():
+
+def stat(*args) -> Any:
     pass
 
-def statvfs():
+
+def statvfs(*args) -> Any:
     pass
 
-def umountsd():
+
+def umountsd(*args) -> Any:
     pass
 
-def uname():
+
+def uname(*args) -> Any:
     pass
 
-def urandom():
-    pass
 
+def urandom(*args) -> Any:
+    pass

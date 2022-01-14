@@ -14,9 +14,11 @@ SOCK_RAW = 3
 SOCK_STREAM = 1
 SOL_SOCKET = 4095
 SO_REUSEADDR = 4
-def getaddrinfo():
+
+
+def getaddrinfo(*args) -> Any:
     pass
 
-def socket():
-    pass
 
+def socket(*args) -> Any:
+    pass

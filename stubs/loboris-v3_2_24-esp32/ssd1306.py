@@ -21,115 +21,121 @@ SET_PRECHARGE = 217
 SET_SEG_REMAP = 160
 SET_VCOM_DESEL = 219
 
+
 class SSD1306:
-    ''
-    def contrast():
+    """"""
+
+    def contrast(self, *args) -> Any:
         pass
 
-    def fill():
+    def fill(self, *args) -> Any:
         pass
 
-    def init_display():
+    def init_display(self, *args) -> Any:
         pass
 
-    def invert():
+    def invert(self, *args) -> Any:
         pass
 
-    def pixel():
+    def pixel(self, *args) -> Any:
         pass
 
-    def poweroff():
+    def poweroff(self, *args) -> Any:
         pass
 
-    def scroll():
+    def scroll(self, *args) -> Any:
         pass
 
-    def show():
+    def show(self, *args) -> Any:
         pass
 
-    def text():
+    def text(self, *args) -> Any:
         pass
 
 
 class SSD1306_I2C:
-    ''
-    def contrast():
+    """"""
+
+    def contrast(self, *args) -> Any:
         pass
 
-    def fill():
+    def fill(self, *args) -> Any:
         pass
 
-    def init_display():
+    def init_display(self, *args) -> Any:
         pass
 
-    def invert():
+    def invert(self, *args) -> Any:
         pass
 
-    def pixel():
+    def pixel(self, *args) -> Any:
         pass
 
-    def poweroff():
+    def poweroff(self, *args) -> Any:
         pass
 
-    def poweron():
+    def poweron(self, *args) -> Any:
         pass
 
-    def scroll():
+    def scroll(self, *args) -> Any:
         pass
 
-    def show():
+    def show(self, *args) -> Any:
         pass
 
-    def text():
+    def text(self, *args) -> Any:
         pass
 
-    def write_cmd():
+    def write_cmd(self, *args) -> Any:
         pass
 
-    def write_data():
+    def write_data(self, *args) -> Any:
         pass
 
 
 class SSD1306_SPI:
-    ''
-    def contrast():
+    """"""
+
+    def contrast(self, *args) -> Any:
         pass
 
-    def fill():
+    def fill(self, *args) -> Any:
         pass
 
-    def init_display():
+    def init_display(self, *args) -> Any:
         pass
 
-    def invert():
+    def invert(self, *args) -> Any:
         pass
 
-    def pixel():
+    def pixel(self, *args) -> Any:
         pass
 
-    def poweroff():
+    def poweroff(self, *args) -> Any:
         pass
 
-    def poweron():
+    def poweron(self, *args) -> Any:
         pass
 
-    def scroll():
+    def scroll(self, *args) -> Any:
         pass
 
-    def show():
+    def show(self, *args) -> Any:
         pass
 
-    def text():
+    def text(self, *args) -> Any:
         pass
 
-    def write_cmd():
+    def write_cmd(self, *args) -> Any:
         pass
 
-    def write_data():
+    def write_data(self, *args) -> Any:
         pass
 
-def const():
+
+def const(*args) -> Any:
     pass
+
 
 framebuf = None
 time = None

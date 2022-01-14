@@ -21,59 +21,61 @@ SET_PRECHARGE = 217
 SET_SEG_REMAP = 160
 SET_VCOM_DESEL = 219
 
+
 class SSD1306:
-    ''
-    def blit():
+    """"""
+
+    def blit(self, *args) -> Any:
         pass
 
-    def contrast():
+    def contrast(self, *args) -> Any:
         pass
 
-    def fill():
+    def fill(self, *args) -> Any:
         pass
 
-    def fill_rect():
+    def fill_rect(self, *args) -> Any:
         pass
 
-    def hline():
+    def hline(self, *args) -> Any:
         pass
 
-    def init_display():
+    def init_display(self, *args) -> Any:
         pass
 
-    def invert():
+    def invert(self, *args) -> Any:
         pass
 
-    def line():
+    def line(self, *args) -> Any:
         pass
 
-    def pixel():
+    def pixel(self, *args) -> Any:
         pass
 
-    def poweroff():
+    def poweroff(self, *args) -> Any:
         pass
 
-    def poweron():
+    def poweron(self, *args) -> Any:
         pass
 
-    def rect():
+    def rect(self, *args) -> Any:
         pass
 
-    def scroll():
+    def scroll(self, *args) -> Any:
         pass
 
-    def show():
+    def show(self, *args) -> Any:
         pass
 
-    def text():
+    def text(self, *args) -> Any:
         pass
 
-    def vline():
+    def vline(self, *args) -> Any:
         pass
 
 
 class SSD1306_I2C:
-    ''
-    def blit():
-        pass
+    """"""
 
+    def blit(self, *args) -> Any:
+        pass

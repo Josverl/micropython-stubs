@@ -4,23 +4,27 @@ Module: 'ak8963' on esp32_LoBo 3.2.9
 # MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.9', version='ESP32_LoBo_v3.2.9 on 2018-04-12', machine='ESP32 board with ESP32')
 # Stubber: 1.1.2
 
+
 class AK8963:
-    ''
-    def _register_char():
+    """"""
+
+    def _register_char(self, *args) -> Any:
         pass
 
-    def _register_short():
+    def _register_short(self, *args) -> Any:
         pass
 
-    def _register_three_shorts():
+    def _register_three_shorts(self, *args) -> Any:
         pass
 
     adjustement = None
     magnetic = None
     whoami = None
 
+
 class I2C:
-    ''
+    """"""
+
     CB_DATA = 3
     CB_READ = 1
     CB_WRITE = 2
@@ -28,71 +32,73 @@ class I2C:
     READ = 1
     SLAVE = 0
     WRITE = 0
-    def address():
+
+    def address(self, *args) -> Any:
         pass
 
-    def begin():
+    def begin(self, *args) -> Any:
         pass
 
-    def callback():
+    def callback(self, *args) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *args) -> Any:
         pass
 
-    def end():
+    def end(self, *args) -> Any:
         pass
 
-    def getdata():
+    def getdata(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def read_byte():
+    def read_byte(self, *args) -> Any:
         pass
 
-    def read_bytes():
+    def read_bytes(self, *args) -> Any:
         pass
 
-    def readfrom():
+    def readfrom(self, *args) -> Any:
         pass
 
-    def readfrom_into():
+    def readfrom_into(self, *args) -> Any:
         pass
 
-    def readfrom_mem():
+    def readfrom_mem(self, *args) -> Any:
         pass
 
-    def readfrom_mem_into():
+    def readfrom_mem_into(self, *args) -> Any:
         pass
 
-    def scan():
+    def scan(self, *args) -> Any:
         pass
 
-    def setdata():
+    def setdata(self, *args) -> Any:
         pass
 
-    def slavewrite():
+    def slavewrite(self, *args) -> Any:
         pass
 
-    def start():
+    def start(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
 
-    def write_byte():
+    def write_byte(self, *args) -> Any:
         pass
 
-    def write_bytes():
+    def write_bytes(self, *args) -> Any:
         pass
 
-    def writeto():
+    def writeto(self, *args) -> Any:
         pass
 
-    def writeto_mem():
+    def writeto_mem(self, *args) -> Any:
         pass
+
 
 MODE_CONTINOUS_MEASURE_1 = 2
 MODE_CONTINOUS_MEASURE_2 = 6
@@ -101,8 +107,10 @@ MODE_SINGLE_MEASURE = 1
 OUTPUT_14_BIT = 0
 OUTPUT_16_BIT = 16
 
+
 class Pin:
-    ''
+    """"""
+
     IN = 1
     INOUT = 3
     INOUT_OD = 7
@@ -117,21 +125,26 @@ class Pin:
     PULL_FLOAT = 3
     PULL_UP = 0
     PULL_UPDOWN = 2
-    def init():
+
+    def init(self, *args) -> Any:
         pass
 
-    def irq():
+    def irq(self, *args) -> Any:
         pass
 
-    def value():
+    def value(self, *args) -> Any:
         pass
+
 
 _MODE_FUSE_ROM_ACCESS = 15
 _MODE_POWER_DOWN = 0
 _MODE_SELF_TEST = 8
 _SO_14BIT = 0.6000000000000001
 _SO_16BIT = 0.15
-def const():
+
+
+def const(*args) -> Any:
     pass
+
 
 ustruct = None

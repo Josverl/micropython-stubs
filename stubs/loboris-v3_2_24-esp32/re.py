@@ -4,12 +4,15 @@ MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ES
 Stubber: 1.0.0
 """
 DEBUG = 4096
-def compile():
+
+
+def compile(*args) -> Any:
     pass
 
-def match():
+
+def match(*args) -> Any:
     pass
 
-def search():
-    pass
 
+def search(*args) -> Any:
+    pass
