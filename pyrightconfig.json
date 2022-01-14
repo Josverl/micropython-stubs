@@ -51,7 +51,7 @@
     "reportUnboundVariable": "information",
     "ReportSelfClsParameterName": "information", // TODO: Is still reported as a warning
     "reportWildcardImportFromLibrary": "information",
-    "reportOptionalMemberAccess": "warning", // "read" is not a known member of "None"
+    "reportOptionalMemberAccess": "information", // "read" is not a known member of "None" - occurs often in frozen code
     "reportOptionalCall": "warning", //  Object of type "None" cannot be called
     "reportGeneralTypeIssues": "warning", // Expected no arguments to "Pin" constructor and a lot of others
     // old firmware stubs

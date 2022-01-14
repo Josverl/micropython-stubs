@@ -1,8 +1,10 @@
 """
 Module: 'ssd1306' on esp32_LoBo
 MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.24', version='ESP32_LoBo_v3.2.24 on 2018-09-06', machine='ESP32 board with ESP32')
-Stubber: 1.0.0
+Stubber: 1.0.0 - updated
 """
+from typing import Any
+
 SET_CHARGE_PUMP = 141
 SET_COL_ADDR = 33
 SET_COM_OUT_DIR = 192

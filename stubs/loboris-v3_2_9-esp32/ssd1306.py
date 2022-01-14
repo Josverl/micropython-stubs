@@ -2,7 +2,9 @@
 Module: 'ssd1306' on esp32_LoBo 3.2.9
 """
 # MCU: (sysname='esp32_LoBo', nodename='esp32_LoBo', release='3.2.9', version='ESP32_LoBo_v3.2.9 on 2018-04-12', machine='ESP32 board with ESP32')
-# Stubber: 1.1.2
+# Stubber: 1.1.2 - updated
+from typing import Any
+
 SET_CHARGE_PUMP = 141
 SET_COL_ADDR = 33
 SET_COM_OUT_DIR = 192
