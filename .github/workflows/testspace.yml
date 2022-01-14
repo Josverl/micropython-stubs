@@ -37,11 +37,11 @@ jobs:
       # dummy pytest
       - name: run pytest
         run: |
-          pytest ./tests --junitxml=results/results.xml
+          pytest ./tests --junitxml=./results/results.xml
 
       - name: run pyright on stubs
         run: |
-          pyright stubs | tee results/pyright-all-stubs.log
+          pyright stubs | tee ./results/pyright-all-stubs.log
 
       - name: Fixup pyright logs 
         shell: pwsh
@@ -54,4 +54,4 @@ jobs:
           }
 
       - name: Testspace push test content
-        run: testspace "[all-stubs].results/pyright-all-stubs.log{lint}" results/results.xml
+        run: testspace "[all-stubs]./results/pyright-all-stubs.log{lint}" ./results/results.xml
