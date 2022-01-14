@@ -6,7 +6,7 @@ Module: 'uasyncio.core' on micropython-v1.14-esp32
 from typing import Any
 
 
-class CancelledError:
+class CancelledError(Exception):
     """"""
 
 
@@ -88,7 +88,7 @@ def ticks(*args) -> Any:
     ...
 
 
-class TimeoutError:
+class TimeoutError(Exception):
     """"""
 
 

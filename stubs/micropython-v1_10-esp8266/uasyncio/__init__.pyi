@@ -1,6 +1,6 @@
 from typing import Any
 
-class CancelledError: ...
+class CancelledError(Exception): ...
 
 DEBUG: int
 

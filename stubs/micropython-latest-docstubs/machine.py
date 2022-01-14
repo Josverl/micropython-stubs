@@ -150,10 +150,12 @@ class Pin:
     #    Selects the IRQ trigger type.
     IRQ_HIGH_LEVEL: Any
 
-    def __init__(self, id, mode=-1, pull=-1, *, value, drive, alt) -> None:
+    def __init__(
+        self, id, mode=-1, pull=-1, *, value=None, drive=None, alt=None
+    ) -> None:
         ...
 
-    def init(self, mode=-1, pull=-1, *, value, drive, alt) -> None:
+    def init(self, mode=-1, pull=-1, *, value=None, drive=None, alt=None) -> None:
         """
         Re-initialise the pin using the given parameters.  Only those arguments that
         are specified will be set.  The rest of the pin peripheral state will remain

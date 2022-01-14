@@ -5,7 +5,7 @@ Module: 'uasyncio.__init__' on esp8266 v1.10
 # Stubber: 1.0.2
 
 
-class CancelledError:
+class CancelledError(Exception):
     """"""
 
 

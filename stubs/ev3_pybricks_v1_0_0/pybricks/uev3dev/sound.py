@@ -106,7 +106,7 @@ class SoundFile:
         pass
 
 
-class SoundFileError:
+class SoundFileError(Exception):
     """"""
 
 

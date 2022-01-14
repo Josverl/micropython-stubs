@@ -6,5 +6,5 @@ Module: 'builtins' on pyboard 1.13.0-95
 from typing import Any
 
 
-class ArithmeticError:
+class ArithmeticError(Exception):
     """"""

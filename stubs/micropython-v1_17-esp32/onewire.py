@@ -6,7 +6,7 @@ Module: 'onewire' on micropython-v1.17-esp32
 from typing import Any
 
 
-class OneWireError:
+class OneWireError(Exception):
     """"""
 
 

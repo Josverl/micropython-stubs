@@ -6,7 +6,7 @@ Module: 'pybricks.uev3dev._alsa' on LEGO EV3 v1.0.0
 from typing import Any
 
 
-class AlsaError:
+class AlsaError(Exception):
     """"""
 
 

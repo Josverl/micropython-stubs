@@ -6,7 +6,7 @@ Module: 'uasyncio.__init__' on micropython-v1.17-esp8266
 from typing import Any
 
 
-class CancelledError:
+class CancelledError(Exception):
     """"""
 
 
@@ -90,7 +90,7 @@ def ticks(*args) -> Any:
     ...
 
 
-class TimeoutError:
+class TimeoutError(Exception):
     """"""
 
 

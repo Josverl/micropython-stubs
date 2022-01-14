@@ -6,7 +6,7 @@ Module: 'uasyncio.core' on esp8266 v1.9.4
 from typing import Any
 
 
-class CancelledError:
+class CancelledError(Exception):
     """"""
 
 
@@ -179,7 +179,7 @@ def Task():
     pass
 
 
-class TimeoutError:
+class TimeoutError(Exception):
     """"""
 
 

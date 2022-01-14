@@ -1,6 +1,6 @@
 from typing import Any
 
-class AlsaError: ...
+class AlsaError(Exception): ...
 
 EPIPE: int
 

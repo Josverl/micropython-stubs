@@ -43,7 +43,7 @@ class MQTTClient:
         pass
 
 
-class MQTTException:
+class MQTTException(Exception):
     """"""
 
 

@@ -6,5 +6,5 @@ Module: 'uasyncio' on esp8266 v1.11
 from typing import Any
 
 
-class CancelledError:
+class CancelledError(Exception):
     """"""

@@ -6,23 +6,19 @@ Module: 'builtins' on micropython-v1.15-esp8266
 from typing import Any
 
 
-class ArithmeticError:
+class ArithmeticError(Exception):
     """"""
 
 
-class AssertionError:
+class AssertionError(Exception):
     """"""
 
 
-class AttributeError:
+class AttributeError(Exception):
     """"""
 
 
-class BaseException:
-    """"""
-
-
-class EOFError:
+class EOFError(Exception):
     """"""
 
 
@@ -37,19 +33,19 @@ class GeneratorExit:
     """"""
 
 
-class ImportError:
+class ImportError(Exception):
     """"""
 
 
-class IndentationError:
+class IndentationError(Exception):
     """"""
 
 
-class IndexError:
+class IndexError(Exception):
     """"""
 
 
-class KeyError:
+class KeyError(Exception):
     """"""
 
 
@@ -57,31 +53,31 @@ class KeyboardInterrupt:
     """"""
 
 
-class LookupError:
+class LookupError(Exception):
     """"""
 
 
-class MemoryError:
+class MemoryError(Exception):
     """"""
 
 
-class NameError:
+class NameError(Exception):
     """"""
 
 
-class NotImplementedError:
+class NotImplementedError(Exception):
     """"""
 
 
-class OSError:
+class OSError(Exception):
     """"""
 
 
-class OverflowError:
+class OverflowError(Exception):
     """"""
 
 
-class RuntimeError:
+class RuntimeError(Exception):
     """"""
 
 
@@ -89,7 +85,7 @@ class StopIteration:
     """"""
 
 
-class SyntaxError:
+class SyntaxError(Exception):
     """"""
 
 
@@ -97,15 +93,15 @@ class SystemExit:
     """"""
 
 
-class TypeError:
+class TypeError(Exception):
     """"""
 
 
-class ValueError:
+class ValueError(Exception):
     """"""
 
 
-class ZeroDivisionError:
+class ZeroDivisionError(Exception):
     """"""
 
 
@@ -570,11 +566,11 @@ class StopAsyncIteration:
     """"""
 
 
-class UnicodeError:
+class UnicodeError(Exception):
     """"""
 
 
-class ViperTypeError:
+class ViperTypeError(Exception):
     """"""
 
 

@@ -6,7 +6,7 @@ Module: 'upip' on esp8266 v1.11
 from typing import Any
 
 
-class NotFoundError:
+class NotFoundError(Exception):
     """"""
 
 

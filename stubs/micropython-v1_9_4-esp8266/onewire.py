@@ -47,7 +47,7 @@ class OneWire:
         pass
 
 
-class OneWireError:
+class OneWireError(Exception):
     """"""
 
 

@@ -6,7 +6,7 @@ Module: 'upip' on esp32_LoBo 3.2.9
 from typing import Any
 
 
-class NotFoundError:
+class NotFoundError(Exception):
     """"""
 
 

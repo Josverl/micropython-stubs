@@ -6,7 +6,7 @@ Stubber: 1.0.0 - updated
 from typing import Any
 
 
-class NotFoundError:
+class NotFoundError(Exception):
     """"""
 
 

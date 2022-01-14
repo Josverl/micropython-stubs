@@ -44,5 +44,5 @@ class MQTTClient:
         ...
 
 
-class MQTTException:
+class MQTTException(Exception):
     """"""
