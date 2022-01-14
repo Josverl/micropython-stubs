@@ -6,7 +6,7 @@ Module: 'upip' on LEGO EV3 v1.0.0
 from typing import Any
 
 
-class NotFoundError:
+class NotFoundError(Exception):
     """"""
 
 

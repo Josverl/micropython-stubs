@@ -6,96 +6,124 @@ Module: 'builtins' on micropython-v1.16-esp8266
 from typing import Any
 
 
-class ArithmeticError:
-    ''
+class ArithmeticError(Exception):
+    """"""
 
-class AssertionError:
-    ''
 
-class AttributeError:
-    ''
+class AssertionError(Exception):
+    """"""
 
-class BaseException:
-    ''
 
-class EOFError:
-    ''
-Ellipsis : Any ## <class ''> = Ellipsis
+class AttributeError(Exception):
+    """"""
+
+
+class EOFError(Exception):
+    """"""
+
+
+Ellipsis: Any  ## <class ''> = Ellipsis
+
 
 class Exception:
-    ''
+    """"""
+
 
 class GeneratorExit:
-    ''
+    """"""
 
-class ImportError:
-    ''
 
-class IndentationError:
-    ''
+class ImportError(Exception):
+    """"""
 
-class IndexError:
-    ''
 
-class KeyError:
-    ''
+class IndentationError(Exception):
+    """"""
+
+
+class IndexError(Exception):
+    """"""
+
+
+class KeyError(Exception):
+    """"""
+
 
 class KeyboardInterrupt:
-    ''
+    """"""
 
-class LookupError:
-    ''
 
-class MemoryError:
-    ''
+class LookupError(Exception):
+    """"""
 
-class NameError:
-    ''
 
-class NotImplementedError:
-    ''
+class MemoryError(Exception):
+    """"""
 
-class OSError:
-    ''
 
-class OverflowError:
-    ''
+class NameError(Exception):
+    """"""
 
-class RuntimeError:
-    ''
+
+class NotImplementedError(Exception):
+    """"""
+
+
+class OSError(Exception):
+    """"""
+
+
+class OverflowError(Exception):
+    """"""
+
+
+class RuntimeError(Exception):
+    """"""
+
 
 class StopIteration:
-    ''
+    """"""
 
-class SyntaxError:
-    ''
+
+class SyntaxError(Exception):
+    """"""
+
 
 class SystemExit:
-    ''
+    """"""
 
-class TypeError:
-    ''
 
-class ValueError:
-    ''
+class TypeError(Exception):
+    """"""
 
-class ZeroDivisionError:
-    ''
+
+class ValueError(Exception):
+    """"""
+
+
+class ZeroDivisionError(Exception):
+    """"""
+
+
 def abs(*args) -> Any:
     ...
 
+
 def all(*args) -> Any:
     ...
+
 
 def any(*args) -> Any:
     ...
 
 
 class bool:
-    ''
+    """"""
+
 
 class bytearray:
-    ''
+    """"""
+
     def append(self, *args) -> Any:
         ...
 
@@ -107,7 +135,8 @@ class bytearray:
 
 
 class bytes:
-    ''
+    """"""
+
     def count(self, *args) -> Any:
         ...
 
@@ -177,15 +206,18 @@ class bytes:
     def decode(self, *args) -> Any:
         ...
 
+
 def callable(*args) -> Any:
     ...
+
 
 def chr(*args) -> Any:
     ...
 
 
 class dict:
-    ''
+    """"""
+
     def clear(self, *args) -> Any:
         ...
 
@@ -220,36 +252,46 @@ class dict:
     def fromkeys(cls, *args) -> Any:
         ...
 
+
 def dir(*args) -> Any:
     ...
+
 
 def divmod(*args) -> Any:
     ...
 
+
 def eval(*args) -> Any:
     ...
+
 
 def exec(*args) -> Any:
     ...
 
+
 def getattr(*args) -> Any:
     ...
+
 
 def globals(*args) -> Any:
     ...
 
+
 def hasattr(*args) -> Any:
     ...
 
+
 def hash(*args) -> Any:
     ...
+
 
 def id(*args) -> Any:
     ...
 
 
 class int:
-    ''
+    """"""
+
     @classmethod
     def from_bytes(cls, *args) -> Any:
         ...
@@ -257,21 +299,26 @@ class int:
     def to_bytes(self, *args) -> Any:
         ...
 
+
 def isinstance(*args) -> Any:
     ...
+
 
 def issubclass(*args) -> Any:
     ...
 
+
 def iter(*args) -> Any:
     ...
+
 
 def len(*args) -> Any:
     ...
 
 
 class list:
-    ''
+    """"""
+
     def append(self, *args) -> Any:
         ...
 
@@ -305,45 +352,57 @@ class list:
     def sort(self, *args) -> Any:
         ...
 
+
 def locals(*args) -> Any:
     ...
 
 
 class map:
-    ''
+    """"""
+
+
 def next(*args) -> Any:
     ...
 
 
 class object:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
+
 
 def open(*args) -> Any:
     ...
 
+
 def ord(*args) -> Any:
     ...
 
+
 def pow(*args) -> Any:
     ...
+
 
 def print(*args) -> Any:
     ...
 
 
 class range:
-    ''
+    """"""
+
+
 def repr(*args) -> Any:
     ...
+
 
 def round(*args) -> Any:
     ...
 
 
 class set:
-    ''
+    """"""
+
     def clear(self, *args) -> Any:
         ...
 
@@ -395,15 +454,18 @@ class set:
     def union(self, *args) -> Any:
         ...
 
+
 def setattr(*args) -> Any:
     ...
+
 
 def sorted(*args) -> Any:
     ...
 
 
 class str:
-    ''
+    """"""
+
     def count(self, *args) -> Any:
         ...
 
@@ -473,15 +535,18 @@ class str:
     def encode(self, *args) -> Any:
         ...
 
+
 def sum(*args) -> Any:
     ...
 
 
 class super:
-    ''
+    """"""
+
 
 class tuple:
-    ''
+    """"""
+
     def count(self, *args) -> Any:
         ...
 
@@ -490,37 +555,48 @@ class tuple:
 
 
 class type:
-    ''
+    """"""
+
 
 class zip:
-    ''
+    """"""
+
 
 class StopAsyncIteration:
-    ''
+    """"""
 
-class UnicodeError:
-    ''
 
-class ViperTypeError:
-    ''
+class UnicodeError(Exception):
+    """"""
+
+
+class ViperTypeError(Exception):
+    """"""
+
+
 def bin(*args) -> Any:
     ...
+
 
 def delattr(*args) -> Any:
     ...
 
 
 class enumerate:
-    ''
+    """"""
+
 
 class filter:
-    ''
+    """"""
+
 
 class float:
-    ''
+    """"""
+
 
 class frozenset:
-    ''
+    """"""
+
     def copy(self, *args) -> Any:
         ...
 
@@ -545,30 +621,38 @@ class frozenset:
     def union(self, *args) -> Any:
         ...
 
+
 def help(*args) -> Any:
     ...
+
 
 def hex(*args) -> Any:
     ...
 
+
 def input(*args) -> Any:
     ...
+
 
 def max(*args) -> Any:
     ...
 
 
 class memoryview:
-    ''
+    """"""
+
+
 def min(*args) -> Any:
     ...
+
 
 def oct(*args) -> Any:
     ...
 
 
 class property:
-    ''
+    """"""
+
     def deleter(self, *args) -> Any:
         ...
 
@@ -580,7 +664,8 @@ class property:
 
 
 class reversed:
-    ''
+    """"""
+
 
 class slice:
-    ''
+    """"""

@@ -6,11 +6,13 @@ Module: 'onewire' on micropython-v1.15-esp8266
 from typing import Any
 
 
-class OneWireError:
-    ''
+class OneWireError(Exception):
+    """"""
+
 
 class OneWire:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -41,9 +43,9 @@ class OneWire:
     def writebyte(self, *args) -> Any:
         ...
 
-    SEARCH_ROM = 240 # type: int
-    MATCH_ROM = 85 # type: int
-    SKIP_ROM = 204 # type: int
+    SEARCH_ROM = 240  # type: int
+    MATCH_ROM = 85  # type: int
+    SKIP_ROM = 204  # type: int
+
     def select_rom(self, *args) -> Any:
         ...
-

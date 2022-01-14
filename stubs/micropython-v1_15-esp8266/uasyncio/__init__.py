@@ -6,11 +6,13 @@ Module: 'uasyncio.__init__' on micropython-v1.15-esp8266
 from typing import Any
 
 
-class CancelledError:
-    ''
+class CancelledError(Exception):
+    """"""
+
 
 class Loop:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
@@ -40,10 +42,12 @@ class Loop:
 
 
 class Task:
-    ''
+    """"""
+
 
 class TaskQueue:
-    ''
+    """"""
+
     def remove(self, *args) -> Any:
         ...
 
@@ -59,23 +63,30 @@ class TaskQueue:
     def push_sorted(self, *args) -> Any:
         ...
 
+
 def sleep(*args) -> Any:
     ...
+
 
 def sleep_ms(*args) -> Any:
     ...
 
+
 def ticks_add(*args) -> Any:
     ...
+
 
 def ticks_diff(*args) -> Any:
     ...
 
-wait_for : Any ## <class 'generator'> = <generator>
-gather : Any ## <class 'generator'> = <generator>
+
+wait_for: Any  ## <class 'generator'> = <generator>
+gather: Any  ## <class 'generator'> = <generator>
+
 
 class Event:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -88,10 +99,12 @@ class Event:
     def is_set(self, *args) -> Any:
         ...
 
-    wait : Any ## <class 'generator'> = <generator>
+    wait: Any  ## <class 'generator'> = <generator>
+
 
 class Lock:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -101,22 +114,27 @@ class Lock:
     def locked(self, *args) -> Any:
         ...
 
-    acquire : Any ## <class 'generator'> = <generator>
+    acquire: Any  ## <class 'generator'> = <generator>
+
+
 def ticks(*args) -> Any:
     ...
 
 
-class TimeoutError:
-    ''
+class TimeoutError(Exception):
+    """"""
+
 
 class SingletonGenerator:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
 
 class IOQueue:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -132,27 +150,34 @@ class IOQueue:
     def wait_io_event(self, *args) -> Any:
         ...
 
+
 def create_task(*args) -> Any:
     ...
+
 
 def run_until_complete(*args) -> Any:
     ...
 
+
 def run(*args) -> Any:
     ...
+
 
 def get_event_loop(*args) -> Any:
     ...
 
+
 def current_task(*args) -> Any:
     ...
+
 
 def new_event_loop(*args) -> Any:
     ...
 
 
 class ThreadSafeFlag:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -162,55 +187,66 @@ class ThreadSafeFlag:
     def ioctl(self, *args) -> Any:
         ...
 
-    wait : Any ## <class 'generator'> = <generator>
+    wait: Any  ## <class 'generator'> = <generator>
+
+
 def wait_for_ms(*args) -> Any:
     ...
 
 
 class StreamReader:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
     def close(self, *args) -> Any:
         ...
 
-    read : Any ## <class 'generator'> = <generator>
-    readline : Any ## <class 'generator'> = <generator>
+    read: Any  ## <class 'generator'> = <generator>
+    readline: Any  ## <class 'generator'> = <generator>
+
     def write(self, *args) -> Any:
         ...
 
-    wait_closed : Any ## <class 'generator'> = <generator>
-    aclose : Any ## <class 'generator'> = <generator>
-    awrite : Any ## <class 'generator'> = <generator>
-    awritestr : Any ## <class 'generator'> = <generator>
+    wait_closed: Any  ## <class 'generator'> = <generator>
+    aclose: Any  ## <class 'generator'> = <generator>
+    awrite: Any  ## <class 'generator'> = <generator>
+    awritestr: Any  ## <class 'generator'> = <generator>
+
     def get_extra_info(self, *args) -> Any:
         ...
 
-    readexactly : Any ## <class 'generator'> = <generator>
-    drain : Any ## <class 'generator'> = <generator>
+    readexactly: Any  ## <class 'generator'> = <generator>
+    drain: Any  ## <class 'generator'> = <generator>
+
 
 class StreamWriter:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
     def close(self, *args) -> Any:
         ...
 
-    read : Any ## <class 'generator'> = <generator>
-    readline : Any ## <class 'generator'> = <generator>
+    read: Any  ## <class 'generator'> = <generator>
+    readline: Any  ## <class 'generator'> = <generator>
+
     def write(self, *args) -> Any:
         ...
 
-    wait_closed : Any ## <class 'generator'> = <generator>
-    aclose : Any ## <class 'generator'> = <generator>
-    awrite : Any ## <class 'generator'> = <generator>
-    awritestr : Any ## <class 'generator'> = <generator>
+    wait_closed: Any  ## <class 'generator'> = <generator>
+    aclose: Any  ## <class 'generator'> = <generator>
+    awrite: Any  ## <class 'generator'> = <generator>
+    awritestr: Any  ## <class 'generator'> = <generator>
+
     def get_extra_info(self, *args) -> Any:
         ...
 
-    readexactly : Any ## <class 'generator'> = <generator>
-    drain : Any ## <class 'generator'> = <generator>
-open_connection : Any ## <class 'generator'> = <generator>
-start_server : Any ## <class 'generator'> = <generator>
+    readexactly: Any  ## <class 'generator'> = <generator>
+    drain: Any  ## <class 'generator'> = <generator>
+
+
+open_connection: Any  ## <class 'generator'> = <generator>
+start_server: Any  ## <class 'generator'> = <generator>

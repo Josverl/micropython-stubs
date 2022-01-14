@@ -6,7 +6,7 @@ Module: 'uasyncio.__init__' on pyboard 1.13.0-95
 from typing import Any
 
 
-class CancelledError:
+class CancelledError(Exception):
     """"""
 
 

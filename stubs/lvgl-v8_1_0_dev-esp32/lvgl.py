@@ -7,59 +7,65 @@ from typing import Any
 
 
 class list:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_btn(self, *args) -> Any:
         ...
 
@@ -1140,680 +1146,819 @@ class list:
     def update_snap(self, *args) -> Any:
         ...
 
+
 def map(*args) -> Any:
     ...
+
 
 def pow(*args) -> Any:
     ...
 
 
 class ALIGN:
-    ''
-    BOTTOM_LEFT = 4 # type: int
-    BOTTOM_MID = 5 # type: int
-    BOTTOM_RIGHT = 6 # type: int
-    CENTER = 9 # type: int
-    DEFAULT = 0 # type: int
-    LEFT_MID = 7 # type: int
-    OUT_BOTTOM_LEFT = 13 # type: int
-    OUT_BOTTOM_MID = 14 # type: int
-    OUT_BOTTOM_RIGHT = 15 # type: int
-    OUT_LEFT_BOTTOM = 18 # type: int
-    OUT_LEFT_MID = 17 # type: int
-    OUT_LEFT_TOP = 16 # type: int
-    OUT_RIGHT_BOTTOM = 21 # type: int
-    OUT_RIGHT_MID = 20 # type: int
-    OUT_RIGHT_TOP = 19 # type: int
-    OUT_TOP_LEFT = 10 # type: int
-    OUT_TOP_MID = 11 # type: int
-    OUT_TOP_RIGHT = 12 # type: int
-    RIGHT_MID = 8 # type: int
-    TOP_LEFT = 1 # type: int
-    TOP_MID = 2 # type: int
-    TOP_RIGHT = 3 # type: int
+    """"""
+
+    BOTTOM_LEFT = 4  # type: int
+    BOTTOM_MID = 5  # type: int
+    BOTTOM_RIGHT = 6  # type: int
+    CENTER = 9  # type: int
+    DEFAULT = 0  # type: int
+    LEFT_MID = 7  # type: int
+    OUT_BOTTOM_LEFT = 13  # type: int
+    OUT_BOTTOM_MID = 14  # type: int
+    OUT_BOTTOM_RIGHT = 15  # type: int
+    OUT_LEFT_BOTTOM = 18  # type: int
+    OUT_LEFT_MID = 17  # type: int
+    OUT_LEFT_TOP = 16  # type: int
+    OUT_RIGHT_BOTTOM = 21  # type: int
+    OUT_RIGHT_MID = 20  # type: int
+    OUT_RIGHT_TOP = 19  # type: int
+    OUT_TOP_LEFT = 10  # type: int
+    OUT_TOP_MID = 11  # type: int
+    OUT_TOP_RIGHT = 12  # type: int
+    RIGHT_MID = 8  # type: int
+    TOP_LEFT = 1  # type: int
+    TOP_MID = 2  # type: int
+    TOP_RIGHT = 3  # type: int
+
 
 class ANIM:
-    ''
-    OFF = 0 # type: int
-    ON = 1 # type: int
+    """"""
+
+    OFF = 0  # type: int
+    ON = 1  # type: int
+
 
 class ANIM_IMG_PART:
-    ''
-    MAIN = 0 # type: int
+    """"""
+
+    MAIN = 0  # type: int
+
 
 class ANIM_REPEAT:
-    ''
-    INFINITE = 65535 # type: int
+    """"""
+
+    INFINITE = 65535  # type: int
+
 
 class BASE_DIR:
-    ''
-    AUTO = 2 # type: int
-    LTR = 0 # type: int
-    NEUTRAL = 32 # type: int
-    RTL = 1 # type: int
-    WEAK = 33 # type: int
+    """"""
+
+    AUTO = 2  # type: int
+    LTR = 0  # type: int
+    NEUTRAL = 32  # type: int
+    RTL = 1  # type: int
+    WEAK = 33  # type: int
+
 
 class BLEND_MODE:
-    ''
-    ADDITIVE = 1 # type: int
-    NORMAL = 0 # type: int
-    SUBTRACTIVE = 2 # type: int
+    """"""
+
+    ADDITIVE = 1  # type: int
+    NORMAL = 0  # type: int
+    SUBTRACTIVE = 2  # type: int
+
 
 class BORDER_SIDE:
-    ''
-    BOTTOM = 1 # type: int
-    FULL = 15 # type: int
-    INTERNAL = 16 # type: int
-    LEFT = 4 # type: int
-    NONE = 0 # type: int
-    RIGHT = 8 # type: int
-    TOP = 2 # type: int
+    """"""
+
+    BOTTOM = 1  # type: int
+    FULL = 15  # type: int
+    INTERNAL = 16  # type: int
+    LEFT = 4  # type: int
+    NONE = 0  # type: int
+    RIGHT = 8  # type: int
+    TOP = 2  # type: int
+
 
 class BTNMATRIX_BTN:
-    ''
-    NONE = 65535 # type: int
+    """"""
+
+    NONE = 65535  # type: int
+
 
 class CHART_POINT:
-    ''
-    NONE = 32767 # type: int
+    """"""
+
+    NONE = 32767  # type: int
+
 
 class COORD:
-    ''
-    MAX = 24576 # type: int
-    MIN = -24576 # type: int
+    """"""
+
+    MAX = 24576  # type: int
+    MIN = -24576  # type: int
+
 
 class COVER_RES:
-    ''
-    COVER = 0 # type: int
-    MASKED = 2 # type: int
-    NOT_COVER = 1 # type: int
+    """"""
+
+    COVER = 0  # type: int
+    MASKED = 2  # type: int
+    NOT_COVER = 1  # type: int
+
 
 class C_Pointer:
-    ''
+    """"""
+
 
 class DIR:
-    ''
-    ALL = 15 # type: int
-    BOTTOM = 8 # type: int
-    HOR = 3 # type: int
-    LEFT = 1 # type: int
-    NONE = 0 # type: int
-    RIGHT = 2 # type: int
-    TOP = 4 # type: int
-    VER = 12 # type: int
+    """"""
+
+    ALL = 15  # type: int
+    BOTTOM = 8  # type: int
+    HOR = 3  # type: int
+    LEFT = 1  # type: int
+    NONE = 0  # type: int
+    RIGHT = 2  # type: int
+    TOP = 4  # type: int
+    VER = 12  # type: int
+
 
 class DISP_ROT:
-    ''
-    NONE = 0 # type: int
+    """"""
+
+    NONE = 0  # type: int
+
 
 class DPI:
-    ''
-    DEF = 130 # type: int
+    """"""
+
+    DEF = 130  # type: int
+
 
 class DRAW_MASK_LINE_SIDE:
-    ''
-    BOTTOM = 3 # type: int
-    LEFT = 0 # type: int
-    RIGHT = 1 # type: int
-    TOP = 2 # type: int
+    """"""
+
+    BOTTOM = 3  # type: int
+    LEFT = 0  # type: int
+    RIGHT = 1  # type: int
+    TOP = 2  # type: int
+
 
 class DRAW_MASK_RES:
-    ''
-    CHANGED = 2 # type: int
-    FULL_COVER = 1 # type: int
-    TRANSP = 0 # type: int
-    UNKNOWN = 3 # type: int
+    """"""
+
+    CHANGED = 2  # type: int
+    FULL_COVER = 1  # type: int
+    TRANSP = 0  # type: int
+    UNKNOWN = 3  # type: int
+
 
 class DRAW_MASK_TYPE:
-    ''
-    ANGLE = 1 # type: int
-    FADE = 3 # type: int
-    LINE = 0 # type: int
-    MAP = 4 # type: int
-    RADIUS = 2 # type: int
+    """"""
+
+    ANGLE = 1  # type: int
+    FADE = 3  # type: int
+    LINE = 0  # type: int
+    MAP = 4  # type: int
+    RADIUS = 2  # type: int
+
 
 class DROPDOWN_POS:
-    ''
-    LAST = 65535 # type: int
+    """"""
+
+    LAST = 65535  # type: int
+
 
 class EVENT:
-    ''
-    ALL = 0 # type: int
-    CANCEL = 32 # type: int
-    CHILD_CHANGED = 34 # type: int
-    CLICKED = 7 # type: int
-    COVER_CHECK = 18 # type: int
-    DEFOCUSED = 15 # type: int
-    DELETE = 33 # type: int
-    DRAW_MAIN = 21 # type: int
-    DRAW_MAIN_BEGIN = 20 # type: int
-    DRAW_MAIN_END = 22 # type: int
-    DRAW_PART_BEGIN = 26 # type: int
-    DRAW_PART_END = 27 # type: int
-    DRAW_POST = 24 # type: int
-    DRAW_POST_BEGIN = 23 # type: int
-    DRAW_POST_END = 25 # type: int
-    FOCUSED = 14 # type: int
-    GESTURE = 12 # type: int
-    GET_SELF_SIZE = 38 # type: int
-    HIT_TEST = 17 # type: int
-    INSERT = 29 # type: int
-    KEY = 13 # type: int
-    LAYOUT_CHANGED = 37 # type: int
-    LEAVE = 16 # type: int
-    LONG_PRESSED = 5 # type: int
-    LONG_PRESSED_REPEAT = 6 # type: int
-    PRESSED = 1 # type: int
-    PRESSING = 2 # type: int
-    PRESS_LOST = 3 # type: int
-    READY = 31 # type: int
-    REFRESH = 30 # type: int
-    REFR_EXT_DRAW_SIZE = 19 # type: int
-    RELEASED = 8 # type: int
-    SCROLL = 11 # type: int
-    SCROLL_BEGIN = 9 # type: int
-    SCROLL_END = 10 # type: int
-    SHORT_CLICKED = 4 # type: int
-    SIZE_CHANGED = 35 # type: int
-    STYLE_CHANGED = 36 # type: int
-    VALUE_CHANGED = 28 # type: int
+    """"""
+
+    ALL = 0  # type: int
+    CANCEL = 32  # type: int
+    CHILD_CHANGED = 34  # type: int
+    CLICKED = 7  # type: int
+    COVER_CHECK = 18  # type: int
+    DEFOCUSED = 15  # type: int
+    DELETE = 33  # type: int
+    DRAW_MAIN = 21  # type: int
+    DRAW_MAIN_BEGIN = 20  # type: int
+    DRAW_MAIN_END = 22  # type: int
+    DRAW_PART_BEGIN = 26  # type: int
+    DRAW_PART_END = 27  # type: int
+    DRAW_POST = 24  # type: int
+    DRAW_POST_BEGIN = 23  # type: int
+    DRAW_POST_END = 25  # type: int
+    FOCUSED = 14  # type: int
+    GESTURE = 12  # type: int
+    GET_SELF_SIZE = 38  # type: int
+    HIT_TEST = 17  # type: int
+    INSERT = 29  # type: int
+    KEY = 13  # type: int
+    LAYOUT_CHANGED = 37  # type: int
+    LEAVE = 16  # type: int
+    LONG_PRESSED = 5  # type: int
+    LONG_PRESSED_REPEAT = 6  # type: int
+    PRESSED = 1  # type: int
+    PRESSING = 2  # type: int
+    PRESS_LOST = 3  # type: int
+    READY = 31  # type: int
+    REFRESH = 30  # type: int
+    REFR_EXT_DRAW_SIZE = 19  # type: int
+    RELEASED = 8  # type: int
+    SCROLL = 11  # type: int
+    SCROLL_BEGIN = 9  # type: int
+    SCROLL_END = 10  # type: int
+    SHORT_CLICKED = 4  # type: int
+    SIZE_CHANGED = 35  # type: int
+    STYLE_CHANGED = 36  # type: int
+    VALUE_CHANGED = 28  # type: int
+
 
 class FLEX_ALIGN:
-    ''
-    CENTER = 2 # type: int
-    END = 1 # type: int
-    SPACE_AROUND = 4 # type: int
-    SPACE_BETWEEN = 5 # type: int
-    SPACE_EVENLY = 3 # type: int
-    START = 0 # type: int
+    """"""
+
+    CENTER = 2  # type: int
+    END = 1  # type: int
+    SPACE_AROUND = 4  # type: int
+    SPACE_BETWEEN = 5  # type: int
+    SPACE_EVENLY = 3  # type: int
+    START = 0  # type: int
+
 
 class FLEX_FLOW:
-    ''
-    COLUMN = 1 # type: int
-    COLUMN_REVERSE = 9 # type: int
-    COLUMN_WRAP = 5 # type: int
-    COLUMN_WRAP_REVERSE = 13 # type: int
-    ROW = 0 # type: int
-    ROW_REVERSE = 8 # type: int
-    ROW_WRAP = 4 # type: int
-    ROW_WRAP_REVERSE = 12 # type: int
+    """"""
+
+    COLUMN = 1  # type: int
+    COLUMN_REVERSE = 9  # type: int
+    COLUMN_WRAP = 5  # type: int
+    COLUMN_WRAP_REVERSE = 13  # type: int
+    ROW = 0  # type: int
+    ROW_REVERSE = 8  # type: int
+    ROW_WRAP = 4  # type: int
+    ROW_WRAP_REVERSE = 12  # type: int
+
 
 class FONT_FMT_TXT:
-    ''
-    COMPRESSED = 1 # type: int
-    COMPRESSED_NO_PREFILTER = 1 # type: int
-    PLAIN = 0 # type: int
+    """"""
+
+    COMPRESSED = 1  # type: int
+    COMPRESSED_NO_PREFILTER = 1  # type: int
+    PLAIN = 0  # type: int
+
 
 class FONT_FMT_TXT_CMAP:
-    ''
-    FORMAT0_FULL = 0 # type: int
-    FORMAT0_TINY = 2 # type: int
-    SPARSE_FULL = 1 # type: int
-    SPARSE_TINY = 3 # type: int
+    """"""
+
+    FORMAT0_FULL = 0  # type: int
+    FORMAT0_TINY = 2  # type: int
+    SPARSE_FULL = 1  # type: int
+    SPARSE_TINY = 3  # type: int
+
 
 class FONT_SUBPX:
-    ''
-    BOTH = 3 # type: int
-    HOR = 1 # type: int
-    NONE = 0 # type: int
-    VER = 2 # type: int
+    """"""
+
+    BOTH = 3  # type: int
+    HOR = 1  # type: int
+    NONE = 0  # type: int
+    VER = 2  # type: int
+
 
 class FS_MODE:
-    ''
-    RD = 2 # type: int
-    WR = 1 # type: int
+    """"""
+
+    RD = 2  # type: int
+    WR = 1  # type: int
+
 
 class FS_RES:
-    ''
-    BUSY = 7 # type: int
-    DENIED = 6 # type: int
-    FS_ERR = 2 # type: int
-    FULL = 4 # type: int
-    HW_ERR = 1 # type: int
-    INV_PARAM = 11 # type: int
-    LOCKED = 5 # type: int
-    NOT_EX = 3 # type: int
-    NOT_IMP = 9 # type: int
-    OK = 0 # type: int
-    OUT_OF_MEM = 10 # type: int
-    TOUT = 8 # type: int
-    UNKNOWN = 12 # type: int
+    """"""
+
+    BUSY = 7  # type: int
+    DENIED = 6  # type: int
+    FS_ERR = 2  # type: int
+    FULL = 4  # type: int
+    HW_ERR = 1  # type: int
+    INV_PARAM = 11  # type: int
+    LOCKED = 5  # type: int
+    NOT_EX = 3  # type: int
+    NOT_IMP = 9  # type: int
+    OK = 0  # type: int
+    OUT_OF_MEM = 10  # type: int
+    TOUT = 8  # type: int
+    UNKNOWN = 12  # type: int
+
 
 class FS_SEEK:
-    ''
-    CUR = 1 # type: int
-    END = 2 # type: int
-    SET = 0 # type: int
+    """"""
+
+    CUR = 1  # type: int
+    END = 2  # type: int
+    SET = 0  # type: int
+
 
 class GRAD_DIR:
-    ''
-    HOR = 2 # type: int
-    NONE = 0 # type: int
-    VER = 1 # type: int
+    """"""
+
+    HOR = 2  # type: int
+    NONE = 0  # type: int
+    VER = 1  # type: int
+
 
 class GRID:
-    ''
-    CONTENT = 24475 # type: int
+    """"""
+
+    CONTENT = 24475  # type: int
+
 
 class GRID_ALIGN:
-    ''
-    CENTER = 1 # type: int
-    END = 2 # type: int
-    SPACE_AROUND = 5 # type: int
-    SPACE_BETWEEN = 6 # type: int
-    SPACE_EVENLY = 4 # type: int
-    START = 0 # type: int
-    STRETCH = 3 # type: int
+    """"""
+
+    CENTER = 1  # type: int
+    END = 2  # type: int
+    SPACE_AROUND = 5  # type: int
+    SPACE_BETWEEN = 6  # type: int
+    SPACE_EVENLY = 4  # type: int
+    START = 0  # type: int
+    STRETCH = 3  # type: int
+
 
 class GRID_TEMPLATE:
-    ''
-    LAST = 24576 # type: int
+    """"""
+
+    LAST = 24576  # type: int
+
 
 class GROUP_REFOCUS_POLICY:
-    ''
-    NEXT = 0 # type: int
-    PREV = 1 # type: int
+    """"""
+
+    NEXT = 0  # type: int
+    PREV = 1  # type: int
+
 
 class IMG_ZOOM:
-    ''
-    NONE = 256 # type: int
+    """"""
+
+    NONE = 256  # type: int
+
 
 class INDEV_STATE:
-    ''
-    PRESSED = 1 # type: int
-    RELEASED = 0 # type: int
+    """"""
+
+    PRESSED = 1  # type: int
+    RELEASED = 0  # type: int
+
 
 class INDEV_TYPE:
-    ''
-    BUTTON = 3 # type: int
-    ENCODER = 4 # type: int
-    KEYPAD = 2 # type: int
-    NONE = 0 # type: int
-    POINTER = 1 # type: int
+    """"""
+
+    BUTTON = 3  # type: int
+    ENCODER = 4  # type: int
+    KEYPAD = 2  # type: int
+    NONE = 0  # type: int
+    POINTER = 1  # type: int
+
 
 class KEY:
-    ''
-    BACKSPACE = 8 # type: int
-    DEL = 127 # type: int
-    DOWN = 18 # type: int
-    END = 3 # type: int
-    ENTER = 10 # type: int
-    ESC = 27 # type: int
-    HOME = 2 # type: int
-    LEFT = 20 # type: int
-    NEXT = 9 # type: int
-    PREV = 11 # type: int
-    RIGHT = 19 # type: int
-    UP = 17 # type: int
+    """"""
+
+    BACKSPACE = 8  # type: int
+    DEL = 127  # type: int
+    DOWN = 18  # type: int
+    END = 3  # type: int
+    ENTER = 10  # type: int
+    ESC = 27  # type: int
+    HOME = 2  # type: int
+    LEFT = 20  # type: int
+    NEXT = 9  # type: int
+    PREV = 11  # type: int
+    RIGHT = 19  # type: int
+    UP = 17  # type: int
+
 
 class LABEL_DOT:
-    ''
-    NUM = 3 # type: int
+    """"""
+
+    NUM = 3  # type: int
+
 
 class LABEL_POS:
-    ''
-    LAST = 65535 # type: int
+    """"""
+
+    LAST = 65535  # type: int
+
 
 class LABEL_TEXT_SELECTION:
-    ''
-    OFF = 65535 # type: int
-LAYOUT_FLEX : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-LAYOUT_GRID : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+    """"""
+
+    OFF = 65535  # type: int
+
+
+LAYOUT_FLEX: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+LAYOUT_GRID: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+
 
 class LOG_LEVEL:
-    ''
-    ERROR = 3 # type: int
-    INFO = 1 # type: int
-    NONE = 5 # type: int
-    TRACE = 0 # type: int
-    USER = 4 # type: int
-    WARN = 2 # type: int
+    """"""
 
-class LvReferenceError:
-    ''
+    ERROR = 3  # type: int
+    INFO = 1  # type: int
+    NONE = 5  # type: int
+    TRACE = 0  # type: int
+    USER = 4  # type: int
+    WARN = 2  # type: int
+
+
+class LvReferenceError(Exception):
+    """"""
+
 
 class OBJ_FLAG_FLEX_IN_NEW:
-    ''
-    TRACK = 8388608 # type: int
+    """"""
+
+    TRACK = 8388608  # type: int
+
 
 class OPA:
-    ''
-    COVER = 255 # type: int
-    TRANSP = 0 # type: int
+    """"""
+
+    COVER = 255  # type: int
+    TRANSP = 0  # type: int
+
 
 class PALETTE:
-    ''
-    AMBER = 13 # type: int
-    BLUE = 5 # type: int
-    BLUE_GREY = 17 # type: int
-    BROWN = 16 # type: int
-    CYAN = 7 # type: int
-    DEEP_ORANGE = 15 # type: int
-    DEEP_PURPLE = 3 # type: int
-    GREEN = 9 # type: int
-    GREY = 18 # type: int
-    INDIGO = 4 # type: int
-    LIGHT_BLUE = 6 # type: int
-    LIGHT_GREEN = 10 # type: int
-    LIME = 11 # type: int
-    NONE = 255 # type: int
-    ORANGE = 14 # type: int
-    PINK = 1 # type: int
-    PURPLE = 2 # type: int
-    RED = 0 # type: int
-    TEAL = 8 # type: int
-    YELLOW = 12 # type: int
+    """"""
+
+    AMBER = 13  # type: int
+    BLUE = 5  # type: int
+    BLUE_GREY = 17  # type: int
+    BROWN = 16  # type: int
+    CYAN = 7  # type: int
+    DEEP_ORANGE = 15  # type: int
+    DEEP_PURPLE = 3  # type: int
+    GREEN = 9  # type: int
+    GREY = 18  # type: int
+    INDIGO = 4  # type: int
+    LIGHT_BLUE = 6  # type: int
+    LIGHT_GREEN = 10  # type: int
+    LIME = 11  # type: int
+    NONE = 255  # type: int
+    ORANGE = 14  # type: int
+    PINK = 1  # type: int
+    PURPLE = 2  # type: int
+    RED = 0  # type: int
+    TEAL = 8  # type: int
+    YELLOW = 12  # type: int
+
 
 class PART:
-    ''
-    ANY = 983040 # type: int
-    CURSOR = 458752 # type: int
-    CUSTOM_FIRST = 524288 # type: int
-    INDICATOR = 131072 # type: int
-    ITEMS = 327680 # type: int
-    KNOB = 196608 # type: int
-    MAIN = 0 # type: int
-    SCROLLBAR = 65536 # type: int
-    SELECTED = 262144 # type: int
-    TICKS = 393216 # type: int
+    """"""
+
+    ANY = 983040  # type: int
+    CURSOR = 458752  # type: int
+    CUSTOM_FIRST = 524288  # type: int
+    INDICATOR = 131072  # type: int
+    ITEMS = 327680  # type: int
+    KNOB = 196608  # type: int
+    MAIN = 0  # type: int
+    SCROLLBAR = 65536  # type: int
+    SELECTED = 262144  # type: int
+    TICKS = 393216  # type: int
+
 
 class PART_TEXTAREA:
-    ''
-    PLACEHOLDER = 524288 # type: int
+    """"""
+
+    PLACEHOLDER = 524288  # type: int
+
 
 class RADIUS:
-    ''
-    CIRCLE = 32767 # type: int
+    """"""
+
+    CIRCLE = 32767  # type: int
+
 
 class RES:
-    ''
-    INV = 0 # type: int
-    OK = 1 # type: int
+    """"""
+
+    INV = 0  # type: int
+    OK = 1  # type: int
+
 
 class SCROLLBAR_MODE:
-    ''
-    ACTIVE = 2 # type: int
-    AUTO = 3 # type: int
-    OFF = 0 # type: int
-    ON = 1 # type: int
+    """"""
+
+    ACTIVE = 2  # type: int
+    AUTO = 3  # type: int
+    OFF = 0  # type: int
+    ON = 1  # type: int
+
 
 class SCROLL_SNAP:
-    ''
-    CENTER = 3 # type: int
-    END = 2 # type: int
-    NONE = 0 # type: int
-    START = 1 # type: int
+    """"""
+
+    CENTER = 3  # type: int
+    END = 2  # type: int
+    NONE = 0  # type: int
+    START = 1  # type: int
+
 
 class SCR_LOAD_ANIM:
-    ''
-    FADE_ON = 9 # type: int
-    MOVE_BOTTOM = 8 # type: int
-    MOVE_LEFT = 5 # type: int
-    MOVE_RIGHT = 6 # type: int
-    MOVE_TOP = 7 # type: int
-    NONE = 0 # type: int
-    OVER_BOTTOM = 4 # type: int
-    OVER_LEFT = 1 # type: int
-    OVER_RIGHT = 2 # type: int
-    OVER_TOP = 3 # type: int
+    """"""
+
+    FADE_ON = 9  # type: int
+    MOVE_BOTTOM = 8  # type: int
+    MOVE_LEFT = 5  # type: int
+    MOVE_RIGHT = 6  # type: int
+    MOVE_TOP = 7  # type: int
+    NONE = 0  # type: int
+    OVER_BOTTOM = 4  # type: int
+    OVER_LEFT = 1  # type: int
+    OVER_RIGHT = 2  # type: int
+    OVER_TOP = 3  # type: int
+
 
 class SIZE:
-    ''
-    CONTENT = 10193 # type: int
+    """"""
+
+    CONTENT = 10193  # type: int
+
 
 class SPAN_MODE:
-    ''
-    BREAK = 2 # type: int
-    EXPAND = 1 # type: int
-    FIXED = 0 # type: int
+    """"""
+
+    BREAK = 2  # type: int
+    EXPAND = 1  # type: int
+    FIXED = 0  # type: int
+
 
 class SPAN_OVERFLOW:
-    ''
-    CLIP = 0 # type: int
-    ELLIPSIS = 1 # type: int
+    """"""
+
+    CLIP = 0  # type: int
+    ELLIPSIS = 1  # type: int
+
 
 class STATE:
-    ''
-    ANY = 65535 # type: int
-    CHECKED = 1 # type: int
-    DEFAULT = 0 # type: int
-    DISABLED = 128 # type: int
-    EDITED = 8 # type: int
-    FOCUSED = 2 # type: int
-    FOCUS_KEY = 4 # type: int
-    HOVERED = 16 # type: int
-    PRESSED = 32 # type: int
-    SCROLLED = 64 # type: int
-    USER_1 = 4096 # type: int
-    USER_2 = 8192 # type: int
-    USER_3 = 16384 # type: int
-    USER_4 = 32768 # type: int
+    """"""
+
+    ANY = 65535  # type: int
+    CHECKED = 1  # type: int
+    DEFAULT = 0  # type: int
+    DISABLED = 128  # type: int
+    EDITED = 8  # type: int
+    FOCUSED = 2  # type: int
+    FOCUS_KEY = 4  # type: int
+    HOVERED = 16  # type: int
+    PRESSED = 32  # type: int
+    SCROLLED = 64  # type: int
+    USER_1 = 4096  # type: int
+    USER_2 = 8192  # type: int
+    USER_3 = 16384  # type: int
+    USER_4 = 32768  # type: int
+
 
 class STYLE:
-    ''
-    ALIGN = 4105 # type: int
-    ANIM_SPEED = 102 # type: int
-    ANIM_TIME = 101 # type: int
-    ARC_COLOR = 82 # type: int
-    ARC_COLOR_FILTERED = 16466 # type: int
-    ARC_IMG_SRC = 84 # type: int
-    ARC_OPA = 83 # type: int
-    ARC_ROUNDED = 81 # type: int
-    ARC_WIDTH = 2128 # type: int
-    BASE_DIR = 5226 # type: int
-    BG_COLOR = 32 # type: int
-    BG_COLOR_FILTERED = 16416 # type: int
-    BG_GRAD_COLOR = 34 # type: int
-    BG_GRAD_COLOR_FILTERED = 16418 # type: int
-    BG_GRAD_DIR = 35 # type: int
-    BG_GRAD_STOP = 37 # type: int
-    BG_IMG_OPA = 39 # type: int
-    BG_IMG_RECOLOR = 40 # type: int
-    BG_IMG_RECOLOR_FILTERED = 16424 # type: int
-    BG_IMG_RECOLOR_OPA = 41 # type: int
-    BG_IMG_SRC = 2086 # type: int
-    BG_IMG_TILED = 42 # type: int
-    BG_MAIN_STOP = 36 # type: int
-    BG_OPA = 33 # type: int
-    BLEND_MODE = 104 # type: int
-    BORDER_COLOR = 48 # type: int
-    BORDER_COLOR_FILTERED = 16432 # type: int
-    BORDER_OPA = 49 # type: int
-    BORDER_POST = 52 # type: int
-    BORDER_SIDE = 51 # type: int
-    BORDER_WIDTH = 4146 # type: int
-    CLIP_CORNER = 97 # type: int
-    COLOR_FILTER_DSC = 99 # type: int
-    COLOR_FILTER_OPA = 100 # type: int
-    HEIGHT = 4100 # type: int
-    IMG_OPA = 70 # type: int
-    IMG_RECOLOR = 71 # type: int
-    IMG_RECOLOR_FILTERED = 16455 # type: int
-    IMG_RECOLOR_OPA = 72 # type: int
-    LAYOUT = 4201 # type: int
-    LINE_COLOR = 77 # type: int
-    LINE_COLOR_FILTERED = 16461 # type: int
-    LINE_DASH_GAP = 75 # type: int
-    LINE_DASH_WIDTH = 74 # type: int
-    LINE_OPA = 78 # type: int
-    LINE_ROUNDED = 76 # type: int
-    LINE_WIDTH = 2121 # type: int
-    MAX_HEIGHT = 4102 # type: int
-    MAX_WIDTH = 4099 # type: int
-    MIN_HEIGHT = 4101 # type: int
-    MIN_WIDTH = 4098 # type: int
-    OPA = 1122 # type: int
-    OUTLINE_COLOR = 59 # type: int
-    OUTLINE_COLOR_FILTERED = 16443 # type: int
-    OUTLINE_OPA = 2108 # type: int
-    OUTLINE_PAD = 2109 # type: int
-    OUTLINE_WIDTH = 2106 # type: int
-    PAD_BOTTOM = 6161 # type: int
-    PAD_COLUMN = 6165 # type: int
-    PAD_LEFT = 6162 # type: int
-    PAD_RIGHT = 6163 # type: int
-    PAD_ROW = 6164 # type: int
-    PAD_TOP = 6160 # type: int
-    PROP_ANY = 65535 # type: int
-    PROP_INV = 0 # type: int
-    RADIUS = 96 # type: int
-    SHADOW_COLOR = 68 # type: int
-    SHADOW_COLOR_FILTERED = 16452 # type: int
-    SHADOW_OFS_X = 2113 # type: int
-    SHADOW_OFS_Y = 2114 # type: int
-    SHADOW_OPA = 2117 # type: int
-    SHADOW_SPREAD = 2115 # type: int
-    SHADOW_WIDTH = 2112 # type: int
-    TEXT_ALIGN = 5213 # type: int
-    TEXT_COLOR = 1111 # type: int
-    TEXT_COLOR_FILTERED = 17495 # type: int
-    TEXT_DECOR = 1116 # type: int
-    TEXT_FONT = 5209 # type: int
-    TEXT_LETTER_SPACE = 5210 # type: int
-    TEXT_LINE_SPACE = 5211 # type: int
-    TEXT_OPA = 1112 # type: int
-    TRANSFORM_ANGLE = 14351 # type: int
-    TRANSFORM_HEIGHT = 2059 # type: int
-    TRANSFORM_WIDTH = 2058 # type: int
-    TRANSFORM_ZOOM = 14350 # type: int
-    TRANSITION = 103 # type: int
-    TRANSLATE_X = 12300 # type: int
-    TRANSLATE_Y = 12301 # type: int
-    WIDTH = 4097 # type: int
-    X = 4103 # type: int
-    Y = 4104 # type: int
-STYLE_FLEX_CROSS_PLACE : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_FLEX_FLOW : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_FLEX_GROW : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_FLEX_MAIN_PLACE : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_FLEX_TRACK_PLACE : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_GRID_CELL_COLUMN_POS : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_GRID_CELL_COLUMN_SPAN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_GRID_CELL_ROW_POS : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_GRID_CELL_ROW_SPAN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_GRID_CELL_X_ALIGN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_GRID_CELL_Y_ALIGN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_GRID_COLUMN_ALIGN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_GRID_COLUMN_DSC_ARRAY : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_GRID_ROW_ALIGN : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
-STYLE_GRID_ROW_DSC_ARRAY : Any ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+    """"""
+
+    ALIGN = 4105  # type: int
+    ANIM_SPEED = 102  # type: int
+    ANIM_TIME = 101  # type: int
+    ARC_COLOR = 82  # type: int
+    ARC_COLOR_FILTERED = 16466  # type: int
+    ARC_IMG_SRC = 84  # type: int
+    ARC_OPA = 83  # type: int
+    ARC_ROUNDED = 81  # type: int
+    ARC_WIDTH = 2128  # type: int
+    BASE_DIR = 5226  # type: int
+    BG_COLOR = 32  # type: int
+    BG_COLOR_FILTERED = 16416  # type: int
+    BG_GRAD_COLOR = 34  # type: int
+    BG_GRAD_COLOR_FILTERED = 16418  # type: int
+    BG_GRAD_DIR = 35  # type: int
+    BG_GRAD_STOP = 37  # type: int
+    BG_IMG_OPA = 39  # type: int
+    BG_IMG_RECOLOR = 40  # type: int
+    BG_IMG_RECOLOR_FILTERED = 16424  # type: int
+    BG_IMG_RECOLOR_OPA = 41  # type: int
+    BG_IMG_SRC = 2086  # type: int
+    BG_IMG_TILED = 42  # type: int
+    BG_MAIN_STOP = 36  # type: int
+    BG_OPA = 33  # type: int
+    BLEND_MODE = 104  # type: int
+    BORDER_COLOR = 48  # type: int
+    BORDER_COLOR_FILTERED = 16432  # type: int
+    BORDER_OPA = 49  # type: int
+    BORDER_POST = 52  # type: int
+    BORDER_SIDE = 51  # type: int
+    BORDER_WIDTH = 4146  # type: int
+    CLIP_CORNER = 97  # type: int
+    COLOR_FILTER_DSC = 99  # type: int
+    COLOR_FILTER_OPA = 100  # type: int
+    HEIGHT = 4100  # type: int
+    IMG_OPA = 70  # type: int
+    IMG_RECOLOR = 71  # type: int
+    IMG_RECOLOR_FILTERED = 16455  # type: int
+    IMG_RECOLOR_OPA = 72  # type: int
+    LAYOUT = 4201  # type: int
+    LINE_COLOR = 77  # type: int
+    LINE_COLOR_FILTERED = 16461  # type: int
+    LINE_DASH_GAP = 75  # type: int
+    LINE_DASH_WIDTH = 74  # type: int
+    LINE_OPA = 78  # type: int
+    LINE_ROUNDED = 76  # type: int
+    LINE_WIDTH = 2121  # type: int
+    MAX_HEIGHT = 4102  # type: int
+    MAX_WIDTH = 4099  # type: int
+    MIN_HEIGHT = 4101  # type: int
+    MIN_WIDTH = 4098  # type: int
+    OPA = 1122  # type: int
+    OUTLINE_COLOR = 59  # type: int
+    OUTLINE_COLOR_FILTERED = 16443  # type: int
+    OUTLINE_OPA = 2108  # type: int
+    OUTLINE_PAD = 2109  # type: int
+    OUTLINE_WIDTH = 2106  # type: int
+    PAD_BOTTOM = 6161  # type: int
+    PAD_COLUMN = 6165  # type: int
+    PAD_LEFT = 6162  # type: int
+    PAD_RIGHT = 6163  # type: int
+    PAD_ROW = 6164  # type: int
+    PAD_TOP = 6160  # type: int
+    PROP_ANY = 65535  # type: int
+    PROP_INV = 0  # type: int
+    RADIUS = 96  # type: int
+    SHADOW_COLOR = 68  # type: int
+    SHADOW_COLOR_FILTERED = 16452  # type: int
+    SHADOW_OFS_X = 2113  # type: int
+    SHADOW_OFS_Y = 2114  # type: int
+    SHADOW_OPA = 2117  # type: int
+    SHADOW_SPREAD = 2115  # type: int
+    SHADOW_WIDTH = 2112  # type: int
+    TEXT_ALIGN = 5213  # type: int
+    TEXT_COLOR = 1111  # type: int
+    TEXT_COLOR_FILTERED = 17495  # type: int
+    TEXT_DECOR = 1116  # type: int
+    TEXT_FONT = 5209  # type: int
+    TEXT_LETTER_SPACE = 5210  # type: int
+    TEXT_LINE_SPACE = 5211  # type: int
+    TEXT_OPA = 1112  # type: int
+    TRANSFORM_ANGLE = 14351  # type: int
+    TRANSFORM_HEIGHT = 2059  # type: int
+    TRANSFORM_WIDTH = 2058  # type: int
+    TRANSFORM_ZOOM = 14350  # type: int
+    TRANSITION = 103  # type: int
+    TRANSLATE_X = 12300  # type: int
+    TRANSLATE_Y = 12301  # type: int
+    WIDTH = 4097  # type: int
+    X = 4103  # type: int
+    Y = 4104  # type: int
+
+
+STYLE_FLEX_CROSS_PLACE: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_FLEX_FLOW: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_FLEX_GROW: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_FLEX_MAIN_PLACE: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_FLEX_TRACK_PLACE: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_COLUMN_POS: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_COLUMN_SPAN: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_ROW_POS: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_ROW_SPAN: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_X_ALIGN: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_CELL_Y_ALIGN: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_COLUMN_ALIGN: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_COLUMN_DSC_ARRAY: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_ROW_ALIGN: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+STYLE_GRID_ROW_DSC_ARRAY: Any  ## <class '_lv_mp_int_wrapper'> = struct _lv_mp_int_wrapper
+
 
 class SYMBOL:
-    ''
-    AUDIO = '\uf001' # type: str
-    BACKSPACE = '\uf55a' # type: str
-    BATTERY_1 = '\uf243' # type: str
-    BATTERY_2 = '\uf242' # type: str
-    BATTERY_3 = '\uf241' # type: str
-    BATTERY_EMPTY = '\uf244' # type: str
-    BATTERY_FULL = '\uf240' # type: str
-    BELL = '\uf0f3' # type: str
-    BLUETOOTH = '\uf293' # type: str
-    BULLET = '\u2022' # type: str
-    CALL = '\uf095' # type: str
-    CHARGE = '\uf0e7' # type: str
-    CLOSE = '\uf00d' # type: str
-    COPY = '\uf0c5' # type: str
-    CUT = '\uf0c4' # type: str
-    DIRECTORY = '\uf07b' # type: str
-    DOWN = '\uf078' # type: str
-    DOWNLOAD = '\uf019' # type: str
-    DRIVE = '\uf01c' # type: str
-    DUMMY = '\uf8ff' # type: str
-    EDIT = '\uf304' # type: str
-    EJECT = '\uf052' # type: str
-    EYE_CLOSE = '\uf070' # type: str
-    EYE_OPEN = '\uf06e' # type: str
-    FILE = '\uf15b' # type: str
-    GPS = '\uf124' # type: str
-    HOME = '\uf015' # type: str
-    IMAGE = '\uf03e' # type: str
-    KEYBOARD = '\uf11c' # type: str
-    LEFT = '\uf053' # type: str
-    LIST = '\uf00b' # type: str
-    LOOP = '\uf079' # type: str
-    MINUS = '\uf068' # type: str
-    MUTE = '\uf026' # type: str
-    NEW_LINE = '\uf8a2' # type: str
-    NEXT = '\uf051' # type: str
-    OK = '\uf00c' # type: str
-    PASTE = '\uf0ea' # type: str
-    PAUSE = '\uf04c' # type: str
-    PLAY = '\uf04b' # type: str
-    PLUS = '\uf067' # type: str
-    POWER = '\uf011' # type: str
-    PREV = '\uf048' # type: str
-    REFRESH = '\uf021' # type: str
-    RIGHT = '\uf054' # type: str
-    SAVE = '\uf0c7' # type: str
-    SD_CARD = '\uf7c2' # type: str
-    SETTINGS = '\uf013' # type: str
-    SHUFFLE = '\uf074' # type: str
-    STOP = '\uf04d' # type: str
-    TRASH = '\uf2ed' # type: str
-    UP = '\uf077' # type: str
-    UPLOAD = '\uf093' # type: str
-    USB = '\uf287' # type: str
-    VIDEO = '\uf008' # type: str
-    VOLUME_MAX = '\uf028' # type: str
-    VOLUME_MID = '\uf027' # type: str
-    WARNING = '\uf071' # type: str
-    WIFI = '\uf1eb' # type: str
+    """"""
+
+    AUDIO = "\uf001"  # type: str
+    BACKSPACE = "\uf55a"  # type: str
+    BATTERY_1 = "\uf243"  # type: str
+    BATTERY_2 = "\uf242"  # type: str
+    BATTERY_3 = "\uf241"  # type: str
+    BATTERY_EMPTY = "\uf244"  # type: str
+    BATTERY_FULL = "\uf240"  # type: str
+    BELL = "\uf0f3"  # type: str
+    BLUETOOTH = "\uf293"  # type: str
+    BULLET = "\u2022"  # type: str
+    CALL = "\uf095"  # type: str
+    CHARGE = "\uf0e7"  # type: str
+    CLOSE = "\uf00d"  # type: str
+    COPY = "\uf0c5"  # type: str
+    CUT = "\uf0c4"  # type: str
+    DIRECTORY = "\uf07b"  # type: str
+    DOWN = "\uf078"  # type: str
+    DOWNLOAD = "\uf019"  # type: str
+    DRIVE = "\uf01c"  # type: str
+    DUMMY = "\uf8ff"  # type: str
+    EDIT = "\uf304"  # type: str
+    EJECT = "\uf052"  # type: str
+    EYE_CLOSE = "\uf070"  # type: str
+    EYE_OPEN = "\uf06e"  # type: str
+    FILE = "\uf15b"  # type: str
+    GPS = "\uf124"  # type: str
+    HOME = "\uf015"  # type: str
+    IMAGE = "\uf03e"  # type: str
+    KEYBOARD = "\uf11c"  # type: str
+    LEFT = "\uf053"  # type: str
+    LIST = "\uf00b"  # type: str
+    LOOP = "\uf079"  # type: str
+    MINUS = "\uf068"  # type: str
+    MUTE = "\uf026"  # type: str
+    NEW_LINE = "\uf8a2"  # type: str
+    NEXT = "\uf051"  # type: str
+    OK = "\uf00c"  # type: str
+    PASTE = "\uf0ea"  # type: str
+    PAUSE = "\uf04c"  # type: str
+    PLAY = "\uf04b"  # type: str
+    PLUS = "\uf067"  # type: str
+    POWER = "\uf011"  # type: str
+    PREV = "\uf048"  # type: str
+    REFRESH = "\uf021"  # type: str
+    RIGHT = "\uf054"  # type: str
+    SAVE = "\uf0c7"  # type: str
+    SD_CARD = "\uf7c2"  # type: str
+    SETTINGS = "\uf013"  # type: str
+    SHUFFLE = "\uf074"  # type: str
+    STOP = "\uf04d"  # type: str
+    TRASH = "\uf2ed"  # type: str
+    UP = "\uf077"  # type: str
+    UPLOAD = "\uf093"  # type: str
+    USB = "\uf287"  # type: str
+    VIDEO = "\uf008"  # type: str
+    VOLUME_MAX = "\uf028"  # type: str
+    VOLUME_MID = "\uf027"  # type: str
+    WARNING = "\uf071"  # type: str
+    WIFI = "\uf1eb"  # type: str
+
 
 class TABLE_CELL:
-    ''
-    NONE = 65535 # type: int
+    """"""
+
+    NONE = 65535  # type: int
+
 
 class TEXTAREA_CURSOR:
-    ''
-    LAST = 32767 # type: int
+    """"""
+
+    LAST = 32767  # type: int
+
 
 class TEXT_ALIGN:
-    ''
-    AUTO = 0 # type: int
-    CENTER = 2 # type: int
-    LEFT = 1 # type: int
-    RIGHT = 3 # type: int
+    """"""
+
+    AUTO = 0  # type: int
+    CENTER = 2  # type: int
+    LEFT = 1  # type: int
+    RIGHT = 3  # type: int
+
 
 class TEXT_CMD_STATE:
-    ''
-    IN = 2 # type: int
-    PAR = 1 # type: int
-    WAIT = 0 # type: int
+    """"""
+
+    IN = 2  # type: int
+    PAR = 1  # type: int
+    WAIT = 0  # type: int
+
 
 class TEXT_DECOR:
-    ''
-    NONE = 0 # type: int
-    STRIKETHROUGH = 2 # type: int
-    UNDERLINE = 1 # type: int
+    """"""
+
+    NONE = 0  # type: int
+    STRIKETHROUGH = 2  # type: int
+    UNDERLINE = 1  # type: int
+
 
 class TEXT_FLAG:
-    ''
-    EXPAND = 2 # type: int
-    FIT = 4 # type: int
-    NONE = 0 # type: int
-    RECOLOR = 1 # type: int
+    """"""
+
+    EXPAND = 2  # type: int
+    FIT = 4  # type: int
+    NONE = 0  # type: int
+    RECOLOR = 1  # type: int
+
+
 def anim_count_running(*args) -> Any:
     ...
+
 
 def anim_del(*args) -> Any:
     ...
 
+
 def anim_del_all(*args) -> Any:
     ...
+
 
 def anim_get(*args) -> Any:
     ...
 
+
 def anim_refr_now(*args) -> Any:
     ...
+
 
 def anim_speed_to_time(*args) -> Any:
     ...
 
 
 class anim_t:
-    ''
+    """"""
+
     def start(self, *args) -> Any:
         ...
 
@@ -1898,91 +2043,106 @@ class anim_t:
     def set_var(self, *args) -> Any:
         ...
 
+
 def anim_timeline_add(*args) -> Any:
     ...
+
 
 def anim_timeline_create(*args) -> Any:
     ...
 
+
 def anim_timeline_del(*args) -> Any:
     ...
+
 
 def anim_timeline_get_playtime(*args) -> Any:
     ...
 
+
 def anim_timeline_get_reverse(*args) -> Any:
     ...
+
 
 def anim_timeline_set_progress(*args) -> Any:
     ...
 
+
 def anim_timeline_set_reverse(*args) -> Any:
     ...
 
+
 def anim_timeline_start(*args) -> Any:
     ...
+
 
 def anim_timeline_stop(*args) -> Any:
     ...
 
 
 class animimg:
-    ''
+    """"""
+
     def start(self, *args) -> Any:
         ...
 
-
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -3063,68 +3223,77 @@ class animimg:
     def update_snap(self, *args) -> Any:
         ...
 
-animimg_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+animimg_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class arc:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BACKGROUND = 0 # type: int
-        FOREGROUND = 1 # type: int
-        KNOB = 2 # type: int
+        """"""
+
+        BACKGROUND = 0  # type: int
+        FOREGROUND = 1  # type: int
+        KNOB = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class MODE:
-        ''
-        NORMAL = 0 # type: int
-        REVERSE = 2 # type: int
-        SYMMETRICAL = 1 # type: int
+        """"""
+
+        NORMAL = 0  # type: int
+        REVERSE = 2  # type: int
+        SYMMETRICAL = 1  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -4253,10 +4422,13 @@ class arc:
     def update_snap(self, *args) -> Any:
         ...
 
-arc_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+arc_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class area_t:
-    ''
+    """"""
+
     def copy(self, *args) -> Any:
         ...
 
@@ -4287,71 +4459,80 @@ class area_t:
     def set_width(self, *args) -> Any:
         ...
 
+
 def async_call(*args) -> Any:
     ...
+
 
 def atan2(*args) -> Any:
     ...
 
 
 class bar:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        INDICATOR = 0 # type: int
+        """"""
+
+        INDICATOR = 0  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class MODE:
-        ''
-        NORMAL = 0 # type: int
-        RANGE = 2 # type: int
-        SYMMETRICAL = 1 # type: int
+        """"""
+
+        NORMAL = 0  # type: int
+        RANGE = 2  # type: int
+        SYMMETRICAL = 1  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -5450,68 +5631,78 @@ class bar:
     def update_snap(self, *args) -> Any:
         ...
 
-bar_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+bar_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def bezier3(*args) -> Any:
     ...
+
 
 def bidi_calculate_align(*args) -> Any:
     ...
 
 
 class btn:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -6583,72 +6774,81 @@ class btn:
     def update_snap(self, *args) -> Any:
         ...
 
-btn_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+btn_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class btnmatrix:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CTRL:
-        ''
-        CHECKABLE = 64 # type: int
-        CHECKED = 128 # type: int
-        CLICK_TRIG = 256 # type: int
-        CUSTOM_1 = 16384 # type: int
-        CUSTOM_2 = 32768 # type: int
-        DISABLED = 32 # type: int
-        HIDDEN = 8 # type: int
-        NO_REPEAT = 16 # type: int
-        RECOLOR = 4096 # type: int
+        """"""
+
+        CHECKABLE = 64  # type: int
+        CHECKED = 128  # type: int
+        CLICK_TRIG = 256  # type: int
+        CUSTOM_1 = 16384  # type: int
+        CUSTOM_2 = 32768  # type: int
+        DISABLED = 32  # type: int
+        HIDDEN = 8  # type: int
+        NO_REPEAT = 16  # type: int
+        RECOLOR = 4096  # type: int
 
     class DRAW_PART:
-        ''
-        BTN = 0 # type: int
+        """"""
+
+        BTN = 0  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -7762,62 +7962,70 @@ class btnmatrix:
     def update_snap(self, *args) -> Any:
         ...
 
-btnmatrix_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+btnmatrix_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class calendar:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -8916,65 +9124,74 @@ class calendar:
     def update_snap(self, *args) -> Any:
         ...
 
-calendar_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+calendar_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class calendar_date_t:
-    ''
+    """"""
+
 
 class calendar_header_arrow:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -10046,62 +10263,70 @@ class calendar_header_arrow:
     def update_snap(self, *args) -> Any:
         ...
 
-calendar_header_arrow_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+calendar_header_arrow_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class calendar_header_dropdown:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -11173,62 +11398,70 @@ class calendar_header_dropdown:
     def update_snap(self, *args) -> Any:
         ...
 
-calendar_header_dropdown_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+calendar_header_dropdown_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class canvas:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -12348,85 +12581,96 @@ class canvas:
     def update_snap(self, *args) -> Any:
         ...
 
-canvas_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+canvas_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class chart:
-    ''
+    """"""
 
     class AXIS:
-        ''
-        PRIMARY_X = 2 # type: int
-        PRIMARY_Y = 0 # type: int
-        SECONDARY_X = 4 # type: int
-        SECONDARY_Y = 1 # type: int
+        """"""
+
+        PRIMARY_X = 2  # type: int
+        PRIMARY_Y = 0  # type: int
+        SECONDARY_X = 4  # type: int
+        SECONDARY_Y = 1  # type: int
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BAR = 4 # type: int
-        CURSOR = 5 # type: int
-        DIV_LINE_HOR = 1 # type: int
-        DIV_LINE_INIT = 0 # type: int
-        DIV_LINE_VER = 2 # type: int
-        LINE_AND_POINT = 3 # type: int
-        TICK_LABEL = 6 # type: int
+        """"""
+
+        BAR = 4  # type: int
+        CURSOR = 5  # type: int
+        DIV_LINE_HOR = 1  # type: int
+        DIV_LINE_INIT = 0  # type: int
+        DIV_LINE_VER = 2  # type: int
+        LINE_AND_POINT = 3  # type: int
+        TICK_LABEL = 6  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
 
     class TYPE:
-        ''
-        BAR = 2 # type: int
-        LINE = 1 # type: int
-        NONE = 0 # type: int
-        SCATTER = 3 # type: int
+        """"""
+
+        BAR = 2  # type: int
+        LINE = 1  # type: int
+        NONE = 0  # type: int
+        SCATTER = 3  # type: int
 
     class UPDATE_MODE:
-        ''
-        CIRCULAR = 1 # type: int
-        SHIFT = 0 # type: int
+        """"""
+
+        CIRCULAR = 1  # type: int
+        SHIFT = 0  # type: int
+
     def add_cursor(self, *args) -> Any:
         ...
 
@@ -13603,66 +13847,76 @@ class chart:
     def update_snap(self, *args) -> Any:
         ...
 
-chart_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+chart_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class chart_cursor_t:
-    ''
+    """"""
+
 
 class chart_series_t:
-    ''
+    """"""
+
 
 class checkbox:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BOX = 0 # type: int
+        """"""
+
+        BOX = 0  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -14743,19 +14997,25 @@ class checkbox:
     def update_snap(self, *args) -> Any:
         ...
 
-checkbox_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+checkbox_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def clamp_height(*args) -> Any:
     ...
+
 
 def clamp_width(*args) -> Any:
     ...
 
 
 class color16_ch_t:
-    ''
+    """"""
+
 
 class color16_t:
-    ''
+    """"""
+
     def color_brightness(self, *args) -> Any:
         ...
 
@@ -14795,42 +15055,53 @@ class color16_t:
     def color_to_hsv(self, *args) -> Any:
         ...
 
+
 def color_black(*args) -> Any:
     ...
+
 
 def color_chroma_key(*args) -> Any:
     ...
 
 
 class color_filter_dsc_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
 
+
 def color_hex(*args) -> Any:
     ...
+
 
 def color_hex3(*args) -> Any:
     ...
 
 
 class color_hsv_t:
-    ''
+    """"""
+
+
 def color_hsv_to_rgb(*args) -> Any:
     ...
+
 
 def color_make(*args) -> Any:
     ...
 
+
 def color_mix_premult(*args) -> Any:
     ...
+
 
 def color_rgb_to_hsv(*args) -> Any:
     ...
 
 
 class color_t:
-    ''
+    """"""
+
     def color_brightness(self, *args) -> Any:
         ...
 
@@ -14870,70 +15141,78 @@ class color_t:
     def color_to_hsv(self, *args) -> Any:
         ...
 
+
 def color_white(*args) -> Any:
     ...
 
 
 class colorwheel:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class MODE:
-        ''
-        HUE = 0 # type: int
-        SATURATION = 1 # type: int
-        VALUE = 2 # type: int
+        """"""
+
+        HUE = 0  # type: int
+        SATURATION = 1  # type: int
+        VALUE = 2  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -16029,19 +16308,24 @@ class colorwheel:
     def update_snap(self, *args) -> Any:
         ...
 
-colorwheel_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+colorwheel_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def deinit(*args) -> Any:
     ...
 
 
 class disp_draw_buf_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
 
 
 class disp_drv_t:
-    ''
+    """"""
+
     def flush_is_last(self, *args) -> Any:
         ...
 
@@ -16057,15 +16341,18 @@ class disp_drv_t:
     def use_generic_set_px_cb(self, *args) -> Any:
         ...
 
+
 def disp_get_default(*args) -> Any:
     ...
+
 
 def disp_load_scr(*args) -> Any:
     ...
 
 
 class disp_t:
-    ''
+    """"""
+
     def remove(self, *args) -> Any:
         ...
 
@@ -16138,93 +16425,116 @@ class disp_t:
     def trig_activity(self, *args) -> Any:
         ...
 
+
 def dpx(*args) -> Any:
     ...
+
 
 def draw_arc(*args) -> Any:
     ...
 
 
 class draw_arc_dsc_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
 
+
 def draw_arc_get_area(*args) -> Any:
     ...
+
 
 def draw_img(*args) -> Any:
     ...
 
 
 class draw_img_dsc_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
+
 
 def draw_label(*args) -> Any:
     ...
 
 
 class draw_label_dsc_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
 
 
 class draw_label_hint_t:
-    ''
+    """"""
+
+
 def draw_letter(*args) -> Any:
     ...
+
 
 def draw_line(*args) -> Any:
     ...
 
 
 class draw_line_dsc_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
+
 
 def draw_mask_add(*args) -> Any:
     ...
 
 
 class draw_mask_angle_param_cfg_t:
-    ''
+    """"""
+
 
 class draw_mask_angle_param_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
+
 
 def draw_mask_apply(*args) -> Any:
     ...
 
 
 class draw_mask_fade_param_cfg_t:
-    ''
+    """"""
+
 
 class draw_mask_fade_param_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
+
 
 def draw_mask_free_param(*args) -> Any:
     ...
 
+
 def draw_mask_get_cnt(*args) -> Any:
     ...
+
 
 def draw_mask_is_any(*args) -> Any:
     ...
 
 
 class draw_mask_line_param_cfg_t:
-    ''
+    """"""
+
 
 class draw_mask_line_param_t:
-    ''
+    """"""
+
     def angle_init(self, *args) -> Any:
         ...
 
@@ -16233,104 +16543,120 @@ class draw_mask_line_param_t:
 
 
 class draw_mask_map_param_cfg_t:
-    ''
+    """"""
+
 
 class draw_mask_map_param_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
 
 
 class draw_mask_radius_param_cfg_t:
-    ''
+    """"""
+
 
 class draw_mask_radius_param_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
+
 
 def draw_mask_remove_custom(*args) -> Any:
     ...
 
+
 def draw_mask_remove_id(*args) -> Any:
     ...
 
+
 def draw_polygon(*args) -> Any:
     ...
+
 
 def draw_rect(*args) -> Any:
     ...
 
 
 class draw_rect_dsc_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
+
 
 def draw_triangle(*args) -> Any:
     ...
 
 
 class dropdown:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
     def open(self, *args) -> Any:
         ...
 
-
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -17456,17 +17782,22 @@ class dropdown:
     def update_snap(self, *args) -> Any:
         ...
 
-dropdown_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
-dropdownlist_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+dropdown_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+dropdownlist_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def event_register_id(*args) -> Any:
     ...
+
 
 def event_send(*args) -> Any:
     ...
 
 
 class event_t:
-    ''
+    """"""
+
     def get_clip_area(self, *args) -> Any:
         ...
 
@@ -17515,27 +17846,37 @@ class event_t:
     def set_ext_draw_size(self, *args) -> Any:
         ...
 
+
 def extra_init(*args) -> Any:
     ...
+
 
 def flex_init(*args) -> Any:
     ...
 
+
 def font_default(*args) -> Any:
     ...
 
-font_dejavu_16_persian_hebrew : Any ## <class 'lv_font_t'> = struct lv_font_t
+
+font_dejavu_16_persian_hebrew: Any  ## <class 'lv_font_t'> = struct lv_font_t
+
 
 class font_glyph_dsc_t:
-    ''
+    """"""
+
+
 def font_load(*args) -> Any:
     ...
 
-font_montserrat_14 : Any ## <class 'lv_font_t'> = struct lv_font_t
-font_montserrat_16 : Any ## <class 'lv_font_t'> = struct lv_font_t
+
+font_montserrat_14: Any  ## <class 'lv_font_t'> = struct lv_font_t
+font_montserrat_16: Any  ## <class 'lv_font_t'> = struct lv_font_t
+
 
 class font_t:
-    ''
+    """"""
+
     def free(self, *args) -> Any:
         ...
 
@@ -17559,7 +17900,8 @@ class font_t:
 
 
 class fs_dir_t:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
@@ -17571,7 +17913,8 @@ class fs_dir_t:
 
 
 class fs_drv_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
 
@@ -17580,7 +17923,8 @@ class fs_drv_t:
 
 
 class fs_file_t:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
@@ -17599,48 +17943,62 @@ class fs_file_t:
     def tell(self, *args) -> Any:
         ...
 
+
 def fs_get_drv(*args) -> Any:
     ...
+
 
 def fs_get_ext(*args) -> Any:
     ...
 
+
 def fs_get_last(*args) -> Any:
     ...
+
 
 def fs_get_letters(*args) -> Any:
     ...
 
+
 def fs_is_ready(*args) -> Any:
     ...
+
 
 def fs_up(*args) -> Any:
     ...
 
+
 def grid_fr(*args) -> Any:
     ...
+
 
 def grid_init(*args) -> Any:
     ...
 
+
 def group_create(*args) -> Any:
     ...
+
 
 def group_focus_obj(*args) -> Any:
     ...
 
+
 def group_get_default(*args) -> Any:
     ...
 
+
 def group_remove_obj(*args) -> Any:
     ...
+
 
 def group_swap_obj(*args) -> Any:
     ...
 
 
 class group_t:
-    ''
+    """"""
+
     def add_obj(self, *args) -> Any:
         ...
 
@@ -17691,109 +18049,119 @@ class group_t:
 
 
 class hit_test_info_t:
-    ''
+    """"""
+
 
 class img:
-    ''
+    """"""
 
     class CF:
-        ''
-        ALPHA_1BIT = 11 # type: int
-        ALPHA_2BIT = 12 # type: int
-        ALPHA_4BIT = 13 # type: int
-        ALPHA_8BIT = 14 # type: int
-        INDEXED_1BIT = 7 # type: int
-        INDEXED_2BIT = 8 # type: int
-        INDEXED_4BIT = 9 # type: int
-        INDEXED_8BIT = 10 # type: int
-        RAW = 1 # type: int
-        RAW_ALPHA = 2 # type: int
-        RAW_CHROMA_KEYED = 3 # type: int
-        RESERVED_15 = 15 # type: int
-        RESERVED_16 = 16 # type: int
-        RESERVED_17 = 17 # type: int
-        RESERVED_18 = 18 # type: int
-        RESERVED_19 = 19 # type: int
-        RESERVED_20 = 20 # type: int
-        RESERVED_21 = 21 # type: int
-        RESERVED_22 = 22 # type: int
-        RESERVED_23 = 23 # type: int
-        TRUE_COLOR = 4 # type: int
-        TRUE_COLOR_ALPHA = 5 # type: int
-        TRUE_COLOR_CHROMA_KEYED = 6 # type: int
-        UNKNOWN = 0 # type: int
-        USER_ENCODED_0 = 24 # type: int
-        USER_ENCODED_1 = 25 # type: int
-        USER_ENCODED_2 = 26 # type: int
-        USER_ENCODED_3 = 27 # type: int
-        USER_ENCODED_4 = 28 # type: int
-        USER_ENCODED_5 = 29 # type: int
-        USER_ENCODED_6 = 30 # type: int
-        USER_ENCODED_7 = 31 # type: int
+        """"""
+
+        ALPHA_1BIT = 11  # type: int
+        ALPHA_2BIT = 12  # type: int
+        ALPHA_4BIT = 13  # type: int
+        ALPHA_8BIT = 14  # type: int
+        INDEXED_1BIT = 7  # type: int
+        INDEXED_2BIT = 8  # type: int
+        INDEXED_4BIT = 9  # type: int
+        INDEXED_8BIT = 10  # type: int
+        RAW = 1  # type: int
+        RAW_ALPHA = 2  # type: int
+        RAW_CHROMA_KEYED = 3  # type: int
+        RESERVED_15 = 15  # type: int
+        RESERVED_16 = 16  # type: int
+        RESERVED_17 = 17  # type: int
+        RESERVED_18 = 18  # type: int
+        RESERVED_19 = 19  # type: int
+        RESERVED_20 = 20  # type: int
+        RESERVED_21 = 21  # type: int
+        RESERVED_22 = 22  # type: int
+        RESERVED_23 = 23  # type: int
+        TRUE_COLOR = 4  # type: int
+        TRUE_COLOR_ALPHA = 5  # type: int
+        TRUE_COLOR_CHROMA_KEYED = 6  # type: int
+        UNKNOWN = 0  # type: int
+        USER_ENCODED_0 = 24  # type: int
+        USER_ENCODED_1 = 25  # type: int
+        USER_ENCODED_2 = 26  # type: int
+        USER_ENCODED_3 = 27  # type: int
+        USER_ENCODED_4 = 28  # type: int
+        USER_ENCODED_5 = 29  # type: int
+        USER_ENCODED_6 = 30  # type: int
+        USER_ENCODED_7 = 31  # type: int
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class SIZE_MODE:
-        ''
-        REAL = 1 # type: int
-        VIRTUAL = 0 # type: int
+        """"""
+
+        REAL = 1  # type: int
+        VIRTUAL = 0  # type: int
 
     class SRC:
-        ''
-        FILE = 1 # type: int
-        SYMBOL = 2 # type: int
-        UNKNOWN = 3 # type: int
-        VARIABLE = 0 # type: int
+        """"""
+
+        FILE = 1  # type: int
+        SYMBOL = 2  # type: int
+        UNKNOWN = 3  # type: int
+        VARIABLE = 0  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -18997,10 +19365,13 @@ class img:
     def update_snap(self, *args) -> Any:
         ...
 
-img_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+img_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class img_decoder_dsc_t:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
@@ -19012,7 +19383,8 @@ class img_decoder_dsc_t:
 
 
 class img_decoder_t:
-    ''
+    """"""
+
     def built_in_close(self, *args) -> Any:
         ...
 
@@ -19042,7 +19414,8 @@ class img_decoder_t:
 
 
 class img_dsc_t:
-    ''
+    """"""
+
     def buf_free(self, *args) -> Any:
         ...
 
@@ -19063,71 +19436,79 @@ class img_dsc_t:
 
 
 class img_header_t:
-    ''
+    """"""
+
 
 class imgbtn:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class STATE:
-        ''
-        CHECKED_DISABLED = 5 # type: int
-        CHECKED_PRESSED = 4 # type: int
-        CHECKED_RELEASED = 3 # type: int
-        DISABLED = 2 # type: int
-        PRESSED = 1 # type: int
-        RELEASED = 0 # type: int
+        """"""
+
+        CHECKED_DISABLED = 5  # type: int
+        CHECKED_PRESSED = 4  # type: int
+        CHECKED_RELEASED = 3  # type: int
+        DISABLED = 2  # type: int
+        PRESSED = 1  # type: int
+        RELEASED = 0  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -20214,37 +20595,47 @@ class imgbtn:
     def update_snap(self, *args) -> Any:
         ...
 
-imgbtn_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+imgbtn_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class indev_data_t:
-    ''
+    """"""
+
 
 class indev_drv_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
 
     def register(self, *args) -> Any:
         ...
 
+
 def indev_get_act(*args) -> Any:
     ...
+
 
 def indev_get_obj_act(*args) -> Any:
     ...
 
+
 def indev_get_read_timer(*args) -> Any:
     ...
 
+
 def indev_read_timer_cb(*args) -> Any:
     ...
+
 
 def indev_search_obj(*args) -> Any:
     ...
 
 
 class indev_t:
-    ''
+    """"""
+
     def drv_update(self, *args) -> Any:
         ...
 
@@ -20293,74 +20684,83 @@ class indev_t:
     def wait_release(self, *args) -> Any:
         ...
 
+
 def init(*args) -> Any:
     ...
+
 
 def is_initialized(*args) -> Any:
     ...
 
 
 class keyboard:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class MODE:
-        ''
-        NUMBER = 3 # type: int
-        SPECIAL = 2 # type: int
-        TEXT_LOWER = 0 # type: int
-        TEXT_UPPER = 1 # type: int
+        """"""
+
+        NUMBER = 3  # type: int
+        SPECIAL = 2  # type: int
+        TEXT_LOWER = 0  # type: int
+        TEXT_UPPER = 1  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -21453,70 +21853,79 @@ class keyboard:
     def update_snap(self, *args) -> Any:
         ...
 
-keyboard_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+keyboard_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class label:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class LONG:
-        ''
-        CLIP = 4 # type: int
-        DOT = 1 # type: int
-        SCROLL = 2 # type: int
-        SCROLL_CIRCULAR = 3 # type: int
-        WRAP = 0 # type: int
+        """"""
+
+        CLIP = 4  # type: int
+        DOT = 1  # type: int
+        SCROLL = 2  # type: int
+        SCROLL_CIRCULAR = 3  # type: int
+        WRAP = 0  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -22636,69 +23045,80 @@ class label:
     def update_snap(self, *args) -> Any:
         ...
 
-label_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+label_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def layer_sys(*args) -> Any:
     ...
 
+
 def layer_top(*args) -> Any:
     ...
+
 
 def layout_register(*args) -> Any:
     ...
 
 
 class led:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        RECTANGLE = 0 # type: int
+        """"""
+
+        RECTANGLE = 0  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -23788,62 +24208,70 @@ class led:
     def update_snap(self, *args) -> Any:
         ...
 
-led_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+led_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class line:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -24924,130 +25352,157 @@ class line:
     def update_snap(self, *args) -> Any:
         ...
 
-line_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
-list_btn_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
-list_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
-list_text_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+line_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+list_btn_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+list_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+list_text_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class ll_t:
-    ''
+    """"""
+
+
 def log(*args) -> Any:
     ...
+
 
 def log_register_print_cb(*args) -> Any:
     ...
 
+
 def mem_alloc(*args) -> Any:
     ...
+
 
 def mem_buf_free_all(*args) -> Any:
     ...
 
+
 def mem_buf_get(*args) -> Any:
     ...
+
 
 def mem_buf_release(*args) -> Any:
     ...
 
+
 def mem_deinit(*args) -> Any:
     ...
 
+
 def mem_free(*args) -> Any:
     ...
+
 
 def mem_init(*args) -> Any:
     ...
 
 
 class mem_monitor_t:
-    ''
+    """"""
+
     def monitor(self, *args) -> Any:
         ...
+
 
 def mem_realloc(*args) -> Any:
     ...
 
+
 def mem_test(*args) -> Any:
     ...
+
 
 def memcpy(*args) -> Any:
     ...
 
+
 def memcpy_small(*args) -> Any:
     ...
+
 
 def memset(*args) -> Any:
     ...
 
+
 def memset_00(*args) -> Any:
     ...
+
 
 def memset_ff(*args) -> Any:
     ...
 
 
 class meter:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        ARC = 0 # type: int
-        NEEDLE_IMG = 2 # type: int
-        NEEDLE_LINE = 1 # type: int
-        TICK = 3 # type: int
+        """"""
+
+        ARC = 0  # type: int
+        NEEDLE_IMG = 2  # type: int
+        NEEDLE_LINE = 1  # type: int
+        TICK = 3  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class INDICATOR_TYPE:
-        ''
-        ARC = 3 # type: int
-        NEEDLE_IMG = 0 # type: int
-        NEEDLE_LINE = 1 # type: int
-        SCALE_LINES = 2 # type: int
+        """"""
+
+        ARC = 3  # type: int
+        NEEDLE_IMG = 0  # type: int
+        NEEDLE_LINE = 1  # type: int
+        SCALE_LINES = 2  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_arc(self, *args) -> Any:
         ...
 
@@ -26152,86 +26607,101 @@ class meter:
     def update_snap(self, *args) -> Any:
         ...
 
-meter_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+meter_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class meter_indicator_t:
-    ''
+    """"""
+
 
 class meter_indicator_type_data_arc_t:
-    ''
+    """"""
+
 
 class meter_indicator_type_data_needle_img_t:
-    ''
+    """"""
+
 
 class meter_indicator_type_data_needle_line_t:
-    ''
+    """"""
+
 
 class meter_indicator_type_data_scale_lines_t:
-    ''
+    """"""
+
 
 class meter_indicator_type_data_t:
-    ''
+    """"""
+
 
 class meter_scale_t:
-    ''
+    """"""
+
 
 class msgbox:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
-
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -27321,62 +27791,70 @@ class msgbox:
     def update_snap(self, *args) -> Any:
         ...
 
-msgbox_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+msgbox_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class obj:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -28448,10 +28926,13 @@ class obj:
     def update_snap(self, *args) -> Any:
         ...
 
-obj_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+obj_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class obj_class_t:
-    ''
+    """"""
+
     def create_obj(self, *args) -> Any:
         ...
 
@@ -28460,94 +28941,109 @@ class obj_class_t:
 
 
 class obj_draw_part_dsc_t:
-    ''
+    """"""
+
     def check_type(self, *args) -> Any:
         ...
 
     def dsc_init(self, *args) -> Any:
         ...
 
+
 def palette_darken(*args) -> Any:
     ...
+
 
 def palette_lighten(*args) -> Any:
     ...
 
+
 def palette_main(*args) -> Any:
     ...
+
 
 def pct(*args) -> Any:
     ...
 
 
 class point_t:
-    ''
+    """"""
+
+
 def rand(*args) -> Any:
     ...
+
 
 def refr_now(*args) -> Any:
     ...
 
 
 class roller:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class MODE:
-        ''
-        INFINITE = 1 # type: int
-        NORMAL = 0 # type: int
+        """"""
+
+        INFINITE = 1  # type: int
+        NORMAL = 0  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -29640,76 +30136,88 @@ class roller:
     def update_snap(self, *args) -> Any:
         ...
 
-roller_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+roller_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def scr_act(*args) -> Any:
     ...
 
+
 def scr_load(*args) -> Any:
     ...
+
 
 def scr_load_anim(*args) -> Any:
     ...
 
 
 class slider:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        KNOB = 0 # type: int
-        KNOB_LEFT = 1 # type: int
+        """"""
+
+        KNOB = 0  # type: int
+        KNOB_LEFT = 1  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class MODE:
-        ''
-        NORMAL = 0 # type: int
-        RANGE = 2 # type: int
-        SYMMETRICAL = 1 # type: int
+        """"""
+
+        NORMAL = 0  # type: int
+        RANGE = 2  # type: int
+        SYMMETRICAL = 1  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -30811,22 +31319,29 @@ class slider:
     def update_snap(self, *args) -> Any:
         ...
 
-slider_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+slider_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def snapshot_buf_size_needed(*args) -> Any:
     ...
+
 
 def snapshot_free(*args) -> Any:
     ...
 
+
 def snapshot_take(*args) -> Any:
     ...
+
 
 def snapshot_take_to_buf(*args) -> Any:
     ...
 
 
 class span_t:
-    ''
+    """"""
+
     def set_text(self, *args) -> Any:
         ...
 
@@ -30835,59 +31350,65 @@ class span_t:
 
 
 class spangroup:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -31998,62 +32519,70 @@ class spangroup:
     def update_snap(self, *args) -> Any:
         ...
 
-spangroup_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+spangroup_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class spinbox:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -33161,62 +33690,70 @@ class spinbox:
     def update_snap(self, *args) -> Any:
         ...
 
-spinbox_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+spinbox_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class spinner:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -34288,25 +34825,33 @@ class spinner:
     def update_snap(self, *args) -> Any:
         ...
 
-spinner_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+spinner_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def sqrt(*args) -> Any:
     ...
 
 
 class sqrt_res_t:
-    ''
+    """"""
+
 
 class style_const_prop_t:
-    ''
+    """"""
+
+
 def style_prop_get_default(*args) -> Any:
     ...
+
 
 def style_register_prop(*args) -> Any:
     ...
 
 
 class style_t:
-    ''
+    """"""
+
     def get_prop(self, *args) -> Any:
         ...
 
@@ -34657,71 +35202,80 @@ class style_t:
 
 
 class style_transition_dsc_t:
-    ''
+    """"""
+
     def init(self, *args) -> Any:
         ...
 
 
 class style_v_p_t:
-    ''
+    """"""
+
 
 class style_value_t:
-    ''
+    """"""
+
 
 class switch:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -35793,69 +36347,78 @@ class switch:
     def update_snap(self, *args) -> Any:
         ...
 
-switch_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+switch_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class table:
-    ''
+    """"""
 
     class CELL_CTRL:
-        ''
-        CUSTOM_1 = 16 # type: int
-        CUSTOM_2 = 32 # type: int
-        CUSTOM_3 = 64 # type: int
-        CUSTOM_4 = 128 # type: int
-        MERGE_RIGHT = 1 # type: int
-        TEXT_CROP = 2 # type: int
+        """"""
+
+        CUSTOM_1 = 16  # type: int
+        CUSTOM_2 = 32  # type: int
+        CUSTOM_3 = 64  # type: int
+        CUSTOM_4 = 128  # type: int
+        MERGE_RIGHT = 1  # type: int
+        TEXT_CROP = 2  # type: int
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        CELL = 0 # type: int
+        """"""
+
+        CELL = 0  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_cell_ctrl(self, *args) -> Any:
         ...
 
@@ -36963,62 +37526,70 @@ class table:
     def update_snap(self, *args) -> Any:
         ...
 
-table_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+table_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
 
 class tabview:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -38105,65 +38676,74 @@ class tabview:
     def update_snap(self, *args) -> Any:
         ...
 
-tabview_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+tabview_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def task_handler(*args) -> Any:
     ...
 
 
 class textarea:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_char(self, *args) -> Any:
         ...
 
@@ -39331,113 +39911,136 @@ class textarea:
     def update_snap(self, *args) -> Any:
         ...
 
-textarea_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+textarea_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def theme_apply(*args) -> Any:
     ...
+
 
 def theme_basic_init(*args) -> Any:
     ...
 
+
 def theme_default_init(*args) -> Any:
     ...
+
 
 def theme_default_is_inited(*args) -> Any:
     ...
 
+
 def theme_get_color_primary(*args) -> Any:
     ...
+
 
 def theme_get_color_secondary(*args) -> Any:
     ...
 
+
 def theme_get_font_large(*args) -> Any:
     ...
+
 
 def theme_get_font_normal(*args) -> Any:
     ...
 
+
 def theme_get_font_small(*args) -> Any:
     ...
 
+
 def theme_get_from_obj(*args) -> Any:
     ...
+
 
 def theme_mono_init(*args) -> Any:
     ...
 
 
 class theme_t:
-    ''
+    """"""
+
     def set_apply_cb(self, *args) -> Any:
         ...
 
     def set_parent(self, *args) -> Any:
         ...
 
+
 def tick_elaps(*args) -> Any:
     ...
 
+
 def tick_get(*args) -> Any:
     ...
+
 
 def tick_inc(*args) -> Any:
     ...
 
 
 class tileview:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_event_cb(self, *args) -> Any:
         ...
 
@@ -40515,26 +41118,34 @@ class tileview:
     def update_snap(self, *args) -> Any:
         ...
 
-tileview_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
-tileview_tile_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+tileview_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+tileview_tile_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+
 def timer_create(*args) -> Any:
     ...
+
 
 def timer_create_basic(*args) -> Any:
     ...
 
+
 def timer_enable(*args) -> Any:
     ...
 
+
 def timer_get_idle(*args) -> Any:
     ...
+
 
 def timer_handler(*args) -> Any:
     ...
 
 
 class timer_t:
-    ''
+    """"""
+
     def get_next(self, *args) -> Any:
         ...
 
@@ -40559,85 +41170,99 @@ class timer_t:
     def set_repeat_count(self, *args) -> Any:
         ...
 
+
 def trigo_cos(*args) -> Any:
     ...
+
 
 def trigo_sin(*args) -> Any:
     ...
 
+
 def txt_get_size(*args) -> Any:
     ...
+
 
 def txt_get_width(*args) -> Any:
     ...
 
+
 def version_info(*args) -> Any:
     ...
+
 
 def version_major(*args) -> Any:
     ...
 
+
 def version_minor(*args) -> Any:
     ...
+
 
 def version_patch(*args) -> Any:
     ...
 
 
 class win:
-    ''
+    """"""
 
     class CLASS_EDITABLE:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class CLASS_GROUP_DEF:
-        ''
-        FALSE = 2 # type: int
-        INHERIT = 0 # type: int
-        TRUE = 1 # type: int
+        """"""
+
+        FALSE = 2  # type: int
+        INHERIT = 0  # type: int
+        TRUE = 1  # type: int
 
     class DRAW_PART:
-        ''
-        BORDER_POST = 1 # type: int
-        RECTANGLE = 0 # type: int
-        SCROLLBAR = 2 # type: int
+        """"""
+
+        BORDER_POST = 1  # type: int
+        RECTANGLE = 0  # type: int
+        SCROLLBAR = 2  # type: int
 
     class FLAG:
-        ''
-        ADV_HITTEST = 16384 # type: int
-        CHECKABLE = 8 # type: int
-        CLICKABLE = 2 # type: int
-        CLICK_FOCUSABLE = 4 # type: int
-        EVENT_BUBBLE = 4096 # type: int
-        FLOATING = 65536 # type: int
-        GESTURE_BUBBLE = 8192 # type: int
-        HIDDEN = 1 # type: int
-        IGNORE_LAYOUT = 32768 # type: int
-        LAYOUT_1 = 8388608 # type: int
-        LAYOUT_2 = 16777216 # type: int
-        PRESS_LOCK = 2048 # type: int
-        SCROLLABLE = 16 # type: int
-        SCROLL_CHAIN = 256 # type: int
-        SCROLL_ELASTIC = 32 # type: int
-        SCROLL_MOMENTUM = 64 # type: int
-        SCROLL_ONE = 128 # type: int
-        SCROLL_ON_FOCUS = 512 # type: int
-        SNAPPABLE = 1024 # type: int
-        USER_1 = 134217728 # type: int
-        USER_2 = 268435456 # type: int
-        USER_3 = 536870912 # type: int
-        USER_4 = -1073741824 # type: int
-        WIDGET_1 = 33554432 # type: int
-        WIDGET_2 = 67108864 # type: int
+        """"""
+
+        ADV_HITTEST = 16384  # type: int
+        CHECKABLE = 8  # type: int
+        CLICKABLE = 2  # type: int
+        CLICK_FOCUSABLE = 4  # type: int
+        EVENT_BUBBLE = 4096  # type: int
+        FLOATING = 65536  # type: int
+        GESTURE_BUBBLE = 8192  # type: int
+        HIDDEN = 1  # type: int
+        IGNORE_LAYOUT = 32768  # type: int
+        LAYOUT_1 = 8388608  # type: int
+        LAYOUT_2 = 16777216  # type: int
+        PRESS_LOCK = 2048  # type: int
+        SCROLLABLE = 16  # type: int
+        SCROLL_CHAIN = 256  # type: int
+        SCROLL_ELASTIC = 32  # type: int
+        SCROLL_MOMENTUM = 64  # type: int
+        SCROLL_ONE = 128  # type: int
+        SCROLL_ON_FOCUS = 512  # type: int
+        SNAPPABLE = 1024  # type: int
+        USER_1 = 134217728  # type: int
+        USER_2 = 268435456  # type: int
+        USER_3 = 536870912  # type: int
+        USER_4 = -1073741824  # type: int
+        WIDGET_1 = 33554432  # type: int
+        WIDGET_2 = 67108864  # type: int
 
     class TREE_WALK:
-        ''
-        END = 2 # type: int
-        NEXT = 0 # type: int
-        SKIP_CHILDREN = 1 # type: int
+        """"""
+
+        END = 2  # type: int
+        NEXT = 0  # type: int
+        SKIP_CHILDREN = 1  # type: int
+
     def add_btn(self, *args) -> Any:
         ...
 
@@ -41721,4 +42346,5 @@ class win:
     def update_snap(self, *args) -> Any:
         ...
 
-win_class : Any ## <class 'lv_obj_class_t'> = struct lv_obj_class_t
+
+win_class: Any  ## <class 'lv_obj_class_t'> = struct lv_obj_class_t

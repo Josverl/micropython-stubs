@@ -10,7 +10,7 @@ def const(*args) -> Any:
     ...
 
 
-class OneWireError:
+class OneWireError(Exception):
     """"""
 
 

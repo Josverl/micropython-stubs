@@ -1311,7 +1311,7 @@ class SPI:
         mode,
         baudrate=328125,
         *,
-        prescaler,
+        prescaler=1,
         polarity=1,
         phase=0,
         bits=8,

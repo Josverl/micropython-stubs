@@ -6,7 +6,7 @@ Module: 'upip' on M5 FlowUI v1.4.0-beta
 from typing import Any
 
 
-class NotFoundError:
+class NotFoundError(Exception):
     """"""
 
 

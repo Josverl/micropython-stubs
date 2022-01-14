@@ -5,15 +5,18 @@ Module: 'umqtt.simple' on micropython-v1.14-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def hexlify(*args) -> Any:
     ...
 
 
-class MQTTException:
-    ''
+class MQTTException(Exception):
+    """"""
+
 
 class MQTTClient:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -43,4 +46,3 @@ class MQTTClient:
 
     def check_msg(self, *args) -> Any:
         ...
-

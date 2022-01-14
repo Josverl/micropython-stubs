@@ -136,11 +136,11 @@ class MagickWand:
         pass
 
 
-class MagickWandError:
+class MagickWandError(Exception):
     """"""
 
 
-class PixelError:
+class PixelError(Exception):
     """"""
 
 

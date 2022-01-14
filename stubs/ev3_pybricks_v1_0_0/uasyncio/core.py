@@ -6,7 +6,7 @@ Module: 'uasyncio.core' on LEGO EV3 v1.0.0
 from typing import Any
 
 
-class CancelledError:
+class CancelledError(Exception):
     """"""
 
 
@@ -110,7 +110,7 @@ def Task():
     pass
 
 
-class TimeoutError:
+class TimeoutError(Exception):
     """"""
 
 

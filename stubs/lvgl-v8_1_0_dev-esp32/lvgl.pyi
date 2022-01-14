@@ -689,7 +689,7 @@ class LOG_LEVEL:
     USER: int
     WARN: int
 
-class LvReferenceError: ...
+class LvReferenceError(Exception): ...
 
 class OBJ_FLAG_FLEX_IN_NEW:
     TRACK: int

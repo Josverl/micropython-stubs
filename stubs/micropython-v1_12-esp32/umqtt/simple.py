@@ -10,7 +10,7 @@ def hexlify(*args) -> Any:
     ...
 
 
-class MQTTException:
+class MQTTException(Exception):
     """"""
 
 
