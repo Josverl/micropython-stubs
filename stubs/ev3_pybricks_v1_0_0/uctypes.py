@@ -2,7 +2,9 @@
 Module: 'uctypes' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 ARRAY = -1073741824
 BFINT16 = -671088640
 BFINT32 = -402653184
@@ -27,18 +29,23 @@ UINT32 = 536870912
 UINT64 = 805306368
 UINT8 = 0
 VOID = 0
+
+
 def addressof():
     pass
+
 
 def bytearray_at():
     pass
 
+
 def bytes_at():
     pass
+
 
 def sizeof():
     pass
 
 
 class struct:
-    ''
+    """"""

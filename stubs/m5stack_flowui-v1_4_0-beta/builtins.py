@@ -2,615 +2,712 @@
 Module: 'builtins' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 
 class ArithmeticError:
-    ''
+    """"""
+
 
 class AssertionError:
-    ''
+    """"""
+
 
 class AttributeError:
-    ''
+    """"""
+
 
 class BaseException:
-    ''
+    """"""
+
 
 class EOFError:
-    ''
+    """"""
+
+
 Ellipsis = None
 
+
 class Exception:
-    ''
+    """"""
+
 
 class GeneratorExit:
-    ''
+    """"""
+
 
 class ImportError:
-    ''
+    """"""
+
 
 class IndentationError:
-    ''
+    """"""
+
 
 class IndexError:
-    ''
+    """"""
+
 
 class KeyError:
-    ''
+    """"""
+
 
 class KeyboardInterrupt:
-    ''
+    """"""
+
 
 class LookupError:
-    ''
+    """"""
+
 
 class MemoryError:
-    ''
+    """"""
+
 
 class NameError:
-    ''
+    """"""
+
+
 NotImplemented = None
 
+
 class NotImplementedError:
-    ''
+    """"""
+
 
 class OSError:
-    ''
+    """"""
+
 
 class OverflowError:
-    ''
+    """"""
+
 
 class RuntimeError:
-    ''
+    """"""
+
 
 class StopAsyncIteration:
-    ''
+    """"""
+
 
 class StopIteration:
-    ''
+    """"""
+
 
 class SyntaxError:
-    ''
+    """"""
+
 
 class SystemExit:
-    ''
+    """"""
+
 
 class TypeError:
-    ''
+    """"""
+
 
 class UnicodeError:
-    ''
+    """"""
+
 
 class ValueError:
-    ''
+    """"""
+
 
 class ZeroDivisionError:
-    ''
+    """"""
+
+
 def abs():
     pass
+
 
 def all():
     pass
 
+
 def any():
     pass
+
 
 def bin():
     pass
 
 
 class bool:
-    ''
+    """"""
+
 
 class bytearray:
-    ''
-    def append():
+    """"""
+
+    def append(self, *argv) -> Any:
         pass
 
-    def decode():
+    def decode(self, *argv) -> Any:
         pass
 
-    def extend():
+    def extend(self, *argv) -> Any:
         pass
 
 
 class bytes:
-    ''
-    def center():
+    """"""
+
+    def center(self, *argv) -> Any:
         pass
 
-    def count():
+    def count(self, *argv) -> Any:
         pass
 
-    def decode():
+    def decode(self, *argv) -> Any:
         pass
 
-    def endswith():
+    def endswith(self, *argv) -> Any:
         pass
 
-    def find():
+    def find(self, *argv) -> Any:
         pass
 
-    def format():
+    def format(self, *argv) -> Any:
         pass
 
-    def index():
+    def index(self, *argv) -> Any:
         pass
 
-    def isalpha():
+    def isalpha(self, *argv) -> Any:
         pass
 
-    def isdigit():
+    def isdigit(self, *argv) -> Any:
         pass
 
-    def islower():
+    def islower(self, *argv) -> Any:
         pass
 
-    def isspace():
+    def isspace(self, *argv) -> Any:
         pass
 
-    def isupper():
+    def isupper(self, *argv) -> Any:
         pass
 
-    def join():
+    def join(self, *argv) -> Any:
         pass
 
-    def lower():
+    def lower(self, *argv) -> Any:
         pass
 
-    def lstrip():
+    def lstrip(self, *argv) -> Any:
         pass
 
-    def partition():
+    def partition(self, *argv) -> Any:
         pass
 
-    def replace():
+    def replace(self, *argv) -> Any:
         pass
 
-    def rfind():
+    def rfind(self, *argv) -> Any:
         pass
 
-    def rindex():
+    def rindex(self, *argv) -> Any:
         pass
 
-    def rpartition():
+    def rpartition(self, *argv) -> Any:
         pass
 
-    def rsplit():
+    def rsplit(self, *argv) -> Any:
         pass
 
-    def rstrip():
+    def rstrip(self, *argv) -> Any:
         pass
 
-    def split():
+    def split(self, *argv) -> Any:
         pass
 
-    def splitlines():
+    def splitlines(self, *argv) -> Any:
         pass
 
-    def startswith():
+    def startswith(self, *argv) -> Any:
         pass
 
-    def strip():
+    def strip(self, *argv) -> Any:
         pass
 
-    def upper():
+    def upper(self, *argv) -> Any:
         pass
+
 
 def callable():
     pass
+
 
 def chr():
     pass
 
 
 class classmethod:
-    ''
+    """"""
+
+
 def compile():
     pass
 
 
 class complex:
-    ''
+    """"""
+
+
 def delattr():
     pass
 
 
 class dict:
-    ''
-    def clear():
+    """"""
+
+    def clear(self, *argv) -> Any:
         pass
 
-    def copy():
+    def copy(self, *argv) -> Any:
         pass
 
-    def fromkeys():
+    def fromkeys(self, *argv) -> Any:
         pass
 
-    def get():
+    def get(self, *argv) -> Any:
         pass
 
-    def items():
+    def items(self, *argv) -> Any:
         pass
 
-    def keys():
+    def keys(self, *argv) -> Any:
         pass
 
-    def pop():
+    def pop(self, *argv) -> Any:
         pass
 
-    def popitem():
+    def popitem(self, *argv) -> Any:
         pass
 
-    def setdefault():
+    def setdefault(self, *argv) -> Any:
         pass
 
-    def update():
+    def update(self, *argv) -> Any:
         pass
 
-    def values():
+    def values(self, *argv) -> Any:
         pass
+
 
 def dir():
     pass
+
 
 def divmod():
     pass
 
 
 class enumerate:
-    ''
+    """"""
+
+
 def eval():
     pass
 
+
 def exec():
     pass
+
 
 def execfile():
     pass
 
 
 class filter:
-    ''
+    """"""
+
 
 class float:
-    ''
+    """"""
+
 
 class frozenset:
-    ''
-    def copy():
+    """"""
+
+    def copy(self, *argv) -> Any:
         pass
 
-    def difference():
+    def difference(self, *argv) -> Any:
         pass
 
-    def intersection():
+    def intersection(self, *argv) -> Any:
         pass
 
-    def isdisjoint():
+    def isdisjoint(self, *argv) -> Any:
         pass
 
-    def issubset():
+    def issubset(self, *argv) -> Any:
         pass
 
-    def issuperset():
+    def issuperset(self, *argv) -> Any:
         pass
 
-    def symmetric_difference():
+    def symmetric_difference(self, *argv) -> Any:
         pass
 
-    def union():
+    def union(self, *argv) -> Any:
         pass
+
 
 def getattr():
     pass
 
+
 def globals():
     pass
+
 
 def hasattr():
     pass
 
+
 def hash():
     pass
+
 
 def help():
     pass
 
+
 def hex():
     pass
 
+
 def id():
     pass
+
 
 def input():
     pass
 
 
 class int:
-    ''
-    def from_bytes():
+    """"""
+
+    def from_bytes(self, *argv) -> Any:
         pass
 
-    def to_bytes():
+    def to_bytes(self, *argv) -> Any:
         pass
+
 
 def isinstance():
     pass
 
+
 def issubclass():
     pass
 
+
 def iter():
     pass
+
 
 def len():
     pass
 
 
 class list:
-    ''
-    def append():
+    """"""
+
+    def append(self, *argv) -> Any:
         pass
 
-    def clear():
+    def clear(self, *argv) -> Any:
         pass
 
-    def copy():
+    def copy(self, *argv) -> Any:
         pass
 
-    def count():
+    def count(self, *argv) -> Any:
         pass
 
-    def extend():
+    def extend(self, *argv) -> Any:
         pass
 
-    def index():
+    def index(self, *argv) -> Any:
         pass
 
-    def insert():
+    def insert(self, *argv) -> Any:
         pass
 
-    def pop():
+    def pop(self, *argv) -> Any:
         pass
 
-    def remove():
+    def remove(self, *argv) -> Any:
         pass
 
-    def reverse():
+    def reverse(self, *argv) -> Any:
         pass
 
-    def sort():
+    def sort(self, *argv) -> Any:
         pass
+
 
 def locals():
     pass
 
 
 class map:
-    ''
+    """"""
+
+
 def max():
     pass
 
 
 class memoryview:
-    ''
+    """"""
+
+
 def min():
     pass
+
 
 def next():
     pass
 
 
 class object:
-    ''
+    """"""
+
+
 def oct():
     pass
+
 
 def open():
     pass
 
+
 def ord():
     pass
 
+
 def pow():
     pass
+
 
 def print():
     pass
 
 
 class property:
-    ''
-    def deleter():
+    """"""
+
+    def deleter(self, *argv) -> Any:
         pass
 
-    def getter():
+    def getter(self, *argv) -> Any:
         pass
 
-    def setter():
+    def setter(self, *argv) -> Any:
         pass
 
 
 class range:
-    ''
+    """"""
+
+
 def repr():
     pass
 
 
 class reversed:
-    ''
+    """"""
+
+
 def round():
     pass
 
 
 class set:
-    ''
-    def add():
+    """"""
+
+    def add(self, *argv) -> Any:
         pass
 
-    def clear():
+    def clear(self, *argv) -> Any:
         pass
 
-    def copy():
+    def copy(self, *argv) -> Any:
         pass
 
-    def difference():
+    def difference(self, *argv) -> Any:
         pass
 
-    def difference_update():
+    def difference_update(self, *argv) -> Any:
         pass
 
-    def discard():
+    def discard(self, *argv) -> Any:
         pass
 
-    def intersection():
+    def intersection(self, *argv) -> Any:
         pass
 
-    def intersection_update():
+    def intersection_update(self, *argv) -> Any:
         pass
 
-    def isdisjoint():
+    def isdisjoint(self, *argv) -> Any:
         pass
 
-    def issubset():
+    def issubset(self, *argv) -> Any:
         pass
 
-    def issuperset():
+    def issuperset(self, *argv) -> Any:
         pass
 
-    def pop():
+    def pop(self, *argv) -> Any:
         pass
 
-    def remove():
+    def remove(self, *argv) -> Any:
         pass
 
-    def symmetric_difference():
+    def symmetric_difference(self, *argv) -> Any:
         pass
 
-    def symmetric_difference_update():
+    def symmetric_difference_update(self, *argv) -> Any:
         pass
 
-    def union():
+    def union(self, *argv) -> Any:
         pass
 
-    def update():
+    def update(self, *argv) -> Any:
         pass
+
 
 def setattr():
     pass
 
 
 class slice:
-    ''
+    """"""
+
+
 def sorted():
     pass
 
 
 class staticmethod:
-    ''
+    """"""
+
 
 class str:
-    ''
-    def center():
+    """"""
+
+    def center(self, *argv) -> Any:
         pass
 
-    def count():
+    def count(self, *argv) -> Any:
         pass
 
-    def encode():
+    def encode(self, *argv) -> Any:
         pass
 
-    def endswith():
+    def endswith(self, *argv) -> Any:
         pass
 
-    def find():
+    def find(self, *argv) -> Any:
         pass
 
-    def format():
+    def format(self, *argv) -> Any:
         pass
 
-    def index():
+    def index(self, *argv) -> Any:
         pass
 
-    def isalpha():
+    def isalpha(self, *argv) -> Any:
         pass
 
-    def isdigit():
+    def isdigit(self, *argv) -> Any:
         pass
 
-    def islower():
+    def islower(self, *argv) -> Any:
         pass
 
-    def isspace():
+    def isspace(self, *argv) -> Any:
         pass
 
-    def isupper():
+    def isupper(self, *argv) -> Any:
         pass
 
-    def join():
+    def join(self, *argv) -> Any:
         pass
 
-    def lower():
+    def lower(self, *argv) -> Any:
         pass
 
-    def lstrip():
+    def lstrip(self, *argv) -> Any:
         pass
 
-    def partition():
+    def partition(self, *argv) -> Any:
         pass
 
-    def replace():
+    def replace(self, *argv) -> Any:
         pass
 
-    def rfind():
+    def rfind(self, *argv) -> Any:
         pass
 
-    def rindex():
+    def rindex(self, *argv) -> Any:
         pass
 
-    def rpartition():
+    def rpartition(self, *argv) -> Any:
         pass
 
-    def rsplit():
+    def rsplit(self, *argv) -> Any:
         pass
 
-    def rstrip():
+    def rstrip(self, *argv) -> Any:
         pass
 
-    def split():
+    def split(self, *argv) -> Any:
         pass
 
-    def splitlines():
+    def splitlines(self, *argv) -> Any:
         pass
 
-    def startswith():
+    def startswith(self, *argv) -> Any:
         pass
 
-    def strip():
+    def strip(self, *argv) -> Any:
         pass
 
-    def upper():
+    def upper(self, *argv) -> Any:
         pass
+
 
 def sum():
     pass
 
 
 class super:
-    ''
+    """"""
+
 
 class tuple:
-    ''
-    def count():
+    """"""
+
+    def count(self, *argv) -> Any:
         pass
 
-    def index():
+    def index(self, *argv) -> Any:
         pass
 
 
 class type:
-    ''
+    """"""
+
 
 class zip:
-    ''
+    """"""

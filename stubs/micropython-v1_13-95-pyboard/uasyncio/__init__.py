@@ -2,128 +2,147 @@
 Module: 'uasyncio.__init__' on pyboard 1.13.0-95
 """
 # MCU: (sysname='pyboard', nodename='pyboard', release='1.13.0', version='v1.13-95-g0fff2e03f on 2020-10-03', machine='PYBv1.1 with STM32F405RG')
-# Stubber: 1.3.4
+# Stubber: 1.3.4 - updated
+from typing import Any
+
 
 class CancelledError:
-    ''
+    """"""
+
 
 class Event:
-    ''
-    def clear():
+    """"""
+
+    def clear(self, *args) -> Any:
         pass
 
-    def is_set():
+    def is_set(self, *args) -> Any:
         pass
 
-    def set():
+    def set(self, *args) -> Any:
         pass
 
     wait = None
 
+
 class IOQueue:
-    ''
-    def _dequeue():
+    """"""
+
+    def _dequeue(self, *args) -> Any:
         pass
 
-    def _enqueue():
+    def _enqueue(self, *args) -> Any:
         pass
 
-    def queue_read():
+    def queue_read(self, *args) -> Any:
         pass
 
-    def queue_write():
+    def queue_write(self, *args) -> Any:
         pass
 
-    def remove():
+    def remove(self, *args) -> Any:
         pass
 
-    def wait_io_event():
+    def wait_io_event(self, *args) -> Any:
         pass
 
 
 class Lock:
-    ''
+    """"""
+
     acquire = None
-    def locked():
+
+    def locked(self, *args) -> Any:
         pass
 
-    def release():
+    def release(self, *args) -> Any:
         pass
 
 
 class Loop:
-    ''
+    """"""
+
     _exc_handler = None
-    def call_exception_handler():
+
+    def call_exception_handler(self, *args) -> Any:
         pass
 
-    def close():
+    def close(self, *args) -> Any:
         pass
 
-    def create_task():
+    def create_task(self, *args) -> Any:
         pass
 
-    def default_exception_handler():
+    def default_exception_handler(self, *args) -> Any:
         pass
 
-    def get_exception_handler():
+    def get_exception_handler(self, *args) -> Any:
         pass
 
-    def run_forever():
+    def run_forever(self, *args) -> Any:
         pass
 
-    def run_until_complete():
+    def run_until_complete(self, *args) -> Any:
         pass
 
-    def set_exception_handler():
+    def set_exception_handler(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
 
 
 class SingletonGenerator:
-    ''
+    """"""
+
 
 class StreamReader:
-    ''
+    """"""
+
     aclose = None
     awrite = None
     awritestr = None
-    def close():
+
+    def close(self, *args) -> Any:
         pass
 
     drain = None
-    def get_extra_info():
+
+    def get_extra_info(self, *args) -> Any:
         pass
 
     read = None
     readexactly = None
     readline = None
     wait_closed = None
-    def write():
+
+    def write(self, *args) -> Any:
         pass
 
 
 class StreamWriter:
-    ''
+    """"""
+
     aclose = None
     awrite = None
     awritestr = None
-    def close():
+
+    def close(self, *args) -> Any:
         pass
 
     drain = None
-    def get_extra_info():
+
+    def get_extra_info(self, *args) -> Any:
         pass
 
     read = None
     readexactly = None
     readline = None
     wait_closed = None
-    def write():
+
+    def write(self, *args) -> Any:
         pass
 
 
 class Task:
-    ''
+    """"""

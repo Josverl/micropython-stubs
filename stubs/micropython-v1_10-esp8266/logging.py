@@ -2,47 +2,53 @@
 Module: 'logging' on esp8266 v1.10
 """
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.10-8-g8b7039d7d on 2019-01-26', machine='ESP module with ESP8266')
-# Stubber: 1.1.0
+# Stubber: 1.1.0 - updated
+from typing import Any
+
 CRITICAL = 50
 DEBUG = 10
 ERROR = 40
 INFO = 20
 
+
 class Logger:
-    ''
-    def _level_str():
+    """"""
+
+    def _level_str(self, *args) -> Any:
         pass
 
-    def critical():
+    def critical(self, *args) -> Any:
         pass
 
-    def debug():
+    def debug(self, *args) -> Any:
         pass
 
-    def error():
+    def error(self, *args) -> Any:
         pass
 
-    def exc():
+    def exc(self, *args) -> Any:
         pass
 
-    def exception():
+    def exception(self, *args) -> Any:
         pass
 
-    def info():
+    def info(self, *args) -> Any:
         pass
 
-    def isEnabledFor():
+    def isEnabledFor(self, *args) -> Any:
         pass
 
     level = 0
-    def log():
+
+    def log(self, *args) -> Any:
         pass
 
-    def setLevel():
+    def setLevel(self, *args) -> Any:
         pass
 
-    def warning():
+    def warning(self, *args) -> Any:
         pass
+
 
 NOTSET = 0
 WARNING = 30
@@ -50,16 +56,22 @@ _level = 20
 _level_dict = None
 _loggers = None
 _stream = None
-def basicConfig():
+
+
+def basicConfig(*args) -> Any:
     pass
 
-def debug():
+
+def debug(*args) -> Any:
     pass
 
-def getLogger():
+
+def getLogger(*args) -> Any:
     pass
 
-def info():
+
+def info(*args) -> Any:
     pass
+
 
 sys = None

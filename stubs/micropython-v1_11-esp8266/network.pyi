@@ -1,3 +1,5 @@
+from typing import Any
+
 AP_IF: int
 AUTH_OPEN: int
 AUTH_WEP: int
@@ -15,5 +17,5 @@ STAT_NO_AP_FOUND: int
 STAT_WRONG_PASSWORD: int
 STA_IF: int
 
-def WLAN() -> None: ...
-def phy_mode() -> None: ...
+def WLAN(*args) -> Any: ...
+def phy_mode(*args) -> Any: ...

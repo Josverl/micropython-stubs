@@ -2,64 +2,70 @@
 Module: 'pyb' on pyboard 1.13.0-95
 """
 # MCU: (sysname='pyboard', nodename='pyboard', release='1.13.0', version='v1.13-95-g0fff2e03f on 2020-10-03', machine='PYBv1.1 with STM32F405RG')
-# Stubber: 1.3.4
+# Stubber: 1.3.4 - updated
+from typing import Any
+
 
 class ADC:
-    ''
-    def read():
+    """"""
+
+    def read(self, *args) -> Any:
         pass
 
-    def read_timed():
+    def read_timed(self, *args) -> Any:
         pass
 
-    def read_timed_multi():
+    def read_timed_multi(self, *args) -> Any:
         pass
 
 
 class ADCAll:
-    ''
-    def read_channel():
+    """"""
+
+    def read_channel(self, *args) -> Any:
         pass
 
-    def read_core_temp():
+    def read_core_temp(self, *args) -> Any:
         pass
 
-    def read_core_vbat():
+    def read_core_vbat(self, *args) -> Any:
         pass
 
-    def read_core_vref():
+    def read_core_vref(self, *args) -> Any:
         pass
 
-    def read_vref():
+    def read_vref(self, *args) -> Any:
         pass
 
 
 class Accel:
-    ''
-    def filtered_xyz():
+    """"""
+
+    def filtered_xyz(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def tilt():
+    def tilt(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
-    def x():
+    def x(self, *args) -> Any:
         pass
 
-    def y():
+    def y(self, *args) -> Any:
         pass
 
-    def z():
+    def z(self, *args) -> Any:
         pass
 
 
 class CAN:
-    ''
+    """"""
+
     BUS_OFF = 4
     ERROR_ACTIVE = 1
     ERROR_PASSIVE = 3
@@ -73,178 +79,189 @@ class CAN:
     SILENT = 134217728
     SILENT_LOOPBACK = 201326592
     STOPPED = 0
-    def any():
+
+    def any(self, *args) -> Any:
         pass
 
-    def clearfilter():
+    def clearfilter(self, *args) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *args) -> Any:
         pass
 
-    def info():
+    def info(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def initfilterbanks():
+    def initfilterbanks(self, *args) -> Any:
         pass
 
-    def recv():
+    def recv(self, *args) -> Any:
         pass
 
-    def restart():
+    def restart(self, *args) -> Any:
         pass
 
-    def rxcallback():
+    def rxcallback(self, *args) -> Any:
         pass
 
-    def send():
+    def send(self, *args) -> Any:
         pass
 
-    def setfilter():
+    def setfilter(self, *args) -> Any:
         pass
 
-    def state():
+    def state(self, *args) -> Any:
         pass
 
 
 class DAC:
-    ''
+    """"""
+
     CIRCULAR = 256
     NORMAL = 0
-    def deinit():
+
+    def deinit(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def noise():
+    def noise(self, *args) -> Any:
         pass
 
-    def triangle():
+    def triangle(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
-    def write_timed():
+    def write_timed(self, *args) -> Any:
         pass
 
 
 class ExtInt:
-    ''
+    """"""
+
     EVT_FALLING = 270663680
     EVT_RISING = 269615104
     EVT_RISING_FALLING = 271712256
     IRQ_FALLING = 270598144
     IRQ_RISING = 269549568
     IRQ_RISING_FALLING = 271646720
-    def disable():
+
+    def disable(self, *args) -> Any:
         pass
 
-    def enable():
+    def enable(self, *args) -> Any:
         pass
 
-    def line():
+    def line(self, *args) -> Any:
         pass
 
-    def regs():
+    def regs(self, *args) -> Any:
         pass
 
-    def swint():
+    def swint(self, *args) -> Any:
         pass
 
 
 class Flash:
-    ''
-    def ioctl():
+    """"""
+
+    def ioctl(self, *args) -> Any:
         pass
 
-    def readblocks():
+    def readblocks(self, *args) -> Any:
         pass
 
-    def writeblocks():
+    def writeblocks(self, *args) -> Any:
         pass
 
 
 class I2C:
-    ''
+    """"""
+
     MASTER = 0
     SLAVE = 1
-    def deinit():
+
+    def deinit(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def is_ready():
+    def is_ready(self, *args) -> Any:
         pass
 
-    def mem_read():
+    def mem_read(self, *args) -> Any:
         pass
 
-    def mem_write():
+    def mem_write(self, *args) -> Any:
         pass
 
-    def recv():
+    def recv(self, *args) -> Any:
         pass
 
-    def scan():
+    def scan(self, *args) -> Any:
         pass
 
-    def send():
+    def send(self, *args) -> Any:
         pass
 
 
 class LCD:
-    ''
-    def command():
+    """"""
+
+    def command(self, *args) -> Any:
         pass
 
-    def contrast():
+    def contrast(self, *args) -> Any:
         pass
 
-    def fill():
+    def fill(self, *args) -> Any:
         pass
 
-    def get():
+    def get(self, *args) -> Any:
         pass
 
-    def light():
+    def light(self, *args) -> Any:
         pass
 
-    def pixel():
+    def pixel(self, *args) -> Any:
         pass
 
-    def show():
+    def show(self, *args) -> Any:
         pass
 
-    def text():
+    def text(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
 
 class LED:
-    ''
-    def intensity():
+    """"""
+
+    def intensity(self, *args) -> Any:
         pass
 
-    def off():
+    def off(self, *args) -> Any:
         pass
 
-    def on():
+    def on(self, *args) -> Any:
         pass
 
-    def toggle():
+    def toggle(self, *args) -> Any:
         pass
 
 
 class Pin:
-    ''
+    """"""
+
     AF1_TIM1 = 1
     AF1_TIM2 = 1
     AF2_TIM3 = 2
@@ -283,172 +300,183 @@ class Pin:
     PULL_DOWN = 2
     PULL_NONE = 0
     PULL_UP = 1
-    def af():
+
+    def af(self, *args) -> Any:
         pass
 
-    def af_list():
+    def af_list(self, *args) -> Any:
         pass
 
     board = None
     cpu = None
-    def debug():
+
+    def debug(self, *args) -> Any:
         pass
 
-    def dict():
+    def dict(self, *args) -> Any:
         pass
 
-    def gpio():
+    def gpio(self, *args) -> Any:
         pass
 
-    def high():
+    def high(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def irq():
+    def irq(self, *args) -> Any:
         pass
 
-    def low():
+    def low(self, *args) -> Any:
         pass
 
-    def mapper():
+    def mapper(self, *args) -> Any:
         pass
 
-    def mode():
+    def mode(self, *args) -> Any:
         pass
 
-    def name():
+    def name(self, *args) -> Any:
         pass
 
-    def names():
+    def names(self, *args) -> Any:
         pass
 
-    def off():
+    def off(self, *args) -> Any:
         pass
 
-    def on():
+    def on(self, *args) -> Any:
         pass
 
-    def pin():
+    def pin(self, *args) -> Any:
         pass
 
-    def port():
+    def port(self, *args) -> Any:
         pass
 
-    def pull():
+    def pull(self, *args) -> Any:
         pass
 
-    def value():
+    def value(self, *args) -> Any:
         pass
 
 
 class RTC:
-    ''
-    def calibration():
+    """"""
+
+    def calibration(self, *args) -> Any:
         pass
 
-    def datetime():
+    def datetime(self, *args) -> Any:
         pass
 
-    def info():
+    def info(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def wakeup():
+    def wakeup(self, *args) -> Any:
         pass
+
 
 SD = None
 
+
 class SDCard:
-    ''
-    def info():
+    """"""
+
+    def info(self, *args) -> Any:
         pass
 
-    def ioctl():
+    def ioctl(self, *args) -> Any:
         pass
 
-    def power():
+    def power(self, *args) -> Any:
         pass
 
-    def present():
+    def present(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readblocks():
+    def readblocks(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
-    def writeblocks():
+    def writeblocks(self, *args) -> Any:
         pass
 
 
 class SPI:
-    ''
+    """"""
+
     LSB = 128
     MASTER = 260
     MSB = 0
     SLAVE = 0
-    def deinit():
+
+    def deinit(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def recv():
+    def recv(self, *args) -> Any:
         pass
 
-    def send():
+    def send(self, *args) -> Any:
         pass
 
-    def send_recv():
+    def send_recv(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
-    def write_readinto():
+    def write_readinto(self, *args) -> Any:
         pass
 
 
 class Servo:
-    ''
-    def angle():
+    """"""
+
+    def angle(self, *args) -> Any:
         pass
 
-    def calibration():
+    def calibration(self, *args) -> Any:
         pass
 
-    def pulse_width():
+    def pulse_width(self, *args) -> Any:
         pass
 
-    def speed():
+    def speed(self, *args) -> Any:
         pass
 
 
 class Switch:
-    ''
-    def callback():
+    """"""
+
+    def callback(self, *args) -> Any:
         pass
 
-    def value():
+    def value(self, *args) -> Any:
         pass
 
 
 class Timer:
-    ''
+    """"""
+
     BOTH = 10
     BRK_HIGH = 2
     BRK_LOW = 1
@@ -472,211 +500,248 @@ class Timer:
     PWM_INVERTED = 1
     RISING = 0
     UP = 0
-    def callback():
+
+    def callback(self, *args) -> Any:
         pass
 
-    def channel():
+    def channel(self, *args) -> Any:
         pass
 
-    def counter():
+    def counter(self, *args) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *args) -> Any:
         pass
 
-    def freq():
+    def freq(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def period():
+    def period(self, *args) -> Any:
         pass
 
-    def prescaler():
+    def prescaler(self, *args) -> Any:
         pass
 
-    def source_freq():
+    def source_freq(self, *args) -> Any:
         pass
 
 
 class UART:
-    ''
+    """"""
+
     CTS = 512
     IRQ_RXIDLE = 16
     RTS = 256
-    def any():
+
+    def any(self, *args) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def irq():
+    def irq(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readchar():
+    def readchar(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def readline():
+    def readline(self, *args) -> Any:
         pass
 
-    def sendbreak():
+    def sendbreak(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
-    def writechar():
+    def writechar(self, *args) -> Any:
         pass
 
 
 class USB_HID:
-    ''
-    def recv():
+    """"""
+
+    def recv(self, *args) -> Any:
         pass
 
-    def send():
+    def send(self, *args) -> Any:
         pass
 
 
 class USB_VCP:
-    ''
+    """"""
+
     CTS = 2
     RTS = 1
-    def any():
+
+    def any(self, *args) -> Any:
         pass
 
-    def close():
+    def close(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def isconnected():
+    def isconnected(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def readline():
+    def readline(self, *args) -> Any:
         pass
 
-    def readlines():
+    def readlines(self, *args) -> Any:
         pass
 
-    def recv():
+    def recv(self, *args) -> Any:
         pass
 
-    def send():
+    def send(self, *args) -> Any:
         pass
 
-    def setinterrupt():
+    def setinterrupt(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
-def bootloader():
+
+def bootloader(*args) -> Any:
     pass
 
-def country():
+
+def country(*args) -> Any:
     pass
 
-def delay():
+
+def delay(*args) -> Any:
     pass
 
-def dht_readinto():
+
+def dht_readinto(*args) -> Any:
     pass
 
-def disable_irq():
+
+def disable_irq(*args) -> Any:
     pass
 
-def elapsed_micros():
+
+def elapsed_micros(*args) -> Any:
     pass
 
-def elapsed_millis():
+
+def elapsed_millis(*args) -> Any:
     pass
 
-def enable_irq():
+
+def enable_irq(*args) -> Any:
     pass
 
-def fault_debug():
+
+def fault_debug(*args) -> Any:
     pass
 
-def freq():
+
+def freq(*args) -> Any:
     pass
 
-def hard_reset():
+
+def hard_reset(*args) -> Any:
     pass
 
-def have_cdc():
+
+def have_cdc(*args) -> Any:
     pass
 
-def hid():
+
+def hid(*args) -> Any:
     pass
+
 
 hid_keyboard = None
 hid_mouse = None
-def info():
+
+
+def info(*args) -> Any:
     pass
 
-def main():
+
+def main(*args) -> Any:
     pass
 
-def micros():
+
+def micros(*args) -> Any:
     pass
 
-def millis():
+
+def millis(*args) -> Any:
     pass
 
-def mount():
+
+def mount(*args) -> Any:
     pass
 
-def pwm():
+
+def pwm(*args) -> Any:
     pass
 
-def repl_info():
+
+def repl_info(*args) -> Any:
     pass
 
-def repl_uart():
+
+def repl_uart(*args) -> Any:
     pass
 
-def rng():
+
+def rng(*args) -> Any:
     pass
 
-def servo():
+
+def servo(*args) -> Any:
     pass
 
-def standby():
+
+def standby(*args) -> Any:
     pass
 
-def stop():
+
+def stop(*args) -> Any:
     pass
 
-def sync():
+
+def sync(*args) -> Any:
     pass
 
-def udelay():
+
+def udelay(*args) -> Any:
     pass
 
-def unique_id():
+
+def unique_id(*args) -> Any:
     pass
 
-def usb_mode():
+
+def usb_mode(*args) -> Any:
     pass
 
-def wfi():
-    pass
 
+def wfi(*args) -> Any:
+    pass

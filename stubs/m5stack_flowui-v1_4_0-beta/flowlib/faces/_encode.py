@@ -2,33 +2,37 @@
 Module: 'flowlib.faces._encode' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 
 class Encode:
-    ''
-    def _available():
+    """"""
+
+    def _available(self, *argv) -> Any:
         pass
 
-    def _update():
+    def _update(self, *argv) -> Any:
         pass
 
-    def clearValue():
+    def clearValue(self, *argv) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *argv) -> Any:
         pass
 
-    def getDir():
+    def getDir(self, *argv) -> Any:
         pass
 
-    def getPress():
+    def getPress(self, *argv) -> Any:
         pass
 
-    def getValue():
+    def getValue(self, *argv) -> Any:
         pass
 
-    def setLed():
+    def setLed(self, *argv) -> Any:
         pass
+
 
 i2c_bus = None
 time = None

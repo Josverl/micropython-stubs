@@ -2,67 +2,89 @@
 Module: 'esp' on esp8266 v1.10
 """
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.10-8-g8b7039d7d on 2019-01-26', machine='ESP module with ESP8266')
-# Stubber: 1.1.0
+# Stubber: 1.1.0 - updated
+from typing import Any
+
 SLEEP_LIGHT = 1
 SLEEP_MODEM = 2
 SLEEP_NONE = 0
-def apa102_write():
+
+
+def apa102_write(*args) -> Any:
     pass
 
-def check_fw():
+
+def check_fw(*args) -> Any:
     pass
 
-def deepsleep():
+
+def deepsleep(*args) -> Any:
     pass
 
-def dht_readinto():
+
+def dht_readinto(*args) -> Any:
     pass
 
-def esf_free_bufs():
+
+def esf_free_bufs(*args) -> Any:
     pass
 
-def flash_erase():
+
+def flash_erase(*args) -> Any:
     pass
 
-def flash_id():
+
+def flash_id(*args) -> Any:
     pass
 
-def flash_read():
+
+def flash_read(*args) -> Any:
     pass
 
-def flash_size():
+
+def flash_size(*args) -> Any:
     pass
 
-def flash_user_start():
+
+def flash_user_start(*args) -> Any:
     pass
 
-def flash_write():
+
+def flash_write(*args) -> Any:
     pass
 
-def free():
+
+def free(*args) -> Any:
     pass
 
-def freemem():
+
+def freemem(*args) -> Any:
     pass
 
-def info():
+
+def info(*args) -> Any:
     pass
 
-def malloc():
+
+def malloc(*args) -> Any:
     pass
 
-def meminfo():
+
+def meminfo(*args) -> Any:
     pass
 
-def neopixel_write():
+
+def neopixel_write(*args) -> Any:
     pass
 
-def osdebug():
+
+def osdebug(*args) -> Any:
     pass
 
-def set_native_code_location():
+
+def set_native_code_location(*args) -> Any:
     pass
 
-def sleep_type():
-    pass
 
+def sleep_type(*args) -> Any:
+    pass

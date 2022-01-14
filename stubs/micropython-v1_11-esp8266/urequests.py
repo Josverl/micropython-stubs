@@ -2,37 +2,50 @@
 Module: 'urequests' on esp8266 v1.11
 """
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.11-8-g48dcbbe60 on 2019-05-29', machine='ESP module with ESP8266')
-# Stubber: 1.1.0
+# Stubber: 1.1.0 - updated
+from typing import Any
+
 
 class Response:
-    ''
-    def close():
+    """"""
+
+    def close(self, *args) -> Any:
         pass
 
     content = None
-    def json():
+
+    def json(self, *args) -> Any:
         pass
 
     text = None
-def delete():
+
+
+def delete(*args) -> Any:
     pass
 
-def get():
+
+def get(*args) -> Any:
     pass
 
-def head():
+
+def head(*args) -> Any:
     pass
 
-def patch():
+
+def patch(*args) -> Any:
     pass
 
-def post():
+
+def post(*args) -> Any:
     pass
 
-def put():
+
+def put(*args) -> Any:
     pass
 
-def request():
+
+def request(*args) -> Any:
     pass
+
 
 usocket = None

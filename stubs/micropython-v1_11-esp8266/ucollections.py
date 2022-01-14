@@ -2,52 +2,56 @@
 Module: 'ucollections' on esp8266 v1.11
 """
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.11-8-g48dcbbe60 on 2019-05-29', machine='ESP module with ESP8266')
-# Stubber: 1.1.0
+# Stubber: 1.1.0 - updated
+from typing import Any
+
 
 class OrderedDict:
-    ''
-    def clear():
+    """"""
+
+    def clear(self, *args) -> Any:
         pass
 
-    def copy():
+    def copy(self, *args) -> Any:
         pass
 
-    def fromkeys():
+    def fromkeys(self, *args) -> Any:
         pass
 
-    def get():
+    def get(self, *args) -> Any:
         pass
 
-    def items():
+    def items(self, *args) -> Any:
         pass
 
-    def keys():
+    def keys(self, *args) -> Any:
         pass
 
-    def pop():
+    def pop(self, *args) -> Any:
         pass
 
-    def popitem():
+    def popitem(self, *args) -> Any:
         pass
 
-    def setdefault():
+    def setdefault(self, *args) -> Any:
         pass
 
-    def update():
+    def update(self, *args) -> Any:
         pass
 
-    def values():
+    def values(self, *args) -> Any:
         pass
 
 
 class deque:
-    ''
-    def append():
+    """"""
+
+    def append(self, *args) -> Any:
         pass
 
-    def popleft():
+    def popleft(self, *args) -> Any:
         pass
 
-def namedtuple():
+
+def namedtuple(*args) -> Any:
     pass
-

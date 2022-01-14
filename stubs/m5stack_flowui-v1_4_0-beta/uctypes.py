@@ -2,7 +2,9 @@
 Module: 'uctypes' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 ARRAY = -1073741824
 BFINT16 = -671088640
 BFINT32 = -402653184
@@ -35,18 +37,23 @@ ULONG = 536870912
 ULONGLONG = 805306368
 USHORT = 268435456
 VOID = 0
+
+
 def addressof():
     pass
+
 
 def bytearray_at():
     pass
 
+
 def bytes_at():
     pass
+
 
 def sizeof():
     pass
 
 
 class struct:
-    ''
+    """"""

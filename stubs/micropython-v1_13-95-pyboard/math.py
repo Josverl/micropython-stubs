@@ -2,126 +2,171 @@
 Module: 'math' on pyboard 1.13.0-95
 """
 # MCU: (sysname='pyboard', nodename='pyboard', release='1.13.0', version='v1.13-95-g0fff2e03f on 2020-10-03', machine='PYBv1.1 with STM32F405RG')
-# Stubber: 1.3.4
-def acos():
+# Stubber: 1.3.4 - updated
+from typing import Any
+
+
+def acos(*args) -> Any:
     pass
 
-def acosh():
+
+def acosh(*args) -> Any:
     pass
 
-def asin():
+
+def asin(*args) -> Any:
     pass
 
-def asinh():
+
+def asinh(*args) -> Any:
     pass
 
-def atan():
+
+def atan(*args) -> Any:
     pass
 
-def atan2():
+
+def atan2(*args) -> Any:
     pass
 
-def atanh():
+
+def atanh(*args) -> Any:
     pass
 
-def ceil():
+
+def ceil(*args) -> Any:
     pass
 
-def copysign():
+
+def copysign(*args) -> Any:
     pass
 
-def cos():
+
+def cos(*args) -> Any:
     pass
 
-def cosh():
+
+def cosh(*args) -> Any:
     pass
 
-def degrees():
+
+def degrees(*args) -> Any:
     pass
+
 
 e = 2.718282
-def erf():
+
+
+def erf(*args) -> Any:
     pass
 
-def erfc():
+
+def erfc(*args) -> Any:
     pass
 
-def exp():
+
+def exp(*args) -> Any:
     pass
 
-def expm1():
+
+def expm1(*args) -> Any:
     pass
 
-def fabs():
+
+def fabs(*args) -> Any:
     pass
 
-def factorial():
+
+def factorial(*args) -> Any:
     pass
 
-def floor():
+
+def floor(*args) -> Any:
     pass
 
-def fmod():
+
+def fmod(*args) -> Any:
     pass
 
-def frexp():
+
+def frexp(*args) -> Any:
     pass
 
-def gamma():
+
+def gamma(*args) -> Any:
     pass
 
-def isclose():
+
+def isclose(*args) -> Any:
     pass
 
-def isfinite():
+
+def isfinite(*args) -> Any:
     pass
 
-def isinf():
+
+def isinf(*args) -> Any:
     pass
 
-def isnan():
+
+def isnan(*args) -> Any:
     pass
 
-def ldexp():
+
+def ldexp(*args) -> Any:
     pass
 
-def lgamma():
+
+def lgamma(*args) -> Any:
     pass
 
-def log():
+
+def log(*args) -> Any:
     pass
 
-def log10():
+
+def log10(*args) -> Any:
     pass
 
-def log2():
+
+def log2(*args) -> Any:
     pass
 
-def modf():
+
+def modf(*args) -> Any:
     pass
+
 
 pi = 3.141593
-def pow():
+
+
+def pow(*args) -> Any:
     pass
 
-def radians():
+
+def radians(*args) -> Any:
     pass
 
-def sin():
+
+def sin(*args) -> Any:
     pass
 
-def sinh():
+
+def sinh(*args) -> Any:
     pass
 
-def sqrt():
+
+def sqrt(*args) -> Any:
     pass
 
-def tan():
+
+def tan(*args) -> Any:
     pass
 
-def tanh():
+
+def tanh(*args) -> Any:
     pass
 
-def trunc():
-    pass
 
+def trunc(*args) -> Any:
+    pass

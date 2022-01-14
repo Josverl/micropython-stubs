@@ -2,20 +2,25 @@
 Module: 'flowlib.lib.bmp280' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 
 class BMP280:
-    ''
-    def compute_delay_time():
+    """"""
+
+    def compute_delay_time(self, *argv) -> Any:
         pass
 
-    def read_compensated_data():
+    def read_compensated_data(self, *argv) -> Any:
         pass
 
-    def read_raw_data():
+    def read_raw_data(self, *argv) -> Any:
         pass
 
     values = None
+
+
 BMP280_I2CADDR = 118
 BMP280_OSAMPLE_1 = 1
 BMP280_OSAMPLE_16 = 5
@@ -34,21 +39,26 @@ T_INIT_MAX = 1250
 T_MEASURE_PER_OSRS_MAX = 2313
 T_SETUP_PRESSURE_MAX = 625
 
+
 class array:
-    ''
-    def append():
+    """"""
+
+    def append(self, *argv) -> Any:
         pass
 
-    def decode():
+    def decode(self, *argv) -> Any:
         pass
 
-    def extend():
+    def extend(self, *argv) -> Any:
         pass
+
 
 time = None
+
+
 def unpack():
     pass
 
+
 def unpack_from():
     pass
-

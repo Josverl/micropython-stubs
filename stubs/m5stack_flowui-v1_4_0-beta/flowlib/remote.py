@@ -2,218 +2,239 @@
 Module: 'flowlib.remote' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 
 class Btn:
-    ''
-    def attach():
+    """"""
+
+    def attach(self, *argv) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *argv) -> Any:
         pass
 
-    def detach():
+    def detach(self, *argv) -> Any:
         pass
 
-    def multiBtnCb():
+    def multiBtnCb(self, *argv) -> Any:
         pass
 
-    def restart():
+    def restart(self, *argv) -> Any:
         pass
 
-    def timerCb():
+    def timerCb(self, *argv) -> Any:
         pass
 
 
 class BtnChild:
-    ''
-    def deinit():
+    """"""
+
+    def deinit(self, *argv) -> Any:
         pass
 
-    def isPressed():
+    def isPressed(self, *argv) -> Any:
         pass
 
-    def isReleased():
+    def isReleased(self, *argv) -> Any:
         pass
 
-    def pressFor():
+    def pressFor(self, *argv) -> Any:
         pass
 
-    def restart():
+    def restart(self, *argv) -> Any:
         pass
 
-    def upDate():
+    def upDate(self, *argv) -> Any:
         pass
 
-    def wasDoublePress():
+    def wasDoublePress(self, *argv) -> Any:
         pass
 
-    def wasPressed():
+    def wasPressed(self, *argv) -> Any:
         pass
 
-    def wasReleased():
+    def wasReleased(self, *argv) -> Any:
         pass
 
 
 class IP5306:
-    ''
-    def getBatteryLevel():
+    """"""
+
+    def getBatteryLevel(self, *argv) -> Any:
         pass
 
-    def init():
+    def init(self, *argv) -> Any:
         pass
 
-    def isChargeFull():
+    def isChargeFull(self, *argv) -> Any:
         pass
 
-    def isCharging():
+    def isCharging(self, *argv) -> Any:
         pass
 
-    def setCharge():
+    def setCharge(self, *argv) -> Any:
         pass
 
-    def setChargeVolt():
+    def setChargeVolt(self, *argv) -> Any:
         pass
 
-    def setVinMaxCurrent():
+    def setVinMaxCurrent(self, *argv) -> Any:
         pass
 
 
 class MQTTClient:
-    ''
-    def _clean_sock_buffer():
+    """"""
+
+    def _clean_sock_buffer(self, *argv) -> Any:
         pass
 
-    def _recv_len():
+    def _recv_len(self, *argv) -> Any:
         pass
 
-    def _send_str():
+    def _send_str(self, *argv) -> Any:
         pass
 
-    def check_msg():
+    def check_msg(self, *argv) -> Any:
         pass
 
-    def connect():
+    def connect(self, *argv) -> Any:
         pass
 
-    def disconnect():
+    def disconnect(self, *argv) -> Any:
         pass
 
-    def lock_msg_rec():
+    def lock_msg_rec(self, *argv) -> Any:
         pass
 
-    def ping():
+    def ping(self, *argv) -> Any:
         pass
 
-    def publish():
+    def publish(self, *argv) -> Any:
         pass
 
-    def set_block():
+    def set_block(self, *argv) -> Any:
         pass
 
-    def set_callback():
+    def set_callback(self, *argv) -> Any:
         pass
 
-    def set_last_will():
+    def set_last_will(self, *argv) -> Any:
         pass
 
-    def socket_connect():
+    def socket_connect(self, *argv) -> Any:
         pass
 
-    def subscribe():
+    def subscribe(self, *argv) -> Any:
         pass
 
-    def topic_get():
+    def topic_get(self, *argv) -> Any:
         pass
 
-    def topic_msg_get():
+    def topic_msg_get(self, *argv) -> Any:
         pass
 
-    def unlock_msg_rec():
+    def unlock_msg_rec(self, *argv) -> Any:
         pass
 
-    def wait_msg():
+    def wait_msg(self, *argv) -> Any:
         pass
 
 
 class Rgb_multi:
-    ''
-    def deinit():
+    """"""
+
+    def deinit(self, *argv) -> Any:
         pass
 
-    def setBrightness():
+    def setBrightness(self, *argv) -> Any:
         pass
 
-    def setColor():
+    def setColor(self, *argv) -> Any:
         pass
 
-    def setColorAll():
+    def setColorAll(self, *argv) -> Any:
         pass
 
-    def setColorFrom():
+    def setColorFrom(self, *argv) -> Any:
         pass
 
-    def setShowLock():
+    def setShowLock(self, *argv) -> Any:
         pass
 
-    def show():
+    def show(self, *argv) -> Any:
         pass
 
 
 class Speaker:
-    ''
-    def _timeout_cb():
+    """"""
+
+    def _timeout_cb(self, *argv) -> Any:
         pass
 
-    def checkInit():
+    def checkInit(self, *argv) -> Any:
         pass
 
-    def setBeat():
+    def setBeat(self, *argv) -> Any:
         pass
 
-    def setVolume():
+    def setVolume(self, *argv) -> Any:
         pass
 
-    def sing():
+    def sing(self, *argv) -> Any:
         pass
 
-    def tone():
+    def tone(self, *argv) -> Any:
         pass
+
 
 _thread = None
-apikey = '67C7D165'
+apikey = "67C7D165"
 binascii = None
 btn = None
 btnA = None
 btnB = None
 btnC = None
+
+
 def btnText():
     pass
+
 
 def const():
     pass
 
+
 display = None
 gc = None
+
+
 def get_sd_state():
     pass
 
+
 def hwDeinit():
     pass
+
 
 json = None
 lcd = None
 m5base = None
 machine = None
-node_id = '840d8e2598b4'
+node_id = "840d8e2598b4"
 os = None
 power = None
 rgb = None
+
+
 def sd_mount():
     pass
 
+
 def sd_umount():
     pass
+
 
 speaker = None
 timEx = None

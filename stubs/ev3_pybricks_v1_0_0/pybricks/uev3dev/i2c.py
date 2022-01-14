@@ -2,55 +2,60 @@
 Module: 'pybricks.uev3dev.i2c' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 
 class SMBus:
-    ''
-    def _access():
+    """"""
+
+    def _access(self, *argv) -> Any:
         pass
 
     _slave = 0
-    def block_process_call():
+
+    def block_process_call(self, *argv) -> Any:
         pass
 
-    def process_call():
+    def process_call(self, *argv) -> Any:
         pass
 
-    def read_block_data():
+    def read_block_data(self, *argv) -> Any:
         pass
 
-    def read_byte():
+    def read_byte(self, *argv) -> Any:
         pass
 
-    def read_byte_data():
+    def read_byte_data(self, *argv) -> Any:
         pass
 
-    def read_i2c_block_data():
+    def read_i2c_block_data(self, *argv) -> Any:
         pass
 
-    def read_word_data():
+    def read_word_data(self, *argv) -> Any:
         pass
 
-    def set_address():
+    def set_address(self, *argv) -> Any:
         pass
 
-    def write_block_data():
+    def write_block_data(self, *argv) -> Any:
         pass
 
-    def write_byte():
+    def write_byte(self, *argv) -> Any:
         pass
 
-    def write_byte_data():
+    def write_byte_data(self, *argv) -> Any:
         pass
 
-    def write_i2c_block_data():
+    def write_i2c_block_data(self, *argv) -> Any:
         pass
 
-    def write_quick():
+    def write_quick(self, *argv) -> Any:
         pass
 
-    def write_word_data():
+    def write_word_data(self, *argv) -> Any:
         pass
+
 
 _I2C_FUNCS = 1797
 _I2C_FUNC_10BIT_ADDR = 2
@@ -104,7 +109,10 @@ _i2c_smbus_data = None
 _i2c_smbus_ioctl_data = None
 _size_of_i2c_smbus_data = 34
 _size_of_i2c_smbus_ioctl_data = 12
+
+
 def ioctl():
     pass
+
 
 uctypes = None

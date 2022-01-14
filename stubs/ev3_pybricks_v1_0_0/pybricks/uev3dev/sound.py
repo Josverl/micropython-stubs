@@ -2,11 +2,15 @@
 Module: 'pybricks.uev3dev.sound' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 INT32 = 671088640
 
+
 class Mixer:
-    ''
+    """"""
+
     _attach = None
     _close = None
     _find_selem = None
@@ -18,18 +22,20 @@ class Mixer:
     _selem_id_sizeof = None
     _selem_register = None
     _selem_set_playback_volume_all = None
-    def close():
+
+    def close(self, *argv) -> Any:
         pass
 
-    def set_beep_volume():
+    def set_beep_volume(self, *argv) -> Any:
         pass
 
-    def set_pcm_volume():
+    def set_pcm_volume(self, *argv) -> Any:
         pass
 
 
 class PCM:
-    ''
+    """"""
+
     _ACCESS_RW_INTERLEAVED = 3
     _FORMAT_S16_LE = 2
     _STREAM_PLAYBACK = 0
@@ -47,83 +53,96 @@ class PCM:
     _open = None
     _prepare = None
     _writei = None
-    def close():
+
+    def close(self, *argv) -> Any:
         pass
 
-    def play():
+    def play(self, *argv) -> Any:
         pass
 
 
 class PlayType:
-    ''
+    """"""
+
     ONCE = 1
     REPEAT = 2
     WAIT = 0
 
+
 class Sound:
-    ''
-    def _beep():
+    """"""
+
+    def _beep(self, *argv) -> Any:
         pass
 
-    def _play_tone():
+    def _play_tone(self, *argv) -> Any:
         pass
 
-    def _stop():
+    def _stop(self, *argv) -> Any:
         pass
 
-    def play_file():
+    def play_file(self, *argv) -> Any:
         pass
 
-    def play_note():
+    def play_note(self, *argv) -> Any:
         pass
 
-    def play_tone():
+    def play_tone(self, *argv) -> Any:
         pass
 
-    def stop():
+    def stop(self, *argv) -> Any:
         pass
 
 
 class SoundFile:
-    ''
-    def _cancel_token():
+    """"""
+
+    def _cancel_token(self, *argv) -> Any:
         pass
 
     _read = None
-    def close():
+
+    def close(self, *argv) -> Any:
         pass
 
 
 class SoundFileError:
-    ''
+    """"""
+
 
 class Timeout:
-    ''
+    """"""
+
     _ONE = None
-    def _run():
+
+    def _run(self, *argv) -> Any:
         pass
 
-    def cancel():
+    def cancel(self, *argv) -> Any:
         pass
 
-    def close():
+    def close(self, *argv) -> Any:
         pass
 
-    def start():
+    def start(self, *argv) -> Any:
         pass
 
-    def wait():
+    def wait(self, *argv) -> Any:
         pass
+
 
 UINT16 = 268435456
 UINT32 = 536870912
 UINT64 = 805306368
-_BEEP_DEV = '/dev/input/by-path/platform-sound-event'
+_BEEP_DEV = "/dev/input/by-path/platform-sound-event"
+
 
 class _CancelToken:
-    ''
-    def cancel():
+    """"""
+
+    def cancel(self, *argv) -> Any:
         pass
+
 
 _EV_SND = 18
 _NOTES = None
@@ -140,32 +159,43 @@ _sf_readf_short = None
 _sf_seek = None
 _sf_strerror = None
 _thread = None
+
+
 def addressof():
     pass
+
 
 def calcsize():
     pass
 
+
 def debug_print():
     pass
 
+
 ffilib = None
 os = None
+
+
 def pack():
     pass
+
 
 def sizeof():
     pass
 
+
 def sleep():
     pass
+
 
 def sleep_ms():
     pass
 
 
 class struct:
-    ''
+    """"""
+
+
 def unpack():
     pass
-

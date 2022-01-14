@@ -2,222 +2,257 @@
 Module: 'machine' on esp8266 v1.10
 """
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.10-8-g8b7039d7d on 2019-01-26', machine='ESP module with ESP8266')
-# Stubber: 1.1.0
+# Stubber: 1.1.0 - updated
+from typing import Any
+
 
 class ADC:
-    ''
-    def read():
+    """"""
+
+    def read(self, *args) -> Any:
         pass
+
 
 DEEPSLEEP = 4
 DEEPSLEEP_RESET = 5
 HARD_RESET = 6
 
+
 class I2C:
-    ''
-    def init():
+    """"""
+
+    def init(self, *args) -> Any:
         pass
 
-    def readfrom():
+    def readfrom(self, *args) -> Any:
         pass
 
-    def readfrom_into():
+    def readfrom_into(self, *args) -> Any:
         pass
 
-    def readfrom_mem():
+    def readfrom_mem(self, *args) -> Any:
         pass
 
-    def readfrom_mem_into():
+    def readfrom_mem_into(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def scan():
+    def scan(self, *args) -> Any:
         pass
 
-    def start():
+    def start(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
-    def writeto():
+    def writeto(self, *args) -> Any:
         pass
 
-    def writeto_mem():
+    def writeto_mem(self, *args) -> Any:
         pass
 
 
 class PWM:
-    ''
-    def deinit():
+    """"""
+
+    def deinit(self, *args) -> Any:
         pass
 
-    def duty():
+    def duty(self, *args) -> Any:
         pass
 
-    def freq():
+    def freq(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
+
 
 PWRON_RESET = 0
 
+
 class Pin:
-    ''
+    """"""
+
     IN = 0
     IRQ_FALLING = 2
     IRQ_RISING = 1
     OPEN_DRAIN = 2
     OUT = 1
     PULL_UP = 1
-    def init():
+
+    def init(self, *args) -> Any:
         pass
 
-    def irq():
+    def irq(self, *args) -> Any:
         pass
 
-    def off():
+    def off(self, *args) -> Any:
         pass
 
-    def on():
+    def on(self, *args) -> Any:
         pass
 
-    def value():
+    def value(self, *args) -> Any:
         pass
 
 
 class RTC:
-    ''
+    """"""
+
     ALARM0 = 0
-    def alarm():
+
+    def alarm(self, *args) -> Any:
         pass
 
-    def alarm_left():
+    def alarm_left(self, *args) -> Any:
         pass
 
-    def datetime():
+    def datetime(self, *args) -> Any:
         pass
 
-    def irq():
+    def irq(self, *args) -> Any:
         pass
 
-    def memory():
+    def memory(self, *args) -> Any:
         pass
+
 
 SOFT_RESET = 4
 
+
 class SPI:
-    ''
+    """"""
+
     LSB = 1
     MSB = 0
-    def deinit():
+
+    def deinit(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
-    def write_readinto():
+    def write_readinto(self, *args) -> Any:
         pass
 
 
 class Signal:
-    ''
-    def off():
+    """"""
+
+    def off(self, *args) -> Any:
         pass
 
-    def on():
+    def on(self, *args) -> Any:
         pass
 
-    def value():
+    def value(self, *args) -> Any:
         pass
 
 
 class Timer:
-    ''
+    """"""
+
     ONE_SHOT = 0
     PERIODIC = 1
-    def deinit():
+
+    def deinit(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
 
 class UART:
-    ''
-    def any():
+    """"""
+
+    def any(self, *args) -> Any:
         pass
 
-    def init():
+    def init(self, *args) -> Any:
         pass
 
-    def read():
+    def read(self, *args) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *args) -> Any:
         pass
 
-    def readline():
+    def readline(self, *args) -> Any:
         pass
 
-    def write():
+    def write(self, *args) -> Any:
         pass
 
 
 class WDT:
-    ''
-    def deinit():
+    """"""
+
+    def deinit(self, *args) -> Any:
         pass
 
-    def feed():
+    def feed(self, *args) -> Any:
         pass
+
 
 WDT_RESET = 1
-def deepsleep():
+
+
+def deepsleep(*args) -> Any:
     pass
 
-def disable_irq():
+
+def disable_irq(*args) -> Any:
     pass
 
-def enable_irq():
+
+def enable_irq(*args) -> Any:
     pass
 
-def freq():
+
+def freq(*args) -> Any:
     pass
 
-def idle():
+
+def idle(*args) -> Any:
     pass
+
 
 mem16 = None
 mem32 = None
 mem8 = None
-def reset():
+
+
+def reset(*args) -> Any:
     pass
 
-def reset_cause():
+
+def reset_cause(*args) -> Any:
     pass
 
-def sleep():
+
+def sleep(*args) -> Any:
     pass
 
-def time_pulse_us():
+
+def time_pulse_us(*args) -> Any:
     pass
 
-def unique_id():
-    pass
 
+def unique_id(*args) -> Any:
+    pass

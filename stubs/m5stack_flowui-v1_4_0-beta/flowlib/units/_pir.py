@@ -2,10 +2,13 @@
 Module: 'flowlib.units._pir' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 
 class Pin:
-    ''
+    """"""
+
     IN = 1
     INOUT = 3
     IRQ_FALLING = 2
@@ -19,29 +22,33 @@ class Pin:
     PULL_UP = 2
     WAKE_HIGH = 5
     WAKE_LOW = 4
-    def deinit():
+
+    def deinit(self, *argv) -> Any:
         pass
 
-    def init():
+    def init(self, *argv) -> Any:
         pass
 
-    def irq():
+    def irq(self, *argv) -> Any:
         pass
 
-    def off():
+    def off(self, *argv) -> Any:
         pass
 
-    def on():
+    def on(self, *argv) -> Any:
         pass
 
-    def value():
+    def value(self, *argv) -> Any:
         pass
 
 
 class Pir:
-    ''
-    def deinit():
+    """"""
+
+    def deinit(self, *argv) -> Any:
         pass
 
     state = None
+
+
 unit = None

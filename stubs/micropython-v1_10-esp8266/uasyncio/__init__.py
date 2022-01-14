@@ -4,69 +4,78 @@ Module: 'uasyncio.__init__' on esp8266 v1.10
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.10-8-g8b7039d7d on 2019-01-26', machine='ESP module with ESP8266')
 # Stubber: 1.0.2
 
+
 class CancelledError:
-    ''
+    """"""
+
+
 DEBUG = 0
 
+
 class EventLoop:
-    ''
-    def call_at_():
+    """"""
+
+    def call_at_(self, *args) -> Any:
         pass
 
-    def call_later():
+    def call_later(self, *args) -> Any:
         pass
 
-    def call_later_ms():
+    def call_later_ms(self, *args) -> Any:
         pass
 
-    def call_soon():
+    def call_soon(self, *args) -> Any:
         pass
 
-    def close():
+    def close(self, *args) -> Any:
         pass
 
-    def create_task():
+    def create_task(self, *args) -> Any:
         pass
 
-    def run_forever():
+    def run_forever(self, *args) -> Any:
         pass
 
-    def run_until_complete():
+    def run_until_complete(self, *args) -> Any:
         pass
 
-    def stop():
+    def stop(self, *args) -> Any:
         pass
 
-    def time():
+    def time(self, *args) -> Any:
         pass
 
-    def wait():
+    def wait(self, *args) -> Any:
         pass
 
 
 class IORead:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class IOReadDone:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class IOWrite:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class IOWriteDone:
-    ''
-    def handle():
+    """"""
+
+    def handle(self, *args) -> Any:
         pass
 
 
 class PollEventLoop:
-    ''
+    """"""

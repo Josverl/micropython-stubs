@@ -2,47 +2,54 @@
 Module: 'umqtt.robust' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 
 class MQTTClient:
-    ''
+    """"""
+
     DEBUG = None
     DELAY = 2
-    def _recv_len():
+
+    def _recv_len(self, *argv) -> Any:
         pass
 
-    def _send_str():
+    def _send_str(self, *argv) -> Any:
         pass
 
-    def check_msg():
+    def check_msg(self, *argv) -> Any:
         pass
 
-    def connect():
+    def connect(self, *argv) -> Any:
         pass
 
-    def delay():
+    def delay(self, *argv) -> Any:
         pass
 
-    def disconnect():
+    def disconnect(self, *argv) -> Any:
         pass
 
-    def log():
+    def log(self, *argv) -> Any:
         pass
 
-    def ping():
+    def ping(self, *argv) -> Any:
         pass
 
     publish = None
     reconnect = None
-    def set_callback():
+
+    def set_callback(self, *argv) -> Any:
         pass
 
-    def set_last_will():
+    def set_last_will(self, *argv) -> Any:
         pass
 
-    def subscribe():
+    def subscribe(self, *argv) -> Any:
         pass
 
     wait_msg = None
+
+
 simple = None
 utime = None

@@ -2,140 +2,162 @@
 Module: 'os' on pyboard 1.13.0-95
 """
 # MCU: (sysname='pyboard', nodename='pyboard', release='1.13.0', version='v1.13-95-g0fff2e03f on 2020-10-03', machine='PYBv1.1 with STM32F405RG')
-# Stubber: 1.3.4
+# Stubber: 1.3.4 - updated
+from typing import Any
+
 
 class VfsFat:
-    ''
-    def chdir():
+    """"""
+
+    def chdir(self, *args) -> Any:
         pass
 
-    def getcwd():
+    def getcwd(self, *args) -> Any:
         pass
 
-    def ilistdir():
+    def ilistdir(self, *args) -> Any:
         pass
 
-    def mkdir():
+    def mkdir(self, *args) -> Any:
         pass
 
-    def mkfs():
+    def mkfs(self, *args) -> Any:
         pass
 
-    def mount():
+    def mount(self, *args) -> Any:
         pass
 
-    def open():
+    def open(self, *args) -> Any:
         pass
 
-    def remove():
+    def remove(self, *args) -> Any:
         pass
 
-    def rename():
+    def rename(self, *args) -> Any:
         pass
 
-    def rmdir():
+    def rmdir(self, *args) -> Any:
         pass
 
-    def stat():
+    def stat(self, *args) -> Any:
         pass
 
-    def statvfs():
+    def statvfs(self, *args) -> Any:
         pass
 
-    def umount():
+    def umount(self, *args) -> Any:
         pass
 
 
 class VfsLfs2:
-    ''
-    def chdir():
+    """"""
+
+    def chdir(self, *args) -> Any:
         pass
 
-    def getcwd():
+    def getcwd(self, *args) -> Any:
         pass
 
-    def ilistdir():
+    def ilistdir(self, *args) -> Any:
         pass
 
-    def mkdir():
+    def mkdir(self, *args) -> Any:
         pass
 
-    def mkfs():
+    def mkfs(self, *args) -> Any:
         pass
 
-    def mount():
+    def mount(self, *args) -> Any:
         pass
 
-    def open():
+    def open(self, *args) -> Any:
         pass
 
-    def remove():
+    def remove(self, *args) -> Any:
         pass
 
-    def rename():
+    def rename(self, *args) -> Any:
         pass
 
-    def rmdir():
+    def rmdir(self, *args) -> Any:
         pass
 
-    def stat():
+    def stat(self, *args) -> Any:
         pass
 
-    def statvfs():
+    def statvfs(self, *args) -> Any:
         pass
 
-    def umount():
+    def umount(self, *args) -> Any:
         pass
 
-def chdir():
+
+def chdir(*args) -> Any:
     pass
 
-def dupterm():
+
+def dupterm(*args) -> Any:
     pass
 
-def getcwd():
+
+def getcwd(*args) -> Any:
     pass
 
-def ilistdir():
+
+def ilistdir(*args) -> Any:
     pass
 
-def listdir():
+
+def listdir(*args) -> Any:
     pass
 
-def mkdir():
+
+def mkdir(*args) -> Any:
     pass
 
-def mount():
+
+def mount(*args) -> Any:
     pass
 
-def remove():
+
+def remove(*args) -> Any:
     pass
 
-def rename():
+
+def rename(*args) -> Any:
     pass
 
-def rmdir():
+
+def rmdir(*args) -> Any:
     pass
 
-sep = '/'
-def stat():
+
+sep = "/"
+
+
+def stat(*args) -> Any:
     pass
 
-def statvfs():
+
+def statvfs(*args) -> Any:
     pass
 
-def sync():
+
+def sync(*args) -> Any:
     pass
 
-def umount():
+
+def umount(*args) -> Any:
     pass
 
-def uname():
+
+def uname(*args) -> Any:
     pass
 
-def unlink():
+
+def unlink(*args) -> Any:
     pass
 
-def urandom():
-    pass
 
+def urandom(*args) -> Any:
+    pass

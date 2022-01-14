@@ -2,52 +2,56 @@
 Module: 'ucollections' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 
 class OrderedDict:
-    ''
-    def clear():
+    """"""
+
+    def clear(self, *argv) -> Any:
         pass
 
-    def copy():
+    def copy(self, *argv) -> Any:
         pass
 
-    def fromkeys():
+    def fromkeys(self, *argv) -> Any:
         pass
 
-    def get():
+    def get(self, *argv) -> Any:
         pass
 
-    def items():
+    def items(self, *argv) -> Any:
         pass
 
-    def keys():
+    def keys(self, *argv) -> Any:
         pass
 
-    def pop():
+    def pop(self, *argv) -> Any:
         pass
 
-    def popitem():
+    def popitem(self, *argv) -> Any:
         pass
 
-    def setdefault():
+    def setdefault(self, *argv) -> Any:
         pass
 
-    def update():
+    def update(self, *argv) -> Any:
         pass
 
-    def values():
+    def values(self, *argv) -> Any:
         pass
 
 
 class deque:
-    ''
-    def append():
+    """"""
+
+    def append(self, *argv) -> Any:
         pass
 
-    def popleft():
+    def popleft(self, *argv) -> Any:
         pass
+
 
 def namedtuple():
     pass
-

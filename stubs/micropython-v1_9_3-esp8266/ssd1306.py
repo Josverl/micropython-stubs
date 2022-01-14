@@ -2,7 +2,9 @@
 Module: 'ssd1306' on esp8266 v1.9.3
 """
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.0.0(5a875ba)', version='v1.9.3-8-g63826ac5c on 2017-11-01', machine='ESP module with ESP8266')
-# Stubber: 1.1.2
+# Stubber: 1.1.2 - updated
+from typing import Any
+
 SET_CHARGE_PUMP = 141
 SET_COL_ADDR = 33
 SET_COM_OUT_DIR = 192
@@ -21,45 +23,51 @@ SET_PRECHARGE = 217
 SET_SEG_REMAP = 160
 SET_VCOM_DESEL = 219
 
+
 class SSD1306:
-    ''
-    def contrast():
+    """"""
+
+    def contrast(self, *argv) -> Any:
         pass
 
-    def init_display():
+    def init_display(self, *argv) -> Any:
         pass
 
-    def invert():
+    def invert(self, *argv) -> Any:
         pass
 
-    def poweroff():
+    def poweroff(self, *argv) -> Any:
         pass
 
-    def poweron():
+    def poweron(self, *argv) -> Any:
         pass
 
-    def show():
+    def show(self, *argv) -> Any:
         pass
 
 
 class SSD1306_I2C:
-    ''
-    def write_cmd():
+    """"""
+
+    def write_cmd(self, *argv) -> Any:
         pass
 
-    def write_data():
+    def write_data(self, *argv) -> Any:
         pass
 
 
 class SSD1306_SPI:
-    ''
-    def write_cmd():
+    """"""
+
+    def write_cmd(self, *argv) -> Any:
         pass
 
-    def write_data():
+    def write_data(self, *argv) -> Any:
         pass
+
 
 def const():
     pass
+
 
 framebuf = None

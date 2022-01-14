@@ -2,7 +2,7 @@ from typing import Any
 
 class Light:
     analogValue: Any
-    def deinit() -> None: ...
+    def deinit(self, *argv) -> Any: ...
     digitalValue: Any
 
 unit: Any

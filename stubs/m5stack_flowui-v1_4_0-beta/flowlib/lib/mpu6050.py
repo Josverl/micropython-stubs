@@ -2,7 +2,9 @@
 Module: 'flowlib.lib.mpu6050' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 ACCEL_FS_SEL_16G = 24
 ACCEL_FS_SEL_2G = 0
 ACCEL_FS_SEL_4G = 8
@@ -12,8 +14,10 @@ GYRO_FS_SEL_2000DPS = 24
 GYRO_FS_SEL_250DPS = 0
 GYRO_FS_SEL_500DPS = 8
 
+
 class I2C:
-    ''
+    """"""
+
     CBTYPE_ADDR = 1
     CBTYPE_NONE = 0
     CBTYPE_RXDATA = 2
@@ -22,118 +26,123 @@ class I2C:
     READ = 1
     SLAVE = 0
     WRITE = 0
-    def address():
+
+    def address(self, *argv) -> Any:
         pass
 
-    def begin():
+    def begin(self, *argv) -> Any:
         pass
 
-    def callback():
+    def callback(self, *argv) -> Any:
         pass
 
-    def clock_timing():
+    def clock_timing(self, *argv) -> Any:
         pass
 
-    def data_timing():
+    def data_timing(self, *argv) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *argv) -> Any:
         pass
 
-    def end():
+    def end(self, *argv) -> Any:
         pass
 
-    def getdata():
+    def getdata(self, *argv) -> Any:
         pass
 
-    def init():
+    def init(self, *argv) -> Any:
         pass
 
-    def is_ready():
+    def is_ready(self, *argv) -> Any:
         pass
 
-    def read_byte():
+    def read_byte(self, *argv) -> Any:
         pass
 
-    def read_bytes():
+    def read_bytes(self, *argv) -> Any:
         pass
 
-    def readfrom():
+    def readfrom(self, *argv) -> Any:
         pass
 
-    def readfrom_into():
+    def readfrom_into(self, *argv) -> Any:
         pass
 
-    def readfrom_mem():
+    def readfrom_mem(self, *argv) -> Any:
         pass
 
-    def readfrom_mem_into():
+    def readfrom_mem_into(self, *argv) -> Any:
         pass
 
-    def resetbusy():
+    def resetbusy(self, *argv) -> Any:
         pass
 
-    def scan():
+    def scan(self, *argv) -> Any:
         pass
 
-    def setdata():
+    def setdata(self, *argv) -> Any:
         pass
 
-    def start():
+    def start(self, *argv) -> Any:
         pass
 
-    def start_timing():
+    def start_timing(self, *argv) -> Any:
         pass
 
-    def stop():
+    def stop(self, *argv) -> Any:
         pass
 
-    def stop_timing():
+    def stop_timing(self, *argv) -> Any:
         pass
 
-    def timeout():
+    def timeout(self, *argv) -> Any:
         pass
 
-    def write_byte():
+    def write_byte(self, *argv) -> Any:
         pass
 
-    def write_bytes():
+    def write_bytes(self, *argv) -> Any:
         pass
 
-    def writeto():
+    def writeto(self, *argv) -> Any:
         pass
 
-    def writeto_mem():
+    def writeto_mem(self, *argv) -> Any:
         pass
 
 
 class MPU6050:
-    ''
-    def _accel_fs():
+    """"""
+
+    def _accel_fs(self, *argv) -> Any:
         pass
 
-    def _gyro_fs():
+    def _gyro_fs(self, *argv) -> Any:
         pass
 
-    def _register_char():
+    def _register_char(self, *argv) -> Any:
         pass
 
-    def _register_short():
+    def _register_short(self, *argv) -> Any:
         pass
 
-    def _register_three_shorts():
+    def _register_three_shorts(self, *argv) -> Any:
         pass
 
     acceleration = None
     gyro = None
-    def setGyroOffsets():
+
+    def setGyroOffsets(self, *argv) -> Any:
         pass
 
     whoami = None
     ypr = None
 
+
 class Pin:
-    ''
+    """"""
+
     IN = 1
     INOUT = 3
     IRQ_FALLING = 2
@@ -147,23 +156,25 @@ class Pin:
     PULL_UP = 2
     WAKE_HIGH = 5
     WAKE_LOW = 4
-    def deinit():
+
+    def deinit(self, *argv) -> Any:
         pass
 
-    def init():
+    def init(self, *argv) -> Any:
         pass
 
-    def irq():
+    def irq(self, *argv) -> Any:
         pass
 
-    def off():
+    def off(self, *argv) -> Any:
         pass
 
-    def on():
+    def on(self, *argv) -> Any:
         pass
 
-    def value():
+    def value(self, *argv) -> Any:
         pass
+
 
 SF_DEG_S = 1
 SF_G = 1
@@ -177,8 +188,11 @@ _GYRO_SO_1000DPS = 32.8
 _GYRO_SO_2000DPS = 16.4
 _GYRO_SO_250DPS = 131
 _GYRO_SO_500DPS = 65.5
+
+
 def const():
     pass
+
 
 math = None
 time = None

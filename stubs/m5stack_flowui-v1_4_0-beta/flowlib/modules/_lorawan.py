@@ -2,39 +2,43 @@
 Module: 'flowlib.modules._lorawan' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 
 class Lorawan:
-    ''
-    def _monitor():
+    """"""
+
+    def _monitor(self, *argv) -> Any:
         pass
 
-    def _reset():
+    def _reset(self, *argv) -> Any:
         pass
 
-    def _setMode():
+    def _setMode(self, *argv) -> Any:
         pass
 
-    def _uart_cb():
+    def _uart_cb(self, *argv) -> Any:
         pass
 
-    def _waitTimeout():
+    def _waitTimeout(self, *argv) -> Any:
         pass
 
-    def _write():
+    def _write(self, *argv) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *argv) -> Any:
         pass
 
-    def initP2PMode():
+    def initP2PMode(self, *argv) -> Any:
         pass
 
-    def initRxMode():
+    def initRxMode(self, *argv) -> Any:
         pass
 
-    def txStr():
+    def txStr(self, *argv) -> Any:
         pass
+
 
 machine = None
 module = None

@@ -2,7 +2,9 @@
 Module: 'lwip' on esp8266 v1.9.3
 """
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.0.0(5a875ba)', version='v1.9.3-8-g63826ac5c on 2017-11-01', machine='ESP module with ESP8266')
-# Stubber: 1.1.2
+# Stubber: 1.1.2 - updated
+from typing import Any
+
 AF_INET = 2
 AF_INET6 = 10
 IPPROTO_IP = 0
@@ -12,72 +14,77 @@ SOCK_RAW = 3
 SOCK_STREAM = 1
 SOL_SOCKET = 1
 SO_REUSEADDR = 4
+
+
 def callback():
     pass
+
 
 def getaddrinfo():
     pass
 
+
 def print_pcbs():
     pass
+
 
 def reset():
     pass
 
 
 class socket:
-    ''
-    def accept():
+    """"""
+
+    def accept(self, *argv) -> Any:
         pass
 
-    def bind():
+    def bind(self, *argv) -> Any:
         pass
 
-    def close():
+    def close(self, *argv) -> Any:
         pass
 
-    def connect():
+    def connect(self, *argv) -> Any:
         pass
 
-    def listen():
+    def listen(self, *argv) -> Any:
         pass
 
-    def makefile():
+    def makefile(self, *argv) -> Any:
         pass
 
-    def read():
+    def read(self, *argv) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *argv) -> Any:
         pass
 
-    def readline():
+    def readline(self, *argv) -> Any:
         pass
 
-    def recv():
+    def recv(self, *argv) -> Any:
         pass
 
-    def recvfrom():
+    def recvfrom(self, *argv) -> Any:
         pass
 
-    def send():
+    def send(self, *argv) -> Any:
         pass
 
-    def sendall():
+    def sendall(self, *argv) -> Any:
         pass
 
-    def sendto():
+    def sendto(self, *argv) -> Any:
         pass
 
-    def setblocking():
+    def setblocking(self, *argv) -> Any:
         pass
 
-    def setsockopt():
+    def setsockopt(self, *argv) -> Any:
         pass
 
-    def settimeout():
+    def settimeout(self, *argv) -> Any:
         pass
 
-    def write():
+    def write(self, *argv) -> Any:
         pass
-
