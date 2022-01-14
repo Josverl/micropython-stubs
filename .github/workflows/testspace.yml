@@ -40,6 +40,7 @@ jobs:
           pytest ./tests --junitxml=./results/results.xml
 
       - name: run pyright on stubs
+        if: always()
         run: |
           pyright stubs | tee ./results/pyright-all-stubs.log
 
