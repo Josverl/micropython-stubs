@@ -35,6 +35,9 @@
         "**/microWebSrv.py*",
         "**/microWebTemplate.py*",
         "**/pye.py*",
+        // drivers with sub-par code for typechecking
+        "**/lcd160cr.py*",
+        "**/ssd1306.py*",
     ],
     "pythonVersion": "3.8",
     "pythonPlatform": "All",
@@ -52,7 +55,7 @@
     "reportOptionalCall": "warning", //  Object of type "None" cannot be called
     "reportGeneralTypeIssues": "warning", // Expected no arguments to "Pin" constructor and a lot of others
     // old firmware stubs
-    "reportOptionalSubscript": "information",
+    "reportOptionalSubscript": "information", // TODO: Is still reported as a warning
     // 
     // "typeshedPath": "stubs/typings_fallback",
     "executionEnvironments": [
