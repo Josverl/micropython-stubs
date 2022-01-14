@@ -10,7 +10,9 @@
         // no need to check the port diag module : 
         // TODO: Exclude from stubs
         "**/port_diag.py*",
-        "**/lcd160cr_test.py*"
+        "**/lcd160cr_test.py*",
+        // examples included in frozen 
+        "**/example_*.py*"
     ],
     "ignore": [
         // the 1.9.3 stubs for now
