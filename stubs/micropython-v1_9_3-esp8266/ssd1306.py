@@ -21,45 +21,51 @@ SET_PRECHARGE = 217
 SET_SEG_REMAP = 160
 SET_VCOM_DESEL = 219
 
+
 class SSD1306:
-    ''
-    def contrast():
+    """"""
+
+    def contrast(self, *argv) -> Any:
         pass
 
-    def init_display():
+    def init_display(self, *argv) -> Any:
         pass
 
-    def invert():
+    def invert(self, *argv) -> Any:
         pass
 
-    def poweroff():
+    def poweroff(self, *argv) -> Any:
         pass
 
-    def poweron():
+    def poweron(self, *argv) -> Any:
         pass
 
-    def show():
+    def show(self, *argv) -> Any:
         pass
 
 
 class SSD1306_I2C:
-    ''
-    def write_cmd():
+    """"""
+
+    def write_cmd(self, *argv) -> Any:
         pass
 
-    def write_data():
+    def write_data(self, *argv) -> Any:
         pass
 
 
 class SSD1306_SPI:
-    ''
-    def write_cmd():
+    """"""
+
+    def write_cmd(self, *argv) -> Any:
         pass
 
-    def write_data():
+    def write_data(self, *argv) -> Any:
         pass
+
 
 def const():
     pass
+
 
 framebuf = None

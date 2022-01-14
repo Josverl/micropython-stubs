@@ -2,222 +2,272 @@
 Module: 'flowlib.uiflow' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 
 class Btn:
-    ''
-    def attach():
+    """"""
+
+    def attach(self, *argv) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *argv) -> Any:
         pass
 
-    def detach():
+    def detach(self, *argv) -> Any:
         pass
 
-    def multiBtnCb():
+    def multiBtnCb(self, *argv) -> Any:
         pass
 
-    def restart():
+    def restart(self, *argv) -> Any:
         pass
 
-    def timerCb():
+    def timerCb(self, *argv) -> Any:
         pass
 
 
 class BtnChild:
-    ''
-    def deinit():
+    """"""
+
+    def deinit(self, *argv) -> Any:
         pass
 
-    def isPressed():
+    def isPressed(self, *argv) -> Any:
         pass
 
-    def isReleased():
+    def isReleased(self, *argv) -> Any:
         pass
 
-    def pressFor():
+    def pressFor(self, *argv) -> Any:
         pass
 
-    def restart():
+    def restart(self, *argv) -> Any:
         pass
 
-    def upDate():
+    def upDate(self, *argv) -> Any:
         pass
 
-    def wasDoublePress():
+    def wasDoublePress(self, *argv) -> Any:
         pass
 
-    def wasPressed():
+    def wasPressed(self, *argv) -> Any:
         pass
 
-    def wasReleased():
+    def wasReleased(self, *argv) -> Any:
         pass
 
 
 class IP5306:
-    ''
-    def getBatteryLevel():
+    """"""
+
+    def getBatteryLevel(self, *argv) -> Any:
         pass
 
-    def init():
+    def init(self, *argv) -> Any:
         pass
 
-    def isChargeFull():
+    def isChargeFull(self, *argv) -> Any:
         pass
 
-    def isCharging():
+    def isCharging(self, *argv) -> Any:
         pass
 
-    def setCharge():
+    def setCharge(self, *argv) -> Any:
         pass
 
-    def setChargeVolt():
+    def setChargeVolt(self, *argv) -> Any:
         pass
 
-    def setVinMaxCurrent():
+    def setVinMaxCurrent(self, *argv) -> Any:
         pass
 
 
 class Rgb_multi:
-    ''
-    def deinit():
+    """"""
+
+    def deinit(self, *argv) -> Any:
         pass
 
-    def setBrightness():
+    def setBrightness(self, *argv) -> Any:
         pass
 
-    def setColor():
+    def setColor(self, *argv) -> Any:
         pass
 
-    def setColorAll():
+    def setColorAll(self, *argv) -> Any:
         pass
 
-    def setColorFrom():
+    def setColorFrom(self, *argv) -> Any:
         pass
 
-    def setShowLock():
+    def setShowLock(self, *argv) -> Any:
         pass
 
-    def show():
+    def show(self, *argv) -> Any:
         pass
 
 
 class Speaker:
-    ''
-    def _timeout_cb():
+    """"""
+
+    def _timeout_cb(self, *argv) -> Any:
         pass
 
-    def checkInit():
+    def checkInit(self, *argv) -> Any:
         pass
 
-    def setBeat():
+    def setBeat(self, *argv) -> Any:
         pass
 
-    def setVolume():
+    def setVolume(self, *argv) -> Any:
         pass
 
-    def sing():
+    def sing(self, *argv) -> Any:
         pass
 
-    def tone():
+    def tone(self, *argv) -> Any:
         pass
+
 
 _exitState = None
 _is_remote = None
 _nextP2PTime = 0
 _p2pData = None
-apikey = '67C7D165'
+apikey = "67C7D165"
 binascii = None
 btn = None
 btnA = None
 btnB = None
 btnC = None
+
+
 def btnText():
     pass
+
 
 def cfgRead():
     pass
 
+
 def cfgWrite():
     pass
 
+
 config_normal = '{\n    "start": "flow",\n    "mode": "internet",\n    "server": "Flow.m5stack.com", \n    "wifi": {\n        "ssid": "",\n        "password": ""\n    }\n}\n'
+
+
 def const():
     pass
+
 
 def core_start():
     pass
 
+
 display = None
+
+
 def flowDeinit():
     pass
 
 
 class flowExit:
-    ''
+    """"""
+
+
 gc = None
+
+
 def getP2PData():
     pass
+
 
 def get_sd_state():
     pass
 
+
 def hwDeinit():
     pass
 
+
 lcd = None
+
+
 def loopExit():
     pass
+
 
 def loopSetIdle():
     pass
 
+
 def loopState():
     pass
 
+
 m5base = None
 machine = None
+
+
 def modeSet():
     pass
 
-node_id = '840d8e2598b4'
+
+node_id = "840d8e2598b4"
 os = None
 power = None
+
+
 def remoteInit():
     pass
+
 
 def resetDefault():
     pass
 
+
 rgb = None
+
+
 def sd_mount():
     pass
+
 
 def sd_umount():
     pass
 
+
 def sendP2PData():
     pass
+
 
 def setP2PData():
     pass
 
+
 speaker = None
+
+
 def start():
     pass
 
+
 def startBeep():
     pass
+
 
 timEx = None
 time = None
 timeSchedule = None
 time_ex = None
 timerSch = None
+
+
 def wait():
     pass
 
+
 def wait_ms():
     pass
-

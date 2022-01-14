@@ -2,7 +2,9 @@
 Module: 'flowlib.lib.sh200q' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 ACCEL_FS_SEL_16G = 2
 ACCEL_FS_SEL_4G = 0
 ACCEL_FS_SEL_8G = 1
@@ -14,40 +16,48 @@ SF_G = 1
 SF_M_S2 = 9.80665
 SF_RAD_S = 57.29578
 
+
 class Sh200q:
-    ''
-    def _accel_fs():
+    """"""
+
+    def _accel_fs(self, *argv) -> Any:
         pass
 
-    def _gyro_fs():
+    def _gyro_fs(self, *argv) -> Any:
         pass
 
-    def _regChar():
+    def _regChar(self, *argv) -> Any:
         pass
 
-    def _regInit():
+    def _regInit(self, *argv) -> Any:
         pass
 
-    def _regThreeShort():
+    def _regThreeShort(self, *argv) -> Any:
         pass
 
     acceleration = None
-    def adcRest():
+
+    def adcRest(self, *argv) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *argv) -> Any:
         pass
 
     gyro = None
     ypr = None
+
+
 _ACCEL_SO_16G = 2048
 _ACCEL_SO_4G = 8192
 _ACCEL_SO_8G = 4096
 _GYRO_SO_1000DPS = 32.8
 _GYRO_SO_250DPS = 131
 _GYRO_SO_500DPS = 65.5
+
+
 def const():
     pass
+
 
 i2c_bus = None
 math = None

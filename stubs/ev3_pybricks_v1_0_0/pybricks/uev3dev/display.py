@@ -2,11 +2,15 @@
 Module: 'pybricks.uev3dev.display' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 ARRAY = -1073741824
 
+
 class CompositeOp:
-    ''
+    """"""
+
     ALPHA = 1
     ATOP = 2
     BLEND = 3
@@ -79,82 +83,89 @@ class CompositeOp:
     VIVID_LIGHT = 69
     XOR = 70
 
+
 class Display:
-    ''
-    def image():
+    """"""
+
+    def image(self, *argv) -> Any:
         pass
 
-    def reset_screen():
+    def reset_screen(self, *argv) -> Any:
         pass
 
-    def scroll():
+    def scroll(self, *argv) -> Any:
         pass
 
-    def text_grid():
+    def text_grid(self, *argv) -> Any:
         pass
 
-    def text_pixels():
+    def text_pixels(self, *argv) -> Any:
         pass
 
 
 class FrameBuffer:
-    ''
-    def blit():
+    """"""
+
+    def blit(self, *argv) -> Any:
         pass
 
-    def fill():
+    def fill(self, *argv) -> Any:
         pass
 
-    def fill_rect():
+    def fill_rect(self, *argv) -> Any:
         pass
 
-    def hline():
+    def hline(self, *argv) -> Any:
         pass
 
-    def line():
+    def line(self, *argv) -> Any:
         pass
 
-    def pixel():
+    def pixel(self, *argv) -> Any:
         pass
 
-    def rect():
+    def rect(self, *argv) -> Any:
         pass
 
-    def scroll():
+    def scroll(self, *argv) -> Any:
         pass
 
-    def text():
+    def text(self, *argv) -> Any:
         pass
 
-    def vline():
+    def vline(self, *argv) -> Any:
         pass
 
 
 class ImageFile:
-    ''
+    """"""
+
+
 MONO_HLSB = 3
 
+
 class MagickWand:
-    ''
-    def _raise_error():
+    """"""
+
+    def _raise_error(self, *argv) -> Any:
         pass
 
-    def _set_image_depth():
+    def _set_image_depth(self, *argv) -> Any:
         pass
 
-    def _set_image_format():
+    def _set_image_format(self, *argv) -> Any:
         pass
 
-    def _set_image_gravity():
+    def _set_image_gravity(self, *argv) -> Any:
         pass
 
-    def border_image():
+    def border_image(self, *argv) -> Any:
         pass
 
-    def export_image_pixels():
+    def export_image_pixels(self, *argv) -> Any:
         pass
 
-    def extent_image():
+    def extent_image(self, *argv) -> Any:
         pass
 
     image_blob = None
@@ -163,23 +174,26 @@ class MagickWand:
     image_gravity = None
     image_height = None
     image_width = None
-    def read_image():
+
+    def read_image(self, *argv) -> Any:
         pass
 
-    def write_image():
+    def write_image(self, *argv) -> Any:
         pass
 
 
 class PixelWand:
-    ''
-    def _raise_error():
+    """"""
+
+    def _raise_error(self, *argv) -> Any:
         pass
 
-    def _set_color():
+    def _set_color(self, *argv) -> Any:
         pass
 
-    def color():
+    def color(self, *argv) -> Any:
         pass
+
 
 RGB565 = 1
 UINT16 = 268435456
@@ -193,46 +207,57 @@ _FB_VISUAL_MONO01 = 0
 _FB_VISUAL_MONO10 = 1
 _FB_VISUAL_TRUECOLOR = 2
 
+
 class _Screen:
-    ''
+    """"""
+
     BLACK = 0
     WHITE = -1
     bpp = None
-    def framebuffer():
+
+    def framebuffer(self, *argv) -> Any:
         pass
 
     height = None
-    def update():
+
+    def update(self, *argv) -> Any:
         pass
 
     width = None
+
+
 _fb_bitfield = None
 _fb_fix_screeninfo = None
 _fb_var_screeninfo = None
+
+
 def addressof():
     pass
+
 
 def ioctl():
     pass
 
 
 class mmap:
-    ''
-    def close():
+    """"""
+
+    def close(self, *argv) -> Any:
         pass
 
-    def read():
+    def read(self, *argv) -> Any:
         pass
 
-    def seek():
+    def seek(self, *argv) -> Any:
         pass
 
-    def write():
+    def write(self, *argv) -> Any:
         pass
+
 
 def sizeof():
     pass
 
 
 class struct:
-    ''
+    """"""

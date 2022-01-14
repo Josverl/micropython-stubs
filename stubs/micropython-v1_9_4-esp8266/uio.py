@@ -4,32 +4,34 @@ Module: 'uio' on esp8266 v1.9.4
 # MCU: (sysname='esp8266', nodename='esp8266', release='2.2.0-dev(9422289)', version='v1.9.4-8-ga9a3caad0 on 2018-05-11', machine='ESP module with ESP8266')
 # Stubber: 1.1.2
 
+
 class BytesIO:
-    ''
-    def close():
+    """"""
+
+    def close(self, *argv) -> Any:
         pass
 
-    def flush():
+    def flush(self, *argv) -> Any:
         pass
 
-    def getvalue():
+    def getvalue(self, *argv) -> Any:
         pass
 
-    def read():
+    def read(self, *argv) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *argv) -> Any:
         pass
 
-    def readline():
+    def readline(self, *argv) -> Any:
         pass
 
-    def seek():
+    def seek(self, *argv) -> Any:
         pass
 
-    def write():
+    def write(self, *argv) -> Any:
         pass
 
 
 class FileIO:
-    ''
+    """"""

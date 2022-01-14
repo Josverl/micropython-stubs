@@ -2,61 +2,66 @@
 Module: 'flowlib.lib.wavplayer' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 
 class Btn:
-    ''
-    def attach():
+    """"""
+
+    def attach(self, *argv) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *argv) -> Any:
         pass
 
-    def detach():
+    def detach(self, *argv) -> Any:
         pass
 
-    def multiBtnCb():
+    def multiBtnCb(self, *argv) -> Any:
         pass
 
-    def restart():
+    def restart(self, *argv) -> Any:
         pass
 
-    def timerCb():
+    def timerCb(self, *argv) -> Any:
         pass
 
 
 class BtnChild:
-    ''
-    def deinit():
+    """"""
+
+    def deinit(self, *argv) -> Any:
         pass
 
-    def isPressed():
+    def isPressed(self, *argv) -> Any:
         pass
 
-    def isReleased():
+    def isReleased(self, *argv) -> Any:
         pass
 
-    def pressFor():
+    def pressFor(self, *argv) -> Any:
         pass
 
-    def restart():
+    def restart(self, *argv) -> Any:
         pass
 
-    def upDate():
+    def upDate(self, *argv) -> Any:
         pass
 
-    def wasDoublePress():
+    def wasDoublePress(self, *argv) -> Any:
         pass
 
-    def wasPressed():
+    def wasPressed(self, *argv) -> Any:
         pass
 
-    def wasReleased():
+    def wasReleased(self, *argv) -> Any:
         pass
 
 
 class I2S:
-    ''
+    """"""
+
     CHANNEL_ALL_LEFT = 2
     CHANNEL_ALL_RIGHT = 1
     CHANNEL_ONLY_LEFT = 4
@@ -81,148 +86,165 @@ class I2S:
     MODE_RX = 8
     MODE_SLAVE = 2
     MODE_TX = 4
-    def adc_enable():
+
+    def adc_enable(self, *argv) -> Any:
         pass
 
-    def bits():
+    def bits(self, *argv) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *argv) -> Any:
         pass
 
-    def init():
+    def init(self, *argv) -> Any:
         pass
 
-    def nchannels():
+    def nchannels(self, *argv) -> Any:
         pass
 
-    def read():
+    def read(self, *argv) -> Any:
         pass
 
-    def sample_rate():
+    def sample_rate(self, *argv) -> Any:
         pass
 
-    def set_adc_pin():
+    def set_adc_pin(self, *argv) -> Any:
         pass
 
-    def set_dac_mode():
+    def set_dac_mode(self, *argv) -> Any:
         pass
 
-    def set_pin():
+    def set_pin(self, *argv) -> Any:
         pass
 
-    def start():
+    def start(self, *argv) -> Any:
         pass
 
-    def stop():
+    def stop(self, *argv) -> Any:
         pass
 
-    def volume():
+    def volume(self, *argv) -> Any:
         pass
 
-    def write():
+    def write(self, *argv) -> Any:
         pass
 
 
 class IP5306:
-    ''
-    def getBatteryLevel():
+    """"""
+
+    def getBatteryLevel(self, *argv) -> Any:
         pass
 
-    def init():
+    def init(self, *argv) -> Any:
         pass
 
-    def isChargeFull():
+    def isChargeFull(self, *argv) -> Any:
         pass
 
-    def isCharging():
+    def isCharging(self, *argv) -> Any:
         pass
 
-    def setCharge():
+    def setCharge(self, *argv) -> Any:
         pass
 
-    def setChargeVolt():
+    def setChargeVolt(self, *argv) -> Any:
         pass
 
-    def setVinMaxCurrent():
+    def setVinMaxCurrent(self, *argv) -> Any:
         pass
 
 
 class Rgb_multi:
-    ''
-    def deinit():
+    """"""
+
+    def deinit(self, *argv) -> Any:
         pass
 
-    def setBrightness():
+    def setBrightness(self, *argv) -> Any:
         pass
 
-    def setColor():
+    def setColor(self, *argv) -> Any:
         pass
 
-    def setColorAll():
+    def setColorAll(self, *argv) -> Any:
         pass
 
-    def setColorFrom():
+    def setColorFrom(self, *argv) -> Any:
         pass
 
-    def setShowLock():
+    def setShowLock(self, *argv) -> Any:
         pass
 
-    def show():
+    def show(self, *argv) -> Any:
         pass
 
 
 class Speaker:
-    ''
-    def _timeout_cb():
+    """"""
+
+    def _timeout_cb(self, *argv) -> Any:
         pass
 
-    def checkInit():
+    def checkInit(self, *argv) -> Any:
         pass
 
-    def setBeat():
+    def setBeat(self, *argv) -> Any:
         pass
 
-    def setVolume():
+    def setVolume(self, *argv) -> Any:
         pass
 
-    def sing():
+    def sing(self, *argv) -> Any:
         pass
 
-    def tone():
+    def tone(self, *argv) -> Any:
         pass
 
-apikey = '67C7D165'
+
+apikey = "67C7D165"
 binascii = None
 btn = None
 btnA = None
 btnB = None
 btnC = None
+
+
 def btnText():
     pass
+
 
 def const():
     pass
 
+
 display = None
+
+
 def get_sd_state():
     pass
+
 
 def hwDeinit():
     pass
 
+
 lcd = None
 m5base = None
 machine = None
-node_id = '840d8e2598b4'
+node_id = "840d8e2598b4"
 os = None
 power = None
 rgb = None
+
+
 def sd_mount():
     pass
 
+
 def sd_umount():
     pass
+
 
 speaker = None
 timEx = None

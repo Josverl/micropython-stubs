@@ -2,130 +2,137 @@
 Module: 'uio' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 
 class BytesIO:
-    ''
-    def close():
+    """"""
+
+    def close(self, *argv) -> Any:
         pass
 
-    def flush():
+    def flush(self, *argv) -> Any:
         pass
 
-    def getvalue():
+    def getvalue(self, *argv) -> Any:
         pass
 
-    def read():
+    def read(self, *argv) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *argv) -> Any:
         pass
 
-    def readline():
+    def readline(self, *argv) -> Any:
         pass
 
-    def seek():
+    def seek(self, *argv) -> Any:
         pass
 
-    def write():
+    def write(self, *argv) -> Any:
         pass
 
 
 class FileIO:
-    ''
-    def close():
+    """"""
+
+    def close(self, *argv) -> Any:
         pass
 
-    def fileno():
+    def fileno(self, *argv) -> Any:
         pass
 
-    def flush():
+    def flush(self, *argv) -> Any:
         pass
 
-    def read():
+    def read(self, *argv) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *argv) -> Any:
         pass
 
-    def readline():
+    def readline(self, *argv) -> Any:
         pass
 
-    def readlines():
+    def readlines(self, *argv) -> Any:
         pass
 
-    def seek():
+    def seek(self, *argv) -> Any:
         pass
 
-    def tell():
+    def tell(self, *argv) -> Any:
         pass
 
-    def write():
+    def write(self, *argv) -> Any:
         pass
 
 
 class IOBase:
-    ''
+    """"""
+
 
 class StringIO:
-    ''
-    def close():
+    """"""
+
+    def close(self, *argv) -> Any:
         pass
 
-    def flush():
+    def flush(self, *argv) -> Any:
         pass
 
-    def getvalue():
+    def getvalue(self, *argv) -> Any:
         pass
 
-    def read():
+    def read(self, *argv) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *argv) -> Any:
         pass
 
-    def readline():
+    def readline(self, *argv) -> Any:
         pass
 
-    def seek():
+    def seek(self, *argv) -> Any:
         pass
 
-    def write():
+    def write(self, *argv) -> Any:
         pass
 
 
 class TextIOWrapper:
-    ''
-    def close():
+    """"""
+
+    def close(self, *argv) -> Any:
         pass
 
-    def fileno():
+    def fileno(self, *argv) -> Any:
         pass
 
-    def flush():
+    def flush(self, *argv) -> Any:
         pass
 
-    def read():
+    def read(self, *argv) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *argv) -> Any:
         pass
 
-    def readline():
+    def readline(self, *argv) -> Any:
         pass
 
-    def readlines():
+    def readlines(self, *argv) -> Any:
         pass
 
-    def seek():
+    def seek(self, *argv) -> Any:
         pass
 
-    def tell():
+    def tell(self, *argv) -> Any:
         pass
 
-    def write():
+    def write(self, *argv) -> Any:
         pass
+
 
 def open():
     pass
-

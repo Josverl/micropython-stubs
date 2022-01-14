@@ -1,5 +1,7 @@
+from typing import Any
+
 class ADC:
-    def read() -> None: ...
+    def read(self, *argv) -> Any: ...
 
 DEEPSLEEP: int
 DEEPSLEEP_RESET: int

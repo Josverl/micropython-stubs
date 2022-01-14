@@ -2,10 +2,13 @@
 Module: 'display' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 
 class TFT:
-    ''
+    """"""
+
     BLACK = 0
     BLUE = 255
     BMP = 2
@@ -54,195 +57,195 @@ class TFT:
     VSPI = 2
     WHITE = 16579836
     YELLOW = 16579584
-    def arc():
-        pass
 
-    def attrib7seg():
+    def arc(self, *argv) -> Any:
         pass
 
-    def backlight():
+    def attrib7seg(self, *argv) -> Any:
         pass
 
-    def circle():
+    def backlight(self, *argv) -> Any:
         pass
 
-    def clear():
+    def circle(self, *argv) -> Any:
         pass
 
-    def clearwin():
+    def clear(self, *argv) -> Any:
         pass
 
-    def compileFont():
+    def clearwin(self, *argv) -> Any:
         pass
 
-    def deinit():
+    def compileFont(self, *argv) -> Any:
         pass
 
-    def drawCircle():
+    def deinit(self, *argv) -> Any:
         pass
 
-    def drawLine():
+    def drawCircle(self, *argv) -> Any:
         pass
 
-    def drawPixel():
+    def drawLine(self, *argv) -> Any:
         pass
 
-    def drawRect():
+    def drawPixel(self, *argv) -> Any:
         pass
 
-    def drawRoundRect():
+    def drawRect(self, *argv) -> Any:
         pass
 
-    def drawTriangle():
+    def drawRoundRect(self, *argv) -> Any:
         pass
 
-    def ellipse():
+    def drawTriangle(self, *argv) -> Any:
         pass
 
-    def fill():
+    def ellipse(self, *argv) -> Any:
         pass
 
-    def fillCircle():
+    def fill(self, *argv) -> Any:
         pass
 
-    def fillRect():
+    def fillCircle(self, *argv) -> Any:
         pass
 
-    def fillRoundRect():
+    def fillRect(self, *argv) -> Any:
         pass
 
-    def fillScreen():
+    def fillRoundRect(self, *argv) -> Any:
         pass
 
-    def fillTriangle():
+    def fillScreen(self, *argv) -> Any:
         pass
 
-    def font():
+    def fillTriangle(self, *argv) -> Any:
         pass
 
-    def fontSize():
+    def font(self, *argv) -> Any:
         pass
 
-    def getCursor():
+    def fontSize(self, *argv) -> Any:
         pass
 
-    def get_bg():
+    def getCursor(self, *argv) -> Any:
         pass
 
-    def get_fg():
+    def get_bg(self, *argv) -> Any:
         pass
 
-    def hsb2rgb():
+    def get_fg(self, *argv) -> Any:
         pass
 
-    def image():
+    def hsb2rgb(self, *argv) -> Any:
         pass
 
-    def init():
+    def image(self, *argv) -> Any:
         pass
 
-    def line():
+    def init(self, *argv) -> Any:
         pass
 
-    def lineByAngle():
+    def line(self, *argv) -> Any:
         pass
 
-    def orient():
+    def lineByAngle(self, *argv) -> Any:
         pass
 
-    def pixel():
+    def orient(self, *argv) -> Any:
         pass
 
-    def polygon():
+    def pixel(self, *argv) -> Any:
         pass
 
-    def print():
+    def polygon(self, *argv) -> Any:
         pass
 
-    def println():
+    def print(self, *argv) -> Any:
         pass
 
-    def qrcode():
+    def println(self, *argv) -> Any:
         pass
 
-    def rect():
+    def qrcode(self, *argv) -> Any:
         pass
 
-    def resetwin():
+    def rect(self, *argv) -> Any:
         pass
 
-    def restorewin():
+    def resetwin(self, *argv) -> Any:
         pass
 
-    def roundrect():
+    def restorewin(self, *argv) -> Any:
         pass
 
-    def savewin():
+    def roundrect(self, *argv) -> Any:
         pass
 
-    def screensize():
+    def savewin(self, *argv) -> Any:
         pass
 
-    def setBrightness():
+    def screensize(self, *argv) -> Any:
         pass
 
-    def setColor():
+    def setBrightness(self, *argv) -> Any:
         pass
 
-    def setCursor():
+    def setColor(self, *argv) -> Any:
         pass
 
-    def setRotation():
+    def setCursor(self, *argv) -> Any:
         pass
 
-    def setTextColor():
+    def setRotation(self, *argv) -> Any:
         pass
 
-    def set_bg():
+    def setTextColor(self, *argv) -> Any:
         pass
 
-    def set_fg():
+    def set_bg(self, *argv) -> Any:
         pass
 
-    def setwin():
+    def set_fg(self, *argv) -> Any:
         pass
 
-    def text():
+    def setwin(self, *argv) -> Any:
         pass
 
-    def textClear():
+    def text(self, *argv) -> Any:
         pass
 
-    def textWidth():
+    def textClear(self, *argv) -> Any:
         pass
 
-    def text_x():
+    def textWidth(self, *argv) -> Any:
         pass
 
-    def text_y():
+    def text_x(self, *argv) -> Any:
         pass
 
-    def tft_deselect():
+    def text_y(self, *argv) -> Any:
         pass
 
-    def tft_readcmd():
+    def tft_deselect(self, *argv) -> Any:
         pass
 
-    def tft_select():
+    def tft_readcmd(self, *argv) -> Any:
         pass
 
-    def tft_setspeed():
+    def tft_select(self, *argv) -> Any:
         pass
 
-    def tft_writecmd():
+    def tft_setspeed(self, *argv) -> Any:
         pass
 
-    def tft_writecmddata():
+    def tft_writecmd(self, *argv) -> Any:
         pass
 
-    def triangle():
+    def tft_writecmddata(self, *argv) -> Any:
         pass
 
-    def winsize():
+    def triangle(self, *argv) -> Any:
         pass
 
+    def winsize(self, *argv) -> Any:
+        pass

@@ -2,7 +2,9 @@
 Module: 'usocket' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 AF_INET = 2
 AF_INET6 = 10
 AF_UNIX = 1
@@ -17,69 +19,74 @@ SO_ERROR = 4
 SO_KEEPALIVE = 9
 SO_LINGER = 13
 SO_REUSEADDR = 2
+
+
 def getaddrinfo():
     pass
+
 
 def inet_ntop():
     pass
 
+
 def inet_pton():
     pass
+
 
 def sockaddr():
     pass
 
 
 class socket:
-    ''
-    def accept():
+    """"""
+
+    def accept(self, *argv) -> Any:
         pass
 
-    def bind():
+    def bind(self, *argv) -> Any:
         pass
 
-    def close():
+    def close(self, *argv) -> Any:
         pass
 
-    def connect():
+    def connect(self, *argv) -> Any:
         pass
 
-    def fileno():
+    def fileno(self, *argv) -> Any:
         pass
 
-    def listen():
+    def listen(self, *argv) -> Any:
         pass
 
-    def makefile():
+    def makefile(self, *argv) -> Any:
         pass
 
-    def read():
+    def read(self, *argv) -> Any:
         pass
 
-    def readinto():
+    def readinto(self, *argv) -> Any:
         pass
 
-    def readline():
+    def readline(self, *argv) -> Any:
         pass
 
-    def recv():
+    def recv(self, *argv) -> Any:
         pass
 
-    def recvfrom():
+    def recvfrom(self, *argv) -> Any:
         pass
 
-    def send():
+    def send(self, *argv) -> Any:
         pass
 
-    def sendto():
+    def sendto(self, *argv) -> Any:
         pass
 
-    def setblocking():
+    def setblocking(self, *argv) -> Any:
         pass
 
-    def setsockopt():
+    def setsockopt(self, *argv) -> Any:
         pass
 
-    def write():
+    def write(self, *argv) -> Any:
         pass
-

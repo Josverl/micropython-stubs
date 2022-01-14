@@ -2,10 +2,13 @@
 Module: 'parameters_c' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 
 class Button:
-    ''
+    """"""
+
     BEACON = 256
     CENTER = 32
     DOWN = 4
@@ -17,8 +20,10 @@ class Button:
     RIGHT_UP = 512
     UP = 256
 
+
 class Color:
-    ''
+    """"""
+
     BLACK = 1
     BLUE = 2
     BROWN = 7
@@ -29,13 +34,17 @@ class Color:
     WHITE = 6
     YELLOW = 4
 
+
 class Direction:
-    ''
+    """"""
+
     CLOCKWISE = 0
     COUNTERCLOCKWISE = 1
 
+
 class Port:
-    ''
+    """"""
+
     A = 65
     B = 66
     C = 67
@@ -45,8 +54,10 @@ class Port:
     S3 = 51
     S4 = 52
 
+
 class Stop:
-    ''
+    """"""
+
     BRAKE = 1
     COAST = 0
     HOLD = 2

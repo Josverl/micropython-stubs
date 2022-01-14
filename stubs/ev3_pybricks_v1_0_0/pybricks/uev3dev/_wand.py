@@ -2,10 +2,13 @@
 Module: 'pybricks.uev3dev._wand' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 
 class CompositeOp:
-    ''
+    """"""
+
     ALPHA = 1
     ATOP = 2
     BLEND = 3
@@ -78,8 +81,10 @@ class CompositeOp:
     VIVID_LIGHT = 69
     XOR = 70
 
+
 class Gravity:
-    ''
+    """"""
+
     CENTER = 6
     EAST = 7
     FORGET = 1
@@ -92,27 +97,29 @@ class Gravity:
     UNDEFINED = 0
     WEST = 5
 
+
 class MagickWand:
-    ''
-    def _raise_error():
+    """"""
+
+    def _raise_error(self, *argv) -> Any:
         pass
 
-    def _set_image_depth():
+    def _set_image_depth(self, *argv) -> Any:
         pass
 
-    def _set_image_format():
+    def _set_image_format(self, *argv) -> Any:
         pass
 
-    def _set_image_gravity():
+    def _set_image_gravity(self, *argv) -> Any:
         pass
 
-    def border_image():
+    def border_image(self, *argv) -> Any:
         pass
 
-    def export_image_pixels():
+    def export_image_pixels(self, *argv) -> Any:
         pass
 
-    def extent_image():
+    def extent_image(self, *argv) -> Any:
         pass
 
     image_blob = None
@@ -121,33 +128,38 @@ class MagickWand:
     image_gravity = None
     image_height = None
     image_width = None
-    def read_image():
+
+    def read_image(self, *argv) -> Any:
         pass
 
-    def write_image():
+    def write_image(self, *argv) -> Any:
         pass
 
 
 class MagickWandError:
-    ''
+    """"""
+
 
 class PixelError:
-    ''
+    """"""
+
 
 class PixelWand:
-    ''
-    def _raise_error():
+    """"""
+
+    def _raise_error(self, *argv) -> Any:
         pass
 
-    def _set_color():
+    def _set_color(self, *argv) -> Any:
         pass
 
-    def color():
+    def color(self, *argv) -> Any:
         pass
 
 
 class StorageType:
-    ''
+    """"""
+
     CHAR = 1
     DOUBLE = 2
     FLOAT = 3
@@ -156,6 +168,8 @@ class StorageType:
     QUANTUM = 6
     SHORT = 7
     UNDEFINED = 0
+
+
 _border_image = None
 _clear_exception = None
 _destroy = None
@@ -185,13 +199,18 @@ _set_image_gravity = None
 _terminus = None
 _wand = None
 _write_image = None
+
+
 def bytearray_at():
     pass
+
 
 def calcsize():
     pass
 
+
 ffilib = None
+
+
 def unpack():
     pass
-

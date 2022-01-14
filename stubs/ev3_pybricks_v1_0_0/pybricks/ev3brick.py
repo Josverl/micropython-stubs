@@ -2,56 +2,71 @@
 Module: 'pybricks.ev3brick' on LEGO EV3 v1.0.0
 """
 # MCU: sysname=ev3, nodename=ev3, release=('v1.0.0',), version=('0.0.0',), machine=ev3
-# Stubber: 1.3.2
+# Stubber: 1.3.2 - updated
+from typing import Any
+
 
 class Display:
-    ''
+    """"""
+
     _font_height = 8
-    def _next_line():
+
+    def _next_line(self, *argv) -> Any:
         pass
 
-    def _reset_text_history():
+    def _reset_text_history(self, *argv) -> Any:
         pass
 
     _valid_devices = None
-    def clear():
+
+    def clear(self, *argv) -> Any:
         pass
 
-    def image():
+    def image(self, *argv) -> Any:
         pass
 
-    def text():
+    def text(self, *argv) -> Any:
         pass
 
 
 class Speaker:
-    ''
+    """"""
+
     _valid_devices = None
-    def beep():
+
+    def beep(self, *argv) -> Any:
         pass
 
-    def beeps():
+    def beeps(self, *argv) -> Any:
         pass
 
-    def file():
+    def file(self, *argv) -> Any:
         pass
 
-    def speech():
+    def speech(self, *argv) -> Any:
         pass
 
-    def tune():
+    def tune(self, *argv) -> Any:
         pass
+
 
 battery = None
+
+
 def buttons():
     pass
 
+
 display = None
+
+
 def exit():
     pass
 
+
 def light():
     pass
+
 
 sound = None
 stderr = None

@@ -2,10 +2,13 @@
 Module: 'flowlib.lib.easyIO' on M5 FlowUI v1.4.0-beta
 """
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-284-g5d8e1c867 on 2019-08-30', machine='ESP32 module with ESP32')
-# Stubber: 1.3.1
+# Stubber: 1.3.1 - updated
+from typing import Any
+
 
 class ADC:
-    ''
+    """"""
+
     ATTN_0DB = 0
     ATTN_11DB = 3
     ATTN_2_5DB = 1
@@ -15,66 +18,69 @@ class ADC:
     WIDTH_11BIT = 2
     WIDTH_12BIT = 3
     WIDTH_9BIT = 0
-    def atten():
+
+    def atten(self, *argv) -> Any:
         pass
 
-    def collect():
+    def collect(self, *argv) -> Any:
         pass
 
-    def collected():
+    def collected(self, *argv) -> Any:
         pass
 
-    def deinit():
+    def deinit(self, *argv) -> Any:
         pass
 
-    def progress():
+    def progress(self, *argv) -> Any:
         pass
 
-    def read():
+    def read(self, *argv) -> Any:
         pass
 
-    def read_timed():
+    def read_timed(self, *argv) -> Any:
         pass
 
-    def readraw():
+    def readraw(self, *argv) -> Any:
         pass
 
-    def stopcollect():
+    def stopcollect(self, *argv) -> Any:
         pass
 
-    def vref():
+    def vref(self, *argv) -> Any:
         pass
 
-    def width():
+    def width(self, *argv) -> Any:
         pass
 
 
 class PWM:
-    ''
-    def deinit():
+    """"""
+
+    def deinit(self, *argv) -> Any:
         pass
 
-    def duty():
+    def duty(self, *argv) -> Any:
         pass
 
-    def freq():
+    def freq(self, *argv) -> Any:
         pass
 
-    def init():
+    def init(self, *argv) -> Any:
         pass
 
-    def list():
+    def list(self, *argv) -> Any:
         pass
 
-    def pause():
+    def pause(self, *argv) -> Any:
         pass
 
-    def resume():
+    def resume(self, *argv) -> Any:
         pass
 
 
 class Pin:
-    ''
+    """"""
+
     IN = 1
     INOUT = 3
     IRQ_FALLING = 2
@@ -88,45 +94,56 @@ class Pin:
     PULL_UP = 2
     WAKE_HIGH = 5
     WAKE_LOW = 4
-    def deinit():
+
+    def deinit(self, *argv) -> Any:
         pass
 
-    def init():
+    def init(self, *argv) -> Any:
         pass
 
-    def irq():
+    def irq(self, *argv) -> Any:
         pass
 
-    def off():
+    def off(self, *argv) -> Any:
         pass
 
-    def on():
+    def on(self, *argv) -> Any:
         pass
 
-    def value():
+    def value(self, *argv) -> Any:
         pass
+
 
 _adc_map = None
+
+
 def _deinitIO():
     pass
 
+
 _io_map = None
 _pwm_map = None
+
+
 def analogRead():
     pass
+
 
 def analogWrite():
     pass
 
+
 def digitalRead():
     pass
+
 
 def digitalWrite():
     pass
 
+
 def map_value():
     pass
 
+
 def toggleIO():
     pass
-
