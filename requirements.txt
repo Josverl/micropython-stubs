@@ -1,2 +1,3 @@
 # for quality reporting
 pyright             == 0.0.13   # does not match the actual pyright version
+pytest
