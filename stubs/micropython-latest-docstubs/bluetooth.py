@@ -349,15 +349,7 @@ class BLE:
         """
         ...
 
-    def gap_connect(
-        self,
-        addr_type,
-        addr,
-        scan_duration_ms=2000,
-        min_conn_interval_us=None,
-        max_conn_interval_us=None,
-        /,
-    ) -> None:
+    def gap_connect(self, addr_type, addr, scan_duration_ms=2000, min_conn_interval_us=None, max_conn_interval_us=None, /) -> None:
         """
         Connect to a peripheral.
 
