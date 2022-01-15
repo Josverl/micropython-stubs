@@ -30,8 +30,8 @@ def mem_alloc():
     return 1000000
 
 
-gc.mem_free = mem_free  # type: ignore
-gc.mem_alloc = mem_alloc  # type: ignore
+gc.mem_free = mem_free
+gc.mem_alloc = mem_alloc
 
 
 import pycopy_imphook

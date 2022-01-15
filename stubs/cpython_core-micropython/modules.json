@@ -17,10 +17,6 @@
             "module": "micropython"
         },
         {
-            "file": "uasyncio.py",
-            "module": "uasyncio"
-        },
-        {
             "file": "uctypes.py",
             "module": "uctypes"
         },
@@ -43,14 +39,6 @@
         {
             "file": "uos.py",
             "module": "uos"
-        },
-        {
-            "file": "upip.py",
-            "module": "upip"
-        },
-        {
-            "file": "upip_utarfile.py",
-            "module": "upip_utarfile"
         },
         {
             "file": "ure.py",
