@@ -6,10 +6,7 @@ on:
       - '**.md'
       - 'docs/**'
   pull_request:
-    types: assigned, opened, synchronize, reopened , edited
-  #  branches: 
-  #  - main
-  #  - master
+    branches: [main]
   #   paths-ignore:
   #     - '**.md'
   #     - 'docs/**'
@@ -35,7 +32,8 @@ jobs:
       - name: Testspace client install & config
         uses: testspace-com/setup-testspace@v1
         with:
-          domain: ${{github.repository_owner}}
+          domain: josverl
+          # domain: ${{github.repository_owner}}
 
       # dummy pytest
       - name: run pytest
