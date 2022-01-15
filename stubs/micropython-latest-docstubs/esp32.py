@@ -189,21 +189,7 @@ class RMT:
         end of the current loop iteration before immediately beginning to loop the
         new sequence of pulses. Looping sequences longer than 126 pulses is not
         supported by the hardware.
-        """
-        ...
 
-    @staticmethod
-    def bitstream_channel(value: Optional[Any]) -> int:
-        """
-        Select which RMT channel is used by the `machine.bitstream` implementation.
-        *value* can be ``None`` or a valid RMT channel number.  The default RMT
-        channel is the highest numbered one.
-
-        Passing in ``None`` disables the use of RMT and instead selects a bit-banging
-        implementation for `machine.bitstream`.
-
-        Passing in no argument will not change the channel.  This function returns
-        the current channel number.
         """
         ...
 

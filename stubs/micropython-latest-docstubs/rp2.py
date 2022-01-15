@@ -21,7 +21,7 @@ for example code.
 from typing import Any, Optional
 
 
-class PIOASMError(Exception):
+class PIOASMError:
     """
     This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
     an error assembling a PIO program.
