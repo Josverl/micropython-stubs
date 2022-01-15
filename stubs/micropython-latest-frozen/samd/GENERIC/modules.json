@@ -8,7 +8,7 @@
         "firmware": "micropython-samd-latest",
         "nodename": "micropython",
         "version": "latest",
-        "release": "",
+        "release": "latest",
         "sysname": "micropython"
     },
     "stubber": {

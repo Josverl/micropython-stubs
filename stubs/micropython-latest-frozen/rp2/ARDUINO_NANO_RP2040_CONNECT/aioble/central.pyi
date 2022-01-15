@@ -1,11 +1,4 @@
-from .core import (
-    ble as ble,
-    ensure_active as ensure_active,
-    log_error as log_error,
-    log_info as log_info,
-    log_warn as log_warn,
-    register_irq_handler as register_irq_handler,
-)
+from .core import ble as ble, ensure_active as ensure_active, log_error as log_error, log_info as log_info, log_warn as log_warn, register_irq_handler as register_irq_handler
 from .device import Device as Device, DeviceConnection as DeviceConnection, DeviceTimeout as DeviceTimeout
 from collections.abc import Generator
 from typing import Any
