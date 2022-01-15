@@ -1,6 +1,6 @@
 import sys
 
-# import uos as os
+# import uos as os2
 import os
 import machine
 

@@ -26,7 +26,16 @@ class LSM6DSOX:
     scratch_int: Any
     gyro_scale: Any
     accel_scale: Any
-    def __init__(self, i2c, address=..., gyro_odr: int = ..., accel_odr: int = ..., gyro_scale: int = ..., accel_scale: int = ..., ucf: Any | None = ...) -> None: ...
+    def __init__(
+        self,
+        i2c,
+        address=...,
+        gyro_odr: int = ...,
+        accel_odr: int = ...,
+        gyro_scale: int = ...,
+        accel_scale: int = ...,
+        ucf: Any | None = ...,
+    ) -> None: ...
     def __read_reg(self, reg, size: int = ...): ...
     def __write_reg(self, reg, val) -> None: ...
     def reset(self) -> None: ...
