@@ -6,8 +6,10 @@ on:
       - '**.md'
       - 'docs/**'
   pull_request:
-    branches: 
-    - main
+    types: assigned, opened, synchronize, reopened , edited
+  #  branches: 
+  #  - main
+  #  - master
   #   paths-ignore:
   #     - '**.md'
   #     - 'docs/**'
