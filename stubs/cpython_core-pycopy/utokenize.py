@@ -13,13 +13,10 @@ tok_name[ENCODING] = "ENCODING"
 
 
 class TokenInfo(namedtuple("TokenInfo", ("type", "string", "start", "end", "line"))):
+
     def __str__(self):
         return "TokenInfo(type=%d (%s), string=%r, startl=%d, line=%r)" % (
-            self.type,
-            tok_name[self.type],
-            self.string,
-            self.start,
-            self.line,
+            self.type, tok_name[self.type], self.string, self.start, self.line
         )
 
 
@@ -48,8 +45,8 @@ def get_str(l, readline):
             pos = 0
             assert l
             lineno += 1
-        s += l[: i + 3]
-        return s, l[i + 3 :], lineno
+        s += l[:i + 3]
+        return s, l[i + 3:], lineno
 
     s = sep = l[0]
     l = l[1:]
@@ -86,7 +83,7 @@ def tokenize(readline):
         org_l = l
         if not l:
             break
-        i, l = get_indent(l)  # type: ignore
+        i, l = get_indent(l)
 
         if l == "\n":
             yield TokenInfo(NL, l, lineno, 0, org_l)
@@ -122,11 +119,7 @@ def tokenize(readline):
                 elif l.startswith("0b") or l.startswith("0B"):
                     t = "0b"
                     l = l[2:]
-                while l and (
-                    l[0].isdigit()
-                    or l[0] == "."
-                    or (t.startswith("0x") and l[0] in "ABCDEFabcdef")
-                ):
+                while l and (l[0].isdigit() or l[0] == "." or (t.startswith("0x") and l[0] in "ABCDEFabcdef")):
                     if l[0] == ".":
                         if seen_dot:
                             break
@@ -151,14 +144,7 @@ def tokenize(readline):
                 while l and (l[0].isalpha() or l[0].isdigit() or l.startswith("_")):
                     name += l[0]
                     l = l[1:]
-                if (l.startswith('"') or l.startswith("'")) and name in (
-                    "b",
-                    "r",
-                    "rb",
-                    "br",
-                    "u",
-                    "f",
-                ):
+                if (l.startswith('"') or l.startswith("'")) and name in ("b", "r", "rb", "br", "u", "f"):
                     s, l, lineno_delta = get_str(l, readline)
                     yield TokenInfo(STRING, name + s, lineno, 0, org_l)
                     lineno += lineno_delta
@@ -184,33 +170,13 @@ def tokenize(readline):
                 l = "\n"
             else:
                 for op in (
-                    "**=",
-                    "//=",
-                    ">>=",
-                    "<<=",
-                    "+=",
-                    "-=",
-                    "*=",
-                    "/=",
-                    "%=",
-                    "@=",
-                    "&=",
-                    "|=",
-                    "^=",
-                    "**",
-                    "//",
-                    "<<",
-                    ">>",
-                    "==",
-                    "!=",
-                    ">=",
-                    "<=",
-                    "...",
-                    "->",
+                    "**=", "//=", ">>=", "<<=", "+=", "-=", "*=", "/=",
+                    "%=", "@=", "&=", "|=", "^=", "**", "//", "<<", ">>",
+                    "==", "!=", ">=", "<=", "...", "->"
                 ):
                     if l.startswith(op):
                         yield TokenInfo(OP, op, lineno, 0, org_l)
-                        l = l[len(op) :]
+                        l = l[len(op):]
                         break
                 else:
                     yield TokenInfo(OP, l[0], lineno, 0, org_l)

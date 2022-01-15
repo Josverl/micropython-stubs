@@ -1,8 +1,9 @@
 import io
-from io import *
+from io import BytesIO, StringIO
 
 
 class UioStream:
+
     def __init__(self, s, is_bin):
         self._s = s
         self._is_bin = is_bin
@@ -15,7 +16,7 @@ class UioStream:
             if sz is None:
                 sz = off
                 off = 0
-            data = memoryview(data)[off : off + sz]
+            data = memoryview(data)[off:off + sz]
 
         self._s.write(data)
 
