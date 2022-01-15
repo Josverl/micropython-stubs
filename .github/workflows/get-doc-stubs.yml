@@ -35,7 +35,7 @@ jobs:
   
     steps:
 
-      - name: Checkout stubs repocha
+      - name: Checkout stubs repo
         uses: actions/checkout@v2
 
       - name: Checkout Stubber
@@ -67,6 +67,12 @@ jobs:
         run: |
           git checkout master
 
+      - name: Latest - master
+        id: mpycommit
+        working-directory: ${{github.workspace}}/micropython-stubber/micropython
+        run: |
+          echo "::set-output name=info::'$(git log --oneline -1)'"
+
      
       # make Python work
       - name: Set up Python 
@@ -95,8 +101,13 @@ jobs:
         # ref: https://github.com/peter-evans/create-pull-request
         with:
           token: ${{ secrets.GITHUB_TOKEN }} 
-          title: "Add/update MicroPython ${{ matrix.version }} documentation stubs"
-          commit-message: add/update MicroPython ${{ matrix.version }} documentation stubs
+          title: "Add/update MicroPython ${{ matrix.version }} doc-stubs"
+          commit-message: add/update doc-stubs
+          body : |
+            update MicroPython ${{ matrix.version }} doc-stubs
+            based on micropython commit ${{ steps.mpycommit.outputs.info }}
+            
+
           branch: "micropython-${{ matrix.version }}-doc-stubs"
           reviewers: josverl
           labels: |
@@ -104,4 +115,4 @@ jobs:
             Doc stubs 
             MicroPython
             ${{ matrix.version }}
-          delete-branch: true
+          # delete-branch: true
