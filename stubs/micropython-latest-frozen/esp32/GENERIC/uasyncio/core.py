@@ -24,11 +24,7 @@ class TimeoutError(Exception):
 
 
 # Used when calling Loop.call_exception_handler
-_exc_context = {
-    "message": "Task exception wasn't retrieved",
-    "exception": None,
-    "future": None,
-}
+_exc_context = {"message": "Task exception wasn't retrieved", "exception": None, "future": None}
 
 
 ################################################################################
@@ -243,7 +239,7 @@ class Loop:
     def create_task(coro):
         return create_task(coro)
 
-    def run_forever(self, *argv) -> Any:
+    def run_forever():
         global _stop_task
         _stop_task = Task(_stopper(), globals())
         run_until_complete(_stop_task)
@@ -252,20 +248,20 @@ class Loop:
     def run_until_complete(aw):
         return run_until_complete(_promote_to_task(aw))
 
-    def stop(self, *argv) -> Any:
+    def stop():
         global _stop_task
         if _stop_task is not None:
             _task_queue.push_head(_stop_task)
             # If stop() is called again, do nothing
             _stop_task = None
 
-    def close(self, *argv) -> Any:
+    def close():
         pass
 
     def set_exception_handler(handler):
         Loop._exc_handler = handler
 
-    def get_exception_handler(self, *argv) -> Any:
+    def get_exception_handler():
         return Loop._exc_handler
 
     def default_exception_handler(loop, context):

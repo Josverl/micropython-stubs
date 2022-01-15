@@ -27,5 +27,10 @@
     ],
     "peacock.affectEditorGroupBorder": true,
     "peacock.affectPanelBorder": true,
-    "peacock.affectTabActiveBorder": true
+    "peacock.affectTabActiveBorder": true,
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }

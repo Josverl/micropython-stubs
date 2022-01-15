@@ -1,5 +1,5 @@
 [tool.black]
-# ùse same config as -stubber
+# use same config as -stubber
 line-length = 140
 target_version = ['py38']
 include = '\.pyi?$'

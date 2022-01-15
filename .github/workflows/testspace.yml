@@ -48,12 +48,12 @@ jobs:
       - name: Fixup pyright logs 
         shell: pwsh
         run: |
-          foreach ( $file in (dir ./results/pyright*.log )) {
-            (Get-Content $file) `
-            -replace ' - (warning|error):', ': $1:' `
-            -replace ' - (info):', ': information:' `
-            | Out-File $file
-          }
+          ./tests/fix-pyrightlogs.ps1
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: pyright
+          path: ./results/pyright-all-stubs.log
 
       - name: Testspace push test content
         run: testspace "[all-stubs]./results/pyright-all-stubs.log{lint}" ./results/results.xml
