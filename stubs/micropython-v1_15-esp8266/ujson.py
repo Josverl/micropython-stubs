@@ -5,15 +5,18 @@ Module: 'ujson' on micropython-v1.15-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def dump(*args) -> Any:
     ...
+
 
 def dumps(*args) -> Any:
     ...
 
+
 def load(*args) -> Any:
     ...
 
+
 def loads(*args) -> Any:
     ...
-

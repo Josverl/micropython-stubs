@@ -70,9 +70,7 @@ class LCD160CR:
     #     be considered read-only.
     h: Any
 
-    def __init__(
-        self, connect=None, *, pwr=None, i2c=None, spi=None, i2c_addr=98
-    ) -> None:
+    def __init__(self, connect=None, *, pwr=None, i2c=None, spi=None, i2c_addr=98) -> None:
         ...
 
     @staticmethod
@@ -363,9 +361,7 @@ class LCD160CR:
         """
         ...
 
-    def set_scroll_win(
-        self, win, x=-1, y=0, w=0, h=0, vec=0, pat=0, fill=0x07E0, color=0
-    ) -> None:
+    def set_scroll_win(self, win, x=-1, y=0, w=0, h=0, vec=0, pat=0, fill=0x07E0, color=0) -> None:
         """
         Configure a window region for scrolling:
 

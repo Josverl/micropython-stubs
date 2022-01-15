@@ -5,10 +5,13 @@ Module: 'websocket_helper' on micropython-v1.15-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def server_handshake(*args) -> Any:
     ...
 
-DEBUG = 0 # type: int
+
+DEBUG = 0  # type: int
+
+
 def client_handshake(*args) -> Any:
     ...
-

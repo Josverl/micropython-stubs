@@ -4,13 +4,11 @@ import array
 
 
 class Func:
-
     def __init__(self, f, restype):
         self.f = f
         self.restype = restype
 
     def __call__(self, *args):
-
         def conv_arg(x):
             if isinstance(x, str):
                 return x.encode()
@@ -20,7 +18,7 @@ class Func:
             return x
 
         args = [conv_arg(x) for x in args]
-        #print(args)
+        # print(args)
         res = self.f(*args)
         if self.restype == "s":
             res = res.decode("utf-8")
@@ -28,7 +26,6 @@ class Func:
 
 
 class Var:
-
     def __init__(self, v):
         self.v = v
 
@@ -61,7 +58,7 @@ class DynMod:
         argtypes = []
         for p in params:
             argtypes.append(self.typemap[p])
-        #print(name, argtypes)
+        # print(name, argtypes)
         f.argtypes = argtypes
         f.restype = self.typemap[ret]
         return Func(f, ret)

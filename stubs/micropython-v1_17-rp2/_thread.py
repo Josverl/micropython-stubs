@@ -7,7 +7,8 @@ from typing import Any
 
 
 class LockType:
-    ''
+    """"""
+
     def acquire(self, *args) -> Any:
         ...
 
@@ -17,18 +18,22 @@ class LockType:
     def release(self, *args) -> Any:
         ...
 
+
 def allocate_lock(*args) -> Any:
     ...
+
 
 def exit(*args) -> Any:
     ...
 
+
 def get_ident(*args) -> Any:
     ...
+
 
 def stack_size(*args) -> Any:
     ...
 
+
 def start_new_thread(*args) -> Any:
     ...
-

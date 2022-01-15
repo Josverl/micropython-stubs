@@ -5,12 +5,14 @@ Module: 'uheapq' on micropython-v1.17-pyboard
 # Stubber: 1.5.2
 from typing import Any
 
+
 def heapify(*args) -> Any:
     ...
+
 
 def heappop(*args) -> Any:
     ...
 
+
 def heappush(*args) -> Any:
     ...
-

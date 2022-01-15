@@ -70,9 +70,7 @@ class VfsLfs2:
     See :ref:`filesystem` for more information.
     """
 
-    def __init__(
-        self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True
-    ) -> None:
+    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None:
         ...
 
     @staticmethod

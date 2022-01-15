@@ -5,10 +5,12 @@ Module: 'upip_utarfile' on micropython-v1.16-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
-DIRTYPE = 'dir' # type: str
+DIRTYPE = "dir"  # type: str
+
 
 class TarFile:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -18,14 +20,18 @@ class TarFile:
     def extractfile(self, *args) -> Any:
         ...
 
-TAR_HEADER = {} # type: dict
-REGTYPE = 'file' # type: str
+
+TAR_HEADER = {}  # type: dict
+REGTYPE = "file"  # type: str
+
+
 def roundup(*args) -> Any:
     ...
 
 
 class FileSection:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -40,4 +46,4 @@ class FileSection:
 
 
 class TarInfo:
-    ''
+    """"""

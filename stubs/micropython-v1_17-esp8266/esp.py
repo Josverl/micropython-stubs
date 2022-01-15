@@ -5,63 +5,82 @@ Module: 'esp' on micropython-v1.17-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
-SLEEP_LIGHT = 1 # type: int
-SLEEP_MODEM = 2 # type: int
-SLEEP_NONE = 0 # type: int
+SLEEP_LIGHT = 1  # type: int
+SLEEP_MODEM = 2  # type: int
+SLEEP_NONE = 0  # type: int
+
+
 def apa102_write(*args) -> Any:
     ...
+
 
 def check_fw(*args) -> Any:
     ...
 
+
 def deepsleep(*args) -> Any:
     ...
+
 
 def dht_readinto(*args) -> Any:
     ...
 
+
 def esf_free_bufs(*args) -> Any:
     ...
+
 
 def flash_erase(*args) -> Any:
     ...
 
+
 def flash_id(*args) -> Any:
     ...
+
 
 def flash_read(*args) -> Any:
     ...
 
+
 def flash_size(*args) -> Any:
     ...
+
 
 def flash_user_start(*args) -> Any:
     ...
 
+
 def flash_write(*args) -> Any:
     ...
+
 
 def free(*args) -> Any:
     ...
 
+
 def freemem(*args) -> Any:
     ...
+
 
 def info(*args) -> Any:
     ...
 
+
 def malloc(*args) -> Any:
     ...
+
 
 def meminfo(*args) -> Any:
     ...
 
+
 def osdebug(*args) -> Any:
     ...
+
 
 def set_native_code_location(*args) -> Any:
     ...
 
+
 def sleep_type(*args) -> Any:
     ...
-

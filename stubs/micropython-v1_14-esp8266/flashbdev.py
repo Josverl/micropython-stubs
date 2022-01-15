@@ -5,10 +5,12 @@ Module: 'flashbdev' on micropython-v1.14-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
-bdev : Any ## <class 'FlashBdev'> = <FlashBdev object at 3ffeef50>
+bdev: Any  ## <class 'FlashBdev'> = <FlashBdev object at 3ffeef50>
+
 
 class FlashBdev:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -21,6 +23,8 @@ class FlashBdev:
     def writeblocks(self, *args) -> Any:
         ...
 
-    SEC_SIZE = 4096 # type: int
-size = 4194304 # type: int
-start_sec = 256 # type: int
+    SEC_SIZE = 4096  # type: int
+
+
+size = 4194304  # type: int
+start_sec = 256  # type: int

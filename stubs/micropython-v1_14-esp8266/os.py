@@ -5,12 +5,14 @@ Module: 'os' on micropython-v1.14-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def remove(*args) -> Any:
     ...
 
 
 class VfsFat:
-    ''
+    """"""
+
     def open(self, *args) -> Any:
         ...
 
@@ -52,7 +54,8 @@ class VfsFat:
 
 
 class VfsLfs2:
-    ''
+    """"""
+
     def open(self, *args) -> Any:
         ...
 
@@ -92,48 +95,62 @@ class VfsLfs2:
     def umount(self, *args) -> Any:
         ...
 
+
 def chdir(*args) -> Any:
     ...
+
 
 def dupterm(*args) -> Any:
     ...
 
+
 def dupterm_notify(*args) -> Any:
     ...
+
 
 def getcwd(*args) -> Any:
     ...
 
+
 def ilistdir(*args) -> Any:
     ...
+
 
 def listdir(*args) -> Any:
     ...
 
+
 def mkdir(*args) -> Any:
     ...
+
 
 def mount(*args) -> Any:
     ...
 
+
 def rename(*args) -> Any:
     ...
+
 
 def rmdir(*args) -> Any:
     ...
 
+
 def stat(*args) -> Any:
     ...
+
 
 def statvfs(*args) -> Any:
     ...
 
+
 def umount(*args) -> Any:
     ...
+
 
 def uname(*args) -> Any:
     ...
 
+
 def urandom(*args) -> Any:
     ...
-

@@ -130,9 +130,7 @@ class PIO:
         """
         ...
 
-    def irq(
-        self, handler=None, trigger=IRQ_SM0 | IRQ_SM1 | IRQ_SM2 | IRQ_SM3, hard=False
-    ) -> Any:
+    def irq(self, handler=None, trigger=IRQ_SM0 | IRQ_SM1 | IRQ_SM2 | IRQ_SM3, hard=False) -> Any:
         """
         Returns the IRQ object for this PIO instance.
 
@@ -171,7 +169,7 @@ class StateMachine:
         in_shiftdir=None,
         out_shiftdir=None,
         push_thresh=None,
-        pull_thresh=None
+        pull_thresh=None,
     ) -> None:
         """
         Configure the state machine instance to run the given *program*.
@@ -305,7 +303,7 @@ def asm_pio(
     autopull=False,
     push_thresh=32,
     pull_thresh=32,
-    fifo_join=PIO.JOIN_NONE
+    fifo_join=PIO.JOIN_NONE,
 ) -> Any:
     """
     Assemble a PIO program.

@@ -64,10 +64,7 @@ def _save_secrets(arg=None):
     with open(_path, "w") as f:
         # Convert bytes to hex strings (otherwise JSON will treat them like
         # strings).
-        json_secrets = [
-            (sec_type, binascii.b2a_base64(key), binascii.b2a_base64(value))
-            for (sec_type, key), value in _secrets.items()
-        ]
+        json_secrets = [(sec_type, binascii.b2a_base64(key), binascii.b2a_base64(value)) for (sec_type, key), value in _secrets.items()]
         json.dump(json_secrets, f)
         _modified = False
 

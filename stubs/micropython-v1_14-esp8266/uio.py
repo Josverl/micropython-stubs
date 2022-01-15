@@ -5,12 +5,14 @@ Module: 'uio' on micropython-v1.14-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def open(*args) -> Any:
     ...
 
 
 class BytesIO:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
@@ -40,7 +42,8 @@ class BytesIO:
 
 
 class FileIO:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
@@ -70,10 +73,12 @@ class FileIO:
 
 
 class IOBase:
-    ''
+    """"""
+
 
 class StringIO:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
@@ -103,7 +108,8 @@ class StringIO:
 
 
 class TextIOWrapper:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
@@ -130,4 +136,3 @@ class TextIOWrapper:
 
     def tell(self, *args) -> Any:
         ...
-

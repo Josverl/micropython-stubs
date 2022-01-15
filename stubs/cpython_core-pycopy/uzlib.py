@@ -3,12 +3,10 @@ from zlib import *
 
 
 class DecompIO:
-
     def __init__(self, stream, dict_bits, dictbuf=None):
         self.stream = stream
         self.decomp = decompressobj(dict_bits)
         self.pending = b""
-
 
     def read(self, size):
         while len(self.pending) < size:

@@ -7,7 +7,8 @@ from typing import Any
 
 
 class Flash:
-    ''
+    """"""
+
     def ioctl(self, *args) -> Any:
         ...
 
@@ -19,20 +20,22 @@ class Flash:
 
 
 class PIO:
-    ''
-    IN_HIGH = 1 # type: int
-    IN_LOW = 0 # type: int
-    IRQ_SM0 = 256 # type: int
-    IRQ_SM1 = 512 # type: int
-    IRQ_SM2 = 1024 # type: int
-    IRQ_SM3 = 2048 # type: int
-    JOIN_NONE = 0 # type: int
-    JOIN_RX = 2 # type: int
-    JOIN_TX = 1 # type: int
-    OUT_HIGH = 3 # type: int
-    OUT_LOW = 2 # type: int
-    SHIFT_LEFT = 0 # type: int
-    SHIFT_RIGHT = 1 # type: int
+    """"""
+
+    IN_HIGH = 1  # type: int
+    IN_LOW = 0  # type: int
+    IRQ_SM0 = 256  # type: int
+    IRQ_SM1 = 512  # type: int
+    IRQ_SM2 = 1024  # type: int
+    IRQ_SM3 = 2048  # type: int
+    JOIN_NONE = 0  # type: int
+    JOIN_RX = 2  # type: int
+    JOIN_TX = 1  # type: int
+    OUT_HIGH = 3  # type: int
+    OUT_LOW = 2  # type: int
+    SHIFT_LEFT = 0  # type: int
+    SHIFT_RIGHT = 1  # type: int
+
     def add_program(self, *args) -> Any:
         ...
 
@@ -47,7 +50,8 @@ class PIO:
 
 
 class StateMachine:
-    ''
+    """"""
+
     def exec(self, *args) -> Any:
         ...
 
@@ -74,4 +78,3 @@ class StateMachine:
 
     def tx_fifo(self, *args) -> Any:
         ...
-

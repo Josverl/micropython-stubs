@@ -3,7 +3,6 @@ from collections import OrderedDict, namedtuple
 
 
 class deque:
-
     def __init__(self, iterable, maxlen, flags=0):
         assert iterable == ()
         self.maxlen = maxlen

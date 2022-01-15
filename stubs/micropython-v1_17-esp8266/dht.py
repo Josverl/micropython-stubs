@@ -5,12 +5,14 @@ Module: 'dht' on micropython-v1.17-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def dht_readinto(*args) -> Any:
     ...
 
 
 class DHTBase:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -19,7 +21,8 @@ class DHTBase:
 
 
 class DHT11:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -34,7 +37,8 @@ class DHT11:
 
 
 class DHT22:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -46,4 +50,3 @@ class DHT22:
 
     def temperature(self, *args) -> Any:
         ...
-

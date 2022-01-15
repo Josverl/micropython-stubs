@@ -125,9 +125,7 @@ class RMT:
     *idle_level*).
     """
 
-    def __init__(
-        self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None
-    ) -> None:
+    def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None:
         ...
 
     def source_freq(self) -> Any:

@@ -7,14 +7,17 @@ from typing import Any
 
 
 class ADC:
-    ''
-    CORE_TEMP = 4 # type: int
+    """"""
+
+    CORE_TEMP = 4  # type: int
+
     def read_u16(self, *args) -> Any:
         ...
 
 
 class I2C:
-    ''
+    """"""
+
     def readinto(self, *args) -> Any:
         ...
 
@@ -56,7 +59,8 @@ class I2C:
 
 
 class PWM:
-    ''
+    """"""
+
     def deinit(self, *args) -> Any:
         ...
 
@@ -69,21 +73,25 @@ class PWM:
     def freq(self, *args) -> Any:
         ...
 
-PWRON_RESET = 1 # type: int
+
+PWRON_RESET = 1  # type: int
+
 
 class Pin:
-    ''
+    """"""
+
     def value(self, *args) -> Any:
         ...
 
-    ALT = 3 # type: int
-    IN = 0 # type: int
-    IRQ_FALLING = 4 # type: int
-    IRQ_RISING = 8 # type: int
-    OPEN_DRAIN = 2 # type: int
-    OUT = 1 # type: int
-    PULL_DOWN = 2 # type: int
-    PULL_UP = 1 # type: int
+    ALT = 3  # type: int
+    IN = 0  # type: int
+    IRQ_FALLING = 4  # type: int
+    IRQ_RISING = 8  # type: int
+    OPEN_DRAIN = 2  # type: int
+    OUT = 1  # type: int
+    PULL_DOWN = 2  # type: int
+    PULL_UP = 1  # type: int
+
     def high(self, *args) -> Any:
         ...
 
@@ -107,13 +115,15 @@ class Pin:
 
 
 class RTC:
-    ''
+    """"""
+
     def datetime(self, *args) -> Any:
         ...
 
 
 class SPI:
-    ''
+    """"""
+
     def read(self, *args) -> Any:
         ...
 
@@ -123,8 +133,9 @@ class SPI:
     def write(self, *args) -> Any:
         ...
 
-    LSB = 0 # type: int
-    MSB = 1 # type: int
+    LSB = 0  # type: int
+    MSB = 1  # type: int
+
     def deinit(self, *args) -> Any:
         ...
 
@@ -136,7 +147,8 @@ class SPI:
 
 
 class Signal:
-    ''
+    """"""
+
     def value(self, *args) -> Any:
         ...
 
@@ -148,7 +160,8 @@ class Signal:
 
 
 class SoftI2C:
-    ''
+    """"""
+
     def readinto(self, *args) -> Any:
         ...
 
@@ -190,7 +203,8 @@ class SoftI2C:
 
 
 class SoftSPI:
-    ''
+    """"""
+
     def read(self, *args) -> Any:
         ...
 
@@ -200,8 +214,9 @@ class SoftSPI:
     def write(self, *args) -> Any:
         ...
 
-    LSB = 0 # type: int
-    MSB = 1 # type: int
+    LSB = 0  # type: int
+    MSB = 1  # type: int
+
     def deinit(self, *args) -> Any:
         ...
 
@@ -213,9 +228,11 @@ class SoftSPI:
 
 
 class Timer:
-    ''
-    ONE_SHOT = 0 # type: int
-    PERIODIC = 1 # type: int
+    """"""
+
+    ONE_SHOT = 0  # type: int
+    PERIODIC = 1  # type: int
+
     def deinit(self, *args) -> Any:
         ...
 
@@ -224,7 +241,8 @@ class Timer:
 
 
 class UART:
-    ''
+    """"""
+
     def any(self, *args) -> Any:
         ...
 
@@ -240,56 +258,73 @@ class UART:
     def write(self, *args) -> Any:
         ...
 
-    CTS = 1 # type: int
-    INV_RX = 2 # type: int
-    INV_TX = 1 # type: int
-    RTS = 2 # type: int
+    CTS = 1  # type: int
+    INV_RX = 2  # type: int
+    INV_TX = 1  # type: int
+    RTS = 2  # type: int
+
     def sendbreak(self, *args) -> Any:
         ...
 
 
 class WDT:
-    ''
+    """"""
+
     def feed(self, *args) -> Any:
         ...
 
-WDT_RESET = 3 # type: int
+
+WDT_RESET = 3  # type: int
+
+
 def bootloader(*args) -> Any:
     ...
+
 
 def deepsleep(*args) -> Any:
     ...
 
+
 def disable_irq(*args) -> Any:
     ...
+
 
 def enable_irq(*args) -> Any:
     ...
 
+
 def freq(*args) -> Any:
     ...
+
 
 def idle(*args) -> Any:
     ...
 
+
 def lightsleep(*args) -> Any:
     ...
 
-mem16 : Any ## <class 'mem'> = <16-bit memory>
-mem32 : Any ## <class 'mem'> = <32-bit memory>
-mem8 : Any ## <class 'mem'> = <8-bit memory>
+
+mem16: Any  ## <class 'mem'> = <16-bit memory>
+mem32: Any  ## <class 'mem'> = <32-bit memory>
+mem8: Any  ## <class 'mem'> = <8-bit memory>
+
+
 def reset(*args) -> Any:
     ...
+
 
 def reset_cause(*args) -> Any:
     ...
 
+
 def soft_reset(*args) -> Any:
     ...
+
 
 def time_pulse_us(*args) -> Any:
     ...
 
+
 def unique_id(*args) -> Any:
     ...
-

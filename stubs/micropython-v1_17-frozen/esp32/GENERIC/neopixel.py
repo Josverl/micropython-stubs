@@ -16,11 +16,7 @@ class NeoPixel:
         self.pin.init(pin.OUT)
         # Timing arg can either be 1 for 800kHz or 0 for 400kHz,
         # or a user-specified timing ns tuple (high_0, low_0, high_1, low_1).
-        self.timing = (
-            ((400, 850, 800, 450) if timing else (800, 1700, 1600, 900))
-            if isinstance(timing, int)
-            else timing
-        )
+        self.timing = ((400, 850, 800, 450) if timing else (800, 1700, 1600, 900)) if isinstance(timing, int) else timing
 
     def __len__(self):
         return self.n

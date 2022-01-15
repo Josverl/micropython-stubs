@@ -7,7 +7,8 @@ from typing import Any
 
 
 class websocket:
-    ''
+    """"""
+
     def close(self, *args) -> Any:
         ...
 
@@ -25,4 +26,3 @@ class websocket:
 
     def ioctl(self, *args) -> Any:
         ...
-

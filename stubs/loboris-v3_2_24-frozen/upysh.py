@@ -2,15 +2,15 @@ import sys
 import os
 import time
 
-class LS:
 
+class LS:
     def __repr__(self):
         self.__call__()
         return ""
 
     def __call__(self, path="."):
         if path == "/":
-            l = os.listdir('/')
+            l = os.listdir("/")
             for f in l:
                 print("   <dir>  %s" % (f))
             return
@@ -22,7 +22,7 @@ class LS:
         except:
             print("Not a directory")
             return
-            
+
         if not (st[0] & 0x4000):
             print("Not a directory")
             return
@@ -43,40 +43,41 @@ class LS:
         drive = os.getdrive()
         if drive != "/":
             stvfs = os.statvfs(drive)
-            if total < (10*1024):
+            if total < (10 * 1024):
                 stotal = "{} B".format(total)
-            elif total < (1024*1024):
-                stotal = "{:0.2f} KB".format(total/1024)
+            elif total < (1024 * 1024):
+                stotal = "{:0.2f} KB".format(total / 1024)
             else:
-                stotal = "{:0.3f} MB".format(total/(1024*1024))
+                stotal = "{:0.3f} MB".format(total / (1024 * 1024))
             print("\nTotal in '{}': {}".format(path, stotal))
 
-            dsize = stvfs[0]*stvfs[2]
-            dfree = stvfs[0]*stvfs[3]
-            if dsize < (1024*1024):
-                ssize = "{:0.2f} KB".format(dsize/(1024))
-            elif dsize < (1024*1024*1024):
-                ssize = "{:0.3f} MB".format(dsize/(1024*1024))
+            dsize = stvfs[0] * stvfs[2]
+            dfree = stvfs[0] * stvfs[3]
+            if dsize < (1024 * 1024):
+                ssize = "{:0.2f} KB".format(dsize / (1024))
+            elif dsize < (1024 * 1024 * 1024):
+                ssize = "{:0.3f} MB".format(dsize / (1024 * 1024))
             else:
-                ssize = "{:0.3f} GB".format(dsize/(1024*1024*1024))
+                ssize = "{:0.3f} GB".format(dsize / (1024 * 1024 * 1024))
 
-            if dfree < (1024*1024):
-                sfree = "{:0.2f} KB".format(dfree/(1024))
-            elif dsize < (1024*1024*1024):
-                sfree = "{:0.3f} MB".format(dfree/(1024*1024))
+            if dfree < (1024 * 1024):
+                sfree = "{:0.2f} KB".format(dfree / (1024))
+            elif dsize < (1024 * 1024 * 1024):
+                sfree = "{:0.3f} MB".format(dfree / (1024 * 1024))
             else:
-                sfree = "{:0.3f} GB".format(dfree/(1024*1024*1024))
+                sfree = "{:0.3f} GB".format(dfree / (1024 * 1024 * 1024))
 
             print("Drive: '{}' size: {}, free: {}".format(drive, ssize, sfree))
         os.chdir(origpath)
 
-class PWD:
 
+class PWD:
     def __repr__(self):
         return os.getcwd()
 
     def __call__(self):
         return self.__repr__()
+
 
 class CLEAR:
     def __repr__(self):
@@ -85,8 +86,8 @@ class CLEAR:
     def __call__(self):
         return self.__repr__()
 
-class CP:
 
+class CP:
     def __repr__(self):
         self.__call__()
         return ""
@@ -107,9 +108,9 @@ class CP:
         except:
             pass
         try:
-            fs = open(srcf, 'rb')
+            fs = open(srcf, "rb")
             try:
-                fd = open(destf, 'wb')
+                fd = open(destf, "wb")
             except:
                 fs.close()
                 print("Error opening '{}'".format(srcf))
@@ -132,7 +133,7 @@ class CP:
             fs.close()
         except:
             print("Error opening '{}'".format(srcf))
-        
+
 
 pwd = PWD()
 ls = LS()
@@ -145,15 +146,19 @@ mv = os.rename
 rm = os.remove
 rmdir = os.rmdir
 
+
 def head(f, n=10):
     with open(f) as f:
         for i in range(n):
             l = f.readline()
-            if not l: break
+            if not l:
+                break
             sys.stdout.write(l)
+
 
 def cat(f):
     head(f, 1 << 30)
+
 
 def newfile(path):
     print("Type file contents line by line, finish with EOF (Ctrl+D).")
@@ -166,10 +171,10 @@ def newfile(path):
             f.write(l)
             f.write("\n")
 
-class Man():
 
+class Man:
     def __repr__(self):
-        return("""
+        return """
 upysh is intended to be imported using:
 from upysh import *
 
@@ -180,7 +185,8 @@ pwd, cd("new_dir"), ls, ls(...), head(...), cat(...)
 newfile(...), mv("old", "new"), rm(...), mkdir(...), rmdir(...)
 cp("from", "to")
 clear
-""")
+"""
+
 
 man = Man()
 

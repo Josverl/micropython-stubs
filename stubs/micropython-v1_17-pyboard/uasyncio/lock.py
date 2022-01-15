@@ -7,7 +7,8 @@ from typing import Any
 
 
 class Lock:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -17,4 +18,4 @@ class Lock:
     def locked(self, *args) -> Any:
         ...
 
-    acquire : Any ## <class 'generator'> = <generator>
+    acquire: Any  ## <class 'generator'> = <generator>

@@ -150,9 +150,7 @@ class Pin:
     #    Selects the IRQ trigger type.
     IRQ_HIGH_LEVEL: Any
 
-    def __init__(
-        self, id, mode=-1, pull=-1, *, value=None, drive=None, alt=None
-    ) -> None:
+    def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=None, alt=None) -> None:
         ...
 
     def init(self, mode=-1, pull=-1, *, value=None, drive=None, alt=None) -> None:
@@ -219,9 +217,7 @@ class Pin:
         """
         ...
 
-    def irq(
-        self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False
-    ) -> Callable[..., Any]:
+    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Any]:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is

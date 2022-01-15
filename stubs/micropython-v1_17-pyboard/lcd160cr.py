@@ -5,28 +5,35 @@ Module: 'lcd160cr' on micropython-v1.17-pyboard
 # Stubber: 1.5.2
 from typing import Any
 
+
 def const(*args) -> Any:
     ...
+
 
 def calcsize(*args) -> Any:
     ...
 
+
 def pack_into(*args) -> Any:
     ...
+
 
 def sleep_ms(*args) -> Any:
     ...
 
-PORTRAIT = 0 # type: int
-LANDSCAPE = 1 # type: int
-PORTRAIT_UPSIDEDOWN = 2 # type: int
-LANDSCAPE_UPSIDEDOWN = 3 # type: int
-STARTUP_DECO_NONE = 0 # type: int
-STARTUP_DECO_MLOGO = 1 # type: int
-STARTUP_DECO_INFO = 2 # type: int
+
+PORTRAIT = 0  # type: int
+LANDSCAPE = 1  # type: int
+PORTRAIT_UPSIDEDOWN = 2  # type: int
+LANDSCAPE_UPSIDEDOWN = 3  # type: int
+STARTUP_DECO_NONE = 0  # type: int
+STARTUP_DECO_MLOGO = 1  # type: int
+STARTUP_DECO_INFO = 2  # type: int
+
 
 class LCD160CR:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -176,4 +183,3 @@ class LCD160CR:
 
     def feed_wdt(self, *args) -> Any:
         ...
-

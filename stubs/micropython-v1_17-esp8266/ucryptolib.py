@@ -7,10 +7,10 @@ from typing import Any
 
 
 class aes:
-    ''
+    """"""
+
     def decrypt(self, *args) -> Any:
         ...
 
     def encrypt(self, *args) -> Any:
         ...
-

@@ -7,14 +7,15 @@ from typing import Any
 
 
 class Lock:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
-    acquire : Any ## <class 'generator'> = <generator>
+    acquire: Any  ## <class 'generator'> = <generator>
+
     def locked(self, *args) -> Any:
         ...
 
     def release(self, *args) -> Any:
         ...
-

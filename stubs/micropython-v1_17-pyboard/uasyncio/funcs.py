@@ -5,8 +5,9 @@ Module: 'uasyncio.funcs' on micropython-v1.17-pyboard
 # Stubber: 1.5.2
 from typing import Any
 
-wait_for : Any ## <class 'generator'> = <generator>
-gather : Any ## <class 'generator'> = <generator>
+wait_for: Any  ## <class 'generator'> = <generator>
+gather: Any  ## <class 'generator'> = <generator>
+
+
 def wait_for_ms(*args) -> Any:
     ...
-

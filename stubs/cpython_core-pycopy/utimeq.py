@@ -3,7 +3,6 @@ from utime import ticks_diff
 
 
 class Entry:
-
     def __init__(self, time, obj, userdata):
         self.time = time
         self.obj = obj
@@ -14,7 +13,6 @@ class Entry:
 
 
 class utimeq:
-
     def __init__(self, sz):
         self.heap = []
         self.max_sz = sz

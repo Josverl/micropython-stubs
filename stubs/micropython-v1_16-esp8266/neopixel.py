@@ -5,12 +5,14 @@ Module: 'neopixel' on micropython-v1.16-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def neopixel_write(*args) -> Any:
     ...
 
 
 class NeoPixel:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -20,4 +22,4 @@ class NeoPixel:
     def fill(self, *args) -> Any:
         ...
 
-    ORDER = () # type: tuple
+    ORDER = ()  # type: tuple

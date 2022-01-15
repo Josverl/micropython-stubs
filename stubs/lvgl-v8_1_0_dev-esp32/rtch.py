@@ -7,8 +7,10 @@ from typing import Any
 
 
 class touch:
-    ''
-    read : Any ## <class 'touch_read'> = <touch_read>
+    """"""
+
+    read: Any  ## <class 'touch_read'> = <touch_read>
+
     def activate(self, *args) -> Any:
         ...
 
@@ -20,4 +22,3 @@ class touch:
 
     def init(self, *args) -> Any:
         ...
-

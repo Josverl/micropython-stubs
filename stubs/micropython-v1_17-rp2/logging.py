@@ -5,27 +5,34 @@ Module: 'logging' on micropython-v1.17-rp2
 # Stubber: 1.5.2
 from typing import Any
 
+
 def debug(*args) -> Any:
     ...
+
 
 def getLogger(*args) -> Any:
     ...
 
+
 def info(*args) -> Any:
     ...
+
 
 def basicConfig(*args) -> Any:
     ...
 
-INFO = 20 # type: int
-CRITICAL = 50 # type: int
-ERROR = 40 # type: int
-WARNING = 30 # type: int
-DEBUG = 10 # type: int
-NOTSET = 0 # type: int
+
+INFO = 20  # type: int
+CRITICAL = 50  # type: int
+ERROR = 40  # type: int
+WARNING = 30  # type: int
+DEBUG = 10  # type: int
+NOTSET = 0  # type: int
+
 
 class Logger:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -47,7 +54,8 @@ class Logger:
     def warning(self, *args) -> Any:
         ...
 
-    level = 0 # type: int
+    level = 0  # type: int
+
     def setLevel(self, *args) -> Any:
         ...
 
@@ -56,4 +64,3 @@ class Logger:
 
     def critical(self, *args) -> Any:
         ...
-

@@ -5,12 +5,14 @@ Module: 'random' on micropython-v1.17-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def __init__(*args) -> Any:
     ...
+
 
 def getrandbits(*args) -> Any:
     ...
 
+
 def seed(*args) -> Any:
     ...
-

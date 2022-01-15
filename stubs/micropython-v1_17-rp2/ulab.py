@@ -5,6 +5,6 @@ Module: 'ulab' on micropython-v1.17-rp2
 # Stubber: 1.5.2
 from typing import Any
 
+
 def dtype(*args) -> Any:
     ...
-

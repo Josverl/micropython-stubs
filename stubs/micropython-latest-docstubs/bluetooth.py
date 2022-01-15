@@ -294,9 +294,7 @@ class BLE:
         """
         ...
 
-    def gap_advertise(
-        self, interval_us, adv_data=None, *, resp_data=None, connectable=True
-    ) -> Any:
+    def gap_advertise(self, interval_us, adv_data=None, *, resp_data=None, connectable=True) -> Any:
         """
         Starts advertising at the specified interval (in **micro**\ seconds). This
         interval will be rounded down to the nearest 625us. To stop advertising, set
@@ -314,9 +312,7 @@ class BLE:
         """
         ...
 
-    def gap_scan(
-        self, duration_ms, interval_us=1280000, window_us=11250, active=False, /
-    ) -> Any:
+    def gap_scan(self, duration_ms, interval_us=1280000, window_us=11250, active=False, /) -> Any:
         """
         Run a scan operation lasting for the specified duration (in **milli**\ seconds).
 
@@ -534,9 +530,7 @@ class BLE:
         """
         ...
 
-    def gattc_discover_characteristics(
-        self, conn_handle, start_handle, end_handle, uuid=None, /
-    ) -> Any:
+    def gattc_discover_characteristics(self, conn_handle, start_handle, end_handle, uuid=None, /) -> Any:
         """
         Query a connected server for characteristics in the specified range.
 
@@ -551,9 +545,7 @@ class BLE:
         """
         ...
 
-    def gattc_discover_descriptors(
-        self, conn_handle, start_handle, end_handle, /
-    ) -> Any:
+    def gattc_discover_descriptors(self, conn_handle, start_handle, end_handle, /) -> Any:
         """
         Query a connected server for descriptors in the specified range.
 

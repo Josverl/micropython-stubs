@@ -5,6 +5,6 @@ Module: 'urllib.urequest' on micropython-v1.17-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def urlopen(*args) -> Any:
     ...
-

@@ -7,7 +7,8 @@ from typing import Any
 
 
 class FrameBuffer:
-    ''
+    """"""
+
     def blit(self, *args) -> Any:
         ...
 
@@ -38,14 +39,16 @@ class FrameBuffer:
     def vline(self, *args) -> Any:
         ...
 
+
 def FrameBuffer1(*args) -> Any:
     ...
 
-GS2_HMSB = 5 # type: int
-GS4_HMSB = 2 # type: int
-GS8 = 6 # type: int
-MONO_HLSB = 3 # type: int
-MONO_HMSB = 4 # type: int
-MONO_VLSB = 0 # type: int
-MVLSB = 0 # type: int
-RGB565 = 1 # type: int
+
+GS2_HMSB = 5  # type: int
+GS4_HMSB = 2  # type: int
+GS8 = 6  # type: int
+MONO_HLSB = 3  # type: int
+MONO_HMSB = 4  # type: int
+MONO_VLSB = 0  # type: int
+MVLSB = 0  # type: int
+RGB565 = 1  # type: int

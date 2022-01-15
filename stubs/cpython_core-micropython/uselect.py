@@ -6,7 +6,6 @@ POLLOUT = selectors.EVENT_WRITE
 
 
 class poll:
-
     def __init__(self):
         self.sel = selectors.DefaultSelector()
 

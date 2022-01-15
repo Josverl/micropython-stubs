@@ -235,19 +235,7 @@ class CAN:
         """
         ...
 
-    def init(
-        self,
-        mode,
-        extframe=False,
-        prescaler=100,
-        *,
-        sjw=1,
-        bs1=6,
-        bs2=8,
-        auto_restart=False,
-        baudrate=0,
-        sample_point=75
-    ) -> None:
+    def init(self, mode, extframe=False, prescaler=100, *, sjw=1, bs1=6, bs2=8, auto_restart=False, baudrate=0, sample_point=75) -> None:
         """
         Initialise the CAN bus with the given parameters:
 
@@ -719,9 +707,7 @@ class I2C:
         """
         ...
 
-    def init(
-        self, mode, *, addr=0x12, baudrate=400000, gencall=False, dma=False
-    ) -> None:
+    def init(self, mode, *, addr=0x12, baudrate=400000, gencall=False, dma=False) -> None:
         """
         Initialise the I2C bus with the given parameters:
 
@@ -1255,9 +1241,7 @@ class Servo:
         """
         ...
 
-    def calibration(
-        self, pulse_min, pulse_max, pulse_centre, pulse_angle_90, pulse_speed_100
-    ) -> Tuple:
+    def calibration(self, pulse_min, pulse_max, pulse_centre, pulse_angle_90, pulse_speed_100) -> Tuple:
         """
         If no arguments are given, this function returns the current calibration
         data, as a 5-tuple.
@@ -1306,19 +1290,7 @@ class SPI:
         """
         ...
 
-    def init(
-        self,
-        mode,
-        baudrate=328125,
-        *,
-        prescaler=1,
-        polarity=1,
-        phase=0,
-        bits=8,
-        firstbit=MSB,
-        ti=False,
-        crc=None
-    ) -> None:
+    def init(self, mode, baudrate=328125, *, prescaler=1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
         """
         Initialise the SPI bus with the given parameters:
 
@@ -1395,9 +1367,7 @@ class Timer:
     def __init__(self, id, *args) -> None:
         ...
 
-    def init(
-        self, *, freq, prescaler, period, mode=UP, div=1, callback=None, deadtime=0
-    ) -> None:
+    def init(self, *, freq, prescaler, period, mode=UP, div=1, callback=None, deadtime=0) -> None:
         """
         Initialise the timer.  Initialisation must be either by frequency (in Hz)
         or by prescaler and period::
@@ -1665,18 +1635,7 @@ class UART:
     def __init__(self, bus, *args) -> None:
         ...
 
-    def init(
-        self,
-        baudrate,
-        bits=8,
-        parity=None,
-        stop=1,
-        *,
-        timeout=0,
-        flow=0,
-        timeout_char=0,
-        read_buf_len=64
-    ) -> Any:
+    def init(self, baudrate, bits=8, parity=None, stop=1, *, timeout=0, flow=0, timeout_char=0, read_buf_len=64) -> Any:
         """
         Initialise the UART bus with the given parameters:
 

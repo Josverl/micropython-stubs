@@ -5,16 +5,20 @@ Module: 'inisetup' on micropython-v1.16-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
-bdev : Any ## <class 'FlashBdev'> = <FlashBdev object at 3fff20a0>
+bdev: Any  ## <class 'FlashBdev'> = <FlashBdev object at 3fff20a0>
+
+
 def wifi(*args) -> Any:
     ...
+
 
 def check_bootsec(*args) -> Any:
     ...
 
+
 def fs_corrupted(*args) -> Any:
     ...
 
+
 def setup(*args) -> Any:
     ...
-

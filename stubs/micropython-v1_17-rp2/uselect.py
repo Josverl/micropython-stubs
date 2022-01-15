@@ -5,13 +5,15 @@ Module: 'uselect' on micropython-v1.17-rp2
 # Stubber: 1.5.2
 from typing import Any
 
-POLLERR = 8 # type: int
-POLLHUP = 16 # type: int
-POLLIN = 1 # type: int
-POLLOUT = 4 # type: int
+POLLERR = 8  # type: int
+POLLHUP = 16  # type: int
+POLLIN = 1  # type: int
+POLLOUT = 4  # type: int
+
+
 def poll(*args) -> Any:
     ...
 
+
 def select(*args) -> Any:
     ...
-

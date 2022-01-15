@@ -7,7 +7,8 @@ from typing import Any
 
 
 class array:
-    ''
+    """"""
+
     def append(self, *args) -> Any:
         ...
 
@@ -16,4 +17,3 @@ class array:
 
     def decode(self, *args) -> Any:
         ...
-

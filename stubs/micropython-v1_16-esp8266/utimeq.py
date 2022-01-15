@@ -7,7 +7,8 @@ from typing import Any
 
 
 class utimeq:
-    ''
+    """"""
+
     def pop(self, *args) -> Any:
         ...
 
@@ -16,4 +17,3 @@ class utimeq:
 
     def push(self, *args) -> Any:
         ...
-

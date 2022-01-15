@@ -29,11 +29,12 @@
 
 import framebuf
 
+
 class Writer(object):
-    text_row = 0        # attributes common to all Writer instances
+    text_row = 0  # attributes common to all Writer instances
     text_col = 0
-    row_clip = False    # Clip or scroll when screen full
-    col_clip = False    # Clip or new line when row is full
+    row_clip = False  # Clip or scroll when screen full
+    col_clip = False  # Clip or new line when row is full
 
     @classmethod
     def set_textpos(cls, row, col):
@@ -53,9 +54,9 @@ class Writer(object):
         if font.hmap():
             self.map = framebuf.MONO_HMSB if font.reverse() else framebuf.MONO_HLSB
         else:
-            raise ValueError('Font must be horizontally mapped.')
+            raise ValueError("Font must be horizontally mapped.")
         if verbose:
-            print('Orientation: {} Reversal: {}'.format('horiz' if font.hmap() else 'vert', font.reverse()))
+            print("Orientation: {} Reversal: {}".format("horiz" if font.hmap() else "vert", font.reverse()))
         self.screenwidth = device.width  # In pixels
         self.screenheight = device.height
 
@@ -76,7 +77,7 @@ class Writer(object):
     # Method using blitting. Efficient rendering for monochrome displays.
     # Tested on SSD1306.
     def _printchar(self, char):
-        if char == '\n':
+        if char == "\n":
             self._newline()
             return
         glyph, char_height, char_width = self.font.get_ch(char)
@@ -98,7 +99,7 @@ class Writer(object):
     # because the framebuf blit method does not have an effective means of
     # colour mapping single bit framebufs onto n-bit ones
     def _printchar_bitwise(self, char):
-        if char == '\n':
+        if char == "\n":
             self._newline()
             return
         glyph, char_height, char_width = self.font.get_ch(char)
@@ -113,18 +114,17 @@ class Writer(object):
                 self._newline()
 
         div, mod = divmod(char_height, 8)
-        gbytes = div + 1 if mod else div    # No. of bytes per column of glyph
+        gbytes = div + 1 if mod else div  # No. of bytes per column of glyph
         device = self.device
-        for scol in range(char_width):      # Source column
-            dcol = scol + Writer.text_col   # Destination column
-            drow = Writer.text_row          # Destination row
-            for srow in range(char_height): # Source row
+        for scol in range(char_width):  # Source column
+            dcol = scol + Writer.text_col  # Destination column
+            drow = Writer.text_row  # Destination row
+            for srow in range(char_height):  # Source row
                 gbyte, gbit = divmod(srow, 8)
                 if drow >= self.screenheight:
                     break
-                if gbit == 0:               # Next glyph byte
+                if gbit == 0:  # Next glyph byte
                     data = glyph[scol * gbytes + gbyte]
                 device.pixel(dcol, drow, data & (1 << gbit))
                 drow += 1
         Writer.text_col += char_width
-

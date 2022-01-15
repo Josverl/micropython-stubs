@@ -5,11 +5,14 @@ Module: 'ntptime' on micropython-v1.15-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def time(*args) -> Any:
     ...
 
-NTP_DELTA = 3155673600 # type: int
-host = 'pool.ntp.org' # type: str
+
+NTP_DELTA = 3155673600  # type: int
+host = "pool.ntp.org"  # type: str
+
+
 def settime(*args) -> Any:
     ...
-

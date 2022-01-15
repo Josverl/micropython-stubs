@@ -6,11 +6,13 @@ def delay(ms):
     """
     ...
 
+
 def udelay(us):
     """
     Delay for the given number of microseconds.
     """
     ...
+
 
 def millis():
     """
@@ -18,11 +20,13 @@ def millis():
     """
     ...
 
+
 def micros():
     """
     Returns the number of microseconds since the board was last reset.
     """
     ...
+
 
 def elapsed_millis(start):
     """
@@ -30,11 +34,13 @@ def elapsed_millis(start):
     """
     ...
 
+
 def elapsed_micros(start):
     """
     Returns the number of microseconds which have elapsed since ``start``.
     """
     ...
+
 
 def hard_reset():
     """
@@ -42,12 +48,14 @@ def hard_reset():
     button.
     """
 
+
 def bootloader():
-    #pylint: disable=anomalous-backslash-in-string
+    # pylint: disable=anomalous-backslash-in-string
     """
     Activate the bootloader without BOOT\* pins.
     """
     ...
+
 
 def disable_irq():
     """
@@ -62,11 +70,13 @@ def enable_irq(state=True):
     """
     ...
 
+
 def freq(sysclk, hclk, pclk1, pclk2):
     """
     If given no arguments, returns a tuple of clock frequencies.
     """
     ...
+
 
 def wfi():
     """
@@ -74,10 +84,12 @@ def wfi():
     """
     ...
 
+
 def stop():
     """
     Put the pyboard in a "sleeping" state.
     """
+
 
 def standby():
     """
@@ -85,11 +97,13 @@ def standby():
     """
     ...
 
+
 def info(dump_alloc_table):
     """
     Print out lots of information about the board.
     """
     ...
+
 
 def main(filename):
     """
@@ -97,11 +111,13 @@ def main(filename):
     """
     ...
 
+
 def mount(device, mountpoint, readonly=False, mkfs=False):
     """
     Mount a block device and make it available as part of the filesystem.
     """
     ...
+
 
 def repl_uart(uart):
     """
@@ -109,11 +125,13 @@ def repl_uart(uart):
     """
     ...
 
+
 def rng():
     """
     Return a 30-bit hardware generated random number.
     """
     ...
+
 
 def sync():
     """
@@ -121,21 +139,23 @@ def sync():
     """
     ...
 
+
 def unique_id():
     """
     Returns a string of 12 bytes (96 bits), which is the unique ID of the MCU.
     """
     ...
 
-def usb_mode(modestr, vid=0xf055, pid=0x9801, hid=0):
+
+def usb_mode(modestr, vid=0xF055, pid=0x9801, hid=0):
     """
     If called with no arguments, return the current USB mode as a string.
     If called with modestr provided, attempts to set USB mode.
     """
     ...
 
-class Accel:
 
+class Accel:
     def filtered_xyz(self):
         """
         Get a 3-tuple of filtered x, y and z values.
@@ -172,8 +192,8 @@ class Accel:
     def read(self, register):
         ...
 
-class ADC:
 
+class ADC:
     def __init__(self, pin):
         """
         Create an ADC object associated with the given pin.
@@ -196,6 +216,7 @@ class ADC:
         Read analog values into ``buf`` at a rate set by the ``timer`` object.
         """
         ...
+
 
 class CAN:
 
@@ -270,6 +291,7 @@ class CAN:
         """
         ...
 
+
 class DAC:
 
     NORMAL = "NORMAL"
@@ -316,6 +338,7 @@ class DAC:
         """
         ...
 
+
 class ExtInt:
 
     IRQ_FALLING = "IRQ_FALLING"
@@ -334,30 +357,39 @@ class ExtInt:
         Dump the values of the EXTI registers.
         """
 
-    def disable(self, ):
+    def disable(
+        self,
+    ):
         """
         Disable the interrupt associated with the ExtInt object.
         This could be useful for debouncing.
         """
         ...
 
-    def enable(self, ):
+    def enable(
+        self,
+    ):
         """
         Enable a disabled interrupt.
         """
         ...
 
-    def line(self, ):
+    def line(
+        self,
+    ):
         """
         Return the line number that the pin is mapped to.
         """
         ...
 
-    def swint(self, ):
+    def swint(
+        self,
+    ):
         """
         Trigger the callback from software.
         """
         ...
+
 
 class I2C:
 
@@ -418,8 +450,8 @@ class I2C:
         """
         ...
 
-class LCD:
 
+class LCD:
     def __init__(self, skin_position):
         """
         Construct an LCD object in the given skin position.  ``skin_position`` can be 'X' or 'Y', and
@@ -464,7 +496,9 @@ class LCD:
         """
         ...
 
-    def show(self, ):
+    def show(
+        self,
+    ):
         """
         Show the hidden buffer on the screen.
         """
@@ -495,28 +529,37 @@ class LED:
         Get or set the LED intensity.  Intensity ranges between 0 (off) and 255 (full on).
         """
 
-    def off(self, ):
+    def off(
+        self,
+    ):
         """
         Turn the LED off.
         """
         ...
 
-    def on(self, ):
+    def on(
+        self,
+    ):
         """
         Turn the LED on, to maximum intensity.
         """
         ...
 
-    def toggle(self, ):
+    def toggle(
+        self,
+    ):
         """
         Toggle the LED between on (maximum intensity) and off.
         """
         ...
 
+
 class _board(object):
-    """ object has any attribute, returns 1 for requested attribute's value """
+    """object has any attribute, returns 1 for requested attribute's value"""
+
     def __getattr__(self, *args, **kwargs):
         return 1
+
 
 class Pin:
 
@@ -532,7 +575,6 @@ class Pin:
     PULL_UP = "PULL_UP"
     board = _board()
     cpu = _board()
-
 
     def __init__(self, *args, **kwargs):
         """
@@ -634,8 +676,8 @@ class Pin:
         """
         ...
 
-class PinAF:
 
+class PinAF:
     def __str__(self):
         """
         Return a string describing the alternate function.
@@ -661,8 +703,8 @@ class PinAF:
         """
         ...
 
-class RTC:
 
+class RTC:
     def __init__(self):
         """
         Create an RTC object.
@@ -694,8 +736,8 @@ class RTC:
         """
         ...
 
-class Servo:
 
+class Servo:
     def __init__(self, id):
         """
         Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
@@ -727,6 +769,7 @@ class Servo:
         data, as a 5-tuple.
         """
         ...
+
 
 class SPI:
 
@@ -771,8 +814,8 @@ class SPI:
         """
         ...
 
-class Switch:
 
+class Switch:
     def __init__(self):
         """
         Create and return a switch object.
@@ -791,8 +834,8 @@ class Switch:
         """
         ...
 
-class Timer:
 
+class Timer:
     def __init__(self, *args, **kwargs):
         """
         Construct a new timer object of the given id.
@@ -853,8 +896,8 @@ class Timer:
         """
         ...
 
-class TimerChannel:
 
+class TimerChannel:
     def callback(self, fun):
         """
         Set the function to be called when the timer channel triggers.
@@ -883,6 +926,7 @@ class TimerChannel:
         Get or set the pulse width percentage associated with a channel.
         """
         ...
+
 
 class UART:
 
@@ -955,6 +999,7 @@ class UART:
         """
         ...
 
+
 class USB_HID:
     """
     Create a new USB_HID object.
@@ -972,8 +1017,8 @@ class USB_HID:
         """
         ...
 
-class USB_VCP:
 
+class USB_VCP:
     def __init__(self):
         """
         Create a new USB_VCP object.

@@ -5,12 +5,14 @@ Module: 'apa102' on micropython-v1.17-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def apa102_write(*args) -> Any:
     ...
 
 
 class NeoPixel:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -20,10 +22,12 @@ class NeoPixel:
     def fill(self, *args) -> Any:
         ...
 
-    ORDER = () # type: tuple
+    ORDER = ()  # type: tuple
+
 
 class APA102:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -33,4 +37,4 @@ class APA102:
     def fill(self, *args) -> Any:
         ...
 
-    ORDER = () # type: tuple
+    ORDER = ()  # type: tuple

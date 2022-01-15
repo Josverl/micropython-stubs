@@ -7,7 +7,8 @@ from typing import Any
 
 
 class OrderedDict:
-    ''
+    """"""
+
     def clear(self, *args) -> Any:
         ...
 
@@ -44,13 +45,14 @@ class OrderedDict:
 
 
 class deque:
-    ''
+    """"""
+
     def append(self, *args) -> Any:
         ...
 
     def popleft(self, *args) -> Any:
         ...
 
+
 def namedtuple(*args) -> Any:
     ...
-

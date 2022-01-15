@@ -5,6 +5,6 @@ Module: 'ssl' on micropython-v1.14-esp8266
 # Stubber: 1.5.0
 from typing import Any
 
+
 def wrap_socket(*args) -> Any:
     ...
-

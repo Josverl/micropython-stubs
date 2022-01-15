@@ -7,10 +7,12 @@ from typing import Any
 
 
 class CC3K:
-    ''
-    WEP = 1 # type: int
-    WPA = 2 # type: int
-    WPA2 = 3 # type: int
+    """"""
+
+    WEP = 1  # type: int
+    WPA = 2  # type: int
+    WPA2 = 3  # type: int
+
     def connect(self, *args) -> Any:
         ...
 
@@ -31,7 +33,8 @@ class CC3K:
 
 
 class WIZNET5K:
-    ''
+    """"""
+
     def ifconfig(self, *args) -> Any:
         ...
 
@@ -41,6 +44,6 @@ class WIZNET5K:
     def regs(self, *args) -> Any:
         ...
 
+
 def route(*args) -> Any:
     ...
-

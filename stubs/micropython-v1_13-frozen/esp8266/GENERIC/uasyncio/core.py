@@ -73,9 +73,7 @@ def sleep(t):
 class IOQueue:
     def __init__(self):
         self.poller = select.poll()
-        self.map = (
-            {}
-        )  # maps id(stream) to [task_waiting_read, task_waiting_write, stream]
+        self.map = {}  # maps id(stream) to [task_waiting_read, task_waiting_write, stream]
 
     def _enqueue(self, s, idx):
         if id(s) not in self.map:

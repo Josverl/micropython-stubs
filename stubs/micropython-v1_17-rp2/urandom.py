@@ -5,27 +5,34 @@ Module: 'urandom' on micropython-v1.17-rp2
 # Stubber: 1.5.2
 from typing import Any
 
+
 def __init__(*args) -> Any:
     ...
+
 
 def choice(*args) -> Any:
     ...
 
+
 def getrandbits(*args) -> Any:
     ...
+
 
 def randint(*args) -> Any:
     ...
 
+
 def random(*args) -> Any:
     ...
+
 
 def randrange(*args) -> Any:
     ...
 
+
 def seed(*args) -> Any:
     ...
 
+
 def uniform(*args) -> Any:
     ...
-

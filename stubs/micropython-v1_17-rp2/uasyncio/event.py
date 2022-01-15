@@ -7,7 +7,8 @@ from typing import Any
 
 
 class Event:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -17,13 +18,15 @@ class Event:
     def set(self, *args) -> Any:
         ...
 
-    wait : Any ## <class 'generator'> = <generator>
+    wait: Any  ## <class 'generator'> = <generator>
+
     def is_set(self, *args) -> Any:
         ...
 
 
 class ThreadSafeFlag:
-    ''
+    """"""
+
     def __init__(self, *args) -> None:
         ...
 
@@ -33,4 +36,4 @@ class ThreadSafeFlag:
     def ioctl(self, *args) -> Any:
         ...
 
-    wait : Any ## <class 'generator'> = <generator>
+    wait: Any  ## <class 'generator'> = <generator>

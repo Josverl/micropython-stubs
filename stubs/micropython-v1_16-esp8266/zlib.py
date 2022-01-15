@@ -7,7 +7,8 @@ from typing import Any
 
 
 class DecompIO:
-    ''
+    """"""
+
     def read(self, *args) -> Any:
         ...
 
@@ -17,6 +18,6 @@ class DecompIO:
     def readline(self, *args) -> Any:
         ...
 
+
 def decompress(*args) -> Any:
     ...
-
