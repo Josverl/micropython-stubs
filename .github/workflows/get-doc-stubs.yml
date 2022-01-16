@@ -61,13 +61,13 @@ jobs:
         run: |
           git checkout ${{ matrix.version }}
 
-      - name: checkout micropython Latest - master
+      - name: Latest checkout micropython/master
         if: matrix.version=='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
-          git checkout master
+          git checkout micropython/master
 
-      - name: Latest - master
+      - name: get commit info
         id: mpycommit
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
@@ -106,7 +106,7 @@ jobs:
           body : |
             update MicroPython ${{ matrix.version }} doc-stubs
             based on micropython commit ${{ steps.mpycommit.outputs.info }}
-            
+
 
           branch: "micropython-${{ matrix.version }}-doc-stubs"
           reviewers: josverl
