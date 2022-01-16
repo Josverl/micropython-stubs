@@ -150,10 +150,10 @@ class Pin:
     #    Selects the IRQ trigger type.
     IRQ_HIGH_LEVEL: Any
 
-    def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=None, alt=None) -> None:
+    def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=-1, alt=-1) -> None:
         ...
 
-    def init(self, mode=-1, pull=-1, *, value=None, drive=None, alt=None) -> None:
+    def init(self, mode=-1, pull=-1, *, value=None, drive=-1, alt=-1) -> None:
         """
         Re-initialise the pin using the given parameters.  Only those arguments that
         are specified will be set.  The rest of the pin peripheral state will remain
@@ -606,17 +606,7 @@ class SPI:
         ...
 
     def init(
-        self,
-        baudrate=1000000,
-        *,
-        polarity=0,
-        phase=0,
-        bits=8,
-        firstbit=MSB,
-        sck=None,
-        mosi=None,
-        miso=None,
-        pins: Optional[Tuple],
+        self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -693,18 +683,7 @@ class SoftSPI(SPI):
     to initialise the bus.  See `SPI.init` for a description of the parameters.
     """
 
-    def __init__(
-        self,
-        baudrate=500000,
-        *,
-        polarity=0,
-        phase=0,
-        bits=8,
-        firstbit=MSB,
-        sck=None,
-        mosi=None,
-        miso=None,
-    ) -> None:
+    def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None:
         ...
 
 
@@ -1180,18 +1159,7 @@ class SDCard:
      - *freq* selects the SD/MMC interface frequency in Hz (only supported on the ESP32).
     """
 
-    def __init__(
-        self,
-        slot=1,
-        width=1,
-        cd=None,
-        wp=None,
-        sck=None,
-        miso=None,
-        mosi=None,
-        cs=None,
-        freq=20000000,
-    ) -> None:
+    def __init__(self, slot=1, width=1, cd=None, wp=None, sck=None, miso=None, mosi=None, cs=None, freq=20000000) -> None:
         ...
 
 
