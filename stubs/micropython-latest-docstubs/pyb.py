@@ -2195,15 +2195,7 @@ def unique_id() -> str:
     ...
 
 
-def usb_mode(
-    modestr: Optional[Any],
-    port=-1,
-    vid=0xF055,
-    pid=-1,
-    msc=(),
-    hid=hid_mouse,
-    high_speed=False,
-) -> str:
+def usb_mode(modestr: Optional[Any], port=-1, vid=0xF055, pid=-1, msc=(), hid=hid_mouse, high_speed=False) -> str:
     """
     If called with no arguments, return the current USB mode as a string.
 
