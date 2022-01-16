@@ -58,7 +58,7 @@ jobs:
         if: matrix.version!='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
-          git checkout micropython/latest
+          git checkout micropython/master
 
       - name: get commit info
         id: mpycommit
