@@ -58,20 +58,14 @@ jobs:
         if: matrix.version!='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
-          git checkout ${{ matrix.version }}
+          git checkout micropython/latest
 
-      # if micropython older than v1.16 , need older micropython-lib version 
-      # there are no tags on micropython-lib to synchronize 
-      # just use 
-      # v1.15 or older :  git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd
-      - name: checkout micropython-lib - sub level ${{ matrix.version }}
-        if: matrix.version!='Latest'
-        working-directory: ${{github.workspace}}/micropython-stubber/micropython-lib
-        shell: pwsh
+      - name: get commit info
+        id: mpycommit
+        working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
-          $version = "${{ matrix.version }}".replace('v','')
-          if( [version]$version -lt [version]"1.16") { git checkout eae01bd4e4cd1b22d9ccfedbd6bf9d879f64d9bd }
-     
+          echo "::set-output name=info::'$(git log --oneline -1)'"
+
       # make Python work
       - name: Set up Python 3.8
         uses: actions/setup-python@v2
@@ -106,6 +100,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
           title: "Add/update MicroPython ${{ matrix.version }} stubs"
           commit-message: add/update MicroPython ${{ matrix.version }} stubs
+          body : |
+            add/update MicroPython ${{ matrix.version }} stubs
+            based on micropython commit ${{ steps.mpycommit.outputs.info }}          
           branch: "micropython-${{ matrix.version }}-stubs"
           reviewers: josverl
           labels: |
