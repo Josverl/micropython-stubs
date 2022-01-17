@@ -12,25 +12,7 @@ hold/accumulate various objects.
 from typing import Any, Optional
 
 
-class deque:
-    """ """
-
-    def append(self, x) -> Any:
-        """
-        Add *x* to the right side of the deque.
-        Raises IndexError if overflow checking is enabled and there is no more room left.
-        """
-        ...
-
-    def popleft(self) -> Any:
-        """
-        Remove and return an item from the left side of the deque.
-        Raises IndexError if no items are present.
-        """
-        ...
-
-
-def deque(iterable, maxlen, flags: Optional[Any]) -> Any:
+class deque(queu):
     """
     Deques (double-ended queues) are a list-like container that support O(1)
     appends and pops from either side of the deque.  New deques are created
@@ -47,31 +29,26 @@ def deque(iterable, maxlen, flags: Optional[Any]) -> Any:
     As well as supporting `bool` and `len`, deque objects have the following
     methods:
     """
-    ...
+
+    def __init__(self, iterable, maxlen, flags: Optional[Any]) -> None:
+        ...
+
+    def append(self, x) -> Any:
+        """
+        Add *x* to the right side of the deque.
+        Raises IndexError if overflow checking is enabled and there is no more room left.
+        """
+        ...
+
+    def popleft(self) -> Any:
+        """
+        Remove and return an item from the left side of the deque.
+        Raises IndexError if no items are present.
+        """
+        ...
 
 
-def namedtuple(name, fields) -> Any:
-    """
-    This is factory function to create a new namedtuple type with a specific
-    name and set of fields. A namedtuple is a subclass of tuple which allows
-    to access its fields not just by numeric index, but also with an attribute
-    access syntax using symbolic field names. Fields is a sequence of strings
-    specifying field names. For compatibility with CPython it can also be a
-    a string with space-separated field named (but this is less efficient).
-    Example of use::
-
-        from collections import namedtuple
-
-        MyTuple = namedtuple("MyTuple", ("id", "name"))
-        t1 = MyTuple(1, "foo")
-        t2 = MyTuple(2, "bar")
-        print(t1.name)
-        assert t2.name == t2[1]
-    """
-    ...
-
-
-def OrderedDict(*args) -> Any:
+class OrderedDict(dict):
     """
     ``dict`` type subclass which remembers and preserves the order of keys
     added. When ordered dict is iterated over, keys/items are returned in
@@ -94,5 +71,28 @@ def OrderedDict(*args) -> Any:
         a 2
         w 5
         b 3
+    """
+
+    def __init__(self, *args) -> None:
+        ...
+
+
+def namedtuple(name, fields) -> Any:
+    """
+    This is factory function to create a new namedtuple type with a specific
+    name and set of fields. A namedtuple is a subclass of tuple which allows
+    to access its fields not just by numeric index, but also with an attribute
+    access syntax using symbolic field names. Fields is a sequence of strings
+    specifying field names. For compatibility with CPython it can also be a
+    a string with space-separated field named (but this is less efficient).
+    Example of use::
+
+        from collections import namedtuple
+
+        MyTuple = namedtuple("MyTuple", ("id", "name"))
+        t1 = MyTuple(1, "foo")
+        t2 = MyTuple(2, "bar")
+        print(t1.name)
+        assert t2.name == t2[1]
     """
     ...
