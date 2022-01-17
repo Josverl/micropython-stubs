@@ -1,0 +1,24 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "samd",
+        "platform": "samd",
+        "machine": "GENERIC",
+        "firmware": "micropython-samd-v1_18",
+        "nodename": "micropython",
+        "version": "v1.18",
+        "release": "v1.18",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.4.5",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        }
+    ]
+}
