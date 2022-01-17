@@ -1,0 +1,64 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "esp8266",
+        "platform": "esp8266",
+        "machine": "GENERIC_512K",
+        "firmware": "micropython-esp8266-v1_18",
+        "nodename": "micropython",
+        "version": "v1.18",
+        "release": "v1.18",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.4.5",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "apa102.py",
+            "module": "apa102"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "neopixel.py",
+            "module": "neopixel"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "port_diag.py",
+            "module": "port_diag"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        },
+        {
+            "file": "websocket_helper.py",
+            "module": "websocket_helper"
+        }
+    ]
+}
