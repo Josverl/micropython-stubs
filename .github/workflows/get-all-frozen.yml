@@ -53,19 +53,18 @@ jobs:
           git remote add --tags micropython https://github.com/micropython/micropython.git
           git fetch --all --tags
 
-      # micropython as a sub-module of micropython-stubber 
+      # checkout micropython at the correct vesion tag
       - name: checkout micropython ${{ matrix.version }}
         if: matrix.version!='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
-          git checkout micropython/${{ matrix.version }}
-
+          git checkout ${{ matrix.version }}
+      # for the latest version, checkout micropython/master
       - name: checkout micropython v${{ matrix.version }}
         if: matrix.version=='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
           git checkout micropython/master
-
 
       - name: get commit info
         id: mpycommit
