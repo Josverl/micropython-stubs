@@ -12,20 +12,13 @@ This module provides functions to efficiently wait for events on multiple
 from typing import Any, Iterator, List, Optional, Tuple
 
 
-class select:
-    """
-    Wait for activity on a set of objects.
-
-    This function is provided by some MicroPython ports for compatibility
-    and is not efficient. Usage of :class:`Poll` is recommended instead.
-    """
-
-    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any]) -> None:
-        ...
-
-
 class poll:
-    """ """
+    """
+    Create an instance of the Poll class.
+    """
+
+    def __init__(self) -> None:
+        ...
 
     def register(self, obj, eventmask: Optional[Any]) -> None:
         """
@@ -95,8 +88,13 @@ class poll:
         ...
 
 
-def poll() -> Any:
+class select:
     """
-    Create an instance of the Poll class.
+    Wait for activity on a set of objects.
+
+    This function is provided by some MicroPython ports for compatibility
+    and is not efficient. Usage of :class:`Poll` is recommended instead.
     """
-    ...
+
+    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any]) -> None:
+        ...
