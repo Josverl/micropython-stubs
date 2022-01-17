@@ -1,0 +1,3 @@
+from typing import Any, Optional
+
+def heartbeat(enable: Optional[Any]) -> bool: ...
