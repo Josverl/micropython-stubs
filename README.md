@@ -20,19 +20,20 @@ Demo using VSCode:
 
 ## List of current firmwares and stubs 
 The list of the current included firmwares, ports and boards includes stubs from the following micropython families: 
+
  - MicroPython
  - Pycopy
  - Loboris port (ESP32)
 
- - M5Stack
- - EV3 / Lego
  - LVGL
+ - EV3 / Lego
+ - M5Stack
 
 For a full overview of all stubs check out [the documentation on read the docs](https://micropython-stubs.readthedocs.io/en/latest/firmware_grp.html), or int the repo in  [docs/firmware_grp.md](docs/firmware_grp.md)
 
 # Using the stubs 
 
-To learn how to use the stubs please refer to [the documentaion on RTD](https://micropython-stubs.readthedocs.io/en/latest/02_using.html)
+To learn how to use the stubs please refer to [the documentation on RTD](https://micropython-stubs.readthedocs.io/en/latest/02_using.html)
 
 ## Branch Main
 The name of the default branch has been changed to `main`.
