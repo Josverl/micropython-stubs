@@ -8,6 +8,9 @@ This is a combination using a subset of the firmware stubs from:
     - framebuff.py
 - micropython-v1.17-rp2
     - _rp2.py
+
+- micropython-v1_18-docstubs
+    - bluetooth.py
+
 - micropython-v1_17-esp32
     - all others 
-
