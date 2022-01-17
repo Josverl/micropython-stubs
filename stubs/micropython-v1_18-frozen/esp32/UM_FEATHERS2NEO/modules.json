@@ -1,0 +1,104 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "esp32",
+        "platform": "esp32",
+        "machine": "UM_FEATHERS2NEO",
+        "firmware": "micropython-esp32-v1_18",
+        "nodename": "micropython",
+        "version": "v1.18",
+        "release": "v1.18",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.4.5",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "apa106.py",
+            "module": "apa106"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "feathers2neo.py",
+            "module": "feathers2neo"
+        },
+        {
+            "file": "flashbdev.py",
+            "module": "flashbdev"
+        },
+        {
+            "file": "inisetup.py",
+            "module": "inisetup"
+        },
+        {
+            "file": "neopixel.py",
+            "module": "neopixel"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        },
+        {
+            "file": "websocket_helper.py",
+            "module": "websocket_helper"
+        }
+    ]
+}
