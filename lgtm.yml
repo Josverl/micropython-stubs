@@ -3,12 +3,14 @@
 queries:
 - exclude: py/unused-import                       # broad types import in stubs 
 - exclude: py/clear-text-storage-sensitive-data
-- exclude: py/illegal-raise
 - exclude: py/catch-base-exception                # common MicroPython shorthand 
 - exclude: py/insecure-default-protocol           # micropython SSL wrapping
 - exclude: py/insecure-protocol                   # micropython SSL wrapping
 - exclude: py/missing-call-to-init                # stubs do not call parents
 - exclude: py/useless-except                      # except core.CancelledError as er:
-- exclude: py/not-named-self                      # Old stubs TODO: resolve this 
 - exclude: py/polluting-import                    # Cpython stubs: from pycopy import *
 - exclude: py/import-and-import-from              # used in several frozen modules - not my code
+- exclude: py/multiple-definition                 # used in several frozen modules - not my code
+
+#- exclude: py/not-named-self                      # Old stubs TODO: resolve this 
+# - exclude: py/illegal-raise
