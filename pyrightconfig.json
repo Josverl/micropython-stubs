@@ -151,9 +151,15 @@
                 "stubs/micropython-latest-docstubs"
             ],
         },
-        // future versions
         {
             "root": "stubs/micropython-v1_18-frozen",
+            "extraPaths": [
+                "stubs/typings_fallback"
+            ],
+        },
+        // future versions
+        {
+            "root": "stubs/micropython-v1_19-frozen",
             "extraPaths": [
                 "stubs/typings_fallback"
             ],
