@@ -54,11 +54,18 @@ jobs:
           git fetch --all --tags
 
       # micropython as a sub-module of micropython-stubber 
-      - name: checkout micropython - sub level ${{ matrix.version }}
+      - name: checkout micropython ${{ matrix.version }}
         if: matrix.version!='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
         run: |
+          git checkout micropython/${{ matrix.version }}
+
+      - name: checkout micropython v${{ matrix.version }}
+        if: matrix.version=='Latest'
+        working-directory: ${{github.workspace}}/micropython-stubber/micropython
+        run: |
           git checkout micropython/master
+
 
       - name: get commit info
         id: mpycommit
