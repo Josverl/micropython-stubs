@@ -114,14 +114,47 @@ from typing import Any, List, Optional, Tuple
 DEBUG: Any
 
 
-class match:
-    """
-    Compile *regex_str* and match against *string*. Match always happens
-    from starting position in a string.
-    """
+class regex:
+    """ """
 
-    def __init__(self, regex_str, string) -> None:
+    def match(self, string) -> Any:
+        """
+        Similar to the module-level functions :meth:`match`, :meth:`search`
+        and :meth:`sub`.
+        Using methods is (much) more efficient if the same regex is applied to
+        multiple strings.
+        """
         ...
+
+    def search(self, string) -> Any:
+        """
+        Similar to the module-level functions :meth:`match`, :meth:`search`
+        and :meth:`sub`.
+        Using methods is (much) more efficient if the same regex is applied to
+        multiple strings.
+        """
+        ...
+
+    def sub(self, replace, string, count=0, flags=0, /) -> Any:
+        """
+        Similar to the module-level functions :meth:`match`, :meth:`search`
+        and :meth:`sub`.
+        Using methods is (much) more efficient if the same regex is applied to
+        multiple strings.
+        """
+        ...
+
+    def split(self, string, max_split=-1, /) -> List[str]:
+        """
+        Split a *string* using regex. If *max_split* is given, it specifies
+        maximum number of splits to perform. Returns list of strings (there
+        may be up to *max_split+1* elements if it's specified).
+        """
+        ...
+
+
+class match:
+    """ """
 
     def group(self, index) -> str:
         """
@@ -167,48 +200,17 @@ class match:
         ...
 
 
-class regex:
-    """ """
-
-    def match(self, string) -> Any:
-        """
-        Similar to the module-level functions :meth:`match`, :meth:`search`
-        and :meth:`sub`.
-        Using methods is (much) more efficient if the same regex is applied to
-        multiple strings.
-        """
-        ...
-
-    def search(self, string) -> Any:
-        """
-        Similar to the module-level functions :meth:`match`, :meth:`search`
-        and :meth:`sub`.
-        Using methods is (much) more efficient if the same regex is applied to
-        multiple strings.
-        """
-        ...
-
-    def sub(self, replace, string, count=0, flags=0, /) -> Any:
-        """
-        Similar to the module-level functions :meth:`match`, :meth:`search`
-        and :meth:`sub`.
-        Using methods is (much) more efficient if the same regex is applied to
-        multiple strings.
-        """
-        ...
-
-    def split(self, string, max_split=-1, /) -> List[str]:
-        """
-        Split a *string* using regex. If *max_split* is given, it specifies
-        maximum number of splits to perform. Returns list of strings (there
-        may be up to *max_split+1* elements if it's specified).
-        """
-        ...
-
-
 def compile(regex_str, flags: Optional[Any]) -> regex:
     """
     Compile regular expression, return `regex <regex>` object.
+    """
+    ...
+
+
+def match(regex_str, string) -> Any:
+    """
+    Compile *regex_str* and match against *string*. Match always happens
+    from starting position in a string.
     """
     ...
 
