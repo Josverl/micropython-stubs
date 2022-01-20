@@ -59,7 +59,7 @@
     // old firmware stubs
     "reportOptionalSubscript": "information", // TODO: Is still reported as a warning
     // 
-    // "typeshedPath": "stubs/typings_fallback",
+    "typeshedPath": "stubs/typings/typeshed",
     "executionEnvironments": [
         // CPython core should not have dependencies other that CPython
         {
@@ -73,80 +73,80 @@
         {
             "root": "stubs/cpython_pyboard",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         // frozen must be able to refer to micropython-lib 
         {
             "root": "stubs/micropython-v1_10-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v1_11-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v1_9_3-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v1_9_4-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v1_11-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v1_12-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v1_13-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v1_14-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v1_15-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v1_16-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v1_17-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-latest-frozen",
             "extraPaths": [
-                "stubs/typings_fallback",
+                "stubs/typings/fallback",
                 // and perhaps to a newly documented module 
                 "stubs/micropython-latest-docstubs"
             ],
@@ -154,20 +154,20 @@
         {
             "root": "stubs/micropython-v1_18-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         // future versions
         {
             "root": "stubs/micropython-v1_19-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         {
             "root": "stubs/micropython-v2_0-frozen",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         // ## Lobo frozen #############################################
