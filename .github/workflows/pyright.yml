@@ -15,7 +15,7 @@ permissions:
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
 
-
+jobs:
   pyright:
     name: Run pyright against the stubs
     runs-on: ubuntu-latest
