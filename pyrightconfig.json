@@ -52,14 +52,14 @@
     "reportUndefinedVariable": "warning", // "_WHO_AM_I_REG" is not defined - Not a showstopper
     "reportUnboundVariable": "information",
     "ReportSelfClsParameterName": "information", // TODO: Is still reported as a warning
-    "reportWildcardImportFromLibrary": "information",
+    "reportWildcardImportFromLibrary": "none",
     "reportOptionalMemberAccess": "information", // "read" is not a known member of "None" - occurs often in frozen code
     "reportOptionalCall": "warning", //  Object of type "None" cannot be called
     "reportGeneralTypeIssues": "warning", // Expected no arguments to "Pin" constructor and a lot of others
     // old firmware stubs
     "reportOptionalSubscript": "information", // TODO: Is still reported as a warning
     // 
-    "typeshedPath": "stubs/typings/typeshed",
+    // "typeshedPath": "stubs/typings/typeshed",
     "executionEnvironments": [
         // CPython core should not have dependencies other that CPython
         {
