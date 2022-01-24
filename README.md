@@ -12,7 +12,7 @@ Currently over 3.000 stubfiles of common MicroPython modules are available in th
 - get help from  code completion, 
 - use static type checking 
 
-and improve the overall development experience while writing MicroPython.
+and improve the overall development experience while writing [MicroPython](https://micropython.org/).
 
 Demo using VSCode: 
 ![demo](docs/img/demo.gif)
