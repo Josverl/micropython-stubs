@@ -14,7 +14,8 @@ Currently over 3.000 stubfiles of common MicroPython modules are available in th
 
 and improve the overall development experience while writing [MicroPython](https://micropython.org/).
 
-Demo using VSCode: 
+
+Demo using VSCode:  
 ![demo](docs/img/demo.gif)
 
 
@@ -29,7 +30,7 @@ The list of the current included firmwares, ports and boards includes stubs from
  - EV3 / Lego
  - M5Stack
 
-For a full overview of all stubs check out [the documentation on read the docs](https://micropython-stubs.readthedocs.io/en/latest/firmware_grp.html), or int the repo in  [docs/firmware_grp.md](docs/firmware_grp.md)
+For a full overview of all stubs check out [the documentation on read the docs](https://micropython-stubs.readthedocs.io/en/latest/firmware_grp.html), or in  [docs/firmware_grp.md](docs/firmware_grp.md)
 
 # Using the stubs 
 
