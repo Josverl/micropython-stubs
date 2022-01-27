@@ -1,5 +1,5 @@
 {"firmware": {"ver": "v1.18", "port": "pyboard", "arch": "armv7emsp", "sysname": "pyboard", "release": "1.18.0", "name": "micropython", "mpy": 7685, "version": "1.18.0", "machine": "PYBv1.1 with STM32F405RG", "build": "", "nodename": "pyboard", "platform": "pyboard", "family": "micropython"},
-"stubber": {"version": "1.5.2"}, "stubtype": "firmware",
+"stubber": {"version": "1.5.3"}, "stubtype": "firmware",
 "modules" :[
 {"file": "/sd/stubs/micropython-v1_18-pyboard/_onewire.py", "module": "_onewire"},
 {"file": "/sd/stubs/micropython-v1_18-pyboard/_uasyncio.py", "module": "_uasyncio"},

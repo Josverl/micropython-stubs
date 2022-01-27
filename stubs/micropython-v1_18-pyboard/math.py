@@ -2,171 +2,128 @@
 Module: 'math' on micropython-v1.18-pyboard
 """
 # MCU: {'ver': 'v1.18', 'port': 'pyboard', 'arch': 'armv7emsp', 'sysname': 'pyboard', 'release': '1.18.0', 'name': 'micropython', 'mpy': 7685, 'version': '1.18.0', 'machine': 'PYBv1.1 with STM32F405RG', 'build': '', 'nodename': 'pyboard', 'platform': 'pyboard', 'family': 'micropython'}
-# Stubber: 1.5.2
+# Stubber: 1.5.3
 from typing import Any
 
-
-def pow(*args) -> Any:
+def pow(*args, **kwargs) -> Any:
     ...
 
-
-def acos(*args) -> Any:
+def acos(*args, **kwargs) -> Any:
     ...
 
-
-def acosh(*args) -> Any:
+def acosh(*args, **kwargs) -> Any:
     ...
 
-
-def asin(*args) -> Any:
+def asin(*args, **kwargs) -> Any:
     ...
 
-
-def asinh(*args) -> Any:
+def asinh(*args, **kwargs) -> Any:
     ...
 
-
-def atan(*args) -> Any:
+def atan(*args, **kwargs) -> Any:
     ...
 
-
-def atan2(*args) -> Any:
+def atan2(*args, **kwargs) -> Any:
     ...
 
-
-def atanh(*args) -> Any:
+def atanh(*args, **kwargs) -> Any:
     ...
 
-
-def ceil(*args) -> Any:
+def ceil(*args, **kwargs) -> Any:
     ...
 
-
-def copysign(*args) -> Any:
+def copysign(*args, **kwargs) -> Any:
     ...
 
-
-def cos(*args) -> Any:
+def cos(*args, **kwargs) -> Any:
     ...
 
-
-def cosh(*args) -> Any:
+def cosh(*args, **kwargs) -> Any:
     ...
 
-
-def degrees(*args) -> Any:
+def degrees(*args, **kwargs) -> Any:
     ...
 
-
-e = 2.718282  # type: float
-
-
-def erf(*args) -> Any:
+e = 2.718282 # type: float
+def erf(*args, **kwargs) -> Any:
     ...
 
-
-def erfc(*args) -> Any:
+def erfc(*args, **kwargs) -> Any:
     ...
 
-
-def exp(*args) -> Any:
+def exp(*args, **kwargs) -> Any:
     ...
 
-
-def expm1(*args) -> Any:
+def expm1(*args, **kwargs) -> Any:
     ...
 
-
-def fabs(*args) -> Any:
+def fabs(*args, **kwargs) -> Any:
     ...
 
-
-def factorial(*args) -> Any:
+def factorial(*args, **kwargs) -> Any:
     ...
 
-
-def floor(*args) -> Any:
+def floor(*args, **kwargs) -> Any:
     ...
 
-
-def fmod(*args) -> Any:
+def fmod(*args, **kwargs) -> Any:
     ...
 
-
-def frexp(*args) -> Any:
+def frexp(*args, **kwargs) -> Any:
     ...
 
-
-def gamma(*args) -> Any:
+def gamma(*args, **kwargs) -> Any:
     ...
 
-
-def isclose(*args) -> Any:
+def isclose(*args, **kwargs) -> Any:
     ...
 
-
-def isfinite(*args) -> Any:
+def isfinite(*args, **kwargs) -> Any:
     ...
 
-
-def isinf(*args) -> Any:
+def isinf(*args, **kwargs) -> Any:
     ...
 
-
-def isnan(*args) -> Any:
+def isnan(*args, **kwargs) -> Any:
     ...
 
-
-def ldexp(*args) -> Any:
+def ldexp(*args, **kwargs) -> Any:
     ...
 
-
-def lgamma(*args) -> Any:
+def lgamma(*args, **kwargs) -> Any:
     ...
 
-
-def log(*args) -> Any:
+def log(*args, **kwargs) -> Any:
     ...
 
-
-def log10(*args) -> Any:
+def log10(*args, **kwargs) -> Any:
     ...
 
-
-def log2(*args) -> Any:
+def log2(*args, **kwargs) -> Any:
     ...
 
-
-def modf(*args) -> Any:
+def modf(*args, **kwargs) -> Any:
     ...
 
-
-pi = 3.141593  # type: float
-
-
-def radians(*args) -> Any:
+pi = 3.141593 # type: float
+def radians(*args, **kwargs) -> Any:
     ...
 
-
-def sin(*args) -> Any:
+def sin(*args, **kwargs) -> Any:
     ...
 
-
-def sinh(*args) -> Any:
+def sinh(*args, **kwargs) -> Any:
     ...
 
-
-def sqrt(*args) -> Any:
+def sqrt(*args, **kwargs) -> Any:
     ...
 
-
-def tan(*args) -> Any:
+def tan(*args, **kwargs) -> Any:
     ...
 
-
-def tanh(*args) -> Any:
+def tanh(*args, **kwargs) -> Any:
     ...
 
-
-def trunc(*args) -> Any:
+def trunc(*args, **kwargs) -> Any:
     ...
+
