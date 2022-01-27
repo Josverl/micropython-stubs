@@ -3,7 +3,7 @@
 ########################################################################################################################################
 # Check out repos in this structure 
 # micropython-stubs
-#     + - stubs 
+#   + - stubs 
 #   +-- micropython-stubber
 #       +-- micropython
 #        -- micropython-lib
@@ -53,7 +53,7 @@ jobs:
           git remote add --tags micropython https://github.com/micropython/micropython.git
           git fetch --all --tags
 
-      # checkout micropython at the correct vesion tag
+      # checkout micropython at the correct version tag
       - name: checkout micropython ${{ matrix.version }}
         if: matrix.version!='Latest'
         working-directory: ${{github.workspace}}/micropython-stubber/micropython
@@ -73,7 +73,7 @@ jobs:
           echo "::set-output name=info::'$(git log --oneline -1)'"
 
       # make Python work
-      - name: Set up Python 3.8
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
@@ -99,7 +99,15 @@ jobs:
         run: |
           python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --mpy 
 
-      - name: Create Pull Request
+      - name: check for changes other than modules.py
+        shell: pwsh
+        id: changed
+        run: |
+          $changed = (git whatchanged -1 --format=oneline | ?{-not $_.Contains("modules.json") }).count-1
+          write-host "::set-output name=count::$changed"
+
+      - name: Create Pull Request ( if relevant changes) 
+        if: ${{ steps.changed.outputs.count }} >= 1
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
@@ -112,11 +120,11 @@ jobs:
           branch: "micropython-${{ matrix.version }}-stubs"
           reviewers: josverl
           labels: |
-            automated pr
             frozen stubs 
             MicroPython
             ${{ matrix.version }}
           delete-branch: true
+
   ########################################################################################################################################
   get-core-cpython-stubs:
     # The type of runner that the job will run on
@@ -140,7 +148,7 @@ jobs:
           path: micropython-stubber
 
       # make Python work
-      - name: Set up Python 3.8
+      - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
@@ -176,72 +184,6 @@ jobs:
           branch: "micropython-core-stubs"
           reviewers: josverl
           labels: |
-            automated pr
             CPython
             MicroPython
           delete-branch: true
-
-
-  ########################################################################################################################################
-  get-loboris-frozen-stubs:
-    runs-on: ubuntu-latest
-
-    # Most scripts will be run from the stubber, set that as default
-    defaults:
-      run:
-        shell: bash
-        working-directory: ${{github.workspace}}/micropython-stubber
-    
-    steps:
-
-      - name: Checkout stubs repo
-        uses: actions/checkout@v2
-
-      - name: Checkout Stubber
-        uses: actions/checkout@v2
-        with:
-          repository: josverl/micropython-stubber
-          path: micropython-stubber
-
-      # make Python work
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-
-      - name: restore Python from cache 
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ env.pythonLocation }}-${{ hashFiles('micropython-stubber/requirements.txt') }}
-
-      - name: Install Python dependencies (stubber)
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      ######################################
-      # This is where the actual work starts
-      ######################################
-
-      - name: Get frozen modules for ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython-stubber
-        run: |
-          python ./src/get_all_frozen.py --stub-folder ${{github.workspace}}/stubs --lobo
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        # ref: https://github.com/peter-evans/create-pull-request
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
-          title: "add/update Loboris frozen stubs"
-          commit-message: add/update Loboris frozen stubs
-          branch: "micropython-lobo-stubs"
-          reviewers: josverl
-          labels: |
-            automated pr
-            frozen stubs
-            Loboris
-          delete-branch: true
-  ########################################################################################################################################
-

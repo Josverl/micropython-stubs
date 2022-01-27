@@ -6,8 +6,8 @@ name: Check stubs
 
 on:
   workflow_dispatch:
-  push:
-  pull_request:
+  # push:
+  # pull_request:
 
 permissions:
   contents: read
@@ -21,8 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-platform: ["Linux", "Windows", "Darwin"]
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-platform: ["Linux"] # , "Windows", "Darwin"]
+        #python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: [ "3.9"]
       fail-fast: false
     env:
       PYRIGHT_VERSION: 1.1.204 # Must match pyright_test.py.
