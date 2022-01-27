@@ -5,26 +5,30 @@ Module: 'usocket' on micropython-v1.18-esp32
 # Stubber: 1.5.3
 from typing import Any
 
-AF_INET = 2 # type: int
-AF_INET6 = 10 # type: int
-IPPROTO_IP = 0 # type: int
-IPPROTO_TCP = 6 # type: int
-IPPROTO_UDP = 17 # type: int
-IP_ADD_MEMBERSHIP = 3 # type: int
-SOCK_DGRAM = 2 # type: int
-SOCK_RAW = 3 # type: int
-SOCK_STREAM = 1 # type: int
-SOL_SOCKET = 4095 # type: int
-SO_REUSEADDR = 4 # type: int
+AF_INET = 2  # type: int
+AF_INET6 = 10  # type: int
+IPPROTO_IP = 0  # type: int
+IPPROTO_TCP = 6  # type: int
+IPPROTO_UDP = 17  # type: int
+IP_ADD_MEMBERSHIP = 3  # type: int
+SOCK_DGRAM = 2  # type: int
+SOCK_RAW = 3  # type: int
+SOCK_STREAM = 1  # type: int
+SOL_SOCKET = 4095  # type: int
+SO_REUSEADDR = 4  # type: int
+
+
 def getaddrinfo(*args, **kwargs) -> Any:
     ...
 
 
-class socket():
-    ''
+class socket:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
@@ -81,4 +85,3 @@ class socket():
 
     def settimeout(self, *args, **kwargs) -> Any:
         ...
-

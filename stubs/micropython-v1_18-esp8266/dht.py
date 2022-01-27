@@ -5,15 +5,18 @@ Module: 'dht' on micropython-v1.18-esp8266
 # Stubber: 1.5.3
 from typing import Any
 
+
 def dht_readinto(*args) -> Any:
     ...
 
 
-class DHTBase():
-    ''
+class DHTBase:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def __init__(self, *args) -> None:
         ...
 
@@ -21,29 +24,13 @@ class DHTBase():
         ...
 
 
-class DHT11():
-    ''
+class DHT11:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
-        ...
-    def __init__(self, *args) -> None:
+        """"""
         ...
 
-    def measure(self, *args) -> Any:
-        ...
-
-    def humidity(self, *args) -> Any:
-        ...
-
-    def temperature(self, *args) -> Any:
-        ...
-
-
-class DHT22():
-    ''
-    def __init__(self, *argv, **kwargs) -> None:
-        ''
-        ...
     def __init__(self, *args) -> None:
         ...
 
@@ -56,3 +43,22 @@ class DHT22():
     def temperature(self, *args) -> Any:
         ...
 
+
+class DHT22:
+    """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
+    def __init__(self, *args) -> None:
+        ...
+
+    def measure(self, *args) -> Any:
+        ...
+
+    def humidity(self, *args) -> Any:
+        ...
+
+    def temperature(self, *args) -> Any:
+        ...

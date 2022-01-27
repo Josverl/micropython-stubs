@@ -2,7 +2,7 @@
 Module: 'ssd1306' on micropython-v1.17-esp8266
 """
 # MCU: {'ver': 'v1.17', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.17', 'name': 'micropython', 'mpy': 9733, 'version': '1.17', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
-# Stubber: 1.5.0
+# Stubber: 1.5.3
 from typing import Any
 
 
@@ -32,6 +32,10 @@ SET_CHARGE_PUMP = 141  # type: int
 
 class SSD1306:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def __init__(self, *args) -> None:
         ...
@@ -90,6 +94,10 @@ class SSD1306:
 
 class SSD1306_I2C:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def __init__(self, *args) -> None:
         ...
@@ -154,6 +162,10 @@ class SSD1306_I2C:
 
 class SSD1306_SPI:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def __init__(self, *args) -> None:
         ...

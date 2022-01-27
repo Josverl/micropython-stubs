@@ -7,107 +7,143 @@ from typing import Any
 
 
 class ArithmeticError(Exception):
-    ''
+    """"""
+
 
 class AssertionError(Exception):
-    ''
+    """"""
+
 
 class AttributeError(Exception):
-    ''
+    """"""
+
 
 class EOFError(Exception):
-    ''
-Ellipsis : Any ## <class ''> = Ellipsis
+    """"""
 
-class GeneratorExit():
-    ''
+
+Ellipsis: Any  ## <class ''> = Ellipsis
+
+
+class GeneratorExit:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
 
 class ImportError(Exception):
-    ''
+    """"""
+
 
 class IndentationError(Exception):
-    ''
+    """"""
+
 
 class IndexError(Exception):
-    ''
+    """"""
+
 
 class KeyError(Exception):
-    ''
+    """"""
 
-class KeyboardInterrupt():
-    ''
+
+class KeyboardInterrupt:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
 
 class LookupError(Exception):
-    ''
+    """"""
+
 
 class MemoryError(Exception):
-    ''
+    """"""
+
 
 class NameError(Exception):
-    ''
+    """"""
+
 
 class NotImplementedError(Exception):
-    ''
+    """"""
+
 
 class OSError(Exception):
-    ''
+    """"""
+
 
 class OverflowError(Exception):
-    ''
+    """"""
+
 
 class RuntimeError(Exception):
-    ''
+    """"""
 
-class StopIteration():
-    ''
+
+class StopIteration:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
 
 class SyntaxError(Exception):
-    ''
+    """"""
 
-class SystemExit():
-    ''
+
+class SystemExit:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
+
 class TypeError(Exception):
-    ''
+    """"""
+
 
 class ValueError(Exception):
-    ''
+    """"""
+
 
 class ZeroDivisionError(Exception):
-    ''
+    """"""
+
+
 def abs(*args) -> Any:
     ...
 
+
 def all(*args) -> Any:
     ...
+
 
 def any(*args) -> Any:
     ...
 
 
-class bool():
-    ''
+class bool:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class bytearray():
-    ''
+
+class bytearray:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def append(self, *args) -> Any:
         ...
 
@@ -118,11 +154,13 @@ class bytearray():
         ...
 
 
-class bytes():
-    ''
+class bytes:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def count(self, *args) -> Any:
         ...
 
@@ -192,18 +230,22 @@ class bytes():
     def decode(self, *args) -> Any:
         ...
 
+
 def callable(*args) -> Any:
     ...
+
 
 def chr(*args) -> Any:
     ...
 
 
-class dict():
-    ''
+class dict:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def clear(self, *args) -> Any:
         ...
 
@@ -238,39 +280,50 @@ class dict():
     def fromkeys(cls, *args) -> Any:
         ...
 
+
 def dir(*args) -> Any:
     ...
+
 
 def divmod(*args) -> Any:
     ...
 
+
 def eval(*args) -> Any:
     ...
+
 
 def exec(*args) -> Any:
     ...
 
+
 def getattr(*args) -> Any:
     ...
+
 
 def globals(*args) -> Any:
     ...
 
+
 def hasattr(*args) -> Any:
     ...
 
+
 def hash(*args) -> Any:
     ...
+
 
 def id(*args) -> Any:
     ...
 
 
-class int():
-    ''
+class int:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     @classmethod
     def from_bytes(cls, *args) -> Any:
         ...
@@ -278,24 +331,30 @@ class int():
     def to_bytes(self, *args) -> Any:
         ...
 
+
 def isinstance(*args) -> Any:
     ...
+
 
 def issubclass(*args) -> Any:
     ...
 
+
 def iter(*args) -> Any:
     ...
+
 
 def len(*args) -> Any:
     ...
 
 
-class list():
-    ''
+class list:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def append(self, *args) -> Any:
         ...
 
@@ -329,57 +388,73 @@ class list():
     def sort(self, *args) -> Any:
         ...
 
+
 def locals(*args) -> Any:
     ...
 
 
-class map():
-    ''
+class map:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
+
 def next(*args) -> Any:
     ...
 
 
-class object():
-    ''
+class object:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def __init__(self, *args) -> None:
         ...
+
 
 def open(*args) -> Any:
     ...
 
+
 def ord(*args) -> Any:
     ...
 
+
 def pow(*args) -> Any:
     ...
+
 
 def print(*args) -> Any:
     ...
 
 
-class range():
-    ''
+class range:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
+
 def repr(*args) -> Any:
     ...
+
 
 def round(*args) -> Any:
     ...
 
 
-class set():
-    ''
+class set:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def clear(self, *args) -> Any:
         ...
 
@@ -431,18 +506,22 @@ class set():
     def union(self, *args) -> Any:
         ...
 
+
 def setattr(*args) -> Any:
     ...
+
 
 def sorted(*args) -> Any:
     ...
 
 
-class str():
-    ''
+class str:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def count(self, *args) -> Any:
         ...
 
@@ -512,21 +591,26 @@ class str():
     def encode(self, *args) -> Any:
         ...
 
+
 def sum(*args) -> Any:
     ...
 
 
-class super():
-    ''
+class super:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class tuple():
-    ''
+
+class tuple:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def count(self, *args) -> Any:
         ...
 
@@ -534,59 +618,77 @@ class tuple():
         ...
 
 
-class type():
-    ''
+class type:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class zip():
-    ''
+
+class zip:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class StopAsyncIteration():
-    ''
+
+class StopAsyncIteration:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
 
 class UnicodeError(Exception):
-    ''
+    """"""
+
 
 class ViperTypeError(Exception):
-    ''
+    """"""
+
+
 def bin(*args) -> Any:
     ...
+
 
 def delattr(*args) -> Any:
     ...
 
 
-class enumerate():
-    ''
+class enumerate:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class filter():
-    ''
+
+class filter:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class float():
-    ''
+
+class float:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class frozenset():
-    ''
+
+class frozenset:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def copy(self, *args) -> Any:
         ...
 
@@ -611,36 +713,46 @@ class frozenset():
     def union(self, *args) -> Any:
         ...
 
+
 def help(*args) -> Any:
     ...
+
 
 def hex(*args) -> Any:
     ...
 
+
 def input(*args) -> Any:
     ...
+
 
 def max(*args) -> Any:
     ...
 
 
-class memoryview():
-    ''
+class memoryview:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
+
 def min(*args) -> Any:
     ...
+
 
 def oct(*args) -> Any:
     ...
 
 
-class property():
-    ''
+class property:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def deleter(self, *args) -> Any:
         ...
 
@@ -651,14 +763,17 @@ class property():
         ...
 
 
-class reversed():
-    ''
+class reversed:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class slice():
-    ''
+
+class slice:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...

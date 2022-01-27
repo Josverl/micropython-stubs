@@ -5,38 +5,48 @@ Module: 'urequests' on micropython-v1.18-esp32
 # Stubber: 1.5.3
 from typing import Any
 
+
 def get(*args, **kwargs) -> Any:
     ...
+
 
 def put(*args, **kwargs) -> Any:
     ...
 
 
-class Response():
-    ''
+class Response:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
-    text : Any ## <class 'property'> = <property>
+    text: Any  ## <class 'property'> = <property>
+
     def json(self, *args, **kwargs) -> Any:
         ...
 
-    content : Any ## <class 'property'> = <property>
+    content: Any  ## <class 'property'> = <property>
+
+
 def request(*args, **kwargs) -> Any:
     ...
+
 
 def head(*args, **kwargs) -> Any:
     ...
 
+
 def post(*args, **kwargs) -> Any:
     ...
+
 
 def patch(*args, **kwargs) -> Any:
     ...
 
+
 def delete(*args, **kwargs) -> Any:
     ...
-

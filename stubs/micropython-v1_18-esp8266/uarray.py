@@ -6,11 +6,13 @@ Module: 'uarray' on micropython-v1.18-esp8266
 from typing import Any
 
 
-class array():
-    ''
+class array:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def append(self, *args) -> Any:
         ...
 
@@ -19,4 +21,3 @@ class array():
 
     def decode(self, *args) -> Any:
         ...
-

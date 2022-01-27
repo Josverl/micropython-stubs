@@ -2,7 +2,7 @@
 Module: 'uctypes' on micropython-v1.10-esp32
 """
 # MCU: {'ver': 'v1.10', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.10.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.10.0'}
-# Stubber: 1.5.0
+# Stubber: 1.5.3
 from typing import Any
 
 ARRAY = -1073741824  # type: int
@@ -39,21 +39,25 @@ USHORT = 268435456  # type: int
 VOID = 0  # type: int
 
 
-def addressof(*args) -> Any:
+def addressof(*args, **kwargs) -> Any:
     ...
 
 
-def bytearray_at(*args) -> Any:
+def bytearray_at(*args, **kwargs) -> Any:
     ...
 
 
-def bytes_at(*args) -> Any:
+def bytes_at(*args, **kwargs) -> Any:
     ...
 
 
-def sizeof(*args) -> Any:
+def sizeof(*args, **kwargs) -> Any:
     ...
 
 
 class struct:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...

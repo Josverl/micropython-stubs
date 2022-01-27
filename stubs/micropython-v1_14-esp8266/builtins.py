@@ -2,7 +2,7 @@
 Module: 'builtins' on micropython-v1.14-esp8266
 """
 # MCU: {'ver': 'v1.14', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.14', 'name': 'micropython', 'mpy': 9733, 'version': '1.14', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
-# Stubber: 1.5.0
+# Stubber: 1.5.3
 from typing import Any
 
 
@@ -25,12 +25,12 @@ class EOFError(Exception):
 Ellipsis: Any  ## <class ''> = Ellipsis
 
 
-class Exception:
-    """"""
-
-
 class GeneratorExit:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
 
 class ImportError(Exception):
@@ -51,6 +51,10 @@ class KeyError(Exception):
 
 class KeyboardInterrupt:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
 
 class LookupError(Exception):
@@ -84,6 +88,10 @@ class RuntimeError(Exception):
 class StopIteration:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 class SyntaxError(Exception):
     """"""
@@ -91,6 +99,10 @@ class SyntaxError(Exception):
 
 class SystemExit:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
 
 class TypeError(Exception):
@@ -120,9 +132,17 @@ def any(*args) -> Any:
 class bool:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 class bytearray:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def append(self, *args) -> Any:
         ...
@@ -136,6 +156,10 @@ class bytearray:
 
 class bytes:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def count(self, *args) -> Any:
         ...
@@ -218,6 +242,10 @@ def chr(*args) -> Any:
 class dict:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
     def clear(self, *args) -> Any:
         ...
 
@@ -292,6 +320,10 @@ def id(*args) -> Any:
 class int:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
     @classmethod
     def from_bytes(cls, *args) -> Any:
         ...
@@ -318,6 +350,10 @@ def len(*args) -> Any:
 
 class list:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def append(self, *args) -> Any:
         ...
@@ -360,6 +396,10 @@ def locals(*args) -> Any:
 class map:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 def next(*args) -> Any:
     ...
@@ -367,6 +407,10 @@ def next(*args) -> Any:
 
 class object:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def __init__(self, *args) -> None:
         ...
@@ -391,6 +435,10 @@ def print(*args) -> Any:
 class range:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 def repr(*args) -> Any:
     ...
@@ -402,6 +450,10 @@ def round(*args) -> Any:
 
 class set:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def clear(self, *args) -> Any:
         ...
@@ -465,6 +517,10 @@ def sorted(*args) -> Any:
 
 class str:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def count(self, *args) -> Any:
         ...
@@ -543,9 +599,17 @@ def sum(*args) -> Any:
 class super:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 class tuple:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def count(self, *args) -> Any:
         ...
@@ -557,13 +621,25 @@ class tuple:
 class type:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 class zip:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 class StopAsyncIteration:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
 
 class UnicodeError(Exception):
@@ -585,17 +661,33 @@ def delattr(*args) -> Any:
 class enumerate:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 class filter:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
 
 class float:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 class frozenset:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def copy(self, *args) -> Any:
         ...
@@ -641,6 +733,10 @@ def max(*args) -> Any:
 class memoryview:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 def min(*args) -> Any:
     ...
@@ -652,6 +748,10 @@ def oct(*args) -> Any:
 
 class property:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def deleter(self, *args) -> Any:
         ...
@@ -666,6 +766,14 @@ class property:
 class reversed:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 class slice:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...

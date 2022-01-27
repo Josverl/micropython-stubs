@@ -7,19 +7,24 @@ from typing import Any
 
 
 class CancelledError(Exception):
-    ''
+    """"""
 
-class Task():
-    ''
+
+class Task:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class TaskQueue():
-    ''
+
+class TaskQueue:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def remove(self, *args, **kwargs) -> Any:
         ...
 
@@ -35,29 +40,38 @@ class TaskQueue():
     def push_sorted(self, *args, **kwargs) -> Any:
         ...
 
+
 def run(*args, **kwargs) -> Any:
     ...
+
 
 def sleep(*args, **kwargs) -> Any:
     ...
 
+
 def sleep_ms(*args, **kwargs) -> Any:
     ...
+
 
 def ticks_add(*args, **kwargs) -> Any:
     ...
 
+
 def ticks_diff(*args, **kwargs) -> Any:
     ...
 
-wait_for : Any ## <class 'generator'> = <generator>
-gather : Any ## <class 'generator'> = <generator>
 
-class Event():
-    ''
+wait_for: Any  ## <class 'generator'> = <generator>
+gather: Any  ## <class 'generator'> = <generator>
+
+
+class Event:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def clear(self, *args, **kwargs) -> Any:
         ...
 
@@ -67,38 +81,48 @@ class Event():
     def is_set(self, *args, **kwargs) -> Any:
         ...
 
-    wait : Any ## <class 'generator'> = <generator>
+    wait: Any  ## <class 'generator'> = <generator>
 
-class Lock():
-    ''
+
+class Lock:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
-    acquire : Any ## <class 'generator'> = <generator>
+
+    acquire: Any  ## <class 'generator'> = <generator>
+
     def locked(self, *args, **kwargs) -> Any:
         ...
 
     def release(self, *args, **kwargs) -> Any:
         ...
 
+
 def ticks(*args, **kwargs) -> Any:
     ...
 
 
 class TimeoutError(Exception):
-    ''
+    """"""
 
-class SingletonGenerator():
-    ''
+
+class SingletonGenerator:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class IOQueue():
-    ''
+
+class IOQueue:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def remove(self, *args, **kwargs) -> Any:
         ...
 
@@ -111,18 +135,22 @@ class IOQueue():
     def wait_io_event(self, *args, **kwargs) -> Any:
         ...
 
+
 def create_task(*args, **kwargs) -> Any:
     ...
+
 
 def run_until_complete(*args, **kwargs) -> Any:
     ...
 
 
-class Loop():
-    ''
+class Loop:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
@@ -150,78 +178,96 @@ class Loop():
     def default_exception_handler(self, *args, **kwargs) -> Any:
         ...
 
+
 def get_event_loop(*args, **kwargs) -> Any:
     ...
 
+
 def current_task(*args, **kwargs) -> Any:
     ...
+
 
 def new_event_loop(*args, **kwargs) -> Any:
     ...
 
 
-class ThreadSafeFlag():
-    ''
+class ThreadSafeFlag:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def set(self, *args, **kwargs) -> Any:
         ...
 
     def ioctl(self, *args, **kwargs) -> Any:
         ...
 
-    wait : Any ## <class 'generator'> = <generator>
+    wait: Any  ## <class 'generator'> = <generator>
+
+
 def wait_for_ms(*args, **kwargs) -> Any:
     ...
 
 
-class StreamReader():
-    ''
+class StreamReader:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
-    read : Any ## <class 'generator'> = <generator>
-    readinto : Any ## <class 'generator'> = <generator>
-    readline : Any ## <class 'generator'> = <generator>
+    read: Any  ## <class 'generator'> = <generator>
+    readinto: Any  ## <class 'generator'> = <generator>
+    readline: Any  ## <class 'generator'> = <generator>
+
     def write(self, *args, **kwargs) -> Any:
         ...
 
-    wait_closed : Any ## <class 'generator'> = <generator>
-    aclose : Any ## <class 'generator'> = <generator>
-    awrite : Any ## <class 'generator'> = <generator>
-    awritestr : Any ## <class 'generator'> = <generator>
+    wait_closed: Any  ## <class 'generator'> = <generator>
+    aclose: Any  ## <class 'generator'> = <generator>
+    awrite: Any  ## <class 'generator'> = <generator>
+    awritestr: Any  ## <class 'generator'> = <generator>
+
     def get_extra_info(self, *args, **kwargs) -> Any:
         ...
 
-    readexactly : Any ## <class 'generator'> = <generator>
-    drain : Any ## <class 'generator'> = <generator>
+    readexactly: Any  ## <class 'generator'> = <generator>
+    drain: Any  ## <class 'generator'> = <generator>
 
-class StreamWriter():
-    ''
+
+class StreamWriter:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
-    read : Any ## <class 'generator'> = <generator>
-    readinto : Any ## <class 'generator'> = <generator>
-    readline : Any ## <class 'generator'> = <generator>
+    read: Any  ## <class 'generator'> = <generator>
+    readinto: Any  ## <class 'generator'> = <generator>
+    readline: Any  ## <class 'generator'> = <generator>
+
     def write(self, *args, **kwargs) -> Any:
         ...
 
-    wait_closed : Any ## <class 'generator'> = <generator>
-    aclose : Any ## <class 'generator'> = <generator>
-    awrite : Any ## <class 'generator'> = <generator>
-    awritestr : Any ## <class 'generator'> = <generator>
+    wait_closed: Any  ## <class 'generator'> = <generator>
+    aclose: Any  ## <class 'generator'> = <generator>
+    awrite: Any  ## <class 'generator'> = <generator>
+    awritestr: Any  ## <class 'generator'> = <generator>
+
     def get_extra_info(self, *args, **kwargs) -> Any:
         ...
 
-    readexactly : Any ## <class 'generator'> = <generator>
-    drain : Any ## <class 'generator'> = <generator>
-open_connection : Any ## <class 'generator'> = <generator>
-start_server : Any ## <class 'generator'> = <generator>
+    readexactly: Any  ## <class 'generator'> = <generator>
+    drain: Any  ## <class 'generator'> = <generator>
+
+
+open_connection: Any  ## <class 'generator'> = <generator>
+start_server: Any  ## <class 'generator'> = <generator>

@@ -6,28 +6,33 @@ Module: 'apa106' on micropython-v1.18-esp32
 from typing import Any
 
 
-class NeoPixel():
-    ''
+class NeoPixel:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def write(self, *args, **kwargs) -> Any:
         ...
 
     def fill(self, *args, **kwargs) -> Any:
         ...
 
-    ORDER = () # type: tuple
+    ORDER = ()  # type: tuple
 
-class APA106():
-    ''
+
+class APA106:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def write(self, *args, **kwargs) -> Any:
         ...
 
     def fill(self, *args, **kwargs) -> Any:
         ...
 
-    ORDER = () # type: tuple
+    ORDER = ()  # type: tuple

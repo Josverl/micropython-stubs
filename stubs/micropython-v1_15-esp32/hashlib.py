@@ -2,25 +2,33 @@
 Module: 'hashlib' on micropython-v1.15-esp32
 """
 # MCU: {'ver': 'v1.15', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.15.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.15.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.5.0
+# Stubber: 1.5.3
 from typing import Any
 
 
 class sha1:
     """"""
 
-    def update(self, *args) -> Any:
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
         ...
 
-    def digest(self, *args) -> Any:
+    def update(self, *args, **kwargs) -> Any:
+        ...
+
+    def digest(self, *args, **kwargs) -> Any:
         ...
 
 
 class sha256:
     """"""
 
-    def update(self, *args) -> Any:
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
         ...
 
-    def digest(self, *args) -> Any:
+    def update(self, *args, **kwargs) -> Any:
+        ...
+
+    def digest(self, *args, **kwargs) -> Any:
         ...

@@ -5,24 +5,30 @@ Module: 'gc' on micropython-v1.18-esp32
 # Stubber: 1.5.3
 from typing import Any
 
+
 def collect(*args, **kwargs) -> Any:
     ...
+
 
 def disable(*args, **kwargs) -> Any:
     ...
 
+
 def enable(*args, **kwargs) -> Any:
     ...
+
 
 def isenabled(*args, **kwargs) -> Any:
     ...
 
+
 def mem_alloc(*args, **kwargs) -> Any:
     ...
+
 
 def mem_free(*args, **kwargs) -> Any:
     ...
 
+
 def threshold(*args, **kwargs) -> Any:
     ...
-

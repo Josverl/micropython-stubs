@@ -6,11 +6,13 @@ Module: 'websocket' on micropython-v1.18-esp32
 from typing import Any
 
 
-class websocket():
-    ''
+class websocket:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
@@ -28,4 +30,3 @@ class websocket():
 
     def ioctl(self, *args, **kwargs) -> Any:
         ...
-

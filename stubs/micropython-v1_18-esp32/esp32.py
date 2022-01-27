@@ -5,14 +5,17 @@ Module: 'esp32' on micropython-v1.18-esp32
 # Stubber: 1.5.3
 from typing import Any
 
-HEAP_DATA = 4 # type: int
-HEAP_EXEC = 1 # type: int
+HEAP_DATA = 4  # type: int
+HEAP_EXEC = 1  # type: int
 
-class NVS():
-    ''
+
+class NVS:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def commit(self, *args, **kwargs) -> Any:
         ...
 
@@ -32,18 +35,21 @@ class NVS():
         ...
 
 
-class Partition():
-    ''
+class Partition:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def find(self, *args, **kwargs) -> Any:
         ...
 
-    BOOT = 0 # type: int
-    RUNNING = 1 # type: int
-    TYPE_APP = 0 # type: int
-    TYPE_DATA = 1 # type: int
+    BOOT = 0  # type: int
+    RUNNING = 1  # type: int
+    TYPE_APP = 0  # type: int
+    TYPE_DATA = 1  # type: int
+
     def get_next_update(self, *args, **kwargs) -> Any:
         ...
 
@@ -67,11 +73,13 @@ class Partition():
         ...
 
 
-class RMT():
-    ''
+class RMT:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def bitstream_channel(self, *args, **kwargs) -> Any:
         ...
 
@@ -94,12 +102,15 @@ class RMT():
         ...
 
 
-class ULP():
-    ''
+class ULP:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
-    RESERVE_MEM = 512 # type: int
+
+    RESERVE_MEM = 512  # type: int
+
     def load_binary(self, *args, **kwargs) -> Any:
         ...
 
@@ -109,23 +120,30 @@ class ULP():
     def set_wakeup_period(self, *args, **kwargs) -> Any:
         ...
 
-WAKEUP_ALL_LOW = False # type: bool
-WAKEUP_ANY_HIGH = True # type: bool
+
+WAKEUP_ALL_LOW = False  # type: bool
+WAKEUP_ANY_HIGH = True  # type: bool
+
+
 def hall_sensor(*args, **kwargs) -> Any:
     ...
+
 
 def idf_heap_info(*args, **kwargs) -> Any:
     ...
 
+
 def raw_temperature(*args, **kwargs) -> Any:
     ...
+
 
 def wake_on_ext0(*args, **kwargs) -> Any:
     ...
 
+
 def wake_on_ext1(*args, **kwargs) -> Any:
     ...
 
+
 def wake_on_touch(*args, **kwargs) -> Any:
     ...
-

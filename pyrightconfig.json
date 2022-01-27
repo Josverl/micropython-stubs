@@ -187,9 +187,9 @@
         },
         // local pytest 
         {
-            "root": "C:\\Users\\josverl\\AppData\\Local\\Temp\\pytest-of-josverl\\",
+            "root": "**/pytest-*",
             "extraPaths": [
-                "stubs/typings_fallback"
+                "stubs/typings/fallback"
             ],
         },
         // ## Lobo frozen #############################################

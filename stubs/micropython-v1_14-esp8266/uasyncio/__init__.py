@@ -2,7 +2,7 @@
 Module: 'uasyncio.__init__' on micropython-v1.14-esp8266
 """
 # MCU: {'ver': 'v1.14', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.14', 'name': 'micropython', 'mpy': 9733, 'version': '1.14', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
-# Stubber: 1.5.0
+# Stubber: 1.5.3
 from typing import Any
 
 
@@ -12,6 +12,10 @@ class CancelledError(Exception):
 
 class Loop:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def close(self, *args) -> Any:
         ...
@@ -44,9 +48,17 @@ class Loop:
 class Task:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
 
 class TaskQueue:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def remove(self, *args) -> Any:
         ...
@@ -87,6 +99,10 @@ gather: Any  ## <class 'generator'> = <generator>
 class Event:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
     def __init__(self, *args) -> None:
         ...
 
@@ -104,6 +120,10 @@ class Event:
 
 class Lock:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def __init__(self, *args) -> None:
         ...
@@ -128,12 +148,20 @@ class TimeoutError(Exception):
 class SingletonGenerator:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
     def __init__(self, *args) -> None:
         ...
 
 
 class IOQueue:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def __init__(self, *args) -> None:
         ...
@@ -178,6 +206,10 @@ def wait_for_ms(*args) -> Any:
 class StreamReader:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
     def __init__(self, *args) -> None:
         ...
 
@@ -204,6 +236,10 @@ class StreamReader:
 
 class StreamWriter:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def __init__(self, *args) -> None:
         ...

@@ -6,14 +6,15 @@ Module: 'ucryptolib' on micropython-v1.18-esp32
 from typing import Any
 
 
-class aes():
-    ''
+class aes:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def decrypt(self, *args, **kwargs) -> Any:
         ...
 
     def encrypt(self, *args, **kwargs) -> Any:
         ...
-

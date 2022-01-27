@@ -6,17 +6,21 @@ Module: '_uasyncio' on micropython-v1.18-esp32
 from typing import Any
 
 
-class Task():
-    ''
+class Task:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class TaskQueue():
-    ''
+
+class TaskQueue:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def remove(self, *args, **kwargs) -> Any:
         ...
 
@@ -31,4 +35,3 @@ class TaskQueue():
 
     def push_sorted(self, *args, **kwargs) -> Any:
         ...
-

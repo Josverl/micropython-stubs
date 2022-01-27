@@ -6,11 +6,13 @@ Module: 'uhashlib' on micropython-v1.18-esp8266
 from typing import Any
 
 
-class sha1():
-    ''
+class sha1:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def update(self, *args) -> Any:
         ...
 
@@ -18,14 +20,15 @@ class sha1():
         ...
 
 
-class sha256():
-    ''
+class sha256:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def update(self, *args) -> Any:
         ...
 
     def digest(self, *args) -> Any:
         ...
-

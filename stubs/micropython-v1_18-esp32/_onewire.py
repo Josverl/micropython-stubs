@@ -5,21 +5,26 @@ Module: '_onewire' on micropython-v1.18-esp32
 # Stubber: 1.5.3
 from typing import Any
 
+
 def crc8(*args, **kwargs) -> Any:
     ...
+
 
 def readbit(*args, **kwargs) -> Any:
     ...
 
+
 def readbyte(*args, **kwargs) -> Any:
     ...
+
 
 def reset(*args, **kwargs) -> Any:
     ...
 
+
 def writebit(*args, **kwargs) -> Any:
     ...
 
+
 def writebyte(*args, **kwargs) -> Any:
     ...
-

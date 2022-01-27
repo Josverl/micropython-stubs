@@ -6,11 +6,13 @@ Module: '_thread' on micropython-v1.18-esp32
 from typing import Any
 
 
-class LockType():
-    ''
+class LockType:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def acquire(self, *args, **kwargs) -> Any:
         ...
 
@@ -20,18 +22,22 @@ class LockType():
     def release(self, *args, **kwargs) -> Any:
         ...
 
+
 def allocate_lock(*args, **kwargs) -> Any:
     ...
+
 
 def exit(*args, **kwargs) -> Any:
     ...
 
+
 def get_ident(*args, **kwargs) -> Any:
     ...
+
 
 def stack_size(*args, **kwargs) -> Any:
     ...
 
+
 def start_new_thread(*args, **kwargs) -> Any:
     ...
-

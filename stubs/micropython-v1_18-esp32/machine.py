@@ -6,22 +6,25 @@ Module: 'machine' on micropython-v1.18-esp32
 from typing import Any
 
 
-class ADC():
-    ''
+class ADC:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def read(self, *args, **kwargs) -> Any:
         ...
 
-    ATTN_0DB = 0 # type: int
-    ATTN_11DB = 3 # type: int
-    ATTN_2_5DB = 1 # type: int
-    ATTN_6DB = 2 # type: int
-    WIDTH_10BIT = 1 # type: int
-    WIDTH_11BIT = 2 # type: int
-    WIDTH_12BIT = 3 # type: int
-    WIDTH_9BIT = 0 # type: int
+    ATTN_0DB = 0  # type: int
+    ATTN_11DB = 3  # type: int
+    ATTN_2_5DB = 1  # type: int
+    ATTN_6DB = 2  # type: int
+    WIDTH_10BIT = 1  # type: int
+    WIDTH_11BIT = 2  # type: int
+    WIDTH_12BIT = 3  # type: int
+    WIDTH_9BIT = 0  # type: int
+
     def atten(self, *args, **kwargs) -> Any:
         ...
 
@@ -33,25 +36,31 @@ class ADC():
         ...
 
 
-class DAC():
-    ''
+class DAC:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def write(self, *args, **kwargs) -> Any:
         ...
 
-DEEPSLEEP = 4 # type: int
-DEEPSLEEP_RESET = 4 # type: int
-EXT0_WAKE = 2 # type: int
-EXT1_WAKE = 3 # type: int
-HARD_RESET = 2 # type: int
 
-class I2C():
-    ''
+DEEPSLEEP = 4  # type: int
+DEEPSLEEP_RESET = 4  # type: int
+EXT0_WAKE = 2  # type: int
+EXT1_WAKE = 3  # type: int
+HARD_RESET = 2  # type: int
+
+
+class I2C:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
@@ -92,21 +101,24 @@ class I2C():
         ...
 
 
-class I2S():
-    ''
+class I2S:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
     def write(self, *args, **kwargs) -> Any:
         ...
 
-    MONO = 0 # type: int
-    RX = 9 # type: int
-    STEREO = 1 # type: int
-    TX = 5 # type: int
+    MONO = 0  # type: int
+    RX = 9  # type: int
+    STEREO = 1  # type: int
+    TX = 5  # type: int
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -119,13 +131,17 @@ class I2S():
     def shift(self, *args, **kwargs) -> Any:
         ...
 
-PIN_WAKE = 2 # type: int
 
-class PWM():
-    ''
+PIN_WAKE = 2  # type: int
+
+
+class PWM:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -144,26 +160,31 @@ class PWM():
     def init(self, *args, **kwargs) -> Any:
         ...
 
-PWRON_RESET = 1 # type: int
 
-class Pin():
-    ''
+PWRON_RESET = 1  # type: int
+
+
+class Pin:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def value(self, *args, **kwargs) -> Any:
         ...
 
-    IN = 1 # type: int
-    IRQ_FALLING = 2 # type: int
-    IRQ_RISING = 1 # type: int
-    OPEN_DRAIN = 7 # type: int
-    OUT = 3 # type: int
-    PULL_DOWN = 1 # type: int
-    PULL_HOLD = 4 # type: int
-    PULL_UP = 2 # type: int
-    WAKE_HIGH = 5 # type: int
-    WAKE_LOW = 4 # type: int
+    IN = 1  # type: int
+    IRQ_FALLING = 2  # type: int
+    IRQ_RISING = 1  # type: int
+    OPEN_DRAIN = 7  # type: int
+    OUT = 3  # type: int
+    PULL_DOWN = 1  # type: int
+    PULL_HOLD = 4  # type: int
+    PULL_UP = 2  # type: int
+    WAKE_HIGH = 5  # type: int
+    WAKE_LOW = 4  # type: int
+
     def init(self, *args, **kwargs) -> Any:
         ...
 
@@ -177,11 +198,13 @@ class Pin():
         ...
 
 
-class RTC():
-    ''
+class RTC:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def datetime(self, *args, **kwargs) -> Any:
         ...
 
@@ -192,11 +215,13 @@ class RTC():
         ...
 
 
-class SDCard():
-    ''
+class SDCard:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -212,14 +237,18 @@ class SDCard():
     def writeblocks(self, *args, **kwargs) -> Any:
         ...
 
-SLEEP = 2 # type: int
-SOFT_RESET = 5 # type: int
 
-class SPI():
-    ''
+SLEEP = 2  # type: int
+SOFT_RESET = 5  # type: int
+
+
+class SPI:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def read(self, *args, **kwargs) -> Any:
         ...
 
@@ -229,8 +258,9 @@ class SPI():
     def write(self, *args, **kwargs) -> Any:
         ...
 
-    LSB = 1 # type: int
-    MSB = 0 # type: int
+    LSB = 1  # type: int
+    MSB = 0  # type: int
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -241,11 +271,13 @@ class SPI():
         ...
 
 
-class Signal():
-    ''
+class Signal:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def value(self, *args, **kwargs) -> Any:
         ...
 
@@ -256,11 +288,13 @@ class Signal():
         ...
 
 
-class SoftI2C():
-    ''
+class SoftI2C:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
@@ -301,11 +335,13 @@ class SoftI2C():
         ...
 
 
-class SoftSPI():
-    ''
+class SoftSPI:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def read(self, *args, **kwargs) -> Any:
         ...
 
@@ -315,8 +351,9 @@ class SoftSPI():
     def write(self, *args, **kwargs) -> Any:
         ...
 
-    LSB = 1 # type: int
-    MSB = 0 # type: int
+    LSB = 1  # type: int
+    MSB = 0  # type: int
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -326,19 +363,24 @@ class SoftSPI():
     def write_readinto(self, *args, **kwargs) -> Any:
         ...
 
-TIMER_WAKE = 4 # type: int
-TOUCHPAD_WAKE = 5 # type: int
 
-class Timer():
-    ''
+TIMER_WAKE = 4  # type: int
+TOUCHPAD_WAKE = 5  # type: int
+
+
+class Timer:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def value(self, *args, **kwargs) -> Any:
         ...
 
-    ONE_SHOT = 0 # type: int
-    PERIODIC = 1 # type: int
+    ONE_SHOT = 0  # type: int
+    PERIODIC = 1  # type: int
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -346,11 +388,13 @@ class Timer():
         ...
 
 
-class TouchPad():
-    ''
+class TouchPad:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def read(self, *args, **kwargs) -> Any:
         ...
 
@@ -358,11 +402,13 @@ class TouchPad():
         ...
 
 
-class UART():
-    ''
+class UART:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def any(self, *args, **kwargs) -> Any:
         ...
 
@@ -378,12 +424,13 @@ class UART():
     def write(self, *args, **kwargs) -> Any:
         ...
 
-    CTS = 2 # type: int
-    INV_CTS = 8 # type: int
-    INV_RTS = 64 # type: int
-    INV_RX = 4 # type: int
-    INV_TX = 32 # type: int
-    RTS = 1 # type: int
+    CTS = 2  # type: int
+    INV_CTS = 8  # type: int
+    INV_RTS = 64  # type: int
+    INV_RX = 4  # type: int
+    INV_TX = 32  # type: int
+    RTS = 1  # type: int
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -393,59 +440,80 @@ class UART():
     def sendbreak(self, *args, **kwargs) -> Any:
         ...
 
-ULP_WAKE = 6 # type: int
 
-class WDT():
-    ''
+ULP_WAKE = 6  # type: int
+
+
+class WDT:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def feed(self, *args, **kwargs) -> Any:
         ...
 
-WDT_RESET = 3 # type: int
+
+WDT_RESET = 3  # type: int
+
+
 def bitstream(*args, **kwargs) -> Any:
     ...
+
 
 def deepsleep(*args, **kwargs) -> Any:
     ...
 
+
 def disable_irq(*args, **kwargs) -> Any:
     ...
+
 
 def enable_irq(*args, **kwargs) -> Any:
     ...
 
+
 def freq(*args, **kwargs) -> Any:
     ...
+
 
 def idle(*args, **kwargs) -> Any:
     ...
 
+
 def lightsleep(*args, **kwargs) -> Any:
     ...
 
-mem16 : Any ## <class 'mem'> = <16-bit memory>
-mem32 : Any ## <class 'mem'> = <32-bit memory>
-mem8 : Any ## <class 'mem'> = <8-bit memory>
+
+mem16: Any  ## <class 'mem'> = <16-bit memory>
+mem32: Any  ## <class 'mem'> = <32-bit memory>
+mem8: Any  ## <class 'mem'> = <8-bit memory>
+
+
 def reset(*args, **kwargs) -> Any:
     ...
+
 
 def reset_cause(*args, **kwargs) -> Any:
     ...
 
+
 def sleep(*args, **kwargs) -> Any:
     ...
+
 
 def soft_reset(*args, **kwargs) -> Any:
     ...
 
+
 def time_pulse_us(*args, **kwargs) -> Any:
     ...
+
 
 def unique_id(*args, **kwargs) -> Any:
     ...
 
+
 def wake_reason(*args, **kwargs) -> Any:
     ...
-

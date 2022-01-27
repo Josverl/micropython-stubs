@@ -5,18 +5,22 @@ Module: 'binascii' on micropython-v1.18-esp32
 # Stubber: 1.5.3
 from typing import Any
 
+
 def a2b_base64(*args, **kwargs) -> Any:
     ...
+
 
 def b2a_base64(*args, **kwargs) -> Any:
     ...
 
+
 def crc32(*args, **kwargs) -> Any:
     ...
+
 
 def hexlify(*args, **kwargs) -> Any:
     ...
 
+
 def unhexlify(*args, **kwargs) -> Any:
     ...
-

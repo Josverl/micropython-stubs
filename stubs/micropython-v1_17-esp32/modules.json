@@ -1,7 +1,9 @@
 {"firmware": {"ver": "v1.17", "port": "esp32", "arch": "xtensawin", "sysname": "esp32", "release": "1.17.0", "name": "micropython", "mpy": 10757, "version": "1.17.0", "machine": "ESP32 module (spiram) with ESP32", "build": "", "nodename": "esp32", "platform": "esp32", "family": "micropython"},
-"stubber": {"version": "1.5.0"}, "stubtype": "firmware",
+"stubber": {"version": "1.5.3"}, "stubtype": "firmware",
 "modules" :[
+{"file": "/stubs/micropython-v1_17-esp32/_onewire.py", "module": "_onewire"},
 {"file": "/stubs/micropython-v1_17-esp32/_thread.py", "module": "_thread"},
+{"file": "/stubs/micropython-v1_17-esp32/_uasyncio.py", "module": "_uasyncio"},
 {"file": "/stubs/micropython-v1_17-esp32/apa106.py", "module": "apa106"},
 {"file": "/stubs/micropython-v1_17-esp32/array.py", "module": "array"},
 {"file": "/stubs/micropython-v1_17-esp32/binascii.py", "module": "binascii"},
@@ -58,7 +60,6 @@
 {"file": "/stubs/micropython-v1_17-esp32/umqtt/robust.py", "module": "umqtt.robust"},
 {"file": "/stubs/micropython-v1_17-esp32/umqtt/simple.py", "module": "umqtt.simple"},
 {"file": "/stubs/micropython-v1_17-esp32/uos.py", "module": "uos"},
-{"file": "/stubs/micropython-v1_17-esp32/upip_utarfile.py", "module": "upip_utarfile"},
 {"file": "/stubs/micropython-v1_17-esp32/urandom.py", "module": "urandom"},
 {"file": "/stubs/micropython-v1_17-esp32/ure.py", "module": "ure"},
 {"file": "/stubs/micropython-v1_17-esp32/urequests.py", "module": "urequests"},
@@ -73,5 +74,6 @@
 {"file": "/stubs/micropython-v1_17-esp32/uzlib.py", "module": "uzlib"},
 {"file": "/stubs/micropython-v1_17-esp32/websocket.py", "module": "websocket"},
 {"file": "/stubs/micropython-v1_17-esp32/websocket_helper.py", "module": "websocket_helper"},
-{"file": "/stubs/micropython-v1_17-esp32/zlib.py", "module": "zlib"}
+{"file": "/stubs/micropython-v1_17-esp32/zlib.py", "module": "zlib"},
+{"file": "/stubs/micropython-v1_17-esp32/apa106.py", "module": "apa106"}
 ]}

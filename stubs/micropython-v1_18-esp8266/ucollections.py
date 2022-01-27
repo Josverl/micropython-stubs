@@ -6,11 +6,13 @@ Module: 'ucollections' on micropython-v1.18-esp8266
 from typing import Any
 
 
-class OrderedDict():
-    ''
+class OrderedDict:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def clear(self, *args) -> Any:
         ...
 
@@ -46,17 +48,19 @@ class OrderedDict():
         ...
 
 
-class deque():
-    ''
+class deque:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def append(self, *args) -> Any:
         ...
 
     def popleft(self, *args) -> Any:
         ...
 
+
 def namedtuple(*args) -> Any:
     ...
-

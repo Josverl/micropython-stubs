@@ -2,13 +2,8 @@
 Module: 'network' on micropython-v1.17-esp32
 """
 # MCU: {'ver': 'v1.17', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.17.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.17.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.5.0
+# Stubber: 1.5.3
 from typing import Any
-
-
-def __init__(*args) -> Any:
-    ...
-
 
 AP_IF = 1  # type: int
 AUTH_MAX = 8  # type: int
@@ -26,7 +21,7 @@ ETH_STARTED = 1  # type: int
 ETH_STOPPED = 2  # type: int
 
 
-def LAN(*args) -> Any:
+def LAN(*args, **kwargs) -> Any:
     ...
 
 
@@ -39,7 +34,7 @@ PHY_LAN8720 = 0  # type: int
 PHY_RTL8201 = 2  # type: int
 
 
-def PPP(*args) -> Any:
+def PPP(*args, **kwargs) -> Any:
     ...
 
 
@@ -54,9 +49,9 @@ STAT_WRONG_PASSWORD = 202  # type: int
 STA_IF = 0  # type: int
 
 
-def WLAN(*args) -> Any:
+def WLAN(*args, **kwargs) -> Any:
     ...
 
 
-def phy_mode(*args) -> Any:
+def phy_mode(*args, **kwargs) -> Any:
     ...

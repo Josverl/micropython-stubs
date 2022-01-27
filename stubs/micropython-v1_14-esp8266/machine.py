@@ -2,12 +2,16 @@
 Module: 'machine' on micropython-v1.14-esp8266
 """
 # MCU: {'ver': 'v1.14', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.14', 'name': 'micropython', 'mpy': 9733, 'version': '1.14', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
-# Stubber: 1.5.0
+# Stubber: 1.5.3
 from typing import Any
 
 
 class ADC:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def read(self, *args) -> Any:
         ...
@@ -23,6 +27,10 @@ HARD_RESET = 6  # type: int
 
 class I2C:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def readinto(self, *args) -> Any:
         ...
@@ -67,6 +75,10 @@ class I2C:
 class PWM:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
     def deinit(self, *args) -> Any:
         ...
 
@@ -85,6 +97,10 @@ PWRON_RESET = 0  # type: int
 
 class Pin:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def value(self, *args) -> Any:
         ...
@@ -112,6 +128,10 @@ class Pin:
 class RTC:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
     ALARM0 = 0  # type: int
 
     def alarm(self, *args) -> Any:
@@ -135,6 +155,10 @@ SOFT_RESET = 4  # type: int
 
 class SPI:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def read(self, *args) -> Any:
         ...
@@ -161,6 +185,10 @@ class SPI:
 class Signal:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
     def value(self, *args) -> Any:
         ...
 
@@ -173,6 +201,10 @@ class Signal:
 
 class SoftI2C:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def readinto(self, *args) -> Any:
         ...
@@ -217,6 +249,10 @@ class SoftI2C:
 class SoftSPI:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
     def read(self, *args) -> Any:
         ...
 
@@ -242,6 +278,10 @@ class SoftSPI:
 class Timer:
     """"""
 
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
+
     ONE_SHOT = 0  # type: int
     PERIODIC = 1  # type: int
 
@@ -254,6 +294,10 @@ class Timer:
 
 class UART:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def any(self, *args) -> Any:
         ...
@@ -276,6 +320,10 @@ class UART:
 
 class WDT:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...
 
     def deinit(self, *args) -> Any:
         ...

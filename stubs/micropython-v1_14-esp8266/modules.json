@@ -1,5 +1,5 @@
 {"firmware": {"ver": "v1.14", "port": "esp8266", "arch": "xtensa", "sysname": "esp8266", "release": "1.14", "name": "micropython", "mpy": 9733, "version": "1.14", "machine": "ESP module with ESP8266", "build": "", "nodename": "esp8266", "platform": "esp8266", "family": "micropython"},
-"stubber": {"version": "1.5.0"}, "stubtype": "firmware",
+"stubber": {"version": "1.5.3"}, "stubtype": "firmware",
 "modules" :[
 {"file": "/stubs/micropython-v1_14-esp8266/apa102.py", "module": "apa102"},
 {"file": "/stubs/micropython-v1_14-esp8266/array.py", "module": "array"},
@@ -56,7 +56,6 @@
 {"file": "/stubs/micropython-v1_14-esp8266/umqtt/robust.py", "module": "umqtt.robust"},
 {"file": "/stubs/micropython-v1_14-esp8266/umqtt/simple.py", "module": "umqtt.simple"},
 {"file": "/stubs/micropython-v1_14-esp8266/uos.py", "module": "uos"},
-{"file": "/stubs/micropython-v1_14-esp8266/upip_utarfile.py", "module": "upip_utarfile"},
 {"file": "/stubs/micropython-v1_14-esp8266/urandom.py", "module": "urandom"},
 {"file": "/stubs/micropython-v1_14-esp8266/ure.py", "module": "ure"},
 {"file": "/stubs/micropython-v1_14-esp8266/urequests.py", "module": "urequests"},
