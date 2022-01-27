@@ -296,7 +296,7 @@ class BLE:
 
     def gap_advertise(self, interval_us, adv_data=None, *, resp_data=None, connectable=True) -> Any:
         """
-        Starts advertising at the specified interval (in **micro**\ seconds). This
+        Starts advertising at the specified interval (in **micro** seconds). This
         interval will be rounded down to the nearest 625us. To stop advertising, set
         *interval_us* to ``None``.
 
@@ -365,7 +365,7 @@ class BLE:
         The device will wait up to *scan_duration_ms* to receive an advertising
         payload from the device.
 
-        The connection interval can be configured in **micro**\ seconds using either
+        The connection interval can be configured in **micro** seconds using either
         or both of *min_conn_interval_us* and *max_conn_interval_us*. Otherwise a
         default interval will be chosen, typically between 30000 and 50000
         microseconds. A shorter interval will increase throughput, at the expense

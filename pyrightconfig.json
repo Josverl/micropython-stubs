@@ -12,7 +12,12 @@
         "**/port_diag.py*",
         "**/lcd160cr_test.py*",
         // examples included in frozen 
-        "**/example_*.py*"
+        "**/example_*.py*",
+        // For now exclude the below list 
+        "stubs/micropython-ulab",
+        "stubs/micropython-v1_9_*",
+        "stubs/pycopy-v0_0_0-frozen",
+        //
     ],
     "ignore": [
         "tests",
@@ -40,14 +45,11 @@
         // tests and diagnostic tools 
         "**/port_diag.py*", // esp8266
         "**/lcd160cr_test.py*", // pyboards
+        // 1st boot non new firmware
+        "**/_boot.py*",
         // drivers with sub-par code for typechecking
         "**/lcd160cr.py*",
         "**/ssd1306.py*",
-        // the 1.9.3 stubs for now
-        "stubs/micropython-v1_9_*",
-        // pycopy stubs 
-        "stubs/pycopy-v0_0_0-frozen",
-        //
     ],
     "pythonVersion": "3.8",
     "pythonPlatform": "All",

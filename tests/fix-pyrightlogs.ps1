@@ -13,7 +13,7 @@ foreach ( $file in (Get-ChildItem $Path -Filter "pyright*.log" )) {
     $content = $content -replace 'warning: Class declaration ', 'error: Class declaration ' 
 
     # #remove some noise 
-    $content = $content | ForEach-Object { -not $_.contains('XXX') }
+    $content = $content | Select-String -Pattern 'for type "None"' -NotMatch
 
     $content | Out-File $file
 
