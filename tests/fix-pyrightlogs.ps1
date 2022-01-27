@@ -10,7 +10,12 @@ foreach ( $file in (Get-ChildItem $Path -Filter "pyright*.log" )) {
         -replace ' - (info):', ': information:' 
 
     # promote some errors to warnings 
-    $content = $content -replace 'warning: Class declaration ', 'error: Class declaration ' 
+    $content = $content -replace 'warning: Class declaration ', 'error: Class declaration '  
+    
+    # Demote some warnings to info 
+    $content = $content -replace ': warning: "None" is not iterable', ': information: "None" is not iterable' `
+        -replace ': warning: "([\w|_]+)" is unknown import symbol', ': information: "$1" is unknown import symbol' `
+    
 
     # #remove some noise 
     $content = $content | Select-String -Pattern 'for type "None"' -NotMatch

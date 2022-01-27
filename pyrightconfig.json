@@ -17,6 +17,7 @@
         "stubs/micropython-ulab",
         "stubs/micropython-v1_9_*",
         "stubs/pycopy-v0_0_0-frozen",
+        "stubs/loboris-v3_2_24-frozen"
         //
     ],
     "ignore": [
@@ -32,6 +33,10 @@
         "**/uasyncio/stream.py*",
         "**/uasyncio/lock.py*",
         "**/uasyncio/event.py*",
+        // bluetooth stack has multiiple type errors 
+        "**/aioble/server.py*",
+        "**/aioble/client.py*",
+
         // umqtt
         "**/umqtt/__init__.py*",
         // ignore pip and friends
@@ -41,6 +46,8 @@
         // lobo microwebsrv and pye
         "**/microWebSrv.py*",
         "**/microWebTemplate.py*",
+        "**/microWebSocket.py*",
+        "**/upysh.py*",
         "**/pye.py*",
         // tests and diagnostic tools 
         "**/port_diag.py*", // esp8266
