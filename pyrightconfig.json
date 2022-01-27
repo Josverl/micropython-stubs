@@ -15,20 +15,20 @@
         "**/example_*.py*"
     ],
     "ignore": [
-        // the 1.9.3 stubs for now
-        "stubs/micropython-v1_9_*",
-        // pycopy stubs 
-        "stubs/pycopy-v0_0_0-frozen",
-        //
-        // TODO: Improve uasyncio
-        // TODO: add .tasks.py module explicitly
-        "**/uasyncio/__init__py",
+        "tests",
+        "docs",
+        // see also : https://github.com/Josverl/micropython-stubs/issues/412
+        // webrepl
+        "**/webrepl.py",
+        // uasyncio
+        "**/uasyncio/*.py*",
         "**/uasyncio/core.py*",
+        "**/uasyncio/funcs.py", // funcs.py:15:22 - error: "await" allowed only within async function
         "**/uasyncio/stream.py*",
         "**/uasyncio/lock.py*",
         "**/uasyncio/event.py*",
-        "**/uasyncio/funcs.py*",
-        "**/uasyncio/tasks.py*",
+        // umqtt
+        "**/umqtt/__init__.py*",
         // ignore pip and friends
         "**/upip*.py*",
         // webrepl 
@@ -37,27 +37,40 @@
         "**/microWebSrv.py*",
         "**/microWebTemplate.py*",
         "**/pye.py*",
+        // tests and diagnostic tools 
+        "**/port_diag.py*", // esp8266
+        "**/lcd160cr_test.py*", // pyboards
         // drivers with sub-par code for typechecking
         "**/lcd160cr.py*",
         "**/ssd1306.py*",
+        // the 1.9.3 stubs for now
+        "stubs/micropython-v1_9_*",
+        // pycopy stubs 
+        "stubs/pycopy-v0_0_0-frozen",
+        //
     ],
     "pythonVersion": "3.8",
     "pythonPlatform": "All",
     "verboseOutput": false,
     //"stubPath": "./typings",
+    "typeCheckingMode": "off",
+    // errors
     "reportMissingImports": "error",
     "reportMissingModuleSource": "error",
+    // need to fix sometime
     "reportMissingTypeStubs": "warning",
+    "reportOptionalCall": "warning", //  Object of type "None" cannot be called
+    "reportGeneralTypeIssues": "warning", // Expected no arguments to "Pin" constructor and a lot of others
+    // interesting
     "reportInvalidStringEscapeSequence": "information",
     "reportUndefinedVariable": "warning", // "_WHO_AM_I_REG" is not defined - Not a showstopper
     "reportUnboundVariable": "information",
-    "ReportSelfClsParameterName": "information", // TODO: Is still reported as a warning
-    "reportWildcardImportFromLibrary": "information",
-    "reportOptionalMemberAccess": "information", // "read" is not a known member of "None" - occurs often in frozen code
-    "reportOptionalCall": "warning", //  Object of type "None" cannot be called
-    "reportGeneralTypeIssues": "warning", // Expected no arguments to "Pin" constructor and a lot of others
+    "ReportSelfClsParameterName": "information",
+    "reportOptionalMemberAccess": "none", // "read" is not a known member of "None" - occurs often in frozen code
     // old firmware stubs
     "reportOptionalSubscript": "information", // TODO: Is still reported as a warning
+    // reduce noise 
+    "reportWildcardImportFromLibrary": "none",
     // 
     // "typeshedPath": "stubs/typings_fallback",
     "executionEnvironments": [
@@ -166,6 +179,13 @@
         },
         {
             "root": "stubs/micropython-v2_0-frozen",
+            "extraPaths": [
+                "stubs/typings_fallback"
+            ],
+        },
+        // local pytest 
+        {
+            "root": "C:\\Users\\josverl\\AppData\\Local\\Temp\\pytest-of-josverl\\",
             "extraPaths": [
                 "stubs/typings_fallback"
             ],

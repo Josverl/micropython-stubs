@@ -9,8 +9,14 @@ This is a combination using a subset of the firmware stubs from:
 - micropython-v1.17-rp2
     - _rp2.py
 
+- micropython-v1_18-pyboard
+    -_uasyncio.py
+    - uio.py
+    -uzlib.py
+    
+
 - micropython-v1_18-docstubs
-    - bluetooth.py
+    - bluetooth.py 
 
 - micropython-v1_17-esp32
     - all others 
