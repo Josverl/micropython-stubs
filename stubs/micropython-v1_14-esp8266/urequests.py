@@ -25,9 +25,6 @@ class Response:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def close(self, *args) -> Any:
         ...
 

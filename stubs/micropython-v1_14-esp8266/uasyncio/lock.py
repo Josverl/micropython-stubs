@@ -13,9 +13,6 @@ class Lock:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def release(self, *args) -> Any:
         ...
 

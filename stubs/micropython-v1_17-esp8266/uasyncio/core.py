@@ -72,18 +72,12 @@ class SingletonGenerator:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
 
 class IOQueue:
     """"""
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def remove(self, *args) -> Any:

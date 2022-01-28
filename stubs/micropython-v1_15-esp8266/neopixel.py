@@ -17,9 +17,6 @@ class NeoPixel:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def write(self, *args) -> Any:
         ...
 

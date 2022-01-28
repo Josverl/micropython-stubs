@@ -16,9 +16,6 @@ class FlashBdev:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def ioctl(self, *args) -> Any:
         ...
 

@@ -17,9 +17,6 @@ class DHTBase:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def measure(self, *args) -> Any:
         ...
 
@@ -29,9 +26,6 @@ class DHT11:
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def measure(self, *args) -> Any:
@@ -49,9 +43,6 @@ class DHT22:
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def measure(self, *args) -> Any:

@@ -13,9 +13,6 @@ class Event:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def clear(self, *args) -> Any:
         ...
 

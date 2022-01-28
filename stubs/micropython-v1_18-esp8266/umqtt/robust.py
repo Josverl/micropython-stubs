@@ -13,9 +13,6 @@ class MQTTClient:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def connect(self, *args) -> Any:
         ...
 

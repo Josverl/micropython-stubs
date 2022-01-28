@@ -36,9 +36,6 @@ class SSD1306:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def blit(self, *args) -> Any:
         ...
 
@@ -93,9 +90,6 @@ class SSD1306_I2C:
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def blit(self, *args) -> Any:
@@ -158,9 +152,6 @@ class SSD1306_SPI:
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def blit(self, *args) -> Any:

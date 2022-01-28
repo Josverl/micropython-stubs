@@ -17,9 +17,6 @@ class NeoPixel:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def write(self, *args) -> Any:
         ...
 
@@ -34,9 +31,6 @@ class APA102:
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def write(self, *args) -> Any:

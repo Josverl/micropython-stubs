@@ -17,9 +17,6 @@ class OneWire:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def readinto(self, *args) -> Any:
         ...
 

@@ -412,9 +412,6 @@ class object:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
 
 def open(*args) -> Any:
     ...

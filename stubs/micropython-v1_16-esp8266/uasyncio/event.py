@@ -13,9 +13,6 @@ class Event:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def clear(self, *args) -> Any:
         ...
 
@@ -33,9 +30,6 @@ class ThreadSafeFlag:
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def set(self, *args) -> Any:

@@ -13,9 +13,6 @@ class Stream:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def close(self, *args) -> Any:
         ...
 
@@ -44,9 +41,6 @@ class StreamReader:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def close(self, *args) -> Any:
         ...
 
@@ -73,9 +67,6 @@ class StreamWriter:
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def close(self, *args) -> Any:

@@ -68,9 +68,6 @@ class Event:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def clear(self, *args) -> Any:
         ...
 
@@ -88,9 +85,6 @@ class Lock:
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def release(self, *args) -> Any:
@@ -117,18 +111,12 @@ class SingletonGenerator:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
 
 class IOQueue:
     """"""
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def remove(self, *args) -> Any:
@@ -210,9 +198,6 @@ class ThreadSafeFlag:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
-        ...
-
     def set(self, *args) -> Any:
         ...
 
@@ -231,9 +216,6 @@ class StreamReader:
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def close(self, *args) -> Any:
@@ -263,9 +245,6 @@ class StreamWriter:
 
     def __init__(self, *argv, **kwargs) -> None:
         """"""
-        ...
-
-    def __init__(self, *args) -> None:
         ...
 
     def close(self, *args) -> Any:
