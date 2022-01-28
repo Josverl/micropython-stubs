@@ -30,10 +30,8 @@ v2
 |board| micropython| v1.17| esp8266| ESP module with ESP8266| 71| 1.5.3|[stubs/micropython-v1_17-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-esp8266)
 |board| micropython| v1.17| pyboard| PYBv1.1 with STM32F405RG| 58| 1.5.2|[stubs/micropython-v1_17-pyboard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-pyboard)
 |board| micropython| v1.17| rp2| Raspberry Pi Pico with RP2040| 51| 1.5.2|[stubs/micropython-v1_17-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-rp2)
-|board| micropython| v1.18| esp32| ESP32 module (spiram) with ESP32| 76| 1.5.3|[stubs/micropython-v1_18-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-esp32)
-|board| micropython| v1.18| esp8266| ESP module with ESP8266| 71| 1.5.3|[stubs/micropython-v1_18-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-esp8266)
+|board| micropython| v1.18| esp8266| ESP module with ESP8266| 72| 1.5.3|[stubs/micropython-v1_18-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-esp8266)
 |board| micropython| v1.18| pyboard| PYBv1.1 with STM32F405RG| 60| 1.5.3|[stubs/micropython-v1_18-pyboard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-pyboard)
-|board| micropython| v1.18| rp2| Arduino Nano RP2040 Connect with RP2040| 60| 1.5.3|[stubs/micropython-v1_18-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-rp2)
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/main/stubs/ev3_pybricks_v1_0_0)
 |board| micropython| v1.9.4-Latest| -| ESP module with ESP8266| 43| 1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-esp8266)
@@ -153,4 +151,4 @@ v2
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  4062
+Total modules  3845
