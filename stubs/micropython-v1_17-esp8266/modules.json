@@ -1,6 +1,8 @@
 {"firmware": {"ver": "v1.17", "port": "esp8266", "arch": "xtensa", "sysname": "esp8266", "release": "1.17", "name": "micropython", "mpy": 9733, "version": "1.17", "machine": "ESP module with ESP8266", "build": "", "nodename": "esp8266", "platform": "esp8266", "family": "micropython"},
-"stubber": {"version": "1.5.3"}, "stubtype": "firmware",
+"stubber": {"version": "1.5.4"}, "stubtype": "firmware",
 "modules" :[
+{"file": "/stubs/micropython-v1_17-esp8266/_onewire.py", "module": "_onewire"},
+{"file": "/stubs/micropython-v1_17-esp8266/_uasyncio.py", "module": "_uasyncio"},
 {"file": "/stubs/micropython-v1_17-esp8266/apa102.py", "module": "apa102"},
 {"file": "/stubs/micropython-v1_17-esp8266/array.py", "module": "array"},
 {"file": "/stubs/micropython-v1_17-esp8266/binascii.py", "module": "binascii"},

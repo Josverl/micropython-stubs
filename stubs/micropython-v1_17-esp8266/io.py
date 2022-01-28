@@ -2,11 +2,11 @@
 Module: 'io' on micropython-v1.17-esp8266
 """
 # MCU: {'ver': 'v1.17', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.17', 'name': 'micropython', 'mpy': 9733, 'version': '1.17', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
-# Stubber: 1.5.3
+# Stubber: 1.5.4
 from typing import Any
 
 
-def open(*args) -> Any:
+def open(*args, **kwargs) -> Any:
     ...
 
 
@@ -17,31 +17,31 @@ class BytesIO:
         """"""
         ...
 
-    def close(self, *args) -> Any:
+    def close(self, *args, **kwargs) -> Any:
         ...
 
-    def read(self, *args) -> Any:
+    def read(self, *args, **kwargs) -> Any:
         ...
 
-    def readinto(self, *args) -> Any:
+    def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def readline(self, *args) -> Any:
+    def readline(self, *args, **kwargs) -> Any:
         ...
 
-    def write(self, *args) -> Any:
+    def write(self, *args, **kwargs) -> Any:
         ...
 
-    def flush(self, *args) -> Any:
+    def flush(self, *args, **kwargs) -> Any:
         ...
 
-    def getvalue(self, *args) -> Any:
+    def getvalue(self, *args, **kwargs) -> Any:
         ...
 
-    def seek(self, *args) -> Any:
+    def seek(self, *args, **kwargs) -> Any:
         ...
 
-    def tell(self, *args) -> Any:
+    def tell(self, *args, **kwargs) -> Any:
         ...
 
 
@@ -52,31 +52,31 @@ class FileIO:
         """"""
         ...
 
-    def close(self, *args) -> Any:
+    def close(self, *args, **kwargs) -> Any:
         ...
 
-    def read(self, *args) -> Any:
+    def read(self, *args, **kwargs) -> Any:
         ...
 
-    def readinto(self, *args) -> Any:
+    def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def readline(self, *args) -> Any:
+    def readline(self, *args, **kwargs) -> Any:
         ...
 
-    def write(self, *args) -> Any:
+    def write(self, *args, **kwargs) -> Any:
         ...
 
-    def flush(self, *args) -> Any:
+    def flush(self, *args, **kwargs) -> Any:
         ...
 
-    def readlines(self, *args) -> Any:
+    def readlines(self, *args, **kwargs) -> Any:
         ...
 
-    def seek(self, *args) -> Any:
+    def seek(self, *args, **kwargs) -> Any:
         ...
 
-    def tell(self, *args) -> Any:
+    def tell(self, *args, **kwargs) -> Any:
         ...
 
 
@@ -95,31 +95,31 @@ class StringIO:
         """"""
         ...
 
-    def close(self, *args) -> Any:
+    def close(self, *args, **kwargs) -> Any:
         ...
 
-    def read(self, *args) -> Any:
+    def read(self, *args, **kwargs) -> Any:
         ...
 
-    def readinto(self, *args) -> Any:
+    def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def readline(self, *args) -> Any:
+    def readline(self, *args, **kwargs) -> Any:
         ...
 
-    def write(self, *args) -> Any:
+    def write(self, *args, **kwargs) -> Any:
         ...
 
-    def flush(self, *args) -> Any:
+    def flush(self, *args, **kwargs) -> Any:
         ...
 
-    def getvalue(self, *args) -> Any:
+    def getvalue(self, *args, **kwargs) -> Any:
         ...
 
-    def seek(self, *args) -> Any:
+    def seek(self, *args, **kwargs) -> Any:
         ...
 
-    def tell(self, *args) -> Any:
+    def tell(self, *args, **kwargs) -> Any:
         ...
 
 
@@ -130,29 +130,29 @@ class TextIOWrapper:
         """"""
         ...
 
-    def close(self, *args) -> Any:
+    def close(self, *args, **kwargs) -> Any:
         ...
 
-    def read(self, *args) -> Any:
+    def read(self, *args, **kwargs) -> Any:
         ...
 
-    def readinto(self, *args) -> Any:
+    def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def readline(self, *args) -> Any:
+    def readline(self, *args, **kwargs) -> Any:
         ...
 
-    def write(self, *args) -> Any:
+    def write(self, *args, **kwargs) -> Any:
         ...
 
-    def flush(self, *args) -> Any:
+    def flush(self, *args, **kwargs) -> Any:
         ...
 
-    def readlines(self, *args) -> Any:
+    def readlines(self, *args, **kwargs) -> Any:
         ...
 
-    def seek(self, *args) -> Any:
+    def seek(self, *args, **kwargs) -> Any:
         ...
 
-    def tell(self, *args) -> Any:
+    def tell(self, *args, **kwargs) -> Any:
         ...

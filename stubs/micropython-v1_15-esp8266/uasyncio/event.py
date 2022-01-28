@@ -2,7 +2,7 @@
 Module: 'uasyncio.event' on micropython-v1.15-esp8266
 """
 # MCU: {'ver': 'v1.15', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.15', 'name': 'micropython', 'mpy': 9733, 'version': '1.15', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
-# Stubber: 1.5.3
+# Stubber: 1.5.4
 from typing import Any
 
 
@@ -13,13 +13,13 @@ class Event:
         """"""
         ...
 
-    def clear(self, *args) -> Any:
+    def clear(self, *args, **kwargs) -> Any:
         ...
 
-    def set(self, *args) -> Any:
+    def set(self, *args, **kwargs) -> Any:
         ...
 
-    def is_set(self, *args) -> Any:
+    def is_set(self, *args, **kwargs) -> Any:
         ...
 
     wait: Any  ## <class 'generator'> = <generator>
@@ -32,10 +32,10 @@ class ThreadSafeFlag:
         """"""
         ...
 
-    def set(self, *args) -> Any:
+    def set(self, *args, **kwargs) -> Any:
         ...
 
-    def ioctl(self, *args) -> Any:
+    def ioctl(self, *args, **kwargs) -> Any:
         ...
 
     wait: Any  ## <class 'generator'> = <generator>

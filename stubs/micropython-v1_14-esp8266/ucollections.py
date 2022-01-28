@@ -2,7 +2,7 @@
 Module: 'ucollections' on micropython-v1.14-esp8266
 """
 # MCU: {'ver': 'v1.14', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.14', 'name': 'micropython', 'mpy': 9733, 'version': '1.14', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
-# Stubber: 1.5.3
+# Stubber: 1.5.4
 from typing import Any
 
 
@@ -13,38 +13,38 @@ class OrderedDict:
         """"""
         ...
 
-    def clear(self, *args) -> Any:
+    def clear(self, *args, **kwargs) -> Any:
         ...
 
-    def copy(self, *args) -> Any:
+    def copy(self, *args, **kwargs) -> Any:
         ...
 
-    def get(self, *args) -> Any:
+    def get(self, *args, **kwargs) -> Any:
         ...
 
-    def items(self, *args) -> Any:
+    def items(self, *args, **kwargs) -> Any:
         ...
 
-    def keys(self, *args) -> Any:
+    def keys(self, *args, **kwargs) -> Any:
         ...
 
-    def pop(self, *args) -> Any:
+    def pop(self, *args, **kwargs) -> Any:
         ...
 
-    def popitem(self, *args) -> Any:
+    def popitem(self, *args, **kwargs) -> Any:
         ...
 
-    def setdefault(self, *args) -> Any:
+    def setdefault(self, *args, **kwargs) -> Any:
         ...
 
-    def update(self, *args) -> Any:
+    def update(self, *args, **kwargs) -> Any:
         ...
 
-    def values(self, *args) -> Any:
+    def values(self, *args, **kwargs) -> Any:
         ...
 
     @classmethod
-    def fromkeys(cls, *args) -> Any:
+    def fromkeys(cls, *args, **kwargs) -> Any:
         ...
 
 
@@ -55,12 +55,12 @@ class deque:
         """"""
         ...
 
-    def append(self, *args) -> Any:
+    def append(self, *args, **kwargs) -> Any:
         ...
 
-    def popleft(self, *args) -> Any:
+    def popleft(self, *args, **kwargs) -> Any:
         ...
 
 
-def namedtuple(*args) -> Any:
+def namedtuple(*args, **kwargs) -> Any:
     ...
