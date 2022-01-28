@@ -6,11 +6,13 @@ Module: 'uzlib' on micropython-v1.18-esp8266
 from typing import Any
 
 
-class DecompIO():
-    ''
+class DecompIO:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def read(self, *args) -> Any:
         ...
 
@@ -20,6 +22,6 @@ class DecompIO():
     def readline(self, *args) -> Any:
         ...
 
+
 def decompress(*args) -> Any:
     ...
-

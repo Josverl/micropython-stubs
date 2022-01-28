@@ -6,11 +6,13 @@ Module: 'utimeq' on micropython-v1.18-esp8266
 from typing import Any
 
 
-class utimeq():
-    ''
+class utimeq:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def pop(self, *args) -> Any:
         ...
 
@@ -19,4 +21,3 @@ class utimeq():
 
     def push(self, *args) -> Any:
         ...
-

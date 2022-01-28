@@ -16,12 +16,12 @@ from typing import Any
 #    Layout type for a little-endian packed structure. (Packed means that every
 #    field occupies exactly as many bytes as defined in the descriptor, i.e.
 #    the alignment is 1).
-LITTLE_ENDIAN: bytes
+LITTLE_ENDIAN = 0
 #    Layout type for a big-endian packed structure.
-BIG_ENDIAN: Any
+BIG_ENDIAN = 1
 #    Layout type for a native structure - with data endianness and alignment
 #    conforming to the ABI of the system on which MicroPython runs.
-NATIVE: Any
+NATIVE = 2
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
 UINT8: int

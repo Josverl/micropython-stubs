@@ -6,11 +6,13 @@ Module: 'umqtt.robust' on micropython-v1.18-esp8266
 from typing import Any
 
 
-class MQTTClient():
-    ''
+class MQTTClient:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def __init__(self, *args) -> None:
         ...
 
@@ -23,7 +25,8 @@ class MQTTClient():
     def log(self, *args) -> Any:
         ...
 
-    DEBUG = False # type: bool
+    DEBUG = False  # type: bool
+
     def set_callback(self, *args) -> Any:
         ...
 
@@ -33,16 +36,19 @@ class MQTTClient():
     def ping(self, *args) -> Any:
         ...
 
-    publish : Any ## <class 'closure'> = <closure>
+    publish: Any  ## <class 'closure'> = <closure>
+
     def subscribe(self, *args) -> Any:
         ...
 
-    wait_msg : Any ## <class 'closure'> = <closure>
+    wait_msg: Any  ## <class 'closure'> = <closure>
+
     def check_msg(self, *args) -> Any:
         ...
 
-    DELAY = 2 # type: int
+    DELAY = 2  # type: int
+
     def delay(self, *args) -> Any:
         ...
 
-    reconnect : Any ## <class 'closure'> = <closure>
+    reconnect: Any  ## <class 'closure'> = <closure>

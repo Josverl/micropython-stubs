@@ -5,15 +5,18 @@ Module: 'json' on micropython-v1.18-esp8266
 # Stubber: 1.5.3
 from typing import Any
 
+
 def dump(*args) -> Any:
     ...
+
 
 def dumps(*args) -> Any:
     ...
 
+
 def load(*args) -> Any:
     ...
 
+
 def loads(*args) -> Any:
     ...
-

@@ -5,15 +5,18 @@ Module: 'neopixel' on micropython-v1.18-esp8266
 # Stubber: 1.5.3
 from typing import Any
 
+
 def bitstream(*args) -> Any:
     ...
 
 
-class NeoPixel():
-    ''
+class NeoPixel:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def __init__(self, *args) -> None:
         ...
 
@@ -23,4 +26,4 @@ class NeoPixel():
     def fill(self, *args) -> Any:
         ...
 
-    ORDER = () # type: tuple
+    ORDER = ()  # type: tuple

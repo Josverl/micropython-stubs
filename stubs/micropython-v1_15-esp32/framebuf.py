@@ -2,45 +2,49 @@
 Module: 'framebuf' on micropython-v1.15-esp32
 """
 # MCU: {'ver': 'v1.15', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.15.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.15.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
-# Stubber: 1.5.0
+# Stubber: 1.5.3
 from typing import Any
 
 
 class FrameBuffer:
     """"""
 
-    def blit(self, *args) -> Any:
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
         ...
 
-    def fill(self, *args) -> Any:
+    def blit(self, *args, **kwargs) -> Any:
         ...
 
-    def fill_rect(self, *args) -> Any:
+    def fill(self, *args, **kwargs) -> Any:
         ...
 
-    def hline(self, *args) -> Any:
+    def fill_rect(self, *args, **kwargs) -> Any:
         ...
 
-    def line(self, *args) -> Any:
+    def hline(self, *args, **kwargs) -> Any:
         ...
 
-    def pixel(self, *args) -> Any:
+    def line(self, *args, **kwargs) -> Any:
         ...
 
-    def rect(self, *args) -> Any:
+    def pixel(self, *args, **kwargs) -> Any:
         ...
 
-    def scroll(self, *args) -> Any:
+    def rect(self, *args, **kwargs) -> Any:
         ...
 
-    def text(self, *args) -> Any:
+    def scroll(self, *args, **kwargs) -> Any:
         ...
 
-    def vline(self, *args) -> Any:
+    def text(self, *args, **kwargs) -> Any:
+        ...
+
+    def vline(self, *args, **kwargs) -> Any:
         ...
 
 
-def FrameBuffer1(*args) -> Any:
+def FrameBuffer1(*args, **kwargs) -> Any:
     ...
 
 

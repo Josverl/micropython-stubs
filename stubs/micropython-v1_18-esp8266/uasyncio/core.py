@@ -7,19 +7,24 @@ from typing import Any
 
 
 class CancelledError(Exception):
-    ''
+    """"""
 
-class Task():
-    ''
+
+class Task:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class TaskQueue():
-    ''
+
+class TaskQueue:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def remove(self, *args) -> Any:
         ...
 
@@ -35,39 +40,49 @@ class TaskQueue():
     def push_sorted(self, *args) -> Any:
         ...
 
+
 def sleep(*args) -> Any:
     ...
+
 
 def sleep_ms(*args) -> Any:
     ...
 
+
 def ticks_add(*args) -> Any:
     ...
 
+
 def ticks_diff(*args) -> Any:
     ...
+
 
 def ticks(*args) -> Any:
     ...
 
 
 class TimeoutError(Exception):
-    ''
+    """"""
 
-class SingletonGenerator():
-    ''
+
+class SingletonGenerator:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def __init__(self, *args) -> None:
         ...
 
 
-class IOQueue():
-    ''
+class IOQueue:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def __init__(self, *args) -> None:
         ...
 
@@ -83,21 +98,26 @@ class IOQueue():
     def wait_io_event(self, *args) -> Any:
         ...
 
+
 def create_task(*args) -> Any:
     ...
 
+
 def run_until_complete(*args) -> Any:
     ...
+
 
 def run(*args) -> Any:
     ...
 
 
-class Loop():
-    ''
+class Loop:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args) -> Any:
         ...
 
@@ -125,12 +145,14 @@ class Loop():
     def default_exception_handler(self, *args) -> Any:
         ...
 
+
 def get_event_loop(*args) -> Any:
     ...
+
 
 def current_task(*args) -> Any:
     ...
 
+
 def new_event_loop(*args) -> Any:
     ...
-

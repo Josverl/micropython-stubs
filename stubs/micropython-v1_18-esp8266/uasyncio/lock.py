@@ -6,11 +6,13 @@ Module: 'uasyncio.lock' on micropython-v1.18-esp8266
 from typing import Any
 
 
-class Lock():
-    ''
+class Lock:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def __init__(self, *args) -> None:
         ...
 
@@ -20,4 +22,4 @@ class Lock():
     def locked(self, *args) -> Any:
         ...
 
-    acquire : Any ## <class 'generator'> = <generator>
+    acquire: Any  ## <class 'generator'> = <generator>

@@ -6,11 +6,13 @@ Module: 'uasyncio.event' on micropython-v1.18-esp8266
 from typing import Any
 
 
-class Event():
-    ''
+class Event:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def __init__(self, *args) -> None:
         ...
 
@@ -23,13 +25,16 @@ class Event():
     def is_set(self, *args) -> Any:
         ...
 
-    wait : Any ## <class 'generator'> = <generator>
+    wait: Any  ## <class 'generator'> = <generator>
 
-class ThreadSafeFlag():
-    ''
+
+class ThreadSafeFlag:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def __init__(self, *args) -> None:
         ...
 
@@ -39,4 +44,4 @@ class ThreadSafeFlag():
     def ioctl(self, *args) -> Any:
         ...
 
-    wait : Any ## <class 'generator'> = <generator>
+    wait: Any  ## <class 'generator'> = <generator>

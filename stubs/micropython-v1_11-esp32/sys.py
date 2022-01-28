@@ -2,14 +2,14 @@
 Module: 'sys' on micropython-v1.11-esp32
 """
 # MCU: {'ver': 'v1.11', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module with ESP32', 'release': '1.11.0', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.11.0'}
-# Stubber: 1.5.0
+# Stubber: 1.5.3
 from typing import Any
 
 argv = []  # type: list
 byteorder = "little"  # type: str
 
 
-def exit(*args) -> Any:
+def exit(*args, **kwargs) -> Any:
     ...
 
 
@@ -20,7 +20,7 @@ path = []  # type: list
 platform = "esp32"  # type: str
 
 
-def print_exception(*args) -> Any:
+def print_exception(*args, **kwargs) -> Any:
     ...
 
 

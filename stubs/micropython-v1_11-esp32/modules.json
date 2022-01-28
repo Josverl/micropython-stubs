@@ -1,6 +1,7 @@
 {"firmware": {"ver": "v1.11", "build": "", "platform": "esp32", "port": "esp32", "machine": "ESP32 module with ESP32", "release": "1.11.0", "nodename": "esp32", "name": "micropython", "family": "micropython", "sysname": "esp32", "version": "1.11.0"},
-"stubber": {"version": "1.5.0"}, "stubtype": "firmware",
+"stubber": {"version": "1.5.3"}, "stubtype": "firmware",
 "modules" :[
+{"file": "/stubs/micropython-v1_11-esp32/_onewire.py", "module": "_onewire"},
 {"file": "/stubs/micropython-v1_11-esp32/_thread.py", "module": "_thread"},
 {"file": "/stubs/micropython-v1_11-esp32/apa106.py", "module": "apa106"},
 {"file": "/stubs/micropython-v1_11-esp32/array.py", "module": "array"},
@@ -50,7 +51,6 @@
 {"file": "/stubs/micropython-v1_11-esp32/umqtt/robust.py", "module": "umqtt.robust"},
 {"file": "/stubs/micropython-v1_11-esp32/umqtt/simple.py", "module": "umqtt.simple"},
 {"file": "/stubs/micropython-v1_11-esp32/uos.py", "module": "uos"},
-{"file": "/stubs/micropython-v1_11-esp32/upip_utarfile.py", "module": "upip_utarfile"},
 {"file": "/stubs/micropython-v1_11-esp32/urandom.py", "module": "urandom"},
 {"file": "/stubs/micropython-v1_11-esp32/ure.py", "module": "ure"},
 {"file": "/stubs/micropython-v1_11-esp32/urequests.py", "module": "urequests"},
@@ -63,5 +63,6 @@
 {"file": "/stubs/micropython-v1_11-esp32/uwebsocket.py", "module": "uwebsocket"},
 {"file": "/stubs/micropython-v1_11-esp32/uzlib.py", "module": "uzlib"},
 {"file": "/stubs/micropython-v1_11-esp32/websocket_helper.py", "module": "websocket_helper"},
-{"file": "/stubs/micropython-v1_11-esp32/zlib.py", "module": "zlib"}
+{"file": "/stubs/micropython-v1_11-esp32/zlib.py", "module": "zlib"},
+{"file": "/stubs/micropython-v1_11-esp32/apa106.py", "module": "apa106"}
 ]}
