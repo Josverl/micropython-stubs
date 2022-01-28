@@ -130,7 +130,7 @@ class PIO:
         """
         ...
 
-    def irq(self, handler=None, trigger=IRQ_SM0 | IRQ_SM1 | IRQ_SM2 | IRQ_SM3, hard=False) -> Any:
+    def irq(self, handler=None, trigger=IRQ_SM0, hard=False) -> Any:
         """
         Returns the IRQ object for this PIO instance.
 

@@ -10,9 +10,9 @@ hold/accumulate various objects.
 # source version: latest
 # origin module:: micropython/docs/library/collections.rst
 from typing import Any, Optional
+from queue import Queue
 
-
-class deque(queu):
+class deque(Queue):
     """
     Deques (double-ended queues) are a list-like container that support O(1)
     appends and pops from either side of the deque.  New deques are created
