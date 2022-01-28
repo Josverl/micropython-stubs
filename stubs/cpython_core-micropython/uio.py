@@ -1,5 +1,5 @@
 import io
-from io import *
+from io import BytesIO, StringIO
 
 
 class UioStream:

@@ -86,7 +86,7 @@ def tokenize(readline):
         org_l = l
         if not l:
             break
-        i, l = get_indent(l)  # type: ignore
+        i, l = get_indent(l)
 
         if l == "\n":
             yield TokenInfo(NL, l, lineno, 0, org_l)
@@ -147,14 +147,7 @@ def tokenize(readline):
                 while l and (l[0].isalpha() or l[0].isdigit() or l.startswith("_")):
                     name += l[0]
                     l = l[1:]
-                if (l.startswith('"') or l.startswith("'")) and name in (
-                    "b",
-                    "r",
-                    "rb",
-                    "br",
-                    "u",
-                    "f",
-                ):
+                if (l.startswith('"') or l.startswith("'")) and name in ("b", "r", "rb", "br", "u", "f"):
                     s, l, lineno_delta = get_str(l, readline)
                     yield TokenInfo(STRING, name + s, lineno, 0, org_l)
                     lineno += lineno_delta

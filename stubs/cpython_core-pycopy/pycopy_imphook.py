@@ -1,8 +1,8 @@
-# type: ignore
 import sys
 import warnings
 
 import importlib
+
 
 _import_hook = None
 _import_exts = []
