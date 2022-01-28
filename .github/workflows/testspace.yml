@@ -59,7 +59,6 @@ jobs:
 
       - name: Testspace push test content
         run: |
-          # testspace "[all-stubs]./results/pyright-all-stubs.log{lint}" ./results/results.xml
-          testspace "[v1_18]./results/pyright-v1_18.log{lint}"
-          testspace "[latest]./results/pyright-latest.log{lint}"
-          testspace ./results/results.xml
+          testspace "[all-stubs]./results/pyright-all-stubs.log{lint}" ./results/results.xml
+          # testspace "[v1_18]./results/pyright-v1_18.log{lint}"
+          # testspace "[latest]./results/pyright-latest.log{lint}"
