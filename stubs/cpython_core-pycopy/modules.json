@@ -2,14 +2,14 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "cpython-core",
-        "firmware": "cpython-core-pycopy-v1_4_5",
+        "firmware": "cpython-core-pycopy-v1_5_1",
         "machine": "cpython-core",
         "nodename": "",
         "platform": "cpython",
         "port": "pycopy",
-        "release": "1.4.5",
+        "release": "1.5.1",
         "sysname": "",
-        "version": "1.4.5"
+        "version": "1.5.1"
     },
     "modules": [
         {
@@ -31,10 +31,6 @@
         {
             "file": "uarray.py",
             "module": "uarray"
-        },
-        {
-            "file": "uasyncio.py",
-            "module": "uasyncio"
         },
         {
             "file": "ucollections.py",
@@ -67,14 +63,6 @@
         {
             "file": "uos.py",
             "module": "uos"
-        },
-        {
-            "file": "upip.py",
-            "module": "upip"
-        },
-        {
-            "file": "upip_utarfile.py",
-            "module": "upip_utarfile"
         },
         {
             "file": "ure.py",
@@ -111,6 +99,6 @@
     ],
     "stubber": {
         "stubtype": "core",
-        "version": "1.4.5"
+        "version": "1.5.1"
     }
 }
