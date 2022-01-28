@@ -10,7 +10,7 @@ foreach ( $file in (Get-ChildItem $Path -Filter "pyright*.log" )) {
         -replace ' - (info):', ': information:' 
 
     # promote some errors to warnings 
-    $content = $content -replace 'warning: Class declaration ', 'error: Class declaration '  
+    # $content = $content -replace 'warning: something (.*)', 'error: Something $1'  
     
     # Demote some warnings to info 
     $content = $content -replace ': warning: "None" is not iterable', ': information: "None" is not iterable' `
