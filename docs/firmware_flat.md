@@ -30,16 +30,18 @@ v2
 |board| micropython| v1.17| esp8266| ESP module with ESP8266| 71| 1.5.3|[stubs/micropython-v1_17-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-esp8266)
 |board| micropython| v1.17| pyboard| PYBv1.1 with STM32F405RG| 58| 1.5.2|[stubs/micropython-v1_17-pyboard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-pyboard)
 |board| micropython| v1.17| rp2| Raspberry Pi Pico with RP2040| 51| 1.5.2|[stubs/micropython-v1_17-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-rp2)
-|board| micropython| v1.18| esp8266| ESP module with ESP8266| 72| 1.5.3|[stubs/micropython-v1_18-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-esp8266)
+|board| micropython| v1.18| esp32| ESP32 module (spiram) with ESP32| 76| 1.5.3|[stubs/micropython-v1_18-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-esp32)
+|board| micropython| v1.18| esp8266| ESP module with ESP8266| 71| 1.5.3|[stubs/micropython-v1_18-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-esp8266)
 |board| micropython| v1.18| pyboard| PYBv1.1 with STM32F405RG| 60| 1.5.3|[stubs/micropython-v1_18-pyboard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-pyboard)
+|board| micropython| v1.18| rp2| Arduino Nano RP2040 Connect with RP2040| 60| 1.5.3|[stubs/micropython-v1_18-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-rp2)
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/main/stubs/ev3_pybricks_v1_0_0)
 |board| micropython| v1.9.4-Latest| -| ESP module with ESP8266| 43| 1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-esp8266)
-|core| cpython-core| v1.4.5| micropython| cpython-core| 15| 1.4.5|[stubs/cpython_core-micropython](https://github.com/Josverl/micropython-stubs/tree/main/stubs/cpython_core-micropython)
-|core| cpython-core| v1.4.5| pycopy| cpython-core| 24| 1.4.5|[stubs/cpython_core-pycopy](https://github.com/Josverl/micropython-stubs/tree/main/stubs/cpython_core-pycopy)
+|core| cpython-core| v1.5.1| micropython| cpython-core| 12| 1.5.1|[stubs/cpython_core-micropython](https://github.com/Josverl/micropython-stubs/tree/main/stubs/cpython_core-micropython)
+|core| cpython-core| v1.5.1| pycopy| cpython-core| 21| 1.5.1|[stubs/cpython_core-pycopy](https://github.com/Josverl/micropython-stubs/tree/main/stubs/cpython_core-pycopy)
 |documentation| micropython| latest| -| micropython| 41| 1.5.1|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
 |documentation| micropython| v1_17| -| micropython| 39| 1.5.1|[stubs/micropython-v1_17-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-docstubs)
-|documentation| micropython| v1_18| -| micropython| 41| 1.5.1|[stubs/micropython-v1_18-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-docstubs)
+|documentation| micropython| v1_18| -| micropython| 42| 1.5.1|[stubs/micropython-v1_18-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-docstubs)
 |frozen| loboris| v3.2.24| esp32| loboris| 17| 1.5.1|[stubs/loboris-v3_2_24-frozen](https://github.com/Josverl/micropython-stubs/tree/main/stubs/loboris-v3_2_24-frozen)
 |frozen| micropython| latest| esp32| GENERIC| 20| 1.5.1|[stubs/micropython-latest-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/GENERIC)
 |frozen| micropython| latest| esp32| LOLIN_S2_MINI| 21| 1.5.1|[stubs/micropython-latest-frozen/esp32/LOLIN_S2_MINI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/LOLIN_S2_MINI)
@@ -151,4 +153,4 @@ v2
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  3845
+Total modules  4057
