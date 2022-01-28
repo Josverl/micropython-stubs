@@ -165,6 +165,10 @@
             "module": "uasyncio"
         },
         {
+            "file": "ubinascii.py",
+            "module": "ubinascii"
+        },
+        {
             "file": "uctypes.py",
             "module": "uctypes"
         },
