@@ -14,9 +14,9 @@
         // examples included in frozen 
         "**/example_*.py*",
         // For now exclude the below list 
-        "stubs/micropython-ulab",
+        "stubs/micropython-ulab", // Expected class type but received "_DType"
         "stubs/micropython-v1_9_*",
-        "stubs/pycopy-v0_0_0-frozen",
+        //"stubs/pycopy-v0_0_0-frozen",
         "stubs/loboris-v3_2_24-frozen",
         "stubs/pico-go"
         //
@@ -200,6 +200,13 @@
         },
         {
             "root": "stubs/micropython-v2_0-frozen",
+            "extraPaths": [
+                "stubs/typings/fallback"
+            ],
+        },
+        // local pycopy 
+        {
+            "root": "stubs/pycopy-v0_0_0-frozen",
             "extraPaths": [
                 "stubs/typings/fallback"
             ],
