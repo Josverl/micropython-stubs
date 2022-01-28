@@ -45,7 +45,8 @@ def mem_free() -> int:
     """
     ...
 
-def threshold(amount: Optional[Any]) -> Any: 
+
+def threshold(amount: Optional[Any]) -> Any:
     """
     Set or query the additional GC allocation threshold. Normally, a collection
     is triggered only when a new allocation cannot be satisfied, i.e. on an

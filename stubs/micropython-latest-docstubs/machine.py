@@ -14,6 +14,7 @@ damage.
 # + module: machine.Pin.rst
 # + module: machine.Signal.rst
 # + module: machine.ADC.rst
+# + module: machine.ADCBlock.rst
 # + module: machine.PWM.rst
 # + module: machine.UART.rst
 # + module: machine.SPI.rst
@@ -369,9 +370,35 @@ class ADC:
     *id* may be an integer (usually specifying a channel number), a
     :ref:`Pin <machine.Pin>` object, or other value supported by the
     underlying machine.
+
+    If additional keyword-arguments are given then they will configure
+    various aspects of the ADC.  If not given, these settings will take
+    previous or default values.  The settings are:
+
+      - *sample_ns* is the sampling time in nanoseconds.
+
+      - *atten* specifies the input attenuation.
     """
 
-    def __init__(self, id) -> None:
+    def __init__(self, id, *, sample_ns, atten) -> None:
+        ...
+
+    def init(self, *, sample_ns, atten) -> Any:
+        """
+        Apply the given settings to the ADC.  Only those arguments that are
+        specified will be changed.  See the ADC constructor above for what the
+        arguments are.
+        """
+        ...
+
+    def block(self) -> Any:
+        """
+        Return the :ref:`ADCBlock <machine.ADCBlock>` instance associated with
+        this ADC object.
+
+        This method only exists if the port supports the
+        :ref:`ADCBlock <machine.ADCBlock>` class.
+        """
         ...
 
     def read_u16(self) -> int:
@@ -379,6 +406,53 @@ class ADC:
         Take an analog reading and return an integer in the range 0-65535.
         The return value represents the raw reading taken by the ADC, scaled
         such that the minimum value is 0 and the maximum value is 65535.
+        """
+        ...
+
+    def read_uv(self) -> int:
+        """
+        Take an analog reading and return an integer value with units of
+        microvolts.  It is up to the particular port whether or not this value
+        is calibrated, and how calibration is done.
+        """
+        ...
+
+
+class ADCBlock:
+    """
+    Access the ADC peripheral identified by *id*, which may be an integer
+    or string.
+
+    The *bits* argument, if given, sets the resolution in bits of the
+    conversion process.  If not specified then the previous or default
+    resolution is used.
+    """
+
+    def __init__(self, id, *, bits) -> None:
+        ...
+
+    def init(self, *, bits) -> None:
+        """
+        Configure the ADC peripheral.  *bits* will set the resolution of the
+        conversion process.
+        """
+        ...
+
+    def connect(self, channel, source) -> Any:
+        """
+        Connect up a channel on the ADC peripheral so it is ready for sampling,
+        and return an :ref:`ADC <machine.ADC>` object that represents that connection.
+
+        The *channel* argument must be an integer, and *source* must be an object
+        (for example a :ref:`Pin <machine.Pin>`) which can be connected up for sampling.
+
+        If only *channel* is given then it is configured for sampling.
+
+        If only *source* is given then that object is connected to a default
+        channel ready for sampling.
+
+        If both *channel* and *source* are given then they are connected together
+        and made ready for sampling.
         """
         ...
 
@@ -852,7 +926,7 @@ class SoftI2C(I2C):
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
 
-    def __init__(self, scl, sda, *, freq=400000, timeout=255) -> None:
+    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None:
         ...
 
 
