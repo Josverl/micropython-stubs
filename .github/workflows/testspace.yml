@@ -43,9 +43,10 @@ jobs:
       - name: run pyright on stubs
         if: always()
         run: |
+          # TODO: Find Stable 
           pyright --version | tee ./results/pyright-version.log
           pyright stubs | tee ./results/pyright-all-stubs.log
-          pyright stubs/micropython-v1_18-* | tee ./results/pyright-v1_18.log
+          pyright stubs/micropython-v1_18-* | tee ./results/pyright-stable.log
           pyright stubs/micropython-latest-* | tee ./results/pyright-latest.log
 
       - name: Fixup pyright logs 
@@ -61,6 +62,6 @@ jobs:
       - name: Testspace push test content
         run: |
           testspace "[all-stubs]./results/pyright-all-stubs.log{lint}" ./results/results.xml
-          testspace "[v1_18]./results/pyright-v1_18.log{lint}"
+          testspace "[stable]./results/pyright-stable.log{lint}"
           testspace "[latest]./results/pyright-latest.log{lint}"
           testspace "./results/pyright-version.log"
