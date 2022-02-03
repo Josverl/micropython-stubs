@@ -2,7 +2,7 @@
 Module: 'uctypes' on micropython-v1.17-pyboard
 """
 # MCU: {'ver': 'v1.17', 'port': 'pyboard', 'arch': 'armv7emsp', 'sysname': 'pyboard', 'release': '1.17.0', 'name': 'micropython', 'mpy': 7685, 'version': '1.17.0', 'machine': 'PYBv1.1 with STM32F405RG', 'build': '', 'nodename': 'pyboard', 'platform': 'pyboard', 'family': 'micropython'}
-# Stubber: 1.5.2
+# Stubber: 1.5.4
 from typing import Any
 
 ARRAY = -1073741824  # type: int
@@ -39,21 +39,25 @@ USHORT = 268435456  # type: int
 VOID = 0  # type: int
 
 
-def addressof(*args) -> Any:
+def addressof(*args, **kwargs) -> Any:
     ...
 
 
-def bytearray_at(*args) -> Any:
+def bytearray_at(*args, **kwargs) -> Any:
     ...
 
 
-def bytes_at(*args) -> Any:
+def bytes_at(*args, **kwargs) -> Any:
     ...
 
 
-def sizeof(*args) -> Any:
+def sizeof(*args, **kwargs) -> Any:
     ...
 
 
 class struct:
     """"""
+
+    def __init__(self, *argv, **kwargs) -> None:
+        """"""
+        ...

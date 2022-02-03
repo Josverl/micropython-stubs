@@ -2,24 +2,29 @@
 Module: 'uasyncio.core' on micropython-v1.18-pyboard
 """
 # MCU: {'ver': 'v1.18', 'port': 'pyboard', 'arch': 'armv7emsp', 'sysname': 'pyboard', 'release': '1.18.0', 'name': 'micropython', 'mpy': 7685, 'version': '1.18.0', 'machine': 'PYBv1.1 with STM32F405RG', 'build': '', 'nodename': 'pyboard', 'platform': 'pyboard', 'family': 'micropython'}
-# Stubber: 1.5.3
+# Stubber: 1.5.4
 from typing import Any
 
 
 class CancelledError(Exception):
-    ''
+    """"""
 
-class Task():
-    ''
+
+class Task:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class TaskQueue():
-    ''
+
+class TaskQueue:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def remove(self, *args, **kwargs) -> Any:
         ...
 
@@ -35,36 +40,46 @@ class TaskQueue():
     def push_sorted(self, *args, **kwargs) -> Any:
         ...
 
+
 def sleep(*args, **kwargs) -> Any:
     ...
+
 
 def sleep_ms(*args, **kwargs) -> Any:
     ...
 
+
 def ticks_add(*args, **kwargs) -> Any:
     ...
 
+
 def ticks_diff(*args, **kwargs) -> Any:
     ...
+
 
 def ticks(*args, **kwargs) -> Any:
     ...
 
 
 class TimeoutError(Exception):
-    ''
+    """"""
 
-class SingletonGenerator():
-    ''
+
+class SingletonGenerator:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class IOQueue():
-    ''
+
+class IOQueue:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def remove(self, *args, **kwargs) -> Any:
         ...
 
@@ -77,21 +92,26 @@ class IOQueue():
     def wait_io_event(self, *args, **kwargs) -> Any:
         ...
 
+
 def create_task(*args, **kwargs) -> Any:
     ...
 
+
 def run_until_complete(*args, **kwargs) -> Any:
     ...
+
 
 def run(*args, **kwargs) -> Any:
     ...
 
 
-class Loop():
-    ''
+class Loop:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
@@ -119,12 +139,14 @@ class Loop():
     def default_exception_handler(self, *args, **kwargs) -> Any:
         ...
 
+
 def get_event_loop(*args, **kwargs) -> Any:
     ...
+
 
 def current_task(*args, **kwargs) -> Any:
     ...
 
+
 def new_event_loop(*args, **kwargs) -> Any:
     ...
-

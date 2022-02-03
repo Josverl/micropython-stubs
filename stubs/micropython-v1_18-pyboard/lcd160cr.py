@@ -2,34 +2,42 @@
 Module: 'lcd160cr' on micropython-v1.18-pyboard
 """
 # MCU: {'ver': 'v1.18', 'port': 'pyboard', 'arch': 'armv7emsp', 'sysname': 'pyboard', 'release': '1.18.0', 'name': 'micropython', 'mpy': 7685, 'version': '1.18.0', 'machine': 'PYBv1.1 with STM32F405RG', 'build': '', 'nodename': 'pyboard', 'platform': 'pyboard', 'family': 'micropython'}
-# Stubber: 1.5.3
+# Stubber: 1.5.4
 from typing import Any
+
 
 def const(*args, **kwargs) -> Any:
     ...
 
+
 def calcsize(*args, **kwargs) -> Any:
     ...
+
 
 def pack_into(*args, **kwargs) -> Any:
     ...
 
+
 def sleep_ms(*args, **kwargs) -> Any:
     ...
 
-PORTRAIT = 0 # type: int
-LANDSCAPE = 1 # type: int
-PORTRAIT_UPSIDEDOWN = 2 # type: int
-LANDSCAPE_UPSIDEDOWN = 3 # type: int
-STARTUP_DECO_NONE = 0 # type: int
-STARTUP_DECO_MLOGO = 1 # type: int
-STARTUP_DECO_INFO = 2 # type: int
 
-class LCD160CR():
-    ''
+PORTRAIT = 0  # type: int
+LANDSCAPE = 1  # type: int
+PORTRAIT_UPSIDEDOWN = 2  # type: int
+LANDSCAPE_UPSIDEDOWN = 3  # type: int
+STARTUP_DECO_NONE = 0  # type: int
+STARTUP_DECO_MLOGO = 1  # type: int
+STARTUP_DECO_INFO = 2  # type: int
+
+
+class LCD160CR:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def write(self, *args, **kwargs) -> Any:
         ...
 
@@ -176,4 +184,3 @@ class LCD160CR():
 
     def feed_wdt(self, *args, **kwargs) -> Any:
         ...
-

@@ -2,18 +2,21 @@
 Module: 'onewire' on micropython-v1.18-pyboard
 """
 # MCU: {'ver': 'v1.18', 'port': 'pyboard', 'arch': 'armv7emsp', 'sysname': 'pyboard', 'release': '1.18.0', 'name': 'micropython', 'mpy': 7685, 'version': '1.18.0', 'machine': 'PYBv1.1 with STM32F405RG', 'build': '', 'nodename': 'pyboard', 'platform': 'pyboard', 'family': 'micropython'}
-# Stubber: 1.5.3
+# Stubber: 1.5.4
 from typing import Any
 
 
 class OneWireError(Exception):
-    ''
+    """"""
 
-class OneWire():
-    ''
+
+class OneWire:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
@@ -41,9 +44,9 @@ class OneWire():
     def writebyte(self, *args, **kwargs) -> Any:
         ...
 
-    SEARCH_ROM = 240 # type: int
-    MATCH_ROM = 85 # type: int
-    SKIP_ROM = 204 # type: int
+    SEARCH_ROM = 240  # type: int
+    MATCH_ROM = 85  # type: int
+    SKIP_ROM = 204  # type: int
+
     def select_rom(self, *args, **kwargs) -> Any:
         ...
-
