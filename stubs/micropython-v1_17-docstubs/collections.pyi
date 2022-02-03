@@ -1,3 +1,4 @@
+from queue import Queue
 from typing import Any, Optional
 from queue import Queue
 

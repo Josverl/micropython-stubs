@@ -69,7 +69,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
+          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
           title: "add/update Loboris frozen stubs"
           commit-message: add/update Loboris frozen stubs
           branch: "micropython-lobo-stubs"

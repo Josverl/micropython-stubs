@@ -100,7 +100,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} 
+          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} 
           title: "Add/update MicroPython ${{ matrix.version }} doc-stubs"
           commit-message: add/update doc-stubs
           body : |

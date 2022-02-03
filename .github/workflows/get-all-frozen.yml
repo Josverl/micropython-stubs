@@ -111,7 +111,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
+          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
           title: "Add/update MicroPython ${{ matrix.version }} stubs"
           commit-message: add/update MicroPython ${{ matrix.version }} stubs
           body : |
@@ -178,7 +178,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} # ${{ secrets.PAT }}
+          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
           title: "add/update MicroPython core stubs"
           commit-message: add/update MicroPython core stubs
           branch: "micropython-core-stubs"
