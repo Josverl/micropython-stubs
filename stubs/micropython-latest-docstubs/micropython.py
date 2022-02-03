@@ -7,7 +7,7 @@ access and control MicroPython internals. See: https://docs.micropython.org/en/l
 from typing import Any, Optional
 
 
-def const(expr) -> Any:
+def const(expr) -> int:
     """
     Used to declare that the expression is a constant so that the compile can
     optimise it.  The use of this function should be as follows::
