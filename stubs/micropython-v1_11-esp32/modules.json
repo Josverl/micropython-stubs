@@ -1,5 +1,5 @@
 {"firmware": {"ver": "v1.11", "build": "", "platform": "esp32", "port": "esp32", "machine": "ESP32 module with ESP32", "release": "1.11.0", "nodename": "esp32", "name": "micropython", "family": "micropython", "sysname": "esp32", "version": "1.11.0"},
-"stubber": {"version": "1.5.3"}, "stubtype": "firmware",
+"stubber": {"version": "1.5.4"}, "stubtype": "firmware",
 "modules" :[
 {"file": "/stubs/micropython-v1_11-esp32/_onewire.py", "module": "_onewire"},
 {"file": "/stubs/micropython-v1_11-esp32/_thread.py", "module": "_thread"},

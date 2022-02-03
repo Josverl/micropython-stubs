@@ -25,10 +25,6 @@ def ticks_us():
     return int(_time.time() * 1000000) & (MICROPY_PY_UTIME_TICKS_PERIOD - 1)
 
 
-def ticks_diff(ticks1, ticks2) -> int:
-    return 1
-
-
 ticks_cpu = ticks_us
 
 del f, _time

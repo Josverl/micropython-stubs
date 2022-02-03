@@ -2,11 +2,11 @@
 Module: 'ssd1306' on micropython-v1.18-esp8266
 """
 # MCU: {'ver': 'v1.18', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.18', 'name': 'micropython', 'mpy': 9733, 'version': '1.18', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
-# Stubber: 1.5.3
+# Stubber: 1.5.4
 from typing import Any
 
 
-def const(*args) -> Any:
+def const(*args, **kwargs) -> Any:
     ...
 
 
@@ -37,58 +37,55 @@ class SSD1306:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
+    def blit(self, *args, **kwargs) -> Any:
         ...
 
-    def blit(self, *args) -> Any:
+    def fill(self, *args, **kwargs) -> Any:
         ...
 
-    def fill(self, *args) -> Any:
+    def fill_rect(self, *args, **kwargs) -> Any:
         ...
 
-    def fill_rect(self, *args) -> Any:
+    def hline(self, *args, **kwargs) -> Any:
         ...
 
-    def hline(self, *args) -> Any:
+    def invert(self, *args, **kwargs) -> Any:
         ...
 
-    def invert(self, *args) -> Any:
+    def line(self, *args, **kwargs) -> Any:
         ...
 
-    def line(self, *args) -> Any:
+    def pixel(self, *args, **kwargs) -> Any:
         ...
 
-    def pixel(self, *args) -> Any:
+    def rect(self, *args, **kwargs) -> Any:
         ...
 
-    def rect(self, *args) -> Any:
+    def scroll(self, *args, **kwargs) -> Any:
         ...
 
-    def scroll(self, *args) -> Any:
+    def text(self, *args, **kwargs) -> Any:
         ...
 
-    def text(self, *args) -> Any:
+    def vline(self, *args, **kwargs) -> Any:
         ...
 
-    def vline(self, *args) -> Any:
+    def init_display(self, *args, **kwargs) -> Any:
         ...
 
-    def init_display(self, *args) -> Any:
+    def poweroff(self, *args, **kwargs) -> Any:
         ...
 
-    def poweroff(self, *args) -> Any:
+    def poweron(self, *args, **kwargs) -> Any:
         ...
 
-    def poweron(self, *args) -> Any:
+    def contrast(self, *args, **kwargs) -> Any:
         ...
 
-    def contrast(self, *args) -> Any:
+    def rotate(self, *args, **kwargs) -> Any:
         ...
 
-    def rotate(self, *args) -> Any:
-        ...
-
-    def show(self, *args) -> Any:
+    def show(self, *args, **kwargs) -> Any:
         ...
 
 
@@ -99,64 +96,61 @@ class SSD1306_I2C:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
+    def blit(self, *args, **kwargs) -> Any:
         ...
 
-    def blit(self, *args) -> Any:
+    def fill(self, *args, **kwargs) -> Any:
         ...
 
-    def fill(self, *args) -> Any:
+    def fill_rect(self, *args, **kwargs) -> Any:
         ...
 
-    def fill_rect(self, *args) -> Any:
+    def hline(self, *args, **kwargs) -> Any:
         ...
 
-    def hline(self, *args) -> Any:
+    def invert(self, *args, **kwargs) -> Any:
         ...
 
-    def invert(self, *args) -> Any:
+    def line(self, *args, **kwargs) -> Any:
         ...
 
-    def line(self, *args) -> Any:
+    def pixel(self, *args, **kwargs) -> Any:
         ...
 
-    def pixel(self, *args) -> Any:
+    def rect(self, *args, **kwargs) -> Any:
         ...
 
-    def rect(self, *args) -> Any:
+    def scroll(self, *args, **kwargs) -> Any:
         ...
 
-    def scroll(self, *args) -> Any:
+    def text(self, *args, **kwargs) -> Any:
         ...
 
-    def text(self, *args) -> Any:
+    def vline(self, *args, **kwargs) -> Any:
         ...
 
-    def vline(self, *args) -> Any:
+    def init_display(self, *args, **kwargs) -> Any:
         ...
 
-    def init_display(self, *args) -> Any:
+    def poweroff(self, *args, **kwargs) -> Any:
         ...
 
-    def poweroff(self, *args) -> Any:
+    def poweron(self, *args, **kwargs) -> Any:
         ...
 
-    def poweron(self, *args) -> Any:
+    def contrast(self, *args, **kwargs) -> Any:
         ...
 
-    def contrast(self, *args) -> Any:
+    def rotate(self, *args, **kwargs) -> Any:
         ...
 
-    def rotate(self, *args) -> Any:
+    def show(self, *args, **kwargs) -> Any:
         ...
 
-    def show(self, *args) -> Any:
+    def write_cmd(self, *args, **kwargs) -> Any:
         ...
 
-    def write_cmd(self, *args) -> Any:
-        ...
-
-    def write_data(self, *args) -> Any:
+    def write_data(self, *args, **kwargs) -> Any:
         ...
 
 
@@ -167,62 +161,59 @@ class SSD1306_SPI:
         """"""
         ...
 
-    def __init__(self, *args) -> None:
+    def blit(self, *args, **kwargs) -> Any:
         ...
 
-    def blit(self, *args) -> Any:
+    def fill(self, *args, **kwargs) -> Any:
         ...
 
-    def fill(self, *args) -> Any:
+    def fill_rect(self, *args, **kwargs) -> Any:
         ...
 
-    def fill_rect(self, *args) -> Any:
+    def hline(self, *args, **kwargs) -> Any:
         ...
 
-    def hline(self, *args) -> Any:
+    def invert(self, *args, **kwargs) -> Any:
         ...
 
-    def invert(self, *args) -> Any:
+    def line(self, *args, **kwargs) -> Any:
         ...
 
-    def line(self, *args) -> Any:
+    def pixel(self, *args, **kwargs) -> Any:
         ...
 
-    def pixel(self, *args) -> Any:
+    def rect(self, *args, **kwargs) -> Any:
         ...
 
-    def rect(self, *args) -> Any:
+    def scroll(self, *args, **kwargs) -> Any:
         ...
 
-    def scroll(self, *args) -> Any:
+    def text(self, *args, **kwargs) -> Any:
         ...
 
-    def text(self, *args) -> Any:
+    def vline(self, *args, **kwargs) -> Any:
         ...
 
-    def vline(self, *args) -> Any:
+    def init_display(self, *args, **kwargs) -> Any:
         ...
 
-    def init_display(self, *args) -> Any:
+    def poweroff(self, *args, **kwargs) -> Any:
         ...
 
-    def poweroff(self, *args) -> Any:
+    def poweron(self, *args, **kwargs) -> Any:
         ...
 
-    def poweron(self, *args) -> Any:
+    def contrast(self, *args, **kwargs) -> Any:
         ...
 
-    def contrast(self, *args) -> Any:
+    def rotate(self, *args, **kwargs) -> Any:
         ...
 
-    def rotate(self, *args) -> Any:
+    def show(self, *args, **kwargs) -> Any:
         ...
 
-    def show(self, *args) -> Any:
+    def write_cmd(self, *args, **kwargs) -> Any:
         ...
 
-    def write_cmd(self, *args) -> Any:
-        ...
-
-    def write_data(self, *args) -> Any:
+    def write_data(self, *args, **kwargs) -> Any:
         ...

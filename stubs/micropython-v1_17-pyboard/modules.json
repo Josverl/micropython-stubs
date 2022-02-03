@@ -1,7 +1,9 @@
 {"firmware": {"ver": "v1.17", "port": "pyboard", "arch": "armv7emsp", "sysname": "pyboard", "release": "1.17.0", "name": "micropython", "mpy": 7685, "version": "1.17.0", "machine": "PYBv1.1 with STM32F405RG", "build": "", "nodename": "pyboard", "platform": "pyboard", "family": "micropython"},
-"stubber": {"version": "1.5.2"}, "stubtype": "firmware",
+"stubber": {"version": "1.5.4"}, "stubtype": "firmware",
 "modules" :[
 {"file": "/sd/stubs/micropython-v1_17-pyboard/_onewire.py", "module": "_onewire"},
+{"file": "/sd/stubs/micropython-v1_17-pyboard/_thread.py", "module": "_thread"},
+{"file": "/sd/stubs/micropython-v1_17-pyboard/_uasyncio.py", "module": "_uasyncio"},
 {"file": "/sd/stubs/micropython-v1_17-pyboard/array.py", "module": "array"},
 {"file": "/sd/stubs/micropython-v1_17-pyboard/binascii.py", "module": "binascii"},
 {"file": "/sd/stubs/micropython-v1_17-pyboard/builtins.py", "module": "builtins"},
@@ -16,7 +18,6 @@
 {"file": "/sd/stubs/micropython-v1_17-pyboard/io.py", "module": "io"},
 {"file": "/sd/stubs/micropython-v1_17-pyboard/json.py", "module": "json"},
 {"file": "/sd/stubs/micropython-v1_17-pyboard/lcd160cr.py", "module": "lcd160cr"},
-{"file": "/sd/stubs/micropython-v1_17-pyboard/logging.py", "module": "logging"},
 {"file": "/sd/stubs/micropython-v1_17-pyboard/machine.py", "module": "machine"},
 {"file": "/sd/stubs/micropython-v1_17-pyboard/math.py", "module": "math"},
 {"file": "/sd/stubs/micropython-v1_17-pyboard/micropython.py", "module": "micropython"},

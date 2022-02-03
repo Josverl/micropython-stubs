@@ -141,15 +141,15 @@
 |micropython |v1.9.4  |frozen  |unix|micropython|2|1.5.1|[stubs/micropython-v1_9_4-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-frozen/unix/GENERIC)
 |micropython |v1.9.4-L|board   |-|ESP module with ESP8266|43|1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-esp8266)
 |micropython |v1_17   |documentation|-|micropython|39|1.5.1|[stubs/micropython-v1_17-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-docstubs)
-|micropython |v1_18   |documentation|-|micropython|41|1.5.1|[stubs/micropython-v1_18-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-docstubs)
+|micropython |v1_18   |documentation|-|micropython|42|1.5.1|[stubs/micropython-v1_18-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-docstubs)
 
 
 (cpython-core-stubs)=
 ## Cpython-Core 
 |family | version | type    |port |board |count | stubber version|path
 |-------|---------|---------|-----|------|-----:|-|----
-|cpython-core|v1.4.5  |core    |micropython|cpython-core|15|1.4.5|[stubs/cpython_core-micropython](https://github.com/Josverl/micropython-stubs/tree/main/stubs/cpython_core-micropython)
-|cpython-core|v1.4.5  |core    |pycopy|cpython-core|24|1.4.5|[stubs/cpython_core-pycopy](https://github.com/Josverl/micropython-stubs/tree/main/stubs/cpython_core-pycopy)
+|cpython-core|v1.5.1  |core    |micropython|cpython-core|12|1.5.1|[stubs/cpython_core-micropython](https://github.com/Josverl/micropython-stubs/tree/main/stubs/cpython_core-micropython)
+|cpython-core|v1.5.1  |core    |pycopy|cpython-core|21|1.5.1|[stubs/cpython_core-pycopy](https://github.com/Josverl/micropython-stubs/tree/main/stubs/cpython_core-pycopy)
 
 (loboris-stubs)=
 ## Loboris 
@@ -194,4 +194,4 @@
 
 ## Metrics
 
-Total stub modules:  4062
+Total stub modules:  4057

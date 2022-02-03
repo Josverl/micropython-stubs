@@ -2,7 +2,7 @@
 Module: 'usocket' on micropython-v1.17-esp8266
 """
 # MCU: {'ver': 'v1.17', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.17', 'name': 'micropython', 'mpy': 9733, 'version': '1.17', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
-# Stubber: 1.5.3
+# Stubber: 1.5.4
 from typing import Any
 
 AF_INET = 2  # type: int
@@ -16,19 +16,19 @@ SOL_SOCKET = 1  # type: int
 SO_REUSEADDR = 4  # type: int
 
 
-def callback(*args) -> Any:
+def callback(*args, **kwargs) -> Any:
     ...
 
 
-def getaddrinfo(*args) -> Any:
+def getaddrinfo(*args, **kwargs) -> Any:
     ...
 
 
-def print_pcbs(*args) -> Any:
+def print_pcbs(*args, **kwargs) -> Any:
     ...
 
 
-def reset(*args) -> Any:
+def reset(*args, **kwargs) -> Any:
     ...
 
 
@@ -39,56 +39,56 @@ class socket:
         """"""
         ...
 
-    def close(self, *args) -> Any:
+    def close(self, *args, **kwargs) -> Any:
         ...
 
-    def read(self, *args) -> Any:
+    def read(self, *args, **kwargs) -> Any:
         ...
 
-    def readinto(self, *args) -> Any:
+    def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def readline(self, *args) -> Any:
+    def readline(self, *args, **kwargs) -> Any:
         ...
 
-    def send(self, *args) -> Any:
+    def send(self, *args, **kwargs) -> Any:
         ...
 
-    def write(self, *args) -> Any:
+    def write(self, *args, **kwargs) -> Any:
         ...
 
-    def accept(self, *args) -> Any:
+    def accept(self, *args, **kwargs) -> Any:
         ...
 
-    def bind(self, *args) -> Any:
+    def bind(self, *args, **kwargs) -> Any:
         ...
 
-    def connect(self, *args) -> Any:
+    def connect(self, *args, **kwargs) -> Any:
         ...
 
-    def listen(self, *args) -> Any:
+    def listen(self, *args, **kwargs) -> Any:
         ...
 
-    def makefile(self, *args) -> Any:
+    def makefile(self, *args, **kwargs) -> Any:
         ...
 
-    def recv(self, *args) -> Any:
+    def recv(self, *args, **kwargs) -> Any:
         ...
 
-    def recvfrom(self, *args) -> Any:
+    def recvfrom(self, *args, **kwargs) -> Any:
         ...
 
-    def sendall(self, *args) -> Any:
+    def sendall(self, *args, **kwargs) -> Any:
         ...
 
-    def sendto(self, *args) -> Any:
+    def sendto(self, *args, **kwargs) -> Any:
         ...
 
-    def setblocking(self, *args) -> Any:
+    def setblocking(self, *args, **kwargs) -> Any:
         ...
 
-    def setsockopt(self, *args) -> Any:
+    def setsockopt(self, *args, **kwargs) -> Any:
         ...
 
-    def settimeout(self, *args) -> Any:
+    def settimeout(self, *args, **kwargs) -> Any:
         ...

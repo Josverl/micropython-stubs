@@ -1,4 +1,4 @@
-from io import *
+from io import BytesIO as BytesIO, StringIO as StringIO
 from typing import Any
 
 class UioStream:

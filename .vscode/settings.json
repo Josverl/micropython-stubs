@@ -32,5 +32,7 @@
         "tests"
     ],
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true
+    "python.testing.pytestEnabled": true,
+    "python.analysis.useLibraryCodeForTypes": false,
+    "python.analysis.diagnosticMode": "workspace"
 }

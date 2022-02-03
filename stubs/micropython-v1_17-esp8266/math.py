@@ -2,111 +2,111 @@
 Module: 'math' on micropython-v1.17-esp8266
 """
 # MCU: {'ver': 'v1.17', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.17', 'name': 'micropython', 'mpy': 9733, 'version': '1.17', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
-# Stubber: 1.5.3
+# Stubber: 1.5.4
 from typing import Any
 
 
-def pow(*args) -> Any:
+def pow(*args, **kwargs) -> Any:
     ...
 
 
-def acos(*args) -> Any:
+def acos(*args, **kwargs) -> Any:
     ...
 
 
-def asin(*args) -> Any:
+def asin(*args, **kwargs) -> Any:
     ...
 
 
-def atan(*args) -> Any:
+def atan(*args, **kwargs) -> Any:
     ...
 
 
-def atan2(*args) -> Any:
+def atan2(*args, **kwargs) -> Any:
     ...
 
 
-def ceil(*args) -> Any:
+def ceil(*args, **kwargs) -> Any:
     ...
 
 
-def copysign(*args) -> Any:
+def copysign(*args, **kwargs) -> Any:
     ...
 
 
-def cos(*args) -> Any:
+def cos(*args, **kwargs) -> Any:
     ...
 
 
-def degrees(*args) -> Any:
+def degrees(*args, **kwargs) -> Any:
     ...
 
 
 e = 2.71828  # type: float
 
 
-def exp(*args) -> Any:
+def exp(*args, **kwargs) -> Any:
     ...
 
 
-def fabs(*args) -> Any:
+def fabs(*args, **kwargs) -> Any:
     ...
 
 
-def floor(*args) -> Any:
+def floor(*args, **kwargs) -> Any:
     ...
 
 
-def fmod(*args) -> Any:
+def fmod(*args, **kwargs) -> Any:
     ...
 
 
-def frexp(*args) -> Any:
+def frexp(*args, **kwargs) -> Any:
     ...
 
 
-def isfinite(*args) -> Any:
+def isfinite(*args, **kwargs) -> Any:
     ...
 
 
-def isinf(*args) -> Any:
+def isinf(*args, **kwargs) -> Any:
     ...
 
 
-def isnan(*args) -> Any:
+def isnan(*args, **kwargs) -> Any:
     ...
 
 
-def ldexp(*args) -> Any:
+def ldexp(*args, **kwargs) -> Any:
     ...
 
 
-def log(*args) -> Any:
+def log(*args, **kwargs) -> Any:
     ...
 
 
-def modf(*args) -> Any:
+def modf(*args, **kwargs) -> Any:
     ...
 
 
 pi = 3.14159  # type: float
 
 
-def radians(*args) -> Any:
+def radians(*args, **kwargs) -> Any:
     ...
 
 
-def sin(*args) -> Any:
+def sin(*args, **kwargs) -> Any:
     ...
 
 
-def sqrt(*args) -> Any:
+def sqrt(*args, **kwargs) -> Any:
     ...
 
 
-def tan(*args) -> Any:
+def tan(*args, **kwargs) -> Any:
     ...
 
 
-def trunc(*args) -> Any:
+def trunc(*args, **kwargs) -> Any:
     ...

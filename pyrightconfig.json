@@ -14,10 +14,11 @@
         // examples included in frozen 
         "**/example_*.py*",
         // For now exclude the below list 
-        "stubs/micropython-ulab",
+        "stubs/micropython-ulab", // Expected class type but received "_DType"
         "stubs/micropython-v1_9_*",
-        "stubs/pycopy-v0_0_0-frozen",
-        "stubs/loboris-v3_2_24-frozen"
+        //"stubs/pycopy-v0_0_0-frozen",
+        "stubs/loboris-v3_2_24-frozen",
+        "stubs/pico-go"
         //
     ],
     "ignore": [
@@ -33,10 +34,15 @@
         "**/uasyncio/stream.py*",
         "**/uasyncio/lock.py*",
         "**/uasyncio/event.py*",
-        // bluetooth stack has multiiple type errors 
+        // bluetooth stack has multiple type errors 
         "**/aioble/server.py*",
         "**/aioble/client.py*",
-
+        // RP2
+        "**/lsm6dsox.py*",
+        // dht : TODO: solve esp.dht_readinto and mimxrt.dht_readinto
+        "**/dht.py*",
+        // pycopy internals
+        "**/pycopy_imphook.py*",
         // umqtt
         "**/umqtt/__init__.py*",
         // ignore pip and friends
@@ -57,6 +63,12 @@
         // drivers with sub-par code for typechecking
         "**/lcd160cr.py*",
         "**/ssd1306.py*",
+        "**/dotstar.py*",
+        "**/neopixel.py*",
+        "**/umqtt/simple.py*",
+        "**/atom.py*",
+        "**/urequests.py*",
+        "**/inisetup.py*",
     ],
     "pythonVersion": "3.8",
     "pythonPlatform": "All",
@@ -68,7 +80,7 @@
     "reportMissingModuleSource": "error",
     // need to fix sometime
     "reportMissingTypeStubs": "warning",
-    "reportOptionalCall": "warning", //  Object of type "None" cannot be called
+    "reportOptionalCall": "information", //  Object of type "None" cannot be called
     "reportGeneralTypeIssues": "warning", // Expected no arguments to "Pin" constructor and a lot of others
     // interesting
     "reportInvalidStringEscapeSequence": "information",
@@ -188,6 +200,13 @@
         },
         {
             "root": "stubs/micropython-v2_0-frozen",
+            "extraPaths": [
+                "stubs/typings/fallback"
+            ],
+        },
+        // local pycopy 
+        {
+            "root": "stubs/pycopy-v0_0_0-frozen",
             "extraPaths": [
                 "stubs/typings/fallback"
             ],
