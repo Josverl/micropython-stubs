@@ -5,7 +5,7 @@ Module: 'inisetup' on micropython-v1.17-esp8266
 # Stubber: 1.5.4
 from typing import Any
 
-bdev: Any  ## <class 'FlashBdev'> = <FlashBdev object at 3fff2360>
+bdev: Any  ## <class 'FlashBdev'> = <FlashBdev object at 3fff2010>
 
 
 def wifi(*args, **kwargs) -> Any:
