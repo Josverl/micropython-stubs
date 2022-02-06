@@ -34,7 +34,7 @@ For a full overview of all stubs check out [the documentation on read the docs](
 
 # Using the stubs 
 
-To learn how to use the stubs please refer to [the documentation on RTD](https://micropython-stubs.readthedocs.io/en/latest/02_using.html)
+To learn how to use the stubs please refer to [the documentation on RTD](https://micropython-stubs.readthedocs.io/en/latest/20_using.html)
 
 ## Branch Main
 The name of the default branch has been changed to `main`.
