@@ -194,31 +194,31 @@ class CAN:
     """
 
     #    The mode of the CAN bus used in :meth:`~CAN.init()`.
-    NORMAL: Any
+    NORMAL: Any = ...
     #    The mode of the CAN bus used in :meth:`~CAN.init()`.
-    LOOPBACK: Any
+    LOOPBACK: Any = ...
     #    The mode of the CAN bus used in :meth:`~CAN.init()`.
-    SILENT: Any
+    SILENT: Any = ...
     #    The mode of the CAN bus used in :meth:`~CAN.init()`.
-    SILENT_LOOPBACK: Any
+    SILENT_LOOPBACK: Any = ...
     #    Possible states of the CAN controller returned from :meth:`~CAN.state()`.
-    STOPPED: Any
+    STOPPED: Any = ...
     #    Possible states of the CAN controller returned from :meth:`~CAN.state()`.
-    ERROR_ACTIVE: Any
+    ERROR_ACTIVE: Any = ...
     #    Possible states of the CAN controller returned from :meth:`~CAN.state()`.
-    ERROR_WARNING: Any
+    ERROR_WARNING: Any = ...
     #    Possible states of the CAN controller returned from :meth:`~CAN.state()`.
-    ERROR_PASSIVE: Any
+    ERROR_PASSIVE: Any = ...
     #    Possible states of the CAN controller returned from :meth:`~CAN.state()`.
-    BUS_OFF: Any
+    BUS_OFF: Any = ...
     #    The operation mode of a filter used in :meth:`~CAN.setfilter()`.
-    LIST16: Any
+    LIST16: Any = ...
     #    The operation mode of a filter used in :meth:`~CAN.setfilter()`.
-    MASK16: Any
+    MASK16: Any = ...
     #    The operation mode of a filter used in :meth:`~CAN.setfilter()`.
-    LIST32: Any
+    LIST32: Any = ...
     #    The operation mode of a filter used in :meth:`~CAN.setfilter()`.
-    MASK32: Any
+    MASK32: Any = ...
 
     def __init__(self, bus, *args) -> None:
         ...
@@ -596,11 +596,11 @@ class ExtInt:
     """
 
     #    interrupt on a falling edge
-    IRQ_FALLING: Any
+    IRQ_FALLING: Any = ...
     #    interrupt on a rising edge
-    IRQ_RISING: Any
+    IRQ_RISING: Any = ...
     #    interrupt on a rising or falling edge
-    IRQ_RISING_FALLING: Any
+    IRQ_RISING_FALLING: Any = ...
 
     def __init__(self, pin, mode, pull, callback) -> None:
         ...
@@ -694,9 +694,9 @@ class I2C:
     """
 
     #    for initialising the bus to controller mode
-    CONTROLLER: Any
+    CONTROLLER: Any = ...
     #    for initialising the bus to peripheral mode
-    PERIPHERAL: Any
+    PERIPHERAL: Any = ...
 
     def __init__(self, bus, *args) -> None:
         ...
@@ -918,23 +918,23 @@ class Pin:
     """
 
     #    initialise the pin to alternate-function mode with an open-drain drive
-    AF_OD: Any
+    AF_OD: Any = ...
     #    initialise the pin to alternate-function mode with a push-pull drive
-    AF_PP: Any
+    AF_PP: Any = ...
     #    initialise the pin to analog mode
-    ANALOG: Any
+    ANALOG: Any = ...
     #    initialise the pin to input mode
-    IN: Any
+    IN: Any = ...
     #    initialise the pin to output mode with an open-drain drive
-    OUT_OD: Any
+    OUT_OD: Any = ...
     #    initialise the pin to output mode with a push-pull drive
-    OUT_PP: Any
+    OUT_PP: Any = ...
     #    enable the pull-down resistor on the pin
-    PULL_DOWN: Any
+    PULL_DOWN: Any = ...
     #    don't enable any pull up or down resistors on the pin
-    PULL_NONE: Any
+    PULL_NONE: Any = ...
     #    enable the pull-up resistor on the pin
-    PULL_UP: Any
+    PULL_UP: Any = ...
 
     def __init__(self, id, *args) -> None:
         ...
@@ -1274,12 +1274,12 @@ class SPI:
     for other use.
     """
 
-    CONTROLLER: Any
+    CONTROLLER: Any = ...
     #    for initialising the SPI bus to controller or peripheral mode
-    PERIPHERAL: Any
-    LSB: Any
+    PERIPHERAL: Any = ...
+    LSB: Any = ...
     #    set the first bit to be the least or most significant bit
-    MSB: Any
+    MSB: Any = ...
 
     def __init__(self, bus, *args) -> None:
         ...
@@ -1628,9 +1628,9 @@ class UART:
     """
 
     #    to select the flow control type.
-    RTS: Any
+    RTS: Any = ...
     #    to select the flow control type.
-    CTS: Any
+    CTS: Any = ...
 
     def __init__(self, bus, *args) -> None:
         ...
@@ -1786,11 +1786,11 @@ class USB_VCP:
     """
 
     #    to select the flow control type.
-    RTS: Any
+    RTS: Any = ...
     #    to select the flow control type.
-    CTS: Any
+    CTS: Any = ...
     #    IRQ trigger values for :meth:`USB_VCP.irq`.
-    IRQ_RX: Any
+    IRQ_RX: Any = ...
 
     def __init__(self, id=0) -> None:
         ...
