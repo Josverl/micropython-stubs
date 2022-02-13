@@ -1,6 +1,5 @@
 from queue import Queue
 from typing import Any, Optional
-from queue import Queue
 
 class deque(Queue):
     def __init__(self, iterable, maxlen, flags: Optional[Any]) -> None: ...
