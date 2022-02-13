@@ -13,13 +13,13 @@ from __future__ import annotations
 from typing import Any, List, Optional, Tuple
 
 #     Used in `idf_heap_info`.
-HEAP_DATA: Any
+HEAP_DATA: Any = ...
 #     Used in `idf_heap_info`.
-HEAP_EXEC: Any
+HEAP_EXEC: Any = ...
 #    Selects the wake level for pins.
-WAKEUP_ALL_LOW: Any
+WAKEUP_ALL_LOW: Any = ...
 #    Selects the wake level for pins.
-WAKEUP_ANY_HIGH: Any
+WAKEUP_ANY_HIGH: Any = ...
 
 
 class Partition:
@@ -31,19 +31,19 @@ class Partition:
     #     Used in the `Partition` constructor to fetch various partitions: ``BOOT`` is the
     #     partition that will be booted at the next reset and ``RUNNING`` is the currently
     #     running partition.
-    BOOT: Any
+    BOOT: Any = ...
     #     Used in the `Partition` constructor to fetch various partitions: ``BOOT`` is the
     #     partition that will be booted at the next reset and ``RUNNING`` is the currently
     #     running partition.
-    RUNNING: Any
+    RUNNING: Any = ...
     #     Used in `Partition.find` to specify the partition type: ``APP`` is for bootable
     #     firmware partitions (typically labelled ``factory``, ``ota_0``, ``ota_1``), and
     #     ``DATA`` is for other partitions, e.g. ``nvs``, ``otadata``, ``phy_init``, ``vfs``.
-    TYPE_APP: Any
+    TYPE_APP: Any = ...
     #     Used in `Partition.find` to specify the partition type: ``APP`` is for bootable
     #     firmware partitions (typically labelled ``factory``, ``ota_0``, ``ota_1``), and
     #     ``DATA`` is for other partitions, e.g. ``nvs``, ``otadata``, ``phy_init``, ``vfs``.
-    TYPE_DATA: Any
+    TYPE_DATA: Any = ...
 
     def __init__(self, id) -> None:
         ...

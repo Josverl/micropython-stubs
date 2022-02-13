@@ -94,6 +94,8 @@ class SPI:
     def write_readinto(self, write_buf, read_buf) -> int: ...
 
 class SoftSPI(SPI):
+    MSB: Any
+    LSB: Any
     def __init__(self, baudrate: int = ..., *, polarity: int = ..., phase: int = ..., bits: int = ..., firstbit=..., sck: Any | None = ..., mosi: Any | None = ..., miso: Any | None = ...) -> None: ...
 
 class I2C:
@@ -151,8 +153,6 @@ class Timer:
 
 class WDT:
     def __init__(self, id: int = ..., timeout: int = ...) -> None: ...
-
-class wdt:
     def feed(self) -> None: ...
 
 class SD:

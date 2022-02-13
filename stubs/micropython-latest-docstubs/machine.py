@@ -28,27 +28,27 @@ damage.
 from typing import Any, Callable, List, NoReturn, Optional, Tuple
 
 #     IRQ wake values.
-IDLE: Any
+IDLE: Any = ...
 #     IRQ wake values.
-SLEEP: Any
+SLEEP: Any = ...
 #     IRQ wake values.
-DEEPSLEEP: Any
+DEEPSLEEP: Any = ...
 #     Reset causes.
-PWRON_RESET: Any
+PWRON_RESET: Any = ...
 #     Reset causes.
-HARD_RESET: Any
+HARD_RESET: Any = ...
 #     Reset causes.
-WDT_RESET: Any
+WDT_RESET: Any = ...
 #     Reset causes.
-DEEPSLEEP_RESET: Any
+DEEPSLEEP_RESET: Any = ...
 #     Reset causes.
-SOFT_RESET: Any
+SOFT_RESET: Any = ...
 #     Wake-up reasons.
-WLAN_WAKE: Any
+WLAN_WAKE: Any = ...
 #     Wake-up reasons.
-PIN_WAKE: Any
+PIN_WAKE: Any = ...
 #     Wake-up reasons.
-RTC_WAKE: Any
+RTC_WAKE: Any = ...
 
 
 class Pin:
@@ -116,45 +116,45 @@ class Pin:
     """
 
     #    Selects the pin mode.
-    IN: Any
+    IN: Any = ...
     #    Selects the pin mode.
-    OUT: Any
+    OUT: Any = ...
     #    Selects the pin mode.
-    OPEN_DRAIN: Any
+    OPEN_DRAIN: Any = ...
     #    Selects the pin mode.
-    ALT: Any
+    ALT: Any = ...
     #    Selects the pin mode.
-    ALT_OPEN_DRAIN: Any
+    ALT_OPEN_DRAIN: Any = ...
     #    Selects the pin mode.
-    ANALOG: Any
+    ANALOG: Any = ...
     #    Selects whether there is a pull up/down resistor.  Use the value
     #    ``None`` for no pull.
-    PULL_UP: Any
+    PULL_UP: Any = ...
     #    Selects whether there is a pull up/down resistor.  Use the value
     #    ``None`` for no pull.
-    PULL_DOWN: Any
+    PULL_DOWN: Any = ...
     #    Selects whether there is a pull up/down resistor.  Use the value
     #    ``None`` for no pull.
-    PULL_HOLD: Any
+    PULL_HOLD: Any = ...
     #    Selects the pin drive strength.
-    LOW_POWER: Any
+    LOW_POWER: Any = ...
     #    Selects the pin drive strength.
-    MED_POWER: Any
+    MED_POWER: Any = ...
     #    Selects the pin drive strength.
-    HIGH_POWER: Any
+    HIGH_POWER: Any = ...
     #    Selects the IRQ trigger type.
-    IRQ_FALLING: Any
+    IRQ_FALLING: Any = ...
     #    Selects the IRQ trigger type.
-    IRQ_RISING: Any
+    IRQ_RISING: Any = ...
     #    Selects the IRQ trigger type.
-    IRQ_LOW_LEVEL: Any
+    IRQ_LOW_LEVEL: Any = ...
     #    Selects the IRQ trigger type.
-    IRQ_HIGH_LEVEL: Any
+    IRQ_HIGH_LEVEL: Any = ...
 
-    def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=-1, alt=-1) -> None:
+    def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
         ...
 
-    def init(self, mode=-1, pull=-1, *, value=None, drive=-1, alt=-1) -> None:
+    def init(self, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
         """
         Re-initialise the pin using the given parameters.  Only those arguments that
         are specified will be set.  The rest of the pin peripheral state will remain
@@ -532,7 +532,7 @@ class UART:
     #     IRQ trigger sources
     #
     #     Availability: WiPy.
-    RX_ANY: Any
+    RX_ANY: Any = ...
 
     def __init__(self, id, *args) -> None:
         ...
@@ -670,11 +670,11 @@ class SPI:
     """
 
     #    for initialising the SPI bus to controller; this is only used for the WiPy
-    CONTROLLER: Any
+    CONTROLLER: Any = ...
     #    set the first bit to be the most significant bit
-    MSB: Any
+    MSB: Any = ...
     #    set the first bit to be the least significant bit
-    LSB: Any
+    LSB: Any = ...
 
     def __init__(self, id, *args) -> None:
         ...
@@ -756,6 +756,11 @@ class SoftSPI(SPI):
     given, usually at least *sck*, *mosi* and *miso*, and these are used
     to initialise the bus.  See `SPI.init` for a description of the parameters.
     """
+
+    #    set the first bit to be the most significant bit
+    MSB: Any = ...
+    #    set the first bit to be the least significant bit
+    LSB: Any = ...
 
     def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None:
         ...
@@ -960,14 +965,14 @@ class I2S:
     """
 
     #    for initialising the I2S bus ``mode`` to receive
-    RX: Any
+    RX: Any = ...
     #    for initialising the I2S bus ``mode`` to transmit
-    TX: Any
+    TX: Any = ...
     #    for initialising the I2S bus ``format`` to stereo
-    STEREO: Any
+    STEREO: Any = ...
     #    for initialising the I2S bus ``format`` to mono
     #
-    MONO: Any
+    MONO: Any = ...
 
     def __init__(self, id, *, sck, ws, sd, mode, bits, format, rate, ibuf) -> None:
         ...
@@ -1026,7 +1031,7 @@ class RTC:
     """
 
     #     irq trigger source
-    ALARM0: Any
+    ALARM0: Any = ...
 
     def __init__(self, id=0, *args) -> None:
         ...
@@ -1109,9 +1114,9 @@ class Timer:
     """
 
     #    Timer operating mode.
-    ONE_SHOT: Any
+    ONE_SHOT: Any = ...
     #    Timer operating mode.
-    PERIODIC: Any
+    PERIODIC: Any = ...
 
     def __init__(self, id, /, *args) -> None:
         ...
@@ -1166,10 +1171,6 @@ class WDT:
 
     def __init__(self, id=0, timeout=5000) -> None:
         ...
-
-
-class wdt:
-    """ """
 
     def feed(self) -> None:
         """
