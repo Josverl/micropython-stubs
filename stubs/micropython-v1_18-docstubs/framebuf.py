@@ -31,13 +31,13 @@ MONO_HLSB: bytes
 #     pixel lower.
 MONO_HMSB: bytes
 #     Red Green Blue (16-bit, 5+6+5) color format
-RGB565: Any
+RGB565: Any = ...
 #     Grayscale (2-bit) color format
-GS2_HMSB: Any
+GS2_HMSB: Any = ...
 #     Grayscale (4-bit) color format
-GS4_HMSB: Any
+GS4_HMSB: Any = ...
 #     Grayscale (8-bit) color format
-GS8: Any
+GS8: Any = ...
 
 
 class FrameBuffer:

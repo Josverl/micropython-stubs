@@ -10,22 +10,22 @@ from typing import Any, Tuple
 from .machine import SPI
 
 #    Orientations of the display, used by :meth:`LCD160CR.set_orient`.
-PORTRAIT: Any
+PORTRAIT: Any = ...
 #    Orientations of the display, used by :meth:`LCD160CR.set_orient`.
-LANDSCAPE: Any
+LANDSCAPE: Any = ...
 #    Orientations of the display, used by :meth:`LCD160CR.set_orient`.
-PORTRAIT_UPSIDEDOWN: Any
+PORTRAIT_UPSIDEDOWN: Any = ...
 #    Orientations of the display, used by :meth:`LCD160CR.set_orient`.
-LANDSCAPE_UPSIDEDOWN: Any
+LANDSCAPE_UPSIDEDOWN: Any = ...
 #    Types of start-up decoration, can be OR'ed together, used by
 #    :meth:`LCD160CR.set_startup_deco`.
-STARTUP_DECO_NONE: Any
+STARTUP_DECO_NONE: Any = ...
 #    Types of start-up decoration, can be OR'ed together, used by
 #    :meth:`LCD160CR.set_startup_deco`.
-STARTUP_DECO_MLOGO: Any
+STARTUP_DECO_MLOGO: Any = ...
 #    Types of start-up decoration, can be OR'ed together, used by
 #    :meth:`LCD160CR.set_startup_deco`.
-STARTUP_DECO_INFO: Any
+STARTUP_DECO_INFO: Any = ...
 
 
 class LCD160CR:
@@ -64,11 +64,11 @@ class LCD160CR:
     for how the display can be connected to the pyboard.
     """
 
-    w: Any
+    w: Any = ...
     #     The width and height of the display, respectively, in pixels.  These
     #     members are updated when calling :meth:`LCD160CR.set_orient` and should
     #     be considered read-only.
-    h: Any
+    h: Any = ...
 
     def __init__(self, connect=None, *, pwr=None, i2c=None, spi=None, i2c_addr=98) -> None:
         ...

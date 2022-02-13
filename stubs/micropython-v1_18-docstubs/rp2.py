@@ -64,36 +64,36 @@ class PIO:
 
     #     These constants are used for the *out_init*, *set_init*, and *sideset_init*
     #     arguments to `asm_pio`.
-    IN_LOW: Any
+    IN_LOW: Any = ...
     #     These constants are used for the *out_init*, *set_init*, and *sideset_init*
     #     arguments to `asm_pio`.
-    IN_HIGH: Any
+    IN_HIGH: Any = ...
     #     These constants are used for the *out_init*, *set_init*, and *sideset_init*
     #     arguments to `asm_pio`.
-    OUT_LOW: Any
+    OUT_LOW: Any = ...
     #     These constants are used for the *out_init*, *set_init*, and *sideset_init*
     #     arguments to `asm_pio`.
-    OUT_HIGH: Any
+    OUT_HIGH: Any = ...
     #     These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
     #     to `asm_pio` or `StateMachine.init`.
-    SHIFT_LEFT: Any
+    SHIFT_LEFT: Any = ...
     #     These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
     #     to `asm_pio` or `StateMachine.init`.
-    SHIFT_RIGHT: Any
+    SHIFT_RIGHT: Any = ...
     #     These constants are used for the *fifo_join* argument to `asm_pio`.
-    JOIN_NONE: Any
+    JOIN_NONE: Any = ...
     #     These constants are used for the *fifo_join* argument to `asm_pio`.
-    JOIN_TX: Any
+    JOIN_TX: Any = ...
     #     These constants are used for the *fifo_join* argument to `asm_pio`.
-    JOIN_RX: Any
+    JOIN_RX: Any = ...
     #     These constants are used for the *trigger* argument to `PIO.irq`.
-    IRQ_SM0: Any
+    IRQ_SM0: Any = ...
     #     These constants are used for the *trigger* argument to `PIO.irq`.
-    IRQ_SM1: Any
+    IRQ_SM1: Any = ...
     #     These constants are used for the *trigger* argument to `PIO.irq`.
-    IRQ_SM2: Any
+    IRQ_SM2: Any = ...
     #     These constants are used for the *trigger* argument to `PIO.irq`.
-    IRQ_SM3: Any
+    IRQ_SM3: Any = ...
 
     def __init__(self, id) -> None:
         ...

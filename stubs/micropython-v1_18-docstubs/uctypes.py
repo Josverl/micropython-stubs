@@ -18,49 +18,49 @@ from typing import Any
 #    the alignment is 1).
 LITTLE_ENDIAN: bytes
 #    Layout type for a big-endian packed structure.
-BIG_ENDIAN: Any
+BIG_ENDIAN: Any = ...
 #    Layout type for a native structure - with data endianness and alignment
 #    conforming to the ABI of the system on which MicroPython runs.
-NATIVE: Any
+NATIVE: Any = ...
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-UINT8: int
+UINT8: int = 1
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-INT8: int
+INT8: int = 1
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-UINT16: int
+UINT16: int = 1
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-INT16: int
+INT16: int = 1
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-UINT32: int
+UINT32: int = 1
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-INT32: int
+INT32: int = 1
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-UINT64: int
+UINT64: int = 1
 #    Integer types for structure descriptors. Constants for 8, 16, 32,
 #    and 64 bit types are provided, both signed and unsigned.
-INT64: int
+INT64: int = 1
 #    Floating-point types for structure descriptors.
-FLOAT32: Any
+FLOAT32: Any = ...
 #    Floating-point types for structure descriptors.
-FLOAT64: Any
+FLOAT64: Any = ...
 #    ``VOID`` is an alias for ``UINT8``, and is provided to conveniently define
 #    C's void pointers: ``(uctypes.PTR, uctypes.VOID)``.
-VOID: Any
+VOID: Any = ...
 #    Type constants for pointers and arrays. Note that there is no explicit
 #    constant for structures, it's implicit: an aggregate type without ``PTR``
 #    or ``ARRAY`` flags is a structure.
-PTR: Any
+PTR: Any = ...
 #    Type constants for pointers and arrays. Note that there is no explicit
 #    constant for structures, it's implicit: an aggregate type without ``PTR``
 #    or ``ARRAY`` flags is a structure.
-ARRAY: Any
+ARRAY: Any = ...
 
 
 class struct:

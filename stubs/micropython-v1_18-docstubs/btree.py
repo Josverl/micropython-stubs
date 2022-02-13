@@ -77,10 +77,10 @@ from typing import Any, Dict, Optional
 
 #    A flag for `keys()`, `values()`, `items()` methods to specify that
 #    scanning should be inclusive of the end key.
-INCL: Any
+INCL: Any = ...
 #    A flag for `keys()`, `values()`, `items()` methods to specify that
 #    scanning should be in descending direction of keys.
-DESC: Any
+DESC: Any = ...
 
 
 class btree:
