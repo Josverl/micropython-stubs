@@ -12,6 +12,7 @@ hold/accumulate various objects.
 from typing import Any, Optional
 from queue import Queue
 
+
 class deque(Queue):
     """
     Deques (double-ended queues) are a list-like container that support O(1)

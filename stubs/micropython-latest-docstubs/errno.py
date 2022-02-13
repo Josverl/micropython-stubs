@@ -21,7 +21,7 @@ from typing import Any, Dict
 #         except OSError as exc:
 #             if exc.errno == errno.EEXIST:
 #                 print("Directory already exists")
-EEXIST: Any
+EEXIST: Any = ...
 #     Error codes, based on ANSI C/POSIX standard. All error codes start with
 #     "E". As mentioned above, inventory of the codes depends on
 #     :term:`MicroPython port`. Errors are usually accessible as ``exc.errno``
@@ -32,7 +32,7 @@ EEXIST: Any
 #         except OSError as exc:
 #             if exc.errno == errno.EEXIST:
 #                 print("Directory already exists")
-EAGAIN: Any
+EAGAIN: Any = ...
 #     Dictionary mapping numeric error codes to strings with symbolic error
 #     code (see above)::
 #

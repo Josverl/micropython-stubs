@@ -8,7 +8,7 @@
         "firmware": "micropython---latest",
         "nodename": "micropython",
         "version": "latest",
-        "release": "v1.18-56-g517e82eb6",
+        "release": "v1.18-128-g2ea21abae",
         "sysname": "micropython"
     },
     "stubber": {
@@ -161,12 +161,56 @@
             "module": "time"
         },
         {
+            "file": "uarray.py",
+            "module": "uarray"
+        },
+        {
             "file": "uasyncio.py",
             "module": "uasyncio"
         },
         {
+            "file": "ubinascii.py",
+            "module": "ubinascii"
+        },
+        {
             "file": "uctypes.py",
             "module": "uctypes"
+        },
+        {
+            "file": "uio.py",
+            "module": "uio"
+        },
+        {
+            "file": "ujson.py",
+            "module": "ujson"
+        },
+        {
+            "file": "uos.py",
+            "module": "uos"
+        },
+        {
+            "file": "uselect.py",
+            "module": "uselect"
+        },
+        {
+            "file": "usocket.py",
+            "module": "usocket"
+        },
+        {
+            "file": "ussl.py",
+            "module": "ussl"
+        },
+        {
+            "file": "ustruct.py",
+            "module": "ustruct"
+        },
+        {
+            "file": "utime.py",
+            "module": "utime"
+        },
+        {
+            "file": "uzlib.py",
+            "module": "uzlib"
         },
         {
             "file": "wipy.py",

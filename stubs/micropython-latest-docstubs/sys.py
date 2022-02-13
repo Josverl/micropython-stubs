@@ -11,7 +11,7 @@ from typing import Any, Dict, List, Tuple
 #    A mutable list of arguments the current program was started with.
 argv: List
 #    The byte order of the system (``"little"`` or ``"big"``).
-byteorder: Any
+byteorder: Any = ...
 #    Object with information about the current Python implementation. For
 #    MicroPython, it has following attributes:
 #
@@ -21,7 +21,7 @@ byteorder: Any
 #    This object is the recommended way to distinguish MicroPython from other
 #    Python implementations (note that it still may not exist in the very
 #    minimal ports).
-implementation: Any
+implementation: Any = ...
 #    Maximum value which a native integer type can hold on the current platform,
 #    or maximum value representable by MicroPython integer type, if it's smaller
 #    than platform max value (that is the case for MicroPython ports without
@@ -38,7 +38,7 @@ implementation: Any
 #         v >>= 1
 #     if bits > 32:
 #         # 64-bit (or more) platform
-maxsize: int
+maxsize: int = 1
 #    Dictionary of loaded modules. On some ports, it may not include builtin
 #    modules.
 modules: Dict
@@ -50,15 +50,15 @@ path: List
 #    reference board. It thus can be used to distinguish one board from another.
 #    If you need to check whether your program runs on MicroPython (vs other
 #    Python implementation), use `sys.implementation` instead.
-platform: Any
+platform: Any = ...
 #    Standard error `stream`.
-stderr: Any
+stderr: Any = ...
 #    Standard input `stream`.
-stdin: Any
+stdin: Any = ...
 #    Standard output `stream`.
-stdout: Any
+stdout: Any = ...
 #    Python language version that this implementation conforms to, as a string.
-version: str
+version: str = ""
 #    Python language version that this implementation conforms to, as a tuple of ints.
 version_info: Tuple
 

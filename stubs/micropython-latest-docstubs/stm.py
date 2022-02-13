@@ -11,9 +11,9 @@ direct access to peripheral registers.
 from typing import Any, Tuple
 
 #     Read/write 8 bits of memory.
-mem8: Any
+mem8: Any = ...
 #     Read/write 16 bits of memory.
-mem16: Any
+mem16: Any = ...
 #     Read/write 32 bits of memory.
 #
 # Use subscript notation ``[...]`` to index these objects with the address of
@@ -23,15 +23,15 @@ mem16: Any
 # constants to read and write registers of the MCU hardware peripherals, as well
 # as all other areas of address space.
 #
-mem32: int
+mem32: int = 1
 #     Base address of the GPIOA peripheral.
-GPIOA: int
+GPIOA: int = 1
 #     Base address of the GPIOB peripheral.
-GPIOB: int
+GPIOB: int = 1
 #     Offset of the GPIO bit set/reset register.
-GPIO_BSRR: Any
+GPIO_BSRR: Any = ...
 #     Offset of the GPIO input data register.
-GPIO_IDR: Any
+GPIO_IDR: Any = ...
 #     Offset of the GPIO output data register.
 #
 # Constants that are named after a peripheral, like ``GPIOA``, are the absolute
@@ -42,7 +42,7 @@ GPIO_IDR: Any
 # full, absolute address of the ``GPIOA->BSRR`` register.
 #
 # Example use:
-GPIO_ODR: int
+GPIO_ODR: int = 1
 
 
 def rfcore_status() -> int:
