@@ -1,7 +1,7 @@
 import time as _time
 
 
-MICROPY_PY_UTIME_TICKS_PERIOD = 2 ** 30
+MICROPY_PY_UTIME_TICKS_PERIOD = 2**30
 
 _PASSTHRU = ("time", "sleep", "localtime")
 
