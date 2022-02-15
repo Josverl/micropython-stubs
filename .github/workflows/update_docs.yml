@@ -59,42 +59,43 @@ jobs:
         run: |
           python update_docs.py
 
-      ######################################
-      # directly commit without PR
-      ######################################
 
-      - name: setup git config
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v3
+        # ref: https://github.com/peter-evans/create-pull-request
+        with:
+          path: micropython-stubs
+          title: 'update module documentation'
+          commit-message: updated the documentation regarding the covered modules
+          branch: document-updates
+          reviewers: josverl          
+          labels: |
+            automated pr
+            documentation
+          delete-branch: true
+
+      - name: exit gracefully
+        if: allways()
         run: |
-          # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
+          echo 'avoid throwing a fit when an existing PR was updated'
+        # if: ${{steps.cpr.exit == 1 }}
+        # if: ${{ failure() }}
 
-      - name: commit
-        run: |
-          # Stage the file, commit and push
-          git add --update
-          git commit --message "Update module documentation"
-          git push origin master
+      # ######################################
+      # # directly commit without PR
+      # ######################################
 
-
-      # - name: Create Pull Request
-      #   id: cpr
-      #   uses: peter-evans/create-pull-request@v3
-      #   # ref: https://github.com/peter-evans/create-pull-request
-      #   with:
-      #     path: micropython-stubs
-      #     title: 'update module documentation'
-      #     commit-message: updated the documentation regarding the covered modules
-      #     branch: document-updates
-      #     reviewers: josverl          
-      #     labels: |
-      #       automated pr
-      #       documentation
-      #     delete-branch: true
-
-      # - name: exit gracefully
+      # - name: setup git config
       #   run: |
-      #     echo 'avoid throwing a fit when an existing PR was updated'
-      #   if: ${{steps.cpr.exit == 1 }}
-      #   # if: ${{ failure() }}
+      #     # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
+      #     git config user.name "GitHub Actions Bot"
+      #     git config user.email "<>"
 
+      # - name: commit
+      #   run: |
+      #     # Stage the file, commit and push
+      #     git add --update
+      #     git commit --message "Update module documentation"
+      #     git push origin master
