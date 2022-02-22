@@ -77,7 +77,7 @@ jobs:
           delete-branch: true
 
       - name: exit gracefully
-        if: allways()
+        if: always()
         run: |
           echo 'avoid throwing a fit when an existing PR was updated'
         # if: ${{steps.cpr.exit == 1 }}
