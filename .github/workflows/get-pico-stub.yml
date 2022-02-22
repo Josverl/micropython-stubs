@@ -54,18 +54,18 @@ jobs:
           repository: cpwood/Pico-Stub
           path: Pico-Stub
 
-      # make Python work
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-          cache: 'pip'
+      # # make Python work
+      # - name: Set up Python 3.8
+      #   uses: actions/setup-python@v2
+      #   with:
+      #     python-version: 3.9
+      #     cache: 'pip'
 
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+      # - name: Install Python dependencies
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      #     if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
 
       ######################################
       # This is where the actual work starts
