@@ -3,26 +3,25 @@
 
 import display, math, machine, utime
 
-
 class Calibrate:
     def __init__(self, tft):
         self.tft = tft
-        self.rx = [0, 0, 0, 0, 0, 0, 0, 0]
-        self.ry = [0, 0, 0, 0, 0, 0, 0, 0]
+        self.rx = [0,0,0,0,0,0,0,0]
+        self.ry = [0,0,0,0,0,0,0,0]
 
-    # ----------------------------------
+    #----------------------------------
     def drawCrossHair(self, x, y, clr):
-        self.tft.rect(x - 10, y - 10, 20, 20, clr)
-        self.tft.line(x - 5, y, x + 5, y, clr)
-        self.tft.line(x, y - 5, x, y + 5, clr)
+        self.tft.rect(x-10, y-10, 20, 20, clr)
+        self.tft.line(x-5, y, x+5, y, clr)
+        self.tft.line(x, y-5, x, y+5, clr)
 
-    # -------------------------
+    #-------------------------
     def readCoordinates(self):
         x = 0
         y = 0
         n = 0
-        xlist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        ylist = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        xlist = [0,0,0,0,0,0,0,0,0,0]
+        ylist = [0,0,0,0,0,0,0,0,0,0]
 
         # wait for touch
         while n < 10:
@@ -52,15 +51,15 @@ class Calibrate:
         ylist.remove(min(ylist))
         return (sum(xlist) / len(xlist), sum(ylist) / len(ylist))
 
-    # ----------------------------
+    #----------------------------
     def calibrate(self, x, y, i):
-        self.drawCrossHair(x, y, self.tft.YELLOW)
+        self.drawCrossHair(x,y, self.tft.YELLOW)
         rx, ry = self.readCoordinates()
         if rx == False:
             return False
         self.rx[i] = rx
         self.ry[i] = ry
-        self.drawCrossHair(x, y, self.tft.GREEN)
+        self.drawCrossHair(x,y,self.tft.GREEN)
         return True
 
     # -------------------
@@ -69,8 +68,8 @@ class Calibrate:
         self.tft.font(self.tft.FONT_Default, rotate=0, fixedwidth=False)
         self.tft.text(self.tft.CENTER, self.tft.CENTER, "Calibration ERROR", self.tft.ORANGE)
         print("Calibration ERROR.")
-
-    # -----------------------------
+    
+    #-----------------------------
     def tpcalib(self, save=False):
         if self.tft.getTouchType() == self.tft.TOUCH_XPT:
             self.tft.orient(display.TFT.LANDSCAPE)
@@ -81,67 +80,67 @@ class Calibrate:
             return
 
         dispx, dispy = self.tft.screensize()
-
+        
         self.tft.font(self.tft.FONT_Default, rotate=0, fixedwidth=False)
-        self.tft.text(self.tft.CENTER, 40, "Touch yellow point and release", self.tft.GREEN)
-        self.tft.text(self.tft.CENTER, 60, "Repeat for all calibration points", self.tft.GREEN)
-
+        self.tft.text(self.tft.CENTER,40,"Touch yellow point and release", self.tft.GREEN)
+        self.tft.text(self.tft.CENTER,60,"Repeat for all calibration points", self.tft.GREEN)
+        
         self.tft.font(self.tft.FONT_Default, rotate=0, fixedwidth=True)
-        self.drawCrossHair(dispx - 11, 10, self.tft.WHITE)
-        self.drawCrossHair(dispx // 2, 10, self.tft.WHITE)
+        self.drawCrossHair(dispx-11, 10, self.tft.WHITE)
+        self.drawCrossHair(dispx//2, 10, self.tft.WHITE)
         self.drawCrossHair(10, 10, self.tft.WHITE)
-        self.drawCrossHair(dispx - 11, dispy // 2, self.tft.WHITE)
-        self.drawCrossHair(10, dispy // 2, self.tft.WHITE)
-        self.drawCrossHair(dispx - 11, dispy - 11, self.tft.WHITE)
-        self.drawCrossHair(dispx // 2, dispy - 11, self.tft.WHITE)
-        self.drawCrossHair(10, dispy - 11, self.tft.WHITE)
+        self.drawCrossHair(dispx-11, dispy//2, self.tft.WHITE)
+        self.drawCrossHair(10, dispy//2, self.tft.WHITE)
+        self.drawCrossHair(dispx-11, dispy-11, self.tft.WHITE)
+        self.drawCrossHair(dispx//2, dispy-11, self.tft.WHITE)
+        self.drawCrossHair(10, dispy-11, self.tft.WHITE)
 
         if not self.calibrate(10, 10, 0):
             self.calibError()
             return False
-        if not self.calibrate(10, dispy // 2, 1):
+        if not self.calibrate(10, dispy//2, 1):
             self.calibError()
             return False
-        if not self.calibrate(10, dispy - 11, 2):
+        if not self.calibrate(10, dispy-11, 2):
             self.calibError()
             return False
-        if not self.calibrate(dispx // 2, 10, 3):
+        if not self.calibrate(dispx//2, 10, 3):
             self.calibError()
             return False
-        if not self.calibrate(dispx // 2, dispy - 11, 4):
+        if not self.calibrate(dispx//2, dispy-11, 4):
             self.calibError()
             return False
-        if not self.calibrate(dispx - 11, 10, 5):
+        if not self.calibrate(dispx-11, 10, 5):
             self.calibError()
             return False
-        if not self.calibrate(dispx - 11, dispy // 2, 6):
+        if not self.calibrate(dispx-11, dispy//2, 6):
             self.calibError()
             return False
-        if not self.calibrate(dispx - 11, dispy - 11, 7):
+        if not self.calibrate(dispx-11, dispy-11, 7):
             self.calibError()
             return False
 
-        px = abs((((self.rx[3] + self.rx[4] + self.rx[7]) / 3) - ((self.rx[0] + self.rx[0] + self.rx[2]) / 3)) / (dispy - 20))
-        clx = (self.rx[0] + self.rx[1] + self.rx[2]) / 3
-        crx = (self.rx[5] + self.rx[6] + self.rx[7]) / 3
+        px = abs((((self.rx[3]+self.rx[4]+self.rx[7]) / 3) - ((self.rx[0]+self.rx[0]+self.rx[2]) / 3)) / (dispy-20))
+        clx = (((self.rx[0]+self.rx[1]+self.rx[2])/3))
+        crx = (((self.rx[5]+self.rx[6]+self.rx[7])/3))
 
-        if clx < crx:
-            clx = clx - (px * 10)
-            crx = crx + (px * 10)
+        if (clx < crx):
+            clx = clx - (px*10)
+            crx = crx + (px*10)
         else:
-            clx = clx + (px * 10)
-            crx = crx - (px * 10)
+            clx = clx + (px*10)
+            crx = crx - (px*10)
 
-        py = abs((((self.ry[0] + self.ry[3] + self.ry[5]) / 3) - ((self.ry[2] + self.ry[4] + self.ry[7]) / 3)) / (dispx - 20))
-        cty = (self.ry[0] + self.ry[3] + self.ry[5]) / 3
-        cby = (self.ry[2] + self.ry[4] + self.ry[7]) / 3
+        py = abs((((self.ry[0]+self.ry[3]+self.ry[5])/3) - ((self.ry[2]+self.ry[4]+self.ry[7])/3))/(dispx-20))
+        cty = (((self.ry[0]+self.ry[3]+self.ry[5])/3))
+        cby = (((self.ry[2]+self.ry[4]+self.ry[7])/3))
 
-        if cty < cby:
-            cty = cty - (py * 10)
-            cby = cby + (py * 10)
+        if (cty < cby):
+            cty = cty - (py*10)
+            cby = cby + (py*10)
         else:
-            cty = cty + (py * 10)
-            cby = cby - (py * 10)
+            cty = cty + (py*10)
+            cby = cby - (py*10)
 
         calx = (math.ceil(clx) << 16) + math.ceil(crx)
         caly = (math.ceil(cty) << 16) + math.ceil(cby)
@@ -159,3 +158,4 @@ class Calibrate:
             print("Calibration completed.")
         print("X = ({},{})  Y = ({},{})".format(math.ceil(clx), math.ceil(crx), math.ceil(cty), math.ceil(cby)))
         return calx, caly
+

@@ -17,16 +17,13 @@ MicroPython I2C driver for MPU9250 9-axis motion tracking device
 from micropython import const
 from mpu6500 import MPU6500
 from ak8963 import AK8963
-
 # pylint: enable=import-error
 
 __version__ = "0.2.0-dev"
 
-
 class MPU9250:
     """Class which provides interface to MPU9250 9-axis motion tracking device."""
-
-    def __init__(self, i2c, mpu6500=None, ak8963=None):
+    def __init__(self, i2c, mpu6500 = None, ak8963 = None):
         if mpu6500 is None:
             self.mpu6500 = MPU6500(i2c)
         else:
