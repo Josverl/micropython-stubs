@@ -38,8 +38,8 @@
         "**/aioble/server.py*",
         "**/aioble/client.py*",
         // RP2
-        "**/lsm6dsox.py*",
-        // dht : TODO: solve esp.dht_readinto and mimxrt.dht_readinto
+        "**/lsm6dsox.py*", //  TODO: why does this not see the class variables ?
+        // dht : // TODO: solve esp.dht_readinto and mimxrt.dht_readinto
         "**/dht.py*",
         // pycopy internals
         "**/pycopy_imphook.py*",

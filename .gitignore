@@ -1,12 +1,12 @@
 # avoid including micropython-stubber in workflows.
 micropython-stubber
 
-# no compiled stuff
+# no pytest / mypy / .... caches
+.*_cache
 **/__pycache__
-.pytest_cache
 
 # No venv
-.venv
+.venv*
 
 # no documentation artefacts 
 */~*.pptx
@@ -20,3 +20,6 @@ docs/_build
 
 #no test results
 results
+
+# no scratch pad
+scratch 
