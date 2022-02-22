@@ -74,7 +74,7 @@ jobs:
       - name: Get frozen modules for ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber
         run: |
-          get_frozen --stub-folder ${{github.workspace}}/stubs --lobo
+          poetry run get_frozen --stub-folder ${{github.workspace}}/stubs --lobo
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3

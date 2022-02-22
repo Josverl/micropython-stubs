@@ -110,7 +110,7 @@ jobs:
       - name: Generate document stubs for ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber
         run: |
-          get_docstubs --stub-folder ${{github.workspace}}/stubs 
+          poetry run get_docstubs --stub-folder ${{github.workspace}}/stubs 
 
       - name: Create Pull Request
         # id: cpr-doc
