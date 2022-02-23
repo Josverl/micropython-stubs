@@ -174,7 +174,9 @@ class Characteristic(BaseCharacteristic):
         if read:
             flags |= _FLAG_READ
         if write or write_no_response:
-            flags |= (_FLAG_WRITE if write else 0) | (_FLAG_WRITE_NO_RESPONSE if write_no_response else 0)
+            flags |= (_FLAG_WRITE if write else 0) | (
+                _FLAG_WRITE_NO_RESPONSE if write_no_response else 0
+            )
             if capture:
                 # Capture means that we keep track of all writes, and capture
                 # their values (and connection) in a queue. Otherwise we just
