@@ -1,12 +1,10 @@
 import sys
-
-# import uos as os
+#import uos as os
 import os
 import machine
 
 RC = "./boot.py"
 CONFIG = "./webrepl_cfg.py"
-
 
 def input_choice(prompt, choices):
     while 1:
@@ -14,10 +12,8 @@ def input_choice(prompt, choices):
         if resp in choices:
             return resp
 
-
 def getpass(prompt):
     return input(prompt)
-
 
 def input_pass():
     while 1:
@@ -91,6 +87,7 @@ def main():
             with open(CONFIG, "w") as f:
                 f.write("PASS = %r\n" % passwd)
 
+
     if resp not in ("D", "E") or (resp == "D" and not status) or (resp == "E" and status):
         print("No further action required")
         sys.exit()
@@ -101,6 +98,5 @@ def main():
     resp = input_choice("Would you like to reboot now? (y/n) ", ("y", "n", ""))
     if resp == "y":
         machine.reset()
-
 
 main()
