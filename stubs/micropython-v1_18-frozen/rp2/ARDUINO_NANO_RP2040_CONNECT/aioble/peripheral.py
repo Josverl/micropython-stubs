@@ -141,7 +141,9 @@ async def advertise(
 
         if appearance:
             # See org.bluetooth.characteristic.gap.appearance.xml
-            resp_data = _append(adv_data, resp_data, _ADV_TYPE_APPEARANCE, struct.pack("<H", appearance))
+            resp_data = _append(
+                adv_data, resp_data, _ADV_TYPE_APPEARANCE, struct.pack("<H", appearance)
+            )
 
         if manufacturer:
             resp_data = _append(
