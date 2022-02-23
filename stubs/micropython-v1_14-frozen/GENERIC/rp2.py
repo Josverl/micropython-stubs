@@ -31,7 +31,7 @@ class PIOASMEmit:
         autopush=False,
         autopull=False,
         push_thresh=32,
-        pull_thresh=32,
+        pull_thresh=32
     ):
         from array import array
 
