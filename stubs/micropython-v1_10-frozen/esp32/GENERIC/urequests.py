@@ -1,7 +1,7 @@
 import usocket
 
-
 class Response:
+
     def __init__(self, f):
         self.raw = f
         self.encoding = "utf-8"
@@ -29,7 +29,6 @@ class Response:
 
     def json(self):
         import ujson
-
         return ujson.loads(self.content)
 
 
@@ -43,7 +42,6 @@ def request(method, url, data=None, json=None, headers={}, stream=None):
         port = 80
     elif proto == "https:":
         import ussl
-
         port = 443
     else:
         raise ValueError("Unsupported protocol: " + proto)
@@ -72,7 +70,6 @@ def request(method, url, data=None, json=None, headers={}, stream=None):
         if json is not None:
             assert data is None
             import ujson
-
             data = ujson.dumps(json)
             s.write(b"Content-Type: application/json\r\n")
         if data:
@@ -82,7 +79,7 @@ def request(method, url, data=None, json=None, headers={}, stream=None):
             s.write(data)
 
         l = s.readline()
-        # print(l)
+        #print(l)
         l = l.split(None, 2)
         status = int(l[1])
         reason = ""
@@ -92,7 +89,7 @@ def request(method, url, data=None, json=None, headers={}, stream=None):
             l = s.readline()
             if not l or l == b"\r\n":
                 break
-            # print(l)
+            #print(l)
             if l.startswith(b"Transfer-Encoding:"):
                 if b"chunked" in l:
                     raise ValueError("Unsupported " + l)
@@ -111,22 +108,17 @@ def request(method, url, data=None, json=None, headers={}, stream=None):
 def head(url, **kw):
     return request("HEAD", url, **kw)
 
-
 def get(url, **kw):
     return request("GET", url, **kw)
-
 
 def post(url, **kw):
     return request("POST", url, **kw)
 
-
 def put(url, **kw):
     return request("PUT", url, **kw)
 
-
 def patch(url, **kw):
     return request("PATCH", url, **kw)
-
 
 def delete(url, **kw):
     return request("DELETE", url, **kw)
