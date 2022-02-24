@@ -10,7 +10,6 @@ HTTP/1.0 200 OK
 Hello #%d from MicroPython!
 """
 
-
 def main(micropython_optimize=False):
     s = socket.socket()
 
