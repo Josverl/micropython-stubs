@@ -1,4 +1,11 @@
-from .core import ble as ble, ensure_active as ensure_active, log_error as log_error, log_info as log_info, log_warn as log_warn, register_irq_handler as register_irq_handler
+from .core import (
+    ble as ble,
+    ensure_active as ensure_active,
+    log_error as log_error,
+    log_info as log_info,
+    log_warn as log_warn,
+    register_irq_handler as register_irq_handler,
+)
 from .device import DeviceConnection as DeviceConnection, DeviceTimeout as DeviceTimeout
 from typing import Any
 
@@ -54,7 +61,18 @@ class Characteristic(BaseCharacteristic):
     flags: Any
     _value_handle: Any
     _initial: Any
-    def __init__(self, service, uuid, read: bool = ..., write: bool = ..., write_no_response: bool = ..., notify: bool = ..., indicate: bool = ..., initial: Any | None = ..., capture: bool = ...) -> None: ...
+    def __init__(
+        self,
+        service,
+        uuid,
+        read: bool = ...,
+        write: bool = ...,
+        write_no_response: bool = ...,
+        notify: bool = ...,
+        indicate: bool = ...,
+        initial: Any | None = ...,
+        capture: bool = ...,
+    ) -> None: ...
     def notify(self, connection, data: Any | None = ...) -> None: ...
     async def indicate(self, connection, timeout_ms: int = ...) -> None: ...
     def _indicate_done(conn_handle, value_handle, status) -> None: ...
