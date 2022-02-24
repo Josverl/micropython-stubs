@@ -2,14 +2,14 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "cpython-core",
-        "firmware": "cpython-core-pycopy-v1_5_1",
+        "firmware": "cpython-core-pycopy-v1_5_5a2",
         "machine": "cpython-core",
         "nodename": "",
         "platform": "cpython",
         "port": "pycopy",
-        "release": "1.5.1",
+        "release": "1.5.5a2",
         "sysname": "",
-        "version": "1.5.1"
+        "version": "1.5.5a2"
     },
     "modules": [
         {
@@ -99,6 +99,6 @@
     ],
     "stubber": {
         "stubtype": "core",
-        "version": "1.5.1"
+        "version": "1.5.5a2"
     }
 }
