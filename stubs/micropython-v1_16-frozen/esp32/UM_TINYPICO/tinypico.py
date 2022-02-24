@@ -65,7 +65,9 @@ def get_battery_charging():
     measuredVal = 0  # start our reading at 0
     io = Pin(BAT_CHARGE, Pin.IN)  # Assign the pin to read
 
-    for y in range(0, 10):  # loop through 10 times adding the read values together to ensure no false positives
+    for y in range(
+        0, 10
+    ):  # loop through 10 times adding the read values together to ensure no false positives
         measuredVal += io.value()
 
     return measuredVal == 0  # return True if the value is 0
@@ -86,8 +88,12 @@ def set_dotstar_power(state):
     else:
         Pin(13, Pin.IN, Pin.PULL_HOLD)  # Set PULL_HOLD on the pin to allow the 3V3 pull-up to work
 
-    Pin(DOTSTAR_CLK, Pin.OUT if state else Pin.IN)  # If power is on, set CLK to be output, otherwise input
-    Pin(DOTSTAR_DATA, Pin.OUT if state else Pin.IN)  # If power is on, set DATA to be output, otherwise input
+    Pin(
+        DOTSTAR_CLK, Pin.OUT if state else Pin.IN
+    )  # If power is on, set CLK to be output, otherwise input
+    Pin(
+        DOTSTAR_DATA, Pin.OUT if state else Pin.IN
+    )  # If power is on, set DATA to be output, otherwise input
 
     # A small delay to let the IO change state
     time.sleep(0.035)

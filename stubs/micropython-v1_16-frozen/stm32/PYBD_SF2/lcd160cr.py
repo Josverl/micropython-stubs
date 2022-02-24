@@ -430,7 +430,9 @@ class LCD160CR:
     #### ADVANCED COMMANDS ####
 
     def set_spi_win(self, x, y, w, h):
-        pack_into("<BBBHHHHHHHH", self.buf19, 0, 2, 0x55, 10, x, y, x + w - 1, y + h - 1, 0, 0, 0, 0xFFFF)
+        pack_into(
+            "<BBBHHHHHHHH", self.buf19, 0, 2, 0x55, 10, x, y, x + w - 1, y + h - 1, 0, 0, 0, 0xFFFF
+        )
         self._send(self.buf19)
 
     def fast_spi(self, flush=True):

@@ -81,7 +81,9 @@ def main():
 
     if resp == "E":
         if exists(CONFIG):
-            resp2 = input_choice("Would you like to change WebREPL password? (y/n) ", ("y", "n", ""))
+            resp2 = input_choice(
+                "Would you like to change WebREPL password? (y/n) ", ("y", "n", "")
+            )
         else:
             print("To enable WebREPL, you must set password for it")
             resp2 = "y"
