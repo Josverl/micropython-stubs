@@ -132,6 +132,7 @@ jobs:
       - name: Create Pull Request ( if relevant changes) 
         if: ${{ steps.changed.outputs.count }} >= 1
         uses: peter-evans/create-pull-request@v3
+        id: cpr
         # ref: https://github.com/peter-evans/create-pull-request
         with:
           token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
@@ -229,6 +230,7 @@ jobs:
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
+        id: cprcore
         # ref: https://github.com/peter-evans/create-pull-request
         with:
           token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
@@ -242,7 +244,7 @@ jobs:
           delete-branch: true
 
       - name: Enable Pull Request Automerge
-        if: steps.cpr.outputs.pull-request-operation == 'created'
+        if: steps.cprcore.outputs.pull-request-operation == 'created'
         uses: peter-evans/enable-pull-request-automerge@v1
         with:
           token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
