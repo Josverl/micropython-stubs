@@ -18,7 +18,19 @@ class PIOASMEmit:
     prog: Any
     wrap_used: bool
     sideset_count: int
-    def __init__(self, *, out_init: Any | None = ..., set_init: Any | None = ..., sideset_init: Any | None = ..., in_shiftdir: int = ..., out_shiftdir: int = ..., autopush: bool = ..., autopull: bool = ..., push_thresh: int = ..., pull_thresh: int = ...) -> None: ...
+    def __init__(
+        self,
+        *,
+        out_init: Any | None = ...,
+        set_init: Any | None = ...,
+        sideset_init: Any | None = ...,
+        in_shiftdir: int = ...,
+        out_shiftdir: int = ...,
+        autopush: bool = ...,
+        autopull: bool = ...,
+        push_thresh: int = ...,
+        pull_thresh: int = ...,
+    ) -> None: ...
     delay_max: int
     sideset_opt: Any
     pass_: Any
