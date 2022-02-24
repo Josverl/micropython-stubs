@@ -120,7 +120,7 @@ jobs:
       - name: Get frozen modules for ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber
         run: |
-          poetry run get_frozen --stub-folder ${{github.workspace}}/stubs --mpy 
+          poetry run get_frozen --stub-folder ${{github.workspace}}/stubs --mpy --black
 
       - name: check for changes other than modules.py
         shell: pwsh
@@ -217,7 +217,7 @@ jobs:
       - name: Get frozen modules for ${{ matrix.version }}
         working-directory: ${{github.workspace}}/micropython-stubber
         run: |
-          poetry run get_frozen --stub-folder ${{github.workspace}}/stubs --core
+          poetry run get_frozen --stub-folder ${{github.workspace}}/stubs --core --black
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
