@@ -19,7 +19,17 @@ class MQTTClient:
     lw_msg: Any
     lw_qos: int
     lw_retain: bool
-    def __init__(self, client_id, server, port: int = ..., user: Any | None = ..., password: Any | None = ..., keepalive: int = ..., ssl: bool = ..., ssl_params=...) -> None: ...
+    def __init__(
+        self,
+        client_id,
+        server,
+        port: int = ...,
+        user: Any | None = ...,
+        password: Any | None = ...,
+        keepalive: int = ...,
+        ssl: bool = ...,
+        ssl_params=...,
+    ) -> None: ...
     def _send_str(self, s) -> None: ...
     def _recv_len(self): ...
     def set_callback(self, f) -> None: ...
