@@ -113,7 +113,7 @@ jobs:
           poetry run get_docstubs --stub-folder ${{github.workspace}}/stubs 
 
       - name: Create Pull Request
-        # id: cpr-doc
+        id: cpr-doc
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
@@ -134,7 +134,7 @@ jobs:
             ${{ matrix.version }}
           delete-branch: true
       - name: Enable Pull Request Automerge
-        if: steps.cpr.outputs.pull-request-operation == 'created'
+        if: steps.cpr-doc.outputs.pull-request-operation == 'created'
         uses: peter-evans/enable-pull-request-automerge@v1
         with:
           token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
