@@ -1,1 +1,1 @@
-from ujson import *
+from ujson import *  # Type: Ignore

@@ -1,1 +1,1 @@
-from uio import *
+from uio import *  # Type: Ignore
