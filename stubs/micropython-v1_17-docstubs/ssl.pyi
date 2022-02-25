@@ -1,1 +1,1 @@
-from ussl import *
+from . import ussl  # Type: Ignore

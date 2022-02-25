@@ -1,1 +1,1 @@
-from uselect import *
+from . import uselect  # Type: Ignore

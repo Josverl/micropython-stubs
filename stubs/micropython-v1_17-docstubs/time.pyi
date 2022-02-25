@@ -1,1 +1,1 @@
-from utime import *
+from . import utime  # Type: Ignore

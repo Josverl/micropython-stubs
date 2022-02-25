@@ -1,1 +1,1 @@
-from uarray import *
+from . import uarray  # Type: Ignore
