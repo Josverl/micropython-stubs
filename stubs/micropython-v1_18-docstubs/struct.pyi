@@ -1,1 +1,1 @@
-from ustruct import *
+from . import ustruct  # Type: Ignore
