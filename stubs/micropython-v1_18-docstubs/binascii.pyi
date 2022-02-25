@@ -1,1 +1,1 @@
-from ubinascii import *
+from . import ubinascii  # Type: Ignore
