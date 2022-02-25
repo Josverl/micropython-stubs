@@ -1,1 +1,1 @@
-from uos import *
+from . import uos  # Type: Ignore

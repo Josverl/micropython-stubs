@@ -5,14 +5,14 @@
         "port": "-",
         "platform": "-",
         "machine": "micropython",
-        "firmware": "micropython---v1_17",
+        "firmware": "micropython-v1_17",
         "nodename": "micropython",
         "version": "v1_17",
         "release": "v1.17",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.5.1",
+        "version": "1.5.5a4",
         "stubtype": "documentation"
     },
     "modules": [

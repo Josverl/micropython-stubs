@@ -1,1 +1,1 @@
-from usocket import *
+from . import usocket  # Type: Ignore
