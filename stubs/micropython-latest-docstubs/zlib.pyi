@@ -1,1 +1,1 @@
-from uzlib import *
+from . import uzlib  # Type: Ignore
