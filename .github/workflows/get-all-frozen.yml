@@ -103,7 +103,6 @@ jobs:
             add/update MicroPython ${{ matrix.version }} frozen stubs
             based on micropython commit ${{ steps.mpycommit.outputs.info }}          
           branch: "micropython-${{ matrix.version }}-stubs"
-          reviewers: josverl
           labels: |
             frozen stubs 
             MicroPython
@@ -182,7 +181,6 @@ jobs:
           title: "add/update MicroPython core stubs"
           commit-message: add/update MicroPython core stubs
           branch: "micropython-core-stubs"
-          reviewers: josverl
           labels: |
             CPython
             MicroPython
@@ -200,4 +198,3 @@ jobs:
         if: always()
         run: |
           echo "Done..."
-        

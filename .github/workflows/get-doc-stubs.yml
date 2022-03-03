@@ -126,7 +126,6 @@ jobs:
 
 
           branch: "micropython-${{ matrix.version }}-doc-stubs"
-          reviewers: josverl
           labels: |
             automated pr
             Doc stubs 

@@ -97,7 +97,6 @@ jobs:
           path: micropython-stubs
           title: 'add/update micropython-ulab modules'
           branch: micropython-ulab-updates
-          reviewers: josverl          
           labels: |
             automated pr
             ulab
