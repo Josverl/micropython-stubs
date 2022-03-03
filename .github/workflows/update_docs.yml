@@ -70,7 +70,6 @@ jobs:
           title: 'update module documentation'
           commit-message: updated the documentation regarding the covered modules
           branch: document-updates
-          reviewers: josverl          
           labels: |
             automated pr
             documentation
