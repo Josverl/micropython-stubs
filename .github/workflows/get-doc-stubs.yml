@@ -79,7 +79,7 @@ jobs:
 
       - name: Generate document stubs for ${{ matrix.version }}
         run: |
-          stubber get-docstubs --stub-folder ${{github.workspace}}/stubs --micropython repos/micropython --micropython-lib repos/micropython-lib
+          stubber get-docstubs --stub-folder ${{github.workspace}}/stubs --micropython repos/micropython
 
       - name: Create Pull Request
         id: cpr-doc
