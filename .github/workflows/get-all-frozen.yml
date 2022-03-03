@@ -58,7 +58,7 @@ jobs:
         run: |
           git checkout ${{ matrix.version }}
       # for the latest version, checkout micropython/master
-      - name: checkout micropython v${{ matrix.version }}
+      - name: checkout micropython Latest(master)
         if: matrix.version=='Latest'
         working-directory: ${{github.workspace}}/micropython
         run: |
@@ -110,13 +110,13 @@ jobs:
             ${{ matrix.version }}
           delete-branch: true
 
-      - name: Enable Pull Request Automerge
-        if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: peter-evans/enable-pull-request-automerge@v1
-        with:
-          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
+      # - name: Enable Pull Request Automerge
+      #   if: steps.cpr.outputs.pull-request-operation == 'created'
+      #   uses: peter-evans/enable-pull-request-automerge@v1
+      #   with:
+      #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
+      #     pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+      #     merge-method: squash
 
       - name: done
         if: always()
@@ -188,13 +188,13 @@ jobs:
             MicroPython
           delete-branch: true
 
-      - name: Enable Pull Request Automerge
-        if: steps.cprcore.outputs.pull-request-operation == 'created'
-        uses: peter-evans/enable-pull-request-automerge@v1
-        with:
-          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-          pull-request-number: ${{ steps.cprcore.outputs.pull-request-number }}
-          merge-method: squash
+      # - name: Enable Pull Request Automerge
+      #   if: steps.cprcore.outputs.pull-request-operation == 'created'
+      #   uses: peter-evans/enable-pull-request-automerge@v1
+      #   with:
+      #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
+      #     pull-request-number: ${{ steps.cprcore.outputs.pull-request-number }}
+      #     merge-method: squash
 
       - name: done
         if: always()
