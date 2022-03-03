@@ -54,7 +54,7 @@ jobs:
           mkdir repos
           stubber clone -p repos
 
-      # micropython as a sub-module of micropython-stubber 
+      # micropython as a sub-module 
       - name: 'checkout micropython  ${{ matrix.version }}'
         if: matrix.version!='Latest'
         working-directory: ${{github.workspace}}/repos/micropython
@@ -65,7 +65,7 @@ jobs:
         if: matrix.version=='Latest'
         working-directory: ${{github.workspace}}/repos/micropython
         run: |
-          git checkout micropython/master
+          git checkout origin/master
 
       - name: get commit info
         id: mpycommit
