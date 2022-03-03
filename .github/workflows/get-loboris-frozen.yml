@@ -4,10 +4,6 @@
 # Check out repos in this structure 
 # micropython-stubs
 #   + - stubs 
-#   +-- micropython-stubber
-#       +-- micropython
-#        -- micropython-lib
-# repro structure needed to allow automatic PR creation to work
 ########################################################################################################################################
 name: get-loboris-frozen
 
@@ -44,8 +40,8 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: get repos
-        run: stubber clone
+      # - name: get repos
+      #   run: stubber clone -p repos
 
       ######################################
       # This is where the actual work starts

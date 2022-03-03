@@ -3,7 +3,8 @@
 ########################################################################################################################################
 # Check out repos in this structure 
 # micropython-stubs
-#     + - stubs 
+# +-- stubs 
+# +-- repos 
 #     +-- micropython
 #      -- micropython-lib
 # repro structure needed to allow automatic PR creation to work
@@ -49,24 +50,24 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: get repos
-        run: stubber clone
+        run: stubber clone -p repos
 
       # micropython as a sub-module of micropython-stubber 
       - name: 'checkout micropython  ${{ matrix.version }}'
         if: matrix.version!='Latest'
-        working-directory: ${{github.workspace}}/micropython
+        working-directory: ${{github.workspace}}/repos/micropython
         run: |
           git checkout ${{ matrix.version }}
 
       - name: Latest checkout micropython/master
         if: matrix.version=='Latest'
-        working-directory: ${{github.workspace}}/micropython
+        working-directory: ${{github.workspace}}/repos/micropython
         run: |
           git checkout micropython/master
 
       - name: get commit info
         id: mpycommit
-        working-directory: ${{github.workspace}}/micropython
+        working-directory: ${{github.workspace}}/repos/micropython
         run: |
           echo "::set-output name=info::'$(git log --oneline -1)'"
 
@@ -76,7 +77,7 @@ jobs:
 
       - name: Generate document stubs for ${{ matrix.version }}
         run: |
-          stubber get-docstubs --stub-folder ${{github.workspace}}/stubs 
+          stubber get-docstubs --stub-folder ${{github.workspace}}/stubs --micropython repos/micropython --micropython-lib repos/micropython-lib
 
       - name: Create Pull Request
         id: cpr-doc

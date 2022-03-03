@@ -3,7 +3,8 @@
 ########################################################################################################################################
 # Check out repos in this structure 
 # micropython-stubs
-#   + - stubs 
+# +-- stubs 
+# +-- repos 
 #     +-- micropython
 #      -- micropython-lib
 # repro structure needed to allow automatic PR creation to work
@@ -49,24 +50,24 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: get repos
-        run: stubber clone
+        run: stubber clone -p repos
 
       # checkout micropython at the correct version tag
       - name: checkout micropython ${{ matrix.version }}
         if: matrix.version!='Latest'
-        working-directory: ${{github.workspace}}/micropython
+        working-directory: ${{github.workspace}}/repos/micropython
         run: |
           git checkout ${{ matrix.version }}
       # for the latest version, checkout micropython/master
       - name: checkout micropython Latest(master)
         if: matrix.version=='Latest'
-        working-directory: ${{github.workspace}}/micropython
+        working-directory: ${{github.workspace}}/repos/micropython
         run: |
           git checkout micropython/master
 
       - name: get commit info
         id: mpycommit
-        working-directory: ${{github.workspace}}/micropython
+        working-directory: ${{github.workspace}}/repos/micropython
         run: |
           echo "::set-output name=info::'$(git log --oneline -1)'"
 
@@ -78,7 +79,7 @@ jobs:
       - name: Get frozen modules for ${{ matrix.version }}
         working-directory: ${{github.workspace}}
         run: |
-          stubber  get-frozen --stub-folder ${{github.workspace}}/stubs --black
+          stubber get-frozen --stub-folder ${{github.workspace}}/stubs --black --micropython repos/micropython --micropython-lib repos/micropython-lib
 
       ######################################
       # now check if a PR is needed 
