@@ -81,7 +81,19 @@ jobs:
         run: |
           stubber get-docstubs --stub-folder ${{github.workspace}}/stubs --micropython repos/micropython
 
-      - name: Create Pull Request
+
+
+      - name: check for changes other than modules.py
+        shell: pwsh
+        id: changed
+        run: |
+          $changed = @(git whatchanged -1 --format=oneline  | ?{ $_.Contains(".py") })
+          write-host "Changed stub files:"
+          write-host $changed
+          write-host "::set-output name=count::$($changed.count)"
+
+      - name: Create Pull Request ( if relevant changes) 
+        if: ${{ steps.changed.outputs.count }} >= 1
         id: cpr-doc
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
@@ -92,7 +104,6 @@ jobs:
           body : |
             update MicroPython ${{ matrix.version }} doc-stubs
             based on micropython commit ${{ steps.mpycommit.outputs.info }}
-
 
           branch: "micropython-${{ matrix.version }}-doc-stubs"
           labels: |
