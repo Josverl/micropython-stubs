@@ -23,3 +23,8 @@ results
 
 # no scratch pad
 scratch 
+
+# no daughter repos
+repos
+micropython
+micropython-lib

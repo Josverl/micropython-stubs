@@ -3,10 +3,10 @@
 ########################################################################################################################################
 # Check out repos in this structure 
 # micropython-stubs
-#   + - stubs 
-#   +-- micropython-stubber
-#       +-- micropython
-#        -- micropython-lib
+# +-- stubs 
+# +-- repos 
+#     +-- micropython
+#      -- micropython-lib
 # repro structure needed to allow automatic PR creation to work
 ########################################################################################################################################
 name: get-all-frozen
@@ -30,47 +30,12 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ${{github.workspace}}/micropython-stubber
+        # working-directory: ${{github.workspace}}/micropython-stubber
   
     steps:
 
       - name: Checkout stubs repo
         uses: actions/checkout@v2
-
-      - name: Checkout Stubber
-        uses: actions/checkout@v2
-        with:
-          repository: josverl/micropython-stubber
-          path: micropython-stubber
-
-      - name: Checkout stubber submodules
-        working-directory: ${{github.workspace}}/micropython-stubber
-        run: git submodule update --init 
-
-      - name: sync with micropython upstream 
-        working-directory: ${{github.workspace}}/micropython-stubber/micropython
-        run: |
-          git remote add --tags micropython https://github.com/micropython/micropython.git
-          git fetch --all --tags
-
-      # checkout micropython at the correct version tag
-      - name: checkout micropython ${{ matrix.version }}
-        if: matrix.version!='Latest'
-        working-directory: ${{github.workspace}}/micropython-stubber/micropython
-        run: |
-          git checkout ${{ matrix.version }}
-      # for the latest version, checkout micropython/master
-      - name: checkout micropython v${{ matrix.version }}
-        if: matrix.version=='Latest'
-        working-directory: ${{github.workspace}}/micropython-stubber/micropython
-        run: |
-          git checkout micropython/master
-
-      - name: get commit info
-        id: mpycommit
-        working-directory: ${{github.workspace}}/micropython-stubber/micropython
-        run: |
-          echo "::set-output name=info::'$(git log --oneline -1)'"
 
       # make Python work
       - name: Set up Python
@@ -79,37 +44,45 @@ jobs:
           python-version: 3.9
           cache: 'pip'
 
-      #----------------------------------------------
-      # poetry is not in the default image
-      #----------------------------------------------
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
+      - name: Install Python dependencies (stubber)
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      #----------------------------------------------
-      # install dependencies 
-      #----------------------------------------------
-      - name: Install dependencies
-        run: poetry install --no-interaction --no-root
+      - name: get repos
+        run: |
+          mkdir repos
+          stubber clone -p repos
 
-      #----------------------------------------------
-      # install root project Pymakr
-      #----------------------------------------------
-      - name: Install library stubber
-        run: poetry install --no-interaction
-      
+
+      # checkout micropython at the correct version tag
+      - name: checkout micropython ${{ matrix.version }}
+        if: matrix.version!='Latest'
+        working-directory: ${{github.workspace}}/repos/micropython
+        run: |
+          git checkout ${{ matrix.version }}
+      # for the latest version, checkout micropython/master
+      - name: checkout micropython Latest(master)
+        if: matrix.version=='Latest'
+        working-directory: ${{github.workspace}}/repos/micropython
+        run: |
+          git checkout origin/master
+
+      - name: get commit info
+        id: mpycommit
+        working-directory: ${{github.workspace}}/repos/micropython
+        run: |
+          echo "::set-output name=info::'$(git log --oneline -1)'"
+
 
       ######################################
       # This is where the actual work starts
       ######################################
 
       - name: Get frozen modules for ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython-stubber
+        working-directory: ${{github.workspace}}
         run: |
-          poetry run get_frozen --stub-folder ${{github.workspace}}/stubs --mpy --black
+          stubber get-frozen --stub-folder ${{github.workspace}}/stubs --black --micropython repos/micropython --micropython-lib repos/micropython-lib
 
       ######################################
       # now check if a PR is needed 
@@ -118,8 +91,10 @@ jobs:
         shell: pwsh
         id: changed
         run: |
-          $changed = (git whatchanged -1 --format=oneline | ?{-not $_.Contains("modules.json") }).count-1
-          write-host "::set-output name=count::$changed"
+          $changed = @(git whatchanged -1 --format=oneline  | ?{ $_.Contains(".py") })
+          write-host "Changed stub files:"
+          write-host $changed
+          write-host "::set-output name=count::$($changed.count)"
 
       - name: Create Pull Request ( if relevant changes) 
         if: ${{ steps.changed.outputs.count }} >= 1
@@ -134,20 +109,24 @@ jobs:
             add/update MicroPython ${{ matrix.version }} frozen stubs
             based on micropython commit ${{ steps.mpycommit.outputs.info }}          
           branch: "micropython-${{ matrix.version }}-stubs"
-          reviewers: josverl
           labels: |
             frozen stubs 
             MicroPython
             ${{ matrix.version }}
           delete-branch: true
 
-      - name: Enable Pull Request Automerge
-        if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: peter-evans/enable-pull-request-automerge@v1
-        with:
-          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
+      # - name: Enable Pull Request Automerge
+      #   if: steps.cpr.outputs.pull-request-operation == 'created'
+      #   uses: peter-evans/enable-pull-request-automerge@v1
+      #   with:
+      #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
+      #     pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+      #     merge-method: squash
+
+      - name: done
+        if: always()
+        run: |
+          echo "Done..."
 
   ########################################################################################################################################
   get-core-cpython-stubs:
@@ -158,18 +137,12 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ${{github.workspace}}/micropython-stubber
+  #      working-directory: ${{github.workspace}}/micropython-stubber
   
     steps:
 
       - name: Checkout stubs repo
         uses: actions/checkout@v2
-
-      - name: Checkout Stubber
-        uses: actions/checkout@v2
-        with:
-          repository: josverl/micropython-stubber
-          path: micropython-stubber
 
       # make Python work
       - name: Set up Python
@@ -178,36 +151,20 @@ jobs:
           python-version: 3.9
           cache: 'pip'
 
-      #----------------------------------------------
-      # poetry is not in the default image
-      #----------------------------------------------
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
+      - name: Install Python dependencies (stubber)
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      #----------------------------------------------
-      # install dependencies 
-      #----------------------------------------------
-      - name: Install dependencies
-        run: poetry install --no-interaction --no-root
-
-      #----------------------------------------------
-      # install root project Pymakr
-      #----------------------------------------------
-      - name: Install library stubber
-        run: poetry install --no-interaction
 
       ######################################
       # This is where the actual work starts
       ######################################
 
       - name: Get frozen modules for ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython-stubber
+        working-directory: ${{github.workspace}}
         run: |
-          poetry run get_frozen --stub-folder ${{github.workspace}}/stubs --core --black
+          stubber get-core --stub-folder ${{github.workspace}}/stubs --black
 
 
       ######################################
@@ -230,16 +187,20 @@ jobs:
           title: "add/update MicroPython core stubs"
           commit-message: add/update MicroPython core stubs
           branch: "micropython-core-stubs"
-          reviewers: josverl
           labels: |
             CPython
             MicroPython
           delete-branch: true
 
-      - name: Enable Pull Request Automerge
-        if: steps.cprcore.outputs.pull-request-operation == 'created'
-        uses: peter-evans/enable-pull-request-automerge@v1
-        with:
-          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash          
+      # - name: Enable Pull Request Automerge
+      #   if: steps.cprcore.outputs.pull-request-operation == 'created'
+      #   uses: peter-evans/enable-pull-request-automerge@v1
+      #   with:
+      #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
+      #     pull-request-number: ${{ steps.cprcore.outputs.pull-request-number }}
+      #     merge-method: squash
+
+      - name: done
+        if: always()
+        run: |
+          echo "Done..."

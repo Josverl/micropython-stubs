@@ -4,10 +4,6 @@
 # Check out repos in this structure 
 # micropython-stubs
 #   + - stubs 
-#   +-- micropython-stubber
-#       +-- micropython
-#        -- micropython-lib
-# repro structure needed to allow automatic PR creation to work
 ########################################################################################################################################
 name: get-loboris-frozen
 
@@ -26,18 +22,11 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ${{github.workspace}}/micropython-stubber
     
     steps:
 
       - name: Checkout stubs repo
         uses: actions/checkout@v2
-
-      - name: Checkout Stubber
-        uses: actions/checkout@v2
-        with:
-          repository: josverl/micropython-stubber
-          path: micropython-stubber
 
       # make Python work
       - name: Set up Python
@@ -45,36 +34,21 @@ jobs:
         with:
           python-version: 3.9
 
-      #----------------------------------------------
-      # poetry is not in the default image
-      #----------------------------------------------
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
+      - name: Install Python dependencies (stubber)
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      #----------------------------------------------
-      # install dependencies 
-      #----------------------------------------------
-      - name: Install dependencies
-        run: poetry install --no-interaction --no-root
-
-      #----------------------------------------------
-      # install root project Pymakr
-      #----------------------------------------------
-      - name: Install library stubber
-        run: poetry install --no-interaction
+      # - name: get repos
+      #   run: stubber clone -p repos
 
       ######################################
       # This is where the actual work starts
       ######################################
 
       - name: Get frozen modules for ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/micropython-stubber
         run: |
-          poetry run get_frozen --stub-folder ${{github.workspace}}/stubs --lobo
+          stubber get-lobo --stub-folder ${{github.workspace}}/stubs --black
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
@@ -85,18 +59,15 @@ jobs:
           title: "add/update Loboris frozen stubs"
           commit-message: add/update Loboris frozen stubs
           branch: "micropython-lobo-stubs"
-          reviewers: josverl
           labels: |
             frozen stubs
             Loboris
           delete-branch: true
 
-      - name: Enable Pull Request Automerge
-        if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: peter-evans/enable-pull-request-automerge@v1
-        with:
-          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-          merge-method: squash
+      - name: done
+        if: always()
+        run: |
+          echo "Done..."
+
   ########################################################################################################################################
 
