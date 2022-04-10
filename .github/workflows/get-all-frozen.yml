@@ -56,18 +56,11 @@ jobs:
 
 
       # checkout micropython at the correct version tag
-      - name: checkout micropython ${{ matrix.version }}
-        if: matrix.version!='Latest'
+      - name: switch to micropython ${{ matrix.version }}
         working-directory: ${{github.workspace}}/repos/micropython
         run: |
-          git checkout ${{ matrix.version }}
-      # for the latest version, checkout micropython/master
-      - name: checkout micropython Latest(master)
-        if: matrix.version=='Latest'
-        working-directory: ${{github.workspace}}/repos/micropython
-        run: |
-          git checkout origin/master
-
+          stubber switch --tag ${{ matrix.version }}
+          
       - name: get commit info
         id: mpycommit
         working-directory: ${{github.workspace}}/repos/micropython
