@@ -49,29 +49,11 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: get repos
-        run: |
-          mkdir repos
-          stubber clone -p repos
-
       # micropython as a sub-module 
-      - name: 'checkout micropython  ${{ matrix.version }}'
-        if: matrix.version!='Latest'
-        working-directory: ${{github.workspace}}/repos/micropython
+      - name: 'clone and checkout micropython ${{ matrix.version }}'
         run: |
-          git checkout ${{ matrix.version }}
-
-      - name: Latest checkout micropython/master
-        if: matrix.version=='Latest'
-        working-directory: ${{github.workspace}}/repos/micropython
-        run: |
-          git checkout origin/master
-
-      - name: get commit info
-        id: mpycommit
-        working-directory: ${{github.workspace}}/repos/micropython
-        run: |
-          echo "::set-output name=info::'$(git log --oneline -1)'"
+          stubber clone
+          stubber switch ${{ matrix.version }}
 
       ######################################
       # This is where the actual work starts
@@ -79,8 +61,7 @@ jobs:
 
       - name: Generate document stubs for ${{ matrix.version }}
         run: |
-          stubber get-docstubs --stub-folder ${{github.workspace}}/stubs --micropython repos/micropython
-
+          stubber get-docstubs
 
 
       - name: check for changes other than modules.py
