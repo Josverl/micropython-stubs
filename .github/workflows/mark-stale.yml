@@ -25,7 +25,7 @@ jobs:
         stale-pr-message: 'Stale pull request message'
         stale-issue-label: 'no-issue-activity'
         stale-pr-label: 'no-pr-activity'
-        days-before-stale: 90 # optional, default is 60
+        days-before-stale: 180 # optional, default is 60
         # The number of days old a pull request can be before marking it stale. Set to -1 to never mark pull requests as stale automatically. Override "days-before-stale" option regarding only the pull requests.
         days-before-pr-stale: 60 # optional
         # The labels that mean an issue is exempt from being marked stale. Separate multiple labels with commas (eg. "label1,label2").
