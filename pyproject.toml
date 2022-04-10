@@ -1,3 +1,7 @@
+[tool.micropython-stubber]
+stub-path = "./stubs"
+repo-path = "./repos"
+
 [tool.black]
 # use same config as -stubber
 line-length = 140

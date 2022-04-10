@@ -49,24 +49,12 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: get repos
-        run: |
-          mkdir repos
-          stubber clone -p repos
-
-
       # checkout micropython at the correct version tag
-      - name: switch to micropython ${{ matrix.version }}
-        working-directory: ${{github.workspace}}/repos/micropython
+      - name: clone and switch to micropython ${{ matrix.version }}
         run: |
+          stubber clone 
           stubber switch --tag ${{ matrix.version }}
           
-      - name: get commit info
-        id: mpycommit
-        working-directory: ${{github.workspace}}/repos/micropython
-        run: |
-          echo "::set-output name=info::'$(git log --oneline -1)'"
-
 
       ######################################
       # This is where the actual work starts
@@ -75,7 +63,7 @@ jobs:
       - name: Get frozen modules for ${{ matrix.version }}
         working-directory: ${{github.workspace}}
         run: |
-          stubber get-frozen --stub-folder ${{github.workspace}}/stubs --black
+          stubber get-frozen --black
 
       ######################################
       # now check if a PR is needed 
@@ -157,7 +145,7 @@ jobs:
       - name: Get frozen modules for ${{ matrix.version }}
         working-directory: ${{github.workspace}}
         run: |
-          stubber get-core --stub-folder ${{github.workspace}}/stubs --black
+          stubber get-core --black
 
 
       ######################################
