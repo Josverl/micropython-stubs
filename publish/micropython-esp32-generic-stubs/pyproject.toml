@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "micropython-esp32-generic-stubs"
+version = "1.18.0-alpha.2"
+description = "Sample project for PEP-561 distribution testing"
+authors = ["josverl <josverl@users.noreply.github.com>"]
+license = "MIT"
+readme = "readme.md"
+homepage = "https://github.com/josverl/micropython-stubs"
+exclude = ["*.ps1", "*.py", "__pycache__"]
+include = ["firmware"]
+
+classifiers = [
+    "Typing :: Typed",
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: Implementation :: MicroPython",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Text Editors :: Integrated Development Environments (IDE)",
+    "Topic :: Software Development :: Build Tools",
+]
+
+# Note: anything excluded in .gitignore is not packaged by poetry 
+packages = [
+    # there m ust be one line per package in this list
+    # packaged modules (with an __init__.py) 
+    { include = "umqtt", from = "firmware" },
+    { include = "uasyncio", from = "firmware" },
+    # individual files
+    { include = "array.py?", from = "firmware" },
+    { include = "apa106.pyi", from = "firmware" },
+]
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+typing-extensions = "^3.7.4.3"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
