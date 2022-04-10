@@ -12,13 +12,17 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.6.2",
+        "version": "1.6.5",
         "stubtype": "frozen"
     },
     "modules": [
         {
             "file": "_boot.py",
             "module": "_boot"
+        },
+        {
+            "file": "_boot_fat.py",
+            "module": "_boot_fat"
         },
         {
             "file": "aioble/__init__.py",
