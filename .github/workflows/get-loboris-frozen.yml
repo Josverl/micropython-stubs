@@ -39,8 +39,6 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      # - name: get repos
-      #   run: stubber clone -p repos
 
       ######################################
       # This is where the actual work starts
@@ -48,7 +46,7 @@ jobs:
 
       - name: Get frozen modules for ${{ matrix.version }}
         run: |
-          stubber get-lobo --stub-folder ${{github.workspace}}/stubs --black
+          stubber get-lobo --black
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
