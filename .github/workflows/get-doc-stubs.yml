@@ -53,7 +53,7 @@ jobs:
       - name: 'clone and checkout micropython ${{ matrix.version }}'
         run: |
           stubber clone
-          stubber switch ${{ matrix.version }}
+          stubber switch --tag ${{ matrix.version }}
 
       ######################################
       # This is where the actual work starts
