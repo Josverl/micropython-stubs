@@ -82,7 +82,7 @@ jobs:
       - name: Get frozen modules for ${{ matrix.version }}
         working-directory: ${{github.workspace}}
         run: |
-          stubber get-frozen --stub-folder ${{github.workspace}}/stubs --black --micropython repos/micropython --micropython-lib repos/micropython-lib
+          stubber get-frozen --stub-folder ${{github.workspace}}/stubs --black
 
       ######################################
       # now check if a PR is needed 
