@@ -1,0 +1,108 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "stm32",
+        "platform": "stm32",
+        "machine": "ARDUINO_PORTENTA_H7",
+        "firmware": "micropython-stm32-latest",
+        "nodename": "micropython",
+        "version": "latest",
+        "release": "latest",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.6.6",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "aioble/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "aioble/central.py",
+            "module": "central"
+        },
+        {
+            "file": "aioble/client.py",
+            "module": "client"
+        },
+        {
+            "file": "aioble/core.py",
+            "module": "core"
+        },
+        {
+            "file": "aioble/device.py",
+            "module": "device"
+        },
+        {
+            "file": "aioble/l2cap.py",
+            "module": "l2cap"
+        },
+        {
+            "file": "aioble/peripheral.py",
+            "module": "peripheral"
+        },
+        {
+            "file": "aioble/security.py",
+            "module": "security"
+        },
+        {
+            "file": "aioble/server.py",
+            "module": "server"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "lcd160cr.py",
+            "module": "lcd160cr"
+        },
+        {
+            "file": "lcd160cr_test.py",
+            "module": "lcd160cr_test"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        },
+        {
+            "file": "websocket_helper.py",
+            "module": "websocket_helper"
+        }
+    ]
+}
