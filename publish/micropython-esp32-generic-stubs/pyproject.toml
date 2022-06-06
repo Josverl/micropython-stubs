@@ -1,14 +1,22 @@
 [tool.poetry]
 name = "micropython-esp32-generic-stubs"
-version = "1.18.0-alpha.2"
-description = "Sample project for PEP-561 distribution testing"
-authors = ["josverl <josverl@users.noreply.github.com>"]
+version = "1.18.1"
+description = "MicroPython v1_18(1.18.1) stubs for esp32"
+authors = [
+    "josverl <josverl@users.noreply.github.com>",
+]
 license = "MIT"
 readme = "readme.md"
 homepage = "https://github.com/josverl/micropython-stubs"
-exclude = ["*.ps1", "*.py", "__pycache__"]
-include = ["firmware"]
-
+exclude = [
+    "*.ps1",
+    "*.py",
+    "__pycache__",
+]
+include = [
+    "firmware",
+]
+repository = "https://github.com/josverl/micropython-stubs"
 classifiers = [
     "Typing :: Typed",
     "Development Status :: 3 - Alpha",
@@ -21,18 +29,77 @@ classifiers = [
     "Topic :: Text Editors :: Integrated Development Environments (IDE)",
     "Topic :: Software Development :: Build Tools",
 ]
-
-# Note: anything excluded in .gitignore is not packaged by poetry 
 packages = [
-    # there m ust be one line per package in this list
-    # packaged modules (with an __init__.py) 
-    { include = "umqtt", from = "firmware" },
-    { include = "uasyncio", from = "firmware" },
-    # individual files
-    { include = "array.py?", from = "firmware" },
-    { include = "apa106.pyi", from = "firmware" },
+    { from = "micropython-v1_18-esp32", include = "uasyncio" },
+    { from = "micropython-v1_18-esp32", include = "umqtt" },
+    { from = "micropython-v1_18-esp32", include = "apa106.pyi" },
+    { from = "micropython-v1_18-esp32", include = "array.pyi" },
+    { from = "micropython-v1_18-esp32", include = "binascii.pyi" },
+    { from = "micropython-v1_18-esp32", include = "btree.pyi" },
+    { from = "micropython-v1_18-esp32", include = "builtins.pyi" },
+    { from = "micropython-v1_18-esp32", include = "cmath.pyi" },
+    { from = "micropython-v1_18-esp32", include = "collections.pyi" },
+    { from = "micropython-v1_18-esp32", include = "dht.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ds18x20.pyi" },
+    { from = "micropython-v1_18-esp32", include = "errno.pyi" },
+    { from = "micropython-v1_18-esp32", include = "esp.pyi" },
+    { from = "micropython-v1_18-esp32", include = "esp32.pyi" },
+    { from = "micropython-v1_18-esp32", include = "flashbdev.pyi" },
+    { from = "micropython-v1_18-esp32", include = "framebuf.pyi" },
+    { from = "micropython-v1_18-esp32", include = "gc.pyi" },
+    { from = "micropython-v1_18-esp32", include = "hashlib.pyi" },
+    { from = "micropython-v1_18-esp32", include = "heapq.pyi" },
+    { from = "micropython-v1_18-esp32", include = "inisetup.pyi" },
+    { from = "micropython-v1_18-esp32", include = "io.pyi" },
+    { from = "micropython-v1_18-esp32", include = "json.pyi" },
+    { from = "micropython-v1_18-esp32", include = "machine.pyi" },
+    { from = "micropython-v1_18-esp32", include = "math.pyi" },
+    { from = "micropython-v1_18-esp32", include = "micropython.pyi" },
+    { from = "micropython-v1_18-esp32", include = "neopixel.pyi" },
+    { from = "micropython-v1_18-esp32", include = "network.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ntptime.pyi" },
+    { from = "micropython-v1_18-esp32", include = "onewire.pyi" },
+    { from = "micropython-v1_18-esp32", include = "os.pyi" },
+    { from = "micropython-v1_18-esp32", include = "random.pyi" },
+    { from = "micropython-v1_18-esp32", include = "re.pyi" },
+    { from = "micropython-v1_18-esp32", include = "select.pyi" },
+    { from = "micropython-v1_18-esp32", include = "socket.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ssl.pyi" },
+    { from = "micropython-v1_18-esp32", include = "struct.pyi" },
+    { from = "micropython-v1_18-esp32", include = "sys.pyi" },
+    { from = "micropython-v1_18-esp32", include = "time.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uarray.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ubinascii.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ubluetooth.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ucollections.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ucryptolib.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uctypes.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uerrno.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uhashlib.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uheapq.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uio.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ujson.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uos.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uplatform.pyi" },
+    { from = "micropython-v1_18-esp32", include = "urandom.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ure.pyi" },
+    { from = "micropython-v1_18-esp32", include = "urequests.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uselect.pyi" },
+    { from = "micropython-v1_18-esp32", include = "usocket.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ussl.pyi" },
+    { from = "micropython-v1_18-esp32", include = "ustruct.pyi" },
+    { from = "micropython-v1_18-esp32", include = "usys.pyi" },
+    { from = "micropython-v1_18-esp32", include = "utime.pyi" },
+    { from = "micropython-v1_18-esp32", include = "utimeq.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uwebsocket.pyi" },
+    { from = "micropython-v1_18-esp32", include = "uzlib.pyi" },
+    { from = "micropython-v1_18-esp32", include = "websocket.pyi" },
+    { from = "micropython-v1_18-esp32", include = "websocket_helper.pyi" },
+    { from = "micropython-v1_18-esp32", include = "zlib.pyi" },
+    { from = "micropython-v1_18-esp32", include = "_onewire.pyi" },
+    { from = "micropython-v1_18-esp32", include = "_thread.pyi" },
+    { from = "micropython-v1_18-esp32", include = "_uasyncio.pyi" },
 ]
-
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -41,5 +108,7 @@ typing-extensions = "^3.7.4.3"
 [tool.poetry.dev-dependencies]
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = [
+    "poetry-core>=1.0.0",
+]
 build-backend = "poetry.core.masonry.api"

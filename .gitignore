@@ -28,3 +28,9 @@ scratch
 repos
 micropython
 micropython-lib
+
+# The lines below will infuence the contents of the -stub packeges created with poetry.
+
+# stub folders  that are copied to create the stub package 
+publish/*/**/*.*
+publish/**/dist

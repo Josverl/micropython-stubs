@@ -34,5 +34,5 @@
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.analysis.useLibraryCodeForTypes": false,
-    "python.analysis.diagnosticMode": "workspace"
+    "python.analysis.diagnosticMode": "openFilesOnly"
 }

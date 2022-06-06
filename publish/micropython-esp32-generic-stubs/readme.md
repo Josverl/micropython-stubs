@@ -1,6 +1,5 @@
-MicroPython v1.18 stubs for ESP32
+# micropython-esp32-generic-stubs
 
-Contains stubs from the following sources:
-- firmware stubs - {board type from manifest}
-- micropython core stubs - pycopy / micropython 
-- document stubs 
+Included stubs:
+* Firmware stubs from stubs/micropython-v1_18-esp32
+* Core Stubs from stubs/cpython_core-pycopy
