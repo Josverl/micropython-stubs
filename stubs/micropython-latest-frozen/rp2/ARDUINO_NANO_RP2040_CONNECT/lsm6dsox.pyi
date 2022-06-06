@@ -21,14 +21,17 @@ class LSM6DSOX:
     _TAP_CFG0: Any
     _EMB_FUNC_EN_A: Any
     _EMB_FUNC_EN_B: Any
-    i2c: Any
+    bus: Any
+    cs_pin: Any
     address: Any
+    _use_i2c: Any
     scratch_int: Any
     gyro_scale: Any
     accel_scale: Any
     def __init__(
         self,
-        i2c,
+        bus,
+        cs_pin: Any | None = ...,
         address=...,
         gyro_odr: int = ...,
         accel_odr: int = ...,
@@ -38,6 +41,7 @@ class LSM6DSOX:
     ) -> None: ...
     def __read_reg(self, reg, size: int = ...): ...
     def __write_reg(self, reg, val) -> None: ...
+    def __read_reg_into(self, reg, buf) -> None: ...
     def reset(self) -> None: ...
     def set_mem_bank(self, bank) -> None: ...
     def set_embedded_functions(self, enable, emb_ab: Any | None = ...): ...
