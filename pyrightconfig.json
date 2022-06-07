@@ -79,7 +79,7 @@
     "reportMissingImports": "error",
     "reportMissingModuleSource": "error",
     // need to fix sometime
-    "reportMissingTypeStubs": "warning",
+    "reportMissingTypeStubs": "none",
     "reportOptionalCall": "information", //  Object of type "None" cannot be called
     "reportGeneralTypeIssues": "warning", // Expected no arguments to "Pin" constructor and a lot of others
     // interesting

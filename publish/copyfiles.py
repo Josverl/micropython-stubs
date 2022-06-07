@@ -12,6 +12,7 @@ required folder structure:
 |     +--pyproject.toml
 |
 |  +--<folder for each package>
+|     +--<package name> double nested to match the folder structure
 |  +--<family>-version-<port>-<board>-<type>-stubs
 |  +--micropython-v1_18-esp32-generic-fw-stubs
 
@@ -25,11 +26,11 @@ import tomli_w
 from packaging.version import parse
 
 from create_project import create_stub_package
+from stubber.utils.versions import clean_version
 
-# todo : pass this as parameters
-ver = "v1_18"
-port = "esp32"
-board = "generic"
+
+
+
 
 
 # Defaults to the root of the project
@@ -39,31 +40,64 @@ root_path: Path = Path(".")
 # ######################################
 # esp32-generic-stubs
 # ######################################
-if 0:
-    stub_package_name = f"micropython-{port}-{board}-stubs"
+# todo : pass this as parameters
+version = "v1.18"
+type = "board"
+port = "esp32"
+board = "generic"
+
+ver_flat = clean_version(version, flat=True)
+
+if 1:
+    stub_package_name = f"micropython-{port}-{board}-board-stubs"
     package_path = root_path / "publish" / stub_package_name
 
     stubs: List[Tuple[str, Path]] = [
-        ("Firmware stubs", Path("./stubs") / f"micropython-{ver}-{port}"),
-        #    ("Core Stubs", Path("./stubs") / "cpython_core-pycopy"),
+        ("Firmware stubs", Path("./stubs") / f"micropython-{ver_flat}-{port}"),
+        ("Core Stubs", Path("./stubs") / "cpython_core-pycopy"),
     ]
 
-    create_stub_package(package_path, stub_package_name, stubs)
+    create_stub_package(package_path, stub_package_name, stubs, version= version)
 
 
 # ######################################
 # micropython-core-stubs
 # ######################################
-stub_package_name = f"micropython-core-stubs"
-package_path = root_path / "publish" / stub_package_name
+# todo : pass this as parameters
+version = "v0.1"
+type = "core"
 
-stubs: List[Tuple[str, Path]] = [
-    ("Core Stubs", Path("./stubs") / "cpython_core-pycopy"),
-]
+ver_flat = clean_version(version, flat=True)
+if 0:
+    stub_package_name = f"micropython-{type}-stubs"
+    package_path = root_path / "publish" / stub_package_name
 
-create_stub_package(package_path, stub_package_name, stubs, description="Micropython Core stubs")
+    stubs: List[Tuple[str, Path]] = [
+        ("Core Stubs", Path("./stubs") / "cpython_core-pycopy"),
+    ]
+
+    create_stub_package(package_path, stub_package_name, stubs, version = version, description="Micropython Core stubs")
 
 
+# ######################################
+# micropython-doc-stubs
+# ######################################
+version = "v1.18"
+type = "doc"
+
+if 0:
+    stub_package_name = f"micropython-{type}-stubs"
+    package_path = root_path / "publish" / stub_package_name
+
+    stubs: List[Tuple[str, Path]] = [
+        ("Doc Stubs", Path("./stubs") / "cpython_core-pycopy"),
+    ]
+
+    create_stub_package(package_path, stub_package_name, stubs, version = "0.1.0",description="Micropython Core stubs")
+
+
+
+subprocess.run(["poetry", "check", "-vvv"], cwd=package_path)
 # bump the version of the package
 # TODO: Use Post release
 subprocess.run(["poetry", "version", "prerelease", "-s"], cwd=package_path)

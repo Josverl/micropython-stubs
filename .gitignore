@@ -29,10 +29,11 @@ repos
 micropython
 micropython-lib
 
-# The lines below will infuence the contents of the -stub packeges created with poetry.
+# The lines below will influence the contents of the -stub packages created with poetry
+# poetry will exlude all .ignored files from the project
 
 # stub folders  that are copied to create the stub package 
-publish/*/**/*.*
+# publish/*/**/*.*
 !publish/*/*.toml
 !publish/*/*.md
 publish/**/dist
