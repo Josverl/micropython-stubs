@@ -35,7 +35,7 @@ package_path.mkdir(parents=True, exist_ok=True)
 # Copy in the subs to the package
 for name, folder in stubs:
     print(f"Copying {name}")
-    shutil.copytree(folder, package_path / folder.name,symlinks=True, dirs_exist_ok=True)
+    shutil.copytree(folder, package_path / folder.name, symlinks=True, dirs_exist_ok=True)
 
 # add a readme with the names of the stubs
 # todo: prettify this
@@ -47,14 +47,22 @@ with open(package_path / "README.md", "w") as f:
 
 # - create/update pyproject.toml
 
-create_project(package_path, stub_package_name, semver, f"MicroPython {ver}({semver}) stubs for {port}")
+create_project(package_path, stub_package_name, semver, f"MicroPython stubs for {ver} {port}")
 
 
 # TODO: check the validity of the assembled package using mypy ?
 
+subprocess.run(["poetry", "check"], cwd=package_path)
+
+# bump the version of the package
+subprocess.run(["poetry", "version", "prerelease", "-s"], cwd=package_path)
+# subprocess.run(["poetry", "version", "patch", "-s"], cwd=package_path)
 
 # create package
 subprocess.run(["poetry", "build", "-vvv"], cwd=package_path)
 
+#Publish to test 
+subprocess.run(["poetry", "publish", "-r", "test-pypi"], cwd=package_path)
 
 # Publish
+

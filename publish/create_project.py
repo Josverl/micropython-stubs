@@ -13,16 +13,23 @@ def create_project(package_path: Path, name: str, version: str = "0.0.1", descri
     and updating it with the pyi files included
     """
     # package_path = Path("C:\\develop\\MyPython\\micropython-stubs\\publish\\micropython-esp32-generic-stubs")
-    
-    # TODO: do not overwrite existing pyproject.toml but read and apply changes to it
 
-    # read the template pyproject.toml file
-    with open(template_path / "pyproject.toml", "rb") as f:
-        pyproject = tomli.load(f)
+    # TODO: do not overwrite existing pyproject.toml but read and apply changes to it
+    pre_existing = (package_path / "pyproject.toml").exists()
+    if pre_existing:
+        with open(package_path / "pyproject.toml", "rb") as f:
+            pyproject = tomli.load(f)
+            # clear out the packages section
+            pyproject["tool"]["poetry"]["packages"] = []
+    else:
+        # read the template pyproject.toml file
+        with open(template_path / "pyproject.toml", "rb") as f:
+            pyproject = tomli.load(f)
+            # do not overwrite the version of a pre-existing file
+            pyproject["tool"]["poetry"]["version"] = version
 
     # update the name , version and description of the package
     pyproject["tool"]["poetry"]["name"] = name
-    pyproject["tool"]["poetry"]["version"] = version
     pyproject["tool"]["poetry"]["description"] = description
 
     folders = ["micropython-v1_18-esp32"]
@@ -33,10 +40,10 @@ def create_project(package_path: Path, name: str, version: str = "0.0.1", descri
         for p in folder.rglob("**/__init__.py"):
             # add the module to the package
             # fixme : only accounts for one level of packages
-            pyproject["tool"]["poetry"]["packages"] += [{"from": folder_name, "include": p.parent.name}]
+            pyproject["tool"]["poetry"]["packages"] += [{"from": folder.name, "include": p.parent.name}]
         # now find other stub files directly in the folder
         for p in folder.glob("*.pyi"):
-            pyproject["tool"]["poetry"]["packages"] += [{"from": folder_name, "include": p.name}]
+            pyproject["tool"]["poetry"]["packages"] += [{"from": folder.name, "include": p.name}]
 
     try:
         # check if the result is a valid toml file
