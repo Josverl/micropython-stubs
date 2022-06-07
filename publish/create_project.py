@@ -1,13 +1,16 @@
-from typing import List
+import shutil
+import subprocess
+from pathlib import Path
+from typing import List, Tuple
+
 import tomli
 import tomli_w
-from pathlib import Path
-
+from packaging.version import parse
 
 template_path = Path("C:\\develop\\MyPython\\micropython-stubs\\publish\\template")
 
 
-def create_project(
+def create_pyproject(
     package_path: Path,
     name: str,
     version: str = "0.0.1",
@@ -60,3 +63,47 @@ def create_project(
 
     with open(package_path / "pyproject.toml", "wb") as output:
         tomli_w.dump(pyproject, output)
+
+
+def create_stub_package(
+    package_path: Path,
+    package_name: str,
+    stubs: List[Tuple[str, Path]],
+    version: str = "0.0.1",
+    description: str = "MicroPython stubs",
+):
+    """ """
+    # package_path = Path("C:\\develop\\MyPython\\micropython-stubs\\publish\\micropython-esp32-generic-stubs")
+
+    # todo: convert V1_18 to semver and use the patch level as version for the stubs package
+    semver = parse(version.replace("_", "."))
+
+    # create the package folder
+    package_path.mkdir(parents=True, exist_ok=True)
+
+    # Copy in the subs to the package
+    for name, folder in stubs:
+        print(f"Copying {name} from {folder}")
+        shutil.copytree(folder, package_path / folder.name, symlinks=True, dirs_exist_ok=True)
+
+    # add a readme with the names of the stubs
+    # todo: prettify this
+    with open(package_path / "README.md", "w") as f:
+        f.write(f"# {package_name}\n\n")
+        f.write(f"Included stubs:\n")
+        for name, folder in stubs:
+            f.write(f"* {name} from {folder.as_posix()}\n")
+
+    # - create/update pyproject.toml
+    # todo: pass stubs
+    create_pyproject(
+        package_path,
+        package_name,
+        semver.public,
+        [p.name for description, p in stubs],
+        description=description,
+    )
+
+    # TODO: check the validity of the assembled package using mypy ?
+
+    subprocess.run(["poetry", "check"], cwd=package_path)
