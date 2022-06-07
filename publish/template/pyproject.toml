@@ -6,7 +6,7 @@ authors = ["josverl <josverl@users.noreply.github.com>"]
 license = "MIT"
 readme = "readme.md"
 homepage = "https://github.com/josverl/micropython-stubs"
-exclude = ["*.ps1", "*.py", "__pycache__", "dist"]
+exclude = ["*.ps1", "*.py", "**/__pycache__", "**/dist"]
 include = ["**/*.py", "**/*.pyi"]
 repository = "https://github.com/josverl/micropython-stubs"
 
@@ -29,7 +29,6 @@ packages = []
 
 [tool.poetry.dependencies]
 python = "^3.8"
-typing-extensions = "^3.7.4.3"
 
 [tool.poetry.dev-dependencies]
 

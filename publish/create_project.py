@@ -1,3 +1,4 @@
+from typing import List
 import tomli
 import tomli_w
 from pathlib import Path
@@ -6,7 +7,13 @@ from pathlib import Path
 template_path = Path("C:\\develop\\MyPython\\micropython-stubs\\publish\\template")
 
 
-def create_project(package_path: Path, name: str, version: str = "0.0.1", description: str = "MicroPython stubs"):
+def create_project(
+    package_path: Path,
+    name: str,
+    version: str = "0.0.1",
+    folders=List[str],
+    description: str = "MicroPython stubs",
+):
     """
     create or update/overwrite a `pyproject.toml` file by combining a template file
     with the given parameters.
@@ -32,7 +39,6 @@ def create_project(package_path: Path, name: str, version: str = "0.0.1", descri
     pyproject["tool"]["poetry"]["name"] = name
     pyproject["tool"]["poetry"]["description"] = description
 
-    folders = ["micropython-v1_18-esp32"]
     # add the modules to the package
     for folder_name in folders:
         folder = package_path / folder_name

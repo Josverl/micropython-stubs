@@ -33,4 +33,6 @@ micropython-lib
 
 # stub folders  that are copied to create the stub package 
 publish/*/**/*.*
+!publish/*/*.toml
+!publish/*/*.md
 publish/**/dist

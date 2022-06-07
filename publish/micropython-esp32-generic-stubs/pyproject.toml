@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "micropython-esp32-generic-stubs"
-version = "1.18.2"
+version = "1.18.3-alpha.1"
 description = "MicroPython stubs for v1_18 esp32"
 authors = ["josverl <josverl@users.noreply.github.com>"]
 license = "MIT"
 readme = "readme.md"
 homepage = "https://github.com/josverl/micropython-stubs"
-exclude = ["*.ps1", "*.py", "__pycache__", "dist"]
+exclude = ["*.ps1", "*.py", "__pycache__", "**/dist/**.*"]
 include = ["**/*.py", "**/*.pyi"]
 repository = "https://github.com/josverl/micropython-stubs"
 classifiers = [

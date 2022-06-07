@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "micropython-core-stubs"
+version = "0.0.2-alpha.5"
+description = "Micropython Core stubs"
+authors = [
+    "josverl <josverl@users.noreply.github.com>",
+]
+license = "MIT"
+readme = "readme.md"
+homepage = "https://github.com/josverl/micropython-stubs"
+exclude = [
+    "*.ps1",
+    "*.py",
+    "__pycache__",
+    "dist",
+]
+include = [
+    "**/*.py",
+    "**/*.pyi",
+]
+repository = "https://github.com/josverl/micropython-stubs"
+classifiers = [
+    "Typing :: Typed",
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: Implementation :: MicroPython",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Text Editors :: Integrated Development Environments (IDE)",
+    "Topic :: Software Development :: Build Tools",
+]
+packages = [
+    { from = "cpython_core-pycopy", include = "ffi.pyi" },
+    { from = "cpython_core-pycopy", include = "micropython.pyi" },
+    { from = "cpython_core-pycopy", include = "pycopy.pyi" },
+    { from = "cpython_core-pycopy", include = "pycopy_imphook.pyi" },
+    { from = "cpython_core-pycopy", include = "uarray.pyi" },
+    { from = "cpython_core-pycopy", include = "ucollections.pyi" },
+    { from = "cpython_core-pycopy", include = "uctypes.pyi" },
+    { from = "cpython_core-pycopy", include = "uerrno.pyi" },
+    { from = "cpython_core-pycopy", include = "uhashlib.pyi" },
+    { from = "cpython_core-pycopy", include = "uio.pyi" },
+    { from = "cpython_core-pycopy", include = "ujson.pyi" },
+    { from = "cpython_core-pycopy", include = "ulogging.pyi" },
+    { from = "cpython_core-pycopy", include = "uos.pyi" },
+    { from = "cpython_core-pycopy", include = "ure.pyi" },
+    { from = "cpython_core-pycopy", include = "uselect.pyi" },
+    { from = "cpython_core-pycopy", include = "usocket.pyi" },
+    { from = "cpython_core-pycopy", include = "ussl.pyi" },
+    { from = "cpython_core-pycopy", include = "utime.pyi" },
+    { from = "cpython_core-pycopy", include = "utimeq.pyi" },
+    { from = "cpython_core-pycopy", include = "utokenize.pyi" },
+    { from = "cpython_core-pycopy", include = "uzlib.pyi" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = [
+    "poetry-core>=1.0.0",
+]
+build-backend = "poetry.core.masonry.api"
