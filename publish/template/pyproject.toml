@@ -5,20 +5,19 @@ description = "template"
 authors = ["josverl <josverl@users.noreply.github.com>"]
 license = "MIT"
 readme = "readme.md"
-homepage = "https://github.com/josverl/micropython-stubs"
+homepage = "https://micropython-stubs.readthedocs.io/"
 exclude = ["*.ps1", "*.py", "**/__pycache__", "**/dist"]
 include = ["**/*.py", "**/*.pyi"]
 repository = "https://github.com/josverl/micropython-stubs"
 
 classifiers = [
     "Typing :: Typed",
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: Implementation :: MicroPython",
-    "Programming Language :: Python :: Implementation :: CPython",
+    "Operating System :: OS Independent",
     "Topic :: Text Editors :: Integrated Development Environments (IDE)",
     "Topic :: Software Development :: Build Tools",
 ]
