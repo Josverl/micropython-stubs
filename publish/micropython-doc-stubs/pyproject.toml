@@ -1,22 +1,13 @@
 [tool.poetry]
-name = "micropython-esp32-generic-stubs"
-version = "1.18.3-alpha.1"
-description = "MicroPython stubs for v1_18 esp32"
+name = "micropython-doc-stubs"
+version = "1.18.1-alpha.2"
+description = "Micropython Doc Stubs"
 authors = ["josverl <josverl@users.noreply.github.com>"]
 license = "MIT"
+readme = "readme.md"
 homepage = "https://micropython-stubs.readthedocs.io/"
-exclude = [
-    "**/__pycache__",
-    "**/dist",
-    "**/build",
-    "**/*.pyc",
-    "*.md",
-    "*.json",
-]
-include = [
-    "*.py",
-    "*.pyi",
-]
+exclude = ["*.ps1", "*.py", "**/__pycache__", "**/dist"]
+include = ["**/*.py", "**/*.pyi"]
 repository = "https://github.com/josverl/micropython-stubs"
 classifiers = [
     "Typing :: Typed",
@@ -30,98 +21,62 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 packages = [
-    { include = "uasyncio" },
-    { include = "umqtt" },
-    { include = "apa106.pyi" },
     { include = "array.pyi" },
     { include = "binascii.pyi" },
+    { include = "bluetooth.pyi" },
     { include = "btree.pyi" },
-    { include = "builtins.pyi" },
     { include = "cmath.pyi" },
     { include = "collections.pyi" },
-    { include = "dht.pyi" },
-    { include = "ds18x20.pyi" },
+    { include = "cryptolib.pyi" },
     { include = "errno.pyi" },
     { include = "esp.pyi" },
     { include = "esp32.pyi" },
-    { include = "ffi.pyi" },
-    { include = "flashbdev.pyi" },
     { include = "framebuf.pyi" },
     { include = "gc.pyi" },
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
-    { include = "inisetup.pyi" },
     { include = "io.pyi" },
     { include = "json.pyi" },
+    { include = "lcd160cr.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
     { include = "neopixel.pyi" },
     { include = "network.pyi" },
-    { include = "ntptime.pyi" },
-    { include = "onewire.pyi" },
     { include = "os.pyi" },
-    { include = "pycopy.pyi" },
-    { include = "pycopy_imphook.pyi" },
+    { include = "pyb.pyi" },
     { include = "random.pyi" },
-    { include = "re.pyi" },
+    { include = "rp2.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },
     { include = "ssl.pyi" },
+    { include = "stm.pyi" },
     { include = "struct.pyi" },
     { include = "sys.pyi" },
     { include = "time.pyi" },
     { include = "uarray.pyi" },
     { include = "ubinascii.pyi" },
-    { include = "ubluetooth.pyi" },
-    { include = "ucollections.pyi" },
-    { include = "ucryptolib.pyi" },
     { include = "uctypes.pyi" },
-    { include = "uerrno.pyi" },
-    { include = "uhashlib.pyi" },
-    { include = "uheapq.pyi" },
     { include = "uio.pyi" },
     { include = "ujson.pyi" },
-    { include = "ulogging.pyi" },
     { include = "uos.pyi" },
-    { include = "upip.pyi" },
-    { include = "upip_utarfile.pyi" },
-    { include = "uplatform.pyi" },
-    { include = "urandom.pyi" },
-    { include = "ure.pyi" },
-    { include = "urequests.pyi" },
     { include = "uselect.pyi" },
     { include = "usocket.pyi" },
     { include = "ussl.pyi" },
     { include = "ustruct.pyi" },
-    { include = "usys.pyi" },
     { include = "utime.pyi" },
-    { include = "utimeq.pyi" },
-    { include = "utokenize.pyi" },
-    { include = "uwebsocket.pyi" },
     { include = "uzlib.pyi" },
-    { include = "webrepl.pyi" },
-    { include = "webrepl_setup.pyi" },
-    { include = "websocket.pyi" },
-    { include = "websocket_helper.pyi" },
+    { include = "wipy.pyi" },
+    { include = "zephyr.pyi" },
     { include = "zlib.pyi" },
-    { include = "_boot.pyi" },
-    { include = "_onewire.pyi" },
     { include = "_thread.pyi" },
-    { include = "_uasyncio.pyi" },
-]
-source = [
-    { name = "test-pypi", url = "https://test.pypi.org/legacy/", secondary = true },
 ]
 
 [tool.poetry.dependencies]
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
-micropython-core-stubs = "^0.0.2a7"
 
 [build-system]
-requires = [
-    "poetry-core>=1.0.0",
-]
+requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"

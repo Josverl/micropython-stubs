@@ -10,3 +10,5 @@ black
 tomli
 tomli-w
 packaging
+
+pysondb-v2
