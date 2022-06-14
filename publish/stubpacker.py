@@ -95,7 +95,7 @@ class StubPackage:
         "return the version of the package"
         # read the version from the toml file
         if not self.toml_file.exists():
-            self.mpy_version
+            return self.mpy_version
         with open(self.toml_file, "rb") as f:
             pyproject = tomli.load(f)
         return str(parse(pyproject["tool"]["poetry"]["version"]))

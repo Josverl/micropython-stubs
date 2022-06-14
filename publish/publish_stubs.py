@@ -52,16 +52,16 @@ db = PysonDB(db_path.as_posix())
 # esp32-generic-stubs
 # ######################################
 # todo : pass this as parameters
-version = "1.18"
-type = "board"
-port = "esp32"
-board = "GENERIC"
+# version = "1.18"
+# type = "board"
+# port = "esp32"
+# board = "GENERIC"
 
 #
 
 
-for mpy_version in ["1.18"]:
-    for port in ["esp32"]:
+for mpy_version in ["1.14", "1.15", "1.16", "1.17", "1.18"]:
+    for port in ["esp32", "esp8266"]:
         board = "GENERIC"
         # package name for firmware package
         stub_package_name = f"micropython-{port}-{board}-stubs".lower().replace("-generic-stubs", "-stubs")
@@ -94,13 +94,15 @@ for mpy_version in ["1.18"]:
             package.create_pyproject(last["pyproject"])
             package.pkg_version = last["pkg_version"]
         else:
-            ver_flat = clean_version(version, flat=True)
+            ver_flat = clean_version(mpy_version, flat=True)
             stubs: List[Tuple[str, Path]] = [
                 ("Firmware stubs", Path("./stubs") / f"micropython-{ver_flat}-{port}"),
                 ("Frozen stubs", Path("./stubs") / f"micropython-{ver_flat}-frozen" / port / board),
                 ("Core Stubs", Path("./stubs") / "cpython_core-pycopy"),
             ]
-            package = StubPackage(package_path, stub_package_name, version, stubs=stubs)
+            package = StubPackage(package_path, stub_package_name, mpy_version, stubs=stubs)
+            package.create_pyproject()
+
         ##
 
         print(package.pkg_version)
@@ -110,7 +112,6 @@ for mpy_version in ["1.18"]:
         package.update_included_stubs()
         package.bump()
         package.build()
-        if
         # package.publish()
         db.add(package.to_json())
         db.commit()
