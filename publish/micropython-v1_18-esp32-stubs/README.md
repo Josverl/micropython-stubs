@@ -1,4 +1,4 @@
-# micropython-core-stubs
+# micropython-esp32-stubs
 
 
 This is a stub-only package for MicroPython.
@@ -14,4 +14,6 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
+* Firmware stubs from stubs/micropython-v1_18-esp32
+* Frozen stubs from stubs/micropython-v1_18-frozen/esp32/GENERIC
 * Core Stubs from stubs/cpython_core-pycopy

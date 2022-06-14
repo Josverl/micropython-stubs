@@ -70,20 +70,26 @@ class StubPackage:
         version: str = "0.0.1",
         description: str = "MicroPython stubs",
         stubs: Optional[List[Tuple[str, Path]]] = None,
+        json_data: Optional[Dict[str, Any]] = None,
     ):
         # create the package folder
         package_path.mkdir(parents=True, exist_ok=True)
-        # store essentials
-        self.package_path = package_path
-        self.package_name = package_name
-        self.description = description
-        # save the stub sources
-        stub_sources: List[Tuple[str, Path]] = []
-        if stubs:
-            self.stub_sources = stubs
-        # normalise the version to semver
-        self.mpy_version = str(parse(version.replace("_", ".")))  # Initial version
-        # convert V1_18 to semver (Major.Minor) and use the patch level (or post release)  as version for the stubs package
+        if json_data is not None:
+            self.from_json(json_data)
+        else:
+            # store essentials
+            self.package_path = package_path
+            self.package_name = package_name
+            self.create_pyproject()
+
+            self.description = description
+            # save the stub sources
+            stub_sources: List[Tuple[str, Path]] = []
+            if stubs:
+                self.stub_sources = stubs
+            # normalise the version to semver
+            self.mpy_version = str(parse(version.replace("_", ".")))  # Initial version
+            self._publish = True
 
     @property
     def toml_file(self) -> Path:
@@ -135,8 +141,6 @@ class StubPackage:
 
     # -----------------------------------------------
 
-    # package_version = property(get_package_version)
-
     def to_json(self):
         """return the package as json
 
@@ -149,14 +153,30 @@ class StubPackage:
         return {
             "name": self.package_name,
             "mpy_version": self.mpy_version,
-            "publish": True,
+            "publish": self._publish,
             "pkg_version": str(self.pkg_version),
             "path": self.package_path.as_posix(),
             "stub_sources": [(name, Path(path).as_posix()) for (name, path) in self.stub_sources],
             "description": self.description,
             "hashes": [],
-            "pyproject": open(self.toml_file).read().splitlines(),
+            "pyproject": [],  # open(self.toml_file).read().splitlines(),
         }
+
+    def from_json(self, json_data):
+        """load the package from json"""
+        self.package_name = json_data["name"]
+        self.package_path = Path(json_data["path"])
+        self.description = json_data["description"]
+        self.pkg_version = json_data["pkg_version"]
+        #  create the pyproject.toml file
+        self.create_pyproject()
+        # set version after pyproject has been created
+
+        self.stub_sources = [(name, Path(path)) for (name, path) in json_data["stub_sources"]]
+        self.mpy_version = json_data["mpy_version"]
+        self._publish = json_data["publish"]
+        self.hashes = json_data["hashes"]
+        # self.pyproject = []  # json_data["pyproject"]
 
     def update_package_files(
         self,
@@ -214,27 +234,19 @@ class StubPackage:
 
     def create_pyproject(
         self,
-        pyproject_data: Optional[List[str]] = None,
     ):
         """
         create or update/overwrite a `pyproject.toml` file by combining a template file
         with the given parameters.
         and updating it with the pyi files included
         """
+        # FIXME:
 
         # Do not overwrite existing pyproject.toml but read and apply changes to it
-        # 1) recreate from database, if provided
-        # 2) read from disk , if exists
-        # 3) create from template, in all other cases
+        # 1) read from disk , if exists
+        # 2) create from template, in all other cases
         on_disk = (self.toml_file).exists()
-        if pyproject_data:
-            # pyproject has been read from the database
-            # write the pyproject toml file
-            with open(self.toml_file, "w") as output:
-                output.writelines("\n".join(pyproject_data))
-
-            _pyproject = self.pyproject
-        elif on_disk:
+        if on_disk:
             # do not overwrite the version of a pre-existing file
             _pyproject = self.pyproject
             assert _pyproject is not None
@@ -248,16 +260,16 @@ class StubPackage:
                 _pyproject = tomli.load(f)
             _pyproject["tool"]["poetry"]["version"] = self.mpy_version
 
-        # check if version number of the package matches the version number of the stubs
-        ver_pkg = parse(_pyproject["tool"]["poetry"]["version"])
-        ver_stubs = parse(self.mpy_version)
-        if isinstance(ver_stubs, LegacyVersion) or isinstance(ver_pkg, LegacyVersion):
-            raise ValueError(f"Legacy version not supported: {ver_pkg} || {ver_stubs}")
+        # # check if version number of the package matches the version number of the stubs
+        # ver_pkg = parse(_pyproject["tool"]["poetry"]["version"])
+        # ver_stubs = parse(self.mpy_version)
+        # if isinstance(ver_stubs, LegacyVersion) or isinstance(ver_pkg, LegacyVersion):
+        #     raise ValueError(f"Legacy version not supported: {ver_pkg} || {ver_stubs}")
 
-        if not (ver_pkg.major == ver_stubs.major and ver_pkg.minor == ver_stubs.minor):
+        # if not (ver_pkg.major == ver_stubs.major and ver_pkg.minor == ver_stubs.minor):
 
-            log.warning(f"Package version:{ver_pkg.public} does not match the version of the stubs: {ver_stubs.public}")
-            _pyproject["tool"]["poetry"]["version"] = self.mpy_version
+        #     log.warning(f"Package version:{ver_pkg.public} does not match the version of the stubs: {ver_stubs.public}")
+        #     _pyproject["tool"]["poetry"]["version"] = self.mpy_version
 
         # update the name , version and description of the package
         _pyproject["tool"]["poetry"]["name"] = self.package_name
@@ -268,6 +280,7 @@ class StubPackage:
     def update_included_stubs(self):
         "Add the stub files to the pyproject.toml file"
         _pyproject = self.pyproject
+        _pyproject["tool"]["poetry"]["packages"] = []
         # find packages using __init__ files
         for p in self.package_path.rglob("**/__init__.py"):
             # add the module to the package

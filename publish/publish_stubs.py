@@ -58,16 +58,39 @@ db = PysonDB(db_path.as_posix())
 # board = "GENERIC"
 
 #
+COMBINED = 1
+DOC_STUBS = 2
+CORE_STUBS = 2
+
+
+def package_name(port, board, pkg=COMBINED, family="micropython") -> str:
+    "generate a package name"
+    if pkg == COMBINED:
+        # # {family}-{port}-{board}-stubs
+        return f"{family}-{port}-{board}-stubs".lower().replace("-generic-stubs", "-stubs")
+    raise NotImplementedError(port, board, pkg)
+
+
+def package_path(port, board, version, pkg=COMBINED, family="micropython") -> Path:
+    "generate a package name"
+    if pkg == COMBINED:
+        # {family}-{version}-{port}-{board}-stubs
+        return (
+            root_path
+            / "publish"
+            / f"{family}-{clean_version(mpy_version, flat=True)}-{port}-{board}-stubs".lower().replace("-generic-stubs", "-stubs")
+        )
+    raise NotImplementedError(port, board, pkg)
 
 
 for mpy_version in ["1.14", "1.15", "1.16", "1.17", "1.18"]:
     for port in ["esp32", "esp8266"]:
         board = "GENERIC"
         # package name for firmware package
-        stub_package_name = f"micropython-{port}-{board}-stubs".lower().replace("-generic-stubs", "-stubs")
+        pkg_name = package_name(port, board)
 
         # find in the database
-        recs = db.get_by_query(query=lambda x: x["mpy_version"] == mpy_version and x["name"] == stub_package_name)
+        recs = db.get_by_query(query=lambda x: x["mpy_version"] == mpy_version and x["name"] == pkg_name)
         # dict to list
         recs = [{"id": key, "data": recs[key]} for key in recs]
         # sort
@@ -75,24 +98,16 @@ for mpy_version in ["1.14", "1.15", "1.16", "1.17", "1.18"]:
 
         # [log.info(f"{x['name']} - {x['mpy_version']} - {x['pkg_version']}") for x in packages]
         if len(packages) > 0:
-            last = packages[-1]["data"]
-            print(f"{stub_package_name} {mpy_version}- {last['pkg_version']}")
+            pkg_from_db = packages[-1]["data"]
+            print(f"{pkg_name} {mpy_version}- {pkg_from_db['pkg_version']}")
         else:
-            last = None
+            pkg_from_db = None
 
         # create the stub package on disk
-        package_path = root_path / "publish" / stub_package_name
-        if last:
+        pkg_path = package_path(port, board, mpy_version)
+        if pkg_from_db:
 
-            package = StubPackage(
-                package_path,
-                stub_package_name,
-                version=last["mpy_version"],
-                description=last["description"],
-                stubs=last["stub_sources"],
-            )
-            package.create_pyproject(last["pyproject"])
-            package.pkg_version = last["pkg_version"]
+            package = StubPackage(pkg_path, pkg_name, json_data=pkg_from_db)
         else:
             ver_flat = clean_version(mpy_version, flat=True)
             stubs: List[Tuple[str, Path]] = [
@@ -100,11 +115,10 @@ for mpy_version in ["1.14", "1.15", "1.16", "1.17", "1.18"]:
                 ("Frozen stubs", Path("./stubs") / f"micropython-{ver_flat}-frozen" / port / board),
                 ("Core Stubs", Path("./stubs") / "cpython_core-pycopy"),
             ]
-            package = StubPackage(package_path, stub_package_name, mpy_version, stubs=stubs)
-            package.create_pyproject()
+            package = StubPackage(pkg_path, pkg_name, mpy_version, stubs=stubs)
 
+        package.create_pyproject()
         ##
-
         print(package.pkg_version)
         print(package.mpy_version)
 
@@ -120,8 +134,8 @@ for mpy_version in ["1.14", "1.15", "1.16", "1.17", "1.18"]:
 
 if 0:
     # for board stubs: remove -GENERIC from the name to simplify package naming convention
-    stub_package_name = f"micropython-{port}-{board}-stubs".lower().replace("-generic-stubs", "-stubs")
-    package_path = root_path / "publish" / stub_package_name
+    pkg_name = f"micropython-{port}-{board}-stubs".lower().replace("-generic-stubs", "-stubs")
+    pkg_path = root_path / "publish" / pkg_name
 
     stubs: List[Tuple[str, Path]] = [
         ("Firmware stubs", Path("./stubs") / f"micropython-{ver_flat}-{port}"),
@@ -129,7 +143,7 @@ if 0:
         ("Core Stubs", Path("./stubs") / "cpython_core-pycopy"),
     ]
 
-    package = StubPackage(package_path, stub_package_name, version, stubs=stubs)
+    package = StubPackage(pkg_path, pkg_name, version, stubs=stubs)
     print(package.pkg_version)
     print(package.mpy_version)
 
@@ -151,13 +165,13 @@ type = "core"
 
 
 if 0:
-    stub_package_name = f"micropython-{type}-stubs"
-    package_path = root_path / "publish" / stub_package_name
+    pkg_name = f"micropython-{type}-stubs"
+    pkg_path = root_path / "publish" / pkg_name
 
     stubs: List[Tuple[str, Path]] = [
         ("Core Stubs", Path("./stubs") / "cpython_core-pycopy"),
     ]
-    package = StubPackage(package_path, stub_package_name, version, description="Micropython Core stubs", stubs=stubs)
+    package = StubPackage(pkg_path, pkg_name, version, description="Micropython Core stubs", stubs=stubs)
     package.update_package_files()
 
     package.bump()
@@ -174,14 +188,14 @@ type = "doc"
 ver_flat = clean_version(version, flat=True)
 
 if 0:
-    stub_package_name = f"micropython-doc-stubs"
-    package_path = root_path / "publish" / stub_package_name
+    pkg_name = f"micropython-doc-stubs"
+    pkg_path = root_path / "publish" / pkg_name
 
     stubs: List[Tuple[str, Path]] = [
         ("Doc Stubs", Path("./stubs") / f"micropython-{ver_flat}-docstubs"),
     ]
 
-    package = StubPackage(package_path, stub_package_name, version, description="Micropython Doc Stubs", stubs=stubs)
+    package = StubPackage(pkg_path, pkg_name, version, description="Micropython Doc Stubs", stubs=stubs)
     package.update_package_files()
 
     package.bump()

@@ -1,4 +1,4 @@
-# micropython-core-stubs
+# micropython-doc-stubs
 
 
 This is a stub-only package for MicroPython.
@@ -14,4 +14,4 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* Core Stubs from stubs/cpython_core-pycopy
+* Doc Stubs from stubs/micropython-v1_18-docstubs
