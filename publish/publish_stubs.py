@@ -8,6 +8,7 @@ required folder structure:
 |  +--micropython-v1_18-esp32
 |
 +--publish
+|  +--package_data.jsondb
 |  +--template
 |     +--pyproject.toml
 |
@@ -15,23 +16,25 @@ required folder structure:
 |     +--<package name> double nested to match the folder structure
 |  +--<family>-version-<port>-<board>-<type>-stubs
 |  +--micropython-v1_18-esp32-generic-fw-stubs
+|
+
 
 !!Note: anything excluded in .gitignore is not packaged by poetry 
 """
 import logging
 from pathlib import Path
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 import jsons
 from stubber.utils.versions import clean_version
 
-from json_database import  JsonDatabase
 from pysondb import PysonDB
 
 from stubpacker import StubPackage
+from packaging.version import parse
 
-LOG = logging.getLogger(__name__)
-LOG.setLevel("INFO")
+log = logging.getLogger(__name__)
+log.setLevel("INFO")
 
 
 # Defaults to the root of the project
@@ -41,7 +44,7 @@ root_path: Path = Path(".")
 # db_path = root_path / "data" / "package_data.jsondb"
 # db = JsonDatabase("packages", db_path.as_posix())
 
-db_path = root_path / "data" / "package_data_v3.jsondb"
+db_path = root_path / "publish" / "package_data.jsondb"
 db = PysonDB(db_path.as_posix())
 
 
@@ -49,32 +52,72 @@ db = PysonDB(db_path.as_posix())
 # esp32-generic-stubs
 # ######################################
 # todo : pass this as parameters
-version = "v1.18"
+version = "1.18"
 type = "board"
 port = "esp32"
 board = "GENERIC"
 
-ver_flat = clean_version(version, flat=True)
+#
 
 
-
-for mpy_version in ["1.17", "1.18"]:
+for mpy_version in ["1.18"]:
     for port in ["esp32"]:
         board = "GENERIC"
-
-        # keys
+        # package name for firmware package
         stub_package_name = f"micropython-{port}-{board}-stubs".lower().replace("-generic-stubs", "-stubs")
-       
+
         # find in the database
-        known_pkgs = db.get_by_query(query=lambda x: x['mpy_version'] == mpy_version and x['name'] == stub_package_name)
+        recs = db.get_by_query(query=lambda x: x["mpy_version"] == mpy_version and x["name"] == stub_package_name)
+        # dict to list
+        recs = [{"id": key, "data": recs[key]} for key in recs]
+        # sort
+        packages = sorted(recs, key=lambda x: parse(x["data"]["pkg_version"]))
 
-        print( f"{stub_package_name} {mpy_version}- {len(known_pkgs)}")
-        [LOG.info(f"{x['name']} - {x['mpy_version']} - {x['pkg_version']}") for x in known_pkgs]
+        # [log.info(f"{x['name']} - {x['mpy_version']} - {x['pkg_version']}") for x in packages]
+        if len(packages) > 0:
+            last = packages[-1]["data"]
+            print(f"{stub_package_name} {mpy_version}- {last['pkg_version']}")
+        else:
+            last = None
+
+        # create the stub package on disk
+        package_path = root_path / "publish" / stub_package_name
+        if last:
+
+            package = StubPackage(
+                package_path,
+                stub_package_name,
+                version=last["mpy_version"],
+                description=last["description"],
+                stubs=last["stub_sources"],
+            )
+            package.create_pyproject(last["pyproject"])
+            package.pkg_version = last["pkg_version"]
+        else:
+            ver_flat = clean_version(version, flat=True)
+            stubs: List[Tuple[str, Path]] = [
+                ("Firmware stubs", Path("./stubs") / f"micropython-{ver_flat}-{port}"),
+                ("Frozen stubs", Path("./stubs") / f"micropython-{ver_flat}-frozen" / port / board),
+                ("Core Stubs", Path("./stubs") / "cpython_core-pycopy"),
+            ]
+            package = StubPackage(package_path, stub_package_name, version, stubs=stubs)
+        ##
+
+        print(package.pkg_version)
+        print(package.mpy_version)
+
+        package.update_package_files()
+        package.update_included_stubs()
+        package.bump()
+        package.build()
+        if
+        # package.publish()
+        db.add(package.to_json())
+        db.commit()
+        package.clean()
 
 
-
-
-if 1:
+if 0:
     # for board stubs: remove -GENERIC from the name to simplify package naming convention
     stub_package_name = f"micropython-{port}-{board}-stubs".lower().replace("-generic-stubs", "-stubs")
     package_path = root_path / "publish" / stub_package_name
@@ -89,12 +132,12 @@ if 1:
     print(package.pkg_version)
     print(package.mpy_version)
 
-    db.add(package.to_json())
-    db.commit()
     package.update_package_files()
     package.bump()
     package.build()
     package.publish()
+    db.add(package.to_json())
+    db.commit()
     package.clean()
 
 
@@ -137,13 +180,10 @@ if 0:
         ("Doc Stubs", Path("./stubs") / f"micropython-{ver_flat}-docstubs"),
     ]
 
-    package = StubPackage(package_path, stub_package_name, version, description="Micropython Doc Stubs",stubs=stubs)
+    package = StubPackage(package_path, stub_package_name, version, description="Micropython Doc Stubs", stubs=stubs)
     package.update_package_files()
 
     package.bump()
     package.build()
     package.publish()
     package.clean()
-
-
-
