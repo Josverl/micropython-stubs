@@ -48,14 +48,6 @@ db_path = root_path / "publish" / "package_data.jsondb"
 db = PysonDB(db_path.as_posix())
 
 
-# ######################################
-# esp32-generic-stubs
-# ######################################
-# todo : pass this as parameters
-# version = "1.18"
-# type = "board"
-# port = "esp32"
-# board = "GENERIC"
 
 #
 COMBINED = 1
@@ -83,11 +75,14 @@ def package_path(port, board, version, pkg=COMBINED, family="micropython") -> Pa
     raise NotImplementedError(port, board, pkg)
 
 
-for mpy_version in ["1.14", "1.15", "1.16", "1.17", "1.18"]:
-    for port in ["esp32", "esp8266"]:
+for mpy_version in ["1.17", "1.18"]:  # "1.14", "1.15", "1.16",
+    for port in ["esp32", "esp8266", "rp2", "stm32"]:
+        # TODO: Stubber: firmware Stubber MUST report "stm32" for a pyboard
         board = "GENERIC"
         # package name for firmware package
         pkg_name = package_name(port, board)
+
+        print("=" * 40)
 
         # find in the database
         recs = db.get_by_query(query=lambda x: x["mpy_version"] == mpy_version and x["name"] == pkg_name)
@@ -110,6 +105,7 @@ for mpy_version in ["1.14", "1.15", "1.16", "1.17", "1.18"]:
             package = StubPackage(pkg_path, pkg_name, json_data=pkg_from_db)
         else:
             ver_flat = clean_version(mpy_version, flat=True)
+
             stubs: List[Tuple[str, Path]] = [
                 ("Firmware stubs", Path("./stubs") / f"micropython-{ver_flat}-{port}"),
                 ("Frozen stubs", Path("./stubs") / f"micropython-{ver_flat}-frozen" / port / board),
@@ -117,49 +113,41 @@ for mpy_version in ["1.14", "1.15", "1.16", "1.17", "1.18"]:
             ]
             package = StubPackage(pkg_path, pkg_name, mpy_version, stubs=stubs)
 
-        package.create_pyproject()
-        ##
-        print(package.pkg_version)
-        print(package.mpy_version)
+        # check if the sources exist
+        OK = True
+        for (name, path) in package.stub_sources:
+            if not path.exists():
+                log.warning(f"{pkg_path}: source {name} does not exist: {path}")
+                OK = False
+        if not OK:
+            log.info(f"{pkg_path}: skipping as source stubs are missing")
+            package._publish = False
+            continue
 
         package.update_package_files()
         package.update_included_stubs()
-        package.bump()
-        package.build()
-        # package.publish()
-        db.add(package.to_json())
-        db.commit()
+        package.check()
+
+        # If there are changes to the package, then publish it
+        if package.is_changed():
+            print(f"Found changes to package : {package.package_name} {package.pkg_version}")
+            package.bump()
+            package.hash = package.create_hash()
+            print(f"New hash: {package.package_name} {package.pkg_version} {package.hash}")
+            # package.build()
+            # package.publish()
+            db.add(package.to_json())
+            db.commit()
+        else:
+            print(f"No changes to package : {package.package_name} {package.pkg_version}")
+
         package.clean()
-
-
-if 0:
-    # for board stubs: remove -GENERIC from the name to simplify package naming convention
-    pkg_name = f"micropython-{port}-{board}-stubs".lower().replace("-generic-stubs", "-stubs")
-    pkg_path = root_path / "publish" / pkg_name
-
-    stubs: List[Tuple[str, Path]] = [
-        ("Firmware stubs", Path("./stubs") / f"micropython-{ver_flat}-{port}"),
-        ("Frozen stubs", Path("./stubs") / f"micropython-{ver_flat}-frozen" / port / board),
-        ("Core Stubs", Path("./stubs") / "cpython_core-pycopy"),
-    ]
-
-    package = StubPackage(pkg_path, pkg_name, version, stubs=stubs)
-    print(package.pkg_version)
-    print(package.mpy_version)
-
-    package.update_package_files()
-    package.bump()
-    package.build()
-    package.publish()
-    db.add(package.to_json())
-    db.commit()
-    package.clean()
 
 
 # ######################################
 # micropython-core-stubs
 # ######################################
-# todo : pass this as parameters
+# todo: Publish: Integrate core stubs in publishing loop 
 version = "v0.1"
 type = "core"
 
@@ -183,6 +171,7 @@ if 0:
 # ######################################
 # micropython-doc-stubs
 # ######################################
+# todo : Publish: Integrate doc stubs in publishing loop 
 version = "v1.18"
 type = "doc"
 ver_flat = clean_version(version, flat=True)

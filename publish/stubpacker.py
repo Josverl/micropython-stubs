@@ -8,7 +8,13 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 import tomli
 import tomli_w
 from packaging.version import Version, LegacyVersion, parse
+import hashlib
 
+# TODO: Get git tag and store in DB for reference
+# import stubber.basicgit as git
+# git log -n 1 --format="%H"
+# git log -n 1 --format="https://github.com/josverl/micropython-stubs/tree/%H"
+# https://github.com/Josverl/micropython-stubs/tree/d45c8fa3dbdc01978af58532ff4c5313090aabfb
 
 log = logging.getLogger(__name__)
 log.setLevel("INFO")
@@ -47,14 +53,6 @@ def bump_postrelease(
     return new
 
 
-# def calculate_checksum(filenames):
-#     hash = hashlib.md5()
-#     for fn in filenames:
-#         if os.path.isfile(fn):
-#             hash.update(open(fn, "rb").read())
-#     return hash.digest()
-
-
 class StubPackage:
     """
     Create a stub-only package for a specific version of micropython
@@ -80,15 +78,16 @@ class StubPackage:
             # store essentials
             self.package_path = package_path
             self.package_name = package_name
+            self.description = description
+            self.mpy_version = str(parse(version.replace("_", ".")))  # Initial version
+            self.hash = None  # intial hash
             self.create_pyproject()
 
-            self.description = description
             # save the stub sources
             stub_sources: List[Tuple[str, Path]] = []
             if stubs:
                 self.stub_sources = stubs
             # normalise the version to semver
-            self.mpy_version = str(parse(version.replace("_", ".")))  # Initial version
             self._publish = True
 
     @property
@@ -158,8 +157,7 @@ class StubPackage:
             "path": self.package_path.as_posix(),
             "stub_sources": [(name, Path(path).as_posix()) for (name, path) in self.stub_sources],
             "description": self.description,
-            "hashes": [],
-            "pyproject": [],  # open(self.toml_file).read().splitlines(),
+            "hash": self.hash,
         }
 
     def from_json(self, json_data):
@@ -167,16 +165,14 @@ class StubPackage:
         self.package_name = json_data["name"]
         self.package_path = Path(json_data["path"])
         self.description = json_data["description"]
-        self.pkg_version = json_data["pkg_version"]
-        #  create the pyproject.toml file
-        self.create_pyproject()
-        # set version after pyproject has been created
-
-        self.stub_sources = [(name, Path(path)) for (name, path) in json_data["stub_sources"]]
         self.mpy_version = json_data["mpy_version"]
         self._publish = json_data["publish"]
-        self.hashes = json_data["hashes"]
-        # self.pyproject = []  # json_data["pyproject"]
+        self.hash = json_data["hash"]
+        #  create the pyproject.toml file
+        self.create_pyproject()
+        # set pkg version after creating the toml file
+        self.pkg_version = json_data["pkg_version"]
+        self.stub_sources = [(name, Path(path)) for (name, path) in json_data["stub_sources"]]
 
     def update_package_files(
         self,
@@ -240,8 +236,6 @@ class StubPackage:
         with the given parameters.
         and updating it with the pyi files included
         """
-        # FIXME:
-
         # Do not overwrite existing pyproject.toml but read and apply changes to it
         # 1) read from disk , if exists
         # 2) create from template, in all other cases
@@ -280,15 +274,22 @@ class StubPackage:
     def update_included_stubs(self):
         "Add the stub files to the pyproject.toml file"
         _pyproject = self.pyproject
+        assert _pyproject is not None, "No pyproject.toml file found"
         _pyproject["tool"]["poetry"]["packages"] = []
         # find packages using __init__ files
-        for p in self.package_path.rglob("**/__init__.py"):
+        # take care no to include a module twice
+        modules = set({})
+        for p in self.package_path.rglob("**/__init__.py*"):
             # add the module to the package
             # fixme : only accounts for one level of packages
-            _pyproject["tool"]["poetry"]["packages"] += [{"include": p.parent.name}]
+            modules.add(p.parent.name)
+        for module in modules:
+            _pyproject["tool"]["poetry"]["packages"] += [{"include": module}]
         # now find other stub files directly in the folder
-        for p in self.package_path.glob("*.pyi"):
-            _pyproject["tool"]["poetry"]["packages"] += [{"include": p.name}]
+        for p in self.package_path.glob("*.py*"):
+            if p.suffix in (".py", ".pyi"):
+                _pyproject["tool"]["poetry"]["packages"] += [{"include": p.name}]
+
         # write out the pyproject.toml file
         self.pyproject = _pyproject
 
@@ -318,6 +319,35 @@ class StubPackage:
             return False
         return True
 
+    def create_hash(self) -> str:
+        "Create a hash of all files in the package"
+        # BUF_SIZE is totally arbitrary, change for your app!
+        BUF_SIZE = 65536 * 16  # lets read stuff in 64kb chunks!
+
+        hash = hashlib.sha1()
+        files = (
+            list(self.package_path.glob("**/*.py*"))
+            + [self.package_path / "LICENSE.md"]
+            + [self.package_path / "README.md"]
+            # + [self.toml_file]
+        )
+
+        for file in sorted(files):
+            with open(file, "rb") as f:
+                while True:
+                    data = f.read(BUF_SIZE)
+                    if not data:
+                        break
+                    hash.update(data)
+
+        return hash.hexdigest()
+
+    def is_changed(self) -> bool:
+        "Check if the package has changed"
+        new = self.create_hash()
+        log.debug(f"changed: {self.hash != new} : Old {self.hash} New: {new}")
+        return self.hash != new
+
     def bump(self):
         "bump the version of the package"
         try:
@@ -346,22 +376,38 @@ class StubPackage:
             return False
         return True
 
-    def build(self):
-        # BUG: does not detect errors in the build
+    def build(self) -> bool:
         try:
             # create package
-            subprocess.run(["poetry", "build", "-vvv"], cwd=self.package_path, check=True)
-        except Exception as e:
-            log.error(f"Error: {e}")
+            subprocess.run(
+                [
+                    "poetry",
+                    "build",
+                    # "-vvv",
+                ],
+                cwd=self.package_path,
+                check=True,
+            )
+
+        except (NotADirectoryError, FileNotFoundError) as e:  # pragma: no cover
+            log.error("Exception on process, {}".format(e))
+            return False
+        except subprocess.CalledProcessError as e:  # pragma: no cover
+            log.error("Exception on process, {}".format(e))
             return False
         return True
 
-    def publish(self):
-        # BUG: does not detect errors in publishing
+    def publish(self) -> bool:
+        if not self._publish:
+            log.warning(f"Publishing is disabled for {self.package_name}")
+            return False
         try:
             # Publish to test
             subprocess.run(["poetry", "publish", "-r", "test-pypi"], cwd=self.package_path, check=True)
-        except Exception as e:
-            log.error(f"Error: {e}")
+        except (NotADirectoryError, FileNotFoundError) as e:  # pragma: no cover
+            log.error("Exception on process, {}".format(e))
+            return False
+        except subprocess.CalledProcessError as e:  # pragma: no cover
+            log.error("Exception on process, {}".format(e))
             return False
         return True

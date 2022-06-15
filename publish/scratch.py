@@ -25,10 +25,13 @@ from pkg_resources import Requirement
 # name == req.name and version in req.specifier
 
 
-current :Version = parse("v1.18")  # type: ignore
+current: Version = parse("v1.18")  # type: ignore
 
-def bump_postrelease(current:Version,) -> Version:
-    """ Increases the post release version number"""
+
+def bump_postrelease(
+    current: Version,
+) -> Version:
+    """Increases the post release version number"""
     parts = []
     # Epoch
     if current.epoch != 0:
@@ -44,7 +47,6 @@ def bump_postrelease(current:Version,) -> Version:
     else:
         parts.append(f".post{1}")
 
-
     # Development release
     if current.dev is not None:
         parts.append(f".dev{current.dev}")
@@ -57,10 +59,7 @@ def bump_postrelease(current:Version,) -> Version:
     if not isinstance(new, Version):
         raise ValueError(f"{new} is not a valid version")
 
-    return new 
-
-
-
+    return new
 
 
 # p1 :Version  = parse("1.18.0.post1")
@@ -71,7 +70,6 @@ def bump_postrelease(current:Version,) -> Version:
 # current.post = 1
 
 
-
 db_path = Path(".") / "data" / "package_data.jsondb"
 db = PysonDB(db_path.as_posix())
 
@@ -79,7 +77,6 @@ db = PysonDB(db_path.as_posix())
 # ######################################
 # esp32-generic-stubs
 # ######################################
-# todo : pass this as parameters
 mpy_version = "1.18"
 type = "board"
 port = "esp32"
@@ -96,13 +93,37 @@ recs = db.get_by_query(query=lambda x: x["mpy_version"] == mpy_version and x["na
 # )
 
 # dict to list
-recs = [{"id":key,"data": recs[key]} for key in recs]
-# sort 
-packages = sorted( recs,  key=lambda x: parse(x["data"]["pkg_version"]))
+recs = [{"id": key, "data": recs[key]} for key in recs]
+# sort
+packages = sorted(recs, key=lambda x: parse(x["data"]["pkg_version"]))
 
 packages[-1]["data"]
 
 
-print(f"{stub_package_name} {mpy_version}- {len(known_pkgs)}")
-[LOG.info(f"{x['name']} - {x['mpy_version']} - {x['pkg_version']}") for x in known_pkgs]
+print(f"{stub_package_name} {mpy_version}- {len(packages)}")
+[LOG.info(f"{x['name']} - {x['mpy_version']} - {x['pkg_version']}") for x in packages]
 
+
+import hashlib
+from pathlib import Path
+
+# BUF_SIZE is totally arbitrary, change for your app!
+BUF_SIZE = 65536 * 16  # lets read stuff in 64kb chunks!
+
+hash = hashlib.sha1()
+
+p = Path("stubs/micropython-v1_17-stm32")
+files = sorted(p.glob("**/*.py*"))
+
+for file in files:
+    with open(file, "rb") as f:
+        while True:
+            data = f.read(BUF_SIZE)
+            if not data:
+                break
+            hash.update(data)
+
+print("SHA1: {0}".format(hash.hexdigest()))
+
+
+"15aa6474f9d19c7302e81707e1e3b53a79283ecb"
