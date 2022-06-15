@@ -8,7 +8,7 @@
         "**/node_modules",
         "**/__pycache__",
         // no need to check the port diag module : 
-        // TODO: Exclude from stubs
+        // TODO: pyright: Exclude from stubs
         "**/port_diag.py*",
         "**/lcd160cr_test.py*",
         // examples included in frozen 
@@ -38,8 +38,8 @@
         "**/aioble/server.py*",
         "**/aioble/client.py*",
         // RP2
-        "**/lsm6dsox.py*", //  TODO: why does this not see the class variables ?
-        // dht : // TODO: solve esp.dht_readinto and mimxrt.dht_readinto
+        "**/lsm6dsox.py*", //  TODO: pyright: why does this not see the class variables ?
+        // dht : // TODO: pyright: solve esp.dht_readinto and mimxrt.dht_readinto
         "**/dht.py*",
         // pycopy internals
         "**/pycopy_imphook.py*",
@@ -89,7 +89,7 @@
     "ReportSelfClsParameterName": "information",
     "reportOptionalMemberAccess": "none", // "read" is not a known member of "None" - occurs often in frozen code
     // old firmware stubs
-    "reportOptionalSubscript": "information", // TODO: Is still reported as a warning
+    "reportOptionalSubscript": "information",
     // reduce noise 
     "reportWildcardImportFromLibrary": "none",
     // 
