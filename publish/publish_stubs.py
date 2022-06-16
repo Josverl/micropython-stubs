@@ -1,7 +1,7 @@
-""" 
+"""
 prepare a set of stub files for publishing to PyPi
 
-required folder structure: 
+required folder structure:
 
 +--stubs
 |  +--<any stub folders in repo>
@@ -19,9 +19,9 @@ required folder structure:
 |
 
 
-!!Note: anything excluded in .gitignore is not packaged by poetry 
+!!Note: anything excluded in .gitignore is not packaged by poetry
 """
-import logging
+
 from pathlib import Path
 from typing import Dict, List, Tuple
 
@@ -33,11 +33,14 @@ from pysondb import PysonDB
 from stubpacker import StubPackage
 from packaging.version import parse
 
-log = logging.getLogger(__name__)
-log.setLevel("INFO")
+from loguru import logger as log
+import sys
+
+# replace std handler with a custom one capped on INFO level
+log.remove()
+log.add(sys.stderr, level="INFO", backtrace=True, diagnose=True)
 
 
-# Defaults to the root of the project
 root_path: Path = Path(".")
 
 
@@ -48,7 +51,11 @@ db_path = root_path / "publish" / "package_data.jsondb"
 db = PysonDB(db_path.as_posix())
 
 
+is_dryrun = True
 
+log.info("preparing stubs ")
+if is_dryrun:
+    log.warning("dry run, no stubs will be published")
 #
 COMBINED = 1
 DOC_STUBS = 2
@@ -82,7 +89,7 @@ for mpy_version in ["1.17", "1.18"]:  # "1.14", "1.15", "1.16",
         # package name for firmware package
         pkg_name = package_name(port, board)
 
-        print("=" * 40)
+        log.info("=" * 40)
 
         # find in the database
         recs = db.get_by_query(query=lambda x: x["mpy_version"] == mpy_version and x["name"] == pkg_name)
@@ -94,7 +101,7 @@ for mpy_version in ["1.17", "1.18"]:  # "1.14", "1.15", "1.16",
         # [log.info(f"{x['name']} - {x['mpy_version']} - {x['pkg_version']}") for x in packages]
         if len(packages) > 0:
             pkg_from_db = packages[-1]["data"]
-            print(f"{pkg_name} {mpy_version}- {pkg_from_db['pkg_version']}")
+            log.info(f"Found {pkg_name} {mpy_version} {pkg_from_db['pkg_version']}")
         else:
             pkg_from_db = None
 
@@ -130,16 +137,17 @@ for mpy_version in ["1.17", "1.18"]:  # "1.14", "1.15", "1.16",
 
         # If there are changes to the package, then publish it
         if package.is_changed():
-            print(f"Found changes to package : {package.package_name} {package.pkg_version}")
+            log.info(f"Found changes to package : {package.package_name} {package.pkg_version}")
             package.bump()
             package.hash = package.create_hash()
-            print(f"New hash: {package.package_name} {package.pkg_version} {package.hash}")
-            # package.build()
-            # package.publish()
-            db.add(package.to_json())
-            db.commit()
+            log.debug(f"New hash: {package.package_name} {package.pkg_version} {package.hash}")
+            if not is_dryrun:
+                package.build()
+                package.publish()
+                db.add(package.to_json())
+                db.commit()
         else:
-            print(f"No changes to package : {package.package_name} {package.pkg_version}")
+            log.info(f"No changes to package : {package.package_name} {package.pkg_version}")
 
         package.clean()
 
@@ -147,7 +155,7 @@ for mpy_version in ["1.17", "1.18"]:  # "1.14", "1.15", "1.16",
 # ######################################
 # micropython-core-stubs
 # ######################################
-# todo: Publish: Integrate core stubs in publishing loop 
+# todo: Publish: Integrate core stubs in publishing loop
 version = "v0.1"
 type = "core"
 
@@ -171,7 +179,7 @@ if 0:
 # ######################################
 # micropython-doc-stubs
 # ######################################
-# todo : Publish: Integrate doc stubs in publishing loop 
+# todo : Publish: Integrate doc stubs in publishing loop
 version = "v1.18"
 type = "doc"
 ver_flat = clean_version(version, flat=True)

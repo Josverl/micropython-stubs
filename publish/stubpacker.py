@@ -1,4 +1,3 @@
-import logging
 import shutil
 import subprocess
 import hashlib
@@ -9,6 +8,7 @@ import tomli
 import tomli_w
 from packaging.version import Version, LegacyVersion, parse
 import hashlib
+from loguru import logger as log
 
 # TODO: Get git tag and store in DB for reference
 # import stubber.basicgit as git
@@ -16,8 +16,8 @@ import hashlib
 # git log -n 1 --format="https://github.com/josverl/micropython-stubs/tree/%H"
 # https://github.com/Josverl/micropython-stubs/tree/d45c8fa3dbdc01978af58532ff4c5313090aabfb
 
-log = logging.getLogger(__name__)
-log.setLevel("INFO")
+
+
 
 # https://peps.python.org/pep-0440/
 def bump_postrelease(
@@ -197,7 +197,7 @@ class StubPackage:
         """
         # Copy  the stubs to the package, directly in the package folder (no folders)
         for name, folder in self.stub_sources:
-            print(f"Copying {name} from {folder}")
+            log.debug(f"Copying {name} from {folder}")
             # shutil.copytree(folder, package_path / folder.name, symlinks=True, dirs_exist_ok=True)
             shutil.copytree(folder, self.package_path, symlinks=True, dirs_exist_ok=True)
 
@@ -315,7 +315,7 @@ class StubPackage:
         try:
             subprocess.run(["poetry", "check", "-vvv"], cwd=self.package_path)
         except subprocess.CalledProcessError as e:
-            print(f"Error: {e}")
+            log.error(f"Error: {e}")
             return False
         return True
 
@@ -365,7 +365,7 @@ class StubPackage:
             try:
                 tomli.loads(tomli_w.dumps(pyproject))
             except tomli.TOMLDecodeError as e:
-                print("Could not create a valid TOML file")
+                log.error(f"Could not create a valid TOML file: {e}")
                 raise (e)
 
             with open(self.toml_file, "wb") as output:
