@@ -397,13 +397,19 @@ class StubPackage:
             return False
         return True
 
-    def publish(self) -> bool:
+    def publish(self, production=False) -> bool:
         if not self._publish:
             log.warning(f"Publishing is disabled for {self.package_name}")
             return False
         try:
             # Publish to test
-            subprocess.run(["poetry", "publish", "-r", "test-pypi"], cwd=self.package_path, check=True)
+            if production:
+                log.info(f"Publishing to PRODUCTION  https://pypy.org")
+                cmd = ["poetry", "publish"]
+            else:
+                log.info(f"Publishing to https://test.pypy.org")
+                cmd = ["poetry", "publish", "-r", "test-pypi" ]
+            subprocess.run(cmd, cwd=self.package_path, check=True)
         except (NotADirectoryError, FileNotFoundError) as e:  # pragma: no cover
             log.error("Exception on process, {}".format(e))
             return False

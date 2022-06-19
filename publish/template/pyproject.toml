@@ -5,21 +5,22 @@ description = "template"
 authors = ["josverl <josverl@users.noreply.github.com>"]
 license = "MIT"
 readme = "readme.md"
-homepage = "https://micropython-stubs.readthedocs.io/"
+homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
+documentation = "https://micropython-stubs.readthedocs.io/"
 exclude = ["*.ps1", "*.py", "**/__pycache__", "**/dist"]
 include = ["**/*.py", "**/*.pyi"]
 repository = "https://github.com/josverl/micropython-stubs"
 
 classifiers = [
-    "Typing :: Typed",
-    "Development Status :: 4 - Beta",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: Implementation :: MicroPython",
-    "Operating System :: OS Independent",
-    "Topic :: Text Editors :: Integrated Development Environments (IDE)",
-    "Topic :: Software Development :: Build Tools",
+  "Typing :: Typed",
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: Implementation :: MicroPython",
+  "Operating System :: OS Independent",
+  "Topic :: Text Editors :: Integrated Development Environments (IDE)",
+  "Topic :: Software Development :: Build Tools",
 ]
 
 # Note: anything excluded in .gitignore is not packaged by poetry 
