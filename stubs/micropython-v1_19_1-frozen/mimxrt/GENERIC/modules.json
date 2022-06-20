@@ -5,10 +5,10 @@
         "port": "mimxrt",
         "platform": "mimxrt",
         "machine": "GENERIC",
-        "firmware": "micropython-mimxrt-v1_19",
+        "firmware": "micropython-mimxrt-v1_19_1",
         "nodename": "micropython",
-        "version": "v1.19",
-        "release": "v1.19",
+        "version": "v1.19.1",
+        "release": "v1.19.1",
         "sysname": "micropython"
     },
     "stubber": {

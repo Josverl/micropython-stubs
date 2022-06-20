@@ -5,10 +5,10 @@
         "port": "esp32",
         "platform": "esp32",
         "machine": "UM_TINYPICO",
-        "firmware": "micropython-esp32-v1_19",
+        "firmware": "micropython-esp32-v1_19_1",
         "nodename": "micropython",
-        "version": "v1.19",
-        "release": "v1.19",
+        "version": "v1.19.1",
+        "release": "v1.19.1",
         "sysname": "micropython"
     },
     "stubber": {
