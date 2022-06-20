@@ -11,11 +11,15 @@ required folder structure:
 |  +--package_data.jsondb
 |  +--template
 |     +--pyproject.toml
-|
+|     +--README.md
+|     +--LICENSE.md
 |  +--<folder for each package>
 |     +--<package name> double nested to match the folder structure
 |  +--<family>-version-<port>-<board>-<type>-stubs
-|  +--micropython-v1_18-esp32-generic-fw-stubs
+|  +--micropython-v1_18-esp32-stubs
+|  +--micropython-v1_18-stm32-stubs
+|  +--micropython-v1_19_1-stm32-stubs
+|  +-- ...
 |
 
 
@@ -25,7 +29,6 @@ required folder structure:
 from pathlib import Path
 from typing import Dict, List, Tuple
 
-import jsons
 from stubber.utils.versions import clean_version
 
 from pysondb import PysonDB
@@ -36,7 +39,7 @@ from packaging.version import parse
 from loguru import logger as log
 import sys
 
-# replace std handler with a custom one capped on INFO level
+# replace std log handler with a custom one capped on INFO level
 log.remove()
 log.add(sys.stderr, level="INFO", backtrace=True, diagnose=True)
 
@@ -161,10 +164,11 @@ def publish_board_stubs(versions: List[str], ports: List[str], boards: List[str]
                 OK = True
                 for (name, path) in package.stub_sources:
                     if not path.exists():
-                        log.warning(f"{pkg_path}: source {name} does not exist: {path}")
+                        log.warning(f"{pkg_name}: source {name} does not exist: {path}")
                         OK = False
                 if not OK:
-                    log.info(f"{pkg_path}: skipping as source stubs are missing")
+                    log.warning(f"{pkg_name}: skipping as source stubs are missing")
+
                     package._publish = False
                     continue
 
@@ -208,7 +212,8 @@ if __name__ == "__main__":
     db = PysonDB(db_path.as_posix())
 
     publish_board_stubs(
-        versions=["1.17", "1.18"],  # "1.14", "1.15", "1.16","1.17",
+        # versions=["1.17", "1.18", "1.19.1"],  # "1.14", "1.15", "1.16","1.17",
+        versions=["1.19.1"],  # "1.14", "1.15", "1.16","1.17",
         ports=["esp32", "stm32", "esp8266", "rp2"],
         boards=["GENERIC"],
         is_production=is_production,
