@@ -5,10 +5,10 @@
         "port": "esp8266",
         "platform": "esp8266",
         "machine": "GENERIC",
-        "firmware": "micropython-esp8266-v1_19",
+        "firmware": "micropython-esp8266-v1_19_1",
         "nodename": "micropython",
-        "version": "v1.19",
-        "release": "v1.19",
+        "version": "v1.19.1",
+        "release": "v1.19.1",
         "sysname": "micropython"
     },
     "stubber": {

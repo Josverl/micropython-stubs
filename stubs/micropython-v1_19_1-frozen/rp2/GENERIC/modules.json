@@ -5,10 +5,10 @@
         "port": "rp2",
         "platform": "rp2",
         "machine": "GENERIC",
-        "firmware": "micropython-rp2-v1_19",
+        "firmware": "micropython-rp2-v1_19_1",
         "nodename": "micropython",
-        "version": "v1.19",
-        "release": "v1.19",
+        "version": "v1.19.1",
+        "release": "v1.19.1",
         "sysname": "micropython"
     },
     "stubber": {
