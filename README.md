@@ -31,7 +31,7 @@ where port is the port of the MicroPython firmware. ( stm32, eps32,rp2...)
 To install the stubs for an older version, such as MicroPython 1.17: `pip install micropython-stm32-stubs==1.17.*` 
 
 Note that not all ports are published as I do not have access to hardware to run all ports.
-Please let me know if you would like to see a port added, and are willing to help. [Discussions][]
+Please let me know if you would like to see a port added, and are willing to help. [Discussions]
 ## What do you get
 
  * `micropython-<port>[-<board>]-stubs`  
@@ -48,6 +48,9 @@ Please let me know if you would like to see a port added, and are willing to hel
       - micropython-esp32-stubs
       - micropython-rp2-stubs
       - micropython-esp8266-stubs
+
+Then in VSCode press : `F1` and select `Python: Restart language server`  
+(only needed once)
 
 You can search for [Micropython stub packages on PyPI][PYPI]
 
@@ -70,17 +73,7 @@ To learn how to use the stubs please refer to [the documentation on RTD](https:/
 
 ## Branch Main
 The name of the default branch has been changed to `main`.
-If you have cloned this repo before you main need to adjust the local repro to be aware of this, or create a fresh clone.
-
-To update run the below command:  
-``` bash
-git branch -m master main                    
-git fetch origin
-git branch -u origin/main main                      
-git remote set-head origin -a
-```
-
-for more info see [**Renaming a branch**](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/renaming-a-branch#updating-a-local-clone-after-a-branch-name-changes)
+For more info see [**Renaming a branch**](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/renaming-a-branch#updating-a-local-clone-after-a-branch-name-changes)
 
 ## Contributors
 Thanks to everyone that has submitted stubs or other relevant pieces of code and information, or published relevant stubs on pypi or github.
@@ -111,7 +104,7 @@ Thanks to everyone that has submitted stubs or other relevant pieces of code and
     <td align="center"><a href="https://github.com/WerdoxDev"><img src="https://avatars.githubusercontent.com/u/32638453?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matin Tat</b></sub></a><br /><a href="#test-WerdoxDev" title="Test">✔</a></td>
     <td align="center"><a href="https://github.com/robertoetcheverryr"><img src="https://avatars.githubusercontent.com/u/63941860?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Roberto Jose Etcheverry Romero</b></sub></a><br /><a href="#test-robertoetcheverryr" title="Test">✔</a></td>
     <td align="center"><a href="https://github.com/jdsmith"><img src="https://avatars.githubusercontent.com/u/1379246?v=4?s=100" width="100px;" alt=""/><br /><sub><b>jdsmith</b></sub></a><br /><a href="#test-jdsmith" title="Test">✔</a></td>
-    <td align="center"><a href="https://github.com/mrkeuz"><img src="https://avatars.githubusercontent.com/u/6247921?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mr Keuz</b></sub></a><br /><a href="#test-mrkeuz" title="Test">✔</a></td>
+    <td align="center"><a href="https://github.com/mrkeuz"><img src="https://avatars.githubusercontent.com/u/6247921?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Mr Keuz</b></sub></a><br /><a href="#test-mrkeuz" title="Code, Test">💻 ✔</a></td>
   </tr>
 </table>
 
@@ -123,3 +116,8 @@ Thanks to everyone that has submitted stubs or other relevant pieces of code and
 I invite everyone that has generated stubs for a board or port not on the current list, or has another contribution, to submit the stubs via a pull request or by just zipping up your stubs and creating an issue. 
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. 
+
+
+[samples]: https://github.com/josverl/micropython-stubs/tree/main/docs/samples
+[Discussions]: https://github.com/Josverl/micropython-stubs/discussions/categories/ideas
+[PYPI]: https://pypi.org/search/?q=-stubs&o=&c=Programming+Language+%3A%3A+Python+%3A%3A+Implementation+%3A%3A+MicroPython
