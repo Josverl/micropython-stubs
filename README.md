@@ -18,12 +18,44 @@ and improve the overall development experience while writing [MicroPython](https
 Demo using VSCode:  
 ![demo](docs/img/demo.gif)
 
+# Using the MicroPython stubs
+
+in order to get the most out of the MicroPython stubs, you should follow these steps:
+
+- determine which Micropython **version** and **port**  you are using.
+
+
+To install the latest stubs: `pip install  micropython-<port>-stubs`   
+where port is the port of the MicroPython firmware. ( stm32, eps32,rp2...) 
+
+To install the stubs for an older version, such as MicroPython 1.17: `pip install micropython-stm32-stubs==1.17.*` 
+
+Note that not all ports are published as I do not have access to hardware to run all ports.
+Please let me know if you would like to see a port added, and are willing to help. [Discussions][]
+## What do you get
+
+ * `micropython-<port>[-<board>]-stubs`  
+    The stubs for a specific version port and board of the MicroPython firmware.
+    These are built by combining:
+     * The 'Firmware stubs' generated on a generic board for the port 
+     * The 'Frozen stubs' from the Micropython repository for that specific version and that port & board combination
+     * The 'Core Stubs' to provide a common interface for the Micropython firmware and the CPython core.
+    
+    Note: board is omitted if it is `GENERIC`  
+
+    Examples:
+      - micropython-stm32-stubs
+      - micropython-esp32-stubs
+      - micropython-rp2-stubs
+      - micropython-esp8266-stubs
+
+You can search for [Micropython stub packages on PyPI][PYPI]
 
 ## List of current firmwares and stubs 
 The list of the current included firmwares, ports and boards includes stubs from the following micropython families: 
 
- - MicroPython
- - Pycopy
+ - **MicroPython**
+ - Pycopy 
  - Loboris port (ESP32)
 
  - LVGL
