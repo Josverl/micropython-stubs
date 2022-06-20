@@ -28,3 +28,7 @@ scratch
 repos
 micropython
 micropython-lib
+
+# do not checking the distribution binaries
+publish/*/dist
+
