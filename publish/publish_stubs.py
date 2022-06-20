@@ -145,7 +145,9 @@ def publish_doc_stubs(
     package.clean()
 
 
-def publish_board_stubs(versions: List[str], ports: List[str], boards: List[str], family: str = "micropython", is_production=False):
+def publish_board_stubs(
+    versions: List[str], ports: List[str], boards: List[str], family: str = "micropython", is_production=False, is_dryrun=False
+):
     for mpy_version in versions:
         for port in ports:
 
@@ -217,6 +219,7 @@ if __name__ == "__main__":
         ports=["esp32", "stm32", "esp8266", "rp2"],
         boards=["GENERIC"],
         is_production=is_production,
+        is_dryrun=is_dryrun,
     )
 
 # ######################################
