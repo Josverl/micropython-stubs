@@ -28,3 +28,12 @@ scratch
 repos
 micropython
 micropython-lib
+
+# The lines below will influence the contents of the -stub packages created with poetry
+# poetry will exlude all .ignored files from the project
+
+# stub folders  that are copied to create the stub package 
+# publish/*/**/*.*
+!publish/*/*.toml
+!publish/*/*.md
+publish/**/dist

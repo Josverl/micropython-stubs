@@ -4,3 +4,11 @@ micropython-stubber
 pyright == 0.0.13   # does not match the actual pyright version
 pytest
 black
+
+
+# publishing
+tomli
+tomli-w
+packaging
+
+pysondb-v2
