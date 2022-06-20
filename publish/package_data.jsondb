@@ -10,5 +10,190 @@
         "publish",
         "stub_sources"
     ],
-    "data": {}
+    "data": {
+        "160521968180811532": {
+            "name": "micropython-esp32-stubs",
+            "mpy_version": "1.18",
+            "publish": true,
+            "pkg_version": "1.18.post1",
+            "path": "publish/micropython-v1_18-esp32-stubs",
+            "stub_sources": [
+                [
+                    "Firmware stubs",
+                    "stubs/micropython-v1_18-esp32"
+                ],
+                [
+                    "Frozen stubs",
+                    "stubs/micropython-v1_18-frozen/esp32/GENERIC"
+                ],
+                [
+                    "Core Stubs",
+                    "stubs/cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "6a8ee7ba0873722fc30dd403ed1594b1e57b349f"
+        },
+        "328468468359000153": {
+            "name": "micropython-stm32-stubs",
+            "mpy_version": "1.18",
+            "publish": true,
+            "pkg_version": "1.18.post1",
+            "path": "publish/micropython-v1_18-stm32-stubs",
+            "stub_sources": [
+                [
+                    "Firmware stubs",
+                    "stubs/micropython-v1_18-stm32"
+                ],
+                [
+                    "Frozen stubs",
+                    "stubs/micropython-v1_18-frozen/stm32/GENERIC"
+                ],
+                [
+                    "Core Stubs",
+                    "stubs/cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "1d63efd57569d5528065476557b46b6a29c839f2"
+        },
+        "234324679757490823": {
+            "name": "micropython-esp32-stubs",
+            "mpy_version": "1.17",
+            "publish": true,
+            "pkg_version": "1.17.post1",
+            "path": "publish/micropython-v1_17-esp32-stubs",
+            "stub_sources": [
+                [
+                    "Firmware stubs",
+                    "stubs/micropython-v1_17-esp32"
+                ],
+                [
+                    "Frozen stubs",
+                    "stubs/micropython-v1_17-frozen/esp32/GENERIC"
+                ],
+                [
+                    "Core Stubs",
+                    "stubs/cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "59a9c6e105cd65239fc2d8c0e0f2b5c1d8f6f9aa"
+        },
+        "117355479824027163": {
+            "name": "micropython-stm32-stubs",
+            "mpy_version": "1.17",
+            "publish": true,
+            "pkg_version": "1.17.post1",
+            "path": "publish/micropython-v1_17-stm32-stubs",
+            "stub_sources": [
+                [
+                    "Firmware stubs",
+                    "stubs/micropython-v1_17-stm32"
+                ],
+                [
+                    "Frozen stubs",
+                    "stubs/micropython-v1_17-frozen/stm32/GENERIC"
+                ],
+                [
+                    "Core Stubs",
+                    "stubs/cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "5e249a26f5edebd1966aa49bcefbd8a60a2560e3"
+        },
+        "129169710521493557": {
+            "name": "micropython-esp8266-stubs",
+            "mpy_version": "1.17",
+            "publish": true,
+            "pkg_version": "1.17.post1",
+            "path": "publish/micropython-v1_17-esp8266-stubs",
+            "stub_sources": [
+                [
+                    "Firmware stubs",
+                    "stubs/micropython-v1_17-esp8266"
+                ],
+                [
+                    "Frozen stubs",
+                    "stubs/micropython-v1_17-frozen/esp8266/GENERIC"
+                ],
+                [
+                    "Core Stubs",
+                    "stubs/cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "e0f7e4246a0e375ca7fb0aae8bc89bce332778e8"
+        },
+        "729472063963069255": {
+            "name": "micropython-rp2-stubs",
+            "mpy_version": "1.17",
+            "publish": true,
+            "pkg_version": "1.17.post1",
+            "path": "publish/micropython-v1_17-rp2-stubs",
+            "stub_sources": [
+                [
+                    "Firmware stubs",
+                    "stubs/micropython-v1_17-rp2"
+                ],
+                [
+                    "Frozen stubs",
+                    "stubs/micropython-v1_17-frozen/rp2/GENERIC"
+                ],
+                [
+                    "Core Stubs",
+                    "stubs/cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "45ff6615a9c78c801c5a11dae8e786485b822efd"
+        },
+        "178802940442696553": {
+            "name": "micropython-esp8266-stubs",
+            "mpy_version": "1.18",
+            "publish": true,
+            "pkg_version": "1.18.post1",
+            "path": "publish/micropython-v1_18-esp8266-stubs",
+            "stub_sources": [
+                [
+                    "Firmware stubs",
+                    "stubs/micropython-v1_18-esp8266"
+                ],
+                [
+                    "Frozen stubs",
+                    "stubs/micropython-v1_18-frozen/esp8266/GENERIC"
+                ],
+                [
+                    "Core Stubs",
+                    "stubs/cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "2b4920726c1ffc7c4df714eb543c16a0fcbefa1a"
+        },
+        "300240471548660970": {
+            "name": "micropython-rp2-stubs",
+            "mpy_version": "1.18",
+            "publish": true,
+            "pkg_version": "1.18.post1",
+            "path": "publish/micropython-v1_18-rp2-stubs",
+            "stub_sources": [
+                [
+                    "Firmware stubs",
+                    "stubs/micropython-v1_18-rp2"
+                ],
+                [
+                    "Frozen stubs",
+                    "stubs/micropython-v1_18-frozen/rp2/GENERIC"
+                ],
+                [
+                    "Core Stubs",
+                    "stubs/cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "0dd3d6382ba4c34b9140ed5f68f21f35e4ddbaa6"
+        }
+    }
 }

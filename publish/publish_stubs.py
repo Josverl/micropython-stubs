@@ -142,7 +142,7 @@ def publish_doc_stubs(
     package.clean()
 
 
-def publish_board_stubs(versions: List[str], ports: List[str], boards: List[str], family: str = "micropython"):
+def publish_board_stubs(versions: List[str], ports: List[str], boards: List[str], family: str = "micropython", is_production=False):
     for mpy_version in versions:
         for port in ports:
 
@@ -182,7 +182,7 @@ def publish_board_stubs(versions: List[str], ports: List[str], boards: List[str]
                     log.debug(f"New hash: {package.package_name} {package.pkg_version} {package.hash}")
                     if not is_dryrun:
                         package.build()
-                        package.publish()
+                        package.publish(production=is_production)
                         db.add(package.to_json())
                         db.commit()
                 else:
@@ -198,18 +198,21 @@ if __name__ == "__main__":
     # get from CLI
     is_dryrun = False
     is_force = False
-    is_test = True
+    is_production = True
     # force overrules dryrun
     if is_force:
         is_dryrun = False
 
     root_path: Path = Path(".")
-    db_path = root_path / "publish" / f"package_data{'_test' if is_test else ''}.jsondb"
+    db_path = root_path / "publish" / f"package_data{'' if is_production else '_test'}.jsondb"
     db = PysonDB(db_path.as_posix())
 
     publish_board_stubs(
-        versions=["1.17", "1.18"], ports=["esp32", "esp8266", "rp2", "stm32"], boards=["GENERIC"]
-    )  # "1.14", "1.15", "1.16",
+        versions=["1.17", "1.18"],  # "1.14", "1.15", "1.16","1.17",
+        ports=["esp32", "stm32", "esp8266", "rp2"],
+        boards=["GENERIC"],
+        is_production=is_production,
+    )
 
 # ######################################
 # micropython-core-stubs
