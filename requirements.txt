@@ -12,3 +12,6 @@ tomli-w
 packaging
 
 pysondb-v2
+
+
+click == 8.0.3

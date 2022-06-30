@@ -17,8 +17,6 @@ from loguru import logger as log
 # https://github.com/Josverl/micropython-stubs/tree/d45c8fa3dbdc01978af58532ff4c5313090aabfb
 
 
-
-
 # https://peps.python.org/pep-0440/
 def bump_postrelease(
     current: Version,
@@ -322,7 +320,7 @@ class StubPackage:
     def create_hash(self) -> str:
         "Create a hash of all files in the package"
         # BUF_SIZE is totally arbitrary, change for your app!
-        BUF_SIZE = 65536 * 16  # lets read stuff in 64kb chunks!
+        BUF_SIZE = 65536 * 16  # lets read stuff in 16 x 64kb chunks!
 
         hash = hashlib.sha1()
         files = (
@@ -408,7 +406,7 @@ class StubPackage:
                 cmd = ["poetry", "publish"]
             else:
                 log.info(f"Publishing to https://test.pypy.org")
-                cmd = ["poetry", "publish", "-r", "test-pypi" ]
+                cmd = ["poetry", "publish", "-r", "test-pypi"]
             subprocess.run(cmd, cwd=self.package_path, check=True)
         except (NotADirectoryError, FileNotFoundError) as e:  # pragma: no cover
             log.error("Exception on process, {}".format(e))

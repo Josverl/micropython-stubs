@@ -4150,6 +4150,29 @@
             ],
             "description": "MicroPython stubs",
             "hash": "480854b8bdf1716fecdcb851fa12e0ad07e14a3a"
+        },
+        "119443104536845601": {
+            "name": "micropython-esp32-stubs",
+            "mpy_version": "1.19.1",
+            "publish": true,
+            "pkg_version": "1.19.1.post3",
+            "path": "publish/micropython-v1_19_1-esp32-stubs",
+            "stub_sources": [
+                [
+                    "Firmware stubs",
+                    "stubs/micropython-v1_19_1-esp32"
+                ],
+                [
+                    "Frozen stubs",
+                    "stubs/micropython-v1_19_1-frozen/esp32/GENERIC"
+                ],
+                [
+                    "Core Stubs",
+                    "stubs/cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "7445b1d7fc812e88d0d243e66f16c7b968982520"
         }
     }
 }
