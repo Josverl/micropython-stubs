@@ -21,10 +21,6 @@
             "module": "_boot"
         },
         {
-            "file": "apa102.py",
-            "module": "apa102"
-        },
-        {
             "file": "dht.py",
             "module": "dht"
         },
@@ -37,16 +33,8 @@
             "module": "neopixel"
         },
         {
-            "file": "ntptime.py",
-            "module": "ntptime"
-        },
-        {
             "file": "onewire.py",
             "module": "onewire"
-        },
-        {
-            "file": "port_diag.py",
-            "module": "port_diag"
         },
         {
             "file": "webrepl.py",
@@ -55,10 +43,6 @@
         {
             "file": "webrepl_setup.py",
             "module": "webrepl_setup"
-        },
-        {
-            "file": "websocket_helper.py",
-            "module": "websocket_helper"
         }
     ]
 }

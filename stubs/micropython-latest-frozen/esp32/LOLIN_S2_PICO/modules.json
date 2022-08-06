@@ -103,10 +103,6 @@
         {
             "file": "webrepl_setup.py",
             "module": "webrepl_setup"
-        },
-        {
-            "file": "websocket_helper.py",
-            "module": "websocket_helper"
         }
     ]
 }

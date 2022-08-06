@@ -109,16 +109,16 @@
             "module": "stream"
         },
         {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
             "file": "webrepl.py",
             "module": "webrepl"
         },
         {
             "file": "webrepl_setup.py",
             "module": "webrepl_setup"
-        },
-        {
-            "file": "websocket_helper.py",
-            "module": "websocket_helper"
         }
     ]
 }
