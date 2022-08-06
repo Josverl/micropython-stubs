@@ -1,0 +1,72 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "stm32",
+        "platform": "stm32",
+        "machine": "LEGO_HUB_NO7",
+        "firmware": "micropython-stm32-latest",
+        "nodename": "micropython",
+        "version": "latest",
+        "release": "latest",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.6.9",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "appupdate.py",
+            "module": "appupdate"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "fwupdate.py",
+            "module": "fwupdate"
+        },
+        {
+            "file": "lcd160cr.py",
+            "module": "lcd160cr"
+        },
+        {
+            "file": "lcd160cr_test.py",
+            "module": "lcd160cr_test"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "spiflash.py",
+            "module": "spiflash"
+        },
+        {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio/stream.py",
+            "module": "stream"
+        }
+    ]
+}

@@ -1,4 +1,3 @@
-NTP_DELTA: int
 host: str
 
 def time(): ...
