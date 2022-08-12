@@ -53,38 +53,50 @@ class PIO:
 
     """
 
-    #     These constants are used for the *out_init*, *set_init*, and *sideset_init*
-    #     arguments to `asm_pio`.
     IN_LOW: Any = ...
-    #     These constants are used for the *out_init*, *set_init*, and *sideset_init*
-    #     arguments to `asm_pio`.
+    """\
+    These constants are used for the *out_init*, *set_init*, and *sideset_init*
+    arguments to `asm_pio`.
+    """
     IN_HIGH: Any = ...
-    #     These constants are used for the *out_init*, *set_init*, and *sideset_init*
-    #     arguments to `asm_pio`.
+    """\
+    These constants are used for the *out_init*, *set_init*, and *sideset_init*
+    arguments to `asm_pio`.
+    """
     OUT_LOW: Any = ...
-    #     These constants are used for the *out_init*, *set_init*, and *sideset_init*
-    #     arguments to `asm_pio`.
+    """\
+    These constants are used for the *out_init*, *set_init*, and *sideset_init*
+    arguments to `asm_pio`.
+    """
     OUT_HIGH: Any = ...
-    #     These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
-    #     to `asm_pio` or `StateMachine.init`.
+    """\
+    These constants are used for the *out_init*, *set_init*, and *sideset_init*
+    arguments to `asm_pio`.
+    """
     SHIFT_LEFT: Any = ...
-    #     These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
-    #     to `asm_pio` or `StateMachine.init`.
+    """\
+    These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
+    to `asm_pio` or `StateMachine.init`.
+    """
     SHIFT_RIGHT: Any = ...
-    #     These constants are used for the *fifo_join* argument to `asm_pio`.
+    """\
+    These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
+    to `asm_pio` or `StateMachine.init`.
+    """
     JOIN_NONE: Any = ...
-    #     These constants are used for the *fifo_join* argument to `asm_pio`.
+    """These constants are used for the *fifo_join* argument to `asm_pio`."""
     JOIN_TX: Any = ...
-    #     These constants are used for the *fifo_join* argument to `asm_pio`.
+    """These constants are used for the *fifo_join* argument to `asm_pio`."""
     JOIN_RX: Any = ...
-    #     These constants are used for the *trigger* argument to `PIO.irq`.
+    """These constants are used for the *fifo_join* argument to `asm_pio`."""
     IRQ_SM0: Any = ...
-    #     These constants are used for the *trigger* argument to `PIO.irq`.
+    """These constants are used for the *trigger* argument to `PIO.irq`."""
     IRQ_SM1: Any = ...
-    #     These constants are used for the *trigger* argument to `PIO.irq`.
+    """These constants are used for the *trigger* argument to `PIO.irq`."""
     IRQ_SM2: Any = ...
-    #     These constants are used for the *trigger* argument to `PIO.irq`.
+    """These constants are used for the *trigger* argument to `PIO.irq`."""
     IRQ_SM3: Any = ...
+    """These constants are used for the *trigger* argument to `PIO.irq`."""
     def __init__(self, id) -> None: ...
     def add_program(self, program) -> Any:
         """
@@ -181,8 +193,8 @@ class StateMachine:
           `PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`.
         - *push_thresh* is the threshold in bits before auto-push or conditional
           re-pushing is triggered.
-        - *pull_thresh* is the threshold in bits before auto-push or conditional
-          re-pushing is triggered.
+        - *pull_thresh* is the threshold in bits before auto-pull or conditional
+          re-pulling is triggered.
         """
         ...
     def active(self, value: Optional[Any] = None) -> Any:
@@ -301,8 +313,8 @@ def asm_pio(
       `PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`.
     - *push_thresh* is the threshold in bits before auto-push or conditional
       re-pushing is triggered.
-    - *pull_thresh* is the threshold in bits before auto-push or conditional
-      re-pushing is triggered.
+    - *pull_thresh* is the threshold in bits before auto-pull or conditional
+      re-pulling is triggered.
 
     The remaining parameters are:
 

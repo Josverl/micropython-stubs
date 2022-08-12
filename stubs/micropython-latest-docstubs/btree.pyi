@@ -76,12 +76,16 @@ Example::
 # origin module:: repos/micropython/docs/library/btree.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 
-#    A flag for `keys()`, `values()`, `items()` methods to specify that
-#    scanning should be inclusive of the end key.
 INCL: Any = ...
-#    A flag for `keys()`, `values()`, `items()` methods to specify that
-#    scanning should be in descending direction of keys.
+"""\
+A flag for `keys()`, `values()`, `items()` methods to specify that
+scanning should be inclusive of the end key.
+"""
 DESC: Any = ...
+"""\
+A flag for `keys()`, `values()`, `items()` methods to specify that
+scanning should be in descending direction of keys.
+"""
 
 class btree:
     """ """
