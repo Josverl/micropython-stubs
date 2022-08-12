@@ -12,14 +12,14 @@ facilities for network sockets, both client-side and server-side.
 # origin module:: repos/micropython/docs/library/ssl.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 
-#    This exception does NOT exist. Instead its base class, OSError, is used.
 SSLError: Any = ...
-#     Supported values for *cert_reqs* parameter.
+"""This exception does NOT exist. Instead its base class, OSError, is used."""
 CERT_NONE: Any = ...
-#     Supported values for *cert_reqs* parameter.
+"""Supported values for *cert_reqs* parameter."""
 CERT_OPTIONAL: Any = ...
-#     Supported values for *cert_reqs* parameter.
+"""Supported values for *cert_reqs* parameter."""
 CERT_REQUIRED: Any = ...
+"""Supported values for *cert_reqs* parameter."""
 
 def wrap_socket(sock, server_side=False, keyfile=None, certfile=None, cert_reqs=CERT_NONE, ca_certs=None, do_handshake=True) -> Any:
     """

@@ -12,14 +12,14 @@ controlling ESP32 modules.
 from __future__ import annotations
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 
-#     Used in `idf_heap_info`.
 HEAP_DATA: Any = ...
-#     Used in `idf_heap_info`.
+"""Used in `idf_heap_info`."""
 HEAP_EXEC: Any = ...
-#    Selects the wake level for pins.
+"""Used in `idf_heap_info`."""
 WAKEUP_ALL_LOW: Any = ...
-#    Selects the wake level for pins.
+"""Selects the wake level for pins."""
 WAKEUP_ANY_HIGH: Any = ...
+"""Selects the wake level for pins."""
 
 class Partition:
     """
@@ -27,22 +27,30 @@ class Partition:
     of the partition to retrieve, or one of the constants: ``BOOT`` or ``RUNNING``.
     """
 
-    #     Used in the `Partition` constructor to fetch various partitions: ``BOOT`` is the
-    #     partition that will be booted at the next reset and ``RUNNING`` is the currently
-    #     running partition.
     BOOT: Any = ...
-    #     Used in the `Partition` constructor to fetch various partitions: ``BOOT`` is the
-    #     partition that will be booted at the next reset and ``RUNNING`` is the currently
-    #     running partition.
+    """\
+    Used in the `Partition` constructor to fetch various partitions: ``BOOT`` is the
+    partition that will be booted at the next reset and ``RUNNING`` is the currently
+    running partition.
+    """
     RUNNING: Any = ...
-    #     Used in `Partition.find` to specify the partition type: ``APP`` is for bootable
-    #     firmware partitions (typically labelled ``factory``, ``ota_0``, ``ota_1``), and
-    #     ``DATA`` is for other partitions, e.g. ``nvs``, ``otadata``, ``phy_init``, ``vfs``.
+    """\
+    Used in the `Partition` constructor to fetch various partitions: ``BOOT`` is the
+    partition that will be booted at the next reset and ``RUNNING`` is the currently
+    running partition.
+    """
     TYPE_APP: Any = ...
-    #     Used in `Partition.find` to specify the partition type: ``APP`` is for bootable
-    #     firmware partitions (typically labelled ``factory``, ``ota_0``, ``ota_1``), and
-    #     ``DATA`` is for other partitions, e.g. ``nvs``, ``otadata``, ``phy_init``, ``vfs``.
+    """\
+    Used in `Partition.find` to specify the partition type: ``APP`` is for bootable
+    firmware partitions (typically labelled ``factory``, ``ota_0``, ``ota_1``), and
+    ``DATA`` is for other partitions, e.g. ``nvs``, ``otadata``, ``phy_init``, ``vfs``.
+    """
     TYPE_DATA: Any = ...
+    """\
+    Used in `Partition.find` to specify the partition type: ``APP`` is for bootable
+    firmware partitions (typically labelled ``factory``, ``ota_0``, ``ota_1``), and
+    ``DATA`` is for other partitions, e.g. ``nvs``, ``otadata``, ``phy_init``, ``vfs``.
+    """
     def __init__(self, id) -> None: ...
     @classmethod
     def find(cls, type=TYPE_APP, subtype=0xFF, label=None) -> List:
@@ -79,9 +87,7 @@ class Partition:
         """
         ...
     @classmethod
-    def mark_app_valid_cancel_rollback(
-        cls,
-    ) -> Any:
+    def mark_app_valid_cancel_rollback(cls) -> Any:
         """
         Signals that the current boot is considered successful.
         Calling ``mark_app_valid_cancel_rollback`` is required on the first boot of a new
