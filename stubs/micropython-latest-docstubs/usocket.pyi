@@ -10,36 +10,44 @@ This module provides access to the BSD socket interface.
 # origin module:: repos/micropython/docs/library/socket.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 
-#    Address family types. Availability depends on a particular :term:`MicroPython port`.
 AF_INET: Any = ...
-#    Address family types. Availability depends on a particular :term:`MicroPython port`.
+"""Address family types. Availability depends on a particular :term:`MicroPython port`."""
 AF_INET6: Any = ...
-#    Socket types.
+"""Address family types. Availability depends on a particular :term:`MicroPython port`."""
 SOCK_STREAM: Any = ...
-#    Socket types.
+"""Socket types."""
 SOCK_DGRAM: Any = ...
-#    IP protocol numbers. Availability depends on a particular :term:`MicroPython port`.
-#    Note that you don't need to specify these in a call to `socket.socket()`,
-#    because `SOCK_STREAM` socket type automatically selects `IPPROTO_TCP`, and
-#    `SOCK_DGRAM` - `IPPROTO_UDP`. Thus, the only real use of these constants
-#    is as an argument to `setsockopt()`.
+"""Socket types."""
 IPPROTO_UDP: Any = ...
-#    IP protocol numbers. Availability depends on a particular :term:`MicroPython port`.
-#    Note that you don't need to specify these in a call to `socket.socket()`,
-#    because `SOCK_STREAM` socket type automatically selects `IPPROTO_TCP`, and
-#    `SOCK_DGRAM` - `IPPROTO_UDP`. Thus, the only real use of these constants
-#    is as an argument to `setsockopt()`.
+"""\
+IP protocol numbers. Availability depends on a particular :term:`MicroPython port`.
+Note that you don't need to specify these in a call to `socket.socket()`,
+because `SOCK_STREAM` socket type automatically selects `IPPROTO_TCP`, and
+`SOCK_DGRAM` - `IPPROTO_UDP`. Thus, the only real use of these constants
+is as an argument to `setsockopt()`.
+"""
 IPPROTO_TCP: Any = ...
-#    Socket option levels (an argument to `setsockopt()`). The exact
-#    inventory depends on a :term:`MicroPython port`.
-# SOL_* : Any = ...
-#    Socket options (an argument to `setsockopt()`). The exact
-#    inventory depends on a :term:`MicroPython port`.
-#
-# Constants specific to WiPy:
-# SO_* : Any = ...
-#     Special protocol value to create SSL-compatible socket.
+"""\
+IP protocol numbers. Availability depends on a particular :term:`MicroPython port`.
+Note that you don't need to specify these in a call to `socket.socket()`,
+because `SOCK_STREAM` socket type automatically selects `IPPROTO_TCP`, and
+`SOCK_DGRAM` - `IPPROTO_UDP`. Thus, the only real use of these constants
+is as an argument to `setsockopt()`.
+"""
+# SOL_*: Any = ...
+"""\
+Socket option levels (an argument to `setsockopt()`). The exact
+inventory depends on a :term:`MicroPython port`.
+"""
+# SO_*: Any = ...
+"""\
+Socket options (an argument to `setsockopt()`). The exact
+inventory depends on a :term:`MicroPython port`.
+
+Constants specific to WiPy:
+"""
 IPPROTO_SEC: Any = ...
+"""Special protocol value to create SSL-compatible socket."""
 
 class socket:
     """

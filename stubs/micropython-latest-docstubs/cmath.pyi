@@ -14,10 +14,10 @@ required for this module.
 # origin module:: repos/micropython/docs/library/cmath.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 
-#    base of the natural logarithm
 e: float
-#    the ratio of a circle's circumference to its diameter
+"""base of the natural logarithm"""
 pi: float
+"""the ratio of a circle's circumference to its diameter"""
 
 def cos(z) -> float:
     """
