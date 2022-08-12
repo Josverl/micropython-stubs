@@ -9,35 +9,41 @@ bitmap images, which can then be sent to a display.
 # origin module:: repos/micropython/docs/library/framebuf.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 
-#     Monochrome (1-bit) color format
-#     This defines a mapping where the bits in a byte are vertically mapped with
-#     bit 0 being nearest the top of the screen. Consequently each byte occupies
-#     8 vertical pixels. Subsequent bytes appear at successive horizontal
-#     locations until the rightmost edge is reached. Further bytes are rendered
-#     at locations starting at the leftmost edge, 8 pixels lower.
 MONO_VLSB: bytes
-#     Monochrome (1-bit) color format
-#     This defines a mapping where the bits in a byte are horizontally mapped.
-#     Each byte occupies 8 horizontal pixels with bit 7 being the leftmost.
-#     Subsequent bytes appear at successive horizontal locations until the
-#     rightmost edge is reached. Further bytes are rendered on the next row, one
-#     pixel lower.
+"""\
+Monochrome (1-bit) color format
+This defines a mapping where the bits in a byte are vertically mapped with
+bit 0 being nearest the top of the screen. Consequently each byte occupies
+8 vertical pixels. Subsequent bytes appear at successive horizontal
+locations until the rightmost edge is reached. Further bytes are rendered
+at locations starting at the leftmost edge, 8 pixels lower.
+"""
 MONO_HLSB: bytes
-#     Monochrome (1-bit) color format
-#     This defines a mapping where the bits in a byte are horizontally mapped.
-#     Each byte occupies 8 horizontal pixels with bit 0 being the leftmost.
-#     Subsequent bytes appear at successive horizontal locations until the
-#     rightmost edge is reached. Further bytes are rendered on the next row, one
-#     pixel lower.
+"""\
+Monochrome (1-bit) color format
+This defines a mapping where the bits in a byte are horizontally mapped.
+Each byte occupies 8 horizontal pixels with bit 7 being the leftmost.
+Subsequent bytes appear at successive horizontal locations until the
+rightmost edge is reached. Further bytes are rendered on the next row, one
+pixel lower.
+"""
 MONO_HMSB: bytes
-#     Red Green Blue (16-bit, 5+6+5) color format
+"""\
+Monochrome (1-bit) color format
+This defines a mapping where the bits in a byte are horizontally mapped.
+Each byte occupies 8 horizontal pixels with bit 0 being the leftmost.
+Subsequent bytes appear at successive horizontal locations until the
+rightmost edge is reached. Further bytes are rendered on the next row, one
+pixel lower.
+"""
 RGB565: Any = ...
-#     Grayscale (2-bit) color format
+"""Red Green Blue (16-bit, 5+6+5) color format"""
 GS2_HMSB: Any = ...
-#     Grayscale (4-bit) color format
+"""Grayscale (2-bit) color format"""
 GS4_HMSB: Any = ...
-#     Grayscale (8-bit) color format
+"""Grayscale (4-bit) color format"""
 GS8: Any = ...
+"""Grayscale (8-bit) color format"""
 
 class FrameBuffer:
     """
