@@ -11,31 +11,37 @@ A particular inventory of codes depends on :term:`MicroPython port`.
 # origin module:: repos/micropython/docs/library/errno.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 
-#     Error codes, based on ANSI C/POSIX standard. All error codes start with
-#     "E". As mentioned above, inventory of the codes depends on
-#     :term:`MicroPython port`. Errors are usually accessible as ``exc.errno``
-#     where ``exc`` is an instance of `OSError`. Usage example::
-#
-#         try:
-#             os.mkdir("my_dir")
-#         except OSError as exc:
-#             if exc.errno == errno.EEXIST:
-#                 print("Directory already exists")
 EEXIST: Any = ...
-#     Error codes, based on ANSI C/POSIX standard. All error codes start with
-#     "E". As mentioned above, inventory of the codes depends on
-#     :term:`MicroPython port`. Errors are usually accessible as ``exc.errno``
-#     where ``exc`` is an instance of `OSError`. Usage example::
-#
-#         try:
-#             os.mkdir("my_dir")
-#         except OSError as exc:
-#             if exc.errno == errno.EEXIST:
-#                 print("Directory already exists")
+"""\
+Error codes, based on ANSI C/POSIX standard. All error codes start with
+"E". As mentioned above, inventory of the codes depends on
+:term:`MicroPython port`. Errors are usually accessible as ``exc.errno``
+where ``exc`` is an instance of `OSError`. Usage example::
+
+try:
+os.mkdir("my_dir")
+except OSError as exc:
+if exc.errno == errno.EEXIST:
+print("Directory already exists")
+"""
 EAGAIN: Any = ...
-#     Dictionary mapping numeric error codes to strings with symbolic error
-#     code (see above)::
-#
-#         >>> print(errno.errorcode[errno.EEXIST])
-#         EEXIST
+"""\
+Error codes, based on ANSI C/POSIX standard. All error codes start with
+"E". As mentioned above, inventory of the codes depends on
+:term:`MicroPython port`. Errors are usually accessible as ``exc.errno``
+where ``exc`` is an instance of `OSError`. Usage example::
+
+try:
+os.mkdir("my_dir")
+except OSError as exc:
+if exc.errno == errno.EEXIST:
+print("Directory already exists")
+"""
 errorcode: Dict
+"""\
+Dictionary mapping numeric error codes to strings with symbolic error
+code (see above)::
+
+>>> print(errno.errorcode[errno.EEXIST])
+EEXIST
+"""
