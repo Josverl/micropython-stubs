@@ -9,23 +9,29 @@ This module provides control of the MicroPython LCD160CR display.
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 from .machine import SPI
 
-#    Orientations of the display, used by :meth:`LCD160CR.set_orient`.
 PORTRAIT: Any = ...
-#    Orientations of the display, used by :meth:`LCD160CR.set_orient`.
+"""Orientations of the display, used by :meth:`LCD160CR.set_orient`."""
 LANDSCAPE: Any = ...
-#    Orientations of the display, used by :meth:`LCD160CR.set_orient`.
+"""Orientations of the display, used by :meth:`LCD160CR.set_orient`."""
 PORTRAIT_UPSIDEDOWN: Any = ...
-#    Orientations of the display, used by :meth:`LCD160CR.set_orient`.
+"""Orientations of the display, used by :meth:`LCD160CR.set_orient`."""
 LANDSCAPE_UPSIDEDOWN: Any = ...
-#    Types of start-up decoration, can be OR'ed together, used by
-#    :meth:`LCD160CR.set_startup_deco`.
+"""Orientations of the display, used by :meth:`LCD160CR.set_orient`."""
 STARTUP_DECO_NONE: Any = ...
-#    Types of start-up decoration, can be OR'ed together, used by
-#    :meth:`LCD160CR.set_startup_deco`.
+"""\
+Types of start-up decoration, can be OR'ed together, used by
+:meth:`LCD160CR.set_startup_deco`.
+"""
 STARTUP_DECO_MLOGO: Any = ...
-#    Types of start-up decoration, can be OR'ed together, used by
-#    :meth:`LCD160CR.set_startup_deco`.
+"""\
+Types of start-up decoration, can be OR'ed together, used by
+:meth:`LCD160CR.set_startup_deco`.
+"""
 STARTUP_DECO_INFO: Any = ...
+"""\
+Types of start-up decoration, can be OR'ed together, used by
+:meth:`LCD160CR.set_startup_deco`.
+"""
 
 class LCD160CR:
     """
@@ -64,10 +70,12 @@ class LCD160CR:
     """
 
     w: Any = ...
-    #     The width and height of the display, respectively, in pixels.  These
-    #     members are updated when calling :meth:`LCD160CR.set_orient` and should
-    #     be considered read-only.
     h: Any = ...
+    """\
+    The width and height of the display, respectively, in pixels.  These
+    members are updated when calling :meth:`LCD160CR.set_orient` and should
+    be considered read-only.
+    """
     def __init__(self, connect=None, *, pwr=None, i2c=None, spi=None, i2c_addr=98) -> None: ...
     @staticmethod
     def rgb(r, g, b) -> int:
