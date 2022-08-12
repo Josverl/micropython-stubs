@@ -26,28 +26,28 @@ damage.
 # + module: machine.SDCard.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 
-#     IRQ wake values.
 IDLE: Any = ...
-#     IRQ wake values.
+"""IRQ wake values."""
 SLEEP: Any = ...
-#     IRQ wake values.
+"""IRQ wake values."""
 DEEPSLEEP: Any = ...
-#     Reset causes.
+"""IRQ wake values."""
 PWRON_RESET: Any = ...
-#     Reset causes.
+"""Reset causes."""
 HARD_RESET: Any = ...
-#     Reset causes.
+"""Reset causes."""
 WDT_RESET: Any = ...
-#     Reset causes.
+"""Reset causes."""
 DEEPSLEEP_RESET: Any = ...
-#     Reset causes.
+"""Reset causes."""
 SOFT_RESET: Any = ...
-#     Wake-up reasons.
+"""Reset causes."""
 WLAN_WAKE: Any = ...
-#     Wake-up reasons.
+"""Wake-up reasons."""
 PIN_WAKE: Any = ...
-#     Wake-up reasons.
+"""Wake-up reasons."""
 RTC_WAKE: Any = ...
+"""Wake-up reasons."""
 
 class Pin:
     """
@@ -111,39 +111,45 @@ class Pin:
     ``Pin.OPEN_DRAIN``, the alternate function will be removed from the pin.
     """
 
-    #    Selects the pin mode.
     IN: Any = ...
-    #    Selects the pin mode.
+    """Selects the pin mode."""
     OUT: Any = ...
-    #    Selects the pin mode.
+    """Selects the pin mode."""
     OPEN_DRAIN: Any = ...
-    #    Selects the pin mode.
+    """Selects the pin mode."""
     ALT: Any = ...
-    #    Selects the pin mode.
+    """Selects the pin mode."""
     ALT_OPEN_DRAIN: Any = ...
-    #    Selects whether there is a pull up/down resistor.  Use the value
-    #    ``None`` for no pull.
+    """Selects the pin mode."""
     PULL_UP: Any = ...
-    #    Selects whether there is a pull up/down resistor.  Use the value
-    #    ``None`` for no pull.
+    """\
+    Selects whether there is a pull up/down resistor.  Use the value
+    ``None`` for no pull.
+    """
     PULL_DOWN: Any = ...
-    #    Selects whether there is a pull up/down resistor.  Use the value
-    #    ``None`` for no pull.
+    """\
+    Selects whether there is a pull up/down resistor.  Use the value
+    ``None`` for no pull.
+    """
     PULL_HOLD: Any = ...
-    #    Selects the pin drive strength.
+    """\
+    Selects whether there is a pull up/down resistor.  Use the value
+    ``None`` for no pull.
+    """
     LOW_POWER: Any = ...
-    #    Selects the pin drive strength.
+    """Selects the pin drive strength."""
     MED_POWER: Any = ...
-    #    Selects the pin drive strength.
+    """Selects the pin drive strength."""
     HIGH_POWER: Any = ...
-    #    Selects the IRQ trigger type.
+    """Selects the pin drive strength."""
     IRQ_FALLING: Any = ...
-    #    Selects the IRQ trigger type.
+    """Selects the IRQ trigger type."""
     IRQ_RISING: Any = ...
-    #    Selects the IRQ trigger type.
+    """Selects the IRQ trigger type."""
     IRQ_LOW_LEVEL: Any = ...
-    #    Selects the IRQ trigger type.
+    """Selects the IRQ trigger type."""
     IRQ_HIGH_LEVEL: Any = ...
+    """Selects the IRQ trigger type."""
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None: ...
     def init(self, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
         """
@@ -421,10 +427,12 @@ class UART:
     Construct a UART object of the given id.
     """
 
-    #     IRQ trigger sources
-    #
-    #     Availability: WiPy.
     RX_ANY: Any = ...
+    """\
+    IRQ trigger sources
+    
+    Availability: WiPy.
+    """
     def __init__(self, id, *args) -> None: ...
     def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args) -> None:
         """
@@ -564,12 +572,12 @@ class SPI:
     See ``init`` for parameters of initialisation.
     """
 
-    #    for initialising the SPI bus to controller; this is only used for the WiPy
     CONTROLLER: Any = ...
-    #    set the first bit to be the most significant bit
+    """for initialising the SPI bus to controller; this is only used for the WiPy"""
     MSB: Any = ...
-    #    set the first bit to be the least significant bit
+    """set the first bit to be the most significant bit"""
     LSB: Any = ...
+    """set the first bit to be the least significant bit"""
     def __init__(self, id, *args) -> None: ...
     def init(
         self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
@@ -825,15 +833,17 @@ class I2S:
     before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
     """
 
-    #    for initialising the I2S bus ``mode`` to receive
     RX: Any = ...
-    #    for initialising the I2S bus ``mode`` to transmit
+    """for initialising the I2S bus ``mode`` to receive"""
     TX: Any = ...
-    #    for initialising the I2S bus ``format`` to stereo
+    """for initialising the I2S bus ``mode`` to transmit"""
     STEREO: Any = ...
-    #    for initialising the I2S bus ``format`` to mono
-    #
+    """for initialising the I2S bus ``format`` to stereo"""
     MONO: Any = ...
+    """\
+    for initialising the I2S bus ``format`` to mono
+    
+    """
     def __init__(self, id, *, sck, ws, sd, mode, bits, format, rate, ibuf) -> None: ...
     def init(self, sck, *args) -> Any:
         """
@@ -882,8 +892,8 @@ class RTC:
     Create an RTC object. See init for parameters of initialization.
     """
 
-    #     irq trigger source
     ALARM0: Any = ...
+    """irq trigger source"""
     def __init__(self, id=0, *args) -> None: ...
     def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
         """
@@ -953,10 +963,10 @@ class Timer:
     See ``init`` for parameters of initialisation.
     """
 
-    #    Timer operating mode.
     ONE_SHOT: Any = ...
-    #    Timer operating mode.
+    """Timer operating mode."""
     PERIODIC: Any = ...
+    """Timer operating mode."""
     def __init__(self, id, *args) -> None: ...
     def init(self, *, mode=PERIODIC, period=-1, callback=None) -> None:
         """

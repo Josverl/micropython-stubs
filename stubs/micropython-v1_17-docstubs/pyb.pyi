@@ -180,32 +180,32 @@ class CAN:
       - ``CAN(2)`` is on ``YB``: ``(RX, TX) = (Y5, Y6) = (PB12, PB13)``
     """
 
-    #    The mode of the CAN bus used in :meth:`~CAN.init()`.
     NORMAL: Any = ...
-    #    The mode of the CAN bus used in :meth:`~CAN.init()`.
+    """The mode of the CAN bus used in :meth:`~CAN.init()`."""
     LOOPBACK: Any = ...
-    #    The mode of the CAN bus used in :meth:`~CAN.init()`.
+    """The mode of the CAN bus used in :meth:`~CAN.init()`."""
     SILENT: Any = ...
-    #    The mode of the CAN bus used in :meth:`~CAN.init()`.
+    """The mode of the CAN bus used in :meth:`~CAN.init()`."""
     SILENT_LOOPBACK: Any = ...
-    #    Possible states of the CAN controller returned from :meth:`~CAN.state()`.
+    """The mode of the CAN bus used in :meth:`~CAN.init()`."""
     STOPPED: Any = ...
-    #    Possible states of the CAN controller returned from :meth:`~CAN.state()`.
+    """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
     ERROR_ACTIVE: Any = ...
-    #    Possible states of the CAN controller returned from :meth:`~CAN.state()`.
+    """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
     ERROR_WARNING: Any = ...
-    #    Possible states of the CAN controller returned from :meth:`~CAN.state()`.
+    """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
     ERROR_PASSIVE: Any = ...
-    #    Possible states of the CAN controller returned from :meth:`~CAN.state()`.
+    """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
     BUS_OFF: Any = ...
-    #    The operation mode of a filter used in :meth:`~CAN.setfilter()`.
+    """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
     LIST16: Any = ...
-    #    The operation mode of a filter used in :meth:`~CAN.setfilter()`.
+    """The operation mode of a filter used in :meth:`~CAN.setfilter()`."""
     MASK16: Any = ...
-    #    The operation mode of a filter used in :meth:`~CAN.setfilter()`.
+    """The operation mode of a filter used in :meth:`~CAN.setfilter()`."""
     LIST32: Any = ...
-    #    The operation mode of a filter used in :meth:`~CAN.setfilter()`.
+    """The operation mode of a filter used in :meth:`~CAN.setfilter()`."""
     MASK32: Any = ...
+    """The operation mode of a filter used in :meth:`~CAN.setfilter()`."""
     def __init__(self, bus, *args) -> None: ...
     @classmethod
     def initfilterbanks(cls, nr) -> None:
@@ -559,17 +559,15 @@ class ExtInt:
 
     """
 
-    #    interrupt on a falling edge
     IRQ_FALLING: Any = ...
-    #    interrupt on a rising edge
+    """interrupt on a falling edge"""
     IRQ_RISING: Any = ...
-    #    interrupt on a rising or falling edge
+    """interrupt on a rising edge"""
     IRQ_RISING_FALLING: Any = ...
+    """interrupt on a rising or falling edge"""
     def __init__(self, pin, mode, pull, callback) -> None: ...
     @classmethod
-    def regs(
-        cls,
-    ) -> Any:
+    def regs(cls) -> Any:
         """
         Dump the values of the EXTI registers.
 
@@ -642,10 +640,10 @@ class I2C:
     types.
     """
 
-    #    for initialising the bus to controller mode
     CONTROLLER: Any = ...
-    #    for initialising the bus to peripheral mode
+    """for initialising the bus to controller mode"""
     PERIPHERAL: Any = ...
+    """for initialising the bus to peripheral mode"""
     def __init__(self, bus, *args) -> None: ...
     def deinit(self) -> None:
         """
@@ -838,24 +836,24 @@ class Pin:
     they are used to initialise the pin.  See :meth:`pin.init`.
     """
 
-    #    initialise the pin to alternate-function mode with an open-drain drive
     AF_OD: Any = ...
-    #    initialise the pin to alternate-function mode with a push-pull drive
+    """initialise the pin to alternate-function mode with an open-drain drive"""
     AF_PP: Any = ...
-    #    initialise the pin to analog mode
+    """initialise the pin to alternate-function mode with a push-pull drive"""
     ANALOG: Any = ...
-    #    initialise the pin to input mode
+    """initialise the pin to analog mode"""
     IN: Any = ...
-    #    initialise the pin to output mode with an open-drain drive
+    """initialise the pin to input mode"""
     OUT_OD: Any = ...
-    #    initialise the pin to output mode with a push-pull drive
+    """initialise the pin to output mode with an open-drain drive"""
     OUT_PP: Any = ...
-    #    enable the pull-down resistor on the pin
+    """initialise the pin to output mode with a push-pull drive"""
     PULL_DOWN: Any = ...
-    #    don't enable any pull up or down resistors on the pin
+    """enable the pull-down resistor on the pin"""
     PULL_NONE: Any = ...
-    #    enable the pull-up resistor on the pin
+    """don't enable any pull up or down resistors on the pin"""
     PULL_UP: Any = ...
+    """enable the pull-up resistor on the pin"""
     def __init__(self, id, *args) -> None: ...
     @classmethod
     def debug(cls, state: Optional[Any] = None) -> bool:
@@ -1157,11 +1155,11 @@ class SPI:
     """
 
     CONTROLLER: Any = ...
-    #    for initialising the SPI bus to controller or peripheral mode
     PERIPHERAL: Any = ...
+    """for initialising the SPI bus to controller or peripheral mode"""
     LSB: Any = ...
-    #    set the first bit to be the least or most significant bit
     MSB: Any = ...
+    """set the first bit to be the least or most significant bit"""
     def __init__(self, bus, *args) -> None: ...
     def deinit(self) -> None:
         """
@@ -1485,10 +1483,10 @@ class UART:
     have ``UART(1)`` on ``XB`` and ``UART(6)`` on ``YA``.
     """
 
-    #    to select the flow control type.
     RTS: Any = ...
-    #    to select the flow control type.
+    """to select the flow control type."""
     CTS: Any = ...
+    """to select the flow control type."""
     def __init__(self, bus, *args) -> None: ...
     def init(self, baudrate, bits=8, parity=None, stop=1, *, timeout=0, flow=0, timeout_char=0, read_buf_len=64) -> Any:
         """
@@ -1626,12 +1624,12 @@ class USB_VCP:
 
     """
 
-    #    to select the flow control type.
     RTS: Any = ...
-    #    to select the flow control type.
+    """to select the flow control type."""
     CTS: Any = ...
-    #    IRQ trigger values for :meth:`USB_VCP.irq`.
+    """to select the flow control type."""
     IRQ_RX: Any = ...
+    """IRQ trigger values for :meth:`USB_VCP.irq`."""
     def __init__(self, id=0) -> None: ...
     def init(self, *, flow=-1) -> None:
         """
