@@ -1,4 +1,5 @@
-micropython-stubber
+# 1.7 introduced the ability to merge stubs using codemmods.
+micropython-stubber >= 1.7
 
 # for quality reporting
 pyright == 0.0.13   # does not match the actual pyright version
