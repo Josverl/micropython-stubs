@@ -10,39 +10,43 @@ direct access to peripheral registers.
 # origin module:: repos/micropython/docs/library/stm.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 
-#     Read/write 8 bits of memory.
 mem8: Any = ...
-#     Read/write 16 bits of memory.
+"""Read/write 8 bits of memory."""
 mem16: Any = ...
-#     Read/write 32 bits of memory.
-#
-# Use subscript notation ``[...]`` to index these objects with the address of
-# interest.
-#
-# These memory objects can be used in combination with the peripheral register
-# constants to read and write registers of the MCU hardware peripherals, as well
-# as all other areas of address space.
-#
+"""Read/write 16 bits of memory."""
 mem32: int = 1
-#     Base address of the GPIOA peripheral.
+"""\
+Read/write 32 bits of memory.
+
+Use subscript notation ``[...]`` to index these objects with the address of
+interest.
+
+These memory objects can be used in combination with the peripheral register
+constants to read and write registers of the MCU hardware peripherals, as well
+as all other areas of address space.
+
+"""
 GPIOA: int = 1
-#     Base address of the GPIOB peripheral.
+"""Base address of the GPIOA peripheral."""
 GPIOB: int = 1
-#     Offset of the GPIO bit set/reset register.
+"""Base address of the GPIOB peripheral."""
 GPIO_BSRR: Any = ...
-#     Offset of the GPIO input data register.
+"""Offset of the GPIO bit set/reset register."""
 GPIO_IDR: Any = ...
-#     Offset of the GPIO output data register.
-#
-# Constants that are named after a peripheral, like ``GPIOA``, are the absolute
-# address of that peripheral.  Constants that have a prefix which is the name of a
-# peripheral, like ``GPIO_BSRR``, are relative offsets of the register.  Accessing
-# peripheral registers requires adding the absolute base address of the peripheral
-# and the relative register offset.  For example ``GPIOA + GPIO_BSRR`` is the
-# full, absolute address of the ``GPIOA->BSRR`` register.
-#
-# Example use:
+"""Offset of the GPIO input data register."""
 GPIO_ODR: int = 1
+"""\
+Offset of the GPIO output data register.
+
+Constants that are named after a peripheral, like ``GPIOA``, are the absolute
+address of that peripheral.  Constants that have a prefix which is the name of a
+peripheral, like ``GPIO_BSRR``, are relative offsets of the register.  Accessing
+peripheral registers requires adding the absolute base address of the peripheral
+and the relative register offset.  For example ``GPIOA + GPIO_BSRR`` is the
+full, absolute address of the ``GPIOA->BSRR`` register.
+
+Example use:
+"""
 
 def rfcore_status() -> int:
     """
