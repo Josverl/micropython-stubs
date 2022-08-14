@@ -281,10 +281,10 @@ class StubPackage:
             # add the module to the package
             # fixme : only accounts for one level of packages
             modules.add(p.parent.name)
-        for module in modules:
+        for module in sorted(modules):
             _pyproject["tool"]["poetry"]["packages"] += [{"include": module}]
         # now find other stub files directly in the folder
-        for p in self.package_path.glob("*.py*"):
+        for p in sorted(self.package_path.glob("*.py*")):
             if p.suffix in (".py", ".pyi"):
                 _pyproject["tool"]["poetry"]["packages"] += [{"include": p.name}]
 

@@ -124,7 +124,7 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "e0f7e4246a0e375ca7fb0aae8bc89bce332778e8"
+            "hash": "6b6f4c5e9c249ec0386c3cb233688d25ca8f094e"
         },
         "729472063963069255": {
             "name": "micropython-rp2-stubs",

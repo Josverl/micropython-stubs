@@ -37,3 +37,9 @@ micropython-lib
 !publish/*/*.toml
 !publish/*/*.md
 publish/**/dist
+
+# NO DISTRIBUTION ONFO ON LO
+publish/*/*.dist-info/*
+!publish/*/*.dist-info/METADATA
+
+

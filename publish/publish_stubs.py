@@ -200,14 +200,13 @@ def publish_board_stubs(
                     package.bump()
                     package.hash = package.create_hash()
                     log.debug(f"New hash: {package.package_name} {package.pkg_version} {package.hash}")
-                    if not dryrun:
+                    if dryrun:
+                        log.warning("Updated package is NOT published.")
+                    else:
                         package.build()
                         package.publish(production=production)
                         db.add(package.to_json())
                         db.commit()
-                    else:
-                        # FIXME: note that the version in the file on disk may get bumped
-                        pass
 
                 if clean:
                     package.clean()
