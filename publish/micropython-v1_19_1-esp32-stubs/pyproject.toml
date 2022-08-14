@@ -33,6 +33,11 @@ classifiers = [
 ]
 packages = [
     { include = "uasyncio" },
+    { include = "_boot.py" },
+    { include = "_boot.pyi" },
+    { include = "_onewire.py" },
+    { include = "_thread.py" },
+    { include = "_uasyncio.py" },
     { include = "apa106.py" },
     { include = "apa106.pyi" },
     { include = "array.py" },
@@ -138,11 +143,6 @@ packages = [
     { include = "websocket_helper.py" },
     { include = "websocket_helper.pyi" },
     { include = "zlib.py" },
-    { include = "_boot.py" },
-    { include = "_boot.pyi" },
-    { include = "_onewire.py" },
-    { include = "_thread.py" },
-    { include = "_uasyncio.py" },
 ]
 
 [tool.poetry.dependencies]

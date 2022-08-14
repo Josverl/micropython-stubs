@@ -33,6 +33,10 @@ classifiers = [
 ]
 packages = [
     { include = "uasyncio" },
+    { include = "_onewire.py" },
+    { include = "_onewire.pyi" },
+    { include = "_uasyncio.py" },
+    { include = "_uasyncio.pyi" },
     { include = "array.py" },
     { include = "array.pyi" },
     { include = "binascii.py" },
@@ -145,10 +149,6 @@ packages = [
     { include = "uzlib.pyi" },
     { include = "zlib.py" },
     { include = "zlib.pyi" },
-    { include = "_onewire.py" },
-    { include = "_onewire.pyi" },
-    { include = "_uasyncio.py" },
-    { include = "_uasyncio.pyi" },
 ]
 
 [tool.poetry.dependencies]
