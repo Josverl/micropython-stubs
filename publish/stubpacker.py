@@ -247,7 +247,7 @@ class StubPackage:
 
         else:
             # read the template pyproject.toml file
-            template_path = self.package_path / "../template"
+            template_path = self.package_path / "template"
             with open(template_path / "pyproject.toml", "rb") as f:
                 _pyproject = tomli.load(f)
             _pyproject["tool"]["poetry"]["version"] = self.mpy_version
