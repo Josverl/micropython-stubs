@@ -32,7 +32,7 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "6a8ee7ba0873722fc30dd403ed1594b1e57b349f"
+            "hash": "712ebd85140b078ce6d9d3cbb9d7ffc18cf10aef"
         },
         "328468468359000153": {
             "name": "micropython-stm32-stubs",
@@ -78,7 +78,7 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "59a9c6e105cd65239fc2d8c0e0f2b5c1d8f6f9aa"
+            "hash": "2c87ca358690474e09166b2202963295f02c70ac"
         },
         "117355479824027163": {
             "name": "micropython-stm32-stubs",
@@ -101,7 +101,7 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "5e249a26f5edebd1966aa49bcefbd8a60a2560e3"
+            "hash": "6cbc6e3243f6a19ba4d969642376bb7a672f3400"
         },
         "129169710521493557": {
             "name": "micropython-esp8266-stubs",
@@ -124,7 +124,7 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "6b6f4c5e9c249ec0386c3cb233688d25ca8f094e"
+            "hash": "7a9c241eed8002d9524218fdb2127177d30354c9"
         },
         "729472063963069255": {
             "name": "micropython-rp2-stubs",
@@ -147,7 +147,7 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "45ff6615a9c78c801c5a11dae8e786485b822efd"
+            "hash": "b1e73bd4db198a06983e88fe0b9d6985044a03a2"
         },
         "178802940442696553": {
             "name": "micropython-esp8266-stubs",
@@ -193,7 +193,7 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "0dd3d6382ba4c34b9140ed5f68f21f35e4ddbaa6"
+            "hash": "e2f1030e062177fe457ea500395c691146b3d876"
         },
         "609451497174971648": {
             "name": "micropython-esp32-stubs",
@@ -239,7 +239,7 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "7445b1d7fc812e88d0d243e66f16c7b968982520"
+            "hash": "46b121fac14f35512499b7d0c0bcf3eeb507da38"
         },
         "336485119904240090": {
             "name": "micropython-stm32-stubs",
@@ -331,7 +331,7 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "e21bf1a695ee3314f617ecb91ba23521bcea4053"
+            "hash": "c712dd6dd7f29f94cf3892fadb3cc6af3dd63e5e"
         },
         "270499320680238202": {
             "name": "micropython-esp8266-stubs",
@@ -354,7 +354,7 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "6bf11654761034e80e9fb29ee53121d3edeb5548"
+            "hash": "f925b70a9ab238a2853c60c274951a62d427c1c6"
         }
     }
 }
