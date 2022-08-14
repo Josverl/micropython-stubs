@@ -36,10 +36,8 @@ micropython-lib
 # publish/*/**/*.*
 !publish/*/*.toml
 !publish/*/*.md
-publish/**/dist
+publish/*/modules.json
 
-# NO DISTRIBUTION ONFO ON LO
+publish/**/dist
 publish/*/*.dist-info/*
 !publish/*/*.dist-info/METADATA
-
-
