@@ -18,6 +18,38 @@
             "program": "${file}",
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Python: publish board",
+            "type": "python",
+            "request": "launch",
+            "program": "./publish/publish_stubs.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--pypi",
+                "-V",
+                "1.16",
+                "--dry-run",
+                "--type",
+                "board"
+            ]
+        }
+        {
+            "name": "Python: publish 1.19.1 docs",
+            "type": "python",
+            "request": "launch",
+            "program": "./publish/publish_stubs.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--pypi",
+                "-V",
+                "1.19.1",
+                "--dry-run",
+                "--type",
+                "doc"
+            ]
         }
     ]
 }
