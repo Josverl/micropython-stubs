@@ -11,6 +11,14 @@ queries:
 - exclude: py/polluting-import                    # Cpython stubs: from pycopy import *
 - exclude: py/import-and-import-from              # used in several frozen modules - not my code
 - exclude: py/multiple-definition                 # used in several frozen modules - not my code
+- exclude: py/not-named-self                      # used in uasyncio and aioble - not my code  
+- exclude: py/illegal-raise                       # used in uasyncio - not my code
 
-#- exclude: py/not-named-self                      # Old stubs TODO: resolve this 
-# - exclude: py/illegal-raise
+path_classifiers:
+  docs: 
+      - docs
+  generated: 
+      - publish/*/**/*.*                          # copies of stubs from the publishing process
+  test:
+      - test
+
