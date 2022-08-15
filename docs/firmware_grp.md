@@ -6,7 +6,7 @@
 ## Micropython 
 |family | version | type    |port |board |count | stubber version|path
 |-------|---------|---------|-----|------|-----:|-|----
-|micropython |latest  |documentation|-|micropython|50|1.6.9|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
+|micropython |latest  |documentation|-|micropython|50|1.7.2|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
 |micropython |latest  |frozen  |esp32|GENERIC|19|1.6.9|[stubs/micropython-latest-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/GENERIC)
 |micropython |latest  |frozen  |esp32|LILYGO_TTGO_LORA32|22|1.6.9|[stubs/micropython-latest-frozen/esp32/LILYGO_TTGO_LORA32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/LILYGO_TTGO_LORA32)
 |micropython |latest  |frozen  |esp32|LOLIN_C3_MINI|20|1.6.9|[stubs/micropython-latest-frozen/esp32/LOLIN_C3_MINI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/LOLIN_C3_MINI)
@@ -207,9 +207,9 @@
 |micropython |v1.9.4  |frozen  |stm32|micropython|4|1.5.5a4|[stubs/micropython-v1_9_4-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-frozen/stm32/GENERIC)
 |micropython |v1.9.4  |frozen  |unix|micropython|2|1.5.5a4|[stubs/micropython-v1_9_4-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-frozen/unix/GENERIC)
 |micropython |v1.9.4-L|board   |-|ESP module with ESP8266|43|1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-esp8266)
-|micropython |v1_17   |documentation|-|micropython|47|1.6.6|[stubs/micropython-v1_17-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-docstubs)
-|micropython |v1_18   |documentation|-|micropython|49|1.6.8|[stubs/micropython-v1_18-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-docstubs)
-|micropython |v1_19   |documentation|-|micropython|50|1.6.8|[stubs/micropython-v1_19-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19-docstubs)
+|micropython |v1_17   |documentation|-|micropython|47|1.7.2|[stubs/micropython-v1_17-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-docstubs)
+|micropython |v1_18   |documentation|-|micropython|49|1.7.2|[stubs/micropython-v1_18-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-docstubs)
+|micropython |v1_19   |documentation|-|micropython|50|1.7.2|[stubs/micropython-v1_19-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19-docstubs)
 
 
 (cpython-core-stubs)=
