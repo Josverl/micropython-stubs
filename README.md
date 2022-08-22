@@ -25,13 +25,22 @@ in order to get the most out of the MicroPython stubs, you should follow these s
 - determine which Micropython **version** and **port**  you are using.
 
 
-To install the latest stubs: `pip install  micropython-<port>-stubs`   
+To install the latest stubs: 
+## `pip install  micropython-<port>-stubs`   
 where port is the port of the MicroPython firmware. ( stm32, eps32,rp2...) 
 
-To install the stubs for an older version, such as MicroPython 1.17: `pip install micropython-stm32-stubs==1.17.*` 
+To install the stubs for an older version, such as MicroPython 1.17:   
+## `pip install micropython-stm32-stubs==1.17.*` 
 
 Note that not all ports are published as I do not have access to hardware to run all ports.
 Please let me know if you would like to see a port added, and are willing to help. [Discussions]
+
+|port  | downloads
+|------|------
+| micropython-stm32-stubs | ![micropython-stm32-stubs downloads](https://img.shields.io/pypi/dm/micropython-stm32-stubs.svg)
+| micropython-esp32-stubs | ![micropython-esp32-stubs downloads](https://img.shields.io/pypi/dm/micropython-esp32-stubs.svg)
+| micropython-esp8266-stubs | ![micropython-esp8266-stubs downloads](https://img.shields.io/pypi/dm/micropython-esp8266-stubs.svg)
+| micropython-rp2-stubs | ![micropython-rp2-stubs downloads](https://img.shields.io/pypi/dm/micropython-rp2-stubs.svg)
 ## What do you get
 
  * `micropython-<port>[-<board>]-stubs`  
