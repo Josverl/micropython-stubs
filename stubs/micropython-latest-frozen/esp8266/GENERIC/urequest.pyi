@@ -1,3 +1,0 @@
-from typing import Any
-
-def urlopen(url, data: Any | None = ..., method: str = ...): ...

@@ -9,7 +9,7 @@ from .server import (
     Service as Service,
     register_services as register_services,
 )
-from typing import Any
+from _typeshed import Incomplete
 
-ADDR_PUBLIC: Any
-ADDR_RANDOM: Any
+ADDR_PUBLIC: Incomplete
+ADDR_RANDOM: Incomplete

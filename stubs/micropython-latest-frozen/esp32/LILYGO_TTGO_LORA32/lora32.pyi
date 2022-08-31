@@ -1,38 +1,38 @@
+from _typeshed import Incomplete
 from machine import Signal as Signal
-from typing import Any
 
 class Lora32Base:
-    LORA_MOSI: Any
-    LORA_MISO: Any
-    LORA_SCLK: Any
-    LORA_CS: Any
-    LORA_DIO: Any
-    LORA_RST: Any
-    DAC1: Any
-    LED: Any
-    OLED_SDA: Any
-    OLED_SCL: Any
+    LORA_MOSI: Incomplete
+    LORA_MISO: Incomplete
+    LORA_SCLK: Incomplete
+    LORA_CS: Incomplete
+    LORA_DIO: Incomplete
+    LORA_RST: Incomplete
+    DAC1: Incomplete
+    LED: Incomplete
+    OLED_SDA: Incomplete
+    OLED_SCL: Incomplete
     def __init__(self, define_helpers: bool = ...) -> None: ...
-    led: Any
-    i2c: Any
-    oled: Any
+    led: Incomplete
+    i2c: Incomplete
+    oled: Incomplete
     def create_helpers(self) -> None: ...
 
 class Lora32v1_0(Lora32Base):
-    LORA_RST: Any
-    OLED_SDA: Any
-    OLED_SCL: Any
-    OLED_RST: Any
+    LORA_RST: Incomplete
+    OLED_SDA: Incomplete
+    OLED_SCL: Incomplete
+    OLED_RST: Incomplete
     def __init__(self) -> None: ...
 
 class Lora32v1_2(Lora32Base):
-    DS3231_SDA: Any
-    DS3231_SCL: Any
+    DS3231_SDA: Incomplete
+    DS3231_SCL: Incomplete
     def __init__(self) -> None: ...
 
 class Lora32(Lora32Base):
-    SD_CS: Any
-    SD_MOSI: Any
-    SD_MISO: Any
-    SD_SCLK: Any
+    SD_CS: Incomplete
+    SD_MOSI: Incomplete
+    SD_MISO: Incomplete
+    SD_SCLK: Incomplete
     def __init__(self) -> None: ...

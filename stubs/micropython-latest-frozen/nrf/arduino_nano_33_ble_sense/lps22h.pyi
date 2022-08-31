@@ -1,17 +1,17 @@
-from typing import Any
+from _typeshed import Incomplete
 
-_LPS22_CTRL_REG1: Any
-_LPS22_CTRL_REG2: Any
-_LPS22_STATUS: Any
-_LPS22_TEMP_OUT_L: Any
-_LPS22_PRESS_OUT_XL: Any
-_LPS22_PRESS_OUT_L: Any
+_LPS22_CTRL_REG1: Incomplete
+_LPS22_CTRL_REG2: Incomplete
+_LPS22_STATUS: Incomplete
+_LPS22_TEMP_OUT_L: Incomplete
+_LPS22_PRESS_OUT_XL: Incomplete
+_LPS22_PRESS_OUT_L: Incomplete
 
 class LPS22H:
-    i2c: Any
-    addr: Any
-    oneshot: Any
-    buf: Any
+    i2c: Incomplete
+    addr: Incomplete
+    oneshot: Incomplete
+    buf: Incomplete
     def __init__(self, i2c, address: int = ..., oneshot: bool = ...) -> None: ...
     def _int16(self, d): ...
     def _write_reg(self, reg, dat) -> None: ...

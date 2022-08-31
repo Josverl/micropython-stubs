@@ -1,9 +1,9 @@
-from typing import Any
+from _typeshed import Incomplete
 
 class Response:
-    raw: Any
+    raw: Incomplete
     encoding: str
-    _cached: Any
+    _cached: Incomplete
     def __init__(self, f) -> None: ...
     def close(self) -> None: ...
     @property
@@ -15,12 +15,12 @@ class Response:
 def request(
     method,
     url,
-    data: Any | None = ...,
-    json: Any | None = ...,
+    data: Incomplete | None = ...,
+    json: Incomplete | None = ...,
     headers=...,
-    stream: Any | None = ...,
-    auth: Any | None = ...,
-    timeout: Any | None = ...,
+    stream: Incomplete | None = ...,
+    auth: Incomplete | None = ...,
+    timeout: Incomplete | None = ...,
     parse_headers: bool = ...,
 ): ...
 def head(url, **kw): ...
