@@ -94,12 +94,39 @@ class FrameBuffer:
         a given length.
         """
         ...
-    def rect(self, x, y, w, h, c) -> Any: ...
-    def fill_rect(self, x, y, w, h, c) -> None:
+    def rect(self, x, y, w, h, c, f: Optional[Any] = None) -> None:
         """
-        Draw a rectangle at the given location, size and color. The `rect`
-        method draws only a 1 pixel outline whereas the `fill_rect` method
-        draws both the outline and interior.
+        Draw a rectangle at the given location, size and color.
+
+        The optional *f* parameter can be set to ``True`` to fill the rectangle.
+        Otherwise just a one pixel outline is drawn.
+        """
+        ...
+    def ellipse(self, x, y, xr, yr, c, f, m: Optional[Any] = None) -> None:
+        """
+        Draw an ellipse at the given location. Radii *xr* and *yr* define the
+        geometry; equal values cause a circle to be drawn. The *c* parameter
+        defines the color.
+
+        The optional *f* parameter can be set to ``True`` to fill the ellipse.
+        Otherwise just a one pixel outline is drawn.
+
+        The optional *m* parameter enables drawing to be restricted to certain
+        quadrants of the ellipse. The LS four bits determine which quadrants are
+        to be drawn, with bit 0 specifying Q1, b1 Q2, b2 Q3 and b3 Q4. Quadrants
+        are numbered counterclockwise with Q1 being top right.
+        """
+        ...
+    def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Any:
+        """
+        Given a list of coordinates, draw an arbitrary (convex or concave) closed
+        polygon at the given x, y location using the given color.
+
+        The *coords* must be specified as a :mod:`array` of integers, e.g.
+        ``array('h', [x0, y0, x1, y1, ... xn, yn])``.
+
+        The optional *f* parameter can be set to ``True`` to fill the polygon.
+        Otherwise just a one pixel outline is drawn.
         """
         ...
     def text(self, s, x, y, c: Optional[Any] = None) -> None:
