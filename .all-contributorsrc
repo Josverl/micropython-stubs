@@ -138,6 +138,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/17012831?v=4",
       "profile": "https://github.com/RonaldHiemstra",
       "contributions": [
+        "stubs",
+        "content",
         "doc"
       ]
     },
@@ -196,6 +198,24 @@
       "contributions": [
         "code",
         "test"
+      ]
+    },
+    {
+      "login": "mattytrentini",
+      "name": "Matt Trentini",
+      "avatar_url": "https://avatars.githubusercontent.com/u/194201?v=4",
+      "profile": "https://github.com/mattytrentini",
+      "contributions": [
+        "stubs"
+      ]
+    },
+    {
+      "login": "andrew-stclair",
+      "name": "Andrew St Clair",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4944499?v=4",
+      "profile": "https://andrew-stclair.com/",
+      "contributions": [
+        "stubs"
       ]
     }
   ],
