@@ -12,7 +12,7 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.6.9",
+        "version": "1.7.4",
         "stubtype": "frozen"
     },
     "modules": [
@@ -85,12 +85,28 @@
             "module": "stream"
         },
         {
+            "file": "umqtt/robust.py",
+            "module": "robust"
+        },
+        {
+            "file": "umqtt/simple.py",
+            "module": "simple"
+        },
+        {
             "file": "upip.py",
             "module": "upip"
         },
         {
             "file": "upip_utarfile.py",
             "module": "upip_utarfile"
+        },
+        {
+            "file": "upysh.py",
+            "module": "upysh"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
         },
         {
             "file": "webrepl.py",

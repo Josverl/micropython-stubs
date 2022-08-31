@@ -1,15 +1,15 @@
-from typing import Any
+from _typeshed import Incomplete
 
-WS2812_PIN: Any
-BUTTON_PIN: Any
-IR_PIN: Any
-I2C0_SCL_PIN: Any
-I2C0_SDA_PIN: Any
-GROVE_PORT_PIN: Any
+WS2812_PIN: Incomplete
+BUTTON_PIN: Incomplete
+IR_PIN: Incomplete
+I2C0_SCL_PIN: Incomplete
+I2C0_SDA_PIN: Incomplete
+GROVE_PORT_PIN: Incomplete
 
 class ATOM:
-    _np: Any
-    _btn: Any
+    _np: Incomplete
+    _btn: Incomplete
     def __init__(self, np_n) -> None: ...
     def get_button_status(self): ...
     def set_button_callback(self, cb) -> None: ...

@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
 log_level: int
 
@@ -7,17 +7,17 @@ def log_warn(*args) -> None: ...
 def log_info(*args) -> None: ...
 
 class GattError(Exception):
-    _status: Any
+    _status: Incomplete
     def __init__(self, status) -> None: ...
 
 def ensure_active() -> None: ...
 def config(*args, **kwargs): ...
 
-_irq_handlers: Any
-_shutdown_handlers: Any
+_irq_handlers: Incomplete
+_shutdown_handlers: Incomplete
 
 def register_irq_handler(irq, shutdown) -> None: ...
 def stop() -> None: ...
 def ble_irq(event, data): ...
 
-ble: Any
+ble: Incomplete

@@ -1,16 +1,16 @@
-from typing import Any
+from _typeshed import Incomplete
 
-VBUS_SENSE: Any
-VBAT_SENSE: Any
-RGB_DATA: Any
-LDO2: Any
-LED: Any
-AMB_LIGHT: Any
-SPI_MOSI: Any
-SPI_MISO: Any
-SPI_CLK: Any
-I2C_SDA: Any
-I2C_SCL: Any
+VBUS_SENSE: Incomplete
+VBAT_SENSE: Incomplete
+RGB_DATA: Incomplete
+LDO2: Incomplete
+LED: Incomplete
+AMB_LIGHT: Incomplete
+SPI_MOSI: Incomplete
+SPI_MISO: Incomplete
+SPI_CLK: Incomplete
+I2C_SDA: Incomplete
+I2C_SCL: Incomplete
 
 def led_set(state) -> None: ...
 def led_blink() -> None: ...
