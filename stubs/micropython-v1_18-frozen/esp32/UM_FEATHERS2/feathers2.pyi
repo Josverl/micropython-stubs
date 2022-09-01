@@ -1,18 +1,18 @@
+from _typeshed import Incomplete
 from machine import SPI as SPI
-from typing import Any
 
-LDO2: Any
-DOTSTAR_CLK: Any
-DOTSTAR_DATA: Any
-SPI_MOSI: Any
-SPI_MISO: Any
-SPI_CLK: Any
-I2C_SDA: Any
-I2C_SCL: Any
-DAC1: Any
-DAC2: Any
-LED: Any
-AMB_LIGHT: Any
+LDO2: Incomplete
+DOTSTAR_CLK: Incomplete
+DOTSTAR_DATA: Incomplete
+SPI_MOSI: Incomplete
+SPI_MISO: Incomplete
+SPI_CLK: Incomplete
+I2C_SDA: Incomplete
+I2C_SCL: Incomplete
+DAC1: Incomplete
+DAC2: Incomplete
+LED: Incomplete
+AMB_LIGHT: Incomplete
 
 def set_led(state) -> None: ...
 def toggle_led(state) -> None: ...

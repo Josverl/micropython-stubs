@@ -1,13 +1,13 @@
-from typing import Any
+from _typeshed import Incomplete
 
-SPI_MOSI: Any
-SPI_MISO: Any
-SPI_CLK: Any
-I2C_SDA: Any
-I2C_SCL: Any
-DAC1: Any
-DAC2: Any
-LED: Any
-BUTTON: Any
-led: Any
-button: Any
+SPI_MOSI: Incomplete
+SPI_MISO: Incomplete
+SPI_CLK: Incomplete
+I2C_SDA: Incomplete
+I2C_SCL: Incomplete
+DAC1: Incomplete
+DAC2: Incomplete
+LED: Incomplete
+BUTTON: Incomplete
+led: Incomplete
+button: Incomplete
