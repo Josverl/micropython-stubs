@@ -1,13 +1,13 @@
-from typing import Any
+from _typeshed import Incomplete
 
 class FlashBdev:
     SEC_SIZE: int
-    START_SEC: Any
-    blocks: Any
+    START_SEC: Incomplete
+    blocks: Incomplete
     def __init__(self, blocks) -> None: ...
     def readblocks(self, n, buf) -> None: ...
     def writeblocks(self, n, buf) -> None: ...
     def ioctl(self, op, arg): ...
 
-size: Any
-bdev: Any
+size: Incomplete
+bdev: Incomplete
