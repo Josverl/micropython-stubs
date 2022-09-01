@@ -1,18 +1,18 @@
+from _typeshed import Incomplete
 from machine import SPI as SPI
-from typing import Any
 
-BAT_VOLTAGE: Any
-BAT_CHARGE: Any
-DOTSTAR_CLK: Any
-DOTSTAR_DATA: Any
-DOTSTAR_PWR: Any
-SPI_MOSI: Any
-SPI_CLK: Any
-SPI_MISO: Any
-I2C_SDA: Any
-I2C_SCL: Any
-DAC1: Any
-DAC2: Any
+BAT_VOLTAGE: Incomplete
+BAT_CHARGE: Incomplete
+DOTSTAR_CLK: Incomplete
+DOTSTAR_DATA: Incomplete
+DOTSTAR_PWR: Incomplete
+SPI_MOSI: Incomplete
+SPI_CLK: Incomplete
+SPI_MISO: Incomplete
+I2C_SDA: Incomplete
+I2C_SCL: Incomplete
+DAC1: Incomplete
+DAC2: Incomplete
 
 def get_battery_voltage(): ...
 def get_battery_charging(): ...
