@@ -2,14 +2,14 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "cpython-core",
-        "firmware": "cpython-core-micropython-v1_6_7",
+        "firmware": "cpython-core-micropython-v1_7_4",
         "machine": "cpython-core",
         "nodename": "",
         "platform": "cpython",
         "port": "micropython",
-        "release": "1.6.7",
+        "release": "1.7.4",
         "sysname": "",
-        "version": "1.6.7"
+        "version": "1.7.4"
     },
     "modules": [
         {
@@ -63,6 +63,6 @@
     ],
     "stubber": {
         "stubtype": "core",
-        "version": "1.6.7"
+        "version": "1.7.4"
     }
 }
