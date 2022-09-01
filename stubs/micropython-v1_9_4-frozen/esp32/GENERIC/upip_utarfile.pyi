@@ -1,15 +1,15 @@
-from typing import Any
+from _typeshed import Incomplete
 
-TAR_HEADER: Any
+TAR_HEADER: Incomplete
 DIRTYPE: str
 REGTYPE: str
 
 def roundup(val, align): ...
 
 class FileSection:
-    f: Any
-    content_len: Any
-    align: Any
+    f: Incomplete
+    content_len: Incomplete
+    align: Incomplete
     def __init__(self, f, content_len, aligned_len) -> None: ...
     def read(self, sz: int = ...): ...
     def readinto(self, buf): ...
@@ -19,9 +19,9 @@ class TarInfo:
     def __str__(self): ...
 
 class TarFile:
-    f: Any
-    subf: Any
-    def __init__(self, name: Any | None = ..., fileobj: Any | None = ...) -> None: ...
+    f: Incomplete
+    subf: Incomplete
+    def __init__(self, name: Incomplete | None = ..., fileobj: Incomplete | None = ...) -> None: ...
     def next(self): ...
     def __iter__(self): ...
     def __next__(self): ...
