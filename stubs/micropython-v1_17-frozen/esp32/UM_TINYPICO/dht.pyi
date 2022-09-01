@@ -1,8 +1,8 @@
-from typing import Any
+from _typeshed import Incomplete
 
 class DHTBase:
-    pin: Any
-    buf: Any
+    pin: Incomplete
+    buf: Incomplete
     def __init__(self, pin) -> None: ...
     def measure(self) -> None: ...
 
