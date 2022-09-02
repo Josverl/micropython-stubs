@@ -1,8 +1,8 @@
-from typing import Any
+from _typeshed import Incomplete
 
-_SPIFLASH_UPDATE_KEY_ADDR: Any
-_SPIFLASH_UPDATE_KEY_VALUE: Any
-_FILESYSTEM_ADDR: Any
-_FILESYSTEM_LEN: Any
+_SPIFLASH_UPDATE_KEY_ADDR: Incomplete
+_SPIFLASH_UPDATE_KEY_VALUE: Incomplete
+_FILESYSTEM_ADDR: Incomplete
+_FILESYSTEM_LEN: Incomplete
 
 def update_app(filename) -> None: ...

@@ -1,7 +1,7 @@
 from .core import *
-from typing import Any
+from _typeshed import Incomplete
 
-__version__: Any
-_attrs: Any
+__version__: Incomplete
+_attrs: Incomplete
 
 def __getattr__(attr): ...

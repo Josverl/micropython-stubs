@@ -1,8 +1,8 @@
+from _typeshed import Incomplete
 from ssd1306 import SSD1306_I2C
-from typing import Any
 
 class OLED(SSD1306_I2C):
-    _reset: Any
+    _reset: Incomplete
     def __init__(self, i2c, reset) -> None: ...
     def reset(self, reinit: bool = ...) -> None: ...
     def test(self) -> None: ...

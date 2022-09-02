@@ -1,8 +1,8 @@
+from _typeshed import Incomplete
 from neopixel import NeoPixel
-from typing import Any
 
 class APA102(NeoPixel):
-    ORDER: Any
-    clock_pin: Any
+    ORDER: Incomplete
+    clock_pin: Incomplete
     def __init__(self, clock_pin, data_pin, n, bpp: int = ...) -> None: ...
     def write(self) -> None: ...
