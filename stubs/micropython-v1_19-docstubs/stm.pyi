@@ -10,11 +10,11 @@ direct access to peripheral registers.
 # origin module:: repos/micropython/docs/library/stm.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
 
-mem8: Any = ...
+mem8: bytearray
 """Read/write 8 bits of memory."""
-mem16: Any = ...
+mem16: bytearray
 """Read/write 16 bits of memory."""
-mem32: int = 1
+mem32: bytearray
 """\
 Read/write 32 bits of memory.
 
