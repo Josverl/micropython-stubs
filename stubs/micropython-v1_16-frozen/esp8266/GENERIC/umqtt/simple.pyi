@@ -1,22 +1,22 @@
-from typing import Any
+from _typeshed import Incomplete
 from ubinascii import hexlify as hexlify
 
 class MQTTException(Exception): ...
 
 class MQTTClient:
-    client_id: Any
-    sock: Any
-    server: Any
-    port: Any
-    ssl: Any
-    ssl_params: Any
+    client_id: Incomplete
+    sock: Incomplete
+    server: Incomplete
+    port: Incomplete
+    ssl: Incomplete
+    ssl_params: Incomplete
     pid: int
-    cb: Any
-    user: Any
-    pswd: Any
-    keepalive: Any
-    lw_topic: Any
-    lw_msg: Any
+    cb: Incomplete
+    user: Incomplete
+    pswd: Incomplete
+    keepalive: Incomplete
+    lw_topic: Incomplete
+    lw_msg: Incomplete
     lw_qos: int
     lw_retain: bool
     def __init__(
@@ -24,8 +24,8 @@ class MQTTClient:
         client_id,
         server,
         port: int = ...,
-        user: Any | None = ...,
-        password: Any | None = ...,
+        user: Incomplete | None = ...,
+        password: Incomplete | None = ...,
         keepalive: int = ...,
         ssl: bool = ...,
         ssl_params=...,
