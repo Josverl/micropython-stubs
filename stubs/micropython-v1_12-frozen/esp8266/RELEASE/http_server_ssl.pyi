@@ -1,7 +1,7 @@
-from typing import Any
+from _typeshed import Incomplete
 
-key: Any
-cert: Any
+key: Incomplete
+cert: Incomplete
 CONTENT: bytes
 
 def main(use_stream: bool = ...) -> None: ...
