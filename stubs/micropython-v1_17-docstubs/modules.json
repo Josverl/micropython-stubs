@@ -7,12 +7,12 @@
         "machine": "micropython",
         "firmware": "micropython-v1_17",
         "nodename": "micropython",
-        "version": "v1_17",
+        "version": "v1.17",
         "release": "v1.17",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.7.2",
+        "version": "1.8.0",
         "stubtype": "documentation"
     },
     "modules": [
