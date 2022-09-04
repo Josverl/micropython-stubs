@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
 class OneWireError(Exception): ...
 
@@ -6,7 +6,7 @@ class OneWire:
     SEARCH_ROM: int
     MATCH_ROM: int
     SKIP_ROM: int
-    pin: Any
+    pin: Incomplete
     def __init__(self, pin) -> None: ...
     def reset(self, required: bool = ...): ...
     def readbit(self): ...

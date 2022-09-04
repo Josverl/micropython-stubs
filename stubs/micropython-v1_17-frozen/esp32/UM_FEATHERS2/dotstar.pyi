@@ -1,21 +1,21 @@
-from typing import Any
+from _typeshed import Incomplete
 
 START_HEADER_SIZE: int
 LED_START: int
-RGB: Any
-RBG: Any
-GRB: Any
-GBR: Any
-BRG: Any
-BGR: Any
+RGB: Incomplete
+RBG: Incomplete
+GRB: Incomplete
+GBR: Incomplete
+BRG: Incomplete
+BGR: Incomplete
 
 class DotStar:
-    _spi: Any
-    _n: Any
-    end_header_size: Any
-    _buf: Any
-    end_header_index: Any
-    pixel_order: Any
+    _spi: Incomplete
+    _n: Incomplete
+    end_header_size: Incomplete
+    _buf: Incomplete
+    end_header_index: Incomplete
+    pixel_order: Incomplete
     _brightness: float
     auto_write: bool
     def __init__(self, spi, n, *, brightness: float = ..., auto_write: bool = ..., pixel_order=...) -> None: ...
