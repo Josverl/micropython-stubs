@@ -24,7 +24,7 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        version: ['v1.17','v1.18','v1.19','v2.0','Latest']
+        version: ['v1.17','v1.18','v1.19','v1.19.1','v2.0','Latest']
         # version: ['v1.15','v1.16','v1.17','Latest','fix_lib_documentation']
 
     # Most scripts will be run from the stubber, set that as default

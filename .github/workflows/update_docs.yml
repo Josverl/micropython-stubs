@@ -65,5 +65,6 @@ jobs:
           add: 'docs'
           default_author: github_actions
           message: Update documentation regarding the covered modules
+          cwd: ${{github.workspace}}/micropython-stubs
 
       
