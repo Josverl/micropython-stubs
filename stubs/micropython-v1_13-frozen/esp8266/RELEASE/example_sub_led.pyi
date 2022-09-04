@@ -1,8 +1,8 @@
-from typing import Any
+from _typeshed import Incomplete
 
-led: Any
+led: Incomplete
 SERVER: str
-CLIENT_ID: Any
+CLIENT_ID: Incomplete
 TOPIC: bytes
 state: int
 
