@@ -1,5 +1,5 @@
 import os
-from typing import Any
+from _typeshed import Incomplete
 
 class LS:
     def __repr__(self): ...
@@ -13,9 +13,9 @@ class CLEAR:
     def __repr__(self): ...
     def __call__(self): ...
 
-pwd: Any
-ls: Any
-clear: Any
+pwd: Incomplete
+ls: Incomplete
+clear: Incomplete
 cd = os.chdir
 mkdir = os.mkdir
 mv = os.rename
@@ -29,4 +29,4 @@ def newfile(path) -> None: ...
 class Man:
     def __repr__(self): ...
 
-man: Any
+man: Incomplete
