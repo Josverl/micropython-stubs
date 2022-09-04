@@ -1,29 +1,29 @@
 from _rp2 import *
-from typing import Any
+from _typeshed import Incomplete
 
-_PROG_DATA: Any
-_PROG_OFFSET_PIO0: Any
-_PROG_OFFSET_PIO1: Any
-_PROG_EXECCTRL: Any
-_PROG_SHIFTCTRL: Any
-_PROG_OUT_PINS: Any
-_PROG_SET_PINS: Any
-_PROG_SIDESET_PINS: Any
-_PROG_MAX_FIELDS: Any
+_PROG_DATA: Incomplete
+_PROG_OFFSET_PIO0: Incomplete
+_PROG_OFFSET_PIO1: Incomplete
+_PROG_EXECCTRL: Incomplete
+_PROG_SHIFTCTRL: Incomplete
+_PROG_OUT_PINS: Incomplete
+_PROG_SET_PINS: Incomplete
+_PROG_SIDESET_PINS: Incomplete
+_PROG_MAX_FIELDS: Incomplete
 
 class PIOASMError(Exception): ...
 
 class PIOASMEmit:
-    labels: Any
-    prog: Any
+    labels: Incomplete
+    prog: Incomplete
     wrap_used: bool
     sideset_count: int
     def __init__(
         self,
         *,
-        out_init: Any | None = ...,
-        set_init: Any | None = ...,
-        sideset_init: Any | None = ...,
+        out_init: Incomplete | None = ...,
+        set_init: Incomplete | None = ...,
+        sideset_init: Incomplete | None = ...,
         in_shiftdir: int = ...,
         out_shiftdir: int = ...,
         autopush: bool = ...,
@@ -33,8 +33,8 @@ class PIOASMEmit:
         fifo_join: int = ...,
     ) -> None: ...
     delay_max: int
-    sideset_opt: Any
-    pass_: Any
+    sideset_opt: Incomplete
+    pass_: Incomplete
     num_instr: int
     num_sideset: int
     def start_pass(self, pass_) -> None: ...
@@ -44,19 +44,19 @@ class PIOASMEmit:
     def wrap_target(self) -> None: ...
     def wrap(self) -> None: ...
     def label(self, label) -> None: ...
-    def word(self, instr, label: Any | None = ...): ...
+    def word(self, instr, label: Incomplete | None = ...): ...
     def nop(self): ...
-    def jmp(self, cond, label: Any | None = ...): ...
+    def jmp(self, cond, label: Incomplete | None = ...): ...
     def wait(self, polarity, src, index): ...
     def in_(self, src, data): ...
     def out(self, dest, data): ...
     def push(self, value: int = ..., value2: int = ...): ...
     def pull(self, value: int = ..., value2: int = ...): ...
     def mov(self, dest, src): ...
-    def irq(self, mod, index: Any | None = ...): ...
+    def irq(self, mod, index: Incomplete | None = ...): ...
     def set(self, dest, data): ...
 
-_pio_funcs: Any
+_pio_funcs: Incomplete
 
 def asm_pio(**kw): ...
 def asm_pio_encode(instr, sideset_count, sideset_opt: bool = ...): ...

@@ -36,7 +36,6 @@ For example::
 # origin module:: repos/micropython/docs/library/network.rst
 # + module: network.WLAN.rst
 # + module: network.WLANWiPy.rst
-# + module: network.CC3K.rst
 # + module: network.WIZNET5K.rst
 # + module: network.LAN.rst
 from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
@@ -406,65 +405,6 @@ class WLANWiPy(AbstractNIC):
             - *wake* must be ``machine.SLEEP``.
 
         Returns an IRQ object.
-        """
-        ...
-
-class CC3K:
-    """
-    Create a CC3K driver object, initialise the CC3000 module using the given SPI bus
-    and pins, and return the CC3K object.
-
-    Arguments are:
-
-      - *spi* is an :ref:`SPI object <pyb.SPI>` which is the SPI bus that the CC3000 is
-        connected to (the MOSI, MISO and CLK pins).
-      - *pin_cs* is a :ref:`Pin object <pyb.Pin>` which is connected to the CC3000 CS pin.
-      - *pin_en* is a :ref:`Pin object <pyb.Pin>` which is connected to the CC3000 VBEN pin.
-      - *pin_irq* is a :ref:`Pin object <pyb.Pin>` which is connected to the CC3000 IRQ pin.
-
-    All of these objects will be initialised by the driver, so there is no need to
-    initialise them yourself.  For example, you can use::
-
-      nic = network.CC3K(pyb.SPI(2), pyb.Pin.board.Y5, pyb.Pin.board.Y4, pyb.Pin.board.Y3)
-    """
-
-    WEP: Any = ...
-    WPA: Any = ...
-    WPA2: Any = ...
-    """security type to use"""
-    def __init__(self, spi, pin_cs, pin_en, pin_irq) -> None: ...
-    def connect(self, ssid, key=None, *, security=WPA2, bssid=None) -> None:
-        """
-        Connect to a WiFi access point using the given SSID, and other security
-        parameters.
-        """
-        ...
-    def disconnect(self) -> None:
-        """
-        Disconnect from the WiFi access point.
-        """
-        ...
-    def isconnected(self) -> bool:
-        """
-        Returns True if connected to a WiFi access point and has a valid IP address,
-        False otherwise.
-        """
-        ...
-    def ifconfig(self) -> Tuple:
-        """
-        Returns a 7-tuple with (ip, subnet mask, gateway, DNS server, DHCP server,
-        MAC address, SSID).
-        """
-        ...
-    def patch_version(self) -> Any:
-        """
-        Return the version of the patch program (firmware) on the CC3000.
-        """
-        ...
-    def patch_program(self, cmd: str, /) -> Any:
-        """
-        Upload the current firmware to the CC3000.  You must pass 'pgm' as the first
-        argument in order for the upload to proceed.
         """
         ...
 

@@ -1,4 +1,4 @@
-from typing import Any
+from _typeshed import Incomplete
 
-bdev: Any
-vfs: Any
+bdev: Incomplete
+vfs: Incomplete
