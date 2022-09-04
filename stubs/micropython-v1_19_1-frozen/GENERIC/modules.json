@@ -1,0 +1,24 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "common",
+        "platform": "common",
+        "machine": "GENERIC",
+        "firmware": "micropython-common-v1_19_1",
+        "nodename": "micropython",
+        "version": "v1.19.1",
+        "release": "v1.19.1",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.7.4",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "sdcard.py",
+            "module": "sdcard"
+        }
+    ]
+}

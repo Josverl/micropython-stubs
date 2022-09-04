@@ -1,14 +1,14 @@
-from typing import Any
+from _typeshed import Incomplete
 
-VBUS_SENSE: Any
-VBAT_SENSE: Any
-RGB_DATA: Any
-LDO2: Any
-SPI_MOSI: Any
-SPI_MISO: Any
-SPI_CLK: Any
-I2C_SDA: Any
-I2C_SCL: Any
+VBUS_SENSE: Incomplete
+VBAT_SENSE: Incomplete
+RGB_DATA: Incomplete
+LDO2: Incomplete
+SPI_MOSI: Incomplete
+SPI_MISO: Incomplete
+SPI_CLK: Incomplete
+I2C_SDA: Incomplete
+I2C_SCL: Incomplete
 
 def set_ldo2_power(state) -> None: ...
 def get_battery_voltage(): ...
