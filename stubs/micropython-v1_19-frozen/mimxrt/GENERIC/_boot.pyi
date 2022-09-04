@@ -1,7 +1,7 @@
+from _typeshed import Incomplete
 from machine import Pin as Pin
-from typing import Any
 
-bdev: Any
-vfs: Any
-sdcard: Any
-fat: Any
+bdev: Incomplete
+vfs: Incomplete
+sdcard: Incomplete
+fat: Incomplete
