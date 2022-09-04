@@ -1,16 +1,16 @@
-from typing import Any
+from _typeshed import Incomplete
 
-_PAGE_SIZE: Any
-_CMD_RDSR: Any
-_CMD_WREN: Any
-_CMD_WRITE_32: Any
-_CMD_READ_32: Any
-_CMD_SEC_ERASE_32: Any
-_CMD_C4READ_32: Any
+_PAGE_SIZE: Incomplete
+_CMD_RDSR: Incomplete
+_CMD_WREN: Incomplete
+_CMD_WRITE_32: Incomplete
+_CMD_READ_32: Incomplete
+_CMD_SEC_ERASE_32: Incomplete
+_CMD_C4READ_32: Incomplete
 
 class SPIFlash:
-    spi: Any
-    cs: Any
+    spi: Incomplete
+    cs: Incomplete
     def __init__(self, spi, cs) -> None: ...
     def _wait_wel1(self) -> None: ...
     def _wait_wip0(self) -> None: ...
