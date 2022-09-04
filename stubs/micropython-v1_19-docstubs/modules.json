@@ -7,12 +7,12 @@
         "machine": "micropython",
         "firmware": "micropython-v1_19",
         "nodename": "micropython",
-        "version": "v1_19",
+        "version": "v1.19",
         "release": "v1.19",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.7.4",
+        "version": "1.8.0",
         "stubtype": "documentation"
     },
     "modules": [
