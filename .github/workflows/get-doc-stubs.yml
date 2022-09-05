@@ -18,14 +18,27 @@ on:
 
 jobs:
   ########################################################################################################################################
+  list_versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          depth: 1
+      # no need to install python 
+      - run: pip install pygithub packaging
+      - run: python .github/workflows/list_versions.py
+        id: dynamic
+    outputs:
+      job_versions: ${{ steps.dynamic.outputs.versions }}
+
+  ########################################################################################################################################
   get-micropython-doc-stubs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
+    needs: list_versions
     strategy:
-      matrix:
-        version: ['v1.17','v1.18','v1.19','v1.19.1','v2.0','Latest']
-        # version: ['v1.15','v1.16','v1.17','Latest','fix_lib_documentation']
+      matrix: ${{ fromJSON(needs.list_versions.outputs.job_versions) }}
 
     # Most scripts will be run from the stubber, set that as default
     defaults:
@@ -35,11 +48,11 @@ jobs:
     steps:
 
       - name: Checkout stubs repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # make Python work
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.9
           cache: 'pip'
