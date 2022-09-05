@@ -43,10 +43,10 @@ jobs:
       - name: run pyright on stubs
         if: always()
         run: |
-          # TODO: Find Stable 
+          # TODO: automatically Find Stable = latest released  version 
           pyright --version | tee ./results/pyright-version.log
           pyright stubs | tee ./results/pyright-all-stubs.log
-          pyright stubs/micropython-v1_18-* | tee ./results/pyright-stable.log
+          pyright stubs/micropython-v1_19_1-* | tee ./results/pyright-stable.log
           pyright stubs/micropython-latest-* | tee ./results/pyright-latest.log
 
       - name: Fixup pyright logs 

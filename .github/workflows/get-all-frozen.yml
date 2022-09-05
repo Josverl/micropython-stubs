@@ -24,8 +24,8 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        version: ['v1.9.3','v1.9.4','v1.10','v1.11','v1.12','v1.13','v1.14','v1.15','v1.16','v1.17','v1.18','v1.19','v1.19.1','v1.20','v2.0','Latest']
-
+        version: ['v1.17','v1.18','v1.19','v1.19.1','v1.20','v2.0','Latest']
+        # skip 'v1.9.3','v1.9.4','v1.10','v1.11','v1.12','v1.13','v1.14','v1.15','v1.16',
     # Most scripts will be run from the stubber, set that as default
     defaults:
       run:
