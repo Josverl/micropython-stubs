@@ -8,7 +8,7 @@
         "firmware": "micropython-latest",
         "nodename": "micropython",
         "version": "latest",
-        "release": "v1.19.1-358-g0b26efe73",
+        "release": "v1.19.1-370-g4e4c28bf2",
         "sysname": "micropython"
     },
     "stubber": {
