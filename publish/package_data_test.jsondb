@@ -1,13 +1,14 @@
 {
     "version": 2,
     "keys": [
+        "description",
         "hash",
         "mpy_version",
         "name",
-        "description",
         "path",
         "pkg_version",
         "publish",
+        "stub_hash",
         "stub_sources"
     ],
     "data": {
@@ -32,7 +33,8 @@
                     "stubs/cpython_core-pycopy"
                 ]
             ],
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "239410794230599613": {
             "name": "micropython-esp32-stubs",
@@ -55,7 +57,8 @@
                     "stubs/cpython_core-pycopy"
                 ]
             ],
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "331181396237886928": {
             "name": "micropython-esp32-stubs",
@@ -78,7 +81,8 @@
                 ]
             ],
             "description": "MicroPython stubs for ESP32",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "330147354398287913": {
             "name": "micropython-esp32-stubs",
@@ -101,7 +105,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "229480979353396550": {
             "name": "micropython-esp32-stubs",
@@ -124,7 +129,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "135109680449320738": {
             "name": "micropython-esp32-stubs",
@@ -147,7 +153,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "533942556238489001": {
             "name": "micropython-esp32-stubs",
@@ -170,7 +177,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "366663519947935757": {
             "name": "micropython-esp32-stubs",
@@ -193,7 +201,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "138477074758382566": {
             "name": "micropython-esp8266-stubs",
@@ -216,7 +225,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "304174470856220204": {
             "name": "micropython-esp32-stubs",
@@ -239,7 +249,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "155364115751291645": {
             "name": "micropython-esp8266-stubs",
@@ -262,7 +273,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "469524174896440649": {
             "name": "micropython-esp32-stubs",
@@ -285,7 +297,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "219228021191572715": {
             "name": "micropython-esp8266-stubs",
@@ -308,7 +321,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "167503782872145068": {
             "name": "micropython-esp32-stubs",
@@ -331,7 +345,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "200557982411298567": {
             "name": "micropython-esp8266-stubs",
@@ -354,7 +369,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "498607050727742846": {
             "name": "micropython-esp32-stubs",
@@ -377,7 +393,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "170234821294347154": {
             "name": "micropython-esp8266-stubs",
@@ -400,7 +417,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "457474079912486197": {
             "name": "micropython-esp32-stubs",
@@ -423,7 +441,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "304948316258583261": {
             "name": "micropython-esp8266-stubs",
@@ -446,7 +465,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "143044702476333684": {
             "name": "micropython-esp32-stubs",
@@ -469,7 +489,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "884143108090530312": {
             "name": "micropython-esp8266-stubs",
@@ -492,7 +513,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "271800106337261778": {
             "name": "micropython-esp32-stubs",
@@ -515,7 +537,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "312663912704248076": {
             "name": "micropython-esp8266-stubs",
@@ -538,7 +561,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "703636070447070088": {
             "name": "micropython-esp32-stubs",
@@ -561,7 +585,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "299737667500949629": {
             "name": "micropython-esp8266-stubs",
@@ -584,7 +609,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "120657874973369343": {
             "name": "micropython-esp32-stubs",
@@ -607,7 +633,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "241024729883962699": {
             "name": "micropython-esp8266-stubs",
@@ -630,7 +657,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "234231758210509919": {
             "name": "micropython-esp32-stubs",
@@ -653,7 +681,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "156079977228704384": {
             "name": "micropython-esp8266-stubs",
@@ -676,7 +705,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "320682744009838846": {
             "name": "micropython-esp32-stubs",
@@ -699,7 +729,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "187540007002346737": {
             "name": "micropython-esp8266-stubs",
@@ -722,7 +753,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "109866233251830388": {
             "name": "micropython-esp32-stubs",
@@ -745,7 +777,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "162863930268893923": {
             "name": "micropython-esp8266-stubs",
@@ -768,7 +801,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "178289763010938542": {
             "name": "micropython-esp32-stubs",
@@ -791,7 +825,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "168974784621860235": {
             "name": "micropython-esp8266-stubs",
@@ -814,7 +849,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "132370480347896194": {
             "name": "micropython-esp32-stubs",
@@ -837,7 +873,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "333617118738488759": {
             "name": "micropython-esp8266-stubs",
@@ -860,7 +897,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "336498475567353021": {
             "name": "micropython-esp32-stubs",
@@ -883,7 +921,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "171905145901877083": {
             "name": "micropython-esp8266-stubs",
@@ -906,7 +945,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "233382866352233950": {
             "name": "micropython-esp32-stubs",
@@ -929,7 +969,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "125753056063271680": {
             "name": "micropython-esp8266-stubs",
@@ -952,7 +993,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "534444917467831376": {
             "name": "micropython-esp32-stubs",
@@ -975,7 +1017,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "228241920171690637": {
             "name": "micropython-esp8266-stubs",
@@ -998,7 +1041,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "219634642850130366": {
             "name": "micropython-esp32-stubs",
@@ -1021,7 +1065,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "926404809476971921": {
             "name": "micropython-esp8266-stubs",
@@ -1044,7 +1089,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "198244641920118563": {
             "name": "micropython-esp32-stubs",
@@ -1067,7 +1113,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "105753613373031539": {
             "name": "micropython-esp8266-stubs",
@@ -1090,7 +1137,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "148955074495255493": {
             "name": "micropython-esp32-stubs",
@@ -1113,7 +1161,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "975377893137674192": {
             "name": "micropython-esp8266-stubs",
@@ -1136,7 +1185,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "333424123807003017": {
             "name": "micropython-esp32-stubs",
@@ -1159,7 +1209,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "213911797042803705": {
             "name": "micropython-esp8266-stubs",
@@ -1182,7 +1233,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "214244670008012781": {
             "name": "micropython-esp32-stubs",
@@ -1205,7 +1257,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "179961775318398620": {
             "name": "micropython-esp8266-stubs",
@@ -1228,7 +1281,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "338385352862019001": {
             "name": "micropython-esp32-stubs",
@@ -1251,7 +1305,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "300372079051118782": {
             "name": "micropython-esp8266-stubs",
@@ -1274,7 +1329,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "102334431670133876": {
             "name": "micropython-esp32-stubs",
@@ -1297,7 +1353,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "211123971601915246": {
             "name": "micropython-esp8266-stubs",
@@ -1320,7 +1377,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "314747524237531585": {
             "name": "micropython-esp32-stubs",
@@ -1343,7 +1401,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "253097015457148615": {
             "name": "micropython-esp8266-stubs",
@@ -1366,7 +1425,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "646849648710452697": {
             "name": "micropython-esp32-stubs",
@@ -1389,7 +1449,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "191439309752249174": {
             "name": "micropython-esp8266-stubs",
@@ -1412,7 +1473,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "164945911925258723": {
             "name": "micropython-esp32-stubs",
@@ -1435,7 +1497,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "331828754112507918": {
             "name": "micropython-esp8266-stubs",
@@ -1458,7 +1521,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "413646671386544509": {
             "name": "micropython-esp32-stubs",
@@ -1481,7 +1545,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "803321001420671615": {
             "name": "micropython-esp8266-stubs",
@@ -1504,7 +1569,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "311049081323140979": {
             "name": "micropython-esp32-stubs",
@@ -1527,7 +1593,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "314342008988180931": {
             "name": "micropython-esp8266-stubs",
@@ -1550,7 +1617,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "323420388415294284": {
             "name": "micropython-esp32-stubs",
@@ -1573,7 +1641,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "107707133077467771": {
             "name": "micropython-esp8266-stubs",
@@ -1596,7 +1665,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "281667429687632021": {
             "name": "micropython-esp32-stubs",
@@ -1619,7 +1689,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "294246433635616487": {
             "name": "micropython-esp8266-stubs",
@@ -1642,7 +1713,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "795271896618589063": {
             "name": "micropython-esp32-stubs",
@@ -1665,7 +1737,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "173901468743965160": {
             "name": "micropython-esp8266-stubs",
@@ -1688,7 +1761,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "128611232246359379": {
             "name": "micropython-esp32-stubs",
@@ -1711,7 +1785,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "298266418337738700": {
             "name": "micropython-esp8266-stubs",
@@ -1734,7 +1809,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "161440111668797717": {
             "name": "micropython-esp32-stubs",
@@ -1757,7 +1833,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "938360136067519093": {
             "name": "micropython-esp8266-stubs",
@@ -1780,7 +1857,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "318997709805079123": {
             "name": "micropython-esp32-stubs",
@@ -1803,7 +1881,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "275988916854747059": {
             "name": "micropython-esp32-stubs",
@@ -1826,7 +1905,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "251056765271115022": {
             "name": "micropython-esp8266-stubs",
@@ -1849,7 +1929,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "753615021029461832": {
             "name": "micropython-esp32-stubs",
@@ -1872,7 +1953,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "274678332368050702": {
             "name": "micropython-esp8266-stubs",
@@ -1895,7 +1977,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "201661880507265394": {
             "name": "micropython-esp32-stubs",
@@ -1918,7 +2001,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "239368713418990010": {
             "name": "micropython-esp8266-stubs",
@@ -1941,7 +2025,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "279770068331237324": {
             "name": "micropython-esp32-stubs",
@@ -1964,7 +2049,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "939123087072961778": {
             "name": "micropython-esp8266-stubs",
@@ -1987,7 +2073,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "275386145541381602": {
             "name": "micropython-esp32-stubs",
@@ -2010,7 +2097,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "494430894949842811": {
             "name": "micropython-esp8266-stubs",
@@ -2033,7 +2121,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "277014221161033184": {
             "name": "micropython-esp32-stubs",
@@ -2056,7 +2145,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "459970800304645454": {
             "name": "micropython-esp8266-stubs",
@@ -2079,7 +2169,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "164964160082801281": {
             "name": "micropython-esp32-stubs",
@@ -2102,7 +2193,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "128536120298982853": {
             "name": "micropython-esp8266-stubs",
@@ -2125,7 +2217,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "164290432705734278": {
             "name": "micropython-esp32-stubs",
@@ -2148,7 +2241,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "238619294762316288": {
             "name": "micropython-esp8266-stubs",
@@ -2171,7 +2265,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "151726362901669872": {
             "name": "micropython-esp32-stubs",
@@ -2194,7 +2289,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "221266391724438585": {
             "name": "micropython-esp8266-stubs",
@@ -2217,7 +2313,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "821294137241159371": {
             "name": "micropython-esp32-stubs",
@@ -2240,7 +2337,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "165827691609702474": {
             "name": "micropython-esp8266-stubs",
@@ -2263,7 +2361,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "131705348072118014": {
             "name": "micropython-esp32-stubs",
@@ -2286,7 +2385,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "298992926902810326": {
             "name": "micropython-esp8266-stubs",
@@ -2309,7 +2409,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "174300014347307446": {
             "name": "micropython-esp32-stubs",
@@ -2332,7 +2433,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "207093270497901841": {
             "name": "micropython-esp8266-stubs",
@@ -2355,7 +2457,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "656043597275479296": {
             "name": "micropython-esp32-stubs",
@@ -2378,7 +2481,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "576716035119102533": {
             "name": "micropython-esp8266-stubs",
@@ -2401,7 +2505,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "174844888649047805": {
             "name": "micropython-esp32-stubs",
@@ -2424,7 +2529,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "901343173879098595": {
             "name": "micropython-esp8266-stubs",
@@ -2447,7 +2553,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "223274519716733011": {
             "name": "micropython-esp32-stubs",
@@ -2470,7 +2577,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "173282922392556099": {
             "name": "micropython-esp8266-stubs",
@@ -2493,7 +2601,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "718392391363063005": {
             "name": "micropython-esp32-stubs",
@@ -2516,7 +2625,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "225362005327998252": {
             "name": "micropython-esp8266-stubs",
@@ -2539,7 +2649,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "158461990903498625": {
             "name": "micropython-rp2-stubs",
@@ -2562,7 +2673,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "183258332247104649": {
             "name": "micropython-esp32-stubs",
@@ -2585,7 +2697,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "717637540483129263": {
             "name": "micropython-esp8266-stubs",
@@ -2608,7 +2721,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "986665268490891301": {
             "name": "micropython-rp2-stubs",
@@ -2631,7 +2745,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "433679789137787589": {
             "name": "micropython-esp32-stubs",
@@ -2654,7 +2769,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "119873824519593237": {
             "name": "micropython-esp8266-stubs",
@@ -2677,7 +2793,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "126835312938243587": {
             "name": "micropython-esp32-stubs",
@@ -2700,7 +2817,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "286865120710517736": {
             "name": "micropython-esp32-stubs",
@@ -2723,7 +2841,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "159368658927805012": {
             "name": "micropython-esp8266-stubs",
@@ -2746,7 +2865,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "249043432725113705": {
             "name": "micropython-rp2-stubs",
@@ -2769,7 +2889,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "300474026343496817": {
             "name": "micropython-stm32-stubs",
@@ -2792,7 +2913,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "237957519297584989": {
             "name": "micropython-esp32-stubs",
@@ -2815,7 +2937,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "290861623361363039": {
             "name": "micropython-esp8266-stubs",
@@ -2838,7 +2961,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "131483963893988561": {
             "name": "micropython-rp2-stubs",
@@ -2861,7 +2985,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "102504375855499997": {
             "name": "micropython-stm32-stubs",
@@ -2884,7 +3009,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": ""
+            "hash": "",
+            "stub_hash": ""
         },
         "119774733162311546": {
             "name": "micropython-esp32-stubs",
@@ -2907,7 +3033,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "6562f073b5cee467869ec3df8a508d9d44143e44"
+            "hash": "6562f073b5cee467869ec3df8a508d9d44143e44",
+            "stub_hash": ""
         },
         "262601132287660056": {
             "name": "micropython-esp8266-stubs",
@@ -2930,7 +3057,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "f01f0e6200da6d45237ce02524cc6eb9142ca34e"
+            "hash": "f01f0e6200da6d45237ce02524cc6eb9142ca34e",
+            "stub_hash": ""
         },
         "119395082200070149": {
             "name": "micropython-esp32-stubs",
@@ -2953,7 +3081,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "8e186ba1fa1d71247505e2dcc759f614e1ed75cb"
+            "hash": "8e186ba1fa1d71247505e2dcc759f614e1ed75cb",
+            "stub_hash": ""
         },
         "961723573070846541": {
             "name": "micropython-esp8266-stubs",
@@ -2976,7 +3105,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "51551780c125f53300029b1b69fdbd8297a2f688"
+            "hash": "51551780c125f53300029b1b69fdbd8297a2f688",
+            "stub_hash": ""
         },
         "111058809301884969": {
             "name": "micropython-esp32-stubs",
@@ -2999,7 +3129,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "a0aa214cde6ce4abcfeff982e37bb92f7409cec5"
+            "hash": "a0aa214cde6ce4abcfeff982e37bb92f7409cec5",
+            "stub_hash": ""
         },
         "773393529565807766": {
             "name": "micropython-esp8266-stubs",
@@ -3022,7 +3153,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "8e75ff0425076c0cd97b621a95218c4fbe9df3db"
+            "hash": "8e75ff0425076c0cd97b621a95218c4fbe9df3db",
+            "stub_hash": ""
         },
         "268108395195061595": {
             "name": "micropython-rp2-stubs",
@@ -3045,7 +3177,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "34d8daa7ea35bc1b28b3c32c81b40e5badaba1c8"
+            "hash": "34d8daa7ea35bc1b28b3c32c81b40e5badaba1c8",
+            "stub_hash": ""
         },
         "124516193571237135": {
             "name": "micropython-esp32-stubs",
@@ -3068,7 +3201,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "78af28fdb667e296d37ecc7d0546a94756758608"
+            "hash": "78af28fdb667e296d37ecc7d0546a94756758608",
+            "stub_hash": ""
         },
         "749439360076674953": {
             "name": "micropython-esp32-stubs",
@@ -3091,7 +3225,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "85cac972c8394dcbb271078e8bfa363de0c3e503"
+            "hash": "85cac972c8394dcbb271078e8bfa363de0c3e503",
+            "stub_hash": ""
         },
         "329517995014810309": {
             "name": "micropython-esp8266-stubs",
@@ -3114,7 +3249,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "05fd06564f3e5fa7b512a8ec77ed5dc0ac230017"
+            "hash": "05fd06564f3e5fa7b512a8ec77ed5dc0ac230017",
+            "stub_hash": ""
         },
         "328347210886257604": {
             "name": "micropython-rp2-stubs",
@@ -3137,7 +3273,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "c1414e2b376bfa4b439b8c5ad1ab28cef06d6f8d"
+            "hash": "c1414e2b376bfa4b439b8c5ad1ab28cef06d6f8d",
+            "stub_hash": ""
         },
         "300759671214641377": {
             "name": "micropython-stm32-stubs",
@@ -3160,7 +3297,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "543be5e2799d757b5e963a22fac1bcb7f4f887d5"
+            "hash": "543be5e2799d757b5e963a22fac1bcb7f4f887d5",
+            "stub_hash": ""
         },
         "151712940901705768": {
             "name": "micropython-esp32-stubs",
@@ -3183,7 +3321,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "8b0b1e2ecca36abf42c0e9338efbd25724117ff4"
+            "hash": "8b0b1e2ecca36abf42c0e9338efbd25724117ff4",
+            "stub_hash": ""
         },
         "151136183195661961": {
             "name": "micropython-esp8266-stubs",
@@ -3206,7 +3345,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "e219949e00b159b91e245044cd933da606d4279d"
+            "hash": "e219949e00b159b91e245044cd933da606d4279d",
+            "stub_hash": ""
         },
         "190942803488701202": {
             "name": "micropython-rp2-stubs",
@@ -3229,7 +3369,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "336f20b5647824987e363dc5ee3e060077f67caf"
+            "hash": "336f20b5647824987e363dc5ee3e060077f67caf",
+            "stub_hash": ""
         },
         "292136192895004540": {
             "name": "micropython-stm32-stubs",
@@ -3252,7 +3393,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "e10d73aa4d8be77b6164a4f47e06bc484830961b"
+            "hash": "e10d73aa4d8be77b6164a4f47e06bc484830961b",
+            "stub_hash": ""
         },
         "621789834223321870": {
             "name": "micropython-esp32-stubs",
@@ -3275,7 +3417,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "15aa6474f9d19c7302e81707e1e3b53a79283ecb"
+            "hash": "15aa6474f9d19c7302e81707e1e3b53a79283ecb",
+            "stub_hash": ""
         },
         "193328768037467152": {
             "name": "micropython-esp8266-stubs",
@@ -3298,7 +3441,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "c7f00b1c3867ac3ebf097e53a5d107d6c2c100de"
+            "hash": "c7f00b1c3867ac3ebf097e53a5d107d6c2c100de",
+            "stub_hash": ""
         },
         "289911877225061184": {
             "name": "micropython-esp32-stubs",
@@ -3321,7 +3465,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "05f09c4bcf820231e8543345b0230e5c74ec5221"
+            "hash": "05f09c4bcf820231e8543345b0230e5c74ec5221",
+            "stub_hash": ""
         },
         "378703749786472240": {
             "name": "micropython-esp32-stubs",
@@ -3344,7 +3489,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "ceef7519f6c01a991ab7e8d07f5a76882cc5c202"
+            "hash": "ceef7519f6c01a991ab7e8d07f5a76882cc5c202",
+            "stub_hash": ""
         },
         "105505139667762894": {
             "name": "micropython-esp32-stubs",
@@ -3367,7 +3513,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "4c5a2fc1dc7d3f4330278c88fb9de08bf2610a4d"
+            "hash": "4c5a2fc1dc7d3f4330278c88fb9de08bf2610a4d",
+            "stub_hash": ""
         },
         "222688904475617922": {
             "name": "micropython-esp32-stubs",
@@ -3390,7 +3537,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "8f75790028969ee61a82cd748359c341eba517ef"
+            "hash": "8f75790028969ee61a82cd748359c341eba517ef",
+            "stub_hash": ""
         },
         "514787956800582062": {
             "name": "micropython-esp32-stubs",
@@ -3413,7 +3561,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "6a08cf5efcffd5cfd8a19157665c2b7f11c5dbf5"
+            "hash": "6a08cf5efcffd5cfd8a19157665c2b7f11c5dbf5",
+            "stub_hash": ""
         },
         "332002869354940819": {
             "name": "micropython-esp8266-stubs",
@@ -3436,7 +3585,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "d3e69dbb355f89e99c2b5dd4bdc51003db68d09e"
+            "hash": "d3e69dbb355f89e99c2b5dd4bdc51003db68d09e",
+            "stub_hash": ""
         },
         "261859381974733480": {
             "name": "micropython-rp2-stubs",
@@ -3459,7 +3609,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "dafe9ecc9e232a70d2f0b35f4cae0f492faeb5f2"
+            "hash": "dafe9ecc9e232a70d2f0b35f4cae0f492faeb5f2",
+            "stub_hash": ""
         },
         "133006628782823744": {
             "name": "micropython-stm32-stubs",
@@ -3482,7 +3633,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "d3ef2a184f606da0b06c43dc4c833bc849e7e80e"
+            "hash": "d3ef2a184f606da0b06c43dc4c833bc849e7e80e",
+            "stub_hash": ""
         },
         "274078359002361796": {
             "name": "micropython-esp8266-stubs",
@@ -3505,7 +3657,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "933be7a5cce3d2a7b6c5f12d48198797851605a0"
+            "hash": "933be7a5cce3d2a7b6c5f12d48198797851605a0",
+            "stub_hash": ""
         },
         "212440950319033320": {
             "name": "micropython-rp2-stubs",
@@ -3528,7 +3681,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "5c9eb6fb3c47b0cf11b0079df140c9bd5a24919a"
+            "hash": "5c9eb6fb3c47b0cf11b0079df140c9bd5a24919a",
+            "stub_hash": ""
         },
         "142546792190901796": {
             "name": "micropython-stm32-stubs",
@@ -3551,7 +3705,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "46ec6456d435c8cecfa8e6c42c75637f1be6dd17"
+            "hash": "46ec6456d435c8cecfa8e6c42c75637f1be6dd17",
+            "stub_hash": ""
         },
         "139568297825915610": {
             "name": "micropython-esp32-stubs",
@@ -3574,7 +3729,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "16c47d427e2849b0bca7901513ff23bc78530ead"
+            "hash": "16c47d427e2849b0bca7901513ff23bc78530ead",
+            "stub_hash": ""
         },
         "103912623485981476": {
             "name": "micropython-esp32-stubs",
@@ -3597,7 +3753,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "8f75790028969ee61a82cd748359c341eba517ef"
+            "hash": "8f75790028969ee61a82cd748359c341eba517ef",
+            "stub_hash": ""
         },
         "119760992034588624": {
             "name": "micropython-esp32-stubs",
@@ -3620,7 +3777,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "8f75790028969ee61a82cd748359c341eba517ef"
+            "hash": "8f75790028969ee61a82cd748359c341eba517ef",
+            "stub_hash": ""
         },
         "270340295406089128": {
             "name": "micropython-esp32-stubs",
@@ -3643,7 +3801,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "8f75790028969ee61a82cd748359c341eba517ef"
+            "hash": "8f75790028969ee61a82cd748359c341eba517ef",
+            "stub_hash": ""
         },
         "257530872794622003": {
             "name": "micropython-esp8266-stubs",
@@ -3666,7 +3825,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "d3e69dbb355f89e99c2b5dd4bdc51003db68d09e"
+            "hash": "d3e69dbb355f89e99c2b5dd4bdc51003db68d09e",
+            "stub_hash": ""
         },
         "142043002542127471": {
             "name": "micropython-rp2-stubs",
@@ -3689,7 +3849,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "dafe9ecc9e232a70d2f0b35f4cae0f492faeb5f2"
+            "hash": "dafe9ecc9e232a70d2f0b35f4cae0f492faeb5f2",
+            "stub_hash": ""
         },
         "698898671635987042": {
             "name": "micropython-stm32-stubs",
@@ -3712,7 +3873,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "d3ef2a184f606da0b06c43dc4c833bc849e7e80e"
+            "hash": "d3ef2a184f606da0b06c43dc4c833bc849e7e80e",
+            "stub_hash": ""
         },
         "286979032646338084": {
             "name": "micropython-esp32-stubs",
@@ -3735,7 +3897,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "6a08cf5efcffd5cfd8a19157665c2b7f11c5dbf5"
+            "hash": "6a08cf5efcffd5cfd8a19157665c2b7f11c5dbf5",
+            "stub_hash": ""
         },
         "245558183708675738": {
             "name": "micropython-esp8266-stubs",
@@ -3758,7 +3921,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "933be7a5cce3d2a7b6c5f12d48198797851605a0"
+            "hash": "933be7a5cce3d2a7b6c5f12d48198797851605a0",
+            "stub_hash": ""
         },
         "332580553786943694": {
             "name": "micropython-rp2-stubs",
@@ -3781,7 +3945,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "5c9eb6fb3c47b0cf11b0079df140c9bd5a24919a"
+            "hash": "5c9eb6fb3c47b0cf11b0079df140c9bd5a24919a",
+            "stub_hash": ""
         },
         "678474364845325551": {
             "name": "micropython-esp32-stubs",
@@ -3804,7 +3969,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "6694b6a3f57c6d816866a08f9ceb404cdd213342"
+            "hash": "6694b6a3f57c6d816866a08f9ceb404cdd213342",
+            "stub_hash": ""
         },
         "237237361543737214": {
             "name": "micropython-esp8266-stubs",
@@ -3827,7 +3993,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "e6fea4a368dfb7809f205e62040e47f653ff98bc"
+            "hash": "e6fea4a368dfb7809f205e62040e47f653ff98bc",
+            "stub_hash": ""
         },
         "234717382707105918": {
             "name": "micropython-rp2-stubs",
@@ -3850,7 +4017,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "5dc9323b57c6a69460f3faa92259769a73548532"
+            "hash": "5dc9323b57c6a69460f3faa92259769a73548532",
+            "stub_hash": ""
         },
         "106434312661394746": {
             "name": "micropython-stm32-stubs",
@@ -3873,7 +4041,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "b3d87603dc15e58a5eb744b1faced980f6eed595"
+            "hash": "b3d87603dc15e58a5eb744b1faced980f6eed595",
+            "stub_hash": ""
         },
         "124840819795437647": {
             "name": "micropython-esp32-stubs",
@@ -3896,7 +4065,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "fc0f243b2b5a62658fd5df7b2e3b7dc64e5f0428"
+            "hash": "fc0f243b2b5a62658fd5df7b2e3b7dc64e5f0428",
+            "stub_hash": ""
         },
         "684645061364984046": {
             "name": "micropython-esp8266-stubs",
@@ -3919,7 +4089,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "5ac2244af6cefced1468e884b70d678da3b53ff2"
+            "hash": "5ac2244af6cefced1468e884b70d678da3b53ff2",
+            "stub_hash": ""
         },
         "102945965167763538": {
             "name": "micropython-rp2-stubs",
@@ -3942,7 +4113,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "853192dd843063393471f1e1c37363bd4b0b8740"
+            "hash": "853192dd843063393471f1e1c37363bd4b0b8740",
+            "stub_hash": ""
         },
         "309607965672802080": {
             "name": "micropython-stm32-stubs",
@@ -3965,7 +4137,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "7c2e88c22bb9f257d2ef48b0904ccb7e66598e0e"
+            "hash": "7c2e88c22bb9f257d2ef48b0904ccb7e66598e0e",
+            "stub_hash": ""
         },
         "185906988065917804": {
             "name": "micropython-esp32-stubs",
@@ -3988,7 +4161,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "94f6b9dea88ec99584d370487d51e0b67bdf4b71"
+            "hash": "94f6b9dea88ec99584d370487d51e0b67bdf4b71",
+            "stub_hash": ""
         },
         "263959583607439899": {
             "name": "micropython-esp8266-stubs",
@@ -4011,7 +4185,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "fc6732dabbd2b26853a4c3f6fa43476ca4a4fc67"
+            "hash": "fc6732dabbd2b26853a4c3f6fa43476ca4a4fc67",
+            "stub_hash": ""
         },
         "319588819631608101": {
             "name": "micropython-rp2-stubs",
@@ -4034,7 +4209,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "a01d7c225f3bbee03d9ea2c86726a77baa35fc71"
+            "hash": "a01d7c225f3bbee03d9ea2c86726a77baa35fc71",
+            "stub_hash": ""
         },
         "222990455407968838": {
             "name": "micropython-stm32-stubs",
@@ -4057,7 +4233,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "b09f9c819c9e98cbd9dfbc8158079146587e2d66"
+            "hash": "b09f9c819c9e98cbd9dfbc8158079146587e2d66",
+            "stub_hash": ""
         },
         "190035692239052748": {
             "name": "micropython-esp32-stubs",
@@ -4080,7 +4257,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "e46084de8cbfd5396a7f00c41743658c38a9c2ee"
+            "hash": "e46084de8cbfd5396a7f00c41743658c38a9c2ee",
+            "stub_hash": ""
         },
         "650026937752597706": {
             "name": "micropython-esp8266-stubs",
@@ -4103,7 +4281,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "f70c0acb9b7c51b555062d0d2a7a4abdd4c13e93"
+            "hash": "f70c0acb9b7c51b555062d0d2a7a4abdd4c13e93",
+            "stub_hash": ""
         },
         "268402233363384715": {
             "name": "micropython-rp2-stubs",
@@ -4126,7 +4305,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "896a3c314e3f6282076ea7f8064bd46783186184"
+            "hash": "896a3c314e3f6282076ea7f8064bd46783186184",
+            "stub_hash": ""
         },
         "327009551965155304": {
             "name": "micropython-stm32-stubs",
@@ -4149,7 +4329,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "480854b8bdf1716fecdcb851fa12e0ad07e14a3a"
+            "hash": "480854b8bdf1716fecdcb851fa12e0ad07e14a3a",
+            "stub_hash": ""
         },
         "119443104536845601": {
             "name": "micropython-esp32-stubs",
@@ -4172,7 +4353,8 @@
                 ]
             ],
             "description": "MicroPython stubs",
-            "hash": "7445b1d7fc812e88d0d243e66f16c7b968982520"
+            "hash": "7445b1d7fc812e88d0d243e66f16c7b968982520",
+            "stub_hash": ""
         }
     }
 }
