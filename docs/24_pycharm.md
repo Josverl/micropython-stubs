@@ -5,8 +5,22 @@
 ref: https://www.jetbrains.com/help/pycharm/type-hinting-in-product.html#stub-type-hints
 
 PyCharm supports Python stub files, you can specify the type hints using Python 3 syntax for both Python 2 and 3.
-If any type hints recorded in the stub files, they become available in your code that use these stub
+Any type hints availble in installed (stub only) packages  become available to PyCharm to help it understand your code.
 
+![Code completions](img/pycharm-completion.png)
+
+
+### Option 1) Install the stubs from PyPi :
+
+you need to know which port you want the stubs for `stm32`, `esp32`, `rp2`, `esp8622`
+
+### `pip install -U micropython-<port>-stubs` 
+
+or install the stubs for a specific version of micropython unsing  
+`pip install -U micropython-stm32-stubs==1.17.*`
+
+### Option 2) Clone the stubs repo 
+Older method of installation ( not needed if you used the pip install method) 
 To use stubs from the micropython-stubs repository , follow these steps:
 
 Copy some or all the stubs into a directory in your project, or use a symlink to a clone of the stubs.
@@ -20,7 +34,6 @@ For example:
 
 You should now be able to use code completion and typechecking for your micropython code in PyCharm
 
-![Code completions](img/pycharm-completion.png)
 
 
 ## Check library imports
