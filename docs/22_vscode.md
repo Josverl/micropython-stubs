@@ -2,6 +2,21 @@
 
 VSCode  uses Pylance, and optionally a linter such as pylint or mypy.
 
+### Option 1) Install the stubs from PyPi :
+
+you need to know which port you want the stubs for `stm32`, `esp32`, `rp2`, `esp8622`
+
+### `pip install -U micropython-<port>-stubs` 
+
+or install the stubs for a specific version of micropython unsing  
+`pip install -U micropython-stm32-stubs==1.17.*`
+
+
+### Option 2) Clone the stubs repo 
+
+this is the 'olde way' of installing the stubs.
+only sefull if you are activly developing / updating the stubs
+
 ## Configure VSCode & Pylance to use the selected stub folders  
 This instructs the VSCode Pylance extension to consider your libs folder and the stubs for code completion and static type-checking.
 
