@@ -1,0 +1,58 @@
+# workflow to build packages for PyPI
+########################################################################################################################################
+# This will attempt to retrieve and generate stubs from MicroPython documentation
+########################################################################################################################################
+# Check out repos in this structure 
+# micropython-stubs
+# +-- stubs 
+# +-- repos 
+#     +-- micropython
+#      -- micropython-lib
+# repro structure needed to allow automatic PR creation to work
+########################################################################################################################################
+name: get-doc-stubs
+
+on:
+  workflow_dispatch:
+  schedule: 
+    - cron: "0 1 * * 5"   # Run every Friday at 01:00
+
+jobs:
+  ########################################################################################################################################
+  get_versions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      # no need to install python 
+      - run: pip install pygithub packaging
+      - run: python .github/workflows/list_versions.py
+        id: dynamic
+    outputs:
+      job_versions: ${{ steps.dynamic.outputs.versions }}
+
+  ########################################################################################################################################
+  build-stubs:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    # needs: get_versions
+    strategy:
+      # matrix: ${{ fromJSON(needs.get_versions.outputs.job_versions) }}
+      matrix: 
+        version: 
+            ["v1.18"]
+    steps:
+      - name: Checkout stubs repo
+        uses: actions/checkout@v3    
+      - run: pip install micropython-stubber
+      - run: |
+          echo ${{matrix.version}}
+          stubber --version
+          stubber clone --no-stubs
+          stubber switch --tag ${{matrix.version}}
+      # run the build steps for this mpy version
+      - run: stubber --verbose get-frozen
+      - run: stubber --verbose get-docstubs
+      - run: stubber --verbose merge --version ${{matrix.version}}
+      - run: stubber --verbose publish --version ${{matrix.version}}
+
