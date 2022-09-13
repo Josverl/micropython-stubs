@@ -1,0 +1,24 @@
+{
+    "name": "micropython-stm32-stubs",
+    "mpy_version": "1.19.1",
+    "publish": true,
+    "pkg_version": "1.19.1.post8",
+    "path": "micropython-v1_19_1-stm32-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-v1_19_1-stm32-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-v1_19_1-frozen/stm32/GENERIC"
+        ],
+        [
+            "Core stubs",
+            "cpython_core-pycopy"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": "e8710f7e6b4a190b0ea9a2650335ae779756fee3",
+    "stub_hash": "1fc2275d89bd68db89f065e4217ecd30b0d86b8f"
+}

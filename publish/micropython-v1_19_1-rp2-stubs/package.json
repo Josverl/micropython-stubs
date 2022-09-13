@@ -1,0 +1,24 @@
+{
+    "name": "micropython-rp2-stubs",
+    "mpy_version": "1.19.1",
+    "publish": true,
+    "pkg_version": "1.19.1.post5",
+    "path": "micropython-v1_19_1-rp2-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-v1_19_1-rp2-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-v1_19_1-frozen/rp2/GENERIC"
+        ],
+        [
+            "Core stubs",
+            "cpython_core-pycopy"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": "38813c086c56a106f12fdacaa2f1ed60b1208a4c",
+    "stub_hash": "e2031732aeaa4cd57d2b538599f090f25827d714"
+}

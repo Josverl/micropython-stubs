@@ -1,33 +1,150 @@
-from typing import Any
+"""
+mathematical functions. See: https://docs.micropython.org/en/v1.18/library/math.html
 
-def pow(*args, **kwargs) -> Any: ...
-def acos(*args, **kwargs) -> Any: ...
-def asin(*args, **kwargs) -> Any: ...
-def atan(*args, **kwargs) -> Any: ...
-def atan2(*args, **kwargs) -> Any: ...
-def ceil(*args, **kwargs) -> Any: ...
-def copysign(*args, **kwargs) -> Any: ...
-def cos(*args, **kwargs) -> Any: ...
-def degrees(*args, **kwargs) -> Any: ...
+|see_cpython_module| :mod:`python:math` https://docs.python.org/3/library/math.html .
+
+The ``math`` module provides some basic mathematical functions for
+working with floating-point numbers.
+
+*Note:* On the pyboard, floating-point numbers have 32-bit precision.
+
+Availability: not available on WiPy. Floating point support required
+for this module.
+"""
+from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+
+def pow(x, y) -> Any:
+    """
+    Returns ``x`` to the power of ``y``.
+    """
+    ...
+def acos(x) -> float:
+    """
+    Return the inverse cosine of ``x``.
+    """
+    ...
+def asin(x) -> float:
+    """
+    Return the inverse sine of ``x``.
+    """
+    ...
+def atan(x) -> float:
+    """
+    Return the inverse tangent of ``x``.
+    """
+    ...
+def atan2(y, x) -> float:
+    """
+    Return the principal value of the inverse tangent of ``y/x``.
+    """
+    ...
+def ceil(x) -> int:
+    """
+    Return an integer, being ``x`` rounded towards positive infinity.
+    """
+    ...
+def copysign(x, y) -> Any:
+    """
+    Return ``x`` with the sign of ``y``.
+    """
+    ...
+def cos(x) -> float:
+    """
+    Return the cosine of ``x``.
+    """
+    ...
+def degrees(x) -> Any:
+    """
+    Return radians ``x`` converted to degrees.
+    """
+    ...
 
 e: float
 
-def exp(*args, **kwargs) -> Any: ...
-def fabs(*args, **kwargs) -> Any: ...
-def floor(*args, **kwargs) -> Any: ...
-def fmod(*args, **kwargs) -> Any: ...
-def frexp(*args, **kwargs) -> Any: ...
-def isfinite(*args, **kwargs) -> Any: ...
-def isinf(*args, **kwargs) -> Any: ...
-def isnan(*args, **kwargs) -> Any: ...
-def ldexp(*args, **kwargs) -> Any: ...
-def log(*args, **kwargs) -> Any: ...
-def modf(*args, **kwargs) -> Any: ...
+def exp(x) -> float:
+    """
+    Return the exponential of ``x``.
+    """
+    ...
+def fabs(x) -> Any:
+    """
+    Return the absolute value of ``x``.
+    """
+    ...
+def floor(x) -> int:
+    """
+    Return an integer, being ``x`` rounded towards negative infinity.
+    """
+    ...
+def fmod(x, y) -> Any:
+    """
+    Return the remainder of ``x/y``.
+    """
+    ...
+def frexp(x) -> Any:
+    """
+    Decomposes a floating-point number into its mantissa and exponent.
+    The returned value is the tuple ``(m, e)`` such that ``x == m * 2**e``
+    exactly.  If ``x == 0`` then the function returns ``(0.0, 0)``, otherwise
+    the relation ``0.5 <= abs(m) < 1`` holds.
+    """
+    ...
+def isfinite(x) -> bool:
+    """
+    Return ``True`` if ``x`` is finite.
+    """
+    ...
+def isinf(x) -> bool:
+    """
+    Return ``True`` if ``x`` is infinite.
+    """
+    ...
+def isnan(x) -> bool:
+    """
+    Return ``True`` if ``x`` is not-a-number
+    """
+    ...
+def ldexp(x, exp) -> Any:
+    """
+    Return ``x * (2**exp)``.
+    """
+    ...
+def log(x) -> float:
+    """
+    Return the natural logarithm of ``x``.
+    """
+    ...
+def modf(x) -> Tuple:
+    """
+    Return a tuple of two floats, being the fractional and integral parts of
+    ``x``.  Both return values have the same sign as ``x``.
+    """
+    ...
 
 pi: float
 
-def radians(*args, **kwargs) -> Any: ...
-def sin(*args, **kwargs) -> Any: ...
-def sqrt(*args, **kwargs) -> Any: ...
-def tan(*args, **kwargs) -> Any: ...
-def trunc(*args, **kwargs) -> Any: ...
+def radians(x) -> Any:
+    """
+    Return degrees ``x`` converted to radians.
+    """
+    ...
+def sin(x) -> float:
+    """
+    Return the sine of ``x``.
+    """
+    ...
+def sqrt(x) -> Any:
+    """
+    Return the square root of ``x``.
+    """
+    ...
+def tan(x) -> float:
+    """
+    Return the tangent of ``x``.
+    """
+    ...
+def trunc(x) -> int:
+    """
+    Return an integer, being ``x`` rounded towards 0.
+    """
+    ...

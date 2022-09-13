@@ -1,5 +1,5 @@
 import os
-from typing import Any
+from _typeshed import Incomplete
 
 class LS:
     def __repr__(self): ...
@@ -22,10 +22,10 @@ def rm(d, recursive: bool = ...) -> None: ...
 class Man:
     def __repr__(self): ...
 
-man: Any
-pwd: Any
-ls: Any
-clear: Any
+man: Incomplete
+pwd: Incomplete
+ls: Incomplete
+clear: Incomplete
 cd = os.chdir
 mkdir = os.mkdir
 mv = os.rename

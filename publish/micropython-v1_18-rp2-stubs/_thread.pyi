@@ -1,4 +1,14 @@
-from typing import Any
+"""
+multithreading support. See: https://docs.micropython.org/en/v1.18/library/_thread.html
+
+|see_cpython_module| :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
+
+This module implements multithreading support.
+
+This module is highly experimental and its API is not yet fully settled
+and not yet described in this documentation.
+"""
+from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
 
 class LockType:
     def __init__(self, *argv, **kwargs) -> None: ...
