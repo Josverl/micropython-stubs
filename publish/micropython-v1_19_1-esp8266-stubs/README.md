@@ -29,4 +29,4 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 Included stubs:
 * Merged stubs from micropython-v1_19_1-esp8266-merged
 * Frozen stubs from micropython-v1_19_1-frozen/esp8266/GENERIC
-* Core stubs from cpython_core-pycopy
+* Core Stubs from cpython_core-pycopy
