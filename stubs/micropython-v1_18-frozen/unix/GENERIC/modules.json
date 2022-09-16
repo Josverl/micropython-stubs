@@ -2,10 +2,10 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "port": "stm32",
-        "platform": "stm32",
+        "port": "unix",
+        "platform": "unix",
         "machine": "GENERIC",
-        "firmware": "micropython-stm32-v1_18",
+        "firmware": "micropython-unix-v1_18",
         "nodename": "micropython",
         "version": "v1.18",
         "release": "v1.18",
@@ -16,22 +16,6 @@
         "stubtype": "frozen"
     },
     "modules": [
-        {
-            "file": "dht.py",
-            "module": "dht"
-        },
-        {
-            "file": "lcd160cr.py",
-            "module": "lcd160cr"
-        },
-        {
-            "file": "lcd160cr_test.py",
-            "module": "lcd160cr_test"
-        },
-        {
-            "file": "onewire.py",
-            "module": "onewire"
-        },
         {
             "file": "uasyncio/__init__.py",
             "module": "__init__"
@@ -59,6 +43,14 @@
         {
             "file": "uasyncio/task.py",
             "module": "task"
+        },
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
         }
     ]
 }

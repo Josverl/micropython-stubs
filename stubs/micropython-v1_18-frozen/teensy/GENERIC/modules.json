@@ -2,10 +2,10 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "port": "samd",
-        "platform": "samd",
+        "port": "teensy",
+        "platform": "teensy",
         "machine": "GENERIC",
-        "firmware": "micropython-samd-v1_18",
+        "firmware": "micropython-teensy-v1_18",
         "nodename": "micropython",
         "version": "v1.18",
         "release": "v1.18",
@@ -17,8 +17,12 @@
     },
     "modules": [
         {
-            "file": "_boot.py",
-            "module": "_boot"
+            "file": "boot.py",
+            "module": "boot"
+        },
+        {
+            "file": "main.py",
+            "module": "main"
         }
     ]
 }
