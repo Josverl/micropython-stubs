@@ -12,21 +12,13 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.8.0",
+        "version": "1.9.3",
         "stubtype": "frozen"
     },
     "modules": [
         {
             "file": "dht.py",
             "module": "dht"
-        },
-        {
-            "file": "lcd160cr.py",
-            "module": "lcd160cr"
-        },
-        {
-            "file": "lcd160cr_test.py",
-            "module": "lcd160cr_test"
         },
         {
             "file": "onewire.py",

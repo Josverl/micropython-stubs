@@ -1,4 +1,5 @@
 from .core import (
+    GattError as GattError,
     ble as ble,
     ensure_active as ensure_active,
     log_error as log_error,
