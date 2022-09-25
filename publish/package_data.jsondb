@@ -635,6 +635,54 @@
             "description": "MicroPython stubs",
             "hash": "1f42e0cf39ff893a9a3b419ecee307dcb2a1bf58",
             "stub_hash": "1fc2275d89bd68db89f065e4217ecd30b0d86b8f"
+        },
+        "174507337575409588": {
+            "name": "micropython-esp32-stubs",
+            "mpy_version": "1.19.1",
+            "publish": true,
+            "pkg_version": "1.19.1.post5",
+            "path": "micropython-v1_19_1-esp32-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_19_1-esp32-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_19_1-frozen/esp32/GENERIC"
+                ],
+                [
+                    "Core Stubs",
+                    "cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "a6424f000563fc9e2e61ea295e638d8e9d9f3929",
+            "stub_hash": "f54df1ba620cf1f69d2f00e144ede4d15d773a28"
+        },
+        "210808506764275819": {
+            "name": "micropython-esp32-um_tinypico-stubs",
+            "mpy_version": "1.19.1",
+            "publish": true,
+            "pkg_version": "1.19.1.post2",
+            "path": "micropython-v1_19_1-esp32-um_tinypico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_19_1-esp32-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_19_1-frozen/esp32/um_tinypico"
+                ],
+                [
+                    "Core stubs",
+                    "cpython_core-pycopy"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "cc4d124d2f27c61bd0b121192002017f8fe4c9ab",
+            "stub_hash": "16b8df8965451dbbdf3be6262277663658b4f80f"
         }
     }
 }

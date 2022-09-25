@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "micropython-esp32-stubs"
-version = "1.19.1.post5"
+name = "micropython-esp32-um_tinypico-stubs"
+version = "1.19.1.post2"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -43,6 +43,7 @@ packages = [
     { include = "btree.py" },
     { include = "cmath.py" },
     { include = "dht.pyi" },
+    { include = "dotstar.pyi" },
     { include = "ds18x20.pyi" },
     { include = "errno.py" },
     { include = "esp.py" },
@@ -73,6 +74,7 @@ packages = [
     { include = "struct.py" },
     { include = "sys.py" },
     { include = "time.py" },
+    { include = "tinypico.pyi" },
     { include = "uarray.pyi" },
     { include = "ubinascii.py" },
     { include = "ubluetooth.py" },

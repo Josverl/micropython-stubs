@@ -1,0 +1,24 @@
+{
+    "name": "micropython-esp32-um_tinypico-stubs",
+    "mpy_version": "1.19.1",
+    "publish": true,
+    "pkg_version": "1.19.1.post2",
+    "path": "micropython-v1_19_1-esp32-um_tinypico-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-v1_19_1-esp32-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-v1_19_1-frozen/esp32/um_tinypico"
+        ],
+        [
+            "Core stubs",
+            "cpython_core-pycopy"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": "cc4d124d2f27c61bd0b121192002017f8fe4c9ab",
+    "stub_hash": "16b8df8965451dbbdf3be6262277663658b4f80f"
+}
