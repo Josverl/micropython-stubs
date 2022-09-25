@@ -26,21 +26,32 @@ in order to get the most out of the MicroPython stubs, you should follow these s
 
 
 To install the latest stubs: 
-## `pip install  micropython-<port>-stubs`   
+## `pip install -U  micropython-<port>-stubs`   
 where port is the port of the MicroPython firmware. ( stm32, eps32,rp2...) 
 
 To install the stubs for an older version, such as MicroPython 1.17:   
-## `pip install micropython-stm32-stubs==1.17.*` 
+## `pip install -U micropython-stm32-stubs==1.17.*` 
 
-Note that not all ports are published as I do not have access to hardware to run all ports.
-Please let me know if you would like to see a port added, and are willing to help. [Discussions]
 
-|port  | downloads
-|------|------
-| micropython-stm32-stubs | ![micropython-stm32-stubs downloads](https://img.shields.io/pypi/dm/micropython-stm32-stubs.svg)
-| micropython-esp32-stubs | ![micropython-esp32-stubs downloads](https://img.shields.io/pypi/dm/micropython-esp32-stubs.svg)
-| micropython-esp8266-stubs | ![micropython-esp8266-stubs downloads](https://img.shields.io/pypi/dm/micropython-esp8266-stubs.svg)
-| micropython-rp2-stubs | ![micropython-rp2-stubs downloads](https://img.shields.io/pypi/dm/micropython-rp2-stubs.svg)
+To install the stubs for a specific port , such as the ESP32 UM-TinyPico:   
+## `pip install -U micropython-esp3232-um-tinypico-stubs` 
+**Note:** PyPi transforms all names to smallcaps and kebab-case, not snake_case.
+
+Simple overview of the published ports and boards.
+
+| | STM32 | ESP32 | ESP8266| RP2040 
+|-|-------|-------|--------|------
+| GENERIC | ![](https://img.shields.io/pypi/dm/micropython-stm32-stubs?label=micropython-stm32-stubs)| ![](https://img.shields.io/pypi/dm/micropython-esp32-stubs?label=micropython-esp32-stubs)| ![](https://img.shields.io/pypi/dm/micropython-esp8266-stubs?label=micropython-esp8266-stubs)| ![](https://img.shields.io/pypi/dm/micropython-rp2-stubs?label=micropython-rp2-stubs)
+| | |![](https://img.shields.io/pypi/dm/micropython-esp32-um-tinypico-stubs?label=micropython-esp32-um-tinypico-stubs) | |
+​
+
+
+Notes: 
+ - Not all possible ports/boards are published as I do not have access to hardware to run all ports.
+ - newly published stubs may show as 'not found', please [check PyPi directly](https://pypi.org/search/?q=micropython+-stubs&o=&c=Programming+Language+%3A%3A+Python+%3A%3A+Implementation+%3A%3A+MicroPython)
+ - Please let me know if you would like to see a port or board added, and are willing to help in validation. [Discussions]
+
+
 ## What do you get
 
  * `micropython-<port>[-<board>]-stubs`  
