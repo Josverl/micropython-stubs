@@ -34,7 +34,7 @@ To install the stubs for an older version, such as MicroPython 1.17:
 
 
 To install the stubs for a specific port , such as the ESP32 UM-TinyPico:   
-## `pip install -U micropython-esp3232-um-tinypico-stubs` 
+## `pip install -U micropython-esp32-um-tinypico-stubs` 
 **Note:** PyPi transforms all names to smallcaps and kebab-case, not snake_case.
 
 Simple overview of the published ports and boards.
