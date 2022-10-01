@@ -1,10 +1,10 @@
 ########################################################################################################################################
 # This will attempt to retrieve and generate stubs from MicroPython documentation
 ########################################################################################################################################
-# Check out repos in this structure 
+# Check out repos in this structure
 # micropython-stubs
-# +-- stubs 
-# +-- repos 
+# +-- stubs
+# +-- repos
 #     +-- micropython
 #      -- micropython-lib
 # repro structure needed to allow automatic PR creation to work
@@ -13,8 +13,8 @@ name: get-doc-stubs
 
 on:
   workflow_dispatch:
-  schedule: 
-    - cron: "0 1 * * 5"   # Run every Friday at 01:00
+  schedule:
+    - cron: "0 1 * * 5" # Run every Friday at 01:00
 
 jobs:
   ########################################################################################################################################
@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # no need to install python 
+      # no need to install python
       - run: pip install pygithub packaging
       - run: python .github/workflows/list_versions.py
         id: dynamic
@@ -42,9 +42,8 @@ jobs:
     defaults:
       run:
         shell: bash
-  
-    steps:
 
+    steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
 
@@ -53,14 +52,14 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.9
-          cache: 'pip'
+          cache: "pip"
 
       - name: Install Python dependencies (stubber)
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      # micropython as a sub-module 
-      - name: 'clone and checkout micropython ${{ matrix.version }}'
+      # micropython as a sub-module
+      - name: "clone and checkout micropython ${{ matrix.version }}"
         run: |
           stubber clone
           stubber switch --tag ${{ matrix.version }}
@@ -73,26 +72,26 @@ jobs:
         run: |
           stubber get-docstubs
 
-
       - name: check for changes other than modules.py
         shell: pwsh
         id: changed
         run: |
-          $changed = @(git whatchanged -1 --format=oneline  | ?{ $_.Contains(".py") })
-          write-host "Changed stub files:"
-          write-host $changed
+          write-host "::group:: git diff --name-only:"
+          $changed = @(git diff --name-only | ?{ $_.Contains(".py")})
+          write-host "Changed stub files:" $changed.count
+          # $changed | %{write-host $_}
           write-host "::set-output name=count::$($changed.count)"
 
-      - name: Create Pull Request ( if relevant changes) 
+      - name: Create Pull Request ( if relevant changes)
         if: ${{ steps.changed.outputs.count }} >= 1
         id: cpr-doc
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
         with:
-          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} 
+          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }}
           title: "Add/update MicroPython ${{ matrix.version }} doc-stubs"
           commit-message: add/update doc-stubs
-          body : |
+          body: |
             update MicroPython ${{ matrix.version }} doc-stubs
             based on micropython commit ${{ steps.mpycommit.outputs.info }}
 

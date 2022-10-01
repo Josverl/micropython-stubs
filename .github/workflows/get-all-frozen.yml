@@ -86,9 +86,10 @@ jobs:
         shell: pwsh
         id: changed
         run: |
-          $changed = @(git whatchanged -1 --format=oneline  | ?{ $_.Contains(".py") })
-          write-host "Changed stub files:"
-          write-host $changed
+          write-host "::group:: git diff --name-only:"        
+          $changed = @(git diff --name-only | ?{ $_.Contains(".py")})
+          write-host "Changed stub files:" $changed.count
+          # $changed | %{write-host $_}
           write-host "::set-output name=count::$($changed.count)"
 
       - name: Create Pull Request ( if relevant changes) 
@@ -169,8 +170,11 @@ jobs:
         shell: pwsh
         id: changed
         run: |
-          $changed = (git whatchanged -1 --format=oneline | ?{-not $_.Contains("modules.json") }).count-1
-          write-host "::set-output name=count::$changed"
+          write-host "::group:: git diff --name-only:"        
+          $changed = @(git diff --name-only | ?{ $_.Contains(".py")})
+          write-host "Changed stub files:" $changed.count
+          # $changed | %{write-host $_}
+          write-host "::set-output name=count::$($changed.count)"
 
       - name: Create Pull Request ( if relevant changes) 
         if: ${{ steps.changed.outputs.count }} >= 1
