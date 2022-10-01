@@ -2,20 +2,20 @@
 ########################################################################################################################################
 # This will attempt to retrieve and generate stubs from MicroPython documentation
 ########################################################################################################################################
-# Check out repos in this structure 
+# Check out repos in this structure
 # micropython-stubs
-# +-- stubs 
-# +-- repos 
+# +-- stubs
+# +-- repos
 #     +-- micropython
 #      -- micropython-lib
 # repro structure needed to allow automatic PR creation to work
 ########################################################################################################################################
-name: get-doc-stubs
+name: publish-stubs
 
 on:
   workflow_dispatch:
-  schedule: 
-    - cron: "0 1 * * 5"   # Run every Friday at 01:00
+  schedule:
+    - cron: "0 1 * * 5" # Run every Friday at 01:00
 
 jobs:
   ########################################################################################################################################
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      # no need to install python 
+      # no need to install python
       - run: pip install pygithub packaging
       - run: python .github/workflows/list_versions.py
         id: dynamic
@@ -38,12 +38,11 @@ jobs:
     # needs: get_versions
     strategy:
       # matrix: ${{ fromJSON(needs.get_versions.outputs.job_versions) }}
-      matrix: 
-        version: 
-            ["v1.18"]
+      matrix:
+        version: ["v1.18"]
     steps:
       - name: Checkout stubs repo
-        uses: actions/checkout@v3    
+        uses: actions/checkout@v3
       - run: pip install micropython-stubber
       - run: |
           echo ${{matrix.version}}
@@ -54,5 +53,30 @@ jobs:
       - run: stubber --verbose get-frozen
       - run: stubber --verbose get-docstubs
       - run: stubber --verbose merge --version ${{matrix.version}}
-      - run: stubber --verbose publish --version ${{matrix.version}}
+      - run: stubber --verbose publish --version ${{matrix.version}} --test-pipy --dry-run
 
+      # - name: Create Pull Request ( if relevant changes)
+      #   if: ${{ steps.changed.outputs.count }} >= 1
+      #   id: cpr-doc
+      #   uses: peter-evans/create-pull-request@v3
+      #   # ref: https://github.com/peter-evans/create-pull-request
+      #   with:
+      #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }}
+      #     title: "Published ${{ matrix.version }} doc-stubs"
+      #     commit-message: add/update doc-stubs
+      #     body: |
+      #       update MicroPython ${{ matrix.version }} doc-stubs
+      #       based on micropython commit ${{ steps.mpycommit.outputs.info }}
+
+      #     branch: "micropython-${{ matrix.version }}-doc-stubs"
+      #     labels: |
+      #       automated pr
+      #       Doc stubs
+      #       MicroPython
+      #       ${{ matrix.version }}
+      #     delete-branch: true
+
+      # - name: done
+      #   if: always()
+      #   run: |
+      #     echo "Done..."
