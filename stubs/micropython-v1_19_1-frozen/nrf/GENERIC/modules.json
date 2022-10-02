@@ -1,0 +1,52 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "nrf",
+        "platform": "nrf",
+        "machine": "GENERIC",
+        "firmware": "micropython-nrf-v1_19_1",
+        "nodename": "micropython",
+        "version": "v1.19.1",
+        "release": "v1.19.1",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.9.6",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_mkfs.py",
+            "module": "_mkfs"
+        },
+        {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "uasyncio/task.py",
+            "module": "task"
+        }
+    ]
+}
