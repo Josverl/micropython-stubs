@@ -1,0 +1,51 @@
+name: "stub-diff"
+description: "determine if there are changes to the stubs"
+inputs:
+  path:
+    description: the path in the repo to check for changes
+    required: false
+    default: "./stubs"
+  pattern:
+    description: "the pattern to match"
+    required: false
+    default: ".py"
+
+  # summary:
+  #   description: generate a summary of the changes
+  #   required: false
+  #   default: 'true'
+
+outputs:
+  changed:
+    description: "true if changes have been detected, false otherwise"
+    value: ${{ steps.diff.outputs.changed }}
+  count:
+    description: "the number of detected changes"
+    value: ${{ steps.diff.outputs.count }}
+
+runs:
+  using: composite
+  steps:
+    - name: check for changes using git diff
+      shell: pwsh
+      id: diff
+      run: |
+        echo "::group:: git diff --name-only:"
+        $pattern = "${{ inputs.pattern }}"
+        $files = @(git diff --name-only ${{inputs.path}} | ?{ $_.Contains($pattern)})
+        $count = $files.count
+        # need newline  to set-output
+        echo ""
+        echo "::set-output name=changed::$(if ($count -eq 0){"false"}else{"true"})"
+        echo "::set-output name=count::$count"
+        # create a summary
+        if ($count -gt 0) {
+          echo "create summary"
+          echo '### detected new stubs :rocket:' >> $GITHUB_STEP_SUMMARY
+          $files | %{ echo "- $_" >> $GITHUB_STEP_SUMMARY }
+        }
+
+    # - name: Commit the changes
+    #   uses: EndBug/add-and-commit@v8
+    #   with:
+    #     message: ${{ inputs.message }}

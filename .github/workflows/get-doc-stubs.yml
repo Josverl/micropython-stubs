@@ -72,25 +72,16 @@ jobs:
         run: |
           stubber get-docstubs
 
-      - name: check for changes other than modules.py
-        shell: pwsh
-        id: changed
-        run: |
-          write-host "::group:: git diff --name-only:"
-          $changed = @(git diff --name-only ./stubs | ?{ $_.Contains(".py")})
-          write-host "Changed stub files:" $changed.count
-          $changed | %{write-host $_}
-          write-host "::set-output name=count::$($changed.count)"
-          write-host "::set-output name=changed::$(if ($changed.count -eq 0){"false"}else{"true"})"
+      - name: check for new or changed stubs
+        id: diff
+        uses: ./.github/actions/stub-diff
+        with:
+          path: "./stubs"
+          pattern: ".py"
+        #   summary: true
 
       - name: Create Pull Request ( if relevant changes)
-        if: ${{ steps.changed.outputs.changed }} == "true"
-        shell: pwsh
-        run: |
-          write-host "Changes detected, creating PR"
-
-      - name: Create Pull Request ( if relevant changes)
-        if: ${{ steps.changed.outputs.changed }} == "true"
+        if: ${{steps.diff.outputs.changed == 'true'}}
         id: cpr-doc
         uses: peter-evans/create-pull-request@v3
         # ref: https://github.com/peter-evans/create-pull-request
