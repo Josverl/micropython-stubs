@@ -1,0 +1,24 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "nrf",
+        "platform": "nrf",
+        "machine": "GENERIC",
+        "firmware": "micropython-nrf-v1_17",
+        "nodename": "micropython",
+        "version": "v1.17",
+        "release": "v1.17",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.9.6",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_mkfs.py",
+            "module": "_mkfs"
+        }
+    ]
+}
