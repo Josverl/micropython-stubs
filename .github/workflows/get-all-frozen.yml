@@ -1,10 +1,10 @@
 ########################################################################################################################################
 # This will attempt to retrieve and generate stubs from all known versions of MicroPython
 ########################################################################################################################################
-# Check out repos in this structure 
+# Check out repos in this structure
 # micropython-stubs
-# +-- stubs 
-# +-- repos 
+# +-- stubs
+# +-- repos
 #     +-- micropython
 #      -- micropython-lib
 # repro structure needed to allow automatic PR creation to work
@@ -13,8 +13,8 @@ name: get-all-frozen
 
 on:
   workflow_dispatch:
-  schedule: 
-    - cron: "0 1 * * *"   # Run everyday at 01:00
+  schedule:
+    - cron: "0 1 * * *" # Run everyday at 01:00
 
 jobs:
   ########################################################################################################################################
@@ -24,13 +24,12 @@ jobs:
       - uses: actions/checkout@v3
         with:
           depth: 1
-      # no need to install python 
+      # no need to install python
       - run: pip install pygithub packaging
       - run: python .github/workflows/list_versions.py
         id: dynamic
     outputs:
       job_versions: ${{ steps.dynamic.outputs.versions }}
-
 
   ########################################################################################################################################
   get-micropython-frozen:
@@ -45,9 +44,8 @@ jobs:
       run:
         shell: bash
         # working-directory: ${{github.workspace}}/micropython-stubber
-  
-    steps:
 
+    steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
 
@@ -56,7 +54,7 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.9
-          cache: 'pip'
+          cache: "pip"
 
       - name: Install Python dependencies (stubber)
         run: |
@@ -68,7 +66,6 @@ jobs:
         run: |
           stubber clone 
           stubber switch --tag ${{ matrix.version }}
-          
 
       ######################################
       # This is where the actual work starts
@@ -80,20 +77,18 @@ jobs:
           stubber get-frozen --black
 
       ######################################
-      # now check if a PR is needed 
+      # now check if a PR is needed
       ######################################
-      - name: check for changes other than modules.py
-        shell: pwsh
-        id: changed
-        run: |
-          write-host "::group:: git diff --name-only:"        
-          $changed = @(git diff --name-only | ?{ $_.Contains(".py")})
-          write-host "Changed stub files:" $changed.count
-          # $changed | %{write-host $_}
-          write-host "::set-output name=count::$($changed.count)"
+      - name: check for new or changed stubs
+        id: diff
+        uses: ./.github/actions/stub-diff
+        with:
+          path: "./stubs"
+          pattern: ".py"
+        #   summary: true
 
-      - name: Create Pull Request ( if relevant changes) 
-        if: ${{ steps.changed.outputs.count }} >= 1
+      - name: Create Pull Request ( if relevant changes)
+        if: ${{steps.diff.outputs.changed == 'true'}}
         uses: peter-evans/create-pull-request@v3
         id: cpr
         # ref: https://github.com/peter-evans/create-pull-request
@@ -101,9 +96,9 @@ jobs:
           token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
           title: "Add/update MicroPython ${{ matrix.version }} frozen stubs"
           commit-message: add/update MicroPython ${{ matrix.version }} frozen stubs
-          body : |
+          body: |
             add/update MicroPython ${{ matrix.version }} frozen stubs
-            based on micropython commit ${{ steps.mpycommit.outputs.info }}          
+            based on micropython commit ${{ steps.mpycommit.outputs.info }}
           branch: "micropython-${{ matrix.version }}-stubs"
           labels: |
             frozen stubs 
@@ -133,10 +128,9 @@ jobs:
     defaults:
       run:
         shell: bash
-  #      working-directory: ${{github.workspace}}/micropython-stubber
-  
-    steps:
+    #      working-directory: ${{github.workspace}}/micropython-stubber
 
+    steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
 
@@ -145,13 +139,12 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.9
-          cache: 'pip'
+          cache: "pip"
 
       - name: Install Python dependencies (stubber)
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
 
       ######################################
       # This is where the actual work starts
@@ -162,22 +155,19 @@ jobs:
         run: |
           stubber get-core --black
 
-
       ######################################
-      # now check if a PR is needed 
+      # now check if a PR is needed
       ######################################
-      - name: check for changes other than modules.py
-        shell: pwsh
-        id: changed
-        run: |
-          write-host "::group:: git diff --name-only:"        
-          $changed = @(git diff --name-only | ?{ $_.Contains(".py")})
-          write-host "Changed stub files:" $changed.count
-          # $changed | %{write-host $_}
-          write-host "::set-output name=count::$($changed.count)"
+      - name: check for new or changed stubs
+        id: diff
+        uses: ./.github/actions/stub-diff
+        with:
+          path: "./stubs"
+          pattern: ".py"
+        #   summary: true
 
-      - name: Create Pull Request ( if relevant changes) 
-        if: ${{ steps.changed.outputs.count }} >= 1
+      - name: Create Pull Request ( if relevant changes)
+        if: ${{steps.diff.outputs.changed == 'true'}}
         uses: peter-evans/create-pull-request@v3
         id: cprcore
         # ref: https://github.com/peter-evans/create-pull-request
