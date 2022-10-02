@@ -15,7 +15,7 @@ if __name__ == "__main__":
     matrix = {}
     if environ.get("ACT"):
         # only run latests when running in ACT locally for testing
-        matrix["version"] = ["latest"]
+        matrix["version"] = ["v1.18"]
     else:
         matrix["version"] = micropython_versions(start="v1.17") + ["latest"]
     print(json.dumps(matrix))
