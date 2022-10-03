@@ -50,7 +50,7 @@ jobs:
           echo ${{matrix.version}}
           stubber --version
           stubber clone --no-stubs
-          stubber switch --tag ${{matrix.version}}
+          stubber switch ${{matrix.version}}
       # run the build steps for this mpy version
       - run: stubber --verbose get-frozen
       - run: stubber --verbose get-docstubs

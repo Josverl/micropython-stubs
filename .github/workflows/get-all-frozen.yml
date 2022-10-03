@@ -29,7 +29,7 @@ jobs:
           depth: 1
       # no need to install python
       - run: pip install pygithub packaging
-      - run: python .github/workflows/list_versions.py
+      - run: python .github/workflows/list_versions.py --latest
         id: dynamic
     outputs:
       job_versions: ${{ steps.dynamic.outputs.versions }}
@@ -68,7 +68,7 @@ jobs:
       - name: clone and switch to micropython ${{ matrix.version }}
         run: |
           stubber clone 
-          stubber switch --tag ${{ matrix.version }}
+          stubber switch ${{ matrix.version }}
 
       ######################################
       # This is where the actual work starts
@@ -157,7 +157,6 @@ jobs:
         working-directory: ${{github.workspace}}
         run: |
           stubber get-core --black
-
       ######################################
       # now check if a PR is needed
       ######################################
