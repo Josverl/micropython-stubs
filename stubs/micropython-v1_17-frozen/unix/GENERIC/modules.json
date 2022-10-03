@@ -2,10 +2,10 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
     "firmware": {
         "family": "micropython",
-        "port": "esp32",
-        "platform": "esp32",
+        "port": "unix",
+        "platform": "unix",
         "machine": "GENERIC",
-        "firmware": "micropython-esp32-v1_17",
+        "firmware": "micropython-unix-v1_17",
         "nodename": "micropython",
         "version": "v1.17",
         "release": "v1.17",
@@ -16,42 +16,6 @@
         "stubtype": "frozen"
     },
     "modules": [
-        {
-            "file": "_boot.py",
-            "module": "_boot"
-        },
-        {
-            "file": "apa106.py",
-            "module": "apa106"
-        },
-        {
-            "file": "dht.py",
-            "module": "dht"
-        },
-        {
-            "file": "ds18x20.py",
-            "module": "ds18x20"
-        },
-        {
-            "file": "flashbdev.py",
-            "module": "flashbdev"
-        },
-        {
-            "file": "inisetup.py",
-            "module": "inisetup"
-        },
-        {
-            "file": "neopixel.py",
-            "module": "neopixel"
-        },
-        {
-            "file": "ntptime.py",
-            "module": "ntptime"
-        },
-        {
-            "file": "onewire.py",
-            "module": "onewire"
-        },
         {
             "file": "uasyncio/__init__.py",
             "module": "__init__"
@@ -87,18 +51,6 @@
         {
             "file": "upip_utarfile.py",
             "module": "upip_utarfile"
-        },
-        {
-            "file": "webrepl.py",
-            "module": "webrepl"
-        },
-        {
-            "file": "webrepl_setup.py",
-            "module": "webrepl_setup"
-        },
-        {
-            "file": "websocket_helper.py",
-            "module": "websocket_helper"
         }
     ]
 }
