@@ -1,16 +1,17 @@
 name: test stub quality
-on: 
+on:
   workflow_dispatch:
   push:
     paths-ignore:
-      - '**.md'
-      - 'docs/**'
+      - "**.md"
+      - "docs/**"
   pull_request:
     paths-ignore:
-      - '**.md'
-      - 'docs/**'
-      - 'test/**'
-
+      - "**.md"
+      - "docs/**"
+      - "test/**"
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: 1
 jobs:
   pyright:
     runs-on: ubuntu-latest
@@ -22,11 +23,11 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: 3.9
-          cache: 'pip'
+          cache: "pip"
 
       - name: Install Python dependencies
         run: |
-          python -m pip install --upgrade pip
+          pip install --upgrade wheel
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Testspace client install & config
@@ -49,7 +50,7 @@ jobs:
           pyright stubs/micropython-v1_19_1-* | tee ./results/pyright-stable.log
           pyright stubs/micropython-latest-* | tee ./results/pyright-latest.log
 
-      - name: Fixup pyright logs 
+      - name: Fixup pyright logs
         shell: pwsh
         run: |
           ./tests/fix-pyrightlogs.ps1

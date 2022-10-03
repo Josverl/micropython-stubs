@@ -1,17 +1,19 @@
 ########################################################################################################################################
 # This will attempt to retrieve and generate stubs from all known versions of MicroPython
 ########################################################################################################################################
-# Check out repos in this structure 
+# Check out repos in this structure
 # micropython-stubs
-#   + - stubs 
+#   + - stubs
 ########################################################################################################################################
 name: get-loboris-frozen
 
 on:
   workflow_dispatch:
-  # not maintained- no need to try to update all the time 
-  # schedule: 
+  # not maintained- no need to try to update all the time
+  # schedule:
   #   - cron: "0 1 * * *"   # Run everyday at 01:00
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: 1
 
 jobs:
   ########################################################################################################################################
@@ -22,9 +24,8 @@ jobs:
     defaults:
       run:
         shell: bash
-    
-    steps:
 
+    steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
 
@@ -36,9 +37,8 @@ jobs:
 
       - name: Install Python dependencies (stubber)
         run: |
-          python -m pip install --upgrade pip
+          pip install --upgrade wheel
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
 
       ######################################
       # This is where the actual work starts
@@ -68,4 +68,3 @@ jobs:
           echo "Done..."
 
   ########################################################################################################################################
-
