@@ -12,7 +12,7 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.8.0",
+        "version": "1.9.6",
         "stubtype": "frozen"
     },
     "modules": [
@@ -31,6 +31,10 @@
         {
             "file": "ds18x20.py",
             "module": "ds18x20"
+        },
+        {
+            "file": "mip.py",
+            "module": "mip"
         },
         {
             "file": "neopixel.py",
@@ -75,14 +79,6 @@
         {
             "file": "uasyncio/task.py",
             "module": "task"
-        },
-        {
-            "file": "upip.py",
-            "module": "upip"
-        },
-        {
-            "file": "upip_utarfile.py",
-            "module": "upip_utarfile"
         },
         {
             "file": "urequests.py",
