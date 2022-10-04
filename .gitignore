@@ -8,6 +8,9 @@ micropython-stubber
 # No venv
 .venv*
 
+#no secrets
+.secrets
+
 # no documentation artefacts 
 */~*.pptx
 
