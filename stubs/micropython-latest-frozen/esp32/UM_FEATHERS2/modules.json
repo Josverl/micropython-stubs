@@ -12,7 +12,7 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.8.0",
+        "version": "1.9.10",
         "stubtype": "frozen"
     },
     "modules": [
@@ -47,6 +47,10 @@
         {
             "file": "inisetup.py",
             "module": "inisetup"
+        },
+        {
+            "file": "mip.py",
+            "module": "mip"
         },
         {
             "file": "neopixel.py",
@@ -89,20 +93,16 @@
             "module": "task"
         },
         {
+            "file": "umqtt/__init__.py",
+            "module": "__init__"
+        },
+        {
             "file": "umqtt/robust.py",
             "module": "robust"
         },
         {
             "file": "umqtt/simple.py",
             "module": "simple"
-        },
-        {
-            "file": "upip.py",
-            "module": "upip"
-        },
-        {
-            "file": "upip_utarfile.py",
-            "module": "upip_utarfile"
         },
         {
             "file": "upysh.py",

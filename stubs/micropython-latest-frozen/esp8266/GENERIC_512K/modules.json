@@ -12,13 +12,17 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.8.0",
+        "version": "1.9.10",
         "stubtype": "frozen"
     },
     "modules": [
         {
             "file": "_boot.py",
             "module": "_boot"
+        },
+        {
+            "file": "apa102.py",
+            "module": "apa102"
         },
         {
             "file": "dht.py",
@@ -33,8 +37,16 @@
             "module": "neopixel"
         },
         {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
             "file": "onewire.py",
             "module": "onewire"
+        },
+        {
+            "file": "port_diag.py",
+            "module": "port_diag"
         },
         {
             "file": "webrepl.py",

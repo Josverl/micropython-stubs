@@ -12,41 +12,13 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.8.0",
+        "version": "1.9.10",
         "stubtype": "frozen"
     },
     "modules": [
         {
-            "file": "display/ssd1306.py",
+            "file": "ssd1306.py",
             "module": "ssd1306"
-        },
-        {
-            "file": "uasyncio/__init__.py",
-            "module": "__init__"
-        },
-        {
-            "file": "uasyncio/core.py",
-            "module": "core"
-        },
-        {
-            "file": "uasyncio/event.py",
-            "module": "event"
-        },
-        {
-            "file": "uasyncio/funcs.py",
-            "module": "funcs"
-        },
-        {
-            "file": "uasyncio/lock.py",
-            "module": "lock"
-        },
-        {
-            "file": "uasyncio/stream.py",
-            "module": "stream"
-        },
-        {
-            "file": "uasyncio/task.py",
-            "module": "task"
         }
     ]
 }
