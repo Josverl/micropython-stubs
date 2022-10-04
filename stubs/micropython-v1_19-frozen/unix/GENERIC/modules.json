@@ -1,0 +1,56 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "unix",
+        "platform": "unix",
+        "machine": "GENERIC",
+        "firmware": "micropython-unix-v1_19",
+        "nodename": "micropython",
+        "version": "v1.19",
+        "release": "v1.19",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.9.10",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "uasyncio/task.py",
+            "module": "task"
+        },
+        {
+            "file": "upip.py",
+            "module": "upip"
+        },
+        {
+            "file": "upip_utarfile.py",
+            "module": "upip_utarfile"
+        }
+    ]
+}
