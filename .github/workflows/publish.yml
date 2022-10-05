@@ -16,12 +16,12 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 1 * * 5" # Run every Friday at 01:00
-env: 
+env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
-  
+
 jobs:
   ########################################################################################################################################
-  get_versions:
+  get-versions:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -37,15 +37,17 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
-    # needs: get_versions
+    needs: get-versions
     strategy:
-      # matrix: ${{ fromJSON(needs.get_versions.outputs.job_versions) }}
-      matrix:
-        version: ["v1.18"]
+      matrix: ${{ fromJSON(needs.get-versions.outputs.job_versions) }}
+      # matrix:
+      #   version: ["v1.18"]
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
-      - run: pip install micropython-stubber
+      - run: |
+          pip install wheel
+          pip install micropython-stubber
       - run: |
           echo ${{matrix.version}}
           stubber --version
@@ -55,7 +57,36 @@ jobs:
       - run: stubber --verbose get-frozen
       - run: stubber --verbose get-docstubs
       - run: stubber --verbose merge --version ${{matrix.version}}
-      - run: stubber --verbose publish --version ${{matrix.version}} --test-pipy --dry-run
+
+  publish-stubs:
+    env:
+      POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
+      POETRY_PYPI_TOKEN_TEST_PYPI: pypi-AgENdGVzdC5weXBpLm9yZwIkM2MwZTQ3ZjctMTY4NC00MWZmLWI0NjUtMGRhNWIyMTM1MzY5AAIqWzMsIjg3YWJmYjEwLTc4YjYtNDkxZS1iODhjLTQ4MjAwNTg1MzJiYyJdAAAGICXOOKXDE1O10MaOkZhbsSZsLSGLOterMLyWnbFZT280
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    needs: build-stubs
+    strategy:
+      matrix: ${{ fromJSON(needs.get-versions.outputs.job_versions) }}
+    steps:
+      - name: Checkout stubs repo
+        uses: actions/checkout@v3
+      - run: |
+          pip install wheel
+          pip install micropython-stubber
+      - run: |
+          pip install poetry
+          poetry config repositories.test-pypi https://test.pypi.org/legacy/
+          poetry config --list
+
+      - run: stubber publish --version ${{matrix.version}} --test-pypi
+
+      - name: Commit the changes
+        uses: EndBug/add-and-commit@v8
+        with:
+          message: publish stubs for ${{matrix.version}}
+          add: stubs, publish
 
       # - name: Create Pull Request ( if relevant changes)
       #   if: ${{ steps.changed.outputs.count }} >= 1
