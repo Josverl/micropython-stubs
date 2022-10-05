@@ -52,11 +52,11 @@ jobs:
           echo ${{matrix.version}}
           stubber --version
           stubber clone --no-stubs
-          stubber switch ${{matrix.version}}
       # run the build steps for this mpy version
-      - run: stubber --verbose get-frozen
-      - run: stubber --verbose get-docstubs
-      - run: stubber --verbose merge --version ${{matrix.version}}
+      - run: stubber switch ${{matrix.version}}
+      - run: stubber get-frozen
+      - run: stubber get-docstubs
+      - run: stubber merge --version ${{matrix.version}}
 
       - run: |
           pip install poetry
@@ -70,4 +70,3 @@ jobs:
         uses: EndBug/add-and-commit@v8
         with:
           message: publish stubs for ${{matrix.version}}
-          add: stubs, publish
