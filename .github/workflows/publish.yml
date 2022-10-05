@@ -33,7 +33,7 @@ jobs:
       job_versions: ${{ steps.dynamic.outputs.versions }}
 
   ########################################################################################################################################
-  build-stubs:
+  build-publish-stubs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -58,58 +58,16 @@ jobs:
       - run: stubber --verbose get-docstubs
       - run: stubber --verbose merge --version ${{matrix.version}}
 
-  publish-stubs:
-    env:
-      POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
-      POETRY_PYPI_TOKEN_TEST_PYPI: pypi-AgENdGVzdC5weXBpLm9yZwIkM2MwZTQ3ZjctMTY4NC00MWZmLWI0NjUtMGRhNWIyMTM1MzY5AAIqWzMsIjg3YWJmYjEwLTc4YjYtNDkxZS1iODhjLTQ4MjAwNTg1MzJiYyJdAAAGICXOOKXDE1O10MaOkZhbsSZsLSGLOterMLyWnbFZT280
-
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    needs: build-stubs
-    strategy:
-      matrix: ${{ fromJSON(needs.get-versions.outputs.job_versions) }}
-    steps:
-      - name: Checkout stubs repo
-        uses: actions/checkout@v3
-      - run: |
-          pip install wheel
-          pip install micropython-stubber
       - run: |
           pip install poetry
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           poetry config --list
-
-      - run: stubber publish --version ${{matrix.version}} --test-pypi
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
+          POETRY_PYPI_TOKEN_TEST_PYPI: pypi-AgENdGVzdC5weXBpLm9yZwIkM2MwZTQ3ZjctMTY4NC00MWZmLWI0NjUtMGRhNWIyMTM1MzY5AAIqWzMsIjg3YWJmYjEwLTc4YjYtNDkxZS1iODhjLTQ4MjAwNTg1MzJiYyJdAAAGICXOOKXDE1O10MaOkZhbsSZsLSGLOterMLyWnbFZT280
 
       - name: Commit the changes
         uses: EndBug/add-and-commit@v8
         with:
           message: publish stubs for ${{matrix.version}}
           add: stubs, publish
-
-      # - name: Create Pull Request ( if relevant changes)
-      #   if: ${{ steps.changed.outputs.count }} >= 1
-      #   id: cpr-doc
-      #   uses: peter-evans/create-pull-request@v3
-      #   # ref: https://github.com/peter-evans/create-pull-request
-      #   with:
-      #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }}
-      #     title: "Published ${{ matrix.version }} doc-stubs"
-      #     commit-message: add/update doc-stubs
-      #     body: |
-      #       update MicroPython ${{ matrix.version }} doc-stubs
-      #       based on micropython commit ${{ steps.mpycommit.outputs.info }}
-
-      #     branch: "micropython-${{ matrix.version }}-doc-stubs"
-      #     labels: |
-      #       automated pr
-      #       Doc stubs
-      #       MicroPython
-      #       ${{ matrix.version }}
-      #     delete-branch: true
-
-      # - name: done
-      #   if: always()
-      #   run: |
-      #     echo "Done..."
