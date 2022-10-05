@@ -6,7 +6,7 @@ authors = [
     "josverl <josverl@users.noreply.github.com>",
 ]
 license = "MIT"
-readme = "readme.md"
+readme = "README.md"
 homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
 documentation = "https://micropython-stubs.readthedocs.io/"
 exclude = [
