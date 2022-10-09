@@ -2,7 +2,7 @@
     "name": "micropython-esp32-stubs",
     "mpy_version": "1.19.1",
     "publish": true,
-    "pkg_version": "1.19.1.post4",
+    "pkg_version": "1.19.1.post10",
     "path": "micropython-v1_19_1-esp32-stubs",
     "stub_sources": [
         [
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "be282679f9874f61483d6f6a356cd15c4830af7c",
-    "stub_hash": "7f9cd65dc4969e9fed5aac22de976f3c03d7fcef"
+    "hash": "fe26bf63b2d2a72591720e3c3ff854b9859e4ac3",
+    "stub_hash": "f3ed4a63e5ee70edfb391e13748fa4ca99d938ff"
 }
