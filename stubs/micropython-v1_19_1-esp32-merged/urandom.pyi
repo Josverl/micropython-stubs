@@ -44,6 +44,7 @@ class random:
     """
 
     def __init__(self) -> None: ...
+
 def seed(n=None, /) -> None:
     """
     Initialise the random number generator module with the seed *n* which should
@@ -55,6 +56,7 @@ def seed(n=None, /) -> None:
     enabled by the port, otherwise it raises ``ValueError``.
     """
     ...
+
 def uniform(a, b) -> int:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
@@ -62,17 +64,20 @@ def uniform(a, b) -> int:
 
     """
     ...
+
 def choice(sequence) -> Any:
     """
     Chooses and returns one item at random from *sequence* (tuple, list or
     any object that supports the subscript operation).
     """
     ...
+
 def randint(a, b) -> int:
     """
     Return a random integer in the range [*a*, *b*].
     """
     ...
+
 def getrandbits(n) -> int:
     """
     Return an integer with *n* random bits (0 <= n <= 32).

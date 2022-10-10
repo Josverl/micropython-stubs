@@ -21,6 +21,7 @@ class NeoPixel:
         - *bpp* is 3 for RGB LEDs, and 4 for RGBW LEDs.
         - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
     """
+
     ORDER: tuple
     def write(self) -> None:
         """

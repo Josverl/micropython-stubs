@@ -98,6 +98,7 @@ def ticks_diff(ticks1, ticks2) -> int:
 
     """
     ...
+
 def ticks_add(ticks, delta) -> Any:
     """
     Offset ticks value by a given number, which can be either positive or negative.
@@ -125,6 +126,7 @@ def ticks_add(ticks, delta) -> Any:
 
     """
     ...
+
 def ticks_cpu() -> Any:
     """
     Similar to `ticks_ms()` and `ticks_us()`, but with the highest possible resolution
@@ -155,6 +157,7 @@ class time:
     """
 
     def __init__(self) -> None: ...
+
 def ticks_ms() -> int:
     """
     Returns an increasing millisecond counter with an arbitrary reference point, that
@@ -178,17 +181,20 @@ def ticks_ms() -> int:
     invalid results from the latter functions.
     """
     ...
+
 def ticks_us() -> Any:
     """
     Just like `ticks_ms()` above, but in microseconds.
     """
     ...
+
 def time_ns() -> int:
     """
     Similar to `time()` but returns nanoseconds since the Epoch, as an integer (usually
     a big integer, so will allocate on the heap).
     """
     ...
+
 def localtime(secs: Optional[Any] = None) -> Tuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
@@ -210,6 +216,7 @@ def localtime(secs: Optional[Any] = None) -> Tuple:
     * yearday is 1-366
     """
     ...
+
 def sleep_us(us) -> None:
     """
     Delay for given number of microseconds, should be positive or 0.
@@ -219,6 +226,7 @@ def sleep_us(us) -> None:
     processing to perform.
     """
     ...
+
 def gmtime(secs: Optional[Any] = None) -> Tuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
@@ -240,6 +248,7 @@ def gmtime(secs: Optional[Any] = None) -> Tuple:
     * yearday is 1-366
     """
     ...
+
 def sleep_ms(ms) -> None:
     """
     Delay for given number of milliseconds, should be positive or 0.
@@ -250,6 +259,7 @@ def sleep_ms(ms) -> None:
     this other processing to occur.  Use `sleep_us()` for more precise delays.
     """
     ...
+
 def mktime() -> int:
     """
     This is inverse function of localtime. It's argument is a full 8-tuple
@@ -257,6 +267,7 @@ def mktime() -> int:
     the number of seconds since Jan 1, 2000.
     """
     ...
+
 def sleep(seconds) -> Any:
     """
     Sleep for the given number of seconds. Some boards may accept *seconds* as a

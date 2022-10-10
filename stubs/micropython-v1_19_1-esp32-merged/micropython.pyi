@@ -22,6 +22,7 @@ def opt_level(level: Optional[Any] = None) -> Any:
     The default optimisation level is usually level 0.
     """
     ...
+
 def mem_info(verbose: Optional[Any] = None) -> None:
     """
     Print information about currently used memory.  If the *verbose* argument
@@ -32,6 +33,7 @@ def mem_info(verbose: Optional[Any] = None) -> None:
     the entire heap indicating which blocks are used and which are free.
     """
     ...
+
 def stack_use() -> int:
     """
     Return an integer representing the current amount of stack that is being
@@ -39,6 +41,7 @@ def stack_use() -> int:
     should be used to compute differences in stack usage at different points.
     """
     ...
+
 def qstr_info(verbose: Optional[Any] = None) -> None:
     """
     Print information about currently interned strings.  If the *verbose*
@@ -49,6 +52,7 @@ def qstr_info(verbose: Optional[Any] = None) -> None:
     verbose mode it prints out the names of all RAM-interned strings.
     """
     ...
+
 def schedule(func, arg) -> Any:
     """
     Schedule the function *func* to be executed "very soon".  The function
@@ -85,6 +89,7 @@ def schedule(func, arg) -> Any:
     will raise a `RuntimeError` if the queue is full.
     """
     ...
+
 def alloc_emergency_exception_buf(size) -> Any:
     """
     Allocate *size* bytes of RAM for the emergency exception buffer (a good
@@ -97,6 +102,7 @@ def alloc_emergency_exception_buf(size) -> Any:
     for all the code following it.
     """
     ...
+
 def const(expr) -> int:
     """
     Used to declare that the expression is a constant so that the compile can
@@ -118,6 +124,7 @@ def const(expr) -> int:
     pattern.
     """
     ...
+
 def kbd_intr(chr) -> None:
     """
     Set the character that will raise a `KeyboardInterrupt` exception.  By
@@ -130,5 +137,6 @@ def kbd_intr(chr) -> None:
     that stream is used for other purposes.
     """
     ...
+
 def heap_lock() -> Any: ...
 def heap_unlock() -> Any: ...

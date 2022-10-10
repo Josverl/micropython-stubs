@@ -14,6 +14,7 @@ def loads(str) -> Any:
     string is not correctly formed.
     """
     ...
+
 def load(stream) -> Any:
     """
     Parse the given *stream*, interpreting it as a JSON string and
@@ -24,6 +25,7 @@ def load(stream) -> Any:
     A :exc:`ValueError` is raised if the data in *stream* is not correctly formed.
     """
     ...
+
 def dumps(obj, separators=None) -> str:
     """
     Return *obj* represented as a JSON string.
@@ -31,6 +33,7 @@ def dumps(obj, separators=None) -> str:
     The arguments have the same meaning as in `dump`.
     """
     ...
+
 def dump(obj, stream, separators=None) -> Any:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.

@@ -53,6 +53,7 @@ class OrderedDict:
         w 5
         b 3
     """
+
     def popitem(self, *args, **kwargs) -> Any: ...
     def pop(self, *args, **kwargs) -> Any: ...
     def values(self, *args, **kwargs) -> Any: ...
@@ -84,6 +85,7 @@ class deque:
     As well as supporting `bool` and `len`, deque objects have the following
     methods:
     """
+
     def popleft(self) -> Any:
         """
         Remove and return an item from the left side of the deque.

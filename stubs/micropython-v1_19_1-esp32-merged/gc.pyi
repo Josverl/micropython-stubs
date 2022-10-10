@@ -10,6 +10,7 @@ def mem_alloc() -> int:
     Return the number of bytes of heap RAM that are allocated.
     """
     ...
+
 def isenabled(*args, **kwargs) -> Any: ...
 def mem_free() -> int:
     """
@@ -17,6 +18,7 @@ def mem_free() -> int:
     is not known.
     """
     ...
+
 def threshold(amount: Optional[Any] = None) -> Any:
     """
     Set or query the additional GC allocation threshold. Normally, a collection
@@ -35,16 +37,19 @@ def threshold(amount: Optional[Any] = None) -> Any:
     the threshold. A value of -1 means a disabled allocation threshold.
     """
     ...
+
 def collect() -> None:
     """
     Run a garbage collection.
     """
     ...
+
 def enable() -> None:
     """
     Enable automatic garbage collection.
     """
     ...
+
 def disable() -> None:
     """
     Disable automatic garbage collection.  Heap memory can still be allocated,

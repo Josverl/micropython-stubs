@@ -61,6 +61,7 @@ class socket:
          # Create DGRAM UDP socket
          socket(AF_INET, SOCK_DGRAM)
     """
+
     def recvfrom(self, bufsize) -> Tuple:
         """
         Receive data from the socket. The return value is a pair *(bytes, address)* where *bytes* is a
