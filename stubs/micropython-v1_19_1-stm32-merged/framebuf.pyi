@@ -31,6 +31,7 @@ class FrameBuffer:
     optionally *stride*.  Invalid *buffer* size or dimensions may lead to
     unexpected errors.
     """
+
     def __init__(self, buffer, width, height, format, stride=-1, /) -> None: ...
     def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
         """

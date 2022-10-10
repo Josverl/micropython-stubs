@@ -15,6 +15,7 @@ class array:
     array are given by *iterable*. If it is not provided, an empty
     array is created.
     """
+
     def __init__(self, typecode, iterable: Optional[Any] = None) -> None: ...
     def append(self, val) -> Any:
         """

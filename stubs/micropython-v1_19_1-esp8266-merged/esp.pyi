@@ -26,6 +26,7 @@ def deepsleep(time_us=0, /) -> Any:
     reset.
     """
     ...
+
 def dht_readinto(*args, **kwargs) -> Any: ...
 def esf_free_bufs(*args, **kwargs) -> Any: ...
 def flash_erase(sector_no) -> Any: ...
@@ -36,17 +37,20 @@ def flash_id() -> Any:
     Read the device ID of the flash memory.
     """
     ...
+
 def flash_read(byte_offset, length_or_buffer) -> Any: ...
 def flash_size() -> Any:
     """
     Read the total size of the flash memory.
     """
     ...
+
 def flash_user_start() -> Any:
     """
     Read the memory offset at which the user flash space begins.
     """
     ...
+
 def flash_write(byte_offset, bytes) -> Any: ...
 def free(*args, **kwargs) -> Any: ...
 def freemem(*args, **kwargs) -> Any: ...
@@ -68,6 +72,7 @@ def osdebug(level) -> None:
           which can potentially flood the output
     """
     ...
+
 def set_native_code_location(start, length) -> Any:
     """
     **Note**: ESP8266 only
@@ -107,6 +112,7 @@ def set_native_code_location(start, length) -> Any:
     that function.
     """
     ...
+
 def sleep_type(sleep_type: Optional[Any] = None) -> Any:
     """
     **Note**: ESP8266 only

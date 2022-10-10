@@ -15,6 +15,7 @@ def a2b_base64(data) -> bytes:
     Returns a bytes object.
     """
     ...
+
 def b2a_base64(data, *, newline=True) -> bytes:
     """
     Encode binary data in base64 format, as in `RFC 3548
@@ -22,6 +23,7 @@ def b2a_base64(data, *, newline=True) -> bytes:
     followed by a newline character if newline is true, as a bytes object.
     """
     ...
+
 def crc32(*args, **kwargs) -> Any: ...
 def hexlify(data, sep: Optional[Any] = None) -> bytes:
     """
@@ -32,6 +34,7 @@ def hexlify(data, sep: Optional[Any] = None) -> bytes:
     between hexadecimal values.
     """
     ...
+
 def unhexlify(data) -> bytes:
     """
     Convert hexadecimal data to binary representation. Returns bytes string.

@@ -10,29 +10,34 @@ def collect() -> None:
     Run a garbage collection.
     """
     ...
+
 def disable() -> None:
     """
     Disable automatic garbage collection.  Heap memory can still be allocated,
     and garbage collection can still be initiated manually using :meth:`gc.collect`.
     """
     ...
+
 def enable() -> None:
     """
     Enable automatic garbage collection.
     """
     ...
+
 def isenabled(*args, **kwargs) -> Any: ...
 def mem_alloc() -> int:
     """
     Return the number of bytes of heap RAM that are allocated.
     """
     ...
+
 def mem_free() -> int:
     """
     Return the number of bytes of available heap RAM, or -1 if this amount
     is not known.
     """
     ...
+
 def threshold(amount: Optional[Any] = None) -> Any:
     """
     Set or query the additional GC allocation threshold. Normally, a collection
