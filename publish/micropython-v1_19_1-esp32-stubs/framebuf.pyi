@@ -42,6 +42,7 @@ class FrameBuffer:
     optionally *stride*.  Invalid *buffer* size or dimensions may lead to
     unexpected errors.
     """
+
     def rect(self, x, y, w, h, c) -> Any: ...
     def pixel(self, x, y, c: Optional[Any] = None) -> Any:
         """

@@ -23,6 +23,7 @@ def print_exception(exc, file=stdout, /) -> None:
     `sys.stdout` by default).
     """
     ...
+
 def exit(retval=0, /) -> Any:
     """
     Terminate current program with a given exit code. Underlyingly, this

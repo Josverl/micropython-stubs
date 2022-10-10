@@ -15,6 +15,7 @@ class array:
     array are given by *iterable*. If it is not provided, an empty
     array is created.
     """
+
     def extend(self, iterable) -> Any:
         """
         Append new elements as contained in *iterable* to the end of
