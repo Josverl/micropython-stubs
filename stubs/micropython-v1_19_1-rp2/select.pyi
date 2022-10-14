@@ -1,9 +1,9 @@
 from typing import Any
 
-POLLERR: int
-POLLHUP: int
-POLLIN: int
 POLLOUT: int
+POLLIN: int
+POLLHUP: int
+POLLERR: int
 
-def poll(*args, **kwargs) -> Any: ...
 def select(*args, **kwargs) -> Any: ...
+def poll(*args, **kwargs) -> Any: ...
