@@ -8,139 +8,117 @@ terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.5.6
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+# Stubber: 1.9.11
+from typing import Any, IO, Iterator, Optional, Tuple
 
 
-def remove(path) -> None:
+def stat(path) -> Any:
     """
-    Remove a file.
+    Get the status of a file or directory.
     """
     ...
 
 
-class VfsFat:
+def rmdir(path) -> None:
     """
-    Create a filesystem object that uses the FAT filesystem format.  Storage of
-    the FAT filesystem is provided by *block_dev*.
-    Objects created by this constructor can be mounted using :func:`mount`.
+    Remove a directory.
     """
-
-    def __init__(self, block_dev) -> None:
-        """"""
-        ...
-
-    def open(self, *args, **kwargs) -> Any:
-        ...
-
-    def remove(self, *args, **kwargs) -> Any:
-        ...
-
-    def chdir(self, *args, **kwargs) -> Any:
-        ...
-
-    def getcwd(self, *args, **kwargs) -> Any:
-        ...
-
-    def ilistdir(self, *args, **kwargs) -> Any:
-        ...
-
-    def mkdir(self, *args, **kwargs) -> Any:
-        ...
-
-    @staticmethod
-    def mkfs(block_dev) -> None:
-        """
-        Build a FAT filesystem on *block_dev*.
-        """
-        ...
-
-    def mount(self, *args, **kwargs) -> Any:
-        ...
-
-    def rename(self, *args, **kwargs) -> Any:
-        ...
-
-    def rmdir(self, *args, **kwargs) -> Any:
-        ...
-
-    def stat(self, *args, **kwargs) -> Any:
-        ...
-
-    def statvfs(self, *args, **kwargs) -> Any:
-        ...
-
-    def umount(self, *args, **kwargs) -> Any:
-        ...
+    ...
 
 
-class VfsLfs2:
+def rename(old_path, new_path) -> None:
     """
-    Create a filesystem object that uses the `littlefs v2 filesystem format`_.
-    Storage of the littlefs filesystem is provided by *block_dev*, which must
-    support the :ref:`extended interface <block-device-interface>`.
-    Objects created by this constructor can be mounted using :func:`mount`.
-
-    The *mtime* argument enables modification timestamps for files, stored using
-    littlefs attributes.  This option can be disabled or enabled differently each
-    mount time and timestamps will only be added or updated if *mtime* is enabled,
-    otherwise the timestamps will remain untouched.  Littlefs v2 filesystems without
-    timestamps will work without reformatting and timestamps will be added
-    transparently to existing files once they are opened for writing.  When *mtime*
-    is enabled `os.stat` on files without timestamps will return 0 for the timestamp.
-
-    See :ref:`filesystem` for more information.
+    Rename a file.
     """
+    ...
 
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None:
-        """"""
-        ...
 
-    def open(self, *args, **kwargs) -> Any:
-        ...
+def mount(fsobj, mount_point, *, readonly) -> Any:
+    """
+    Mount the filesystem object *fsobj* at the location in the VFS given by the
+    *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
+    method, or a block device.  If it's a block device then the filesystem type
+    is automatically detected (an exception is raised if no filesystem was
+    recognised).  *mount_point* may be ``'/'`` to mount *fsobj* at the root,
+    or ``'/<name>'`` to mount it at a subdirectory under the root.
 
-    def remove(self, *args, **kwargs) -> Any:
-        ...
+    If *readonly* is ``True`` then the filesystem is mounted read-only.
 
-    def chdir(self, *args, **kwargs) -> Any:
-        ...
+    During the mount process the method ``mount()`` is called on the filesystem
+    object.
 
-    def getcwd(self, *args, **kwargs) -> Any:
-        ...
+    Will raise ``OSError(EPERM)`` if *mount_point* is already mounted.
+    """
+    ...
 
-    def ilistdir(self, *args, **kwargs) -> Any:
-        ...
 
-    def mkdir(self, *args, **kwargs) -> Any:
-        ...
+def mkdir(path) -> Any:
+    """
+    Create a new directory.
+    """
+    ...
 
-    @staticmethod
-    def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
-        """
-            Build a Lfs2 filesystem on *block_dev*.
 
-        ``Note:`` There are reports of littlefs v2 failing in certain situations,
-                  for details see `littlefs issue 295`_.
-        """
-        ...
+def statvfs(path) -> Tuple:
+    """
+    Get the status of a fileystem.
 
-    def mount(self, *args, **kwargs) -> Any:
-        ...
+    Returns a tuple with the filesystem information in the following order:
 
-    def rename(self, *args, **kwargs) -> Any:
-        ...
+         * ``f_bsize`` -- file system block size
+         * ``f_frsize`` -- fragment size
+         * ``f_blocks`` -- size of fs in f_frsize units
+         * ``f_bfree`` -- number of free blocks
+         * ``f_bavail`` -- number of free blocks for unprivileged users
+         * ``f_files`` -- number of inodes
+         * ``f_ffree`` -- number of free inodes
+         * ``f_favail`` -- number of free inodes for unprivileged users
+         * ``f_flag`` -- mount flags
+         * ``f_namemax`` -- maximum filename length
 
-    def rmdir(self, *args, **kwargs) -> Any:
-        ...
+    Parameters related to inodes: ``f_files``, ``f_ffree``, ``f_avail``
+    and the ``f_flags`` parameter may return ``0`` as they can be unavailable
+    in a port-specific implementation.
+    """
+    ...
 
-    def stat(self, *args, **kwargs) -> Any:
-        ...
 
-    def statvfs(self, *args, **kwargs) -> Any:
-        ...
+def unlink(*args, **kwargs) -> Any:
+    ...
 
-    def umount(self, *args, **kwargs) -> Any:
-        ...
+
+def uname() -> Tuple:
+    """
+    Return a tuple (possibly a named tuple) containing information about the
+    underlying machine and/or its operating system.  The tuple has five fields
+    in the following order, each of them being a string:
+
+         * ``sysname`` -- the name of the underlying system
+         * ``nodename`` -- the network name (can be the same as ``sysname``)
+         * ``release`` -- the version of the underlying system
+         * ``version`` -- the MicroPython version and build date
+         * ``machine`` -- an identifier for the underlying hardware (eg board, CPU)
+    """
+    ...
+
+
+def umount(mount_point) -> Any:
+    """
+    Unmount a filesystem. *mount_point* can be a string naming the mount location,
+    or a previously-mounted filesystem object.  During the unmount process the
+    method ``umount()`` is called on the filesystem object.
+
+    Will raise ``OSError(EINVAL)`` if *mount_point* is not found.
+    """
+    ...
+
+
+def urandom(n) -> bytes:
+    """
+    Return a bytes object with *n* random bytes. Whenever possible, it is
+    generated by the hardware random number generator.
+    """
+    ...
 
 
 def chdir(path) -> Any:
@@ -174,14 +152,21 @@ def dupterm(stream_object, index=0, /) -> IO:
     ...
 
 
-def dupterm_notify(*args, **kwargs) -> Any:
+def remove(path) -> None:
+    """
+    Remove a file.
+    """
     ...
 
 
-def getcwd() -> Any:
+def listdir(dir: Optional[Any] = None) -> Any:
     """
-    Get the current directory.
+    With no argument, list the current directory.  Otherwise list the given directory.
     """
+    ...
+
+
+def dupterm_notify(*args, **kwargs) -> Any:
     ...
 
 
@@ -207,117 +192,130 @@ def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     ...
 
 
-def listdir(dir: Optional[Any] = None) -> Any:
+def getcwd() -> Any:
     """
-    With no argument, list the current directory.  Otherwise list the given directory.
-    """
-    ...
-
-
-def mkdir(path) -> Any:
-    """
-    Create a new directory.
+    Get the current directory.
     """
     ...
 
 
-def mount(fsobj, mount_point, *, readonly) -> Any:
+class VfsLfs2:
     """
-    Mount the filesystem object *fsobj* at the location in the VFS given by the
-    *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
-    method, or a block device.  If it's a block device then the filesystem type
-    is automatically detected (an exception is raised if no filesystem was
-    recognised).  *mount_point* may be ``'/'`` to mount *fsobj* at the root,
-    or ``'/<name>'`` to mount it at a subdirectory under the root.
+    Create a filesystem object that uses the `littlefs v2 filesystem format`_.
+    Storage of the littlefs filesystem is provided by *block_dev*, which must
+    support the :ref:`extended interface <block-device-interface>`.
+    Objects created by this constructor can be mounted using :func:`mount`.
 
-    If *readonly* is ``True`` then the filesystem is mounted read-only.
+    The *mtime* argument enables modification timestamps for files, stored using
+    littlefs attributes.  This option can be disabled or enabled differently each
+    mount time and timestamps will only be added or updated if *mtime* is enabled,
+    otherwise the timestamps will remain untouched.  Littlefs v2 filesystems without
+    timestamps will work without reformatting and timestamps will be added
+    transparently to existing files once they are opened for writing.  When *mtime*
+    is enabled `os.stat` on files without timestamps will return 0 for the timestamp.
 
-    During the mount process the method ``mount()`` is called on the filesystem
-    object.
-
-    Will raise ``OSError(EPERM)`` if *mount_point* is already mounted.
+    See :ref:`filesystem` for more information.
     """
-    ...
+
+    def rename(self, *args, **kwargs) -> Any:
+        ...
+
+    @staticmethod
+    def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
+        """
+            Build a Lfs2 filesystem on *block_dev*.
+
+        ``Note:`` There are reports of littlefs v2 failing in certain situations,
+                  for details see `littlefs issue 295`_.
+        """
+        ...
+
+    def mount(self, *args, **kwargs) -> Any:
+        ...
+
+    def statvfs(self, *args, **kwargs) -> Any:
+        ...
+
+    def rmdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def stat(self, *args, **kwargs) -> Any:
+        ...
+
+    def umount(self, *args, **kwargs) -> Any:
+        ...
+
+    def remove(self, *args, **kwargs) -> Any:
+        ...
+
+    def mkdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def open(self, *args, **kwargs) -> Any:
+        ...
+
+    def ilistdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def chdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def getcwd(self, *args, **kwargs) -> Any:
+        ...
+
+    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None:
+        ...
 
 
-def rename(old_path, new_path) -> None:
+class VfsFat:
     """
-    Rename a file.
+    Create a filesystem object that uses the FAT filesystem format.  Storage of
+    the FAT filesystem is provided by *block_dev*.
+    Objects created by this constructor can be mounted using :func:`mount`.
     """
-    ...
 
+    def rename(self, *args, **kwargs) -> Any:
+        ...
 
-def rmdir(path) -> None:
-    """
-    Remove a directory.
-    """
-    ...
+    @staticmethod
+    def mkfs(block_dev) -> None:
+        """
+        Build a FAT filesystem on *block_dev*.
+        """
+        ...
 
+    def mount(self, *args, **kwargs) -> Any:
+        ...
 
-def stat(path) -> Any:
-    """
-    Get the status of a file or directory.
-    """
-    ...
+    def statvfs(self, *args, **kwargs) -> Any:
+        ...
 
+    def rmdir(self, *args, **kwargs) -> Any:
+        ...
 
-def statvfs(path) -> Tuple:
-    """
-    Get the status of a fileystem.
+    def stat(self, *args, **kwargs) -> Any:
+        ...
 
-    Returns a tuple with the filesystem information in the following order:
+    def umount(self, *args, **kwargs) -> Any:
+        ...
 
-         * ``f_bsize`` -- file system block size
-         * ``f_frsize`` -- fragment size
-         * ``f_blocks`` -- size of fs in f_frsize units
-         * ``f_bfree`` -- number of free blocks
-         * ``f_bavail`` -- number of free blocks for unprivileged users
-         * ``f_files`` -- number of inodes
-         * ``f_ffree`` -- number of free inodes
-         * ``f_favail`` -- number of free inodes for unprivileged users
-         * ``f_flag`` -- mount flags
-         * ``f_namemax`` -- maximum filename length
+    def remove(self, *args, **kwargs) -> Any:
+        ...
 
-    Parameters related to inodes: ``f_files``, ``f_ffree``, ``f_avail``
-    and the ``f_flags`` parameter may return ``0`` as they can be unavailable
-    in a port-specific implementation.
-    """
-    ...
+    def mkdir(self, *args, **kwargs) -> Any:
+        ...
 
+    def open(self, *args, **kwargs) -> Any:
+        ...
 
-def umount(mount_point) -> Any:
-    """
-    Unmount a filesystem. *mount_point* can be a string naming the mount location,
-    or a previously-mounted filesystem object.  During the unmount process the
-    method ``umount()`` is called on the filesystem object.
+    def ilistdir(self, *args, **kwargs) -> Any:
+        ...
 
-    Will raise ``OSError(EINVAL)`` if *mount_point* is not found.
-    """
-    ...
+    def chdir(self, *args, **kwargs) -> Any:
+        ...
 
+    def getcwd(self, *args, **kwargs) -> Any:
+        ...
 
-def uname() -> Tuple:
-    """
-    Return a tuple (possibly a named tuple) containing information about the
-    underlying machine and/or its operating system.  The tuple has five fields
-    in the following order, each of them being a string:
-
-         * ``sysname`` -- the name of the underlying system
-         * ``nodename`` -- the network name (can be the same as ``sysname``)
-         * ``release`` -- the version of the underlying system
-         * ``version`` -- the MicroPython version and build date
-         * ``machine`` -- an identifier for the underlying hardware (eg board, CPU)
-    """
-    ...
-
-
-def unlink(*args, **kwargs) -> Any:
-    ...
-
-
-def urandom(n) -> bytes:
-    """
-    Return a bytes object with *n* random bytes. Whenever possible, it is
-    generated by the hardware random number generator.
-    """
-    ...
+    def __init__(self, block_dev) -> None:
+        ...

@@ -71,8 +71,11 @@ Example::
 
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.5.6
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+# Stubber: 1.9.11
+from typing import Dict
+
+DESC = 2  # type: int
+INCL = 1  # type: int
 
 
 def open(stream, *, flags=0, pagesize=0, cachesize=0, minkeypage=0) -> Dict:
@@ -100,7 +103,3 @@ def open(stream, *, flags=0, pagesize=0, cachesize=0, minkeypage=0) -> Dict:
     of methods), and some additional methods described below.
     """
     ...
-
-
-DESC = 2  # type: int
-INCL = 1  # type: int

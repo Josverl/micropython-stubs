@@ -7,20 +7,35 @@ This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.5.6
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+# Stubber: 1.9.11
+from typing import Any, Iterator, List, Optional, Tuple
 
-POLLERR = 8  # type: int
-POLLHUP = 16  # type: int
-POLLIN = 1  # type: int
 POLLOUT = 4  # type: int
+POLLIN = 1  # type: int
+POLLHUP = 16  # type: int
+POLLERR = 8  # type: int
+
+
+class select:
+    """
+    Wait for activity on a set of objects.
+
+    This function is provided by some MicroPython ports for compatibility
+    and is not efficient. Usage of :class:`Poll` is recommended instead.
+    """
+
+    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
+        ...
+
 
 class poll:
     """
     Create an instance of the Poll class.
     """
 
-    def __init__(self) -> None: ...
+    def __init__(self) -> None:
+        ...
+
     def register(self, obj, eventmask: Optional[Any] = None) -> None:
         """
         Register `stream` *obj* for polling. *eventmask* is logical OR of:
@@ -40,17 +55,20 @@ class poll:
         *eventmask* (i.e. will behave as `modify()`).
         """
         ...
+
     def unregister(self, obj) -> Any:
         """
         Unregister *obj* from polling.
         """
         ...
+
     def modify(self, obj, eventmask) -> None:
         """
         Modify the *eventmask* for *obj*. If *obj* is not registered, `OSError`
         is raised with error of ENOENT.
         """
         ...
+
     def poll(self, timeout=-1, /) -> List:
         """
         Wait for at least one of the registered objects to become ready or have an
@@ -70,6 +88,7 @@ class poll:
         In case of timeout, an empty list is returned.
         """
         ...
+
     def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
         """
         Like :meth:`poll.poll`, but instead returns an iterator which yields a
@@ -83,13 +102,3 @@ class poll:
         behaviour is useful for asynchronous I/O schedulers.
         """
         ...
-
-class select:
-    """
-    Wait for activity on a set of objects.
-
-    This function is provided by some MicroPython ports for compatibility
-    and is not efficient. Usage of :class:`Poll` is recommended instead.
-    """
-
-    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any] = None) -> None: ...

@@ -7,9 +7,29 @@ This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.5.6
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
-from queue import Queue
+# Stubber: 1.9.11
+from typing import Any, Optional
+
+
+def namedtuple(name, fields) -> Any:
+    """
+    This is factory function to create a new namedtuple type with a specific
+    name and set of fields. A namedtuple is a subclass of tuple which allows
+    to access its fields not just by numeric index, but also with an attribute
+    access syntax using symbolic field names. Fields is a sequence of strings
+    specifying field names. For compatibility with CPython it can also be a
+    a string with space-separated field named (but this is less efficient).
+    Example of use::
+
+        from collections import namedtuple
+
+        MyTuple = namedtuple("MyTuple", ("id", "name"))
+        t1 = MyTuple(1, "foo")
+        t2 = MyTuple(2, "bar")
+        print(t1.name)
+        assert t2.name == t2[1]
+    """
+    ...
 
 
 class OrderedDict:
@@ -37,29 +57,13 @@ class OrderedDict:
         b 3
     """
 
-    def __init__(self, *args) -> None:
-        """"""
-        ...
-
-    def clear(self, *args, **kwargs) -> Any:
-        ...
-
-    def copy(self, *args, **kwargs) -> Any:
-        ...
-
-    def get(self, *args, **kwargs) -> Any:
-        ...
-
-    def items(self, *args, **kwargs) -> Any:
-        ...
-
-    def keys(self, *args, **kwargs) -> Any:
+    def popitem(self, *args, **kwargs) -> Any:
         ...
 
     def pop(self, *args, **kwargs) -> Any:
         ...
 
-    def popitem(self, *args, **kwargs) -> Any:
+    def values(self, *args, **kwargs) -> Any:
         ...
 
     def setdefault(self, *args, **kwargs) -> Any:
@@ -68,11 +72,26 @@ class OrderedDict:
     def update(self, *args, **kwargs) -> Any:
         ...
 
-    def values(self, *args, **kwargs) -> Any:
+    def copy(self, *args, **kwargs) -> Any:
+        ...
+
+    def clear(self, *args, **kwargs) -> Any:
+        ...
+
+    def keys(self, *args, **kwargs) -> Any:
+        ...
+
+    def get(self, *args, **kwargs) -> Any:
+        ...
+
+    def items(self, *args, **kwargs) -> Any:
         ...
 
     @classmethod
     def fromkeys(cls, *args, **kwargs) -> Any:
+        ...
+
+    def __init__(self, *args) -> None:
         ...
 
 
@@ -94,8 +113,11 @@ class deque:
     methods:
     """
 
-    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None:
-        """"""
+    def popleft(self) -> Any:
+        """
+        Remove and return an item from the left side of the deque.
+        Raises IndexError if no items are present.
+        """
         ...
 
     def append(self, x) -> Any:
@@ -105,30 +127,5 @@ class deque:
         """
         ...
 
-    def popleft(self) -> Any:
-        """
-        Remove and return an item from the left side of the deque.
-        Raises IndexError if no items are present.
-        """
+    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None:
         ...
-
-
-def namedtuple(name, fields) -> Any:
-    """
-    This is factory function to create a new namedtuple type with a specific
-    name and set of fields. A namedtuple is a subclass of tuple which allows
-    to access its fields not just by numeric index, but also with an attribute
-    access syntax using symbolic field names. Fields is a sequence of strings
-    specifying field names. For compatibility with CPython it can also be a
-    a string with space-separated field named (but this is less efficient).
-    Example of use::
-
-        from collections import namedtuple
-
-        MyTuple = namedtuple("MyTuple", ("id", "name"))
-        t1 = MyTuple(1, "foo")
-        t2 = MyTuple(2, "bar")
-        print(t1.name)
-        assert t2.name == t2[1]
-    """
-    ...

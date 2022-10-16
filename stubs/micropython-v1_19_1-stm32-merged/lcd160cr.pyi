@@ -45,6 +45,7 @@ class LCD160CR:
     See `this image <http://micropython.org/resources/LCD160CRv10-positions.jpg>`_
     for how the display can be connected to the pyboard.
     """
+
     def __init__(self, connect=None, *, pwr=None, i2c=None, spi=None, i2c_addr=98) -> None: ...
     def write(self, s) -> None:
         """

@@ -4,40 +4,18 @@ control the garbage collector. See: https://docs.micropython.org/en/v1.19.1/libr
 |see_cpython_module| :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.5.6
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
-
-
-def collect() -> None:
-    """
-    Run a garbage collection.
-    """
-    ...
-
-
-def disable() -> None:
-    """
-    Disable automatic garbage collection.  Heap memory can still be allocated,
-    and garbage collection can still be initiated manually using :meth:`gc.collect`.
-    """
-    ...
-
-
-def enable() -> None:
-    """
-    Enable automatic garbage collection.
-    """
-    ...
-
-
-def isenabled(*args, **kwargs) -> Any:
-    ...
+# Stubber: 1.9.11
+from typing import Any, Optional
 
 
 def mem_alloc() -> int:
     """
     Return the number of bytes of heap RAM that are allocated.
     """
+    ...
+
+
+def isenabled(*args, **kwargs) -> Any:
     ...
 
 
@@ -65,5 +43,27 @@ def threshold(amount: Optional[Any] = None) -> Any:
 
     Calling the function without argument will return the current value of
     the threshold. A value of -1 means a disabled allocation threshold.
+    """
+    ...
+
+
+def collect() -> None:
+    """
+    Run a garbage collection.
+    """
+    ...
+
+
+def enable() -> None:
+    """
+    Enable automatic garbage collection.
+    """
+    ...
+
+
+def disable() -> None:
+    """
+    Disable automatic garbage collection.  Heap memory can still be allocated,
+    and garbage collection can still be initiated manually using :meth:`gc.collect`.
     """
     ...

@@ -33,6 +33,7 @@ class OrderedDict:
         w 5
         b 3
     """
+
     def __init__(self, *args) -> None: ...
     def clear(self, *args, **kwargs) -> Any: ...
     def copy(self, *args, **kwargs) -> Any: ...
@@ -64,6 +65,7 @@ class deque:
     As well as supporting `bool` and `len`, deque objects have the following
     methods:
     """
+
     def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None: ...
     def append(self, x) -> Any:
         """

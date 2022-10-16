@@ -1,20 +1,18 @@
 from typing import Any
 
-argv: list
+path: list
+modules: dict
+version_info: tuple
+platform: str
+version: str
 byteorder: str
+argv: list
+maxsize: int
+implementation: tuple
 
 def exit(*args, **kwargs) -> Any: ...
-
-implementation: tuple
-maxsize: int
-modules: dict
-path: list
-platform: str
-
 def print_exception(*args, **kwargs) -> Any: ...
 
 stderr: Any
-stdin: Any
 stdout: Any
-version: str
-version_info: tuple
+stdin: Any

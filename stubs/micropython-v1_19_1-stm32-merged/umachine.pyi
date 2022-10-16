@@ -14,6 +14,7 @@ class RTC:
     """
     Create an RTC object. See init for parameters of initialization.
     """
+
     def __init__(self, id=0, *args) -> None: ...
     def calibration(self, *args, **kwargs) -> Any: ...
     def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
@@ -56,6 +57,7 @@ class ADC:
 
       - *atten* specifies the input attenuation.
     """
+
     def __init__(self, id, *, sample_ns, atten) -> None: ...
     CORE_TEMP: int
     CORE_VBAT: int
@@ -87,6 +89,7 @@ class I2C:
     that can be changed in this constructor.  Others will have fixed values
     of *scl* and *sda* that cannot be changed.
     """
+
     def __init__(self, id, *, scl, sda, freq=400000) -> None: ...
     def readinto(self, buf, nack=True, /) -> Any:
         """
@@ -225,6 +228,7 @@ class I2S:
     Increasing the size of the internal buffer has the potential to increase the time that user applications can perform non-I2S operations
     before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
     """
+
     def __init__(self, id, *, sck, ws, sd, mck=None, mode, bits, format, rate, ibuf) -> None: ...
     def readinto(self, buf) -> int:
         """
@@ -337,6 +341,7 @@ class Pin:
     alternate-function mode is re-initialised with ``Pin.IN``, ``Pin.OUT``, or
     ``Pin.OPEN_DRAIN``, the alternate function will be removed from the pin.
     """
+
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None: ...
     @classmethod
     def dict(cls, *args, **kwargs) -> Any: ...
@@ -633,6 +638,7 @@ class SPI:
     the bus, if any).  If extra arguments are given, the bus is initialised.
     See ``init`` for parameters of initialisation.
     """
+
     def __init__(self, id, *args) -> None: ...
     def read(self, nbytes, write=0x00) -> bytes:
         """
@@ -665,7 +671,8 @@ class SPI:
         Turn off the SPI bus.
         """
         ...
-    def init(self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
+    def init(
+        self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -720,6 +727,7 @@ class Signal:
 
       - ``invert`` - if True, the signal will be inverted (active low).
     """
+
     def __init__(self, pin_obj, invert=False) -> None: ...
     def value(self, x: Optional[Any] = None) -> int:
         """
@@ -763,6 +771,7 @@ class SoftI2C:
          stretching (SCL held low by another device on the bus), after
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
+
     def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
     def readinto(self, *args, **kwargs) -> Any: ...
     def start(self, *args, **kwargs) -> Any: ...
@@ -784,6 +793,7 @@ class SoftSPI:
     given, usually at least *sck*, *mosi* and *miso*, and these are used
     to initialise the bus.  See `SPI.init` for a description of the parameters.
     """
+
     def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None: ...
     def read(self, *args, **kwargs) -> Any: ...
     def readinto(self, *args, **kwargs) -> Any: ...
@@ -802,6 +812,7 @@ class Timer:
 
     See ``init`` for parameters of initialisation.
     """
+
     def __init__(self, id, /, *args) -> None: ...
     ONE_SHOT: int
     PERIODIC: int
@@ -846,6 +857,7 @@ class UART:
     """
     Construct a UART object of the given id.
     """
+
     def __init__(self, id, *args) -> None: ...
     def any(self) -> int:
         """
@@ -992,6 +1004,7 @@ class WDT:
     Notes: On the esp32 the minimum timeout is 1 second. On the esp8266 a timeout
     cannot be specified, it is determined by the underlying system.
     """
+
     def __init__(self, id=0, timeout=5000) -> None: ...
     def feed(self) -> None:
         """
@@ -1026,6 +1039,7 @@ def bitstream(pin, encoding, timing, data, /) -> Any:
        module for a higher-level API.
     """
     ...
+
 def bootloader(value: Optional[Any] = None) -> None:
     """
     Reset the device and enter its bootloader.  This is typically used to put the
@@ -1035,6 +1049,7 @@ def bootloader(value: Optional[Any] = None) -> None:
     which bootloader to enter, what to pass to it, or other things.
     """
     ...
+
 def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
     """
     Stops execution in an attempt to enter a low power state.
@@ -1059,6 +1074,7 @@ def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
       from other resets.
     """
     ...
+
 def disable_irq() -> Any:
     """
     Disable interrupt requests.
@@ -1067,6 +1083,7 @@ def disable_irq() -> Any:
     interrupts to their original state, before `disable_irq()` was called.
     """
     ...
+
 def enable_irq(state) -> Any:
     """
     Re-enable interrupt requests.
@@ -1074,6 +1091,7 @@ def enable_irq(state) -> Any:
     recent call to the `disable_irq()` function.
     """
     ...
+
 def freq(hz: Optional[Any] = None) -> Any:
     """
     Returns the CPU frequency in hertz.
@@ -1081,6 +1099,7 @@ def freq(hz: Optional[Any] = None) -> Any:
     On some ports this can also be used to set the CPU frequency by passing in *hz*.
     """
     ...
+
 def idle() -> Any:
     """
     Gates the clock to the CPU, useful to reduce power consumption at any time during
@@ -1089,6 +1108,7 @@ def idle() -> Any:
     interrupt occurring at regular intervals on the order of millisecond).
     """
     ...
+
 def info(*args, **kwargs) -> Any: ...
 def lightsleep(time_ms: Optional[Any] = None) -> Any:
     """
@@ -1125,11 +1145,13 @@ def reset() -> NoReturn:
     button.
     """
     ...
+
 def reset_cause() -> int:
     """
     Get the reset cause. See :ref:`constants <machine_constants>` for the possible return values.
     """
     ...
+
 def rng() -> int:
     """
     Return a 24-bit software generated random number.
@@ -1137,11 +1159,13 @@ def rng() -> int:
     Availability: WiPy.
     """
     ...
+
 def sleep() -> Any:
     """
     ``Note:`` This function is deprecated, use `lightsleep()` instead with no arguments.
     """
     ...
+
 def soft_reset() -> NoReturn:
     """
     Performs a soft reset of the interpreter, deleting all Python objects and
@@ -1149,6 +1173,7 @@ def soft_reset() -> NoReturn:
     is connected to the MicroPython REPL (eg serial, USB, Wifi).
     """
     ...
+
 def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     """
     Time a pulse on the given *pin*, and return the duration of the pulse in
@@ -1166,6 +1191,7 @@ def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     is in microseconds).
     """
     ...
+
 def unique_id() -> bytes:
     """
     Returns a byte string with a unique identifier of a board/SoC. It will vary

@@ -1,56 +1,56 @@
 from typing import Any
 
-open_connection: Any
-start_server: Any
-
-class StreamReader:
-    def __init__(self, *argv, **kwargs) -> None: ...
-    def close(self, *args, **kwargs) -> Any: ...
-    read: Any
-    readinto: Any
-    readline: Any
-    def write(self, *args, **kwargs) -> Any: ...
-    wait_closed: Any
-    aclose: Any
-    awrite: Any
-    awritestr: Any
-    drain: Any
-    def get_extra_info(self, *args, **kwargs) -> Any: ...
-    readexactly: Any
+stream_awrite: Any
 
 class StreamWriter:
-    def __init__(self, *argv, **kwargs) -> None: ...
-    def close(self, *args, **kwargs) -> Any: ...
-    read: Any
-    readinto: Any
-    readline: Any
+    def get_extra_info(self, *args, **kwargs) -> Any: ...
     def write(self, *args, **kwargs) -> Any: ...
-    wait_closed: Any
-    aclose: Any
+    def close(self, *args, **kwargs) -> Any: ...
     awrite: Any
+    readexactly: Any
     awritestr: Any
     drain: Any
-    def get_extra_info(self, *args, **kwargs) -> Any: ...
-    readexactly: Any
+    readinto: Any
+    read: Any
+    aclose: Any
+    readline: Any
+    wait_closed: Any
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Stream:
-    def __init__(self, *argv, **kwargs) -> None: ...
-    def close(self, *args, **kwargs) -> Any: ...
-    read: Any
-    readinto: Any
-    readline: Any
+    def get_extra_info(self, *args, **kwargs) -> Any: ...
     def write(self, *args, **kwargs) -> Any: ...
-    wait_closed: Any
-    aclose: Any
+    def close(self, *args, **kwargs) -> Any: ...
     awrite: Any
+    readexactly: Any
     awritestr: Any
     drain: Any
-    def get_extra_info(self, *args, **kwargs) -> Any: ...
-    readexactly: Any
+    readinto: Any
+    read: Any
+    aclose: Any
+    readline: Any
+    wait_closed: Any
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Server:
-    def __init__(self, *argv, **kwargs) -> None: ...
     def close(self, *args, **kwargs) -> Any: ...
     wait_closed: Any
+    def __init__(self, *argv, **kwargs) -> None: ...
 
-stream_awrite: Any
+class StreamReader:
+    def get_extra_info(self, *args, **kwargs) -> Any: ...
+    def write(self, *args, **kwargs) -> Any: ...
+    def close(self, *args, **kwargs) -> Any: ...
+    awrite: Any
+    readexactly: Any
+    awritestr: Any
+    drain: Any
+    readinto: Any
+    read: Any
+    aclose: Any
+    readline: Any
+    wait_closed: Any
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+open_connection: Any
+start_server: Any

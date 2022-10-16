@@ -9,8 +9,8 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    and copy it to the filesystem.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.5.6
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+# Stubber: 1.9.11
+from typing import Any
 
 
 def bitstream(*args, **kwargs) -> Any:
@@ -27,9 +27,7 @@ class NeoPixel:
         - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
     """
 
-    def __init__(self, pin, n, *, bpp=3, timing=1) -> None:
-        """"""
-        ...
+    ORDER = ()  # type: tuple
 
     def write(self) -> None:
         """
@@ -44,4 +42,5 @@ class NeoPixel:
         """
         ...
 
-    ORDER = ()  # type: tuple
+    def __init__(self, pin, n, *, bpp=3, timing=1) -> None:
+        ...

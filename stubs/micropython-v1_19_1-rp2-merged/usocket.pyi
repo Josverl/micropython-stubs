@@ -47,6 +47,7 @@ def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Any:
        s.connect(socket.getaddrinfo('www.micropython.org', 80, 0, SOCK_STREAM)[0][-1])
     """
     ...
+
 def print_pcbs(*args, **kwargs) -> Any: ...
 def reset(*args, **kwargs) -> Any: ...
 
@@ -63,6 +64,7 @@ class socket:
          # Create DGRAM UDP socket
          socket(AF_INET, SOCK_DGRAM)
     """
+
     def __init__(self, af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP, /) -> None: ...
     def close(self) -> Any:
         """
