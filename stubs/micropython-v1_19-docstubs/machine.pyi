@@ -25,7 +25,7 @@ damage.
 # + module: machine.WDT.rst
 # + module: machine.SD.rst
 # + module: machine.SDCard.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Callable, List, NoReturn, Optional, Tuple
 
 IDLE: Any = ...
 """IRQ wake values."""

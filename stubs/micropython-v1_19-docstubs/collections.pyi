@@ -9,7 +9,7 @@ hold/accumulate various objects.
 
 # source version: v1_19
 # origin module:: repos/micropython/docs/library/collections.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 from queue import Queue
 
 class deque(Queue):
