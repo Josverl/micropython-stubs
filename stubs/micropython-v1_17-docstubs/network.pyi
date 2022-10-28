@@ -38,7 +38,7 @@ For example::
 # + module: network.WLANWiPy.rst
 # + module: network.CC3K.rst
 # + module: network.WIZNET5K.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple, Union
 
 class AbstractNIC:
     """
@@ -407,7 +407,7 @@ class WLANWiPy(AbstractNIC):
         """
         ...
 
-class CC3K:
+class CC3K(AbstractNIC):
     """
     Create a CC3K driver object, initialise the CC3000 module using the given SPI bus
     and pins, and return the CC3K object.
@@ -466,7 +466,7 @@ class CC3K:
         """
         ...
 
-class WIZNET5K:
+class WIZNET5K(AbstractNIC):
     """
     Create a WIZNET5K driver object, initialise the WIZnet5x00 module using the given
     SPI bus and pins, and return the WIZNET5K object.

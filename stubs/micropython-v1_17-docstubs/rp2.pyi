@@ -18,7 +18,7 @@ for example code.
 # + module: rp2.Flash.rst
 # + module: rp2.PIO.rst
 # + module: rp2.StateMachine.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 
 class PIOASMError(Exception):
     """
