@@ -10,7 +10,7 @@ controlling ESP32 modules.
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/esp32.rst
 from __future__ import annotations
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple
 
 HEAP_DATA: Any = ...
 """Used in `idf_heap_info`."""

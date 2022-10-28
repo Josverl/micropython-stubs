@@ -9,7 +9,7 @@ data format.
 
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/json.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any
 
 def dump(obj, stream, separators=None) -> Any:
     """

@@ -9,7 +9,7 @@ The ``zephyr`` module contains functions and classes specific to the Zephyr port
 # origin module:: repos/micropython/docs/library/zephyr.rst
 # + module: zephyr.DiskAccess.rst
 # + module: zephyr.FlashArea.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 
 class DiskAccess:
     """

@@ -6,7 +6,7 @@ system specific functions. See: https://docs.micropython.org/en/v1.18/library/sy
 
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/sys.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Dict, List, Tuple
 
 argv: List
 """A mutable list of arguments the current program was started with."""
