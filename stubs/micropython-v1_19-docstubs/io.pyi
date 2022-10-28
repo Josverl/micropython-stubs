@@ -9,7 +9,7 @@ and helper functions.
 
 # source version: v1_19
 # origin module:: repos/micropython/docs/library/io.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, IO, Optional
 
 class FileIO(IO):
     """
