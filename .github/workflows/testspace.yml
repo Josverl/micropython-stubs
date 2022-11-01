@@ -55,7 +55,7 @@ jobs:
         run: |
           ./tests/fix-pyrightlogs.ps1
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: pyright
           path: ./results/pyright-*.log
