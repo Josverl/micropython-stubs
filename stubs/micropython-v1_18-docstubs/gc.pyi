@@ -6,7 +6,7 @@ control the garbage collector. See: https://docs.micropython.org/en/v1.18/librar
 
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/gc.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 
 def enable() -> None:
     """

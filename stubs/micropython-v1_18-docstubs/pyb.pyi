@@ -24,7 +24,7 @@ The ``pyb`` module contains specific functions related to the board.
 # + module: pyb.UART.rst
 # + module: pyb.USB_HID.rst
 # + module: pyb.USB_VCP.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, List, NoReturn, Optional, Tuple
 
 class Accel:
     """

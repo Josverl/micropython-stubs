@@ -11,7 +11,7 @@ is not yet implemented.
 
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/zlib.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import IO
 
 class DecompIO(IO):
     """

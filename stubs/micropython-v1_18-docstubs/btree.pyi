@@ -73,7 +73,7 @@ Example::
 
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/btree.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Dict, Optional
 
 INCL: Any = ...
 """\
