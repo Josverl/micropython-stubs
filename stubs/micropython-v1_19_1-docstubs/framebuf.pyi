@@ -7,7 +7,7 @@ bitmap images, which can then be sent to a display.
 
 # source version: v1_19_1
 # origin module:: repos/micropython/docs/library/framebuf.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 
 MONO_VLSB: bytes
 """\
