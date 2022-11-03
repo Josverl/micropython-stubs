@@ -10,23 +10,8 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 on the floating-point support).
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
-# Stubber: 1.5.6
+# Stubber: 1.9.11
 from typing import Any, Tuple
-
-
-def calcsize(fmt) -> int:
-    """
-    Return the number of bytes needed to store the given *fmt*.
-    """
-    ...
-
-
-def pack(fmt, v1, v2, *args) -> bytes:
-    """
-    Pack the values *v1*, *v2*, ... according to the format string *fmt*.
-    The return value is a bytes object encoding the values.
-    """
-    ...
 
 
 def pack_into(fmt, buffer, offset, v1, v2, *args) -> Any:
@@ -51,5 +36,20 @@ def unpack_from(fmt, data, offset=0, /) -> Tuple:
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *buffer*. The return
     value is a tuple of the unpacked values.
+    """
+    ...
+
+
+def pack(fmt, v1, v2, *args) -> bytes:
+    """
+    Pack the values *v1*, *v2*, ... according to the format string *fmt*.
+    The return value is a bytes object encoding the values.
+    """
+    ...
+
+
+def calcsize(fmt) -> int:
+    """
+    Return the number of bytes needed to store the given *fmt*.
     """
     ...

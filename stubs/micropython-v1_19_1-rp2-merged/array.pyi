@@ -16,15 +16,16 @@ class array:
     array is created.
     """
 
-    def __init__(self, typecode, iterable: Optional[Any] = None) -> None: ...
-    def append(self, val) -> Any:
-        """
-        Append new element *val* to the end of array, growing it.
-        """
-        ...
     def extend(self, iterable) -> Any:
         """
         Append new elements as contained in *iterable* to the end of
         array, growing it.
         """
         ...
+    def decode(self, *args, **kwargs) -> Any: ...
+    def append(self, val) -> Any:
+        """
+        Append new element *val* to the end of array, growing it.
+        """
+        ...
+    def __init__(self, typecode, iterable: Optional[Any] = None) -> None: ...

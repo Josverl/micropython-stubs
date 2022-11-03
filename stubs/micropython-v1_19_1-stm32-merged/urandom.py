@@ -26,39 +26,8 @@ This module implements a pseudo-random number generator (PRNG).
 
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
-# Stubber: 1.5.6
+# Stubber: 1.9.11
 from typing import Any, Optional
-
-
-def choice(sequence) -> Any:
-    """
-    Chooses and returns one item at random from *sequence* (tuple, list or
-    any object that supports the subscript operation).
-    """
-    ...
-
-
-def getrandbits(n) -> int:
-    """
-    Return an integer with *n* random bits (0 <= n <= 32).
-    """
-    ...
-
-
-def randint(a, b) -> int:
-    """
-    Return a random integer in the range [*a*, *b*].
-    """
-    ...
-
-
-class random:
-    """
-    Return a random floating point number in the range [0.0, 1.0).
-    """
-
-    def __init__(self) -> None:
-        ...
 
 
 def randrange(start, stop, step: Optional[Any] = None) -> int:
@@ -71,6 +40,15 @@ def randrange(start, stop, step: Optional[Any] = None) -> int:
 
     """
     ...
+
+
+class random:
+    """
+    Return a random floating point number in the range [0.0, 1.0).
+    """
+
+    def __init__(self) -> None:
+        ...
 
 
 def seed(n=None, /) -> None:
@@ -91,5 +69,27 @@ def uniform(a, b) -> int:
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
     and *b* <= N <= *a* for *b* < *a*.
 
+    """
+    ...
+
+
+def choice(sequence) -> Any:
+    """
+    Chooses and returns one item at random from *sequence* (tuple, list or
+    any object that supports the subscript operation).
+    """
+    ...
+
+
+def randint(a, b) -> int:
+    """
+    Return a random integer in the range [*a*, *b*].
+    """
+    ...
+
+
+def getrandbits(n) -> int:
+    """
+    Return an integer with *n* random bits (0 <= n <= 32).
     """
     ...

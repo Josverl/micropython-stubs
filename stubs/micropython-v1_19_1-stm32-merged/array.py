@@ -8,7 +8,7 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 floating-point support).
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
-# Stubber: 1.5.6
+# Stubber: 1.9.11
 from typing import Any, Optional
 
 
@@ -19,16 +19,6 @@ class array:
     array is created.
     """
 
-    def __init__(self, typecode, iterable: Optional[Any] = None) -> None:
-        """"""
-        ...
-
-    def append(self, val) -> Any:
-        """
-        Append new element *val* to the end of array, growing it.
-        """
-        ...
-
     def extend(self, iterable) -> Any:
         """
         Append new elements as contained in *iterable* to the end of
@@ -37,4 +27,13 @@ class array:
         ...
 
     def decode(self, *args, **kwargs) -> Any:
+        ...
+
+    def append(self, val) -> Any:
+        """
+        Append new element *val* to the end of array, growing it.
+        """
+        ...
+
+    def __init__(self, typecode, iterable: Optional[Any] = None) -> None:
         ...

@@ -5,8 +5,15 @@ system specific functions. See: https://docs.micropython.org/en/v1.19.1/library/
 """
 from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
 
-argv: list
+path: list
+modules: dict
+version_info: tuple
+platform: str
+version: str
 byteorder: str
+argv: list
+maxsize: int
+implementation: tuple
 
 def exit(retval=0, /) -> Any:
     """
@@ -16,12 +23,6 @@ def exit(retval=0, /) -> Any:
     """
     ...
 
-implementation: tuple
-maxsize: int
-modules: dict
-path: list
-platform: str
-
 def print_exception(exc, file=stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
@@ -30,7 +31,5 @@ def print_exception(exc, file=stdout, /) -> None:
     ...
 
 stderr: Any
-stdin: Any
 stdout: Any
-version: str
-version_info: tuple
+stdin: Any

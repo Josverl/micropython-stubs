@@ -11,12 +11,6 @@ that the first item of the list is always the smallest.
 """
 from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
 
-def heapify(x) -> Any:
-    """
-    Convert the list ``x`` into a heap.  This is an in-place operation.
-    """
-    ...
-
 def heappop(heap) -> Any:
     """
     Pop the first item from the ``heap``, and return it.  Raise ``IndexError`` if
@@ -29,5 +23,11 @@ def heappop(heap) -> Any:
 def heappush(heap, item) -> Any:
     """
     Push the ``item`` onto the ``heap``.
+    """
+    ...
+
+def heapify(x) -> Any:
+    """
+    Convert the list ``x`` into a heap.  This is an in-place operation.
     """
     ...

@@ -1,5 +1,5 @@
 {"firmware": {"ver": "v1.19.1", "build": "", "platform": "stm32", "port": "stm32", "machine": "PYBv1.1 with STM32F405RG", "release": "1.19.1", "nodename": "pyboard", "name": "micropython", "family": "micropython", "sysname": "pyboard", "version": "1.19.1"},
-"stubber": {"version": "1.5.6"}, "stubtype": "firmware",
+"stubber": {"version": "1.9.11"}, "stubtype": "firmware",
 "modules" :[
 {"file": "/sd/stubs/micropython-v1_19_1-stm32/_onewire.py", "module": "_onewire"},
 {"file": "/sd/stubs/micropython-v1_19_1-stm32/_uasyncio.py", "module": "_uasyncio"},
@@ -14,7 +14,6 @@
 {"file": "/sd/stubs/micropython-v1_19_1-stm32/heapq.py", "module": "heapq"},
 {"file": "/sd/stubs/micropython-v1_19_1-stm32/json.py", "module": "json"},
 {"file": "/sd/stubs/micropython-v1_19_1-stm32/lcd160cr.py", "module": "lcd160cr"},
-{"file": "/sd/stubs/micropython-v1_19_1-stm32/logging.py", "module": "logging"},
 {"file": "/sd/stubs/micropython-v1_19_1-stm32/machine.py", "module": "machine"},
 {"file": "/sd/stubs/micropython-v1_19_1-stm32/math.py", "module": "math"},
 {"file": "/sd/stubs/micropython-v1_19_1-stm32/micropython.py", "module": "micropython"},

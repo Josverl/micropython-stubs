@@ -8,71 +8,41 @@ ports.
 """
 from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
 
-SLEEP_LIGHT: int
 SLEEP_MODEM: int
 SLEEP_NONE: int
+SLEEP_LIGHT: int
 
-def apa102_write(*args, **kwargs) -> Any: ...
-def check_fw(*args, **kwargs) -> Any: ...
-def deepsleep(time_us=0, /) -> Any:
-    """
-    **Note**: ESP8266 only - use `machine.deepsleep()` on ESP32
-
-    Enter deep sleep.
-
-    The whole module powers down, except for the RTC clock circuit, which can
-    be used to restart the module after the specified time if the pin 16 is
-    connected to the reset pin. Otherwise the module will sleep until manually
-    reset.
-    """
-    ...
-
-def dht_readinto(*args, **kwargs) -> Any: ...
-def esf_free_bufs(*args, **kwargs) -> Any: ...
-def flash_erase(sector_no) -> Any: ...
-def flash_id() -> Any:
-    """
-    **Note**: ESP8266 only
-
-    Read the device ID of the flash memory.
-    """
-    ...
-
-def flash_read(byte_offset, length_or_buffer) -> Any: ...
-def flash_size() -> Any:
-    """
-    Read the total size of the flash memory.
-    """
-    ...
-
+def freemem(*args, **kwargs) -> Any: ...
+def free(*args, **kwargs) -> Any: ...
+def flash_write(byte_offset, bytes) -> Any: ...
 def flash_user_start() -> Any:
     """
     Read the memory offset at which the user flash space begins.
     """
     ...
 
-def flash_write(byte_offset, bytes) -> Any: ...
-def free(*args, **kwargs) -> Any: ...
-def freemem(*args, **kwargs) -> Any: ...
-def malloc(*args, **kwargs) -> Any: ...
-def meminfo(*args, **kwargs) -> Any: ...
-def osdebug(level) -> None:
+def sleep_type(sleep_type: Optional[Any] = None) -> Any:
     """
-    Turn esp os debugging messages on or off.
+    **Note**: ESP8266 only
 
-    The *level* parameter sets the threshold for the log messages for all esp components.
-    The log levels are defined as constants:
+    Get or set the sleep type.
 
-        * ``LOG_NONE`` -- No log output
-        * ``LOG_ERROR`` -- Critical errors, software module can not recover on its own
-        * ``LOG_WARN`` -- Error conditions from which recovery measures have been taken
-        * ``LOG_INFO`` -- Information messages which describe normal flow of events
-        * ``LOG_DEBUG`` -- Extra information which is not necessary for normal use (values, pointers, sizes, etc)
-        * ``LOG_VERBOSE`` -- Bigger chunks of debugging information, or frequent messages
-          which can potentially flood the output
+    If the *sleep_type* parameter is provided, sets the sleep type to its
+    value. If the function is called without parameters, returns the current
+    sleep type.
+
+    The possible sleep types are defined as constants:
+
+        * ``SLEEP_NONE`` -- all functions enabled,
+        * ``SLEEP_MODEM`` -- modem sleep, shuts down the WiFi Modem circuit.
+        * ``SLEEP_LIGHT`` -- light sleep, shuts down the WiFi Modem circuit
+          and suspends the processor periodically.
+
+    The system enters the set sleep mode automatically when possible.
     """
     ...
 
+def malloc(*args, **kwargs) -> Any: ...
 def set_native_code_location(start, length) -> Any:
     """
     **Note**: ESP8266 only
@@ -113,23 +83,54 @@ def set_native_code_location(start, length) -> Any:
     """
     ...
 
-def sleep_type(sleep_type: Optional[Any] = None) -> Any:
+def osdebug(level) -> None:
+    """
+    Turn esp os debugging messages on or off.
+
+    The *level* parameter sets the threshold for the log messages for all esp components.
+    The log levels are defined as constants:
+
+        * ``LOG_NONE`` -- No log output
+        * ``LOG_ERROR`` -- Critical errors, software module can not recover on its own
+        * ``LOG_WARN`` -- Error conditions from which recovery measures have been taken
+        * ``LOG_INFO`` -- Information messages which describe normal flow of events
+        * ``LOG_DEBUG`` -- Extra information which is not necessary for normal use (values, pointers, sizes, etc)
+        * ``LOG_VERBOSE`` -- Bigger chunks of debugging information, or frequent messages
+          which can potentially flood the output
+    """
+    ...
+
+def meminfo(*args, **kwargs) -> Any: ...
+def dht_readinto(*args, **kwargs) -> Any: ...
+def deepsleep(time_us=0, /) -> Any:
+    """
+    **Note**: ESP8266 only - use `machine.deepsleep()` on ESP32
+
+    Enter deep sleep.
+
+    The whole module powers down, except for the RTC clock circuit, which can
+    be used to restart the module after the specified time if the pin 16 is
+    connected to the reset pin. Otherwise the module will sleep until manually
+    reset.
+    """
+    ...
+
+def check_fw(*args, **kwargs) -> Any: ...
+def apa102_write(*args, **kwargs) -> Any: ...
+def flash_size() -> Any:
+    """
+    Read the total size of the flash memory.
+    """
+    ...
+
+def esf_free_bufs(*args, **kwargs) -> Any: ...
+def flash_read(byte_offset, length_or_buffer) -> Any: ...
+def flash_id() -> Any:
     """
     **Note**: ESP8266 only
 
-    Get or set the sleep type.
-
-    If the *sleep_type* parameter is provided, sets the sleep type to its
-    value. If the function is called without parameters, returns the current
-    sleep type.
-
-    The possible sleep types are defined as constants:
-
-        * ``SLEEP_NONE`` -- all functions enabled,
-        * ``SLEEP_MODEM`` -- modem sleep, shuts down the WiFi Modem circuit.
-        * ``SLEEP_LIGHT`` -- light sleep, shuts down the WiFi Modem circuit
-          and suspends the processor periodically.
-
-    The system enters the set sleep mode automatically when possible.
+    Read the device ID of the flash memory.
     """
     ...
+
+def flash_erase(sector_no) -> Any: ...

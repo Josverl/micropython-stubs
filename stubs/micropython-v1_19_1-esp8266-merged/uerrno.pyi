@@ -8,26 +8,26 @@ A particular inventory of codes depends on :term:`MicroPython port`.
 """
 from typing import Any, Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union
 
-EACCES: int
-EADDRINUSE: int
-EAGAIN: int
-EALREADY: int
-EBADF: int
-ECONNABORTED: int
-ECONNREFUSED: int
-ECONNRESET: int
-EEXIST: int
-EHOSTUNREACH: int
-EINPROGRESS: int
-EINVAL: int
-EIO: int
-EISDIR: int
 ENOBUFS: int
 ENODEV: int
 ENOENT: int
-ENOMEM: int
-ENOTCONN: int
-EOPNOTSUPP: int
+EISDIR: int
+EIO: int
+EINVAL: int
 EPERM: int
 ETIMEDOUT: int
+ENOMEM: int
+EOPNOTSUPP: int
+ENOTCONN: int
 errorcode: dict
+EAGAIN: int
+EALREADY: int
+EBADF: int
+EADDRINUSE: int
+EACCES: int
+EINPROGRESS: int
+EEXIST: int
+EHOSTUNREACH: int
+ECONNABORTED: int
+ECONNRESET: int
+ECONNREFUSED: int

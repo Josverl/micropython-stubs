@@ -25,40 +25,9 @@ This module implements a pseudo-random number generator (PRNG).
    enabled.
 
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.7.2
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.9.11
 from typing import Any, Optional
-
-
-def choice(sequence) -> Any:
-    """
-    Chooses and returns one item at random from *sequence* (tuple, list or
-    any object that supports the subscript operation).
-    """
-    ...
-
-
-def getrandbits(n) -> int:
-    """
-    Return an integer with *n* random bits (0 <= n <= 32).
-    """
-    ...
-
-
-def randint(a, b) -> int:
-    """
-    Return a random integer in the range [*a*, *b*].
-    """
-    ...
-
-
-class random:
-    """
-    Return a random floating point number in the range [0.0, 1.0).
-    """
-
-    def __init__(self) -> None:
-        ...
 
 
 def randrange(start, stop, step: Optional[Any] = None) -> int:
@@ -71,6 +40,15 @@ def randrange(start, stop, step: Optional[Any] = None) -> int:
 
     """
     ...
+
+
+class random:
+    """
+    Return a random floating point number in the range [0.0, 1.0).
+    """
+
+    def __init__(self) -> None:
+        ...
 
 
 def seed(n=None, /) -> None:
@@ -91,5 +69,27 @@ def uniform(a, b) -> int:
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
     and *b* <= N <= *a* for *b* < *a*.
 
+    """
+    ...
+
+
+def choice(sequence) -> Any:
+    """
+    Chooses and returns one item at random from *sequence* (tuple, list or
+    any object that supports the subscript operation).
+    """
+    ...
+
+
+def randint(a, b) -> int:
+    """
+    Return a random integer in the range [*a*, *b*].
+    """
+    ...
+
+
+def getrandbits(n) -> int:
+    """
+    Return an integer with *n* random bits (0 <= n <= 32).
     """
     ...

@@ -10,53 +10,44 @@ sub-fields.
 """
 from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
 
-ARRAY: int
-BFINT16: int
-BFINT32: int
-BFINT8: int
-BFUINT16: int
-BFUINT32: int
-BFUINT8: int
-BF_LEN: int
-BF_POS: int
-BIG_ENDIAN: int
-FLOAT32: int
-FLOAT64: int
-INT: int
-INT16: int
-INT32: int
-INT64: int
-INT8: int
-LITTLE_ENDIAN: int
-LONG: int
-LONGLONG: int
+VOID: int
 NATIVE: int
 PTR: int
 SHORT: int
+LONGLONG: int
+INT8: int
+LITTLE_ENDIAN: int
+LONG: int
 UINT: int
-UINT16: int
-UINT32: int
-UINT64: int
-UINT8: int
 ULONG: int
 ULONGLONG: int
 USHORT: int
-VOID: int
+UINT8: int
+UINT16: int
+UINT32: int
+UINT64: int
+INT64: int
+BFUINT16: int
+BFUINT32: int
+BFUINT8: int
+BFINT8: int
+ARRAY: int
+BFINT16: int
+BFINT32: int
+BF_LEN: int
+INT: int
+INT16: int
+INT32: int
+FLOAT64: int
+BF_POS: int
+BIG_ENDIAN: int
+FLOAT32: int
 
-def addressof(obj) -> int:
+def sizeof(struct, layout_type=NATIVE, /) -> int:
     """
-    Return address of an object. Argument should be bytes, bytearray or
-    other object supporting buffer protocol (and address of this buffer
-    is what actually returned).
-    """
-    ...
-
-def bytearray_at(addr, size) -> bytearray:
-    """
-    Capture memory at the given address and size as bytearray object.
-    Unlike bytes_at() function above, memory is captured by reference,
-    so it can be both written too, and you will access current value
-    at the given memory address.
+    Return size of data structure in bytes. The *struct* argument can be
+    either a structure class or a specific instantiated structure object
+    (or its aggregate field).
     """
     ...
 
@@ -69,11 +60,20 @@ def bytes_at(addr, size) -> bytes:
     """
     ...
 
-def sizeof(struct, layout_type=NATIVE, /) -> int:
+def bytearray_at(addr, size) -> bytearray:
     """
-    Return size of data structure in bytes. The *struct* argument can be
-    either a structure class or a specific instantiated structure object
-    (or its aggregate field).
+    Capture memory at the given address and size as bytearray object.
+    Unlike bytes_at() function above, memory is captured by reference,
+    so it can be both written too, and you will access current value
+    at the given memory address.
+    """
+    ...
+
+def addressof(obj) -> int:
+    """
+    Return address of an object. Argument should be bytes, bytearray or
+    other object supporting buffer protocol (and address of this buffer
+    is what actually returned).
     """
     ...
 

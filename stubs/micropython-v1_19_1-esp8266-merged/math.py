@@ -12,126 +12,11 @@ Availability: not available on WiPy. Floating point support required
 for this module.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
-# Stubber: 1.5.6
+# Stubber: 1.9.11
 from typing import Any, Tuple
 
-
-def pow(x, y) -> Any:
-    """
-    Returns ``x`` to the power of ``y``.
-    """
-    ...
-
-
-def acos(x) -> float:
-    """
-    Return the inverse cosine of ``x``.
-    """
-    ...
-
-
-def asin(x) -> float:
-    """
-    Return the inverse sine of ``x``.
-    """
-    ...
-
-
-def atan(x) -> float:
-    """
-    Return the inverse tangent of ``x``.
-    """
-    ...
-
-
-def atan2(y, x) -> float:
-    """
-    Return the principal value of the inverse tangent of ``y/x``.
-    """
-    ...
-
-
-def ceil(x) -> int:
-    """
-    Return an integer, being ``x`` rounded towards positive infinity.
-    """
-    ...
-
-
-def copysign(x, y) -> Any:
-    """
-    Return ``x`` with the sign of ``y``.
-    """
-    ...
-
-
-def cos(x) -> float:
-    """
-    Return the cosine of ``x``.
-    """
-    ...
-
-
-def degrees(x) -> Any:
-    """
-    Return radians ``x`` converted to degrees.
-    """
-    ...
-
-
+pi = 3.14159  # type: float
 e = 2.71828  # type: float
-
-
-def exp(x) -> float:
-    """
-    Return the exponential of ``x``.
-    """
-    ...
-
-
-def fabs(x) -> Any:
-    """
-    Return the absolute value of ``x``.
-    """
-    ...
-
-
-def floor(x) -> int:
-    """
-    Return an integer, being ``x`` rounded towards negative infinity.
-    """
-    ...
-
-
-def fmod(x, y) -> Any:
-    """
-    Return the remainder of ``x/y``.
-    """
-    ...
-
-
-def frexp(x) -> Any:
-    """
-    Decomposes a floating-point number into its mantissa and exponent.
-    The returned value is the tuple ``(m, e)`` such that ``x == m * 2**e``
-    exactly.  If ``x == 0`` then the function returns ``(0.0, 0)``, otherwise
-    the relation ``0.5 <= abs(m) < 1`` holds.
-    """
-    ...
-
-
-def isfinite(x) -> bool:
-    """
-    Return ``True`` if ``x`` is finite.
-    """
-    ...
-
-
-def isinf(x) -> bool:
-    """
-    Return ``True`` if ``x`` is infinite.
-    """
-    ...
 
 
 def isnan(x) -> bool:
@@ -148,9 +33,54 @@ def ldexp(x, exp) -> Any:
     ...
 
 
+def frexp(x) -> Any:
+    """
+    Decomposes a floating-point number into its mantissa and exponent.
+    The returned value is the tuple ``(m, e)`` such that ``x == m * 2**e``
+    exactly.  If ``x == 0`` then the function returns ``(0.0, 0)``, otherwise
+    the relation ``0.5 <= abs(m) < 1`` holds.
+    """
+    ...
+
+
+def isinf(x) -> bool:
+    """
+    Return ``True`` if ``x`` is infinite.
+    """
+    ...
+
+
+def isfinite(x) -> bool:
+    """
+    Return ``True`` if ``x`` is finite.
+    """
+    ...
+
+
+def trunc(x) -> int:
+    """
+    Return an integer, being ``x`` rounded towards 0.
+    """
+    ...
+
+
+def sqrt(x) -> Any:
+    """
+    Return the square root of ``x``.
+    """
+    ...
+
+
 def log(x) -> float:
     """
     Return the natural logarithm of ``x``.
+    """
+    ...
+
+
+def tan(x) -> float:
+    """
+    Return the tangent of ``x``.
     """
     ...
 
@@ -163,7 +93,11 @@ def modf(x) -> Tuple:
     ...
 
 
-pi = 3.14159  # type: float
+def sin(x) -> float:
+    """
+    Return the sine of ``x``.
+    """
+    ...
 
 
 def radians(x) -> Any:
@@ -173,29 +107,92 @@ def radians(x) -> Any:
     ...
 
 
-def sin(x) -> float:
+def atan(x) -> float:
     """
-    Return the sine of ``x``.
-    """
-    ...
-
-
-def sqrt(x) -> Any:
-    """
-    Return the square root of ``x``.
+    Return the inverse tangent of ``x``.
     """
     ...
 
 
-def tan(x) -> float:
+def ceil(x) -> int:
     """
-    Return the tangent of ``x``.
+    Return an integer, being ``x`` rounded towards positive infinity.
     """
     ...
 
 
-def trunc(x) -> int:
+def atan2(y, x) -> float:
     """
-    Return an integer, being ``x`` rounded towards 0.
+    Return the principal value of the inverse tangent of ``y/x``.
+    """
+    ...
+
+
+def pow(x, y) -> Any:
+    """
+    Returns ``x`` to the power of ``y``.
+    """
+    ...
+
+
+def asin(x) -> float:
+    """
+    Return the inverse sine of ``x``.
+    """
+    ...
+
+
+def acos(x) -> float:
+    """
+    Return the inverse cosine of ``x``.
+    """
+    ...
+
+
+def fmod(x, y) -> Any:
+    """
+    Return the remainder of ``x/y``.
+    """
+    ...
+
+
+def fabs(x) -> Any:
+    """
+    Return the absolute value of ``x``.
+    """
+    ...
+
+
+def copysign(x, y) -> Any:
+    """
+    Return ``x`` with the sign of ``y``.
+    """
+    ...
+
+
+def floor(x) -> int:
+    """
+    Return an integer, being ``x`` rounded towards negative infinity.
+    """
+    ...
+
+
+def cos(x) -> float:
+    """
+    Return the cosine of ``x``.
+    """
+    ...
+
+
+def exp(x) -> float:
+    """
+    Return the exponential of ``x``.
+    """
+    ...
+
+
+def degrees(x) -> Any:
+    """
+    Return radians ``x`` converted to degrees.
     """
     ...

@@ -33,7 +33,7 @@ For example::
 """
 from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
 
-AP_IF: int
 STA_IF: int
+AP_IF: int
 
 def route(*args, **kwargs) -> Any: ...

@@ -7,212 +7,9 @@ The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.7.2
-from typing import Any, IO, Iterator, Optional, Tuple
-
-
-def remove(path) -> None:
-    """
-    Remove a file.
-    """
-    ...
-
-
-class VfsFat:
-    """
-    Create a filesystem object that uses the FAT filesystem format.  Storage of
-    the FAT filesystem is provided by *block_dev*.
-    Objects created by this constructor can be mounted using :func:`mount`.
-    """
-
-    def __init__(self, block_dev) -> None:
-        ...
-
-    def open(self, *args, **kwargs) -> Any:
-        ...
-
-    def remove(self, *args, **kwargs) -> Any:
-        ...
-
-    def chdir(self, *args, **kwargs) -> Any:
-        ...
-
-    def getcwd(self, *args, **kwargs) -> Any:
-        ...
-
-    def ilistdir(self, *args, **kwargs) -> Any:
-        ...
-
-    def mkdir(self, *args, **kwargs) -> Any:
-        ...
-
-    @staticmethod
-    def mkfs(block_dev) -> None:
-        """
-        Build a FAT filesystem on *block_dev*.
-        """
-        ...
-
-    def mount(self, *args, **kwargs) -> Any:
-        ...
-
-    def rename(self, *args, **kwargs) -> Any:
-        ...
-
-    def rmdir(self, *args, **kwargs) -> Any:
-        ...
-
-    def stat(self, *args, **kwargs) -> Any:
-        ...
-
-    def statvfs(self, *args, **kwargs) -> Any:
-        ...
-
-    def umount(self, *args, **kwargs) -> Any:
-        ...
-
-
-class VfsLfs2:
-    """
-    Create a filesystem object that uses the `littlefs v2 filesystem format`_.
-    Storage of the littlefs filesystem is provided by *block_dev*, which must
-    support the :ref:`extended interface <block-device-interface>`.
-    Objects created by this constructor can be mounted using :func:`mount`.
-
-    The *mtime* argument enables modification timestamps for files, stored using
-    littlefs attributes.  This option can be disabled or enabled differently each
-    mount time and timestamps will only be added or updated if *mtime* is enabled,
-    otherwise the timestamps will remain untouched.  Littlefs v2 filesystems without
-    timestamps will work without reformatting and timestamps will be added
-    transparently to existing files once they are opened for writing.  When *mtime*
-    is enabled `os.stat` on files without timestamps will return 0 for the timestamp.
-
-    See :ref:`filesystem` for more information.
-    """
-
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None:
-        ...
-
-    def open(self, *args, **kwargs) -> Any:
-        ...
-
-    def remove(self, *args, **kwargs) -> Any:
-        ...
-
-    def chdir(self, *args, **kwargs) -> Any:
-        ...
-
-    def getcwd(self, *args, **kwargs) -> Any:
-        ...
-
-    def ilistdir(self, *args, **kwargs) -> Any:
-        ...
-
-    def mkdir(self, *args, **kwargs) -> Any:
-        ...
-
-    @staticmethod
-    def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
-        """
-            Build a Lfs2 filesystem on *block_dev*.
-
-        ``Note:`` There are reports of littlefs v2 failing in certain situations,
-                  for details see `littlefs issue 295`_.
-        """
-        ...
-
-    def mount(self, *args, **kwargs) -> Any:
-        ...
-
-    def rename(self, *args, **kwargs) -> Any:
-        ...
-
-    def rmdir(self, *args, **kwargs) -> Any:
-        ...
-
-    def stat(self, *args, **kwargs) -> Any:
-        ...
-
-    def statvfs(self, *args, **kwargs) -> Any:
-        ...
-
-    def umount(self, *args, **kwargs) -> Any:
-        ...
-
-
-def chdir(path) -> Any:
-    """
-    Change current directory.
-    """
-    ...
-
-
-def dupterm(stream_object, index=0, /) -> IO:
-    """
-    Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
-    object. The *stream_object* argument must be a native stream object, or derive
-    from ``io.IOBase`` and implement the ``readinto()`` and
-    ``write()`` methods.  The stream should be in non-blocking mode and
-    ``readinto()`` should return ``None`` if there is no data available for reading.
-
-    After calling this function all terminal output is repeated on this stream,
-    and any input that is available on the stream is passed on to the terminal input.
-
-    The *index* parameter should be a non-negative integer and specifies which
-    duplication slot is set.  A given port may implement more than one slot (slot 0
-    will always be available) and in that case terminal input and output is
-    duplicated on all the slots that are set.
-
-    If ``None`` is passed as the *stream_object* then duplication is cancelled on
-    the slot given by *index*.
-
-    The function returns the previous stream-like object in the given slot.
-    """
-    ...
-
-
-def getcwd() -> Any:
-    """
-    Get the current directory.
-    """
-    ...
-
-
-def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
-    """
-    This function returns an iterator which then yields tuples corresponding to
-    the entries in the directory that it is listing.  With no argument it lists the
-    current directory, otherwise it lists the directory given by *dir*.
-
-    The tuples have the form *(name, type, inode[, size])*:
-
-     - *name* is a string (or bytes if *dir* is a bytes object) and is the name of
-       the entry;
-     - *type* is an integer that specifies the type of the entry, with 0x4000 for
-       directories and 0x8000 for regular files;
-     - *inode* is an integer corresponding to the inode of the file, and may be 0
-       for filesystems that don't have such a notion.
-     - Some platforms may return a 4-tuple that includes the entry's *size*.  For
-       file entries, *size* is an integer representing the size of the file
-       or -1 if unknown.  Its meaning is currently undefined for directory
-       entries.
-    """
-    ...
-
-
-def listdir(dir: Optional[Any] = None) -> Any:
-    """
-    With no argument, list the current directory.  Otherwise list the given directory.
-    """
-    ...
-
-
-def mkdir(path) -> Any:
-    """
-    Create a new directory.
-    """
-    ...
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.9.11
+from typing import Any, Iterator, Optional, Tuple
 
 
 def mount(fsobj, mount_point, *, readonly) -> Any:
@@ -234,9 +31,9 @@ def mount(fsobj, mount_point, *, readonly) -> Any:
     ...
 
 
-def rename(old_path, new_path) -> None:
+def stat(path) -> Any:
     """
-    Rename a file.
+    Get the status of a file or directory.
     """
     ...
 
@@ -248,9 +45,9 @@ def rmdir(path) -> None:
     ...
 
 
-def stat(path) -> Any:
+def rename(old_path, new_path) -> None:
     """
-    Get the status of a file or directory.
+    Rename a file.
     """
     ...
 
@@ -279,14 +76,7 @@ def statvfs(path) -> Tuple:
     ...
 
 
-def umount(mount_point) -> Any:
-    """
-    Unmount a filesystem. *mount_point* can be a string naming the mount location,
-    or a previously-mounted filesystem object.  During the unmount process the
-    method ``umount()`` is called on the filesystem object.
-
-    Will raise ``OSError(EINVAL)`` if *mount_point* is not found.
-    """
+def unlink(*args, **kwargs) -> Any:
     ...
 
 
@@ -305,7 +95,14 @@ def uname() -> Tuple:
     ...
 
 
-def unlink(*args, **kwargs) -> Any:
+def umount(mount_point) -> Any:
+    """
+    Unmount a filesystem. *mount_point* can be a string naming the mount location,
+    or a previously-mounted filesystem object.  During the unmount process the
+    method ``umount()`` is called on the filesystem object.
+
+    Will raise ``OSError(EINVAL)`` if *mount_point* is not found.
+    """
     ...
 
 
@@ -315,3 +112,182 @@ def urandom(n) -> bytes:
     generated by the hardware random number generator.
     """
     ...
+
+
+def chdir(path) -> Any:
+    """
+    Change current directory.
+    """
+    ...
+
+
+def mkdir(path) -> Any:
+    """
+    Create a new directory.
+    """
+    ...
+
+
+def remove(path) -> None:
+    """
+    Remove a file.
+    """
+    ...
+
+
+def getcwd() -> Any:
+    """
+    Get the current directory.
+    """
+    ...
+
+
+def listdir(dir: Optional[Any] = None) -> Any:
+    """
+    With no argument, list the current directory.  Otherwise list the given directory.
+    """
+    ...
+
+
+def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
+    """
+    This function returns an iterator which then yields tuples corresponding to
+    the entries in the directory that it is listing.  With no argument it lists the
+    current directory, otherwise it lists the directory given by *dir*.
+
+    The tuples have the form *(name, type, inode[, size])*:
+
+     - *name* is a string (or bytes if *dir* is a bytes object) and is the name of
+       the entry;
+     - *type* is an integer that specifies the type of the entry, with 0x4000 for
+       directories and 0x8000 for regular files;
+     - *inode* is an integer corresponding to the inode of the file, and may be 0
+       for filesystems that don't have such a notion.
+     - Some platforms may return a 4-tuple that includes the entry's *size*.  For
+       file entries, *size* is an integer representing the size of the file
+       or -1 if unknown.  Its meaning is currently undefined for directory
+       entries.
+    """
+    ...
+
+
+class VfsLfs2:
+    """
+    Create a filesystem object that uses the `littlefs v2 filesystem format`_.
+    Storage of the littlefs filesystem is provided by *block_dev*, which must
+    support the :ref:`extended interface <block-device-interface>`.
+    Objects created by this constructor can be mounted using :func:`mount`.
+
+    The *mtime* argument enables modification timestamps for files, stored using
+    littlefs attributes.  This option can be disabled or enabled differently each
+    mount time and timestamps will only be added or updated if *mtime* is enabled,
+    otherwise the timestamps will remain untouched.  Littlefs v2 filesystems without
+    timestamps will work without reformatting and timestamps will be added
+    transparently to existing files once they are opened for writing.  When *mtime*
+    is enabled `os.stat` on files without timestamps will return 0 for the timestamp.
+
+    See :ref:`filesystem` for more information.
+    """
+
+    def rename(self, *args, **kwargs) -> Any:
+        ...
+
+    @staticmethod
+    def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
+        """
+            Build a Lfs2 filesystem on *block_dev*.
+
+        ``Note:`` There are reports of littlefs v2 failing in certain situations,
+                  for details see `littlefs issue 295`_.
+        """
+        ...
+
+    def mount(self, *args, **kwargs) -> Any:
+        ...
+
+    def statvfs(self, *args, **kwargs) -> Any:
+        ...
+
+    def rmdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def stat(self, *args, **kwargs) -> Any:
+        ...
+
+    def umount(self, *args, **kwargs) -> Any:
+        ...
+
+    def remove(self, *args, **kwargs) -> Any:
+        ...
+
+    def mkdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def open(self, *args, **kwargs) -> Any:
+        ...
+
+    def ilistdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def chdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def getcwd(self, *args, **kwargs) -> Any:
+        ...
+
+    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None:
+        ...
+
+
+class VfsFat:
+    """
+    Create a filesystem object that uses the FAT filesystem format.  Storage of
+    the FAT filesystem is provided by *block_dev*.
+    Objects created by this constructor can be mounted using :func:`mount`.
+    """
+
+    def rename(self, *args, **kwargs) -> Any:
+        ...
+
+    @staticmethod
+    def mkfs(block_dev) -> None:
+        """
+        Build a FAT filesystem on *block_dev*.
+        """
+        ...
+
+    def mount(self, *args, **kwargs) -> Any:
+        ...
+
+    def statvfs(self, *args, **kwargs) -> Any:
+        ...
+
+    def rmdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def stat(self, *args, **kwargs) -> Any:
+        ...
+
+    def umount(self, *args, **kwargs) -> Any:
+        ...
+
+    def remove(self, *args, **kwargs) -> Any:
+        ...
+
+    def mkdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def open(self, *args, **kwargs) -> Any:
+        ...
+
+    def ilistdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def chdir(self, *args, **kwargs) -> Any:
+        ...
+
+    def getcwd(self, *args, **kwargs) -> Any:
+        ...
+
+    def __init__(self, block_dev) -> None:
+        ...
