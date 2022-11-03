@@ -33,14 +33,10 @@ For example::
 """
 from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
 
-AP_IF: int
-STAT_CONNECTING: int
-STAT_CONNECT_FAIL: int
-STAT_GOT_IP: int
-STAT_IDLE: int
-STAT_NO_AP_FOUND: int
-STAT_WRONG_PASSWORD: int
 STA_IF: int
+AP_IF: int
+
+def route(*args, **kwargs) -> Any: ...
 
 class WLAN:
     """
@@ -51,7 +47,78 @@ class WLAN:
     For example, only STA interface may `WLAN.connect()` to an access point.
     """
 
-    def __init__(self, interface_id) -> None: ...
+    WEP: int
+    WPA_PSK: int
+    OPEN: int
+    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
+        """
+        Get/set IP-level network interface parameters: IP address, subnet mask,
+        gateway and DNS server. When called with no arguments, this method returns
+        a 4-tuple with the above information. To set the above values, pass a
+        4-tuple with the required information.  For example::
+
+         nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
+        """
+        ...
+    def ioctl(self, *args, **kwargs) -> Any: ...
+    def isconnected(self) -> bool:
+        """
+        In case of STA mode, returns ``True`` if connected to a WiFi access
+        point and has a valid IP address.  In AP mode returns ``True`` when a
+        station is connected. Returns ``False`` otherwise.
+        """
+        ...
+    def scan(self) -> List[Tuple]:
+        """
+        Scan for the available wireless networks.
+        Hidden networks -- where the SSID is not broadcast -- will also be scanned
+        if the WLAN interface allows it.
+
+        Scanning is only possible on STA interface. Returns list of tuples with
+        the information about WiFi access points:
+
+            (ssid, bssid, channel, RSSI, authmode, hidden)
+
+        *bssid* is hardware address of an access point, in binary form, returned as
+        bytes object. You can use `binascii.hexlify()` to convert it to ASCII form.
+
+        There are five values for authmode:
+
+            * 0 -- open
+            * 1 -- WEP
+            * 2 -- WPA-PSK
+            * 3 -- WPA2-PSK
+            * 4 -- WPA/WPA2-PSK
+
+        and two for hidden:
+
+            * 0 -- visible
+            * 1 -- hidden
+        """
+        ...
+    def status(self, param: Optional[Any] = None) -> Any:
+        """
+        Return the current status of the wireless connection.
+
+        When called with no argument the return value describes the network link status.
+        The possible statuses are defined as constants:
+
+            * ``STAT_IDLE`` -- no connection and no activity,
+            * ``STAT_CONNECTING`` -- connecting in progress,
+            * ``STAT_WRONG_PASSWORD`` -- failed due to incorrect password,
+            * ``STAT_NO_AP_FOUND`` -- failed because no access point replied,
+            * ``STAT_CONNECT_FAIL`` -- failed due to other problems,
+            * ``STAT_GOT_IP`` -- connection successful.
+
+        When called with one argument *param* should be a string naming the status
+        parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
+        """
+        ...
+    def disconnect(self) -> None:
+        """
+        Disconnect from the currently connected wireless network.
+        """
+        ...
     def active(self, is_active: Optional[Any] = None) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
@@ -100,76 +167,4 @@ class WLAN:
         in this case).
         """
         ...
-    def deinit(self, *args, **kwargs) -> Any: ...
-    def disconnect(self) -> None:
-        """
-        Disconnect from the currently connected wireless network.
-        """
-        ...
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
-        """
-        Get/set IP-level network interface parameters: IP address, subnet mask,
-        gateway and DNS server. When called with no arguments, this method returns
-        a 4-tuple with the above information. To set the above values, pass a
-        4-tuple with the required information.  For example::
-
-         nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
-        """
-        ...
-    def ioctl(self, *args, **kwargs) -> Any: ...
-    def isconnected(self) -> bool:
-        """
-        In case of STA mode, returns ``True`` if connected to a WiFi access
-        point and has a valid IP address.  In AP mode returns ``True`` when a
-        station is connected. Returns ``False`` otherwise.
-        """
-        ...
-    def scan(self) -> List[Tuple]:
-        """
-        Scan for the available wireless networks.
-        Hidden networks -- where the SSID is not broadcast -- will also be scanned
-        if the WLAN interface allows it.
-
-        Scanning is only possible on STA interface. Returns list of tuples with
-        the information about WiFi access points:
-
-            (ssid, bssid, channel, RSSI, authmode, hidden)
-
-        *bssid* is hardware address of an access point, in binary form, returned as
-        bytes object. You can use `binascii.hexlify()` to convert it to ASCII form.
-
-        There are five values for authmode:
-
-            * 0 -- open
-            * 1 -- WEP
-            * 2 -- WPA-PSK
-            * 3 -- WPA2-PSK
-            * 4 -- WPA/WPA2-PSK
-
-        and two for hidden:
-
-            * 0 -- visible
-            * 1 -- hidden
-        """
-        ...
-    def send_ethernet(self, *args, **kwargs) -> Any: ...
-    def status(self, param: Optional[Any] = None) -> Any:
-        """
-        Return the current status of the wireless connection.
-
-        When called with no argument the return value describes the network link status.
-        The possible statuses are defined as constants:
-
-            * ``STAT_IDLE`` -- no connection and no activity,
-            * ``STAT_CONNECTING`` -- connecting in progress,
-            * ``STAT_WRONG_PASSWORD`` -- failed due to incorrect password,
-            * ``STAT_NO_AP_FOUND`` -- failed because no access point replied,
-            * ``STAT_CONNECT_FAIL`` -- failed due to other problems,
-            * ``STAT_GOT_IP`` -- connection successful.
-
-        When called with one argument *param* should be a string naming the status
-        parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
-        """
-        ...
-
-def route(*args, **kwargs) -> Any: ...
+    def __init__(self, interface_id) -> None: ...
