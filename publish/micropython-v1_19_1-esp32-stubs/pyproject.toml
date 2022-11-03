@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp32-stubs"
-version = "1.19.1.post11"
+version = "1.19.1.post10"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -33,6 +33,7 @@ classifiers = [
 ]
 packages = [
     { include = "uasyncio" },
+    { include = "umqtt" },
     { include = "_boot.pyi" },
     { include = "_onewire.pyi" },
     { include = "_thread.pyi" },
