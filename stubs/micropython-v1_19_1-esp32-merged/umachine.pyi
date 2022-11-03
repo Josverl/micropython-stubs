@@ -9,7 +9,6 @@ malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
 from typing import Callable, List, NoReturn, Optional, Tuple, Any
-from network import AbstractNIC
 
 TIMER_WAKE: int
 EXT1_WAKE: int

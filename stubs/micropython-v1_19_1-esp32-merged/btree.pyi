@@ -70,7 +70,7 @@ Example::
     f.close()
 
 """
-from typing import Dict
+from typing import Dict, Optional, Any
 
 DESC: int
 INCL: int

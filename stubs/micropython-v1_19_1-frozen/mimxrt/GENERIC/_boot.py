@@ -1,6 +1,7 @@
 # _boot.py
 # Try to mount the filesystem, and format the flash if it doesn't exist.
 # Note: the flash requires the programming size to be aligned to 256 bytes.
+# Micropython 1.19.1 frozen stubs
 
 import os
 import sys

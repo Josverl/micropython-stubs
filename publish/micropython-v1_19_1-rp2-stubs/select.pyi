@@ -6,12 +6,22 @@ wait for events on a set of streams. See: https://docs.micropython.org/en/v1.19.
 This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Iterator, List, Optional, Tuple, Any
 
-POLLERR: int
-POLLHUP: int
-POLLIN: int
 POLLOUT: int
+POLLIN: int
+POLLHUP: int
+POLLERR: int
+
+class select:
+    """
+    Wait for activity on a set of objects.
+
+    This function is provided by some MicroPython ports for compatibility
+    and is not efficient. Usage of :class:`Poll` is recommended instead.
+    """
+
+    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any] = None) -> None: ...
 
 class poll:
     """
@@ -81,13 +91,3 @@ class poll:
         behaviour is useful for asynchronous I/O schedulers.
         """
         ...
-
-class select:
-    """
-    Wait for activity on a set of objects.
-
-    This function is provided by some MicroPython ports for compatibility
-    and is not efficient. Usage of :class:`Poll` is recommended instead.
-    """
-
-    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any] = None) -> None: ...

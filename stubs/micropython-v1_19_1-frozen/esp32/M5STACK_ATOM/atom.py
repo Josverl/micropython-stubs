@@ -4,6 +4,7 @@
 # Hardware details:
 #       ATOM Lite    https://docs.m5stack.com/en/core/atom_lite
 #       ATOM Matrix  https://docs.m5stack.com/en/core/atom_matrix
+# Micropython 1.19.1 frozen stubs
 
 from micropython import const
 from machine import Pin

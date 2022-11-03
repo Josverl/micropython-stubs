@@ -11,6 +11,7 @@ and helper functions.
 # origin module:: repos/micropython/docs/library/io.rst
 from typing import Any, IO, Optional
 
+
 class FileIO(IO):
     """
     This is type of a file open in binary mode, e.g. using ``open(name, "rb")``.

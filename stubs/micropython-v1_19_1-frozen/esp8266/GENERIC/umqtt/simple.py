@@ -1,3 +1,4 @@
+# Micropython 1.19.1 frozen stubs
 import usocket as socket
 import ustruct as struct
 from ubinascii import hexlify

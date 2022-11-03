@@ -31,7 +31,7 @@ For example::
     data = s.recv(1000)
     s.close()
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import List, Optional, Tuple, Union, Any
 
 STAT_WRONG_PASSWORD: int
 PHY_IP101: int
@@ -66,7 +66,7 @@ AUTH_WPA_WPA2_PSK: int
 ETH_DISCONNECTED: int
 ETH_CONNECTED: int
 
-class WLAN:
+class WLAN(AbstractNIC):
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access

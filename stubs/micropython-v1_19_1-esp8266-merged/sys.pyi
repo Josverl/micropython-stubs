@@ -3,7 +3,7 @@ system specific functions. See: https://docs.micropython.org/en/v1.19.1/library/
 
 |see_cpython_module| :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
-from typing import Any
+from typing import Dict, List, Tuple, Any
 
 path: list
 modules: dict

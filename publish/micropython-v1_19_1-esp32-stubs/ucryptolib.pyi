@@ -1,7 +1,7 @@
 """
 cryptographic ciphers. See: https://docs.micropython.org/en/v1.19.1/library/cryptolib.html
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 class aes:
     def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Any:

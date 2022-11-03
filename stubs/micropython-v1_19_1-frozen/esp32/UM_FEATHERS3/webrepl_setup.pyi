@@ -1,3 +1,4 @@
+# Micropython 1.19.1 frozen stubs
 RC: str
 CONFIG: str
 

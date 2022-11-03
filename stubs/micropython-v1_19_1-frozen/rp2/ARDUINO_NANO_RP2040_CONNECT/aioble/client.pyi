@@ -1,3 +1,4 @@
+# Micropython 1.19.1 frozen stubs
 from .core import GattError as GattError, ble as ble, register_irq_handler as register_irq_handler
 from .device import DeviceConnection as DeviceConnection
 from _typeshed import Incomplete

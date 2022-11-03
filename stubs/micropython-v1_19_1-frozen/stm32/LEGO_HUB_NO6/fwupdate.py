@@ -1,5 +1,6 @@
 # Update Mboot or MicroPython from a .dfu.gz file on the board's filesystem
 # MIT license; Copyright (c) 2019-2022 Damien P. George
+# Micropython 1.19.1 frozen stubs
 
 from micropython import const
 import struct, time

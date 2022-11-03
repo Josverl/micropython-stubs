@@ -6,7 +6,7 @@ ESP32 modules.  Some functions are only available on one or the other of these
 ports.
 
 """
-from typing import Any
+from typing import Optional, Any
 
 LOG_NONE: int
 LOG_WARNING: int

@@ -11,7 +11,7 @@ for more information, and `pico-micropython-examples
 for example code.
 
 """
-from typing import Any
+from typing import Optional, Any
 
 def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Any:
     """

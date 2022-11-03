@@ -4,7 +4,7 @@ functionality specific to STM32 MCUs. See: https://docs.micropython.org/en/v1.19
 This module provides functionality specific to STM32 microcontrollers, including
 direct access to peripheral registers.
 """
-from typing import Any
+from typing import Tuple, Any
 
 SPI_I2SPR: int
 RTC_DR: int

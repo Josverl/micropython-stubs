@@ -21,12 +21,13 @@ be implemented:
   selected boards, targeting interoperability with legacy applications,
   will offer this.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 class sha256:
     """
     Create an SHA256 hasher object and optionally feed ``data`` into it.
     """
-    def __init__(self, data: Optional[Any] = None) -> None: ...
-    def update(self, *args, **kwargs) -> Any: ...
+
     def digest(self, *args, **kwargs) -> Any: ...
+    def update(self, *args, **kwargs) -> Any: ...
+    def __init__(self, data: Optional[Any] = None) -> None: ...

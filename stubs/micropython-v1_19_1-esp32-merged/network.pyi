@@ -31,7 +31,7 @@ For example::
     data = s.recv(1000)
     s.close()
 """
-from typing import Any, List, Optional, Tuple
+from typing import List, Optional, Tuple, Union, Any
 
 STAT_WRONG_PASSWORD: int
 PHY_IP101: int

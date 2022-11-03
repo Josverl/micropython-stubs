@@ -8,7 +8,7 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Callable, List, NoReturn, Optional, Tuple, Any
 
 TIMER_WAKE: int
 EXT1_WAKE: int

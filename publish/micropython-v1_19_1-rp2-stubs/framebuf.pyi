@@ -4,7 +4,18 @@ Frame buffer manipulation. See: https://docs.micropython.org/en/v1.19.1/library/
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
+
+MONO_HMSB: int
+MONO_HLSB: int
+RGB565: int
+MONO_VLSB: int
+MVLSB: int
+GS2_HMSB: int
+GS8: int
+GS4_HMSB: int
+
+def FrameBuffer1(*args, **kwargs) -> Any: ...
 
 class FrameBuffer:
     """
@@ -31,7 +42,35 @@ class FrameBuffer:
     optionally *stride*.  Invalid *buffer* size or dimensions may lead to
     unexpected errors.
     """
-    def __init__(self, buffer, width, height, format, stride=-1, /) -> None: ...
+
+    def rect(self, x, y, w, h, c) -> Any: ...
+    def pixel(self, x, y, c: Optional[Any] = None) -> Any:
+        """
+        If *c* is not given, get the color value of the specified pixel.
+        If *c* is given, set the specified pixel to the given color.
+        """
+        ...
+    def vline(self, x, y, h, c) -> Any: ...
+    def scroll(self, xstep, ystep) -> Any:
+        """
+        Shift the contents of the FrameBuffer by the given vector. This may
+        leave a footprint of the previous colors in the FrameBuffer.
+        """
+        ...
+    def text(self, s, x, y, c: Optional[Any] = None) -> None:
+        """
+        Write text to the FrameBuffer using the the coordinates as the upper-left
+        corner of the text. The color of the text can be defined by the optional
+        argument but is otherwise a default value of 1. All characters have
+        dimensions of 8x8 pixels and there is currently no way to change the font.
+
+        """
+        ...
+    def fill(self, c) -> None:
+        """
+        Fill the entire FrameBuffer with the specified color.
+        """
+        ...
     def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
@@ -51,9 +90,13 @@ class FrameBuffer:
         color of the corresponding source pixel.
         """
         ...
-    def fill(self, c) -> None:
+    def line(self, x1, y1, x2, y2, c) -> None:
         """
-        Fill the entire FrameBuffer with the specified color.
+        Draw a line from a set of coordinates using the given color and
+        a thickness of 1 pixel. The `line` method draws the line up to
+        a second set of coordinates whereas the `hline` and `vline`
+        methods draw horizontal and vertical lines respectively up to
+        a given length.
         """
         ...
     def fill_rect(self, x, y, w, h, c) -> None:
@@ -64,46 +107,4 @@ class FrameBuffer:
         """
         ...
     def hline(self, x, y, w, c) -> Any: ...
-    def line(self, x1, y1, x2, y2, c) -> None:
-        """
-        Draw a line from a set of coordinates using the given color and
-        a thickness of 1 pixel. The `line` method draws the line up to
-        a second set of coordinates whereas the `hline` and `vline`
-        methods draw horizontal and vertical lines respectively up to
-        a given length.
-        """
-        ...
-    def pixel(self, x, y, c: Optional[Any] = None) -> Any:
-        """
-        If *c* is not given, get the color value of the specified pixel.
-        If *c* is given, set the specified pixel to the given color.
-        """
-        ...
-    def rect(self, x, y, w, h, c) -> Any: ...
-    def scroll(self, xstep, ystep) -> Any:
-        """
-        Shift the contents of the FrameBuffer by the given vector. This may
-        leave a footprint of the previous colors in the FrameBuffer.
-        """
-        ...
-    def text(self, s, x, y, c: Optional[Any] = None) -> None:
-        """
-        Write text to the FrameBuffer using the the coordinates as the upper-left
-        corner of the text. The color of the text can be defined by the optional
-        argument but is otherwise a default value of 1. All characters have
-        dimensions of 8x8 pixels and there is currently no way to change the font.
-
-        """
-        ...
-    def vline(self, x, y, h, c) -> Any: ...
-
-def FrameBuffer1(*args, **kwargs) -> Any: ...
-
-GS2_HMSB: int
-GS4_HMSB: int
-GS8: int
-MONO_HLSB: int
-MONO_HMSB: int
-MONO_VLSB: int
-MVLSB: int
-RGB565: int
+    def __init__(self, buffer, width, height, format, stride=-1, /) -> None: ...

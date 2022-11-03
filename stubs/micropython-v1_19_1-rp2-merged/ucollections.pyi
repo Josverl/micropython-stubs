@@ -7,6 +7,7 @@ This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
 from typing import Optional, Any
+from queue import Queue
 
 def namedtuple(name, fields) -> Any:
     """

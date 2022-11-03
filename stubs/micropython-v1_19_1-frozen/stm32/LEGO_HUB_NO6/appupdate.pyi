@@ -1,3 +1,4 @@
+# Micropython 1.19.1 frozen stubs
 from _typeshed import Incomplete
 
 _SPIFLASH_UPDATE_KEY_ADDR: Incomplete

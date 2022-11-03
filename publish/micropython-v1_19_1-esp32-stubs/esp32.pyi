@@ -6,7 +6,7 @@ controlling ESP32 modules.
 
 """
 from __future__ import annotations
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import List, Optional, Tuple, Any
 
 WAKEUP_ALL_LOW: bool
 WAKEUP_ANY_HIGH: bool

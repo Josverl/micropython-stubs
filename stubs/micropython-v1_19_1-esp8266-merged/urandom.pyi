@@ -25,6 +25,7 @@ This module implements a pseudo-random number generator (PRNG).
    enabled.
 
 """
+from typing import Optional, Any
 
 def seed(n=None, /) -> None:
     """
