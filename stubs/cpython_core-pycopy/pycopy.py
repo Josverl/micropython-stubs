@@ -1,5 +1,6 @@
 # CPython core - pycopy
-def const(x):
+# updates 3/11/2022
+def const(x) -> int:
     return x
 
 
@@ -35,4 +36,4 @@ gc.mem_free = mem_free
 gc.mem_alloc = mem_alloc
 
 
-import pycopy_imphook
+# import pycopy_imphook

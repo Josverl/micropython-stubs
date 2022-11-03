@@ -768,7 +768,7 @@ class SPI:
         """
         ...
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         ...
 
 
@@ -957,7 +957,7 @@ class I2C:
         """
         ...
 
-    def __init__(self, id, *, scl, sda, freq=400000) -> None:
+    def __init__(self, id, *, scl: Optional[Pin] = None, sda: Optional[Pin] = None, freq=400_000) -> None:
         ...
 
 
@@ -990,7 +990,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, id, *, sample_ns, atten) -> None:
+    def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None:
         ...
 
 
@@ -1256,7 +1256,7 @@ class UART:
         """
         ...
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         ...
 
 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp32-um_tinypico-stubs"
-version = "1.19.1.post3"
+version = "1.19.1.post2"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",

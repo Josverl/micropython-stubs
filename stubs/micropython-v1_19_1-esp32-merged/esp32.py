@@ -9,7 +9,7 @@ from __future__ import annotations
 
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.9.11
-from typing import List, Optional, Tuple, Any
+from typing import List, Optional, Tuple, Union, Any
 
 WAKEUP_ALL_LOW = False  # type: bool
 WAKEUP_ANY_HIGH = True  # type: bool
@@ -292,7 +292,7 @@ class RMT:
         """
         ...
 
-    def write_pulses(self, duration, data=True) -> Any:
+    def write_pulses(self, duration, data: Union[bool, int] = True) -> Any:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
