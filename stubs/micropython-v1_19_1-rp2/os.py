@@ -1,13 +1,9 @@
 """
 Module: 'os' on micropython-v1.19.1-rp2
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico with RP2040', 'nodename': 'rp2'}
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Any
-
-
-def mount(*args, **kwargs) -> Any:
-    ...
 
 
 def stat(*args, **kwargs) -> Any:
@@ -19,6 +15,14 @@ def rmdir(*args, **kwargs) -> Any:
 
 
 def rename(*args, **kwargs) -> Any:
+    ...
+
+
+def mount(*args, **kwargs) -> Any:
+    ...
+
+
+def urandom(*args, **kwargs) -> Any:
     ...
 
 
@@ -38,19 +42,19 @@ def umount(*args, **kwargs) -> Any:
     ...
 
 
-def urandom(*args, **kwargs) -> Any:
-    ...
-
-
 def chdir(*args, **kwargs) -> Any:
     ...
 
 
-def mkdir(*args, **kwargs) -> Any:
+def dupterm(*args, **kwargs) -> Any:
     ...
 
 
 def remove(*args, **kwargs) -> Any:
+    ...
+
+
+def mkdir(*args, **kwargs) -> Any:
     ...
 
 
