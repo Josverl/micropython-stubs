@@ -66,7 +66,7 @@ AUTH_WPA_WPA2_PSK: int
 ETH_DISCONNECTED: int
 ETH_CONNECTED: int
 
-class WLAN(AbstractNIC):
+class WLAN:
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access
