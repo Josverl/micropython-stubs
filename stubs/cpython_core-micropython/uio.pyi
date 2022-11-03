@@ -1,8 +1,10 @@
+# CPython core - micropython
 from typing import Any
 
 class UioStream:
     _s: Any
     _is_bin: Any
+
     def __init__(self, s, is_bin) -> None: ...
     def write(self, data, off: Union[Any, None] = ..., sz: Union[Any, None] = ...) -> None: ...
     def __getattr__(self, attr) -> None: ...

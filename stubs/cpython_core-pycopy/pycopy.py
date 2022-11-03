@@ -1,3 +1,4 @@
+# CPython core - pycopy
 def const(x):
     return x
 

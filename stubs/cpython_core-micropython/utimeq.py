@@ -1,3 +1,4 @@
+# CPython core - micropython
 import heapq
 from utime import ticks_diff
 

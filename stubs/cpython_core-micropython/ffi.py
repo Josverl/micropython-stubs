@@ -1,4 +1,5 @@
 # (c) 2019 Paul Sokolovsky. MIT license.
+# CPython core - micropython
 import ctypes
 import array
 

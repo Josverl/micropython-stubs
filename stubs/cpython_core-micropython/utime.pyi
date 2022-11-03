@@ -1,3 +1,4 @@
+# CPython core - micropython
 from typing import Any
 
 MICROPY_PY_UTIME_TICKS_PERIOD: Any

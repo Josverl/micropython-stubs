@@ -1,3 +1,4 @@
+# CPython core - micropython
 def const(x):
     return x
 
