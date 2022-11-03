@@ -8,7 +8,7 @@ This module allows to decompress binary data compressed with
 (commonly used in zlib library and gzip archiver). Compression
 is not yet implemented.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Any
 
 def decompress(data, wbits=0, bufsize=0, /) -> bytes:
     """

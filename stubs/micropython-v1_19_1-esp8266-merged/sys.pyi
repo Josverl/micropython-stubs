@@ -3,7 +3,7 @@ system specific functions. See: https://docs.micropython.org/en/v1.19.1/library/
 
 |see_cpython_module| :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Any
 
 path: list
 modules: dict

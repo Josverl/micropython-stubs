@@ -3,7 +3,7 @@ control of LCD160CR display. See: https://docs.micropython.org/en/v1.19.1/librar
 
 This module provides control of the MicroPython LCD160CR display.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Tuple, Any
 
 LANDSCAPE: int
 PORTRAIT_UPSIDEDOWN: int

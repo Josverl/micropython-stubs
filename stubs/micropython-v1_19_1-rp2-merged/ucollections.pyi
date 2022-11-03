@@ -6,8 +6,7 @@ collection and container types. See: https://docs.micropython.org/en/v1.19.1/lib
 This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
-from queue import Queue
+from typing import Optional, Any
 
 def namedtuple(name, fields) -> Any:
     """

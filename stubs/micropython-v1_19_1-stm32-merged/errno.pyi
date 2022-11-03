@@ -6,7 +6,6 @@ system error codes. See: https://docs.micropython.org/en/v1.19.1/library/errno.h
 This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
 """
-from typing import Any, Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union
 
 ENOBUFS: int
 ENODEV: int

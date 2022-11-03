@@ -11,7 +11,7 @@ working with floating-point numbers.
 Availability: not available on WiPy. Floating point support required
 for this module.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Tuple, Any
 
 pi: float
 e: float

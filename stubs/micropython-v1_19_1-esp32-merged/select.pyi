@@ -6,7 +6,7 @@ wait for events on a set of streams. See: https://docs.micropython.org/en/v1.19.
 This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Iterator, List, Optional, Tuple, Any
 
 POLLOUT: int
 POLLIN: int

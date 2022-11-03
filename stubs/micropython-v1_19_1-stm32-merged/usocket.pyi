@@ -5,7 +5,7 @@ socket module. See: https://docs.micropython.org/en/v1.19.1/library/socket.html
 
 This module provides access to the BSD socket interface.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import IO, Optional, Tuple, Any
 
 SO_KEEPALIVE: int
 SOL_SOCKET: int

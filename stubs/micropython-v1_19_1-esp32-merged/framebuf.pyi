@@ -4,7 +4,7 @@ Frame buffer manipulation. See: https://docs.micropython.org/en/v1.19.1/library/
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 MONO_HMSB: int
 MONO_HLSB: int

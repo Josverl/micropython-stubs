@@ -8,7 +8,7 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    <https://github.com/micropython/micropython/blob/master/drivers/neopixel/neopixel.py>`_
    and copy it to the filesystem.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Any
 
 def bitstream(*args, **kwargs) -> Any: ...
 

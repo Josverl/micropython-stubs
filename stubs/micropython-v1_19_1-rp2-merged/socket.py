@@ -7,7 +7,7 @@ This module provides access to the BSD socket interface.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
-from typing import Any, IO, Optional, Tuple
+from typing import IO, Optional, Tuple, Any
 
 SO_KEEPALIVE = 8  # type: int
 SOL_SOCKET = 4095  # type: int

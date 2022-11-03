@@ -3,7 +3,7 @@ functions related to the board. See: https://docs.micropython.org/en/v1.19.1/lib
 
 The ``pyb`` module contains specific functions related to the board.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import List, NoReturn, Optional, Tuple, Any
 
 hid_mouse: tuple
 hid_keyboard: tuple

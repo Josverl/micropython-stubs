@@ -27,6 +27,8 @@ damage.
 # + module: machine.SDCard.rst
 from typing import Any, Callable, List, NoReturn, Optional, Tuple
 
+from network import AbstractNIC
+
 IDLE: Any = ...
 """IRQ wake values."""
 SLEEP: Any = ...

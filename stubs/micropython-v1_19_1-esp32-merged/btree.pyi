@@ -70,7 +70,7 @@ Example::
     f.close()
 
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Dict
 
 DESC: int
 INCL: int

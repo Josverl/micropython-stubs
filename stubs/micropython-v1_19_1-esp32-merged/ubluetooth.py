@@ -15,7 +15,7 @@ building-blocks for higher-level abstractions such as specific device types.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.9.11
-from typing import Any, Optional, Tuple
+from typing import Optional, Tuple, Any
 
 FLAG_NOTIFY = 16  # type: int
 FLAG_READ = 2  # type: int

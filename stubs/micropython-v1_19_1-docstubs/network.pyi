@@ -146,7 +146,7 @@ class AbstractNIC:
         """
         ...
 
-class WLAN:
+class WLAN(AbstractNIC):
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access
@@ -273,7 +273,7 @@ class WLAN:
         """
         ...
 
-class WLANWiPy:
+class WLANWiPy(AbstractNIC):
     """
        Create a WLAN object, and optionally configure it. See `init()` for params of configuration.
 
