@@ -1,5 +1,6 @@
 # CPython core - micropython
-from typing import Any
+# updated 4/11/2022
+from typing import Any, Union
 
 class UioStream:
     _s: Any

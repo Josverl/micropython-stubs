@@ -1,6 +1,7 @@
 # CPython core - micropython
+# updated 4/11/2022
 from collections.abc import Generator
-from typing import Any
+from typing import Any, Union
 
 POLLIN: Any
 POLLOUT: Any
