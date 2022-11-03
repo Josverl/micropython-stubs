@@ -2,7 +2,7 @@
     "name": "micropython-stm32-stubs",
     "mpy_version": "1.19.1",
     "publish": true,
-    "pkg_version": "1.19.1.post9",
+    "pkg_version": "1.19.1.post5",
     "path": "micropython-v1_19_1-stm32-stubs",
     "stub_sources": [
         [
@@ -14,11 +14,11 @@
             "micropython-v1_19_1-frozen/stm32/GENERIC"
         ],
         [
-            "Core stubs",
+            "Core Stubs",
             "cpython_core-pycopy"
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "07051b2eaaa4f80527f1f34bccd3fabc574c6163",
+    "hash": "4727fb1b93f0c8b1eeced04f6901b69b185ff1ff",
     "stub_hash": "8357f7f2ad458c78c2c76128ed495180be071b3b"
 }

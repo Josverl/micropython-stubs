@@ -2,7 +2,7 @@
     "name": "micropython-esp8266-stubs",
     "mpy_version": "1.19.1",
     "publish": true,
-    "pkg_version": "1.19.1.post9",
+    "pkg_version": "1.19.1.post5",
     "path": "micropython-v1_19_1-esp8266-stubs",
     "stub_sources": [
         [
@@ -14,11 +14,11 @@
             "micropython-v1_19_1-frozen/esp8266/GENERIC"
         ],
         [
-            "Core stubs",
+            "Core Stubs",
             "cpython_core-pycopy"
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "493c139699893460977f0f329d752dd39b8a4cfd",
+    "hash": "66202349c74ec2b41f707f8ac18f6a65aa995fe5",
     "stub_hash": "a441410e99e1210d35669ad873ae36a3c995b960"
 }
