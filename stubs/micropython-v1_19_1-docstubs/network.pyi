@@ -146,7 +146,7 @@ class AbstractNIC:
         """
         ...
 
-class WLAN(AbstractNIC):
+class WLAN:
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access
@@ -273,7 +273,7 @@ class WLAN(AbstractNIC):
         """
         ...
 
-class WLANWiPy(AbstractNIC):
+class WLANWiPy:
     """
        Create a WLAN object, and optionally configure it. See `init()` for params of configuration.
 
@@ -409,7 +409,7 @@ class WLANWiPy(AbstractNIC):
         """
         ...
 
-class CC3K(AbstractNIC):
+class CC3K:
     """
     Create a CC3K driver object, initialise the CC3000 module using the given SPI bus
     and pins, and return the CC3K object.
@@ -468,7 +468,7 @@ class CC3K(AbstractNIC):
         """
         ...
 
-class WIZNET5K(AbstractNIC):
+class WIZNET5K:
     """
     Create a WIZNET5K driver object, initialise the WIZnet5x00 module using the given
     SPI bus and pins, and return the WIZNET5K object.

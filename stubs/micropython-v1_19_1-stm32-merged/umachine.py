@@ -1373,5 +1373,5 @@ class Signal:
         """
         ...
 
-    def __init__(self, pin_obj, invert=False) -> None:
+    def __init__(self, pin_obj, *args, invert=False) -> None:
         ...

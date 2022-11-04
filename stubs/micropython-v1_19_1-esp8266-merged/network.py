@@ -57,7 +57,7 @@ def phy_mode(*args, **kwargs) -> Any:
     ...
 
 
-class WLAN(AbstractNIC):
+class WLAN:
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access
