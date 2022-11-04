@@ -31,7 +31,7 @@ For example::
     data = s.recv(1000)
     s.close()
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import List, Optional, Tuple, Union, Any
 
 AP_IF: int
 STA_IF: int
@@ -44,6 +44,7 @@ class WLAN:
     connect). Availability of the methods below depends on interface type.
     For example, only STA interface may `WLAN.connect()` to an access point.
     """
+
     def __init__(self, interface_id) -> None: ...
     OPEN: int
     WEP: int

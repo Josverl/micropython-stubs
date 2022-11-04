@@ -25,7 +25,7 @@ This module implements a pseudo-random number generator (PRNG).
    enabled.
 
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 def choice(sequence) -> Any:
     """
@@ -33,11 +33,13 @@ def choice(sequence) -> Any:
     any object that supports the subscript operation).
     """
     ...
+
 def getrandbits(n) -> int:
     """
     Return an integer with *n* random bits (0 <= n <= 32).
     """
     ...
+
 def randint(a, b) -> int:
     """
     Return a random integer in the range [*a*, *b*].
@@ -50,6 +52,7 @@ class random:
     """
 
     def __init__(self) -> None: ...
+
 def randrange(start, stop, step: Optional[Any] = None) -> int:
     """
     The first form returns a random integer from the range [0, *stop*).
@@ -60,6 +63,7 @@ def randrange(start, stop, step: Optional[Any] = None) -> int:
 
     """
     ...
+
 def seed(n=None, /) -> None:
     """
     Initialise the random number generator module with the seed *n* which should
@@ -71,6 +75,7 @@ def seed(n=None, /) -> None:
     enabled by the port, otherwise it raises ``ValueError``.
     """
     ...
+
 def uniform(a, b) -> int:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,

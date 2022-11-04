@@ -6,7 +6,7 @@ JSON encoding and decoding. See: https://docs.micropython.org/en/v1.18/library/j
 This modules allows to convert between Python objects and the JSON
 data format.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Any
 
 def dump(obj, stream, separators=None) -> Any:
     """
@@ -17,6 +17,7 @@ def dump(obj, stream, separators=None) -> Any:
     representation, you should specify ``(',', ':')`` to eliminate whitespace.
     """
     ...
+
 def dumps(obj, separators=None) -> str:
     """
     Return *obj* represented as a JSON string.
@@ -24,6 +25,7 @@ def dumps(obj, separators=None) -> str:
     The arguments have the same meaning as in `dump`.
     """
     ...
+
 def load(stream) -> Any:
     """
     Parse the given *stream*, interpreting it as a JSON string and
@@ -34,6 +36,7 @@ def load(stream) -> Any:
     A :exc:`ValueError` is raised if the data in *stream* is not correctly formed.
     """
     ...
+
 def loads(str) -> Any:
     """
     Parse the JSON *str* and return an object.  Raises :exc:`ValueError` if the

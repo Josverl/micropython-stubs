@@ -8,7 +8,7 @@ This module allows to decompress binary data compressed with
 (commonly used in zlib library and gzip archiver). Compression
 is not yet implemented.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import IO, Any
 
 class DecompIO:
     """
@@ -18,6 +18,7 @@ class DecompIO:
     values described in :func:`decompress`, *wbits* may take values
     24..31 (16 + 8..15), meaning that input stream has gzip header.
     """
+
     def __init__(self, stream, wbits=0, /) -> None: ...
     def read(self, *args, **kwargs) -> Any: ...
     def readinto(self, *args, **kwargs) -> Any: ...

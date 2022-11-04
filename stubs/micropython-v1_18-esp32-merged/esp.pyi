@@ -6,7 +6,7 @@ ESP32 modules.  Some functions are only available on one or the other of these
 ports.
 
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 LOG_DEBUG: int
 LOG_ERROR: int
@@ -23,11 +23,13 @@ def flash_size() -> Any:
     Read the total size of the flash memory.
     """
     ...
+
 def flash_user_start() -> Any:
     """
     Read the memory offset at which the user flash space begins.
     """
     ...
+
 def flash_write(byte_offset, bytes) -> Any: ...
 def gpio_matrix_in(*args, **kwargs) -> Any: ...
 def gpio_matrix_out(*args, **kwargs) -> Any: ...

@@ -6,7 +6,7 @@ binary/ASCII conversions. See: https://docs.micropython.org/en/v1.18/library/bin
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 def a2b_base64(data) -> bytes:
     """
@@ -15,6 +15,7 @@ def a2b_base64(data) -> bytes:
     Returns a bytes object.
     """
     ...
+
 def b2a_base64(data) -> bytes:
     """
     Encode binary data in base64 format, as in `RFC 3548
@@ -22,6 +23,7 @@ def b2a_base64(data) -> bytes:
     followed by a newline character, as a bytes object.
     """
     ...
+
 def hexlify(data, sep: Optional[Any] = None) -> bytes:
     """
     Convert the bytes in the *data* object to a hexadecimal representation.
@@ -31,6 +33,7 @@ def hexlify(data, sep: Optional[Any] = None) -> bytes:
     between hexadecimal values.
     """
     ...
+
 def unhexlify(data) -> bytes:
     """
     Convert hexadecimal data to binary representation. Returns bytes string.

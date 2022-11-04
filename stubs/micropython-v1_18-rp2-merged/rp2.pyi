@@ -11,7 +11,7 @@ for more information, and `pico-micropython-examples
 for example code.
 
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 def const(*args, **kwargs) -> Any: ...
 
@@ -20,6 +20,7 @@ class Flash:
     Gets the singleton object for accessing the SPI flash memory.
 
     """
+
     def __init__(self) -> None: ...
     def ioctl(self, cmd, arg) -> Any:
         """
@@ -39,6 +40,7 @@ class PIO:
     Raises a ``ValueError`` if any other argument is provided.
 
     """
+
     def __init__(self, id) -> None: ...
     IN_HIGH: int
     IN_LOW: int
@@ -103,6 +105,7 @@ class StateMachine:
     `StateMachine.init`.
 
     """
+
     def __init__(self, id, program, *args: Optional[Any]) -> None: ...
     def exec(self, instr) -> Any:
         """
@@ -133,7 +136,8 @@ class StateMachine:
         False
         """
         ...
-    def init(self,
+    def init(
+        self,
         program,
         freq=-1,
         *,
@@ -239,6 +243,7 @@ def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Any:
     57345
     """
     ...
+
 def dht_readinto(*args, **kwargs) -> Any: ...
 
 class PIOASMError(Exception): ...
@@ -263,7 +268,8 @@ class PIOASMEmit:
     def delay(self, *args, **kwargs) -> Any: ...
     def side(self, *args, **kwargs) -> Any: ...
 
-def asm_pio(*,
+def asm_pio(
+    *,
     out_init=None,
     set_init=None,
     sideset_init=None,
