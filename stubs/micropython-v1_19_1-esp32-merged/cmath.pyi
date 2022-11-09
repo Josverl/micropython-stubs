@@ -9,7 +9,7 @@ working with complex numbers.
 Availability: not available on WiPy and ESP8266. Floating point support
 required for this module.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Tuple, Any
 
 e: float
 pi: float

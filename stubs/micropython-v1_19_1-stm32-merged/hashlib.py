@@ -22,8 +22,8 @@ be implemented:
   will offer this.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
-# Stubber: 1.5.6
-from typing import Any, Optional
+# Stubber: 1.9.11
+from typing import Optional, Any
 
 
 class sha256:
@@ -31,12 +31,11 @@ class sha256:
     Create an SHA256 hasher object and optionally feed ``data`` into it.
     """
 
-    def __init__(self, data: Optional[Any] = None) -> None:
-        """"""
+    def digest(self, *args, **kwargs) -> Any:
         ...
 
     def update(self, *args, **kwargs) -> Any:
         ...
 
-    def digest(self, *args, **kwargs) -> Any:
+    def __init__(self, data: Optional[Any] = None) -> None:
         ...

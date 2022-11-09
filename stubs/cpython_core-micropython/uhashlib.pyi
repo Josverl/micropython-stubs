@@ -1,7 +1,10 @@
-from typing import Any
+# CPython core - micropython
+# updated 4/11/2022
+from typing import Any, Union
 
 class _hash:
     _: Any
+
     def __init__(self, data: Union[Any, None] = ...) -> None: ...
     def update(self, data) -> None: ...
     def digest(self) -> None: ...

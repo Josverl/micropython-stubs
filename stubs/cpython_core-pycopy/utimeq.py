@@ -1,3 +1,4 @@
+# CPython core - pycopy
 import heapq
 from utime import ticks_diff
 

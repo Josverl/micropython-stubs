@@ -1,7 +1,7 @@
 """
 access and control MicroPython internals. See: https://docs.micropython.org/en/v1.19.1/library/micropython.html
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 def opt_level(level: Optional[Any] = None) -> Any:
     """

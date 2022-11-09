@@ -6,28 +6,28 @@ system error codes. See: https://docs.micropython.org/en/v1.19.1/library/errno.h
 This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
 """
-from typing import Any, Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Dict
 
-EACCES: int
-EADDRINUSE: int
-EAGAIN: int
-EALREADY: int
-EBADF: int
-ECONNABORTED: int
-ECONNREFUSED: int
-ECONNRESET: int
-EEXIST: int
-EHOSTUNREACH: int
-EINPROGRESS: int
-EINVAL: int
-EIO: int
-EISDIR: int
 ENOBUFS: int
 ENODEV: int
 ENOENT: int
-ENOMEM: int
-ENOTCONN: int
-EOPNOTSUPP: int
+EISDIR: int
+EIO: int
+EINVAL: int
 EPERM: int
 ETIMEDOUT: int
+ENOMEM: int
+EOPNOTSUPP: int
+ENOTCONN: int
 errorcode: dict
+EAGAIN: int
+EALREADY: int
+EBADF: int
+EADDRINUSE: int
+EACCES: int
+EINPROGRESS: int
+EEXIST: int
+EHOSTUNREACH: int
+ECONNABORTED: int
+ECONNRESET: int
+ECONNREFUSED: int

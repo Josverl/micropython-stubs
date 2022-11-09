@@ -9,31 +9,8 @@ This module allows to decompress binary data compressed with
 is not yet implemented.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
-# Stubber: 1.5.6
+# Stubber: 1.9.11
 from typing import Any
-
-
-class DecompIO:
-    """
-    Create a `stream` wrapper which allows transparent decompression of
-    compressed data in another *stream*. This allows to process compressed
-    streams with data larger than available heap size. In addition to
-    values described in :func:`decompress`, *wbits* may take values
-    24..31 (16 + 8..15), meaning that input stream has gzip header.
-    """
-
-    def __init__(self, stream, wbits=0, /) -> None:
-        """"""
-        ...
-
-    def read(self, *args, **kwargs) -> Any:
-        ...
-
-    def readinto(self, *args, **kwargs) -> Any:
-        ...
-
-    def readline(self, *args, **kwargs) -> Any:
-        ...
 
 
 def decompress(data, wbits=0, bufsize=0, /) -> bytes:
@@ -46,3 +23,25 @@ def decompress(data, wbits=0, bufsize=0, /) -> bytes:
     CPython and is ignored.
     """
     ...
+
+
+class DecompIO:
+    """
+    Create a `stream` wrapper which allows transparent decompression of
+    compressed data in another *stream*. This allows to process compressed
+    streams with data larger than available heap size. In addition to
+    values described in :func:`decompress`, *wbits* may take values
+    24..31 (16 + 8..15), meaning that input stream has gzip header.
+    """
+
+    def readinto(self, *args, **kwargs) -> Any:
+        ...
+
+    def readline(self, *args, **kwargs) -> Any:
+        ...
+
+    def read(self, *args, **kwargs) -> Any:
+        ...
+
+    def __init__(self, stream, wbits=0, /) -> None:
+        ...

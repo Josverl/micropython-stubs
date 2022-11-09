@@ -1,12 +1,27 @@
 """
 cryptographic ciphers. See: https://docs.micropython.org/en/v1.19.1/library/cryptolib.html
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.7.2
-from typing import Any, Optional
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.9.11
+from typing import Optional, Any
 
 
 class aes:
+    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Any:
+        """
+        Encrypt *in_buf*. If no *out_buf* is given result is returned as a
+        newly allocated `bytes` object. Otherwise, result is written into
+        mutable buffer *out_buf*. *in_buf* and *out_buf* can also refer
+        to the same mutable buffer, in which case data is encrypted in-place.
+        """
+        ...
+
+    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Any:
+        """
+        Like `encrypt()`, but for decryption.
+        """
+        ...
+
     def __init__(self, key, mode, IV: Optional[Any] = None) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:
@@ -25,20 +40,5 @@ class aes:
 
             * *IV* is an initialization vector for CBC mode.
             * For Counter mode, *IV* is the initial value for the counter.
-        """
-        ...
-
-    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Any:
-        """
-        Like `encrypt()`, but for decryption.
-        """
-        ...
-
-    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Any:
-        """
-        Encrypt *in_buf*. If no *out_buf* is given result is returned as a
-        newly allocated `bytes` object. Otherwise, result is written into
-        mutable buffer *out_buf*. *in_buf* and *out_buf* can also refer
-        to the same mutable buffer, in which case data is encrypted in-place.
         """
         ...

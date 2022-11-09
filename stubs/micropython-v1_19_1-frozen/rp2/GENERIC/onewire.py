@@ -1,5 +1,6 @@
 # 1-Wire driver for MicroPython
 # MIT license; Copyright (c) 2016 Damien P. George
+# Micropython 1.19.1 frozen stubs
 
 import _onewire as _ow
 

@@ -31,18 +31,16 @@ For example::
     data = s.recv(1000)
     s.close()
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.7.2
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.9.11
 from typing import Any, List, Optional, Tuple
 
-AP_IF = 1  # type: int
-STAT_CONNECTING = 1  # type: int
-STAT_CONNECT_FAIL = -1  # type: int
-STAT_GOT_IP = 3  # type: int
-STAT_IDLE = 0  # type: int
-STAT_NO_AP_FOUND = -2  # type: int
-STAT_WRONG_PASSWORD = -3  # type: int
 STA_IF = 0  # type: int
+AP_IF = 1  # type: int
+
+
+def route(*args, **kwargs) -> Any:
+    ...
 
 
 class WLAN:
@@ -54,68 +52,9 @@ class WLAN:
     For example, only STA interface may `WLAN.connect()` to an access point.
     """
 
-    def __init__(self, interface_id) -> None:
-        ...
-
-    def active(self, is_active: Optional[Any] = None) -> None:
-        """
-        Activate ("up") or deactivate ("down") network interface, if boolean
-        argument is passed. Otherwise, query current state if no argument is
-        provided. Most other methods require active interface.
-        """
-        ...
-
-    def config(self, param) -> Any:
-        """
-        Get or set general network interface parameters. These methods allow to work
-        with additional parameters beyond standard IP configuration (as dealt with by
-        `WLAN.ifconfig()`). These include network-specific and hardware-specific
-        parameters. For setting parameters, keyword argument syntax should be used,
-        multiple parameters can be set at once. For querying, parameters name should
-        be quoted as a string, and only one parameter can be queries at time::
-
-         # Set WiFi access point name (formally known as ESSID) and WiFi channel
-         ap.config(essid='My AP', channel=11)
-         # Query params one by one
-         print(ap.config('essid'))
-         print(ap.config('channel'))
-
-        Following are commonly supported parameters (availability of a specific parameter
-        depends on network technology type, driver, and :term:`MicroPython port`).
-
-        =============  ===========
-        Parameter      Description
-        =============  ===========
-        mac            MAC address (bytes)
-        essid          WiFi access point name (string)
-        channel        WiFi channel (integer)
-        hidden         Whether ESSID is hidden (boolean)
-        authmode       Authentication mode supported (enumeration, see module constants)
-        password       Access password (string)
-        dhcp_hostname  The DHCP hostname to use
-        reconnects     Number of reconnect attempts to make (integer, 0=none, -1=unlimited)
-        txpower        Maximum transmit power in dBm (integer or float)
-        =============  ===========
-        """
-        ...
-
-    def connect(self, ssid=None, password=None, *, bssid=None) -> None:
-        """
-        Connect to the specified wireless network, using the specified password.
-        If *bssid* is given then the connection will be restricted to the
-        access-point with that MAC address (the *ssid* must also be specified
-        in this case).
-        """
-        ...
-
-    def deinit(self, *args, **kwargs) -> Any:
-        ...
-
-    def disconnect(self) -> None:
-        """
-        Disconnect from the currently connected wireless network.
-        """
-        ...
+    WEP = 3  # type: int
+    WPA_PSK = 2  # type: int
+    OPEN = 1  # type: int
 
     def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
         """
@@ -168,9 +107,6 @@ class WLAN:
         """
         ...
 
-    def send_ethernet(self, *args, **kwargs) -> Any:
-        ...
-
     def status(self, param: Optional[Any] = None) -> Any:
         """
         Return the current status of the wireless connection.
@@ -190,6 +126,62 @@ class WLAN:
         """
         ...
 
+    def disconnect(self) -> None:
+        """
+        Disconnect from the currently connected wireless network.
+        """
+        ...
 
-def route(*args, **kwargs) -> Any:
-    ...
+    def active(self, is_active: Optional[Any] = None) -> None:
+        """
+        Activate ("up") or deactivate ("down") network interface, if boolean
+        argument is passed. Otherwise, query current state if no argument is
+        provided. Most other methods require active interface.
+        """
+        ...
+
+    def config(self, *args, **kwargs) -> Any:
+        """
+        Get or set general network interface parameters. These methods allow to work
+        with additional parameters beyond standard IP configuration (as dealt with by
+        `WLAN.ifconfig()`). These include network-specific and hardware-specific
+        parameters. For setting parameters, keyword argument syntax should be used,
+        multiple parameters can be set at once. For querying, parameters name should
+        be quoted as a string, and only one parameter can be queries at time::
+
+         # Set WiFi access point name (formally known as ESSID) and WiFi channel
+         ap.config(essid='My AP', channel=11)
+         # Query params one by one
+         print(ap.config('essid'))
+         print(ap.config('channel'))
+
+        Following are commonly supported parameters (availability of a specific parameter
+        depends on network technology type, driver, and :term:`MicroPython port`).
+
+        =============  ===========
+        Parameter      Description
+        =============  ===========
+        mac            MAC address (bytes)
+        essid          WiFi access point name (string)
+        channel        WiFi channel (integer)
+        hidden         Whether ESSID is hidden (boolean)
+        authmode       Authentication mode supported (enumeration, see module constants)
+        password       Access password (string)
+        dhcp_hostname  The DHCP hostname to use
+        reconnects     Number of reconnect attempts to make (integer, 0=none, -1=unlimited)
+        txpower        Maximum transmit power in dBm (integer or float)
+        =============  ===========
+        """
+        ...
+
+    def connect(self, ssid=None, password=None, *, bssid=None) -> None:
+        """
+        Connect to the specified wireless network, using the specified password.
+        If *bssid* is given then the connection will be restricted to the
+        access-point with that MAC address (the *ssid* must also be specified
+        in this case).
+        """
+        ...
+
+    def __init__(self, interface_id) -> None:
+        ...

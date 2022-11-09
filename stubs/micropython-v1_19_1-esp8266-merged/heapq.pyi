@@ -9,13 +9,7 @@ This module implements the
 A heap queue is essentially a list that has its elements stored in such a way
 that the first item of the list is always the smallest.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
-
-def heapify(x) -> Any:
-    """
-    Convert the list ``x`` into a heap.  This is an in-place operation.
-    """
-    ...
+from typing import Any
 
 def heappop(heap) -> Any:
     """
@@ -29,5 +23,11 @@ def heappop(heap) -> Any:
 def heappush(heap, item) -> Any:
     """
     Push the ``item`` onto the ``heap``.
+    """
+    ...
+
+def heapify(x) -> Any:
+    """
+    Convert the list ``x`` into a heap.  This is an in-place operation.
     """
     ...

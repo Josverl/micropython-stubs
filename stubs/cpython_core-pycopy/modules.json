@@ -25,10 +25,6 @@
             "module": "pycopy"
         },
         {
-            "file": "pycopy_imphook.py",
-            "module": "pycopy_imphook"
-        },
-        {
             "file": "uarray.py",
             "module": "uarray"
         },

@@ -9,6 +9,7 @@
 # 2019-Oct-23 - v1.1 - Removed temp sensor code, prep for frozen modules
 
 # Import required libraries
+# Micropython 1.19.1 frozen stubs
 from micropython import const
 from machine import Pin, SPI, ADC
 import machine, time, esp32

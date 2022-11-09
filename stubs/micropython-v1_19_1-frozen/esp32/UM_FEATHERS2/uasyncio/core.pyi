@@ -1,3 +1,4 @@
+# Micropython 1.19.1 frozen stubs
 from .task import Task as Task, TaskQueue as TaskQueue
 from _typeshed import Incomplete
 

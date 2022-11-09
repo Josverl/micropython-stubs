@@ -8,11 +8,11 @@ widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
-# Stubber: 1.5.6
+# Stubber: 1.9.11
 from typing import Any
 
 
-def wrap_socket(sock, server_side=False, keyfile=None, certfile=None, cert_reqs=CERT_NONE, ca_certs=None, do_handshake=True) -> Any:
+def wrap_socket(sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, ca_certs=None, do_handshake=True) -> Any:
     """
     Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
     and returns an instance of ssl.SSLSocket, which wraps the underlying stream in

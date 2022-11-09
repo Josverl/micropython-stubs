@@ -3,41 +3,19 @@ control the garbage collector. See: https://docs.micropython.org/en/v1.19.1/libr
 
 |see_cpython_module| :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.7.2
-from typing import Any, Optional
-
-
-def collect() -> None:
-    """
-    Run a garbage collection.
-    """
-    ...
-
-
-def disable() -> None:
-    """
-    Disable automatic garbage collection.  Heap memory can still be allocated,
-    and garbage collection can still be initiated manually using :meth:`gc.collect`.
-    """
-    ...
-
-
-def enable() -> None:
-    """
-    Enable automatic garbage collection.
-    """
-    ...
-
-
-def isenabled(*args, **kwargs) -> Any:
-    ...
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.9.11
+from typing import Optional, Any
 
 
 def mem_alloc() -> int:
     """
     Return the number of bytes of heap RAM that are allocated.
     """
+    ...
+
+
+def isenabled(*args, **kwargs) -> Any:
     ...
 
 
@@ -65,5 +43,27 @@ def threshold(amount: Optional[Any] = None) -> Any:
 
     Calling the function without argument will return the current value of
     the threshold. A value of -1 means a disabled allocation threshold.
+    """
+    ...
+
+
+def collect() -> None:
+    """
+    Run a garbage collection.
+    """
+    ...
+
+
+def enable() -> None:
+    """
+    Enable automatic garbage collection.
+    """
+    ...
+
+
+def disable() -> None:
+    """
+    Disable automatic garbage collection.  Heap memory can still be allocated,
+    and garbage collection can still be initiated manually using :meth:`gc.collect`.
     """
     ...

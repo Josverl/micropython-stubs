@@ -1,5 +1,6 @@
 # MicroPython aioble module
 # MIT license; Copyright (c) 2021 Jim Mussared
+# Micropython 1.19.1 frozen stubs
 
 from micropython import const
 

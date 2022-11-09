@@ -1,4 +1,5 @@
 # MicroPython SSD1306 OLED driver, I2C and SPI interfaces
+# Micropython 1.19.1 frozen stubs
 
 from micropython import const
 import framebuf

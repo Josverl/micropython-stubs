@@ -1,4 +1,5 @@
 # LOLIN S2 PICO MicroPython Helper Library
+# Micropython 1.19.1 frozen stubs
 
 from micropython import const
 from machine import Pin, I2C, Signal

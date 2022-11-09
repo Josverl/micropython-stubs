@@ -12,7 +12,7 @@ facilities for network sockets, both client-side and server-side.
 from typing import Any
 
 
-def wrap_socket(sock, server_side=False, keyfile=None, certfile=None, cert_reqs=CERT_NONE, ca_certs=None, do_handshake=True) -> Any:
+def wrap_socket(sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, ca_certs=None, do_handshake=True) -> Any:
     """
     Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
     and returns an instance of ssl.SSLSocket, which wraps the underlying stream in

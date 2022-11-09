@@ -8,7 +8,7 @@ This module implements multithreading support.
 This module is highly experimental and its API is not yet fully settled
 and not yet described in this documentation.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Any
 
 def get_ident(*args, **kwargs) -> Any: ...
 def start_new_thread(*args, **kwargs) -> Any: ...

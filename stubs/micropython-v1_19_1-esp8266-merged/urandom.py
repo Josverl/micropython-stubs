@@ -26,14 +26,7 @@ This module implements a pseudo-random number generator (PRNG).
 
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
-# Stubber: 1.5.6
-
-
-def getrandbits(n) -> int:
-    """
-    Return an integer with *n* random bits (0 <= n <= 32).
-    """
-    ...
+# Stubber: 1.9.11
 
 
 def seed(n=None, /) -> None:
@@ -45,5 +38,12 @@ def seed(n=None, /) -> None:
 
     The ``None`` case only works if ``MICROPY_PY_URANDOM_SEED_INIT_FUNC`` is
     enabled by the port, otherwise it raises ``ValueError``.
+    """
+    ...
+
+
+def getrandbits(n) -> int:
+    """
+    Return an integer with *n* random bits (0 <= n <= 32).
     """
     ...

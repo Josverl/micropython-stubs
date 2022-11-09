@@ -8,58 +8,48 @@ module is to define data structure layout with about the same power as the
 C language allows, and then access it using familiar dot-syntax to reference
 sub-fields.
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.7.2
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.9.11
 
-ARRAY = -1073741824  # type: int
-BFINT16 = -671088640  # type: int
-BFINT32 = -402653184  # type: int
-BFINT8 = -939524096  # type: int
-BFUINT16 = -805306368  # type: int
-BFUINT32 = -536870912  # type: int
-BFUINT8 = -1073741824  # type: int
-BF_LEN = 22  # type: int
-BF_POS = 17  # type: int
-BIG_ENDIAN = 1  # type: int
-FLOAT32 = -268435456  # type: int
-FLOAT64 = -134217728  # type: int
-INT = 671088640  # type: int
-INT16 = 402653184  # type: int
-INT32 = 671088640  # type: int
-INT64 = 939524096  # type: int
-INT8 = 134217728  # type: int
-LITTLE_ENDIAN = 0  # type: int
-LONG = 671088640  # type: int
-LONGLONG = 939524096  # type: int
+VOID = 0  # type: int
 NATIVE = 2  # type: int
 PTR = 536870912  # type: int
 SHORT = 402653184  # type: int
+LONGLONG = 939524096  # type: int
+INT8 = 134217728  # type: int
+LITTLE_ENDIAN = 0  # type: int
+LONG = 671088640  # type: int
 UINT = 536870912  # type: int
-UINT16 = 268435456  # type: int
-UINT32 = 536870912  # type: int
-UINT64 = 805306368  # type: int
-UINT8 = 0  # type: int
 ULONG = 536870912  # type: int
 ULONGLONG = 805306368  # type: int
 USHORT = 268435456  # type: int
-VOID = 0  # type: int
+UINT8 = 0  # type: int
+UINT16 = 268435456  # type: int
+UINT32 = 536870912  # type: int
+UINT64 = 805306368  # type: int
+INT64 = 939524096  # type: int
+BFUINT16 = -805306368  # type: int
+BFUINT32 = -536870912  # type: int
+BFUINT8 = -1073741824  # type: int
+BFINT8 = -939524096  # type: int
+ARRAY = -1073741824  # type: int
+BFINT16 = -671088640  # type: int
+BFINT32 = -402653184  # type: int
+BF_LEN = 22  # type: int
+INT = 671088640  # type: int
+INT16 = 402653184  # type: int
+INT32 = 671088640  # type: int
+FLOAT64 = -134217728  # type: int
+BF_POS = 17  # type: int
+BIG_ENDIAN = 1  # type: int
+FLOAT32 = -268435456  # type: int
 
 
-def addressof(obj) -> int:
+def sizeof(struct, layout_type=NATIVE, /) -> int:
     """
-    Return address of an object. Argument should be bytes, bytearray or
-    other object supporting buffer protocol (and address of this buffer
-    is what actually returned).
-    """
-    ...
-
-
-def bytearray_at(addr, size) -> bytearray:
-    """
-    Capture memory at the given address and size as bytearray object.
-    Unlike bytes_at() function above, memory is captured by reference,
-    so it can be both written too, and you will access current value
-    at the given memory address.
+    Return size of data structure in bytes. The *struct* argument can be
+    either a structure class or a specific instantiated structure object
+    (or its aggregate field).
     """
     ...
 
@@ -74,11 +64,21 @@ def bytes_at(addr, size) -> bytes:
     ...
 
 
-def sizeof(struct, layout_type=NATIVE, /) -> int:
+def bytearray_at(addr, size) -> bytearray:
     """
-    Return size of data structure in bytes. The *struct* argument can be
-    either a structure class or a specific instantiated structure object
-    (or its aggregate field).
+    Capture memory at the given address and size as bytearray object.
+    Unlike bytes_at() function above, memory is captured by reference,
+    so it can be both written too, and you will access current value
+    at the given memory address.
+    """
+    ...
+
+
+def addressof(obj) -> int:
+    """
+    Return address of an object. Argument should be bytes, bytearray or
+    other object supporting buffer protocol (and address of this buffer
+    is what actually returned).
     """
     ...
 

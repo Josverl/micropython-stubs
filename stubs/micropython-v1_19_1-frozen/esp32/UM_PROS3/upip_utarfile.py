@@ -1,3 +1,4 @@
+# Micropython 1.19.1 frozen stubs
 import uctypes
 
 # http://www.gnu.org/software/tar/manual/html_node/Standard.html

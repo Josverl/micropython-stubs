@@ -1,8 +1,11 @@
-from typing import Any
+# CPython core - micropython
+# updated 4/11/2022
+from typing import Any, Union
 
 class UioStream:
     _s: Any
     _is_bin: Any
+
     def __init__(self, s, is_bin) -> None: ...
     def write(self, data, off: Union[Any, None] = ..., sz: Union[Any, None] = ...) -> None: ...
     def __getattr__(self, attr) -> None: ...

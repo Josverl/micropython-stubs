@@ -1,3 +1,4 @@
+# Micropython 1.19.1 frozen stubs
 from _rp2 import *
 from _typeshed import Incomplete
 

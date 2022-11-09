@@ -1,3 +1,4 @@
+# Micropython 1.19.1 frozen stubs
 try:
     import usocket as socket
 except:

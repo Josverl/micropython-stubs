@@ -25,13 +25,8 @@ This module implements a pseudo-random number generator (PRNG).
    enabled.
 
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
-def getrandbits(n) -> int:
-    """
-    Return an integer with *n* random bits (0 <= n <= 32).
-    """
-    ...
 def seed(n=None, /) -> None:
     """
     Initialise the random number generator module with the seed *n* which should
@@ -41,5 +36,11 @@ def seed(n=None, /) -> None:
 
     The ``None`` case only works if ``MICROPY_PY_URANDOM_SEED_INIT_FUNC`` is
     enabled by the port, otherwise it raises ``ValueError``.
+    """
+    ...
+
+def getrandbits(n) -> int:
+    """
+    Return an integer with *n* random bits (0 <= n <= 32).
     """
     ...

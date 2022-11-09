@@ -31,26 +31,28 @@ For example::
     data = s.recv(1000)
     s.close()
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import List, Optional, Tuple, Union, Any
 
-AP_IF: int
-AUTH_OPEN: int
-AUTH_WEP: int
-AUTH_WPA2_PSK: int
-AUTH_WPA_PSK: int
-AUTH_WPA_WPA2_PSK: int
-MODE_11B: int
-MODE_11G: int
-MODE_11N: int
-STAT_CONNECTING: int
-STAT_CONNECT_FAIL: int
-STAT_GOT_IP: int
-STAT_IDLE: int
-STAT_NO_AP_FOUND: int
-STAT_WRONG_PASSWORD: int
 STA_IF: int
+STAT_CONNECT_FAIL: int
+STAT_CONNECTING: int
+MODE_11N: int
+STAT_GOT_IP: int
+STAT_WRONG_PASSWORD: int
+STAT_NO_AP_FOUND: int
+STAT_IDLE: int
+MODE_11G: int
+AUTH_WEP: int
+AUTH_OPEN: int
+AP_IF: int
+AUTH_WPA2_PSK: int
+MODE_11B: int
+AUTH_WPA_WPA2_PSK: int
+AUTH_WPA_PSK: int
 
-class WLAN(AbstractNIC):
+def phy_mode(*args, **kwargs) -> Any: ...
+
+class WLAN:
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access
@@ -143,7 +145,7 @@ class WLAN(AbstractNIC):
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def config(self, param) -> Any:
+    def config(self, *args, **kwargs) -> Any:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
@@ -176,5 +178,3 @@ class WLAN(AbstractNIC):
         =============  ===========
         """
         ...
-
-def phy_mode(*args, **kwargs) -> Any: ...

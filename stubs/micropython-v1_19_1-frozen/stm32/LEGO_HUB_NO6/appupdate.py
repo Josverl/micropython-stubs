@@ -1,5 +1,6 @@
 # Application firmware update funcion for LEGO_HUB_NO6.
 # MIT license; Copyright (c) 2022 Damien P. George
+# Micropython 1.19.1 frozen stubs
 
 from micropython import const
 import struct, machine, fwupdate, spiflash

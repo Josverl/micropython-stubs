@@ -6,7 +6,7 @@ JSON encoding and decoding. See: https://docs.micropython.org/en/v1.19.1/library
 This modules allows to convert between Python objects and the JSON
 data format.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Any
 
 def loads(str) -> Any:
     """

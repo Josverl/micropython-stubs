@@ -7,13 +7,25 @@ This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
-# Stubber: 1.5.6
-from typing import Any, Iterator, List, Optional, Tuple
+# Stubber: 1.9.11
+from typing import Iterator, List, Optional, Tuple, Any
 
-POLLERR = 8  # type: int
-POLLHUP = 16  # type: int
-POLLIN = 1  # type: int
 POLLOUT = 4  # type: int
+POLLIN = 1  # type: int
+POLLHUP = 16  # type: int
+POLLERR = 8  # type: int
+
+
+class select:
+    """
+    Wait for activity on a set of objects.
+
+    This function is provided by some MicroPython ports for compatibility
+    and is not efficient. Usage of :class:`Poll` is recommended instead.
+    """
+
+    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
+        ...
 
 
 class poll:
@@ -89,16 +101,4 @@ class poll:
         won't be processed until new mask is set with `poll.modify()`. This
         behaviour is useful for asynchronous I/O schedulers.
         """
-        ...
-
-
-class select:
-    """
-    Wait for activity on a set of objects.
-
-    This function is provided by some MicroPython ports for compatibility
-    and is not efficient. Usage of :class:`Poll` is recommended instead.
-    """
-
-    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
         ...

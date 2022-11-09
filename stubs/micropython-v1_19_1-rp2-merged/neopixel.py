@@ -8,8 +8,8 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    <https://github.com/micropython/micropython/blob/master/drivers/neopixel/neopixel.py>`_
    and copy it to the filesystem.
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Raspberry Pi Pico W with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.7.2
+# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
+# Stubber: 1.9.11
 from typing import Any
 
 
@@ -27,8 +27,7 @@ class NeoPixel:
         - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
     """
 
-    def __init__(self, pin, n, *, bpp=3, timing=1) -> None:
-        ...
+    ORDER = ()  # type: tuple
 
     def write(self) -> None:
         """
@@ -43,4 +42,5 @@ class NeoPixel:
         """
         ...
 
-    ORDER = ()  # type: tuple
+    def __init__(self, pin, n, *, bpp=3, timing=1) -> None:
+        ...

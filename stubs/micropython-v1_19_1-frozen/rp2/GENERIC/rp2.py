@@ -1,5 +1,6 @@
 # rp2 module: uses C code from _rp2, plus asm_pio decorator implemented in Python.
 # MIT license; Copyright (c) 2020-2021 Damien P. George
+# Micropython 1.19.1 frozen stubs
 
 from _rp2 import *
 from micropython import const

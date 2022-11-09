@@ -1,11 +1,14 @@
+# CPython core - micropython
+# updated 4/11/2022
 from collections.abc import Generator
-from typing import Any
+from typing import Any, Union
 
 POLLIN: Any
 POLLOUT: Any
 
 class poll:
     sel: Any
+
     def __init__(self) -> None: ...
     def register(self, stream, events, userdata: Union[Any, None] = ...): ...
     def ipoll(self, timeout: int = ...) -> Generator[Any, None, None]: ...

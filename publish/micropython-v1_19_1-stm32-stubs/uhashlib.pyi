@@ -1,7 +1,9 @@
-from typing import Any
+# CPython core - pycopy
+from typing import Any, Union
 
 class _hash:
     _: Any
+
     def __init__(self, data: Union[Any, None] = ...) -> None: ...
     def update(self, data) -> None: ...
     def digest(self) -> None: ...

@@ -28,7 +28,6 @@ results
 scratch 
 
 # no daughter repos
-repos
 micropython
 micropython-lib
 

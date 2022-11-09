@@ -70,7 +70,10 @@ Example::
     f.close()
 
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Dict, Optional, Any
+
+DESC: int
+INCL: int
 
 def open(stream, *, flags=0, pagesize=0, cachesize=0, minkeypage=0) -> Dict:
     """
@@ -97,6 +100,3 @@ def open(stream, *, flags=0, pagesize=0, cachesize=0, minkeypage=0) -> Dict:
     of methods), and some additional methods described below.
     """
     ...
-
-DESC: int
-INCL: int

@@ -11,166 +11,13 @@ working with floating-point numbers.
 Availability: not available on WiPy. Floating point support required
 for this module.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
-
-def pow(x, y) -> Any:
-    """
-    Returns ``x`` to the power of ``y``.
-    """
-    ...
-
-def acos(x) -> float:
-    """
-    Return the inverse cosine of ``x``.
-    """
-    ...
-
-def acosh(x) -> float:
-    """
-    Return the inverse hyperbolic cosine of ``x``.
-    """
-    ...
-
-def asin(x) -> float:
-    """
-    Return the inverse sine of ``x``.
-    """
-    ...
-
-def asinh(x) -> float:
-    """
-    Return the inverse hyperbolic sine of ``x``.
-    """
-    ...
-
-def atan(x) -> float:
-    """
-    Return the inverse tangent of ``x``.
-    """
-    ...
-
-def atan2(y, x) -> float:
-    """
-    Return the principal value of the inverse tangent of ``y/x``.
-    """
-    ...
-
-def atanh(x) -> float:
-    """
-    Return the inverse hyperbolic tangent of ``x``.
-    """
-    ...
-
-def ceil(x) -> int:
-    """
-    Return an integer, being ``x`` rounded towards positive infinity.
-    """
-    ...
-
-def copysign(x, y) -> Any:
-    """
-    Return ``x`` with the sign of ``y``.
-    """
-    ...
-
-def cos(x) -> float:
-    """
-    Return the cosine of ``x``.
-    """
-    ...
-
-def cosh(x) -> float:
-    """
-    Return the hyperbolic cosine of ``x``.
-    """
-    ...
-
-def degrees(x) -> Any:
-    """
-    Return radians ``x`` converted to degrees.
-    """
-    ...
-
-e: float
-
-def erf(x) -> Any:
-    """
-    Return the error function of ``x``.
-    """
-    ...
-
-def erfc(x) -> Any:
-    """
-    Return the complementary error function of ``x``.
-    """
-    ...
-
-def exp(x) -> float:
-    """
-    Return the exponential of ``x``.
-    """
-    ...
-
-def expm1(x) -> Any:
-    """
-    Return ``exp(x) - 1``.
-    """
-    ...
-
-def fabs(x) -> Any:
-    """
-    Return the absolute value of ``x``.
-    """
-    ...
-
-def factorial(*args, **kwargs) -> Any: ...
-def floor(x) -> int:
-    """
-    Return an integer, being ``x`` rounded towards negative infinity.
-    """
-    ...
-
-def fmod(x, y) -> Any:
-    """
-    Return the remainder of ``x/y``.
-    """
-    ...
-
-def frexp(x) -> Any:
-    """
-    Decomposes a floating-point number into its mantissa and exponent.
-    The returned value is the tuple ``(m, e)`` such that ``x == m * 2**e``
-    exactly.  If ``x == 0`` then the function returns ``(0.0, 0)``, otherwise
-    the relation ``0.5 <= abs(m) < 1`` holds.
-    """
-    ...
-
-def gamma(x) -> Any:
-    """
-    Return the gamma function of ``x``.
-    """
-    ...
+from typing import Tuple, Any
 
 inf: float
-
-def isclose(*args, **kwargs) -> Any: ...
-def isfinite(x) -> bool:
-    """
-    Return ``True`` if ``x`` is finite.
-    """
-    ...
-
-def isinf(x) -> bool:
-    """
-    Return ``True`` if ``x`` is infinite.
-    """
-    ...
-
-def isnan(x) -> bool:
-    """
-    Return ``True`` if ``x`` is not-a-number
-    """
-    ...
+nan: float
+pi: float
+e: float
+tau: float
 
 def ldexp(x, exp) -> Any:
     """
@@ -184,43 +31,40 @@ def lgamma(x) -> float:
     """
     ...
 
-def log(x) -> float:
+def trunc(x) -> int:
     """
-    Return the natural logarithm of ``x``.
-    """
-    ...
-
-def log10(x) -> float:
-    """
-    Return the base-10 logarithm of ``x``.
+    Return an integer, being ``x`` rounded towards 0.
     """
     ...
 
-def log2(x) -> float:
+def isclose(*args, **kwargs) -> Any: ...
+def gamma(x) -> Any:
     """
-    Return the base-2 logarithm of ``x``.
-    """
-    ...
-
-def modf(x) -> Tuple:
-    """
-    Return a tuple of two floats, being the fractional and integral parts of
-    ``x``.  Both return values have the same sign as ``x``.
+    Return the gamma function of ``x``.
     """
     ...
 
-nan: float
-pi: float
-
-def radians(x) -> Any:
+def isnan(x) -> bool:
     """
-    Return degrees ``x`` converted to radians.
+    Return ``True`` if ``x`` is not-a-number
     """
     ...
 
-def sin(x) -> float:
+def isfinite(x) -> bool:
     """
-    Return the sine of ``x``.
+    Return ``True`` if ``x`` is finite.
+    """
+    ...
+
+def isinf(x) -> bool:
+    """
+    Return ``True`` if ``x`` is infinite.
+    """
+    ...
+
+def sqrt(x) -> Any:
+    """
+    Return the square root of ``x``.
     """
     ...
 
@@ -230,9 +74,9 @@ def sinh(x) -> float:
     """
     ...
 
-def sqrt(x) -> Any:
+def log(x) -> float:
     """
-    Return the square root of ``x``.
+    Return the natural logarithm of ``x``.
     """
     ...
 
@@ -248,10 +92,163 @@ def tanh(x) -> float:
     """
     ...
 
-tau: float
-
-def trunc(x) -> int:
+def log2(x) -> float:
     """
-    Return an integer, being ``x`` rounded towards 0.
+    Return the base-2 logarithm of ``x``.
+    """
+    ...
+
+def log10(x) -> float:
+    """
+    Return the base-10 logarithm of ``x``.
+    """
+    ...
+
+def sin(x) -> float:
+    """
+    Return the sine of ``x``.
+    """
+    ...
+
+def modf(x) -> Tuple:
+    """
+    Return a tuple of two floats, being the fractional and integral parts of
+    ``x``.  Both return values have the same sign as ``x``.
+    """
+    ...
+
+def radians(x) -> Any:
+    """
+    Return degrees ``x`` converted to radians.
+    """
+    ...
+
+def atanh(x) -> float:
+    """
+    Return the inverse hyperbolic tangent of ``x``.
+    """
+    ...
+
+def atan2(y, x) -> float:
+    """
+    Return the principal value of the inverse tangent of ``y/x``.
+    """
+    ...
+
+def atan(x) -> float:
+    """
+    Return the inverse tangent of ``x``.
+    """
+    ...
+
+def ceil(x) -> int:
+    """
+    Return an integer, being ``x`` rounded towards positive infinity.
+    """
+    ...
+
+def copysign(x, y) -> Any:
+    """
+    Return ``x`` with the sign of ``y``.
+    """
+    ...
+
+def frexp(x) -> Any:
+    """
+    Decomposes a floating-point number into its mantissa and exponent.
+    The returned value is the tuple ``(m, e)`` such that ``x == m * 2**e``
+    exactly.  If ``x == 0`` then the function returns ``(0.0, 0)``, otherwise
+    the relation ``0.5 <= abs(m) < 1`` holds.
+    """
+    ...
+
+def acos(x) -> float:
+    """
+    Return the inverse cosine of ``x``.
+    """
+    ...
+
+def pow(x, y) -> Any:
+    """
+    Returns ``x`` to the power of ``y``.
+    """
+    ...
+
+def asinh(x) -> float:
+    """
+    Return the inverse hyperbolic sine of ``x``.
+    """
+    ...
+
+def acosh(x) -> float:
+    """
+    Return the inverse hyperbolic cosine of ``x``.
+    """
+    ...
+
+def asin(x) -> float:
+    """
+    Return the inverse sine of ``x``.
+    """
+    ...
+
+def factorial(*args, **kwargs) -> Any: ...
+def fabs(x) -> Any:
+    """
+    Return the absolute value of ``x``.
+    """
+    ...
+
+def expm1(x) -> Any:
+    """
+    Return ``exp(x) - 1``.
+    """
+    ...
+
+def floor(x) -> int:
+    """
+    Return an integer, being ``x`` rounded towards negative infinity.
+    """
+    ...
+
+def fmod(x, y) -> Any:
+    """
+    Return the remainder of ``x/y``.
+    """
+    ...
+
+def cos(x) -> float:
+    """
+    Return the cosine of ``x``.
+    """
+    ...
+
+def degrees(x) -> Any:
+    """
+    Return radians ``x`` converted to degrees.
+    """
+    ...
+
+def cosh(x) -> float:
+    """
+    Return the hyperbolic cosine of ``x``.
+    """
+    ...
+
+def exp(x) -> float:
+    """
+    Return the exponential of ``x``.
+    """
+    ...
+
+def erf(x) -> Any:
+    """
+    Return the error function of ``x``.
+    """
+    ...
+
+def erfc(x) -> Any:
+    """
+    Return the complementary error function of ``x``.
     """
     ...

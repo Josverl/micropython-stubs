@@ -1,3 +1,4 @@
+# CPython core - pycopy
 import micropython
 import uio
 import ssl

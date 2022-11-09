@@ -71,8 +71,11 @@ Example::
 
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
-# Stubber: 1.5.6
+# Stubber: 1.9.11
 from typing import Dict
+
+DESC = 2  # type: int
+INCL = 1  # type: int
 
 
 def open(stream, *, flags=0, pagesize=0, cachesize=0, minkeypage=0) -> Dict:
@@ -100,7 +103,3 @@ def open(stream, *, flags=0, pagesize=0, cachesize=0, minkeypage=0) -> Dict:
     of methods), and some additional methods described below.
     """
     ...
-
-
-DESC = 2  # type: int
-INCL = 1  # type: int
