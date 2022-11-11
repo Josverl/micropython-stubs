@@ -6,7 +6,7 @@ collection and container types. See: https://docs.micropython.org/en/v1.17/libra
 This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 from queue import Queue
 
 class OrderedDict:
@@ -33,6 +33,7 @@ class OrderedDict:
         w 5
         b 3
     """
+
     def clear(self, *args) -> Any: ...
     def copy(self, *args) -> Any: ...
     def get(self, *args) -> Any: ...
@@ -63,6 +64,7 @@ class deque:
     As well as supporting `bool` and `len`, deque objects have the following
     methods:
     """
+
     def append(self, x) -> Any:
         """
         Add *x* to the right side of the deque.

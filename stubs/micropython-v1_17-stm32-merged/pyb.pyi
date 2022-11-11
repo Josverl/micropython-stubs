@@ -3,7 +3,7 @@ functions related to the board. See: https://docs.micropython.org/en/v1.17/libra
 
 The ``pyb`` module contains specific functions related to the board.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import List, NoReturn, Optional, Tuple, Any
 
 def main(filename) -> None:
     """
@@ -13,6 +13,7 @@ def main(filename) -> None:
     It only makes sense to call this function from within boot.py.
     """
     ...
+
 def stop() -> Any:
     """
     Put the pyboard in a "sleeping" state.
@@ -51,6 +52,7 @@ class DAC:
     to be less than 1.5MΩ.  Using the buffer incurs a penalty in accuracy,
     especially near the extremes of range.
     """
+
     def __init__(self, port, bits=8, *, buffering=None) -> None: ...
     def write(self, value) -> Any:
         """
@@ -113,6 +115,7 @@ class RTC:
     Create an RTC object.
 
     """
+
     def __init__(self) -> None: ...
     def calibration(self, cal) -> int:
         """
@@ -177,6 +180,7 @@ class ADC:
     Create an ADC object associated with the given pin.
     This allows you to then read analog values on that pin.
     """
+
     def __init__(self, pin) -> None: ...
     def read(self) -> Any:
         """
@@ -286,6 +290,7 @@ class Accel:
     """
     Create and return an accelerometer object.
     """
+
     def __init__(self) -> None: ...
     def read(self, *args, **kwargs) -> Any: ...
     def write(self, *args, **kwargs) -> Any: ...
@@ -333,6 +338,7 @@ class CAN:
       - ``CAN(1)`` is on ``YA``: ``(RX, TX) = (Y3, Y4) = (PB8, PB9)``
       - ``CAN(2)`` is on ``YB``: ``(RX, TX) = (Y5, Y6) = (PB12, PB13)``
     """
+
     def __init__(self, bus, *args) -> None: ...
     def any(self, fifo) -> bool:
         """
@@ -618,6 +624,7 @@ class ExtInt:
         triggered the interrupt.
 
     """
+
     def __init__(self, pin, mode, pull, callback) -> None: ...
     EVT_FALLING: int
     EVT_RISING: int
@@ -665,6 +672,7 @@ class Flash:
 
     This constructor is deprecated and will be removed in a future version of MicroPython.
     """
+
     def __init__(self) -> None: ...
     def ioctl(self, cmd, arg) -> Any:
         """
@@ -697,6 +705,7 @@ class I2C:
     Calling the constructor with 'X' or 'Y' enables portability between Pyboard
     types.
     """
+
     def __init__(self, bus, *args) -> None: ...
     def send(self, send, addr=0x00, *, timeout=5000) -> None:
         """
@@ -790,6 +799,7 @@ class LCD:
     should match the position where the LCD pyskin is plugged in.
 
     """
+
     def __init__(self, skin_position) -> None: ...
     def get(self, x, y) -> int:
         """
@@ -854,6 +864,7 @@ class LED:
       - ``id`` is the LED number, 1-4.
 
     """
+
     def __init__(self, id) -> None: ...
     def intensity(self, value: Optional[Any] = None) -> None:
         """
@@ -890,6 +901,7 @@ class Pin:
     Create a new Pin object associated with the id.  If additional arguments are given,
     they are used to initialise the pin.  See :meth:`pin.init`.
     """
+
     def __init__(self, id, *args) -> None: ...
     @classmethod
     def dict(cls, dict: Optional[Any] = None) -> Any:
@@ -959,6 +971,7 @@ class Pin:
         Returns an array of alternate functions available for this pin.
         """
         ...
+
     class board:
         def __init__(self, *argv, **kwargs) -> None: ...
         LED_BLUE: Any
@@ -1010,6 +1023,7 @@ class Pin:
         Y7: Any
         Y8: Any
         Y9: Any
+
     class cpu:
         def __init__(self, *argv, **kwargs) -> None: ...
         A0: Any
@@ -1172,6 +1186,7 @@ class SPI:
     At the moment, the NSS pin is not used by the SPI driver and is free
     for other use.
     """
+
     def __init__(self, bus, *args) -> None: ...
     def read(self, *args, **kwargs) -> Any: ...
     def readinto(self, *args, **kwargs) -> Any: ...
@@ -1256,6 +1271,7 @@ class Servo:
     Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
 
     """
+
     def __init__(self, id) -> None: ...
     def angle(self, angle: Optional[Any] = None, time=0) -> Any:
         """
@@ -1308,6 +1324,7 @@ class Switch:
     Create and return a switch object.
 
     """
+
     def __init__(self) -> None: ...
     def value(self) -> bool:
         """
@@ -1327,6 +1344,7 @@ class Timer:
     arguments are given, then the timer is initialised by ``init(...)``.
     ``id`` can be 1 to 14.
     """
+
     def __init__(self, id, *args) -> None: ...
     BOTH: int
     BRK_HIGH: int
@@ -1552,6 +1570,7 @@ class UART:
     *Note:* Pyboard D has ``UART(1)`` on ``YA``, unlike Pyboard and Pyboard Lite that both
     have ``UART(1)`` on ``XB`` and ``UART(6)`` on ``YA``.
     """
+
     def __init__(self, bus, *args) -> None: ...
     def any(self) -> int:
         """
@@ -1663,6 +1682,7 @@ class USB_HID:
     Create a new USB_HID object.
 
     """
+
     def __init__(self) -> None: ...
     def send(self, data) -> None:
         """
@@ -1691,6 +1711,7 @@ class USB_VCP:
     use.
 
     """
+
     def __init__(self, id=0) -> None: ...
     def any(self) -> bool:
         """
@@ -1813,12 +1834,14 @@ def bootloader() -> None:
     Activate the bootloader without BOOT* pins.
     """
     ...
+
 def country(*args, **kwargs) -> Any: ...
 def delay(ms) -> None:
     """
     Delay for the given number of milliseconds.
     """
     ...
+
 def dht_readinto(*args, **kwargs) -> Any: ...
 def disable_irq() -> Any:
     """
@@ -1828,6 +1851,7 @@ def disable_irq() -> Any:
     the IRQ to its original state.
     """
     ...
+
 def elapsed_micros(start) -> int:
     """
     Returns the number of microseconds which have elapsed since ``start``.
@@ -1843,6 +1867,7 @@ def elapsed_micros(start) -> int:
             pass
     """
     ...
+
 def elapsed_millis(start) -> int:
     """
     Returns the number of milliseconds which have elapsed since ``start``.
@@ -1857,6 +1882,7 @@ def elapsed_millis(start) -> int:
             # Perform some operation
     """
     ...
+
 def enable_irq(state=True) -> None:
     """
     Enable interrupt requests.
@@ -1866,6 +1892,7 @@ def enable_irq(state=True) -> None:
     exit a critical section.
     """
     ...
+
 def fault_debug(value) -> None:
     """
     Enable or disable hard-fault debugging.  A hard-fault is when there is a fatal
@@ -1880,6 +1907,7 @@ def fault_debug(value) -> None:
     The default value is disabled, i.e. to automatically reset.
     """
     ...
+
 def freq(sysclk, hclk, pclk1, pclk2) -> Tuple:
     """
     If given no arguments, returns a tuple of clock frequencies:
@@ -1919,12 +1947,14 @@ def freq(sysclk, hclk, pclk1, pclk2) -> Tuple:
     frequencies below 36MHz do not allow the USB to function correctly.
     """
     ...
+
 def hard_reset() -> NoReturn:
     """
     Resets the pyboard in a manner similar to pushing the external RESET
     button.
     """
     ...
+
 def have_cdc() -> bool:
     """
     Return True if USB is connected as a serial device, False otherwise.
@@ -1932,6 +1962,7 @@ def have_cdc() -> bool:
     ``Note:`` This function is deprecated.  Use pyb.USB_VCP().isconnected() instead.
     """
     ...
+
 def hid(hidtuple) -> Any:
     """
     Takes a 4-tuple (or list) and sends it to the USB host (the PC) to
@@ -1949,6 +1980,7 @@ def info(dump_alloc_table: Optional[Any] = None) -> None:
     Print out lots of information about the board.
     """
     ...
+
 def micros() -> int:
     """
     Returns the number of microseconds since the board was last reset.
@@ -1962,6 +1994,7 @@ def micros() -> int:
     will affect the outcome of :meth:`pyb.elapsed_micros()`.
     """
     ...
+
 def millis() -> int:
     """
     Returns the number of milliseconds since the board was last reset.
@@ -1975,6 +2008,7 @@ def millis() -> int:
     will affect the outcome of :meth:`pyb.elapsed_millis()`.
     """
     ...
+
 def mount(device, mountpoint, *, readonly=False, mkfs=False) -> int:
     """
     ``Note:`` This function is deprecated. Mounting and unmounting devices should
@@ -2009,6 +2043,7 @@ def mount(device, mountpoint, *, readonly=False, mkfs=False) -> int:
     already exist.
     """
     ...
+
 def pwm(*args, **kwargs) -> Any: ...
 def repl_info(*args, **kwargs) -> Any: ...
 def repl_uart(uart) -> UART:
@@ -2016,11 +2051,13 @@ def repl_uart(uart) -> UART:
     Get or set the UART object where the REPL is repeated on.
     """
     ...
+
 def rng() -> int:
     """
     Return a 30-bit hardware generated random number.
     """
     ...
+
 def servo(*args, **kwargs) -> Any: ...
 def standby() -> Any:
     """
@@ -2034,21 +2071,25 @@ def standby() -> Any:
     See :meth:`rtc.wakeup` to configure a real-time-clock wakeup event.
     """
     ...
+
 def sync() -> None:
     """
     Sync all file systems.
     """
     ...
+
 def udelay(us) -> None:
     """
     Delay for the given number of microseconds.
     """
     ...
+
 def unique_id() -> str:
     """
     Returns a string of 12 bytes (96 bits), which is the unique ID of the MCU.
     """
     ...
+
 def usb_mode(modestr: Optional[Any] = None, port=-1, vid=0xF055, pid=-1, msc=(), hid=hid_mouse, high_speed=False) -> str:
     """
     If called with no arguments, return the current USB mode as a string.
@@ -2089,6 +2130,7 @@ def usb_mode(modestr: Optional[Any] = None, port=-1, vid=0xF055, pid=-1, msc=(),
     it is supported by the hardware.
     """
     ...
+
 def wfi() -> None:
     """
     Wait for an internal or external interrupt.

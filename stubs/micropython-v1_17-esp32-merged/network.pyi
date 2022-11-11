@@ -31,7 +31,7 @@ For example::
     data = s.recv(1000)
     s.close()
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import List, Optional, Tuple, Union, Any
 
 AP_IF: int
 AUTH_MAX: int
@@ -195,4 +195,5 @@ class WLAN(AbstractNIC):
         =============  ===========
         """
         ...
+
 def phy_mode(*args, **kwargs) -> Any: ...

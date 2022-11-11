@@ -8,7 +8,7 @@ module is to define data structure layout with about the same power as the
 C language allows, and then access it using familiar dot-syntax to reference
 sub-fields.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Any
 
 ARRAY: int
 BFINT16: int
@@ -50,6 +50,7 @@ def addressof(obj) -> int:
     is what actually returned).
     """
     ...
+
 def bytearray_at(addr, size) -> bytearray:
     """
     Capture memory at the given address and size as bytearray object.
@@ -58,6 +59,7 @@ def bytearray_at(addr, size) -> bytearray:
     at the given memory address.
     """
     ...
+
 def bytes_at(addr, size) -> bytes:
     """
     Capture memory at the given address and size as bytes object. As bytes
@@ -66,6 +68,7 @@ def bytes_at(addr, size) -> bytes:
     retains original value.
     """
     ...
+
 def sizeof(struct, layout_type=NATIVE, /) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be

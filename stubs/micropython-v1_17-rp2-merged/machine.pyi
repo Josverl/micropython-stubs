@@ -8,7 +8,7 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Callable, List, NoReturn, Optional, Tuple, Any
 
 class ADC:
     """
@@ -17,6 +17,7 @@ class ADC:
     :ref:`Pin <machine.Pin>` object, or other value supported by the
     underlying machine.
     """
+
     CORE_TEMP: int
     def read_u16(self) -> int:
         """
@@ -41,6 +42,7 @@ class I2C:
     that can be changed in this constructor.  Others will have fixed values
     of *scl* and *sda* that cannot be changed.
     """
+
     def readinto(self, buf, nack=True, /) -> Any:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
@@ -169,6 +171,7 @@ class PWM:
     underlying PWM generator (this is hardware specific).
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
     """
+
     def deinit(self) -> None:
         """
         Disable the PWM output.
@@ -268,6 +271,7 @@ class Pin:
     alternate-function mode is re-initialised with ``Pin.IN``, ``Pin.OUT``, or
     ``Pin.OPEN_DRAIN``, the alternate function will be removed from the pin.
     """
+
     def value(self, x: Optional[Any] = None) -> int:
         """
         This method allows to set and get the value of the pin, depending on whether
@@ -392,6 +396,7 @@ class RTC:
     """
     Create an RTC object. See init for parameters of initialization.
     """
+
     def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
@@ -419,6 +424,7 @@ class SPI:
     the bus, if any).  If extra arguments are given, the bus is initialised.
     See ``init`` for parameters of initialisation.
     """
+
     def read(self, nbytes, write=0x00) -> bytes:
         """
         Read a number of bytes specified by ``nbytes`` while continuously writing
@@ -450,7 +456,8 @@ class SPI:
         Turn off the SPI bus.
         """
         ...
-    def init(self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
+    def init(
+        self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -505,6 +512,7 @@ class Signal:
 
       - ``invert`` - if True, the signal will be inverted (active low).
     """
+
     def value(self, x: Optional[Any] = None) -> int:
         """
         This method allows to set and get the value of the signal, depending on whether
@@ -547,6 +555,7 @@ class SoftI2C:
          stretching (SCL held low by another device on the bus), after
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
+
     def readinto(self, *args) -> Any: ...
     def start(self, *args) -> Any: ...
     def stop(self, *args) -> Any: ...
@@ -567,6 +576,7 @@ class SoftSPI:
     given, usually at least *sck*, *mosi* and *miso*, and these are used
     to initialise the bus.  See `SPI.init` for a description of the parameters.
     """
+
     def read(self, *args) -> Any: ...
     def readinto(self, *args) -> Any: ...
     def write(self, *args) -> Any: ...
@@ -583,6 +593,7 @@ class Timer:
 
     See ``init`` for parameters of initialisation.
     """
+
     ONE_SHOT: int
     PERIODIC: int
     def deinit(self) -> None:
@@ -612,6 +623,7 @@ class UART:
     """
     Construct a UART object of the given id.
     """
+
     def any(self) -> int:
         """
         Returns an integer counting the number of characters that can be read without
@@ -680,6 +692,7 @@ class WDT:
     Notes: On the esp32 the minimum timeout is 1 second. On the esp8266 a timeout
     cannot be specified, it is determined by the underlying system.
     """
+
     def feed(self, *args) -> Any: ...
 
 WDT_RESET: int
@@ -693,6 +706,7 @@ def bootloader(value: Optional[Any] = None) -> None:
     which bootloader to enter, what to pass to it, or other things.
     """
     ...
+
 def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
     """
     Stops execution in an attempt to enter a low power state.
@@ -717,6 +731,7 @@ def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
       from other resets.
     """
     ...
+
 def disable_irq() -> Any:
     """
     Disable interrupt requests.
@@ -725,6 +740,7 @@ def disable_irq() -> Any:
     interrupts to their original state, before `disable_irq()` was called.
     """
     ...
+
 def enable_irq(state) -> Any:
     """
     Re-enable interrupt requests.
@@ -732,6 +748,7 @@ def enable_irq(state) -> Any:
     recent call to the `disable_irq()` function.
     """
     ...
+
 def freq(hz: Optional[Any] = None) -> Any:
     """
     Returns the CPU frequency in hertz.
@@ -739,6 +756,7 @@ def freq(hz: Optional[Any] = None) -> Any:
     On some ports this can also be used to set the CPU frequency by passing in *hz*.
     """
     ...
+
 def idle() -> Any:
     """
     Gates the clock to the CPU, useful to reduce power consumption at any time during
@@ -747,6 +765,7 @@ def idle() -> Any:
     interrupt occurring at regular intervals on the order of millisecond).
     """
     ...
+
 def lightsleep(time_ms: Optional[Any] = None) -> Any:
     """
     Stops execution in an attempt to enter a low power state.
@@ -782,11 +801,13 @@ def reset() -> NoReturn:
     button.
     """
     ...
+
 def reset_cause() -> int:
     """
     Get the reset cause. See :ref:`constants <machine_constants>` for the possible return values.
     """
     ...
+
 def soft_reset() -> NoReturn:
     """
     Performs a soft reset of the interpreter, deleting all Python objects and
@@ -794,6 +815,7 @@ def soft_reset() -> NoReturn:
     is connected to the MicroPython REPL (eg serial, USB, Wifi).
     """
     ...
+
 def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     """
     Time a pulse on the given *pin*, and return the duration of the pulse in
@@ -811,6 +833,7 @@ def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     is in microseconds).
     """
     ...
+
 def unique_id() -> bytes:
     """
     Returns a byte string with a unique identifier of a board/SoC. It will vary

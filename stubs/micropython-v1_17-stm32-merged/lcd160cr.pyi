@@ -3,7 +3,7 @@ control of LCD160CR display. See: https://docs.micropython.org/en/v1.17/library/
 
 This module provides control of the MicroPython LCD160CR display.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Tuple, Any
 
 def const(*args, **kwargs) -> Any: ...
 def calcsize(*args, **kwargs) -> Any: ...
@@ -53,6 +53,7 @@ class LCD160CR:
     See `this image <http://micropython.org/resources/LCD160CRv10-positions.jpg>`_
     for how the display can be connected to the pyboard.
     """
+
     def __init__(self, connect=None, *, pwr=None, i2c=None, spi=None, i2c_addr=98) -> None: ...
     def write(self, s) -> None:
         """

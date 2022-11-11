@@ -13,12 +13,13 @@ building-blocks for higher-level abstractions such as specific device types.
 ``Note:`` This module is still under development and its classes, functions,
           methods and constants are subject to change.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Tuple, Any
 
 class BLE:
     """
     Returns the singleton BLE object.
     """
+
     def __init__(self) -> None: ...
     def active(self, active: Optional[Any] = None, /) -> Any:
         """
@@ -570,4 +571,5 @@ class UUID:
     - A 16-bit integer. e.g. ``0x2908``.
     - A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``.
     """
+
     def __init__(self, value, /) -> None: ...

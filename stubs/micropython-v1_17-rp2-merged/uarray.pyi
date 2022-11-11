@@ -7,7 +7,7 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
 floating-point support).
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 class array:
     """
@@ -15,6 +15,7 @@ class array:
     array are given by *iterable*. If it is not provided, an empty
     array is created.
     """
+
     def append(self, val) -> Any:
         """
         Append new element *val* to the end of array, growing it.

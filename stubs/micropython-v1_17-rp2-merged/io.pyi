@@ -6,7 +6,7 @@ input/output streams. See: https://docs.micropython.org/en/v1.17/library/io.html
 This module contains additional types of `stream` (file-like) objects
 and helper functions.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import IO, Optional, Any
 
 def open(name, mode="r", **kwargs) -> Any:
     """
@@ -28,6 +28,7 @@ class BytesIO:
     ``close()`` are available on these objects, and additionally, a
     following method:
     """
+
     def close(self, *args) -> Any: ...
     def read(self, *args) -> Any: ...
     def readinto(self, *args) -> Any: ...
@@ -47,6 +48,7 @@ class FileIO:
     This is type of a file open in binary mode, e.g. using ``open(name, "rb")``.
     You should not instantiate this class directly.
     """
+
     def close(self, *args) -> Any: ...
     def read(self, *args) -> Any: ...
     def readinto(self, *args) -> Any: ...
@@ -75,6 +77,7 @@ class TextIOWrapper:
     This is type of a file open in text mode, e.g. using ``open(name, "rt")``.
     You should not instantiate this class directly.
     """
+
     def close(self, *args) -> Any: ...
     def read(self, *args) -> Any: ...
     def readinto(self, *args) -> Any: ...

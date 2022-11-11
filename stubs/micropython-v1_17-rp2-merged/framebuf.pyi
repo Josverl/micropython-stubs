@@ -4,7 +4,7 @@ Frame buffer manipulation. See: https://docs.micropython.org/en/v1.17/library/fr
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 class FrameBuffer:
     """
@@ -31,6 +31,7 @@ class FrameBuffer:
     optionally *stride*.  Invalid *buffer* size or dimensions may lead to
     unexpected errors.
     """
+
     def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
