@@ -1,4 +1,3 @@
-# Micropython 1.19.1 frozen stubs
 import gc
 import uos
 import samd

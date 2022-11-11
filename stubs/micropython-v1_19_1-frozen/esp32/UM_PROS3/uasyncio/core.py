@@ -1,6 +1,5 @@
 # MicroPython uasyncio module
 # MIT license; Copyright (c) 2019 Damien P. George
-# Micropython 1.19.1 frozen stubs
 
 from time import ticks_ms as ticks, ticks_diff, ticks_add
 import sys, select

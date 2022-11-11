@@ -1,6 +1,5 @@
 # DHT11/DHT22 driver for MicroPython on ESP8266
 # MIT license; Copyright (c) 2016 Damien P. George
-# Micropython 1.19.1 frozen stubs
 
 import sys
 

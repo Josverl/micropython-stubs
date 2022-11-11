@@ -1,6 +1,5 @@
 # APA102 driver for MicroPython on ESP8266
 # MIT license; Copyright (c) 2016 Robert Foss, Daniel Busch
-# Micropython 1.19.1 frozen stubs
 
 from esp import apa102_write
 from neopixel import NeoPixel

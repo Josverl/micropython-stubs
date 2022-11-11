@@ -7,7 +7,6 @@
 # 2021-Sep-04 - v0.1 - Initial implementation
 
 # Import required libraries
-# Micropython 1.19.1 frozen stubs
 from micropython import const
 from machine import Pin, ADC
 import machine, time

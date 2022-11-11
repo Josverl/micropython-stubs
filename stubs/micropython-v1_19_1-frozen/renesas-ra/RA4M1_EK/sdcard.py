@@ -1,4 +1,3 @@
-# Micropython 1.19.1 frozen stubs
 """
 MicroPython driver for SD cards using SPI bus.
 

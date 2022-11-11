@@ -1,6 +1,5 @@
 # NeoPixel driver for MicroPython
 # MIT license; Copyright (c) 2016 Damien P. George, 2021 Jim Mussared
-# Micropython 1.19.1 frozen stubs
 
 from machine import bitstream
 

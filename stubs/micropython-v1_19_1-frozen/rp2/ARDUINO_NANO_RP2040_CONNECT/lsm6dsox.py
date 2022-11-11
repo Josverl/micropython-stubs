@@ -1,4 +1,3 @@
-# Micropython 1.19.1 frozen stubs
 """
 LSM6DSOX STMicro driver for MicroPython based on LSM9DS1:
 Source repo: https://github.com/hoihu/projects/tree/master/raspi-hat

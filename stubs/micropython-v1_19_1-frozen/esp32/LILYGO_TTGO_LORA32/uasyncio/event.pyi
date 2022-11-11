@@ -1,4 +1,3 @@
-# Micropython 1.19.1 frozen stubs
 import uio
 from . import core as core
 from _typeshed import Incomplete

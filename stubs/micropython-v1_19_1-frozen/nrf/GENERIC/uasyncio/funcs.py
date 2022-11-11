@@ -1,6 +1,5 @@
 # MicroPython uasyncio module
 # MIT license; Copyright (c) 2019-2022 Damien P. George
-# Micropython 1.19.1 frozen stubs
 
 from . import core
 
