@@ -27,13 +27,9 @@ v2
 |board| micropython| v1.16| esp8266| ESP module with ESP8266| 73| 1.5.4|[stubs/micropython-v1_16-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_16-esp8266)
 |board| micropython| v1.16| pyboard| PYBv1.1 with STM32F405RG| 58| 1.5.4|[stubs/micropython-v1_16-pyboard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_16-pyboard)
 |board| micropython| v1.17| esp32| ESP32 module (spiram) with ESP32| 75| 1.5.4|[stubs/micropython-v1_17-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-esp32)
-|board| micropython| v1.17| esp32| ESP32 module (spiram) with ESP32| 75| 1.5.4|[stubs/micropython-v1_17-esp32-merged](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-esp32-merged)
 |board| micropython| v1.17| esp8266| ESP module with ESP8266| 73| 1.5.4|[stubs/micropython-v1_17-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-esp8266)
-|board| micropython| v1.17| esp8266| ESP module with ESP8266| 73| 1.5.4|[stubs/micropython-v1_17-esp8266-merged](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-esp8266-merged)
 |board| micropython| v1.17| pyboard| PYBv1.1 with STM32F405RG| 59| 1.5.4|[stubs/micropython-v1_17-stm32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-stm32)
-|board| micropython| v1.17| pyboard| PYBv1.1 with STM32F405RG| 59| 1.5.4|[stubs/micropython-v1_17-stm32-merged](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-stm32-merged)
 |board| micropython| v1.17| rp2| Raspberry Pi Pico with RP2040| 51| 1.5.2|[stubs/micropython-v1_17-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-rp2)
-|board| micropython| v1.17| rp2| Raspberry Pi Pico with RP2040| 51| 1.5.2|[stubs/micropython-v1_17-rp2-merged](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-rp2-merged)
 |board| micropython| v1.18| esp32| ESP32 module (spiram) with ESP32| 76| 1.5.4|[stubs/micropython-v1_18-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-esp32)
 |board| micropython| v1.18| esp8266| ESP module with ESP8266| 73| 1.5.4|[stubs/micropython-v1_18-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-esp8266)
 |board| micropython| v1.18| rp2| Arduino Nano RP2040 Connect with RP2040| 60| 1.5.3|[stubs/micropython-v1_18-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-rp2)
@@ -245,4 +241,4 @@ v2
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  5952
+Total modules  5694
