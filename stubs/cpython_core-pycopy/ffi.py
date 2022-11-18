@@ -1,5 +1,4 @@
 # (c) 2019 Paul Sokolovsky. MIT license.
-# CPython core - pycopy
 import ctypes
 import array
 

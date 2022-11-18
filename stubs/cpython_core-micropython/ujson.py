@@ -1,4 +1,3 @@
-# CPython core - micropython
 import micropython
 import json
 from json import dump, dumps

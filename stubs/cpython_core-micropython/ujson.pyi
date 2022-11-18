@@ -1,4 +1,3 @@
-# CPython core - micropython
 from typing import Any
 
 _json_only_str: Any

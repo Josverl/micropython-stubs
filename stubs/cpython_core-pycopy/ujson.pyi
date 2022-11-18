@@ -1,4 +1,3 @@
-# CPython core - pycopy
 from typing import Any
 
 _json_only_str: Any

@@ -1,4 +1,3 @@
-# CPython core - micropython
 import micropython
 import uio
 import ssl

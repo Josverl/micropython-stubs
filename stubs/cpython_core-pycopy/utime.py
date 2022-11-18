@@ -1,4 +1,3 @@
-# CPython core - pycopy
 import time as _time
 
 

@@ -1,18 +1,15 @@
-# CPython core - micropython
 from typing import Any
 
 class Entry:
     time: Any
     obj: Any
     userdata: Any
-
     def __init__(self, time, obj, userdata) -> None: ...
     def __lt__(self, another): ...
 
 class utimeq:
     heap: Any
     max_sz: Any
-
     def __init__(self, sz) -> None: ...
     def __bool__(self) -> None: ...
     def push(self, time, obj, userdata) -> None: ...

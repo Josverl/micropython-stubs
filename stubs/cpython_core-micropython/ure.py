@@ -1,4 +1,3 @@
-# CPython core - micropython
 import re
 
 # In MicroPython's ure, "." matches newline by default, effectively

@@ -1,4 +1,3 @@
-# CPython core - pycopy
 import collections
 from collections import OrderedDict, namedtuple
 

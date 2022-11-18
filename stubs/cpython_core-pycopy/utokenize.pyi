@@ -1,4 +1,3 @@
-# CPython core - pycopy
 from token import *
 from collections.abc import Generator
 from typing import Any

@@ -1,4 +1,3 @@
-# CPython core - pycopy
 import re
 
 # In Pycopy's ure, "." matches newline by default, effectively

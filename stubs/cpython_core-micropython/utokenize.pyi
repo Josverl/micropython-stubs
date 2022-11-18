@@ -1,4 +1,3 @@
-# CPython core - micropython
 from token import *
 from collections.abc import Generator
 from typing import Any

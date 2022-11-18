@@ -1,6 +1,4 @@
-# CPython core - micropython
-# updated 4/11/2022
-def const(x) -> int:
+def const(x):
     return x
 
 
