@@ -10,7 +10,7 @@ damage.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.9.11
-from typing import Callable, List, NoReturn, Optional, Tuple, Any
+from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 
 TIMER_WAKE = 4  # type: int
 EXT1_WAKE = 3  # type: int
@@ -758,7 +758,9 @@ class I2C:
         """
         ...
 
-    def __init__(self, id, *, scl, sda, freq=400000) -> None:
+    def __init__(
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+    ) -> None:
         ...
 
 
@@ -815,7 +817,7 @@ class Timer:
     def value(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, id, /, *args) -> None:
+    def __init__(self, id=-1, *args, **kwargs) -> None:
         ...
 
 

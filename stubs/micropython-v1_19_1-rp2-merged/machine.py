@@ -10,7 +10,7 @@ damage.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
-from typing import Callable, List, NoReturn, Optional, Tuple, Any
+from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 
 WDT_RESET = 3  # type: int
 PWRON_RESET = 1  # type: int
@@ -451,7 +451,9 @@ class I2C:
         """
         ...
 
-    def __init__(self, id, *, scl, sda, freq=400000) -> None:
+    def __init__(
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+    ) -> None:
         ...
 
 
@@ -816,7 +818,7 @@ class Timer:
         """
         ...
 
-    def __init__(self, id, /, *args) -> None:
+    def __init__(self, id=-1, *args, **kwargs) -> None:
         ...
 
 

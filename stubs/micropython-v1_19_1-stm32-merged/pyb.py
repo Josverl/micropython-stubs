@@ -66,7 +66,7 @@ def elapsed_micros(start) -> int:
     ...
 
 
-def freq(sysclk, hclk, pclk1, pclk2) -> Tuple:
+def freq(sysclk=0, hclk=0, pclk1=0, pclk2=0) -> Tuple:
     """
     If given no arguments, returns a tuple of clock frequencies:
     (sysclk, hclk, pclk1, pclk2).
@@ -640,7 +640,7 @@ class CAN:
         """
         ...
 
-    def setfilter(self, bank, mode, fifo, params, *, rtr, extframe=False) -> None:
+    def setfilter(self, bank, mode, fifo, params, *, rtr=None, extframe=False) -> None:
         """
         Configure a filter bank:
 
@@ -789,7 +789,7 @@ class CAN:
         """
         ...
 
-    def __init__(self, bus, *args) -> None:
+    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
         ...
 
 
@@ -1424,7 +1424,7 @@ class Timer:
         """
         ...
 
-    def channel(self, channel, mode, *args) -> Any:
+    def channel(self, channel, mode, pin=None, *args) -> Any:
         """
         If only a channel number is passed, then a previously initialized channel
         object is returned (or ``None`` if there is no previous channel).
@@ -1745,7 +1745,7 @@ class UART:
         """
         ...
 
-    def __init__(self, bus, *args) -> None:
+    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
         ...
 
 
@@ -1897,7 +1897,7 @@ class I2C:
         """
         ...
 
-    def __init__(self, bus, *args) -> None:
+    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
         ...
 
 
@@ -2129,7 +2129,7 @@ class SPI:
         """
         ...
 
-    def __init__(self, bus, *args) -> None:
+    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
         ...
 
 

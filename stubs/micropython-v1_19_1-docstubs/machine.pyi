@@ -25,7 +25,7 @@ damage.
 # + module: machine.WDT.rst
 # + module: machine.SD.rst
 # + module: machine.SDCard.rst
-from typing import Any, Callable, List, NoReturn, Optional, Tuple
+from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
 IDLE: Any = ...
 """IRQ wake values."""
@@ -762,7 +762,9 @@ class I2C:
     of *scl* and *sda* that cannot be changed.
     """
 
-    def __init__(self, id, *, scl, sda, freq=400000) -> None: ...
+    def __init__(
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+    ) -> None: ...
     def init(self, scl, sda, *, freq=400000) -> None:
         """
         Initialise the I2C bus with the given arguments:
@@ -1058,7 +1060,7 @@ class Timer:
     """Timer operating mode."""
     PERIODIC: Any = ...
     """Timer operating mode."""
-    def __init__(self, id, /, *args) -> None: ...
+    def __init__(self, id=-1, *args, **kwargs) -> None: ...
     def init(self, *, mode=PERIODIC, period=-1, callback=None) -> None:
         """
         Initialise the timer. Example::

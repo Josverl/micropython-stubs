@@ -8,7 +8,7 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-from typing import Callable, List, NoReturn, Optional, Tuple, Any
+from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 
 TIMER_WAKE: int
 EXT1_WAKE: int
@@ -676,7 +676,9 @@ class I2C:
         received.  The function returns the number of ACKs that were received.
         """
         ...
-    def __init__(self, id, *, scl, sda, freq=400000) -> None: ...
+    def __init__(
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+    ) -> None: ...
 
 class Timer:
     """
@@ -726,7 +728,7 @@ class Timer:
         """
         ...
     def value(self, *args, **kwargs) -> Any: ...
-    def __init__(self, id, /, *args) -> None: ...
+    def __init__(self, id=-1, *args, **kwargs) -> None: ...
 
 class SoftSPI:
     """
