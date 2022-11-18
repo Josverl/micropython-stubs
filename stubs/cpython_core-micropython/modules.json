@@ -29,10 +29,6 @@
             "module": "uhashlib"
         },
         {
-            "file": "uio.py",
-            "module": "uio"
-        },
-        {
             "file": "ujson.py",
             "module": "ujson"
         },
