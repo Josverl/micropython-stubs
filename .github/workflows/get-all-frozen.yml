@@ -122,76 +122,76 @@ jobs:
         run: |
           echo "Done..."
 
-  ########################################################################################################################################
-  get-core-cpython-stubs:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+  # ########################################################################################################################################
+  # get-core-cpython-stubs:
+  #   # The type of runner that the job will run on
+  #   runs-on: ubuntu-latest
 
-    # Most scripts will be run from the stubber, set that as default
-    defaults:
-      run:
-        shell: bash
-    #      working-directory: ${{github.workspace}}/micropython-stubber
+  #   # Most scripts will be run from the stubber, set that as default
+  #   defaults:
+  #     run:
+  #       shell: bash
+  #   #      working-directory: ${{github.workspace}}/micropython-stubber
 
-    steps:
-      - name: Checkout stubs repo
-        uses: actions/checkout@v3
+  #   steps:
+  #     - name: Checkout stubs repo
+  #       uses: actions/checkout@v3
 
-      # make Python work
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
-          cache: "pip"
+  #     # make Python work
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v4
+  #       with:
+  #         python-version: 3.9
+  #         cache: "pip"
 
-      - name: Install Python dependencies (stubber)
-        run: |
-          pip install --upgrade wheel
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+  #     - name: Install Python dependencies (stubber)
+  #       run: |
+  #         pip install --upgrade wheel
+  #         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      ######################################
-      # This is where the actual work starts
-      ######################################
+  #     ######################################
+  #     # This is where the actual work starts
+  #     ######################################
 
-      - name: Get frozen modules for ${{ matrix.version }}
-        working-directory: ${{github.workspace}}
-        run: |
-          stubber get-core --black
-      ######################################
-      # now check if a PR is needed
-      ######################################
-      - name: check for new or changed stubs
-        id: diff
-        uses: ./.github/actions/stub-diff
-        with:
-          path: "./stubs"
-          pattern: ".py"
-        #   summary: true
+  #     - name: Get frozen modules for ${{ matrix.version }}
+  #       working-directory: ${{github.workspace}}
+  #       run: |
+  #         stubber get-core --black
+  #     ######################################
+  #     # now check if a PR is needed
+  #     ######################################
+  #     - name: check for new or changed stubs
+  #       id: diff
+  #       uses: ./.github/actions/stub-diff
+  #       with:
+  #         path: "./stubs"
+  #         pattern: ".py"
+  #       #   summary: true
 
-      - name: Create Pull Request ( if relevant changes)
-        if: ${{steps.diff.outputs.changed == 'true'}}
-        uses: peter-evans/create-pull-request@v3
-        id: cprcore
-        # ref: https://github.com/peter-evans/create-pull-request
-        with:
-          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-          title: "add/update MicroPython core stubs"
-          commit-message: add/update MicroPython core stubs
-          branch: "micropython-core-stubs"
-          labels: |
-            CPython
-            MicroPython
-          delete-branch: true
+  #     - name: Create Pull Request ( if relevant changes)
+  #       if: ${{steps.diff.outputs.changed == 'true'}}
+  #       uses: peter-evans/create-pull-request@v3
+  #       id: cprcore
+  #       # ref: https://github.com/peter-evans/create-pull-request
+  #       with:
+  #         token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
+  #         title: "add/update MicroPython core stubs"
+  #         commit-message: add/update MicroPython core stubs
+  #         branch: "micropython-core-stubs"
+  #         labels: |
+  #           CPython
+  #           MicroPython
+  #         delete-branch: true
 
-      # - name: Enable Pull Request Automerge
-      #   if: steps.cprcore.outputs.pull-request-operation == 'created'
-      #   uses: peter-evans/enable-pull-request-automerge@v1
-      #   with:
-      #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-      #     pull-request-number: ${{ steps.cprcore.outputs.pull-request-number }}
-      #     merge-method: squash
+  #     # - name: Enable Pull Request Automerge
+  #     #   if: steps.cprcore.outputs.pull-request-operation == 'created'
+  #     #   uses: peter-evans/enable-pull-request-automerge@v1
+  #     #   with:
+  #     #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
+  #     #     pull-request-number: ${{ steps.cprcore.outputs.pull-request-number }}
+  #     #     merge-method: squash
 
-      - name: done
-        if: always()
-        run: |
-          echo "Done..."
+  #     - name: done
+  #       if: always()
+  #       run: |
+  #         echo "Done..."
