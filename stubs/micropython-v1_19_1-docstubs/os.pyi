@@ -11,6 +11,7 @@ functions.
 # source version: v1_19_1
 # origin module:: repos/micropython/docs/library/os.rst
 from typing import Any, IO, Iterator, Optional, Tuple
+from stdlib.os import uname_result
 
 class VfsFat:
     """
@@ -153,7 +154,7 @@ class AbstractBlockDev:
         """
         ...
 
-def uname() -> Tuple:
+def uname() -> uname_result:
     """
     Return a tuple (possibly a named tuple) containing information about the
     underlying machine and/or its operating system.  The tuple has five fields

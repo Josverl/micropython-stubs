@@ -8,6 +8,7 @@ terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
 from typing import IO, Iterator, Optional, Tuple, Any
+from stdlib.os import uname_result
 
 sep: str
 
@@ -77,7 +78,7 @@ def sync() -> None:
     ...
 
 def unlink(*args, **kwargs) -> Any: ...
-def uname() -> Tuple:
+def uname() -> uname_result:
     """
     Return a tuple (possibly a named tuple) containing information about the
     underlying machine and/or its operating system.  The tuple has five fields

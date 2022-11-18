@@ -10,6 +10,7 @@ functions.
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import IO, Iterator, Optional, Tuple, Any
+from stdlib.os import uname_result
 
 sep = "/"  # type: str
 
@@ -89,7 +90,7 @@ def unlink(*args, **kwargs) -> Any:
     ...
 
 
-def uname() -> Tuple:
+def uname() -> uname_result:
     """
     Return a tuple (possibly a named tuple) containing information about the
     underlying machine and/or its operating system.  The tuple has five fields

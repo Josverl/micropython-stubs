@@ -10,6 +10,7 @@ functions.
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import IO, Iterator, Optional, Tuple, Any
+from stdlib.os import uname_result
 
 
 def stat(path) -> Any:
@@ -88,7 +89,7 @@ def unlink(*args, **kwargs) -> Any:
     ...
 
 
-def uname() -> Tuple:
+def uname() -> uname_result:
     """
     Return a tuple (possibly a named tuple) containing information about the
     underlying machine and/or its operating system.  The tuple has five fields
