@@ -3,7 +3,6 @@
 
 # This file contains the core TaskQueue based on a pairing heap, and the core Task class.
 # They can optionally be replaced by C implementations.
-# Micropython 1.19.1 frozen stubs
 
 from . import core
 

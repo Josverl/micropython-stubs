@@ -23,7 +23,7 @@ def have_cdc() -> bool:
     """
     ...
 
-def hid(hidtuple: Tuple) -> Any:
+def hid(hidtuple) -> Any:
     """
     Takes a 4-tuple (or list) and sends it to the USB host (the PC) to
     signal a HID mouse-motion event.

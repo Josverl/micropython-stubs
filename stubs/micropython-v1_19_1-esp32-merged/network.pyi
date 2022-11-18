@@ -66,7 +66,7 @@ AUTH_WPA_WPA2_PSK: int
 ETH_DISCONNECTED: int
 ETH_CONNECTED: int
 
-class WLAN:
+class WLAN(AbstractNIC):
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access
@@ -159,7 +159,7 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, param) -> Any:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by

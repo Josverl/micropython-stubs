@@ -1,4 +1,3 @@
-# Micropython 1.19.1 frozen stubs
 from .central import scan as scan
 from .core import GattError as GattError, config as config, log_error as log_error, log_warn as log_warn, stop as stop
 from .device import Device as Device, DeviceDisconnectedError as DeviceDisconnectedError

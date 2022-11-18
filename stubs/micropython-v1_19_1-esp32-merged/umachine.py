@@ -280,7 +280,7 @@ class PWM:
     def duty(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None:
+    def __init__(self, dest, *, freq, duty_u16, duty_ns) -> None:
         ...
 
 
@@ -409,7 +409,7 @@ class UART:
         """
         ...
 
-    def __init__(self, id, *args, **kwargs) -> None:
+    def __init__(self, id, *args) -> None:
         ...
 
 
@@ -524,7 +524,7 @@ class ADC:
     def atten(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None:
+    def __init__(self, id, *, sample_ns, atten) -> None:
         ...
 
 
@@ -758,7 +758,7 @@ class I2C:
         """
         ...
 
-    def __init__(self, id, *, scl: Optional[Pin] = None, sda: Optional[Pin] = None, freq=400_000) -> None:
+    def __init__(self, id, *, scl, sda, freq=400000) -> None:
         ...
 
 
@@ -1293,7 +1293,7 @@ class SPI:
         """
         ...
 
-    def __init__(self, id, *args, **kwargs) -> None:
+    def __init__(self, id, *args) -> None:
         ...
 
 
@@ -1350,5 +1350,5 @@ class Signal:
         """
         ...
 
-    def __init__(self, pin_obj, *args, invert=False) -> None:
+    def __init__(self, pin_obj, invert=False) -> None:
         ...

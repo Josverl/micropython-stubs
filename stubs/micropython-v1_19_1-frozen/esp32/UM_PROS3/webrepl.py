@@ -1,5 +1,4 @@
 # This module should be imported from REPL, not run from command line.
-# Micropython 1.19.1 frozen stubs
 import socket
 import uos
 import network

@@ -5,7 +5,6 @@
 #
 # Licensed under the MIT license.
 #
-# Micropython 1.19.1 frozen stubs
 import sys
 import gc
 import uos as os

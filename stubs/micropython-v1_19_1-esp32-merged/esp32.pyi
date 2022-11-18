@@ -6,7 +6,7 @@ controlling ESP32 modules.
 
 """
 from __future__ import annotations
-from typing import List, Optional, Tuple, Union, Any
+from typing import List, Optional, Tuple, Any
 
 WAKEUP_ALL_LOW: bool
 WAKEUP_ANY_HIGH: bool
@@ -251,7 +251,7 @@ class RMT:
         milliseconds for transmission to complete.
         """
         ...
-    def write_pulses(self, duration, data: Union[bool, int] = True) -> Any:
+    def write_pulses(self, duration, data=True) -> Any:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 

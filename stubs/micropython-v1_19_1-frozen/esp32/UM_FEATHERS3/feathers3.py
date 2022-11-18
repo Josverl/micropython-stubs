@@ -5,7 +5,6 @@
 # http://feathers3.io
 
 # Import required libraries
-# Micropython 1.19.1 frozen stubs
 from micropython import const
 from machine import Pin, ADC
 import time

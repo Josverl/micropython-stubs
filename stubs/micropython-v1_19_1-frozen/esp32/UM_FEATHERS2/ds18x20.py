@@ -1,6 +1,5 @@
 # DS18x20 temperature sensor driver for MicroPython.
 # MIT license; Copyright (c) 2016 Damien P. George
-# Micropython 1.19.1 frozen stubs
 
 from micropython import const
 

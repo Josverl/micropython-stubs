@@ -1,4 +1,3 @@
-# Micropython 1.19.1 frozen stubs
 from .core import ble as ble, log_error as log_error, register_irq_handler as register_irq_handler
 from .device import DeviceConnection as DeviceConnection
 from _typeshed import Incomplete

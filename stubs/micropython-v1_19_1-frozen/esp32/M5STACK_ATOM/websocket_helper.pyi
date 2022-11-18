@@ -1,4 +1,3 @@
-# Micropython 1.19.1 frozen stubs
 DEBUG: int
 
 def server_handshake(sock) -> None: ...
