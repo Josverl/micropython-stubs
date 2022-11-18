@@ -36,4 +36,4 @@ origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Firmware | micropython | rp2 | Arduino Nano RP2040 Connect with RP2040 | v1.19.1 
 Documentation | micropython | - | - | v1.19.1 
-Core | cpython-core | pycopy | - | v1.8 
+Core | micropython | rp2 | - | v1.19.1 

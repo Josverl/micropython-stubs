@@ -36,4 +36,4 @@ origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Firmware | micropython | stm32 | PYBv1.1 with STM32F405RG | v1.19.1 
 Documentation | micropython | - | - | v1.19.1 
-Core | cpython-core | pycopy | - | v1.8 
+Core | micropython | stm32 | - | v1.19.1 

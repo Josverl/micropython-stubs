@@ -36,4 +36,4 @@ origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Firmware | micropython | esp8266 | ESP module (1M) with ESP8266 | v1.19.1 
 Documentation | micropython | - | - | v1.19.1 
-Core | cpython-core | pycopy | - | v1.8 
+Core | micropython | esp8266 | - | v1.19.1 
