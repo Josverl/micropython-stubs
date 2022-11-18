@@ -17,8 +17,16 @@
     },
     "modules": [
         {
-            "file": "mip.py",
-            "module": "mip"
+            "file": "argparse.py",
+            "module": "argparse"
+        },
+        {
+            "file": "mip/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "mip/__main__.py",
+            "module": "__main__"
         },
         {
             "file": "uasyncio/__init__.py",

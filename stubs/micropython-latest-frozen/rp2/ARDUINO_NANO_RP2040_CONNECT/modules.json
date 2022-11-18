@@ -69,12 +69,24 @@
             "module": "ds18x20"
         },
         {
+            "file": "espflash.py",
+            "module": "espflash"
+        },
+        {
+            "file": "logging.py",
+            "module": "logging"
+        },
+        {
             "file": "lsm6dsox.py",
             "module": "lsm6dsox"
         },
         {
             "file": "neopixel.py",
             "module": "neopixel"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
         },
         {
             "file": "onewire.py",

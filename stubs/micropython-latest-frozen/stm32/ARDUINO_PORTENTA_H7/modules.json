@@ -57,6 +57,14 @@
             "module": "dht"
         },
         {
+            "file": "logging.py",
+            "module": "logging"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
             "file": "onewire.py",
             "module": "onewire"
         },
@@ -87,6 +95,10 @@
         {
             "file": "uasyncio/task.py",
             "module": "task"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
         },
         {
             "file": "webrepl.py",
