@@ -1,6 +1,6 @@
 [tool.poetry]
-name = "micropython-stdlib-minimal"
-version = "1.0.0"
+name = "micropython-stdlib-stubs"
+version = "0.9.0"
 description = "Reduced copy of typeshed's stdlib for use by MicroPython stub packages"
 authors = ["josverl <josverl@users.noreply.github.com>"]
 license = "MIT"
@@ -24,8 +24,8 @@ classifiers = [
 ]
 
 # Note: anything excluded in .gitignore is not packaged by poetry 
-packages = [{ include = "stdlib/io.pyi" }]
-
+packages = [{ include = "stdlib/builtins.pyi" }]
+micropython-stdlib-stubs = { path = "C:\\develop\\MyPython\\micropython-stubber\\repos\\micropython-stubs\\publish\\micropython-stdlib-minimal" }
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -34,5 +34,4 @@ python = "^3.8"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
 build-backend = "poetry.core.masonry.api"
