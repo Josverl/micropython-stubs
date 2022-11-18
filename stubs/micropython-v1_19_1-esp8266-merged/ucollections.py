@@ -92,7 +92,7 @@ class OrderedDict:
     def fromkeys(cls, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, *args) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         ...
 
 

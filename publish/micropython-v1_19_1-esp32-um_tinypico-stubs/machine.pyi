@@ -8,7 +8,7 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-from typing import Callable, List, NoReturn, Optional, Tuple, Any
+from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 
 TIMER_WAKE: int
 EXT1_WAKE: int
@@ -273,7 +273,7 @@ class UART:
         Turn off the UART bus.
         """
         ...
-    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args) -> None:
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
         """
         Initialise the UART bus with the given parameters:
 
@@ -510,7 +510,7 @@ class I2S:
         Typically used for volume control.  Each bit shift changes sample volume by 6dB.
         """
         ...
-    def init(self, sck, *args) -> Any:
+    def init(self, sck, *args, **kwargs) -> Any:
         """
         see Constructor for argument descriptions
         """
@@ -676,7 +676,9 @@ class I2C:
         received.  The function returns the number of ACKs that were received.
         """
         ...
-    def __init__(self, id, *, scl: Optional[Pin] = None, sda: Optional[Pin] = None, freq=400_000) -> None: ...
+    def __init__(
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+    ) -> None: ...
 
 class Timer:
     """
@@ -726,7 +728,7 @@ class Timer:
         """
         ...
     def value(self, *args, **kwargs) -> Any: ...
-    def __init__(self, id, /, *args) -> None: ...
+    def __init__(self, id=-1, *args, **kwargs) -> None: ...
 
 class SoftSPI:
     """
@@ -1009,7 +1011,7 @@ class RTC:
         The meaning of the ``subseconds`` field is hardware dependent.
         """
         ...
-    def __init__(self, id=0, *args) -> None: ...
+    def __init__(self, id=0, *args, **kwargs) -> None: ...
 
 class SoftI2C:
     """

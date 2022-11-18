@@ -83,7 +83,7 @@ class AbstractBlockDev:
     dependent on the specific block device.
     """
 
-    def __init__(self, *args) -> None: ...
+    def __init__(self, *args, **kwargs) -> None: ...
     def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any:
         """
         The first form reads aligned, multiples of blocks.

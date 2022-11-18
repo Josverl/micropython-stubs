@@ -55,7 +55,7 @@ def elapsed_micros(start) -> int:
     """
     ...
 
-def freq(sysclk, hclk, pclk1, pclk2) -> Tuple:
+def freq(sysclk=0, hclk=0, pclk1=0, pclk2=0) -> Tuple:
     """
     If given no arguments, returns a tuple of clock frequencies:
     (sysclk, hclk, pclk1, pclk2).
@@ -570,7 +570,7 @@ class CAN:
           can.rxcallback(0, cb0)
         """
         ...
-    def setfilter(self, bank, mode, fifo, params, *, rtr, extframe=False) -> None:
+    def setfilter(self, bank, mode, fifo, params, *, rtr=None, extframe=False) -> None:
         """
         Configure a filter bank:
 
@@ -712,7 +712,9 @@ class CAN:
         Turn off the CAN bus.
         """
         ...
-    def __init__(self, bus, *args) -> None: ...
+    def __init__(
+        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
+    ) -> None: ...
 
 class ExtInt:
     """
@@ -1283,7 +1285,7 @@ class Timer:
         If ``fun`` is ``None`` then the callback will be disabled.
         """
         ...
-    def channel(self, channel, mode, *args) -> Any:
+    def channel(self, channel, mode, pin=None, *args) -> Any:
         """
         If only a channel number is passed, then a previously initialized channel
         object is returned (or ``None`` if there is no previous channel).
@@ -1363,7 +1365,7 @@ class Timer:
         Get or set the timer counter.
         """
         ...
-    def __init__(self, id, *args) -> None: ...
+    def __init__(self, id, *args, **kwargs) -> None: ...
 
 class Switch:
     """
@@ -1577,7 +1579,9 @@ class UART:
         Return value: the line read or ``None`` on timeout if no data is available.
         """
         ...
-    def __init__(self, bus, *args) -> None: ...
+    def __init__(
+        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
+    ) -> None: ...
 
 class USB_HID:
     """
@@ -1714,7 +1718,9 @@ class I2C:
              errors properly)
         """
         ...
-    def __init__(self, bus, *args) -> None: ...
+    def __init__(
+        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
+    ) -> None: ...
 
 class LED:
     """
@@ -1913,7 +1919,9 @@ class SPI:
         Return value: ``None``.
         """
         ...
-    def __init__(self, bus, *args) -> None: ...
+    def __init__(
+        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
+    ) -> None: ...
 
 class Pin:
     """
@@ -2178,7 +2186,7 @@ class Pin:
         USB_DM: Any
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, id, *args) -> None: ...
+    def __init__(self, id, *args, **kwargs) -> None: ...
 
 class SDCard:
     def writeblocks(self, *args, **kwargs) -> Any: ...

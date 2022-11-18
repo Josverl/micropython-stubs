@@ -48,7 +48,7 @@ class AbstractNIC:
     parameter should be `id`.
     """
 
-    def __init__(self, id=None, *args) -> None: ...
+    def __init__(self, id=None, *args, **kwargs) -> None: ...
     def active(self, is_active: Optional[Any] = None) -> None:
         """
         Activate ("up") or deactivate ("down") the network interface, if
@@ -58,7 +58,7 @@ class AbstractNIC:
         undefined).
         """
         ...
-    def connect(self, service_id, key=None, *args: Optional[Any]) -> None:
+    def connect(self, service_id, key=None, *args, **kwargs: Optional[Any]) -> None:
         """
         Connect the interface to a network. This method is optional, and
         available only for interfaces which are not "always connected".
@@ -85,7 +85,7 @@ class AbstractNIC:
         Returns ``True`` if connected to network, otherwise returns ``False``.
         """
         ...
-    def scan(self, *args) -> List[Tuple]:
+    def scan(self, *args, **kwargs) -> List[Tuple]:
         """
         Scan for the available network services/connections. Returns a
         list of tuples with discovered service parameters. For various
@@ -296,7 +296,7 @@ class WLANWiPy(AbstractNIC):
     INT_ANT: Any = ...
     EXT_ANT: Any = ...
     """selects the antenna type"""
-    def __init__(self, id=0, *args) -> None: ...
+    def __init__(self, id=0, *args, **kwargs) -> None: ...
     def init(self, mode, *, ssid, auth, channel, antenna) -> Any:
         """
         Set or get the WiFi network processor configuration.

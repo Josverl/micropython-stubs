@@ -302,7 +302,7 @@ class UART:
         """
         ...
 
-    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args) -> None:
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
         """
         Initialise the UART bus with the given parameters:
 
@@ -568,7 +568,7 @@ class I2S:
         """
         ...
 
-    def init(self, sck, *args) -> Any:
+    def init(self, sck, *args, **kwargs) -> Any:
         """
         see Constructor for argument descriptions
         """
@@ -1150,7 +1150,7 @@ class RTC:
         """
         ...
 
-    def __init__(self, id=0, *args) -> None:
+    def __init__(self, id=0, *args, **kwargs) -> None:
         ...
 
 

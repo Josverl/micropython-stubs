@@ -1506,7 +1506,7 @@ class Timer:
         """
         ...
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         ...
 
 
@@ -2423,7 +2423,7 @@ class Pin:
         def __init__(self, *argv, **kwargs) -> None:
             ...
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         ...
 
 

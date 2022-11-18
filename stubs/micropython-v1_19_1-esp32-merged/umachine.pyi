@@ -273,7 +273,7 @@ class UART:
         Turn off the UART bus.
         """
         ...
-    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args) -> None:
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
         """
         Initialise the UART bus with the given parameters:
 
@@ -510,7 +510,7 @@ class I2S:
         Typically used for volume control.  Each bit shift changes sample volume by 6dB.
         """
         ...
-    def init(self, sck, *args) -> Any:
+    def init(self, sck, *args, **kwargs) -> Any:
         """
         see Constructor for argument descriptions
         """
@@ -1011,7 +1011,7 @@ class RTC:
         The meaning of the ``subseconds`` field is hardware dependent.
         """
         ...
-    def __init__(self, id=0, *args) -> None: ...
+    def __init__(self, id=0, *args, **kwargs) -> None: ...
 
 class SoftI2C:
     """

@@ -58,7 +58,7 @@ class TextIOWrapper:
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, *args) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         ...
 
 
@@ -138,7 +138,7 @@ class FileIO:
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, *args) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         ...
 
 

@@ -927,7 +927,7 @@ class Pin:
     """don't enable any pull up or down resistors on the pin"""
     PULL_UP: Any = ...
     """enable the pull-up resistor on the pin"""
-    def __init__(self, id, *args) -> None: ...
+    def __init__(self, id, *args, **kwargs) -> None: ...
     @classmethod
     def debug(cls, state: Optional[Any] = None) -> bool:
         """
@@ -1317,7 +1317,7 @@ class Timer:
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
     CENTER: int = 1
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
-    def __init__(self, id, *args) -> None: ...
+    def __init__(self, id, *args, **kwargs) -> None: ...
     def init(self, *, freq, prescaler, period, mode=UP, div=1, callback=None, deadtime=0) -> None:
         """
         Initialise the timer.  Initialisation must be either by frequency (in Hz)
