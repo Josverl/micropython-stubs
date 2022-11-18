@@ -25,7 +25,6 @@ classifiers = [
 
 # Note: anything excluded in .gitignore is not packaged by poetry 
 packages = [{ include = "stdlib/builtins.pyi" }]
-micropython-stdlib-stubs = { path = "C:\\develop\\MyPython\\micropython-stubber\\repos\\micropython-stubs\\publish\\micropython-stdlib-minimal" }
 
 [tool.poetry.dependencies]
 python = "^3.8"

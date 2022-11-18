@@ -6,8 +6,6 @@ access and control MicroPython internals. See: https://docs.micropython.org/en/v
 # origin module:: repos/micropython/docs/library/micropython.rst
 from typing import Any, Optional
 
-def native(x) -> None: ...
-def viper(x) -> None: ...
 def const(expr) -> int:
     """
     Used to declare that the expression is a constant so that the compile can

@@ -35,9 +35,7 @@ packages = []
 
 [tool.poetry.dependencies]
 python = "^3.8"
-
-[tool.poetry.dependencies.micropython-stdlib-stubs]
-path = "C:\\develop\\MyPython\\micropython-stubber\\repos\\micropython-stubs\\publish\\micropython-stdlib-minimal"
+micropython-stdlib-stubs = ">=0.9.0"
 
 [tool.poetry.dev-dependencies]
 
