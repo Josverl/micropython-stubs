@@ -146,7 +146,7 @@ class AbstractNIC:
         """
         ...
 
-class WLAN:
+class WLAN(AbstractNIC):
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access
@@ -239,7 +239,7 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, param) -> Any:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
@@ -273,7 +273,7 @@ class WLAN:
         """
         ...
 
-class WLANWiPy:
+class WLANWiPy(AbstractNIC):
     """
        Create a WLAN object, and optionally configure it. See `init()` for params of configuration.
 
@@ -409,7 +409,7 @@ class WLANWiPy:
         """
         ...
 
-class CC3K:
+class CC3K(AbstractNIC):
     """
     Create a CC3K driver object, initialise the CC3000 module using the given SPI bus
     and pins, and return the CC3K object.
@@ -468,7 +468,7 @@ class CC3K:
         """
         ...
 
-class WIZNET5K:
+class WIZNET5K(AbstractNIC):
     """
     Create a WIZNET5K driver object, initialise the WIZnet5x00 module using the given
     SPI bus and pins, and return the WIZNET5K object.
