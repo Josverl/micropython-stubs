@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "micropython-stdlib-minimal"
+version = "1.0.0"
+description = "Reduced copy of typeshed's stdlib for use by MicroPython stub packages"
+authors = ["josverl <josverl@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
+documentation = "https://micropython-stubs.readthedocs.io/"
+exclude = ["*.ps1", "*.py", "**/__pycache__", "**/dist", ".venv/**"]
+include = ["**/*.py", "**/*.pyi"]
+repository = "https://github.com/josverl/micropython-stubs"
+
+classifiers = [
+    "Typing :: Typed",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: MicroPython",
+    "Operating System :: OS Independent",
+    "Topic :: Text Editors :: Integrated Development Environments (IDE)",
+    "Topic :: Software Development :: Build Tools",
+]
+
+# Note: anything excluded in .gitignore is not packaged by poetry 
+packages = [{ include = "stdlib/io.pyi" }]
+
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+build-backend = "poetry.core.masonry.api"
