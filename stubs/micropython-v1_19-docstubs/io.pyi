@@ -17,7 +17,7 @@ class FileIO(IO):
     You should not instantiate this class directly.
     """
 
-    def __init__(self, *args) -> None: ...
+    def __init__(self, *args, **kwargs) -> None: ...
 
 class TextIOWrapper:
     """
@@ -25,7 +25,7 @@ class TextIOWrapper:
     You should not instantiate this class directly.
     """
 
-    def __init__(self, *args) -> None: ...
+    def __init__(self, *args, **kwargs) -> None: ...
 
 class StringIO(IO):
     def __init__(self, string: Optional[Any] = None) -> None: ...
