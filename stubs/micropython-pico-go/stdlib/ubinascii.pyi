@@ -20,8 +20,7 @@
 
 from typing import Any
 
-
-def hexlify(data: Any, sep: Any="") -> bytes:
+def hexlify(data: Any, sep: Any = "") -> bytes:
     """
     Returns the hexadecimal representation of the provided binary data.
 

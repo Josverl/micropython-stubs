@@ -20,7 +20,7 @@
 
 from typing import Optional, Union
 
-def gmtime(secs: Optional[int]=None) -> tuple:
+def gmtime(secs: Optional[int] = None) -> tuple:
     """
     Converts a time expressed in seconds since the Epoch into an 8-tuple which
     contains:
@@ -41,7 +41,7 @@ def gmtime(secs: Optional[int]=None) -> tuple:
     """
     ...
 
-def localtime(secs: Optional[int]=None) -> tuple:
+def localtime(secs: Optional[int] = None) -> tuple:
     """
     Converts a time expressed in seconds since the Epoch into an 8-tuple which
     contains:

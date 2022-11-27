@@ -5,15 +5,18 @@ Module: 'uio' on micropython-v1.18-rp2
 # Stubber: 1.5.3
 from typing import Any
 
+
 def open(*args, **kwargs) -> Any:
     ...
 
 
-class BytesIO():
-    ''
+class BytesIO:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
@@ -42,11 +45,13 @@ class BytesIO():
         ...
 
 
-class FileIO():
-    ''
+class FileIO:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
@@ -75,17 +80,21 @@ class FileIO():
         ...
 
 
-class IOBase():
-    ''
+class IOBase:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
 
-class StringIO():
-    ''
+
+class StringIO:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
@@ -114,11 +123,13 @@ class StringIO():
         ...
 
 
-class TextIOWrapper():
-    ''
+class TextIOWrapper:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def close(self, *args, **kwargs) -> Any:
         ...
 
@@ -145,4 +156,3 @@ class TextIOWrapper():
 
     def tell(self, *args, **kwargs) -> Any:
         ...
-

@@ -22,7 +22,6 @@ from typing import Any, Iterator, List, Tuple
 
 sep: str = ...
 
-
 def chdir(path: str) -> None:
     """
     Changes current directory.
@@ -39,7 +38,7 @@ def getcwd() -> str:
     """
     ...
 
-def ilistdir(path: str=".") -> Iterator[Tuple]:
+def ilistdir(path: str = ".") -> Iterator[Tuple]:
     """
     Returns an iterator which then yields tuples corresponding to the entries
     in the directory that it is listing. With no argument it lists the current
@@ -63,7 +62,7 @@ def ilistdir(path: str=".") -> Iterator[Tuple]:
     """
     ...
 
-def listdir(path: str=".") -> List:
+def listdir(path: str = ".") -> List:
     """
     Lists the specified path or the current one if ``path`` is not provided.
 
@@ -166,8 +165,8 @@ def uname() -> Tuple:
     """
     Gets the information about the machine or operating system.
 
-    Return a tuple (possibly a named tuple) containing information about 
-    the underlying machine and/or its operating system. The tuple has 
+    Return a tuple (possibly a named tuple) containing information about
+    the underlying machine and/or its operating system. The tuple has
     five fields in the following order, each of them being a string:
 
     * ``sysname`` – the name of the underlying system
@@ -179,5 +178,3 @@ def uname() -> Tuple:
     :return: Tuple with information about the machine or operating system.
     """
     ...
-
-

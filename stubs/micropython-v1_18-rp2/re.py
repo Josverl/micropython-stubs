@@ -5,15 +5,18 @@ Module: 're' on micropython-v1.18-rp2
 # Stubber: 1.5.3
 from typing import Any
 
+
 def compile(*args, **kwargs) -> Any:
     ...
+
 
 def match(*args, **kwargs) -> Any:
     ...
 
+
 def search(*args, **kwargs) -> Any:
     ...
 
+
 def sub(*args, **kwargs) -> Any:
     ...
-

@@ -44,6 +44,7 @@ class WLAN:
     connect). Availability of the methods below depends on interface type.
     For example, only STA interface may `WLAN.connect()` to an access point.
     """
+
     def __init__(self, interface_id) -> None: ...
     OPEN: int
     WEP: int

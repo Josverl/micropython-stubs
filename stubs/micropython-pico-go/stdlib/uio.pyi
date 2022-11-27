@@ -20,9 +20,7 @@
 
 from typing import Any, List
 
-
-def open(file: str, *, mode: str="r", buffering: int =-1,
-         encoding: str=None) -> Any:
+def open(file: str, *, mode: str = "r", buffering: int = -1, encoding: str = None) -> Any:
     """
     Opens a file. Builtin ``open()`` function is an alias to
     ``uio.open(file, mode='r')`` which returns a file object a ``uio.FileIO``
@@ -56,7 +54,7 @@ class _IOBase(object):
     There is no public constructor.
     """
 
-    def read(self, size: int=-1) -> bytes:
+    def read(self, size: int = -1) -> bytes:
         """
         Reads up to ``size`` bytes from the object and returns them. As a
         convenience, if ``size`` is unspecified or ``-1``, all bytes until
@@ -67,7 +65,6 @@ class _IOBase(object):
         :return: Read bytes.
         """
         ...
-
     def readinto(self, b: Any) -> int:
         """
         Reads bytes into a pre-allocated, writable bytes-like object ``b``,
@@ -78,8 +75,7 @@ class _IOBase(object):
         :return: Number of bytes read.
         """
         ...
-
-    def readline(self, size: int=-1) -> bytes:
+    def readline(self, size: int = -1) -> bytes:
         """
         Reads and returns one line from the stream. If ``size`` is specified,
         at most ``size`` bytes are read.
@@ -89,7 +85,6 @@ class _IOBase(object):
         :return: Read line in bytes.
         """
         ...
-
     def write(self, b: Any) -> int:
         """
         Writes the given bytes-like object, ``b``, to the underlying raw
@@ -100,8 +95,7 @@ class _IOBase(object):
         :return: The number of bytes written.
         """
         ...
-
-    def seek(self, offset: int, whence: int=0) -> int:
+    def seek(self, offset: int, whence: int = 0) -> int:
         """
         Changes the stream position to the given byte ``offset``. ``offset``
         is interpreted relative to the position indicated by ``whence``. The
@@ -121,7 +115,6 @@ class _IOBase(object):
         :return: The new absolute position of the stream.
         """
         ...
-
     def tell(self) -> int:
         """
         Returns the current stream position.
@@ -129,29 +122,23 @@ class _IOBase(object):
         :return: The current stream position.
         """
         ...
-
     def flush(self) -> None:
         """
         Flushes the write buffers of the stream if applicable. This does
         nothing for read-only streams.
         """
         ...
-
     def close(self) -> None:
         """
         Flushes and closes the stream. This does nothing if the file is
         already closed.
         """
         ...
-
     def __enter__(self) -> Any:
-        """
-        """
+        """ """
         ...
-
     def __exit__(self) -> None:
-        """
-        """
+        """ """
         ...
 
 class FileIO(_IOBase):
@@ -159,8 +146,7 @@ class FileIO(_IOBase):
     Represents an OS-level file containing bytes data.
     """
 
-    def __init__(self, file: str, *, mode: str="r", buffering: int =-1,
-                 encoding: str=None) -> None:
+    def __init__(self, file: str, *, mode: str = "r", buffering: int = -1, encoding: str = None) -> None:
         """
         Class constructor. Instantiates a ``FileIO`` object with the provided
         parameters.
@@ -183,7 +169,6 @@ class FileIO(_IOBase):
             decoded or encoded with.
         """
         ...
-
     def readlines(self) -> List:
         """
         Reads and returns a list of lines from the stream.
@@ -194,7 +179,6 @@ class FileIO(_IOBase):
         :return: A list of lines from the stream.
         """
         ...
-
     def __del__(self) -> None:
         """
         Prepares for object destruction. Calls the instance's ``close()``
@@ -208,8 +192,7 @@ class TextIOWrapper(_IOBase):
     stream I/O.
     """
 
-    def __init__(self, file: str, *, mode: str="r", buffering: int =-1,
-                 encoding: str=None) -> None:
+    def __init__(self, file: str, *, mode: str = "r", buffering: int = -1, encoding: str = None) -> None:
         """
         Class constructor. Instantiates a ``TextIOWrapper`` with the provided
         parameters.
@@ -232,7 +215,6 @@ class TextIOWrapper(_IOBase):
             decoded or encoded with.
         """
         ...
-
     def readlines(self) -> List:
         """
         Reads and returns a list of lines from the stream.
@@ -243,7 +225,6 @@ class TextIOWrapper(_IOBase):
         :return: A list of lines from the stream.
         """
         ...
-
     def __del__(self) -> None:
         """
         Prepares for object destruction. Calls the instance's ``close()``
@@ -257,7 +238,7 @@ class StringIO(_IOBase):
     ``close()`` method is called.
     """
 
-    def __init__(self, *, initial_value: str="", newline: str="\n") -> None:
+    def __init__(self, *, initial_value: str = "", newline: str = "\n") -> None:
         """
         Class constructor. Instantiates a ``StringIO`` object with the provided
         parameters.
@@ -272,7 +253,6 @@ class StringIO(_IOBase):
             ``None``, ``''``, ``'\n'``, ``'\r'``, and ``'\r\n'``.
         """
         ...
-
     def getvalue(self) -> str:
         """
         Returns a string containing the entire contents of the buffer.
@@ -289,7 +269,7 @@ class BytesIO(_IOBase):
     discarded when the ``close()`` method is called.
     """
 
-    def __init__(self, initial_bytes: Any=None) -> None:
+    def __init__(self, initial_bytes: Any = None) -> None:
         """
         Class constructor. Instantiates a ``BytesIO`` object with an optional
         initial data.
@@ -297,7 +277,6 @@ class BytesIO(_IOBase):
         :param initial_bytes: bytes-like-object with initial data.
         """
         ...
-
     def getvalue(self) -> bytes:
         """
         Gets the current contents of the underlying buffer which holds data.

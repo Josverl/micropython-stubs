@@ -5,15 +5,18 @@ Module: 'ds18x20' on micropython-v1.18-rp2
 # Stubber: 1.5.3
 from typing import Any
 
+
 def const(*args, **kwargs) -> Any:
     ...
 
 
-class DS18X20():
-    ''
+class DS18X20:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def scan(self, *args, **kwargs) -> Any:
         ...
 
@@ -28,4 +31,3 @@ class DS18X20():
 
     def read_temp(self, *args, **kwargs) -> Any:
         ...
-

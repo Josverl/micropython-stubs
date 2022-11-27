@@ -26,6 +26,7 @@ class mod(AST): ...
 if sys.version_info >= (3, 8):
     class type_ignore(AST): ...
     class TypeIgnore(type_ignore): ...
+
     class FunctionType(mod):
         argtypes: typing.List[expr]
         returns: expr
@@ -227,12 +228,16 @@ class JoinedStr(expr):
 if sys.version_info < (3, 8):
     class Num(expr):  # Deprecated in 3.8; use Constant
         n: complex
+
     class Str(expr):  # Deprecated in 3.8; use Constant
         s: str
+
     class Bytes(expr):  # Deprecated in 3.8; use Constant
         s: bytes
+
     class NameConstant(expr):  # Deprecated in 3.8; use Constant
         value: Any
+
     class Ellipsis(expr): ...  # Deprecated in 3.8; use Constant
 
 class Constant(expr):
@@ -266,6 +271,7 @@ class Slice(_SliceT):
 if sys.version_info < (3, 9):
     class ExtSlice(slice):
         dims: typing.List[slice]
+
     class Index(slice):
         value: expr
 
@@ -296,6 +302,7 @@ if sys.version_info < (3, 9):
     class AugLoad(expr_context): ...
     class AugStore(expr_context): ...
     class Param(expr_context): ...
+
     class Suite(mod):
         body: typing.List[stmt]
 

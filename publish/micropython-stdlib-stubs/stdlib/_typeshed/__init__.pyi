@@ -62,9 +62,7 @@ class SupportsDunderLE(Protocol[_T_contra]):
 class SupportsDunderGE(Protocol[_T_contra]):
     def __ge__(self, __other: _T_contra) -> bool: ...
 
-class SupportsAllComparisons(
-    SupportsDunderLT[Any], SupportsDunderGT[Any], SupportsDunderLE[Any], SupportsDunderGE[Any], Protocol
-): ...
+class SupportsAllComparisons(SupportsDunderLT[Any], SupportsDunderGT[Any], SupportsDunderLE[Any], SupportsDunderGE[Any], Protocol): ...
 
 SupportsRichComparison: TypeAlias = SupportsDunderLT[Any] | SupportsDunderGT[Any]
 SupportsRichComparisonT = TypeVar("SupportsRichComparisonT", bound=SupportsRichComparison)  # noqa: Y001
@@ -227,9 +225,7 @@ ReadOnlyBuffer: TypeAlias = bytes  # stable
 # The buffer interface is defined purely on the C level, so we cannot define a normal Protocol
 # for it (until PEP 688 is implemented). Instead we have to list the most common stdlib buffer classes in a Union.
 if sys.version_info >= (3, 8):
-    WriteableBuffer: TypeAlias = (
-        bytearray | memoryview | array.array[Any] | mmap.mmap | ctypes._CData | pickle.PickleBuffer
-    )  # stable
+    WriteableBuffer: TypeAlias = bytearray | memoryview | array.array[Any] | mmap.mmap | ctypes._CData | pickle.PickleBuffer  # stable
 else:
     WriteableBuffer: TypeAlias = bytearray | memoryview | array.array[Any] | mmap.mmap | ctypes._CData  # stable
 # Same as _WriteableBuffer, but also includes read-only buffer types (like bytes).

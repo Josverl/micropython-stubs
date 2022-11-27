@@ -6,11 +6,13 @@ Module: '_rp2' on micropython-v1.18-rp2
 from typing import Any
 
 
-class Flash():
-    ''
+class Flash:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def ioctl(self, *args, **kwargs) -> Any:
         ...
 
@@ -21,24 +23,27 @@ class Flash():
         ...
 
 
-class PIO():
-    ''
+class PIO:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
-    IN_HIGH = 1 # type: int
-    IN_LOW = 0 # type: int
-    IRQ_SM0 = 256 # type: int
-    IRQ_SM1 = 512 # type: int
-    IRQ_SM2 = 1024 # type: int
-    IRQ_SM3 = 2048 # type: int
-    JOIN_NONE = 0 # type: int
-    JOIN_RX = 2 # type: int
-    JOIN_TX = 1 # type: int
-    OUT_HIGH = 3 # type: int
-    OUT_LOW = 2 # type: int
-    SHIFT_LEFT = 0 # type: int
-    SHIFT_RIGHT = 1 # type: int
+
+    IN_HIGH = 1  # type: int
+    IN_LOW = 0  # type: int
+    IRQ_SM0 = 256  # type: int
+    IRQ_SM1 = 512  # type: int
+    IRQ_SM2 = 1024  # type: int
+    IRQ_SM3 = 2048  # type: int
+    JOIN_NONE = 0  # type: int
+    JOIN_RX = 2  # type: int
+    JOIN_TX = 1  # type: int
+    OUT_HIGH = 3  # type: int
+    OUT_LOW = 2  # type: int
+    SHIFT_LEFT = 0  # type: int
+    SHIFT_RIGHT = 1  # type: int
+
     def add_program(self, *args, **kwargs) -> Any:
         ...
 
@@ -52,11 +57,13 @@ class PIO():
         ...
 
 
-class StateMachine():
-    ''
+class StateMachine:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def exec(self, *args, **kwargs) -> Any:
         ...
 
@@ -84,6 +91,6 @@ class StateMachine():
     def tx_fifo(self, *args, **kwargs) -> Any:
         ...
 
+
 def dht_readinto(*args, **kwargs) -> Any:
     ...
-

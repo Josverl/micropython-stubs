@@ -46,7 +46,6 @@ T = RegexFlag.T
 TEMPLATE = RegexFlag.TEMPLATE
 _FlagsType = Union[int, RegexFlag]
 
-
 class error(Exception):
     msg: str
     pattern: str
@@ -54,13 +53,13 @@ class error(Exception):
     lineno: Optional[int]
     colno: Optional[int]
 
-def compile(regex_str: AnyStr, flags: _FlagsType = ...) -> Pattern[AnyStr]: 
+def compile(regex_str: AnyStr, flags: _FlagsType = ...) -> Pattern[AnyStr]:
     """
     Compile regular expression, return ``regex <regex>`` object.
     """
     ...
 
-def search(regex_str: AnyStr, string: AnyStr, flags: _FlagsType = ...) -> Optional[Match[AnyStr]]: 
+def search(regex_str: AnyStr, string: AnyStr, flags: _FlagsType = ...) -> Optional[Match[AnyStr]]:
     """
     Compile *regex_str* and search it in a *string*. Unlike `match`, this will search
     string for first position which matches regex (which still may be
@@ -68,14 +67,14 @@ def search(regex_str: AnyStr, string: AnyStr, flags: _FlagsType = ...) -> Option
     """
     ...
 
-def match(regex_str: AnyStr, string: AnyStr, flags: _FlagsType = ...) -> Optional[Match[AnyStr]]: 
+def match(regex_str: AnyStr, string: AnyStr, flags: _FlagsType = ...) -> Optional[Match[AnyStr]]:
     """
     Compile *regex_str* and match against *string*. Match always happens
     from starting position in a string.
     """
     ...
 
-def sub(regex_str: AnyStr, repl: AnyStr, string: AnyStr, count: int = ..., flags: _FlagsType = ...) -> AnyStr: 
+def sub(regex_str: AnyStr, repl: AnyStr, string: AnyStr, count: int = ..., flags: _FlagsType = ...) -> AnyStr:
     """
     Compile *regex_str* and search for it in *string*, replacing all matches
     with *replace*, and returning the new string.
@@ -90,6 +89,3 @@ def sub(regex_str: AnyStr, repl: AnyStr, string: AnyStr, count: int = ..., flags
     this many substitutions are made.  The *flags* argument is ignored.
     """
     ...
-
-
-
