@@ -10,7 +10,7 @@ controlling ESP32 modules.
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/esp32.rst
 from __future__ import annotations
-from typing import Any, List, Optional, Tuple
+from typing import Any, List, Optional, Tuple, Union
 
 HEAP_DATA: Any = ...
 """Used in `idf_heap_info`."""
@@ -146,7 +146,7 @@ class RMT:
         current loop iteration will be completed and then transmission will stop.
         """
         ...
-    def write_pulses(self, duration, data=True) -> Any:
+    def write_pulses(self, duration, data: Union[bool, int] = True) -> Any:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 

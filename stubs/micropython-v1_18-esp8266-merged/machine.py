@@ -10,7 +10,7 @@ damage.
 """
 # MCU: {'ver': 'v1.18', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.18', 'name': 'micropython', 'mpy': 9733, 'version': '1.18', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
 # Stubber: 1.5.4
-from typing import Callable, List, NoReturn, Optional, Tuple, Any
+from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 
 
 class ADC:
@@ -58,7 +58,9 @@ class I2C:
     of *scl* and *sda* that cannot be changed.
     """
 
-    def __init__(self, id, *, scl, sda, freq=400000) -> None:
+    def __init__(
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+    ) -> None:
         """"""
         ...
 
@@ -204,7 +206,7 @@ class PWM:
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
     """
 
-    def __init__(self, dest, *, freq, duty_u16, duty_ns) -> None:
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None:
         """"""
         ...
 
@@ -421,7 +423,7 @@ class RTC:
     Create an RTC object. See init for parameters of initialization.
     """
 
-    def __init__(self, id=0, *args) -> None:
+    def __init__(self, id=0, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -487,7 +489,7 @@ class SPI:
     See ``init`` for parameters of initialisation.
     """
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -586,7 +588,7 @@ class Signal:
       - ``invert`` - if True, the signal will be inverted (active low).
     """
 
-    def __init__(self, pin_obj, invert=False) -> None:
+    def __init__(self, pin_obj, *args, invert=False) -> None:
         """"""
         ...
 
@@ -722,7 +724,7 @@ class Timer:
     See ``init`` for parameters of initialisation.
     """
 
-    def __init__(self, id, /, *args) -> None:
+    def __init__(self, id=-1, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -773,7 +775,7 @@ class UART:
     Construct a UART object of the given id.
     """
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -831,7 +833,7 @@ class UART:
         """
         ...
 
-    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args) -> None:
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
         """
         Initialise the UART bus with the given parameters:
 

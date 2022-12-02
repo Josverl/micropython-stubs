@@ -56,7 +56,7 @@ class WLAN:
         provided. Most other methods require active interface.
         """
         ...
-    def config(self, param) -> Any:
+    def config(self, *args, **kwargs) -> Any:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by

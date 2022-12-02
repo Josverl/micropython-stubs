@@ -397,7 +397,7 @@ class CAN:
       - ``CAN(2)`` is on ``YB``: ``(RX, TX) = (Y5, Y6) = (PB12, PB13)``
     """
 
-    def __init__(self, bus, *args) -> None:
+    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
         """"""
         ...
 
@@ -797,7 +797,7 @@ class I2C:
     types.
     """
 
-    def __init__(self, bus, *args) -> None:
+    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
         """"""
         ...
 
@@ -1024,7 +1024,7 @@ class Pin:
     they are used to initialise the pin.  See :meth:`pin.init`.
     """
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -1368,7 +1368,7 @@ class SPI:
     for other use.
     """
 
-    def __init__(self, bus, *args) -> None:
+    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
         """"""
         ...
 
@@ -1555,7 +1555,7 @@ class Timer:
     ``id`` can be 1 to 14.
     """
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -1591,7 +1591,7 @@ class Timer:
         """
         ...
 
-    def channel(self, channel, mode, *args) -> Any:
+    def channel(self, channel, mode, pin=None, *args) -> Any:
         """
         If only a channel number is passed, then a previously initialized channel
         object is returned (or ``None`` if there is no previous channel).
@@ -1794,7 +1794,7 @@ class UART:
     have ``UART(1)`` on ``XB`` and ``UART(6)`` on ``YA``.
     """
 
-    def __init__(self, bus, *args) -> None:
+    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
         """"""
         ...
 
@@ -2182,7 +2182,7 @@ def fault_debug(value) -> None:
     ...
 
 
-def freq(sysclk, hclk, pclk1, pclk2) -> Tuple:
+def freq(sysclk=0, hclk=0, pclk1=0, pclk2=0) -> Tuple:
     """
     If given no arguments, returns a tuple of clock frequencies:
     (sysclk, hclk, pclk1, pclk2).
@@ -2240,7 +2240,7 @@ def have_cdc() -> bool:
     ...
 
 
-def hid(hidtuple) -> Any:
+def hid(hidtuple: Tuple) -> Any:
     """
     Takes a 4-tuple (or list) and sends it to the USB host (the PC) to
     signal a HID mouse-motion event.

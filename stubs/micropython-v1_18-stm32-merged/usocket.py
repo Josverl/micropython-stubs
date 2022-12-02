@@ -7,7 +7,7 @@ This module provides access to the BSD socket interface.
 """
 # MCU: {'ver': 'v1.18', 'port': 'stm32', 'arch': 'armv7emsp', 'sysname': 'pyboard', 'release': '1.18.0', 'name': 'micropython', 'mpy': 7685, 'version': '1.18.0', 'machine': 'PYBv1.1 with STM32F405RG', 'build': '', 'nodename': 'pyboard', 'platform': 'stm32', 'family': 'micropython'}
 # Stubber: 1.5.6
-from typing import Any, Optional, Tuple
+from typing import IO, Optional, Tuple, Any
 
 AF_INET = 2  # type: int
 AF_INET6 = 10  # type: int

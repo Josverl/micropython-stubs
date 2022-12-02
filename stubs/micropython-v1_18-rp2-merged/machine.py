@@ -10,7 +10,7 @@ damage.
 """
 # MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.18.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2', 'ver': 'v1.18', 'release': '1.18.0'}
 # Stubber: 1.5.3
-from typing import Callable, List, NoReturn, Optional, Tuple, Any
+from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 
 
 class ADC:
@@ -52,7 +52,9 @@ class I2C:
     of *scl* and *sda* that cannot be changed.
     """
 
-    def __init__(self, id, *, scl, sda, freq=400000) -> None:
+    def __init__(
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+    ) -> None:
         """"""
         ...
 
@@ -243,7 +245,7 @@ class I2S:
         """
         ...
 
-    def init(self, sck, *args) -> Any:
+    def init(self, sck, *args, **kwargs) -> Any:
         """
         see Constructor for argument descriptions
         """
@@ -284,7 +286,7 @@ class PWM:
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
     """
 
-    def __init__(self, dest, *, freq, duty_u16, duty_ns) -> None:
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None:
         """"""
         ...
 
@@ -534,7 +536,7 @@ class RTC:
     Create an RTC object. See init for parameters of initialization.
     """
 
-    def __init__(self, id=0, *args) -> None:
+    def __init__(self, id=0, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -567,7 +569,7 @@ class SPI:
     See ``init`` for parameters of initialisation.
     """
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -666,7 +668,7 @@ class Signal:
       - ``invert`` - if True, the signal will be inverted (active low).
     """
 
-    def __init__(self, pin_obj, invert=False) -> None:
+    def __init__(self, pin_obj, *args, invert=False) -> None:
         """"""
         ...
 
@@ -802,7 +804,7 @@ class Timer:
     See ``init`` for parameters of initialisation.
     """
 
-    def __init__(self, id, /, *args) -> None:
+    def __init__(self, id=-1, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -853,7 +855,7 @@ class UART:
     Construct a UART object of the given id.
     """
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         """"""
         ...
 

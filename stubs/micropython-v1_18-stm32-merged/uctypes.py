@@ -10,6 +10,7 @@ sub-fields.
 """
 # MCU: {'ver': 'v1.18', 'port': 'stm32', 'arch': 'armv7emsp', 'sysname': 'pyboard', 'release': '1.18.0', 'name': 'micropython', 'mpy': 7685, 'version': '1.18.0', 'machine': 'PYBv1.1 with STM32F405RG', 'build': '', 'nodename': 'pyboard', 'platform': 'stm32', 'family': 'micropython'}
 # Stubber: 1.5.6
+from typing import Any
 
 ARRAY = -1073741824  # type: int
 BFINT16 = -671088640  # type: int

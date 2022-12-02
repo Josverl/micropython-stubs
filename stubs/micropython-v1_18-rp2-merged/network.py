@@ -33,7 +33,7 @@ For example::
 """
 # MCU: {'family': 'micropython', 'sysname': 'rp2', 'version': '1.18.0', 'build': '', 'mpy': 5637, 'port': 'rp2', 'platform': 'rp2', 'name': 'micropython', 'arch': 'armv7m', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2', 'ver': 'v1.18', 'release': '1.18.0'}
 # Stubber: 1.5.3
-from typing import Any, List, Optional, Tuple
+from typing import List, Optional, Tuple, Union, Any
 
 AP_IF = 1  # type: int
 STA_IF = 0  # type: int
@@ -64,7 +64,7 @@ class WLAN:
         """
         ...
 
-    def config(self, param) -> Any:
+    def config(self, *args, **kwargs) -> Any:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by

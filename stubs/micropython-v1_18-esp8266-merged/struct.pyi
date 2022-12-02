@@ -17,14 +17,14 @@ def calcsize(fmt) -> int:
     """
     ...
 
-def pack(fmt, v1, v2, *args) -> bytes:
+def pack(fmt, v1, *args, **kwargs) -> bytes:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*.
     The return value is a bytes object encoding the values.
     """
     ...
 
-def pack_into(fmt, buffer, offset, v1, v2, *args) -> Any:
+def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Any:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*
     into a *buffer* starting at *offset*. *offset* may be negative to count

@@ -83,7 +83,7 @@ class PIO:
         It is not an error to remove a program which has already been removed.
         """
         ...
-    def state_machine(self, id, program, *args: Optional[Any]) -> Any:
+    def state_machine(self, id, program, *args, **kwargs: Optional[Any]) -> Any:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
         four state machines, numbered 0 to 3.
@@ -106,7 +106,7 @@ class StateMachine:
 
     """
 
-    def __init__(self, id, program, *args: Optional[Any]) -> None: ...
+    def __init__(self, id, program, *args, **kwargs: Optional[Any]) -> None: ...
     def exec(self, instr) -> Any:
         """
         Execute a single PIO instruction. Uses `asm_pio_encode` to encode the
