@@ -48,7 +48,7 @@ class AbstractNIC:
     parameter should be `id`.
     """
 
-    def __init__(self, id=None, *args, **kwargs) -> None: ...
+    def __init__(self, id=None, *args) -> None: ...
     def active(self, is_active: Optional[Any] = None) -> None:
         """
         Activate ("up") or deactivate ("down") the network interface, if
@@ -58,7 +58,7 @@ class AbstractNIC:
         undefined).
         """
         ...
-    def connect(self, service_id, key=None, *args, **kwargs: Optional[Any]) -> None:
+    def connect(self, service_id, key=None, *args: Optional[Any]) -> None:
         """
         Connect the interface to a network. This method is optional, and
         available only for interfaces which are not "always connected".
@@ -85,7 +85,7 @@ class AbstractNIC:
         Returns ``True`` if connected to network, otherwise returns ``False``.
         """
         ...
-    def scan(self, *args, **kwargs) -> List[Tuple]:
+    def scan(self, *args) -> List[Tuple]:
         """
         Scan for the available network services/connections. Returns a
         list of tuples with discovered service parameters. For various
@@ -146,7 +146,7 @@ class AbstractNIC:
         """
         ...
 
-class WLAN:
+class WLAN(AbstractNIC):
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access
@@ -239,7 +239,7 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, param) -> Any:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
@@ -273,7 +273,7 @@ class WLAN:
         """
         ...
 
-class WLANWiPy:
+class WLANWiPy(AbstractNIC):
     """
        Create a WLAN object, and optionally configure it. See `init()` for params of configuration.
 
@@ -296,7 +296,7 @@ class WLANWiPy:
     INT_ANT: Any = ...
     EXT_ANT: Any = ...
     """selects the antenna type"""
-    def __init__(self, id=0, *args, **kwargs) -> None: ...
+    def __init__(self, id=0, *args) -> None: ...
     def init(self, mode, *, ssid, auth, channel, antenna) -> Any:
         """
         Set or get the WiFi network processor configuration.
@@ -409,7 +409,7 @@ class WLANWiPy:
         """
         ...
 
-class CC3K:
+class CC3K(AbstractNIC):
     """
     Create a CC3K driver object, initialise the CC3000 module using the given SPI bus
     and pins, and return the CC3K object.
@@ -468,7 +468,7 @@ class CC3K:
         """
         ...
 
-class WIZNET5K:
+class WIZNET5K(AbstractNIC):
     """
     Create a WIZNET5K driver object, initialise the WIZnet5x00 module using the given
     SPI bus and pins, and return the WIZNET5K object.
