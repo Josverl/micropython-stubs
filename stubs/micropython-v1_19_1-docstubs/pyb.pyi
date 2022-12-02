@@ -223,9 +223,7 @@ class CAN:
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for CAN FD."""
     MASK: Any = ...
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for CAN FD."""
-    def __init__(
-        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
-    ) -> None: ...
+    def __init__(self, bus, *args) -> None: ...
     def init(
         self,
         mode,
@@ -354,7 +352,7 @@ class CAN:
         - number of pending RX messages on fifo 1
         """
         ...
-    def setfilter(self, bank, mode, fifo, params, *, rtr=None, extframe=False) -> None:
+    def setfilter(self, bank, mode, fifo, params, *, rtr, extframe=False) -> None:
         """
         Configure a filter bank:
 
@@ -715,9 +713,7 @@ class I2C:
     """for initialising the bus to controller mode"""
     PERIPHERAL: Any = ...
     """for initialising the bus to peripheral mode"""
-    def __init__(
-        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
-    ) -> None: ...
+    def __init__(self, bus, *args) -> None: ...
     def deinit(self) -> None:
         """
         Turn off the I2C bus.
@@ -927,7 +923,7 @@ class Pin:
     """don't enable any pull up or down resistors on the pin"""
     PULL_UP: Any = ...
     """enable the pull-up resistor on the pin"""
-    def __init__(self, id, *args, **kwargs) -> None: ...
+    def __init__(self, id, *args) -> None: ...
     @classmethod
     def debug(cls, state: Optional[Any] = None) -> bool:
         """
@@ -1233,9 +1229,7 @@ class SPI:
     LSB: Any = ...
     MSB: Any = ...
     """set the first bit to be the least or most significant bit"""
-    def __init__(
-        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
-    ) -> None: ...
+    def __init__(self, bus, *args) -> None: ...
     def deinit(self) -> None:
         """
         Turn off the SPI bus.
@@ -1317,7 +1311,7 @@ class Timer:
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
     CENTER: int = 1
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
-    def __init__(self, id, *args, **kwargs) -> None: ...
+    def __init__(self, id, *args) -> None: ...
     def init(self, *, freq, prescaler, period, mode=UP, div=1, callback=None, deadtime=0) -> None:
         """
         Initialise the timer.  Initialisation must be either by frequency (in Hz)
@@ -1383,7 +1377,7 @@ class Timer:
         If ``fun`` is ``None`` then the callback will be disabled.
         """
         ...
-    def channel(self, channel, mode, pin=None, *args) -> Any:
+    def channel(self, channel, mode, *args) -> Any:
         """
         If only a channel number is passed, then a previously initialized channel
         object is returned (or ``None`` if there is no previous channel).
@@ -1568,9 +1562,7 @@ class UART:
     """to select the flow control type."""
     CTS: Any = ...
     """to select the flow control type."""
-    def __init__(
-        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
-    ) -> None: ...
+    def __init__(self, bus, *args) -> None: ...
     def init(self, baudrate, bits=8, parity=None, stop=1, *, timeout=0, flow=0, timeout_char=0, read_buf_len=64) -> Any:
         """
         Initialise the UART bus with the given parameters:
@@ -1945,7 +1937,7 @@ def enable_irq(state=True) -> None:
     """
     ...
 
-def freq(sysclk=0, hclk=0, pclk1=0, pclk2=0) -> Tuple:
+def freq(sysclk, hclk, pclk1, pclk2) -> Tuple:
     """
     If given no arguments, returns a tuple of clock frequencies:
     (sysclk, hclk, pclk1, pclk2).

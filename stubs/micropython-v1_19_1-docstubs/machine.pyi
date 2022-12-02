@@ -25,7 +25,7 @@ damage.
 # + module: machine.WDT.rst
 # + module: machine.SD.rst
 # + module: machine.SDCard.rst
-from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Callable, List, NoReturn, Optional, Tuple
 
 IDLE: Any = ...
 """IRQ wake values."""
@@ -516,8 +516,8 @@ class UART:
     
     Availability: WiPy.
     """
-    def __init__(self, id, *args, **kwargs) -> None: ...
-    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
+    def __init__(self, id, *args) -> None: ...
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args) -> None:
         """
         Initialise the UART bus with the given parameters:
 
@@ -762,9 +762,7 @@ class I2C:
     of *scl* and *sda* that cannot be changed.
     """
 
-    def __init__(
-        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
-    ) -> None: ...
+    def __init__(self, id, *, scl, sda, freq=400000) -> None: ...
     def init(self, scl, sda, *, freq=400000) -> None:
         """
         Initialise the I2C bus with the given arguments:
@@ -937,7 +935,7 @@ class I2S:
     
     """
     def __init__(self, id, *, sck, ws, sd, mck=None, mode, bits, format, rate, ibuf) -> None: ...
-    def init(self, sck, *args, **kwargs) -> Any:
+    def init(self, sck, *args) -> Any:
         """
         see Constructor for argument descriptions
         """
@@ -986,7 +984,7 @@ class RTC:
 
     ALARM0: Any = ...
     """irq trigger source"""
-    def __init__(self, id=0, *args, **kwargs) -> None: ...
+    def __init__(self, id=0, *args) -> None: ...
     def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
@@ -1060,7 +1058,7 @@ class Timer:
     """Timer operating mode."""
     PERIODIC: Any = ...
     """Timer operating mode."""
-    def __init__(self, id=-1, *args, **kwargs) -> None: ...
+    def __init__(self, id, /, *args) -> None: ...
     def init(self, *, mode=PERIODIC, period=-1, callback=None) -> None:
         """
         Initialise the timer. Example::
@@ -1121,7 +1119,7 @@ class SD:
     Create a SD card object. See ``init()`` for parameters if initialization.
     """
 
-    def __init__(self, id, *args, **kwargs) -> None: ...
+    def __init__(self, id, *args) -> None: ...
     def init(self, id=0, pins=("GP10", "GP11", "GP15")) -> None:
         """
         Enable the SD card. In order to initialize the card, give it a 3-tuple:

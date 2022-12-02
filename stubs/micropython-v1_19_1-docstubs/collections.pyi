@@ -69,7 +69,7 @@ class OrderedDict(dict):
         b 3
     """
 
-    def __init__(self, *args, **kwargs) -> None: ...
+    def __init__(self, *args) -> None: ...
 
 def namedtuple(name, fields) -> Any:
     """
