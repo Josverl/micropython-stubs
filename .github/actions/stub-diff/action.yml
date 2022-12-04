@@ -36,8 +36,8 @@ runs:
         $count = $files.count
         # need newline  to set-output
         echo ""
-        echo "::set-output name=changed::$(if ($count -eq 0){"false"}else{"true"})"
-        echo "::set-output name=count::$count"
+        run: echo "changed=$(if ($count -eq 0){"false"}else{"true"})" >> $GITHUB_OUTPUT
+        run: echo "count=$count" >> $GITHUB_OUTPUT
         # create a summary
         if ($count -gt 0) {
           echo "create summary"
