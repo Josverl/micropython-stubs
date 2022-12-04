@@ -14,8 +14,8 @@ name: publish-stubs
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 1 * * 5" # Run every Friday at 01:00
+  # schedule:
+  #   - cron: "0 1 * * 5" # Run every Friday at 01:00
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
 
