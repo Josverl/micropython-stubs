@@ -6,14 +6,7 @@ from typing import Callable, Optional
 
 import ulab
 
-def bisect(
-    fun: Callable[[float], float],
-    a: float,
-    b: float,
-    *,
-    xtol: float = 2.4e-7,
-    maxiter: int = 100
-) -> float:
+def bisect(fun: Callable[[float], float], a: float, b: float, *, xtol: float = 2.4e-7, maxiter: int = 100) -> float:
     """
     :param callable f: The function to bisect
     :param float a: The left side of the interval
@@ -26,14 +19,7 @@ def bisect(
     ``xtol`` unless more than ``maxiter`` steps are required."""
     ...
 
-def fmin(
-    fun: Callable[[float], float],
-    x0: float,
-    *,
-    xatol: float = 2.4e-7,
-    fatol: float = 2.4e-7,
-    maxiter: int = 200
-) -> float:
+def fmin(fun: Callable[[float], float], x0: float, *, xatol: float = 2.4e-7, fatol: float = 2.4e-7, maxiter: int = 200) -> float:
     """
     :param callable f: The function to bisect
     :param float x0: The initial x value
@@ -46,14 +32,7 @@ def fmin(
     steps are requried."""
     ...
 
-def interp(
-    x: ulab.array,
-    xp: ulab.array,
-    fp: ulab.array,
-    *,
-    left: Optional[float] = None,
-    right: Optional[float] = None
-) -> ulab.array:
+def interp(x: ulab.array, xp: ulab.array, fp: ulab.array, *, left: Optional[float] = None, right: Optional[float] = None) -> ulab.array:
     """
     :param ulab.array x: The x-coordinates at which to evaluate the interpolated values.
     :param ulab.array xp: The x-coordinates of the data points, must be increasing
@@ -64,14 +43,7 @@ def interp(
     Returns the one-dimensional piecewise linear interpolant to a function with given discrete data points (xp, fp), evaluated at x."""
     ...
 
-def newton(
-    fun: Callable[[float], float],
-    x0: float,
-    *,
-    xtol: float = 2.4e-7,
-    rtol: float = 0.0,
-    maxiter: int = 50
-) -> float:
+def newton(fun: Callable[[float], float], x0: float, *, xtol: float = 2.4e-7, rtol: float = 0.0, maxiter: int = 50) -> float:
     """
     :param callable f: The function to bisect
     :param float x0: The initial x value

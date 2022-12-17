@@ -20,7 +20,6 @@
 
 from typing import Any, Tuple
 
-
 def calcsize(fmt: str) -> int:
     """
     Returns the number of bytes needed to store the given ``fmt``.
@@ -72,7 +71,7 @@ def unpack(fmt: str, buffer: Any) -> Tuple:
     """
     ...
 
-def unpack_from(fmt: str, buffer: Any, offset: int=0) -> None:
+def unpack_from(fmt: str, buffer: Any, offset: int = 0) -> None:
     """
     Returns a tuple containing values unpacked according to the format string
     ``fmt``.  The buffer's size, minus ``offset``, must be at least

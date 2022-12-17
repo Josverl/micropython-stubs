@@ -6,6 +6,7 @@ from typing import overload
 
 import ulab
 from ulab import _ArrayLike
+
 @overload
 def polyfit(y: _ArrayLike, degree: int) -> ulab.array: ...
 @overload

@@ -6,14 +6,15 @@ Module: 'hashlib' on micropython-v1.18-rp2
 from typing import Any
 
 
-class sha256():
-    ''
+class sha256:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def update(self, *args, **kwargs) -> Any:
         ...
 
     def digest(self, *args, **kwargs) -> Any:
         ...
-

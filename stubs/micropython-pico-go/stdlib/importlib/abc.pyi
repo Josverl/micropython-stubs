@@ -62,6 +62,7 @@ class FileLoader(ResourceLoader, ExecutionLoader, metaclass=ABCMeta):
 
 if sys.version_info >= (3, 7):
     _PathLike = Union[bytes, str, os.PathLike[Any]]
+
     class ResourceReader(metaclass=ABCMeta):
         @abstractmethod
         def open_resource(self, resource: _PathLike) -> IO[bytes]: ...

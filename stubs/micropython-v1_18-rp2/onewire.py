@@ -7,13 +7,16 @@ from typing import Any
 
 
 class OneWireError(Exception):
-    ''
+    """"""
 
-class OneWire():
-    ''
+
+class OneWire:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
@@ -41,9 +44,9 @@ class OneWire():
     def writebyte(self, *args, **kwargs) -> Any:
         ...
 
-    SEARCH_ROM = 240 # type: int
-    MATCH_ROM = 85 # type: int
-    SKIP_ROM = 204 # type: int
+    SEARCH_ROM = 240  # type: int
+    MATCH_ROM = 85  # type: int
+    SKIP_ROM = 204  # type: int
+
     def select_rom(self, *args, **kwargs) -> Any:
         ...
-

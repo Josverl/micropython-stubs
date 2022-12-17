@@ -18,9 +18,7 @@ def fft(r: ulab.array, c: Optional[ulab.array] = None) -> Tuple[ulab.array, ulab
     rather than separately returning its real and imaginary parts."""
     ...
 
-def ifft(
-    r: ulab.array, c: Optional[ulab.array] = None
-) -> Tuple[ulab.array, ulab.array]:
+def ifft(r: ulab.array, c: Optional[ulab.array] = None) -> Tuple[ulab.array, ulab.array]:
     """
     :param ulab.array r: A 1-dimension array of values whose size is a power of 2
     :param ulab.array c: An optional 1-dimension array of values whose size is a power of 2, giving the complex part of the value

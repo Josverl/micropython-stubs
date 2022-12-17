@@ -6,11 +6,13 @@ Module: 'ubluetooth' on micropython-v1.18-rp2
 from typing import Any
 
 
-class BLE():
-    ''
+class BLE:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
+
     def active(self, *args, **kwargs) -> Any:
         ...
 
@@ -89,14 +91,17 @@ class BLE():
     def l2cap_send(self, *args, **kwargs) -> Any:
         ...
 
-FLAG_INDICATE = 32 # type: int
-FLAG_NOTIFY = 16 # type: int
-FLAG_READ = 2 # type: int
-FLAG_WRITE = 8 # type: int
-FLAG_WRITE_NO_RESPONSE = 4 # type: int
 
-class UUID():
-    ''
+FLAG_INDICATE = 32  # type: int
+FLAG_NOTIFY = 16  # type: int
+FLAG_READ = 2  # type: int
+FLAG_WRITE = 8  # type: int
+FLAG_WRITE_NO_RESPONSE = 4  # type: int
+
+
+class UUID:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...

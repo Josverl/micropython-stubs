@@ -34,12 +34,7 @@ _Index = Union[int, slice, ulab.array, Tuple[Union[int, slice], ...]]
 class array:
     """1- and 2- dimensional array"""
 
-    def __init__(
-        self,
-        values: Union[array, Iterable[Union[_float, _bool, Iterable[Any]]]],
-        *,
-        dtype: _DType = ulab.float
-    ) -> None:
+    def __init__(self, values: Union[array, Iterable[Union[_float, _bool, Iterable[Any]]]], *, dtype: _DType = ulab.float) -> None:
         """:param sequence values: Sequence giving the initial content of the array.
         :param ~ulab._DType dtype: The type of array values, `ulab.int8`, `ulab.uint8`, `ulab.int16`, `ulab.uint16`, `ulab.float` or `ulab.bool`
 
@@ -161,21 +156,15 @@ def get_printoptions() -> Dict[str, int]:
     """Get printing options"""
     ...
 
-def set_printoptions(
-    threshold: Optional[int] = None, edgeitems: Optional[int] = None
-) -> None:
+def set_printoptions(threshold: Optional[int] = None, edgeitems: Optional[int] = None) -> None:
     """Set printing options"""
     ...
 
 def ndinfo(array: ulab.array) -> None: ...
 @overload
-def arange(
-    stop: _float, step: _float = 1, *, dtype: _DType = ulab.float
-) -> ulab.array: ...
+def arange(stop: _float, step: _float = 1, *, dtype: _DType = ulab.float) -> ulab.array: ...
 @overload
-def arange(
-    start: _float, stop: _float, step: _float = 1, *, dtype: _DType = ulab.float
-) -> ulab.array:
+def arange(start: _float, stop: _float, step: _float = 1, *, dtype: _DType = ulab.float) -> ulab.array:
     """
     .. param: start
       First value in the array, optional, defaults to 0
@@ -209,19 +198,12 @@ def diag(a: ulab.array, *, k: int = 0) -> ulab.array:
     Return specified diagonals."""
     ...
 
-def eye(
-    size: int, *, M: Optional[int] = None, k: int = 0, dtype: _DType = ulab.float
-) -> ulab.array:
+def eye(size: int, *, M: Optional[int] = None, k: int = 0, dtype: _DType = ulab.float) -> ulab.array:
     """Return a new square array of size, with the diagonal elements set to 1
     and the other elements set to 0."""
     ...
 
-def full(
-    shape: Union[int, Tuple[int, ...]],
-    fill_value: Union[_float, _bool],
-    *,
-    dtype: _DType = ulab.float
-) -> ulab.array:
+def full(shape: Union[int, Tuple[int, ...]], fill_value: Union[_float, _bool], *, dtype: _DType = ulab.float) -> ulab.array:
     """
     .. param: shape
        Shape of the array, either an integer (for a 1-D array) or a tuple of integers (for tensors of higher rank)
@@ -234,13 +216,7 @@ def full(
     ...
 
 def linspace(
-    start: _float,
-    stop: _float,
-    *,
-    dtype: _DType = ulab.float,
-    num: int = 50,
-    endpoint: _bool = True,
-    retstep: _bool = False
+    start: _float, stop: _float, *, dtype: _DType = ulab.float, num: int = 50, endpoint: _bool = True, retstep: _bool = False
 ) -> ulab.array:
     """
     .. param: start
@@ -261,13 +237,7 @@ def linspace(
     ...
 
 def logspace(
-    start: _float,
-    stop: _float,
-    *,
-    dtype: _DType = ulab.float,
-    num: int = 50,
-    endpoint: _bool = True,
-    base: _float = 10.0
+    start: _float, stop: _float, *, dtype: _DType = ulab.float, num: int = 50, endpoint: _bool = True, base: _float = 10.0
 ) -> ulab.array:
     """
     .. param: start
@@ -290,9 +260,7 @@ def logspace(
     The sequence starts at ``base ** start``, and ends with ``base ** stop``."""
     ...
 
-def ones(
-    shape: Union[int, Tuple[int, ...]], *, dtype: _DType = ulab.float
-) -> ulab.array:
+def ones(shape: Union[int, Tuple[int, ...]], *, dtype: _DType = ulab.float) -> ulab.array:
     """
     .. param: shape
        Shape of the array, either an integer (for a 1-D array) or a tuple of 2 integers (for a 2-D array)
@@ -302,9 +270,7 @@ def ones(
     Return a new array of the given shape with all elements set to 1."""
     ...
 
-def zeros(
-    shape: Union[int, Tuple[int, ...]], *, dtype: _DType = ulab.float
-) -> ulab.array:
+def zeros(shape: Union[int, Tuple[int, ...]], *, dtype: _DType = ulab.float) -> ulab.array:
     """
     .. param: shape
        Shape of the array, either an integer (for a 1-D array) or a tuple of 2 integers (for a 2-D array)

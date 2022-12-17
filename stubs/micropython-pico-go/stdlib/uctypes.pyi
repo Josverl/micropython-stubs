@@ -56,14 +56,14 @@ ULONGLONG = 805306368
 USHORT = 268435456
 VOID = 0
 
-def addressof(value:Any) -> int:
+def addressof(value: Any) -> int:
     """
     Return address of an object. Argument should be bytes, bytearray or
     other object supporting buffer protocol (and address of this buffer
     is what actually returned).
     """
 
-def bytearray_at(addr:int, size:int) -> bytearray:
+def bytearray_at(addr: int, size: int) -> bytearray:
     """
     Capture memory at the given address and size as bytearray object.
     Unlike the bytes_at() function, memory is captured by reference,
@@ -71,7 +71,7 @@ def bytearray_at(addr:int, size:int) -> bytearray:
     at the given memory address.
     """
 
-def bytes_at(addr:int, size:int) -> bytes:
+def bytes_at(addr: int, size: int) -> bytes:
     """
     Capture memory at the given address and size as bytes object. As bytes
     object is immutable, memory is actually duplicated and copied into
@@ -79,16 +79,15 @@ def bytes_at(addr:int, size:int) -> bytes:
     retains original value.
     """
 
-def sizeof(struct:Any, layout_type:int=NATIVE, /) -> int:
+def sizeof(struct: Any, layout_type: int = NATIVE, /) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object
     (or its aggregate field).
     """
 
-
 class struct:
-    def __init__(self, addr:int, descriptor:Any, layout_type:int=NATIVE, /):
+    def __init__(self, addr: int, descriptor: Any, layout_type: int = NATIVE, /):
         """
         Instantiate a "foreign data structure" object based on structure address in
         memory, descriptor (encoded as a dictionary), and layout type.

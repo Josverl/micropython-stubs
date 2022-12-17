@@ -5,17 +5,21 @@ Module: 'network' on micropython-v1.18-rp2
 # Stubber: 1.5.3
 from typing import Any
 
-AP_IF = 1 # type: int
-STA_IF = 0 # type: int
+AP_IF = 1  # type: int
+STA_IF = 0  # type: int
 
-class WLAN():
-    ''
+
+class WLAN:
+    """"""
+
     def __init__(self, *argv, **kwargs) -> None:
-        ''
+        """"""
         ...
-    OPEN = 1 # type: int
-    WEP = 3 # type: int
-    WPA_PSK = 2 # type: int
+
+    OPEN = 1  # type: int
+    WEP = 3  # type: int
+    WPA_PSK = 2  # type: int
+
     def active(self, *args, **kwargs) -> Any:
         ...
 
@@ -40,6 +44,6 @@ class WLAN():
     def status(self, *args, **kwargs) -> Any:
         ...
 
+
 def route(*args, **kwargs) -> Any:
     ...
-

@@ -56,9 +56,7 @@ class PIO:
         """
         Adds program data to the PIO instruction memory.
         """
-    def irq(
-        self, handler=None, trigger=IRQ_SM0 | IRQ_SM1 | IRQ_SM2 | IRQ_SM3, hard=False
-    ):
+    def irq(self, handler=None, trigger=IRQ_SM0 | IRQ_SM1 | IRQ_SM2 | IRQ_SM3, hard=False):
         """
         Execute assembly code when triggered.
         """
@@ -141,7 +139,7 @@ class StateMachine:
         in_shiftdir: int = None,
         out_shiftdir: int = None,
         push_thresh: int = None,
-        pull_thresh: int = None
+        pull_thresh: int = None,
     ):
         """
         Create a new StateMachine containing two First-In-First-Out (FIFO)
@@ -177,7 +175,7 @@ class StateMachine:
         in_shiftdir: int = None,
         out_shiftdir: int = None,
         push_thresh: int = None,
-        pull_thresh: int = None
+        pull_thresh: int = None,
     ):
         """
         Create a new StateMachine containing two First-In-First-Out (FIFO)

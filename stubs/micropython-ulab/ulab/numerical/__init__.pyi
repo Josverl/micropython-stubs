@@ -67,8 +67,6 @@ def std(array: _ArrayLike, *, axis: Optional[int] = None, ddof: int = 0) -> floa
     """Return the standard deviation of the array, as a number if axis is None, otherwise as an array."""
     ...
 
-def sum(
-    array: _ArrayLike, *, axis: Optional[int] = None
-) -> Union[float, int, ulab.array]:
+def sum(array: _ArrayLike, *, axis: Optional[int] = None) -> Union[float, int, ulab.array]:
     """Return the sum of the array, as a number if axis is None, otherwise as an array."""
     ...

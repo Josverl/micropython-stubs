@@ -32,6 +32,7 @@ def getrandbits(n) -> int:
     Return an integer with *n* random bits (0 <= n <= 32).
     """
     ...
+
 def seed(n=None, /) -> None:
     """
     Initialise the random number generator module with the seed *n* which should
