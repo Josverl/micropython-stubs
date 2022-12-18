@@ -1,4 +1,4 @@
-# 1.7 introduced the ability to merge stubs using codemmods.
+# 1.7 introduced the ability to merge stubs using codemods.
 micropython-stubber >= 1.7
 
 # for quality reporting
@@ -8,11 +8,13 @@ black
 
 
 # publishing
-tomli
-tomli-w
-packaging
+# tomli
+# tomli-w
+# packaging
 
-pysondb-v2
+# pysondb-v2
 
+# click == 8.0.3
 
-click == 8.0.3
+# reporting
+google-cloud-bigquery
