@@ -28,9 +28,7 @@ def convolve(a: ulab.array, v: ulab.array) -> ulab.array:
 @overload
 def sosfilt(sos: _ArrayLike, x: _ArrayLike) -> ulab.array: ...
 @overload
-def sosfilt(
-    sos: _ArrayLike, x: _ArrayLike, *, zi: ulab.array
-) -> Tuple[ulab.array, ulab.array]:
+def sosfilt(sos: _ArrayLike, x: _ArrayLike, *, zi: ulab.array) -> Tuple[ulab.array, ulab.array]:
     """
     :param ulab.array sos: Array of second-order filter coefficients, must have shape (n_sections, 6). Each row corresponds to a second-order section, with the first three columns providing the numerator coefficients and the last three providing the denominator coefficients.
     :param ulab.array x: The data to be filtered

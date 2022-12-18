@@ -15,7 +15,7 @@ def dumps(
     escape_forward_slashes: bool = ...,
     sort_keys: bool = ...,
     indent: int = ...,
-) -> str: 
+) -> str:
     """
     Return *obj* represented as a JSON string.
     """
@@ -30,20 +30,20 @@ def dump(
     escape_forward_slashes: bool = ...,
     sort_keys: bool = ...,
     indent: int = ...,
-) -> None: 
+) -> None:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
     """
     ...
 
-def loads(s: AnyStr, precise_float: bool = ...) -> Any: 
+def loads(s: AnyStr, precise_float: bool = ...) -> Any:
     """
     Parse the JSON *str* and return an object.  Raises :exc:`ValueError` if the
     string is not correctly formed.
     """
     ...
 
-def load(fp: IO[AnyStr], precise_float: bool = ...) -> Any: 
+def load(fp: IO[AnyStr], precise_float: bool = ...) -> Any:
     """
     Parse the given *stream*, interpreting it as a JSON string and
     deserialising the data to a Python object.  The resulting object is

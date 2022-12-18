@@ -21,6 +21,7 @@ class VfsFat:
     the FAT filesystem is provided by *block_dev*.
     Objects created by this constructor can be mounted using :func:`mount`.
     """
+
     def __init__(self, block_dev) -> None: ...
     def open(self, *args, **kwargs) -> Any: ...
     def remove(self, *args, **kwargs) -> Any: ...
@@ -58,6 +59,7 @@ class VfsLfs2:
 
     See :ref:`filesystem` for more information.
     """
+
     def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
     def open(self, *args, **kwargs) -> Any: ...
     def remove(self, *args, **kwargs) -> Any: ...
@@ -86,6 +88,7 @@ def chdir(path) -> Any:
     Change current directory.
     """
     ...
+
 def dupterm(stream_object, index=0, /) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
@@ -108,12 +111,14 @@ def dupterm(stream_object, index=0, /) -> IO:
     The function returns the previous stream-like object in the given slot.
     """
     ...
+
 def dupterm_notify(*args, **kwargs) -> Any: ...
 def getcwd() -> Any:
     """
     Get the current directory.
     """
     ...
+
 def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     """
     This function returns an iterator which then yields tuples corresponding to
@@ -134,16 +139,19 @@ def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
        entries.
     """
     ...
+
 def listdir(dir: Optional[Any] = None) -> Any:
     """
     With no argument, list the current directory.  Otherwise list the given directory.
     """
     ...
+
 def mkdir(path) -> Any:
     """
     Create a new directory.
     """
     ...
+
 def mount(fsobj, mount_point, *, readonly) -> Any:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
@@ -161,21 +169,25 @@ def mount(fsobj, mount_point, *, readonly) -> Any:
     Will raise ``OSError(EPERM)`` if *mount_point* is already mounted.
     """
     ...
+
 def rename(old_path, new_path) -> None:
     """
     Rename a file.
     """
     ...
+
 def rmdir(path) -> None:
     """
     Remove a directory.
     """
     ...
+
 def stat(path) -> Any:
     """
     Get the status of a file or directory.
     """
     ...
+
 def statvfs(path) -> Tuple:
     """
     Get the status of a fileystem.
@@ -198,6 +210,7 @@ def statvfs(path) -> Tuple:
     in a port-specific implementation.
     """
     ...
+
 def umount(mount_point) -> Any:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
@@ -207,6 +220,7 @@ def umount(mount_point) -> Any:
     Will raise ``OSError(EINVAL)`` if *mount_point* is not found.
     """
     ...
+
 def uname() -> Tuple:
     """
     Return a tuple (possibly a named tuple) containing information about the
@@ -220,6 +234,7 @@ def uname() -> Tuple:
          * ``machine`` -- an identifier for the underlying hardware (eg board, CPU)
     """
     ...
+
 def urandom(n) -> bytes:
     """
     Return a bytes object with *n* random bytes. Whenever possible, it is

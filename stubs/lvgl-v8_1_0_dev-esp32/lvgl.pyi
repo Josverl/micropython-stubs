@@ -5,14 +5,17 @@ class list:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -39,6 +42,7 @@ class list:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -1041,18 +1045,22 @@ def anim_timeline_stop(*args) -> Any: ...
 
 class animimg:
     def start(self, *args) -> Any: ...
+
     class CLASS_EDITABLE:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -1079,6 +1087,7 @@ class animimg:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -1451,14 +1460,17 @@ class arc:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BACKGROUND: int
         FOREGROUND: int
         KNOB: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -1485,10 +1497,12 @@ class arc:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class MODE:
         NORMAL: int
         REVERSE: int
         SYMMETRICAL: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -1892,12 +1906,15 @@ class bar:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         INDICATOR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -1924,10 +1941,12 @@ class bar:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class MODE:
         NORMAL: int
         RANGE: int
         SYMMETRICAL: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -2309,14 +2328,17 @@ class btn:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -2343,6 +2365,7 @@ class btn:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -2712,10 +2735,12 @@ class btnmatrix:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CTRL:
         CHECKABLE: int
         CHECKED: int
@@ -2726,8 +2751,10 @@ class btnmatrix:
         HIDDEN: int
         NO_REPEAT: int
         RECOLOR: int
+
     class DRAW_PART:
         BTN: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -2754,6 +2781,7 @@ class btnmatrix:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -3137,14 +3165,17 @@ class calendar:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -3171,6 +3202,7 @@ class calendar:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -3551,14 +3583,17 @@ class calendar_header_arrow:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -3585,6 +3620,7 @@ class calendar_header_arrow:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -3954,14 +3990,17 @@ class calendar_header_dropdown:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -3988,6 +4027,7 @@ class calendar_header_dropdown:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -4357,14 +4397,17 @@ class canvas:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -4391,6 +4434,7 @@ class canvas:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -4777,14 +4821,17 @@ class chart:
         PRIMARY_Y: int
         SECONDARY_X: int
         SECONDARY_Y: int
+
     class CLASS_EDITABLE:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BAR: int
         CURSOR: int
@@ -4793,6 +4840,7 @@ class chart:
         DIV_LINE_VER: int
         LINE_AND_POINT: int
         TICK_LABEL: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -4819,15 +4867,18 @@ class chart:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
         SKIP_CHILDREN: int
+
     class TYPE:
         BAR: int
         LINE: int
         NONE: int
         SCATTER: int
+
     class UPDATE_MODE:
         CIRCULAR: int
         SHIFT: int
@@ -5234,12 +5285,15 @@ class checkbox:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BOX: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -5266,6 +5320,7 @@ class checkbox:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -5691,14 +5746,17 @@ class colorwheel:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -5725,10 +5783,12 @@ class colorwheel:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class MODE:
         HUE: int
         SATURATION: int
         VALUE: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -6214,18 +6274,22 @@ def draw_triangle(*args) -> Any: ...
 class dropdown:
     def close(self, *args) -> Any: ...
     def open(self, *args) -> Any: ...
+
     class CLASS_EDITABLE:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -6252,6 +6316,7 @@ class dropdown:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -6763,18 +6828,22 @@ class img:
         USER_ENCODED_5: int
         USER_ENCODED_6: int
         USER_ENCODED_7: int
+
     class CLASS_EDITABLE:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -6801,14 +6870,17 @@ class img:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class SIZE_MODE:
         REAL: int
         VIRTUAL: int
+
     class SRC:
         FILE: int
         SYMBOL: int
         UNKNOWN: int
         VARIABLE: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -7248,14 +7320,17 @@ class imgbtn:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -7282,6 +7357,7 @@ class imgbtn:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class STATE:
         CHECKED_DISABLED: int
         CHECKED_PRESSED: int
@@ -7289,6 +7365,7 @@ class imgbtn:
         DISABLED: int
         PRESSED: int
         RELEASED: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -7696,14 +7773,17 @@ class keyboard:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -7730,11 +7810,13 @@ class keyboard:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class MODE:
         NUMBER: int
         SPECIAL: int
         TEXT_LOWER: int
         TEXT_UPPER: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -8111,14 +8193,17 @@ class label:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -8145,12 +8230,14 @@ class label:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class LONG:
         CLIP: int
         DOT: int
         SCROLL: int
         SCROLL_CIRCULAR: int
         WRAP: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -8540,12 +8627,15 @@ class led:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         RECTANGLE: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -8572,6 +8662,7 @@ class led:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -8947,14 +9038,17 @@ class line:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -8981,6 +9075,7 @@ class line:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -9379,15 +9474,18 @@ class meter:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         ARC: int
         NEEDLE_IMG: int
         NEEDLE_LINE: int
         TICK: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -9414,11 +9512,13 @@ class meter:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class INDICATOR_TYPE:
         ARC: int
         NEEDLE_IMG: int
         NEEDLE_LINE: int
         SCALE_LINES: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -9804,18 +9904,22 @@ class meter_scale_t: ...
 
 class msgbox:
     def close(self, *args) -> Any: ...
+
     class CLASS_EDITABLE:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -9842,6 +9946,7 @@ class msgbox:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -10217,14 +10322,17 @@ class obj:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -10251,6 +10359,7 @@ class obj:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -10638,14 +10747,17 @@ class roller:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -10672,9 +10784,11 @@ class roller:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class MODE:
         INFINITE: int
         NORMAL: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -11055,13 +11169,16 @@ class slider:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         KNOB: int
         KNOB_LEFT: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -11088,10 +11205,12 @@ class slider:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class MODE:
         NORMAL: int
         RANGE: int
         SYMMETRICAL: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -11480,14 +11599,17 @@ class spangroup:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -11514,6 +11636,7 @@ class spangroup:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -11896,14 +12019,17 @@ class spinbox:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -11930,6 +12056,7 @@ class spinbox:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -12311,14 +12438,17 @@ class spinner:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -12345,6 +12475,7 @@ class spinner:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -12846,14 +12977,17 @@ class switch:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -12880,6 +13014,7 @@ class switch:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -13252,16 +13387,20 @@ class table:
         CUSTOM_4: int
         MERGE_RIGHT: int
         TEXT_CROP: int
+
     class CLASS_EDITABLE:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         CELL: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -13288,6 +13427,7 @@ class table:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -13669,14 +13809,17 @@ class tabview:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -13703,6 +13846,7 @@ class tabview:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -14079,14 +14223,17 @@ class textarea:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -14113,6 +14260,7 @@ class textarea:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -14534,14 +14682,17 @@ class tileview:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -14568,6 +14719,7 @@ class tileview:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int
@@ -14965,14 +15117,17 @@ class win:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class CLASS_GROUP_DEF:
         FALSE: int
         INHERIT: int
         TRUE: int
+
     class DRAW_PART:
         BORDER_POST: int
         RECTANGLE: int
         SCROLLBAR: int
+
     class FLAG:
         ADV_HITTEST: int
         CHECKABLE: int
@@ -14999,6 +15154,7 @@ class win:
         USER_4: int
         WIDGET_1: int
         WIDGET_2: int
+
     class TREE_WALK:
         END: int
         NEXT: int

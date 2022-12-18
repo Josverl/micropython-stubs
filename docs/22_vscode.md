@@ -26,20 +26,20 @@ The below configuration is [Pylance][] specific
      
 - use the {download}`samples/.VSCode/settings.json`  located in the sample folder
 - you can open this file in VSCode itself, or use the settings menu 
-- add the folders to the `python.autoComplete.extraPaths` section. 
+- add the folders to the `python.analysis.extraPaths` section. 
 - it can be on a single line or split across lines. 
     - make sure it is a valid json array 
 
 Example from `.vscode/settings.json`
 ```json
     "python.languageServer": "Pylance",
-    "python.analysis.autoSearchPath": true,
-    "python.autoComplete.extraPaths": [
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.extraPaths": [
         "src/lib", 
         "all-stubs/cpython_core-pycopy", 
         "all-stubs/micropyton-1_17-frozen/esp32/GENERIC", 
         "all-stubs/micropyton-1_17-esp32",
-    ]
+    ],
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
 ```

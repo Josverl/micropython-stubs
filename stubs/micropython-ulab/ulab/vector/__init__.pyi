@@ -127,9 +127,7 @@ def tanh(a: _ArrayLike) -> ulab.array:
     ...
 
 def vectorize(
-    f: Union[Callable[[int], float], Callable[[float], float]],
-    *,
-    otypes: Optional[_DType] = None
+    f: Union[Callable[[int], float], Callable[[float], float]], *, otypes: Optional[_DType] = None
 ) -> Callable[[_ArrayLike], ulab.array]:
     """
     :param callable f: The function to wrap

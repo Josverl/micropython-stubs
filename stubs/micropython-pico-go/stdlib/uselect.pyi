@@ -19,7 +19,8 @@
 # SOFTWARE.
 
 import machine
-#import usocket
+
+# import usocket
 from typing import List, Iterator, Optional, Tuple, Union
 
 _Waitable = machine.UART
@@ -33,13 +34,8 @@ POLLOUT: int = ...
 POLLERR: int = ...
 POLLHUP: int = ...
 
-
 def select(
-    rlist: _SelectList,
-    wlist: _SelectList,
-    xlist: _SelectList,
-    timeout: Optional[float] = None,
-    /  # positional arguments only
+    rlist: _SelectList, wlist: _SelectList, xlist: _SelectList, timeout: Optional[float] = None, /  # positional arguments only
 ) -> Tuple[List[_Waitable], List[_Waitable], List[_Waitable]]:
     """
     Wait for activity on a set of objects.
@@ -82,7 +78,6 @@ def select(
     """
     ...
 
-
 class _poll:
     """
     Polling object for more efficient waiting for ready waitable objects.
@@ -90,12 +85,7 @@ class _poll:
     Polling objects can only be created using ``select.poll()``.
     """
 
-    def register(
-        self,
-        obj: _Waitable,
-        eventmask: int = (POLLIN | POLLOUT),
-        /  # positional arguments only
-    ) -> None:
+    def register(self, obj: _Waitable, eventmask: int = (POLLIN | POLLOUT), /) -> None:  # positional arguments only
         """Register a waitable object with the polling object.
 
         Future calls to the ``poll()`` method will check whether the
@@ -115,18 +105,15 @@ class _poll:
         :param eventmask: A bitmask of events to check for.
         """
         ...
-
     def unregister(self, obj: _Waitable, /) -> None:
         """Unregister ``obj`` from polling."""
         ...
-
     def modify(self, obj: _Waitable, eventmask: int, /) -> None:
         """Update the ``eventmask`` for ``obj``.
 
         :raises OSError ENOENT: ``obj`` is not registered.
         """
         ...
-
     def poll(self, timeout: Optional[float] = None, /) -> List[_PollTuple]:
         """
         Wait for at least one of the registered objects to become ready
@@ -147,13 +134,7 @@ class _poll:
         :returns: A list of (obj, eventmask) tuples.
         """
         ...
-
-    def ipoll(
-        self,
-        timeout: Optional[float] = None,
-        flags: int = 0,
-        /
-    ) -> Iterator[_PollTuple]:
+    def ipoll(self, timeout: Optional[float] = None, flags: int = 0, /) -> Iterator[_PollTuple]:
         """Like ``poll()``, but returns an iterator instead.
 
         This method provides an efficient, allocation-free way to poll
@@ -178,7 +159,6 @@ class _poll:
             (obj, eventmask).
         """
         ...
-
 
 def poll() -> _poll:
     """

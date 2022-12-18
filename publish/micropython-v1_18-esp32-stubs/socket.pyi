@@ -61,6 +61,7 @@ class socket:
          # Create DGRAM UDP socket
          socket(AF_INET, SOCK_DGRAM)
     """
+
     def __init__(self, af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP, /) -> None: ...
     def close(self) -> Any:
         """

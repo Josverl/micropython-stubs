@@ -62,6 +62,7 @@ class Pin:
     PULL_UP: int
     def af(self, *args, **kwargs) -> Any: ...
     def af_list(self, *args, **kwargs) -> Any: ...
+
     class board:
         def __init__(self, *argv, **kwargs) -> None: ...
         LED_BLUE: Any
@@ -113,6 +114,7 @@ class Pin:
         Y7: Any
         Y8: Any
         Y9: Any
+
     class cpu:
         def __init__(self, *argv, **kwargs) -> None: ...
         A0: Any

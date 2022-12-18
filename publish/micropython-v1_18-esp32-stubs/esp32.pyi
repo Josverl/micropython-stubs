@@ -16,6 +16,7 @@ class NVS:
     Create an object providing access to a namespace (which is automatically created if not
     present).
     """
+
     def __init__(self, namespace) -> None: ...
     def commit(self) -> Any:
         """
@@ -59,6 +60,7 @@ class Partition:
     Create an object representing a partition.  *id* can be a string which is the label
     of the partition to retrieve, or one of the constants: ``BOOT`` or ``RUNNING``.
     """
+
     def __init__(self, id) -> None: ...
     @classmethod
     def find(cls, type=TYPE_APP, subtype=0xFF, label=None) -> List:
@@ -128,6 +130,7 @@ class RMT:
     ``100``) and the output level to apply the carrier to (a boolean as per
     *idle_level*).
     """
+
     def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None: ...
     @staticmethod
     def bitstream_channel(value: Optional[Any] = None) -> int:
@@ -206,6 +209,7 @@ class ULP:
     """
     This class provides access to the Ultra-Low-Power co-processor.
     """
+
     def __init__(self) -> None: ...
     RESERVE_MEM: int
     def load_binary(self, load_addr, program_binary) -> None:
@@ -233,6 +237,7 @@ def hall_sensor() -> int:
     Read the raw value of the internal Hall sensor, returning an integer.
     """
     ...
+
 def idf_heap_info(capabilities) -> List[Tuple]:
     """
     Returns information about the ESP-IDF heap memory regions. One of them contains
@@ -258,11 +263,13 @@ def idf_heap_info(capabilities) -> List[Tuple]:
          (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]
     """
     ...
+
 def raw_temperature() -> int:
     """
     Read the raw value of the internal temperature sensor, returning an integer.
     """
     ...
+
 def wake_on_ext0(pin, level) -> None:
     """
     Configure how EXT0 wakes the device from sleep.  *pin* can be ``None``
@@ -270,6 +277,7 @@ def wake_on_ext0(pin, level) -> None:
     ``esp32.WAKEUP_ANY_HIGH``.
     """
     ...
+
 def wake_on_ext1(pins, level) -> None:
     """
     Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
@@ -277,6 +285,7 @@ def wake_on_ext1(pins, level) -> None:
     or ``esp32.WAKEUP_ANY_HIGH``.
     """
     ...
+
 def wake_on_touch(wake) -> None:
     """
     Configure whether or not a touch will wake the device from sleep.

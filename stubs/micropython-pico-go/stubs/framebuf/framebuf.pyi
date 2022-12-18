@@ -5,7 +5,6 @@ bitmap images, which can then be sent to a display.
 """
 from typing import Any, Optional, overload
 
-
 class FrameBuffer:
     """
     The FrameBuffer class provides a pixel buffer which can be drawn upon with
@@ -24,8 +23,7 @@ class FrameBuffer:
         fbuf.hline(0, 10, 96, 0xffff)
     """
 
-    def __init__(self, buffer: Any, width: int, height: int, format: int,
-                 stride: int = 0) -> None:
+    def __init__(self, buffer: Any, width: int, height: int, format: int, stride: int = 0) -> None:
         """
         Construct a FrameBuffer object.  The parameters are:
 
@@ -51,50 +49,41 @@ class FrameBuffer:
         unexpected errors.
         """
         ...
-
     def fill(self, c: int) -> None:
         """Fill the entire FrameBuffer with the specified color."""
         ...
-
     @overload
     def pixel(self, x: int, y: int) -> int:
         """Get the color value of the specified pixel."""
         ...
-
     @overload
     def pixel(self, x: int, y: int, c: int) -> None:
         """Set the specified pixel to the given color."""
         ...
-
     def hline(self, x: int, y: int, w: int, c: int) -> None:
         """
         Draw a horizontal line from a set of coordinates using the given color and
         a thickness of 1 pixel.
         """
         ...
-
     def vline(self, x: int, y: int, h: int, c: int) -> None:
         """
         Draw a vertical line from a set of coordinates using the given color and
         a thickness of 1 pixel.
         """
         ...
-
     def line(self, x1: int, y1: int, x2: int, y2: int, c: int) -> None:
         """
         Draw a line from a set of coordinates using the given color and
         a thickness of 1 pixel.
         """
         ...
-
     def rect(self, x: int, y: int, w: int, h: int, c: int) -> None:
         """Draw a rectangle at the given location, size and color."""
         ...
-
     def fill_rect(self, x: int, y: int, w: int, h: int, c: int) -> None:
         """Fill a rectangle at the given location, size and color."""
         ...
-
     def text(self, s: str, x: int, y: int, c: int = 1) -> None:
         """
         Write text to the FrameBuffer using the the coordinates as the upper-left
@@ -103,14 +92,12 @@ class FrameBuffer:
         dimensions of 8x8 pixels and there is currently no way to change the font.
         """
         ...
-
-    def scroll(self, xstep: int , ystep: int) -> None:
+    def scroll(self, xstep: int, ystep: int) -> None:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
         """
         ...
-
     def blit(self, fbuf: FrameBuffer, x: int, y: int, key: Optional[int] = None) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
