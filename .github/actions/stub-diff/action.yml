@@ -30,20 +30,7 @@ runs:
       shell: pwsh
       id: diff
       run: |
-        echo "::group:: git diff --name-only:"
-        $pattern = "${{ inputs.pattern }}"
-        $files = @(git diff --name-only ${{inputs.path}} | ?{ $_.Contains($pattern)})
-        $count = $files.count
-        # need newline  to set-output
-        echo ""
-        run: echo "changed=$(if ($count -eq 0){"false"}else{"true"})" >> $GITHUB_OUTPUT
-        run: echo "count=$count" >> $GITHUB_OUTPUT
-        # create a summary
-        if ($count -gt 0) {
-          echo "create summary"
-          echo '### detected new stubs :rocket:' >> $GITHUB_STEP_SUMMARY
-          $files | %{ echo "- $_" >> $GITHUB_STEP_SUMMARY }
-        }
+        .github/actions/stub-diff/git-diff.ps1 -path ${{inputs.path}} -pattern ${{inputs.pattern}}
 
     # - name: Commit the changes
     #   uses: EndBug/add-and-commit@v8
