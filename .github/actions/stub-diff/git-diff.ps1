@@ -10,9 +10,9 @@ $files = @(git diff --name-only $path | Where-Object{ $_.Contains($pattern)})
 $count = $files.count
 
 $changed = "changed=$(if ($count -eq 0){"false"}else{"true"})"
-if ($GITHUB_OUTPUT){
-    $changed | add-content $GITHUB_OUTPUT
-    "count=$count" | add-content $GITHUB_OUTPUT
+if ($GITHUB_STATE){
+    $changed | add-content $GITHUB_STATE
+    "count=$count" | add-content $GITHUB_STATE
 }
 Write-host "Changed: $changed, count: $count"
 
