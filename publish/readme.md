@@ -5,7 +5,7 @@ Initially `<family>` is `micropython`, but this may be extended to other firmwar
  * `<family>-<port>[-<board>]-stubs`  
     The stubs for a specific version port and board of the MicroPython firmware.
     These is built by combining:
-     * The 'Firmware stubs' generated on a generic board for the port 
+     * The 'Board stubs' generated on a generic board for the port 
      * The 'Frozen stubs' from the Micropython repository for that specific version and that port & board combination
      * The 'Core Stubs' to provide a common interface for the Micropython firmware and the CPython core.
     
