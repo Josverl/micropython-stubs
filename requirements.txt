@@ -7,7 +7,7 @@ pytest
 black
 
 
-# publishing
+# Section:publishing
 # tomli
 # tomli-w
 # packaging
@@ -16,5 +16,5 @@ black
 
 # click == 8.0.3
 
-# reporting
-google-cloud-bigquery
+# Section: reporting
+# google-cloud-bigquery

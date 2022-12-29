@@ -14,9 +14,9 @@ Any type hints availble in installed (stub only) packages  become available to P
 
 you need to know which port you want the stubs for `stm32`, `esp32`, `rp2`, `esp8622`
 
-### `pip install -U micropython-<port>-stubs` 
+**`pip install -U micropython-<port>-stubs`**
 
-or install the stubs for a specific version of micropython unsing  
+or install the stubs for a specific version of micropython using  
 `pip install -U micropython-stm32-stubs==1.17.*`
 
 ### Option 2) Clone the stubs repo 

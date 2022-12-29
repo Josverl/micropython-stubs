@@ -59,4 +59,12 @@ The blow stub types are referenced in the documentation and can be considered ha
     In some cases it is needed to provide an override for classes and functions that cannot yet be automatically generated reliably from the documentation, and need to be augmented manually.
     Currently this contains a single module stub `micropython.pyi` 
    _Location:_` 'stubs/micropython[-{Version}]-core' `  
- 
+   
+  6. **MicroPython stdlib packages**
+    MicroPython implements a number of stdlib packages different functionality and functions. 
+    Examples of this are:  
+    - `gc`    has additional functions such as `gc.mem_free()`
+    - `time`  has additional functions such as `time.sleep_ms()`
+    While on one hand these are just modules, tools and linters often use a different logic to 
+    locate stubs for these stdlib modules, or have a built-in copy of the mypy stdlib stubs that they use by default.
+    in order to allow such tools to locate these, a copy of these 'MicropyPython stdlib' modules is included in the stub packages in the 'stdlib' module/folder.
