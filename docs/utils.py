@@ -67,8 +67,14 @@ def git_branch():
         raise Exception(result.stderr.decode("utf-8"))
     output = result.stdout.decode().strip()
     # format : HEAD -> v_version, origin/v_version
-    branch = output.split()[2].rstrip(",")
-    if branch == "->":
-        # happens in github action
+    # HEAD -> doc_update, origin/doc_update
+    try:
+        branch = output.split('/')[-1]
+        if branch == "->":
+            # happens in github action
+            branch = "main"
+    except:
+        print("Exception on branch name, output=", output)
         branch = "main"
+
     return branch
