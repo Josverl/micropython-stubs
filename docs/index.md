@@ -16,7 +16,6 @@
 26_pylint.md
 28_mypy.md
 50_legacy.md
-51_order.md
 55_symlink.md
 parkinglot.md
 changelog.md

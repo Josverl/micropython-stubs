@@ -38,9 +38,8 @@ If you install the MicroPython stubs in your general or global python environmen
 - Install a stub package into a `typings` folder
 - Legacy method using a copy or clone 
 
-### Install into a venv
+### Install into a `venv`
 #### Last published version
-
 The package naming convention is: `micropython-<port>[-<board>]-stubs`
 where port is the port of the MicroPython firmware. ( stm32, eps32,rp2, samd, ...) 
 
@@ -49,27 +48,26 @@ To install the stubs for the last published version of MicroPython:
 pip install -U  micropython-<port>-stubs
 pip install -U  micropython-stm32-stubs
 ```
-#### Install stubs for a specific version
+#### Install stubs for a specific version.
 To install the stubs for an older version, such as MicroPython 1.18:  
 specify the version as follows ** `micropython-<port>-stubs==<version>.*` **
 ``` bash
 pip install -U  micropython-<port>-stubs==<version>.*
 pip install -U  micropython-esp32-stubs==1.18.*
 ```
-#### Install stubs for a specific board  
+#### Install stubs for a specific board.
 To install the stubs for a specific board, such as the `ESP32 UM-TinyPico`:   
 specify both the port and the board
 ``` bash
 pip install -U micropython-<port>-<board>-stubs
 pip install -U micropython-esp32-um-tinypico-stubs
 ```
-**Note:** PyPi transforms all names of the ports and boards to small-caps and kebab-case, (not snake_case).
-
-**Notes: **
+**Notes:** 
+ - PyPi transforms all names of the ports and boards to small-caps and kebab-case, (not snake_case).
  - Not all possible ports/boards are published as I do not have access to hardware to create board-stubs for all ports and boards.
  - Newly published stubs may show as 'not found', please [check PyPi directly](https://pypi.org/search/?q=micropython+-stubs&o=&c=Programming+Language+%3A%3A+Python+%3A%3A+Implementation+%3A%3A+MicroPython)
 
-### use a `typings` folder 
+### Install into a `typings` folder.
 In some cases a single project my need to make use of stubs for different ports or boards at the same time. In a venv it is possible to install only **one** stub package.
 
 Some tools such as Pylance and Pyright can also make use of stubs that are located in a folder, usually a folder named `typings`

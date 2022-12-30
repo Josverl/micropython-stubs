@@ -15,7 +15,7 @@ Currently over 3.000 stubfiles of multiple MicroPython versionas and modules are
 
 The stubs are packaged and published to PyPi as [Pep 561 stub-only](https://peps.python.org/pep-0561/#stub-only-packages) packages to allow them to be installed and used with ease.
 
-**Demo using VSCode:  **
+**Demo using VSCode:**  
 ![demo](img/demo.gif)
 
 
@@ -29,6 +29,7 @@ As the recent versions MicroPython has over  ??38?? different boards, maintainin
 The goal is to publish  and maintain stub packages for all ports of the last 4 published MicroPython versions on PyPi, and provide packages for the pre-release version (MicroPython master branch) as a pre-release. 
 Currently the pre-release packages are not (yet) published to PyPi 
 
+See the list of [packages](packages.md) for an overview of the available packages.
 
 ## Stub Types
 The blow stub types are referenced in the documentation and can be considered half-products that are used to generate the stub packages. 
@@ -36,35 +37,40 @@ The blow stub types are referenced in the documentation and can be considered ha
  1. **Board stubs:**
    This type of stubs that is generated on a MicroPython board with a  specific firmware, and therefore **very closely matches** the capabilities of your board and firmware.
    However board stubs do no provide information on the expected parameters or the types returned by functions and methods.
-   While they have they have a low level of detail, they do contain a comprehensive overview of the modules, classes and functions available even on custom and one-off firmwares.
-   _Location:_` 'stubs/micropython-{Version}-{Port}[-{Board}]' `  
-   
+   While they have they have a low level of detail, they do contain a comprehensive overview of the modules, classes and functions available even on custom and one-off firmwares.  
+   _Location:_`'stubs/micropython-{Version}-{Port}[-{Board}]'`  
+
+
  2. **Frozen stubs:**  
     The firmware for most  boards has a number of Python modules Frozen (included) as part of the firmware. For each port and bord there is a [manifest file](https://docs.micropython.org/en/latest/reference/manifest.html) that specified which modules should be included in the firmware. These modules have been collected, and stubs have been generated for these modules using [mypy stubgen](https://mypy.readthedocs.io/en/stable/stubgen.html).
     Frozen stubs provider better information regarding the expected parameters, but 
-    If you select the correct **Port** and **Board** you should get results that exactly match your firmware. 
-     _Location:_`['all-stubs/micropython-{Version}-Frozen/{Port}/{Board}']`  
+    If you select the correct **Port** and **Board** you should get results that exactly match your firmware.  
+    _Location:_`'stubs/micropython-{Version}-Frozen/{Port}/{Board}'`  
     
+
  3. **Doc stubs:**  
     Documentation stubs are generated based on the MicroPython formal documentation `.rst` source files. The `.rst` files are parsed and used to build stubs that match the documentation for that specific version. 
-    This type of stub is very rich in parameter and class descriptions, but as they are generic by definition, they may/will not follow the specifics of a port or board firmware.
-    _Location:_`['all-stubs/micropython-{Version}-docstubs']`  
+    This type of stub is very rich in parameter and class descriptions, but as they are generic by definition, they may/will not follow the specifics of a port or board firmware.  
+    _Location:_`'stubs/micropython-{Version}-docstubs'`  
     
+
  4. **Merged stubs:**
     In order to combine the precision of the board stubs with the richness of the docstubs, the two are merged. The merge process add the 'doc strings' parameters and return types to functions, classes and methods.
-    The resulting stubs are both precise and rich, however may still lack some details, or contain errors due to lacking or incorrect documentation.
-   _Location:_` 'stubs/micropython-{Version}-{Port}[-{Board}]-merged' `  
+    The resulting stubs are both precise and rich, however may still lack some details, or contain errors due to lacking or incorrect documentation.  
+    _Location:_`'stubs/micropython-{Version}-{Port}[-{Board}]-merged'`  
  
+
  5. **MicroPython core stubs:**
     In some cases it is needed to provide an override for classes and functions that cannot yet be automatically generated reliably from the documentation, and need to be augmented manually.
-    Currently this contains a single module stub `micropython.pyi` 
-   _Location:_` 'stubs/micropython[-{Version}]-core' `  
-   
+    Currently this contains a single module stub `micropython.pyi`  
+    _Location:_`'stubs/micropython[-{Version}]-core'`  
+
+
   6. **MicroPython stdlib packages**
     MicroPython implements a number of stdlib packages different functionality and functions. 
     Examples of this are:  
-    - `gc`    has additional functions such as `gc.mem_free()`
-    - `time`  has additional functions such as `time.sleep_ms()`
+    - `gc`    has additional functions such as `gc.mem_free()`  
+    - `time`  has additional functions such as `time.sleep_ms()`  
     While on one hand these are just modules, tools and linters often use a different logic to 
     locate stubs for these stdlib modules, or have a built-in copy of the mypy stdlib stubs that they use by default.
-    in order to allow such tools to locate these, a copy of these 'MicropyPython stdlib' modules is included in the stub packages in the 'stdlib' module/folder.
+    in order to allow such tools to locate these, a copy of these 'MicropyPython stdlib' modules is included in the stub packages in the 'stdlib' module/folder.  

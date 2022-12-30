@@ -1,4 +1,16 @@
- # Pylint: Configure pylint to use the selected stub folders
+# Pylint
+
+# Pylint does not work with stub-only packages.
+Unfortunatly pylint does not (yet) support the use of stubs int the `.pyi` format.
+Please refer to [Being able to use stub pyi files in pylint](https://github.com/PyCQA/pylint/issues/4987) for more information.
+
+
+## Pylint:Legacy configuration.
+
+**Note:** The below configuration for pylint will only work if the stub folders you are using contain `.py` files.
+
+- Configure pylint to use the selected stub folders
+
 This instructs pylint to insert the list of paths into `sys.path` before performing linting, thus allowing it to find the stubs and use them to better validate your code. 
 
 - use the {download}`.pylintcr sample file <samples/.pylintrc>`.
