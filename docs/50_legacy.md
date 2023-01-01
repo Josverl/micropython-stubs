@@ -46,18 +46,18 @@ This contains the template files you need to improve syntax highlighting with Py
     3. "all-stubs/micropython-v1_17-frozen/esp32/GENERIC", 
     4. "all-stubs/micropython-v1_17-esp32",
 
-### Option 2) Clone the stubs repo 
+### Clone the stubs repo 
 
-this is the 'olde way' of installing the stubs.
-only usefull if you are activly developing / updating the stubs
+Note is the 'olde way' of installing the stubs.
+and it is mostly useful if you are activly developing / updating the stubs.
 
 ## Configure VSCode & Pylance to use the selected stub folders  
 This instructs the VSCode Pylance extension to consider your libs folder and the stubs for code completion and static type-checking.
 
 VSCode allows this configuration to be set on **_workspace_** , folder or _user_ level. I prefer setting it per workspace or folder as that allows different settings for different projects, but you could do either.
-     
+
 The below configuration is [Pylance][] specific  
-     
+
 - use the {download}`samples/.VSCode/settings.json`  located in the sample folder
 - you can open this file in VSCode itself, or use the settings menu 
 - add the folders to the `python.analysis.extraPaths` section. 
@@ -77,13 +77,29 @@ Example from `.vscode/settings.json`
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
 ```
+## legacy resolving order 
+
+```{mermaid}
+sequenceDiagram
+    participant Pylance
+    autonumber
+    Pylance --x Source code: check 
+    rect rgba(0, 0, 255, .3)
+    Pylance --x CPython stubs: check 
+    Pylance --x Frozen stubs: check 
+    Pylance --x Doc Stubs: check 
+    Pylance ->>+Board Stubs: check
+    Board Stubs ->>-Pylance: return info 
+    end
+```
 
 ## Restart VSCode  
 VSCode must be restated for so that Pylance and linters such as Pylint to read the updated configuration.
 
-You can use: 
-- the `Developer: Reload Window` command.
-- or stop / start the editor
+You can press `F1` and select
+ - `Python: Restart language server` 
+ - or `Developer: Reload Window` command.
+ - or stop / start the editor
 
 
 ```{note} Pymakr: Update pymakr.conf 

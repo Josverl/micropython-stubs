@@ -26,7 +26,8 @@ Windows:
 ```pwsh
 $env:MYPYPATH="./typings"
 ```
-### 
+
+### Workarounds for some mypy warnings and errors 
 
 ```log
 mypy: "typings\sys.pyi" shadows library module "sys"

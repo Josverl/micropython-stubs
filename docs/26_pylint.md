@@ -1,9 +1,8 @@
 # Pylint
 
-# Pylint does not work with stub-only packages.
-Unfortunatly pylint does not (yet) support the use of stubs int the `.pyi` format.
+## Pylint dos not support stub-only packages.
+Unfortunatly Pylint does not (yet) support the use of stubs int the `.pyi` format.
 Please refer to [Being able to use stub pyi files in pylint](https://github.com/PyCQA/pylint/issues/4987) for more information.
-
 
 ## Pylint:Legacy configuration.
 

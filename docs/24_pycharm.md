@@ -4,41 +4,63 @@
 
 ref: https://www.jetbrains.com/help/pycharm/type-hinting-in-product.html#stub-type-hints
 
-PyCharm supports Python stub files, you can specify the type hints using Python 3 syntax for both Python 2 and 3.
-Any type hints availble in installed (stub only) packages  become available to PyCharm to help it understand your code.
+PyCharm supports Python stub files, so the simples option is to install the micropython-stubs from PyPi.
+![Code completions](img/pycharm-completion-2.png)
 
-![Code completions](img/pycharm-completion.png)
+ref: https://www.jetbrains.com/help/pycharm/type-hinting-in-product.html#stub-type-hints
 
+## Install the stubs from PyPi.
 
-### Option 1) Install the stubs from PyPi :
+Install the stubs as documented in [using the thubs](20_using.md)
 
-you need to know which port you want the stubs for `stm32`, `esp32`, `rp2`, `esp8622`
+Example: `pip install -U micropython-stm32-stubs==1.19.1.*`
 
-**`pip install -U micropython-<port>-stubs`**
+if you have a requirements.txt file you can add the stubs to it, and PyCharm will offer to install them automatically.
 
-or install the stubs for a specific version of micropython using  
-`pip install -U micropython-stm32-stubs==1.17.*`
+```text
+micropython-stm32-stubs==1.19.1.*
+```	
+
+After this 
+
+## legacy installation for PyCharm
 
 ## Check library imports
-
 To check if the correct types are used for your imports you can 'hover' the mouse over the module of an import statement. 
 Pycharm will show the module's docstring that will allow you to identify which stub is being used.
 
 ![import](img/pycharm-import.png)
 
-## Verify the paths 
-You can verify the paths used in your project by 
 
-File > Settings > Project Settings 
-> Project Structure 
+### Disable Pycharm warnings for RP2 PIO code
 
-This should list the selected folders with stubs as Source Folders 
-![PyCharm Settings](img/pycharm-settings.png)
+As the RP2 PIO code is not valid python code, PyCharm will show muliple warning for the code.
+To disable these warnings, add the following line to the top of the file or to the top of the function:
+
+```python	
+# noinspection PyStatementEffect,PyArgumentList
+@rp2.asm_pio(set_init=rp2.PIO.OUT_LOW)
+def blink_1hz():
+    # Cycles: 1 + 7 + 32 * (30 + 1) = 1000
+    set(pins, 1)
+    set(x, 31)[6]
+    label("delay_high")
+    nop()[29]
+    jmp(x_dec, "delay_high")
+
+    # Cycles: 1 + 7 + 32 * (30 + 1) = 1000
+    set(pins, 0)
+    set(x, 31)[6]
+    label("delay_low")
+    nop()[29]
+    jmp(x_dec, "delay_low")
+```
 
 
 
 ## Legacy Option: Clone the stubs repo 
-Older method of installation ( not needed if you used the pip install method) 
+Older method of installation 
+
 To use stubs from the micropython-stubs repository , follow these steps:
 
 Copy some or all the stubs into a directory in your project, or use a symlink to a clone of the stubs.
@@ -51,3 +73,14 @@ For example:
   - all-stubs/micropython-v1_17-esp32
 
 You should now be able to use code completion and typechecking for your micropython code in PyCharm
+
+### Verify the paths 
+You can verify the paths used in your project by 
+
+File > Settings > Project Settings 
+> Project Structure 
+
+This should list the selected folders with stubs as Source Folders  
+
+![PyCharm Settings](img/pycharm-settings.png)
+

@@ -17,8 +17,8 @@
 28_mypy.md
 50_legacy.md
 55_symlink.md
-parkinglot.md
-changelog.md
+<!-- parkinglot.md -->
+<!-- changelog.md -->
 
 ```
 
