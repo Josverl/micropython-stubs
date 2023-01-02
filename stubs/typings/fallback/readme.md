@@ -2,7 +2,7 @@
 
 This folder contains a set of stub files that are used to test / validate the correctness of the frozen stubs.
 
-This is a combination using a subset of the firmware stubs from: 
+This is a combination using a subset of the Board stubs from: 
 - micropython-v1_17-pybv11
     - pyb.py
     - framebuff.py

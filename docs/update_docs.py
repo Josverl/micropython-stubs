@@ -90,7 +90,7 @@ def update_firmware_docs():
     # git rev-parse --abbrev-ref HEAD
     branchname = git_branch()
     # Process all template files
-    for template_file in (workspace_root / "docs/templates").glob("*.j2"):
+    for template_file in (workspace_root / "docs/templates").glob("firmware*.j2"):
         template = env.get_template(template_file.name)
         output = template.render(info_list=all, branch=branchname)
         # output to doc folder

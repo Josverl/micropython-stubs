@@ -27,6 +27,6 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* Firmware stubs from stubs/micropython-v1_17-esp8266
+* Board stubs from stubs/micropython-v1_17-esp8266
 * Frozen stubs from stubs/micropython-v1_17-frozen/esp8266/GENERIC
 * Core Stubs from stubs/cpython_core-pycopy

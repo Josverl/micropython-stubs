@@ -10,30 +10,26 @@
 :maxdepth: 3
 
 10_intro_stubs.md
-15_order.md
 20_using.md
 22_vscode.md
 24_pycharm.md
 26_pylint.md
-40_symlink.md
-changelog.md
+28_mypy.md
+50_legacy.md
+55_symlink.md
+<!-- parkinglot.md -->
+<!-- changelog.md -->
 
 ```
-
 
 ```{toctree}
 :caption: 'Stub index'
 :maxdepth: 2
+packages.md
 firmware_grp.md
 firmware_flat.md
-
-
 ```
-
-
 # Indices and reference
-
-
 - {ref}`genindex`
 - {ref}`search`
 

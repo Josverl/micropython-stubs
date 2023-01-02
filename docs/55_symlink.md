@@ -25,7 +25,7 @@ Windows 10 and later requires **Developer Mode** to create symlinks as a regular
 
 Settings > Developer Settings > Developer Mode : On
 
-Please see [Activate Developer Mode](https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) for instruction on how to activate this. Or read the [blogpost](https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10/) on the rationale and see some examples.
+Please see [Activate Developer Mode](https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development) for instruction on how to activate this. Or read the [blogpost](https://blogs.windows.com/windowsdeveloper/2016/12/02/symlinks-windows-10/) on the rationale and see some examples.
 
 You can create a symlink using PowerShell or with the mklink cmdline tool.
 Both methods achieve exactly the same result.
@@ -40,7 +40,7 @@ Therefore `Resolve-Path` is used to resolve the relative path to an absolute pat
 ```
 
 ### mklink
-or use [mklink](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/mklink) in an (elevated) command prompt.
+or use [mklink](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink) in an (elevated) command prompt.
 
 ```
 mklink /d all-stubs c:\develop\micropython-stubs\stubs

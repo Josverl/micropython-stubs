@@ -1,77 +1,101 @@
 (using-the-stubs)=
 # Using the MicroPython stubs
+There are a few different options in which you can install the stubs, 
 
-in order to get the most out of the MicroPython stubs, you should follow these steps:
+The logical steps are:
+1. Determine the MicroPython version, port and board you will be using the stubs for.
+2. Create and activate a virtual environment
+3. Install or copy the stubs to your system
+4. Configure your IDE (or other tools) where the stubs are located
+5. Add configuration to suppress false positives and unneeded warnings
 
-- determine which Micropython **version** and **port**  you are using.
+At minimum you will need to specify the **port** of the stubs.
+If you do not specify a version, the stubs for the last published version will be used. (Note that this is different from the **_latest version_** )
 
+##  Determine the version and port
+If you do not know the exact version and port,  run the below command in MicroPython
+`import sys; print( "version:", sys.version, "port:", sys.platform)`
+In the documentation these will be referred to as **version**, **port** and **board** 
 
-To install the latest stubs: `pip install  micropython-<port>-stubs`   
-where port is the port of the MicroPython firmware. ( stm32, eps32,rp2...) 
-
-To install the stubs for an older version, such as MicroPython 1.17: `pip install micropython-stm32-stubs==1.17.*` 
-
-Note that not all ports are published as I do not have access to hardware to run all ports.
-Please let me know if you would like to see a port added, and are willing to help. [Discussions][]
-## What do you get
-
- * `micropython-<port>[-<board>]-stubs`  
-    The stubs for a specific version port and board of the MicroPython firmware.
-    These are built by combining:
-     * The 'Firmware stubs' generated on a generic board for the port 
-     * The 'Frozen stubs' from the Micropython repository for that specific version and that port & board combination
-     * The 'Core Stubs' to provide a common interface for the Micropython firmware and the CPython core.
-    
-    Note: board is omitted if it is `GENERIC`  
-
-    Examples:
-      - micropython-stm32-stubs
-      - micropython-esp32-stubs
-      - micropython-rp2-stubs
-      - micropython-esp8266-stubs
-
-You can search for [Micropython stub packages on PyPI][PYPI]
-
-## Clone or download a copy of the Micropython-Stubs repo
-While it is also possible to clone the Micropython-Stubs repo directly from GH, but this is no longer needed in morst cases.
-
-However there are still a number of stubs that are in the repo and that are not published on PyPI. For these cases please follow the below instructions, and if you would like to see them on PyPI as well, please let me know in the [Discussions][].
-
-
- 1.  Download a copy of this repo , either via `git clone` or by download a zip file with it's contents
-     - store this in a folder, for example 'next to' your software projects such as in `c:\develop\micropython-stubs`  
-     this contains a `stubs` folder that contains all stubs
-        ```
-        git clone https://github.com/Josverl/micropython-stubs.git
-        ```
-
- 2. Over time you may want to periodically update this folder using
+## Create and activate a venv
+A Python virtual environment is a tool that helps to keep dependencies required by different projects separate by creating isolated python virtual environments for them. This is one of the most important tools that most of the Python developers use.
+To create and activate a virtual environment in your project directory 
+    ```bash
+    # linux / mac
+    python3 -m venv .venv
+    source .venv/bin/activate
     ```
-    git fetch && git pull
+    ```bash
+    # windows
+    python -m venv .venv
+    .venv\Scripts\Activate.ps1
     ```
+_While it is possible to install the MicroPython stubs in your global environment it is better to use virtual environments or to a `typings` folder._
+If you install the MicroPython stubs in your general or global python environment, then please note that this may/will cause regular Python code to also be validated against the MicroPython stubs, and this will almost certainly result in false-positive errors being flagged in your CPython code.
 
-## Project configuration 
-For each project where you want to use the stubs you need to configure vscode and any linters that you use to use the correct stubs.
-This is not as complex as it seems initially, and once you have configured your first project, you can copy /paste that structure for other projects. 
+## Install the stub packages to your system
+- Install a stub-package into a virtual environment
+- Install a stub package into a `typings` folder
+- Legacy method using a copy or clone 
 
-## Create a symlink to the stubs folder  
-Create a symlink to the `c:\develop\micropython-stubs\stubs` from inside your project.
-This will allow you to reference the same stub files from multiple projects, and limit the space
-needed. This a recommendation, and things work equally well if you copy or clone the `stubs` folder into your project.  
-For details on how to create a symlink, please see : {ref}`create-symbolic-link`
+### Install into a `venv`
+#### Last published version
+The package naming convention is: `micropython-<port>[-<board>]-stubs`
+where port is the port of the MicroPython firmware. ( stm32, eps32,rp2, samd, ...) 
 
-## Quick start: 
-Copy the [samples][] folder to your project  
-This contains the template files you need to improve syntax highlighting with Pylance and linting with pylint.
+To install the stubs for the last published version of MicroPython: 
+``` bash
+pip install -U  micropython-<port>-stubs
+pip install -U  micropython-stm32-stubs
+```
+#### Install stubs for a specific version.
+To install the stubs for an older version, such as MicroPython 1.18:  
+specify the version as follows ** `micropython-<port>-stubs==<version>.*` **
+``` bash
+pip install -U  micropython-<port>-stubs==<version>.*
+pip install -U  micropython-esp32-stubs==1.18.*
+```
+#### Install stubs for a specific board.
+To install the stubs for a specific board, such as the `ESP32 UM-TinyPico`:   
+specify both the port and the board
+``` bash
+pip install -U micropython-<port>-<board>-stubs
+pip install -U micropython-esp32-um-tinypico-stubs
+```
+**Notes:** 
+ - PyPi transforms all names of the ports and boards to small-caps and kebab-case, (not snake_case).
+ - Not all possible ports/boards are published as I do not have access to hardware to create board-stubs for all ports and boards.
+ - Newly published stubs may show as 'not found', please [check PyPi directly](https://pypi.org/search/?q=micropython+-stubs&o=&c=Programming+Language+%3A%3A+Python+%3A%3A+Implementation+%3A%3A+MicroPython)
 
-## Select which stub folders you need to reference
-- The order will influence results. place the 'higher quality' folders first.
-- Use forward slashes `/` rather than backslashes, also on Windows.
-- for example for micropython 1.17 on an ESP32 select:
-    1. "./src/lib",
-    2. "all-stubs/cpython_core-pycopy",
-    3. "all-stubs/micropython-v1_17-frozen/esp32/GENERIC", 
-    4. "all-stubs/micropython-v1_17-esp32",
+### Install into a `typings` folder.
+In some cases a single project my need to make use of stubs for different ports or boards at the same time. In a venv it is possible to install only **one** stub package.
+
+Some tools such as Pylance and Pyright can also make use of stubs that are located in a folder, usually a folder named `typings`
+Another advantage of  using a typings folder is that it can be checked in to a source code repo 
+
+In order to install the stubs into a typings folder append `--target <folder> --no-user` to the pip install commands listed in the above sections.
+`--target` specifies the destination folder 
+`--no-user` is only needed to avoid conflicts with an active venv
+
+To install the stubs for the last published version of MicroPython: 
+``` bash
+pip install -U  micropython-<port>-stubs --target <folder> --no-user
+pip install -U  micropython-stm32-stubs --target ./typings --no-user
+```
+or 
+``` bash
+pip install -U  micropython-esp32-stubs==1.18.* --target ./typings --no-user
+```
+
+
+## Configure your IDE (or other tools) where the stubs are located
+the configuration for your IDE or tool set is specific to that IDE or tool,
+however there will be some commonalities.
+Most tools will :
+- Be able to use the stubs if they are located in the active virtual environment
+- If not using a `venv` you will need to configure the tool with the location, unless it uses `typings` as the default location.
+- can be configured with a python language version. MicroPython is based on Python 3.5 with some features from later versions. 
+
 
 
 [samples]: https://github.com/josverl/micropython-stubs/tree/main/docs/samples
