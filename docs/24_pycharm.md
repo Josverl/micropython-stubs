@@ -2,12 +2,10 @@
 
 ## Configure PyCharm to use the selected stub folders  
 
+PyCharm supports Python stub files, so the simples option is to install the micropython-stubs from PyPi.  
+![Code completions](img/pycharm-completion-2.png)  
 ref: https://www.jetbrains.com/help/pycharm/type-hinting-in-product.html#stub-type-hints
 
-PyCharm supports Python stub files, so the simples option is to install the micropython-stubs from PyPi.
-![Code completions](img/pycharm-completion-2.png)
-
-ref: https://www.jetbrains.com/help/pycharm/type-hinting-in-product.html#stub-type-hints
 
 ## Install the stubs from PyPi.
 
