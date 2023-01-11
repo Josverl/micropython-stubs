@@ -35,6 +35,11 @@ Pycharm will show the module's docstring that will allow you to identify which s
 As the RP2 PIO code is not valid python code, PyCharm will show muliple warning for the code.
 To disable these warnings, add the following line to the top of the file or to the top of the function:
 
+`# noinspection PyStatementEffect,PyArgumentList`
+
+This will suppress the PyCharm warnings for that specific function
+
+Complete sample: 
 ```python	
 # noinspection PyStatementEffect,PyArgumentList
 @rp2.asm_pio(set_init=rp2.PIO.OUT_LOW)
