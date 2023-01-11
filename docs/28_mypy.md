@@ -1,6 +1,7 @@
 # MyPy - limited functionality
 This section is preliminary and needs to be expanded.
-While MyPy used to work quite well with the .PY stubs, it is now not working anymore.
+While MyPy used to work quite well with the .PY stubs, it is now not working anymore now that the stubs are type-only stubs.
+
 ## MyPy and stub-only packages installed in a virtual environment
 
 MyPy should automatically detect and use all Micropython packages installed in a virtual environment as they follow the PEP-561 standard for stub-only packages.
