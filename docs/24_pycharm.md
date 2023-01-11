@@ -13,15 +13,15 @@ Install the stubs as documented in [using the thubs](20_using.md)
 
 Example: `pip install -U micropython-stm32-stubs==1.19.1.*`
 
-if you have a requirements.txt file you can add the stubs to it, and PyCharm will offer to install them automatically.
+If you have a requirements.txt file you can add the stubs to it, and PyCharm will offer to install them automatically.
 
 ```text
 micropython-stm32-stubs==1.19.1.*
 ```	
 
-After this 
+After this Pycharm will use the stubs to validate your code and provide hints.
 
-## legacy installation for PyCharm
+Note that Pycharm's rendering of the docstrings is limited, but still quite useful.
 
 ## Check library imports
 To check if the correct types are used for your imports you can 'hover' the mouse over the module of an import statement. 
@@ -54,10 +54,8 @@ def blink_1hz():
     jmp(x_dec, "delay_low")
 ```
 
-
-
-## Legacy Option: Clone the stubs repo 
-Older method of installation 
+## Legacy configuration: Clone the stubs repo 
+Note that this is an older method of installation, and generally should not be used unless you have a specific need for stubs not (yet) published, and that cannot be installed from GitHub 
 
 To use stubs from the micropython-stubs repository , follow these steps:
 
