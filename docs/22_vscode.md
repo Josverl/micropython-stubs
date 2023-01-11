@@ -1,4 +1,4 @@
-# VSCode and Pylance
+# VSCode and Pylance or Pyright
 
 VSCode  uses Pylance, and optionally a linter such as pylint or mypy.
 
