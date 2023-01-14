@@ -1,5 +1,5 @@
 # 1.7 introduced the ability to merge stubs using codemods.
-micropython-stubber >= 1.7
+micropython-stubber >= 1.11.4
 
 # for quality reporting
 pyright~=1.1

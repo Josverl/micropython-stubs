@@ -16,7 +16,7 @@ permissions:
   contents: read
 
 jobs:
-  pyright:
+  run-pyright:
     name: Run pyright against the stubs
     runs-on: ubuntu-latest
     strategy:

@@ -21,14 +21,15 @@ env:
 
 jobs:
   ########################################################################################################################################
-  get-versions:
+  list-versions-pub:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       # no need to install python
+      - run: echo Running in folder $(pwd)
       - run: pip install pygithub packaging
       - run: python .github/workflows/list_versions.py
-        id: dynamic
+        id: dyna
     outputs:
       job_versions: ${{ steps.dynamic.outputs.versions }}
 
@@ -36,35 +37,39 @@ jobs:
   build-publish-stubs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    # continue-on-error: true
-    needs: get-versions
+    needs: list-versions-pub
     strategy:
-      matrix: ${{ fromJSON(needs.get-versions.outputs.job_versions) }}
-      # matrix:
-      #   version: ["v1.18"]
+      matrix: ${{ fromJSON(needs.list-versions-pub.outputs.job_versions) }}
+    # continue-on-error: true
+    env:
+      POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
+      POETRY_PYPI_TOKEN_TEST_PYPI:  ${{ secrets.POETRY_PYPI_TOKEN_TEST_PYPI }}      
+
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
       - run: |
+          apt update
+          apt install -y python3-pip
+        if : ${{ env.ACT }}
+      - run: |
           pip install wheel
-          pip install micropython-stubber
+          pip install -U micropython-stubber
       - run: |
           echo ${{matrix.version}}
           stubber --version
           stubber clone --no-stubs
+      - run: |
+          pip install poetry
+          poetry config repositories.test-pypi https://test.pypi.org/legacy/
+          poetry config --list
       # run the build steps for this mpy version
       - run: stubber switch ${{matrix.version}}
       - run: stubber get-frozen
       - run: stubber get-docstubs
       - run: stubber merge --version ${{matrix.version}}
+      - run: stubber build --version ${{matrix.version}} --port auto --board GENERIC
 
-      - run: |
-          pip install poetry
-          poetry config repositories.test-pypi https://test.pypi.org/legacy/
-          poetry config --list
-        env:
-          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
-          POETRY_PYPI_TOKEN_TEST_PYPI: pypi-AgENdGVzdC5weXBpLm9yZwIkM2MwZTQ3ZjctMTY4NC00MWZmLWI0NjUtMGRhNWIyMTM1MzY5AAIqWzMsIjg3YWJmYjEwLTc4YjYtNDkxZS1iODhjLTQ4MjAwNTg1MzJiYyJdAAAGICXOOKXDE1O10MaOkZhbsSZsLSGLOterMLyWnbFZT280
 
       - name: Commit the changes
         uses: EndBug/add-and-commit@v8

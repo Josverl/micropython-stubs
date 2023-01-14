@@ -1,0 +1,5 @@
+# set default options for running act
+--reuse
+--bind
+-P ubuntu-latest=ghcr.io/catthehacker/ubuntu:full-latest
+

@@ -21,7 +21,7 @@ env:
 
 jobs:
   ########################################################################################################################################
-  list_versions:
+  list-versions-fr:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,7 +33,7 @@ jobs:
           python-version: 3.11 
 
       - run: pip install pygithub packaging
-      - run: python .github/workflows/list_versions.py --latest
+      - run: python .github/workflows/list-versions.py --latest
         id: dynamic
     outputs:
       job_versions: ${{ steps.dynamic.outputs.versions }}
@@ -42,11 +42,11 @@ jobs:
 
   get-micropython-frozen:
     # The type of runner that the job will run on
-    needs: list_versions
+    needs: list-versions-fr
     runs-on: ubuntu-latest
     continue-on-error: true
     strategy:
-      matrix: ${{ fromJSON(needs.list_versions.outputs.job_versions) }}
+      matrix: ${{ fromJSON(needs.list-versions-fr.outputs.job_versions) }}
     # Most scripts will be run from the stubber, set that as default
     defaults:
       run:

@@ -25,10 +25,7 @@
             },
             "command": "${workspaceFolder}/.venv/Scripts/Activate.ps1;&./make.bat html",
             "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "group": "build"
         },
         {
             "label": "Sphinx: clean build documentation",
@@ -47,6 +44,23 @@
                 "cwd": "${workspaceFolder}/docs"
             },
             "command": "${workspaceFolder}/.venv/Scripts/Activate.ps1;python -m sphinx.ext.intersphinx _build/html/objects.inv"
+        },
+        {
+            "label": "act: build-publish-stubs",
+            "type": "shell",
+            "command": "act",
+            "args": [
+                "--job",
+                "build-publish-stubs",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }

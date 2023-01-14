@@ -20,13 +20,13 @@ env:
 
 jobs:
   ########################################################################################################################################
-  list_versions:
+  list-versions-doc:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       # no need to install python
       - run: pip install pygithub packaging
-      - run: python .github/workflows/list_versions.py
+      - run: python .github/workflows/list-versions.py
         id: dynamic
     outputs:
       job_versions: ${{ steps.dynamic.outputs.versions }}
@@ -36,9 +36,9 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     continue-on-error: true
-    needs: list_versions
+    needs: list-versions-doc
     strategy:
-      matrix: ${{ fromJSON(needs.list_versions.outputs.job_versions) }}
+      matrix: ${{ fromJSON(needs.list-versions-doc.outputs.job_versions) }}
 
     # Most scripts will be run from the stubber, set that as default
     defaults:
