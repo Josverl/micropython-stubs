@@ -7,7 +7,7 @@ bitmap images, which can then be sent to a display.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/framebuf.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 
 MONO_VLSB: bytes
 """\
@@ -149,7 +149,9 @@ class FrameBuffer:
         Draw another FrameBuffer on top of the current one at the given coordinates.
         If *key* is specified then it should be a color integer and the
         corresponding color will be considered transparent: all pixels with that
-        color value will not be drawn.
+        color value will not be drawn. (If the *palette* is specified then the *key*
+        is compared to the value from *palette*, not to the value directly from
+        *fbuf*.)
 
         The *palette* argument enables blitting between FrameBuffers with differing
         formats. Typical usage is to render a monochrome or grayscale glyph/icon to

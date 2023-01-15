@@ -19,7 +19,7 @@ building-blocks for higher-level abstractions such as specific device types.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/bluetooth.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional, Tuple
 
 class BLE:
     """

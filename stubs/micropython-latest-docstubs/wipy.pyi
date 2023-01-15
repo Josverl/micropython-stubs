@@ -7,7 +7,7 @@ WiPy, such as the heartbeat LED.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/wipy.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 
 def heartbeat(enable: Optional[Any] = None) -> bool:
     """

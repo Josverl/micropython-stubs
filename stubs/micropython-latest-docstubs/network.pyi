@@ -38,7 +38,7 @@ For example::
 # + module: network.WLANWiPy.rst
 # + module: network.WIZNET5K.rst
 # + module: network.LAN.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple, Union
 
 class AbstractNIC:
     """
@@ -47,7 +47,7 @@ class AbstractNIC:
     parameter should be `id`.
     """
 
-    def __init__(self, id=None, *args) -> None: ...
+    def __init__(self, id=None, *args, **kwargs) -> None: ...
     def active(self, is_active: Optional[Any] = None) -> None:
         """
         Activate ("up") or deactivate ("down") the network interface, if
@@ -57,7 +57,7 @@ class AbstractNIC:
         undefined).
         """
         ...
-    def connect(self, service_id, key=None, *args: Optional[Any]) -> None:
+    def connect(self, service_id, key=None, *args, **kwargs: Optional[Any]) -> None:
         """
         Connect the interface to a network. This method is optional, and
         available only for interfaces which are not "always connected".
@@ -84,7 +84,7 @@ class AbstractNIC:
         Returns ``True`` if connected to network, otherwise returns ``False``.
         """
         ...
-    def scan(self, *args) -> List[Tuple]:
+    def scan(self, *args, **kwargs) -> List[Tuple]:
         """
         Scan for the available network services/connections. Returns a
         list of tuples with discovered service parameters. For various
@@ -145,7 +145,7 @@ class AbstractNIC:
         """
         ...
 
-class WLAN(AbstractNIC):
+class WLAN:
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access
@@ -238,7 +238,7 @@ class WLAN(AbstractNIC):
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def config(self, param) -> Any:
+    def config(self, *args, **kwargs) -> Any:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
@@ -272,7 +272,7 @@ class WLAN(AbstractNIC):
         """
         ...
 
-class WLANWiPy(AbstractNIC):
+class WLANWiPy:
     """
        Create a WLAN object, and optionally configure it. See `init()` for params of configuration.
 
@@ -295,7 +295,7 @@ class WLANWiPy(AbstractNIC):
     INT_ANT: Any = ...
     EXT_ANT: Any = ...
     """selects the antenna type"""
-    def __init__(self, id=0, *args) -> None: ...
+    def __init__(self, id=0, *args, **kwargs) -> None: ...
     def init(self, mode, *, ssid, auth, channel, antenna) -> Any:
         """
         Set or get the WiFi network processor configuration.
@@ -462,16 +462,18 @@ class LAN:
         is the default. Suitable values are port specific.
       - *phy_addr* specifies the address of the PHY interface. As with *phy_type*, the hardwired value has
         to be used for most boards and that value is the default.
-      - *phy_clock* specifies, whether the data clock is provided by the Ethernet controller or the PYH interface.
-        The default value is the one that matches the board. If set to ``True``, the clock is driven by the
-        Ethernet controller, otherwise by the PHY interface.
+      - *ref_clk_mode* specifies, whether the data clock is provided by the Ethernet controller or
+        the PYH interface.
+        The default value is the one that matches the board. If set to ``LAN.OUT`` or ``Pin.OUT``
+        or ``True``, the clock is driven by the Ethernet controller, if set to ``LAN.IN``
+        or ``Pin.IN`` or ``False``, the clock is driven by the PHY interface.
 
     For example, with the Seeed Arch Mix board you can  use::
 
-      nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=2, phy_clock=False)
+      nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=1, ref_clk_mode=Pin.IN)
     """
 
-    def __init__(self, id, *, phy_type=0, phy_addr=0, phy_clock=0) -> None: ...
+    def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
     def active(self, state: Optional[Any] = None) -> Any:
         """
         With a parameter, it sets the interface active if *state* is true, otherwise it

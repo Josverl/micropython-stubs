@@ -10,7 +10,7 @@ facilities for network sockets, both client-side and server-side.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/ssl.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any
 
 SSLError: Any = ...
 """This exception does NOT exist. Instead its base class, OSError, is used."""
@@ -22,7 +22,7 @@ CERT_REQUIRED: Any = ...
 """Supported values for *cert_reqs* parameter."""
 
 def wrap_socket(
-    sock, server_side=False, keyfile=None, certfile=None, cert_reqs=CERT_NONE, cadata=None, server_hostname=None, do_handshake=True
+    sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
 ) -> Any:
     """
     Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),

@@ -25,8 +25,22 @@ damage.
 # + module: machine.WDT.rst
 # + module: machine.SD.rst
 # + module: machine.SDCard.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
+mem8: Any = ...
+"""Read/write 8 bits of memory."""
+mem16: Any = ...
+"""Read/write 16 bits of memory."""
+mem32: int = 1
+"""\
+Read/write 32 bits of memory.
+
+Use subscript notation ``[...]`` to index these objects with the address of
+interest. Note that the address is the byte address, regardless of the size of
+memory being accessed.
+
+Example use (registers are specific to an stm32 microcontroller):
+"""
 IDLE: Any = ...
 """IRQ wake values."""
 SLEEP: Any = ...
@@ -331,7 +345,7 @@ class Signal:
       - ``invert`` - if True, the signal will be inverted (active low).
     """
 
-    def __init__(self, pin_obj, invert=False) -> None: ...
+    def __init__(self, pin_obj, *args, invert=False) -> None: ...
     def value(self, x: Optional[Any] = None) -> int:
         """
         This method allows to set and get the value of the signal, depending on whether
@@ -378,7 +392,7 @@ class ADC:
       - *atten* specifies the input attenuation.
     """
 
-    def __init__(self, id, *, sample_ns, atten) -> None: ...
+    def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None: ...
     def init(self, *, sample_ns, atten) -> Any:
         """
         Apply the given settings to the ADC.  Only those arguments that are
@@ -462,7 +476,7 @@ class PWM:
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
     """
 
-    def __init__(self, dest, *, freq, duty_u16, duty_ns) -> None: ...
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None: ...
     def init(self, *, freq, duty_u16, duty_ns) -> None:
         """
         Modify settings for the PWM object.  See the above constructor for details
@@ -516,8 +530,8 @@ class UART:
     
     Availability: WiPy.
     """
-    def __init__(self, id, *args) -> None: ...
-    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None: ...
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
         """
         Initialise the UART bus with the given parameters:
 
@@ -671,7 +685,7 @@ class UART:
             For the rp2, esp8266 and nrf ports the call returns while the last byte is sent.
             If required, a one character wait time has to be added in the calling script.
 
-        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
         """
         ...
     def txdone(self) -> bool:
@@ -685,7 +699,7 @@ class UART:
             of a transfer is still being sent. If required, a one character wait time has to be
             added in the calling script.
 
-        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
         """
         ...
 
@@ -707,7 +721,7 @@ class SPI:
     """set the first bit to be the most significant bit"""
     LSB: Any = ...
     """set the first bit to be the least significant bit"""
-    def __init__(self, id, *args) -> None: ...
+    def __init__(self, id, *args, **kwargs) -> None: ...
     def init(
         self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
     ) -> None:
@@ -802,7 +816,9 @@ class I2C:
     of *scl* and *sda* that cannot be changed.
     """
 
-    def __init__(self, id, *, scl, sda, freq=400000) -> None: ...
+    def __init__(
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+    ) -> None: ...
     def init(self, scl, sda, *, freq=400000) -> None:
         """
         Initialise the I2C bus with the given arguments:
@@ -810,6 +826,10 @@ class I2C:
            - *scl* is a pin object for the SCL line
            - *sda* is a pin object for the SDA line
            - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependant on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
         """
         ...
     def deinit(self) -> None:
@@ -975,7 +995,7 @@ class I2S:
     
     """
     def __init__(self, id, *, sck, ws, sd, mck=None, mode, bits, format, rate, ibuf) -> None: ...
-    def init(self, sck, *args) -> Any:
+    def init(self, sck, *args, **kwargs) -> Any:
         """
         see Constructor for argument descriptions
         """
@@ -1024,7 +1044,7 @@ class RTC:
 
     ALARM0: Any = ...
     """irq trigger source"""
-    def __init__(self, id=0, *args) -> None: ...
+    def __init__(self, id=0, *args, **kwargs) -> None: ...
     def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
@@ -1098,7 +1118,7 @@ class Timer:
     """Timer operating mode."""
     PERIODIC: Any = ...
     """Timer operating mode."""
-    def __init__(self, id, /, *args) -> None: ...
+    def __init__(self, id=-1, *args, **kwargs) -> None: ...
     def init(self, *, mode=PERIODIC, period=-1, callback=None) -> None:
         """
         Initialise the timer. Example::
@@ -1160,7 +1180,7 @@ class SD:
     Create a SD card object. See ``init()`` for parameters if initialization.
     """
 
-    def __init__(self, id, *args) -> None: ...
+    def __init__(self, id, *args, **kwargs) -> None: ...
     def init(self, id=0, pins=("GP10", "GP11", "GP15")) -> None:
         """
         Enable the SD card. In order to initialize the card, give it a 3-tuple:

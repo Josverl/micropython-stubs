@@ -4,7 +4,7 @@ cryptographic ciphers. See: https://docs.micropython.org/en/latest/library/crypt
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/cryptolib.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 
 class aes:
     def __init__(self, key, mode, IV: Optional[Any] = None) -> None:

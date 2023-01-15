@@ -6,7 +6,7 @@ This module provides control of the MicroPython LCD160CR display.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/lcd160cr.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Tuple
 from .machine import SPI
 
 PORTRAIT: Any = ...

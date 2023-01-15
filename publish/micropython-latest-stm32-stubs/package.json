@@ -1,0 +1,24 @@
+{
+    "name": "micropython-stm32-stubs",
+    "mpy_version": "latest",
+    "publish": true,
+    "pkg_version": "1.20a744",
+    "path": "micropython-latest-stm32-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-latest-stm32-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-latest-frozen/stm32/GENERIC"
+        ],
+        [
+            "Core stubs",
+            "micropython_core"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": "cf3855d2b3dab2be40d46be0fa18214f757dde4c",
+    "stub_hash": "58cf737d9f4f2ee6ff47bc77205fcfb79e14d3e1"
+}
