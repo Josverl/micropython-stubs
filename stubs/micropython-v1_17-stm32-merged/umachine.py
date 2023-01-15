@@ -10,7 +10,7 @@ damage.
 """
 # MCU: {'ver': 'v1.17', 'port': 'pyboard', 'arch': 'armv7emsp', 'sysname': 'pyboard', 'release': '1.17.0', 'name': 'micropython', 'mpy': 7685, 'version': '1.17.0', 'machine': 'PYBv1.1 with STM32F405RG', 'build': '', 'nodename': 'pyboard', 'platform': 'pyboard', 'family': 'micropython'}
 # Stubber: 1.5.4
-from typing import Callable, List, NoReturn, Optional, Tuple, Any
+from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 
 
 class RTC:
@@ -18,7 +18,7 @@ class RTC:
     Create an RTC object. See init for parameters of initialization.
     """
 
-    def __init__(self, id=0, *args) -> None:
+    def __init__(self, id=0, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -102,7 +102,9 @@ class I2C:
     of *scl* and *sda* that cannot be changed.
     """
 
-    def __init__(self, id, *, scl, sda, freq=400000) -> None:
+    def __init__(
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+    ) -> None:
         """"""
         ...
 
@@ -293,7 +295,7 @@ class I2S:
         """
         ...
 
-    def init(self, sck, *args) -> Any:
+    def init(self, sck, *args, **kwargs) -> Any:
         """
         see Constructor for argument descriptions
         """
@@ -723,7 +725,7 @@ class SPI:
     See ``init`` for parameters of initialisation.
     """
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -822,7 +824,7 @@ class Signal:
       - ``invert`` - if True, the signal will be inverted (active low).
     """
 
-    def __init__(self, pin_obj, invert=False) -> None:
+    def __init__(self, pin_obj, *args, invert=False) -> None:
         """"""
         ...
 
@@ -957,7 +959,7 @@ class Timer:
     See ``init`` for parameters of initialisation.
     """
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -994,7 +996,7 @@ class UART:
     Construct a UART object of the given id.
     """
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -1062,7 +1064,7 @@ class UART:
         """
         ...
 
-    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args) -> None:
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
         """
         Initialise the UART bus with the given parameters:
 

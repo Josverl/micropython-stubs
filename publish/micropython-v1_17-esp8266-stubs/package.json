@@ -1,0 +1,24 @@
+{
+    "name": "micropython-esp8266-stubs",
+    "mpy_version": "1.17",
+    "publish": true,
+    "pkg_version": "1.17.post21",
+    "path": "micropython-v1_17-esp8266-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-v1_17-esp8266-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-v1_17-frozen/esp8266/GENERIC"
+        ],
+        [
+            "Core Stubs",
+            "cpython_core-pycopy"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": "c6a390b4dc44bec43019ac410ed0e3ce00f97108",
+    "stub_hash": "b15e4eae90e64aa368b5798cdf8848aa275c28e5"
+}

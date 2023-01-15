@@ -27,6 +27,13 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* Board stubs from stubs/micropython-v1_17-esp32
-* Frozen stubs from stubs/micropython-v1_17-frozen/esp32/GENERIC
-* Core Stubs from stubs/cpython_core-pycopy
+* Merged stubs from `stubs/micropython-v1_17-esp32-merged`
+* Frozen stubs from `stubs/micropython-v1_17-frozen/esp32/GENERIC`
+* Core Stubs from `stubs/cpython_core-pycopy`
+
+
+origin | Family | Port | Board | Version
+-------|--------|------|-------|--------
+Firmware | micropython | esp32 | ESP32 module (spiram) with ESP32 | v1.17 
+Documentation | micropython | - | - | v1.17 
+Core | micropython | esp32 | - | v1.17 

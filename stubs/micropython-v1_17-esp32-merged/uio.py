@@ -8,7 +8,7 @@ and helper functions.
 """
 # MCU: {'ver': 'v1.17', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.17.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.17.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
 # Stubber: 1.5.4
-from typing import Any, Optional
+from typing import IO, Optional, Any
 
 
 def open(name, mode="r", **kwargs) -> Any:
@@ -88,7 +88,7 @@ class FileIO:
     You should not instantiate this class directly.
     """
 
-    def __init__(self, *args) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         """"""
         ...
 
@@ -169,7 +169,7 @@ class TextIOWrapper:
     You should not instantiate this class directly.
     """
 
-    def __init__(self, *args) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         """"""
         ...
 

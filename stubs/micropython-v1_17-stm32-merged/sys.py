@@ -5,7 +5,7 @@ system specific functions. See: https://docs.micropython.org/en/v1.17/library/sy
 """
 # MCU: {'ver': 'v1.17', 'port': 'pyboard', 'arch': 'armv7emsp', 'sysname': 'pyboard', 'release': '1.17.0', 'name': 'micropython', 'mpy': 7685, 'version': '1.17.0', 'machine': 'PYBv1.1 with STM32F405RG', 'build': '', 'nodename': 'pyboard', 'platform': 'pyboard', 'family': 'micropython'}
 # Stubber: 1.5.4
-from typing import Any
+from typing import Dict, List, Tuple, Any
 
 argv = []  # type: list
 byteorder = "little"  # type: str

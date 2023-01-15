@@ -10,6 +10,7 @@ functions.
 # MCU: {'ver': 'v1.17', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.17.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.17.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
 # Stubber: 1.5.4
 from typing import IO, Iterator, Optional, Tuple, Any
+from stdlib.os import uname_result
 
 
 def remove(path) -> None:
@@ -296,7 +297,7 @@ def umount(mount_point) -> Any:
     ...
 
 
-def uname() -> Tuple:
+def uname() -> uname_result:
     """
     Return a tuple (possibly a named tuple) containing information about the
     underlying machine and/or its operating system.  The tuple has five fields

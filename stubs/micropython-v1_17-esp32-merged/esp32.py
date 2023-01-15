@@ -9,7 +9,7 @@ from __future__ import annotations
 
 # MCU: {'ver': 'v1.17', 'port': 'esp32', 'arch': 'xtensawin', 'sysname': 'esp32', 'release': '1.17.0', 'name': 'micropython', 'mpy': 10757, 'version': '1.17.0', 'machine': 'ESP32 module (spiram) with ESP32', 'build': '', 'nodename': 'esp32', 'platform': 'esp32', 'family': 'micropython'}
 # Stubber: 1.5.4
-from typing import List, Optional, Tuple, Any
+from typing import List, Optional, Tuple, Union, Any
 
 HEAP_DATA = 4  # type: int
 HEAP_EXEC = 1  # type: int
@@ -197,7 +197,7 @@ class RMT:
         """
         ...
 
-    def write_pulses(self, duration, data=True) -> Any:
+    def write_pulses(self, duration, data: Union[bool, int] = True) -> Any:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
