@@ -4,7 +4,7 @@ functionality specific to STM32 MCUs. See: https://docs.micropython.org/en/v1.18
 This module provides functionality specific to STM32 microcontrollers, including
 direct access to peripheral registers.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Tuple, Any
 
 ADC1: int
 ADC123_COMMON: int

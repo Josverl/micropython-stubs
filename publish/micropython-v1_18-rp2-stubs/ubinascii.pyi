@@ -6,7 +6,7 @@ binary/ASCII conversions. See: https://docs.micropython.org/en/v1.18/library/bin
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 def a2b_base64(data) -> bytes:
     """

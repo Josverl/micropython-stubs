@@ -8,7 +8,7 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 
 class ADC:
     """
@@ -65,7 +65,9 @@ class I2C:
     of *scl* and *sda* that cannot be changed.
     """
 
-    def __init__(self, id, *, scl, sda, freq=400000) -> None: ...
+    def __init__(
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+    ) -> None: ...
     def readinto(self, buf, nack=True, /) -> Any:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
@@ -233,7 +235,7 @@ class I2S:
         Deinitialize the I2S bus
         """
         ...
-    def init(self, sck, *args) -> Any:
+    def init(self, sck, *args, **kwargs) -> Any:
         """
         see Constructor for argument descriptions
         """
@@ -273,7 +275,7 @@ class PWM:
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
     """
 
-    def __init__(self, dest, *, freq, duty_u16, duty_ns) -> None: ...
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None: ...
     def deinit(self) -> None:
         """
         Disable the PWM output.
@@ -496,7 +498,7 @@ class RTC:
     Create an RTC object. See init for parameters of initialization.
     """
 
-    def __init__(self, id=0, *args) -> None: ...
+    def __init__(self, id=0, *args, **kwargs) -> None: ...
     def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
@@ -574,7 +576,7 @@ class SPI:
     See ``init`` for parameters of initialisation.
     """
 
-    def __init__(self, id, *args) -> None: ...
+    def __init__(self, id, *args, **kwargs) -> None: ...
     def read(self, nbytes, write=0x00) -> bytes:
         """
         Read a number of bytes specified by ``nbytes`` while continuously writing
@@ -663,7 +665,7 @@ class Signal:
       - ``invert`` - if True, the signal will be inverted (active low).
     """
 
-    def __init__(self, pin_obj, invert=False) -> None: ...
+    def __init__(self, pin_obj, *args, invert=False) -> None: ...
     def value(self, x: Optional[Any] = None) -> int:
         """
         This method allows to set and get the value of the signal, depending on whether
@@ -751,7 +753,7 @@ class Timer:
     See ``init`` for parameters of initialisation.
     """
 
-    def __init__(self, id, /, *args) -> None: ...
+    def __init__(self, id=-1, *args, **kwargs) -> None: ...
     def value(self, *args, **kwargs) -> Any: ...
     ONE_SHOT: int
     PERIODIC: int
@@ -802,7 +804,7 @@ class UART:
     Construct a UART object of the given id.
     """
 
-    def __init__(self, id, *args) -> None: ...
+    def __init__(self, id, *args, **kwargs) -> None: ...
     def any(self) -> int:
         """
         Returns an integer counting the number of characters that can be read without
@@ -863,7 +865,7 @@ class UART:
         Turn off the UART bus.
         """
         ...
-    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args) -> None:
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
         """
         Initialise the UART bus with the given parameters:
 
