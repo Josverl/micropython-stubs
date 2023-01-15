@@ -74,7 +74,10 @@ jobs:
       - run: stubber merge --version ${{matrix.version}}
       - run: stubber build --version ${{matrix.version}} --port auto --board GENERIC
 
-      - name: DO not Commit the changes
+      - name: pull in other changes from the repo
+        run: git pull origin main
+
+      - name: Do not Commit the changes if running in ACT
         run: echo "Running locally in ACT; Skipped publish stubs for ${{matrix.version}}"
         if : ${{ env.ACT }}
 

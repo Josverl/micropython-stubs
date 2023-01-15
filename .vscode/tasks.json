@@ -51,7 +51,7 @@
             "command": "act",
             "args": [
                 "--job",
-                "build-publish-stubs",
+                "build-stubs",
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
