@@ -40,9 +40,10 @@ jobs:
     needs: list-versions-pub
     strategy:
       matrix: ${{ fromJSON(needs.list-versions-pub.outputs.job_versions) }}
+      max-parallel: 1
     concurrency:
-      group: test-mtx
-      cancel-in-progress: false
+      group: build-${{matrix.version}}
+      cancel-in-progress: true
 
     # continue-on-error: true
     env:
