@@ -31,7 +31,7 @@ For example::
     data = s.recv(1000)
     s.close()
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import List, Optional, Tuple, Union, Any
 
 AP_IF: int
 STA_IF: int

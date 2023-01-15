@@ -25,7 +25,7 @@ This module implements a pseudo-random number generator (PRNG).
    enabled.
 
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 
 def getrandbits(n) -> int:
     """

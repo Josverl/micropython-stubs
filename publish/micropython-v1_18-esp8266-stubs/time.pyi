@@ -30,7 +30,7 @@ If actual calendar time is not maintained with a system/MicroPython RTC,
 functions below which require reference to current absolute time may
 behave not as expected.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Tuple, Any
 
 def gmtime(secs: Optional[Any] = None) -> Tuple:
     """

@@ -6,7 +6,7 @@ collection and container types. See: https://docs.micropython.org/en/v1.18/libra
 This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import Optional, Any
 from queue import Queue
 
 class OrderedDict:
@@ -34,7 +34,7 @@ class OrderedDict:
         b 3
     """
 
-    def __init__(self, *args) -> None: ...
+    def __init__(self, *args, **kwargs) -> None: ...
     def clear(self, *args, **kwargs) -> Any: ...
     def copy(self, *args, **kwargs) -> Any: ...
     def get(self, *args, **kwargs) -> Any: ...

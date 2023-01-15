@@ -31,7 +31,7 @@ For example::
     data = s.recv(1000)
     s.close()
 """
-from typing import Callable, Coroutine, Dict, Generator, IO, Iterator, List, NoReturn, Optional, Tuple, Union, Any
+from typing import List, Optional, Tuple, Union, Any
 
 AP_IF: int
 STA_IF: int
@@ -56,7 +56,7 @@ class WLAN:
         provided. Most other methods require active interface.
         """
         ...
-    def config(self, param) -> Any:
+    def config(self, *args, **kwargs) -> Any:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
