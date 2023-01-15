@@ -42,6 +42,7 @@ jobs:
       matrix: ${{ fromJSON(needs.list-versions-pub.outputs.job_versions) }}
     concurrency:
       group: test-mtx
+      cancel-in-progress: false
 
     # continue-on-error: true
     env:
