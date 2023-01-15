@@ -331,7 +331,7 @@ class Signal:
       - ``invert`` - if True, the signal will be inverted (active low).
     """
 
-    def __init__(self, pin_obj, invert=False) -> None: ...
+    def __init__(self, pin_obj, *args, invert=False) -> None: ...
     def value(self, x: Optional[Any] = None) -> int:
         """
         This method allows to set and get the value of the signal, depending on whether
@@ -378,7 +378,7 @@ class ADC:
       - *atten* specifies the input attenuation.
     """
 
-    def __init__(self, id, *, sample_ns, atten) -> None: ...
+    def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None: ...
     def init(self, *, sample_ns, atten) -> Any:
         """
         Apply the given settings to the ADC.  Only those arguments that are
@@ -462,7 +462,7 @@ class PWM:
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
     """
 
-    def __init__(self, dest, *, freq, duty_u16, duty_ns) -> None: ...
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None: ...
     def init(self, *, freq, duty_u16, duty_ns) -> None:
         """
         Modify settings for the PWM object.  See the above constructor for details
@@ -667,7 +667,7 @@ class SPI:
     """set the first bit to be the most significant bit"""
     LSB: Any = ...
     """set the first bit to be the least significant bit"""
-    def __init__(self, id, *args) -> None: ...
+    def __init__(self, id, *args, **kwargs) -> None: ...
     def init(
         self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
     ) -> None:

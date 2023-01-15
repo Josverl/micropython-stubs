@@ -457,7 +457,7 @@ class ADC:
     def read(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, id, *, sample_ns, atten) -> None:
+    def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None:
         ...
 
 
@@ -505,7 +505,7 @@ class PWM:
         """
         ...
 
-    def __init__(self, dest, *, freq, duty_u16, duty_ns) -> None:
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None:
         ...
 
 
@@ -867,7 +867,7 @@ class UART:
         """
         ...
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         ...
 
 
@@ -959,7 +959,7 @@ class SPI:
         """
         ...
 
-    def __init__(self, id, *args) -> None:
+    def __init__(self, id, *args, **kwargs) -> None:
         ...
 
 
@@ -1072,5 +1072,5 @@ class Signal:
         """
         ...
 
-    def __init__(self, pin_obj, invert=False) -> None:
+    def __init__(self, pin_obj, *args, invert=False) -> None:
         ...
