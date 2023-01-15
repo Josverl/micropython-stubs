@@ -8,21 +8,28 @@ from packaging.version import parse
 
 def micropython_versions(start="v1.10"):
     g = Github()
-    repo = g.get_repo("micropython/micropython")
-    return sorted([tag.name for tag in repo.get_tags() if parse(tag.name) >= parse(start)], reverse=True)
+    try:
+        repo = g.get_repo("micropython/micropython")
+        tags = sorted([tag.name for tag in repo.get_tags() if parse(tag.name) >= parse(start)], reverse=True)
+    except Exception as e:
+        print(f"Error: {e}")
+        tags = ["v1.19.1"]
+    return tags
 
+# sourcery skip: assign-if-exp, merge-dict-assign
 if __name__ == "__main__":
     matrix = {}
-    add_latest = False
-    if len(sys.argv) > 1:
-        add_latest = sys.argv[1].lower() in ["--latest", "-l"]
-    # if environ.get("ACT"):
-    #     # only run latests when running in ACT locally for testing
-    #     matrix["version"] = micropython_versions(start="v1.17")[-1:]
+    # only run latests when running in ACT locally for testing
+    if os.environ.get("ACT"):
+        matrix["version"] = micropython_versions(start="v1.17")[-1:]
     else:
         matrix["version"] = micropython_versions(start="v1.17")
-        if add_latest: # add at the start
-            matrix[:0] == ["latest"]
+
+    add_latest = False
+    if len(sys.argv) > 1 and (sys.argv[1].lower() in ["--latest", "-l"]):
+        print("Adding latest")
+        matrix["version"].insert(0, "latest")
+
     print(json.dumps(matrix))
     # GITHUB_OUTPUT is set by github actions
     if os.getenv('GITHUB_OUTPUT'):

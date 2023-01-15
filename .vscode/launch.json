@@ -16,6 +16,7 @@
             "type": "python",
             "request": "launch",
             "program": "${file}",
+            "args": ["-l"],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}"
         },
