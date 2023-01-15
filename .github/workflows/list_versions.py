@@ -9,7 +9,7 @@ from packaging.version import parse
 def micropython_versions(start="v1.10"):
     g = Github()
     repo = g.get_repo("micropython/micropython")
-    return sorted([tag.name for tag in repo.get_tags() if parse(tag.name) >= parse(start)])
+    return sorted([tag.name for tag in repo.get_tags() if parse(tag.name) >= parse(start)], reverse=True)
 
 if __name__ == "__main__":
     matrix = {}
@@ -21,8 +21,8 @@ if __name__ == "__main__":
     #     matrix["version"] = micropython_versions(start="v1.17")[-1:]
     else:
         matrix["version"] = micropython_versions(start="v1.17")
-        if add_latest:
-            matrix["version"] += ["latest"]
+        if add_latest: # add at the start
+            matrix[:0] == ["latest"]
     print(json.dumps(matrix))
     # GITHUB_OUTPUT is set by github actions
     if os.getenv('GITHUB_OUTPUT'):

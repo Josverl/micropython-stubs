@@ -41,8 +41,7 @@ jobs:
     strategy:
       matrix: ${{ fromJSON(needs.list-versions-pub.outputs.job_versions) }}
       max-parallel: 1
-
-    # continue-on-error: true
+    continue-on-error: true
     env:
       POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
       POETRY_PYPI_TOKEN_TEST_PYPI:  ${{ secrets.POETRY_PYPI_TOKEN_TEST_PYPI }}      
@@ -80,7 +79,7 @@ jobs:
         if : ${{ env.ACT }}
 
       - name: Commit the changes
-        uses: EndBug/add-and-commit@v8
+        uses: EndBug/add-and-commit@v9
         with:
           message: Build stubs for ${{matrix.version}}
         if : ${{ !env.ACT }}
