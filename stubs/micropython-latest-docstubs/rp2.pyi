@@ -18,7 +18,7 @@ for example code.
 # + module: rp2.Flash.rst
 # + module: rp2.PIO.rst
 # + module: rp2.StateMachine.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 
 class PIOASMError(Exception):
     """
@@ -116,7 +116,7 @@ class PIO:
         It is not an error to remove a program which has already been removed.
         """
         ...
-    def state_machine(self, id, program, *args: Optional[Any]) -> Any:
+    def state_machine(self, id, program, *args, **kwargs: Optional[Any]) -> Any:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
         four state machines, numbered 0 to 3.
@@ -149,7 +149,7 @@ class StateMachine:
 
     """
 
-    def __init__(self, id, program, *args: Optional[Any]) -> None: ...
+    def __init__(self, id, program, *args, **kwargs: Optional[Any]) -> None: ...
     def init(
         self,
         program,
@@ -242,13 +242,17 @@ class StateMachine:
         ...
     def put(self, value, shift=0) -> Any:
         """
-        Push a word onto the state machine's TX FIFO.
+        Push words onto the state machine's TX FIFO.
 
-        If the FIFO is full, it blocks until there is space (i.e. the state machine
-        pulls a word).
+        *value* can be an integer, an array of type ``B``, ``H`` or ``I``, or a
+        `bytearray`.
 
-        The value is first shifted left by *shift* bits, i.e. the state machine
-        receives ``value << shift``.
+        This method will block until all words have been written to the FIFO.  If
+        the FIFO is, or becomes, full, the method will block until the state machine
+        pulls enough words to complete the write.
+
+        Each word is first shifted left by *shift* bits, i.e. the state machine
+        receives ``word << shift``.
         """
         ...
     def rx_fifo(self) -> int:

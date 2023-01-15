@@ -1,0 +1,13 @@
+from typing import Any
+
+size: int
+start_sec: int
+
+class FlashBdev:
+    SEC_SIZE: int
+    def writeblocks(self, *args, **kwargs) -> Any: ...
+    def ioctl(self, *args, **kwargs) -> Any: ...
+    def readblocks(self, *args, **kwargs) -> Any: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+bdev: Any

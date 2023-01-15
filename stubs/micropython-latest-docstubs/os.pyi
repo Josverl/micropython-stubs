@@ -10,7 +10,8 @@ functions.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/os.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, IO, Iterator, Optional, Tuple
+from stdlib.os import uname_result
 
 class VfsFat:
     """
@@ -83,7 +84,7 @@ class AbstractBlockDev:
     dependent on the specific block device.
     """
 
-    def __init__(self, *args) -> None: ...
+    def __init__(self, *args, **kwargs) -> None: ...
     def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any:
         """
         The first form reads aligned, multiples of blocks.
@@ -153,7 +154,7 @@ class AbstractBlockDev:
         """
         ...
 
-def uname() -> Tuple:
+def uname() -> uname_result:
     """
     Return a tuple (possibly a named tuple) containing information about the
     underlying machine and/or its operating system.  The tuple has five fields

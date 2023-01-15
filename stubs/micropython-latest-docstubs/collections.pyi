@@ -9,7 +9,7 @@ hold/accumulate various objects.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/collections.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 from queue import Queue
 
 class deque(Queue):
@@ -69,7 +69,7 @@ class OrderedDict(dict):
         b 3
     """
 
-    def __init__(self, *args) -> None: ...
+    def __init__(self, *args, **kwargs) -> None: ...
 
 def namedtuple(name, fields) -> Any:
     """

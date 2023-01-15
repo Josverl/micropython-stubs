@@ -4,7 +4,7 @@ access and control MicroPython internals. See: https://docs.micropython.org/en/l
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/micropython.rst
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union
+from typing import Any, Optional
 
 def const(expr) -> int:
     """

@@ -1,0 +1,24 @@
+{
+    "name": "micropython-esp32-stubs",
+    "mpy_version": "latest",
+    "publish": true,
+    "pkg_version": "1.20a744",
+    "path": "micropython-latest-esp32-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-latest-esp32-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-latest-frozen/esp32/GENERIC"
+        ],
+        [
+            "Core stubs",
+            "micropython_core"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": "4c9d9fccb435ff2878b0b0fa36b35db3cdb6f818",
+    "stub_hash": "bb1cef3bb0129c5262c452760edd71ce0f5e69d0"
+}
