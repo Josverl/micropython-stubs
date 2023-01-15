@@ -1,5 +1,8 @@
-# set default options for running act
+# set default options for running nekios act to run actions locally with docker
+# reus images to speed up builds and to be able to inspect the state after a build
+# bind the local folder to the docker container to avoid needing to copy files
+# use the large images to include as many tools as possible from ghcr.io/catthehacker/ubuntu:full-latest
 --reuse
---bind
 -P ubuntu-latest=ghcr.io/catthehacker/ubuntu:full-latest
+# --bind
 
