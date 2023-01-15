@@ -33,7 +33,7 @@ For example::
 """
 # MCU: {'ver': 'v1.17', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.17', 'name': 'micropython', 'mpy': 9733, 'version': '1.17', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
 # Stubber: 1.5.4
-from typing import Any, List, Optional, Tuple
+from typing import List, Optional, Tuple, Union, Any
 
 AP_IF = 1  # type: int
 AUTH_OPEN = 0  # type: int
@@ -53,7 +53,7 @@ STAT_WRONG_PASSWORD = 2  # type: int
 STA_IF = 0  # type: int
 
 
-class WLAN(AbstractNIC):
+class WLAN:
     """
     Create a WLAN network interface object. Supported interfaces are
     ``network.STA_IF`` (station aka client, connects to upstream WiFi access
@@ -155,7 +155,7 @@ class WLAN(AbstractNIC):
         """
         ...
 
-    def config(self, param) -> Any:
+    def config(self, *args, **kwargs) -> Any:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by

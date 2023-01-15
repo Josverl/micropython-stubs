@@ -1,14 +1,14 @@
-from typing import Any
+from _typeshed import Incomplete
 
 class NeoPixel:
-    ORDER: Any
-    pin: Any
-    n: Any
-    bpp: Any
-    buf: Any
-    timing: Any
+    ORDER: Incomplete
+    pin: Incomplete
+    n: Incomplete
+    bpp: Incomplete
+    buf: Incomplete
+    timing: Incomplete
     def __init__(self, pin, n, bpp: int = ..., timing: int = ...) -> None: ...
-    def __len__(self): ...
+    def __len__(self) -> int: ...
     def __setitem__(self, i, v) -> None: ...
     def __getitem__(self, i): ...
     def fill(self, v) -> None: ...
