@@ -2,7 +2,7 @@
     "name": "micropython-rp2-stubs",
     "mpy_version": "1.18",
     "publish": true,
-    "pkg_version": "1.18.post3",
+    "pkg_version": "1.18.post16",
     "path": "micropython-v1_18-rp2-stubs",
     "stub_sources": [
         [
