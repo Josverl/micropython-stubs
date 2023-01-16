@@ -69,7 +69,9 @@ jobs:
       - run: stubber get-frozen
       - run: stubber get-docstubs
       - run: stubber merge --version ${{matrix.version}}
-      - run: stubber build --version ${{matrix.version}} --port auto --board GENERIC
+      - run: |
+          stubber build --version ${{matrix.version}} --port auto --board GENERIC
+          stubber build --version ${{matrix.version}} --port esp32 --board UM_TinyPico
 
       - name: pull in other changes from the repo
         run: git pull origin main
@@ -117,10 +119,14 @@ jobs:
 
       - run: stubber clone
 
-      - run: stubber publish --version ${{matrix.version}} --port auto --board GENERIC --test-pypi
+      - run: |
+          stubber publish --version ${{matrix.version}} --port auto --board GENERIC --test-pypi
+          stubber publish --version ${{matrix.version}} --port esp32 --board UM_TinyPico --test-pypi
         if : ${{ env.ACT }}
 
-      - run: stubber publish --version ${{matrix.version}} --port auto --board GENERIC --pypi
+      - run: |
+          stubber publish --version ${{matrix.version}} --port auto --board GENERIC --pypi
+          stubber publish --version ${{matrix.version}} --port esp32 --board UM_TinyPico --pypi
         if : ${{ !env.ACT }}
 
       - name: pull in other changes from the repo
