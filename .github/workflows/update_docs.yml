@@ -6,9 +6,7 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 1 * * *" # Run everyday at 01:00
-  workflow_run:
-    workflows:
-      - ""
+
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
 
@@ -23,7 +21,8 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ${{github.workspace}}/micropython-stubs
+        working-directory: ${{github.workspace}}
+        # /micropython-stubs
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       ######################################
@@ -33,19 +32,19 @@ jobs:
 
       - name: Checkout stubs repo
         uses: actions/checkout@v3
-        with:
-          repository: josverl/micropython-stubs
-          path: micropython-stubs
+        # with:
+        #   repository: josverl/micropython-stubs
+        #   path: micropython-stubs
 
       # make Python work
       - name: Set up Python
         uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
-          cache: "pip"
+        # with:
+        #   python-version: 3.9
+        #   cache: "pip"
 
       - name: Install Python dependencies (doc only)
-        working-directory: ${{github.workspace}}/micropython-stubs
+        working-directory: ${{github.workspace}}
         run: |
           pip install --upgrade wheel
           pip install -r docs/requirements.txt
@@ -55,27 +54,16 @@ jobs:
       ######################################
 
       - name: Update Documentation
-        working-directory: ${{github.workspace}}/micropython-stubs/docs
+        working-directory: ${{github.workspace}}/docs
         run: |
           python update_docs.py
 
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v3
-        # ref: https://github.com/peter-evans/create-pull-request
+      - name: Commit the changes
+        uses: EndBug/add-and-commit@v9
         with:
-          path: micropython-stubs
-          title: "update module documentation"
-          commit-message: updated the documentation regarding the covered modules
-          branch: document-updates
-          labels: |
-            automated pr
-            documentation
-          delete-branch: true
+          message: Update stub documentation
+        if : ${{ !env.ACT }}
 
-      - name: exit gracefully
-        if: always()
-        run: |
-          echo 'avoid throwing a fit when an existing PR was updated'
-        # if: ${{steps.cpr.exit == 1 }}
-        # if: ${{ failure() }}
+      - name: Do not Commit the changes if running in ACT
+        run: echo "Running locally in ACT; updating docs skipped"
+        if : ${{ env.ACT }}

@@ -115,14 +115,16 @@ jobs:
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           poetry config --list
 
-      - name: pull in other changes from the repo
-        run: git pull origin main
+      - run: stubber clone
 
       - run: stubber publish --version ${{matrix.version}} --port auto --board GENERIC --test-pypi
         if : ${{ env.ACT }}
 
       - run: stubber publish --version ${{matrix.version}} --port auto --board GENERIC --pypi
         if : ${{ !env.ACT }}
+
+      - name: pull in other changes from the repo
+        run: git pull origin main
 
       - name: Do not Commit the changes if running in ACT
         run: echo "Running locally in ACT; Skipped publish stubs for ${{matrix.version}}"
