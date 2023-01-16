@@ -109,15 +109,20 @@ jobs:
           # apt upgrade -y
           apt install -y python3-pip mc
         if : ${{ env.ACT }}
+
       - run: |
           pip install wheel
           pip install -U micropython-stubber
+
       - run: |
           pip install poetry
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           poetry config --list
 
       - run: stubber clone
+
+      - name: pull in other changes from the repo
+        run: git pull origin main
 
       - run: |
           stubber publish --version ${{matrix.version}} --port auto --board GENERIC --test-pypi
@@ -129,8 +134,6 @@ jobs:
           stubber publish --version ${{matrix.version}} --port esp32 --board UM_TinyPico --pypi
         if : ${{ !env.ACT }}
 
-      - name: pull in other changes from the repo
-        run: git pull origin main
 
       - name: Do not Commit the changes if running in ACT
         run: echo "Running locally in ACT; Skipped publish stubs for ${{matrix.version}}"
