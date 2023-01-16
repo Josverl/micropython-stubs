@@ -33,7 +33,7 @@ jobs:
           python-version: 3.11 
 
       - run: pip install pygithub packaging
-      - run: python .github/workflows/list-versions.py --latest
+      - run: python .github/workflows/list_versions.py --latest
         id: dynamic
     outputs:
       job_versions: ${{ steps.dynamic.outputs.versions }}
@@ -71,7 +71,7 @@ jobs:
       # checkout micropython at the correct version tag
       - name: clone and switch to micropython ${{ matrix.version }}
         run: |
-          stubber -v clone 
+          stubber clone 
           stubber switch ${{ matrix.version }}
 
       ######################################
