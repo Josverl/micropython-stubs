@@ -4763,6 +4763,150 @@
             "description": "MicroPython stubs",
             "hash": "fe26bf63b2d2a72591720e3c3ff854b9859e4ac3",
             "stub_hash": "f3ed4a63e5ee70edfb391e13748fa4ca99d938ff"
+        },
+        "157855607363465091": {
+            "name": "micropython-esp32-um_tinypico-stubs",
+            "mpy_version": "1.19.1",
+            "publish": true,
+            "pkg_version": "1.19.1.post3",
+            "path": "micropython-v1_19_1-esp32-um_tinypico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_19_1-esp32-um_tinypico-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_19_1-frozen/esp32/um_tinypico"
+                ],
+                [
+                    "Core stubs",
+                    "micropython_core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "0da32011018dd9ec21c1effb1a5e99d58dfceb24",
+            "stub_hash": "62bdfcc72f73ddc4943a09b1e779b3719939787e"
+        },
+        "321747573261636074": {
+            "name": "micropython-esp32-um_tinypico-stubs",
+            "mpy_version": "1.19.1",
+            "publish": true,
+            "pkg_version": "1.19.1.post4",
+            "path": "micropython-v1_19_1-esp32-um_tinypico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_19_1-esp32-um_tinypico-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_19_1-frozen/esp32/um_tinypico"
+                ],
+                [
+                    "Core stubs",
+                    "micropython_core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "0da32011018dd9ec21c1effb1a5e99d58dfceb24",
+            "stub_hash": "62bdfcc72f73ddc4943a09b1e779b3719939787e"
+        },
+        "138246216856886741": {
+            "name": "micropython-esp32-um_tinypico-stubs",
+            "mpy_version": "1.19.1",
+            "publish": true,
+            "pkg_version": "1.19.1.post5",
+            "path": "micropython-v1_19_1-esp32-um_tinypico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_19_1-esp32-um_tinypico-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_19_1-frozen/esp32/um_tinypico"
+                ],
+                [
+                    "Core stubs",
+                    "micropython_core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "0da32011018dd9ec21c1effb1a5e99d58dfceb24",
+            "stub_hash": "62bdfcc72f73ddc4943a09b1e779b3719939787e"
+        },
+        "221374783233925550": {
+            "name": "micropython-esp32-um_tinypico-stubs",
+            "mpy_version": "1.19.1",
+            "publish": true,
+            "pkg_version": "1.19.1.post6",
+            "path": "micropython-v1_19_1-esp32-um_tinypico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_19_1-esp32-um_tinypico-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_19_1-frozen/esp32/um_tinypico"
+                ],
+                [
+                    "Core stubs",
+                    "micropython_core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "0da32011018dd9ec21c1effb1a5e99d58dfceb24",
+            "stub_hash": "62bdfcc72f73ddc4943a09b1e779b3719939787e"
+        },
+        "773856968031678746": {
+            "name": "micropython-esp32-um_tinypico-stubs",
+            "mpy_version": "1.19.1",
+            "publish": true,
+            "pkg_version": "1.19.1.post6",
+            "path": "micropython-v1_19_1-esp32-um_tinypico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_19_1-esp32-um_tinypico-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_19_1-frozen/esp32/um_tinypico"
+                ],
+                [
+                    "Core stubs",
+                    "micropython_core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "0da32011018dd9ec21c1effb1a5e99d58dfceb24",
+            "stub_hash": "62bdfcc72f73ddc4943a09b1e779b3719939787e"
+        },
+        "524738386801681731": {
+            "name": "micropython-esp32-um_tinypico-stubs",
+            "mpy_version": "1.19.1",
+            "publish": true,
+            "pkg_version": "1.19.1.post6",
+            "path": "micropython-v1_19_1-esp32-um_tinypico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_19_1-esp32-um_tinypico-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_19_1-frozen/esp32/um_tinypico"
+                ],
+                [
+                    "Core stubs",
+                    "micropython_core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "0da32011018dd9ec21c1effb1a5e99d58dfceb24",
+            "stub_hash": "62bdfcc72f73ddc4943a09b1e779b3719939787e"
         }
     }
 }

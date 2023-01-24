@@ -27,9 +27,9 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* StubSource.MERGED from `stubs/micropython-v1_19_1-esp32-um_tinypico-merged`
-* StubSource.FROZEN from `stubs/micropython-v1_19_1-frozen/esp32/um_tinypico`
-* StubSource.CORE from `stubs/micropython_core`
+* Merged stubs from `stubs/micropython-v1_19_1-esp32-merged`
+* Frozen stubs from `stubs/micropython-v1_19_1-frozen/esp32/um_tinypico`
+* Core stubs from `stubs/cpython_core-pycopy`
 
 
 origin | Family | Port | Board | Version
