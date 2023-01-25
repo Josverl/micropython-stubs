@@ -59,8 +59,11 @@ jobs:
           echo Running in folder $(pwd)
           stubber --version
           stubber clone --no-stubs
+
+      - name: Install Poetry
+        run: pipx install poetry~=1.3
+
       - run: |
-          pip install poetry
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           poetry config --list
       # run the build steps for this mpy version
@@ -103,19 +106,24 @@ jobs:
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
+
       - name : Install pip and tools to allow to run under ACT
+        if : ${{ env.ACT }}
         run: |
           apt update
           # apt upgrade -y
           apt install -y python3-pip mc
-        if : ${{ env.ACT }}
+          python3 -m pip install --user pipx
+          python3 -m pipx ensurepath
+
+      - name: Install Poetry
+        run: pipx install poetry~=1.3
 
       - run: |
           pip install wheel
           pip install -U micropython-stubber
 
       - run: |
-          pip install poetry
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           poetry config --list
 
