@@ -185,6 +185,8 @@
 |micropython |v1.19   |frozen  |windows|GENERIC|7|1.11.5|[stubs/micropython-v1_19-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19-frozen/windows/GENERIC)
 |micropython |v1.19.1 |documentation|-|micropython|50|1.11.5|[stubs/micropython-v1_19_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-docstubs)
 |micropython |v1.19.1 |board   |esp32|ESP32 module (spiram) with ESP32|72|1.9.11|[stubs/micropython-v1_19_1-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32)
+|micropython |v1.19.1 |board   |esp32|ESP32 module (spiram) with ESP32|72|1.5.6|[stubs/micropython-v1_19_1-esp32-um_tinypico](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-um_tinypico)
+|micropython |v1.19.1 |board   |esp32|ESP32 module (spiram) with ESP32|72|1.5.6|[stubs/micropython-v1_19_1-esp32-um_tinypico-merged](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-um_tinypico-merged)
 |micropython |v1.19.1 |frozen  |esp32|GENERIC|21|1.11.5|[stubs/micropython-v1_19_1-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/esp32/GENERIC)
 |micropython |v1.19.1 |frozen  |esp32|LILYGO_TTGO_LORA32|24|1.11.5|[stubs/micropython-v1_19_1-frozen/esp32/LILYGO_TTGO_LORA32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/esp32/LILYGO_TTGO_LORA32)
 |micropython |v1.19.1 |frozen  |esp32|LOLIN_C3_MINI|22|1.11.5|[stubs/micropython-v1_19_1-frozen/esp32/LOLIN_C3_MINI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/esp32/LOLIN_C3_MINI)
@@ -275,4 +277,4 @@
 
 ## Metrics
 
-Total stub modules:  5614
+Total stub modules:  5758
