@@ -80,28 +80,36 @@ jobs:
       - run: |
           echo "changed: ${{ steps.diff.outputs.changed }}"
 
-      - name: Create Pull Request ( if relevant changes)
-        if: ${{steps.diff.outputs.changed == 'true'}}
-        id: cpr-doc
-        uses: peter-evans/create-pull-request@v3
-        # ref: https://github.com/peter-evans/create-pull-request
+
+      - name: Commit the changes
+        uses: EndBug/add-and-commit@v9
+        if: ${{steps.diff.outputs.changed == 'true'}} AND ${{ !env.ACT }}
         with:
-          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }}
-          title: "Add/update MicroPython ${{ matrix.version }} doc-stubs"
-          commit-message: add/update doc-stubs
-          body: |
-            update MicroPython ${{ matrix.version }} doc-stubs
-            based on micropython commit ${{ steps.mpycommit.outputs.info }}
+          message: Published stubs for ${{matrix.version}}
+        
+      - name: Do not Commit the changes if running in ACT
+        run: echo "Running locally in ACT; Skipped publish stubs for ${{matrix.version}}"
+        if : ${{ env.ACT }}
 
-          branch: "micropython-${{ matrix.version }}-doc-stubs"
-          labels: |
-            automated pr
-            Doc stubs 
-            MicroPython
-            ${{ matrix.version }}
-          delete-branch: true
 
-      - name: done
-        if: always()
-        run: |
-          echo "Done..."
+      # - name: Create Pull Request ( if relevant changes)
+      #   if: ${{steps.diff.outputs.changed == 'true'}}
+      #   id: cpr-doc
+      #   uses: peter-evans/create-pull-request@v3
+      #   # ref: https://github.com/peter-evans/create-pull-request
+      #   with:
+      #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }}
+      #     title: "Add/update MicroPython ${{ matrix.version }} doc-stubs"
+      #     commit-message: add/update doc-stubs
+      #     body: |
+      #       update MicroPython ${{ matrix.version }} doc-stubs
+      #       based on micropython commit ${{ steps.mpycommit.outputs.info }}
+
+      #     branch: "micropython-${{ matrix.version }}-doc-stubs"
+      #     labels: |
+      #       automated pr
+      #       Doc stubs 
+      #       MicroPython
+      #       ${{ matrix.version }}
+      #     delete-branch: true
+
