@@ -74,12 +74,6 @@ jobs:
         run: |
           stubber get-docstubs
 
-      - name: check for new or changed stubs
-        id: diff
-        uses: ./.github/actions/stub-diff
-      - run: |
-          echo "changed: ${{ steps.diff.outputs.changed }}"
-
       - name: commit
         uses: ./.github/actions/commit
         with:

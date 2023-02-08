@@ -4,7 +4,7 @@ inputs:
   message:
     description: "commit message"
     required: true
-    default: "commit changes"
+    default: "commit changes, but only if actual stubs changed"
 
 
 runs:
