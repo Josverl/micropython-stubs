@@ -77,10 +77,8 @@ jobs:
       - name: check for new or changed stubs
         id: diff
         uses: ./.github/actions/stub-diff
-        with:
-          path: "./stubs"
-          pattern: ".py"
-        #   summary: true
+      - run: |
+          echo "changed: ${{ steps.diff.outputs.changed }}"
 
       - name: Create Pull Request ( if relevant changes)
         if: ${{steps.diff.outputs.changed == 'true'}}

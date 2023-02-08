@@ -1,19 +1,5 @@
 name: "stub-diff"
 description: "determine if there are changes to the stubs"
-inputs:
-  path:
-    description: the path in the repo to check for changes
-    required: false
-    default: "./stubs"
-  pattern:
-    description: "the pattern to match"
-    required: false
-    default: ".py"
-
-  # summary:
-  #   description: generate a summary of the changes
-  #   required: false
-  #   default: 'true'
 
 outputs:
   changed:
@@ -28,11 +14,8 @@ runs:
   steps:
     - name: check for changes using git diff
       shell: pwsh
+      working-directory: ${{ github.workspace }}
       id: diff
       run: |
-        .github/actions/stub-diff/git-diff.ps1 -path ${{inputs.path}} -pattern ${{inputs.pattern}}
+        .github/actions/stub-diff/git-diff.ps1
 
-    # - name: Commit the changes
-    #   uses: EndBug/add-and-commit@v8
-    #   with:
-    #     message: ${{ inputs.message }}

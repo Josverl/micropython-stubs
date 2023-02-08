@@ -1,26 +1,29 @@
 param(
-    $path = "C:\develop\MyPython\micropython-stubs", #  ${{inputs.path}}
     $pattern = ".py"
 )
 
-Write-host "::group:: git diff --name-only:"
-# include untracked files in diff
-git add --intent-to-add .
-$files = @(git diff --name-only $path | Where-Object{ $_.Contains($pattern)})
+Write-host "::group:: git status"
+# show current working directory
+Write-Host "pwd: $(pwd)" -ForegroundColor Green
+
+if ($env:ACT) {
+    # running in github act simulator 
+    $files = @("foo.py", "bar.py")
+}
+else {
+    $files = @(git status --porcelain | Where-Object { $_.Contains($pattern) })
+}
 $count = $files.count
 
 $changed = "changed=$(if ($count -eq 0){"false"}else{"true"})"
-if ($GITHUB_STATE){
-    $changed | add-content $GITHUB_STATE
-    "count=$count" | add-content $GITHUB_STATE
-}
-Write-host "Changed: $changed, count: $count"
+$changed >> $env:GITHUB_OUTPUT
+"count=$count" >> $env:GITHUB_OUTPUT
 
-if ($GITHUB_STEP_SUMMARY){
-    # create a summary
-    if ($count -gt 0) {
-        '### detected new stubs :rocket:' | add-content $GITHUB_STEP_SUMMARY
-        $files | ForEach-Object{ "- $_" | Add-Content $GITHUB_STEP_SUMMARY }
-    }
+
+# create a summary
+if ($count -gt 0) {
+    '### detected new stubs :rocket:' >> $env:GITHUB_STEP_SUMMARY
+    $files | ForEach-Object { "- $_" >> $env:GITHUB_STEP_SUMMARY }
 }
+
 write-host "::endgroup::"
