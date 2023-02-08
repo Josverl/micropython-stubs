@@ -57,7 +57,7 @@ class AbstractNIC:
         undefined).
         """
         ...
-    def connect(self, service_id, key=None, *args, **kwargs: Optional[Any]) -> None:
+    def connect(self, service_id: Optional[Any] = None, key: Optional[Any] = None, *args, **kwargs) -> None:
         """
         Connect the interface to a network. This method is optional, and
         available only for interfaces which are not "always connected".
