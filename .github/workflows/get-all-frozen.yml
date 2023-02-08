@@ -83,48 +83,11 @@ jobs:
         run: |
           stubber get-frozen --black
 
-      ######################################
-      # now check if a PR is needed
-      ######################################
-      - name: check for new or changed stubs
-        id: diff
-        uses: ./.github/actions/stub-diff
+      - name: commit
+        uses: ./.github/actions/commit
         with:
-          path: "./stubs"
-          pattern: ".py"
-        #   summary: true
+          message: "Update frozen stubs for ${{ matrix.version }}"
 
-      - name: Create Pull Request ( if relevant changes)
-        if: ${{steps.diff.outputs.changed == 'true'}}
-        uses: peter-evans/create-pull-request@v3
-        id: cpr
-        # ref: https://github.com/peter-evans/create-pull-request
-        with:
-          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-          title: "Add/update MicroPython ${{ matrix.version }} frozen stubs"
-          commit-message: add/update MicroPython ${{ matrix.version }} frozen stubs
-          body: |
-            add/update MicroPython ${{ matrix.version }} frozen stubs
-            based on micropython commit ${{ steps.mpycommit.outputs.info }}
-          branch: "micropython-${{ matrix.version }}-stubs"
-          labels: |
-            frozen stubs 
-            MicroPython
-            ${{ matrix.version }}
-          delete-branch: true
-
-      # - name: Enable Pull Request Automerge
-      #   if: steps.cpr.outputs.pull-request-operation == 'created'
-      #   uses: peter-evans/enable-pull-request-automerge@v1
-      #   with:
-      #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-      #     pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
-      #     merge-method: squash
-
-      - name: done
-        if: always()
-        run: |
-          echo "Done..."
 
   # ########################################################################################################################################
   # get-core-cpython-stubs:
@@ -161,41 +124,9 @@ jobs:
   #       working-directory: ${{github.workspace}}
   #       run: |
   #         stubber get-core --black
-  #     ######################################
-  #     # now check if a PR is needed
-  #     ######################################
-  #     - name: check for new or changed stubs
-  #       id: diff
-  #       uses: ./.github/actions/stub-diff
-  #       with:
-  #         path: "./stubs"
-  #         pattern: ".py"
-  #       #   summary: true
 
-  #     - name: Create Pull Request ( if relevant changes)
-  #       if: ${{steps.diff.outputs.changed == 'true'}}
-  #       uses: peter-evans/create-pull-request@v3
-  #       id: cprcore
-  #       # ref: https://github.com/peter-evans/create-pull-request
-  #       with:
-  #         token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-  #         title: "add/update MicroPython core stubs"
-  #         commit-message: add/update MicroPython core stubs
-  #         branch: "micropython-core-stubs"
-  #         labels: |
-  #           CPython
-  #           MicroPython
-  #         delete-branch: true
+      # - name: commit
+      #   uses: ./.github/actions/commit
+      #   with:
+      #     message: "Update core stubs for ${{ matrix.version }}"
 
-  #     # - name: Enable Pull Request Automerge
-  #     #   if: steps.cprcore.outputs.pull-request-operation == 'created'
-  #     #   uses: peter-evans/enable-pull-request-automerge@v1
-  #     #   with:
-  #     #     token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-  #     #     pull-request-number: ${{ steps.cprcore.outputs.pull-request-number }}
-  #     #     merge-method: squash
-
-  #     - name: done
-  #       if: always()
-  #       run: |
-  #         echo "Done..."

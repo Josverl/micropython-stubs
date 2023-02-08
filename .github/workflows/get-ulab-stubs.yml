@@ -89,22 +89,8 @@ jobs:
       #  run: |
       #    scripts/update_docs.ps1
 
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v3
-        # ref: https://github.com/peter-evans/create-pull-request
+      - name: commit
+        uses: ./.github/actions/commit
         with:
-          path: micropython-stubs
-          title: "add/update micropython-ulab modules"
-          branch: micropython-ulab-updates
-          labels: |
-            automated pr
-            ulab
-            micropython
-          delete-branch: true
+          message: "add/update micropython-ulab modules"
 
-      # - name: exit gracefully
-      #   run: |
-      #     echo 'avoid throwing a fit when an existing PR was updated'
-      #   if: ${{steps.cpr.exit == 1 }}
-      #   # if: ${{ failure() }}

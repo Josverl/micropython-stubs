@@ -58,12 +58,7 @@ jobs:
         run: |
           python update_docs.py
 
-      - name: Commit the changes
-        uses: EndBug/add-and-commit@v9
+      - name: commit
+        uses: ./.github/actions/commit
         with:
-          message: Update stub documentation
-        if : ${{ !env.ACT }}
-
-      - name: Do not Commit the changes if running in ACT
-        run: echo "Running locally in ACT; updating docs skipped"
-        if : ${{ env.ACT }}
+          message: "Update stubs documentaion"

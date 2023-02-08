@@ -48,23 +48,9 @@ jobs:
         run: |
           stubber get-lobo --black
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        id: cpr
-        # ref: https://github.com/peter-evans/create-pull-request
+      - name: commit
+        uses: ./.github/actions/commit
         with:
-          token: ${{ secrets.CREATE_PR_ACTION_TOKEN }} # ${{ secrets.PAT }}
-          title: "add/update Loboris frozen stubs"
-          commit-message: add/update Loboris frozen stubs
-          branch: "micropython-lobo-stubs"
-          labels: |
-            frozen stubs
-            Loboris
-          delete-branch: true
-
-      - name: done
-        if: always()
-        run: |
-          echo "Done..."
+          message: "add/update Loboris frozen stubs"
 
   ########################################################################################################################################

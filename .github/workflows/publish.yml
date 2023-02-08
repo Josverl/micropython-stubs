@@ -76,18 +76,10 @@ jobs:
           stubber build --version ${{matrix.version}} --port auto --board GENERIC
           stubber build --version ${{matrix.version}} --port esp32 --board UM_TinyPico
 
-      - name: pull in other changes from the repo
-        run: git pull origin main
-
-      - name: Commit the changes
-        uses: EndBug/add-and-commit@v9
+      - name: commit
+        uses: ./.github/actions/commit
         with:
-          message: Build stubs for ${{matrix.version}}
-        if : ${{ !env.ACT }}
-
-      - name: Do not Commit the changes if running in ACT
-        run: echo "Running locally in ACT; Skipped publish stubs for ${{matrix.version}}"
-        if : ${{ env.ACT }}
+          message: "Build stubs for ${{matrix.version}}"
 
 
 ########################################################################################################################################
@@ -142,14 +134,8 @@ jobs:
           stubber publish --version ${{matrix.version}} --port esp32 --board UM_TinyPico --pypi
         if : ${{ !env.ACT }}
 
-
-      - name: Do not Commit the changes if running in ACT
-        run: echo "Running locally in ACT; Skipped publish stubs for ${{matrix.version}}"
-        if : ${{ env.ACT }}
-
-      - name: Commit the changes
-        uses: EndBug/add-and-commit@v9
+      - name: commit
+        uses: ./.github/actions/commit
         with:
-          message: Published stubs for ${{matrix.version}}
-        if : ${{ !env.ACT }}
+          message: "Published stubs for ${{matrix.version}}"
 

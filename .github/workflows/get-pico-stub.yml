@@ -54,18 +54,6 @@ jobs:
           repository: cpwood/Pico-Stub
           path: Pico-Stub
 
-      # # make Python work
-      # - name: Set up Python 3.8
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: 3.9
-      #     cache: 'pip'
-
-      # - name: Install Python dependencies
-      #   run: |
-      #     pip install --upgrade wheel
-      #     if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      #     if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
 
       ######################################
       # This is where the actual work starts
@@ -90,23 +78,9 @@ jobs:
       #  run: |
       #    scripts/update_docs.ps1
 
-      - name: Create Pull Request
-        id: cpr
-        uses: peter-evans/create-pull-request@v3
-        # ref: https://github.com/peter-evans/create-pull-request
-        with:
-          path: micropython-stubs
-          title: "${{ steps.extract_branch.outputs.branch }} : add/update Pico-Stub modules"
-          commit-message: add/update Pico-Stub modules
-          branch: pico-stub-updates
-          labels: |
-            automated pr
-            micropython
-            Pico-Stub
-          delete-branch: true
 
-      # - name: exit gracefully
-      #   run: |
-      #     echo 'avoid throwing a fit when an existing PR was updated'
-      #   if: ${{steps.cpr.exit == 1 }}
-      #   # if: ${{ failure() }}
+      - name: commit
+        uses: ./.github/actions/commit
+        with:
+          message: "add/update Pico-Stub modules"
+
