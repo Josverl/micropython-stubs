@@ -80,6 +80,8 @@ jobs:
       - run: |
           echo "changed: ${{ steps.diff.outputs.changed }}"
 
+      - run: git pull
+        if: ${{steps.diff.outputs.changed == 'true'}} AND ${{ !env.ACT }}
 
       - name: Commit the changes
         uses: EndBug/add-and-commit@v9
