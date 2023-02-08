@@ -1,0 +1,37 @@
+name: "commit changes"
+description: ""
+inputs:
+  message:
+    description: "commit message"
+    required: true
+    default: "commit changes"
+
+
+runs:
+  using: composite
+  steps:
+    - name: check for changes using git diff
+      shell: pwsh
+      working-directory: ${{ github.workspace }}
+      id: diff
+      run: |
+        .github/actions/stub-diff/git-diff.ps1
+
+    - run: start-sleep -seconds (get-random -Minimum 5 -Maximum 30)
+      shell: pwsh
+      name: sleep a random amount of time
+  
+    - run: git pull
+      if: ${{steps.diff.outputs.changed == 'true'}} AND ${{ !env.ACT }}
+      shell: bash
+
+    - name: Commit the changes
+      uses: EndBug/add-and-commit@v9
+      if: ${{steps.diff.outputs.changed == 'true'}} AND ${{ !env.ACT }}
+      with:
+        message: ${{ inputs.message }}
+      
+    - name: Do not Commit the changes if running in ACT
+      run: echo "Running locally in ACT; Skipped publish stubs for ${{matrix.version}}"
+      shell: bash
+      if : ${{ env.ACT }}
