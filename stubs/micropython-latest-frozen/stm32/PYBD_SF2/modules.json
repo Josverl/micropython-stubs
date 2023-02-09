@@ -12,7 +12,7 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.11.5",
+        "version": "1.12.0",
         "stubtype": "frozen"
     },
     "modules": [
@@ -23,6 +23,14 @@
         {
             "file": "lcd160cr.py",
             "module": "lcd160cr"
+        },
+        {
+            "file": "mip/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
         },
         {
             "file": "onewire.py",
@@ -55,6 +63,10 @@
         {
             "file": "uasyncio/task.py",
             "module": "task"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
         },
         {
             "file": "webrepl.py",

@@ -2,7 +2,7 @@
     "name": "micropython-rp2-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.20a744",
+    "pkg_version": "1.20.0a855",
     "path": "micropython-latest-rp2-stubs",
     "stub_sources": [
         [
@@ -11,7 +11,7 @@
         ],
         [
             "Frozen stubs",
-            "micropython-latest-frozen/rp2/GENERIC"
+            "micropython-latest-frozen/rp2/generic"
         ],
         [
             "Core stubs",
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "687b0c151076a41f140d5d542fdb2b14cfa45688",
-    "stub_hash": "e4b85275f611bcb265bc25010fcb9038c5e2eea9"
+    "hash": null,
+    "stub_hash": null
 }

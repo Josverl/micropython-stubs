@@ -785,12 +785,15 @@ class Timer:
     PERIODIC = 1  # type: int
     ONE_SHOT = 0  # type: int
 
-    def init(self, *, mode=PERIODIC, period=-1, callback=None) -> None:
+    def init(self, *, mode=PERIODIC, freq=-1, period=-1, callback=None) -> None:
         """
         Initialise the timer. Example::
 
             def mycallback(t):
                 pass
+
+            # periodic at 1kHz
+            tim.init(mode=Timer.PERIODIC, freq=1000, callback=mycallback)
 
             # periodic with 100ms period
             tim.init(period=100, callback=mycallback)
@@ -806,6 +809,11 @@ class Timer:
               period of the channel expires.
             - ``Timer.PERIODIC`` - The timer runs periodically at the configured
               frequency of the channel.
+
+          - ``freq`` - The timer frequency, in units of Hz.  The upper bound of
+            the frequency is dependent on the port.  When both the ``freq`` and
+            ``period`` arguments are given, ``freq`` has a higher priority and
+            ``period`` is ignored.
 
           - ``period`` - The timer period, in milliseconds.
 
