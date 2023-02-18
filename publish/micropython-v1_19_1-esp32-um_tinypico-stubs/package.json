@@ -15,7 +15,7 @@
         ],
         [
             "Core stubs",
-            "cpython_core-pycopy"
+            "micropython-core"
         ]
     ],
     "description": "MicroPython stubs",

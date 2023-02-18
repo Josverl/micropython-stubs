@@ -29,7 +29,7 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_19_1-esp32-merged`
 * Frozen stubs from `stubs/micropython-v1_19_1-frozen/esp32/GENERIC`
-* Core Stubs from `stubs/cpython_core-pycopy`
+* Core Stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
