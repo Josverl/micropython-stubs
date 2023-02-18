@@ -1,0 +1,69 @@
+[tool.poetry]
+name = "micropython-esp32-s3-stubs"
+version = "1.19.1.post1"
+description = "MicroPython stubs"
+authors = [
+    "josverl <josverl@users.noreply.github.com>",
+]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
+documentation = "https://micropython-stubs.readthedocs.io/"
+exclude = [
+    "*.ps1",
+    "*.py",
+    "**/__pycache__",
+    "**/dist",
+]
+include = [
+    "**/*.py",
+    "**/*.pyi",
+]
+repository = "https://github.com/josverl/micropython-stubs"
+classifiers = [
+    "Typing :: Typed",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: MicroPython",
+    "Operating System :: OS Independent",
+    "Topic :: Text Editors :: Integrated Development Environments (IDE)",
+    "Topic :: Software Development :: Build Tools",
+]
+packages = [
+    { include = "_boot.pyi" },
+    { include = "apa106.pyi" },
+    { include = "dht.pyi" },
+    { include = "ds18x20.pyi" },
+    { include = "flashbdev.pyi" },
+    { include = "inisetup.pyi" },
+    { include = "micropython.pyi" },
+    { include = "neopixel.pyi" },
+    { include = "ntptime.pyi" },
+    { include = "onewire.pyi" },
+    { include = "uasyncio/__init__.pyi" },
+    { include = "uasyncio/core.pyi" },
+    { include = "uasyncio/event.pyi" },
+    { include = "uasyncio/funcs.pyi" },
+    { include = "uasyncio/lock.pyi" },
+    { include = "uasyncio/stream.pyi" },
+    { include = "uasyncio/task.pyi" },
+    { include = "upip.pyi" },
+    { include = "upip_utarfile.pyi" },
+    { include = "webrepl.pyi" },
+    { include = "webrepl_setup.pyi" },
+    { include = "websocket_helper.pyi" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+micropython-stdlib-stubs = ">=0.9.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = [
+    "poetry-core>=1.0.0",
+]
+build-backend = "poetry.core.masonry.api"
