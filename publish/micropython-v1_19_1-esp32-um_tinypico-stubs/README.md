@@ -36,3 +36,4 @@ origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Firmware | micropython | esp32 | ESP32 module (spiram) with ESP32 | v1.19.1 
 Documentation | micropython | - | - | v1.19.1 
+Core | micropython | esp32 | - | v1.19.1 
