@@ -11,7 +11,7 @@
         ],
         [
             "Frozen stubs",
-            "micropython-v1_19_1-frozen/esp32/um_tinypico"
+            "micropython-v1_19_1-frozen/esp32/UM_TINYPICO"
         ],
         [
             "Core stubs",

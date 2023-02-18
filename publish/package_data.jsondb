@@ -29,7 +29,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -53,7 +53,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -77,7 +77,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -101,7 +101,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -125,7 +125,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -149,7 +149,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -173,7 +173,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -197,7 +197,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -221,7 +221,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -245,7 +245,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -269,7 +269,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -293,7 +293,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -317,7 +317,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -341,7 +341,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -365,7 +365,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -389,7 +389,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -413,7 +413,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -437,7 +437,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "stubs/cpython_core-pycopy"
+                    "stubs/micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -461,7 +461,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -485,7 +485,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -509,7 +509,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -533,7 +533,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -557,7 +557,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -581,7 +581,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -605,7 +605,7 @@
                 ],
                 [
                     "Core stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -629,7 +629,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -653,7 +653,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -677,7 +677,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -701,7 +701,7 @@
                 ],
                 [
                     "Core stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -725,7 +725,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -749,7 +749,7 @@
                 ],
                 [
                     "Core stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -773,7 +773,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -797,7 +797,7 @@
                 ],
                 [
                     "Core stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -821,7 +821,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -845,7 +845,7 @@
                 ],
                 [
                     "Core stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -869,7 +869,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -893,7 +893,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -917,7 +917,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -941,7 +941,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -965,7 +965,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -989,7 +989,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1013,7 +1013,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1037,7 +1037,7 @@
                 ],
                 [
                     "Core stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1061,7 +1061,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1085,7 +1085,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1109,7 +1109,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1133,7 +1133,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1157,7 +1157,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1181,7 +1181,7 @@
                 ],
                 [
                     "Core stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1205,7 +1205,7 @@
                 ],
                 [
                     "Core stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1229,7 +1229,7 @@
                 ],
                 [
                     "Core stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
@@ -1253,7 +1253,7 @@
                 ],
                 [
                     "Core Stubs",
-                    "cpython_core-pycopy"
+                    "micropython-core"
                 ]
             ],
             "description": "MicroPython stubs",
