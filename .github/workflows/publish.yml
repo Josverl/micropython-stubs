@@ -46,7 +46,7 @@ jobs:
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
-      - name : Install pip and tools to allow to run under ACT
+      - name : Install pip and tools to allow to run under ACT for testing
         run: |
           apt update
           # apt upgrade -y
@@ -93,18 +93,18 @@ jobs:
     continue-on-error: true
     env:
       POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
-      POETRY_PYPI_TOKEN_TEST_PYPI:  ${{ secrets.POETRY_PYPI_TOKEN_TEST_PYPI }}      
+      POETRY_PYPI_TOKEN_TEST_PYPI:  ${{ secrets.POETRY_PYPI_TOKEN_TEST_PYPI }}
 
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
 
-      - name : Install pip and tools to allow to run under ACT
-        if : ${{ env.ACT }}
+      - name : Install pip and tools to allow to run under ACT for testing
+        if : env.ACT
         run: |
           apt update
           # apt upgrade -y
-          apt install -y python3-pip mc
+          apt install -y python3-pip
           python3 -m pip install --user pipx
           python3 -m pipx ensurepath
 
@@ -119,7 +119,9 @@ jobs:
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           poetry config --list
 
-      - run: stubber clone
+      - run: |
+          stubber clone
+          stubber switch ${{matrix.version}}
 
       - name: pull in other changes from the repo
         run: git pull origin main
@@ -127,12 +129,12 @@ jobs:
       - run: |
           stubber publish --version ${{matrix.version}} --port auto --board GENERIC --test-pypi
           stubber publish --version ${{matrix.version}} --port esp32 --board UM_TinyPico --test-pypi
-        if : ${{ env.ACT }}
+        if : env.ACT
 
       - run: |
           stubber publish --version ${{matrix.version}} --port auto --board GENERIC --pypi
           stubber publish --version ${{matrix.version}} --port esp32 --board UM_TinyPico --pypi
-        if : ${{ !env.ACT }}
+        if : env.ACT == ''
 
       - name: commit
         uses: ./.github/actions/commit
