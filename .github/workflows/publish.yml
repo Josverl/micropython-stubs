@@ -74,7 +74,7 @@ jobs:
       - run: stubber merge --version ${{matrix.version}}
       - run: |
           stubber build --version ${{matrix.version}} --port auto --board GENERIC
-          stubber build --version ${{matrix.version}} --port esp32 --board UM_TinyPico
+          stubber build --version ${{matrix.version}} --port esp32 --board UM_TINYPICO
 
       - name: commit
         uses: ./.github/actions/commit
@@ -128,12 +128,12 @@ jobs:
 
       - run: |
           stubber publish --version ${{matrix.version}} --port auto --board GENERIC --test-pypi
-          stubber publish --version ${{matrix.version}} --port esp32 --board UM_TinyPico --test-pypi
+          stubber publish --version ${{matrix.version}} --port esp32 --board UM_TINYPICO --test-pypi
         if : env.ACT
 
       - run: |
           stubber publish --version ${{matrix.version}} --port auto --board GENERIC --pypi
-          stubber publish --version ${{matrix.version}} --port esp32 --board UM_TinyPico --pypi
+          stubber publish --version ${{matrix.version}} --port esp32 --board UM_TINYPICO --pypi
         if : env.ACT == ''
 
       - name: commit
