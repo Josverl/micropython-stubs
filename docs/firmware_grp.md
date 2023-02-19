@@ -42,7 +42,7 @@
 |micropython |latest  |frozen  |rp2|W5100S_EVB_PICO|19|1.12.1|[stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO)
 |micropython |latest  |frozen  |rp2|W5500_EVB_PICO|19|1.12.1|[stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO)
 |micropython |latest  |frozen  |rp2|WEACTSTUDIO|15|1.12.1|[stubs/micropython-latest-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/WEACTSTUDIO)
-|micropython |latest  |frozen  |samd|GENERIC|1|1.12.1|[stubs/micropython-latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/samd/GENERIC)
+|micropython |latest  |frozen  |samd|GENERIC|11|1.12.1|[stubs/micropython-latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/samd/GENERIC)
 |micropython |latest  |frozen  |stm32|ARDUINO_PORTENTA_H7|24|1.12.1|[stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7)
 |micropython |latest  |frozen  |stm32|GARATRONIC_PYBSTICK26_F411|1|1.12.1|[stubs/micropython-latest-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |micropython |latest  |frozen  |stm32|GENERIC|9|1.12.1|[stubs/micropython-latest-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/GENERIC)
@@ -206,7 +206,7 @@
 |micropython |v1.19.1 |documentation|-|micropython|50|1.12.1|[stubs/micropython-v1_19_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-docstubs)
 |micropython |v1.19.1 |board   |esp32|ESP32 module (spiram) with ESP32|72|1.9.11|[stubs/micropython-v1_19_1-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32)
 |micropython |v1.19.1 |board   |esp32|ESP32S3 module with ESP32S3|75|1.11.2|[stubs/micropython-v1_19_1-esp32-s3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-s3)
-|micropython |v1.19.1 |board   |esp32|ESP32 module (spiram) with ESP32|72|1.5.6|[stubs/micropython-v1_19_1-esp32-um_tinypico](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-um_tinypico)
+|micropython |v1.19.1 |board   |esp32|ESP32 module (spiram) with ESP32|72|1.5.6|[stubs/micropython-v1_19_1-esp32-UM_TINYPICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-UM_TINYPICO)
 |micropython |v1.19.1 |frozen  |esp32|GENERIC|21|1.12.1|[stubs/micropython-v1_19_1-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/esp32/GENERIC)
 |micropython |v1.19.1 |frozen  |esp32|LILYGO_TTGO_LORA32|24|1.12.1|[stubs/micropython-v1_19_1-frozen/esp32/LILYGO_TTGO_LORA32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/esp32/LILYGO_TTGO_LORA32)
 |micropython |v1.19.1 |frozen  |esp32|LOLIN_C3_MINI|22|1.12.1|[stubs/micropython-v1_19_1-frozen/esp32/LOLIN_C3_MINI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/esp32/LOLIN_C3_MINI)
@@ -297,4 +297,4 @@
 
 ## Metrics
 
-Total stub modules:  6063
+Total stub modules:  6073

@@ -35,7 +35,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.18| rp2| Arduino Nano RP2040 Connect with RP2040| 60| 1.5.3|[stubs/micropython-v1_18-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-rp2)
 |board| micropython| v1.18| stm32| PYBv1.1 with STM32F405RG| 57| 1.5.6|[stubs/micropython-v1_18-stm32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-stm32)
 |board| micropython| v1.19.1| esp32| ESP32 module (spiram) with ESP32| 72| 1.9.11|[stubs/micropython-v1_19_1-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32)
-|board| micropython| v1.19.1| esp32| ESP32 module (spiram) with ESP32| 72| 1.5.6|[stubs/micropython-v1_19_1-esp32-um_tinypico](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-um_tinypico)
+|board| micropython| v1.19.1| esp32| ESP32 module (spiram) with ESP32| 72| 1.5.6|[stubs/micropython-v1_19_1-esp32-UM_TINYPICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-UM_TINYPICO)
 |board| micropython| v1.19.1| esp32| ESP32S3 module with ESP32S3| 75| 1.11.2|[stubs/micropython-v1_19_1-esp32-s3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-s3)
 |board| micropython| v1.19.1| esp8266| ESP module (1M) with ESP8266| 57| 1.9.11|[stubs/micropython-v1_19_1-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp8266)
 |board| micropython| v1.19.1| rp2| Arduino Nano RP2040 Connect with RP2040| 68| 1.9.11|[stubs/micropython-v1_19_1-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-rp2)
@@ -85,7 +85,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| rp2| W5100S_EVB_PICO| 19| 1.12.1|[stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO)
 |frozen| micropython| latest| rp2| W5500_EVB_PICO| 19| 1.12.1|[stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| latest| rp2| WEACTSTUDIO| 15| 1.12.1|[stubs/micropython-latest-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/WEACTSTUDIO)
-|frozen| micropython| latest| samd| GENERIC| 1| 1.12.1|[stubs/micropython-latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/samd/GENERIC)
+|frozen| micropython| latest| samd| GENERIC| 11| 1.12.1|[stubs/micropython-latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/samd/GENERIC)
 |frozen| micropython| latest| stm32| ARDUINO_PORTENTA_H7| 24| 1.12.1|[stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7)
 |frozen| micropython| latest| stm32| GARATRONIC_PYBSTICK26_F411| 1| 1.12.1|[stubs/micropython-latest-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |frozen| micropython| latest| stm32| GENERIC| 9| 1.12.1|[stubs/micropython-latest-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/GENERIC)
@@ -261,4 +261,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  6063
+Total modules  6073
