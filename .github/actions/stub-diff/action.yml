@@ -1,5 +1,11 @@
 name: "stub-diff"
 description: "determine if there are changes to the stubs"
+# inputs:
+#   verbose:
+#     description: "show more info"
+#     required: false
+#     default: "true"
+
 
 outputs:
   changed:
@@ -12,10 +18,15 @@ outputs:
 runs:
   using: composite
   steps:
+    # don't care about CR/LF differences between Windows and Linux
+    - name: git config
+      shell: bash
+      run: git config core.autocrlf true
+
     - name: check for changes using git diff
       shell: pwsh
       working-directory: ${{ github.workspace }}
       id: diff
       run: |
-        .github/actions/stub-diff/git-diff.ps1
+        .github/actions/stub-diff/git-diff.ps1 -Verbose True
 

@@ -10,20 +10,21 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: check for changes using git diff
-      shell: pwsh
-      working-directory: ${{ github.workspace }}
+    - name: Check for relevant changes
+      uses: ./.github/actions/stub-diff
       id: diff
-      run: |
-        .github/actions/stub-diff/git-diff.ps1
 
-    - run: start-sleep -seconds (get-random -Minimum 5 -Maximum 30)
-      shell: pwsh
-      name: sleep a random amount of time
-  
-    - run: git pull
-      if: ${{steps.diff.outputs.changed == 'true'}} AND ${{ !env.ACT }}
+    - name: show outputs
+      run: |
+        echo "changed: ${{steps.diff.outputs.changed}}"
+        echo "count: ${{steps.diff.outputs.count}}"
       shell: bash
+
+
+    - run: git pull origin main --rebase --autostash
+      if: ${{steps.diff.outputs.changed == 'true'}} 
+      shell: bash
+
 
     - name: Commit the changes
       uses: EndBug/add-and-commit@v9
