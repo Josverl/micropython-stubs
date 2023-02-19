@@ -14,21 +14,32 @@ _FIFO_SRC: Incomplete
 _OFFSET_REG_X_M: Incomplete
 _CTRL_REG1_M: Incomplete
 _OUT_M: Incomplete
-_SCALE_GYRO: Incomplete
-_SCALE_ACCEL: Incomplete
+_ACCEL_SCALE: Incomplete
+_GYRO_SCALE: Incomplete
+_MAGNET_SCALE: Incomplete
+_ODR_IMU: Incomplete
+_ODR_MAGNET: Incomplete
 
 class LSM9DS1:
-    i2c: Incomplete
-    address_gyro: Incomplete
+    bus: Incomplete
+    address_imu: Incomplete
     address_magnet: Incomplete
-    scratch: Incomplete
-    scratch_int: Incomplete
-    def __init__(self, i2c, address_gyro: int = ..., address_magnet: int = ...) -> None: ...
-    scale_gyro: Incomplete
-    scale_accel: Incomplete
-    def init_gyro_accel(self, sample_rate: int = ..., scale_gyro: int = ..., scale_accel: int = ...) -> None: ...
+    gyro_scale: Incomplete
+    accel_scale: Incomplete
     scale_factor_magnet: Incomplete
-    def init_magnetometer(self, sample_rate: int = ..., scale_magnet: int = ...) -> None: ...
+    scratch_int: Incomplete
+    def __init__(
+        self,
+        bus,
+        address_imu: int = ...,
+        address_magnet: int = ...,
+        gyro_odr: int = ...,
+        gyro_scale: int = ...,
+        accel_odr: int = ...,
+        accel_scale: int = ...,
+        magnet_odr: int = ...,
+        magnet_scale: int = ...,
+    ) -> None: ...
     def calibrate_magnet(self, offset) -> None: ...
     def gyro_id(self): ...
     def magent_id(self): ...
