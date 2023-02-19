@@ -39,7 +39,8 @@ jobs:
     needs: list-versions-doc
     strategy:
       matrix: ${{ fromJSON(needs.list-versions-doc.outputs.job_versions) }}
-
+      max-parallel: 1
+    
     # Most scripts will be run from the stubber, set that as default
     defaults:
       run:

@@ -47,6 +47,8 @@ jobs:
     continue-on-error: true
     strategy:
       matrix: ${{ fromJSON(needs.list-versions-fr.outputs.job_versions) }}
+      max-parallel: 1
+
     # Most scripts will be run from the stubber, set that as default
     defaults:
       run:
