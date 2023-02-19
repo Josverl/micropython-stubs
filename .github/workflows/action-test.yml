@@ -1,0 +1,60 @@
+########################################################################################################################################
+# testing
+########################################################################################################################################
+name: action-test
+
+on:
+  workflow_dispatch:
+
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: 1
+
+jobs:
+
+  action-test-1:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix: 
+        version: ["v1.18"]
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout stubs repo
+        uses: actions/checkout@v3
+
+      # make Python work
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install Python dependencies (stubber)
+        run: |
+          pip install --upgrade wheel
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # checkout micropython at the correct version tag
+      - name: clone and switch to micropython ${{ matrix.version }}
+        run: |
+          # stubber clone 
+          # stubber switch ${{ matrix.version }}
+
+      - run: date >> stubs/something.py
+        name: Add dummy change
+
+      - run: date >> stubs/modules.json
+        name: Add dummy change to modules.json
+
+      - name: Get frozen modules for ${{ matrix.version }}
+        run: |
+          echo "do nothing"
+          # stubber get-frozen --black
+
+      - name: commit
+        uses: ./.github/actions/commit
+        with:
+          message: "Update frozen stubs for ${{ matrix.version }}"
