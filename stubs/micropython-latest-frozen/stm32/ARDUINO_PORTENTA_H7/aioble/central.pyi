@@ -21,6 +21,7 @@ _ADV_NONCONN_IND: Incomplete
 _SCAN_RSP: Incomplete
 _ADV_TYPE_FLAGS: Incomplete
 _ADV_TYPE_NAME: Incomplete
+_ADV_TYPE_SHORT_NAME: Incomplete
 _ADV_TYPE_UUID16_INCOMPLETE: Incomplete
 _ADV_TYPE_UUID16_COMPLETE: Incomplete
 _ADV_TYPE_UUID32_INCOMPLETE: Incomplete
