@@ -101,6 +101,10 @@
             "module": "rp2"
         },
         {
+            "file": "time.py",
+            "module": "time"
+        },
+        {
             "file": "uasyncio/__init__.py",
             "module": "__init__"
         },

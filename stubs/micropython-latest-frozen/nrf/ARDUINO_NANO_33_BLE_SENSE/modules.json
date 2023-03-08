@@ -21,8 +21,24 @@
             "module": "_mkfs"
         },
         {
+            "file": "bmi270.py",
+            "module": "bmi270"
+        },
+        {
+            "file": "bmm150.py",
+            "module": "bmm150"
+        },
+        {
+            "file": "hs3003.py",
+            "module": "hs3003"
+        },
+        {
             "file": "hts221.py",
             "module": "hts221"
+        },
+        {
+            "file": "imu.py",
+            "module": "imu"
         },
         {
             "file": "lps22h.py",

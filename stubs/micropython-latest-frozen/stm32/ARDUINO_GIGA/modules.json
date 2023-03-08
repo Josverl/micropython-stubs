@@ -4,7 +4,7 @@
         "family": "micropython",
         "port": "stm32",
         "platform": "stm32",
-        "machine": "ARDUINO_PORTENTA_H7",
+        "machine": "ARDUINO_GIGA",
         "firmware": "micropython-stm32-latest",
         "nodename": "micropython",
         "version": "latest",
