@@ -73,12 +73,12 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| mimxrt| MIMXRT1170_EVK| 16| 1.13.1.post1|[stubs/micropython-latest-frozen/mimxrt/MIMXRT1170_EVK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/mimxrt/MIMXRT1170_EVK)
 |frozen| micropython| latest| mimxrt| SEEED_ARCH_MIX| 16| 1.13.1.post1|[stubs/micropython-latest-frozen/mimxrt/SEEED_ARCH_MIX](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/mimxrt/SEEED_ARCH_MIX)
 |frozen| micropython| latest| mimxrt| TEENSY41| 16| 1.13.1.post1|[stubs/micropython-latest-frozen/mimxrt/TEENSY41](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/mimxrt/TEENSY41)
-|frozen| micropython| latest| nrf| ARDUINO_NANO_33_BLE_SENSE| 11| 1.13.1.post1|[stubs/micropython-latest-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE)
+|frozen| micropython| latest| nrf| ARDUINO_NANO_33_BLE_SENSE| 15| 1.13.1.post1|[stubs/micropython-latest-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE)
 |frozen| micropython| latest| nrf| GENERIC| 8| 1.13.1.post1|[stubs/micropython-latest-frozen/nrf/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/nrf/GENERIC)
 |frozen| micropython| latest| renesas-ra| GENERIC| 10| 1.13.1.post1|[stubs/micropython-latest-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/GENERIC)
 |frozen| micropython| latest| renesas-ra| RA4M1_CLICKER| 1| 1.13.1.post1|[stubs/micropython-latest-frozen/renesas-ra/RA4M1_CLICKER](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/RA4M1_CLICKER)
 |frozen| micropython| latest| renesas-ra| RA4M1_EK| 1| 1.13.1.post1|[stubs/micropython-latest-frozen/renesas-ra/RA4M1_EK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/RA4M1_EK)
-|frozen| micropython| latest| rp2| ARDUINO_NANO_RP2040_CONNECT| 31| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT)
+|frozen| micropython| latest| rp2| ARDUINO_NANO_RP2040_CONNECT| 32| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT)
 |frozen| micropython| latest| rp2| GENERIC| 14| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/GENERIC)
 |frozen| micropython| latest| rp2| NULLBITS_BIT_C_PRO| 15| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/NULLBITS_BIT_C_PRO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/NULLBITS_BIT_C_PRO)
 |frozen| micropython| latest| rp2| PICO_W| 19| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/PICO_W)
@@ -86,7 +86,9 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| rp2| W5500_EVB_PICO| 19| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| latest| rp2| WEACTSTUDIO| 15| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/WEACTSTUDIO)
 |frozen| micropython| latest| samd| GENERIC| 11| 1.13.1.post1|[stubs/micropython-latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/samd/GENERIC)
-|frozen| micropython| latest| stm32| ARDUINO_PORTENTA_H7| 24| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7)
+|frozen| micropython| latest| stm32| ARDUINO_GIGA| 25| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_GIGA)
+|frozen| micropython| latest| stm32| ARDUINO_NICLA_VISION| 25| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_NICLA_VISION)
+|frozen| micropython| latest| stm32| ARDUINO_PORTENTA_H7| 25| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7)
 |frozen| micropython| latest| stm32| GARATRONIC_PYBSTICK26_F411| 1| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |frozen| micropython| latest| stm32| GENERIC| 9| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/GENERIC)
 |frozen| micropython| latest| stm32| LEGO_HUB_NO6| 12| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/LEGO_HUB_NO6)
@@ -261,4 +263,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  6073
+Total modules  6129
