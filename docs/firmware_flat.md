@@ -44,7 +44,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/main/stubs/ev3_pybricks_v1_0_0)
 |board| micropython| v1.9.4-Latest| -| ESP module with ESP8266| 43| 1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-esp8266)
-|documentation| micropython| latest| -| micropython| 50| 1.13.0|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
+|documentation| micropython| latest| -| micropython| 50| 1.13.1.post1|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
 |documentation| micropython| v1.17| -| micropython| 47| 1.12.1|[stubs/micropython-v1_17-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-docstubs)
 |documentation| micropython| v1.18| -| micropython| 49| 1.12.1|[stubs/micropython-v1_18-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-docstubs)
 |documentation| micropython| v1.19| -| micropython| 50| 1.12.1|[stubs/micropython-v1_19-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19-docstubs)
@@ -78,7 +78,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| renesas-ra| GENERIC| 10| 1.13.1.post1|[stubs/micropython-latest-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/GENERIC)
 |frozen| micropython| latest| renesas-ra| RA4M1_CLICKER| 1| 1.13.1.post1|[stubs/micropython-latest-frozen/renesas-ra/RA4M1_CLICKER](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/RA4M1_CLICKER)
 |frozen| micropython| latest| renesas-ra| RA4M1_EK| 1| 1.13.1.post1|[stubs/micropython-latest-frozen/renesas-ra/RA4M1_EK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/RA4M1_EK)
-|frozen| micropython| latest| rp2| ARDUINO_NANO_RP2040_CONNECT| 32| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT)
+|frozen| micropython| latest| rp2| ARDUINO_NANO_RP2040_CONNECT| 40| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT)
 |frozen| micropython| latest| rp2| GENERIC| 14| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/GENERIC)
 |frozen| micropython| latest| rp2| NULLBITS_BIT_C_PRO| 15| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/NULLBITS_BIT_C_PRO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/NULLBITS_BIT_C_PRO)
 |frozen| micropython| latest| rp2| PICO_W| 19| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/PICO_W)
@@ -86,9 +86,9 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| rp2| W5500_EVB_PICO| 19| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| latest| rp2| WEACTSTUDIO| 15| 1.13.1.post1|[stubs/micropython-latest-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/WEACTSTUDIO)
 |frozen| micropython| latest| samd| GENERIC| 11| 1.13.1.post1|[stubs/micropython-latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/samd/GENERIC)
-|frozen| micropython| latest| stm32| ARDUINO_GIGA| 25| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_GIGA)
-|frozen| micropython| latest| stm32| ARDUINO_NICLA_VISION| 25| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_NICLA_VISION)
-|frozen| micropython| latest| stm32| ARDUINO_PORTENTA_H7| 25| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7)
+|frozen| micropython| latest| stm32| ARDUINO_GIGA| 33| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_GIGA)
+|frozen| micropython| latest| stm32| ARDUINO_NICLA_VISION| 33| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_NICLA_VISION)
+|frozen| micropython| latest| stm32| ARDUINO_PORTENTA_H7| 33| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7)
 |frozen| micropython| latest| stm32| GARATRONIC_PYBSTICK26_F411| 1| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |frozen| micropython| latest| stm32| GENERIC| 9| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/GENERIC)
 |frozen| micropython| latest| stm32| LEGO_HUB_NO6| 12| 1.13.1.post1|[stubs/micropython-latest-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/LEGO_HUB_NO6)
@@ -263,4 +263,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  6129
+Total modules  6161
