@@ -10,7 +10,7 @@ functions.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/os.rst
-from typing import Any, IO, Iterator, Optional, Tuple
+from typing import IO, Any, Iterator, Optional, Tuple
 from stdlib.os import uname_result
 
 class VfsFat:
