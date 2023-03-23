@@ -55,6 +55,7 @@
 |micropython |latest  |frozen  |stm32|NUCLEO_F746ZG|14|1.13.1.post1|[stubs/micropython-latest-frozen/stm32/NUCLEO_F746ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/NUCLEO_F746ZG)
 |micropython |latest  |frozen  |stm32|NUCLEO_F756ZG|14|1.13.1.post1|[stubs/micropython-latest-frozen/stm32/NUCLEO_F756ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/NUCLEO_F756ZG)
 |micropython |latest  |frozen  |stm32|NUCLEO_F767ZI|14|1.13.1.post1|[stubs/micropython-latest-frozen/stm32/NUCLEO_F767ZI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/NUCLEO_F767ZI)
+|micropython |latest  |frozen  |stm32|NUCLEO_H723ZG|14|1.13.1.post1|[stubs/micropython-latest-frozen/stm32/NUCLEO_H723ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/NUCLEO_H723ZG)
 |micropython |latest  |frozen  |stm32|NUCLEO_H743ZI|14|1.13.1.post1|[stubs/micropython-latest-frozen/stm32/NUCLEO_H743ZI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/NUCLEO_H743ZI)
 |micropython |latest  |frozen  |stm32|OLIMEX_E407|14|1.13.1.post1|[stubs/micropython-latest-frozen/stm32/OLIMEX_E407](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/OLIMEX_E407)
 |micropython |latest  |frozen  |stm32|PYBD_SF2|15|1.13.1.post1|[stubs/micropython-latest-frozen/stm32/PYBD_SF2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/PYBD_SF2)
@@ -299,4 +300,4 @@
 
 ## Metrics
 
-Total stub modules:  6151
+Total stub modules:  6165
