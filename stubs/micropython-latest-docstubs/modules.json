@@ -8,11 +8,11 @@
         "firmware": "micropython-latest",
         "nodename": "micropython",
         "version": "latest",
-        "release": "v1.19.1-992-g38e7b842c",
+        "release": "v1.19.1-994-ga4672149b",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.13.1.post1",
+        "version": "1.13.2.post2",
         "stubtype": "documentation"
     },
     "modules": [
