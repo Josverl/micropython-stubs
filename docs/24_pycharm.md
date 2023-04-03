@@ -9,7 +9,7 @@ ref: https://www.jetbrains.com/help/pycharm/type-hinting-in-product.html#stub-ty
 
 ## Install the stubs from PyPi.
 
-Install the stubs as documented in [using the thubs](20_using.md)
+Install the stubs as documented in [using the stubs](20_using.md)
 
 Example: `pip install -U micropython-stm32-stubs==1.19.1.*`
 
@@ -21,7 +21,7 @@ micropython-stm32-stubs==1.19.1.*
 
 After this Pycharm will use the stubs to validate your code and provide hints.
 
-Note that Pycharm's rendering of the docstrings is limited, but still quite useful.
+Note that Pycharm's rendering of the docstrings is limited (compared to VSCode), but still quite useful.
 
 ## Check library imports
 To check if the correct types are used for your imports you can 'hover' the mouse over the module of an import statement. 
@@ -32,7 +32,9 @@ Pycharm will show the module's docstring that will allow you to identify which s
 
 ### Disable Pycharm warnings for RP2 PIO code
 
-As the RP2 PIO code is not valid python code, PyCharm will show muliple warning for the code.
+As the RP2 PIO code is not valid Python code, PyCharm will show multiple warnings for those code sections. 
+
+Fortunatly PyCharm allws these to be silenced for these sections.
 To disable these warnings, add the following line to the top of the file or to the top of the function:
 
 `# noinspection PyStatementEffect,PyArgumentList`
