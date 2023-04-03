@@ -1510,7 +1510,7 @@ class Timer:
         ...
 
 
-class Switch:
+class Switch(Pin):
     """
     Create and return a switch object.
 

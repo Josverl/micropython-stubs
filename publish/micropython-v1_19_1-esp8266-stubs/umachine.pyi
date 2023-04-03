@@ -868,7 +868,7 @@ class SPI:
         ...
     def __init__(self, id, *args, **kwargs) -> None: ...
 
-class SoftI2C:
+class SoftI2C(I2C):
     """
     Construct a new software I2C object.  The parameters are:
 
@@ -896,7 +896,7 @@ class SoftI2C:
     def write(self, *args, **kwargs) -> Any: ...
     def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
 
-class Signal:
+class Signal(Pin):
     """
             Signal(pin_arguments..., *, invert=False)
 

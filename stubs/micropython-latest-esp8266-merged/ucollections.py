@@ -33,7 +33,7 @@ def namedtuple(name, fields) -> Any:
     ...
 
 
-class OrderedDict:
+class OrderedDict(dict):
     """
     ``dict`` type subclass which remembers and preserves the order of keys
     added. When ordered dict is iterated over, keys/items are returned in
@@ -96,7 +96,7 @@ class OrderedDict:
         ...
 
 
-class deque:
+class deque(Queue):
     """
     Deques (double-ended queues) are a list-like container that support O(1)
     appends and pops from either side of the deque.  New deques are created

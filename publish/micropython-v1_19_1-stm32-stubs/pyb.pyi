@@ -1367,7 +1367,7 @@ class Timer:
         ...
     def __init__(self, id, *args, **kwargs) -> None: ...
 
-class Switch:
+class Switch(Pin):
     """
     Create and return a switch object.
 

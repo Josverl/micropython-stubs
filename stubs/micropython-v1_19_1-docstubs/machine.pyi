@@ -733,7 +733,7 @@ class SPI:
         """
         ...
 
-class SoftSPI(SPI):
+class SoftSPI:
     """
     Construct a new software SPI object.  Additional parameters must be
     given, usually at least *sck*, *mosi* and *miso*, and these are used

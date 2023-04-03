@@ -1162,7 +1162,7 @@ class RTC:
         ...
 
 
-class SoftI2C:
+class SoftI2C(I2C):
     """
     Construct a new software I2C object.  The parameters are:
 
@@ -1307,7 +1307,7 @@ class SPI:
         ...
 
 
-class Signal:
+class Signal(Pin):
     """
             Signal(pin_arguments..., *, invert=False)
 
