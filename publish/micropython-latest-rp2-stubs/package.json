@@ -2,7 +2,7 @@
     "name": "micropython-rp2-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.20.0a859",
+    "pkg_version": "1.20.0a994",
     "path": "micropython-latest-rp2-stubs",
     "stub_sources": [
         [
@@ -11,11 +11,11 @@
         ],
         [
             "Frozen stubs",
-            "micropython-latest-frozen/rp2/generic"
+            "micropython-latest-frozen/rp2/GENERIC"
         ],
         [
             "Core stubs",
-            "micropython_core"
+            "micropython-core"
         ]
     ],
     "description": "MicroPython stubs",
