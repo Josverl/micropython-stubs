@@ -310,7 +310,7 @@ class Pin:
         """
         ...
 
-class Signal:
+class Signal(Pin):
     """
             Signal(pin_arguments..., *, invert=False)
 

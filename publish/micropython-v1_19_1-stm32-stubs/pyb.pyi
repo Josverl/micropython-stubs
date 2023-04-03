@@ -2187,6 +2187,13 @@ class Pin:
         def __init__(self, *argv, **kwargs) -> None: ...
 
     def __init__(self, id, *args, **kwargs) -> None: ...
+    def __call__(self, x: Optional[Any] = None) -> Any:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
+        ...
 
 class SDCard:
     def writeblocks(self, *args, **kwargs) -> Any: ...
