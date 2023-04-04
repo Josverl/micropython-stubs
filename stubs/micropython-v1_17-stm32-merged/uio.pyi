@@ -16,7 +16,7 @@ def open(name, mode="r", **kwargs) -> Any:
     """
     ...
 
-class BytesIO:
+class BytesIO(IO):
     """
     In-memory file-like objects for input/output. `StringIO` is used for
     text-mode I/O (similar to a normal file opened with "t" modifier).
@@ -44,7 +44,7 @@ class BytesIO:
     def seek(self, *args, **kwargs) -> Any: ...
     def tell(self, *args, **kwargs) -> Any: ...
 
-class FileIO:
+class FileIO(IO):
     """
     This is type of a file open in binary mode, e.g. using ``open(name, "rb")``.
     You should not instantiate this class directly.
@@ -64,7 +64,7 @@ class FileIO:
 class IOBase:
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class StringIO:
+class StringIO(IO):
     def __init__(self, string: Optional[Any] = None) -> None: ...
     def close(self, *args, **kwargs) -> Any: ...
     def read(self, *args, **kwargs) -> Any: ...

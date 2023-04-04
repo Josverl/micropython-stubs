@@ -709,6 +709,14 @@ class Pin:
         """
         ...
 
+    def __call__(self, x: Optional[Any] = None) -> Any:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
+        ...
+
 
 SOFT_RESET = 0  # type: int
 
@@ -861,7 +869,7 @@ class Signal:
         ...
 
 
-class SoftI2C:
+class SoftI2C(I2C):
     """
     Construct a new software I2C object.  The parameters are:
 
@@ -918,7 +926,7 @@ class SoftI2C:
         ...
 
 
-class SoftSPI:
+class SoftSPI(SPI):
     """
     Construct a new software SPI object.  Additional parameters must be
     given, usually at least *sck*, *mosi* and *miso*, and these are used

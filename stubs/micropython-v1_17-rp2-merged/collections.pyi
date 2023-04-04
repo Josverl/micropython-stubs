@@ -9,7 +9,7 @@ hold/accumulate various objects.
 from typing import Optional, Any
 from queue import Queue
 
-class OrderedDict:
+class OrderedDict(dict):
     """
     ``dict`` type subclass which remembers and preserves the order of keys
     added. When ordered dict is iterated over, keys/items are returned in
@@ -47,7 +47,7 @@ class OrderedDict:
     @classmethod
     def fromkeys(cls, *args) -> Any: ...
 
-class deque:
+class deque(Queue):
     """
     Deques (double-ended queues) are a list-like container that support O(1)
     appends and pops from either side of the deque.  New deques are created
