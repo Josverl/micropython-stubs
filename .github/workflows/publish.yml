@@ -46,12 +46,12 @@ jobs:
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
-      - name : Install pip and tools to allow to run under ACT for testing
+      - name: Install pip and tools to allow to run under ACT for testing
         run: |
           apt update
           # apt upgrade -y
           apt install -y python3-pip mc
-        if : ${{ env.ACT }}
+        if: ${{ env.ACT }}
       - run: |
           pip install wheel
           pip install -U micropython-stubber
@@ -76,13 +76,18 @@ jobs:
           stubber build --version ${{matrix.version}} --port auto --board GENERIC
           stubber build --version ${{matrix.version}} --port esp32 --board UM_TINYPICO
 
+      - name: update all_modules.json
+        run: |
+          echo "Updating all_modules.json"
+          # pip install tomli
+          python3 update_all_modules.py
+
       - name: commit
         uses: ./.github/actions/commit
         with:
           message: "Build stubs for ${{matrix.version}}"
 
-
-########################################################################################################################################
+  ########################################################################################################################################
   publish-stubs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -93,14 +98,14 @@ jobs:
     continue-on-error: true
     env:
       POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
-      POETRY_PYPI_TOKEN_TEST_PYPI:  ${{ secrets.POETRY_PYPI_TOKEN_TEST_PYPI }}
+      POETRY_PYPI_TOKEN_TEST_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_TEST_PYPI }}
 
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v3
 
-      - name : Install pip and tools to allow to run under ACT for testing
-        if : env.ACT
+      - name: Install pip and tools to allow to run under ACT for testing
+        if: env.ACT
         run: |
           apt update
           # apt upgrade -y
@@ -129,15 +134,20 @@ jobs:
       - run: |
           stubber publish --version ${{matrix.version}} --port auto --board GENERIC --test-pypi
           stubber publish --version ${{matrix.version}} --port esp32 --board UM_TINYPICO --test-pypi
-        if : env.ACT
+        if: env.ACT
 
       - run: |
           stubber publish --version ${{matrix.version}} --port auto --board GENERIC --pypi
           stubber publish --version ${{matrix.version}} --port esp32 --board UM_TINYPICO --pypi
-        if : env.ACT == ''
+        if: env.ACT == ''
 
-      - name: commit
+      - name: update all_modules.json
+        run: |
+          echo "Updating all_modules.json"
+          # pip install tomli
+          python3 update_all_modules.py
+
+          - name: commit
         uses: ./.github/actions/commit
         with:
           message: "Published stubs for ${{matrix.version}}"
-
