@@ -3,6 +3,9 @@ Creates a all_modules.json file containing a list of all modules across all micr
 this is build by running this script from the root of the micropython-stubs repository
 - it parses the  modules.json files of all the published packages in the repository
   Therefore the package builds should be run before this script is run
+
+
+Viewer : https://flatgithub.com/Josverl/micropython-stubs/?filename=all_modules.json
 """
 
 

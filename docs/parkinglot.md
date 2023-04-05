@@ -3,14 +3,14 @@
 ## Stubber Prosessing order
 
 ``` {mermaid}
-%%{ init: { 'flowchart': { 'curve': 'bump' } } }%%
+%%{ init: {'theme': 'light','flowchart': { 'curve': 'bump' } }%%
 graph TB
 
     %% Get frozen
-    MPY --> |fa:fa-list port/board/manifest.py| GFS
+    MPY --> |"fas:fa-folder-tree ports/.../boards/.../manifest.py"| GFS
     LIB -->GFS -->FR
     
-    %% create Board stubs
+    %% create firmware stubs
     MCU --> CS --> FW
     %% create docstubs
     DOCS --> GDS --> DS --> Merge
@@ -20,33 +20,32 @@ graph TB
     %% Build 
     FR --> Build
     MS --> Build
-    Core --> Build
-    Package --> Stubs
+    Stdlib --> Build
     Build <--> DB    
-    Build --> Package 
+    Build --> PUB
     %% Publish 
-    Stubs --> Publish
-    Publish --> PyPi --> MPS
+    PUB --> Publish
+    Publish --> PyPi --> PKG
     DB <--> Publish
 
-    %% Text labels and Styling 
+    %% Styling 
     MPY{{fab:fa-github MicroPython}}:::repo
     LIB{{fab:fa-github MicroPython-lib}}:::repo
     DOCS{{fab:fa-github MicroPython Docs}}:::repo
-    Stubs{{fab:fa-github MicroPython-stubs/publish}}:::repo
     PyPi{{fas:fa-th-list PyPi}}:::pkg
-    MPS[fa:fa-suitcase MicroPython-***-stubs]:::pkg
+
+    PKG[fa:fa-suitcase MicroPython-***-stubs]:::pkg
+
+    PUB[/fa:fa-suitcase Packages\nfas:fa-folder-tree /publish/...//]:::stubs
+    FR[/fas:fa-pencil Frozen stubs\nfas:fa-folder-tree stubs/... -frozen/]:::stubs 
+    FW[/fas:fa-pencil Firmware-stubs\nfas:fa-folder-tree stubs/.../]:::stubs
+    MS[/fa:fa-pencil Merged-stubs\nfas:fa-folder-tree stubs/... -merged/]:::stubs
+    DS[/fa:fa-pencil Doc-stubs\nfas:fa-folder-tree stubs/... -docstub/]:::stubs
+    Stdlib[/fa:fa-pencil Stdlib-stubs\nfas:fa-folder-tree stubs/-stdlib/]:::stubs
     
-    FR[/fas:fa-folder-tree Frozen stubs/]:::stubs 
-    FW[/fas:fa-folder-tree Firmware-stubs/]:::stubs
-    MS[/fa:fa-folder-tree Merged-stubs/]:::stubs
-    DS[/fa:fa-folder-tree Doc-stubs/]:::stubs
-    Core[/fa:fa-folder-tree Core-stubs/]:::stubs
-    
-    Package[/fa:fa-suitcase Package/]:::pkg
     DB[(fa:fa-database jsondb)]
 
-    MCU[fa:fa-microchip MCU]
+    MCU[<img src='https://micropython.org/static/img/Mlogo_138wh.png'> MCU]:::device
     CS[[fa:fa-microchip createstubs.py]]:::stubber
 
     Merge[[Merge]]:::stubber
@@ -55,10 +54,11 @@ graph TB
     Build[[Build]]:::stubber
     Publish[[Publish]]:::stubber
 
-%%    classDef repo fill:lightblue,stroke-width:4px
-%%    classDef stubber fill:lightgreen
-%%    classDef stubs fill:cyan,stroke-width:4px
-%%    classDef pkg fill:cyan,stroke-width:4px
+    classDef repo fill:lightblue,stroke-width:4px
+    classDef stubber fill:lightgreen
+    classDef stubs fill:cyan,stroke-width:4px
+    classDef pkg fill:cyan,stroke-width:4px
+    classDef device fill:black,stroke-width:4px,color:white,stroke:white
 
 %% update
 ```
