@@ -7,7 +7,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "060614dd44edf3ad36ff266d7a60a424"
+        "hash": "7ce407b7"
     },
     {
         "family": "micropython",
@@ -17,7 +17,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e4c000180d8e2749539e253d50be0796"
+        "hash": "bafdc7c7"
     },
     {
         "family": "micropython",
@@ -27,7 +27,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "3cca5e1fef67d7d4ccd39d840b49eb94"
+        "hash": "6a4ae6cd"
     },
     {
         "family": "micropython",
@@ -37,7 +37,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f65a8362dc890afebb34e752375d10ea"
+        "hash": "1bfcb2a0"
     },
     {
         "family": "micropython",
@@ -47,7 +47,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "61da981b6fa301f120861ce765ac3e54"
+        "hash": "c6d12e4e"
     },
     {
         "family": "micropython",
@@ -57,7 +57,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "dba0d3899ec1ca92f9c59ea1f1d4ff8f"
+        "hash": "66c25abc"
     },
     {
         "family": "micropython",
@@ -67,7 +67,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -77,7 +77,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7c72d278ab6534669f1091113d5700cb"
+        "hash": "b72dc0d1"
     },
     {
         "family": "micropython",
@@ -87,7 +87,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "664cfd7e5d7b7d72486398b855fac96e"
+        "hash": "072077f5"
     },
     {
         "family": "micropython",
@@ -97,7 +97,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e743b6781d2caa0efba1bc1dbdfb554e"
+        "hash": "3a8370d6"
     },
     {
         "family": "micropython",
@@ -107,7 +107,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "9f99444dfef14ce7e7c78dd315ea7fc1"
+        "hash": "60cd6062"
     },
     {
         "family": "micropython",
@@ -117,7 +117,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -127,7 +127,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "8d90e188a19a478c75316aff5a8b8302"
+        "hash": "3744db55"
     },
     {
         "family": "micropython",
@@ -137,7 +137,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "63c94f8d69c35f99b7e87c7b879b4195"
+        "hash": "86a15576"
     },
     {
         "family": "micropython",
@@ -147,7 +147,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1eabc522eeb9c432d1c421b6983fafbd"
+        "hash": "fe9dc68a"
     },
     {
         "family": "micropython",
@@ -157,7 +157,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7c45dc8aa5d78b6448fc9a5a1d1226f3"
+        "hash": "e7d9708c"
     },
     {
         "family": "micropython",
@@ -167,7 +167,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "207a2360447e3c90a41a0b8b2b46c62e"
+        "hash": "a98e789b"
     },
     {
         "family": "micropython",
@@ -177,7 +177,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -187,7 +187,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -197,7 +197,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "2a2d01d7635a575ffddfe526e0c59048"
+        "hash": "390f0c70"
     },
     {
         "family": "micropython",
@@ -207,7 +207,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a2ee22094963656da84c4bffaa13d4b4"
+        "hash": "38198b72"
     },
     {
         "family": "micropython",
@@ -217,7 +217,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -227,7 +227,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "4956e20059dd39896b7aff8f3c3584e0"
+        "hash": "d5ba05b8"
     },
     {
         "family": "micropython",
@@ -237,7 +237,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b3aa4238a0826955102767b4e9778e40"
+        "hash": "0efb90af"
     },
     {
         "family": "micropython",
@@ -247,7 +247,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c834ab186281f1e203d000216eed0137"
+        "hash": "348ce54f"
     },
     {
         "family": "micropython",
@@ -257,7 +257,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e5c41c2ec8d43cf410d60860b8419500"
+        "hash": "031f154e"
     },
     {
         "family": "micropython",
@@ -267,7 +267,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "fe016f776600c8ee2ae501b59ce1cc98"
+        "hash": "91a01c2d"
     },
     {
         "family": "micropython",
@@ -277,7 +277,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "98458a3facbbd79432fa134bef8a8df2"
+        "hash": "a58591d9"
     },
     {
         "family": "micropython",
@@ -287,7 +287,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "48681574ce5249adb01362dccfb47c7b"
+        "hash": "844fb93b"
     },
     {
         "family": "micropython",
@@ -297,7 +297,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "78c6efa096fd422fca116760d81cf336"
+        "hash": "621c77a4"
     },
     {
         "family": "micropython",
@@ -307,7 +307,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "6d23a5cf4bbf8f8c61323fe868d15878"
+        "hash": "a98072b7"
     },
     {
         "family": "micropython",
@@ -317,7 +317,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "9d219fc4354f08c35e9411d184b97651"
+        "hash": "617e2ae4"
     },
     {
         "family": "micropython",
@@ -327,7 +327,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -337,7 +337,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -347,7 +347,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7d2bb2969f6043d257ef78f5d9b92855"
+        "hash": "400f0b1d"
     },
     {
         "family": "micropython",
@@ -357,7 +357,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b0d46c0dc925eaf9ae1c1ab8ca40366f"
+        "hash": "87623f3f"
     },
     {
         "family": "micropython",
@@ -367,7 +367,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac1741a2193ea234675bced849c78ae0"
+        "hash": "47c79c65"
     },
     {
         "family": "micropython",
@@ -377,7 +377,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -387,7 +387,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -397,7 +397,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "dba0d3899ec1ca92f9c59ea1f1d4ff8f"
+        "hash": "66c25abc"
     },
     {
         "family": "micropython",
@@ -407,7 +407,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "d46fb9aa0b1488ab4021fa3028011833"
+        "hash": "3740979c"
     },
     {
         "family": "micropython",
@@ -417,7 +417,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f880b9a256a80d5526f0b68ef9ecfb50"
+        "hash": "e200d609"
     },
     {
         "family": "micropython",
@@ -427,7 +427,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "23c9038d3a9b963cf9d31eca233dc639"
+        "hash": "c506b4bc"
     },
     {
         "family": "micropython",
@@ -437,7 +437,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "538e2b12da6defa7f827346c91f41032"
+        "hash": "52028a59"
     },
     {
         "family": "micropython",
@@ -447,7 +447,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "cffb1f6d83a5dccf3c7be06f73ff1a5c"
+        "hash": "e314173b"
     },
     {
         "family": "micropython",
@@ -457,7 +457,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c909ba3faf25c320141f022081e706f8"
+        "hash": "092193db"
     },
     {
         "family": "micropython",
@@ -467,7 +467,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "92919846085d32e7ecf161a47d287df1"
+        "hash": "d00797bc"
     },
     {
         "family": "micropython",
@@ -477,7 +477,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -487,7 +487,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "24dc5f79d01ef9b5003f9283ee7c50b2"
+        "hash": "dfc78695"
     },
     {
         "family": "micropython",
@@ -497,7 +497,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "01fd667968a7f394ddfe2bc730dea775"
+        "hash": "21edd057"
     },
     {
         "family": "micropython",
@@ -507,7 +507,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "3fd004d420491f2745eadcadd3068f20"
+        "hash": "c977f435"
     },
     {
         "family": "micropython",
@@ -517,7 +517,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "5f50191c6ce4d8706bd0c3ea58624144"
+        "hash": "f8961001"
     },
     {
         "family": "micropython",
@@ -527,7 +527,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -537,7 +537,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -547,7 +547,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -557,7 +557,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a2ee22094963656da84c4bffaa13d4b4"
+        "hash": "38198b72"
     },
     {
         "family": "micropython",
@@ -567,7 +567,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -577,7 +577,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "4956e20059dd39896b7aff8f3c3584e0"
+        "hash": "d5ba05b8"
     },
     {
         "family": "micropython",
@@ -587,7 +587,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "hash": "1271cf25"
     },
     {
         "family": "micropython",
@@ -597,7 +597,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "dc331f87ce992c4a5c2285061ce7d683"
+        "hash": "edb7172e"
     },
     {
         "family": "micropython",
@@ -607,7 +607,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b412de0272f82e355f1bb2ce4274c773"
+        "hash": "153a672b"
     },
     {
         "family": "micropython",
@@ -617,7 +617,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "6d23a5cf4bbf8f8c61323fe868d15878"
+        "hash": "a98072b7"
     },
     {
         "family": "micropython",
@@ -627,7 +627,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "9d219fc4354f08c35e9411d184b97651"
+        "hash": "617e2ae4"
     },
     {
         "family": "micropython",
@@ -637,7 +637,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c8b01213287a4936ec5e77d2b47e6fb2"
+        "hash": "d0567983"
     },
     {
         "family": "micropython",
@@ -647,7 +647,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -657,7 +657,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "363fe396a97a5bfd87b047f301bb802a"
+        "hash": "e540d7b7"
     },
     {
         "family": "micropython",
@@ -667,7 +667,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "66279eb1e908e1b3d4b4fe358c72efc9"
+        "hash": "fddb5409"
     },
     {
         "family": "micropython",
@@ -677,7 +677,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -687,7 +687,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7d2bb2969f6043d257ef78f5d9b92855"
+        "hash": "400f0b1d"
     },
     {
         "family": "micropython",
@@ -697,7 +697,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b0d46c0dc925eaf9ae1c1ab8ca40366f"
+        "hash": "87623f3f"
     },
     {
         "family": "micropython",
@@ -707,7 +707,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac1741a2193ea234675bced849c78ae0"
+        "hash": "47c79c65"
     },
     {
         "family": "micropython",
@@ -717,7 +717,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -727,7 +727,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -737,7 +737,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a2b3d532cd7e299a8c3c977aa9097a3e"
+        "hash": "a45a782e"
     },
     {
         "family": "micropython",
@@ -747,7 +747,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -757,7 +757,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -767,7 +767,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7de7643bfe1f37bd09bc03c7875363d2"
+        "hash": "123ad236"
     },
     {
         "family": "micropython",
@@ -777,7 +777,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a3e7a44166a2bbae0e43f237efccd8d1"
+        "hash": "a653b8ff"
     },
     {
         "family": "micropython",
@@ -787,7 +787,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -797,7 +797,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "92e2fc43f21c23bc4149050aabf36f77"
+        "hash": "c8b729d9"
     },
     {
         "family": "micropython",
@@ -807,7 +807,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -817,7 +817,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "hash": "1271cf25"
     },
     {
         "family": "micropython",
@@ -827,7 +827,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e4c000180d8e2749539e253d50be0796"
+        "hash": "bafdc7c7"
     },
     {
         "family": "micropython",
@@ -837,7 +837,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "9fabda7e951bdb386ab333e4c5a19bd1"
+        "hash": "9e64e620"
     },
     {
         "family": "micropython",
@@ -847,7 +847,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "dba0d3899ec1ca92f9c59ea1f1d4ff8f"
+        "hash": "66c25abc"
     },
     {
         "family": "micropython",
@@ -857,7 +857,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7f9568803d5287b9e4456a21a9c642cc"
+        "hash": "862aec4b"
     },
     {
         "family": "micropython",
@@ -867,7 +867,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7c72d278ab6534669f1091113d5700cb"
+        "hash": "b72dc0d1"
     },
     {
         "family": "micropython",
@@ -877,7 +877,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e743b6781d2caa0efba1bc1dbdfb554e"
+        "hash": "3a8370d6"
     },
     {
         "family": "micropython",
@@ -887,7 +887,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "9f99444dfef14ce7e7c78dd315ea7fc1"
+        "hash": "60cd6062"
     },
     {
         "family": "micropython",
@@ -897,7 +897,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -907,7 +907,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c7d8e4d068d73d3f7bddc07c30f468c2"
+        "hash": "28738207"
     },
     {
         "family": "micropython",
@@ -917,7 +917,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "d3468931a8dbc73aa4c793983ec17c70"
+        "hash": "168404b3"
     },
     {
         "family": "micropython",
@@ -927,7 +927,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7c45dc8aa5d78b6448fc9a5a1d1226f3"
+        "hash": "e7d9708c"
     },
     {
         "family": "micropython",
@@ -937,7 +937,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "207a2360447e3c90a41a0b8b2b46c62e"
+        "hash": "a98e789b"
     },
     {
         "family": "micropython",
@@ -947,7 +947,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -957,7 +957,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -967,7 +967,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a843552d7a836a62fb89c7edbe6bd50d"
+        "hash": "87992788"
     },
     {
         "family": "micropython",
@@ -977,7 +977,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -987,7 +987,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "790c907116fb6ec61ac510783897cf9a"
+        "hash": "87e8681c"
     },
     {
         "family": "micropython",
@@ -997,7 +997,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b15afb0e7ffb2f739c1e1a69a0acd9a7"
+        "hash": "3f4e2208"
     },
     {
         "family": "micropython",
@@ -1007,7 +1007,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "49c5a41e41eda7c824dfdd98088aa84c"
+        "hash": "1516a4ac"
     },
     {
         "family": "micropython",
@@ -1017,7 +1017,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c834ab186281f1e203d000216eed0137"
+        "hash": "348ce54f"
     },
     {
         "family": "micropython",
@@ -1027,7 +1027,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e5c41c2ec8d43cf410d60860b8419500"
+        "hash": "031f154e"
     },
     {
         "family": "micropython",
@@ -1037,7 +1037,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "fe016f776600c8ee2ae501b59ce1cc98"
+        "hash": "91a01c2d"
     },
     {
         "family": "micropython",
@@ -1047,7 +1047,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1e60e7976db8bfcb32b2060e7da6e7ab"
+        "hash": "838cc290"
     },
     {
         "family": "micropython",
@@ -1057,7 +1057,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "48681574ce5249adb01362dccfb47c7b"
+        "hash": "844fb93b"
     },
     {
         "family": "micropython",
@@ -1067,7 +1067,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "78c6efa096fd422fca116760d81cf336"
+        "hash": "621c77a4"
     },
     {
         "family": "micropython",
@@ -1077,7 +1077,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "3e8933f680d3a24d14f216affb85446c"
+        "hash": "ab0dea84"
     },
     {
         "family": "micropython",
@@ -1087,7 +1087,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7c9e114f0ca5f20a904b0711c04f970f"
+        "hash": "2d6a98a2"
     },
     {
         "family": "micropython",
@@ -1097,7 +1097,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a4c7cfde86a74cec30d9ac90e7cbda79"
+        "hash": "f03e2ace"
     },
     {
         "family": "micropython",
@@ -1107,7 +1107,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -1117,7 +1117,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a044aeeb64a33b44f8981693837747d7"
+        "hash": "012aeccb"
     },
     {
         "family": "micropython",
@@ -1127,7 +1127,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "afc7a4d6dbe6bc8eded50e94e105dc1a"
+        "hash": "3ff89eaf"
     },
     {
         "family": "micropython",
@@ -1137,7 +1137,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b0d46c0dc925eaf9ae1c1ab8ca40366f"
+        "hash": "87623f3f"
     },
     {
         "family": "micropython",
@@ -1147,7 +1147,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac1741a2193ea234675bced849c78ae0"
+        "hash": "47c79c65"
     },
     {
         "family": "micropython",
@@ -1157,7 +1157,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "aabd7d411203b7af015f66628ae2184d"
+        "hash": "09244d7d"
     },
     {
         "family": "micropython",
@@ -1167,7 +1167,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -1177,7 +1177,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "dba0d3899ec1ca92f9c59ea1f1d4ff8f"
+        "hash": "66c25abc"
     },
     {
         "family": "micropython",
@@ -1187,7 +1187,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "d46fb9aa0b1488ab4021fa3028011833"
+        "hash": "3740979c"
     },
     {
         "family": "micropython",
@@ -1197,7 +1197,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f880b9a256a80d5526f0b68ef9ecfb50"
+        "hash": "e200d609"
     },
     {
         "family": "micropython",
@@ -1207,7 +1207,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "23c9038d3a9b963cf9d31eca233dc639"
+        "hash": "c506b4bc"
     },
     {
         "family": "micropython",
@@ -1217,7 +1217,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "538e2b12da6defa7f827346c91f41032"
+        "hash": "52028a59"
     },
     {
         "family": "micropython",
@@ -1227,7 +1227,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "cffb1f6d83a5dccf3c7be06f73ff1a5c"
+        "hash": "e314173b"
     },
     {
         "family": "micropython",
@@ -1237,7 +1237,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c909ba3faf25c320141f022081e706f8"
+        "hash": "092193db"
     },
     {
         "family": "micropython",
@@ -1247,7 +1247,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "92919846085d32e7ecf161a47d287df1"
+        "hash": "d00797bc"
     },
     {
         "family": "micropython",
@@ -1257,7 +1257,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7f9568803d5287b9e4456a21a9c642cc"
+        "hash": "862aec4b"
     },
     {
         "family": "micropython",
@@ -1267,7 +1267,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "01fd667968a7f394ddfe2bc730dea775"
+        "hash": "21edd057"
     },
     {
         "family": "micropython",
@@ -1277,7 +1277,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "3fd004d420491f2745eadcadd3068f20"
+        "hash": "c977f435"
     },
     {
         "family": "micropython",
@@ -1287,7 +1287,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "5f50191c6ce4d8706bd0c3ea58624144"
+        "hash": "f8961001"
     },
     {
         "family": "micropython",
@@ -1297,7 +1297,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -1307,7 +1307,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -1317,7 +1317,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -1327,7 +1327,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a2ee22094963656da84c4bffaa13d4b4"
+        "hash": "38198b72"
     },
     {
         "family": "micropython",
@@ -1337,7 +1337,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -1347,7 +1347,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b15afb0e7ffb2f739c1e1a69a0acd9a7"
+        "hash": "3f4e2208"
     },
     {
         "family": "micropython",
@@ -1357,7 +1357,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "hash": "1271cf25"
     },
     {
         "family": "micropython",
@@ -1367,7 +1367,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "dc331f87ce992c4a5c2285061ce7d683"
+        "hash": "edb7172e"
     },
     {
         "family": "micropython",
@@ -1377,7 +1377,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b412de0272f82e355f1bb2ce4274c773"
+        "hash": "153a672b"
     },
     {
         "family": "micropython",
@@ -1387,7 +1387,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "3e8933f680d3a24d14f216affb85446c"
+        "hash": "ab0dea84"
     },
     {
         "family": "micropython",
@@ -1397,7 +1397,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c8b01213287a4936ec5e77d2b47e6fb2"
+        "hash": "d0567983"
     },
     {
         "family": "micropython",
@@ -1407,7 +1407,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a4c7cfde86a74cec30d9ac90e7cbda79"
+        "hash": "f03e2ace"
     },
     {
         "family": "micropython",
@@ -1417,7 +1417,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "363fe396a97a5bfd87b047f301bb802a"
+        "hash": "e540d7b7"
     },
     {
         "family": "micropython",
@@ -1427,7 +1427,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f13213e2ae744eb5bda2ef9610cc7508"
+        "hash": "f9f0e741"
     },
     {
         "family": "micropython",
@@ -1437,7 +1437,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "66279eb1e908e1b3d4b4fe358c72efc9"
+        "hash": "fddb5409"
     },
     {
         "family": "micropython",
@@ -1447,7 +1447,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f13213e2ae744eb5bda2ef9610cc7508"
+        "hash": "f9f0e741"
     },
     {
         "family": "micropython",
@@ -1457,7 +1457,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -1467,7 +1467,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a044aeeb64a33b44f8981693837747d7"
+        "hash": "012aeccb"
     },
     {
         "family": "micropython",
@@ -1477,7 +1477,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b0d46c0dc925eaf9ae1c1ab8ca40366f"
+        "hash": "87623f3f"
     },
     {
         "family": "micropython",
@@ -1487,7 +1487,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac1741a2193ea234675bced849c78ae0"
+        "hash": "47c79c65"
     },
     {
         "family": "micropython",
@@ -1497,7 +1497,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "aabd7d411203b7af015f66628ae2184d"
+        "hash": "09244d7d"
     },
     {
         "family": "micropython",
@@ -1507,7 +1507,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -1517,7 +1517,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a2b3d532cd7e299a8c3c977aa9097a3e"
+        "hash": "a45a782e"
     },
     {
         "family": "micropython",
@@ -1527,7 +1527,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -1537,7 +1537,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -1547,7 +1547,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7de7643bfe1f37bd09bc03c7875363d2"
+        "hash": "123ad236"
     },
     {
         "family": "micropython",
@@ -1557,7 +1557,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a3e7a44166a2bbae0e43f237efccd8d1"
+        "hash": "a653b8ff"
     },
     {
         "family": "micropython",
@@ -1567,7 +1567,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -1577,7 +1577,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "92e2fc43f21c23bc4149050aabf36f77"
+        "hash": "c8b729d9"
     },
     {
         "family": "micropython",
@@ -1587,7 +1587,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -1597,7 +1597,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c9e1d0afae62c3cae9c5050469beaeb5"
+        "hash": "dcc350d3"
     },
     {
         "family": "micropython",
@@ -1607,7 +1607,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c9e1d0afae62c3cae9c5050469beaeb5"
+        "hash": "dcc350d3"
     },
     {
         "family": "micropython",
@@ -1617,7 +1617,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e4c000180d8e2749539e253d50be0796"
+        "hash": "bafdc7c7"
     },
     {
         "family": "micropython",
@@ -1627,7 +1627,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b4083597128541ccf48f7fb4683d2912"
+        "hash": "3646673c"
     },
     {
         "family": "micropython",
@@ -1637,7 +1637,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "3cca5e1fef67d7d4ccd39d840b49eb94"
+        "hash": "6a4ae6cd"
     },
     {
         "family": "micropython",
@@ -1647,7 +1647,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f65a8362dc890afebb34e752375d10ea"
+        "hash": "1bfcb2a0"
     },
     {
         "family": "micropython",
@@ -1657,7 +1657,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "5f270346e3fdf628c24044278459274c"
+        "hash": "549d4aed"
     },
     {
         "family": "micropython",
@@ -1667,7 +1667,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e819733e6f02ef736a6a4f5b3c411f2a"
+        "hash": "c0cbac23"
     },
     {
         "family": "micropython",
@@ -1677,7 +1677,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1b7a5dea96452243c4693ef2fc3db3f9"
+        "hash": "34ab3a44"
     },
     {
         "family": "micropython",
@@ -1687,7 +1687,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "61b23c4af042295e3fa98dddea3d702d"
+        "hash": "a79125bd"
     },
     {
         "family": "micropython",
@@ -1697,7 +1697,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "760e7a63f5665378acd34854f1d2a600"
+        "hash": "2ba37518"
     },
     {
         "family": "micropython",
@@ -1707,7 +1707,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "bd23bb0b6721238777571abadf326cc4"
+        "hash": "ef1f73fb"
     },
     {
         "family": "micropython",
@@ -1717,7 +1717,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b033edf6a381e44af24aed35bf6a78c7"
+        "hash": "a90f441d"
     },
     {
         "family": "micropython",
@@ -1727,7 +1727,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f551a060f020b2fa77909f8b7c25761a"
+        "hash": "cd3e70a9"
     },
     {
         "family": "micropython",
@@ -1737,7 +1737,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "dba0d3899ec1ca92f9c59ea1f1d4ff8f"
+        "hash": "66c25abc"
     },
     {
         "family": "micropython",
@@ -1747,7 +1747,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -1757,7 +1757,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "664cfd7e5d7b7d72486398b855fac96e"
+        "hash": "072077f5"
     },
     {
         "family": "micropython",
@@ -1767,7 +1767,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e743b6781d2caa0efba1bc1dbdfb554e"
+        "hash": "3a8370d6"
     },
     {
         "family": "micropython",
@@ -1777,7 +1777,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "9f99444dfef14ce7e7c78dd315ea7fc1"
+        "hash": "60cd6062"
     },
     {
         "family": "micropython",
@@ -1787,7 +1787,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -1797,7 +1797,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7c45dc8aa5d78b6448fc9a5a1d1226f3"
+        "hash": "e7d9708c"
     },
     {
         "family": "micropython",
@@ -1807,7 +1807,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "207a2360447e3c90a41a0b8b2b46c62e"
+        "hash": "a98e789b"
     },
     {
         "family": "micropython",
@@ -1817,7 +1817,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -1827,7 +1827,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -1837,7 +1837,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -1847,7 +1847,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e6334327458f663470034c05470baa37"
+        "hash": "c65bc275"
     },
     {
         "family": "micropython",
@@ -1857,7 +1857,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "84e249d36710e2b68784f4433d5fc485"
+        "hash": "91c92259"
     },
     {
         "family": "micropython",
@@ -1867,7 +1867,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b3aa4238a0826955102767b4e9778e40"
+        "hash": "0efb90af"
     },
     {
         "family": "micropython",
@@ -1877,7 +1877,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c834ab186281f1e203d000216eed0137"
+        "hash": "348ce54f"
     },
     {
         "family": "micropython",
@@ -1887,7 +1887,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "fe016f776600c8ee2ae501b59ce1cc98"
+        "hash": "91a01c2d"
     },
     {
         "family": "micropython",
@@ -1897,7 +1897,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1f4c6fc16e08797b113e8ea7f5417812"
+        "hash": "b559a2e8"
     },
     {
         "family": "micropython",
@@ -1907,7 +1907,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "78c6efa096fd422fca116760d81cf336"
+        "hash": "621c77a4"
     },
     {
         "family": "micropython",
@@ -1917,7 +1917,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "4773621e75ae9ea9b64a84af278c1150"
+        "hash": "aabd828c"
     },
     {
         "family": "micropython",
@@ -1927,7 +1927,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -1937,7 +1937,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "30e2e40a208b7a497287fc5ef47afd69"
+        "hash": "e74cf5ea"
     },
     {
         "family": "micropython",
@@ -1947,7 +1947,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -1957,7 +1957,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "888a2d74bc9e51caf9a0a21a05b2c4ce"
+        "hash": "20c3732d"
     },
     {
         "family": "micropython",
@@ -1967,7 +1967,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac1741a2193ea234675bced849c78ae0"
+        "hash": "47c79c65"
     },
     {
         "family": "micropython",
@@ -1977,7 +1977,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -1987,7 +1987,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -1997,7 +1997,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "dba0d3899ec1ca92f9c59ea1f1d4ff8f"
+        "hash": "66c25abc"
     },
     {
         "family": "micropython",
@@ -2007,7 +2007,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "d46fb9aa0b1488ab4021fa3028011833"
+        "hash": "3740979c"
     },
     {
         "family": "micropython",
@@ -2017,7 +2017,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f880b9a256a80d5526f0b68ef9ecfb50"
+        "hash": "e200d609"
     },
     {
         "family": "micropython",
@@ -2027,7 +2027,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "23c9038d3a9b963cf9d31eca233dc639"
+        "hash": "c506b4bc"
     },
     {
         "family": "micropython",
@@ -2037,7 +2037,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "538e2b12da6defa7f827346c91f41032"
+        "hash": "52028a59"
     },
     {
         "family": "micropython",
@@ -2047,7 +2047,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "cffb1f6d83a5dccf3c7be06f73ff1a5c"
+        "hash": "e314173b"
     },
     {
         "family": "micropython",
@@ -2057,7 +2057,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c909ba3faf25c320141f022081e706f8"
+        "hash": "092193db"
     },
     {
         "family": "micropython",
@@ -2067,7 +2067,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "92919846085d32e7ecf161a47d287df1"
+        "hash": "d00797bc"
     },
     {
         "family": "micropython",
@@ -2077,7 +2077,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -2087,7 +2087,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b0a7d2066f40fb1adaf9d2246b033bee"
+        "hash": "fc459a8d"
     },
     {
         "family": "micropython",
@@ -2097,7 +2097,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "01fd667968a7f394ddfe2bc730dea775"
+        "hash": "21edd057"
     },
     {
         "family": "micropython",
@@ -2107,7 +2107,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "3fd004d420491f2745eadcadd3068f20"
+        "hash": "c977f435"
     },
     {
         "family": "micropython",
@@ -2117,7 +2117,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "5f50191c6ce4d8706bd0c3ea58624144"
+        "hash": "f8961001"
     },
     {
         "family": "micropython",
@@ -2127,7 +2127,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -2137,7 +2137,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -2147,7 +2147,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -2157,7 +2157,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a2ee22094963656da84c4bffaa13d4b4"
+        "hash": "38198b72"
     },
     {
         "family": "micropython",
@@ -2167,7 +2167,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -2177,7 +2177,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "84e249d36710e2b68784f4433d5fc485"
+        "hash": "91c92259"
     },
     {
         "family": "micropython",
@@ -2187,7 +2187,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "4773621e75ae9ea9b64a84af278c1150"
+        "hash": "aabd828c"
     },
     {
         "family": "micropython",
@@ -2197,7 +2197,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -2207,7 +2207,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "363fe396a97a5bfd87b047f301bb802a"
+        "hash": "e540d7b7"
     },
     {
         "family": "micropython",
@@ -2217,7 +2217,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -2227,7 +2227,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "888a2d74bc9e51caf9a0a21a05b2c4ce"
+        "hash": "20c3732d"
     },
     {
         "family": "micropython",
@@ -2237,7 +2237,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac1741a2193ea234675bced849c78ae0"
+        "hash": "47c79c65"
     },
     {
         "family": "micropython",
@@ -2247,7 +2247,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -2257,7 +2257,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -2267,7 +2267,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -2277,7 +2277,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -2287,7 +2287,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -2297,7 +2297,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "92e2fc43f21c23bc4149050aabf36f77"
+        "hash": "c8b729d9"
     },
     {
         "family": "micropython",
@@ -2307,7 +2307,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -2317,7 +2317,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e4c000180d8e2749539e253d50be0796"
+        "hash": "bafdc7c7"
     },
     {
         "family": "micropython",
@@ -2327,7 +2327,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f65a8362dc890afebb34e752375d10ea"
+        "hash": "1bfcb2a0"
     },
     {
         "family": "micropython",
@@ -2337,7 +2337,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "dba0d3899ec1ca92f9c59ea1f1d4ff8f"
+        "hash": "66c25abc"
     },
     {
         "family": "micropython",
@@ -2347,7 +2347,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -2357,7 +2357,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "664cfd7e5d7b7d72486398b855fac96e"
+        "hash": "072077f5"
     },
     {
         "family": "micropython",
@@ -2367,7 +2367,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "e743b6781d2caa0efba1bc1dbdfb554e"
+        "hash": "3a8370d6"
     },
     {
         "family": "micropython",
@@ -2377,7 +2377,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -2387,7 +2387,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "7c45dc8aa5d78b6448fc9a5a1d1226f3"
+        "hash": "e7d9708c"
     },
     {
         "family": "micropython",
@@ -2397,7 +2397,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "207a2360447e3c90a41a0b8b2b46c62e"
+        "hash": "a98e789b"
     },
     {
         "family": "micropython",
@@ -2407,7 +2407,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "0e4172c6bfedfc227e5ef58667bddc35"
+        "hash": "b10a8036"
     },
     {
         "family": "micropython",
@@ -2417,7 +2417,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -2427,7 +2427,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -2437,7 +2437,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "bc688bf5b7ed6e2b8a0537dc43e9d319"
+        "hash": "af3760d6"
     },
     {
         "family": "micropython",
@@ -2447,7 +2447,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f71f06943839aabca40dc9138ae99a46"
+        "hash": "cb8db780"
     },
     {
         "family": "micropython",
@@ -2457,7 +2457,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "b3aa4238a0826955102767b4e9778e40"
+        "hash": "0efb90af"
     },
     {
         "family": "micropython",
@@ -2467,7 +2467,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c834ab186281f1e203d000216eed0137"
+        "hash": "348ce54f"
     },
     {
         "family": "micropython",
@@ -2477,7 +2477,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "5b7b0aa0507d1b19f3e69c89c3cf3e4a"
+        "hash": "ac823c40"
     },
     {
         "family": "micropython",
@@ -2487,7 +2487,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "78c6efa096fd422fca116760d81cf336"
+        "hash": "621c77a4"
     },
     {
         "family": "micropython",
@@ -2497,7 +2497,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "9888fcbfbf95d5d93df648ff4280c783"
+        "hash": "3dc26a80"
     },
     {
         "family": "micropython",
@@ -2507,7 +2507,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "9d219fc4354f08c35e9411d184b97651"
+        "hash": "617e2ae4"
     },
     {
         "family": "micropython",
@@ -2517,7 +2517,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "51e0506e31f06277791879b5cdbd1f62"
+        "hash": "c04a07cb"
     },
     {
         "family": "micropython",
@@ -2527,7 +2527,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -2537,7 +2537,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -2547,7 +2547,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "888a2d74bc9e51caf9a0a21a05b2c4ce"
+        "hash": "20c3732d"
     },
     {
         "family": "micropython",
@@ -2557,7 +2557,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1fc90a21c68a1d0ed3d9f47555d47662"
+        "hash": "0c65335e"
     },
     {
         "family": "micropython",
@@ -2567,7 +2567,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac1741a2193ea234675bced849c78ae0"
+        "hash": "47c79c65"
     },
     {
         "family": "micropython",
@@ -2577,7 +2577,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -2587,7 +2587,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -2597,7 +2597,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "dba0d3899ec1ca92f9c59ea1f1d4ff8f"
+        "hash": "66c25abc"
     },
     {
         "family": "micropython",
@@ -2607,7 +2607,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "d46fb9aa0b1488ab4021fa3028011833"
+        "hash": "3740979c"
     },
     {
         "family": "micropython",
@@ -2617,7 +2617,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f880b9a256a80d5526f0b68ef9ecfb50"
+        "hash": "e200d609"
     },
     {
         "family": "micropython",
@@ -2627,7 +2627,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "23c9038d3a9b963cf9d31eca233dc639"
+        "hash": "c506b4bc"
     },
     {
         "family": "micropython",
@@ -2637,7 +2637,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "538e2b12da6defa7f827346c91f41032"
+        "hash": "52028a59"
     },
     {
         "family": "micropython",
@@ -2647,7 +2647,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "cffb1f6d83a5dccf3c7be06f73ff1a5c"
+        "hash": "e314173b"
     },
     {
         "family": "micropython",
@@ -2657,7 +2657,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "c909ba3faf25c320141f022081e706f8"
+        "hash": "092193db"
     },
     {
         "family": "micropython",
@@ -2667,7 +2667,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "92919846085d32e7ecf161a47d287df1"
+        "hash": "d00797bc"
     },
     {
         "family": "micropython",
@@ -2677,7 +2677,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -2687,7 +2687,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "01fd667968a7f394ddfe2bc730dea775"
+        "hash": "21edd057"
     },
     {
         "family": "micropython",
@@ -2697,7 +2697,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "5f50191c6ce4d8706bd0c3ea58624144"
+        "hash": "f8961001"
     },
     {
         "family": "micropython",
@@ -2707,7 +2707,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -2717,7 +2717,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "0e4172c6bfedfc227e5ef58667bddc35"
+        "hash": "b10a8036"
     },
     {
         "family": "micropython",
@@ -2727,7 +2727,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -2737,7 +2737,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a2ee22094963656da84c4bffaa13d4b4"
+        "hash": "38198b72"
     },
     {
         "family": "micropython",
@@ -2747,7 +2747,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -2757,7 +2757,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f71f06943839aabca40dc9138ae99a46"
+        "hash": "cb8db780"
     },
     {
         "family": "micropython",
@@ -2767,7 +2767,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "9888fcbfbf95d5d93df648ff4280c783"
+        "hash": "3dc26a80"
     },
     {
         "family": "micropython",
@@ -2777,7 +2777,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "9d219fc4354f08c35e9411d184b97651"
+        "hash": "617e2ae4"
     },
     {
         "family": "micropython",
@@ -2787,7 +2787,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -2797,7 +2797,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "363fe396a97a5bfd87b047f301bb802a"
+        "hash": "e540d7b7"
     },
     {
         "family": "micropython",
@@ -2807,7 +2807,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -2817,7 +2817,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "888a2d74bc9e51caf9a0a21a05b2c4ce"
+        "hash": "20c3732d"
     },
     {
         "family": "micropython",
@@ -2827,7 +2827,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "ac1741a2193ea234675bced849c78ae0"
+        "hash": "47c79c65"
     },
     {
         "family": "micropython",
@@ -2837,7 +2837,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -2847,7 +2847,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -2857,7 +2857,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "a2b3d532cd7e299a8c3c977aa9097a3e"
+        "hash": "a45a782e"
     },
     {
         "family": "micropython",
@@ -2867,7 +2867,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -2877,7 +2877,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.20.0a994",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -2887,7 +2887,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "060614dd44edf3ad36ff266d7a60a424"
+        "hash": "7ce407b7"
     },
     {
         "family": "micropython",
@@ -2897,7 +2897,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "61da981b6fa301f120861ce765ac3e54"
+        "hash": "c6d12e4e"
     },
     {
         "family": "micropython",
@@ -2907,7 +2907,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "e743b6781d2caa0efba1bc1dbdfb554e"
+        "hash": "3a8370d6"
     },
     {
         "family": "micropython",
@@ -2917,7 +2917,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "9f99444dfef14ce7e7c78dd315ea7fc1"
+        "hash": "60cd6062"
     },
     {
         "family": "micropython",
@@ -2927,7 +2927,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "1eabc522eeb9c432d1c421b6983fafbd"
+        "hash": "fe9dc68a"
     },
     {
         "family": "micropython",
@@ -2937,7 +2937,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "2a2d01d7635a575ffddfe526e0c59048"
+        "hash": "390f0c70"
     },
     {
         "family": "micropython",
@@ -2947,7 +2947,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "c834ab186281f1e203d000216eed0137"
+        "hash": "348ce54f"
     },
     {
         "family": "micropython",
@@ -2957,7 +2957,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "fe016f776600c8ee2ae501b59ce1cc98"
+        "hash": "91a01c2d"
     },
     {
         "family": "micropython",
@@ -2967,7 +2967,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "9a2d806b87750831fb8e2f6ab67d51c6"
+        "hash": "4c5e3d38"
     },
     {
         "family": "micropython",
@@ -2977,7 +2977,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "78c6efa096fd422fca116760d81cf336"
+        "hash": "621c77a4"
     },
     {
         "family": "micropython",
@@ -2987,7 +2987,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "d46fb9aa0b1488ab4021fa3028011833"
+        "hash": "3740979c"
     },
     {
         "family": "micropython",
@@ -2997,7 +2997,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "f880b9a256a80d5526f0b68ef9ecfb50"
+        "hash": "e200d609"
     },
     {
         "family": "micropython",
@@ -3007,7 +3007,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "1e0c2b373fa9851a5a6988b78eb71124"
+        "hash": "8de46ef2"
     },
     {
         "family": "micropython",
@@ -3017,7 +3017,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "75eedb98a87f8d41c9b581e2db39d402"
+        "hash": "d1c27cc2"
     },
     {
         "family": "micropython",
@@ -3027,7 +3027,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "3b804550de230d73036a5d2f7c8fd69b"
+        "hash": "d31b5ccc"
     },
     {
         "family": "micropython",
@@ -3037,7 +3037,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "282c02dee7d87efd6faf4d25ba41154e"
+        "hash": "6e3577f1"
     },
     {
         "family": "micropython",
@@ -3047,7 +3047,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "92919846085d32e7ecf161a47d287df1"
+        "hash": "d00797bc"
     },
     {
         "family": "micropython",
@@ -3057,7 +3057,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "f3f0ccd9eeba2a4396a4514648bb92df"
+        "hash": "5d1f6dac"
     },
     {
         "family": "micropython",
@@ -3067,7 +3067,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "957919dd7e0511d49f116b40f7de1bdd"
+        "hash": "13d51f35"
     },
     {
         "family": "micropython",
@@ -3077,7 +3077,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "0af36d8f11b04a1c879314307fa9f9c3"
+        "hash": "264452e1"
     },
     {
         "family": "micropython",
@@ -3087,7 +3087,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "a3e7a44166a2bbae0e43f237efccd8d1"
+        "hash": "a653b8ff"
     },
     {
         "family": "micropython",
@@ -3097,7 +3097,7 @@
         "board": "s3",
         "package": "micropython-esp32-s3-stubs",
         "pkg_version": "1.19.1.post1",
-        "hash": "8b1b0a6a0ee6d326d5c827b37881fc10"
+        "hash": "1d26fdf3"
     },
     {
         "family": "micropython",
@@ -3107,7 +3107,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "060614dd44edf3ad36ff266d7a60a424"
+        "hash": "7ce407b7"
     },
     {
         "family": "micropython",
@@ -3117,7 +3117,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "e4c000180d8e2749539e253d50be0796"
+        "hash": "bafdc7c7"
     },
     {
         "family": "micropython",
@@ -3127,7 +3127,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "3cca5e1fef67d7d4ccd39d840b49eb94"
+        "hash": "6a4ae6cd"
     },
     {
         "family": "micropython",
@@ -3137,7 +3137,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "f65a8362dc890afebb34e752375d10ea"
+        "hash": "1bfcb2a0"
     },
     {
         "family": "micropython",
@@ -3147,7 +3147,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "61da981b6fa301f120861ce765ac3e54"
+        "hash": "c6d12e4e"
     },
     {
         "family": "micropython",
@@ -3157,7 +3157,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "1ba7cbeac6a2ad9c5f7794c27712c052"
+        "hash": "c71885b5"
     },
     {
         "family": "micropython",
@@ -3167,7 +3167,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -3177,7 +3177,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "7c72d278ab6534669f1091113d5700cb"
+        "hash": "b72dc0d1"
     },
     {
         "family": "micropython",
@@ -3187,7 +3187,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "664cfd7e5d7b7d72486398b855fac96e"
+        "hash": "072077f5"
     },
     {
         "family": "micropython",
@@ -3197,7 +3197,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "e743b6781d2caa0efba1bc1dbdfb554e"
+        "hash": "3a8370d6"
     },
     {
         "family": "micropython",
@@ -3207,7 +3207,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "9f99444dfef14ce7e7c78dd315ea7fc1"
+        "hash": "60cd6062"
     },
     {
         "family": "micropython",
@@ -3217,7 +3217,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -3227,7 +3227,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "8d90e188a19a478c75316aff5a8b8302"
+        "hash": "3744db55"
     },
     {
         "family": "micropython",
@@ -3237,7 +3237,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "63c94f8d69c35f99b7e87c7b879b4195"
+        "hash": "86a15576"
     },
     {
         "family": "micropython",
@@ -3247,7 +3247,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "1eabc522eeb9c432d1c421b6983fafbd"
+        "hash": "fe9dc68a"
     },
     {
         "family": "micropython",
@@ -3257,7 +3257,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "b744712c081a426a6667b8f61c8fb800"
+        "hash": "6f3bb6e3"
     },
     {
         "family": "micropython",
@@ -3267,7 +3267,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "207a2360447e3c90a41a0b8b2b46c62e"
+        "hash": "a98e789b"
     },
     {
         "family": "micropython",
@@ -3277,7 +3277,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -3287,7 +3287,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -3297,7 +3297,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "2a2d01d7635a575ffddfe526e0c59048"
+        "hash": "390f0c70"
     },
     {
         "family": "micropython",
@@ -3307,7 +3307,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "a2ee22094963656da84c4bffaa13d4b4"
+        "hash": "38198b72"
     },
     {
         "family": "micropython",
@@ -3317,7 +3317,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -3327,7 +3327,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "c3567aa1be98a50ed3b1adbe23c7cc6b"
+        "hash": "20d20803"
     },
     {
         "family": "micropython",
@@ -3337,7 +3337,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "b3aa4238a0826955102767b4e9778e40"
+        "hash": "0efb90af"
     },
     {
         "family": "micropython",
@@ -3347,7 +3347,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "c834ab186281f1e203d000216eed0137"
+        "hash": "348ce54f"
     },
     {
         "family": "micropython",
@@ -3357,7 +3357,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "fe016f776600c8ee2ae501b59ce1cc98"
+        "hash": "91a01c2d"
     },
     {
         "family": "micropython",
@@ -3367,7 +3367,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "bf2df7ca27b3fa5c73a41675cf73f3a6"
+        "hash": "db9ab3e2"
     },
     {
         "family": "micropython",
@@ -3377,7 +3377,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "9a2d806b87750831fb8e2f6ab67d51c6"
+        "hash": "4c5e3d38"
     },
     {
         "family": "micropython",
@@ -3387,7 +3387,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "78c6efa096fd422fca116760d81cf336"
+        "hash": "621c77a4"
     },
     {
         "family": "micropython",
@@ -3397,7 +3397,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "6d23a5cf4bbf8f8c61323fe868d15878"
+        "hash": "a98072b7"
     },
     {
         "family": "micropython",
@@ -3407,7 +3407,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "9d219fc4354f08c35e9411d184b97651"
+        "hash": "617e2ae4"
     },
     {
         "family": "micropython",
@@ -3417,7 +3417,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -3427,7 +3427,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -3437,7 +3437,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "7d2bb2969f6043d257ef78f5d9b92855"
+        "hash": "400f0b1d"
     },
     {
         "family": "micropython",
@@ -3447,7 +3447,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "bbe2fbfdadacc3fe4cc1b317a5c191ca"
+        "hash": "62394985"
     },
     {
         "family": "micropython",
@@ -3457,7 +3457,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "f428a62fd722b602b8ffddc3e4341d98"
+        "hash": "fd7e0862"
     },
     {
         "family": "micropython",
@@ -3467,7 +3467,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -3477,7 +3477,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -3487,7 +3487,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "1ba7cbeac6a2ad9c5f7794c27712c052"
+        "hash": "c71885b5"
     },
     {
         "family": "micropython",
@@ -3497,7 +3497,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "d46fb9aa0b1488ab4021fa3028011833"
+        "hash": "3740979c"
     },
     {
         "family": "micropython",
@@ -3507,7 +3507,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "f880b9a256a80d5526f0b68ef9ecfb50"
+        "hash": "e200d609"
     },
     {
         "family": "micropython",
@@ -3517,7 +3517,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "1e0c2b373fa9851a5a6988b78eb71124"
+        "hash": "8de46ef2"
     },
     {
         "family": "micropython",
@@ -3527,7 +3527,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "75eedb98a87f8d41c9b581e2db39d402"
+        "hash": "d1c27cc2"
     },
     {
         "family": "micropython",
@@ -3537,7 +3537,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "3b804550de230d73036a5d2f7c8fd69b"
+        "hash": "d31b5ccc"
     },
     {
         "family": "micropython",
@@ -3547,7 +3547,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "282c02dee7d87efd6faf4d25ba41154e"
+        "hash": "6e3577f1"
     },
     {
         "family": "micropython",
@@ -3557,7 +3557,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "92919846085d32e7ecf161a47d287df1"
+        "hash": "d00797bc"
     },
     {
         "family": "micropython",
@@ -3567,7 +3567,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -3577,7 +3577,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "dc12146660f0048f3ed016fb9f8b37e4"
+        "hash": "14533f6a"
     },
     {
         "family": "micropython",
@@ -3587,7 +3587,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "01fd667968a7f394ddfe2bc730dea775"
+        "hash": "21edd057"
     },
     {
         "family": "micropython",
@@ -3597,7 +3597,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "3fd004d420491f2745eadcadd3068f20"
+        "hash": "c977f435"
     },
     {
         "family": "micropython",
@@ -3607,7 +3607,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "5f50191c6ce4d8706bd0c3ea58624144"
+        "hash": "f8961001"
     },
     {
         "family": "micropython",
@@ -3617,7 +3617,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -3627,7 +3627,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -3637,7 +3637,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -3647,7 +3647,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "a2ee22094963656da84c4bffaa13d4b4"
+        "hash": "38198b72"
     },
     {
         "family": "micropython",
@@ -3657,7 +3657,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -3667,7 +3667,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "c3567aa1be98a50ed3b1adbe23c7cc6b"
+        "hash": "20d20803"
     },
     {
         "family": "micropython",
@@ -3677,7 +3677,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "hash": "1271cf25"
     },
     {
         "family": "micropython",
@@ -3687,7 +3687,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "1a78dcbebac6fc410c8fe3be13575012"
+        "hash": "cd835cb8"
     },
     {
         "family": "micropython",
@@ -3697,7 +3697,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "9c478e3ea4247cf3389a9a19ad795969"
+        "hash": "21a3f7e2"
     },
     {
         "family": "micropython",
@@ -3707,7 +3707,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "6d23a5cf4bbf8f8c61323fe868d15878"
+        "hash": "a98072b7"
     },
     {
         "family": "micropython",
@@ -3717,7 +3717,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "f3f0ccd9eeba2a4396a4514648bb92df"
+        "hash": "5d1f6dac"
     },
     {
         "family": "micropython",
@@ -3727,7 +3727,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "957919dd7e0511d49f116b40f7de1bdd"
+        "hash": "13d51f35"
     },
     {
         "family": "micropython",
@@ -3737,7 +3737,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "9d219fc4354f08c35e9411d184b97651"
+        "hash": "617e2ae4"
     },
     {
         "family": "micropython",
@@ -3747,7 +3747,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -3757,7 +3757,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "363fe396a97a5bfd87b047f301bb802a"
+        "hash": "e540d7b7"
     },
     {
         "family": "micropython",
@@ -3767,7 +3767,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "e8c1eb37c6d42d1d9b8c115f65f68f95"
+        "hash": "b0751c3a"
     },
     {
         "family": "micropython",
@@ -3777,7 +3777,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -3787,7 +3787,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "7d2bb2969f6043d257ef78f5d9b92855"
+        "hash": "400f0b1d"
     },
     {
         "family": "micropython",
@@ -3797,7 +3797,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "bbe2fbfdadacc3fe4cc1b317a5c191ca"
+        "hash": "62394985"
     },
     {
         "family": "micropython",
@@ -3807,7 +3807,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "f428a62fd722b602b8ffddc3e4341d98"
+        "hash": "fd7e0862"
     },
     {
         "family": "micropython",
@@ -3817,7 +3817,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -3827,7 +3827,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -3837,7 +3837,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "a2b3d532cd7e299a8c3c977aa9097a3e"
+        "hash": "a45a782e"
     },
     {
         "family": "micropython",
@@ -3847,7 +3847,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -3857,7 +3857,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -3867,7 +3867,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "0af36d8f11b04a1c879314307fa9f9c3"
+        "hash": "264452e1"
     },
     {
         "family": "micropython",
@@ -3877,7 +3877,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "a3e7a44166a2bbae0e43f237efccd8d1"
+        "hash": "a653b8ff"
     },
     {
         "family": "micropython",
@@ -3887,7 +3887,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -3897,7 +3897,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "8b1b0a6a0ee6d326d5c827b37881fc10"
+        "hash": "1d26fdf3"
     },
     {
         "family": "micropython",
@@ -3907,7 +3907,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.19.1.post13",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -3917,7 +3917,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "060614dd44edf3ad36ff266d7a60a424"
+        "hash": "7ce407b7"
     },
     {
         "family": "micropython",
@@ -3927,7 +3927,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "e4c000180d8e2749539e253d50be0796"
+        "hash": "bafdc7c7"
     },
     {
         "family": "micropython",
@@ -3937,7 +3937,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "3cca5e1fef67d7d4ccd39d840b49eb94"
+        "hash": "6a4ae6cd"
     },
     {
         "family": "micropython",
@@ -3947,7 +3947,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "f65a8362dc890afebb34e752375d10ea"
+        "hash": "1bfcb2a0"
     },
     {
         "family": "micropython",
@@ -3957,7 +3957,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "61da981b6fa301f120861ce765ac3e54"
+        "hash": "c6d12e4e"
     },
     {
         "family": "micropython",
@@ -3967,7 +3967,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "1ba7cbeac6a2ad9c5f7794c27712c052"
+        "hash": "c71885b5"
     },
     {
         "family": "micropython",
@@ -3977,7 +3977,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -3987,7 +3987,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "7c72d278ab6534669f1091113d5700cb"
+        "hash": "b72dc0d1"
     },
     {
         "family": "micropython",
@@ -3997,7 +3997,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "664cfd7e5d7b7d72486398b855fac96e"
+        "hash": "072077f5"
     },
     {
         "family": "micropython",
@@ -4007,7 +4007,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "e743b6781d2caa0efba1bc1dbdfb554e"
+        "hash": "3a8370d6"
     },
     {
         "family": "micropython",
@@ -4017,7 +4017,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "fd42511634debf776827479298f27d6e"
+        "hash": "a930fe73"
     },
     {
         "family": "micropython",
@@ -4027,7 +4027,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "9f99444dfef14ce7e7c78dd315ea7fc1"
+        "hash": "60cd6062"
     },
     {
         "family": "micropython",
@@ -4037,7 +4037,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -4047,7 +4047,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "8d90e188a19a478c75316aff5a8b8302"
+        "hash": "3744db55"
     },
     {
         "family": "micropython",
@@ -4057,7 +4057,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "63c94f8d69c35f99b7e87c7b879b4195"
+        "hash": "86a15576"
     },
     {
         "family": "micropython",
@@ -4067,7 +4067,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "1eabc522eeb9c432d1c421b6983fafbd"
+        "hash": "fe9dc68a"
     },
     {
         "family": "micropython",
@@ -4077,7 +4077,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "b744712c081a426a6667b8f61c8fb800"
+        "hash": "6f3bb6e3"
     },
     {
         "family": "micropython",
@@ -4087,7 +4087,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "207a2360447e3c90a41a0b8b2b46c62e"
+        "hash": "a98e789b"
     },
     {
         "family": "micropython",
@@ -4097,7 +4097,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -4107,7 +4107,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -4117,7 +4117,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "2a2d01d7635a575ffddfe526e0c59048"
+        "hash": "390f0c70"
     },
     {
         "family": "micropython",
@@ -4127,7 +4127,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "af70d28ff003f030b602a423e6909672"
+        "hash": "54252288"
     },
     {
         "family": "micropython",
@@ -4137,7 +4137,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -4147,7 +4147,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "a15f8cdf52db5b72050f6f32b847071d"
+        "hash": "ad4dbb08"
     },
     {
         "family": "micropython",
@@ -4157,7 +4157,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "b3aa4238a0826955102767b4e9778e40"
+        "hash": "0efb90af"
     },
     {
         "family": "micropython",
@@ -4167,7 +4167,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "c834ab186281f1e203d000216eed0137"
+        "hash": "348ce54f"
     },
     {
         "family": "micropython",
@@ -4177,7 +4177,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "fe016f776600c8ee2ae501b59ce1cc98"
+        "hash": "91a01c2d"
     },
     {
         "family": "micropython",
@@ -4187,7 +4187,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "bf2df7ca27b3fa5c73a41675cf73f3a6"
+        "hash": "db9ab3e2"
     },
     {
         "family": "micropython",
@@ -4197,7 +4197,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "9a2d806b87750831fb8e2f6ab67d51c6"
+        "hash": "4c5e3d38"
     },
     {
         "family": "micropython",
@@ -4207,7 +4207,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "78c6efa096fd422fca116760d81cf336"
+        "hash": "621c77a4"
     },
     {
         "family": "micropython",
@@ -4217,7 +4217,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "6d23a5cf4bbf8f8c61323fe868d15878"
+        "hash": "a98072b7"
     },
     {
         "family": "micropython",
@@ -4227,7 +4227,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "9d219fc4354f08c35e9411d184b97651"
+        "hash": "617e2ae4"
     },
     {
         "family": "micropython",
@@ -4237,7 +4237,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -4247,7 +4247,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -4257,7 +4257,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "7d2bb2969f6043d257ef78f5d9b92855"
+        "hash": "400f0b1d"
     },
     {
         "family": "micropython",
@@ -4267,7 +4267,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "bbe2fbfdadacc3fe4cc1b317a5c191ca"
+        "hash": "62394985"
     },
     {
         "family": "micropython",
@@ -4277,7 +4277,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "f428a62fd722b602b8ffddc3e4341d98"
+        "hash": "fd7e0862"
     },
     {
         "family": "micropython",
@@ -4287,7 +4287,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -4297,7 +4297,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -4307,7 +4307,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "bafb1be87599b23e75105ca12f713fa0"
+        "hash": "5835de18"
     },
     {
         "family": "micropython",
@@ -4317,7 +4317,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "1ba7cbeac6a2ad9c5f7794c27712c052"
+        "hash": "c71885b5"
     },
     {
         "family": "micropython",
@@ -4327,7 +4327,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "d46fb9aa0b1488ab4021fa3028011833"
+        "hash": "3740979c"
     },
     {
         "family": "micropython",
@@ -4337,7 +4337,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "f880b9a256a80d5526f0b68ef9ecfb50"
+        "hash": "e200d609"
     },
     {
         "family": "micropython",
@@ -4347,7 +4347,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "1e0c2b373fa9851a5a6988b78eb71124"
+        "hash": "8de46ef2"
     },
     {
         "family": "micropython",
@@ -4357,7 +4357,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "75eedb98a87f8d41c9b581e2db39d402"
+        "hash": "d1c27cc2"
     },
     {
         "family": "micropython",
@@ -4367,7 +4367,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "3b804550de230d73036a5d2f7c8fd69b"
+        "hash": "d31b5ccc"
     },
     {
         "family": "micropython",
@@ -4377,7 +4377,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "282c02dee7d87efd6faf4d25ba41154e"
+        "hash": "6e3577f1"
     },
     {
         "family": "micropython",
@@ -4387,7 +4387,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "92919846085d32e7ecf161a47d287df1"
+        "hash": "d00797bc"
     },
     {
         "family": "micropython",
@@ -4397,7 +4397,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -4407,7 +4407,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "dc12146660f0048f3ed016fb9f8b37e4"
+        "hash": "14533f6a"
     },
     {
         "family": "micropython",
@@ -4417,7 +4417,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "5a63bb7938c5ce4b09bcd00683241636"
+        "hash": "430eb8d6"
     },
     {
         "family": "micropython",
@@ -4427,7 +4427,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "3fd004d420491f2745eadcadd3068f20"
+        "hash": "c977f435"
     },
     {
         "family": "micropython",
@@ -4437,7 +4437,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "5f50191c6ce4d8706bd0c3ea58624144"
+        "hash": "f8961001"
     },
     {
         "family": "micropython",
@@ -4447,7 +4447,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -4457,7 +4457,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -4467,7 +4467,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -4477,7 +4477,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "af70d28ff003f030b602a423e6909672"
+        "hash": "54252288"
     },
     {
         "family": "micropython",
@@ -4487,7 +4487,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -4497,7 +4497,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "a15f8cdf52db5b72050f6f32b847071d"
+        "hash": "ad4dbb08"
     },
     {
         "family": "micropython",
@@ -4507,7 +4507,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "hash": "1271cf25"
     },
     {
         "family": "micropython",
@@ -4517,7 +4517,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "1a78dcbebac6fc410c8fe3be13575012"
+        "hash": "cd835cb8"
     },
     {
         "family": "micropython",
@@ -4527,7 +4527,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "9c478e3ea4247cf3389a9a19ad795969"
+        "hash": "21a3f7e2"
     },
     {
         "family": "micropython",
@@ -4537,7 +4537,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "6d23a5cf4bbf8f8c61323fe868d15878"
+        "hash": "a98072b7"
     },
     {
         "family": "micropython",
@@ -4547,7 +4547,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "f3f0ccd9eeba2a4396a4514648bb92df"
+        "hash": "5d1f6dac"
     },
     {
         "family": "micropython",
@@ -4557,7 +4557,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "957919dd7e0511d49f116b40f7de1bdd"
+        "hash": "13d51f35"
     },
     {
         "family": "micropython",
@@ -4567,7 +4567,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "9d219fc4354f08c35e9411d184b97651"
+        "hash": "617e2ae4"
     },
     {
         "family": "micropython",
@@ -4577,7 +4577,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -4587,7 +4587,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "363fe396a97a5bfd87b047f301bb802a"
+        "hash": "e540d7b7"
     },
     {
         "family": "micropython",
@@ -4597,7 +4597,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "e8c1eb37c6d42d1d9b8c115f65f68f95"
+        "hash": "b0751c3a"
     },
     {
         "family": "micropython",
@@ -4607,7 +4607,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -4617,7 +4617,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "7d2bb2969f6043d257ef78f5d9b92855"
+        "hash": "400f0b1d"
     },
     {
         "family": "micropython",
@@ -4627,7 +4627,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "bbe2fbfdadacc3fe4cc1b317a5c191ca"
+        "hash": "62394985"
     },
     {
         "family": "micropython",
@@ -4637,7 +4637,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "f428a62fd722b602b8ffddc3e4341d98"
+        "hash": "fd7e0862"
     },
     {
         "family": "micropython",
@@ -4647,7 +4647,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -4657,7 +4657,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -4667,7 +4667,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "a2b3d532cd7e299a8c3c977aa9097a3e"
+        "hash": "a45a782e"
     },
     {
         "family": "micropython",
@@ -4677,7 +4677,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -4687,7 +4687,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "1094f2e07fd4536f1b32e049d5570b28"
+        "hash": "e66428d6"
     },
     {
         "family": "micropython",
@@ -4697,7 +4697,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "0af36d8f11b04a1c879314307fa9f9c3"
+        "hash": "264452e1"
     },
     {
         "family": "micropython",
@@ -4707,7 +4707,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "a3e7a44166a2bbae0e43f237efccd8d1"
+        "hash": "a653b8ff"
     },
     {
         "family": "micropython",
@@ -4717,7 +4717,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -4727,7 +4727,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "8b1b0a6a0ee6d326d5c827b37881fc10"
+        "hash": "1d26fdf3"
     },
     {
         "family": "micropython",
@@ -4737,7 +4737,7 @@
         "board": "um_tinypico",
         "package": "micropython-esp32-um_tinypico-stubs",
         "pkg_version": "1.19.1.post7",
-        "hash": "1094f2e07fd4536f1b32e049d5570b28"
+        "hash": "e66428d6"
     },
     {
         "family": "micropython",
@@ -4747,7 +4747,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        "hash": "1271cf25"
     },
     {
         "family": "micropython",
@@ -4757,7 +4757,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "e4c000180d8e2749539e253d50be0796"
+        "hash": "bafdc7c7"
     },
     {
         "family": "micropython",
@@ -4767,7 +4767,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "9fabda7e951bdb386ab333e4c5a19bd1"
+        "hash": "9e64e620"
     },
     {
         "family": "micropython",
@@ -4777,7 +4777,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "1ba7cbeac6a2ad9c5f7794c27712c052"
+        "hash": "c71885b5"
     },
     {
         "family": "micropython",
@@ -4787,7 +4787,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "7f9568803d5287b9e4456a21a9c642cc"
+        "hash": "862aec4b"
     },
     {
         "family": "micropython",
@@ -4797,7 +4797,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "7c72d278ab6534669f1091113d5700cb"
+        "hash": "b72dc0d1"
     },
     {
         "family": "micropython",
@@ -4807,7 +4807,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "e743b6781d2caa0efba1bc1dbdfb554e"
+        "hash": "3a8370d6"
     },
     {
         "family": "micropython",
@@ -4817,7 +4817,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "9f99444dfef14ce7e7c78dd315ea7fc1"
+        "hash": "60cd6062"
     },
     {
         "family": "micropython",
@@ -4827,7 +4827,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -4837,7 +4837,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "c7d8e4d068d73d3f7bddc07c30f468c2"
+        "hash": "28738207"
     },
     {
         "family": "micropython",
@@ -4847,7 +4847,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "d3468931a8dbc73aa4c793983ec17c70"
+        "hash": "168404b3"
     },
     {
         "family": "micropython",
@@ -4857,7 +4857,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "b744712c081a426a6667b8f61c8fb800"
+        "hash": "6f3bb6e3"
     },
     {
         "family": "micropython",
@@ -4867,7 +4867,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "207a2360447e3c90a41a0b8b2b46c62e"
+        "hash": "a98e789b"
     },
     {
         "family": "micropython",
@@ -4877,7 +4877,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -4887,7 +4887,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -4897,7 +4897,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "a843552d7a836a62fb89c7edbe6bd50d"
+        "hash": "87992788"
     },
     {
         "family": "micropython",
@@ -4907,7 +4907,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -4917,7 +4917,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "790c907116fb6ec61ac510783897cf9a"
+        "hash": "87e8681c"
     },
     {
         "family": "micropython",
@@ -4927,7 +4927,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "c7cc269e6da346986eabce4495140316"
+        "hash": "0eb9d17f"
     },
     {
         "family": "micropython",
@@ -4937,7 +4937,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "49c5a41e41eda7c824dfdd98088aa84c"
+        "hash": "1516a4ac"
     },
     {
         "family": "micropython",
@@ -4947,7 +4947,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "c834ab186281f1e203d000216eed0137"
+        "hash": "348ce54f"
     },
     {
         "family": "micropython",
@@ -4957,7 +4957,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "fe016f776600c8ee2ae501b59ce1cc98"
+        "hash": "91a01c2d"
     },
     {
         "family": "micropython",
@@ -4967,7 +4967,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "4116133a621fe34b6d6da22e076a1b90"
+        "hash": "ea792822"
     },
     {
         "family": "micropython",
@@ -4977,7 +4977,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "9a2d806b87750831fb8e2f6ab67d51c6"
+        "hash": "4c5e3d38"
     },
     {
         "family": "micropython",
@@ -4987,7 +4987,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "78c6efa096fd422fca116760d81cf336"
+        "hash": "621c77a4"
     },
     {
         "family": "micropython",
@@ -4997,7 +4997,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "3e8933f680d3a24d14f216affb85446c"
+        "hash": "ab0dea84"
     },
     {
         "family": "micropython",
@@ -5007,7 +5007,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "7c9e114f0ca5f20a904b0711c04f970f"
+        "hash": "2d6a98a2"
     },
     {
         "family": "micropython",
@@ -5017,7 +5017,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "a4c7cfde86a74cec30d9ac90e7cbda79"
+        "hash": "f03e2ace"
     },
     {
         "family": "micropython",
@@ -5027,7 +5027,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -5037,7 +5037,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "a044aeeb64a33b44f8981693837747d7"
+        "hash": "012aeccb"
     },
     {
         "family": "micropython",
@@ -5047,7 +5047,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "bbe2fbfdadacc3fe4cc1b317a5c191ca"
+        "hash": "62394985"
     },
     {
         "family": "micropython",
@@ -5057,7 +5057,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f428a62fd722b602b8ffddc3e4341d98"
+        "hash": "fd7e0862"
     },
     {
         "family": "micropython",
@@ -5067,7 +5067,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "aabd7d411203b7af015f66628ae2184d"
+        "hash": "09244d7d"
     },
     {
         "family": "micropython",
@@ -5077,7 +5077,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -5087,7 +5087,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "1ba7cbeac6a2ad9c5f7794c27712c052"
+        "hash": "c71885b5"
     },
     {
         "family": "micropython",
@@ -5097,7 +5097,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "7f9568803d5287b9e4456a21a9c642cc"
+        "hash": "862aec4b"
     },
     {
         "family": "micropython",
@@ -5107,7 +5107,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "01fd667968a7f394ddfe2bc730dea775"
+        "hash": "21edd057"
     },
     {
         "family": "micropython",
@@ -5117,7 +5117,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "3fd004d420491f2745eadcadd3068f20"
+        "hash": "c977f435"
     },
     {
         "family": "micropython",
@@ -5127,7 +5127,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "5f50191c6ce4d8706bd0c3ea58624144"
+        "hash": "f8961001"
     },
     {
         "family": "micropython",
@@ -5137,7 +5137,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -5147,7 +5147,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -5157,7 +5157,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -5167,7 +5167,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "a2ee22094963656da84c4bffaa13d4b4"
+        "hash": "38198b72"
     },
     {
         "family": "micropython",
@@ -5177,7 +5177,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -5187,7 +5187,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "c7cc269e6da346986eabce4495140316"
+        "hash": "0eb9d17f"
     },
     {
         "family": "micropython",
@@ -5197,7 +5197,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "3e8933f680d3a24d14f216affb85446c"
+        "hash": "ab0dea84"
     },
     {
         "family": "micropython",
@@ -5207,7 +5207,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f3f0ccd9eeba2a4396a4514648bb92df"
+        "hash": "5d1f6dac"
     },
     {
         "family": "micropython",
@@ -5217,7 +5217,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "957919dd7e0511d49f116b40f7de1bdd"
+        "hash": "13d51f35"
     },
     {
         "family": "micropython",
@@ -5227,7 +5227,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "a4c7cfde86a74cec30d9ac90e7cbda79"
+        "hash": "f03e2ace"
     },
     {
         "family": "micropython",
@@ -5237,7 +5237,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "363fe396a97a5bfd87b047f301bb802a"
+        "hash": "e540d7b7"
     },
     {
         "family": "micropython",
@@ -5247,7 +5247,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -5257,7 +5257,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "a044aeeb64a33b44f8981693837747d7"
+        "hash": "012aeccb"
     },
     {
         "family": "micropython",
@@ -5267,7 +5267,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "bbe2fbfdadacc3fe4cc1b317a5c191ca"
+        "hash": "62394985"
     },
     {
         "family": "micropython",
@@ -5277,7 +5277,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f428a62fd722b602b8ffddc3e4341d98"
+        "hash": "fd7e0862"
     },
     {
         "family": "micropython",
@@ -5287,7 +5287,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "aabd7d411203b7af015f66628ae2184d"
+        "hash": "09244d7d"
     },
     {
         "family": "micropython",
@@ -5297,7 +5297,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -5307,7 +5307,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "a2b3d532cd7e299a8c3c977aa9097a3e"
+        "hash": "a45a782e"
     },
     {
         "family": "micropython",
@@ -5317,7 +5317,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -5327,7 +5327,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -5337,7 +5337,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "0af36d8f11b04a1c879314307fa9f9c3"
+        "hash": "264452e1"
     },
     {
         "family": "micropython",
@@ -5347,7 +5347,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "a3e7a44166a2bbae0e43f237efccd8d1"
+        "hash": "a653b8ff"
     },
     {
         "family": "micropython",
@@ -5357,7 +5357,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -5367,7 +5367,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "8b1b0a6a0ee6d326d5c827b37881fc10"
+        "hash": "1d26fdf3"
     },
     {
         "family": "micropython",
@@ -5377,7 +5377,7 @@
         "board": "GENERIC",
         "package": "micropython-esp8266-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -5387,7 +5387,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "c9e1d0afae62c3cae9c5050469beaeb5"
+        "hash": "dcc350d3"
     },
     {
         "family": "micropython",
@@ -5397,7 +5397,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "c9e1d0afae62c3cae9c5050469beaeb5"
+        "hash": "dcc350d3"
     },
     {
         "family": "micropython",
@@ -5407,7 +5407,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "e4c000180d8e2749539e253d50be0796"
+        "hash": "bafdc7c7"
     },
     {
         "family": "micropython",
@@ -5417,7 +5417,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "b4083597128541ccf48f7fb4683d2912"
+        "hash": "3646673c"
     },
     {
         "family": "micropython",
@@ -5427,7 +5427,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "3cca5e1fef67d7d4ccd39d840b49eb94"
+        "hash": "6a4ae6cd"
     },
     {
         "family": "micropython",
@@ -5437,7 +5437,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "f65a8362dc890afebb34e752375d10ea"
+        "hash": "1bfcb2a0"
     },
     {
         "family": "micropython",
@@ -5447,7 +5447,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "5f270346e3fdf628c24044278459274c"
+        "hash": "549d4aed"
     },
     {
         "family": "micropython",
@@ -5457,7 +5457,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "e819733e6f02ef736a6a4f5b3c411f2a"
+        "hash": "c0cbac23"
     },
     {
         "family": "micropython",
@@ -5467,7 +5467,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "1b7a5dea96452243c4693ef2fc3db3f9"
+        "hash": "34ab3a44"
     },
     {
         "family": "micropython",
@@ -5477,7 +5477,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "61b23c4af042295e3fa98dddea3d702d"
+        "hash": "a79125bd"
     },
     {
         "family": "micropython",
@@ -5487,7 +5487,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "760e7a63f5665378acd34854f1d2a600"
+        "hash": "2ba37518"
     },
     {
         "family": "micropython",
@@ -5497,7 +5497,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "bd23bb0b6721238777571abadf326cc4"
+        "hash": "ef1f73fb"
     },
     {
         "family": "micropython",
@@ -5507,7 +5507,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "b033edf6a381e44af24aed35bf6a78c7"
+        "hash": "a90f441d"
     },
     {
         "family": "micropython",
@@ -5517,7 +5517,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "f551a060f020b2fa77909f8b7c25761a"
+        "hash": "cd3e70a9"
     },
     {
         "family": "micropython",
@@ -5527,7 +5527,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "1ba7cbeac6a2ad9c5f7794c27712c052"
+        "hash": "c71885b5"
     },
     {
         "family": "micropython",
@@ -5537,7 +5537,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -5547,7 +5547,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "664cfd7e5d7b7d72486398b855fac96e"
+        "hash": "072077f5"
     },
     {
         "family": "micropython",
@@ -5557,7 +5557,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "e743b6781d2caa0efba1bc1dbdfb554e"
+        "hash": "3a8370d6"
     },
     {
         "family": "micropython",
@@ -5567,7 +5567,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "9f99444dfef14ce7e7c78dd315ea7fc1"
+        "hash": "60cd6062"
     },
     {
         "family": "micropython",
@@ -5577,7 +5577,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -5587,7 +5587,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "b744712c081a426a6667b8f61c8fb800"
+        "hash": "6f3bb6e3"
     },
     {
         "family": "micropython",
@@ -5597,7 +5597,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "207a2360447e3c90a41a0b8b2b46c62e"
+        "hash": "a98e789b"
     },
     {
         "family": "micropython",
@@ -5607,7 +5607,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -5617,7 +5617,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -5627,7 +5627,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -5637,7 +5637,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "e6334327458f663470034c05470baa37"
+        "hash": "c65bc275"
     },
     {
         "family": "micropython",
@@ -5647,7 +5647,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "501ed9dbcc007570554cc5371d794b90"
+        "hash": "275ae0a1"
     },
     {
         "family": "micropython",
@@ -5657,7 +5657,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "b3aa4238a0826955102767b4e9778e40"
+        "hash": "0efb90af"
     },
     {
         "family": "micropython",
@@ -5667,7 +5667,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "c834ab186281f1e203d000216eed0137"
+        "hash": "348ce54f"
     },
     {
         "family": "micropython",
@@ -5677,7 +5677,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "fe016f776600c8ee2ae501b59ce1cc98"
+        "hash": "91a01c2d"
     },
     {
         "family": "micropython",
@@ -5687,7 +5687,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "15ccf103c8384ef7fe4d6c66b2b2c25b"
+        "hash": "4380b92f"
     },
     {
         "family": "micropython",
@@ -5697,7 +5697,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "78c6efa096fd422fca116760d81cf336"
+        "hash": "621c77a4"
     },
     {
         "family": "micropython",
@@ -5707,7 +5707,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "4773621e75ae9ea9b64a84af278c1150"
+        "hash": "aabd828c"
     },
     {
         "family": "micropython",
@@ -5717,7 +5717,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -5727,7 +5727,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "30e2e40a208b7a497287fc5ef47afd69"
+        "hash": "e74cf5ea"
     },
     {
         "family": "micropython",
@@ -5737,7 +5737,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -5747,7 +5747,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "888a2d74bc9e51caf9a0a21a05b2c4ce"
+        "hash": "20c3732d"
     },
     {
         "family": "micropython",
@@ -5757,7 +5757,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "f428a62fd722b602b8ffddc3e4341d98"
+        "hash": "fd7e0862"
     },
     {
         "family": "micropython",
@@ -5767,7 +5767,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -5777,7 +5777,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -5787,7 +5787,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "1ba7cbeac6a2ad9c5f7794c27712c052"
+        "hash": "c71885b5"
     },
     {
         "family": "micropython",
@@ -5797,7 +5797,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "d46fb9aa0b1488ab4021fa3028011833"
+        "hash": "3740979c"
     },
     {
         "family": "micropython",
@@ -5807,7 +5807,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "f880b9a256a80d5526f0b68ef9ecfb50"
+        "hash": "e200d609"
     },
     {
         "family": "micropython",
@@ -5817,7 +5817,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "1e0c2b373fa9851a5a6988b78eb71124"
+        "hash": "8de46ef2"
     },
     {
         "family": "micropython",
@@ -5827,7 +5827,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "75eedb98a87f8d41c9b581e2db39d402"
+        "hash": "d1c27cc2"
     },
     {
         "family": "micropython",
@@ -5837,7 +5837,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "3b804550de230d73036a5d2f7c8fd69b"
+        "hash": "d31b5ccc"
     },
     {
         "family": "micropython",
@@ -5847,7 +5847,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "282c02dee7d87efd6faf4d25ba41154e"
+        "hash": "6e3577f1"
     },
     {
         "family": "micropython",
@@ -5857,7 +5857,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "92919846085d32e7ecf161a47d287df1"
+        "hash": "d00797bc"
     },
     {
         "family": "micropython",
@@ -5867,7 +5867,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -5877,7 +5877,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "080b685c96cbcdbf0aa8e9633461ce47"
+        "hash": "248e8d49"
     },
     {
         "family": "micropython",
@@ -5887,7 +5887,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "01fd667968a7f394ddfe2bc730dea775"
+        "hash": "21edd057"
     },
     {
         "family": "micropython",
@@ -5897,7 +5897,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "3fd004d420491f2745eadcadd3068f20"
+        "hash": "c977f435"
     },
     {
         "family": "micropython",
@@ -5907,7 +5907,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "5f50191c6ce4d8706bd0c3ea58624144"
+        "hash": "f8961001"
     },
     {
         "family": "micropython",
@@ -5917,7 +5917,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -5927,7 +5927,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "af36ad6937ba9e3227818206baa337ed"
+        "hash": "7b4a3e2a"
     },
     {
         "family": "micropython",
@@ -5937,7 +5937,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -5947,7 +5947,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "a2ee22094963656da84c4bffaa13d4b4"
+        "hash": "38198b72"
     },
     {
         "family": "micropython",
@@ -5957,7 +5957,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -5967,7 +5967,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "501ed9dbcc007570554cc5371d794b90"
+        "hash": "275ae0a1"
     },
     {
         "family": "micropython",
@@ -5977,7 +5977,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "4773621e75ae9ea9b64a84af278c1150"
+        "hash": "aabd828c"
     },
     {
         "family": "micropython",
@@ -5987,7 +5987,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -5997,7 +5997,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "363fe396a97a5bfd87b047f301bb802a"
+        "hash": "e540d7b7"
     },
     {
         "family": "micropython",
@@ -6007,7 +6007,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -6017,7 +6017,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "888a2d74bc9e51caf9a0a21a05b2c4ce"
+        "hash": "20c3732d"
     },
     {
         "family": "micropython",
@@ -6027,7 +6027,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "f428a62fd722b602b8ffddc3e4341d98"
+        "hash": "fd7e0862"
     },
     {
         "family": "micropython",
@@ -6037,7 +6037,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -6047,7 +6047,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -6057,7 +6057,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -6067,7 +6067,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -6077,7 +6077,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "736c80f209c7a274e51d7ee483b30d2b"
+        "hash": "59b7b6af"
     },
     {
         "family": "micropython",
@@ -6087,7 +6087,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "92e2fc43f21c23bc4149050aabf36f77"
+        "hash": "c8b729d9"
     },
     {
         "family": "micropython",
@@ -6097,7 +6097,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.19.1.post12",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -6107,7 +6107,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "e4c000180d8e2749539e253d50be0796"
+        "hash": "bafdc7c7"
     },
     {
         "family": "micropython",
@@ -6117,7 +6117,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f65a8362dc890afebb34e752375d10ea"
+        "hash": "1bfcb2a0"
     },
     {
         "family": "micropython",
@@ -6127,7 +6127,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "1ba7cbeac6a2ad9c5f7794c27712c052"
+        "hash": "c71885b5"
     },
     {
         "family": "micropython",
@@ -6137,7 +6137,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -6147,7 +6147,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "664cfd7e5d7b7d72486398b855fac96e"
+        "hash": "072077f5"
     },
     {
         "family": "micropython",
@@ -6157,7 +6157,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "e743b6781d2caa0efba1bc1dbdfb554e"
+        "hash": "3a8370d6"
     },
     {
         "family": "micropython",
@@ -6167,7 +6167,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -6177,7 +6177,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "b744712c081a426a6667b8f61c8fb800"
+        "hash": "6f3bb6e3"
     },
     {
         "family": "micropython",
@@ -6187,7 +6187,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "207a2360447e3c90a41a0b8b2b46c62e"
+        "hash": "a98e789b"
     },
     {
         "family": "micropython",
@@ -6197,7 +6197,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "0e4172c6bfedfc227e5ef58667bddc35"
+        "hash": "b10a8036"
     },
     {
         "family": "micropython",
@@ -6207,7 +6207,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -6217,7 +6217,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -6227,7 +6227,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "7d6bf291ad7edc23c9d1432fe0434c90"
+        "hash": "af1c2cda"
     },
     {
         "family": "micropython",
@@ -6237,7 +6237,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "4d2b5b4eeb6cbe3181e37cb665a11a8f"
+        "hash": "7724a0bf"
     },
     {
         "family": "micropython",
@@ -6247,7 +6247,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "ed1f374d1d66aba91041026c932cb51a"
+        "hash": "80c8653c"
     },
     {
         "family": "micropython",
@@ -6257,7 +6257,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "b3aa4238a0826955102767b4e9778e40"
+        "hash": "0efb90af"
     },
     {
         "family": "micropython",
@@ -6267,7 +6267,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "c834ab186281f1e203d000216eed0137"
+        "hash": "348ce54f"
     },
     {
         "family": "micropython",
@@ -6277,7 +6277,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "5b7b0aa0507d1b19f3e69c89c3cf3e4a"
+        "hash": "ac823c40"
     },
     {
         "family": "micropython",
@@ -6287,7 +6287,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "78c6efa096fd422fca116760d81cf336"
+        "hash": "621c77a4"
     },
     {
         "family": "micropython",
@@ -6297,7 +6297,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "9888fcbfbf95d5d93df648ff4280c783"
+        "hash": "3dc26a80"
     },
     {
         "family": "micropython",
@@ -6307,7 +6307,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "9d219fc4354f08c35e9411d184b97651"
+        "hash": "617e2ae4"
     },
     {
         "family": "micropython",
@@ -6317,7 +6317,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "280334c4f9d8b2d2d101cc135c2ddf4e"
+        "hash": "b8637419"
     },
     {
         "family": "micropython",
@@ -6327,7 +6327,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -6337,7 +6337,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -6347,7 +6347,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "888a2d74bc9e51caf9a0a21a05b2c4ce"
+        "hash": "20c3732d"
     },
     {
         "family": "micropython",
@@ -6357,7 +6357,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "1fc90a21c68a1d0ed3d9f47555d47662"
+        "hash": "0c65335e"
     },
     {
         "family": "micropython",
@@ -6367,7 +6367,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f428a62fd722b602b8ffddc3e4341d98"
+        "hash": "fd7e0862"
     },
     {
         "family": "micropython",
@@ -6377,7 +6377,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -6387,7 +6387,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -6397,7 +6397,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "1ba7cbeac6a2ad9c5f7794c27712c052"
+        "hash": "c71885b5"
     },
     {
         "family": "micropython",
@@ -6407,7 +6407,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "d46fb9aa0b1488ab4021fa3028011833"
+        "hash": "3740979c"
     },
     {
         "family": "micropython",
@@ -6417,7 +6417,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f880b9a256a80d5526f0b68ef9ecfb50"
+        "hash": "e200d609"
     },
     {
         "family": "micropython",
@@ -6427,7 +6427,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "1e0c2b373fa9851a5a6988b78eb71124"
+        "hash": "8de46ef2"
     },
     {
         "family": "micropython",
@@ -6437,7 +6437,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "75eedb98a87f8d41c9b581e2db39d402"
+        "hash": "d1c27cc2"
     },
     {
         "family": "micropython",
@@ -6447,7 +6447,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "3b804550de230d73036a5d2f7c8fd69b"
+        "hash": "d31b5ccc"
     },
     {
         "family": "micropython",
@@ -6457,7 +6457,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "282c02dee7d87efd6faf4d25ba41154e"
+        "hash": "6e3577f1"
     },
     {
         "family": "micropython",
@@ -6467,7 +6467,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "92919846085d32e7ecf161a47d287df1"
+        "hash": "d00797bc"
     },
     {
         "family": "micropython",
@@ -6477,7 +6477,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "59c11bc28cbe5931563c02d2b5220747"
+        "hash": "1dabd900"
     },
     {
         "family": "micropython",
@@ -6487,7 +6487,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "01fd667968a7f394ddfe2bc730dea775"
+        "hash": "21edd057"
     },
     {
         "family": "micropython",
@@ -6497,7 +6497,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "5f50191c6ce4d8706bd0c3ea58624144"
+        "hash": "f8961001"
     },
     {
         "family": "micropython",
@@ -6507,7 +6507,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "455d6b413e14f4c08ae7af98fea224bd"
+        "hash": "df817434"
     },
     {
         "family": "micropython",
@@ -6517,7 +6517,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "0e4172c6bfedfc227e5ef58667bddc35"
+        "hash": "b10a8036"
     },
     {
         "family": "micropython",
@@ -6527,7 +6527,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "644ccc12888350bb16b44b2a07364e37"
+        "hash": "c8784b47"
     },
     {
         "family": "micropython",
@@ -6537,7 +6537,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "a2ee22094963656da84c4bffaa13d4b4"
+        "hash": "38198b72"
     },
     {
         "family": "micropython",
@@ -6547,7 +6547,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "02b4837f7cb1d469fa33c25b63845ba2"
+        "hash": "06443a58"
     },
     {
         "family": "micropython",
@@ -6557,7 +6557,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "ed1f374d1d66aba91041026c932cb51a"
+        "hash": "80c8653c"
     },
     {
         "family": "micropython",
@@ -6567,7 +6567,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "9888fcbfbf95d5d93df648ff4280c783"
+        "hash": "3dc26a80"
     },
     {
         "family": "micropython",
@@ -6577,7 +6577,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "9d219fc4354f08c35e9411d184b97651"
+        "hash": "617e2ae4"
     },
     {
         "family": "micropython",
@@ -6587,7 +6587,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "421ed0af0599affcd0869995118b2cb2"
+        "hash": "17f21cb7"
     },
     {
         "family": "micropython",
@@ -6597,7 +6597,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "363fe396a97a5bfd87b047f301bb802a"
+        "hash": "e540d7b7"
     },
     {
         "family": "micropython",
@@ -6607,7 +6607,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "ac4d96344afd3b38711a4b4179cd5173"
+        "hash": "fdadfa38"
     },
     {
         "family": "micropython",
@@ -6617,7 +6617,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "888a2d74bc9e51caf9a0a21a05b2c4ce"
+        "hash": "20c3732d"
     },
     {
         "family": "micropython",
@@ -6627,7 +6627,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f428a62fd722b602b8ffddc3e4341d98"
+        "hash": "fd7e0862"
     },
     {
         "family": "micropython",
@@ -6637,7 +6637,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "1ad59bfb3820b8d5e77dfade4aee84ac"
+        "hash": "10e6cf32"
     },
     {
         "family": "micropython",
@@ -6647,7 +6647,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "45b2644948b03e894ace2264747ad53c"
+        "hash": "3cb07881"
     },
     {
         "family": "micropython",
@@ -6657,7 +6657,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "a2b3d532cd7e299a8c3c977aa9097a3e"
+        "hash": "a45a782e"
     },
     {
         "family": "micropython",
@@ -6667,7 +6667,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     },
     {
         "family": "micropython",
@@ -6677,6 +6677,6 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
-        "hash": "f8ee89afa47ae194d6707661e434ca56"
+        "hash": "b5f67f22"
     }
 ]

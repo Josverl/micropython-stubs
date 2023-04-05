@@ -29,7 +29,7 @@ ADD_STDLIB = False
 def partialhash(file:Path):
     with open(file, "rb") as f:
         # read by line and hash
-        md5 = hashlib.md5()
+        md5 = hashlib.blake2b(digest_size=4)
         # skip the module docstring and initial comments
         l = 0
         for line in f:
