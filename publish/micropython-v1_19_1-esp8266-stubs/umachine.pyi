@@ -392,6 +392,13 @@ class Pin:
         """
         ...
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None: ...
+    def __call__(self, x: Optional[Any] = None) -> Any:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
+        ...
 
 mem8: Any
 mem32: Any
@@ -861,7 +868,7 @@ class SPI:
         ...
     def __init__(self, id, *args, **kwargs) -> None: ...
 
-class SoftI2C:
+class SoftI2C(I2C):
     """
     Construct a new software I2C object.  The parameters are:
 
@@ -889,7 +896,7 @@ class SoftI2C:
     def write(self, *args, **kwargs) -> Any: ...
     def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
 
-class Signal:
+class Signal(Pin):
     """
             Signal(pin_arguments..., *, invert=False)
 

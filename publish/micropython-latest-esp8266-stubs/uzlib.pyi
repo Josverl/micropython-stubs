@@ -21,7 +21,7 @@ def decompress(data, wbits=0, bufsize=0, /) -> bytes:
     """
     ...
 
-class DecompIO:
+class DecompIO(IO):
     """
     Create a `stream` wrapper which allows transparent decompression of
     compressed data in another *stream*. This allows to process compressed

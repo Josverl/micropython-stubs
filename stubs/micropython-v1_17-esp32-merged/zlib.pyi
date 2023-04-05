@@ -10,7 +10,7 @@ is not yet implemented.
 """
 from typing import IO, Any
 
-class DecompIO:
+class DecompIO(IO):
     """
     Create a `stream` wrapper which allows transparent decompression of
     compressed data in another *stream*. This allows to process compressed

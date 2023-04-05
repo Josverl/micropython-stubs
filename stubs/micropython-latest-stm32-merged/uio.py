@@ -62,7 +62,7 @@ class TextIOWrapper:
         ...
 
 
-class StringIO:
+class StringIO(IO):
     def write(self, *args, **kwargs) -> Any:
         ...
 
@@ -105,7 +105,7 @@ class BufferedWriter:
         ...
 
 
-class FileIO:
+class FileIO(IO):
     """
     This is type of a file open in binary mode, e.g. using ``open(name, "rb")``.
     You should not instantiate this class directly.
@@ -142,7 +142,7 @@ class FileIO:
         ...
 
 
-class BytesIO:
+class BytesIO(IO):
     """
     In-memory file-like objects for input/output. `StringIO` is used for
     text-mode I/O (similar to a normal file opened with "t" modifier).
