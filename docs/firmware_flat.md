@@ -48,7 +48,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |documentation| micropython| v1.17| -| micropython| 47| 1.13.1.post1|[stubs/micropython-v1_17-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_17-docstubs)
 |documentation| micropython| v1.18| -| micropython| 49| 1.13.1.post1|[stubs/micropython-v1_18-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-docstubs)
 |documentation| micropython| v1.19| -| micropython| 50| 1.13.1.post1|[stubs/micropython-v1_19-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19-docstubs)
-|documentation| micropython| v1.19.1| -| micropython| 50| 1.13.1.post1|[stubs/micropython-v1_19_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-docstubs)
+|documentation| micropython| v1.19.1| -| micropython| 50| 1.13.2.post2|[stubs/micropython-v1_19_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-docstubs)
 |frozen| loboris| v3.2.24| esp32| loboris| 17| 1.5.5a2|[stubs/loboris-v3_2_24-frozen](https://github.com/Josverl/micropython-stubs/tree/main/stubs/loboris-v3_2_24-frozen)
 |frozen| micropython| latest| esp32| GENERIC| 24| 1.13.2.post2|[stubs/micropython-latest-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/GENERIC)
 |frozen| micropython| latest| esp32| LILYGO_TTGO_LORA32| 27| 1.13.2.post2|[stubs/micropython-latest-frozen/esp32/LILYGO_TTGO_LORA32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/LILYGO_TTGO_LORA32)
