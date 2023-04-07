@@ -33,6 +33,20 @@ class sha256:
 
     def __init__(self, data: Optional[Any] = None) -> None: ...
 
+class sha1:
+    """
+    Create an SHA1 hasher object and optionally feed ``data`` into it.
+    """
+
+    def __init__(self, data: Optional[Any] = None) -> None: ...
+
+class md5:
+    """
+    Create an MD5 hasher object and optionally feed ``data`` into it.
+    """
+
+    def __init__(self, data: Optional[Any] = None) -> None: ...
+
 class hash:
     """ """
 
@@ -53,17 +67,3 @@ class hash:
         to achieve a similar effect.
         """
         ...
-
-class sha1(hash):
-    """
-    Create an SHA1 hasher object and optionally feed ``data`` into it.
-    """
-
-    def __init__(self, data: Optional[Any] = None) -> None: ...
-
-class md5(hash):
-    """
-    Create an MD5 hasher object and optionally feed ``data`` into it.
-    """
-
-    def __init__(self, data: Optional[Any] = None) -> None: ...
