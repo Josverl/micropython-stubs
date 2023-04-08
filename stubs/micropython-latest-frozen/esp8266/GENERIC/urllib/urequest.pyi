@@ -1,3 +1,0 @@
-from _typeshed import Incomplete
-
-def urlopen(url, data: Incomplete | None = ..., method: str = ...): ...
