@@ -1,0 +1,28 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "teensy",
+        "platform": "teensy",
+        "machine": "GENERIC",
+        "firmware": "micropython-teensy-v1_20",
+        "nodename": "micropython",
+        "version": "v1.20",
+        "release": "v1.20",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.13.3",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "boot.py",
+            "module": "boot"
+        },
+        {
+            "file": "main.py",
+            "module": "main"
+        }
+    ]
+}

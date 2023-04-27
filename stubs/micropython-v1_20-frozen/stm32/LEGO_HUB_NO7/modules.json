@@ -1,0 +1,68 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "stm32",
+        "platform": "stm32",
+        "machine": "LEGO_HUB_NO7",
+        "firmware": "micropython-stm32-v1_20",
+        "nodename": "micropython",
+        "version": "v1.20",
+        "release": "v1.20",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.13.3",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "appupdate.py",
+            "module": "appupdate"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "fwupdate.py",
+            "module": "fwupdate"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "spiflash.py",
+            "module": "spiflash"
+        },
+        {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "uasyncio/task.py",
+            "module": "task"
+        }
+    ]
+}
