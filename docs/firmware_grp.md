@@ -204,6 +204,24 @@
 |micropython |v1.19.1 |frozen  |teensy|GENERIC|2|1.13.3|[stubs/micropython-v1_19_1-frozen/teensy/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/teensy/GENERIC)
 |micropython |v1.19.1 |frozen  |unix|GENERIC|9|1.13.3|[stubs/micropython-v1_19_1-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/unix/GENERIC)
 |micropython |v1.19.1 |frozen  |windows|GENERIC|7|1.13.3|[stubs/micropython-v1_19_1-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/windows/GENERIC)
+|micropython |v1.20   |frozen  |esp8266|GENERIC_512K|10|1.13.3|[stubs/micropython-v1_20-frozen/esp8266/GENERIC_512K](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/esp8266/GENERIC_512K)
+|micropython |v1.20   |frozen  |mimxrt|GENERIC|11|1.13.3|[stubs/micropython-v1_20-frozen/mimxrt/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/mimxrt/GENERIC)
+|micropython |v1.20   |frozen  |nrf|ARDUINO_NANO_33_BLE_SENSE|15|1.13.3|[stubs/micropython-v1_20-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE)
+|micropython |v1.20   |frozen  |nrf|GENERIC|8|1.13.3|[stubs/micropython-v1_20-frozen/nrf/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/nrf/GENERIC)
+|micropython |v1.20   |frozen  |renesas-ra|GENERIC|10|1.13.3|[stubs/micropython-v1_20-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/renesas-ra/GENERIC)
+|micropython |v1.20   |frozen  |renesas-ra|RA4M1_CLICKER|1|1.13.3|[stubs/micropython-v1_20-frozen/renesas-ra/RA4M1_CLICKER](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/renesas-ra/RA4M1_CLICKER)
+|micropython |v1.20   |frozen  |renesas-ra|RA4M1_EK|1|1.13.3|[stubs/micropython-v1_20-frozen/renesas-ra/RA4M1_EK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/renesas-ra/RA4M1_EK)
+|micropython |v1.20   |frozen  |rp2|GENERIC|14|1.13.3|[stubs/micropython-v1_20-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/rp2/GENERIC)
+|micropython |v1.20   |frozen  |rp2|NULLBITS_BIT_C_PRO|15|1.13.3|[stubs/micropython-v1_20-frozen/rp2/NULLBITS_BIT_C_PRO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/rp2/NULLBITS_BIT_C_PRO)
+|micropython |v1.20   |frozen  |rp2|WEACTSTUDIO|15|1.13.3|[stubs/micropython-v1_20-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/rp2/WEACTSTUDIO)
+|micropython |v1.20   |frozen  |samd|GENERIC|11|1.13.3|[stubs/micropython-v1_20-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/samd/GENERIC)
+|micropython |v1.20   |frozen  |stm32|GARATRONIC_PYBSTICK26_F411|1|1.13.3|[stubs/micropython-v1_20-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
+|micropython |v1.20   |frozen  |stm32|GENERIC|9|1.13.3|[stubs/micropython-v1_20-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/stm32/GENERIC)
+|micropython |v1.20   |frozen  |stm32|LEGO_HUB_NO6|12|1.13.3|[stubs/micropython-v1_20-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/stm32/LEGO_HUB_NO6)
+|micropython |v1.20   |frozen  |stm32|LEGO_HUB_NO7|12|1.13.3|[stubs/micropython-v1_20-frozen/stm32/LEGO_HUB_NO7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/stm32/LEGO_HUB_NO7)
+|micropython |v1.20   |frozen  |stm32|PYBV10|10|1.13.3|[stubs/micropython-v1_20-frozen/stm32/PYBV10](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/stm32/PYBV10)
+|micropython |v1.20   |frozen  |teensy|GENERIC|2|1.13.3|[stubs/micropython-v1_20-frozen/teensy/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/teensy/GENERIC)
+|micropython |v1.20   |frozen  |windows|GENERIC|7|1.13.3|[stubs/micropython-v1_20-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20-frozen/windows/GENERIC)
 |micropython |v1.9.3  |frozen  |esp8266|micropython|15|1.8.0|[stubs/micropython-v1_9_3-frozen/esp8266/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-frozen/esp8266/GENERIC)
 |micropython |v1.9.3  |frozen  |stm32|micropython|3|1.8.0|[stubs/micropython-v1_9_3-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-frozen/stm32/GENERIC)
 |micropython |v1.9.3  |frozen  |unix|micropython|2|1.8.0|[stubs/micropython-v1_9_3-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-frozen/unix/GENERIC)
@@ -259,4 +277,4 @@
 
 ## Metrics
 
-Total stub modules:  5330
+Total stub modules:  5494
