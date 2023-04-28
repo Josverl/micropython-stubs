@@ -4,7 +4,7 @@
         "family": "micropython",
         "port": "renesas-ra",
         "platform": "renesas-ra",
-        "machine": "RA4M1_EK",
+        "machine": "EK_RA4M1",
         "firmware": "micropython-renesas-ra-latest",
         "nodename": "micropython",
         "version": "latest",
