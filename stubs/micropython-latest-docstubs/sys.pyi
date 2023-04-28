@@ -117,7 +117,7 @@ def print_exception(exc, file=stdout, /) -> None:
 def settrace(tracefunc) -> None:
     """
     Enable tracing of bytecode execution.  For details see the `CPython
-    documentaion `<https://docs.python.org/3/library/sys.html#sys.settrace>.
+    documentation `<https://docs.python.org/3/library/sys.html#sys.settrace>.
 
     This function requires a custom MicroPython build as it is typically not
     present in pre-built firmware (due to it affecting performance).  The relevant

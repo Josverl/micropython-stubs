@@ -39,7 +39,7 @@ class BLE:
         """
         Get or set configuration values of the BLE interface.  To get a value the
         parameter name should be quoted as a string, and just one parameter is
-        queried at a time.  To set values use the keyword syntax, and one ore more
+        queried at a time.  To set values use the keyword syntax, and one or more
         parameter can be set at a time.
 
         Currently supported values are:
@@ -176,12 +176,10 @@ class BLE:
                         conn_handle, value_handle, char_data = data
                     elif event == _IRQ_GATTC_READ_DONE:
                         # A gattc_read() has completed.
-                        # Note: The value_handle will be zero on btstack (but present on NimBLE).
                         # Note: Status will be zero on success, implementation-specific value otherwise.
                         conn_handle, value_handle, status = data
                     elif event == _IRQ_GATTC_WRITE_DONE:
                         # A gattc_write() has completed.
-                        # Note: The value_handle will be zero on btstack (but present on NimBLE).
                         # Note: Status will be zero on success, implementation-specific value otherwise.
                         conn_handle, value_handle, status = data
                     elif event == _IRQ_GATTC_NOTIFY:
@@ -467,20 +465,25 @@ class BLE:
         """
         Sends a notification request to a connected client.
 
-        If *data* is not ``None``, then that value is sent to the client as part of
-        the notification. The local value will not be modified.
+        If *data* is ``None`` (the default), then the current local value (as set
+        with :meth:`gatts_write <BLE.gatts_write>`) will be sent.
 
-        Otherwise, if *data* is ``None``, then the current local value (as
-        set with :meth:`gatts_write <BLE.gatts_write>`) will be sent.
+        Otherwise, if *data* is not ``None``, then that value is sent to the client
+        as part of the notification. The local value will not be modified.
 
         **Note:** The notification will be sent regardless of the subscription
         status of the client to this characteristic.
         """
         ...
-    def gatts_indicate(self, conn_handle, value_handle, /) -> None:
+    def gatts_indicate(self, conn_handle, value_handle, data=None, /) -> None:
         """
-        Sends an indication request containing the characteristic's current value to
-        a connected client.
+        Sends a indication request to a connected client.
+
+        If *data* is ``None`` (the default), then the current local value (as set
+        with :meth:`gatts_write <BLE.gatts_write>`) will be sent.
+
+        Otherwise, if *data* is not ``None``, then that value is sent to the client
+        as part of the indication. The local value will not be modified.
 
         On acknowledgment (or failure, e.g. timeout), the
         ``_IRQ_GATTS_INDICATE_DONE`` event will be raised.

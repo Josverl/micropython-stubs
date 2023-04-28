@@ -743,7 +743,7 @@ class SPI:
             specify them as a tuple of ``pins`` parameter.
 
         In the case of hardware SPI the actual clock frequency may be lower than the
-        requested baudrate. This is dependant on the platform hardware. The actual
+        requested baudrate. This is dependent on the platform hardware. The actual
         rate may be determined by printing the SPI object.
         """
         ...
@@ -810,6 +810,8 @@ class I2C:
        - *sda* should be a pin object specifying the pin to use for SDA.
        - *freq* should be an integer which sets the maximum frequency
          for SCL.
+       - *timeout* is the maximum time in microseconds to allow for I2C
+         transactions.  This parameter is not allowed on some ports.
 
     Note that some ports/boards will have default values of *scl* and *sda*
     that can be changed in this constructor.  Others will have fixed values
@@ -817,7 +819,13 @@ class I2C:
     """
 
     def __init__(
-        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+        self,
+        id: Union[int, str] = -1,
+        *,
+        scl: Optional[Union[Pin, str]] = None,
+        sda: Optional[Union[Pin, str]] = None,
+        freq=400_000,
+        timeout=50000,
     ) -> None: ...
     def init(self, scl, sda, *, freq=400000) -> None:
         """
@@ -828,7 +836,7 @@ class I2C:
            - *freq* is the SCL clock rate
 
          In the case of hardware I2C the actual clock frequency may be lower than the
-         requested frequency. This is dependant on the platform hardware. The actual
+         requested frequency. This is dependent on the platform hardware. The actual
          rate may be determined by printing the I2C object.
         """
         ...
@@ -978,7 +986,7 @@ class I2S:
       - ``ibuf`` specifies internal buffer length (bytes)
 
     For all ports, DMA runs continuously in the background and allows user applications to perform other operations while
-    sample data is transfered between the internal buffer and the I2S peripheral unit.
+    sample data is transferred between the internal buffer and the I2S peripheral unit.
     Increasing the size of the internal buffer has the potential to increase the time that user applications can perform non-I2S operations
     before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
     """
@@ -1154,7 +1162,7 @@ class Timer:
           - ``callback`` - The callable to call upon expiration of the timer period.
             The callback must take one argument, which is passed the Timer object.
             The ``callback`` argument shall be specified. Otherwise an exception
-            will occurr upon timer expiration:
+            will occur upon timer expiration:
             ``TypeError: 'NoneType' object isn't callable``
         """
         ...

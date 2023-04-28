@@ -476,7 +476,7 @@ class CAN:
           - *fdf* for CAN FD controllers, if set to True, the frame will have an FD
             frame format, which supports data payloads up to 64 bytes.
           - *brs* for CAN FD controllers, if set to True, the bitrate switching mode
-            is enabled, in which the data phase is transmitted at a differet bitrate.
+            is enabled, in which the data phase is transmitted at a different bitrate.
             See :meth:`CAN.init` for the data bit timing configuration parameters.
 
           If timeout is 0 the message is placed in a buffer in one of three hardware
@@ -736,7 +736,7 @@ class I2C:
              errors properly)
 
          The actual clock frequency may be lower than the requested frequency.
-         This is dependant on the platform hardware. The actual rate may be determined
+         This is dependent on the platform hardware. The actual rate may be determined
          by printing the I2C object.
         """
         ...

@@ -77,7 +77,7 @@ def thread_analyze() -> Any:
      * *CPU utilization is only printed if runtime statistics are configured via the ``CONFIG_THREAD_RUNTIME_STATS`` kconfig*
 
     This function can only be accessed if ``CONFIG_THREAD_ANALYZER`` is configured for the port in ``zephyr/prj.conf``.
-    For more infomation, see documentation for Zephyr `thread analyzer
+    For more information, see documentation for Zephyr `thread analyzer
     <https://docs.zephyrproject.org/latest/guides/debug_tools/thread-analyzer.html#thread-analyzer>`_.
     """
     ...
