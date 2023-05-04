@@ -5,14 +5,14 @@
         "port": "nrf",
         "platform": "nrf",
         "machine": "ARDUINO_NANO_33_BLE_SENSE",
-        "firmware": "micropython-nrf-v1_20",
+        "firmware": "micropython-nrf-v1_20_0",
         "nodename": "micropython",
-        "version": "v1.20",
-        "release": "v1.20",
+        "version": "v1.20.0",
+        "release": "v1.20.0",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.13.4",
+        "version": "1.13.5",
         "stubtype": "frozen"
     },
     "modules": [

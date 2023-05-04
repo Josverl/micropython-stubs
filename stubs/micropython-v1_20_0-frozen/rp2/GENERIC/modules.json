@@ -5,14 +5,14 @@
         "port": "rp2",
         "platform": "rp2",
         "machine": "GENERIC",
-        "firmware": "micropython-rp2-v1_20",
+        "firmware": "micropython-rp2-v1_20_0",
         "nodename": "micropython",
-        "version": "v1.20",
-        "release": "v1.20",
+        "version": "v1.20.0",
+        "release": "v1.20.0",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.13.4",
+        "version": "1.13.5",
         "stubtype": "frozen"
     },
     "modules": [
