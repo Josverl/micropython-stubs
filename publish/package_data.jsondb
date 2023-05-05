@@ -1307,6 +1307,30 @@
             "description": "MicroPython stubs",
             "hash": "3f7939b728a9ea8579756fbacb0db62245f6985c",
             "stub_hash": "f4f891e6502b7d6a672ecca7c18bffc1aee8c142"
+        },
+        "317227093393340909": {
+            "name": "micropython-samd-seeed_wio_terminal-stubs",
+            "mpy_version": "1.20.0",
+            "publish": true,
+            "pkg_version": "1.20.0.post1",
+            "path": "micropython-v1_20_0-samd-seeed_wio_terminal-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_20_0-samd-seeed_wio_terminal-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_20_0-frozen/samd/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "346a3ef4a0cfabcb54e44f8c2744208b306fadc9",
+            "stub_hash": "dc79828c07e5af20aa36a18ad89099b1b4f36b0c"
         }
     }
 }
