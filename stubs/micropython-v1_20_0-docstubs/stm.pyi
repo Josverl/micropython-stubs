@@ -1,12 +1,12 @@
 """
-functionality specific to STM32 MCUs. See: https://docs.micropython.org/en/v1.20/library/stm.html
+functionality specific to STM32 MCUs. See: https://docs.micropython.org/en/v1.20.0/library/stm.html
 
 This module provides functionality specific to STM32 microcontrollers, including
 direct access to peripheral registers.
 """
 
 # + module: stm.rst
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/stm.rst
 from typing import Any, Tuple
 

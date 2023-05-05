@@ -1,5 +1,5 @@
 """
-access binary data in a structured way. See: https://docs.micropython.org/en/v1.20/library/uctypes.html
+access binary data in a structured way. See: https://docs.micropython.org/en/v1.20.0/library/uctypes.html
 
 This module implements "foreign data interface" for MicroPython. The idea
 behind it is similar to CPython's ``ctypes`` modules, but the actual API is
@@ -9,7 +9,7 @@ C language allows, and then access it using familiar dot-syntax to reference
 sub-fields.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/uctypes.rst
 from typing import Any
 

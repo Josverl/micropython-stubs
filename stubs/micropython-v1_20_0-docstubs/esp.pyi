@@ -1,5 +1,5 @@
 """
-functions related to the ESP8266 and ESP32. See: https://docs.micropython.org/en/v1.20/library/esp.html
+functions related to the ESP8266 and ESP32. See: https://docs.micropython.org/en/v1.20.0/library/esp.html
 
 The ``esp`` module contains specific functions related to both the ESP8266 and
 ESP32 modules.  Some functions are only available on one or the other of these
@@ -7,7 +7,7 @@ ports.
 
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/esp.rst
 from typing import Any, Optional
 

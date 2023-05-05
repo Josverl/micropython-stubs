@@ -1,5 +1,5 @@
 """
-time related functions. See: https://docs.micropython.org/en/v1.20/library/time.html
+time related functions. See: https://docs.micropython.org/en/v1.20.0/library/time.html
 
 |see_cpython_module| :mod:`python:time` https://docs.python.org/3/library/time.html .
 
@@ -31,7 +31,7 @@ functions below which require reference to current absolute time may
 behave not as expected.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/time.rst
 from typing import Any, Optional, Tuple
 

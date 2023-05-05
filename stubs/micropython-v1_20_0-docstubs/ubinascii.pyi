@@ -1,5 +1,5 @@
 """
-binary/ASCII conversions. See: https://docs.micropython.org/en/v1.20/library/binascii.html
+binary/ASCII conversions. See: https://docs.micropython.org/en/v1.20.0/library/binascii.html
 
 |see_cpython_module| :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
 
@@ -7,7 +7,7 @@ This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/binascii.rst
 from typing import Any, Optional
 

@@ -1,5 +1,5 @@
 """
-control of WS2812 / NeoPixel LEDs. See: https://docs.micropython.org/en/v1.20/library/neopixel.html
+control of WS2812 / NeoPixel LEDs. See: https://docs.micropython.org/en/v1.20.0/library/neopixel.html
 
 This module provides a driver for WS2818 / NeoPixel LEDs.
 
@@ -11,7 +11,7 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    and copy it to the filesystem.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/neopixel.rst
 from typing import Tuple
 

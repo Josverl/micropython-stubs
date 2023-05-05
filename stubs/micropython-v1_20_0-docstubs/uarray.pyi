@@ -1,5 +1,5 @@
 """
-efficient arrays of numeric data. See: https://docs.micropython.org/en/v1.20/library/array.html
+efficient arrays of numeric data. See: https://docs.micropython.org/en/v1.20.0/library/array.html
 
 |see_cpython_module| :mod:`python:array` https://docs.python.org/3/library/array.html .
 
@@ -8,7 +8,7 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 floating-point support).
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/array.rst
 from typing import Any, List, Optional
 

@@ -1,5 +1,5 @@
 """
-wait for events on a set of streams. See: https://docs.micropython.org/en/v1.20/library/select.html
+wait for events on a set of streams. See: https://docs.micropython.org/en/v1.20.0/library/select.html
 
 |see_cpython_module| :mod:`python:select` https://docs.python.org/3/library/select.html .
 
@@ -7,7 +7,7 @@ This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/select.rst
 from typing import Any, Iterator, List, Optional, Tuple
 

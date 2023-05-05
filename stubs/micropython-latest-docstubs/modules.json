@@ -8,11 +8,11 @@
         "firmware": "micropython-latest",
         "nodename": "micropython",
         "version": "latest",
-        "release": "v1.20.0-25-gc2bf91219",
+        "release": "v1.20.0-50-g786013d46",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.13.3",
+        "version": "1.13.5",
         "stubtype": "documentation"
     },
     "modules": [
@@ -59,6 +59,10 @@
         {
             "file": "esp32.pyi",
             "module": "esp32"
+        },
+        {
+            "file": "espnow.pyi",
+            "module": "espnow"
         },
         {
             "file": "framebuf.pyi",

@@ -19,7 +19,7 @@ class FileIO(IO):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-class TextIOWrapper:
+class TextIOWrapper(IO):
     """
     This is type of a file open in text mode, e.g. using ``open(name, "rt")``.
     You should not instantiate this class directly.

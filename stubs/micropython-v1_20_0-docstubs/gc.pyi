@@ -1,10 +1,10 @@
 """
-control the garbage collector. See: https://docs.micropython.org/en/v1.20/library/gc.html
+control the garbage collector. See: https://docs.micropython.org/en/v1.20.0/library/gc.html
 
 |see_cpython_module| :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/gc.rst
 from typing import Any, Optional
 

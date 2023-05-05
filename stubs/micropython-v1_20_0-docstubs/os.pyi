@@ -1,5 +1,5 @@
 """
-basic "operating system" services. See: https://docs.micropython.org/en/v1.20/library/os.html
+basic "operating system" services. See: https://docs.micropython.org/en/v1.20.0/library/os.html
 
 |see_cpython_module| :mod:`python:os` https://docs.python.org/3/library/os.html .
 
@@ -8,7 +8,7 @@ terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/os.rst
 from typing import IO, Any, Iterator, Optional, Tuple
 from stdlib.os import uname_result

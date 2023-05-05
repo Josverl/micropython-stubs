@@ -1,10 +1,10 @@
 """
-functions related to the board. See: https://docs.micropython.org/en/v1.20/library/pyb.html
+functions related to the board. See: https://docs.micropython.org/en/v1.20.0/library/pyb.html
 
 The ``pyb`` module contains specific functions related to the board.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/pyb.rst
 # + module: pyb.Accel.rst
 # + module: pyb.ADC.rst

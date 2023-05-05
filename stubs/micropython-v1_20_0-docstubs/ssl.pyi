@@ -1,5 +1,5 @@
 """
-TLS/SSL wrapper for socket objects. See: https://docs.micropython.org/en/v1.20/library/ssl.html
+TLS/SSL wrapper for socket objects. See: https://docs.micropython.org/en/v1.20.0/library/ssl.html
 
 |see_cpython_module| :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
@@ -8,7 +8,7 @@ widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/ssl.rst
 from typing import Any
 

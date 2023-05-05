@@ -1,10 +1,10 @@
 """
-system specific functions. See: https://docs.micropython.org/en/v1.20/library/sys.html
+system specific functions. See: https://docs.micropython.org/en/v1.20.0/library/sys.html
 
 |see_cpython_module| :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/sys.rst
 from typing import Any, Dict, List, Tuple
 

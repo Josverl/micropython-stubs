@@ -1,5 +1,5 @@
 """
-hashing algorithms. See: https://docs.micropython.org/en/v1.20/library/hashlib.html
+hashing algorithms. See: https://docs.micropython.org/en/v1.20.0/library/hashlib.html
 
 |see_cpython_module| :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
 
@@ -22,7 +22,7 @@ be implemented:
   will offer this.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/hashlib.rst
 from typing import Any, Optional
 

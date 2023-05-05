@@ -1,5 +1,5 @@
 """
-simple BTree database. See: https://docs.micropython.org/en/v1.20/library/btree.html
+simple BTree database. See: https://docs.micropython.org/en/v1.20.0/library/btree.html
 
 The ``btree`` module implements a simple key-value database using external
 storage (disk files, or in general case, a random-access `stream`). Keys are
@@ -72,7 +72,7 @@ Example::
 
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/btree.rst
 from typing import Any, Dict, Optional
 

@@ -11,9 +11,7 @@ is not yet implemented.
 
 # source version: v1_17
 # origin module:: repos/micropython/docs/library/zlib.rst
-from typing import IO
-
-class DecompIO(IO):
+class DecompIO:
     """
     Create a `stream` wrapper which allows transparent decompression of
     compressed data in another *stream*. This allows to process compressed

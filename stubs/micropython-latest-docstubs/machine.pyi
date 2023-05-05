@@ -470,13 +470,15 @@ class PWM:
          PWM cycle.
        - *duty_u16* sets the duty cycle as a ratio ``duty_u16 / 65535``.
        - *duty_ns* sets the pulse width in nanoseconds.
+       - *invert*  inverts the respective output if the value is True
 
     Setting *freq* may affect other PWM objects if the objects share the same
     underlying PWM generator (this is hardware specific).
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
+    *invert* is not available at all ports.
     """
 
-    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None: ...
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0, invert) -> None: ...
     def init(self, *, freq, duty_u16, duty_ns) -> None:
         """
         Modify settings for the PWM object.  See the above constructor for details
