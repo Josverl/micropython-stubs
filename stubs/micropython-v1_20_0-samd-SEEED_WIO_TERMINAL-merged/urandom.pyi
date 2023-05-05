@@ -1,5 +1,5 @@
 """
-random numbers. See: https://docs.micropython.org/en/v1.20/library/random.html
+random numbers. See: https://docs.micropython.org/en/v1.20.0/library/random.html
 
 This module implements a pseudo-random number generator (PRNG).
 

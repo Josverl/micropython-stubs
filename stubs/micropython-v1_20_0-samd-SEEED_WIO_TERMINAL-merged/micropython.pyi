@@ -1,5 +1,5 @@
 """
-access and control MicroPython internals. See: https://docs.micropython.org/en/v1.20/library/micropython.html
+access and control MicroPython internals. See: https://docs.micropython.org/en/v1.20.0/library/micropython.html
 """
 from typing import Optional, Any
 

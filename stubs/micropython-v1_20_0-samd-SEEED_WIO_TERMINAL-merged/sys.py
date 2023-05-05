@@ -1,5 +1,5 @@
 """
-system specific functions. See: https://docs.micropython.org/en/v1.20/library/sys.html
+system specific functions. See: https://docs.micropython.org/en/v1.20.0/library/sys.html
 
 |see_cpython_module| :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """

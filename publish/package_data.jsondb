@@ -1331,6 +1331,54 @@
             "description": "MicroPython stubs",
             "hash": "346a3ef4a0cfabcb54e44f8c2744208b306fadc9",
             "stub_hash": "dc79828c07e5af20aa36a18ad89099b1b4f36b0c"
+        },
+        "161096390039100068": {
+            "name": "micropython-esp32-stubs",
+            "mpy_version": "1.20.0",
+            "publish": true,
+            "pkg_version": "1.20.0.post1",
+            "path": "micropython-v1_20_0-esp32-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_20_0-esp32-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_20_0-frozen/esp32/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "451bd9549926134f8ed53711f70239523904223d",
+            "stub_hash": "b300c733844ef5666520964394cb2f7f605011e7"
+        },
+        "163471928940856996": {
+            "name": "micropython-esp32-ota-stubs",
+            "mpy_version": "1.20.0",
+            "publish": true,
+            "pkg_version": "1.20.0.post1",
+            "path": "micropython-v1_20_0-esp32-ota-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_20_0-esp32-ota-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_20_0-frozen/esp32/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "588751cabe853b7db08bed27b599925b6fa22a23",
+            "stub_hash": "b300c733844ef5666520964394cb2f7f605011e7"
         }
     }
 }

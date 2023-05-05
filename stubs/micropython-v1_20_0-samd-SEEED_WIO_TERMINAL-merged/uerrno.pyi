@@ -1,5 +1,5 @@
 """
-system error codes. See: https://docs.micropython.org/en/v1.20/library/errno.html
+system error codes. See: https://docs.micropython.org/en/v1.20.0/library/errno.html
 
 |see_cpython_module| :mod:`python:errno` https://docs.python.org/3/library/errno.html .
 

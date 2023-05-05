@@ -1,0 +1,24 @@
+{
+    "name": "micropython-esp32-ota-stubs",
+    "mpy_version": "1.20.0",
+    "publish": true,
+    "pkg_version": "1.20.0.post1",
+    "path": "micropython-v1_20_0-esp32-ota-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-v1_20_0-esp32-ota-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-v1_20_0-frozen/esp32/GENERIC"
+        ],
+        [
+            "Core stubs",
+            "micropython-core"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": "588751cabe853b7db08bed27b599925b6fa22a23",
+    "stub_hash": "b300c733844ef5666520964394cb2f7f605011e7"
+}

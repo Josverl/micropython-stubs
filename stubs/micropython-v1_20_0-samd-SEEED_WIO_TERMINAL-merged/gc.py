@@ -1,5 +1,5 @@
 """
-control the garbage collector. See: https://docs.micropython.org/en/v1.20/library/gc.html
+control the garbage collector. See: https://docs.micropython.org/en/v1.20.0/library/gc.html
 
 |see_cpython_module| :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """

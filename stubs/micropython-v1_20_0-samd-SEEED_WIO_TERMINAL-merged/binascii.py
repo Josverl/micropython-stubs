@@ -1,5 +1,5 @@
 """
-binary/ASCII conversions. See: https://docs.micropython.org/en/v1.20/library/binascii.html
+binary/ASCII conversions. See: https://docs.micropython.org/en/v1.20.0/library/binascii.html
 
 |see_cpython_module| :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
 

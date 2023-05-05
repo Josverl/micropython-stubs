@@ -1,5 +1,5 @@
 """
-mathematical functions. See: https://docs.micropython.org/en/v1.20/library/math.html
+mathematical functions. See: https://docs.micropython.org/en/v1.20.0/library/math.html
 
 |see_cpython_module| :mod:`python:math` https://docs.python.org/3/library/math.html .
 

@@ -1,5 +1,5 @@
 """
-collection and container types. See: https://docs.micropython.org/en/v1.20/library/collections.html
+collection and container types. See: https://docs.micropython.org/en/v1.20.0/library/collections.html
 
 |see_cpython_module| :mod:`python:collections` https://docs.python.org/3/library/collections.html .
 

@@ -1,5 +1,5 @@
 """
-functions related to the hardware. See: https://docs.micropython.org/en/v1.20/library/machine.html
+functions related to the hardware. See: https://docs.micropython.org/en/v1.20.0/library/machine.html
 
 The ``machine`` module contains specific functions related to the hardware
 on a particular board. Most functions in this module allow to achieve direct

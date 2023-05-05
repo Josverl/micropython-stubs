@@ -1,5 +1,5 @@
 """
-heap queue algorithm. See: https://docs.micropython.org/en/v1.20/library/heapq.html
+heap queue algorithm. See: https://docs.micropython.org/en/v1.20.0/library/heapq.html
 
 |see_cpython_module| :mod:`python:heapq` https://docs.python.org/3/library/heapq.html .
 

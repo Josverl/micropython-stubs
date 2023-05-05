@@ -1,5 +1,5 @@
 """
-access and control MicroPython internals. See: https://docs.micropython.org/en/v1.20/library/micropython.html
+access and control MicroPython internals. See: https://docs.micropython.org/en/v1.20.0/library/micropython.html
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
 # Stubber: v1.13.4
