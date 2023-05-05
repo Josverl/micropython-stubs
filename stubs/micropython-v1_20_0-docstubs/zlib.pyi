@@ -1,5 +1,5 @@
 """
-zlib decompression. See: https://docs.micropython.org/en/v1.20/library/zlib.html
+zlib decompression. See: https://docs.micropython.org/en/v1.20.0/library/zlib.html
 
 |see_cpython_module| :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
 
@@ -9,7 +9,7 @@ This module allows to decompress binary data compressed with
 is not yet implemented.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/zlib.rst
 class DecompIO:
     """

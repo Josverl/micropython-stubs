@@ -1,8 +1,8 @@
 """
-cryptographic ciphers. See: https://docs.micropython.org/en/v1.20/library/cryptolib.html
+cryptographic ciphers. See: https://docs.micropython.org/en/v1.20.0/library/cryptolib.html
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/cryptolib.rst
 from typing import Any, Optional
 

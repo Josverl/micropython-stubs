@@ -1,11 +1,11 @@
 """
-functionality specific to Zephyr. See: https://docs.micropython.org/en/v1.20/library/zephyr.html
+functionality specific to Zephyr. See: https://docs.micropython.org/en/v1.20.0/library/zephyr.html
 
 The ``zephyr`` module contains functions and classes specific to the Zephyr port.
 """
 
 # + module: zephyr.rst
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/zephyr.rst
 # + module: zephyr.DiskAccess.rst
 # + module: zephyr.FlashArea.rst

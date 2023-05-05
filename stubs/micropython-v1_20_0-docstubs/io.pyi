@@ -1,5 +1,5 @@
 """
-input/output streams. See: https://docs.micropython.org/en/v1.20/library/io.html
+input/output streams. See: https://docs.micropython.org/en/v1.20.0/library/io.html
 
 |see_cpython_module| :mod:`python:io` https://docs.python.org/3/library/io.html .
 
@@ -7,7 +7,7 @@ This module contains additional types of `stream` (file-like) objects
 and helper functions.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/io.rst
 from typing import IO, Any, Optional
 

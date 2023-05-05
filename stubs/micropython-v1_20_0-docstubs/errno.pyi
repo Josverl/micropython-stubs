@@ -1,5 +1,5 @@
 """
-system error codes. See: https://docs.micropython.org/en/v1.20/library/errno.html
+system error codes. See: https://docs.micropython.org/en/v1.20.0/library/errno.html
 
 |see_cpython_module| :mod:`python:errno` https://docs.python.org/3/library/errno.html .
 
@@ -7,7 +7,7 @@ This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/errno.rst
 from typing import Any, Dict
 

@@ -1,11 +1,11 @@
 """
-Frame buffer manipulation. See: https://docs.micropython.org/en/v1.20/library/framebuf.html
+Frame buffer manipulation. See: https://docs.micropython.org/en/v1.20.0/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/framebuf.rst
 from typing import Any, Optional
 

@@ -1,5 +1,5 @@
 """
-pack and unpack primitive data types. See: https://docs.micropython.org/en/v1.20/library/struct.html
+pack and unpack primitive data types. See: https://docs.micropython.org/en/v1.20.0/library/struct.html
 
 |see_cpython_module| :mod:`python:struct` https://docs.python.org/3/library/struct.html .
 
@@ -52,7 +52,7 @@ The following data types are supported:
 +--------+--------------------+-------------------+---------------+
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/struct.rst
 from typing import Any, Tuple
 

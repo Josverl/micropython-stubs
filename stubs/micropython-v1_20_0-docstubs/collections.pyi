@@ -1,5 +1,5 @@
 """
-collection and container types. See: https://docs.micropython.org/en/v1.20/library/collections.html
+collection and container types. See: https://docs.micropython.org/en/v1.20.0/library/collections.html
 
 |see_cpython_module| :mod:`python:collections` https://docs.python.org/3/library/collections.html .
 
@@ -7,7 +7,7 @@ This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/collections.rst
 from typing import Any, Optional
 from queue import Queue

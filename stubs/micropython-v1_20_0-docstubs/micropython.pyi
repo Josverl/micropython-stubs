@@ -1,8 +1,8 @@
 """
-access and control MicroPython internals. See: https://docs.micropython.org/en/v1.20/library/micropython.html
+access and control MicroPython internals. See: https://docs.micropython.org/en/v1.20.0/library/micropython.html
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/micropython.rst
 from typing import Any, Optional
 

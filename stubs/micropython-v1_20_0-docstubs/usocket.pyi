@@ -1,12 +1,12 @@
 """
-socket module. See: https://docs.micropython.org/en/v1.20/library/socket.html
+socket module. See: https://docs.micropython.org/en/v1.20.0/library/socket.html
 
 |see_cpython_module| :mod:`python:socket` https://docs.python.org/3/library/socket.html .
 
 This module provides access to the BSD socket interface.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/socket.rst
 from typing import IO, Any, Optional, Tuple
 

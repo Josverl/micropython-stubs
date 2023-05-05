@@ -1,5 +1,5 @@
 """
-mathematical functions for complex numbers. See: https://docs.micropython.org/en/v1.20/library/cmath.html
+mathematical functions for complex numbers. See: https://docs.micropython.org/en/v1.20.0/library/cmath.html
 
 |see_cpython_module| :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
 
@@ -10,7 +10,7 @@ Availability: not available on WiPy and ESP8266. Floating point support
 required for this module.
 """
 
-# source version: v1_20
+# source version: v1_20_0
 # origin module:: repos/micropython/docs/library/cmath.rst
 from typing import Any, Tuple
 
