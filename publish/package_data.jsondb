@@ -1283,6 +1283,30 @@
             "description": "MicroPython stubs",
             "hash": "3a5b0cdc0a88487cb847d8f4ed2da4e46d39b173",
             "stub_hash": "605c4b2089e6562e03d6c2c46434d5d1140e8565"
+        },
+        "267677258289648282": {
+            "name": "micropython-rp2-pico-stubs",
+            "mpy_version": "1.20.0",
+            "publish": true,
+            "pkg_version": "1.20.0.post1",
+            "path": "micropython-v1_20_0-rp2-pico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_20_0-rp2-pico-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_20_0-frozen/rp2/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "3f7939b728a9ea8579756fbacb0db62245f6985c",
+            "stub_hash": "f4f891e6502b7d6a672ecca7c18bffc1aee8c142"
         }
     }
 }
