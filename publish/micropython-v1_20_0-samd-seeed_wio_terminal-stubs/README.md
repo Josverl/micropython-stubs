@@ -27,12 +27,12 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* StubSource.MERGED from `stubs/micropython-v1_20_0-samd-seeed_wio_terminal-merged`
-* StubSource.FROZEN from `stubs/micropython-v1_20_0-frozen/samd/GENERIC`
-* StubSource.CORE from `stubs/micropython-core`
+* Merged stubs from `stubs/micropython-v1_20_0-samd-seeed_wio_terminal-merged`
+* Frozen stubs from `stubs/micropython-v1_20_0-frozen/samd/GENERIC`
+* Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
-Documentation | micropython | - | - | v1.20 
+Documentation | micropython | - | - | v1.20.0 
 Core | micropython | samd | - | v1.20.0 

@@ -1,5 +1,5 @@
 """
-time related functions. See: https://docs.micropython.org/en/v1.20/library/time.html
+time related functions. See: https://docs.micropython.org/en/v1.20.0/library/time.html
 
 |see_cpython_module| :mod:`python:time` https://docs.python.org/3/library/time.html .
 
