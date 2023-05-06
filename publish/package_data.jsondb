@@ -1379,6 +1379,30 @@
             "description": "MicroPython stubs",
             "hash": "588751cabe853b7db08bed27b599925b6fa22a23",
             "stub_hash": "b300c733844ef5666520964394cb2f7f605011e7"
+        },
+        "223906984621655436": {
+            "name": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+            "mpy_version": "1.20.0",
+            "publish": true,
+            "pkg_version": "1.20.0.post1",
+            "path": "micropython-v1_20_0-rp2-pimoroni_picolipo_16mb-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_20_0-rp2-pimoroni_picolipo_16mb-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_20_0-frozen/rp2/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "bed74391a08804cd4862306627e15f9894f7d9b8",
+            "stub_hash": "8e8a35391c0b9c173677ca3a6ca84e1d7b675b06"
         }
     }
 }

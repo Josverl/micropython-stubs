@@ -1,5 +1,5 @@
 """
-basic "operating system" services. See: https://docs.micropython.org/en/v1.20/library/os.html
+basic "operating system" services. See: https://docs.micropython.org/en/v1.20.0/library/os.html
 
 |see_cpython_module| :mod:`python:os` https://docs.python.org/3/library/os.html .
 

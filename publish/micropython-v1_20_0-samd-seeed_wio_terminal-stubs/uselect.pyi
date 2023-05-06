@@ -1,5 +1,5 @@
 """
-wait for events on a set of streams. See: https://docs.micropython.org/en/v1.20/library/select.html
+wait for events on a set of streams. See: https://docs.micropython.org/en/v1.20.0/library/select.html
 
 |see_cpython_module| :mod:`python:select` https://docs.python.org/3/library/select.html .
 
