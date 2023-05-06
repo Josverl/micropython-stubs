@@ -1,0 +1,180 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "rp2",
+        "platform": "rp2",
+        "machine": "ARDUINO_NANO_RP2040_CONNECT",
+        "firmware": "micropython-rp2-latest",
+        "nodename": "micropython",
+        "version": "latest",
+        "release": "latest",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.13.7",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "_boot_fat.py",
+            "module": "_boot_fat"
+        },
+        {
+            "file": "aioble/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "aioble/central.py",
+            "module": "central"
+        },
+        {
+            "file": "aioble/client.py",
+            "module": "client"
+        },
+        {
+            "file": "aioble/core.py",
+            "module": "core"
+        },
+        {
+            "file": "aioble/device.py",
+            "module": "device"
+        },
+        {
+            "file": "aioble/l2cap.py",
+            "module": "l2cap"
+        },
+        {
+            "file": "aioble/peripheral.py",
+            "module": "peripheral"
+        },
+        {
+            "file": "aioble/security.py",
+            "module": "security"
+        },
+        {
+            "file": "aioble/server.py",
+            "module": "server"
+        },
+        {
+            "file": "cbor2/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "cbor2/decoder.py",
+            "module": "decoder"
+        },
+        {
+            "file": "cbor2/encoder.py",
+            "module": "encoder"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "espflash.py",
+            "module": "espflash"
+        },
+        {
+            "file": "logging.py",
+            "module": "logging"
+        },
+        {
+            "file": "lsm6dsox.py",
+            "module": "lsm6dsox"
+        },
+        {
+            "file": "mip/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "neopixel.py",
+            "module": "neopixel"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "rp2.py",
+            "module": "rp2"
+        },
+        {
+            "file": "senml/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "senml/senml_base.py",
+            "module": "senml_base"
+        },
+        {
+            "file": "senml/senml_pack.py",
+            "module": "senml_pack"
+        },
+        {
+            "file": "senml/senml_record.py",
+            "module": "senml_record"
+        },
+        {
+            "file": "senml/senml_unit.py",
+            "module": "senml_unit"
+        },
+        {
+            "file": "time.py",
+            "module": "time"
+        },
+        {
+            "file": "uasyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uasyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "uasyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "uasyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "uasyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "uasyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "uasyncio/task.py",
+            "module": "task"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        }
+    ]
+}
