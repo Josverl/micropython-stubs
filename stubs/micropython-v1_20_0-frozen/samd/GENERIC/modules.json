@@ -19,46 +19,6 @@
         {
             "file": "_boot.py",
             "module": "_boot"
-        },
-        {
-            "file": "dht.py",
-            "module": "dht"
-        },
-        {
-            "file": "ds18x20.py",
-            "module": "ds18x20"
-        },
-        {
-            "file": "onewire.py",
-            "module": "onewire"
-        },
-        {
-            "file": "uasyncio/__init__.py",
-            "module": "__init__"
-        },
-        {
-            "file": "uasyncio/core.py",
-            "module": "core"
-        },
-        {
-            "file": "uasyncio/event.py",
-            "module": "event"
-        },
-        {
-            "file": "uasyncio/funcs.py",
-            "module": "funcs"
-        },
-        {
-            "file": "uasyncio/lock.py",
-            "module": "lock"
-        },
-        {
-            "file": "uasyncio/stream.py",
-            "module": "stream"
-        },
-        {
-            "file": "uasyncio/task.py",
-            "module": "task"
         }
     ]
 }
