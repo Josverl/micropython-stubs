@@ -6,7 +6,7 @@
 ## Micropython 
 |family | version | type    |port |board |count | stubber version|path
 |-------|---------|---------|-----|------|-----:|-|----
-|micropython |latest  |documentation|-|micropython|51|1.13.5|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
+|micropython |latest  |documentation|-|micropython|51|1.13.7|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
 |micropython |latest  |frozen  |esp32|GENERIC|25|1.13.7|[stubs/micropython-latest-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/GENERIC)
 |micropython |latest  |frozen  |esp32|LILYGO_TTGO_LORA32|28|1.13.7|[stubs/micropython-latest-frozen/esp32/LILYGO_TTGO_LORA32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/LILYGO_TTGO_LORA32)
 |micropython |latest  |frozen  |esp32|LOLIN_C3_MINI|26|1.13.7|[stubs/micropython-latest-frozen/esp32/LOLIN_C3_MINI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/LOLIN_C3_MINI)
@@ -310,6 +310,7 @@
 |micropython |v1.20   |frozen  |stm32|STM32F769DISC|14|1.13.7|[stubs/micropython-v1_20_0-frozen/stm32/STM32F769DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/stm32/STM32F769DISC)
 |micropython |v1.20   |frozen  |stm32|STM32F7DISC|14|1.13.7|[stubs/micropython-v1_20_0-frozen/stm32/STM32F7DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/stm32/STM32F7DISC)
 |micropython |v1.20   |frozen  |stm32|VCC_GND_F407ZG|14|1.13.7|[stubs/micropython-v1_20_0-frozen/stm32/VCC_GND_F407ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/stm32/VCC_GND_F407ZG)
+|micropython |v1.20   |board   |stm32|generic|59|v1.13.7|[stubs/micropython-v1_20_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-stm32-PYBV11)
 |micropython |v1.20   |frozen  |teensy|GENERIC|2|1.13.7|[stubs/micropython-v1_20_0-frozen/teensy/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/teensy/GENERIC)
 |micropython |v1.20   |frozen  |unix|GENERIC|11|1.13.7|[stubs/micropython-v1_20_0-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/unix/GENERIC)
 |micropython |v1.20   |frozen  |windows|GENERIC|7|1.13.7|[stubs/micropython-v1_20_0-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/windows/GENERIC)
@@ -368,4 +369,4 @@
 
 ## Metrics
 
-Total stub modules:  7830
+Total stub modules:  7889
