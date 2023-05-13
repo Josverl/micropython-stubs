@@ -51,6 +51,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.20| samd| generic| 51| v1.13.7|[stubs/micropython-v1_20_0-samd-ADAFRUIT_ITSYBITSY_M4_EXPRESS](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-samd-ADAFRUIT_ITSYBITSY_M4_EXPRESS)
 |board| micropython| v1.20| samd| generic| 51| v1.13.7|[stubs/micropython-v1_20_0-samd-MINISAM_M4](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-samd-MINISAM_M4)
 |board| micropython| v1.20| samd| generic| 51| v1.13.4|[stubs/micropython-v1_20_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-samd-SEEED_WIO_TERMINAL)
+|board| micropython| v1.20| stm32| generic| 59| v1.13.7|[stubs/micropython-v1_20_0-stm32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-stm32)
 |board| micropython| v1.20| stm32| generic| 59| v1.13.7|[stubs/micropython-v1_20_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-stm32-PYBV11)
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/main/stubs/ev3_pybricks_v1_0_0)
@@ -97,7 +98,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| rp2| W5100S_EVB_PICO| 19| 1.13.7|[stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO)
 |frozen| micropython| latest| rp2| W5500_EVB_PICO| 19| 1.13.7|[stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| latest| rp2| WEACTSTUDIO| 15| 1.13.7|[stubs/micropython-latest-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/WEACTSTUDIO)
-|frozen| micropython| latest| samd| GENERIC| 11| 1.13.7|[stubs/micropython-latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/samd/GENERIC)
+|frozen| micropython| latest| samd| GENERIC| 1| 1.13.7|[stubs/micropython-latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/samd/GENERIC)
 |frozen| micropython| latest| stm32| ARDUINO_GIGA| 33| 1.13.7|[stubs/micropython-latest-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_GIGA)
 |frozen| micropython| latest| stm32| ARDUINO_NICLA_VISION| 33| 1.13.7|[stubs/micropython-latest-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_NICLA_VISION)
 |frozen| micropython| latest| stm32| ARDUINO_PORTENTA_H7| 33| 1.13.7|[stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7)
@@ -296,7 +297,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| v1.20| rp2| W5100S_EVB_PICO| 19| 1.13.7|[stubs/micropython-v1_20_0-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/rp2/W5100S_EVB_PICO)
 |frozen| micropython| v1.20| rp2| W5500_EVB_PICO| 19| 1.13.7|[stubs/micropython-v1_20_0-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| v1.20| rp2| WEACTSTUDIO| 15| 1.13.7|[stubs/micropython-v1_20_0-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/rp2/WEACTSTUDIO)
-|frozen| micropython| v1.20| samd| GENERIC| 11| 1.13.7|[stubs/micropython-v1_20_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/samd/GENERIC)
+|frozen| micropython| v1.20| samd| GENERIC| 1| 1.13.7|[stubs/micropython-v1_20_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/samd/GENERIC)
 |frozen| micropython| v1.20| stm32| ARDUINO_GIGA| 33| 1.13.7|[stubs/micropython-v1_20_0-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/stm32/ARDUINO_GIGA)
 |frozen| micropython| v1.20| stm32| ARDUINO_NICLA_VISION| 33| 1.13.7|[stubs/micropython-v1_20_0-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/stm32/ARDUINO_NICLA_VISION)
 |frozen| micropython| v1.20| stm32| ARDUINO_PORTENTA_H7| 33| 1.13.7|[stubs/micropython-v1_20_0-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/stm32/ARDUINO_PORTENTA_H7)
@@ -333,4 +334,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  7889
+Total modules  7928
