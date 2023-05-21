@@ -1,17 +1,17 @@
 {
-    "name": "micropython-stm32-stubs",
+    "name": "micropython-esp32-s3-stubs",
     "mpy_version": "1.20.0",
     "publish": true,
     "pkg_version": "1.20.0.post1",
-    "path": "micropython-v1_20_0-stm32-stubs",
+    "path": "micropython-v1_20_0-esp32-s3-stubs",
     "stub_sources": [
         [
             "Merged stubs",
-            "micropython-v1_20_0-stm32-merged"
+            "micropython-v1_20_0-esp32-s3-merged"
         ],
         [
             "Frozen stubs",
-            "micropython-v1_20_0-frozen/stm32/GENERIC"
+            "micropython-v1_20_0-frozen/esp32/GENERIC"
         ],
         [
             "Core stubs",
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "abd6fe9101280c76612e0df1a12e88f844238d2d",
-    "stub_hash": "6fe38c8ea5c88ae45c7b5de1d3cfbf30618a5f85"
+    "hash": "2901e29801d7099bcd6d73c4df1ef4e00882b42e",
+    "stub_hash": "dfce881a73c2c183f27e1a027b0ab4a75dcf3bc8"
 }

@@ -1,4 +1,4 @@
-# micropython-stm32-stubs
+# micropython-esp32-s3-stubs
 
 
 This is a stub-only package for MicroPython.
@@ -27,12 +27,12 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* Merged stubs from `stubs/micropython-v1_20_0-stm32-merged`
-* Frozen stubs from `stubs/micropython-v1_20_0-frozen/stm32/GENERIC`
+* Merged stubs from `stubs/micropython-v1_20_0-esp32-s3-merged`
+* Frozen stubs from `stubs/micropython-v1_20_0-frozen/esp32/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Documentation | micropython | - | - | v1.20.0 
-Core | micropython | stm32 | - | v1.20.0 
+Core | micropython | esp32 | - | v1.20.0 
