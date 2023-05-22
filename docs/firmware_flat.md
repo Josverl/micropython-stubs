@@ -43,6 +43,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.19.1| stm32| PYBv1.1 with STM32F405RG| 55| 1.9.11|[stubs/micropython-v1_19_1-stm32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-stm32)
 |board| micropython| v1.20| esp32| generic| 78| v1.13.4|[stubs/micropython-v1_20_0-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32)
 |board| micropython| v1.20| esp32| generic| 78| v1.13.4|[stubs/micropython-v1_20_0-esp32-OTA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-OTA)
+|board| micropython| v1.20| esp32| generic| 77| v1.13.7|[stubs/micropython-v1_20_0-esp32-S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-S3)
 |board| micropython| v1.20| rp2| generic| 58| v1.13.4|[stubs/micropython-v1_20_0-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-rp2)
 |board| micropython| v1.20| rp2| generic| 58| v1.13.4|[stubs/micropython-v1_20_0-rp2-PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-rp2-PICO)
 |board| micropython| v1.20| rp2| generic| 69| v1.12.2|[stubs/micropython-v1_20_0-rp2-PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-rp2-PICO_W)
@@ -334,4 +335,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  7928
+Total modules  8005

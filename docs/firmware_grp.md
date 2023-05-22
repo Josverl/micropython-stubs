@@ -246,6 +246,7 @@
 |micropython |v1.20   |documentation|-|micropython|50|1.13.5|[stubs/micropython-v1_20_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-docstubs)
 |micropython |v1.20   |board   |esp32|generic|78|v1.13.4|[stubs/micropython-v1_20_0-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32)
 |micropython |v1.20   |board   |esp32|generic|78|v1.13.4|[stubs/micropython-v1_20_0-esp32-OTA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-OTA)
+|micropython |v1.20   |board   |esp32|generic|77|v1.13.7|[stubs/micropython-v1_20_0-esp32-S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-S3)
 |micropython |v1.20   |frozen  |esp32|GENERIC|24|1.13.7|[stubs/micropython-v1_20_0-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/esp32/GENERIC)
 |micropython |v1.20   |frozen  |esp32|LILYGO_TTGO_LORA32|27|1.13.7|[stubs/micropython-v1_20_0-frozen/esp32/LILYGO_TTGO_LORA32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/esp32/LILYGO_TTGO_LORA32)
 |micropython |v1.20   |frozen  |esp32|LOLIN_C3_MINI|25|1.13.7|[stubs/micropython-v1_20_0-frozen/esp32/LOLIN_C3_MINI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/esp32/LOLIN_C3_MINI)
@@ -370,4 +371,4 @@
 
 ## Metrics
 
-Total stub modules:  7928
+Total stub modules:  8005
