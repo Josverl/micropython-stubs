@@ -11,7 +11,7 @@ Arguments:: bool
 """\
 - *flag*: Any python value which can be converted to a boolean type.
 
-- ``True``: Prepare the software and hardware for use of the ESPNow
+- ``True``: Prepare the software and hardware for use of the ESP-NOW
 communication protocol, including:
 
 - initialise the ESPNow data structures,
@@ -19,7 +19,7 @@ communication protocol, including:
 - invoke esp_now_init() and
 - register the send and recv callbacks.
 
-- ``False``: De-initialise the Espressif ESPNow software stack
+- ``False``: De-initialise the Espressif ESP-NOW software stack
 (esp_now_deinit()), disable callbacks, deallocate the recv
 data buffer and deregister all peers.
 
@@ -42,12 +42,12 @@ this value will have no effect until the next call of
 `ESPNow.active(True)<ESPNow.active()>`.
 
 *timeout_ms*: (default=300,000) Default timeout (in milliseconds)
-for receiving ESPNOW messages. If *timeout_ms* is less than zero, then
+for receiving ESPNow messages. If *timeout_ms* is less than zero, then
 wait forever. The timeout can also be provided as arg to
 `recv()`/`irecv()`/`recvinto()`.
 
 *rate*: (ESP32 only, IDF>=4.3.0 only) Set the transmission speed for
-espnow packets. Must be set to a number from the allowed numeric values
+ESPNow packets. Must be set to a number from the allowed numeric values
 in `enum wifi_phy_rate_t
 <https://docs.espressif.com/projects/esp-idf/en/v4.4.1/esp32/
 api-reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_.
@@ -94,8 +94,8 @@ full.
 
 **Note**: A peer will respond with success if its wifi interface is
 `active()<network.WLAN.active>` and set to the same channel as the sender,
-regardless of whether it has initialised it's ESP-Now system or is
-actively listening for ESP-Now traffic (see the Espressif ESP-Now docs).
+regardless of whether it has initialised it's ESP-NOW system or is
+actively listening for ESP-NOW traffic (see the Espressif ESP-NOW docs).
 """
 Arguments:: Any = ...
 """\
@@ -228,7 +228,7 @@ below for more information.
 
 - *encrypt*: (ESP32 only) If set to ``True`` data exchanged with
 this peer will be encrypted with the PMK and LMK. (default =
-``False``)
+``True`` if *lmk* is set to a valid key, else ``False``)
 
 **ESP8266**: Keyword args may not be used on the ESP8266.
 
@@ -315,7 +315,7 @@ class ESPNow():
         ...
     def active(self, flag: Optional[Any]=None) -> Any:
         """
-            Initialise or de-initialise the ESPNow communication protocol depending on
+            Initialise or de-initialise the ESP-NOW communication protocol depending on
             the value of the ``flag`` optional argument.
         """
         ...
@@ -378,8 +378,8 @@ class ESPNow():
     def set_pmk(self, pmk) -> None:
         """
             Set the Primary Master Key (PMK) which is used to encrypt the Local Master
-            Keys (LMK) for encrypting ESPNow data traffic. If this is not set, a
-            default PMK is used by the underlying Espressif esp_now software stack.
+            Keys (LMK) for encrypting messages. If this is not set, a default PMK is
+            used by the underlying Espressif ESP-NOW software stack.
         
             **Note:** messages will only be encrypted if *lmk* is also set in
             `ESPNow.add_peer()` (see `Security
@@ -390,8 +390,9 @@ class ESPNow():
         ...
     def add_peer(self, mac, lmk: Optional[Any]=None, channel: Optional[Any]=None, ifidx: Optional[Any]=None, encrypt: Optional[Any]=None) -> Any:
         """
-            Add/register the provided *mac* address as a peer. Additional parameters
-            may also be specified as positional or keyword arguments:
+            Add/register the provided *mac* address as a peer. Additional parameters may
+            also be specified as positional or keyword arguments (any parameter set to
+            ``None`` will be set to it's default value):
         """
         ...
     def del_peer(self, mac) -> Any:
@@ -424,21 +425,28 @@ class ESPNow():
         """
             Modify the parameters of the peer associated with the provided *mac*
             address. Parameters may be provided as positional or keyword arguments
-            (see `ESPNow.add_peer()`).
+            (see `ESPNow.add_peer()`). Any parameter that is not set (or set to
+            ``None``) will retain the existing value for that parameter.
         """
         ...
     def irq(self, callback) (ESP32 only) -> Any:
         """
           Set a callback function to be called *as soon as possible* after a message has
           been received from another ESPNow device. The callback function will be called
-          with the `ESPNow` instance object as an argument, eg: ::
+          with the `ESPNow` instance object as an argument. For more reliable operation,
+          it is recommended to read out as many messages as are available when the
+          callback is invoked and to set the read timeout to zero, eg: ::
         
-                  def recv_cb(e):
-                      print(e.irecv(0))
-                  e.irq(recv_cb)
+                def recv_cb(e):
+                    while True:  # Read out all messages waiting in the buffer
+                        mac, msg = e.irecv(0)  # Don't wait if no messages left
+                        if mac is None:
+                            return
+                        print(mac, msg)
+                e.irq(recv_cb)
         
           The `irq()<ESPNow.irq()>` callback method is an alternative method for
-          processing incoming espnow messages, especially if the data rate is moderate
+          processing incoming messages, especially if the data rate is moderate
           and the device is *not too busy* but there are some caveats:
         
           - The scheduler stack *can* overflow and callbacks will be missed if
