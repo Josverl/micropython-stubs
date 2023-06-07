@@ -6678,5 +6678,6785 @@
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.19.1.post10",
         "hash": "b5f67f22"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7ce407b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_onewire",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bafdc7c7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_thread",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "6a4ae6cd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_uasyncio",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1bfcb2a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "apa106",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c6d12e4e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "array",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "binascii",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "bluetooth",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3d33e59f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "btree",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b72dc0d1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cmath",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "072077f5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "collections",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cryptolib",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "dht",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ds18x20",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "60cd6062"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "errno",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "esp",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "15c09067"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "esp32",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "590910b4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "flashbdev",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fe9dc68a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "framebuf",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c016241d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "gc",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98e789b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "hashlib",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "heapq",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "inisetup",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "390f0c70"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "io",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e5fbc4ce"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "json",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "logging",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3d192c32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "machine",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2dc574a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "math",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0efb90af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "micropython",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "348ce54f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "mip/__init__",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "031f154e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "mip",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "af469346"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "neopixel",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "91a01c2d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "network",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06a2f1de"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ntptime",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "844fb93b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "onewire",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "621c77a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "os",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98072b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "platform",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "617e2ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "random",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "select",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "socket",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "400f0b1d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ssl",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b7a22254"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "struct",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "sys",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "time",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uarray",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/__init__",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3740979c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/core",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e200d609"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/event",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c506b4bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/funcs",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "52028a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/lock",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e314173b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/stream",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "092193db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/task",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d00797bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubinascii",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubluetooth",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3d33e59f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucollections",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucryptolib",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uctypes",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f8961001"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uerrno",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uhashlib",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uheapq",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uio",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e5fbc4ce"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ujson",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umachine",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2dc574a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umqtt/__init__",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1271cf25"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umqtt/robust",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "edb7172e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umqtt/simple",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "153a672b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uos",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98072b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uplatform",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "617e2ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "upysh",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d0567983"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urandom",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ure",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e540d7b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urequests",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fddb5409"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uselect",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usocket",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "400f0b1d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ussl",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b7a22254"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ustruct",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usys",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utime",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utimeq",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a45a782e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uwebsocket",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "59b7b6af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uzlib",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "webrepl",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "123ad236"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "webrepl_setup",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a653b8ff"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "websocket",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "59b7b6af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "zlib",
+        "port": "esp32",
+        "board": "ota",
+        "package": "micropython-esp32-ota-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7ce407b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_onewire",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bafdc7c7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_thread",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "6a4ae6cd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_uasyncio",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1bfcb2a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "apa106",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c6d12e4e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "array",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "binascii",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "bluetooth",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3d33e59f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "btree",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b72dc0d1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cmath",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "072077f5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "collections",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cryptolib",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "dht",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ds18x20",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "60cd6062"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "errno",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "esp",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "15c09067"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "esp32",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "53900eef"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "flashbdev",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fe9dc68a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "framebuf",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c016241d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "gc",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98e789b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "hashlib",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "heapq",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "inisetup",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "390f0c70"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "io",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e5fbc4ce"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "json",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "machine",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2672cab2"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "math",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0efb90af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "micropython",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "348ce54f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "mip/__init__",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "031f154e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "mip",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "af469346"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "neopixel",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "91a01c2d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "network",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a6ef972c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ntptime",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "844fb93b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "onewire",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "621c77a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "os",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98072b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "platform",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "617e2ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "random",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "select",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "socket",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "400f0b1d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ssl",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b7a22254"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "struct",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "sys",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "time",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uarray",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/__init__",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3740979c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/core",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e200d609"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/event",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c506b4bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/funcs",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "52028a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/lock",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e314173b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/stream",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "092193db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/task",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d00797bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubinascii",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubluetooth",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3d33e59f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucollections",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucryptolib",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uctypes",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f8961001"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uerrno",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uhashlib",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uheapq",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uio",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e5fbc4ce"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ujson",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umachine",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2672cab2"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umqtt/__init__",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1271cf25"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umqtt/robust",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "edb7172e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umqtt/simple",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "153a672b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uos",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98072b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uplatform",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "617e2ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "upysh",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d0567983"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urandom",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ure",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e540d7b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urequests",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fddb5409"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uselect",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usocket",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "400f0b1d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ussl",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b7a22254"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ustruct",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usys",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utime",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utimeq",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a45a782e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uwebsocket",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "59b7b6af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uzlib",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "webrepl",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "123ad236"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "webrepl_setup",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a653b8ff"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "websocket",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "59b7b6af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "zlib",
+        "port": "esp32",
+        "board": "s3",
+        "package": "micropython-esp32-s3-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7ce407b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_onewire",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bafdc7c7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_thread",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "6a4ae6cd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_uasyncio",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1bfcb2a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "apa106",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c6d12e4e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "array",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "binascii",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "bluetooth",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3d33e59f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "btree",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b72dc0d1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cmath",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "072077f5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "collections",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cryptolib",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "dht",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ds18x20",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "60cd6062"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "errno",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "esp",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "15c09067"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "esp32",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "590910b4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "flashbdev",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fe9dc68a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "framebuf",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c016241d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "gc",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98e789b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "hashlib",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "heapq",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "inisetup",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "390f0c70"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "io",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e5fbc4ce"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "json",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "logging",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3d192c32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "machine",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2dc574a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "math",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0efb90af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "micropython",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "348ce54f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "mip/__init__",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "031f154e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "mip",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "af469346"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "neopixel",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "91a01c2d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "network",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06a2f1de"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ntptime",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "844fb93b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "onewire",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "621c77a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "os",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98072b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "platform",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "617e2ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "random",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "select",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "socket",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "400f0b1d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ssl",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b7a22254"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "struct",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "sys",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "time",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uarray",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/__init__",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3740979c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/core",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e200d609"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/event",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c506b4bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/funcs",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "52028a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/lock",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e314173b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/stream",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "092193db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/task",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d00797bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubinascii",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubluetooth",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3d33e59f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucollections",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucryptolib",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uctypes",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f8961001"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uerrno",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uhashlib",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uheapq",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uio",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e5fbc4ce"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ujson",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umachine",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2dc574a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umqtt/__init__",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1271cf25"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umqtt/robust",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "edb7172e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umqtt/simple",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "153a672b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uos",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98072b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uplatform",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "617e2ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "upysh",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d0567983"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urandom",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ure",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e540d7b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urequests",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fddb5409"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uselect",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usocket",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "400f0b1d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ussl",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b7a22254"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ustruct",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usys",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utime",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utimeq",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a45a782e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uwebsocket",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "59b7b6af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uzlib",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "webrepl",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "123ad236"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "webrepl_setup",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a653b8ff"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "websocket",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "59b7b6af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "zlib",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "dcc350d3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot_fat",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "dcc350d3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_onewire",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bafdc7c7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_rp2",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c4b662d4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_thread",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "6a4ae6cd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_uasyncio",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1bfcb2a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "array",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "binascii",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cmath",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "072077f5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "collections",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cryptolib",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "dht",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ds18x20",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "60cd6062"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "errno",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "framebuf",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c016241d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "gc",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98e789b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "hashlib",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "heapq",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "io",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "json",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "logging",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "236b42b6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "machine",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e60a4a33"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "math",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0efb90af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "micropython",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "348ce54f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "neopixel",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "91a01c2d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "onewire",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "621c77a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "os",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "aabd828c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "random",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "rp2",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e74cf5ea"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "select",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "struct",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "sys",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "time",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uarray",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/__init__",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3740979c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/core",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e200d609"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/event",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c506b4bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/funcs",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "52028a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/lock",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e314173b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/stream",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "092193db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/task",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d00797bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubinascii",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucollections",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucryptolib",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uctypes",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f8961001"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uerrno",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uhashlib",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uheapq",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uio",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ujson",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umachine",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e60a4a33"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uos",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "aabd828c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urandom",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ure",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e540d7b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uselect",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ustruct",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usys",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utime",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uzlib",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "zlib",
+        "port": "rp2",
+        "board": "pico",
+        "package": "micropython-rp2-pico-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "dcc350d3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot_fat",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "dcc350d3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_onewire",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bafdc7c7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_rp2",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e0a41bf8"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_thread",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "6a4ae6cd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_uasyncio",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1bfcb2a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "array",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7a0bc98e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "binascii",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "4f09136c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cmath",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bdfdee9a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "collections",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7a7f5510"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cryptolib",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "dht",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ds18x20",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "60cd6062"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "errno",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "framebuf",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "118bc98a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "gc",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17b57d9f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "hashlib",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "ac524571"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "heapq",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3eaa9d4c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "io",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7d9d736e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "json",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "8f404335"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "logging",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "cdd06487"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "lwip",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7ec3fba3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "machine",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "9b099020"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "math",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "ead59ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "micropython",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "348ce54f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "mip",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "af469346"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "neopixel",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "91a01c2d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "network",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "27e47a4b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ntptime",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "41465755"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "onewire",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "621c77a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "os",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f1a29c2e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "random",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0108aa97"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "rp2",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e74cf5ea"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "select",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d40ae435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "socket",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7ec3fba3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ssl",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "70293dd7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "struct",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "ef5349d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "sys",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "36ac05e1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "time",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "77ce8622"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uarray",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "4f7d049e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/__init__",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3740979c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/core",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e200d609"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/event",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c506b4bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/funcs",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "52028a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/lock",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e314173b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/stream",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "092193db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/task",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d00797bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubinascii",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "6fffd1c1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucollections",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f34c8449"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucryptolib",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "918429ba"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uctypes",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "8e374b04"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uerrno",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7dc7d5c5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uhashlib",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2062b044"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uheapq",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b436a695"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uio",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "204ed514"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ujson",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0e160331"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umachine",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "22038777"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uos",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f1a29c2e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urandom",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0108aa97"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ure",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e540d7b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urequests",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e759eea1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uselect",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d40ae435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usocket",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7ec3fba3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ussl",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "70293dd7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ustruct",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "ef5349d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usys",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "36ac05e1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utime",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "77ce8622"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uwebsocket",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "59b7b6af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uzlib",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "45167a5a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "websocket",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "59b7b6af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "zlib",
+        "port": "rp2",
+        "board": "pico_w",
+        "package": "micropython-rp2-pico_w-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "45167a5a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "dcc350d3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot_fat",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "dcc350d3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_onewire",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bafdc7c7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_rp2",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c4b662d4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_thread",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "6a4ae6cd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_uasyncio",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1bfcb2a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "array",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "binascii",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cmath",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "072077f5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "collections",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cryptolib",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "dht",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ds18x20",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "60cd6062"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "errno",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "framebuf",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c016241d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "gc",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98e789b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "hashlib",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "heapq",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "io",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "json",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "logging",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "236b42b6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "machine",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "ae2d2722"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "math",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0efb90af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "micropython",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "348ce54f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "neopixel",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "91a01c2d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "onewire",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "621c77a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "os",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "aabd828c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "random",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "rp2",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e74cf5ea"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "select",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "struct",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "sys",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "time",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uarray",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/__init__",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3740979c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/core",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e200d609"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/event",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c506b4bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/funcs",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "52028a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/lock",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e314173b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/stream",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "092193db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/task",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d00797bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubinascii",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucollections",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucryptolib",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uctypes",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f8961001"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uerrno",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uhashlib",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uheapq",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uio",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ujson",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umachine",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "ae2d2722"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uos",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "aabd828c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urandom",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ure",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e540d7b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uselect",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ustruct",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usys",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utime",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uzlib",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "zlib",
+        "port": "rp2",
+        "board": "pimoroni_picolipo_16mb",
+        "package": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "dcc350d3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot_fat",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "dcc350d3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_onewire",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bafdc7c7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_rp2",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c4b662d4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_thread",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "6a4ae6cd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_uasyncio",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1bfcb2a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "array",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "binascii",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cmath",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "072077f5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "collections",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cryptolib",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "dht",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ds18x20",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "60cd6062"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "errno",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "framebuf",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c016241d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "gc",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98e789b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "hashlib",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "heapq",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "io",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "json",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "logging",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "236b42b6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "machine",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e60a4a33"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "math",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0efb90af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "micropython",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "348ce54f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "neopixel",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "91a01c2d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "onewire",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "621c77a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "os",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "aabd828c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "random",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "rp2",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e74cf5ea"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "select",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "struct",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "sys",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "time",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uarray",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/__init__",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3740979c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/core",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e200d609"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/event",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c506b4bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/funcs",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "52028a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/lock",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e314173b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/stream",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "092193db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/task",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d00797bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubinascii",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucollections",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucryptolib",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c977f435"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uctypes",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f8961001"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uerrno",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uhashlib",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7b4a3e2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uheapq",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uio",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ujson",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umachine",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e60a4a33"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uos",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "aabd828c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urandom",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ure",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e540d7b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uselect",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ustruct",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usys",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utime",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uzlib",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "zlib",
+        "port": "rp2",
+        "board": "GENERIC",
+        "package": "micropython-rp2-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_boot",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "66c2d73c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_onewire",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bafdc7c7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_uasyncio",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1bfcb2a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "array",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "binascii",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "collections",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "dht",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ds18x20",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "60cd6062"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "errno",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "framebuf",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c016241d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "gc",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7a85dcf1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "hashlib",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b10a8036"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "heapq",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "io",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "json",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "logging",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "236b42b6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "machine",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "83a0dc2f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "math",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0efb90af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "micropython",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "348ce54f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "onewire",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "621c77a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "os",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "73b7d9ba"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "random",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "samd",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d3a03353"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "select",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "struct",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "sys",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "time",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "587eff2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uarray",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/__init__",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3740979c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/core",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e200d609"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/event",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c506b4bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/funcs",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "52028a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/lock",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e314173b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/stream",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "092193db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/task",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d00797bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubinascii",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucollections",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uctypes",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f8961001"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uerrno",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uhashlib",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b10a8036"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uheapq",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uio",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ujson",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umachine",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "83a0dc2f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uos",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "73b7d9ba"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urandom",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ure",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e540d7b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uselect",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ustruct",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usys",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utime",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "587eff2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uzlib",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "zlib",
+        "port": "samd",
+        "board": "seeed_wio_terminal",
+        "package": "micropython-samd-seeed_wio_terminal-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_onewire",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bafdc7c7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_thread",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "6a4ae6cd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_uasyncio",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1bfcb2a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "array",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "binascii",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cmath",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "072077f5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "collections",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "dht",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "errno",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "framebuf",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c016241d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "gc",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98e789b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "hashlib",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b10a8036"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "heapq",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "io",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "json",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "lcd160cr",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "af3760d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "machine",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "066e9680"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "math",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0efb90af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "micropython",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "348ce54f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "network",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2c3bdd74"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "onewire",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "621c77a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "os",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3dc26a80"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "platform",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "617e2ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "pyb",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2c45f384"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "random",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "select",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "socket",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "20c3732d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "stm",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0c65335e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "struct",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "sys",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "time",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uarray",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/__init__",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3740979c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/core",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e200d609"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/event",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c506b4bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/funcs",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "52028a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/lock",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e314173b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/stream",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "092193db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/task",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d00797bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubinascii",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucollections",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uctypes",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f8961001"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uerrno",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uhashlib",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b10a8036"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uheapq",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uio",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ujson",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umachine",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "066e9680"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uos",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3dc26a80"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uplatform",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "617e2ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urandom",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ure",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e540d7b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uselect",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usocket",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "20c3732d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ustruct",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usys",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utime",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utimeq",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a45a782e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uzlib",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "zlib",
+        "port": "stm32",
+        "board": "pybv11",
+        "package": "micropython-stm32-pybv11-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_onewire",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "bafdc7c7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_thread",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "6a4ae6cd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "_uasyncio",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1bfcb2a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "array",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "binascii",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "cmath",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "072077f5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "collections",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "dht",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "errno",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "framebuf",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c016241d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "gc",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a98e789b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "hashlib",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b10a8036"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "heapq",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "io",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "json",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "lcd160cr",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "af3760d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "machine",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "066e9680"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "math",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0efb90af"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "micropython",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "348ce54f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "network",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2c3bdd74"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "onewire",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "621c77a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "os",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3dc26a80"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "platform",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "617e2ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "pyb",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "2c45f384"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "random",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "select",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "socket",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "20c3732d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "stm",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "0c65335e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "struct",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "sys",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "time",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uarray",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "96f50f63"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/__init__",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3740979c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/core",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e200d609"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/event",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c506b4bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/funcs",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "52028a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/lock",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e314173b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/stream",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "092193db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uasyncio/task",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "d00797bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ubinascii",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "1dabd900"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ucollections",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "21edd057"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uctypes",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "f8961001"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uerrno",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "df817434"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uhashlib",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "b10a8036"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uheapq",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "c8784b47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uio",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "7951241c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ujson",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "06443a58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "umachine",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "066e9680"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uos",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3dc26a80"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uplatform",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "617e2ae4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "urandom",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "17f21cb7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ure",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "e540d7b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uselect",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "fdadfa38"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usocket",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "20c3732d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "ustruct",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "47c79c65"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "usys",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "10e6cf32"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utime",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "3cb07881"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "utimeq",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "a45a782e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "uzlib",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
+    },
+    {
+        "family": "micropython",
+        "version": "1.20.0",
+        "mod_name": "zlib",
+        "port": "stm32",
+        "board": "GENERIC",
+        "package": "micropython-stm32-stubs",
+        "pkg_version": "1.20.0.post1",
+        "hash": "da60f8bc"
     }
 ]
