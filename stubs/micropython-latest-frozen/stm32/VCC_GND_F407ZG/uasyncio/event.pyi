@@ -1,4 +1,4 @@
-import uio
+import io
 from . import core as core
 from _typeshed import Incomplete
 from collections.abc import Generator
@@ -12,7 +12,7 @@ class Event:
     def clear(self) -> None: ...
     def wait(self) -> Generator[None, None, Incomplete]: ...
 
-class ThreadSafeFlag(uio.IOBase):
+class ThreadSafeFlag(io.IOBase):
     state: int
     def __init__(self) -> None: ...
     def ioctl(self, req, flags): ...
