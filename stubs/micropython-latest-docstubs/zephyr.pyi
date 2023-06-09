@@ -25,7 +25,7 @@ class DiskAccess:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
-        :class:`uos.AbstractBlockDev`.
+        :class:`os.AbstractBlockDev`.
         """
         ...
 
@@ -48,7 +48,7 @@ class FlashArea:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
-        :class:`uos.AbstractBlockDev`.
+        :class:`os.AbstractBlockDev`.
         """
         ...
 
