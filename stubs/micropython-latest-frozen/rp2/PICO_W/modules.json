@@ -25,6 +25,42 @@
             "module": "_boot_fat"
         },
         {
+            "file": "aioble/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "aioble/central.py",
+            "module": "central"
+        },
+        {
+            "file": "aioble/client.py",
+            "module": "client"
+        },
+        {
+            "file": "aioble/core.py",
+            "module": "core"
+        },
+        {
+            "file": "aioble/device.py",
+            "module": "device"
+        },
+        {
+            "file": "aioble/l2cap.py",
+            "module": "l2cap"
+        },
+        {
+            "file": "aioble/peripheral.py",
+            "module": "peripheral"
+        },
+        {
+            "file": "aioble/security.py",
+            "module": "security"
+        },
+        {
+            "file": "aioble/server.py",
+            "module": "server"
+        },
+        {
             "file": "dht.py",
             "module": "dht"
         },
