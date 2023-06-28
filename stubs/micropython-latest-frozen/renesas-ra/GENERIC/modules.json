@@ -49,10 +49,6 @@
             "module": "onewire"
         },
         {
-            "file": "sdcard.py",
-            "module": "sdcard"
-        },
-        {
             "file": "uasyncio.py",
             "module": "uasyncio"
         }
