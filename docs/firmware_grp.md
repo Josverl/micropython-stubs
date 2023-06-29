@@ -33,7 +33,7 @@
 |micropython |latest  |frozen  |nrf|ARDUINO_NANO_33_BLE_SENSE|15|1.13.7|[stubs/micropython-latest-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE)
 |micropython |latest  |frozen  |nrf|GENERIC|8|1.13.7|[stubs/micropython-latest-frozen/nrf/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/nrf/GENERIC)
 |micropython |latest  |frozen  |renesas-ra|EK_RA4M1|1|1.13.7|[stubs/micropython-latest-frozen/renesas-ra/EK_RA4M1](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/EK_RA4M1)
-|micropython |latest  |frozen  |renesas-ra|GENERIC|10|1.13.7|[stubs/micropython-latest-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/GENERIC)
+|micropython |latest  |frozen  |renesas-ra|GENERIC|9|1.13.7|[stubs/micropython-latest-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/GENERIC)
 |micropython |latest  |frozen  |renesas-ra|RA4M1_CLICKER|1|1.13.7|[stubs/micropython-latest-frozen/renesas-ra/RA4M1_CLICKER](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/RA4M1_CLICKER)
 |micropython |latest  |frozen  |rp2|ARDUINO_NANO_RP2040_CONNECT|40|1.13.7|[stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT)
 |micropython |latest  |frozen  |rp2|GENERIC|14|1.13.7|[stubs/micropython-latest-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/GENERIC)
@@ -371,4 +371,4 @@
 
 ## Metrics
 
-Total stub modules:  8015
+Total stub modules:  8014

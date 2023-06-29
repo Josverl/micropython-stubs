@@ -90,7 +90,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| nrf| ARDUINO_NANO_33_BLE_SENSE| 15| 1.13.7|[stubs/micropython-latest-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE)
 |frozen| micropython| latest| nrf| GENERIC| 8| 1.13.7|[stubs/micropython-latest-frozen/nrf/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/nrf/GENERIC)
 |frozen| micropython| latest| renesas-ra| EK_RA4M1| 1| 1.13.7|[stubs/micropython-latest-frozen/renesas-ra/EK_RA4M1](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/EK_RA4M1)
-|frozen| micropython| latest| renesas-ra| GENERIC| 10| 1.13.7|[stubs/micropython-latest-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/GENERIC)
+|frozen| micropython| latest| renesas-ra| GENERIC| 9| 1.13.7|[stubs/micropython-latest-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/GENERIC)
 |frozen| micropython| latest| renesas-ra| RA4M1_CLICKER| 1| 1.13.7|[stubs/micropython-latest-frozen/renesas-ra/RA4M1_CLICKER](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/RA4M1_CLICKER)
 |frozen| micropython| latest| rp2| ARDUINO_NANO_RP2040_CONNECT| 40| 1.13.7|[stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT)
 |frozen| micropython| latest| rp2| GENERIC| 14| 1.13.7|[stubs/micropython-latest-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/GENERIC)
@@ -335,4 +335,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  8015
+Total modules  8014
