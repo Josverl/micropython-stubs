@@ -304,12 +304,6 @@ def raw_temperature() -> int:
     """
     ...
 
-def hall_sensor() -> int:
-    """
-    Read the raw value of the internal Hall sensor, returning an integer.
-    """
-    ...
-
 def idf_heap_info(capabilities) -> List[Tuple]:
     """
     Returns information about the ESP-IDF heap memory regions. One of them contains
