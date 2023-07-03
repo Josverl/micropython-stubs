@@ -36,5 +36,9 @@
     "python.testing.pytestEnabled": true,
     "python.analysis.useLibraryCodeForTypes": false,
     "python.analysis.diagnosticMode": "openFilesOnly",
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "python.formatting.provider": "none"
 }
