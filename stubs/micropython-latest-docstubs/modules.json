@@ -8,7 +8,7 @@
         "firmware": "micropython-latest",
         "nodename": "micropython",
         "version": "latest",
-        "release": "v1.20.0-140-g7a17596e1",
+        "release": "v1.20.0-261-g813d559bc",
         "sysname": "micropython"
     },
     "stubber": {
@@ -23,6 +23,10 @@
         {
             "file": "array.pyi",
             "module": "array"
+        },
+        {
+            "file": "asyncio.pyi",
+            "module": "asyncio"
         },
         {
             "file": "binascii.pyi",

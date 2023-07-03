@@ -1,5 +1,5 @@
 """
-ESP-NOW :doc:`uasyncio` support. See: https://docs.micropython.org/en/latest/library/aioespnow.html
+ESP-NOW :doc:`asyncio` support. See: https://docs.micropython.org/en/latest/library/aioespnow.html
 """
 
 # source version: latest

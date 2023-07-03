@@ -21,6 +21,30 @@
             "module": "_boot"
         },
         {
+            "file": "asyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "asyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "asyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "asyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "asyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "asyncio/stream.py",
+            "module": "stream"
+        },
+        {
             "file": "dht.py",
             "module": "dht"
         },
@@ -41,32 +65,8 @@
             "module": "onewire"
         },
         {
-            "file": "uasyncio/__init__.py",
-            "module": "__init__"
-        },
-        {
-            "file": "uasyncio/core.py",
-            "module": "core"
-        },
-        {
-            "file": "uasyncio/event.py",
-            "module": "event"
-        },
-        {
-            "file": "uasyncio/funcs.py",
-            "module": "funcs"
-        },
-        {
-            "file": "uasyncio/lock.py",
-            "module": "lock"
-        },
-        {
-            "file": "uasyncio/stream.py",
-            "module": "stream"
-        },
-        {
-            "file": "uasyncio/task.py",
-            "module": "task"
+            "file": "uasyncio.py",
+            "module": "uasyncio"
         },
         {
             "file": "urequests.py",

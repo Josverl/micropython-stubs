@@ -6,7 +6,7 @@
 ## Micropython 
 |family | version | type    |port |board |count | stubber version|path
 |-------|---------|---------|-----|------|-----:|-|----
-|micropython |latest  |documentation|-|micropython|51|1.13.7|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
+|micropython |latest  |documentation|-|micropython|52|1.13.7|[stubs/micropython-latest-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-docstubs)
 |micropython |latest  |frozen  |esp32|GENERIC|25|1.13.7|[stubs/micropython-latest-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/GENERIC)
 |micropython |latest  |frozen  |esp32|LILYGO_TTGO_LORA32|28|1.13.7|[stubs/micropython-latest-frozen/esp32/LILYGO_TTGO_LORA32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/LILYGO_TTGO_LORA32)
 |micropython |latest  |frozen  |esp32|LOLIN_C3_MINI|26|1.13.7|[stubs/micropython-latest-frozen/esp32/LOLIN_C3_MINI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/esp32/LOLIN_C3_MINI)
@@ -33,16 +33,16 @@
 |micropython |latest  |frozen  |nrf|ARDUINO_NANO_33_BLE_SENSE|15|1.13.7|[stubs/micropython-latest-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE)
 |micropython |latest  |frozen  |nrf|GENERIC|8|1.13.7|[stubs/micropython-latest-frozen/nrf/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/nrf/GENERIC)
 |micropython |latest  |frozen  |renesas-ra|EK_RA4M1|1|1.13.7|[stubs/micropython-latest-frozen/renesas-ra/EK_RA4M1](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/EK_RA4M1)
-|micropython |latest  |frozen  |renesas-ra|GENERIC|10|1.13.7|[stubs/micropython-latest-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/GENERIC)
+|micropython |latest  |frozen  |renesas-ra|GENERIC|9|1.13.7|[stubs/micropython-latest-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/GENERIC)
 |micropython |latest  |frozen  |renesas-ra|RA4M1_CLICKER|1|1.13.7|[stubs/micropython-latest-frozen/renesas-ra/RA4M1_CLICKER](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/renesas-ra/RA4M1_CLICKER)
 |micropython |latest  |frozen  |rp2|ARDUINO_NANO_RP2040_CONNECT|40|1.13.7|[stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT)
 |micropython |latest  |frozen  |rp2|GENERIC|14|1.13.7|[stubs/micropython-latest-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/GENERIC)
 |micropython |latest  |frozen  |rp2|NULLBITS_BIT_C_PRO|15|1.13.7|[stubs/micropython-latest-frozen/rp2/NULLBITS_BIT_C_PRO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/NULLBITS_BIT_C_PRO)
-|micropython |latest  |frozen  |rp2|PICO_W|19|1.13.7|[stubs/micropython-latest-frozen/rp2/PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/PICO_W)
+|micropython |latest  |frozen  |rp2|PICO_W|28|1.13.7|[stubs/micropython-latest-frozen/rp2/PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/PICO_W)
 |micropython |latest  |frozen  |rp2|W5100S_EVB_PICO|19|1.13.7|[stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO)
 |micropython |latest  |frozen  |rp2|W5500_EVB_PICO|19|1.13.7|[stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO)
 |micropython |latest  |frozen  |rp2|WEACTSTUDIO|15|1.13.7|[stubs/micropython-latest-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/WEACTSTUDIO)
-|micropython |latest  |frozen  |samd|GENERIC|1|1.13.7|[stubs/micropython-latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/samd/GENERIC)
+|micropython |latest  |frozen  |samd|GENERIC|11|1.13.7|[stubs/micropython-latest-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/samd/GENERIC)
 |micropython |latest  |frozen  |stm32|ARDUINO_GIGA|33|1.13.7|[stubs/micropython-latest-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_GIGA)
 |micropython |latest  |frozen  |stm32|ARDUINO_NICLA_VISION|33|1.13.7|[stubs/micropython-latest-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_NICLA_VISION)
 |micropython |latest  |frozen  |stm32|ARDUINO_PORTENTA_H7|33|1.13.7|[stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/ARDUINO_PORTENTA_H7)
@@ -286,7 +286,7 @@
 |micropython |v1.20   |board   |rp2|generic|58|v1.13.4|[stubs/micropython-v1_20_0-rp2-PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-rp2-PICO)
 |micropython |v1.20   |board   |rp2|generic|69|v1.12.2|[stubs/micropython-v1_20_0-rp2-PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-rp2-PICO_W)
 |micropython |v1.20   |board   |rp2|generic|58|v1.13.7|[stubs/micropython-v1_20_0-rp2-PIMORONI_PICOLIPO_16MB](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-rp2-PIMORONI_PICOLIPO_16MB)
-|micropython |v1.20   |frozen  |samd|GENERIC|1|1.13.7|[stubs/micropython-v1_20_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/samd/GENERIC)
+|micropython |v1.20   |frozen  |samd|GENERIC|11|1.13.7|[stubs/micropython-v1_20_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/samd/GENERIC)
 |micropython |v1.20   |board   |samd|generic|51|v1.13.7|[stubs/micropython-v1_20_0-samd-ADAFRUIT_FEATHER_M4_EXPRESS](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-samd-ADAFRUIT_FEATHER_M4_EXPRESS)
 |micropython |v1.20   |board   |samd|generic|51|v1.13.7|[stubs/micropython-v1_20_0-samd-ADAFRUIT_ITSYBITSY_M4_EXPRESS](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-samd-ADAFRUIT_ITSYBITSY_M4_EXPRESS)
 |micropython |v1.20   |board   |samd|generic|51|v1.13.7|[stubs/micropython-v1_20_0-samd-MINISAM_M4](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-samd-MINISAM_M4)
@@ -371,4 +371,4 @@
 
 ## Metrics
 
-Total stub modules:  8005
+Total stub modules:  8034
