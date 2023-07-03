@@ -1,0 +1,24 @@
+{
+    "name": "micropython-samd-adafruit_feather_m4_express-stubs",
+    "mpy_version": "1.20.0",
+    "publish": true,
+    "pkg_version": "1.20.0.post1",
+    "path": "micropython-v1_20_0-samd-adafruit_feather_m4_express-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-v1_20_0-samd-adafruit_feather_m4_express-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-v1_20_0-frozen/samd/GENERIC"
+        ],
+        [
+            "Core stubs",
+            "micropython-core"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": "befb68c3eded06e6e5a11111790068a06e6a1d05",
+    "stub_hash": "5b11a6570fbfa4fe4136d7ce6fa34d7f2d4d1d2d"
+}

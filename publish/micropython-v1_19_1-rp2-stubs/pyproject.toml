@@ -32,8 +32,6 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 packages = [
-    { include = "_boot.pyi" },
-    { include = "_boot_fat.pyi" },
     { include = "_onewire.pyi" },
     { include = "_rp2.pyi" },
     { include = "_thread.pyi" },
@@ -61,6 +59,7 @@ packages = [
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
+    { include = "micropython_.pyi" },
     { include = "neopixel.pyi" },
     { include = "network.pyi" },
     { include = "onewire.pyi" },
@@ -79,7 +78,6 @@ packages = [
     { include = "uasyncio/funcs.pyi" },
     { include = "uasyncio/lock.pyi" },
     { include = "uasyncio/stream.pyi" },
-    { include = "uasyncio/task.pyi" },
     { include = "ubinascii.pyi" },
     { include = "ubluetooth.pyi" },
     { include = "ucollections.pyi" },

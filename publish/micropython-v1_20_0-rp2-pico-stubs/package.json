@@ -2,7 +2,7 @@
     "name": "micropython-rp2-pico-stubs",
     "mpy_version": "1.20.0",
     "publish": true,
-    "pkg_version": "1.20.0.post1",
+    "pkg_version": "1.20.0.post2",
     "path": "micropython-v1_20_0-rp2-pico-stubs",
     "stub_sources": [
         [
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "450b3d1060627445e7d6b230ecda767b646fb520",
-    "stub_hash": "f4f891e6502b7d6a672ecca7c18bffc1aee8c142"
+    "hash": "da85e9838bc57e97e405aafd29af0e11b14e9217",
+    "stub_hash": "89154f38a03f363ae3f277c61e0ab8c9a6179db7"
 }

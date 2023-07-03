@@ -60,6 +60,7 @@ packages = [
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
+    { include = "micropython_.pyi" },
     { include = "mip/__init__.pyi" },
     { include = "mip.pyi" },
     { include = "neopixel.pyi" },

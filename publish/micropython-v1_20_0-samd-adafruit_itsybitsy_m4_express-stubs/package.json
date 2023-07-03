@@ -1,0 +1,24 @@
+{
+    "name": "micropython-samd-adafruit_itsybitsy_m4_express-stubs",
+    "mpy_version": "1.20.0",
+    "publish": true,
+    "pkg_version": "1.20.0.post1",
+    "path": "micropython-v1_20_0-samd-adafruit_itsybitsy_m4_express-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-v1_20_0-samd-adafruit_itsybitsy_m4_express-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-v1_20_0-frozen/samd/GENERIC"
+        ],
+        [
+            "Core stubs",
+            "micropython-core"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": "cbd0cd07467bc163afd74422ab64c05b6b133b84",
+    "stub_hash": "79057680a3658b11fd4101a57f1f8f32ba25a00b"
+}

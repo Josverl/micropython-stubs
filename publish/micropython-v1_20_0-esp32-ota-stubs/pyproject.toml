@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp32-ota-stubs"
-version = "1.20.0.post1"
+version = "1.20.0.post2"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -61,6 +61,7 @@ packages = [
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
+    { include = "micropython_.pyi" },
     { include = "mip/__init__.pyi" },
     { include = "mip.pyi" },
     { include = "neopixel.pyi" },

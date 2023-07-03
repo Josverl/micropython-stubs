@@ -2,7 +2,7 @@
     "name": "micropython-esp32-ota-stubs",
     "mpy_version": "1.20.0",
     "publish": true,
-    "pkg_version": "1.20.0.post1",
+    "pkg_version": "1.20.0.post2",
     "path": "micropython-v1_20_0-esp32-ota-stubs",
     "stub_sources": [
         [
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "c80b0e1133feed3a63c122d56d30148bd909287d",
-    "stub_hash": "b300c733844ef5666520964394cb2f7f605011e7"
+    "hash": "74df7ab6e431e76c060d9c5e34bce17a411b7412",
+    "stub_hash": "3c17bbec4a20d8967863523b3fc789935a6bac2d"
 }

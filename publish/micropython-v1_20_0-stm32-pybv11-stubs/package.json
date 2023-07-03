@@ -2,7 +2,7 @@
     "name": "micropython-stm32-pybv11-stubs",
     "mpy_version": "1.20.0",
     "publish": true,
-    "pkg_version": "1.20.0.post1",
+    "pkg_version": "1.20.0.post2",
     "path": "micropython-v1_20_0-stm32-pybv11-stubs",
     "stub_sources": [
         [
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "e55ebf2277d95d8909e98244d7d2be8162fc5c9a",
-    "stub_hash": "6fe38c8ea5c88ae45c7b5de1d3cfbf30618a5f85"
+    "hash": "595a0e9f6d9df2dd2411f6348ca447e07e3fb51e",
+    "stub_hash": "f3fe182c03a550a126a967d4b57dbb041a6ab943"
 }

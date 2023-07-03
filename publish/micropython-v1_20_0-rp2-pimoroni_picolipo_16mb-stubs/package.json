@@ -2,7 +2,7 @@
     "name": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
     "mpy_version": "1.20.0",
     "publish": true,
-    "pkg_version": "1.20.0.post1",
+    "pkg_version": "1.20.0.post2",
     "path": "micropython-v1_20_0-rp2-pimoroni_picolipo_16mb-stubs",
     "stub_sources": [
         [
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "bed74391a08804cd4862306627e15f9894f7d9b8",
-    "stub_hash": "8e8a35391c0b9c173677ca3a6ca84e1d7b675b06"
+    "hash": "f38236a09fb4b1ed6cbe22698ccee9da27b19992",
+    "stub_hash": "d14f49ab874619719b29e89de29442b5839c3b61"
 }

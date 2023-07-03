@@ -32,28 +32,8 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 packages = [
-    { include = "_boot.pyi" },
-    { include = "apa106.pyi" },
-    { include = "dht.pyi" },
-    { include = "ds18x20.pyi" },
-    { include = "flashbdev.pyi" },
-    { include = "inisetup.pyi" },
     { include = "micropython.pyi" },
-    { include = "neopixel.pyi" },
-    { include = "ntptime.pyi" },
-    { include = "onewire.pyi" },
-    { include = "uasyncio/__init__.pyi" },
-    { include = "uasyncio/core.pyi" },
-    { include = "uasyncio/event.pyi" },
-    { include = "uasyncio/funcs.pyi" },
-    { include = "uasyncio/lock.pyi" },
-    { include = "uasyncio/stream.pyi" },
-    { include = "uasyncio/task.pyi" },
-    { include = "upip.pyi" },
-    { include = "upip_utarfile.pyi" },
-    { include = "webrepl.pyi" },
-    { include = "webrepl_setup.pyi" },
-    { include = "websocket_helper.pyi" },
+    { include = "micropython_.pyi" },
 ]
 
 [tool.poetry.dependencies]
