@@ -243,7 +243,7 @@
 |micropython |v1.19.1 |frozen  |teensy|GENERIC|2|1.13.7|[stubs/micropython-v1_19_1-frozen/teensy/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/teensy/GENERIC)
 |micropython |v1.19.1 |frozen  |unix|GENERIC|9|1.13.7|[stubs/micropython-v1_19_1-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/unix/GENERIC)
 |micropython |v1.19.1 |frozen  |windows|GENERIC|7|1.13.7|[stubs/micropython-v1_19_1-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-frozen/windows/GENERIC)
-|micropython |v1.20   |documentation|-|micropython|50|1.13.5|[stubs/micropython-v1_20_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-docstubs)
+|micropython |v1.20   |documentation|-|micropython|50|1.13.8|[stubs/micropython-v1_20_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-docstubs)
 |micropython |v1.20   |board   |esp32|generic|78|v1.13.4|[stubs/micropython-v1_20_0-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32)
 |micropython |v1.20   |board   |esp32|generic|78|v1.13.4|[stubs/micropython-v1_20_0-esp32-OTA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-OTA)
 |micropython |v1.20   |board   |esp32|generic|77|v1.13.7|[stubs/micropython-v1_20_0-esp32-S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-S3)
