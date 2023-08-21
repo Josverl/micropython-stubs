@@ -286,7 +286,7 @@
 |micropython |v1.20   |board   |rp2|generic|58|v1.13.4|[stubs/micropython-v1_20_0-rp2-PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-rp2-PICO)
 |micropython |v1.20   |board   |rp2|generic|69|v1.12.2|[stubs/micropython-v1_20_0-rp2-PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-rp2-PICO_W)
 |micropython |v1.20   |board   |rp2|generic|58|v1.13.7|[stubs/micropython-v1_20_0-rp2-PIMORONI_PICOLIPO_16MB](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-rp2-PIMORONI_PICOLIPO_16MB)
-|micropython |v1.20   |frozen  |samd|GENERIC|11|1.13.8|[stubs/micropython-v1_20_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/samd/GENERIC)
+|micropython |v1.20   |frozen  |samd|GENERIC|1|1.13.8|[stubs/micropython-v1_20_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-frozen/samd/GENERIC)
 |micropython |v1.20   |board   |samd|generic|51|v1.13.7|[stubs/micropython-v1_20_0-samd-ADAFRUIT_FEATHER_M4_EXPRESS](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-samd-ADAFRUIT_FEATHER_M4_EXPRESS)
 |micropython |v1.20   |board   |samd|generic|51|v1.13.7|[stubs/micropython-v1_20_0-samd-ADAFRUIT_ITSYBITSY_M4_EXPRESS](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-samd-ADAFRUIT_ITSYBITSY_M4_EXPRESS)
 |micropython |v1.20   |board   |samd|generic|51|v1.13.7|[stubs/micropython-v1_20_0-samd-MINISAM_M4](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-samd-MINISAM_M4)
@@ -371,4 +371,4 @@
 
 ## Metrics
 
-Total stub modules:  8034
+Total stub modules:  8024
