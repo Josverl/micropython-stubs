@@ -10,7 +10,7 @@ functions.
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
 from typing import IO, Iterator, Optional, Tuple, Any
-from stdlib.os import uname_result
+from stdlib.os import *
 
 
 def stat(path) -> Any:
