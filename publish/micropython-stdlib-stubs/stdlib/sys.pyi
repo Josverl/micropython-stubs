@@ -1,12 +1,13 @@
 import sys
-from _typeshed import OptExcInfo, ProfileFunction, TraceFunction, structseq
 from builtins import object as _object
 from collections.abc import AsyncGenerator, Callable, Coroutine, Sequence
-from importlib.abc import PathEntryFinder
-from importlib.machinery import ModuleSpec
+from importlib.abc import PathEntryFinder  # type: ignore
+from importlib.machinery import ModuleSpec  # type: ignore
 from io import TextIOWrapper
 from types import FrameType, ModuleType, TracebackType
 from typing import Any, NoReturn, Protocol, TextIO, TypeVar, overload
+
+from _typeshed import OptExcInfo, ProfileFunction, TraceFunction, structseq
 from typing_extensions import Literal, TypeAlias, final
 
 _T = TypeVar("_T")
@@ -17,7 +18,9 @@ _OptExcInfo: TypeAlias = OptExcInfo  # noqa: Y047  # TODO: obsolete, remove fall
 
 # Intentionally omits one deprecated and one optional method of `importlib.abc.MetaPathFinder`
 class _MetaPathFinder(Protocol):
-    def find_spec(self, fullname: str, path: Sequence[str] | None, target: ModuleType | None = ...) -> ModuleSpec | None: ...
+    def find_spec(
+        self, fullname: str, path: Sequence[str] | None, target: ModuleType | None = ...
+    ) -> ModuleSpec | None: ...
 
 # ----- sys variables -----
 if sys.platform != "win32":
@@ -82,9 +85,13 @@ _UninstantiableStructseq: TypeAlias = structseq[Any]
 flags: _flags
 
 if sys.version_info >= (3, 10):
-    _FlagTuple: TypeAlias = tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int, int]
+    _FlagTuple: TypeAlias = tuple[
+        int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int, int
+    ]
 else:
-    _FlagTuple: TypeAlias = tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int]
+    _FlagTuple: TypeAlias = tuple[
+        int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int
+    ]
 
 @final
 class _flags(_UninstantiableStructseq, _FlagTuple):
@@ -128,7 +135,9 @@ class _flags(_UninstantiableStructseq, _FlagTuple):
 float_info: _float_info
 
 @final
-class _float_info(structseq[float], tuple[float, int, int, float, int, int, int, int, float, int, int]):
+class _float_info(
+    structseq[float], tuple[float, int, int, float, int, int, int, int, float, int, int]
+):
     @property
     def max(self) -> float: ...  # DBL_MAX
     @property
@@ -221,7 +230,9 @@ def _current_frames() -> dict[int, FrameType]: ...
 def _getframe(__depth: int = ...) -> FrameType: ...
 def _debugmallocstats() -> None: ...
 def __displayhook__(__value: object) -> None: ...
-def __excepthook__(__exctype: type[BaseException], __value: BaseException, __traceback: TracebackType | None) -> None: ...
+def __excepthook__(
+    __exctype: type[BaseException], __value: BaseException, __traceback: TracebackType | None
+) -> None: ...
 def exc_info() -> OptExcInfo: ...
 
 if sys.version_info >= (3, 11):
