@@ -6,7 +6,7 @@ access and control MicroPython internals. See: https://docs.micropython.org/en/v
 # origin module:: repos/micropython/docs/library/micropython.rst
 from typing import Any, Optional, Tuple, Union
 
-def const(expr) -> Union[int, bytes, str, Tuple]:
+def const(expr) -> Union[int, bytes, str, float, Tuple]:
     """
     Used to declare that the expression is a constant so that the compiler can
     optimise it.  The use of this function should be as follows::
