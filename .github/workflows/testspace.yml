@@ -12,6 +12,9 @@ on:
       - "test/**"
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
+  STABLE_STUB_VERSION: v1_19_1
+  LATEST_STUB_VERSION: latest
+  
 jobs:
   pyright-test:
     runs-on: ubuntu-latest
@@ -47,8 +50,8 @@ jobs:
           # TODO: automatically Find Stable = latest released  version 
           pyright --version | tee ./results/pyright-version.log
           pyright stubs | tee ./results/pyright-all-stubs.log
-          pyright stubs/micropython-v1_19_1-* | tee ./results/pyright-stable.log
-          pyright stubs/micropython-latest-* | tee ./results/pyright-latest.log
+          pyright stubs/micropython-${STABLE_STUB_VERSION}-* | tee ./results/pyright-stable.log
+          pyright stubs/micropython-{LATEST_STUB_VERSION}-* | tee ./results/pyright-latest.log
 
       - name: Fixup pyright logs
         shell: pwsh
