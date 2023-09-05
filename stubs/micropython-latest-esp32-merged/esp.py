@@ -6,8 +6,8 @@ ESP32 modules.  Some functions are only available on one or the other of these
 ports.
 
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
+# Stubber: v1.13.7
 from typing import Optional, Any
 
 LOG_NONE = 0  # type: int
@@ -16,25 +16,6 @@ LOG_VERBOSE = 5  # type: int
 LOG_DEBUG = 4  # type: int
 LOG_INFO = 3  # type: int
 LOG_ERROR = 1  # type: int
-
-
-def flash_user_start() -> Any:
-    """
-    Read the memory offset at which the user flash space begins.
-    """
-    ...
-
-
-def flash_write(byte_offset, bytes) -> Any:
-    ...
-
-
-def gpio_matrix_in(*args, **kwargs) -> Any:
-    ...
-
-
-def gpio_matrix_out(*args, **kwargs) -> Any:
-    ...
 
 
 def osdebug(level) -> None:
@@ -55,14 +36,22 @@ def osdebug(level) -> None:
     ...
 
 
-def flash_size() -> Any:
-    """
-    Read the total size of the flash memory.
-    """
+def flash_write(byte_offset, bytes) -> Any:
     ...
 
 
-def dht_readinto(*args, **kwargs) -> Any:
+def gpio_matrix_in(*args, **kwargs) -> Any:
+    ...
+
+
+def gpio_matrix_out(*args, **kwargs) -> Any:
+    ...
+
+
+def flash_user_start() -> Any:
+    """
+    Read the memory offset at which the user flash space begins.
+    """
     ...
 
 
@@ -71,4 +60,11 @@ def flash_erase(sector_no) -> Any:
 
 
 def flash_read(byte_offset, length_or_buffer) -> Any:
+    ...
+
+
+def flash_size() -> Any:
+    """
+    Read the total size of the flash memory.
+    """
     ...

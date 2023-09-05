@@ -8,31 +8,45 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
+# Stubber: v1.13.7
 from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 
-TIMER_WAKE = 4  # type: int
+SLEEP = 2  # type: int
 EXT1_WAKE = 3  # type: int
 HARD_RESET = 2  # type: int
-SOFT_RESET = 5  # type: int
+TIMER_WAKE = 4  # type: int
+TOUCHPAD_WAKE = 5  # type: int
 PIN_WAKE = 2  # type: int
 PWRON_RESET = 1  # type: int
-SLEEP = 2  # type: int
 WDT_RESET = 3  # type: int
-TOUCHPAD_WAKE = 5  # type: int
-ULP_WAKE = 6  # type: int
 EXT0_WAKE = 2  # type: int
-DEEPSLEEP = 4  # type: int
+ULP_WAKE = 6  # type: int
 DEEPSLEEP_RESET = 4  # type: int
+SOFT_RESET = 5  # type: int
+DEEPSLEEP = 4  # type: int
 
 
-def enable_irq(state) -> Any:
+def wake_reason() -> Any:
     """
-    Re-enable interrupt requests.
-    The *state* parameter should be the value that was returned from the most
-    recent call to the `disable_irq()` function.
+    Get the wake reason. See :ref:`constants <machine_constants>` for the possible return values.
+
+    Availability: ESP32, WiPy.
     """
+    ...
+
+
+def disable_irq() -> Any:
+    """
+    Disable interrupt requests.
+    Returns the previous IRQ state which should be considered an opaque value.
+    This return value should be passed to the `enable_irq()` function to restore
+    interrupts to their original state, before `disable_irq()` was called.
+    """
+    ...
+
+
+def dht_readinto(*args, **kwargs) -> Any:
     ...
 
 
@@ -61,12 +75,13 @@ def bitstream(pin, encoding, timing, data, /) -> Any:
     ...
 
 
-def disable_irq() -> Any:
+def bootloader(value: Optional[Any] = None) -> None:
     """
-    Disable interrupt requests.
-    Returns the previous IRQ state which should be considered an opaque value.
-    This return value should be passed to the `enable_irq()` function to restore
-    interrupts to their original state, before `disable_irq()` was called.
+    Reset the device and enter its bootloader.  This is typically used to put the
+    device into a state where it can be programmed with new firmware.
+
+    Some ports support passing in an optional *value* argument which can control
+    which bootloader to enter, what to pass to it, or other things.
     """
     ...
 
@@ -97,11 +112,11 @@ def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
     ...
 
 
-def wake_reason() -> Any:
+def soft_reset() -> NoReturn:
     """
-    Get the wake reason. See :ref:`constants <machine_constants>` for the possible return values.
-
-    Availability: ESP32, WiPy.
+    Performs a soft reset of the interpreter, deleting all Python objects and
+    resetting the Python heap.  It tries to retain the method by which the user
+    is connected to the MicroPython REPL (eg serial, USB, Wifi).
     """
     ...
 
@@ -113,11 +128,11 @@ def sleep() -> Any:
     ...
 
 
-def soft_reset() -> NoReturn:
+def enable_irq(state) -> Any:
     """
-    Performs a soft reset of the interpreter, deleting all Python objects and
-    resetting the Python heap.  It tries to retain the method by which the user
-    is connected to the MicroPython REPL (eg serial, USB, Wifi).
+    Re-enable interrupt requests.
+    The *state* parameter should be the value that was returned from the most
+    recent call to the `disable_irq()` function.
     """
     ...
 
@@ -151,6 +166,16 @@ def unique_id() -> bytes:
     ...
 
 
+def idle() -> Any:
+    """
+    Gates the clock to the CPU, useful to reduce power consumption at any time during
+    short or long periods. Peripherals continue working and execution resumes as soon
+    as any interrupt is triggered (on many ports this includes system timer
+    interrupt occurring at regular intervals on the order of millisecond).
+    """
+    ...
+
+
 def freq(hz: Optional[Any] = None) -> Any:
     """
     Returns the CPU frequency in hertz.
@@ -163,16 +188,6 @@ def freq(hz: Optional[Any] = None) -> Any:
 def reset_cause() -> int:
     """
     Get the reset cause. See :ref:`constants <machine_constants>` for the possible return values.
-    """
-    ...
-
-
-def idle() -> Any:
-    """
-    Gates the clock to the CPU, useful to reduce power consumption at any time during
-    short or long periods. Peripherals continue working and execution resumes as soon
-    as any interrupt is triggered (on many ports this includes system timer
-    interrupt occurring at regular intervals on the order of millisecond).
     """
     ...
 
@@ -225,10 +240,12 @@ class PWM:
          PWM cycle.
        - *duty_u16* sets the duty cycle as a ratio ``duty_u16 / 65535``.
        - *duty_ns* sets the pulse width in nanoseconds.
+       - *invert*  inverts the respective output if the value is True
 
     Setting *freq* may affect other PWM objects if the objects share the same
     underlying PWM generator (this is hardware specific).
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
+    *invert* is not available at all ports.
     """
 
     def duty_u16(self, value: Optional[Any] = None) -> int:
@@ -280,148 +297,28 @@ class PWM:
     def duty(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None:
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0, invert) -> None:
         ...
 
 
-class UART:
+class WDT:
     """
-    Construct a UART object of the given id.
+    Create a WDT object and start it. The timeout must be given in milliseconds.
+    Once it is running the timeout cannot be changed and the WDT cannot be stopped either.
+
+    Notes: On the esp8266 a timeout cannot be specified, it is determined by the underlying system.
+    On rp2040 devices, the maximum timeout is 8388 ms.
     """
 
-    INV_RTS = 64  # type: int
-    INV_RX = 4  # type: int
-    CTS = 2  # type: int
-    INV_CTS = 8  # type: int
-    INV_TX = 32  # type: int
-    RTS = 1  # type: int
-
-    def deinit(self) -> None:
+    def feed(self) -> None:
         """
-        Turn off the UART bus.
-
-        .. note::
-          You will not be able to call ``init()`` on the object after ``deinit()``.
-          A new instance needs to be created in that case.
+        Feed the WDT to prevent it from resetting the system. The application
+        should place this call in a sensible place ensuring that the WDT is
+        only fed after verifying that everything is functioning correctly.
         """
         ...
 
-    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
-        """
-        Initialise the UART bus with the given parameters:
-
-          - *baudrate* is the clock rate.
-          - *bits* is the number of bits per character, 7, 8 or 9.
-          - *parity* is the parity, ``None``, 0 (even) or 1 (odd).
-          - *stop* is the number of stop bits, 1 or 2.
-
-        Additional keyword-only parameters that may be supported by a port are:
-
-          - *tx* specifies the TX pin to use.
-          - *rx* specifies the RX pin to use.
-          - *rts* specifies the RTS (output) pin to use for hardware receive flow control.
-          - *cts* specifies the CTS (input) pin to use for hardware transmit flow control.
-          - *txbuf* specifies the length in characters of the TX buffer.
-          - *rxbuf* specifies the length in characters of the RX buffer.
-          - *timeout* specifies the time to wait for the first character (in ms).
-          - *timeout_char* specifies the time to wait between characters (in ms).
-          - *invert* specifies which lines to invert.
-
-              - ``0`` will not invert lines (idle state of both lines is logic high).
-              - ``UART.INV_TX`` will invert TX line (idle state of TX line now logic low).
-              - ``UART.INV_RX`` will invert RX line (idle state of RX line now logic low).
-              - ``UART.INV_TX | UART.INV_RX`` will invert both lines (idle state at logic low).
-
-          - *flow* specifies which hardware flow control signals to use. The value
-            is a bitmask.
-
-              - ``0`` will ignore hardware flow control signals.
-              - ``UART.RTS`` will enable receive flow control by using the RTS output pin to
-                signal if the receive FIFO has sufficient space to accept more data.
-              - ``UART.CTS`` will enable transmit flow control by pausing transmission when the
-                CTS input pin signals that the receiver is running low on buffer space.
-              - ``UART.RTS | UART.CTS`` will enable both, for full hardware flow control.
-
-        On the WiPy only the following keyword-only parameter is supported:
-
-          - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
-            Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
-            When no pins are given, then the default set of TX and RX pins is taken, and hardware
-            flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
-
-        .. note::
-          It is possible to call ``init()`` multiple times on the same object in
-          order to reconfigure  UART on the fly. That allows using single UART
-          peripheral to serve different devices attached to different GPIO pins.
-          Only one device can be served at a time in that case.
-          Also do not call ``deinit()`` as it will prevent calling ``init()``
-          again.
-        """
-        ...
-
-    def sendbreak(self) -> None:
-        """
-        Send a break condition on the bus. This drives the bus low for a duration
-        longer than required for a normal transmission of a character.
-        """
-        ...
-
-    def read(self, nbytes: Optional[Any] = None) -> bytes:
-        """
-        Read characters.  If ``nbytes`` is specified then read at most that many bytes,
-        otherwise read as much data as possible. It may return sooner if a timeout
-        is reached. The timeout is configurable in the constructor.
-
-        Return value: a bytes object containing the bytes read in.  Returns ``None``
-        on timeout.
-        """
-        ...
-
-    def any(self) -> int:
-        """
-        Returns an integer counting the number of characters that can be read without
-        blocking.  It will return 0 if there are no characters available and a positive
-        number if there are characters.  The method may return 1 even if there is more
-        than one character available for reading.
-
-        For more sophisticated querying of available characters use select.poll::
-
-         poll = select.poll()
-         poll.register(uart, select.POLLIN)
-         poll.poll(timeout)
-        """
-        ...
-
-    def write(self, buf) -> int:
-        """
-        Write the buffer of bytes to the bus.
-
-        Return value: number of bytes written or ``None`` on timeout.
-        """
-        ...
-
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
-        """
-        Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
-        that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
-        is reached. The timeout is configurable in the constructor.
-
-        Return value: number of bytes read and stored into ``buf`` or ``None`` on
-        timeout.
-        """
-        ...
-
-    def readline(self) -> None:
-        """
-        Read a line, ending in a newline character. It may return sooner if a timeout
-        is reached. The timeout is configurable in the constructor.
-
-        Return value: the line read or ``None`` on timeout.
-        """
-        ...
-
-    def __init__(self, id, *args, **kwargs) -> None:
+    def __init__(self, id=0, timeout=5000) -> None:
         ...
 
 
@@ -561,7 +458,7 @@ class I2S:
       - ``ibuf`` specifies internal buffer length (bytes)
 
     For all ports, DMA runs continuously in the background and allows user applications to perform other operations while
-    sample data is transfered between the internal buffer and the I2S peripheral unit.
+    sample data is transferred between the internal buffer and the I2S peripheral unit.
     Increasing the size of the internal buffer has the potential to increase the time that user applications can perform non-I2S operations
     before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
     """
@@ -640,6 +537,8 @@ class I2C:
        - *sda* should be a pin object specifying the pin to use for SDA.
        - *freq* should be an integer which sets the maximum frequency
          for SCL.
+       - *timeout* is the maximum time in microseconds to allow for I2C
+         transactions.  This parameter is not allowed on some ports.
 
     Note that some ports/boards will have default values of *scl* and *sda*
     that can be changed in this constructor.  Others will have fixed values
@@ -755,7 +654,7 @@ class I2C:
            - *freq* is the SCL clock rate
 
          In the case of hardware I2C the actual clock frequency may be lower than the
-         requested frequency. This is dependant on the platform hardware. The actual
+         requested frequency. This is dependent on the platform hardware. The actual
          rate may be determined by printing the I2C object.
         """
         ...
@@ -775,7 +674,13 @@ class I2C:
         ...
 
     def __init__(
-        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+        self,
+        id: Union[int, str] = -1,
+        *,
+        scl: Optional[Union[Pin, str]] = None,
+        sda: Optional[Union[Pin, str]] = None,
+        freq=400_000,
+        timeout=50000,
     ) -> None:
         ...
 
@@ -833,7 +738,7 @@ class Timer:
           - ``callback`` - The callable to call upon expiration of the timer period.
             The callback must take one argument, which is passed the Timer object.
             The ``callback`` argument shall be specified. Otherwise an exception
-            will occurr upon timer expiration:
+            will occur upon timer expiration:
             ``TypeError: 'NoneType' object isn't callable``
         """
         ...
@@ -942,18 +847,18 @@ class Pin:
     """
 
     OPEN_DRAIN = 7  # type: int
-    IRQ_FALLING = 2  # type: int
-    IRQ_RISING = 1  # type: int
-    PULL_UP = 2  # type: int
     OUT = 3  # type: int
-    PULL_DOWN = 1  # type: int
+    IRQ_RISING = 1  # type: int
+    WAKE_LOW = 4  # type: int
     WAKE_HIGH = 5  # type: int
+    PULL_DOWN = 1  # type: int
+    PULL_UP = 2  # type: int
+    DRIVE_1 = 1  # type: int
+    IRQ_FALLING = 2  # type: int
     DRIVE_0 = 0  # type: int
     IN = 1  # type: int
-    WAKE_LOW = 4  # type: int
-    DRIVE_3 = 3  # type: int
-    DRIVE_1 = 1  # type: int
     DRIVE_2 = 2  # type: int
+    DRIVE_3 = 3  # type: int
 
     def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Any]:
         """
@@ -1000,25 +905,15 @@ class Pin:
         """
         ...
 
-    def off(self) -> None:
-        """
-        Set pin to "0" output level.
-        """
-        ...
-
     def on(self) -> None:
         """
         Set pin to "1" output level.
         """
         ...
 
-    def init(self, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
+    def off(self) -> None:
         """
-        Re-initialise the pin using the given parameters.  Only those arguments that
-        are specified will be set.  The rest of the pin peripheral state will remain
-        unchanged.  See the constructor documentation for details of the arguments.
-
-        Returns ``None``.
+        Set pin to "0" output level.
         """
         ...
 
@@ -1056,6 +951,20 @@ class Pin:
         """
         ...
 
+    def init(self, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
+        """
+        Re-initialise the pin using the given parameters.  Only those arguments that
+        are specified will be set.  The rest of the pin peripheral state will remain
+        unchanged.  See the constructor documentation for details of the arguments.
+
+        Returns ``None``.
+        """
+        ...
+
+    class board:
+        def __init__(self, *argv, **kwargs) -> None:
+            ...
+
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
         ...
 
@@ -1068,28 +977,6 @@ class Pin:
         ...
 
 
-class WDT:
-    """
-    Create a WDT object and start it. The timeout must be given in milliseconds.
-    Once it is running the timeout cannot be changed and the WDT cannot be stopped either.
-
-    Notes: On the esp32 the minimum timeout is 1 second. On the esp8266 a timeout
-    cannot be specified, it is determined by the underlying system. On rp2040 devices,
-    the maximum timeout is 8388 ms.
-    """
-
-    def feed(self) -> None:
-        """
-        Feed the WDT to prevent it from resetting the system. The application
-        should place this call in a sensible place ensuring that the WDT is
-        only fed after verifying that everything is functioning correctly.
-        """
-        ...
-
-    def __init__(self, id=0, timeout=5000) -> None:
-        ...
-
-
 class TouchPad:
     def config(self, *args, **kwargs) -> Any:
         ...
@@ -1098,6 +985,177 @@ class TouchPad:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class UART:
+    """
+    Construct a UART object of the given id.
+    """
+
+    INV_CTS = 8  # type: int
+    CTS = 2  # type: int
+    INV_TX = 32  # type: int
+    INV_RTS = 64  # type: int
+    INV_RX = 4  # type: int
+    RTS = 1  # type: int
+
+    def deinit(self) -> None:
+        """
+        Turn off the UART bus.
+
+        .. note::
+          You will not be able to call ``init()`` on the object after ``deinit()``.
+          A new instance needs to be created in that case.
+        """
+        ...
+
+    def sendbreak(self) -> None:
+        """
+        Send a break condition on the bus. This drives the bus low for a duration
+        longer than required for a normal transmission of a character.
+        """
+        ...
+
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
+        """
+        Initialise the UART bus with the given parameters:
+
+          - *baudrate* is the clock rate.
+          - *bits* is the number of bits per character, 7, 8 or 9.
+          - *parity* is the parity, ``None``, 0 (even) or 1 (odd).
+          - *stop* is the number of stop bits, 1 or 2.
+
+        Additional keyword-only parameters that may be supported by a port are:
+
+          - *tx* specifies the TX pin to use.
+          - *rx* specifies the RX pin to use.
+          - *rts* specifies the RTS (output) pin to use for hardware receive flow control.
+          - *cts* specifies the CTS (input) pin to use for hardware transmit flow control.
+          - *txbuf* specifies the length in characters of the TX buffer.
+          - *rxbuf* specifies the length in characters of the RX buffer.
+          - *timeout* specifies the time to wait for the first character (in ms).
+          - *timeout_char* specifies the time to wait between characters (in ms).
+          - *invert* specifies which lines to invert.
+
+              - ``0`` will not invert lines (idle state of both lines is logic high).
+              - ``UART.INV_TX`` will invert TX line (idle state of TX line now logic low).
+              - ``UART.INV_RX`` will invert RX line (idle state of RX line now logic low).
+              - ``UART.INV_TX | UART.INV_RX`` will invert both lines (idle state at logic low).
+
+          - *flow* specifies which hardware flow control signals to use. The value
+            is a bitmask.
+
+              - ``0`` will ignore hardware flow control signals.
+              - ``UART.RTS`` will enable receive flow control by using the RTS output pin to
+                signal if the receive FIFO has sufficient space to accept more data.
+              - ``UART.CTS`` will enable transmit flow control by pausing transmission when the
+                CTS input pin signals that the receiver is running low on buffer space.
+              - ``UART.RTS | UART.CTS`` will enable both, for full hardware flow control.
+
+        On the WiPy only the following keyword-only parameter is supported:
+
+          - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
+            Any of the pins can be None if one wants the UART to operate with limited functionality.
+            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
+            When no pins are given, then the default set of TX and RX pins is taken, and hardware
+            flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
+
+        .. note::
+          It is possible to call ``init()`` multiple times on the same object in
+          order to reconfigure  UART on the fly. That allows using single UART
+          peripheral to serve different devices attached to different GPIO pins.
+          Only one device can be served at a time in that case.
+          Also do not call ``deinit()`` as it will prevent calling ``init()``
+          again.
+        """
+        ...
+
+    def flush(self) -> Any:
+        """
+        Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
+        duration depends on the tx buffer size and the baud rate. Unless flow control is enabled, a timeout
+        should not occur.
+
+        .. note::
+
+            For the rp2, esp8266 and nrf ports the call returns while the last byte is sent.
+            If required, a one character wait time has to be added in the calling script.
+
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
+        """
+        ...
+
+    def txdone(self) -> bool:
+        """
+        Tells whether all data has been sent or no data transfer is happening. In this case,
+        it returns ``True``. If a data transmission is ongoing it returns ``False``.
+
+        .. note::
+
+            For the rp2, esp8266 and nrf ports the call may return ``True`` even if the last byte
+            of a transfer is still being sent. If required, a one character wait time has to be
+            added in the calling script.
+
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
+        """
+        ...
+
+    def read(self, nbytes: Optional[Any] = None) -> bytes:
+        """
+        Read characters.  If ``nbytes`` is specified then read at most that many bytes,
+        otherwise read as much data as possible. It may return sooner if a timeout
+        is reached. The timeout is configurable in the constructor.
+
+        Return value: a bytes object containing the bytes read in.  Returns ``None``
+        on timeout.
+        """
+        ...
+
+    def any(self) -> int:
+        """
+        Returns an integer counting the number of characters that can be read without
+        blocking.  It will return 0 if there are no characters available and a positive
+        number if there are characters.  The method may return 1 even if there is more
+        than one character available for reading.
+
+        For more sophisticated querying of available characters use select.poll::
+
+         poll = select.poll()
+         poll.register(uart, select.POLLIN)
+         poll.poll(timeout)
+        """
+        ...
+
+    def write(self, buf) -> int:
+        """
+        Write the buffer of bytes to the bus.
+
+        Return value: number of bytes written or ``None`` on timeout.
+        """
+        ...
+
+    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+        """
+        Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
+        that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
+        is reached. The timeout is configurable in the constructor.
+
+        Return value: number of bytes read and stored into ``buf`` or ``None`` on
+        timeout.
+        """
+        ...
+
+    def readline(self) -> None:
+        """
+        Read a line, ending in a newline character. It may return sooner if a timeout
+        is reached. The timeout is configurable in the constructor.
+
+        Return value: the line read or ``None`` on timeout.
+        """
+        ...
+
+    def __init__(self, id, *args, **kwargs) -> None:
         ...
 
 
@@ -1285,7 +1343,7 @@ class SPI:
             specify them as a tuple of ``pins`` parameter.
 
         In the case of hardware SPI the actual clock frequency may be lower than the
-        requested baudrate. This is dependant on the platform hardware. The actual
+        requested baudrate. This is dependent on the platform hardware. The actual
         rate may be determined by printing the SPI object.
         """
         ...

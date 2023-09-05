@@ -21,12 +21,12 @@ This module implements a pseudo-random number generator (PRNG).
 .. note::
 
    The :func:`randrange`, :func:`randint` and :func:`choice` functions are only
-   available if the ``MICROPY_PY_URANDOM_EXTRA_FUNCS`` configuration option is
+   available if the ``MICROPY_PY_RANDOM_EXTRA_FUNCS`` configuration option is
    enabled.
 
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
+# Stubber: v1.13.7
 from typing import Optional, Any
 
 
@@ -58,7 +58,7 @@ def seed(n=None, /) -> None:
     supported by the port) initialise the PRNG with a true random number
     (usually a hardware generated random number).
 
-    The ``None`` case only works if ``MICROPY_PY_URANDOM_SEED_INIT_FUNC`` is
+    The ``None`` case only works if ``MICROPY_PY_RANDOM_SEED_INIT_FUNC`` is
     enabled by the port, otherwise it raises ``ValueError``.
     """
     ...

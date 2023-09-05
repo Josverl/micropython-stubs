@@ -3,14 +3,14 @@ system specific functions. See: https://docs.micropython.org/en/latest/library/s
 
 |see_cpython_module| :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
+# Stubber: v1.13.7
 from typing import Dict, List, Tuple, Any
 
 platform = "esp32"  # type: str
 version_info = ()  # type: tuple
 path = []  # type: list
-version = "3.4.0; MicroPython v1.19.1 on 2022-06-18"  # type: str
+version = "3.4.0; MicroPython v1.20.0-449-g0bafdaf5f on 2023-09-05"  # type: str
 ps1 = ">>> "  # type: str
 ps2 = "... "  # type: str
 byteorder = "little"  # type: str
