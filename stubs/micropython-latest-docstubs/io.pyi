@@ -10,6 +10,7 @@ and helper functions.
 # source version: latest
 # origin module:: repos/micropython/docs/library/io.rst
 from typing import IO, Any, Optional
+from stdlib.io import *  # type: ignore
 
 class FileIO(IO):
     """

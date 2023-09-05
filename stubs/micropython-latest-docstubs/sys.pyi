@@ -26,7 +26,7 @@ This object is the recommended way to distinguish MicroPython from other
 Python implementations (note that it still may not exist in the very
 minimal ports).
 """
-maxsize: int = 1
+maxsize: int
 """\
 Maximum value which a native integer type can hold on the current platform,
 or maximum value representable by MicroPython integer type, if it's smaller
@@ -77,7 +77,7 @@ stdin: Any = ...
 """Standard input `stream`."""
 stdout: Any = ...
 """Standard output `stream`."""
-tracebacklimit: int = 1
+tracebacklimit: int
 """\
 A mutable attribute holding an integer value which is the maximum number of traceback
 entries to store in an exception.  Set to 0 to disable adding tracebacks.  Defaults
@@ -85,7 +85,7 @@ to 1000.
 
 Note: this is not available on all ports.
 """
-version: str = ""
+version: str
 """Python language version that this implementation conforms to, as a string."""
 version_info: Tuple
 """Python language version that this implementation conforms to, as a tuple of ints."""

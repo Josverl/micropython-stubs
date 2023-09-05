@@ -26,12 +26,12 @@ The ``pyb`` module contains specific functions related to the board.
 # + module: pyb.USB_VCP.rst
 from typing import Any, List, NoReturn, Optional, Tuple
 
-hid_mouse: int = 1
+hid_mouse: int
 """\
 A tuple of (subclass, protocol, max packet length, polling interval, report
 descriptor) to set appropriate values for a USB mouse or keyboard.
 """
-hid_keyboard: int = 1
+hid_keyboard: int
 """\
 A tuple of (subclass, protocol, max packet length, polling interval, report
 descriptor) to set appropriate values for a USB mouse or keyboard.
@@ -1322,11 +1322,11 @@ class Timer:
     ``id`` can be 1 to 14.
     """
 
-    UP: int = 1
+    UP: int
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
-    DOWN: int = 1
+    DOWN: int
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
-    CENTER: int = 1
+    CENTER: int
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
     BRK_OFF: Any = ...
     """Configures the break mode when passed to the ``brk`` keyword argument."""

@@ -9,6 +9,7 @@ This module provides access to the BSD socket interface.
 # source version: latest
 # origin module:: repos/micropython/docs/library/socket.rst
 from typing import IO, Any, Optional, Tuple
+from stdlib.socket import *  # type: ignore
 
 AF_INET: Any = ...
 """Address family types. Availability depends on a particular :term:`MicroPython port`."""
@@ -34,12 +35,12 @@ because `SOCK_STREAM` socket type automatically selects `IPPROTO_TCP`, and
 `SOCK_DGRAM` - `IPPROTO_UDP`. Thus, the only real use of these constants
 is as an argument to `setsockopt()`.
 """
-# SOL_*: Any = ...
+# SOL_*: Any
 """\
 Socket option levels (an argument to `setsockopt()`). The exact
 inventory depends on a :term:`MicroPython port`.
 """
-# SO_*: Any = ...
+# SO_*: Any
 """\
 Socket options (an argument to `setsockopt()`). The exact
 inventory depends on a :term:`MicroPython port`.

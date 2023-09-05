@@ -26,42 +26,42 @@ NATIVE: Any = ...
 Layout type for a native structure - with data endianness and alignment
 conforming to the ABI of the system on which MicroPython runs.
 """
-UINT8: int = 1
+UINT8: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-INT8: int = 1
+INT8: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-UINT16: int = 1
+UINT16: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-INT16: int = 1
+INT16: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-UINT32: int = 1
+UINT32: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-INT32: int = 1
+INT32: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-UINT64: int = 1
+UINT64: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-INT64: int = 1
+INT64: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.

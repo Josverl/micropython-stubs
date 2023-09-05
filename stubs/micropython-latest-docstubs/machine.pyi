@@ -31,7 +31,7 @@ mem8: Any = ...
 """Read/write 8 bits of memory."""
 mem16: Any = ...
 """Read/write 16 bits of memory."""
-mem32: int = 1
+mem32: int
 """\
 Read/write 32 bits of memory.
 
@@ -155,19 +155,19 @@ class Pin:
     Selects whether there is a pull up/down resistor.  Use the value
     ``None`` for no pull.
     """
-    DRIVE_0: int = 1
+    DRIVE_0: int
     """\
     Selects the pin drive strength.  A port may define additional drive
     constants with increasing number corresponding to increasing drive
     strength.
     """
-    DRIVE_1: int = 1
+    DRIVE_1: int
     """\
     Selects the pin drive strength.  A port may define additional drive
     constants with increasing number corresponding to increasing drive
     strength.
     """
-    DRIVE_2: int = 1
+    DRIVE_2: int
     """\
     Selects the pin drive strength.  A port may define additional drive
     constants with increasing number corresponding to increasing drive

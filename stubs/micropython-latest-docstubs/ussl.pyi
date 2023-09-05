@@ -11,6 +11,7 @@ facilities for network sockets, both client-side and server-side.
 # source version: latest
 # origin module:: repos/micropython/docs/library/ssl.rst
 from typing import Any
+from stdlib.ssl import *  # type: ignore
 
 SSLError: Any = ...
 """This exception does NOT exist. Instead its base class, OSError, is used."""
