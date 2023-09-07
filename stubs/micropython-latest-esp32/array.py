@@ -6,7 +6,7 @@ Module: 'array' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIRA
 from typing import Any
 
 
-class array():
+class array:
     def extend(self, *args, **kwargs) -> Any:
         ...
 
@@ -15,4 +15,3 @@ class array():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

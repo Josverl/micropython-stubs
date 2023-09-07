@@ -6,7 +6,7 @@ Module: 'ucryptolib' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_
 from typing import Any
 
 
-class aes():
+class aes:
     def encrypt(self, *args, **kwargs) -> Any:
         ...
 
@@ -15,4 +15,3 @@ class aes():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

@@ -6,8 +6,9 @@ Module: 'apa106' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIR
 from typing import Any
 
 
-class APA106():
-    ORDER = () # type: tuple
+class APA106:
+    ORDER = ()  # type: tuple
+
     def write(self, *args, **kwargs) -> Any:
         ...
 
@@ -18,8 +19,9 @@ class APA106():
         ...
 
 
-class NeoPixel():
-    ORDER = () # type: tuple
+class NeoPixel:
+    ORDER = ()  # type: tuple
+
     def write(self, *args, **kwargs) -> Any:
         ...
 
@@ -28,4 +30,3 @@ class NeoPixel():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

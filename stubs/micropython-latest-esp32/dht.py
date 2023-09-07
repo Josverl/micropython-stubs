@@ -5,11 +5,12 @@ Module: 'dht' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIRAM_
 # Stubber: v1.13.7
 from typing import Any
 
+
 def dht_readinto(*args, **kwargs) -> Any:
     ...
 
 
-class DHT22():
+class DHT22:
     def humidity(self, *args, **kwargs) -> Any:
         ...
 
@@ -23,7 +24,7 @@ class DHT22():
         ...
 
 
-class DHT11():
+class DHT11:
     def humidity(self, *args, **kwargs) -> Any:
         ...
 
@@ -37,10 +38,9 @@ class DHT11():
         ...
 
 
-class DHTBase():
+class DHTBase:
     def measure(self, *args, **kwargs) -> Any:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

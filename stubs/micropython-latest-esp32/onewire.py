@@ -6,10 +6,11 @@ Module: 'onewire' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPI
 from typing import Any
 
 
-class OneWire():
-    MATCH_ROM = 85 # type: int
-    SKIP_ROM = 204 # type: int
-    SEARCH_ROM = 240 # type: int
+class OneWire:
+    MATCH_ROM = 85  # type: int
+    SKIP_ROM = 204  # type: int
+    SEARCH_ROM = 240  # type: int
+
     def select_rom(self, *args, **kwargs) -> Any:
         ...
 

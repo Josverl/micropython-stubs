@@ -5,6 +5,7 @@ Module: 'umqtt.simple' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_wit
 # Stubber: v1.13.7
 from typing import Any
 
+
 def hexlify(*args, **kwargs) -> Any:
     ...
 

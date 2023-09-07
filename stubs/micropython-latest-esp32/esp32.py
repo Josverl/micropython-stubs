@@ -5,34 +5,43 @@ Module: 'esp32' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIRA
 # Stubber: v1.13.7
 from typing import Any
 
-WAKEUP_ALL_LOW = False # type: bool
-WAKEUP_ANY_HIGH = True # type: bool
-HEAP_EXEC = 1 # type: int
-HEAP_DATA = 4 # type: int
+WAKEUP_ALL_LOW = False  # type: bool
+WAKEUP_ANY_HIGH = True  # type: bool
+HEAP_EXEC = 1  # type: int
+HEAP_DATA = 4  # type: int
+
+
 def raw_temperature(*args, **kwargs) -> Any:
     ...
+
 
 def idf_heap_info(*args, **kwargs) -> Any:
     ...
 
+
 def wake_on_touch(*args, **kwargs) -> Any:
     ...
+
 
 def wake_on_ext0(*args, **kwargs) -> Any:
     ...
 
+
 def wake_on_ext1(*args, **kwargs) -> Any:
     ...
 
+
 def wake_on_ulp(*args, **kwargs) -> Any:
     ...
+
 
 def gpio_deep_sleep_hold(*args, **kwargs) -> Any:
     ...
 
 
-class ULP():
-    RESERVE_MEM = 2040 # type: int
+class ULP:
+    RESERVE_MEM = 2040  # type: int
+
     def run(self, *args, **kwargs) -> Any:
         ...
 
@@ -46,7 +55,7 @@ class ULP():
         ...
 
 
-class NVS():
+class NVS:
     def get_i32(self, *args, **kwargs) -> Any:
         ...
 
@@ -69,11 +78,12 @@ class NVS():
         ...
 
 
-class Partition():
-    RUNNING = 1 # type: int
-    TYPE_APP = 0 # type: int
-    TYPE_DATA = 1 # type: int
-    BOOT = 0 # type: int
+class Partition:
+    RUNNING = 1  # type: int
+    TYPE_APP = 0  # type: int
+    TYPE_DATA = 1  # type: int
+    BOOT = 0  # type: int
+
     def readblocks(self, *args, **kwargs) -> Any:
         ...
 
@@ -103,7 +113,7 @@ class Partition():
         ...
 
 
-class RMT():
+class RMT:
     def source_freq(self, *args, **kwargs) -> Any:
         ...
 
@@ -127,4 +137,3 @@ class RMT():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

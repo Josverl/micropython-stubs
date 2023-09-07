@@ -7,8 +7,8 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
 floating-point support).
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
+# Stubber: v1.13.4
 from typing import List, Optional, Any
 
 
@@ -24,9 +24,6 @@ class array:
         Append new elements as contained in *iterable* to the end of
         array, growing it.
         """
-        ...
-
-    def decode(self, *args, **kwargs) -> Any:
         ...
 
     def append(self, val) -> Any:

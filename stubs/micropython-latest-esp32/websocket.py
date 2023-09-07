@@ -6,7 +6,7 @@ Module: 'websocket' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_S
 from typing import Any
 
 
-class websocket():
+class websocket:
     def readline(self, *args, **kwargs) -> Any:
         ...
 
@@ -27,4 +27,3 @@ class websocket():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

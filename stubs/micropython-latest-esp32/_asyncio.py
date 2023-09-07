@@ -6,7 +6,7 @@ Module: '_asyncio' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SP
 from typing import Any
 
 
-class TaskQueue():
+class TaskQueue:
     def push(self, *args, **kwargs) -> Any:
         ...
 
@@ -23,7 +23,6 @@ class TaskQueue():
         ...
 
 
-class Task():
+class Task:
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

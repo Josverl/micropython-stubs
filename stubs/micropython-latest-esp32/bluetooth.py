@@ -5,18 +5,19 @@ Module: 'bluetooth' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_S
 # Stubber: v1.13.7
 from typing import Any
 
-FLAG_NOTIFY = 16 # type: int
-FLAG_READ = 2 # type: int
-FLAG_WRITE = 8 # type: int
-FLAG_INDICATE = 32 # type: int
-FLAG_WRITE_NO_RESPONSE = 4 # type: int
+FLAG_NOTIFY = 16  # type: int
+FLAG_READ = 2  # type: int
+FLAG_WRITE = 8  # type: int
+FLAG_INDICATE = 32  # type: int
+FLAG_WRITE_NO_RESPONSE = 4  # type: int
 
-class UUID():
+
+class UUID:
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
-class BLE():
+class BLE:
     def gattc_write(self, *args, **kwargs) -> Any:
         ...
 
@@ -82,4 +83,3 @@ class BLE():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

@@ -5,12 +5,14 @@ Module: 'neopixel' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SP
 # Stubber: v1.13.7
 from typing import Any
 
+
 def bitstream(*args, **kwargs) -> Any:
     ...
 
 
-class NeoPixel():
-    ORDER = () # type: tuple
+class NeoPixel:
+    ORDER = ()  # type: tuple
+
     def write(self, *args, **kwargs) -> Any:
         ...
 
@@ -19,4 +21,3 @@ class NeoPixel():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

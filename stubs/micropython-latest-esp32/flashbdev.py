@@ -5,13 +5,15 @@ Module: 'flashbdev' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_S
 # Stubber: v1.13.7
 from typing import Any
 
-bdev : Any ## <class 'Partition'> = <Partition type=1, subtype=129, address=2097152, size=2097152, label=vfs, encrypted=0>
+bdev: Any  ## <class 'Partition'> = <Partition type=1, subtype=129, address=2097152, size=2097152, label=vfs, encrypted=0>
 
-class Partition():
-    RUNNING = 1 # type: int
-    TYPE_APP = 0 # type: int
-    TYPE_DATA = 1 # type: int
-    BOOT = 0 # type: int
+
+class Partition:
+    RUNNING = 1  # type: int
+    TYPE_APP = 0  # type: int
+    TYPE_DATA = 1  # type: int
+    BOOT = 0  # type: int
+
     def readblocks(self, *args, **kwargs) -> Any:
         ...
 
@@ -39,4 +41,3 @@ class Partition():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

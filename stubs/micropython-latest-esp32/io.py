@@ -5,11 +5,12 @@ Module: 'io' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIRAM_w
 # Stubber: v1.13.7
 from typing import Any
 
+
 def open(*args, **kwargs) -> Any:
     ...
 
 
-class StringIO():
+class StringIO:
     def write(self, *args, **kwargs) -> Any:
         ...
 
@@ -41,12 +42,12 @@ class StringIO():
         ...
 
 
-class IOBase():
+class IOBase:
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
-class BytesIO():
+class BytesIO:
     def write(self, *args, **kwargs) -> Any:
         ...
 
@@ -78,7 +79,7 @@ class BytesIO():
         ...
 
 
-class BufferedWriter():
+class BufferedWriter:
     def flush(self, *args, **kwargs) -> Any:
         ...
 
@@ -87,4 +88,3 @@ class BufferedWriter():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

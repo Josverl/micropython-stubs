@@ -6,9 +6,10 @@ Module: 'umqtt.robust' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_wit
 from typing import Any
 
 
-class MQTTClient():
-    DELAY = 2 # type: int
-    DEBUG = False # type: bool
+class MQTTClient:
+    DELAY = 2  # type: int
+    DEBUG = False  # type: bool
+
     def ping(self, *args, **kwargs) -> Any:
         ...
 
@@ -33,10 +34,10 @@ class MQTTClient():
     def connect(self, *args, **kwargs) -> Any:
         ...
 
-    check_msg : Any ## <class 'closure'> = <closure>
-    reconnect : Any ## <class 'closure'> = <closure>
-    publish : Any ## <class 'closure'> = <closure>
-    wait_msg : Any ## <class 'closure'> = <closure>
+    check_msg: Any  ## <class 'closure'> = <closure>
+    reconnect: Any  ## <class 'closure'> = <closure>
+    publish: Any  ## <class 'closure'> = <closure>
+    wait_msg: Any  ## <class 'closure'> = <closure>
+
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

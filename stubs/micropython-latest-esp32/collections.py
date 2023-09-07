@@ -5,11 +5,12 @@ Module: 'collections' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with
 # Stubber: v1.13.7
 from typing import Any
 
+
 def namedtuple(*args, **kwargs) -> Any:
     ...
 
 
-class OrderedDict():
+class OrderedDict:
     def popitem(self, *args, **kwargs) -> Any:
         ...
 
@@ -48,7 +49,7 @@ class OrderedDict():
         ...
 
 
-class deque():
+class deque:
     def popleft(self, *args, **kwargs) -> Any:
         ...
 
@@ -57,4 +58,3 @@ class deque():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

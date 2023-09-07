@@ -13,28 +13,21 @@ from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 WDT_RESET: int
 PWRON_RESET: int
 
+def dht_readinto(*args, **kwargs) -> Any: ...
+def enable_irq(state) -> Any:
+    """
+    Re-enable interrupt requests.
+    The *state* parameter should be the value that was returned from the most
+    recent call to the `disable_irq()` function.
+    """
+    ...
+
 def disable_irq() -> Any:
     """
     Disable interrupt requests.
     Returns the previous IRQ state which should be considered an opaque value.
     This return value should be passed to the `enable_irq()` function to restore
     interrupts to their original state, before `disable_irq()` was called.
-    """
-    ...
-
-def soft_reset() -> NoReturn:
-    """
-    Performs a soft reset of the interpreter, deleting all Python objects and
-    resetting the Python heap.  It tries to retain the method by which the user
-    is connected to the MicroPython REPL (eg serial, USB, Wifi).
-    """
-    ...
-
-def enable_irq(state) -> Any:
-    """
-    Re-enable interrupt requests.
-    The *state* parameter should be the value that was returned from the most
-    recent call to the `disable_irq()` function.
     """
     ...
 
@@ -94,6 +87,14 @@ def bootloader(value: Optional[Any] = None) -> None:
 
     Some ports support passing in an optional *value* argument which can control
     which bootloader to enter, what to pass to it, or other things.
+    """
+    ...
+
+def soft_reset() -> NoReturn:
+    """
+    Performs a soft reset of the interpreter, deleting all Python objects and
+    resetting the Python heap.  It tries to retain the method by which the user
+    is connected to the MicroPython REPL (eg serial, USB, Wifi).
     """
     ...
 
@@ -184,9 +185,8 @@ class WDT:
     Create a WDT object and start it. The timeout must be given in milliseconds.
     Once it is running the timeout cannot be changed and the WDT cannot be stopped either.
 
-    Notes: On the esp32 the minimum timeout is 1 second. On the esp8266 a timeout
-    cannot be specified, it is determined by the underlying system. On rp2040 devices,
-    the maximum timeout is 8388 ms.
+    Notes: On the esp8266 a timeout cannot be specified, it is determined by the underlying system.
+    On rp2040 devices, the maximum timeout is 8388 ms.
     """
 
     def feed(self) -> None:
@@ -213,10 +213,12 @@ class PWM:
          PWM cycle.
        - *duty_u16* sets the duty cycle as a ratio ``duty_u16 / 65535``.
        - *duty_ns* sets the pulse width in nanoseconds.
+       - *invert*  inverts the respective output if the value is True
 
     Setting *freq* may affect other PWM objects if the objects share the same
     underlying PWM generator (this is hardware specific).
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
+    *invert* is not available at all ports.
     """
 
     def freq(self, value: Optional[Any] = None) -> Any:
@@ -254,7 +256,7 @@ class PWM:
         Disable the PWM output.
         """
         ...
-    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None: ...
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0, invert) -> None: ...
 
 class ADC:
     """
@@ -292,6 +294,8 @@ class I2C:
        - *sda* should be a pin object specifying the pin to use for SDA.
        - *freq* should be an integer which sets the maximum frequency
          for SCL.
+       - *timeout* is the maximum time in microseconds to allow for I2C
+         transactions.  This parameter is not allowed on some ports.
 
     Note that some ports/boards will have default values of *scl* and *sda*
     that can be changed in this constructor.  Others will have fixed values
@@ -397,7 +401,7 @@ class I2C:
            - *freq* is the SCL clock rate
 
          In the case of hardware I2C the actual clock frequency may be lower than the
-         requested frequency. This is dependant on the platform hardware. The actual
+         requested frequency. This is dependent on the platform hardware. The actual
          rate may be determined by printing the I2C object.
         """
         ...
@@ -414,7 +418,13 @@ class I2C:
         """
         ...
     def __init__(
-        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+        self,
+        id: Union[int, str] = -1,
+        *,
+        scl: Optional[Union[Pin, str]] = None,
+        sda: Optional[Union[Pin, str]] = None,
+        freq=400_000,
+        timeout=50000,
     ) -> None: ...
 
 class I2S:
@@ -438,7 +448,7 @@ class I2S:
       - ``ibuf`` specifies internal buffer length (bytes)
 
     For all ports, DMA runs continuously in the background and allows user applications to perform other operations while
-    sample data is transfered between the internal buffer and the I2S peripheral unit.
+    sample data is transferred between the internal buffer and the I2S peripheral unit.
     Increasing the size of the internal buffer has the potential to increase the time that user applications can perform non-I2S operations
     before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
     """
@@ -554,30 +564,28 @@ class Pin:
     ``Pin.OPEN_DRAIN``, the alternate function will be removed from the pin.
     """
 
-    PULL_DOWN: int
-    IRQ_RISING: int
-    OPEN_DRAIN: int
-    OUT: int
-    IRQ_FALLING: int
-    PULL_UP: int
-    ALT: int
+    ALT_SPI: int
     IN: int
-    def toggle(self, *args, **kwargs) -> Any: ...
+    ALT_USB: int
+    ALT_UART: int
+    IRQ_FALLING: int
+    OUT: int
+    OPEN_DRAIN: int
+    IRQ_RISING: int
+    PULL_DOWN: int
+    ALT_SIO: int
+    ALT_GPCK: int
+    ALT: int
+    PULL_UP: int
+    ALT_I2C: int
+    ALT_PWM: int
+    ALT_PIO1: int
+    ALT_PIO0: int
     def low(self) -> None:
         """
         Set pin to "0" output level.
 
         Availability: nrf, rp2, stm32 ports.
-        """
-        ...
-    def off(self) -> None:
-        """
-        Set pin to "0" output level.
-        """
-        ...
-    def on(self) -> None:
-        """
-        Set pin to "1" output level.
         """
         ...
     def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Any]:
@@ -624,6 +632,26 @@ class Pin:
         The following methods are not part of the core Pin API and only implemented on certain ports.
         """
         ...
+    def toggle(self, *args, **kwargs) -> Any: ...
+    def off(self) -> None:
+        """
+        Set pin to "0" output level.
+        """
+        ...
+    def on(self) -> None:
+        """
+        Set pin to "1" output level.
+        """
+        ...
+    def init(self, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
+        """
+        Re-initialise the pin using the given parameters.  Only those arguments that
+        are specified will be set.  The rest of the pin peripheral state will remain
+        unchanged.  See the constructor documentation for details of the arguments.
+
+        Returns ``None``.
+        """
+        ...
     def value(self, x: Optional[Any] = None) -> int:
         """
         This method allows to set and get the value of the pin, depending on whether
@@ -664,15 +692,71 @@ class Pin:
         Availability: nrf, rp2, stm32 ports.
         """
         ...
-    def init(self, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
-        """
-        Re-initialise the pin using the given parameters.  Only those arguments that
-        are specified will be set.  The rest of the pin peripheral state will remain
-        unchanged.  See the constructor documentation for details of the arguments.
 
-        Returns ``None``.
-        """
-        ...
+    class cpu:
+        GPIO26: Any
+        GPIO25: Any
+        GPIO27: Any
+        GPIO28: Any
+        GPIO22: Any
+        GPIO24: Any
+        GPIO23: Any
+        GPIO9: Any
+        GPIO7: Any
+        GPIO6: Any
+        GPIO8: Any
+        GPIO29: Any
+        GPIO3: Any
+        GPIO5: Any
+        GPIO4: Any
+        GPIO12: Any
+        GPIO11: Any
+        GPIO13: Any
+        GPIO14: Any
+        GPIO0: Any
+        GPIO10: Any
+        GPIO1: Any
+        GPIO21: Any
+        GPIO2: Any
+        GPIO19: Any
+        GPIO20: Any
+        GPIO15: Any
+        GPIO16: Any
+        GPIO18: Any
+        GPIO17: Any
+        def __init__(self, *argv, **kwargs) -> None: ...
+
+    class board:
+        GP27: Any
+        GP26: Any
+        GP28: Any
+        LED: Any
+        GP21: Any
+        GP25: Any
+        GP22: Any
+        GP8: Any
+        GP7: Any
+        GP9: Any
+        GP3: Any
+        GP4: Any
+        GP6: Any
+        GP5: Any
+        GP12: Any
+        GP11: Any
+        GP13: Any
+        GP20: Any
+        GP0: Any
+        GP10: Any
+        GP1: Any
+        GP19: Any
+        GP18: Any
+        GP2: Any
+        GP14: Any
+        GP15: Any
+        GP17: Any
+        GP16: Any
+        def __init__(self, *argv, **kwargs) -> None: ...
+
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None: ...
     def __call__(self, x: Optional[Any] = None) -> Any:
         """
@@ -745,7 +829,7 @@ class Timer:
           - ``callback`` - The callable to call upon expiration of the timer period.
             The callback must take one argument, which is passed the Timer object.
             The ``callback`` argument shall be specified. Otherwise an exception
-            will occurr upon timer expiration:
+            will occur upon timer expiration:
             ``TypeError: 'NoneType' object isn't callable``
         """
         ...
@@ -762,9 +846,9 @@ class UART:
     """
 
     INV_TX: int
+    RTS: int
     CTS: int
     INV_RX: int
-    RTS: int
     def deinit(self) -> None:
         """
         Turn off the UART bus.
@@ -772,6 +856,12 @@ class UART:
         .. note::
           You will not be able to call ``init()`` on the object after ``deinit()``.
           A new instance needs to be created in that case.
+        """
+        ...
+    def sendbreak(self) -> None:
+        """
+        Send a break condition on the bus. This drives the bus low for a duration
+        longer than required for a normal transmission of a character.
         """
         ...
     def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
@@ -827,10 +917,32 @@ class UART:
           again.
         """
         ...
-    def sendbreak(self) -> None:
+    def flush(self) -> Any:
         """
-        Send a break condition on the bus. This drives the bus low for a duration
-        longer than required for a normal transmission of a character.
+        Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
+        duration depends on the tx buffer size and the baud rate. Unless flow control is enabled, a timeout
+        should not occur.
+
+        .. note::
+
+            For the rp2, esp8266 and nrf ports the call returns while the last byte is sent.
+            If required, a one character wait time has to be added in the calling script.
+
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
+        """
+        ...
+    def txdone(self) -> bool:
+        """
+        Tells whether all data has been sent or no data transfer is happening. In this case,
+        it returns ``True``. If a data transmission is ongoing it returns ``False``.
+
+        .. note::
+
+            For the rp2, esp8266 and nrf ports the call may return ``True`` even if the last byte
+            of a transfer is still being sent. If required, a one character wait time has to be
+            added in the calling script.
+
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
         """
         ...
     def read(self, nbytes: Optional[Any] = None) -> bytes:
@@ -974,7 +1086,7 @@ class SPI:
             specify them as a tuple of ``pins`` parameter.
 
         In the case of hardware SPI the actual clock frequency may be lower than the
-        requested baudrate. This is dependant on the platform hardware. The actual
+        requested baudrate. This is dependent on the platform hardware. The actual
         rate may be determined by printing the SPI object.
         """
         ...

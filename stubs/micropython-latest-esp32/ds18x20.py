@@ -5,11 +5,12 @@ Module: 'ds18x20' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPI
 # Stubber: v1.13.7
 from typing import Any
 
+
 def const(*args, **kwargs) -> Any:
     ...
 
 
-class DS18X20():
+class DS18X20:
     def read_scratch(self, *args, **kwargs) -> Any:
         ...
 
@@ -27,4 +28,3 @@ class DS18X20():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

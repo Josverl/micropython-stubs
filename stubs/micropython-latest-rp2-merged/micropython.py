@@ -1,9 +1,9 @@
 """
 access and control MicroPython internals. See: https://docs.micropython.org/en/latest/library/micropython.html
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.9.11
-from typing import Optional, Any
+# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
+# Stubber: v1.13.4
+from typing import Optional, Tuple, Union, Any
 
 
 def opt_level(level: Optional[Any] = None) -> Any:
@@ -112,7 +112,7 @@ def alloc_emergency_exception_buf(size) -> Any:
     ...
 
 
-def const(expr) -> int:
+def const(expr) -> Union[int, bytes, str, float, Tuple]:
     """
     Used to declare that the expression is a constant so that the compiler can
     optimise it.  The use of this function should be as follows::

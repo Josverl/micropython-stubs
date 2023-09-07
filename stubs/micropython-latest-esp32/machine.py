@@ -5,70 +5,89 @@ Module: 'machine' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPI
 # Stubber: v1.13.7
 from typing import Any
 
-SLEEP = 2 # type: int
-EXT1_WAKE = 3 # type: int
-HARD_RESET = 2 # type: int
-TIMER_WAKE = 4 # type: int
-TOUCHPAD_WAKE = 5 # type: int
-PIN_WAKE = 2 # type: int
-PWRON_RESET = 1 # type: int
-WDT_RESET = 3 # type: int
-EXT0_WAKE = 2 # type: int
-ULP_WAKE = 6 # type: int
-DEEPSLEEP_RESET = 4 # type: int
-SOFT_RESET = 5 # type: int
-DEEPSLEEP = 4 # type: int
+SLEEP = 2  # type: int
+EXT1_WAKE = 3  # type: int
+HARD_RESET = 2  # type: int
+TIMER_WAKE = 4  # type: int
+TOUCHPAD_WAKE = 5  # type: int
+PIN_WAKE = 2  # type: int
+PWRON_RESET = 1  # type: int
+WDT_RESET = 3  # type: int
+EXT0_WAKE = 2  # type: int
+ULP_WAKE = 6  # type: int
+DEEPSLEEP_RESET = 4  # type: int
+SOFT_RESET = 5  # type: int
+DEEPSLEEP = 4  # type: int
+
+
 def wake_reason(*args, **kwargs) -> Any:
     ...
+
 
 def disable_irq(*args, **kwargs) -> Any:
     ...
 
+
 def dht_readinto(*args, **kwargs) -> Any:
     ...
+
 
 def bitstream(*args, **kwargs) -> Any:
     ...
 
+
 def bootloader(*args, **kwargs) -> Any:
     ...
+
 
 def deepsleep(*args, **kwargs) -> Any:
     ...
 
+
 def soft_reset(*args, **kwargs) -> Any:
     ...
+
 
 def sleep(*args, **kwargs) -> Any:
     ...
 
+
 def enable_irq(*args, **kwargs) -> Any:
     ...
+
 
 def time_pulse_us(*args, **kwargs) -> Any:
     ...
 
+
 def unique_id(*args, **kwargs) -> Any:
     ...
+
 
 def idle(*args, **kwargs) -> Any:
     ...
 
+
 def freq(*args, **kwargs) -> Any:
     ...
+
 
 def reset_cause(*args, **kwargs) -> Any:
     ...
 
+
 def lightsleep(*args, **kwargs) -> Any:
     ...
+
 
 def reset(*args, **kwargs) -> Any:
     ...
 
-mem8 : Any ## <class 'mem'> = <8-bit memory>
 
-class PWM():
+mem8: Any  ## <class 'mem'> = <8-bit memory>
+
+
+class PWM:
     def duty_u16(self, *args, **kwargs) -> Any:
         ...
 
@@ -91,17 +110,19 @@ class PWM():
         ...
 
 
-class WDT():
+class WDT:
     def feed(self, *args, **kwargs) -> Any:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
-mem32 : Any ## <class 'mem'> = <32-bit memory>
-mem16 : Any ## <class 'mem'> = <16-bit memory>
 
-class ADCBlock():
+mem32: Any  ## <class 'mem'> = <32-bit memory>
+mem16: Any  ## <class 'mem'> = <16-bit memory>
+
+
+class ADCBlock:
     def init(self, *args, **kwargs) -> Any:
         ...
 
@@ -112,15 +133,16 @@ class ADCBlock():
         ...
 
 
-class ADC():
-    ATTN_6DB = 2 # type: int
-    WIDTH_10BIT = 10 # type: int
-    WIDTH_11BIT = 11 # type: int
-    WIDTH_12BIT = 12 # type: int
-    WIDTH_9BIT = 9 # type: int
-    ATTN_0DB = 0 # type: int
-    ATTN_2_5DB = 1 # type: int
-    ATTN_11DB = 3 # type: int
+class ADC:
+    ATTN_6DB = 2  # type: int
+    WIDTH_10BIT = 10  # type: int
+    WIDTH_11BIT = 11  # type: int
+    WIDTH_12BIT = 12  # type: int
+    WIDTH_9BIT = 9  # type: int
+    ATTN_0DB = 0  # type: int
+    ATTN_2_5DB = 1  # type: int
+    ATTN_11DB = 3  # type: int
+
     def read_u16(self, *args, **kwargs) -> Any:
         ...
 
@@ -146,11 +168,12 @@ class ADC():
         ...
 
 
-class I2S():
-    RX = 9 # type: int
-    MONO = 0 # type: int
-    STEREO = 1 # type: int
-    TX = 5 # type: int
+class I2S:
+    RX = 9  # type: int
+    MONO = 0  # type: int
+    STEREO = 1  # type: int
+    TX = 5  # type: int
+
     def shift(self, *args, **kwargs) -> Any:
         ...
 
@@ -173,7 +196,7 @@ class I2S():
         ...
 
 
-class DAC():
+class DAC:
     def write(self, *args, **kwargs) -> Any:
         ...
 
@@ -181,7 +204,7 @@ class DAC():
         ...
 
 
-class I2C():
+class I2C:
     def readfrom_mem_into(self, *args, **kwargs) -> Any:
         ...
 
@@ -225,9 +248,10 @@ class I2C():
         ...
 
 
-class Timer():
-    ONE_SHOT = 0 # type: int
-    PERIODIC = 1 # type: int
+class Timer:
+    ONE_SHOT = 0  # type: int
+    PERIODIC = 1  # type: int
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -241,9 +265,10 @@ class Timer():
         ...
 
 
-class SoftSPI():
-    LSB = 1 # type: int
-    MSB = 0 # type: int
+class SoftSPI:
+    LSB = 1  # type: int
+    MSB = 0  # type: int
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -266,20 +291,21 @@ class SoftSPI():
         ...
 
 
-class Pin():
-    OPEN_DRAIN = 7 # type: int
-    OUT = 3 # type: int
-    IRQ_RISING = 1 # type: int
-    WAKE_LOW = 4 # type: int
-    WAKE_HIGH = 5 # type: int
-    PULL_DOWN = 1 # type: int
-    PULL_UP = 2 # type: int
-    DRIVE_1 = 1 # type: int
-    IRQ_FALLING = 2 # type: int
-    DRIVE_0 = 0 # type: int
-    IN = 1 # type: int
-    DRIVE_2 = 2 # type: int
-    DRIVE_3 = 3 # type: int
+class Pin:
+    OPEN_DRAIN = 7  # type: int
+    OUT = 3  # type: int
+    IRQ_RISING = 1  # type: int
+    WAKE_LOW = 4  # type: int
+    WAKE_HIGH = 5  # type: int
+    PULL_DOWN = 1  # type: int
+    PULL_UP = 2  # type: int
+    DRIVE_1 = 1  # type: int
+    IRQ_FALLING = 2  # type: int
+    DRIVE_0 = 0  # type: int
+    IN = 1  # type: int
+    DRIVE_2 = 2  # type: int
+    DRIVE_3 = 3  # type: int
+
     def irq(self, *args, **kwargs) -> Any:
         ...
 
@@ -295,8 +321,7 @@ class Pin():
     def init(self, *args, **kwargs) -> Any:
         ...
 
-
-    class board():
+    class board:
         def __init__(self, *argv, **kwargs) -> None:
             ...
 
@@ -304,7 +329,7 @@ class Pin():
         ...
 
 
-class TouchPad():
+class TouchPad:
     def config(self, *args, **kwargs) -> Any:
         ...
 
@@ -315,13 +340,14 @@ class TouchPad():
         ...
 
 
-class UART():
-    INV_CTS = 8 # type: int
-    CTS = 2 # type: int
-    INV_TX = 32 # type: int
-    INV_RTS = 64 # type: int
-    INV_RX = 4 # type: int
-    RTS = 1 # type: int
+class UART:
+    INV_CTS = 8  # type: int
+    CTS = 2  # type: int
+    INV_TX = 32  # type: int
+    INV_RTS = 64  # type: int
+    INV_RX = 4  # type: int
+    RTS = 1  # type: int
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -356,7 +382,7 @@ class UART():
         ...
 
 
-class SDCard():
+class SDCard:
     def ioctl(self, *args, **kwargs) -> Any:
         ...
 
@@ -376,7 +402,7 @@ class SDCard():
         ...
 
 
-class RTC():
+class RTC:
     def init(self, *args, **kwargs) -> Any:
         ...
 
@@ -390,7 +416,7 @@ class RTC():
         ...
 
 
-class SoftI2C():
+class SoftI2C:
     def readfrom_mem_into(self, *args, **kwargs) -> Any:
         ...
 
@@ -434,9 +460,10 @@ class SoftI2C():
         ...
 
 
-class SPI():
-    LSB = 1 # type: int
-    MSB = 0 # type: int
+class SPI:
+    LSB = 1  # type: int
+    MSB = 0  # type: int
+
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
@@ -459,7 +486,7 @@ class SPI():
         ...
 
 
-class Signal():
+class Signal:
     def off(self, *args, **kwargs) -> Any:
         ...
 
@@ -471,4 +498,3 @@ class Signal():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

@@ -6,7 +6,7 @@ Module: 'hashlib' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPI
 from typing import Any
 
 
-class sha256():
+class sha256:
     def digest(self, *args, **kwargs) -> Any:
         ...
 
@@ -17,7 +17,7 @@ class sha256():
         ...
 
 
-class sha1():
+class sha1:
     def digest(self, *args, **kwargs) -> Any:
         ...
 
@@ -26,4 +26,3 @@ class sha1():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

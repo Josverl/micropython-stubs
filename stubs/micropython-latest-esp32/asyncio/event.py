@@ -6,7 +6,7 @@ Module: 'asyncio.event' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_wi
 from typing import Any
 
 
-class ThreadSafeFlag():
+class ThreadSafeFlag:
     def set(self, *args, **kwargs) -> Any:
         ...
 
@@ -16,12 +16,13 @@ class ThreadSafeFlag():
     def clear(self, *args, **kwargs) -> Any:
         ...
 
-    wait : Any ## <class 'generator'> = <generator>
+    wait: Any  ## <class 'generator'> = <generator>
+
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
-class Event():
+class Event:
     def set(self, *args, **kwargs) -> Any:
         ...
 
@@ -31,7 +32,7 @@ class Event():
     def clear(self, *args, **kwargs) -> Any:
         ...
 
-    wait : Any ## <class 'generator'> = <generator>
+    wait: Any  ## <class 'generator'> = <generator>
+
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

@@ -5,24 +5,26 @@ Module: 'usocket' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPI
 # Stubber: v1.13.7
 from typing import Any
 
-SOCK_STREAM = 1 # type: int
-SOCK_DGRAM = 2 # type: int
-SOCK_RAW = 3 # type: int
-SO_BROADCAST = 32 # type: int
-SOL_SOCKET = 4095 # type: int
-SO_BINDTODEVICE = 4107 # type: int
-SO_REUSEADDR = 4 # type: int
-AF_INET6 = 10 # type: int
-IP_ADD_MEMBERSHIP = 3 # type: int
-AF_INET = 2 # type: int
-IPPROTO_UDP = 17 # type: int
-IPPROTO_IP = 0 # type: int
-IPPROTO_TCP = 6 # type: int
+SOCK_STREAM = 1  # type: int
+SOCK_DGRAM = 2  # type: int
+SOCK_RAW = 3  # type: int
+SO_BROADCAST = 32  # type: int
+SOL_SOCKET = 4095  # type: int
+SO_BINDTODEVICE = 4107  # type: int
+SO_REUSEADDR = 4  # type: int
+AF_INET6 = 10  # type: int
+IP_ADD_MEMBERSHIP = 3  # type: int
+AF_INET = 2  # type: int
+IPPROTO_UDP = 17  # type: int
+IPPROTO_IP = 0  # type: int
+IPPROTO_TCP = 6  # type: int
+
+
 def getaddrinfo(*args, **kwargs) -> Any:
     ...
 
 
-class socket():
+class socket:
     def recvfrom(self, *args, **kwargs) -> Any:
         ...
 
@@ -82,4 +84,3 @@ class socket():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

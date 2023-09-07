@@ -5,13 +5,14 @@ Module: 'espnow' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIR
 # Stubber: v1.13.7
 from typing import Any
 
-KEY_LEN = 16 # type: int
-MAX_DATA_LEN = 250 # type: int
-MAX_ENCRYPT_PEER_NUM = 6 # type: int
-MAX_TOTAL_PEER_NUM = 20 # type: int
-ADDR_LEN = 6 # type: int
+KEY_LEN = 16  # type: int
+MAX_DATA_LEN = 250  # type: int
+MAX_ENCRYPT_PEER_NUM = 6  # type: int
+MAX_TOTAL_PEER_NUM = 20  # type: int
+ADDR_LEN = 6  # type: int
 
-class ESPNow():
+
+class ESPNow:
     def peer_count(self, *args, **kwargs) -> Any:
         ...
 
@@ -57,12 +58,13 @@ class ESPNow():
     def config(self, *args, **kwargs) -> Any:
         ...
 
-    irq : Any ## <class 'closure'> = <closure>
+    irq: Any  ## <class 'closure'> = <closure>
+
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
-class ESPNowBase():
+class ESPNowBase:
     def irq(self, *args, **kwargs) -> Any:
         ...
 
@@ -107,4 +109,3 @@ class ESPNowBase():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

@@ -5,18 +5,22 @@ Module: 'struct' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIR
 # Stubber: v1.13.7
 from typing import Any
 
+
 def pack_into(*args, **kwargs) -> Any:
     ...
+
 
 def unpack(*args, **kwargs) -> Any:
     ...
 
+
 def unpack_from(*args, **kwargs) -> Any:
     ...
+
 
 def pack(*args, **kwargs) -> Any:
     ...
 
+
 def calcsize(*args, **kwargs) -> Any:
     ...
-

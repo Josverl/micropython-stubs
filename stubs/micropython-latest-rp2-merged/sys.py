@@ -3,14 +3,14 @@ system specific functions. See: https://docs.micropython.org/en/latest/library/s
 
 |see_cpython_module| :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
+# Stubber: v1.13.4
 from typing import Dict, List, Tuple, Any
 
 platform = "rp2"  # type: str
 version_info = ()  # type: tuple
 path = []  # type: list
-version = "3.4.0; MicroPython v1.19.1 on 2022-06-18"  # type: str
+version = "3.4.0; MicroPython v1.20.0 on 2023-04-26"  # type: str
 ps1 = ">>> "  # type: str
 ps2 = "... "  # type: str
 byteorder = "little"  # type: str

@@ -6,14 +6,14 @@ Module: 'uasyncio.lock' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_wi
 from typing import Any
 
 
-class Lock():
+class Lock:
     def locked(self, *args, **kwargs) -> Any:
         ...
 
     def release(self, *args, **kwargs) -> Any:
         ...
 
-    acquire : Any ## <class 'generator'> = <generator>
+    acquire: Any  ## <class 'generator'> = <generator>
+
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

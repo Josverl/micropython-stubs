@@ -5,13 +5,15 @@ Module: 'select' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIR
 # Stubber: v1.13.7
 from typing import Any
 
-POLLOUT = 4 # type: int
-POLLIN = 1 # type: int
-POLLHUP = 16 # type: int
-POLLERR = 8 # type: int
+POLLOUT = 4  # type: int
+POLLIN = 1  # type: int
+POLLHUP = 16  # type: int
+POLLERR = 8  # type: int
+
+
 def select(*args, **kwargs) -> Any:
     ...
 
+
 def poll(*args, **kwargs) -> Any:
     ...
-

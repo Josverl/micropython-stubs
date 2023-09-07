@@ -5,19 +5,21 @@ Module: 'framebuf' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SP
 # Stubber: v1.13.7
 from typing import Any
 
-MONO_HMSB = 4 # type: int
-MONO_HLSB = 3 # type: int
-RGB565 = 1 # type: int
-MONO_VLSB = 0 # type: int
-MVLSB = 0 # type: int
-GS2_HMSB = 5 # type: int
-GS8 = 6 # type: int
-GS4_HMSB = 2 # type: int
+MONO_HMSB = 4  # type: int
+MONO_HLSB = 3  # type: int
+RGB565 = 1  # type: int
+MONO_VLSB = 0  # type: int
+MVLSB = 0  # type: int
+GS2_HMSB = 5  # type: int
+GS8 = 6  # type: int
+GS4_HMSB = 2  # type: int
+
+
 def FrameBuffer1(*args, **kwargs) -> Any:
     ...
 
 
-class FrameBuffer():
+class FrameBuffer:
     def poly(self, *args, **kwargs) -> Any:
         ...
 
@@ -56,4 +58,3 @@ class FrameBuffer():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-

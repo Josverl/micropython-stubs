@@ -5,8 +5,10 @@ Module: 'asyncio.funcs' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_wi
 # Stubber: v1.13.7
 from typing import Any
 
+
 def wait_for_ms(*args, **kwargs) -> Any:
     ...
 
-gather : Any ## <class 'generator'> = <generator>
-wait_for : Any ## <class 'generator'> = <generator>
+
+gather: Any  ## <class 'generator'> = <generator>
+wait_for: Any  ## <class 'generator'> = <generator>

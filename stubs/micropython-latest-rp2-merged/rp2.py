@@ -11,8 +11,8 @@ for more information, and `pico-micropython-examples
 for example code.
 
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
+# Stubber: v1.13.4
 from typing import Optional, Any
 
 
@@ -77,7 +77,17 @@ def asm_pio(
     ...
 
 
-def dht_readinto(*args, **kwargs) -> Any:
+def bootsel_button() -> Any:
+    """
+    Temporarily turns the QSPI_SS pin into an input and reads its value,
+    returning 1 for low and 0 for high.
+    On a typical RP2040 board with a BOOTSEL button, a return value of 1
+    indicates that the button is pressed.
+
+    Since this function temporarily disables access to the external flash
+    memory, it also temporarily disables interrupts and the other core to
+    prevent them from trying to execute code from flash.
+    """
     ...
 
 

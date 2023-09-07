@@ -5,23 +5,28 @@ Module: '_thread' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPI
 # Stubber: v1.13.7
 from typing import Any
 
+
 def get_ident(*args, **kwargs) -> Any:
     ...
+
 
 def start_new_thread(*args, **kwargs) -> Any:
     ...
 
+
 def stack_size(*args, **kwargs) -> Any:
     ...
 
+
 def exit(*args, **kwargs) -> Any:
     ...
+
 
 def allocate_lock(*args, **kwargs) -> Any:
     ...
 
 
-class LockType():
+class LockType:
     def locked(self, *args, **kwargs) -> Any:
         ...
 
@@ -33,4 +38,3 @@ class LockType():
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
-
