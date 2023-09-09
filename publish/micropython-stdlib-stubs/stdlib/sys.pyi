@@ -348,3 +348,22 @@ if sys.version_info < (3, 8):
 # as part of the response to CVE-2020-10735
 def set_int_max_str_digits(maxdigits: int) -> None: ...
 def get_int_max_str_digits() -> int: ...
+
+# MicroPython specific functions
+# Copyright (c) 2023 Jos Verlinde
+
+from typing import Optional
+from _typeshed import Incomplete
+def atexit(func:Optional[Callable[[],Any]]) -> Optional[Callable[[],Any]]: 
+    """\
+    Register func to be called upon termination. func must be a callable that takes no arguments, 
+    or None to disable the call. The atexit function will return the previous value set by this function, 
+    which is initially None.
+
+    Ports: Unix, Windows
+    """
+    ...
+
+def print_exception(exc, file=sys.stdout, /):
+    """Print exception with a traceback to a file-like object file (or sys.stdout by default)."""
+    ...
