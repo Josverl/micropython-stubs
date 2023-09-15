@@ -1,7 +1,9 @@
 """
-TLS/SSL wrapper for socket objects. See: https://docs.micropython.org/en/latest/library/ssl.html
+TLS/SSL wrapper for socket objects.
 
-|see_cpython_module| :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/ssl.html
+
+CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
 This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
@@ -10,26 +12,26 @@ facilities for network sockets, both client-side and server-side.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/ssl.rst
-from typing import Any
+from _typeshed import Incomplete
 from stdlib.ssl import *  # type: ignore
 
-SSLError: Any = ...
+SSLError: Incomplete
 """This exception does NOT exist. Instead its base class, OSError, is used."""
-PROTOCOL_TLS_CLIENT: Any = ...
+PROTOCOL_TLS_CLIENT: Incomplete
 """Supported values for the *protocol* parameter."""
-PROTOCOL_TLS_SERVER: Any = ...
+PROTOCOL_TLS_SERVER: Incomplete
 """Supported values for the *protocol* parameter."""
-CERT_NONE: Any = ...
+CERT_NONE: Incomplete
 """\
 Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
 attribute.
 """
-CERT_OPTIONAL: Any = ...
+CERT_OPTIONAL: Incomplete
 """\
 Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
 attribute.
 """
-CERT_REQUIRED: Any = ...
+CERT_REQUIRED: Incomplete
 """\
 Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
 attribute.
@@ -42,7 +44,7 @@ class SSLContext:
     """
 
     def __init__(self, protocol, /) -> None: ...
-    def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Any:
+    def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
         and returns an instance of ssl.SSLSocket, wrapping the underlying stream.

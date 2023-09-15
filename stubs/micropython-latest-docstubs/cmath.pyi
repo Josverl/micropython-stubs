@@ -1,7 +1,9 @@
 """
-mathematical functions for complex numbers. See: https://docs.micropython.org/en/latest/library/cmath.html
+Mathematical functions for complex numbers.
 
-|see_cpython_module| :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/cmath.html
+
+CPython module: :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
 
 The ``cmath`` module provides some basic mathematical functions for
 working with complex numbers.
@@ -12,7 +14,8 @@ required for this module.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/cmath.rst
-from typing import Any, Tuple
+from typing import Tuple
+from _typeshed import Incomplete
 
 e: float
 """base of the natural logarithm"""
@@ -67,7 +70,7 @@ def sin(z) -> float:
     """
     ...
 
-def sqrt(z) -> Any:
+def sqrt(z) -> Incomplete:
     """
     Return the square-root of ``z``.
     """

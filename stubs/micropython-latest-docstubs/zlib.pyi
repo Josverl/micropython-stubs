@@ -1,7 +1,9 @@
 """
-zlib compression & decompression. See: https://docs.micropython.org/en/latest/library/zlib.html
+Zlib compression & decompression.
 
-|see_cpython_module| :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/zlib.html
+
+CPython module: :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
 
 This module allows compression and decompression of binary data with the
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
@@ -30,9 +32,9 @@ This module allows compression and decompression of binary data with the
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/zlib.rst
-from typing import Any
+from _typeshed import Incomplete
 
-def decompress(data, wbits=15, /) -> Any:
+def decompress(data, wbits=15, /) -> Incomplete:
     """
     Decompresses *data* into a bytes object.
 
@@ -54,7 +56,7 @@ def decompress(data, wbits=15, /) -> Any:
     """
     ...
 
-def compress(data, wbits=15, /) -> Any:
+def compress(data, wbits=15, /) -> Incomplete:
     """
     Compresses *data* into a bytes object.
 

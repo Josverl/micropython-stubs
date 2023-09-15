@@ -1,7 +1,9 @@
 """
-gzip compression & decompression. See: https://docs.micropython.org/en/latest/library/gzip.html
+Gzip compression & decompression.
 
-|see_cpython_module| :mod:`python:gzip` https://docs.python.org/3/library/gzip.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/gzip.html
+
+CPython module: :mod:`python:gzip` https://docs.python.org/3/library/gzip.html .
 
 This module allows compression and decompression of binary data with the
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_ used by the gzip
@@ -28,7 +30,7 @@ file format.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/gzip.rst
-from typing import Any
+from _typeshed import Incomplete
 
 class GzipFile:
     """
@@ -55,19 +57,19 @@ class GzipFile:
 
     def __init__(self, *, fileobj, mode) -> None: ...
 
-def open(filename, mode, /) -> Any:
+def open(filename, mode, /) -> Incomplete:
     """
     Wrapper around built-in :func:`open` returning a GzipFile instance.
     """
     ...
 
-def decompress(data, /) -> Any:
+def decompress(data, /) -> Incomplete:
     """
     Decompresses *data* into a bytes object.
     """
     ...
 
-def compress(data, /) -> Any:
+def compress(data, /) -> Incomplete:
     """
     Compresses *data* into a bytes object.
     """

@@ -1,5 +1,7 @@
 """
-ESP-NOW :doc:`asyncio` support. See: https://docs.micropython.org/en/latest/library/aioespnow.html
+ESP-NOW :doc:`asyncio` support.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/aioespnow.html
 """
 
 # source version: latest
@@ -7,12 +9,13 @@ ESP-NOW :doc:`asyncio` support. See: https://docs.micropython.org/en/latest/libr
 # source version: latest
 # origin module:: repos/micropython/docs/library/espnow.rst
 from typing import Any, Dict, Optional, Tuple
+from _typeshed import Incomplete
 
-MAX_DATA_LEN: int = 250
-KEY_LEN: int = 16
-ADDR_LEN: int = 6
-MAX_TOTAL_PEER_NUM: int = 20
-MAX_ENCRYPT_PEER_NUM: int = 6
+MAX_DATA_LEN: Incomplete = 250
+KEY_LEN: Incomplete = 16
+ADDR_LEN: Incomplete = 6
+MAX_TOTAL_PEER_NUM: Incomplete = 20
+MAX_ENCRYPT_PEER_NUM: Incomplete = 6
 
 class ESPNow:
     """
@@ -52,7 +55,7 @@ class ESPNow:
     when the message is read by the application.
     """
     def __init__(self) -> None: ...
-    def active(self, flag: Optional[Any] = None) -> Any:
+    def active(self, flag: Optional[Any] = None) -> Incomplete:
         """
         Initialise or de-initialise the ESP-NOW communication protocol depending on
         the value of the ``flag`` optional argument.
@@ -124,7 +127,7 @@ class ESPNow:
             - ``ValueError()`` on invalid configuration options or values.
         """
         ...
-    def send(self, msg) -> Any:
+    def send(self, msg) -> Incomplete:
         """
         Send the data contained in ``msg`` to the peer with given network ``mac``
         address. In the second form, ``mac=None`` and ``sync=True``. The peer must
@@ -207,10 +210,9 @@ class ESPNow:
         ``peer`` and ``msg`` bytestrings. This can lead to memory fragmentation if
         the data rate is high. See `ESPNow.irecv()` for a memory-friendly
         alternative.
-
         """
         ...
-    def irecv(self, timeout_ms: Optional[Any] = None) -> Any:
+    def irecv(self, timeout_ms: Optional[Any] = None) -> Incomplete:
         """
         Works like `ESPNow.recv()` but will re-use internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
@@ -274,7 +276,7 @@ class ESPNow:
           will be saved as the 3rd and 4th elements.
         """
         ...
-    def any(self) -> Any:
+    def any(self) -> Incomplete:
         """
         Check if data is available to be read with `ESPNow.recv()`.
 
@@ -293,7 +295,7 @@ class ESPNow:
            ``True`` if data is available to be read, else ``False``.
         """
         ...
-    def stats(self) -> Any:
+    def stats(self) -> Incomplete:
         """
         Returns:
 
@@ -337,7 +339,7 @@ class ESPNow:
         ...
     def add_peer(
         self, mac, lmk: Optional[Any] = None, channel: Optional[Any] = None, ifidx: Optional[Any] = None, encrypt: Optional[Any] = None
-    ) -> Any:
+    ) -> Incomplete:
         """
         Add/register the provided *mac* address as a peer. Additional parameters may
         also be specified as positional or keyword arguments (any parameter set to
@@ -391,7 +393,7 @@ class ESPNow:
             - ``ValueError()`` on invalid keyword args or values.
         """
         ...
-    def del_peer(self, mac) -> Any:
+    def del_peer(self, mac) -> Incomplete:
         """
         Deregister the peer associated with the provided *mac* address.
 
@@ -407,7 +409,7 @@ class ESPNow:
             - ``ValueError()`` on invalid *mac* values.
         """
         ...
-    def get_peer(self, mac) -> Any:
+    def get_peer(self, mac) -> Incomplete:
         """
         Return information on a registered peer.
 
@@ -448,7 +450,7 @@ class ESPNow:
         ``None``) will retain the existing value for that parameter.
         """
         ...
-    def irq(self, callback) -> Any:
+    def irq(self, callback) -> Incomplete:
         """
         Set a callback function to be called *as soon as possible* after a message has
         been received from another ESPNow device. The callback function will be called
@@ -487,24 +489,24 @@ class AIOESPNow(ESPNow):
     """
 
     def __init__(self) -> None: ...
-    async def arecv(self) -> Any:
+    async def arecv(self) -> Incomplete:
         """
         Asyncio support for `ESPNow.recv()`. Note that this method does not take a
         timeout value as argument.
         """
         ...
-    async def airecv(self) -> Any:
+    async def airecv(self) -> Incomplete:
         """
         Asyncio support for `ESPNow.irecv()`. Note that this method does not take a
         timeout value as argument.
         """
         ...
-    async def asend(self, msg) -> Any:
+    async def asend(self, msg) -> Incomplete:
         """
         Asyncio support for `ESPNow.send()`.
         """
         ...
-    def _aiter__(self) -> Any:
+    def _aiter__(self) -> Incomplete:
         """
         `AIOESPNow` also supports reading incoming messages by asynchronous
         iteration using ``async for``; eg::
@@ -519,7 +521,7 @@ class AIOESPNow(ESPNow):
           asyncio.run(recv_till_halt(e))
         """
         ...
-    async def __anext__(self) -> Any:
+    async def __anext__(self) -> Incomplete:
         """
         `AIOESPNow` also supports reading incoming messages by asynchronous
         iteration using ``async for``; eg::

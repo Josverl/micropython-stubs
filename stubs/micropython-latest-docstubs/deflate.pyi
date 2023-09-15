@@ -1,5 +1,7 @@
 """
-deflate compression & decompression. See: https://docs.micropython.org/en/latest/library/deflate.html
+Deflate compression & decompression.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/deflate.html
 
 This module allows compression and decompression of binary data with the
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
@@ -19,15 +21,15 @@ This module allows compression and decompression of binary data with the
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/deflate.rst
-from typing import Any
+from _typeshed import Incomplete
 
-AUTO: Any = ...
+AUTO: Incomplete
 """Supported values for the *format* parameter."""
-RAW: Any = ...
+RAW: Incomplete
 """Supported values for the *format* parameter."""
-ZLIB: Any = ...
+ZLIB: Incomplete
 """Supported values for the *format* parameter."""
-GZIP: Any = ...
+GZIP: Incomplete
 """Supported values for the *format* parameter."""
 
 class DeflateIO:

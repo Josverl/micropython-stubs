@@ -1,5 +1,7 @@
 """
-functions related to the board. See: https://docs.micropython.org/en/latest/library/pyb.html
+Functions related to the board.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/pyb.html
 
 The ``pyb`` module contains specific functions related to the board.
 """
@@ -25,6 +27,7 @@ The ``pyb`` module contains specific functions related to the board.
 # + module: pyb.USB_HID.rst
 # + module: pyb.USB_VCP.rst
 from typing import Any, List, NoReturn, Optional, Tuple
+from _typeshed import Incomplete
 
 hid_mouse: int
 """\
@@ -53,22 +56,22 @@ class Accel:
         times the size of what they would be from the raw x(), y() and z() calls.
         """
         ...
-    def tilt(self) -> Any:
+    def tilt(self) -> Incomplete:
         """
         Get the tilt register.
         """
         ...
-    def x(self) -> Any:
+    def x(self) -> Incomplete:
         """
         Get the x-axis value.
         """
         ...
-    def y(self) -> Any:
+    def y(self) -> Incomplete:
         """
         Get the y-axis value.
         """
         ...
-    def z(self) -> Any:
+    def z(self) -> Incomplete:
         """
         Get the z-axis value.
         """
@@ -81,13 +84,13 @@ class ADC:
     """
 
     def __init__(self, pin) -> None: ...
-    def read(self) -> Any:
+    def read(self) -> Incomplete:
         """
         Read the value on the analog pin and return it.  The returned value
         will be between 0 and 4095.
         """
         ...
-    def read_timed(self, buf, timer) -> Any:
+    def read_timed(self, buf, timer) -> Incomplete:
         """
         Read analog values into ``buf`` at a rate set by the ``timer`` object.
 
@@ -191,37 +194,37 @@ class CAN:
       - ``CAN(2)`` is on ``YB``: ``(RX, TX) = (Y5, Y6) = (PB12, PB13)``
     """
 
-    NORMAL: Any = ...
+    NORMAL: Incomplete
     """The mode of the CAN bus used in :meth:`~CAN.init()`."""
-    LOOPBACK: Any = ...
+    LOOPBACK: Incomplete
     """The mode of the CAN bus used in :meth:`~CAN.init()`."""
-    SILENT: Any = ...
+    SILENT: Incomplete
     """The mode of the CAN bus used in :meth:`~CAN.init()`."""
-    SILENT_LOOPBACK: Any = ...
+    SILENT_LOOPBACK: Incomplete
     """The mode of the CAN bus used in :meth:`~CAN.init()`."""
-    STOPPED: Any = ...
+    STOPPED: Incomplete
     """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
-    ERROR_ACTIVE: Any = ...
+    ERROR_ACTIVE: Incomplete
     """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
-    ERROR_WARNING: Any = ...
+    ERROR_WARNING: Incomplete
     """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
-    ERROR_PASSIVE: Any = ...
+    ERROR_PASSIVE: Incomplete
     """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
-    BUS_OFF: Any = ...
+    BUS_OFF: Incomplete
     """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
-    LIST16: Any = ...
+    LIST16: Incomplete
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for classic CAN."""
-    MASK16: Any = ...
+    MASK16: Incomplete
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for classic CAN."""
-    LIST32: Any = ...
+    LIST32: Incomplete
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for classic CAN."""
-    MASK32: Any = ...
+    MASK32: Incomplete
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for classic CAN."""
-    DUAL: Any = ...
+    DUAL: Incomplete
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for CAN FD."""
-    RANGE: Any = ...
+    RANGE: Incomplete
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for CAN FD."""
-    MASK: Any = ...
+    MASK: Incomplete
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for CAN FD."""
     def __init__(
         self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
@@ -304,7 +307,7 @@ class CAN:
         Turn off the CAN bus.
         """
         ...
-    def restart(self) -> Any:
+    def restart(self) -> Incomplete:
         """
         Force a software restart of the CAN controller without resetting its
         configuration.
@@ -316,7 +319,7 @@ class CAN:
         go into the error active state.
         """
         ...
-    def state(self) -> Any:
+    def state(self) -> Incomplete:
         """
         Return the state of the controller.  The return value can be one of:
 
@@ -331,7 +334,7 @@ class CAN:
           (TEC overflowed beyond 255).
         """
         ...
-    def info(self, list: Optional[Any] = None) -> Any:
+    def info(self, list: Optional[Any] = None) -> Incomplete:
         """
         Get information about the controller's error states and TX and RX buffers.
         If *list* is provided then it should be a list object with at least 8 entries,
@@ -408,7 +411,6 @@ class CAN:
 
         - *extframe* If True the frame will have an extended identifier (29 bits),
           otherwise a standard identifier (11 bits) is used.
-
         """
         ...
     def clearfilter(self, bank, extframe=False) -> None:
@@ -549,22 +551,22 @@ class DAC:
     especially near the extremes of range.
     """
 
-    NORMAL: Any = ...
+    NORMAL: Incomplete
     """NORMAL mode does a single transmission of the waveform in the data buffer,"""
-    CIRCULAR: Any = ...
+    CIRCULAR: Incomplete
     """\
     CIRCULAR mode does a transmission of the waveform in the data buffer, and wraps around
     to the start of the data buffer every time it reaches the end of the table.
     """
     def __init__(self, port, bits=8, *, buffering=None) -> None: ...
-    def init(self, bits=8, *, buffering=None) -> Any:
+    def init(self, bits=8, *, buffering=None) -> Incomplete:
         """
         Reinitialise the DAC.  *bits* can be 8 or 12.  *buffering* can be
         ``None``, ``False`` or ``True``; see above constructor for the meaning
         of this parameter.
         """
         ...
-    def deinit(self) -> Any:
+    def deinit(self) -> Incomplete:
         """
         De-initialise the DAC making its pin available for other uses.
         """
@@ -582,14 +584,14 @@ class DAC:
         the frequency of the repeating triangle wave itself is 8192 times smaller.
         """
         ...
-    def write(self, value) -> Any:
+    def write(self, value) -> Incomplete:
         """
         Direct access to the DAC output.  The minimum value is 0.  The maximum
         value is 2**``bits``-1, where ``bits`` is set when creating the DAC
         object or by using the ``init`` method.
         """
         ...
-    def write_timed(self, data, freq, *, mode=NORMAL) -> Any:
+    def write_timed(self, data, freq, *, mode=NORMAL) -> Incomplete:
         """
         Initiates a burst of RAM to DAC using a DMA transfer.
         The input data is treated as an array of bytes in 8-bit mode, and
@@ -627,21 +629,19 @@ class ExtInt:
       - ``callback`` is the function to call when the interrupt triggers.  The
         callback function must accept exactly 1 argument, which is the line that
         triggered the interrupt.
-
     """
 
-    IRQ_FALLING: Any = ...
+    IRQ_FALLING: Incomplete
     """interrupt on a falling edge"""
-    IRQ_RISING: Any = ...
+    IRQ_RISING: Incomplete
     """interrupt on a rising edge"""
-    IRQ_RISING_FALLING: Any = ...
+    IRQ_RISING_FALLING: Incomplete
     """interrupt on a rising or falling edge"""
     def __init__(self, pin, mode, pull, callback) -> None: ...
     @classmethod
-    def regs(cls) -> Any:
+    def regs(cls) -> Incomplete:
         """
         Dump the values of the EXTI registers.
-
         """
         ...
     def disable(self) -> None:
@@ -660,10 +660,9 @@ class ExtInt:
         Return the line number that the pin is mapped to.
         """
         ...
-    def swint(self) -> Any:
+    def swint(self) -> Incomplete:
         """
         Trigger the callback from software.
-
         """
         ...
 
@@ -679,9 +678,9 @@ class Flash:
     """
 
     def __init__(self) -> None: ...
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def ioctl(self, cmd, arg) -> Any:
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
@@ -711,9 +710,9 @@ class I2C:
     types.
     """
 
-    CONTROLLER: Any = ...
+    CONTROLLER: Incomplete
     """for initialising the bus to controller mode"""
-    PERIPHERAL: Any = ...
+    PERIPHERAL: Incomplete
     """for initialising the bus to peripheral mode"""
     def __init__(
         self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
@@ -740,12 +739,12 @@ class I2C:
          by printing the I2C object.
         """
         ...
-    def is_ready(self, addr) -> Any:
+    def is_ready(self, addr) -> Incomplete:
         """
         Check if an I2C device responds to the given address.  Only valid when in controller mode.
         """
         ...
-    def mem_read(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> Any:
+    def mem_read(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> Incomplete:
         """
         Read from the memory of an I2C device:
 
@@ -808,7 +807,6 @@ class LCD:
     """
     Construct an LCD object in the given skin position.  ``skin_position`` can be 'X' or 'Y', and
     should match the position where the LCD pyskin is plugged in.
-
     """
 
     def __init__(self, skin_position) -> None: ...
@@ -873,7 +871,6 @@ class LED:
     Create an LED object associated with the given LED:
 
       - ``id`` is the LED number, 1-4.
-
     """
 
     def __init__(self, id) -> None: ...
@@ -900,7 +897,7 @@ class LED:
         Turn the LED on, to maximum intensity.
         """
         ...
-    def toggle(self) -> Any:
+    def toggle(self) -> Incomplete:
         """
         Toggle the LED between on (maximum intensity) and off.  If the LED is at
         non-zero intensity then it is considered "on" and toggle will turn it off.
@@ -913,25 +910,25 @@ class Pin:
     they are used to initialise the pin.  See :meth:`pin.init`.
     """
 
-    ALT: Any = ...
+    ALT: Incomplete
     """initialise the pin to alternate-function mode for input or output"""
-    AF_OD: Any = ...
+    AF_OD: Incomplete
     """initialise the pin to alternate-function mode with an open-drain drive"""
-    AF_PP: Any = ...
+    AF_PP: Incomplete
     """initialise the pin to alternate-function mode with a push-pull drive"""
-    ANALOG: Any = ...
+    ANALOG: Incomplete
     """initialise the pin to analog mode"""
-    IN: Any = ...
+    IN: Incomplete
     """initialise the pin to input mode"""
-    OUT_OD: Any = ...
+    OUT_OD: Incomplete
     """initialise the pin to output mode with an open-drain drive"""
-    OUT_PP: Any = ...
+    OUT_PP: Incomplete
     """initialise the pin to output mode with a push-pull drive"""
-    PULL_DOWN: Any = ...
+    PULL_DOWN: Incomplete
     """enable the pull-down resistor on the pin"""
-    PULL_NONE: Any = ...
+    PULL_NONE: Incomplete
     """don't enable any pull up or down resistors on the pin"""
-    PULL_UP: Any = ...
+    PULL_UP: Incomplete
     """enable the pull-up resistor on the pin"""
     def __init__(self, id, *args, **kwargs) -> None: ...
     @classmethod
@@ -941,16 +938,15 @@ class Pin:
         """
         ...
     @classmethod
-    def dict(cls, dict: Optional[Any] = None) -> Any:
+    def dict(cls, dict: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin mapper dictionary.
         """
         ...
     @classmethod
-    def mapper(cls, fun: Optional[Any] = None) -> Any:
+    def mapper(cls, fun: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin mapper function.
-
         """
         ...
     def init(self, mode, pull=PULL_NONE, *, value=None, alt=-1) -> None:
@@ -1001,7 +997,7 @@ class Pin:
         Return a string describing the pin object.
         """
         ...
-    def af(self) -> Any:
+    def af(self) -> Incomplete:
         """
         Returns the currently configured alternate-function of the pin. The
         integer returned will match one of the allowed constants for the af
@@ -1018,7 +1014,7 @@ class Pin:
         Returns the base address of the GPIO block associated with this pin.
         """
         ...
-    def mode(self) -> Any:
+    def mode(self) -> Incomplete:
         """
         Returns the currently configured mode of the pin. The integer returned
         will match one of the allowed constants for the mode argument to the init
@@ -1040,12 +1036,12 @@ class Pin:
         Get the pin number.
         """
         ...
-    def port(self) -> Any:
+    def port(self) -> Incomplete:
         """
         Get the pin port.
         """
         ...
-    def pull(self) -> Any:
+    def pull(self) -> Incomplete:
         """
         Returns the currently configured pull of the pin. The integer returned
         will match one of the allowed constants for the pull argument to the init
@@ -1056,11 +1052,10 @@ class Pin:
 class Switch(Pin):
     """
     Create and return a switch object.
-
     """
 
     def __init__(self) -> None: ...
-    def __call__(self) -> Any:
+    def __call__(self) -> Incomplete:
         """
         Call switch object directly to get its state: ``True`` if pressed down,
         ``False`` otherwise.
@@ -1096,7 +1091,7 @@ class pinaf:
         Return the name of the alternate function.
         """
         ...
-    def reg(self) -> Any:
+    def reg(self) -> Incomplete:
         """
         Return the base register associated with the peripheral assigned to this
         alternate function. For example, if the alternate function were TIM2_CH3
@@ -1107,7 +1102,6 @@ class pinaf:
 class RTC:
     """
     Create an RTC object.
-
     """
 
     def __init__(self) -> None: ...
@@ -1140,7 +1134,7 @@ class RTC:
         wakeup timer.  ``callback`` must take exactly one argument.
         """
         ...
-    def info(self) -> Any:
+    def info(self) -> Incomplete:
         """
         Get information about the startup time and reset source.
 
@@ -1171,11 +1165,10 @@ class RTC:
 class Servo:
     """
     Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
-
     """
 
     def __init__(self, id) -> None: ...
-    def angle(self, angle: Optional[Any] = None, time=0) -> Any:
+    def angle(self, angle: Optional[Any] = None, time=0) -> Incomplete:
         """
         If no arguments are given, this function returns the current angle.
 
@@ -1187,7 +1180,7 @@ class Servo:
             new position.
         """
         ...
-    def speed(self, speed: Optional[Any] = None, time=0) -> Any:
+    def speed(self, speed: Optional[Any] = None, time=0) -> Incomplete:
         """
         If no arguments are given, this function returns the current speed.
 
@@ -1198,7 +1191,7 @@ class Servo:
             speed.  If omitted, then the servo accelerates as quickly as possible.
         """
         ...
-    def pulse_width(self, value: Optional[Any] = None) -> Any:
+    def pulse_width(self, value: Optional[Any] = None) -> Incomplete:
         """
         If no arguments are given, this function returns the current raw pulse-width
         value.
@@ -1238,11 +1231,11 @@ class SPI:
     for other use.
     """
 
-    CONTROLLER: Any = ...
-    PERIPHERAL: Any = ...
+    CONTROLLER: Incomplete
+    PERIPHERAL: Incomplete
     """for initialising the SPI bus to controller or peripheral mode"""
-    LSB: Any = ...
-    MSB: Any = ...
+    LSB: Incomplete
+    MSB: Incomplete
     """set the first bit to be the least or most significant bit"""
     def __init__(
         self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
@@ -1328,11 +1321,11 @@ class Timer:
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
     CENTER: int
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
-    BRK_OFF: Any = ...
+    BRK_OFF: Incomplete
     """Configures the break mode when passed to the ``brk`` keyword argument."""
-    BRK_LOW: Any = ...
+    BRK_LOW: Incomplete
     """Configures the break mode when passed to the ``brk`` keyword argument."""
-    BRK_HIGH: Any = ...
+    BRK_HIGH: Incomplete
     """Configures the break mode when passed to the ``brk`` keyword argument."""
     def __init__(self, id, *args, **kwargs) -> None: ...
     def init(self, *, freq, prescaler, period, mode=UP, div=1, callback=None, deadtime=0, brk=BRK_OFF) -> None:
@@ -1408,7 +1401,7 @@ class Timer:
         If ``fun`` is ``None`` then the callback will be disabled.
         """
         ...
-    def channel(self, channel, mode, pin=None, *args) -> Any:
+    def channel(self, channel, mode, pin=None, *args) -> Incomplete:
         """
         If only a channel number is passed, then a previously initialized channel
         object is returned (or ``None`` if there is no previous channel).
@@ -1494,27 +1487,27 @@ class Timer:
             ch1 = timer.channel(1, pyb.Timer.PWM, pulse_width_percent=30)
         """
         ...
-    def counter(self, value: Optional[Any] = None) -> Any:
+    def counter(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the timer counter.
         """
         ...
-    def freq(self, value: Optional[Any] = None) -> Any:
+    def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the frequency for the timer (changes prescaler and period if set).
         """
         ...
-    def period(self, value: Optional[Any] = None) -> Any:
+    def period(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the period of the timer.
         """
         ...
-    def prescaler(self, value: Optional[Any] = None) -> Any:
+    def prescaler(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the prescaler for the timer.
         """
         ...
-    def source_freq(self) -> Any:
+    def source_freq(self) -> Incomplete:
         """
         Get the frequency of the source of the timer.
         """
@@ -1530,21 +1523,21 @@ class timerchannel:
         If ``fun`` is ``None`` then the callback will be disabled.
         """
         ...
-    def capture(self, value: Optional[Any] = None) -> Any:
+    def capture(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the capture value associated with a channel.
         capture, compare, and pulse_width are all aliases for the same function.
         capture is the logical name to use when the channel is in input capture mode.
         """
         ...
-    def compare(self, value: Optional[Any] = None) -> Any:
+    def compare(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the compare value associated with a channel.
         capture, compare, and pulse_width are all aliases for the same function.
         compare is the logical name to use when the channel is in output compare mode.
         """
         ...
-    def pulse_width(self, value: Optional[Any] = None) -> Any:
+    def pulse_width(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pulse width value associated with a channel.
         capture, compare, and pulse_width are all aliases for the same function.
@@ -1554,7 +1547,7 @@ class timerchannel:
         In center aligned mode, a pulse width of ``period`` corresponds to a duty cycle of 100%
         """
         ...
-    def pulse_width_percent(self, value: Optional[Any] = None) -> Any:
+    def pulse_width_percent(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pulse width percentage associated with a channel.  The value
         is a number between 0 and 100 and sets the percentage of the timer period
@@ -1600,14 +1593,14 @@ class UART:
     have ``UART(1)`` on ``XB`` and ``UART(6)`` on ``YA``.
     """
 
-    RTS: Any = ...
+    RTS: Incomplete
     """to select the flow control type."""
-    CTS: Any = ...
+    CTS: Incomplete
     """to select the flow control type."""
     def __init__(
         self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
     ) -> None: ...
-    def init(self, baudrate, bits=8, parity=None, stop=1, *, timeout=0, flow=0, timeout_char=0, read_buf_len=64) -> Any:
+    def init(self, baudrate, bits=8, parity=None, stop=1, *, timeout=0, flow=0, timeout_char=0, read_buf_len=64) -> Incomplete:
         """
         Initialise the UART bus with the given parameters:
 
@@ -1711,7 +1704,6 @@ class UART:
 class USB_HID:
     """
     Create a new USB_HID object.
-
     """
 
     def __init__(self) -> None: ...
@@ -1740,14 +1732,13 @@ class USB_VCP:
     """
     Create a new USB_VCP object.  The *id* argument specifies which USB VCP port to
     use.
-
     """
 
-    RTS: Any = ...
+    RTS: Incomplete
     """to select the flow control type."""
-    CTS: Any = ...
+    CTS: Incomplete
     """to select the flow control type."""
-    IRQ_RX: Any = ...
+    IRQ_RX: Incomplete
     """IRQ trigger values for :meth:`USB_VCP.irq`."""
     def __init__(self, id=0) -> None: ...
     def init(self, *, flow=-1) -> None:
@@ -1777,7 +1768,7 @@ class USB_VCP:
         Return ``True`` if any characters waiting, else ``False``.
         """
         ...
-    def close(self) -> Any:
+    def close(self) -> Incomplete:
         """
         This method does nothing.  It exists so the USB_VCP object can act as
         a file.
@@ -1859,7 +1850,6 @@ class USB_VCP:
         Valid values for *trigger* are:
 
           - ``USB_VCP.IRQ_RX``: new data is available for reading from the USB VCP object.
-
         """
         ...
 
@@ -1962,7 +1952,7 @@ def fault_debug(value) -> None:
     """
     ...
 
-def disable_irq() -> Any:
+def disable_irq() -> Incomplete:
     """
     Disable interrupt requests.
     Returns the previous IRQ state: ``False``/``True`` for disabled/enabled IRQs
@@ -2033,7 +2023,7 @@ def wfi() -> None:
     """
     ...
 
-def stop() -> Any:
+def stop() -> Incomplete:
     """
     Put the pyboard in a "sleeping" state.
 
@@ -2045,7 +2035,7 @@ def stop() -> Any:
     """
     ...
 
-def standby() -> Any:
+def standby() -> Incomplete:
     """
     Put the pyboard into a "deep sleep" state.
 
@@ -2066,7 +2056,7 @@ def have_cdc() -> bool:
     """
     ...
 
-def hid(hidtuple: Tuple) -> Any:
+def hid(hidtuple: Tuple) -> Incomplete:
     """
     Takes a 4-tuple (or list) and sends it to the USB host (the PC) to
     signal a HID mouse-motion event.
