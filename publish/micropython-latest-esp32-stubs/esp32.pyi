@@ -1,12 +1,14 @@
 """
-functionality specific to the ESP32. See: https://docs.micropython.org/en/latest/library/esp32.html
+Functionality specific to the ESP32.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/esp32.html
 
 The ``esp32`` module contains functions and classes specifically aimed at
 controlling ESP32 modules.
-
 """
 from __future__ import annotations
 from typing import List, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 WAKEUP_ALL_LOW: bool
 WAKEUP_ANY_HIGH: bool
@@ -95,10 +97,9 @@ class ULP:
     """
 
     RESERVE_MEM: int
-    def run(self, entry_point) -> Any:
+    def run(self, entry_point) -> Incomplete:
         """
         Start the ULP running at the given *entry_point*.
-
         """
         ...
     def set_wakeup_period(self, period_index, period_us) -> None:
@@ -138,7 +139,7 @@ class NVS:
         Remember to call *commit*!
         """
         ...
-    def commit(self) -> Any:
+    def commit(self) -> Incomplete:
         """
         Commits changes made by *set_xxx* methods to flash.
         """
@@ -150,7 +151,7 @@ class NVS:
         type, or if the buffer is too small.
         """
         ...
-    def erase_key(self, key) -> Any:
+    def erase_key(self, key) -> Incomplete:
         """
         Erases a key-value pair.
         """
@@ -168,8 +169,8 @@ class Partition:
     TYPE_APP: int
     TYPE_DATA: int
     BOOT: int
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def ioctl(self, cmd, arg) -> Any:
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
@@ -179,9 +180,14 @@ class Partition:
     def set_boot(self) -> None:
         """
         Sets the partition as the boot partition.
+
+        ``Note:`` Do not enter :func:`deepsleep<machine.deepsleep>` after changing
+           the OTA boot partition, without first performing a hard
+           :func:`reset<machine.reset>` or power cycle. This ensures the bootloader
+           will validate the new image before booting.
         """
         ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
     def info(self) -> Tuple:
         """
         Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``.
@@ -206,7 +212,7 @@ class Partition:
         """
         ...
     @classmethod
-    def mark_app_valid_cancel_rollback(cls) -> Any:
+    def mark_app_valid_cancel_rollback(cls) -> Incomplete:
         """
         Signals that the current boot is considered successful.
         Calling ``mark_app_valid_cancel_rollback`` is required on the first boot of a new
@@ -237,7 +243,7 @@ class RMT:
     *idle_level*).
     """
 
-    def source_freq(self) -> Any:
+    def source_freq(self) -> Incomplete:
         """
         Returns the source clock frequency. Currently the source clock is not
         configurable so this will always return 80MHz.
@@ -259,7 +265,7 @@ class RMT:
         milliseconds for transmission to complete.
         """
         ...
-    def write_pulses(self, duration, data: Union[bool, int] = True) -> Any:
+    def write_pulses(self, duration, data: Union[bool, int] = True) -> Incomplete:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
@@ -303,7 +309,7 @@ class RMT:
         """
         ...
     def deinit(self, *args, **kwargs) -> Any: ...
-    def clock_div(self) -> Any:
+    def clock_div(self) -> Incomplete:
         """
         Return the clock divider. Note that the channel resolution is
         ``1 / (source_freq / clock_div)``.

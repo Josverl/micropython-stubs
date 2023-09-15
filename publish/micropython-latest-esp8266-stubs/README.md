@@ -27,9 +27,9 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* StubSource.MERGED from `stubs/micropython-latest-esp8266-merged`
-* StubSource.FROZEN from `stubs/micropython-latest-frozen/esp8266/GENERIC`
-* StubSource.CORE from `stubs/micropython-core`
+* Merged stubs from `stubs/micropython-latest-esp8266-merged`
+* Frozen stubs from `stubs/micropython-latest-frozen/esp8266/GENERIC`
+* Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version

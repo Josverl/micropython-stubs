@@ -1,14 +1,17 @@
 """
-access to underlying platform’s identifying data. See: https://docs.micropython.org/en/latest/library/platform.html
+Access to underlying platform’s identifying data.
 
-|see_cpython_module| :mod:`python:platform` https://docs.python.org/3/library/platform.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/platform.html
+
+CPython module: :mod:`python:platform` https://docs.python.org/3/library/platform.html .
 
 This module tries to retrieve as much platform-identifying data as possible. It
 makes this information available via function APIs.
 """
 from typing import Tuple, Any
+from _typeshed import Incomplete
 
-class platform:
+def platform() -> str:
     """
     Returns a string identifying the underlying platform. This string is composed
     of several substrings in the following order, delimited by dashes (``-``):
@@ -23,8 +26,7 @@ class platform:
     For example, this could be
     ``"MicroPython-1.20.0-xtensa-IDFv4.2.4-with-newlib3.0.0"``.
     """
-
-    def __init__(self) -> None: ...
+    ...
 
 def python_compiler() -> str:
     """

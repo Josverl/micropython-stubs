@@ -1,9 +1,11 @@
 """
-random numbers. See: https://docs.micropython.org/en/latest/library/random.html
+Random numbers.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/random.html
 
 This module implements a pseudo-random number generator (PRNG).
 
-|see_cpython_module| :mod:`python:random` https://docs.python.org/3/library/random.html . .
+CPython module: :mod:`python:random` https://docs.python.org/3/library/random.html . .
 
 .. note::
 
@@ -21,11 +23,11 @@ This module implements a pseudo-random number generator (PRNG).
 .. note::
 
    The :func:`randrange`, :func:`randint` and :func:`choice` functions are only
-   available if the ``MICROPY_PY_URANDOM_EXTRA_FUNCS`` configuration option is
+   available if the ``MICROPY_PY_RANDOM_EXTRA_FUNCS`` configuration option is
    enabled.
-
 """
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 def seed(n=None, /) -> None:
     """
@@ -34,7 +36,7 @@ def seed(n=None, /) -> None:
     supported by the port) initialise the PRNG with a true random number
     (usually a hardware generated random number).
 
-    The ``None`` case only works if ``MICROPY_PY_URANDOM_SEED_INIT_FUNC`` is
+    The ``None`` case only works if ``MICROPY_PY_RANDOM_SEED_INIT_FUNC`` is
     enabled by the port, otherwise it raises ``ValueError``.
     """
     ...

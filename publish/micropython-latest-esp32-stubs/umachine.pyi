@@ -1,5 +1,7 @@
 """
-functions related to the hardware. See: https://docs.micropython.org/en/latest/library/machine.html
+Functions related to the hardware.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/machine.html
 
 The ``machine`` module contains specific functions related to the hardware
 on a particular board. Most functions in this module allow to achieve direct
@@ -9,6 +11,7 @@ malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
 from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 SLEEP: int
 EXT1_WAKE: int
@@ -24,7 +27,7 @@ DEEPSLEEP_RESET: int
 SOFT_RESET: int
 DEEPSLEEP: int
 
-def wake_reason() -> Any:
+def wake_reason() -> Incomplete:
     """
     Get the wake reason. See :ref:`constants <machine_constants>` for the possible return values.
 
@@ -32,7 +35,7 @@ def wake_reason() -> Any:
     """
     ...
 
-def disable_irq() -> Any:
+def disable_irq() -> Incomplete:
     """
     Disable interrupt requests.
     Returns the previous IRQ state which should be considered an opaque value.
@@ -42,7 +45,7 @@ def disable_irq() -> Any:
     ...
 
 def dht_readinto(*args, **kwargs) -> Any: ...
-def bitstream(pin, encoding, timing, data, /) -> Any:
+def bitstream(pin, encoding, timing, data, /) -> Incomplete:
     """
     Transmits *data* by bit-banging the specified *pin*. The *encoding* argument
     specifies how the bits are encoded, and *timing* is an encoding-specific timing
@@ -109,13 +112,13 @@ def soft_reset() -> NoReturn:
     """
     ...
 
-def sleep() -> Any:
+def sleep() -> Incomplete:
     """
     ``Note:`` This function is deprecated, use `lightsleep()` instead with no arguments.
     """
     ...
 
-def enable_irq(state) -> Any:
+def enable_irq(state) -> Incomplete:
     """
     Re-enable interrupt requests.
     The *state* parameter should be the value that was returned from the most
@@ -150,7 +153,7 @@ def unique_id() -> bytes:
     """
     ...
 
-def idle() -> Any:
+def idle() -> Incomplete:
     """
     Gates the clock to the CPU, useful to reduce power consumption at any time during
     short or long periods. Peripherals continue working and execution resumes as soon
@@ -159,7 +162,7 @@ def idle() -> Any:
     """
     ...
 
-def freq(hz: Optional[Any] = None) -> Any:
+def freq(hz: Optional[Any] = None) -> Incomplete:
     """
     Returns the CPU frequency in hertz.
 
@@ -173,7 +176,7 @@ def reset_cause() -> int:
     """
     ...
 
-def lightsleep(time_ms: Optional[Any] = None) -> Any:
+def lightsleep(time_ms: Optional[Any] = None) -> Incomplete:
     """
     Stops execution in an attempt to enter a low power state.
 
@@ -243,7 +246,7 @@ class PWM:
         about the parameters.
         """
         ...
-    def freq(self, value: Optional[Any] = None) -> Any:
+    def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the current frequency of the PWM output.
 
@@ -268,7 +271,7 @@ class PWM:
         """
         ...
     def duty(self, *args, **kwargs) -> Any: ...
-    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0, invert) -> None: ...
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0, invert=False) -> None: ...
 
 class WDT:
     """
@@ -307,7 +310,7 @@ class ADCBlock:
         conversion process.
         """
         ...
-    def connect(self, channel, source) -> Any:
+    def connect(self, channel, source) -> Incomplete:
         """
         Connect up a channel on the ADC peripheral so it is ready for sampling,
         and return an :ref:`ADC <machine.ADC>` object that represents that connection.
@@ -357,7 +360,7 @@ class ADC:
         such that the minimum value is 0 and the maximum value is 65535.
         """
         ...
-    def init(self, *, sample_ns, atten) -> Any:
+    def init(self, *, sample_ns, atten) -> Incomplete:
         """
         Apply the given settings to the ADC.  Only those arguments that are
         specified will be changed.  See the ADC constructor above for what the
@@ -373,7 +376,7 @@ class ADC:
         ...
     def width(self, *args, **kwargs) -> Any: ...
     def read(self, *args, **kwargs) -> Any: ...
-    def block(self) -> Any:
+    def block(self) -> Incomplete:
         """
         Return the :ref:`ADCBlock <machine.ADCBlock>` instance associated with
         this ADC object.
@@ -416,19 +419,19 @@ class I2S:
     STEREO: int
     TX: int
     @staticmethod
-    def shift(*, buf, bits, shift) -> Any:
+    def shift(*, buf, bits, shift) -> Incomplete:
         """
         bitwise shift of all samples contained in ``buf``. ``bits`` specifies sample size in bits. ``shift`` specifies the number of bits to shift each sample.
         Positive for left shift, negative for right shift.
         Typically used for volume control.  Each bit shift changes sample volume by 6dB.
         """
         ...
-    def init(self, sck, *args, **kwargs) -> Any:
+    def init(self, sck, *args, **kwargs) -> Incomplete:
         """
         see Constructor for argument descriptions
         """
         ...
-    def irq(self, handler) -> Any:
+    def irq(self, handler) -> Incomplete:
         """
         Set a callback. ``handler`` is called when ``buf`` is emptied (``write`` method) or becomes full (``readinto`` method).
         Setting a callback changes the ``write`` and ``readinto`` methods to non-blocking operation.
@@ -443,7 +446,7 @@ class I2S:
         Returns number of bytes read
         """
         ...
-    def deinit(self) -> Any:
+    def deinit(self) -> Incomplete:
         """
         Deinitialize the I2S bus
         """
@@ -561,7 +564,7 @@ class I2C:
         Returns a `bytes` object with the data read.
         """
         ...
-    def readinto(self, buf, nack=True, /) -> Any:
+    def readinto(self, buf, nack=True, /) -> Incomplete:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
         read is the length of *buf*.  An ACK will be sent on the bus after
@@ -757,7 +760,7 @@ class Pin:
     IN: int
     DRIVE_2: int
     DRIVE_3: int
-    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Any]:
+    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Incomplete]:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is
@@ -858,7 +861,7 @@ class Pin:
         def __init__(self, *argv, **kwargs) -> None: ...
 
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None: ...
-    def __call__(self, x: Optional[Any] = None) -> Any:
+    def __call__(self, x: Optional[Any] = None) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
         and get the value of the pin.  It is equivalent to Pin.value([x]).
@@ -950,7 +953,7 @@ class UART:
           again.
         """
         ...
-    def flush(self) -> Any:
+    def flush(self) -> Incomplete:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
         duration depends on the tx buffer size and the baud rate. Unless flow control is enabled, a timeout
