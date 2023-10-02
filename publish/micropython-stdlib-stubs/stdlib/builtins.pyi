@@ -1,68 +1,36 @@
 # JV-Patch
 import sys
-import stdlib.sys
-
 # end path
 import types
 from _ast import AST
-from _collections_abc import dict_items, dict_keys, dict_values
-from _typeshed import (
-    AnyStr_co,
-    OpenBinaryMode,
-    OpenBinaryModeReading,
-    OpenBinaryModeUpdating,
-    OpenBinaryModeWriting,
-    OpenTextMode,
-    ReadableBuffer,
-    Self,
-    StrOrBytesPath,
-    SupportsAdd,
-    SupportsAiter,
-    SupportsAnext,
-    SupportsDivMod,
-    SupportsIter,
-    SupportsKeysAndGetItem,
-    SupportsLenAndGetItem,
-    SupportsNext,
-    SupportsRAdd,
-    SupportsRDivMod,
-    SupportsRichComparison,
-    SupportsRichComparisonT,
-    SupportsTrunc,
-    SupportsWrite,
-)
-from collections.abc import Awaitable, Callable, Iterable, Iterator, MutableSet, Reversible, Set as AbstractSet, Sized
-
-# JV-Patch
-from stdlib.io import BufferedRandom, BufferedReader, BufferedWriter, FileIO, TextIOWrapper
-
+from collections.abc import (Awaitable, Callable, Iterable, Iterator,
+                             MutableSet, Reversible)
+from collections.abc import Set as AbstractSet
+from collections.abc import Sized
 # end patch
 from types import CodeType, TracebackType, _Cell
-
 # mypy crashes if any of {ByteString, Sequence, MutableSequence, Mapping, MutableMapping} are imported from collections.abc in builtins.pyi
-from typing import (  # noqa: Y027
-    IO,
-    Any,
-    BinaryIO,
-    ByteString,
-    ClassVar,
-    Generic,
-    Mapping,
-    MutableMapping,
-    MutableSequence,
-    NoReturn,
-    Protocol,
-    Sequence,
-    SupportsAbs,
-    SupportsBytes,
-    SupportsComplex,
-    SupportsFloat,
-    SupportsInt,
-    TypeVar,
-    overload,
-    type_check_only,
-)
-from typing_extensions import Literal, LiteralString, SupportsIndex, TypeAlias, TypeGuard, final
+from typing import (IO, Any, BinaryIO, ByteString, ClassVar,  # noqa: Y027
+                    Generic, Mapping, MutableMapping, MutableSequence,
+                    NoReturn, Protocol, Sequence, SupportsAbs, SupportsBytes,
+                    SupportsComplex, SupportsFloat, SupportsInt, TypeVar,
+                    overload, type_check_only)
+
+import stdlib.sys
+from _collections_abc import dict_items, dict_keys, dict_values
+from _typeshed import (AnyStr_co, OpenBinaryMode, OpenBinaryModeReading,
+                       OpenBinaryModeUpdating, OpenBinaryModeWriting,
+                       OpenTextMode, ReadableBuffer, Self, StrOrBytesPath,
+                       SupportsAdd, SupportsAiter, SupportsAnext,
+                       SupportsDivMod, SupportsIter, SupportsKeysAndGetItem,
+                       SupportsLenAndGetItem, SupportsNext, SupportsRAdd,
+                       SupportsRDivMod, SupportsRichComparison,
+                       SupportsRichComparisonT, SupportsTrunc, SupportsWrite)
+# JV-Patch
+from stdlib.io import (BufferedRandom, BufferedReader, BufferedWriter, FileIO,
+                       TextIOWrapper)
+from typing_extensions import (Literal, LiteralString, SupportsIndex,
+                               TypeAlias, TypeGuard, final)
 
 if sys.version_info >= (3, 9):
     from types import GenericAlias
@@ -224,7 +192,9 @@ class int:
         def bit_count(self) -> int: ...
 
     if sys.version_info >= (3, 11):
-        def to_bytes(self, length: SupportsIndex = ..., byteorder: Literal["little", "big"] = ..., *, signed: bool = ...) -> bytes: ...
+        def to_bytes(
+            self, length: SupportsIndex = ..., byteorder: Literal["little", "big"] = ..., *, signed: bool = ...
+        ) -> bytes: ...
         @classmethod
         def from_bytes(
             cls: type[Self],
@@ -302,7 +272,8 @@ class int:
     def __abs__(self) -> int: ...
     def __bool__(self) -> bool: ...
     def __index__(self) -> int: ...
-
+    def __hash__(self) -> int: ...
+    
 class float:
     def __new__(cls: type[Self], __x: SupportsFloat | SupportsIndex | str | ReadableBuffer = ...) -> Self: ...
     def as_integer_ratio(self) -> tuple[int, int]: ...
@@ -433,7 +404,9 @@ class str(Sequence[str]):
     def center(self, __width: SupportsIndex, __fillchar: str = ...) -> str: ...  # type: ignore[misc]
     def count(self, x: str, __start: SupportsIndex | None = ..., __end: SupportsIndex | None = ...) -> int: ...
     def encode(self, encoding: str = ..., errors: str = ...) -> bytes: ...
-    def endswith(self, __suffix: str | tuple[str, ...], __start: SupportsIndex | None = ..., __end: SupportsIndex | None = ...) -> bool: ...
+    def endswith(
+        self, __suffix: str | tuple[str, ...], __start: SupportsIndex | None = ..., __end: SupportsIndex | None = ...
+    ) -> bool: ...
     if sys.version_info >= (3, 8):
         @overload
         def expandtabs(self: LiteralString, tabsize: SupportsIndex = ...) -> LiteralString: ...
@@ -485,7 +458,9 @@ class str(Sequence[str]):
     @overload
     def partition(self, __sep: str) -> tuple[str, str, str]: ...  # type: ignore[misc]
     @overload
-    def replace(self: LiteralString, __old: LiteralString, __new: LiteralString, __count: SupportsIndex = ...) -> LiteralString: ...
+    def replace(
+        self: LiteralString, __old: LiteralString, __new: LiteralString, __count: SupportsIndex = ...
+    ) -> LiteralString: ...
     @overload
     def replace(self, __old: str, __new: str, __count: SupportsIndex = ...) -> str: ...  # type: ignore[misc]
     if sys.version_info >= (3, 9):
@@ -585,6 +560,7 @@ class str(Sequence[str]):
     @overload
     def __rmul__(self, __n: SupportsIndex) -> str: ...  # type: ignore[misc]
     def __getnewargs__(self) -> tuple[str]: ...
+    def __hash__(self) -> int: ...
 
 class bytes(ByteString):
     @overload
@@ -833,7 +809,9 @@ class memoryview(Sequence[int]):
     def nbytes(self) -> int: ...
     def __init__(self, obj: ReadableBuffer) -> None: ...
     def __enter__(self: Self) -> Self: ...
-    def __exit__(self, __exc_type: type[BaseException] | None, __exc_val: BaseException | None, __exc_tb: TracebackType | None) -> None: ...
+    def __exit__(
+        self, __exc_type: type[BaseException] | None, __exc_val: BaseException | None, __exc_tb: TracebackType | None
+    ) -> None: ...
     def cast(self, format: str, shape: list[int] | tuple[int, ...] = ...) -> memoryview: ...
     @overload
     def __getitem__(self, __i: SupportsIndex) -> int: ...
@@ -1274,10 +1252,8 @@ else:
         __globals: dict[str, Any] | None = ...,
         __locals: Mapping[str, object] | None = ...,
     ) -> None: ...
-
-# JV Pathch
+# JV Pathch 
 def exit(code: stdlib.sys._ExitCode = ...) -> NoReturn: ...
-
 # end JV Patch
 class filter(Iterator[_T], Generic[_T]):
     @overload
@@ -1607,11 +1583,9 @@ else:
     def pow(__base: _SupportsSomeKindOfPow, __exp: float, __mod: None = ...) -> Any: ...
     @overload
     def pow(__base: _SupportsSomeKindOfPow, __exp: complex, __mod: None = ...) -> complex: ...
-
-# JV Patch
+# JV Patch 
 def quit(code: stdlib.sys._ExitCode = ...) -> NoReturn: ...
-
-# JV Patch
+# JV Patch 
 class reversed(Iterator[_T], Generic[_T]):
     @overload
     def __init__(self, __sequence: Reversible[_T]) -> None: ...
@@ -1642,7 +1616,9 @@ def round(number: _SupportsRound2[_T], ndigits: SupportsIndex) -> _T: ...
 # for why arg 3 of `setattr` should be annotated with `Any` and not `object`
 def setattr(__obj: object, __name: str, __value: Any) -> None: ...
 @overload
-def sorted(__iterable: Iterable[SupportsRichComparisonT], *, key: None = ..., reverse: bool = ...) -> list[SupportsRichComparisonT]: ...
+def sorted(
+    __iterable: Iterable[SupportsRichComparisonT], *, key: None = ..., reverse: bool = ...
+) -> list[SupportsRichComparisonT]: ...
 @overload
 def sorted(__iterable: Iterable[_T], *, key: Callable[[_T], SupportsRichComparison], reverse: bool = ...) -> list[_T]: ...
 
@@ -1799,9 +1775,8 @@ class GeneratorExit(BaseException): ...
 class KeyboardInterrupt(BaseException): ...
 
 class SystemExit(BaseException):
-    # JV Patch
+# JV Patch     
     code: stdlib.sys._ExitCode
-
 # JV Patch end
 
 class Exception(BaseException): ...
@@ -1970,7 +1945,9 @@ if sys.version_info >= (3, 11):
         def exceptions(self) -> tuple[_ExceptionT_co | ExceptionGroup[_ExceptionT_co], ...]: ...
         # We accept a narrower type, but that's OK.
         @overload  # type: ignore[override]
-        def subgroup(self, __condition: type[_ExceptionT] | tuple[type[_ExceptionT], ...]) -> ExceptionGroup[_ExceptionT] | None: ...
+        def subgroup(
+            self, __condition: type[_ExceptionT] | tuple[type[_ExceptionT], ...]
+        ) -> ExceptionGroup[_ExceptionT] | None: ...
         @overload
         def subgroup(self: Self, __condition: Callable[[_ExceptionT_co], bool]) -> Self | None: ...
         @overload  # type: ignore[override]

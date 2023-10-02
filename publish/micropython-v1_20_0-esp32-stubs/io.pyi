@@ -7,6 +7,7 @@ This module contains additional types of `stream` (file-like) objects
 and helper functions.
 """
 from typing import IO, Optional, Any
+from stdlib.io import *
 
 def open(name, mode="r", **kwargs) -> Any:
     """

@@ -30,8 +30,8 @@ If actual calendar time is not maintained with a system/MicroPython RTC,
 functions below which require reference to current absolute time may
 behave not as expected.
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
+# Stubber: v1.13.7
 from typing import Optional, Tuple, Any
 
 
@@ -45,8 +45,8 @@ def ticks_diff(ticks1, ticks2) -> int:
     However, values returned by `ticks_ms()`, etc. functions may wrap around, so
     directly using subtraction on them will produce incorrect result. That is why
     `ticks_diff()` is needed, it implements modular (or more specifically, ring)
-    arithmetics to produce correct result even for wrap-around values (as long as they not
-    too distant inbetween, see below). The function returns **signed** value in the range
+    arithmetic to produce correct result even for wrap-around values (as long as they not
+    too distant in between, see below). The function returns **signed** value in the range
     [*-TICKS_PERIOD/2* .. *TICKS_PERIOD/2-1*] (that's a typical range definition for
     two's-complement signed binary integers). If the result is negative, it means that
     *ticks1* occurred earlier in time than *ticks2*. Otherwise, it means that
@@ -65,7 +65,7 @@ def ticks_diff(ticks1, ticks2) -> int:
     has passed. To avoid this mistake, just look at the clock regularly. Your application
     should do the same. "Too long sleep" metaphor also maps directly to application
     behaviour: don't let your application run any single task for too long. Run tasks
-    in steps, and do time-keeping inbetween.
+    in steps, and do time-keeping in between.
 
     `ticks_diff()` is designed to accommodate various usage patterns, among them:
 

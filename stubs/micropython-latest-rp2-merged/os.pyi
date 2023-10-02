@@ -8,7 +8,7 @@ terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
 from typing import IO, Iterator, Optional, Tuple, Any
-from stdlib.os import uname_result
+from stdlib.os import *
 
 def stat(path) -> Any:
     """
@@ -55,7 +55,7 @@ def urandom(n) -> bytes:
 
 def statvfs(path) -> Tuple:
     """
-    Get the status of a fileystem.
+    Get the status of a filesystem.
 
     Returns a tuple with the filesystem information in the following order:
 

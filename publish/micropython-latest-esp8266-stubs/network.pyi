@@ -1,5 +1,7 @@
 """
-network configuration. See: https://docs.micropython.org/en/latest/library/network.html
+Network configuration.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.
@@ -32,6 +34,7 @@ For example::
     s.close()
 """
 from typing import List, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 STA_IF: int
 STAT_CONNECT_FAIL: int
@@ -61,6 +64,19 @@ class WLAN:
     For example, only STA interface may `WLAN.connect()` to an access point.
     """
 
+    PM_PERFORMANCE: Incomplete
+    """\
+    WLAN.PM_POWERSAVE
+    WLAN.PM_NONE
+    
+    Allowed values for the ``WLAN.config(pm=...)`` network interface parameter:
+    
+    * ``PM_PERFORMANCE``: enable WiFi power management to balance power
+    savings and WiFi performance
+    * ``PM_POWERSAVE``: enable WiFi power management with additional power
+    savings and reduced WiFi performance
+    * ``PM_NONE``: disable wifi power management
+    """
     def __init__(self, interface_id) -> None: ...
     def active(self, is_active: Optional[Any] = None) -> None:
         """
@@ -110,7 +126,7 @@ class WLAN:
             * 1 -- hidden
         """
         ...
-    def status(self, param: Optional[Any] = None) -> Any:
+    def status(self, param: Optional[Any] = None) -> Incomplete:
         """
         Return the current status of the wireless connection.
 
@@ -145,7 +161,7 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
@@ -175,6 +191,7 @@ class WLAN:
         hostname       The hostname that will be sent to DHCP (STA interfaces) and mDNS (if supported, both STA and AP). (Deprecated, use :func:`network.hostname` instead)
         reconnects     Number of reconnect attempts to make (integer, 0=none, -1=unlimited)
         txpower        Maximum transmit power in dBm (integer or float)
+        pm             WiFi Power Management setting (see below for allowed values)
         =============  ===========
         """
         ...

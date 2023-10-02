@@ -1,7 +1,9 @@
 """
-multithreading support. See: https://docs.micropython.org/en/latest/library/_thread.html
+Multithreading support.
 
-|see_cpython_module| :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/_thread.html
+
+CPython module: :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
 
 This module implements multithreading support.
 
@@ -11,3 +13,4 @@ and not yet described in this documentation.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/_thread.rst
+from _typeshed import Incomplete

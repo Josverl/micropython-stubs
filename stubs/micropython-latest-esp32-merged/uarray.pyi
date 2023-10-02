@@ -22,7 +22,6 @@ class array:
         array, growing it.
         """
         ...
-    def decode(self, *args, **kwargs) -> Any: ...
     def append(self, val) -> Any:
         """
         Append new element *val* to the end of array, growing it.

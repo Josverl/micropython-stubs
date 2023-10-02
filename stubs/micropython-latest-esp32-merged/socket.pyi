@@ -6,14 +6,17 @@ socket module. See: https://docs.micropython.org/en/latest/library/socket.html
 This module provides access to the BSD socket interface.
 """
 from typing import IO, Optional, Tuple, Any
+from stdlib.socket import *
 
-SOCK_RAW: int
-SOCK_DGRAM: int
-IP_ADD_MEMBERSHIP: int
 SOCK_STREAM: int
+SOCK_DGRAM: int
+SOCK_RAW: int
+SO_BROADCAST: int
 SOL_SOCKET: int
+SO_BINDTODEVICE: int
 SO_REUSEADDR: int
 AF_INET6: int
+IP_ADD_MEMBERSHIP: int
 AF_INET: int
 IPPROTO_UDP: int
 IPPROTO_IP: int

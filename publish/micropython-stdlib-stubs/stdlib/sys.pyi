@@ -1,12 +1,13 @@
 import sys
-from _typeshed import OptExcInfo, ProfileFunction, TraceFunction, structseq
 from builtins import object as _object
 from collections.abc import AsyncGenerator, Callable, Coroutine, Sequence
-from importlib.abc import PathEntryFinder
-from importlib.machinery import ModuleSpec
+from importlib.abc import PathEntryFinder  # type: ignore
+from importlib.machinery import ModuleSpec  # type: ignore
 from io import TextIOWrapper
 from types import FrameType, ModuleType, TracebackType
 from typing import Any, NoReturn, Protocol, TextIO, TypeVar, overload
+
+from _typeshed import OptExcInfo, ProfileFunction, TraceFunction, structseq
 from typing_extensions import Literal, TypeAlias, final
 
 _T = TypeVar("_T")
@@ -17,7 +18,9 @@ _OptExcInfo: TypeAlias = OptExcInfo  # noqa: Y047  # TODO: obsolete, remove fall
 
 # Intentionally omits one deprecated and one optional method of `importlib.abc.MetaPathFinder`
 class _MetaPathFinder(Protocol):
-    def find_spec(self, fullname: str, path: Sequence[str] | None, target: ModuleType | None = ...) -> ModuleSpec | None: ...
+    def find_spec(
+        self, fullname: str, path: Sequence[str] | None, target: ModuleType | None = ...
+    ) -> ModuleSpec | None: ...
 
 # ----- sys variables -----
 if sys.platform != "win32":
@@ -82,9 +85,13 @@ _UninstantiableStructseq: TypeAlias = structseq[Any]
 flags: _flags
 
 if sys.version_info >= (3, 10):
-    _FlagTuple: TypeAlias = tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int, int]
+    _FlagTuple: TypeAlias = tuple[
+        int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int, int
+    ]
 else:
-    _FlagTuple: TypeAlias = tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int]
+    _FlagTuple: TypeAlias = tuple[
+        int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int
+    ]
 
 @final
 class _flags(_UninstantiableStructseq, _FlagTuple):
@@ -128,7 +135,9 @@ class _flags(_UninstantiableStructseq, _FlagTuple):
 float_info: _float_info
 
 @final
-class _float_info(structseq[float], tuple[float, int, int, float, int, int, int, int, float, int, int]):
+class _float_info(
+    structseq[float], tuple[float, int, int, float, int, int, int, int, float, int, int]
+):
     @property
     def max(self) -> float: ...  # DBL_MAX
     @property
@@ -221,7 +230,9 @@ def _current_frames() -> dict[int, FrameType]: ...
 def _getframe(__depth: int = ...) -> FrameType: ...
 def _debugmallocstats() -> None: ...
 def __displayhook__(__value: object) -> None: ...
-def __excepthook__(__exctype: type[BaseException], __value: BaseException, __traceback: TracebackType | None) -> None: ...
+def __excepthook__(
+    __exctype: type[BaseException], __value: BaseException, __traceback: TracebackType | None
+) -> None: ...
 def exc_info() -> OptExcInfo: ...
 
 if sys.version_info >= (3, 11):
@@ -337,3 +348,22 @@ if sys.version_info < (3, 8):
 # as part of the response to CVE-2020-10735
 def set_int_max_str_digits(maxdigits: int) -> None: ...
 def get_int_max_str_digits() -> int: ...
+
+# MicroPython specific functions
+# Copyright (c) 2023 Jos Verlinde
+
+from typing import Optional
+from _typeshed import Incomplete
+def atexit(func:Optional[Callable[[],Any]]) -> Optional[Callable[[],Any]]: 
+    """\
+    Register func to be called upon termination. func must be a callable that takes no arguments, 
+    or None to disable the call. The atexit function will return the previous value set by this function, 
+    which is initially None.
+
+    Ports: Unix, Windows
+    """
+    ...
+
+def print_exception(exc, file=sys.stdout, /):
+    """Print exception with a traceback to a file-like object file (or sys.stdout by default)."""
+    ...

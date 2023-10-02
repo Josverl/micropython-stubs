@@ -8,7 +8,7 @@ terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
 from typing import IO, Iterator, Optional, Tuple, Any
-from stdlib.os import uname_result
+from stdlib.os import *
 
 def stat(path) -> Any:
     """

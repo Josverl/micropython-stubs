@@ -27,13 +27,12 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* StubSource.MERGED from `stubs/micropython-latest-rp2-merged`
-* StubSource.FROZEN from `stubs/micropython-latest-frozen/rp2/GENERIC`
-* StubSource.CORE from `stubs/micropython-core`
+* Merged stubs from `stubs/micropython-latest-rp2-merged`
+* Frozen stubs from `stubs/micropython-latest-frozen/rp2/GENERIC`
+* Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
-Firmware | micropython | rp2 | Arduino Nano RP2040 Connect with RP2040 | v1.19.1 
 Documentation | micropython | - | - | latest 
 Core | micropython | rp2 | - | latest 

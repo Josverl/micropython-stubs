@@ -14,6 +14,12 @@ name: publish-stubs
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'publish/**'
+  
   # schedule:
   #   - cron: "0 1 * * 5" # Run every Friday at 01:00
 env:

@@ -1,7 +1,9 @@
 """
-efficient arrays of numeric data. See: https://docs.micropython.org/en/latest/library/array.html
+Efficient arrays of numeric data.
 
-|see_cpython_module| :mod:`python:array` https://docs.python.org/3/library/array.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/array.html
+
+CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html .
 
 Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
@@ -11,6 +13,7 @@ floating-point support).
 # source version: latest
 # origin module:: repos/micropython/docs/library/array.rst
 from typing import Any, List, Optional
+from _typeshed import Incomplete
 
 class array:
     """
@@ -20,12 +23,12 @@ class array:
     """
 
     def __init__(self, typecode, iterable: Optional[Any] = None) -> None: ...
-    def append(self, val) -> Any:
+    def append(self, val) -> Incomplete:
         """
         Append new element *val* to the end of array, growing it.
         """
         ...
-    def extend(self, iterable) -> Any:
+    def extend(self, iterable) -> Incomplete:
         """
         Append new elements as contained in *iterable* to the end of
         array, growing it.
@@ -42,7 +45,7 @@ class array:
         is not present in ``__dict__``, however ``a[index]`` does work.
         """
         ...
-    def __setitem__(self, index, value) -> Any:
+    def __setitem__(self, index, value) -> Incomplete:
         """
         Indexed write into the array, called as ``a[index] = value`` (where ``a`` is an ``array``).
         ``value`` is a single value if *index* is an ``int`` and an ``array`` if *index* is a slice.
@@ -60,7 +63,7 @@ class array:
         method is not present in ``__dict__``, however ``len(a)`` does work.
         """
         ...
-    def __add__(self, other) -> Any:
+    def __add__(self, other) -> Incomplete:
         """
         Return a new ``array`` that is the concatenation of the array with *other*, called as
         ``a + other`` (where ``a`` and *other* are both ``arrays``).
@@ -69,7 +72,7 @@ class array:
         is not present in ``__dict__``, however ``a + other`` does work.
         """
         ...
-    def __iadd__(self, other) -> Any:
+    def __iadd__(self, other) -> Incomplete:
         """
         Concatenates the array with *other* in-place, called as ``a += other`` (where ``a`` and *other*
         are both ``arrays``).  Equivalent to ``extend(other)``.

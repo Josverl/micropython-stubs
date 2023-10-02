@@ -8,6 +8,7 @@ This module provides access to the BSD socket interface.
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
 from typing import IO, Optional, Tuple, Any
+from stdlib.socket import *
 
 SOCK_RAW = 3  # type: int
 SOCK_DGRAM = 2  # type: int

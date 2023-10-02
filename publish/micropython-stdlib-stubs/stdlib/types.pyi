@@ -1,5 +1,4 @@
 import sys
-from _typeshed import SupportsKeysAndGetItem
 from collections.abc import (
     AsyncGenerator,
     Awaitable,
@@ -13,10 +12,12 @@ from collections.abc import (
     MutableSequence,
     ValuesView,
 )
-from importlib.machinery import ModuleSpec
+from importlib.machinery import ModuleSpec  # type: ignore
 
 # pytype crashes if types.MappingProxyType inherits from collections.abc.Mapping instead of typing.Mapping
 from typing import Any, ClassVar, Generic, Mapping, Protocol, TypeVar, overload  # noqa: Y027
+
+from _typeshed import SupportsKeysAndGetItem
 from typing_extensions import Literal, ParamSpec, final
 
 __all__ = [
@@ -151,7 +152,9 @@ class CodeType:
         def co_exceptiontable(self) -> bytes: ...
         @property
         def co_qualname(self) -> str: ...
-        def co_positions(self) -> Iterable[tuple[int | None, int | None, int | None, int | None]]: ...
+        def co_positions(
+            self,
+        ) -> Iterable[tuple[int | None, int | None, int | None, int | None]]: ...
 
     if sys.version_info >= (3, 11):
         def __init__(
@@ -355,9 +358,16 @@ class GeneratorType(Generator[_T_co, _T_contra, _V_co]):
     def __next__(self) -> _T_co: ...
     def send(self, __arg: _T_contra) -> _T_co: ...
     @overload
-    def throw(self, __typ: type[BaseException], __val: BaseException | object = ..., __tb: TracebackType | None = ...) -> _T_co: ...
+    def throw(
+        self,
+        __typ: type[BaseException],
+        __val: BaseException | object = ...,
+        __tb: TracebackType | None = ...,
+    ) -> _T_co: ...
     @overload
-    def throw(self, __typ: BaseException, __val: None = ..., __tb: TracebackType | None = ...) -> _T_co: ...
+    def throw(
+        self, __typ: BaseException, __val: None = ..., __tb: TracebackType | None = ...
+    ) -> _T_co: ...
 
 @final
 class AsyncGeneratorType(AsyncGenerator[_T_co, _T_contra]):
@@ -369,9 +379,16 @@ class AsyncGeneratorType(AsyncGenerator[_T_co, _T_contra]):
     def __anext__(self) -> Coroutine[Any, Any, _T_co]: ...
     def asend(self, __val: _T_contra) -> Coroutine[Any, Any, _T_co]: ...
     @overload
-    async def athrow(self, __typ: type[BaseException], __val: BaseException | object = ..., __tb: TracebackType | None = ...) -> _T_co: ...
+    async def athrow(
+        self,
+        __typ: type[BaseException],
+        __val: BaseException | object = ...,
+        __tb: TracebackType | None = ...,
+    ) -> _T_co: ...
     @overload
-    async def athrow(self, __typ: BaseException, __val: None = ..., __tb: TracebackType | None = ...) -> _T_co: ...
+    async def athrow(
+        self, __typ: BaseException, __val: None = ..., __tb: TracebackType | None = ...
+    ) -> _T_co: ...
     def aclose(self) -> Coroutine[Any, Any, None]: ...
     if sys.version_info >= (3, 9):
         def __class_getitem__(cls, __item: Any) -> GenericAlias: ...
@@ -390,9 +407,16 @@ class CoroutineType(Coroutine[_T_co, _T_contra, _V_co]):
     def __await__(self) -> Generator[Any, None, _V_co]: ...
     def send(self, __arg: _T_contra) -> _T_co: ...
     @overload
-    def throw(self, __typ: type[BaseException], __val: BaseException | object = ..., __tb: TracebackType | None = ...) -> _T_co: ...
+    def throw(
+        self,
+        __typ: type[BaseException],
+        __val: BaseException | object = ...,
+        __tb: TracebackType | None = ...,
+    ) -> _T_co: ...
     @overload
-    def throw(self, __typ: BaseException, __val: None = ..., __tb: TracebackType | None = ...) -> _T_co: ...
+    def throw(
+        self, __typ: BaseException, __val: None = ..., __tb: TracebackType | None = ...
+    ) -> _T_co: ...
 
 class _StaticFunctionType:
     # Fictional type to correct the type of MethodType.__func__.
@@ -484,7 +508,9 @@ class ClassMethodDescriptorType:
 
 @final
 class TracebackType:
-    def __init__(self, tb_next: TracebackType | None, tb_frame: FrameType, tb_lasti: int, tb_lineno: int) -> None: ...
+    def __init__(
+        self, tb_next: TracebackType | None, tb_frame: FrameType, tb_lasti: int, tb_lineno: int
+    ) -> None: ...
     tb_next: TracebackType | None
     # the rest are read-only even in 3.7
     @property

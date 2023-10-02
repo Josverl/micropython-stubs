@@ -72,7 +72,19 @@ def asm_pio(
     """
     ...
 
-def dht_readinto(*args, **kwargs) -> Any: ...
+def bootsel_button() -> Any:
+    """
+    Temporarily turns the QSPI_SS pin into an input and reads its value,
+    returning 1 for low and 0 for high.
+    On a typical RP2040 board with a BOOTSEL button, a return value of 1
+    indicates that the button is pressed.
+
+    Since this function temporarily disables access to the external flash
+    memory, it also temporarily disables interrupts and the other core to
+    prevent them from trying to execute code from flash.
+    """
+    ...
+
 def const(*args, **kwargs) -> Any: ...
 
 class PIOASMEmit:

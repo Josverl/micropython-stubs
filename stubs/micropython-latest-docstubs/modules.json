@@ -8,11 +8,11 @@
         "firmware": "micropython-latest",
         "nodename": "micropython",
         "version": "latest",
-        "release": "v1.20.0-261-g813d559bc",
+        "release": "v1.20.0-450-g3637252b7",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.13.7",
+        "version": "1.13.8",
         "stubtype": "documentation"
     },
     "modules": [
@@ -53,6 +53,10 @@
             "module": "cryptolib"
         },
         {
+            "file": "deflate.pyi",
+            "module": "deflate"
+        },
+        {
             "file": "errno.pyi",
             "module": "errno"
         },
@@ -75,6 +79,10 @@
         {
             "file": "gc.pyi",
             "module": "gc"
+        },
+        {
+            "file": "gzip.pyi",
+            "module": "gzip"
         },
         {
             "file": "hashlib.pyi",
@@ -119,6 +127,10 @@
         {
             "file": "os.pyi",
             "module": "os"
+        },
+        {
+            "file": "platform.pyi",
+            "module": "platform"
         },
         {
             "file": "pyb.pyi",

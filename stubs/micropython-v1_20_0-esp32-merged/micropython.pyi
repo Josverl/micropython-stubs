@@ -1,7 +1,7 @@
 """
 access and control MicroPython internals. See: https://docs.micropython.org/en/v1.20.0/library/micropython.html
 """
-from typing import Optional, Any
+from typing import Optional, Tuple, Union, Any
 
 def opt_level(level: Optional[Any] = None) -> Any:
     """
@@ -103,7 +103,7 @@ def alloc_emergency_exception_buf(size) -> Any:
     """
     ...
 
-def const(expr) -> int:
+def const(expr) -> Union[int, bytes, str, float, Tuple]:
     """
     Used to declare that the expression is a constant so that the compiler can
     optimise it.  The use of this function should be as follows::

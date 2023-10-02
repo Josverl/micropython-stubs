@@ -13,6 +13,12 @@ WAKEUP_ANY_HIGH: bool
 HEAP_EXEC: int
 HEAP_DATA: int
 
+def raw_temperature() -> int:
+    """
+    Read the raw value of the internal temperature sensor, returning an integer.
+    """
+    ...
+
 def idf_heap_info(capabilities) -> List[Tuple]:
     """
     Returns information about the ESP-IDF heap memory regions. One of them contains
@@ -20,12 +26,19 @@ def idf_heap_info(capabilities) -> List[Tuple]:
     buffers and other data. This data is useful to get a sense of how much memory
     is available to ESP-IDF and the networking stack in particular. It may shed
     some light on situations where ESP-IDF operations fail due to allocation failures.
-    The information returned is *not* useful to troubleshoot Python allocation failures,
-    use `micropython.mem_info()` instead.
 
     The capabilities parameter corresponds to ESP-IDF's ``MALLOC_CAP_XXX`` values but the
     two most useful ones are predefined as `esp32.HEAP_DATA` for data heap regions and
     `esp32.HEAP_EXEC` for executable regions as used by the native code emitter.
+
+    Free IDF heap memory in the `esp32.HEAP_DATA` region is available to be
+    automatically added to the MicroPython heap to prevent a MicroPython
+    allocation from failing. However, the information returned here is otherwise
+    *not* useful to troubleshoot Python allocation failures, use
+    `micropython.mem_info()` instead. The "max new split" value in
+    `micropython.mem_info()` output corresponds to the largest free block of
+    ESP-IDF heap that could be automatically added on demand to the MicroPython
+    heap.
 
     The return value is a list of 4-tuples, where each 4-tuple corresponds to one heap
     and contains: the total bytes, the free bytes, the largest free block, and
@@ -39,23 +52,10 @@ def idf_heap_info(capabilities) -> List[Tuple]:
     """
     ...
 
-def hall_sensor() -> int:
+def wake_on_touch(wake) -> None:
     """
-    Read the raw value of the internal Hall sensor, returning an integer.
-    """
-    ...
-
-def wake_on_ext1(pins, level) -> None:
-    """
-    Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
-    or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
-    or ``esp32.WAKEUP_ANY_HIGH``.
-    """
-    ...
-
-def raw_temperature() -> int:
-    """
-    Read the raw value of the internal temperature sensor, returning an integer.
+    Configure whether or not a touch will wake the device from sleep.
+    *wake* should be a boolean value.
     """
     ...
 
@@ -67,10 +67,18 @@ def wake_on_ext0(pin, level) -> None:
     """
     ...
 
-def wake_on_touch(wake) -> None:
+def wake_on_ext1(pins, level) -> None:
     """
-    Configure whether or not a touch will wake the device from sleep.
-    *wake* should be a boolean value.
+    Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
+    or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
+    or ``esp32.WAKEUP_ANY_HIGH``.
+    """
+    ...
+
+def wake_on_ulp(wake) -> None:
+    """
+    Configure whether or not the Ultra-Low-Power co-processor can wake the
+    device from sleep. *wake* should be a boolean value.
     """
     ...
 
@@ -207,7 +215,7 @@ class Partition:
         and  an ``OSError(-261)`` is raised if called on firmware that doesn't have the
         feature enabled.
         It is OK to call ``mark_app_valid_cancel_rollback`` on every boot and it is not
-        necessary when booting firmare that was loaded using esptool.
+        necessary when booting firmware that was loaded using esptool.
         """
         ...
     def __init__(self, id, block_size=4096, /) -> None: ...

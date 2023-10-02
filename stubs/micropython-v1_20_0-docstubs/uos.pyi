@@ -11,7 +11,7 @@ functions.
 # source version: v1_20_0
 # origin module:: repos/micropython/docs/library/os.rst
 from typing import IO, Any, Iterator, Optional, Tuple
-from stdlib.os import uname_result
+from stdlib.os import *  # type: ignore
 
 class VfsFat:
     """

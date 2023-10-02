@@ -7,8 +7,8 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
 floating-point support).
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
+# Stubber: v1.13.7
 from typing import List, Optional, Any
 
 
@@ -24,9 +24,6 @@ class array:
         Append new elements as contained in *iterable* to the end of
         array, growing it.
         """
-        ...
-
-    def decode(self, *args, **kwargs) -> Any:
         ...
 
     def append(self, val) -> Any:

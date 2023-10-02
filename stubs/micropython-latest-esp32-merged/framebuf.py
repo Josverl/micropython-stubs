@@ -4,8 +4,8 @@ Frame buffer manipulation. See: https://docs.micropython.org/en/latest/library/f
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
+# Stubber: v1.13.7
 from typing import Optional, Any
 
 MONO_HMSB = 4  # type: int
@@ -48,29 +48,26 @@ class FrameBuffer:
     unexpected errors.
     """
 
-    def rect(self, x, y, w, h, c, f: Optional[Any] = None) -> None:
+    def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Any:
         """
-        Draw a rectangle at the given location, size and color.
+        Given a list of coordinates, draw an arbitrary (convex or concave) closed
+        polygon at the given x, y location using the given color.
 
-        The optional *f* parameter can be set to ``True`` to fill the rectangle.
+        The *coords* must be specified as a :mod:`array` of integers, e.g.
+        ``array('h', [x0, y0, x1, y1, ... xn, yn])``.
+
+        The optional *f* parameter can be set to ``True`` to fill the polygon.
         Otherwise just a one pixel outline is drawn.
-        """
-        ...
-
-    def pixel(self, x, y, c: Optional[Any] = None) -> Any:
-        """
-        If *c* is not given, get the color value of the specified pixel.
-        If *c* is given, set the specified pixel to the given color.
         """
         ...
 
     def vline(self, x, y, h, c) -> Any:
         ...
 
-    def scroll(self, xstep, ystep) -> Any:
+    def pixel(self, x, y, c: Optional[Any] = None) -> Any:
         """
-        Shift the contents of the FrameBuffer by the given vector. This may
-        leave a footprint of the previous colors in the FrameBuffer.
+        If *c* is not given, get the color value of the specified pixel.
+        If *c* is given, set the specified pixel to the given color.
         """
         ...
 
@@ -84,9 +81,45 @@ class FrameBuffer:
         """
         ...
 
-    def fill(self, c) -> None:
+    def rect(self, x, y, w, h, c, f: Optional[Any] = None) -> None:
         """
-        Fill the entire FrameBuffer with the specified color.
+        Draw a rectangle at the given location, size and color.
+
+        The optional *f* parameter can be set to ``True`` to fill the rectangle.
+        Otherwise just a one pixel outline is drawn.
+        """
+        ...
+
+    def scroll(self, xstep, ystep) -> Any:
+        """
+        Shift the contents of the FrameBuffer by the given vector. This may
+        leave a footprint of the previous colors in the FrameBuffer.
+        """
+        ...
+
+    def ellipse(self, x, y, xr, yr, c, f, m: Optional[Any] = None) -> None:
+        """
+        Draw an ellipse at the given location. Radii *xr* and *yr* define the
+        geometry; equal values cause a circle to be drawn. The *c* parameter
+        defines the color.
+
+        The optional *f* parameter can be set to ``True`` to fill the ellipse.
+        Otherwise just a one pixel outline is drawn.
+
+        The optional *m* parameter enables drawing to be restricted to certain
+        quadrants of the ellipse. The LS four bits determine which quadrants are
+        to be drawn, with bit 0 specifying Q1, b1 Q2, b2 Q3 and b3 Q4. Quadrants
+        are numbered counterclockwise with Q1 being top right.
+        """
+        ...
+
+    def line(self, x1, y1, x2, y2, c) -> None:
+        """
+        Draw a line from a set of coordinates using the given color and
+        a thickness of 1 pixel. The `line` method draws the line up to
+        a second set of coordinates whereas the `hline` and `vline`
+        methods draw horizontal and vertical lines respectively up to
+        a given length.
         """
         ...
 
@@ -112,20 +145,16 @@ class FrameBuffer:
         """
         ...
 
-    def line(self, x1, y1, x2, y2, c) -> None:
+    def hline(self, x, y, w, c) -> Any:
+        ...
+
+    def fill(self, c) -> None:
         """
-        Draw a line from a set of coordinates using the given color and
-        a thickness of 1 pixel. The `line` method draws the line up to
-        a second set of coordinates whereas the `hline` and `vline`
-        methods draw horizontal and vertical lines respectively up to
-        a given length.
+        Fill the entire FrameBuffer with the specified color.
         """
         ...
 
     def fill_rect(self, *args, **kwargs) -> Any:
-        ...
-
-    def hline(self, x, y, w, c) -> Any:
         ...
 
     def __init__(self, buffer, width, height, format, stride=-1, /) -> None:
