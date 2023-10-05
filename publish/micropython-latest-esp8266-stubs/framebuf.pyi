@@ -1,13 +1,10 @@
 """
-Frame buffer manipulation.
-
-MicroPython module: https://docs.micropython.org/en/latest/library/framebuf.html
+Frame buffer manipulation. See: https://docs.micropython.org/en/latest/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
 from typing import Optional, Any
-from _typeshed import Incomplete
 
 MONO_HMSB: int
 MONO_HLSB: int
@@ -54,14 +51,14 @@ class FrameBuffer:
         Otherwise just a one pixel outline is drawn.
         """
         ...
-    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
+    def pixel(self, x, y, c: Optional[Any] = None) -> Any:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
         """
         ...
-    def vline(self, x, y, h, c) -> Incomplete: ...
-    def scroll(self, xstep, ystep) -> Incomplete:
+    def vline(self, x, y, h, c) -> Any: ...
+    def scroll(self, xstep, ystep) -> Any:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
@@ -73,6 +70,7 @@ class FrameBuffer:
         corner of the text. The color of the text can be defined by the optional
         argument but is otherwise a default value of 1. All characters have
         dimensions of 8x8 pixels and there is currently no way to change the font.
+
         """
         ...
     def fill(self, c) -> None:
@@ -111,5 +109,5 @@ class FrameBuffer:
         """
         ...
     def fill_rect(self, *args, **kwargs) -> Any: ...
-    def hline(self, x, y, w, c) -> Incomplete: ...
+    def hline(self, x, y, w, c) -> Any: ...
     def __init__(self, buffer, width, height, format, stride=-1, /) -> None: ...

@@ -1,14 +1,17 @@
 """
-zlib decompression. See: https://docs.micropython.org/en/v1.19.1/library/zlib.html
+Zlib decompression.
 
-|see_cpython_module| :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/zlib.html
+
+CPython module: :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
 
 This module allows to decompress binary data compressed with
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
 (commonly used in zlib library and gzip archiver). Compression
 is not yet implemented.
 """
-from typing import IO, Any
+from typing import Any
+from _typeshed import Incomplete
 
 def decompress(data, wbits=0, bufsize=0, /) -> bytes:
     """
@@ -21,13 +24,18 @@ def decompress(data, wbits=0, bufsize=0, /) -> bytes:
     """
     ...
 
-class DecompIO(IO):
+class DecompIO:
     """
     Create a `stream` wrapper which allows transparent decompression of
     compressed data in another *stream*. This allows to process compressed
     streams with data larger than available heap size. In addition to
     values described in :func:`decompress`, *wbits* may take values
     24..31 (16 + 8..15), meaning that input stream has gzip header.
+
+    Difference to CPython
+
+       This class is MicroPython extension. It's included on provisional
+       basis and may be changed considerably or removed in later versions.
     """
 
     def readinto(self, *args, **kwargs) -> Any: ...

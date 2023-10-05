@@ -1,14 +1,16 @@
 """
-functions related to the ESP8266 and ESP32. See: https://docs.micropython.org/en/v1.19.1/library/esp.html
+Functions related to the ESP8266 and ESP32.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/esp.html
 
 The ``esp`` module contains specific functions related to both the ESP8266 and
 ESP32 modules.  Some functions are only available on one or the other of these
 ports.
-
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32S3 module with ESP32S3', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.11.2
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 LOG_NONE = 0  # type: int
 LOG_WARNING = 2  # type: int
@@ -18,14 +20,14 @@ LOG_INFO = 3  # type: int
 LOG_ERROR = 1  # type: int
 
 
-def flash_user_start() -> Any:
+def flash_user_start() -> Incomplete:
     """
     Read the memory offset at which the user flash space begins.
     """
     ...
 
 
-def flash_write(byte_offset, bytes) -> Any:
+def flash_write(byte_offset, bytes) -> Incomplete:
     ...
 
 
@@ -55,7 +57,7 @@ def osdebug(level) -> None:
     ...
 
 
-def flash_size() -> Any:
+def flash_size() -> Incomplete:
     """
     Read the total size of the flash memory.
     """
@@ -66,9 +68,9 @@ def dht_readinto(*args, **kwargs) -> Any:
     ...
 
 
-def flash_erase(sector_no) -> Any:
+def flash_erase(sector_no) -> Incomplete:
     ...
 
 
-def flash_read(byte_offset, length_or_buffer) -> Any:
+def flash_read(byte_offset, length_or_buffer) -> Incomplete:
     ...

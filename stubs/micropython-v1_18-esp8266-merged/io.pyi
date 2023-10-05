@@ -76,7 +76,7 @@ class StringIO(IO):
     def seek(self, *args, **kwargs) -> Any: ...
     def tell(self, *args, **kwargs) -> Any: ...
 
-class TextIOWrapper:
+class TextIOWrapper(IO):
     """
     This is type of a file open in text mode, e.g. using ``open(name, "rt")``.
     You should not instantiate this class directly.

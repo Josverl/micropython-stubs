@@ -1,18 +1,25 @@
 """
-pack and unpack primitive data types. See: https://docs.micropython.org/en/v1.19.1/library/struct.html
+Pack and unpack primitive data types.
 
-|see_cpython_module| :mod:`python:struct` https://docs.python.org/3/library/struct.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/struct.html
+
+CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
 
 Supported size/byte order prefixes: ``@``, ``<``, ``>``, ``!``.
 
 Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``s``, ``P``, ``f``, ``d`` (the latter 2 depending
 on the floating-point support).
+
+Difference to CPython
+
+   Whitespace is not supported in format strings.
 """
 
 # source version: v1_19_1
 # origin module:: repos/micropython/docs/library/struct.rst
-from typing import Any, Tuple
+from typing import Tuple
+from _typeshed import Incomplete
 
 def calcsize(fmt) -> int:
     """
@@ -27,7 +34,7 @@ def pack(fmt, v1, *args, **kwargs) -> bytes:
     """
     ...
 
-def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Any:
+def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*
     into a *buffer* starting at *offset*. *offset* may be negative to count

@@ -1,5 +1,7 @@
 """
-network configuration. See: https://docs.micropython.org/en/v1.20.0/library/network.html
+Network configuration.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.
@@ -39,6 +41,7 @@ For example::
 # + module: network.WIZNET5K.rst
 # + module: network.LAN.rst
 from typing import Any, List, Optional, Tuple, Union
+from _typeshed import Incomplete
 
 class AbstractNIC:
     """
@@ -101,7 +104,7 @@ class AbstractNIC:
         should match those in connect().
         """
         ...
-    def status(self, param: Optional[Any] = None) -> Any:
+    def status(self, param: Optional[Any] = None) -> Incomplete:
         """
         Query dynamic status information of the interface.  When called with no
         argument the return value describes the network link status.  Otherwise
@@ -127,7 +130,7 @@ class AbstractNIC:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def config(self, param) -> Any:
+    def config(self, param) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
@@ -203,7 +206,7 @@ class WLAN:
             * 1 -- hidden
         """
         ...
-    def status(self, param: Optional[Any] = None) -> Any:
+    def status(self, param: Optional[Any] = None) -> Incomplete:
         """
         Return the current status of the wireless connection.
 
@@ -238,7 +241,7 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
@@ -285,18 +288,18 @@ class WLANWiPy:
        values.
     """
 
-    STA: Any = ...
-    AP: Any = ...
+    STA: Incomplete
+    AP: Incomplete
     """selects the WLAN mode"""
-    WEP: Any = ...
-    WPA: Any = ...
-    WPA2: Any = ...
+    WEP: Incomplete
+    WPA: Incomplete
+    WPA2: Incomplete
     """selects the network security"""
-    INT_ANT: Any = ...
-    EXT_ANT: Any = ...
+    INT_ANT: Incomplete
+    EXT_ANT: Incomplete
     """selects the antenna type"""
     def __init__(self, id=0, *args, **kwargs) -> None: ...
-    def init(self, mode, *, ssid, auth, channel, antenna) -> Any:
+    def init(self, mode, *, ssid, auth, channel, antenna) -> Incomplete:
         """
         Set or get the WiFi network processor configuration.
 
@@ -366,27 +369,27 @@ class WLANWiPy:
            wlan.ifconfig(config=('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def mode(self, mode: Optional[Any] = None) -> Any:
+    def mode(self, mode: Optional[Any] = None) -> Incomplete:
         """
         Get or set the WLAN mode.
         """
         ...
-    def ssid(self, ssid: Optional[Any] = None) -> Any:
+    def ssid(self, ssid: Optional[Any] = None) -> Incomplete:
         """
         Get or set the SSID when in AP mode.
         """
         ...
-    def auth(self, auth: Optional[Any] = None) -> Any:
+    def auth(self, auth: Optional[Any] = None) -> Incomplete:
         """
         Get or set the authentication type when in AP mode.
         """
         ...
-    def channel(self, channel: Optional[Any] = None) -> Any:
+    def channel(self, channel: Optional[Any] = None) -> Incomplete:
         """
         Get or set the channel (only applicable in AP mode).
         """
         ...
-    def antenna(self, antenna: Optional[Any] = None) -> Any:
+    def antenna(self, antenna: Optional[Any] = None) -> Incomplete:
         """
         Get or set the antenna type (external or internal).
         """
@@ -396,7 +399,7 @@ class WLANWiPy:
         Get or set a 6-byte long bytes object with the MAC address.
         """
         ...
-    def irq(self, *, handler, wake) -> Any:
+    def irq(self, *, handler, wake) -> Incomplete:
         """
         Create a callback to be triggered when a WLAN event occurs during ``machine.SLEEP``
         mode. Events are triggered by socket activity or by WLAN connection/disconnection.
@@ -444,7 +447,7 @@ class WIZNET5K:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def regs(self) -> Any:
+    def regs(self) -> Incomplete:
         """
         Dump the WIZnet5x00 registers.  Useful for debugging.
         """
@@ -474,7 +477,7 @@ class LAN:
     """
 
     def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
-    def active(self, state: Optional[Any] = None) -> Any:
+    def active(self, state: Optional[Any] = None) -> Incomplete:
         """
         With a parameter, it sets the interface active if *state* is true, otherwise it
         sets it inactive.
@@ -487,7 +490,7 @@ class LAN:
         Returns ``False`` otherwise.
         """
         ...
-    def status(self) -> Any:
+    def status(self) -> Incomplete:
         """
         Returns the LAN status.
         """
@@ -503,7 +506,7 @@ class LAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def config(self, config_parameters) -> Any:
+    def config(self, config_parameters) -> Incomplete:
         """
         Sets or gets parameters of the LAN interface. The only parameter that can be
         retrieved is the MAC address, using::
@@ -520,6 +523,5 @@ class LAN:
 
          - ``low_power=bool`` sets or clears low power mode, valid values being ``False``
            or ``True``.
-
         """
         ...

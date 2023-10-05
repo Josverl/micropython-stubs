@@ -1,7 +1,9 @@
 """
-TLS/SSL wrapper for socket objects. See: https://docs.micropython.org/en/latest/library/ssl.html
+TLS/SSL wrapper for socket objects.
 
-|see_cpython_module| :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/ssl.html
+
+CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
 This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
@@ -9,7 +11,8 @@ facilities for network sockets, both client-side and server-side.
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
 # Stubber: v1.13.7
-from typing import Any
+from typing import IO, Any
+from _typeshed import Incomplete
 from stdlib.ssl import *
 
 CERT_REQUIRED = 2  # type: int
@@ -21,7 +24,7 @@ CERT_NONE = 0  # type: int
 
 def wrap_socket(
     sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
-) -> wrappedsocket:
+) -> IO:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
      of this function is to first create an `SSLContext` and then call the `SSLContext.wrap_socket`
@@ -48,7 +51,7 @@ class SSLContext:
     constants.
     """
 
-    def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Any:
+    def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
         and returns an instance of ssl.SSLSocket, wrapping the underlying stream.

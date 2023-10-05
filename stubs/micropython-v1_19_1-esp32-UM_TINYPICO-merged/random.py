@@ -1,9 +1,11 @@
 """
-random numbers. See: https://docs.micropython.org/en/v1.19.1/library/random.html
+Random numbers.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/random.html
 
 This module implements a pseudo-random number generator (PRNG).
 
-|see_cpython_module| :mod:`python:random` https://docs.python.org/3/library/random.html . .
+CPython module: :mod:`python:random` https://docs.python.org/3/library/random.html . .
 
 .. note::
 
@@ -23,14 +25,14 @@ This module implements a pseudo-random number generator (PRNG).
    The :func:`randrange`, :func:`randint` and :func:`choice` functions are only
    available if the ``MICROPY_PY_URANDOM_EXTRA_FUNCS`` configuration option is
    enabled.
-
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
-def choice(sequence) -> Any:
+def choice(sequence) -> Incomplete:
     """
     Chooses and returns one item at random from *sequence* (tuple, list or
     any object that supports the subscript operation).
@@ -52,13 +54,11 @@ def randint(a, b) -> int:
     ...
 
 
-class random:
+def random() -> int:
     """
     Return a random floating point number in the range [0.0, 1.0).
     """
-
-    def __init__(self) -> None:
-        ...
+    ...
 
 
 def randrange(start, stop, step: Optional[Any] = None) -> int:
@@ -68,7 +68,6 @@ def randrange(start, stop, step: Optional[Any] = None) -> int:
     The third form returns a random integer from the range [*start*, *stop*) in
     steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
     return odd numbers between 1 and 9 inclusive.
-
     """
     ...
 
@@ -90,6 +89,5 @@ def uniform(a, b) -> int:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
     and *b* <= N <= *a* for *b* < *a*.
-
     """
     ...

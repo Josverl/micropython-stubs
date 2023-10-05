@@ -1,7 +1,9 @@
 """
-mathematical functions. See: https://docs.micropython.org/en/v1.19.1/library/math.html
+Mathematical functions.
 
-|see_cpython_module| :mod:`python:math` https://docs.python.org/3/library/math.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/math.html
+
+CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
 
 The ``math`` module provides some basic mathematical functions for
 working with floating-point numbers.
@@ -14,6 +16,7 @@ for this module.
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Tuple, Any
+from _typeshed import Incomplete
 
 pi = 3.14159  # type: float
 e = 2.71828  # type: float
@@ -26,14 +29,14 @@ def isnan(x) -> bool:
     ...
 
 
-def ldexp(x, exp) -> Any:
+def ldexp(x, exp) -> Incomplete:
     """
     Return ``x * (2**exp)``.
     """
     ...
 
 
-def frexp(x) -> Any:
+def frexp(x) -> Incomplete:
     """
     Decomposes a floating-point number into its mantissa and exponent.
     The returned value is the tuple ``(m, e)`` such that ``x == m * 2**e``
@@ -64,7 +67,7 @@ def trunc(x) -> int:
     ...
 
 
-def sqrt(x) -> Any:
+def sqrt(x) -> Incomplete:
     """
     Return the square root of ``x``.
     """
@@ -100,7 +103,7 @@ def sin(x) -> float:
     ...
 
 
-def radians(x) -> Any:
+def radians(x) -> Incomplete:
     """
     Return degrees ``x`` converted to radians.
     """
@@ -128,7 +131,7 @@ def atan2(y, x) -> float:
     ...
 
 
-def pow(x, y) -> Any:
+def pow(x, y) -> Incomplete:
     """
     Returns ``x`` to the power of ``y``.
     """
@@ -149,21 +152,21 @@ def acos(x) -> float:
     ...
 
 
-def fmod(x, y) -> Any:
+def fmod(x, y) -> Incomplete:
     """
     Return the remainder of ``x/y``.
     """
     ...
 
 
-def fabs(x) -> Any:
+def fabs(x) -> Incomplete:
     """
     Return the absolute value of ``x``.
     """
     ...
 
 
-def copysign(x, y) -> Any:
+def copysign(x, y) -> Incomplete:
     """
     Return ``x`` with the sign of ``y``.
     """
@@ -191,7 +194,7 @@ def exp(x) -> float:
     ...
 
 
-def degrees(x) -> Any:
+def degrees(x) -> Incomplete:
     """
     Return radians ``x`` converted to degrees.
     """

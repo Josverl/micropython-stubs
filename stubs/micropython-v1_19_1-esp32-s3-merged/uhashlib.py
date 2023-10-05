@@ -1,7 +1,9 @@
 """
-hashing algorithms. See: https://docs.micropython.org/en/v1.19.1/library/hashlib.html
+Hashing algorithms.
 
-|see_cpython_module| :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/hashlib.html
+
+CPython module: :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
 
 This module implements binary data hashing algorithms. The exact inventory
 of available algorithms depends on a board. Among the algorithms which may
@@ -24,6 +26,7 @@ be implemented:
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32S3 module with ESP32S3', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.11.2
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
 class sha256:

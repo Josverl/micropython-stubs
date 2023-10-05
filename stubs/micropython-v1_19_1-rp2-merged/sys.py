@@ -1,11 +1,14 @@
 """
-system specific functions. See: https://docs.micropython.org/en/v1.19.1/library/sys.html
+System specific functions.
 
-|see_cpython_module| :mod:`python:sys` https://docs.python.org/3/library/sys.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/sys.html
+
+CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Dict, List, Tuple, Any
+from _typeshed import Incomplete
 
 platform = "rp2"  # type: str
 version_info = ()  # type: tuple
@@ -24,11 +27,20 @@ def print_exception(exc, file=stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
+
+    Difference to CPython
+
+       This is simplified version of a function which appears in the
+       ``traceback`` module in CPython. Unlike ``traceback.print_exception()``,
+       this function takes just exception value instead of exception type,
+       exception value, and traceback object; *file* argument should be
+       positional; further arguments are not supported. CPython-compatible
+       ``traceback`` module can be found in `micropython-lib`.
     """
     ...
 
 
-def exit(retval=0, /) -> Any:
+def exit(retval=0, /) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its

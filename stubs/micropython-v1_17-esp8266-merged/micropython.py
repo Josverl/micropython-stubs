@@ -3,10 +3,10 @@ access and control MicroPython internals. See: https://docs.micropython.org/en/v
 """
 # MCU: {'ver': 'v1.17', 'port': 'esp8266', 'arch': 'xtensa', 'sysname': 'esp8266', 'release': '1.17', 'name': 'micropython', 'mpy': 9733, 'version': '1.17', 'machine': 'ESP module with ESP8266', 'build': '', 'nodename': 'esp8266', 'platform': 'esp8266', 'family': 'micropython'}
 # Stubber: 1.5.4
-from typing import Optional, Any
+from typing import Optional, Tuple, Union, Any
 
 
-def const(expr) -> int:
+def const(expr) -> Union[int, bytes, str, Tuple]:
     """
     Used to declare that the expression is a constant so that the compile can
     optimise it.  The use of this function should be as follows::

@@ -1,7 +1,9 @@
 """
-input/output streams. See: https://docs.micropython.org/en/v1.19.1/library/io.html
+Input/output streams.
 
-|see_cpython_module| :mod:`python:io` https://docs.python.org/3/library/io.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/io.html
+
+CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
 
 This module contains additional types of `stream` (file-like) objects
 and helper functions.
@@ -9,9 +11,11 @@ and helper functions.
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32S3 module with ESP32S3', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.11.2
 from typing import IO, Optional, Any
+from _typeshed import Incomplete
+from stdlib.io import *
 
 
-def open(name, mode="r", **kwargs) -> Any:
+def open(name, mode="r", **kwargs) -> Incomplete:
     """
     Open a file. Builtin ``open()`` function is aliased to this function.
     All ports (which provide access to file system) are required to support
@@ -25,7 +29,7 @@ class IOBase:
         ...
 
 
-class TextIOWrapper:
+class TextIOWrapper(IO):
     """
     This is type of a file open in text mode, e.g. using ``open(name, "rt")``.
     You should not instantiate this class directly.
@@ -62,7 +66,7 @@ class TextIOWrapper:
         ...
 
 
-class StringIO:
+class StringIO(IO):
     def write(self, *args, **kwargs) -> Any:
         ...
 
@@ -105,7 +109,7 @@ class BufferedWriter:
         ...
 
 
-class FileIO:
+class FileIO(IO):
     """
     This is type of a file open in binary mode, e.g. using ``open(name, "rb")``.
     You should not instantiate this class directly.
@@ -142,7 +146,7 @@ class FileIO:
         ...
 
 
-class BytesIO:
+class BytesIO(IO):
     """
     In-memory file-like objects for input/output. `StringIO` is used for
     text-mode I/O (similar to a normal file opened with "t" modifier).
@@ -161,7 +165,7 @@ class BytesIO:
     def flush(self, *args, **kwargs) -> Any:
         ...
 
-    def getvalue(self) -> Any:
+    def getvalue(self) -> Incomplete:
         """
         Get the current contents of the underlying buffer which holds data.
         """

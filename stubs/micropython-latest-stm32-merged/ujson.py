@@ -1,17 +1,20 @@
 """
-JSON encoding and decoding. See: https://docs.micropython.org/en/latest/library/json.html
+JSON encoding and decoding.
 
-|see_cpython_module| :mod:`python:json` https://docs.python.org/3/library/json.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/json.html
+
+CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
 
 This modules allows to convert between Python objects and the JSON
 data format.
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
+# Stubber: v1.13.7
 from typing import Any
+from _typeshed import Incomplete
 
 
-def loads(str) -> Any:
+def loads(str) -> Incomplete:
     """
     Parse the JSON *str* and return an object.  Raises :exc:`ValueError` if the
     string is not correctly formed.
@@ -19,7 +22,7 @@ def loads(str) -> Any:
     ...
 
 
-def load(stream) -> Any:
+def load(stream) -> Incomplete:
     """
     Parse the given *stream*, interpreting it as a JSON string and
     deserialising the data to a Python object.  The resulting object is
@@ -40,7 +43,7 @@ def dumps(obj, separators=None) -> str:
     ...
 
 
-def dump(obj, stream, separators=None) -> Any:
+def dump(obj, stream, separators=None) -> Incomplete:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
 

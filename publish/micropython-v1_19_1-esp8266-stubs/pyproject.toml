@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp8266-stubs"
-version = "1.19.1.post10"
+version = "1.19.1.post11"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -32,6 +32,7 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 packages = [
+    { include = "_boot.pyi" },
     { include = "_onewire.pyi" },
     { include = "apa102.pyi" },
     { include = "array.pyi" },
@@ -47,17 +48,18 @@ packages = [
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
     { include = "inisetup.pyi" },
+    { include = "io.pyi" },
     { include = "json.pyi" },
     { include = "lwip.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
-    { include = "micropython_.pyi" },
     { include = "neopixel.pyi" },
     { include = "network.pyi" },
     { include = "ntptime.pyi" },
     { include = "onewire.pyi" },
     { include = "os.pyi" },
+    { include = "port_diag.pyi" },
     { include = "random.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },
@@ -77,6 +79,8 @@ packages = [
     { include = "ujson.pyi" },
     { include = "umachine.pyi" },
     { include = "uos.pyi" },
+    { include = "upip.pyi" },
+    { include = "upip_utarfile.pyi" },
     { include = "urandom.pyi" },
     { include = "ure.pyi" },
     { include = "uselect.pyi" },
@@ -88,6 +92,8 @@ packages = [
     { include = "utimeq.pyi" },
     { include = "uwebsocket.pyi" },
     { include = "uzlib.pyi" },
+    { include = "webrepl.pyi" },
+    { include = "webrepl_setup.pyi" },
     { include = "websocket.pyi" },
     { include = "websocket_helper.pyi" },
     { include = "zlib.pyi" },

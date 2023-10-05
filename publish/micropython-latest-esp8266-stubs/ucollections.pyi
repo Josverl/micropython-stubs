@@ -1,19 +1,15 @@
 """
-Collection and container types.
+collection and container types. See: https://docs.micropython.org/en/latest/library/collections.html
 
-MicroPython module: https://docs.micropython.org/en/latest/library/collections.html
-
-CPython module: :mod:`python:collections` https://docs.python.org/3/library/collections.html .
+|see_cpython_module| :mod:`python:collections` https://docs.python.org/3/library/collections.html .
 
 This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
 from typing import Optional, Any
-from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
-from typing_extensions import NamedTuple as stdlib_NamedTuple
-from _typeshed import Incomplete
+from queue import Queue
 
-def namedtuple(name, fields) -> stdlib_NamedTuple:
+def namedtuple(name, fields) -> Any:
     """
     This is factory function to create a new namedtuple type with a specific
     name and set of fields. A namedtuple is a subclass of tuple which allows
@@ -33,7 +29,7 @@ def namedtuple(name, fields) -> stdlib_NamedTuple:
     """
     ...
 
-class OrderedDict(stdlib_OrderedDict):
+class OrderedDict(dict):
     """
     ``dict`` type subclass which remembers and preserves the order of keys
     added. When ordered dict is iterated over, keys/items are returned in
@@ -72,7 +68,7 @@ class OrderedDict(stdlib_OrderedDict):
     def fromkeys(cls, *args, **kwargs) -> Any: ...
     def __init__(self, *args, **kwargs) -> None: ...
 
-class deque(stdlib_deque):
+class deque(Queue):
     """
     Deques (double-ended queues) are a list-like container that support O(1)
     appends and pops from either side of the deque.  New deques are created
@@ -90,13 +86,13 @@ class deque(stdlib_deque):
     methods:
     """
 
-    def popleft(self) -> Incomplete:
+    def popleft(self) -> Any:
         """
         Remove and return an item from the left side of the deque.
         Raises IndexError if no items are present.
         """
         ...
-    def append(self, x) -> Incomplete:
+    def append(self, x) -> Any:
         """
         Add *x* to the right side of the deque.
         Raises IndexError if overflow checking is enabled and there is no more room left.

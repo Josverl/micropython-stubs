@@ -1,7 +1,9 @@
 """
-binary/ASCII conversions. See: https://docs.micropython.org/en/v1.20.0/library/binascii.html
+Binary/ASCII conversions.
 
-|see_cpython_module| :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/binascii.html
+
+CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
 
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
@@ -9,6 +11,7 @@ encodings of it in ASCII form (in both directions).
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
 # Stubber: v1.13.7
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
 def crc32(*args, **kwargs) -> Any:

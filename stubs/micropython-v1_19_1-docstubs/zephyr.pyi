@@ -1,5 +1,7 @@
 """
-functionality specific to Zephyr. See: https://docs.micropython.org/en/v1.19.1/library/zephyr.html
+Functionality specific to Zephyr.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/zephyr.html
 
 The ``zephyr`` module contains functions and classes specific to the Zephyr port.
 """
@@ -9,7 +11,8 @@ The ``zephyr`` module contains functions and classes specific to the Zephyr port
 # origin module:: repos/micropython/docs/library/zephyr.rst
 # + module: zephyr.DiskAccess.rst
 # + module: zephyr.FlashArea.rst
-from typing import Any, Optional
+from typing import Optional
+from _typeshed import Incomplete
 
 class DiskAccess:
     """
@@ -19,9 +22,9 @@ class DiskAccess:
     """
 
     def __init__(self, disk_name) -> None: ...
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def ioctl(self, cmd, arg) -> Any:
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
@@ -42,9 +45,9 @@ class FlashArea:
     """
 
     def __init__(self, id, block_size) -> None: ...
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def ioctl(self, cmd, arg) -> Any:
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
@@ -52,7 +55,7 @@ class FlashArea:
         """
         ...
 
-def is_preempt_thread() -> Any:
+def is_preempt_thread() -> Incomplete:
     """
     Returns true if the current thread is a preemptible thread.
 
@@ -61,13 +64,13 @@ def is_preempt_thread() -> Any:
     """
     ...
 
-def current_tid() -> Any:
+def current_tid() -> Incomplete:
     """
     Returns the thread id of the current thread, which is used to reference the thread.
     """
     ...
 
-def thread_analyze() -> Any:
+def thread_analyze() -> Incomplete:
     """
     Runs the Zephyr debug thread analyzer on the current thread and prints stack size statistics in the format:
 
@@ -82,7 +85,7 @@ def thread_analyze() -> Any:
     """
     ...
 
-def shell_exec(cmd_in) -> Any:
+def shell_exec(cmd_in) -> Incomplete:
     """
     Executes the given command on an UART backend. This function can only be accessed if ``CONFIG_SHELL_BACKEND_SERIAL``
     is configured for the port in ``zephyr/prj.conf``.

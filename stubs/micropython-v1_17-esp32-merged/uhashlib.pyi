@@ -23,7 +23,7 @@ be implemented:
 """
 from typing import Optional, Any
 
-class sha1(hash):
+class sha1:
     """
     Create an SHA1 hasher object and optionally feed ``data`` into it.
     """

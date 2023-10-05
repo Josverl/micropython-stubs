@@ -1,6 +1,6 @@
 """ """
 
-from typing import Any
+from _typeshed import Incomplete
 
 class WM8960:
     """
@@ -65,17 +65,17 @@ class WM8960:
         protocol=BUS_I2S,
         i2c_address=WM8960_I2C_ADDR,
     ) -> None: ...
-    def set_left_input(self, input_source) -> Any:
+    def set_left_input(self, input_source) -> Incomplete:
         """
         Specify the source for the left input.  The input source names are listed above.
         """
         ...
-    def set_right_input(self, input_source) -> Any:
+    def set_right_input(self, input_source) -> Incomplete:
         """
         Specify the source for the right input.  The input source names are listed above.
         """
         ...
-    def volume(self, module, volume_l=None, volume_r=None) -> Any:
+    def volume(self, module, volume_l=None, volume_r=None) -> Incomplete:
         """
         Sets or gets the volume of a certain module.
 
@@ -90,7 +90,7 @@ class WM8960:
         For a list of suitable modules and db/step, see the table below.
         """
         ...
-    def mute(self, module, mute, soft=True, ramp=MUTE_FAST) -> Any:
+    def mute(self, module, mute, soft=True, ramp=MUTE_FAST) -> Incomplete:
         """
         Mute or unmute the output. If *mute* is True, the output is muted, if ``False``
         it is unmuted.
@@ -130,14 +130,14 @@ class WM8960:
         A value of 0 disables the expansion.
         """
         ...
-    def mono(self, active) -> Any:
+    def mono(self, active) -> Incomplete:
         """
         If *active* is ``True``, a Mono mix is sent to the left and right output
         channel.  This is different from enabling the ``MODULE_MONO_MIX``, which
         enables output 3.
         """
         ...
-    def alc_mode(self, channel, mode=ALC_MODE) -> Any:
+    def alc_mode(self, channel, mode=ALC_MODE) -> Incomplete:
         """
         Enables or disables ALC mode.  Parameters are:
 
@@ -154,7 +154,7 @@ class WM8960:
             - ALC_LIMITER: act as limiter.
         """
         ...
-    def alc_gain(self, target=-12, max_gain=30, min_gain=-17.25, noise_gate=-78) -> Any:
+    def alc_gain(self, target=-12, max_gain=30, min_gain=-17.25, noise_gate=-78) -> Incomplete:
         """
         Set the target level, highest and lowest gain levels and the noise gate as dB level.
         Permitted ranges are:
@@ -180,7 +180,7 @@ class WM8960:
         Excess values are limited within the permitted ranges.
         """
         ...
-    def deemphasis(self, active) -> Any:
+    def deemphasis(self, active) -> Incomplete:
         """
         Enables or disables a deemphasis filter for playback, with *active* being
         ``False`` or ``True``.  This filter is applied only for sample rates of
@@ -191,6 +191,5 @@ class WM8960:
     def deinit(self) -> None:
         """
         Disable all modules.
-
         """
         ...

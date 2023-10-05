@@ -1,5 +1,7 @@
 """
-network configuration. See: https://docs.micropython.org/en/v1.19.1/library/network.html
+Network configuration.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.
@@ -34,6 +36,7 @@ For example::
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import List, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 STA_IF = 0  # type: int
 AP_IF = 1  # type: int
@@ -107,7 +110,7 @@ class WLAN:
         """
         ...
 
-    def status(self, param: Optional[Any] = None) -> Any:
+    def status(self, param: Optional[Any] = None) -> Incomplete:
         """
         Return the current status of the wireless connection.
 
@@ -140,7 +143,7 @@ class WLAN:
         """
         ...
 
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by

@@ -1,9 +1,10 @@
 """
-functionality specific to the ESP32. See: https://docs.micropython.org/en/v1.20.0/library/esp32.html
+Functionality specific to the ESP32.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/esp32.html
 
 The ``esp32`` module contains functions and classes specifically aimed at
 controlling ESP32 modules.
-
 """
 
 # + module: esp32.rst
@@ -11,14 +12,15 @@ controlling ESP32 modules.
 # origin module:: repos/micropython/docs/library/esp32.rst
 from __future__ import annotations
 from typing import Any, List, Optional, Tuple, Union
+from _typeshed import Incomplete
 
-HEAP_DATA: Any = ...
+HEAP_DATA: Incomplete
 """Used in `idf_heap_info`."""
-HEAP_EXEC: Any = ...
+HEAP_EXEC: Incomplete
 """Used in `idf_heap_info`."""
-WAKEUP_ALL_LOW: Any = ...
+WAKEUP_ALL_LOW: Incomplete
 """Selects the wake level for pins."""
-WAKEUP_ANY_HIGH: Any = ...
+WAKEUP_ANY_HIGH: Incomplete
 """Selects the wake level for pins."""
 
 class Partition:
@@ -28,25 +30,25 @@ class Partition:
     *block_size* specifies the byte size of an individual block.
     """
 
-    BOOT: Any = ...
+    BOOT: Incomplete
     """\
     Used in the `Partition` constructor to fetch various partitions: ``BOOT`` is the
     partition that will be booted at the next reset and ``RUNNING`` is the currently
     running partition.
     """
-    RUNNING: Any = ...
+    RUNNING: Incomplete
     """\
     Used in the `Partition` constructor to fetch various partitions: ``BOOT`` is the
     partition that will be booted at the next reset and ``RUNNING`` is the currently
     running partition.
     """
-    TYPE_APP: Any = ...
+    TYPE_APP: Incomplete
     """\
     Used in `Partition.find` to specify the partition type: ``APP`` is for bootable
     firmware partitions (typically labelled ``factory``, ``ota_0``, ``ota_1``), and
     ``DATA`` is for other partitions, e.g. ``nvs``, ``otadata``, ``phy_init``, ``vfs``.
     """
-    TYPE_DATA: Any = ...
+    TYPE_DATA: Incomplete
     """\
     Used in `Partition.find` to specify the partition type: ``APP`` is for bootable
     firmware partitions (typically labelled ``factory``, ``ota_0``, ``ota_1``), and
@@ -69,9 +71,9 @@ class Partition:
         Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``.
         """
         ...
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def ioctl(self, cmd, arg) -> Any:
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
@@ -91,7 +93,7 @@ class Partition:
         """
         ...
     @classmethod
-    def mark_app_valid_cancel_rollback(cls) -> Any:
+    def mark_app_valid_cancel_rollback(cls) -> Incomplete:
         """
         Signals that the current boot is considered successful.
         Calling ``mark_app_valid_cancel_rollback`` is required on the first boot of a new
@@ -122,13 +124,13 @@ class RMT:
     """
 
     def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None: ...
-    def source_freq(self) -> Any:
+    def source_freq(self) -> Incomplete:
         """
         Returns the source clock frequency. Currently the source clock is not
         configurable so this will always return 80MHz.
         """
         ...
-    def clock_div(self) -> Any:
+    def clock_div(self) -> Incomplete:
         """
         Return the clock divider. Note that the channel resolution is
         ``1 / (source_freq / clock_div)``.
@@ -150,7 +152,7 @@ class RMT:
         current loop iteration will be completed and then transmission will stop.
         """
         ...
-    def write_pulses(self, duration, data: Union[bool, int] = True) -> Any:
+    def write_pulses(self, duration, data: Union[bool, int] = True) -> Incomplete:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
@@ -210,10 +212,9 @@ class ULP:
         Load a *program_binary* into the ULP at the given *load_addr*.
         """
         ...
-    def run(self, entry_point) -> Any:
+    def run(self, entry_point) -> Incomplete:
         """
         Start the ULP running at the given *entry_point*.
-
         """
         ...
 
@@ -250,12 +251,12 @@ class NVS:
         type, or if the buffer is too small.
         """
         ...
-    def erase_key(self, key) -> Any:
+    def erase_key(self, key) -> Incomplete:
         """
         Erases a key-value pair.
         """
         ...
-    def commit(self) -> Any:
+    def commit(self) -> Incomplete:
         """
         Commits changes made by *set_xxx* methods to flash.
         """

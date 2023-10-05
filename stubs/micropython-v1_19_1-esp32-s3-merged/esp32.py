@@ -1,15 +1,17 @@
 """
-functionality specific to the ESP32. See: https://docs.micropython.org/en/v1.19.1/library/esp32.html
+Functionality specific to the ESP32.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/esp32.html
 
 The ``esp32`` module contains functions and classes specifically aimed at
 controlling ESP32 modules.
-
 """
 from __future__ import annotations
 
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32S3 module with ESP32S3', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.11.2
 from typing import List, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 WAKEUP_ALL_LOW = False  # type: bool
 WAKEUP_ANY_HIGH = True  # type: bool
@@ -106,7 +108,7 @@ class NVS:
         """
         ...
 
-    def commit(self) -> Any:
+    def commit(self) -> Incomplete:
         """
         Commits changes made by *set_xxx* methods to flash.
         """
@@ -120,7 +122,7 @@ class NVS:
         """
         ...
 
-    def erase_key(self, key) -> Any:
+    def erase_key(self, key) -> Incomplete:
         """
         Erases a key-value pair.
         """
@@ -147,7 +149,7 @@ class RMT:
     *idle_level*).
     """
 
-    def source_freq(self) -> Any:
+    def source_freq(self) -> Incomplete:
         """
         Returns the source clock frequency. Currently the source clock is not
         configurable so this will always return 80MHz.
@@ -172,7 +174,7 @@ class RMT:
         """
         ...
 
-    def write_pulses(self, duration, data: Union[bool, int] = True) -> Any:
+    def write_pulses(self, duration, data: Union[bool, int] = True) -> Incomplete:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
@@ -220,7 +222,7 @@ class RMT:
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
-    def clock_div(self) -> Any:
+    def clock_div(self) -> Incomplete:
         """
         Return the clock divider. Note that the channel resolution is
         ``1 / (source_freq / clock_div)``.
@@ -243,10 +245,10 @@ class Partition:
     TYPE_DATA = 1  # type: int
     BOOT = 0  # type: int
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any:
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
         ...
 
-    def ioctl(self, cmd, arg) -> Any:
+    def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
@@ -260,7 +262,7 @@ class Partition:
         """
         ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any:
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
         ...
 
     def info(self) -> Tuple:
@@ -290,7 +292,7 @@ class Partition:
         ...
 
     @classmethod
-    def mark_app_valid_cancel_rollback(cls) -> Any:
+    def mark_app_valid_cancel_rollback(cls) -> Incomplete:
         """
         Signals that the current boot is considered successful.
         Calling ``mark_app_valid_cancel_rollback`` is required on the first boot of a new

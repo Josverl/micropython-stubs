@@ -12,6 +12,7 @@ facilities for network sockets, both client-side and server-side.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/ssl.rst
+from typing import IO
 from _typeshed import Incomplete
 from stdlib.ssl import *  # type: ignore
 
@@ -71,7 +72,7 @@ class SSLContext:
 
 def wrap_socket(
     sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
-) -> wrappedsocket:
+) -> IO:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
      of this function is to first create an `SSLContext` and then call the `SSLContext.wrap_socket`

@@ -1,11 +1,14 @@
 """
-control of LCD160CR display. See: https://docs.micropython.org/en/v1.19.1/library/lcd160cr.html
+Control of LCD160CR display.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/lcd160cr.html
 
 This module provides control of the MicroPython LCD160CR display.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Tuple, Any
+from _typeshed import Incomplete
 
 LANDSCAPE = 1  # type: int
 PORTRAIT_UPSIDEDOWN = 2  # type: int
@@ -68,7 +71,7 @@ class LCD160CR:
     for how the display can be connected to the pyboard.
     """
 
-    def line_no_clip(self, x1, y1, x2, y2) -> Any:
+    def line_no_clip(self, x1, y1, x2, y2) -> Incomplete:
         """
         These methods are as above but don't do any clipping on the input
         coordinates.  They are faster than the clipping versions and can be
@@ -76,13 +79,13 @@ class LCD160CR:
         """
         ...
 
-    def erase(self) -> Any:
+    def erase(self) -> Incomplete:
         """
         Erase the entire display to the pen fill color.
         """
         ...
 
-    def rect_interior_no_clip(self, x, y, w, h) -> Any:
+    def rect_interior_no_clip(self, x, y, w, h) -> Incomplete:
         ...
 
     def touch_config(self, calib=False, save=False, irq=None) -> None:
@@ -109,16 +112,16 @@ class LCD160CR:
         """
         ...
 
-    def poly_line(self, data) -> Any:
+    def poly_line(self, data) -> Incomplete:
         """
         Similar to :meth:`LCD160CR.poly_dot` but draws lines between the dots.
         """
         ...
 
-    def rect_outline(self, x, y, w, h) -> Any:
+    def rect_outline(self, x, y, w, h) -> Incomplete:
         ...
 
-    def rect_outline_no_clip(self, x, y, w, h) -> Any:
+    def rect_outline_no_clip(self, x, y, w, h) -> Incomplete:
         ...
 
     def dot(self, x, y) -> None:
@@ -127,7 +130,7 @@ class LCD160CR:
         """
         ...
 
-    def rect_no_clip(self, x, y, w, h) -> Any:
+    def rect_no_clip(self, x, y, w, h) -> Incomplete:
         ...
 
     def rect_interior(self, x, y, w, h) -> None:
@@ -139,7 +142,7 @@ class LCD160CR:
         """
         ...
 
-    def dot_no_clip(self, x, y) -> Any:
+    def dot_no_clip(self, x, y) -> Incomplete:
         ...
 
     def set_scroll_buf(self, s) -> None:
@@ -156,7 +159,7 @@ class LCD160CR:
         """
         ...
 
-    def set_scroll_win_param(self, win, param, value) -> Any:
+    def set_scroll_win_param(self, win, param, value) -> Incomplete:
         """
         Set a single parameter of a scrolling window region:
 
@@ -176,7 +179,7 @@ class LCD160CR:
         """
         ...
 
-    def jpeg_start(self, total_len) -> Any:
+    def jpeg_start(self, total_len) -> Incomplete:
         ...
 
     def jpeg_data(self, buf) -> None:
@@ -253,7 +256,7 @@ class LCD160CR:
         """
         ...
 
-    def feed_wdt(self) -> Any:
+    def feed_wdt(self) -> Incomplete:
         """
         The first call to this method will start the display's internal watchdog
         timer.  Subsequent calls will feed the watchdog.  The timeout is roughly 30
@@ -287,7 +290,7 @@ class LCD160CR:
         ...
 
     @staticmethod
-    def clip_line(data, w, h) -> Any:
+    def clip_line(data, w, h) -> Incomplete:
         """
         Clip the given line data.  This is for internal use.
         """
@@ -324,7 +327,7 @@ class LCD160CR:
         """
         ...
 
-    def rect(self, x, y, w, h) -> Any:
+    def rect(self, x, y, w, h) -> Incomplete:
         ...
 
     def reset(self) -> None:
@@ -346,7 +349,7 @@ class LCD160CR:
         """
         ...
 
-    def screen_dump(self, buf, x=0, y=0, w=None, h=None) -> Any:
+    def screen_dump(self, buf, x=0, y=0, w=None, h=None) -> Incomplete:
         """
         Dump the contents of the screen to the given buffer.  The parameters *x* and *y*
         specify the starting coordinate, and *w* and *h* the size of the region.  If *w*
@@ -398,7 +401,7 @@ class LCD160CR:
         """
         ...
 
-    def get_line(self, x, y, buf) -> Any:
+    def get_line(self, x, y, buf) -> Incomplete:
         """
         Low-level method to get a line of pixels into the given buffer.
         To read *n* pixels *buf* should be *2*n+1* bytes in length.  The first byte
@@ -413,13 +416,13 @@ class LCD160CR:
         """
         ...
 
-    def get_pixel(self, x, y) -> Any:
+    def get_pixel(self, x, y) -> Incomplete:
         """
         Get the 16-bit value of the specified pixel.
         """
         ...
 
-    def save_to_flash(self) -> Any:
+    def save_to_flash(self) -> Incomplete:
         """
         Save the following parameters to flash so they persist on restart and power up:
         initial decoration, orientation, brightness, UART baud rate, I2C address.

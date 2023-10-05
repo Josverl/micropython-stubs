@@ -1,5 +1,7 @@
 """
-functionality specific to STM32 MCUs. See: https://docs.micropython.org/en/v1.18/library/stm.html
+Functionality specific to STM32 MCUs.
+
+MicroPython module: https://docs.micropython.org/en/v1.18/library/stm.html
 
 This module provides functionality specific to STM32 microcontrollers, including
 direct access to peripheral registers.
@@ -8,7 +10,8 @@ direct access to peripheral registers.
 # + module: stm.rst
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/stm.rst
-from typing import Any, Tuple
+from typing import Tuple
+from _typeshed import Incomplete
 
 mem8: bytearray
 """Read/write 8 bits of memory."""
@@ -24,17 +27,16 @@ interest.
 These memory objects can be used in combination with the peripheral register
 constants to read and write registers of the MCU hardware peripherals, as well
 as all other areas of address space.
-
 """
-GPIOA: int = 1
+GPIOA: int
 """Base address of the GPIOA peripheral."""
-GPIOB: int = 1
+GPIOB: int
 """Base address of the GPIOB peripheral."""
-GPIO_BSRR: Any = ...
+GPIO_BSRR: Incomplete
 """Offset of the GPIO bit set/reset register."""
-GPIO_IDR: Any = ...
+GPIO_IDR: Incomplete
 """Offset of the GPIO input data register."""
-GPIO_ODR: int = 1
+GPIO_ODR: int
 """\
 Offset of the GPIO output data register.
 

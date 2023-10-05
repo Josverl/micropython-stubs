@@ -1,10 +1,13 @@
 """
-Frame buffer manipulation. See: https://docs.micropython.org/en/v1.20/library/framebuf.html
+Frame buffer manipulation.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 MONO_HMSB: int
 MONO_HLSB: int
@@ -43,7 +46,7 @@ class FrameBuffer:
     unexpected errors.
     """
 
-    def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Any:
+    def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Incomplete:
         """
         Given a list of coordinates, draw an arbitrary (convex or concave) closed
         polygon at the given x, y location using the given color.
@@ -55,8 +58,8 @@ class FrameBuffer:
         Otherwise just a one pixel outline is drawn.
         """
         ...
-    def vline(self, x, y, h, c) -> Any: ...
-    def pixel(self, x, y, c: Optional[Any] = None) -> Any:
+    def vline(self, x, y, h, c) -> Incomplete: ...
+    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
@@ -68,7 +71,6 @@ class FrameBuffer:
         corner of the text. The color of the text can be defined by the optional
         argument but is otherwise a default value of 1. All characters have
         dimensions of 8x8 pixels and there is currently no way to change the font.
-
         """
         ...
     def rect(self, x, y, w, h, c, f: Optional[Any] = None) -> None:
@@ -79,7 +81,7 @@ class FrameBuffer:
         Otherwise just a one pixel outline is drawn.
         """
         ...
-    def scroll(self, xstep, ystep) -> Any:
+    def scroll(self, xstep, ystep) -> Incomplete:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
@@ -130,7 +132,7 @@ class FrameBuffer:
         color of the corresponding source pixel.
         """
         ...
-    def hline(self, x, y, w, c) -> Any: ...
+    def hline(self, x, y, w, c) -> Incomplete: ...
     def fill(self, c) -> None:
         """
         Fill the entire FrameBuffer with the specified color.

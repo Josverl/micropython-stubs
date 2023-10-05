@@ -1,7 +1,5 @@
 """
-Simple BTree database.
-
-MicroPython module: https://docs.micropython.org/en/latest/library/btree.html
+simple BTree database. See: https://docs.micropython.org/en/latest/library/btree.html
 
 The ``btree`` module implements a simple key-value database using external
 storage (disk files, or in general case, a random-access `stream`). Keys are
@@ -71,9 +69,9 @@ Example::
 
     # Don't forget to close the underlying stream!
     f.close()
+
 """
 from typing import Dict, Optional, Any
-from _typeshed import Incomplete
 
 DESC: int
 INCL: int

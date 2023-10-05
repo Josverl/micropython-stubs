@@ -1,5 +1,7 @@
 """
-Frame buffer manipulation. See: https://docs.micropython.org/en/v1.19.1/library/framebuf.html
+Frame buffer manipulation.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
@@ -8,6 +10,7 @@ bitmap images, which can then be sent to a display.
 # source version: v1_19_1
 # origin module:: repos/micropython/docs/library/framebuf.rst
 from typing import Any, Optional
+from _typeshed import Incomplete
 
 MONO_VLSB: bytes
 """\
@@ -36,13 +39,13 @@ Subsequent bytes appear at successive horizontal locations until the
 rightmost edge is reached. Further bytes are rendered on the next row, one
 pixel lower.
 """
-RGB565: Any = ...
+RGB565: Incomplete
 """Red Green Blue (16-bit, 5+6+5) color format"""
-GS2_HMSB: Any = ...
+GS2_HMSB: Incomplete
 """Grayscale (2-bit) color format"""
-GS4_HMSB: Any = ...
+GS4_HMSB: Incomplete
 """Grayscale (4-bit) color format"""
-GS8: Any = ...
+GS8: Incomplete
 """Grayscale (8-bit) color format"""
 
 class FrameBuffer:
@@ -77,14 +80,14 @@ class FrameBuffer:
         Fill the entire FrameBuffer with the specified color.
         """
         ...
-    def pixel(self, x, y, c: Optional[Any] = None) -> Any:
+    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
         """
         ...
-    def hline(self, x, y, w, c) -> Any: ...
-    def vline(self, x, y, h, c) -> Any: ...
+    def hline(self, x, y, w, c) -> Incomplete: ...
+    def vline(self, x, y, h, c) -> Incomplete: ...
     def line(self, x1, y1, x2, y2, c) -> None:
         """
         Draw a line from a set of coordinates using the given color and
@@ -94,7 +97,7 @@ class FrameBuffer:
         a given length.
         """
         ...
-    def rect(self, x, y, w, h, c) -> Any: ...
+    def rect(self, x, y, w, h, c) -> Incomplete: ...
     def fill_rect(self, x, y, w, h, c) -> None:
         """
         Draw a rectangle at the given location, size and color. The `rect`
@@ -108,10 +111,9 @@ class FrameBuffer:
         corner of the text. The color of the text can be defined by the optional
         argument but is otherwise a default value of 1. All characters have
         dimensions of 8x8 pixels and there is currently no way to change the font.
-
         """
         ...
-    def scroll(self, xstep, ystep) -> Any:
+    def scroll(self, xstep, ystep) -> Incomplete:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.

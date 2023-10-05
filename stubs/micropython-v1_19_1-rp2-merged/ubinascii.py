@@ -1,7 +1,9 @@
 """
-binary/ASCII conversions. See: https://docs.micropython.org/en/v1.19.1/library/binascii.html
+Binary/ASCII conversions.
 
-|see_cpython_module| :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/binascii.html
+
+CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
 
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
@@ -9,6 +11,7 @@ encodings of it in ASCII form (in both directions).
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
 def crc32(*args, **kwargs) -> Any:

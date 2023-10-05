@@ -1,9 +1,41 @@
 """
-access and control MicroPython internals. See: https://docs.micropython.org/en/v1.19.1/library/micropython.html
-"""
-from typing import Optional, Any, Callable
+Access and control MicroPython internals.
 
-def opt_level(level: Optional[Any] = None) -> Any:
+MicroPython module: https://docs.micropython.org/en/latest/library/micropython.html
+"""
+
+# source version: v1_20_0
+# origin module:: repos/micropython/docs/library/micropython.rst
+
+from typing import Any, Callable, Optional, Tuple, TypeVar, Union
+
+from _typeshed import Incomplete
+
+Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple)  # constant
+
+def const(expr: Const_T) -> Const_T:
+    """
+    Used to declare that the expression is a constant so that the compiler can
+    optimise it.  The use of this function should be as follows::
+
+     from micropython import const
+
+     CONST_X = const(123)
+     CONST_Y = const(2 * CONST_X + 1)
+
+    Constants declared this way are still accessible as global variables from
+    outside the module they are declared in.  On the other hand, if a constant
+    begins with an underscore then it is hidden, it is not available as a global
+    variable, and does not take up any memory during execution.
+
+    This `const` function is recognised directly by the MicroPython parser and is
+    provided as part of the :mod:`micropython` module mainly so that scripts can be
+    written which run under both CPython and MicroPython, by following the above
+    pattern.
+    """
+    ...
+
+def opt_level(level: Optional[Any] = None) -> Incomplete:
     """
     If *level* is given then this function sets the optimisation level for subsequent
     compilation of scripts, and returns ``None``.  Otherwise it returns the current
@@ -23,6 +55,19 @@ def opt_level(level: Optional[Any] = None) -> Any:
     """
     ...
 
+def alloc_emergency_exception_buf(size) -> Incomplete:
+    """
+    Allocate *size* bytes of RAM for the emergency exception buffer (a good
+    size is around 100 bytes).  The buffer is used to create exceptions in cases
+    when normal RAM allocation would fail (eg within an interrupt handler) and
+    therefore give useful traceback information in these situations.
+
+    A good way to use this function is to put it at the start of your main script
+    (eg ``boot.py`` or ``main.py``) and then the emergency exception buffer will be active
+    for all the code following it.
+    """
+    ...
+
 def mem_info(verbose: Optional[Any] = None) -> None:
     """
     Print information about currently used memory.  If the *verbose* argument
@@ -31,14 +76,6 @@ def mem_info(verbose: Optional[Any] = None) -> None:
     The information that is printed is implementation dependent, but currently
     includes the amount of stack and heap used.  In verbose mode it prints out
     the entire heap indicating which blocks are used and which are free.
-    """
-    ...
-
-def stack_use() -> int:
-    """
-    Return an integer representing the current amount of stack that is being
-    used.  The absolute value of this is not particularly useful, rather it
-    should be used to compute differences in stack usage at different points.
     """
     ...
 
@@ -53,7 +90,52 @@ def qstr_info(verbose: Optional[Any] = None) -> None:
     """
     ...
 
-def schedule(func, arg) -> Any:
+def stack_use() -> int:
+    """
+    Return an integer representing the current amount of stack that is being
+    used.  The absolute value of this is not particularly useful, rather it
+    should be used to compute differences in stack usage at different points.
+    """
+    ...
+
+def heap_lock() -> int: ...
+def heap_unlock() -> int: ...
+def heap_locked() -> bool:
+    """
+    Lock or unlock the heap.  When locked no memory allocation can occur and a
+    `MemoryError` will be raised if any heap allocation is attempted.
+    `heap_locked()` returns a true value if the heap is currently locked.
+
+    These functions can be nested, ie `heap_lock()` can be called multiple times
+    in a row and the lock-depth will increase, and then `heap_unlock()` must be
+    called the same number of times to make the heap available again.
+
+    Both `heap_unlock()` and `heap_locked()` return the current lock depth
+    (after unlocking for the former) as a non-negative integer, with 0 meaning
+    the heap is not locked.
+
+    If the REPL becomes active with the heap locked then it will be forcefully
+    unlocked.
+
+    Note: `heap_locked()` is not enabled on most ports by default,
+    requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
+    """
+    ...
+
+def kbd_intr(chr) -> None:
+    """
+    Set the character that will raise a `KeyboardInterrupt` exception.  By
+    default this is set to 3 during script execution, corresponding to Ctrl-C.
+    Passing -1 to this function will disable capture of Ctrl-C, and passing 3
+    will restore it.
+
+    This function can be used to prevent the capturing of Ctrl-C on the
+    incoming stream of characters that is usually used for the REPL, in case
+    that stream is used for other purposes.
+    """
+    ...
+
+def schedule(func, arg) -> Incomplete:
     """
     Schedule the function *func* to be executed "very soon".  The function
     is passed the value *arg* as its single argument.  "Very soon" means that
@@ -90,56 +172,6 @@ def schedule(func, arg) -> Any:
     """
     ...
 
-def alloc_emergency_exception_buf(size) -> Any:
-    """
-    Allocate *size* bytes of RAM for the emergency exception buffer (a good
-    size is around 100 bytes).  The buffer is used to create exceptions in cases
-    when normal RAM allocation would fail (eg within an interrupt handler) and
-    therefore give useful traceback information in these situations.
-
-    A good way to use this function is to put it at the start of your main script
-    (eg ``boot.py`` or ``main.py``) and then the emergency exception buffer will be active
-    for all the code following it.
-    """
-    ...
-
-def const(expr) -> int:
-    """
-    Used to declare that the expression is a constant so that the compile can
-    optimise it.  The use of this function should be as follows::
-
-     from micropython import const
-
-     CONST_X = const(123)
-     CONST_Y = const(2 * CONST_X + 1)
-
-    Constants declared this way are still accessible as global variables from
-    outside the module they are declared in.  On the other hand, if a constant
-    begins with an underscore then it is hidden, it is not available as a global
-    variable, and does not take up any memory during execution.
-
-    This `const` function is recognised directly by the MicroPython parser and is
-    provided as part of the :mod:`micropython` module mainly so that scripts can be
-    written which run under both CPython and MicroPython, by following the above
-    pattern.
-    """
-    ...
-
-def kbd_intr(chr) -> None:
-    """
-    Set the character that will raise a `KeyboardInterrupt` exception.  By
-    default this is set to 3 during script execution, corresponding to Ctrl-C.
-    Passing -1 to this function will disable capture of Ctrl-C, and passing 3
-    will restore it.
-
-    This function can be used to prevent the capturing of Ctrl-C on the
-    incoming stream of characters that is usually used for the REPL, in case
-    that stream is used for other purposes.
-    """
-    ...
-
-def heap_lock() -> Any: ...
-def heap_unlock() -> Any: ...
 def viper(func: Callable) -> Callable:
     """
     The Viper code emitter is not fully compliant. It supports special Viper native data types in pursuit of performance.

@@ -1,12 +1,15 @@
 """
-access and control MicroPython internals. See: https://docs.micropython.org/en/v1.19.1/library/micropython.html
+Access and control MicroPython internals.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/micropython.html
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32S3 module with ESP32S3', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.11.2
-from typing import Optional, Any
+from typing import Optional, Tuple, TypeVar, Any
+from _typeshed import Incomplete
 
 
-def opt_level(level: Optional[Any] = None) -> Any:
+def opt_level(level: Optional[Any] = None) -> Incomplete:
     """
     If *level* is given then this function sets the optimisation level for subsequent
     compilation of scripts, and returns ``None``.  Otherwise it returns the current
@@ -60,7 +63,7 @@ def qstr_info(verbose: Optional[Any] = None) -> None:
     ...
 
 
-def schedule(func, arg) -> Any:
+def schedule(func, arg) -> Incomplete:
     """
     Schedule the function *func* to be executed "very soon".  The function
     is passed the value *arg* as its single argument.  "Very soon" means that
@@ -98,7 +101,7 @@ def schedule(func, arg) -> Any:
     ...
 
 
-def alloc_emergency_exception_buf(size) -> Any:
+def alloc_emergency_exception_buf(size) -> Incomplete:
     """
     Allocate *size* bytes of RAM for the emergency exception buffer (a good
     size is around 100 bytes).  The buffer is used to create exceptions in cases
@@ -112,7 +115,7 @@ def alloc_emergency_exception_buf(size) -> Any:
     ...
 
 
-def const(expr) -> int:
+def const(expr: Const_T) -> Const_T:
     """
     Used to declare that the expression is a constant so that the compile can
     optimise it.  The use of this function should be as follows::
@@ -149,9 +152,9 @@ def kbd_intr(chr) -> None:
     ...
 
 
-def heap_lock() -> Any:
+def heap_lock() -> int:
     ...
 
 
-def heap_unlock() -> Any:
+def heap_unlock() -> int:
     ...

@@ -1,7 +1,9 @@
 """
-hashing algorithms. See: https://docs.micropython.org/en/v1.20.0/library/hashlib.html
+Hashing algorithms.
 
-|see_cpython_module| :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/hashlib.html
+
+CPython module: :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
 
 This module implements binary data hashing algorithms. The exact inventory
 of available algorithms depends on a board. Among the algorithms which may
@@ -24,6 +26,7 @@ be implemented:
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'ADAFRUIT_FEATHER_M4_EXPRESS', 'cpu': 'SAMD51J19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
 class sha256:

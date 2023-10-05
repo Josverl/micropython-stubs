@@ -1,20 +1,27 @@
 """
-pack and unpack primitive data types. See: https://docs.micropython.org/en/v1.19.1/library/struct.html
+Pack and unpack primitive data types.
 
-|see_cpython_module| :mod:`python:struct` https://docs.python.org/3/library/struct.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/struct.html
+
+CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
 
 Supported size/byte order prefixes: ``@``, ``<``, ``>``, ``!``.
 
 Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``s``, ``P``, ``f``, ``d`` (the latter 2 depending
 on the floating-point support).
+
+Difference to CPython
+
+   Whitespace is not supported in format strings.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Tuple, Any
+from _typeshed import Incomplete
 
 
-def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Any:
+def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*
     into a *buffer* starting at *offset*. *offset* may be negative to count

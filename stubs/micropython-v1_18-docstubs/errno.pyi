@@ -1,7 +1,9 @@
 """
-system error codes. See: https://docs.micropython.org/en/v1.18/library/errno.html
+System error codes.
 
-|see_cpython_module| :mod:`python:errno` https://docs.python.org/3/library/errno.html .
+MicroPython module: https://docs.micropython.org/en/v1.18/library/errno.html
+
+CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
 
 This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
@@ -9,9 +11,10 @@ A particular inventory of codes depends on :term:`MicroPython port`.
 
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/errno.rst
-from typing import Any, Dict
+from typing import Dict
+from _typeshed import Incomplete
 
-EEXIST: Any = ...
+EEXIST: Incomplete
 """\
 Error codes, based on ANSI C/POSIX standard. All error codes start with
 "E". As mentioned above, inventory of the codes depends on
@@ -24,7 +27,7 @@ except OSError as exc:
 if exc.errno == errno.EEXIST:
 print("Directory already exists")
 """
-EAGAIN: Any = ...
+EAGAIN: Incomplete
 """\
 Error codes, based on ANSI C/POSIX standard. All error codes start with
 "E". As mentioned above, inventory of the codes depends on

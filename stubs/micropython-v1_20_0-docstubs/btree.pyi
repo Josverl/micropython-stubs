@@ -1,5 +1,7 @@
 """
-simple BTree database. See: https://docs.micropython.org/en/v1.20.0/library/btree.html
+Simple BTree database.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/btree.html
 
 The ``btree`` module implements a simple key-value database using external
 storage (disk files, or in general case, a random-access `stream`). Keys are
@@ -69,19 +71,19 @@ Example::
 
     # Don't forget to close the underlying stream!
     f.close()
-
 """
 
 # source version: v1_20_0
 # origin module:: repos/micropython/docs/library/btree.rst
 from typing import Any, Dict, Optional
+from _typeshed import Incomplete
 
-INCL: Any = ...
+INCL: Incomplete
 """\
 A flag for `keys()`, `values()`, `items()` methods to specify that
 scanning should be inclusive of the end key.
 """
-DESC: Any = ...
+DESC: Incomplete
 """\
 A flag for `keys()`, `values()`, `items()` methods to specify that
 scanning should be in descending direction of keys.
@@ -99,43 +101,43 @@ class btree:
         data flushed from buffer to the underlying storage).
         """
         ...
-    def flush(self) -> Any:
+    def flush(self) -> Incomplete:
         """
         Flush any data in cache to the underlying stream.
         """
         ...
-    def __getitem__(self, key) -> Any:
+    def __getitem__(self, key) -> Incomplete:
         """
         Standard dictionary methods.
         """
         ...
-    def get(self, key, default=None, /) -> Any:
+    def get(self, key, default=None, /) -> Incomplete:
         """
         Standard dictionary methods.
         """
         ...
-    def __setitem__(self, key, val) -> Any:
+    def __setitem__(self, key, val) -> Incomplete:
         """
         Standard dictionary methods.
         """
         ...
-    def __delitem__(self, key) -> Any:
+    def __delitem__(self, key) -> Incomplete:
         """
         Standard dictionary methods.
         """
         ...
-    def __contains__(self, key) -> Any:
+    def __contains__(self, key) -> Incomplete:
         """
         Standard dictionary methods.
         """
         ...
-    def __iter__(self) -> Any:
+    def __iter__(self) -> Incomplete:
         """
         A BTree object can be iterated over directly (similar to a dictionary)
         to get access to all keys in order.
         """
         ...
-    def keys(self, start_key, end_key, flags: Optional[Any] = None) -> Any:
+    def keys(self, start_key, end_key, flags: Optional[Any] = None) -> Incomplete:
         """
         These methods are similar to standard dictionary methods, but also can
         take optional parameters to iterate over a key sub-range, instead of
@@ -151,7 +153,7 @@ class btree:
         together.
         """
         ...
-    def values(self, start_key, end_key, flags: Optional[Any] = None) -> Any:
+    def values(self, start_key, end_key, flags: Optional[Any] = None) -> Incomplete:
         """
         These methods are similar to standard dictionary methods, but also can
         take optional parameters to iterate over a key sub-range, instead of
@@ -167,7 +169,7 @@ class btree:
         together.
         """
         ...
-    def items(self, start_key, end_key, flags: Optional[Any] = None) -> Any:
+    def items(self, start_key, end_key, flags: Optional[Any] = None) -> Incomplete:
         """
         These methods are similar to standard dictionary methods, but also can
         take optional parameters to iterate over a key sub-range, instead of

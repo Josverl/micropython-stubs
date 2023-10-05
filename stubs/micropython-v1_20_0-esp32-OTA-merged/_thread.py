@@ -1,7 +1,9 @@
 """
-multithreading support. See: https://docs.micropython.org/en/v1.20.0/library/_thread.html
+Multithreading support.
 
-|see_cpython_module| :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/_thread.html
+
+CPython module: :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
 
 This module implements multithreading support.
 
@@ -11,6 +13,7 @@ and not yet described in this documentation.
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC_OTA', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
 from typing import Any
+from _typeshed import Incomplete
 
 
 def get_ident(*args, **kwargs) -> Any:

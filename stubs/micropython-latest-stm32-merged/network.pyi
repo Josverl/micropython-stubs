@@ -1,5 +1,7 @@
 """
-network configuration. See: https://docs.micropython.org/en/latest/library/network.html
+Network configuration.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.
@@ -32,8 +34,11 @@ For example::
     s.close()
 """
 from typing import List, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 STA_IF: int
 AP_IF: int
 
+def hostname(*args, **kwargs) -> Any: ...
 def route(*args, **kwargs) -> Any: ...
+def country(*args, **kwargs) -> Any: ...

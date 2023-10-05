@@ -1,5 +1,7 @@
 """
-Low-level Bluetooth radio functionality. See: https://docs.micropython.org/en/v1.19.1/library/bluetooth.html
+Low-level Bluetooth radio functionality.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/bluetooth.html
 
 This module provides an interface to a Bluetooth controller on a board.
 Currently this supports Bluetooth Low Energy (BLE) in Central, Peripheral,
@@ -16,6 +18,7 @@ building-blocks for higher-level abstractions such as specific device types.
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32S3 module with ESP32S3', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.11.2
 from typing import Optional, Tuple, Any
+from _typeshed import Incomplete
 
 FLAG_NOTIFY = 16  # type: int
 FLAG_READ = 2  # type: int
@@ -101,7 +104,7 @@ class BLE:
         """
         ...
 
-    def gattc_exchange_mtu(self, conn_handle, /) -> Any:
+    def gattc_exchange_mtu(self, conn_handle, /) -> Incomplete:
         """
         Initiate MTU exchange with a connected server, using the preferred MTU
         set using ``BLE.config(mtu=value)``.
@@ -112,11 +115,10 @@ class BLE:
         **Note:** MTU exchange is typically initiated by the central. When using
         the BlueKitchen stack in the central role, it does not support a remote
         peripheral initiating the MTU exchange. NimBLE works for both roles.
-
         """
         ...
 
-    def gatts_read(self, value_handle, /) -> Any:
+    def gatts_read(self, value_handle, /) -> Incomplete:
         """
         Reads the local value for this handle (which has either been written by
         :meth:`gatts_write <BLE.gatts_write>` or by a remote client).
@@ -146,7 +148,7 @@ class BLE:
         """
         ...
 
-    def gatts_register_services(self, services_definition, /) -> Any:
+    def gatts_register_services(self, services_definition, /) -> Incomplete:
         """
         Configures the server with the specified services, replacing any
         existing services.
@@ -402,7 +404,6 @@ class BLE:
         In order to save space in the firmware, these constants are not included on the
         :mod:`bluetooth` module. Add the ones that you need from the list above to your
         program.
-
         """
         ...
 
@@ -427,11 +428,10 @@ class BLE:
         default interval will be chosen, typically between 30000 and 50000
         microseconds. A shorter interval will increase throughput, at the expense
         of power usage.
-
         """
         ...
 
-    def gap_advertise(self, interval_us, adv_data=None, *, resp_data=None, connectable=True) -> Any:
+    def gap_advertise(self, interval_us, adv_data=None, *, resp_data=None, connectable=True) -> Incomplete:
         """
         Starts advertising at the specified interval (in **micro** seconds). This
         interval will be rounded down to the nearest 625us. To stop advertising, set
@@ -445,7 +445,6 @@ class BLE:
         to the previous call to ``gap_advertise`` will be re-used. This allows a
         broadcaster to resume advertising with just ``gap_advertise(interval_us)``.
         To clear the advertising payload pass an empty ``bytes``, i.e. ``b''``.
-
         """
         ...
 
@@ -513,7 +512,7 @@ class BLE:
         """
         ...
 
-    def active(self, active: Optional[Any] = None, /) -> Any:
+    def active(self, active: Optional[Any] = None, /) -> Incomplete:
         """
         Optionally changes the active state of the BLE radio, and returns the
         current state.
@@ -522,7 +521,7 @@ class BLE:
         """
         ...
 
-    def gattc_discover_services(self, conn_handle, uuid=None, /) -> Any:
+    def gattc_discover_services(self, conn_handle, uuid=None, /) -> Incomplete:
         """
         Query a connected server for its services.
 
@@ -545,11 +544,10 @@ class BLE:
 
         Returns ``False`` if the connection handle wasn't connected, and ``True``
         otherwise.
-
         """
         ...
 
-    def gattc_discover_descriptors(self, conn_handle, start_handle, end_handle, /) -> Any:
+    def gattc_discover_descriptors(self, conn_handle, start_handle, end_handle, /) -> Incomplete:
         """
         Query a connected server for descriptors in the specified range.
 
@@ -558,7 +556,7 @@ class BLE:
         """
         ...
 
-    def gattc_discover_characteristics(self, conn_handle, start_handle, end_handle, uuid=None, /) -> Any:
+    def gattc_discover_characteristics(self, conn_handle, start_handle, end_handle, uuid=None, /) -> Incomplete:
         """
         Query a connected server for characteristics in the specified range.
 
@@ -573,7 +571,7 @@ class BLE:
         """
         ...
 
-    def gap_scan(self, duration_ms, interval_us=1280000, window_us=11250, active=False, /) -> Any:
+    def gap_scan(self, duration_ms, interval_us=1280000, window_us=11250, active=False, /) -> Incomplete:
         """
         Run a scan operation lasting for the specified duration (in **milli** seconds).
 
@@ -606,7 +604,6 @@ class BLE:
 
         When scanning is stopped (either due to the duration finishing or when
         explicitly stopped), the ``_IRQ_SCAN_DONE`` event will be raised.
-
         """
         ...
 

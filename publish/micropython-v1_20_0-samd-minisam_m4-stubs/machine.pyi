@@ -1,5 +1,7 @@
 """
-functions related to the hardware. See: https://docs.micropython.org/en/v1.20.0/library/machine.html
+Functions related to the hardware.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/machine.html
 
 The ``machine`` module contains specific functions related to the hardware
 on a particular board. Most functions in this module allow to achieve direct
@@ -9,6 +11,7 @@ malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
 from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 PWRON_RESET: int
 HARD_RESET: int
@@ -16,7 +19,7 @@ SOFT_RESET: int
 WDT_RESET: int
 DEEPSLEEP_RESET: int
 
-def disable_irq() -> Any:
+def disable_irq() -> Incomplete:
     """
     Disable interrupt requests.
     Returns the previous IRQ state which should be considered an opaque value.
@@ -31,7 +34,7 @@ def reset_cause() -> int:
     """
     ...
 
-def enable_irq(state) -> Any:
+def enable_irq(state) -> Incomplete:
     """
     Re-enable interrupt requests.
     The *state* parameter should be the value that was returned from the most
@@ -39,7 +42,7 @@ def enable_irq(state) -> Any:
     """
     ...
 
-def bitstream(pin, encoding, timing, data, /) -> Any:
+def bitstream(pin, encoding, timing, data, /) -> Incomplete:
     """
     Transmits *data* by bit-banging the specified *pin*. The *encoding* argument
     specifies how the bits are encoded, and *timing* is an encoding-specific timing
@@ -82,7 +85,7 @@ def soft_reset() -> NoReturn:
     """
     ...
 
-def freq(hz: Optional[Any] = None) -> Any:
+def freq(hz: Optional[Any] = None) -> Incomplete:
     """
     Returns the CPU frequency in hertz.
 
@@ -115,7 +118,7 @@ def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     """
     ...
 
-def lightsleep(time_ms: Optional[Any] = None) -> Any:
+def lightsleep(time_ms: Optional[Any] = None) -> Incomplete:
     """
     Stops execution in an attempt to enter a low power state.
 
@@ -140,7 +143,7 @@ def lightsleep(time_ms: Optional[Any] = None) -> Any:
     """
     ...
 
-def idle() -> Any:
+def idle() -> Incomplete:
     """
     Gates the clock to the CPU, useful to reduce power consumption at any time during
     short or long periods. Peripherals continue working and execution resumes as soon
@@ -199,7 +202,7 @@ class PWM:
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
     """
 
-    def freq(self, value: Optional[Any] = None) -> Any:
+    def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the current frequency of the PWM output.
 
@@ -365,7 +368,7 @@ class I2C:
         Returns a `bytes` object with the data read.
         """
         ...
-    def readinto(self, buf, nack=True, /) -> Any:
+    def readinto(self, buf, nack=True, /) -> Incomplete:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
         read is the length of *buf*.  An ACK will be sent on the bus after
@@ -483,7 +486,7 @@ class Pin:
     HIGH_POWER: int
     IN: int
     IRQ_FALLING: int
-    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Any]:
+    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Incomplete]:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is
@@ -595,7 +598,7 @@ class Pin:
         """
         ...
     def disable(self, *args, **kwargs) -> Any: ...
-    def drive(self, drive: Optional[Any] = None) -> Any:
+    def drive(self, drive: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin drive strength.
         See the constructor documentation for details of the ``drive`` argument.
@@ -674,7 +677,7 @@ class Pin:
         def __init__(self, *argv, **kwargs) -> None: ...
 
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None: ...
-    def __call__(self, x: Optional[Any] = None) -> Any:
+    def __call__(self, x: Optional[Any] = None) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
         and get the value of the pin.  It is equivalent to Pin.value([x]).
@@ -761,7 +764,7 @@ class UART:
     Construct a UART object of the given id.
     """
 
-    def flush(self) -> Any:
+    def flush(self) -> Incomplete:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
         duration depends on the tx buffer size and the baud rate. Unless flow control is enabled, a timeout

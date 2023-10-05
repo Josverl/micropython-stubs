@@ -1,13 +1,10 @@
 """
-Cryptographic ciphers.
-
-MicroPython module: https://docs.micropython.org/en/latest/library/cryptolib.html
+cryptographic ciphers. See: https://docs.micropython.org/en/latest/library/cryptolib.html
 """
 from typing import Optional, Any
-from _typeshed import Incomplete
 
 class aes:
-    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
+    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Any:
         """
         Encrypt *in_buf*. If no *out_buf* is given result is returned as a
         newly allocated `bytes` object. Otherwise, result is written into
@@ -15,7 +12,7 @@ class aes:
         to the same mutable buffer, in which case data is encrypted in-place.
         """
         ...
-    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
+    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Any:
         """
         Like `encrypt()`, but for decryption.
         """

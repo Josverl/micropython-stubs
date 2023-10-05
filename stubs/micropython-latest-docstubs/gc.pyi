@@ -32,7 +32,7 @@ def collect() -> None:
 
 def mem_alloc() -> int:
     """
-    Return the number of bytes of heap RAM that are allocated.
+    Return the number of bytes of heap RAM that are allocated by Python code.
 
     Difference to CPython
 
@@ -42,8 +42,8 @@ def mem_alloc() -> int:
 
 def mem_free() -> int:
     """
-    Return the number of bytes of available heap RAM, or -1 if this amount
-    is not known.
+    Return the number of bytes of heap RAM that is available for Python
+    code to allocate, or -1 if this amount is not known.
 
     Difference to CPython
 

@@ -1,7 +1,9 @@
 """
-mathematical functions. See: https://docs.micropython.org/en/v1.20.0/library/math.html
+Mathematical functions.
 
-|see_cpython_module| :mod:`python:math` https://docs.python.org/3/library/math.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/math.html
+
+CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
 
 The ``math`` module provides some basic mathematical functions for
 working with floating-point numbers.
@@ -14,7 +16,8 @@ for this module.
 
 # source version: v1_20_0
 # origin module:: repos/micropython/docs/library/math.rst
-from typing import Any, Tuple
+from typing import Tuple
+from _typeshed import Incomplete
 
 e: float
 """base of the natural logarithm"""
@@ -69,7 +72,7 @@ def ceil(x) -> int:
     """
     ...
 
-def copysign(x, y) -> Any:
+def copysign(x, y) -> Incomplete:
     """
     Return ``x`` with the sign of ``y``.
     """
@@ -87,19 +90,19 @@ def cosh(x) -> float:
     """
     ...
 
-def degrees(x) -> Any:
+def degrees(x) -> Incomplete:
     """
     Return radians ``x`` converted to degrees.
     """
     ...
 
-def erf(x) -> Any:
+def erf(x) -> Incomplete:
     """
     Return the error function of ``x``.
     """
     ...
 
-def erfc(x) -> Any:
+def erfc(x) -> Incomplete:
     """
     Return the complementary error function of ``x``.
     """
@@ -111,13 +114,13 @@ def exp(x) -> float:
     """
     ...
 
-def expm1(x) -> Any:
+def expm1(x) -> Incomplete:
     """
     Return ``exp(x) - 1``.
     """
     ...
 
-def fabs(x) -> Any:
+def fabs(x) -> Incomplete:
     """
     Return the absolute value of ``x``.
     """
@@ -129,13 +132,13 @@ def floor(x) -> int:
     """
     ...
 
-def fmod(x, y) -> Any:
+def fmod(x, y) -> Incomplete:
     """
     Return the remainder of ``x/y``.
     """
     ...
 
-def frexp(x) -> Any:
+def frexp(x) -> Incomplete:
     """
     Decomposes a floating-point number into its mantissa and exponent.
     The returned value is the tuple ``(m, e)`` such that ``x == m * 2**e``
@@ -144,7 +147,7 @@ def frexp(x) -> Any:
     """
     ...
 
-def gamma(x) -> Any:
+def gamma(x) -> Incomplete:
     """
     Return the gamma function of ``x``.
     """
@@ -168,7 +171,7 @@ def isnan(x) -> bool:
     """
     ...
 
-def ldexp(x, exp) -> Any:
+def ldexp(x, exp) -> Incomplete:
     """
     Return ``x * (2**exp)``.
     """
@@ -205,13 +208,13 @@ def modf(x) -> Tuple:
     """
     ...
 
-def pow(x, y) -> Any:
+def pow(x, y) -> Incomplete:
     """
     Returns ``x`` to the power of ``y``.
     """
     ...
 
-def radians(x) -> Any:
+def radians(x) -> Incomplete:
     """
     Return degrees ``x`` converted to radians.
     """
@@ -229,7 +232,7 @@ def sinh(x) -> float:
     """
     ...
 
-def sqrt(x) -> Any:
+def sqrt(x) -> Incomplete:
     """
     Return the square root of ``x``.
     """

@@ -1,7 +1,10 @@
 """
-access and control MicroPython internals. See: https://docs.micropython.org/en/v1.20.0/library/micropython.html
+Access and control MicroPython internals.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/micropython.html
 """
-from typing import Optional, Any
+from typing import Optional, Tuple, TypeVar, Any
+from _typeshed import Incomplete
 
 def mem_info(verbose: Optional[Any] = None) -> None:
     """
@@ -14,7 +17,7 @@ def mem_info(verbose: Optional[Any] = None) -> None:
     """
     ...
 
-def opt_level(level: Optional[Any] = None) -> Any:
+def opt_level(level: Optional[Any] = None) -> Incomplete:
     """
     If *level* is given then this function sets the optimisation level for subsequent
     compilation of scripts, and returns ``None``.  Otherwise it returns the current
@@ -45,7 +48,7 @@ def qstr_info(verbose: Optional[Any] = None) -> None:
     """
     ...
 
-def schedule(func, arg) -> Any:
+def schedule(func, arg) -> Incomplete:
     """
     Schedule the function *func* to be executed "very soon".  The function
     is passed the value *arg* as its single argument.  "Very soon" means that
@@ -103,7 +106,7 @@ def kbd_intr(chr) -> None:
     """
     ...
 
-def const(expr) -> int:
+def const(expr: Const_T) -> Const_T:
     """
     Used to declare that the expression is a constant so that the compiler can
     optimise it.  The use of this function should be as follows::
@@ -125,5 +128,5 @@ def const(expr) -> int:
     """
     ...
 
-def heap_lock() -> Any: ...
-def heap_unlock() -> Any: ...
+def heap_lock() -> int: ...
+def heap_unlock() -> int: ...

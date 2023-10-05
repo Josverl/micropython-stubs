@@ -1,5 +1,7 @@
 """
-network configuration. See: https://docs.micropython.org/en/v1.20.0/library/network.html
+Network configuration.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.
@@ -32,6 +34,7 @@ For example::
     s.close()
 """
 from typing import List, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 STA_IF: int
 STAT_WRONG_PASSWORD: int
@@ -120,7 +123,7 @@ class WLAN:
             * 1 -- hidden
         """
         ...
-    def status(self, param: Optional[Any] = None) -> Any:
+    def status(self, param: Optional[Any] = None) -> Incomplete:
         """
         Return the current status of the wireless connection.
 
@@ -155,7 +158,7 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by

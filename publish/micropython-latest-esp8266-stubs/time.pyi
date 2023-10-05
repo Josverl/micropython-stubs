@@ -1,9 +1,7 @@
 """
-Time related functions.
+time related functions. See: https://docs.micropython.org/en/latest/library/time.html
 
-MicroPython module: https://docs.micropython.org/en/latest/library/time.html
-
-CPython module: :mod:`python:time` https://docs.python.org/3/library/time.html .
+|see_cpython_module| :mod:`python:time` https://docs.python.org/3/library/time.html .
 
 The ``time`` module provides functions for getting the current time and date,
 measuring time intervals, and for delays.
@@ -33,7 +31,6 @@ functions below which require reference to current absolute time may
 behave not as expected.
 """
 from typing import Optional, Tuple, Any
-from _typeshed import Incomplete
 
 def ticks_diff(ticks1, ticks2) -> int:
     """
@@ -45,8 +42,8 @@ def ticks_diff(ticks1, ticks2) -> int:
     However, values returned by `ticks_ms()`, etc. functions may wrap around, so
     directly using subtraction on them will produce incorrect result. That is why
     `ticks_diff()` is needed, it implements modular (or more specifically, ring)
-    arithmetic to produce correct result even for wrap-around values (as long as they not
-    too distant in between, see below). The function returns **signed** value in the range
+    arithmetics to produce correct result even for wrap-around values (as long as they not
+    too distant inbetween, see below). The function returns **signed** value in the range
     [*-TICKS_PERIOD/2* .. *TICKS_PERIOD/2-1*] (that's a typical range definition for
     two's-complement signed binary integers). If the result is negative, it means that
     *ticks1* occurred earlier in time than *ticks2*. Otherwise, it means that
@@ -65,7 +62,7 @@ def ticks_diff(ticks1, ticks2) -> int:
     has passed. To avoid this mistake, just look at the clock regularly. Your application
     should do the same. "Too long sleep" metaphor also maps directly to application
     behaviour: don't let your application run any single task for too long. Run tasks
-    in steps, and do time-keeping in between.
+    in steps, and do time-keeping inbetween.
 
     `ticks_diff()` is designed to accommodate various usage patterns, among them:
 
@@ -98,10 +95,11 @@ def ticks_diff(ticks1, ticks2) -> int:
     Note: Do not pass `time()` values to `ticks_diff()`, you should use
     normal mathematical operations on them. But note that `time()` may (and will)
     also overflow. This is known as https://en.wikipedia.org/wiki/Year_2038_problem .
+
     """
     ...
 
-def ticks_add(ticks, delta) -> Incomplete:
+def ticks_add(ticks, delta) -> Any:
     """
     Offset ticks value by a given number, which can be either positive or negative.
     Given a *ticks* value, this function allows to calculate ticks value *delta*
@@ -125,10 +123,11 @@ def ticks_add(ticks, delta) -> Incomplete:
 
          # Find out TICKS_MAX used by this port
          print(ticks_add(0, -1))
+
     """
     ...
 
-def ticks_cpu() -> Incomplete:
+def ticks_cpu() -> Any:
     """
     Similar to `ticks_ms()` and `ticks_us()`, but with the highest possible resolution
     in the system. This is usually CPU clocks, and that's why the function is named that
@@ -140,10 +139,11 @@ def ticks_cpu() -> Incomplete:
     Avoid using it in portable code.
 
     Availability: Not every port implements this function.
+
     """
     ...
 
-def time() -> int:
+class time:
     """
     Returns the number of seconds, as an integer, since the Epoch, assuming that
     underlying RTC is set and maintained as described above. If an RTC is not set, this
@@ -154,21 +154,9 @@ def time() -> int:
     timestamps, use `time_ns()`.  If relative times are acceptable then use the
     `ticks_ms()` and `ticks_us()` functions.  If you need calendar time, `gmtime()` or
     `localtime()` without an argument is a better choice.
-
-    Difference to CPython
-
-       In CPython, this function returns number of
-       seconds since Unix epoch, 1970-01-01 00:00 UTC, as a floating-point,
-       usually having microsecond precision. With MicroPython, only Unix port
-       uses the same Epoch, and if floating-point precision allows,
-       returns sub-second precision. Embedded hardware usually doesn't have
-       floating-point precision to represent both long time ranges and subsecond
-       precision, so they use integer value with second precision. Some embedded
-       hardware also lacks battery-powered RTC, so returns number of seconds
-       since last power-up or from other relative, hardware-specific point
-       (e.g. reset).
     """
-    ...
+
+    def __init__(self) -> None: ...
 
 def ticks_ms() -> int:
     """
@@ -194,7 +182,7 @@ def ticks_ms() -> int:
     """
     ...
 
-def ticks_us() -> Incomplete:
+def ticks_us() -> Any:
     """
     Just like `ticks_ms()` above, but in microseconds.
     """
@@ -280,7 +268,7 @@ def mktime() -> int:
     """
     ...
 
-def sleep(seconds) -> Incomplete:
+def sleep(seconds) -> Any:
     """
     Sleep for the given number of seconds. Some boards may accept *seconds* as a
     floating-point number to sleep for a fractional number of seconds. Note that

@@ -1,7 +1,9 @@
 """
-system error codes. See: https://docs.micropython.org/en/v1.20.0/library/errno.html
+System error codes.
 
-|see_cpython_module| :mod:`python:errno` https://docs.python.org/3/library/errno.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/errno.html
+
+CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
 
 This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
@@ -9,6 +11,7 @@ A particular inventory of codes depends on :term:`MicroPython port`.
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
 from typing import Dict, Any
+from _typeshed import Incomplete
 
 ENOBUFS = 105  # type: int
 ENODEV = 19  # type: int

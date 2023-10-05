@@ -1,5 +1,7 @@
 """
-simple BTree database. See: https://docs.micropython.org/en/v1.20.0/library/btree.html
+Simple BTree database.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/btree.html
 
 The ``btree`` module implements a simple key-value database using external
 storage (disk files, or in general case, a random-access `stream`). Keys are
@@ -69,11 +71,11 @@ Example::
 
     # Don't forget to close the underlying stream!
     f.close()
-
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
 from typing import Dict, Optional, Any
+from _typeshed import Incomplete
 
 DESC = 2  # type: int
 INCL = 1  # type: int

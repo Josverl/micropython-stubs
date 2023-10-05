@@ -1,18 +1,14 @@
 """
-Input/output streams.
+input/output streams. See: https://docs.micropython.org/en/latest/library/io.html
 
-MicroPython module: https://docs.micropython.org/en/latest/library/io.html
-
-CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
+|see_cpython_module| :mod:`python:io` https://docs.python.org/3/library/io.html .
 
 This module contains additional types of `stream` (file-like) objects
 and helper functions.
 """
 from typing import IO, Optional, Any
-from _typeshed import Incomplete
-from stdlib.io import *
 
-def open(name, mode="r", **kwargs) -> Incomplete:
+def open(name, mode="r", **kwargs) -> Any:
     """
     Open a file. Builtin ``open()`` function is aliased to this function.
     All ports (which provide access to file system) are required to support
@@ -23,7 +19,7 @@ def open(name, mode="r", **kwargs) -> Incomplete:
 class IOBase:
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class TextIOWrapper(IO):
+class TextIOWrapper:
     """
     This is type of a file open in text mode, e.g. using ``open(name, "rt")``.
     You should not instantiate this class directly.
@@ -89,7 +85,7 @@ class BytesIO(IO):
 
     def write(self, *args, **kwargs) -> Any: ...
     def flush(self, *args, **kwargs) -> Any: ...
-    def getvalue(self) -> Incomplete:
+    def getvalue(self) -> Any:
         """
         Get the current contents of the underlying buffer which holds data.
         """

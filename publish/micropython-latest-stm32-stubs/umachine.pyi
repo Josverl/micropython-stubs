@@ -1,5 +1,7 @@
 """
-functions related to the hardware. See: https://docs.micropython.org/en/latest/library/machine.html
+Functions related to the hardware.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/machine.html
 
 The ``machine`` module contains specific functions related to the hardware
 on a particular board. Most functions in this module allow to achieve direct
@@ -9,6 +11,7 @@ malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
 from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 HARD_RESET: int
 PWRON_RESET: int
@@ -16,7 +19,7 @@ SOFT_RESET: int
 DEEPSLEEP_RESET: int
 WDT_RESET: int
 
-def idle() -> Any:
+def idle() -> Incomplete:
     """
     Gates the clock to the CPU, useful to reduce power consumption at any time during
     short or long periods. Peripherals continue working and execution resumes as soon
@@ -25,7 +28,7 @@ def idle() -> Any:
     """
     ...
 
-def freq(hz: Optional[Any] = None) -> Any:
+def freq(hz: Optional[Any] = None) -> Incomplete:
     """
     Returns the CPU frequency in hertz.
 
@@ -34,6 +37,24 @@ def freq(hz: Optional[Any] = None) -> Any:
     ...
 
 def info(*args, **kwargs) -> Any: ...
+def dht_readinto(*args, **kwargs) -> Any: ...
+def enable_irq(state) -> Incomplete:
+    """
+    Re-enable interrupt requests.
+    The *state* parameter should be the value that was returned from the most
+    recent call to the `disable_irq()` function.
+    """
+    ...
+
+def disable_irq() -> Incomplete:
+    """
+    Disable interrupt requests.
+    Returns the previous IRQ state which should be considered an opaque value.
+    This return value should be passed to the `enable_irq()` function to restore
+    interrupts to their original state, before `disable_irq()` was called.
+    """
+    ...
+
 def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
     """
     Stops execution in an attempt to enter a low power state.
@@ -59,32 +80,6 @@ def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
     """
     ...
 
-def enable_irq(state) -> Any:
-    """
-    Re-enable interrupt requests.
-    The *state* parameter should be the value that was returned from the most
-    recent call to the `disable_irq()` function.
-    """
-    ...
-
-def disable_irq() -> Any:
-    """
-    Disable interrupt requests.
-    Returns the previous IRQ state which should be considered an opaque value.
-    This return value should be passed to the `enable_irq()` function to restore
-    interrupts to their original state, before `disable_irq()` was called.
-    """
-    ...
-
-def unique_id() -> bytes:
-    """
-    Returns a byte string with a unique identifier of a board/SoC. It will vary
-    from a board/SoC instance to another, if underlying hardware allows. Length
-    varies by hardware (so use substring of a full value if you expect a short
-    ID). In some MicroPython ports, ID corresponds to the network MAC address.
-    """
-    ...
-
 def soft_reset() -> NoReturn:
     """
     Performs a soft reset of the interpreter, deleting all Python objects and
@@ -93,7 +88,7 @@ def soft_reset() -> NoReturn:
     """
     ...
 
-def sleep() -> Any:
+def sleep() -> Incomplete:
     """
     ``Note:`` This function is deprecated, use `lightsleep()` instead with no arguments.
     """
@@ -117,7 +112,7 @@ def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     """
     ...
 
-def lightsleep(time_ms: Optional[Any] = None) -> Any:
+def lightsleep(time_ms: Optional[Any] = None) -> Incomplete:
     """
     Stops execution in an attempt to enter a low power state.
 
@@ -163,6 +158,15 @@ def reset_cause() -> int:
     """
     ...
 
+def unique_id() -> bytes:
+    """
+    Returns a byte string with a unique identifier of a board/SoC. It will vary
+    from a board/SoC instance to another, if underlying hardware allows. Length
+    varies by hardware (so use substring of a full value if you expect a short
+    ID). In some MicroPython ports, ID corresponds to the network MAC address.
+    """
+    ...
+
 def bootloader(value: Optional[Any] = None) -> None:
     """
     Reset the device and enter its bootloader.  This is typically used to put the
@@ -173,7 +177,7 @@ def bootloader(value: Optional[Any] = None) -> None:
     """
     ...
 
-def bitstream(pin, encoding, timing, data, /) -> Any:
+def bitstream(pin, encoding, timing, data, /) -> Incomplete:
     """
     Transmits *data* by bit-banging the specified *pin*. The *encoding* argument
     specifies how the bits are encoded, and *timing* is an encoding-specific timing
@@ -301,7 +305,7 @@ class Pin:
     AF4_I2C2: int
     AF5_I2S2: int
     AF5_SPI1: int
-    def mode(self, mode: Optional[Any] = None) -> Any:
+    def mode(self, mode: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin mode.
         See the constructor documentation for details of the ``mode`` argument.
@@ -310,7 +314,7 @@ class Pin:
         """
         ...
     def name(self, *args, **kwargs) -> Any: ...
-    def pull(self, pull: Optional[Any] = None) -> Any:
+    def pull(self, pull: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin pull state.
         See the constructor documentation for details of the ``pull`` argument.
@@ -325,7 +329,7 @@ class Pin:
         Availability: nrf, rp2, stm32 ports.
         """
         ...
-    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Any]:
+    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Incomplete]:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is
@@ -545,7 +549,7 @@ class Pin:
         def __init__(self, *argv, **kwargs) -> None: ...
 
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None: ...
-    def __call__(self, x: Optional[Any] = None) -> Any:
+    def __call__(self, x: Optional[Any] = None) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
         and get the value of the pin.  It is equivalent to Pin.value([x]).
@@ -574,7 +578,7 @@ class I2S:
       - ``ibuf`` specifies internal buffer length (bytes)
 
     For all ports, DMA runs continuously in the background and allows user applications to perform other operations while
-    sample data is transfered between the internal buffer and the I2S peripheral unit.
+    sample data is transferred between the internal buffer and the I2S peripheral unit.
     Increasing the size of the internal buffer has the potential to increase the time that user applications can perform non-I2S operations
     before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
     """
@@ -584,19 +588,19 @@ class I2S:
     STEREO: int
     TX: int
     @staticmethod
-    def shift(*, buf, bits, shift) -> Any:
+    def shift(*, buf, bits, shift) -> Incomplete:
         """
         bitwise shift of all samples contained in ``buf``. ``bits`` specifies sample size in bits. ``shift`` specifies the number of bits to shift each sample.
         Positive for left shift, negative for right shift.
         Typically used for volume control.  Each bit shift changes sample volume by 6dB.
         """
         ...
-    def init(self, sck, *args, **kwargs) -> Any:
+    def init(self, sck, *args, **kwargs) -> Incomplete:
         """
         see Constructor for argument descriptions
         """
         ...
-    def irq(self, handler) -> Any:
+    def irq(self, handler) -> Incomplete:
         """
         Set a callback. ``handler`` is called when ``buf`` is emptied (``write`` method) or becomes full (``readinto`` method).
         Setting a callback changes the ``write`` and ``readinto`` methods to non-blocking operation.
@@ -611,7 +615,7 @@ class I2S:
         Returns number of bytes read
         """
         ...
-    def deinit(self) -> Any:
+    def deinit(self) -> Incomplete:
         """
         Deinitialize the I2S bus
         """
@@ -666,7 +670,7 @@ class SPI:
             specify them as a tuple of ``pins`` parameter.
 
         In the case of hardware SPI the actual clock frequency may be lower than the
-        requested baudrate. This is dependant on the platform hardware. The actual
+        requested baudrate. This is dependent on the platform hardware. The actual
         rate may be determined by printing the SPI object.
         """
         ...
@@ -750,6 +754,8 @@ class I2C:
        - *sda* should be a pin object specifying the pin to use for SDA.
        - *freq* should be an integer which sets the maximum frequency
          for SCL.
+       - *timeout* is the maximum time in microseconds to allow for I2C
+         transactions.  This parameter is not allowed on some ports.
 
     Note that some ports/boards will have default values of *scl* and *sda*
     that can be changed in this constructor.  Others will have fixed values
@@ -837,7 +843,7 @@ class I2C:
         Returns a `bytes` object with the data read.
         """
         ...
-    def readinto(self, buf, nack=True, /) -> Any:
+    def readinto(self, buf, nack=True, /) -> Incomplete:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
         read is the length of *buf*.  An ACK will be sent on the bus after
@@ -855,7 +861,7 @@ class I2C:
            - *freq* is the SCL clock rate
 
          In the case of hardware I2C the actual clock frequency may be lower than the
-         requested frequency. This is dependant on the platform hardware. The actual
+         requested frequency. This is dependent on the platform hardware. The actual
          rate may be determined by printing the I2C object.
         """
         ...
@@ -872,7 +878,13 @@ class I2C:
         """
         ...
     def __init__(
-        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
+        self,
+        id: Union[int, str] = -1,
+        *,
+        scl: Optional[Union[Pin, str]] = None,
+        sda: Optional[Union[Pin, str]] = None,
+        freq=400_000,
+        timeout=50000,
     ) -> None: ...
 
 class ADC:
@@ -909,9 +921,8 @@ class WDT:
     Create a WDT object and start it. The timeout must be given in milliseconds.
     Once it is running the timeout cannot be changed and the WDT cannot be stopped either.
 
-    Notes: On the esp32 the minimum timeout is 1 second. On the esp8266 a timeout
-    cannot be specified, it is determined by the underlying system. On rp2040 devices,
-    the maximum timeout is 8388 ms.
+    Notes: On the esp8266 a timeout cannot be specified, it is determined by the underlying system.
+    On rp2040 devices, the maximum timeout is 8388 ms.
     """
 
     def feed(self) -> None:
@@ -969,7 +980,7 @@ class Timer:
           - ``callback`` - The callable to call upon expiration of the timer period.
             The callback must take one argument, which is passed the Timer object.
             The ``callback`` argument shall be specified. Otherwise an exception
-            will occurr upon timer expiration:
+            will occur upon timer expiration:
             ``TypeError: 'NoneType' object isn't callable``
         """
         ...
@@ -1002,51 +1013,9 @@ class UART:
     Construct a UART object of the given id.
     """
 
+    IRQ_RXIDLE: int
     CTS: int
     RTS: int
-    IRQ_RXIDLE: int
-    def readchar(self, *args, **kwargs) -> Any: ...
-    def sendbreak(self) -> None:
-        """
-        Send a break condition on the bus. This drives the bus low for a duration
-        longer than required for a normal transmission of a character.
-        """
-        ...
-    def irq(self, trigger, priority=1, handler=None, wake=IDLE) -> Any:
-        """
-        Create a callback to be triggered when data is received on the UART.
-
-            - *trigger* can only be ``UART.RX_ANY``
-            - *priority* level of the interrupt. Can take values in the range 1-7.
-              Higher values represent higher priorities.
-            - *handler* an optional function to be called when new characters arrive.
-            - *wake* can only be ``machine.IDLE``.
-
-        .. note::
-
-           The handler will be called whenever any of the following two conditions are met:
-
-               - 8 new characters have been received.
-               - At least 1 new character is waiting in the Rx buffer and the Rx line has been
-                 silent for the duration of 1 complete frame.
-
-           This means that when the handler function is called there will be between 1 to 8
-           characters waiting.
-
-        Returns an irq object.
-
-        Availability: WiPy.
-        """
-        ...
-    def deinit(self) -> None:
-        """
-        Turn off the UART bus.
-
-        .. note::
-          You will not be able to call ``init()`` on the object after ``deinit()``.
-          A new instance needs to be created in that case.
-        """
-        ...
     def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -1100,6 +1069,67 @@ class UART:
           again.
         """
         ...
+    def flush(self) -> Incomplete:
+        """
+        Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
+        duration depends on the tx buffer size and the baud rate. Unless flow control is enabled, a timeout
+        should not occur.
+
+        .. note::
+
+            For the rp2, esp8266 and nrf ports the call returns while the last byte is sent.
+            If required, a one character wait time has to be added in the calling script.
+
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
+        """
+        ...
+    def irq(self, trigger, priority=1, handler=None, wake=IDLE) -> Incomplete:
+        """
+        Create a callback to be triggered when data is received on the UART.
+
+            - *trigger* can only be ``UART.RX_ANY``
+            - *priority* level of the interrupt. Can take values in the range 1-7.
+              Higher values represent higher priorities.
+            - *handler* an optional function to be called when new characters arrive.
+            - *wake* can only be ``machine.IDLE``.
+
+        .. note::
+
+           The handler will be called whenever any of the following two conditions are met:
+
+               - 8 new characters have been received.
+               - At least 1 new character is waiting in the Rx buffer and the Rx line has been
+                 silent for the duration of 1 complete frame.
+
+           This means that when the handler function is called there will be between 1 to 8
+           characters waiting.
+
+        Returns an irq object.
+
+        Availability: WiPy.
+        """
+        ...
+    def txdone(self) -> bool:
+        """
+        Tells whether all data has been sent or no data transfer is happening. In this case,
+        it returns ``True``. If a data transmission is ongoing it returns ``False``.
+
+        .. note::
+
+            For the rp2, esp8266 and nrf ports the call may return ``True`` even if the last byte
+            of a transfer is still being sent. If required, a one character wait time has to be
+            added in the calling script.
+
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
+        """
+        ...
+    def sendbreak(self) -> None:
+        """
+        Send a break condition on the bus. This drives the bus low for a duration
+        longer than required for a normal transmission of a character.
+        """
+        ...
+    def readchar(self, *args, **kwargs) -> Any: ...
     def writechar(self, *args, **kwargs) -> Any: ...
     def read(self, nbytes: Optional[Any] = None) -> bytes:
         """
@@ -1109,6 +1139,15 @@ class UART:
 
         Return value: a bytes object containing the bytes read in.  Returns ``None``
         on timeout.
+        """
+        ...
+    def deinit(self) -> None:
+        """
+        Turn off the UART bus.
+
+        .. note::
+          You will not be able to call ``init()`` on the object after ``deinit()``.
+          A new instance needs to be created in that case.
         """
         ...
     def any(self) -> int:

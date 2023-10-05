@@ -1,7 +1,9 @@
 """
-input/output streams. See: https://docs.micropython.org/en/v1.20.0/library/io.html
+Input/output streams.
 
-|see_cpython_module| :mod:`python:io` https://docs.python.org/3/library/io.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/io.html
+
+CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
 
 This module contains additional types of `stream` (file-like) objects
 and helper functions.
@@ -10,6 +12,7 @@ and helper functions.
 # source version: v1_20_0
 # origin module:: repos/micropython/docs/library/io.rst
 from typing import IO, Any, Optional
+from _typeshed import Incomplete
 from stdlib.io import *  # type: ignore
 
 class FileIO(IO):
@@ -45,13 +48,13 @@ class BytesIO(IO):
     """
 
     def __init__(self, string: Optional[Any] = None) -> None: ...
-    def getvalue(self) -> Any:
+    def getvalue(self) -> Incomplete:
         """
         Get the current contents of the underlying buffer which holds data.
         """
         ...
 
-def open(name, mode="r", **kwargs) -> Any:
+def open(name, mode="r", **kwargs) -> Incomplete:
     """
     Open a file. Builtin ``open()`` function is aliased to this function.
     All ports (which provide access to file system) are required to support

@@ -1,5 +1,7 @@
 """
-functionality specific to the RP2. See: https://docs.micropython.org/en/v1.20.0/library/rp2.html
+Functionality specific to the RP2.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/rp2.html
 
 The ``rp2`` module contains functions and classes specific to the RP2040, as
 used in the Raspberry Pi Pico.
@@ -9,11 +11,11 @@ See the `RP2040 Python datasheet
 for more information, and `pico-micropython-examples
 <https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
 for example code.
-
 """
 from typing import Optional, Any
+from _typeshed import Incomplete
 
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Any:
+def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
     instead.
@@ -35,7 +37,7 @@ def asm_pio(
     push_thresh=32,
     pull_thresh=32,
     fifo_join=PIO.JOIN_NONE,
-) -> Any:
+) -> Incomplete:
     """
     Assemble a PIO program.
 
@@ -72,7 +74,7 @@ def asm_pio(
     """
     ...
 
-def bootsel_button() -> Any:
+def bootsel_button() -> Incomplete:
     """
     Temporarily turns the QSPI_SS pin into an input and reads its value,
     returning 1 for low and 0 for high.

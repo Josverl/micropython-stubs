@@ -1,5 +1,7 @@
 """
-network configuration. See: https://docs.micropython.org/en/v1.20.0/library/network.html
+Network configuration.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.
@@ -34,6 +36,7 @@ For example::
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
 # Stubber: v1.13.7
 from typing import List, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 STA_IF = 0  # type: int
 AP_IF = 1  # type: int

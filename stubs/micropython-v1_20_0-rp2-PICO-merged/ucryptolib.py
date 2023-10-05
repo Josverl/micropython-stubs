@@ -1,13 +1,16 @@
 """
-cryptographic ciphers. See: https://docs.micropython.org/en/v1.20/library/cryptolib.html
+Cryptographic ciphers.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/cryptolib.html
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.4
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
 class aes:
-    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Any:
+    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Encrypt *in_buf*. If no *out_buf* is given result is returned as a
         newly allocated `bytes` object. Otherwise, result is written into
@@ -16,7 +19,7 @@ class aes:
         """
         ...
 
-    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Any:
+    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.
         """

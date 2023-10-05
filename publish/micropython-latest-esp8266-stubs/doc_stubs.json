@@ -8,11 +8,11 @@
         "firmware": "micropython-latest",
         "nodename": "micropython",
         "version": "latest",
-        "release": "v1.20.0-450-g3637252b7",
+        "release": "v1.19.1-994-ga4672149b",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.13.8",
+        "version": "1.13.2.post2",
         "stubtype": "documentation"
     },
     "modules": [
@@ -23,10 +23,6 @@
         {
             "file": "array.pyi",
             "module": "array"
-        },
-        {
-            "file": "asyncio.pyi",
-            "module": "asyncio"
         },
         {
             "file": "binascii.pyi",
@@ -53,10 +49,6 @@
             "module": "cryptolib"
         },
         {
-            "file": "deflate.pyi",
-            "module": "deflate"
-        },
-        {
             "file": "errno.pyi",
             "module": "errno"
         },
@@ -69,20 +61,12 @@
             "module": "esp32"
         },
         {
-            "file": "espnow.pyi",
-            "module": "espnow"
-        },
-        {
             "file": "framebuf.pyi",
             "module": "framebuf"
         },
         {
             "file": "gc.pyi",
             "module": "gc"
-        },
-        {
-            "file": "gzip.pyi",
-            "module": "gzip"
         },
         {
             "file": "hashlib.pyi",
@@ -127,10 +111,6 @@
         {
             "file": "os.pyi",
             "module": "os"
-        },
-        {
-            "file": "platform.pyi",
-            "module": "platform"
         },
         {
             "file": "pyb.pyi",

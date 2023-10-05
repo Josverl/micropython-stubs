@@ -1,7 +1,9 @@
 """
-hashing algorithms. See: https://docs.micropython.org/en/v1.19.1/library/hashlib.html
+Hashing algorithms.
 
-|see_cpython_module| :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/hashlib.html
+
+CPython module: :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
 
 This module implements binary data hashing algorithms. The exact inventory
 of available algorithms depends on a board. Among the algorithms which may
@@ -24,6 +26,7 @@ be implemented:
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
 class sha256:

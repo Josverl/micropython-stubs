@@ -1,0 +1,24 @@
+{
+    "name": "micropython-samd-seeed_wio_terminal-stubs",
+    "mpy_version": "latest",
+    "publish": true,
+    "pkg_version": "1.21.0a544",
+    "path": "micropython-latest-samd-seeed_wio_terminal-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-latest-samd-seeed_wio_terminal-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-latest-frozen/samd/GENERIC"
+        ],
+        [
+            "Core stubs",
+            "micropython-core"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": null,
+    "stub_hash": null
+}

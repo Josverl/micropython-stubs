@@ -1,9 +1,7 @@
 """
-Mathematical functions.
+mathematical functions. See: https://docs.micropython.org/en/latest/library/math.html
 
-MicroPython module: https://docs.micropython.org/en/latest/library/math.html
-
-CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
+|see_cpython_module| :mod:`python:math` https://docs.python.org/3/library/math.html .
 
 The ``math`` module provides some basic mathematical functions for
 working with floating-point numbers.
@@ -14,7 +12,6 @@ Availability: not available on WiPy. Floating point support required
 for this module.
 """
 from typing import Tuple, Any
-from _typeshed import Incomplete
 
 pi: float
 e: float
@@ -25,13 +22,13 @@ def isnan(x) -> bool:
     """
     ...
 
-def ldexp(x, exp) -> Incomplete:
+def ldexp(x, exp) -> Any:
     """
     Return ``x * (2**exp)``.
     """
     ...
 
-def frexp(x) -> Incomplete:
+def frexp(x) -> Any:
     """
     Decomposes a floating-point number into its mantissa and exponent.
     The returned value is the tuple ``(m, e)`` such that ``x == m * 2**e``
@@ -58,7 +55,7 @@ def trunc(x) -> int:
     """
     ...
 
-def sqrt(x) -> Incomplete:
+def sqrt(x) -> Any:
     """
     Return the square root of ``x``.
     """
@@ -89,7 +86,7 @@ def sin(x) -> float:
     """
     ...
 
-def radians(x) -> Incomplete:
+def radians(x) -> Any:
     """
     Return degrees ``x`` converted to radians.
     """
@@ -113,7 +110,7 @@ def atan2(y, x) -> float:
     """
     ...
 
-def pow(x, y) -> Incomplete:
+def pow(x, y) -> Any:
     """
     Returns ``x`` to the power of ``y``.
     """
@@ -131,19 +128,19 @@ def acos(x) -> float:
     """
     ...
 
-def fmod(x, y) -> Incomplete:
+def fmod(x, y) -> Any:
     """
     Return the remainder of ``x/y``.
     """
     ...
 
-def fabs(x) -> Incomplete:
+def fabs(x) -> Any:
     """
     Return the absolute value of ``x``.
     """
     ...
 
-def copysign(x, y) -> Incomplete:
+def copysign(x, y) -> Any:
     """
     Return ``x`` with the sign of ``y``.
     """
@@ -167,7 +164,7 @@ def exp(x) -> float:
     """
     ...
 
-def degrees(x) -> Incomplete:
+def degrees(x) -> Any:
     """
     Return radians ``x`` converted to degrees.
     """

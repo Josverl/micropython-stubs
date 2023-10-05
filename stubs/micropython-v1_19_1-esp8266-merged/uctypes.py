@@ -1,5 +1,7 @@
 """
-access binary data in a structured way. See: https://docs.micropython.org/en/v1.19.1/library/uctypes.html
+Access binary data in a structured way.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/uctypes.html
 
 This module implements "foreign data interface" for MicroPython. The idea
 behind it is similar to CPython's ``ctypes`` modules, but the actual API is
@@ -11,6 +13,7 @@ sub-fields.
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Any
+from _typeshed import Incomplete
 
 VOID = 0  # type: int
 NATIVE = 2  # type: int

@@ -1,5 +1,7 @@
 """
-access binary data in a structured way. See: https://docs.micropython.org/en/v1.20.0/library/uctypes.html
+Access binary data in a structured way.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/uctypes.html
 
 This module implements "foreign data interface" for MicroPython. The idea
 behind it is similar to CPython's ``ctypes`` modules, but the actual API is
@@ -11,6 +13,7 @@ sub-fields.
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
 # Stubber: v1.13.4
 from typing import Any
+from _typeshed import Incomplete
 
 VOID = 0  # type: int
 NATIVE = 2  # type: int

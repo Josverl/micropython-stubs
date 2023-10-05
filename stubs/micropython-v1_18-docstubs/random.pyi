@@ -1,9 +1,11 @@
 """
-random numbers. See: https://docs.micropython.org/en/v1.18/library/random.html
+Random numbers.
+
+MicroPython module: https://docs.micropython.org/en/v1.18/library/random.html
 
 This module implements a pseudo-random number generator (PRNG).
 
-|see_cpython_module| :mod:`python:random` https://docs.python.org/3/library/random.html . .
+CPython module: :mod:`python:random` https://docs.python.org/3/library/random.html . .
 
 .. note::
 
@@ -23,19 +25,12 @@ This module implements a pseudo-random number generator (PRNG).
    The :func:`randrange`, :func:`randint` and :func:`choice` functions are only
    available if the ``MICROPY_PY_URANDOM_EXTRA_FUNCS`` configuration option is
    enabled.
-
 """
 
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/random.rst
 from typing import Any, Optional
-
-class random:
-    """
-    Return a random floating point number in the range [0.0, 1.0).
-    """
-
-    def __init__(self) -> None: ...
+from _typeshed import Incomplete
 
 def getrandbits(n) -> int:
     """
@@ -56,7 +51,12 @@ def randrange(start, stop, step: Optional[Any] = None) -> int:
     The third form returns a random integer from the range [*start*, *stop*) in
     steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
     return odd numbers between 1 and 9 inclusive.
+    """
+    ...
 
+def random() -> int:
+    """
+    Return a random floating point number in the range [0.0, 1.0).
     """
     ...
 
@@ -64,7 +64,6 @@ def uniform(a, b) -> int:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
     and *b* <= N <= *a* for *b* < *a*.
-
     """
     ...
 
@@ -80,7 +79,7 @@ def seed(n=None, /) -> None:
     """
     ...
 
-def choice(sequence) -> Any:
+def choice(sequence) -> Incomplete:
     """
     Chooses and returns one item at random from *sequence* (tuple, list or
     any object that supports the subscript operation).

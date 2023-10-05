@@ -34,5 +34,5 @@ Included stubs:
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
-Documentation | micropython | - | - | v1.20 
+Documentation | micropython | - | - | v1.20.0 
 Core | micropython | rp2 | - | v1.20.0 

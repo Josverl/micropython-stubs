@@ -1,5 +1,7 @@
 """
-control of WS2812 / NeoPixel LEDs. See: https://docs.micropython.org/en/v1.20.0/library/neopixel.html
+Control of WS2812 / NeoPixel LEDs.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/neopixel.html
 
 This module provides a driver for WS2818 / NeoPixel LEDs.
 
@@ -13,6 +15,7 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.4
 from typing import Tuple, Any
+from _typeshed import Incomplete
 
 
 def bitstream(*args, **kwargs) -> Any:

@@ -1,14 +1,12 @@
 """
-Functions related to the ESP8266 and ESP32.
-
-MicroPython module: https://docs.micropython.org/en/latest/library/esp.html
+functions related to the ESP8266 and ESP32. See: https://docs.micropython.org/en/latest/library/esp.html
 
 The ``esp`` module contains specific functions related to both the ESP8266 and
 ESP32 modules.  Some functions are only available on one or the other of these
 ports.
+
 """
 from typing import Optional, Any
-from _typeshed import Incomplete
 
 SLEEP_MODEM: int
 SLEEP_NONE: int
@@ -16,14 +14,14 @@ SLEEP_LIGHT: int
 
 def freemem(*args, **kwargs) -> Any: ...
 def free(*args, **kwargs) -> Any: ...
-def flash_write(byte_offset, bytes) -> Incomplete: ...
-def flash_user_start() -> Incomplete:
+def flash_write(byte_offset, bytes) -> Any: ...
+def flash_user_start() -> Any:
     """
     Read the memory offset at which the user flash space begins.
     """
     ...
 
-def sleep_type(sleep_type: Optional[Any] = None) -> Incomplete:
+def sleep_type(sleep_type: Optional[Any] = None) -> Any:
     """
     **Note**: ESP8266 only
 
@@ -45,7 +43,7 @@ def sleep_type(sleep_type: Optional[Any] = None) -> Incomplete:
     ...
 
 def malloc(*args, **kwargs) -> Any: ...
-def set_native_code_location(start, length) -> Incomplete:
+def set_native_code_location(start, length) -> Any:
     """
     **Note**: ESP8266 only
 
@@ -104,7 +102,7 @@ def osdebug(level) -> None:
 
 def meminfo(*args, **kwargs) -> Any: ...
 def dht_readinto(*args, **kwargs) -> Any: ...
-def deepsleep(time_us=0, /) -> Incomplete:
+def deepsleep(time_us=0, /) -> Any:
     """
     **Note**: ESP8266 only - use `machine.deepsleep()` on ESP32
 
@@ -119,15 +117,15 @@ def deepsleep(time_us=0, /) -> Incomplete:
 
 def check_fw(*args, **kwargs) -> Any: ...
 def apa102_write(*args, **kwargs) -> Any: ...
-def flash_size() -> Incomplete:
+def flash_size() -> Any:
     """
     Read the total size of the flash memory.
     """
     ...
 
 def esf_free_bufs(*args, **kwargs) -> Any: ...
-def flash_read(byte_offset, length_or_buffer) -> Incomplete: ...
-def flash_id() -> Incomplete:
+def flash_read(byte_offset, length_or_buffer) -> Any: ...
+def flash_id() -> Any:
     """
     **Note**: ESP8266 only
 
@@ -135,4 +133,4 @@ def flash_id() -> Incomplete:
     """
     ...
 
-def flash_erase(sector_no) -> Incomplete: ...
+def flash_erase(sector_no) -> Any: ...

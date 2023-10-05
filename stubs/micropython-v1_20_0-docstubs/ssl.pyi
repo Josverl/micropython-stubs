@@ -1,7 +1,9 @@
 """
-TLS/SSL wrapper for socket objects. See: https://docs.micropython.org/en/v1.20.0/library/ssl.html
+TLS/SSL wrapper for socket objects.
 
-|see_cpython_module| :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/ssl.html
+
+CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
 This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
@@ -10,21 +12,22 @@ facilities for network sockets, both client-side and server-side.
 
 # source version: v1_20_0
 # origin module:: repos/micropython/docs/library/ssl.rst
-from typing import Any
+from typing import IO
+from _typeshed import Incomplete
 from stdlib.ssl import *  # type: ignore
 
-SSLError: Any = ...
+SSLError: Incomplete
 """This exception does NOT exist. Instead its base class, OSError, is used."""
-CERT_NONE: Any = ...
+CERT_NONE: Incomplete
 """Supported values for *cert_reqs* parameter."""
-CERT_OPTIONAL: Any = ...
+CERT_OPTIONAL: Incomplete
 """Supported values for *cert_reqs* parameter."""
-CERT_REQUIRED: Any = ...
+CERT_REQUIRED: Incomplete
 """Supported values for *cert_reqs* parameter."""
 
 def wrap_socket(
     sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
-) -> Any:
+) -> IO:
     """
     Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
     and returns an instance of ssl.SSLSocket, which wraps the underlying stream in

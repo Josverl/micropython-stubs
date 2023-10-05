@@ -27,13 +27,12 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* StubSource.MERGED from `stubs/micropython-latest-stm32-merged`
-* StubSource.FROZEN from `stubs/micropython-latest-frozen/stm32/GENERIC`
-* StubSource.CORE from `stubs/micropython-core`
+* Merged stubs from `stubs/micropython-latest-stm32-merged`
+* Frozen stubs from `stubs/micropython-latest-frozen/stm32/GENERIC`
+* Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
-Firmware | micropython | stm32 | PYBv1.1 with STM32F405RG | v1.19.1 
 Documentation | micropython | - | - | latest 
 Core | micropython | stm32 | - | latest 

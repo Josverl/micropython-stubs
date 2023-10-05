@@ -1,7 +1,9 @@
 """
-mathematical functions for complex numbers. See: https://docs.micropython.org/en/v1.19.1/library/cmath.html
+Mathematical functions for complex numbers.
 
-|see_cpython_module| :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/cmath.html
+
+CPython module: :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
 
 The ``cmath`` module provides some basic mathematical functions for
 working with complex numbers.
@@ -12,6 +14,7 @@ required for this module.
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Tuple, Any
+from _typeshed import Incomplete
 
 
 def cos(z) -> float:
@@ -76,7 +79,7 @@ def sin(z) -> float:
     ...
 
 
-def sqrt(z) -> Any:
+def sqrt(z) -> Incomplete:
     """
     Return the square-root of ``z``.
     """

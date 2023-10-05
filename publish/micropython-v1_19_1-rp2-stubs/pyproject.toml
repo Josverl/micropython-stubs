@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-stubs"
-version = "1.19.1.post12"
+version = "1.19.1.post13"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -54,12 +54,12 @@ packages = [
     { include = "gc.pyi" },
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
+    { include = "io.pyi" },
     { include = "json.pyi" },
     { include = "lsm6dsox.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
-    { include = "micropython_.pyi" },
     { include = "neopixel.pyi" },
     { include = "network.pyi" },
     { include = "onewire.pyi" },

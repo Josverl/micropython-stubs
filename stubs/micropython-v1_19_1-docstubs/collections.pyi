@@ -1,7 +1,9 @@
 """
-collection and container types. See: https://docs.micropython.org/en/v1.19.1/library/collections.html
+Collection and container types.
 
-|see_cpython_module| :mod:`python:collections` https://docs.python.org/3/library/collections.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/collections.html
+
+CPython module: :mod:`python:collections` https://docs.python.org/3/library/collections.html .
 
 This module implements advanced collection and container types to
 hold/accumulate various objects.
@@ -10,9 +12,11 @@ hold/accumulate various objects.
 # source version: v1_19_1
 # origin module:: repos/micropython/docs/library/collections.rst
 from typing import Any, Optional
-from queue import Queue
+from _typeshed import Incomplete
+from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
+from typing_extensions import NamedTuple as stdlib_NamedTuple
 
-class deque(Queue):
+class deque(stdlib_deque):
     """
     Deques (double-ended queues) are a list-like container that support O(1)
     appends and pops from either side of the deque.  New deques are created
@@ -31,20 +35,20 @@ class deque(Queue):
     """
 
     def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None: ...
-    def append(self, x) -> Any:
+    def append(self, x) -> Incomplete:
         """
         Add *x* to the right side of the deque.
         Raises IndexError if overflow checking is enabled and there is no more room left.
         """
         ...
-    def popleft(self) -> Any:
+    def popleft(self) -> Incomplete:
         """
         Remove and return an item from the left side of the deque.
         Raises IndexError if no items are present.
         """
         ...
 
-class OrderedDict(dict):
+class OrderedDict(stdlib_OrderedDict):
     """
     ``dict`` type subclass which remembers and preserves the order of keys
     added. When ordered dict is iterated over, keys/items are returned in
@@ -71,7 +75,7 @@ class OrderedDict(dict):
 
     def __init__(self, *args, **kwargs) -> None: ...
 
-def namedtuple(name, fields) -> Any:
+def namedtuple(name, fields) -> stdlib_NamedTuple:
     """
     This is factory function to create a new namedtuple type with a specific
     name and set of fields. A namedtuple is a subclass of tuple which allows

@@ -1,7 +1,9 @@
 """
-zlib compression & decompression. See: https://docs.micropython.org/en/latest/library/zlib.html
+Zlib compression & decompression.
 
-|see_cpython_module| :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/zlib.html
+
+CPython module: :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
 
 This module allows compression and decompression of binary data with the
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
@@ -30,9 +32,10 @@ This module allows compression and decompression of binary data with the
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.4
 from typing import Any
+from _typeshed import Incomplete
 
 
-def decompress(data, wbits=15, /) -> Any:
+def decompress(data, wbits=15, /) -> Incomplete:
     """
     Decompresses *data* into a bytes object.
 

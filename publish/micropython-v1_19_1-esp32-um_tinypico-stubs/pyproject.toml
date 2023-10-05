@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp32-um_tinypico-stubs"
-version = "1.19.1.post7"
+version = "1.19.1.post8"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -56,7 +56,6 @@ packages = [
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
-    { include = "micropython_.pyi" },
     { include = "neopixel.pyi" },
     { include = "network.pyi" },
     { include = "ntptime.pyi" },

@@ -752,7 +752,7 @@ class SPI:
         ...
 
 
-class Signal:
+class Signal(Pin):
     """
             Signal(pin_arguments..., *, invert=False)
 
@@ -867,7 +867,7 @@ class SoftI2C(I2C):
         ...
 
 
-class SoftSPI(SPI):
+class SoftSPI:
     """
     Construct a new software SPI object.  Additional parameters must be
     given, usually at least *sck*, *mosi* and *miso*, and these are used

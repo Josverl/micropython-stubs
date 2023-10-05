@@ -1,7 +1,9 @@
 """
-basic "operating system" services. See: https://docs.micropython.org/en/v1.19.1/library/os.html
+Basic "operating system" services.
 
-|see_cpython_module| :mod:`python:os` https://docs.python.org/3/library/os.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/os.html
+
+CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
 
 The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
@@ -10,10 +12,11 @@ functions.
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import IO, Iterator, Optional, Tuple, Any
-from stdlib.os import uname_result
+from _typeshed import Incomplete
+from stdlib.os import *
 
 
-def stat(path) -> Any:
+def stat(path) -> Incomplete:
     """
     Get the status of a file or directory.
     """
@@ -34,7 +37,7 @@ def rename(old_path, new_path) -> None:
     ...
 
 
-def mount(fsobj, mount_point, *, readonly) -> Any:
+def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
     *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
@@ -104,7 +107,7 @@ def uname() -> uname_result:
     ...
 
 
-def umount(mount_point) -> Any:
+def umount(mount_point) -> Incomplete:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
     or a previously-mounted filesystem object.  During the unmount process the
@@ -115,7 +118,7 @@ def umount(mount_point) -> Any:
     ...
 
 
-def chdir(path) -> Any:
+def chdir(path) -> Incomplete:
     """
     Change current directory.
     """
@@ -153,21 +156,21 @@ def remove(path) -> None:
     ...
 
 
-def mkdir(path) -> Any:
+def mkdir(path) -> Incomplete:
     """
     Create a new directory.
     """
     ...
 
 
-def getcwd() -> Any:
+def getcwd() -> Incomplete:
     """
     Get the current directory.
     """
     ...
 
 
-def listdir(dir: Optional[Any] = None) -> Any:
+def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
     With no argument, list the current directory.  Otherwise list the given directory.
     """

@@ -1,16 +1,13 @@
 """
-Efficient arrays of numeric data.
+efficient arrays of numeric data. See: https://docs.micropython.org/en/latest/library/array.html
 
-MicroPython module: https://docs.micropython.org/en/latest/library/array.html
-
-CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html .
+|see_cpython_module| :mod:`python:array` https://docs.python.org/3/library/array.html .
 
 Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
 floating-point support).
 """
 from typing import List, Optional, Any
-from _typeshed import Incomplete
 
 class array:
     """
@@ -19,14 +16,14 @@ class array:
     array is created.
     """
 
-    def extend(self, iterable) -> Incomplete:
+    def extend(self, iterable) -> Any:
         """
         Append new elements as contained in *iterable* to the end of
         array, growing it.
         """
         ...
     def decode(self, *args, **kwargs) -> Any: ...
-    def append(self, val) -> Incomplete:
+    def append(self, val) -> Any:
         """
         Append new element *val* to the end of array, growing it.
         """

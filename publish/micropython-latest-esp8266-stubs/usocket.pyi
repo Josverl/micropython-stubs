@@ -1,23 +1,11 @@
 """
-Socket module.
+socket module. See: https://docs.micropython.org/en/latest/library/socket.html
 
-MicroPython module: https://docs.micropython.org/en/latest/library/socket.html
-
-CPython module: :mod:`python:socket` https://docs.python.org/3/library/socket.html .
+|see_cpython_module| :mod:`python:socket` https://docs.python.org/3/library/socket.html .
 
 This module provides access to the BSD socket interface.
-
-Difference to CPython
-
-   For efficiency and consistency, socket objects in MicroPython implement a `stream`
-   (file-like) interface directly. In CPython, you need to convert a socket to
-   a file-like object using `makefile()` method. This method is still supported
-   by MicroPython (but is a no-op), so where compatibility with CPython matters,
-   be sure to use it.
 """
 from typing import IO, Optional, Tuple, Any
-from _typeshed import Incomplete
-from stdlib.socket import *
 
 SOCK_DGRAM: int
 SOCK_RAW: int
@@ -31,7 +19,7 @@ IPPROTO_IP: int
 
 def reset(*args, **kwargs) -> Any: ...
 def print_pcbs(*args, **kwargs) -> Any: ...
-def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
+def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Any:
     """
     Translate the host/port argument into a sequence of 5-tuples that contain all the
     necessary arguments for creating a socket connected to that service. Arguments
@@ -57,18 +45,6 @@ def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
        # Guaranteed to return an address which can be connect'ed to for
        # stream operation.
        s.connect(socket.getaddrinfo('www.micropython.org', 80, 0, SOCK_STREAM)[0][-1])
-
-    Difference to CPython
-
-       CPython raises a ``socket.gaierror`` exception (`OSError` subclass) in case
-       of error in this function. MicroPython doesn't have ``socket.gaierror``
-       and raises OSError directly. Note that error numbers of `getaddrinfo()`
-       form a separate namespace and may not match error numbers from
-       the :mod:`errno` module. To distinguish `getaddrinfo()` errors, they are
-       represented by negative numbers, whereas standard system errors are
-       positive numbers (error numbers are accessible using ``e.args[0]`` property
-       from an exception object). The use of negative values is a provisional
-       detail which may change in the future.
     """
     ...
 
@@ -106,16 +82,6 @@ class socket:
         Return a file object associated with the socket. The exact returned type depends on the arguments
         given to makefile(). The support is limited to binary modes only ('rb', 'wb', and 'rwb').
         CPython's arguments: *encoding*, *errors* and *newline* are not supported.
-
-        Difference to CPython
-
-           As MicroPython doesn't support buffered streams, values of *buffering*
-           parameter is ignored and treated as if it was 0 (unbuffered).
-
-        Difference to CPython
-
-           Closing the file object returned by makefile() WILL close the
-           original socket as well.
         """
         ...
     def listen(self, backlog: Optional[Any] = None) -> None:
@@ -126,7 +92,7 @@ class socket:
         reasonable value is chosen.
         """
         ...
-    def settimeout(self, value) -> Incomplete:
+    def settimeout(self, value) -> Any:
         """
         **Note**: Not every port supports this method, see below.
 
@@ -151,13 +117,6 @@ class socket:
              res = poller.poll(1000)  # time in milliseconds
              if not res:
                  # s is still not ready for input, i.e. operation timed out
-
-        Difference to CPython
-
-           CPython raises a ``socket.timeout`` exception in case of timeout,
-           which is an `OSError` subclass. MicroPython raises an OSError directly
-           instead. If you use ``except OSError:`` to catch the exception,
-           your code will work both in MicroPython and CPython.
         """
         ...
     def sendall(self, bytes) -> int:
@@ -179,7 +138,7 @@ class socket:
         a buffer.
         """
         ...
-    def setblocking(self, flag) -> Incomplete:
+    def setblocking(self, flag) -> Any:
         """
         Set blocking or non-blocking mode of the socket: if flag is false, the socket is set to non-blocking,
         else to blocking mode.
@@ -196,7 +155,7 @@ class socket:
         destination socket is specified by *address*.
         """
         ...
-    def readline(self) -> Incomplete:
+    def readline(self) -> Any:
         """
         Read a line, ending in a newline character.
 
@@ -221,7 +180,7 @@ class socket:
         non-blocking socket though, and then less data will be returned.
         """
         ...
-    def close(self) -> Incomplete:
+    def close(self) -> Any:
         """
         Mark the socket closed and release all resources. Once that happens, all future operations
         on the socket object will fail. The remote end will receive EOF indication if
@@ -243,7 +202,7 @@ class socket:
         ("short write").
         """
         ...
-    def bind(self, address) -> Incomplete:
+    def bind(self, address) -> Any:
         """
         Bind the socket to *address*. The socket must not already be bound.
         """

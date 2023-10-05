@@ -1,7 +1,9 @@
 """
-pack and unpack primitive data types. See: https://docs.micropython.org/en/latest/library/struct.html
+Pack and unpack primitive data types.
 
-|see_cpython_module| :mod:`python:struct` https://docs.python.org/3/library/struct.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/struct.html
+
+CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
 
 The following byte orders are supported:
 
@@ -51,12 +53,13 @@ The following data types are supported:
 | P      | void *             | integer           |               |
 +--------+--------------------+-------------------+---------------+
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
+# Stubber: v1.13.7
 from typing import Tuple, Any
+from _typeshed import Incomplete
 
 
-def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Any:
+def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*
     into a *buffer* starting at *offset*. *offset* may be negative to count

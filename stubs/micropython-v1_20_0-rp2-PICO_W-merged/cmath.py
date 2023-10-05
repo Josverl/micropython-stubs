@@ -1,7 +1,9 @@
 """
-mathematical functions for complex numbers. See: https://docs.micropython.org/en/v1.20/library/cmath.html
+Mathematical functions for complex numbers.
 
-|see_cpython_module| :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/cmath.html
+
+CPython module: :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
 
 The ``cmath`` module provides some basic mathematical functions for
 working with complex numbers.
@@ -9,9 +11,10 @@ working with complex numbers.
 Availability: not available on WiPy and ESP8266. Floating point support
 required for this module.
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20', 'build': '', 'ver': 'v1.20', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
+# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
 from typing import Tuple, Any
+from _typeshed import Incomplete
 
 e = 2.718282  # type: float
 pi = 3.141593  # type: float
@@ -24,7 +27,7 @@ def polar(z) -> Tuple:
     ...
 
 
-def sqrt(z) -> Any:
+def sqrt(z) -> Incomplete:
     """
     Return the square-root of ``z``.
     """

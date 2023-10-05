@@ -8,9 +8,9 @@ This module allows to decompress binary data compressed with
 (commonly used in zlib library and gzip archiver). Compression
 is not yet implemented.
 """
-from typing import IO, Any
+from typing import Any
 
-class DecompIO(IO):
+class DecompIO:
     """
     Create a `stream` wrapper which allows transparent decompression of
     compressed data in another *stream*. This allows to process compressed

@@ -2,7 +2,7 @@
     "name": "micropython-esp32-stubs",
     "mpy_version": "1.17",
     "publish": true,
-    "pkg_version": "1.17.post3",
+    "pkg_version": "1.17.0.post4",
     "path": "micropython-v1_17-esp32-stubs",
     "stub_sources": [
         [
@@ -15,7 +15,7 @@
         ],
         [
             "Core Stubs",
-            "cpython_core-pycopy"
+            "micropython-core"
         ]
     ],
     "description": "MicroPython stubs",

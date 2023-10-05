@@ -1,7 +1,9 @@
 """
-wait for events on a set of streams. See: https://docs.micropython.org/en/v1.19.1/library/select.html
+Wait for events on a set of streams.
 
-|see_cpython_module| :mod:`python:select` https://docs.python.org/3/library/select.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/select.html
+
+CPython module: :mod:`python:select` https://docs.python.org/3/library/select.html .
 
 This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
@@ -9,6 +11,7 @@ This module provides functions to efficiently wait for events on multiple
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Iterator, List, Optional, Tuple, Any
+from _typeshed import Incomplete
 
 POLLOUT = 4  # type: int
 POLLIN = 1  # type: int
@@ -16,16 +19,14 @@ POLLHUP = 16  # type: int
 POLLERR = 8  # type: int
 
 
-class select:
+def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
     """
     Wait for activity on a set of objects.
 
     This function is provided by some MicroPython ports for compatibility
     and is not efficient. Usage of :class:`Poll` is recommended instead.
     """
-
-    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
-        ...
+    ...
 
 
 class poll:
@@ -56,7 +57,7 @@ class poll:
         """
         ...
 
-    def unregister(self, obj) -> Any:
+    def unregister(self, obj) -> Incomplete:
         """
         Unregister *obj* from polling.
         """
@@ -86,6 +87,10 @@ class poll:
         these flags set for this stream again.
 
         In case of timeout, an empty list is returned.
+
+        Difference to CPython
+
+           Tuples returned may contain more than 2 elements as described above.
         """
         ...
 
@@ -100,5 +105,9 @@ class poll:
         (equivalent to ``poll.modify(obj, 0)``), so new events for such a stream
         won't be processed until new mask is set with `poll.modify()`. This
         behaviour is useful for asynchronous I/O schedulers.
+
+        Difference to CPython
+
+           This function is a MicroPython extension.
         """
         ...

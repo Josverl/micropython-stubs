@@ -1,7 +1,9 @@
 """
-TLS/SSL wrapper for socket objects. See: https://docs.micropython.org/en/v1.19.1/library/ssl.html
+TLS/SSL wrapper for socket objects.
 
-|see_cpython_module| :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/ssl.html
+
+CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
 This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
@@ -9,10 +11,12 @@ facilities for network sockets, both client-side and server-side.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
 # Stubber: 1.9.11
-from typing import Any
+from typing import IO, Any
+from _typeshed import Incomplete
+from stdlib.ssl import *
 
 
-def wrap_socket(sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, ca_certs=None, do_handshake=True) -> Any:
+def wrap_socket(sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, ca_certs=None, do_handshake=True) -> IO:
     """
     Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
     and returns an instance of ssl.SSLSocket, which wraps the underlying stream in

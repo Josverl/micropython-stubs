@@ -1,5 +1,7 @@
 """
-functions related to the hardware. See: https://docs.micropython.org/en/v1.20/library/machine.html
+Functions related to the hardware.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/machine.html
 
 The ``machine`` module contains specific functions related to the hardware
 on a particular board. Most functions in this module allow to achieve direct
@@ -8,9 +10,10 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20', 'build': '', 'ver': 'v1.20', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
+# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
 from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 WDT_RESET = 3  # type: int
 PWRON_RESET = 1  # type: int
@@ -20,7 +23,7 @@ def dht_readinto(*args, **kwargs) -> Any:
     ...
 
 
-def enable_irq(state) -> Any:
+def enable_irq(state) -> Incomplete:
     """
     Re-enable interrupt requests.
     The *state* parameter should be the value that was returned from the most
@@ -29,7 +32,7 @@ def enable_irq(state) -> Any:
     ...
 
 
-def disable_irq() -> Any:
+def disable_irq() -> Incomplete:
     """
     Disable interrupt requests.
     Returns the previous IRQ state which should be considered an opaque value.
@@ -39,7 +42,7 @@ def disable_irq() -> Any:
     ...
 
 
-def bitstream(pin, encoding, timing, data, /) -> Any:
+def bitstream(pin, encoding, timing, data, /) -> Incomplete:
     """
     Transmits *data* by bit-banging the specified *pin*. The *encoding* argument
     specifies how the bits are encoded, and *timing* is an encoding-specific timing
@@ -118,7 +121,7 @@ def reset() -> NoReturn:
     ...
 
 
-def freq(hz: Optional[Any] = None) -> Any:
+def freq(hz: Optional[Any] = None) -> Incomplete:
     """
     Returns the CPU frequency in hertz.
 
@@ -134,7 +137,7 @@ def reset_cause() -> int:
     ...
 
 
-def idle() -> Any:
+def idle() -> Incomplete:
     """
     Gates the clock to the CPU, useful to reduce power consumption at any time during
     short or long periods. Peripherals continue working and execution resumes as soon
@@ -163,7 +166,7 @@ def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     ...
 
 
-def lightsleep(time_ms: Optional[Any] = None) -> Any:
+def lightsleep(time_ms: Optional[Any] = None) -> Incomplete:
     """
     Stops execution in an attempt to enter a low power state.
 
@@ -208,6 +211,7 @@ class WDT:
     cannot be specified, it is determined by the underlying system. On rp2040 devices,
     the maximum timeout is 8388 ms.
     """
+
     def feed(self) -> None:
         """
         Feed the WDT to prevent it from resetting the system. The application
@@ -241,7 +245,8 @@ class PWM:
     underlying PWM generator (this is hardware specific).
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
     """
-    def freq(self, value: Optional[Any] = None) -> Any:
+
+    def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the current frequency of the PWM output.
 
@@ -299,6 +304,7 @@ class ADC:
 
       - *atten* specifies the input attenuation.
     """
+
     CORE_TEMP = 4  # type: int
 
     def read_u16(self) -> int:
@@ -330,6 +336,7 @@ class I2C:
     that can be changed in this constructor.  Others will have fixed values
     of *scl* and *sda* that cannot be changed.
     """
+
     def readfrom_mem_into(self, addr, memaddr, buf, *, addrsize=8) -> None:
         """
         Read into *buf* from the peripheral specified by *addr* starting from the
@@ -420,7 +427,7 @@ class I2C:
         """
         ...
 
-    def readinto(self, buf, nack=True, /) -> Any:
+    def readinto(self, buf, nack=True, /) -> Incomplete:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
         read is the length of *buf*.  An ACK will be sent on the bus after
@@ -458,7 +465,8 @@ class I2C:
         """
         ...
 
-    def __init__(self,
+    def __init__(
+        self,
         id: Union[int, str] = -1,
         *,
         scl: Optional[Union[Pin, str]] = None,
@@ -494,13 +502,14 @@ class I2S:
     Increasing the size of the internal buffer has the potential to increase the time that user applications can perform non-I2S operations
     before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
     """
+
     RX = 0  # type: int
     MONO = 0  # type: int
     STEREO = 1  # type: int
     TX = 1  # type: int
 
     @staticmethod
-    def shift(*, buf, bits, shift) -> Any:
+    def shift(*, buf, bits, shift) -> Incomplete:
         """
         bitwise shift of all samples contained in ``buf``. ``bits`` specifies sample size in bits. ``shift`` specifies the number of bits to shift each sample.
         Positive for left shift, negative for right shift.
@@ -508,13 +517,13 @@ class I2S:
         """
         ...
 
-    def init(self, sck, *args, **kwargs) -> Any:
+    def init(self, sck, *args, **kwargs) -> Incomplete:
         """
         see Constructor for argument descriptions
         """
         ...
 
-    def irq(self, handler) -> Any:
+    def irq(self, handler) -> Incomplete:
         """
         Set a callback. ``handler`` is called when ``buf`` is emptied (``write`` method) or becomes full (``readinto`` method).
         Setting a callback changes the ``write`` and ``readinto`` methods to non-blocking operation.
@@ -531,7 +540,7 @@ class I2S:
         """
         ...
 
-    def deinit(self) -> Any:
+    def deinit(self) -> Incomplete:
         """
         Deinitialize the I2S bus
         """
@@ -613,6 +622,7 @@ class Pin:
     alternate-function mode is re-initialised with ``Pin.IN``, ``Pin.OUT``, or
     ``Pin.OPEN_DRAIN``, the alternate function will be removed from the pin.
     """
+
     ALT_SPI = 1  # type: int
     IN = 0  # type: int
     ALT_USB = 9  # type: int
@@ -639,7 +649,7 @@ class Pin:
         """
         ...
 
-    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Any]:
+    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Incomplete]:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is
@@ -827,6 +837,14 @@ class Pin:
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
         ...
 
+    def __call__(self, x: Optional[Any] = None) -> Incomplete:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
+        ...
+
 
 class SoftSPI:
     """
@@ -834,6 +852,7 @@ class SoftSPI:
     given, usually at least *sck*, *mosi* and *miso*, and these are used
     to initialise the bus.  See `SPI.init` for a description of the parameters.
     """
+
     LSB = 0  # type: int
     MSB = 1  # type: int
 
@@ -867,6 +886,7 @@ class Timer:
 
     See ``init`` for parameters of initialisation.
     """
+
     PERIODIC = 1  # type: int
     ONE_SHOT = 0  # type: int
 
@@ -924,6 +944,7 @@ class UART:
     """
     Construct a UART object of the given id.
     """
+
     INV_TX = 1  # type: int
     RTS = 2  # type: int
     CTS = 1  # type: int
@@ -1000,7 +1021,7 @@ class UART:
         """
         ...
 
-    def flush(self) -> Any:
+    def flush(self) -> Incomplete:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
         duration depends on the tx buffer size and the baud rate. Unless flow control is enabled, a timeout
@@ -1100,6 +1121,7 @@ class SoftI2C(I2C):
          stretching (SCL held low by another device on the bus), after
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
+
     def readfrom_mem_into(self, *args, **kwargs) -> Any:
         ...
 
@@ -1147,6 +1169,7 @@ class RTC:
     """
     Create an RTC object. See init for parameters of initialization.
     """
+
     def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
@@ -1178,6 +1201,7 @@ class SPI:
     the bus, if any).  If extra arguments are given, the bus is initialised.
     See ``init`` for parameters of initialisation.
     """
+
     LSB = 0  # type: int
     MSB = 1  # type: int
 
@@ -1187,7 +1211,8 @@ class SPI:
         """
         ...
 
-    def init(self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
+    def init(
+        self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -1274,6 +1299,7 @@ class Signal(Pin):
 
       - ``invert`` - if True, the signal will be inverted (active low).
     """
+
     def off(self) -> None:
         """
         Deactivate signal.

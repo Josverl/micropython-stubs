@@ -1,9 +1,9 @@
 """
 access and control MicroPython internals. See: https://docs.micropython.org/en/v1.18/library/micropython.html
 """
-from typing import Optional, Any
+from typing import Optional, Tuple, Union, Any
 
-def const(expr) -> int:
+def const(expr) -> Union[int, bytes, str, Tuple]:
     """
     Used to declare that the expression is a constant so that the compile can
     optimise it.  The use of this function should be as follows::

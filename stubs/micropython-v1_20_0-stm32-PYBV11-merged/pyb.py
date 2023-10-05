@@ -1,11 +1,14 @@
 """
-functions related to the board. See: https://docs.micropython.org/en/v1.20.0/library/pyb.html
+Functions related to the board.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/pyb.html
 
 The ``pyb`` module contains specific functions related to the board.
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
 # Stubber: v1.13.7
 from typing import List, NoReturn, Optional, Tuple, Any
+from _typeshed import Incomplete
 
 hid_mouse = ()  # type: tuple
 hid_keyboard = ()  # type: tuple
@@ -28,7 +31,7 @@ def have_cdc() -> bool:
     ...
 
 
-def hid(hidtuple: Tuple) -> Any:
+def hid(hidtuple: Tuple) -> Incomplete:
     """
     Takes a 4-tuple (or list) and sends it to the USB host (the PC) to
     signal a HID mouse-motion event.
@@ -116,7 +119,7 @@ def freq(sysclk=0, hclk=0, pclk1=0, pclk2=0) -> Tuple:
     ...
 
 
-def disable_irq() -> Any:
+def disable_irq() -> Incomplete:
     """
     Disable interrupt requests.
     Returns the previous IRQ state: ``False``/``True`` for disabled/enabled IRQs
@@ -180,7 +183,7 @@ def servo(*args, **kwargs) -> Any:
     ...
 
 
-def standby() -> Any:
+def standby() -> Incomplete:
     """
     Put the pyboard into a "deep sleep" state.
 
@@ -338,7 +341,7 @@ def repl_info(*args, **kwargs) -> Any:
     ...
 
 
-def stop() -> Any:
+def stop() -> Incomplete:
     """
     Put the pyboard in a "sleeping" state.
 
@@ -404,25 +407,25 @@ class Accel:
     Create and return an accelerometer object.
     """
 
-    def x(self) -> Any:
+    def x(self) -> Incomplete:
         """
         Get the x-axis value.
         """
         ...
 
-    def tilt(self) -> Any:
+    def tilt(self) -> Incomplete:
         """
         Get the tilt register.
         """
         ...
 
-    def y(self) -> Any:
+    def y(self) -> Incomplete:
         """
         Get the y-axis value.
         """
         ...
 
-    def z(self) -> Any:
+    def z(self) -> Incomplete:
         """
         Get the z-axis value.
         """
@@ -477,7 +480,7 @@ class CAN:
     ERROR_PASSIVE = 3  # type: int
     ERROR_WARNING = 2  # type: int
 
-    def restart(self) -> Any:
+    def restart(self) -> Incomplete:
         """
         Force a software restart of the CAN controller without resetting its
         configuration.
@@ -690,11 +693,10 @@ class CAN:
 
         - *extframe* If True the frame will have an extended identifier (29 bits),
           otherwise a standard identifier (11 bits) is used.
-
         """
         ...
 
-    def state(self) -> Any:
+    def state(self) -> Incomplete:
         """
         Return the state of the controller.  The return value can be one of:
 
@@ -745,7 +747,7 @@ class CAN:
         """
         ...
 
-    def info(self, list: Optional[Any] = None) -> Any:
+    def info(self, list: Optional[Any] = None) -> Incomplete:
         """
         Get information about the controller's error states and TX and RX buffers.
         If *list* is provided then it should be a list object with at least 8 entries,
@@ -805,7 +807,6 @@ class ExtInt:
       - ``callback`` is the function to call when the interrupt triggers.  The
         callback function must accept exactly 1 argument, which is the line that
         triggered the interrupt.
-
     """
 
     IRQ_FALLING = 270598144  # type: int
@@ -822,17 +823,15 @@ class ExtInt:
         ...
 
     @classmethod
-    def regs(cls) -> Any:
+    def regs(cls) -> Incomplete:
         """
         Dump the values of the EXTI registers.
-
         """
         ...
 
-    def swint(self) -> Any:
+    def swint(self) -> Incomplete:
         """
         Trigger the callback from software.
-
         """
         ...
 
@@ -864,13 +863,13 @@ class Flash:
     This constructor is deprecated and will be removed in a future version of MicroPython.
     """
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any:
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
         ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any:
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
         ...
 
-    def ioctl(self, cmd, arg) -> Any:
+    def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
@@ -888,7 +887,7 @@ class ADC:
     This allows you to then read analog values on that pin.
     """
 
-    def read_timed(self, buf, timer) -> Any:
+    def read_timed(self, buf, timer) -> Incomplete:
         """
         Read analog values into ``buf`` at a rate set by the ``timer`` object.
 
@@ -979,7 +978,7 @@ class ADC:
         """
         ...
 
-    def read(self) -> Any:
+    def read(self) -> Incomplete:
         """
         Read the value on the analog pin and return it.  The returned value
         will be between 0 and 4095.
@@ -1028,7 +1027,7 @@ class DAC:
         """
         ...
 
-    def write_timed(self, data, freq, *, mode=NORMAL) -> Any:
+    def write_timed(self, data, freq, *, mode=NORMAL) -> Incomplete:
         """
         Initiates a burst of RAM to DAC using a DMA transfer.
         The input data is treated as an array of bytes in 8-bit mode, and
@@ -1058,7 +1057,7 @@ class DAC:
         """
         ...
 
-    def write(self, value) -> Any:
+    def write(self, value) -> Incomplete:
         """
         Direct access to the DAC output.  The minimum value is 0.  The maximum
         value is 2**``bits``-1, where ``bits`` is set when creating the DAC
@@ -1066,7 +1065,7 @@ class DAC:
         """
         ...
 
-    def init(self, bits=8, *, buffering=None) -> Any:
+    def init(self, bits=8, *, buffering=None) -> Incomplete:
         """
         Reinitialise the DAC.  *bits* can be 8 or 12.  *buffering* can be
         ``None``, ``False`` or ``True``; see above constructor for the meaning
@@ -1074,7 +1073,7 @@ class DAC:
         """
         ...
 
-    def deinit(self) -> Any:
+    def deinit(self) -> Incomplete:
         """
         De-initialise the DAC making its pin available for other uses.
         """
@@ -1087,10 +1086,9 @@ class DAC:
 class RTC:
     """
     Create an RTC object.
-
     """
 
-    def info(self) -> Any:
+    def info(self) -> Incomplete:
         """
         Get information about the startup time and reset source.
 
@@ -1161,7 +1159,6 @@ class USB_VCP:
     """
     Create a new USB_VCP object.  The *id* argument specifies which USB VCP port to
     use.
-
     """
 
     RTS = 1  # type: int
@@ -1214,7 +1211,6 @@ class USB_VCP:
         Valid values for *trigger* are:
 
           - ``USB_VCP.IRQ_RX``: new data is available for reading from the USB VCP object.
-
         """
         ...
 
@@ -1229,7 +1225,7 @@ class USB_VCP:
         """
         ...
 
-    def close(self) -> Any:
+    def close(self) -> Incomplete:
         """
         This method does nothing.  It exists so the USB_VCP object can act as
         a file.
@@ -1328,7 +1324,7 @@ class Timer:
     ENC_AB = 11  # type: int
     ENC_A = 9  # type: int
 
-    def freq(self, value: Optional[Any] = None) -> Any:
+    def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the frequency for the timer (changes prescaler and period if set).
         """
@@ -1391,19 +1387,19 @@ class Timer:
         """
         ...
 
-    def period(self, value: Optional[Any] = None) -> Any:
+    def period(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the period of the timer.
         """
         ...
 
-    def prescaler(self, value: Optional[Any] = None) -> Any:
+    def prescaler(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the prescaler for the timer.
         """
         ...
 
-    def source_freq(self) -> Any:
+    def source_freq(self) -> Incomplete:
         """
         Get the frequency of the source of the timer.
         """
@@ -1428,7 +1424,7 @@ class Timer:
         """
         ...
 
-    def channel(self, channel, mode, pin=None, *args) -> Any:
+    def channel(self, channel, mode, pin=None, *args) -> Incomplete:
         """
         If only a channel number is passed, then a previously initialized channel
         object is returned (or ``None`` if there is no previous channel).
@@ -1515,7 +1511,7 @@ class Timer:
         """
         ...
 
-    def counter(self, value: Optional[Any] = None) -> Any:
+    def counter(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the timer counter.
         """
@@ -1528,7 +1524,6 @@ class Timer:
 class Switch(Pin):
     """
     Create and return a switch object.
-
     """
 
     def callback(self, fun) -> None:
@@ -1551,10 +1546,9 @@ class Switch(Pin):
 class Servo:
     """
     Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
-
     """
 
-    def speed(self, speed: Optional[Any] = None, time=0) -> Any:
+    def speed(self, speed: Optional[Any] = None, time=0) -> Incomplete:
         """
         If no arguments are given, this function returns the current speed.
 
@@ -1566,7 +1560,7 @@ class Servo:
         """
         ...
 
-    def pulse_width(self, value: Optional[Any] = None) -> Any:
+    def pulse_width(self, value: Optional[Any] = None) -> Incomplete:
         """
         If no arguments are given, this function returns the current raw pulse-width
         value.
@@ -1590,7 +1584,7 @@ class Servo:
         """
         ...
 
-    def angle(self, angle: Optional[Any] = None, time=0) -> Any:
+    def angle(self, angle: Optional[Any] = None, time=0) -> Incomplete:
         """
         If no arguments are given, this function returns the current angle.
 
@@ -1647,7 +1641,7 @@ class UART:
     CTS = 512  # type: int
     RTS = 256  # type: int
 
-    def init(self, baudrate, bits=8, parity=None, stop=1, *, timeout=0, flow=0, timeout_char=0, read_buf_len=64) -> Any:
+    def init(self, baudrate, bits=8, parity=None, stop=1, *, timeout=0, flow=0, timeout_char=0, read_buf_len=64) -> Incomplete:
         """
         Initialise the UART bus with the given parameters:
 
@@ -1773,7 +1767,6 @@ class UART:
 class USB_HID:
     """
     Create a new USB_HID object.
-
     """
 
     def recv(self, data, *, timeout=5000) -> int:
@@ -1836,7 +1829,7 @@ class I2C:
         """
         ...
 
-    def mem_read(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> Any:
+    def mem_read(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> Incomplete:
         """
         Read from the memory of an I2C device:
 
@@ -1880,7 +1873,7 @@ class I2C:
         """
         ...
 
-    def is_ready(self, addr) -> Any:
+    def is_ready(self, addr) -> Incomplete:
         """
         Check if an I2C device responds to the given address.  Only valid when in controller mode.
         """
@@ -1931,10 +1924,9 @@ class LED:
     Create an LED object associated with the given LED:
 
       - ``id`` is the LED number, 1-4.
-
     """
 
-    def toggle(self) -> Any:
+    def toggle(self) -> Incomplete:
         """
         Toggle the LED between on (maximum intensity) and off.  If the LED is at
         non-zero intensity then it is considered "on" and toggle will turn it off.
@@ -1975,7 +1967,6 @@ class LCD:
     """
     Construct an LCD object in the given skin position.  ``skin_position`` can be 'X' or 'Y', and
     should match the position where the LCD pyskin is plugged in.
-
     """
 
     def fill(self, colour) -> None:
@@ -2205,7 +2196,7 @@ class Pin:
     AF5_I2S2 = 5  # type: int
     AF5_SPI1 = 5  # type: int
 
-    def mode(self) -> Any:
+    def mode(self) -> Incomplete:
         """
         Returns the currently configured mode of the pin. The integer returned
         will match one of the allowed constants for the mode argument to the init
@@ -2219,7 +2210,7 @@ class Pin:
         """
         ...
 
-    def pull(self) -> Any:
+    def pull(self) -> Incomplete:
         """
         Returns the currently configured pull of the pin. The integer returned
         will match one of the allowed constants for the pull argument to the init
@@ -2239,7 +2230,7 @@ class Pin:
         """
         ...
 
-    def port(self) -> Any:
+    def port(self) -> Incomplete:
         """
         Get the pin port.
         """
@@ -2297,7 +2288,7 @@ class Pin:
         """
         ...
 
-    def af(self) -> Any:
+    def af(self) -> Incomplete:
         """
         Returns the currently configured alternate-function of the pin. The
         integer returned will match one of the allowed constants for the af
@@ -2326,7 +2317,7 @@ class Pin:
         ...
 
     @classmethod
-    def dict(cls, dict: Optional[Any] = None) -> Any:
+    def dict(cls, dict: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin mapper dictionary.
         """
@@ -2392,10 +2383,9 @@ class Pin:
             ...
 
     @classmethod
-    def mapper(cls, fun: Optional[Any] = None) -> Any:
+    def mapper(cls, fun: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin mapper function.
-
         """
         ...
 
@@ -2456,7 +2446,7 @@ class Pin:
     def __init__(self, id, *args, **kwargs) -> None:
         ...
 
-    def __call__(self, x: Optional[Any] = None) -> Any:
+    def __call__(self, x: Optional[Any] = None) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
         and get the value of the pin.  It is equivalent to Pin.value([x]).

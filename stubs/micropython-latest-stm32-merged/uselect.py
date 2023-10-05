@@ -1,14 +1,17 @@
 """
-wait for events on a set of streams. See: https://docs.micropython.org/en/latest/library/select.html
+Wait for events on a set of streams.
 
-|see_cpython_module| :mod:`python:select` https://docs.python.org/3/library/select.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/select.html
+
+CPython module: :mod:`python:select` https://docs.python.org/3/library/select.html .
 
 This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
-# Stubber: 1.9.11
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
+# Stubber: v1.13.7
 from typing import Iterator, List, Optional, Tuple, Any
+from _typeshed import Incomplete
 
 POLLOUT = 4  # type: int
 POLLIN = 1  # type: int
@@ -16,16 +19,14 @@ POLLHUP = 16  # type: int
 POLLERR = 8  # type: int
 
 
-class select:
+def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
     """
     Wait for activity on a set of objects.
 
     This function is provided by some MicroPython ports for compatibility
     and is not efficient. Usage of :class:`Poll` is recommended instead.
     """
-
-    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
-        ...
+    ...
 
 
 class poll:
@@ -56,7 +57,7 @@ class poll:
         """
         ...
 
-    def unregister(self, obj) -> Any:
+    def unregister(self, obj) -> Incomplete:
         """
         Unregister *obj* from polling.
         """
@@ -86,6 +87,10 @@ class poll:
         these flags set for this stream again.
 
         In case of timeout, an empty list is returned.
+
+        Difference to CPython
+
+           Tuples returned may contain more than 2 elements as described above.
         """
         ...
 
@@ -100,5 +105,9 @@ class poll:
         (equivalent to ``poll.modify(obj, 0)``), so new events for such a stream
         won't be processed until new mask is set with `poll.modify()`. This
         behaviour is useful for asynchronous I/O schedulers.
+
+        Difference to CPython
+
+           This function is a MicroPython extension.
         """
         ...

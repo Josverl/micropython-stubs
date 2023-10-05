@@ -1,7 +1,9 @@
 """
-time related functions. See: https://docs.micropython.org/en/v1.19.1/library/time.html
+Time related functions.
 
-|see_cpython_module| :mod:`python:time` https://docs.python.org/3/library/time.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/time.html
+
+CPython module: :mod:`python:time` https://docs.python.org/3/library/time.html .
 
 The ``time`` module provides functions for getting the current time and date,
 measuring time intervals, and for delays.
@@ -34,21 +36,7 @@ behave not as expected.
 # source version: v1_19_1
 # origin module:: repos/micropython/docs/library/time.rst
 from typing import Any, Optional, Tuple
-
-class time:
-    """
-    Returns the number of seconds, as an integer, since the Epoch, assuming that
-    underlying RTC is set and maintained as described above. If an RTC is not set, this
-    function returns number of seconds since a port-specific reference point in time (for
-    embedded boards without a battery-backed RTC, usually since power up or reset). If you
-    want to develop portable MicroPython application, you should not rely on this function
-    to provide higher than second precision.  If you need higher precision, absolute
-    timestamps, use `time_ns()`.  If relative times are acceptable then use the
-    `ticks_ms()` and `ticks_us()` functions.  If you need calendar time, `gmtime()` or
-    `localtime()` without an argument is a better choice.
-    """
-
-    def __init__(self) -> None: ...
+from _typeshed import Incomplete
 
 def gmtime(secs: Optional[Any] = None) -> Tuple:
     """
@@ -102,7 +90,7 @@ def mktime() -> int:
     """
     ...
 
-def sleep(seconds) -> Any:
+def sleep(seconds) -> Incomplete:
     """
     Sleep for the given number of seconds. Some boards may accept *seconds* as a
     floating-point number to sleep for a fractional number of seconds. Note that
@@ -156,13 +144,13 @@ def ticks_ms() -> int:
     """
     ...
 
-def ticks_us() -> Any:
+def ticks_us() -> Incomplete:
     """
     Just like `ticks_ms()` above, but in microseconds.
     """
     ...
 
-def ticks_cpu() -> Any:
+def ticks_cpu() -> Incomplete:
     """
     Similar to `ticks_ms()` and `ticks_us()`, but with the highest possible resolution
     in the system. This is usually CPU clocks, and that's why the function is named that
@@ -174,11 +162,10 @@ def ticks_cpu() -> Any:
     Avoid using it in portable code.
 
     Availability: Not every port implements this function.
-
     """
     ...
 
-def ticks_add(ticks, delta) -> Any:
+def ticks_add(ticks, delta) -> Incomplete:
     """
     Offset ticks value by a given number, which can be either positive or negative.
     Given a *ticks* value, this function allows to calculate ticks value *delta*
@@ -202,7 +189,6 @@ def ticks_add(ticks, delta) -> Any:
 
          # Find out TICKS_MAX used by this port
          print(ticks_add(0, -1))
-
     """
     ...
 
@@ -269,7 +255,33 @@ def ticks_diff(ticks1, ticks2) -> int:
     Note: Do not pass `time()` values to `ticks_diff()`, you should use
     normal mathematical operations on them. But note that `time()` may (and will)
     also overflow. This is known as https://en.wikipedia.org/wiki/Year_2038_problem .
+    """
+    ...
 
+def time() -> int:
+    """
+    Returns the number of seconds, as an integer, since the Epoch, assuming that
+    underlying RTC is set and maintained as described above. If an RTC is not set, this
+    function returns number of seconds since a port-specific reference point in time (for
+    embedded boards without a battery-backed RTC, usually since power up or reset). If you
+    want to develop portable MicroPython application, you should not rely on this function
+    to provide higher than second precision.  If you need higher precision, absolute
+    timestamps, use `time_ns()`.  If relative times are acceptable then use the
+    `ticks_ms()` and `ticks_us()` functions.  If you need calendar time, `gmtime()` or
+    `localtime()` without an argument is a better choice.
+
+    Difference to CPython
+
+       In CPython, this function returns number of
+       seconds since Unix epoch, 1970-01-01 00:00 UTC, as a floating-point,
+       usually having microsecond precision. With MicroPython, only Unix port
+       uses the same Epoch, and if floating-point precision allows,
+       returns sub-second precision. Embedded hardware usually doesn't have
+       floating-point precision to represent both long time ranges and subsecond
+       precision, so they use integer value with second precision. Some embedded
+       hardware also lacks battery-powered RTC, so returns number of seconds
+       since last power-up or from other relative, hardware-specific point
+       (e.g. reset).
     """
     ...
 

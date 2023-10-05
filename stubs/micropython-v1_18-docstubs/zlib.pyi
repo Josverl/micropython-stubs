@@ -1,7 +1,9 @@
 """
-zlib decompression. See: https://docs.micropython.org/en/v1.18/library/zlib.html
+Zlib decompression.
 
-|see_cpython_module| :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
+MicroPython module: https://docs.micropython.org/en/v1.18/library/zlib.html
+
+CPython module: :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
 
 This module allows to decompress binary data compressed with
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
@@ -11,6 +13,8 @@ is not yet implemented.
 
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/zlib.rst
+from _typeshed import Incomplete
+
 class DecompIO:
     """
     Create a `stream` wrapper which allows transparent decompression of
@@ -18,6 +22,11 @@ class DecompIO:
     streams with data larger than available heap size. In addition to
     values described in :func:`decompress`, *wbits* may take values
     24..31 (16 + 8..15), meaning that input stream has gzip header.
+
+    Difference to CPython
+
+       This class is MicroPython extension. It's included on provisional
+       basis and may be changed considerably or removed in later versions.
     """
 
     def __init__(self, stream, wbits=0, /) -> None: ...

@@ -1,7 +1,9 @@
 """
-hashing algorithms. See: https://docs.micropython.org/en/v1.20/library/hashlib.html
+Hashing algorithms.
 
-|see_cpython_module| :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/hashlib.html
+
+CPython module: :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
 
 This module implements binary data hashing algorithms. The exact inventory
 of available algorithms depends on a board. Among the algorithms which may
@@ -21,15 +23,17 @@ be implemented:
   selected boards, targeting interoperability with legacy applications,
   will offer this.
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20', 'build': '', 'ver': 'v1.20', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
+# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
 class sha256:
     """
     Create an SHA256 hasher object and optionally feed ``data`` into it.
     """
+
     def digest(self, *args, **kwargs) -> Any:
         ...
 
@@ -44,6 +48,7 @@ class sha1:
     """
     Create an SHA1 hasher object and optionally feed ``data`` into it.
     """
+
     def digest(self, *args, **kwargs) -> Any:
         ...
 

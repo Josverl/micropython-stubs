@@ -1,5 +1,7 @@
 """
-network configuration. See: https://docs.micropython.org/en/v1.19.1/library/network.html
+Network configuration.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.
@@ -34,6 +36,7 @@ For example::
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import List, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 AP_IF = 1  # type: int
 AUTH_MAX = 8  # type: int
@@ -77,7 +80,7 @@ class LAN:
     def __init__(self, id, *, phy_type=0, phy_addr=0, phy_clock=0) -> None:
         ...
 
-    def active(self, state: Optional[Any] = None) -> Any:
+    def active(self, state: Optional[Any] = None) -> Incomplete:
         """
         With a parameter, it sets the interface active if *state* is true, otherwise it
         sets it inactive.
@@ -92,7 +95,7 @@ class LAN:
         """
         ...
 
-    def status(self) -> Any:
+    def status(self) -> Incomplete:
         """
         Returns the LAN status.
         """
@@ -110,7 +113,7 @@ class LAN:
         """
         ...
 
-    def config(self, config_parameters) -> Any:
+    def config(self, config_parameters) -> Incomplete:
         """
         Sets or gets parameters of the LAN interface. The only parameter that can be
         retrieved is the MAC address, using::
@@ -127,7 +130,6 @@ class LAN:
 
          - ``low_power=bool`` sets or clears low power mode, valid values being ``False``
            or ``True``.
-
         """
         ...
 
@@ -220,7 +222,7 @@ class WLAN:
         """
         ...
 
-    def status(self, param: Optional[Any] = None) -> Any:
+    def status(self, param: Optional[Any] = None) -> Incomplete:
         """
         Return the current status of the wireless connection.
 
@@ -258,7 +260,7 @@ class WLAN:
         """
         ...
 
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by

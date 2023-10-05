@@ -1,15 +1,12 @@
 """
-System error codes.
+system error codes. See: https://docs.micropython.org/en/latest/library/errno.html
 
-MicroPython module: https://docs.micropython.org/en/latest/library/errno.html
-
-CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
+|see_cpython_module| :mod:`python:errno` https://docs.python.org/3/library/errno.html .
 
 This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
 """
-from _typeshed import Incomplete
-from typing import Dict
+from typing import Any, Dict
 
 ENOBUFS: int
 ENODEV: int

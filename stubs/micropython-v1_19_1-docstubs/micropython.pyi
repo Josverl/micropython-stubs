@@ -1,12 +1,17 @@
 """
-access and control MicroPython internals. See: https://docs.micropython.org/en/v1.19.1/library/micropython.html
+Access and control MicroPython internals.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/micropython.html
 """
 
 # source version: v1_19_1
 # origin module:: repos/micropython/docs/library/micropython.rst
-from typing import Any, Optional, Tuple, Union
+from typing import Any, Optional, Tuple, TypeVar
+from _typeshed import Incomplete
 
-def const(expr) -> Union[int, bytes, str, Tuple]:
+Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple)  # constant
+
+def const(expr: Const_T) -> Const_T:
     """
     Used to declare that the expression is a constant so that the compile can
     optimise it.  The use of this function should be as follows::
@@ -28,7 +33,7 @@ def const(expr) -> Union[int, bytes, str, Tuple]:
     """
     ...
 
-def opt_level(level: Optional[Any] = None) -> Any:
+def opt_level(level: Optional[Any] = None) -> Incomplete:
     """
     If *level* is given then this function sets the optimisation level for subsequent
     compilation of scripts, and returns ``None``.  Otherwise it returns the current
@@ -48,7 +53,7 @@ def opt_level(level: Optional[Any] = None) -> Any:
     """
     ...
 
-def alloc_emergency_exception_buf(size) -> Any:
+def alloc_emergency_exception_buf(size) -> Incomplete:
     """
     Allocate *size* bytes of RAM for the emergency exception buffer (a good
     size is around 100 bytes).  The buffer is used to create exceptions in cases
@@ -91,9 +96,9 @@ def stack_use() -> int:
     """
     ...
 
-def heap_lock() -> Any: ...
-def heap_unlock() -> Any: ...
-def heap_locked() -> int:
+def heap_lock() -> int: ...
+def heap_unlock() -> int: ...
+def heap_locked() -> bool:
     """
     Lock or unlock the heap.  When locked no memory allocation can occur and a
     `MemoryError` will be raised if any heap allocation is attempted.
@@ -128,7 +133,7 @@ def kbd_intr(chr) -> None:
     """
     ...
 
-def schedule(func, arg) -> Any:
+def schedule(func, arg) -> Incomplete:
     """
     Schedule the function *func* to be executed "very soon".  The function
     is passed the value *arg* as its single argument.  "Very soon" means that

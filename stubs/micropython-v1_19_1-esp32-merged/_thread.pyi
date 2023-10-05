@@ -1,7 +1,9 @@
 """
-multithreading support. See: https://docs.micropython.org/en/v1.19.1/library/_thread.html
+Multithreading support.
 
-|see_cpython_module| :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/_thread.html
+
+CPython module: :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
 
 This module implements multithreading support.
 
@@ -9,6 +11,7 @@ This module is highly experimental and its API is not yet fully settled
 and not yet described in this documentation.
 """
 from typing import Any
+from _typeshed import Incomplete
 
 def get_ident(*args, **kwargs) -> Any: ...
 def start_new_thread(*args, **kwargs) -> Any: ...

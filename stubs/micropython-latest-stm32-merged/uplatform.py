@@ -1,18 +1,48 @@
 """
-Module: 'uplatform' on micropython-v1.19.1-stm32
+Access to underlying platform’s identifying data.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/platform.html
+
+CPython module: :mod:`python:platform` https://docs.python.org/3/library/platform.html .
+
+This module tries to retrieve as much platform-identifying data as possible. It
+makes this information available via function APIs.
 """
-# MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
-# Stubber: 1.9.11
-from typing import Any
+# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
+# Stubber: v1.13.7
+from typing import Tuple, Any
+from _typeshed import Incomplete
 
 
-def platform(*args, **kwargs) -> Any:
+def platform() -> str:
+    """
+    Returns a string identifying the underlying platform. This string is composed
+    of several substrings in the following order, delimited by dashes (``-``):
+
+    - the name of the platform system (e.g. Unix, Windows or MicroPython)
+    - the MicroPython version
+    - the architecture of the platform
+    - the version of the underlying platform
+    - the concatenation of the name of the libc that MicroPython is linked to
+      and its corresponding version.
+
+    For example, this could be
+    ``"MicroPython-1.20.0-xtensa-IDFv4.2.4-with-newlib3.0.0"``.
+    """
     ...
 
 
-def python_compiler(*args, **kwargs) -> Any:
+def python_compiler() -> str:
+    """
+    Returns a string identifying the compiler used for compiling MicroPython.
+    """
     ...
 
 
-def libc_ver(*args, **kwargs) -> Any:
+def libc_ver() -> Tuple:
+    """
+    Returns a tuple of strings *(lib, version)*, where *lib* is the name of the
+    libc that MicroPython is linked to, and *version* the corresponding version
+    of this libc.
+    """
     ...

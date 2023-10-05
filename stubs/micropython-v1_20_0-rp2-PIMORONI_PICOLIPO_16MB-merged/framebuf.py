@@ -1,5 +1,7 @@
 """
-Frame buffer manipulation. See: https://docs.micropython.org/en/v1.20.0/library/framebuf.html
+Frame buffer manipulation.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
@@ -7,6 +9,7 @@ bitmap images, which can then be sent to a display.
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.7
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 MONO_HMSB = 4  # type: int
 MONO_HLSB = 3  # type: int
@@ -48,7 +51,7 @@ class FrameBuffer:
     unexpected errors.
     """
 
-    def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Any:
+    def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Incomplete:
         """
         Given a list of coordinates, draw an arbitrary (convex or concave) closed
         polygon at the given x, y location using the given color.
@@ -61,10 +64,10 @@ class FrameBuffer:
         """
         ...
 
-    def vline(self, x, y, h, c) -> Any:
+    def vline(self, x, y, h, c) -> Incomplete:
         ...
 
-    def pixel(self, x, y, c: Optional[Any] = None) -> Any:
+    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
@@ -77,7 +80,6 @@ class FrameBuffer:
         corner of the text. The color of the text can be defined by the optional
         argument but is otherwise a default value of 1. All characters have
         dimensions of 8x8 pixels and there is currently no way to change the font.
-
         """
         ...
 
@@ -90,7 +92,7 @@ class FrameBuffer:
         """
         ...
 
-    def scroll(self, xstep, ystep) -> Any:
+    def scroll(self, xstep, ystep) -> Incomplete:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
@@ -145,7 +147,7 @@ class FrameBuffer:
         """
         ...
 
-    def hline(self, x, y, w, c) -> Any:
+    def hline(self, x, y, w, c) -> Incomplete:
         ...
 
     def fill(self, c) -> None:

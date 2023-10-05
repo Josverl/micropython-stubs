@@ -1,5 +1,7 @@
 """
-deflate compression & decompression. See: https://docs.micropython.org/en/latest/library/deflate.html
+Deflate compression & decompression.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/deflate.html
 
 This module allows compression and decompression of binary data with the
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
@@ -19,6 +21,7 @@ This module allows compression and decompression of binary data with the
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
 # Stubber: v1.13.7
 from typing import Any
+from _typeshed import Incomplete
 
 GZIP = 3  # type: int
 RAW = 1  # type: int

@@ -1,7 +1,9 @@
 """
-basic "operating system" services. See: https://docs.micropython.org/en/v1.20.0/library/os.html
+Basic "operating system" services.
 
-|see_cpython_module| :mod:`python:os` https://docs.python.org/3/library/os.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/os.html
+
+CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
 
 The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
@@ -10,7 +12,8 @@ functions.
 # MCU: OrderedDict({'build': '', 'ver': 'v1.20.0', 'version': '1.20.0', 'port': 'samd', 'board': 'MINISAM_M4', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51G19A', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
 from typing import IO, Iterator, Optional, Tuple, Any
-from stdlib.os import uname_result
+from _typeshed import Incomplete
+from stdlib.os import *
 
 
 def rmdir(path) -> None:
@@ -27,7 +30,7 @@ def rename(old_path, new_path) -> None:
     ...
 
 
-def mount(fsobj, mount_point, *, readonly) -> Any:
+def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
     *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
@@ -46,7 +49,7 @@ def mount(fsobj, mount_point, *, readonly) -> Any:
     ...
 
 
-def mkdir(path) -> Any:
+def mkdir(path) -> Incomplete:
     """
     Create a new directory.
     """
@@ -61,7 +64,7 @@ def urandom(n) -> bytes:
     ...
 
 
-def stat(path) -> Any:
+def stat(path) -> Incomplete:
     """
     Get the status of a file or directory.
     """
@@ -72,7 +75,7 @@ def unlink(*args, **kwargs) -> Any:
     ...
 
 
-def umount(mount_point) -> Any:
+def umount(mount_point) -> Incomplete:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
     or a previously-mounted filesystem object.  During the unmount process the
@@ -107,14 +110,14 @@ def statvfs(path) -> Tuple:
     ...
 
 
-def chdir(path) -> Any:
+def chdir(path) -> Incomplete:
     """
     Change current directory.
     """
     ...
 
 
-def listdir(dir: Optional[Any] = None) -> Any:
+def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
     With no argument, list the current directory.  Otherwise list the given directory.
     """
@@ -174,7 +177,7 @@ def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     ...
 
 
-def getcwd() -> Any:
+def getcwd() -> Incomplete:
     """
     Get the current directory.
     """

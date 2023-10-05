@@ -1,11 +1,14 @@
 """
-system specific functions. See: https://docs.micropython.org/en/latest/library/sys.html
+System specific functions.
 
-|see_cpython_module| :mod:`python:sys` https://docs.python.org/3/library/sys.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/sys.html
+
+CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
 # Stubber: v1.13.7
 from typing import Dict, List, Tuple, Any
+from _typeshed import Incomplete
 
 platform = "esp32"  # type: str
 version_info = ()  # type: tuple
@@ -24,11 +27,20 @@ def print_exception(exc, file=stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
+
+    Difference to CPython
+
+       This is simplified version of a function which appears in the
+       ``traceback`` module in CPython. Unlike ``traceback.print_exception()``,
+       this function takes just exception value instead of exception type,
+       exception value, and traceback object; *file* argument should be
+       positional; further arguments are not supported. CPython-compatible
+       ``traceback`` module can be found in `micropython-lib`.
     """
     ...
 
 
-def exit(retval=0, /) -> Any:
+def exit(retval=0, /) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its

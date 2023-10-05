@@ -1,7 +1,9 @@
 """
-efficient arrays of numeric data. See: https://docs.micropython.org/en/v1.19.1/library/array.html
+Efficient arrays of numeric data.
 
-|see_cpython_module| :mod:`python:array` https://docs.python.org/3/library/array.html .
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/array.html
+
+CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html .
 
 Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
@@ -10,6 +12,7 @@ floating-point support).
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
 class array:
@@ -19,7 +22,7 @@ class array:
     array is created.
     """
 
-    def extend(self, iterable) -> Any:
+    def extend(self, iterable) -> Incomplete:
         """
         Append new elements as contained in *iterable* to the end of
         array, growing it.
@@ -29,7 +32,7 @@ class array:
     def decode(self, *args, **kwargs) -> Any:
         ...
 
-    def append(self, val) -> Any:
+    def append(self, val) -> Incomplete:
         """
         Append new element *val* to the end of array, growing it.
         """

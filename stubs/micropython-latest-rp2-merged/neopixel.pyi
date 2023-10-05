@@ -1,5 +1,7 @@
 """
-control of WS2812 / NeoPixel LEDs. See: https://docs.micropython.org/en/latest/library/neopixel.html
+Control of WS2812 / NeoPixel LEDs.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/neopixel.html
 
 This module provides a driver for WS2818 / NeoPixel LEDs.
 
@@ -9,6 +11,7 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    directly from :term:`micropython-lib` and copy it to the filesystem.
 """
 from typing import Tuple, Any
+from _typeshed import Incomplete
 
 def bitstream(*args, **kwargs) -> Any: ...
 

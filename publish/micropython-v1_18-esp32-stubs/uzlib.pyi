@@ -8,7 +8,7 @@ This module allows to decompress binary data compressed with
 (commonly used in zlib library and gzip archiver). Compression
 is not yet implemented.
 """
-from typing import IO, Any
+from typing import Any
 
 class DecompIO:
     """

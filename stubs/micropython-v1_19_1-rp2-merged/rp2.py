@@ -1,5 +1,7 @@
 """
-functionality specific to the RP2. See: https://docs.micropython.org/en/v1.19.1/library/rp2.html
+Functionality specific to the RP2.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/rp2.html
 
 The ``rp2`` module contains functions and classes specific to the RP2040, as
 used in the Raspberry Pi Pico.
@@ -9,14 +11,14 @@ See the `RP2040 Python datasheet
 for more information, and `pico-micropython-examples
 <https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
 for example code.
-
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Any:
+def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
     instead.
@@ -39,7 +41,7 @@ def asm_pio(
     push_thresh=32,
     pull_thresh=32,
     fifo_join=PIO.JOIN_NONE,
-) -> Any:
+) -> Incomplete:
     """
     Assemble a PIO program.
 
@@ -145,7 +147,6 @@ class PIOASMError(Exception):
     """
     This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
     an error assembling a PIO program.
-
     """
 
     ...

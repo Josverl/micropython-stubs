@@ -1,5 +1,7 @@
 """
-network configuration. See: https://docs.micropython.org/en/v1.19.1/library/network.html
+Network configuration.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.
@@ -34,6 +36,7 @@ For example::
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import List, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 STA_IF = 0  # type: int
 STAT_CONNECT_FAIL = 4  # type: int
@@ -121,7 +124,7 @@ class WLAN:
         """
         ...
 
-    def status(self, param: Optional[Any] = None) -> Any:
+    def status(self, param: Optional[Any] = None) -> Incomplete:
         """
         Return the current status of the wireless connection.
 
@@ -159,7 +162,7 @@ class WLAN:
         """
         ...
 
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by

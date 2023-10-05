@@ -1,5 +1,7 @@
 """
-deflate compression & decompression. See: https://docs.micropython.org/en/latest/library/deflate.html
+Deflate compression & decompression.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/deflate.html
 
 This module allows compression and decompression of binary data with the
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
@@ -17,6 +19,7 @@ This module allows compression and decompression of binary data with the
   you need to build your own firmware to enable this).
 """
 from typing import Any
+from _typeshed import Incomplete
 
 GZIP: int
 RAW: int

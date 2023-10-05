@@ -1,5 +1,7 @@
 """
-WiPy specific features. See: https://docs.micropython.org/en/v1.18/library/wipy.html
+WiPy specific features.
+
+MicroPython module: https://docs.micropython.org/en/v1.18/library/wipy.html
 
 The ``wipy`` module contains functions to control specific features of the
 WiPy, such as the heartbeat LED.
@@ -8,6 +10,7 @@ WiPy, such as the heartbeat LED.
 # source version: v1_18
 # origin module:: repos/micropython/docs/library/wipy.rst
 from typing import Any, Optional
+from _typeshed import Incomplete
 
 def heartbeat(enable: Optional[Any] = None) -> bool:
     """

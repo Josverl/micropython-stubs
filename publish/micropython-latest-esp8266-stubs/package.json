@@ -2,7 +2,7 @@
     "name": "micropython-esp8266-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.21.0a450",
+    "pkg_version": "1.21.0a544",
     "path": "micropython-latest-esp8266-stubs",
     "stub_sources": [
         [

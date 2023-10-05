@@ -1,5 +1,7 @@
 """
-network configuration. See: https://docs.micropython.org/en/v1.19.1/library/network.html
+Network configuration.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.
@@ -34,6 +36,7 @@ For example::
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import List, Optional, Tuple, Union, Any
+from _typeshed import Incomplete
 
 STA_IF = 0  # type: int
 AP_IF = 1  # type: int

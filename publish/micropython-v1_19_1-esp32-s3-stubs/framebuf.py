@@ -1,5 +1,7 @@
 """
-Frame buffer manipulation. See: https://docs.micropython.org/en/v1.19.1/library/framebuf.html
+Frame buffer manipulation.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
@@ -7,6 +9,7 @@ bitmap images, which can then be sent to a display.
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32S3 module with ESP32S3', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.11.2
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 MONO_HMSB = 4  # type: int
 MONO_HLSB = 3  # type: int
@@ -48,20 +51,20 @@ class FrameBuffer:
     unexpected errors.
     """
 
-    def rect(self, x, y, w, h, c) -> Any:
+    def rect(self, x, y, w, h, c) -> Incomplete:
         ...
 
-    def pixel(self, x, y, c: Optional[Any] = None) -> Any:
+    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
         """
         ...
 
-    def vline(self, x, y, h, c) -> Any:
+    def vline(self, x, y, h, c) -> Incomplete:
         ...
 
-    def scroll(self, xstep, ystep) -> Any:
+    def scroll(self, xstep, ystep) -> Incomplete:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
@@ -74,7 +77,6 @@ class FrameBuffer:
         corner of the text. The color of the text can be defined by the optional
         argument but is otherwise a default value of 1. All characters have
         dimensions of 8x8 pixels and there is currently no way to change the font.
-
         """
         ...
 
@@ -122,7 +124,7 @@ class FrameBuffer:
         """
         ...
 
-    def hline(self, x, y, w, c) -> Any:
+    def hline(self, x, y, w, c) -> Incomplete:
         ...
 
     def __init__(self, buffer, width, height, format, stride=-1, /) -> None:

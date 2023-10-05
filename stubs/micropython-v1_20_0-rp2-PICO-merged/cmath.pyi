@@ -1,7 +1,9 @@
 """
-mathematical functions for complex numbers. See: https://docs.micropython.org/en/v1.20/library/cmath.html
+Mathematical functions for complex numbers.
 
-|see_cpython_module| :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/cmath.html
+
+CPython module: :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
 
 The ``cmath`` module provides some basic mathematical functions for
 working with complex numbers.
@@ -10,6 +12,7 @@ Availability: not available on WiPy and ESP8266. Floating point support
 required for this module.
 """
 from typing import Tuple, Any
+from _typeshed import Incomplete
 
 e: float
 pi: float
@@ -20,7 +23,7 @@ def polar(z) -> Tuple:
     """
     ...
 
-def sqrt(z) -> Any:
+def sqrt(z) -> Incomplete:
     """
     Return the square-root of ``z``.
     """

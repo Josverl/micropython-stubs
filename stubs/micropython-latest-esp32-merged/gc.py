@@ -1,16 +1,23 @@
 """
-control the garbage collector. See: https://docs.micropython.org/en/latest/library/gc.html
+Control the garbage collector.
 
-|see_cpython_module| :mod:`python:gc` https://docs.python.org/3/library/gc.html .
+MicroPython module: https://docs.micropython.org/en/latest/library/gc.html
+
+CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
 # Stubber: v1.13.7
 from typing import Optional, Any
+from _typeshed import Incomplete
 
 
 def mem_alloc() -> int:
     """
-    Return the number of bytes of heap RAM that are allocated.
+    Return the number of bytes of heap RAM that are allocated by Python code.
+
+    Difference to CPython
+
+       This function is MicroPython extension.
     """
     ...
 
@@ -21,13 +28,17 @@ def isenabled(*args, **kwargs) -> Any:
 
 def mem_free() -> int:
     """
-    Return the number of bytes of available heap RAM, or -1 if this amount
-    is not known.
+    Return the number of bytes of heap RAM that is available for Python
+    code to allocate, or -1 if this amount is not known.
+
+    Difference to CPython
+
+       This function is MicroPython extension.
     """
     ...
 
 
-def threshold(amount: Optional[Any] = None) -> Any:
+def threshold(amount: Optional[Any] = None) -> Incomplete:
     """
     Set or query the additional GC allocation threshold. Normally, a collection
     is triggered only when a new allocation cannot be satisfied, i.e. on an
@@ -43,6 +54,12 @@ def threshold(amount: Optional[Any] = None) -> Any:
 
     Calling the function without argument will return the current value of
     the threshold. A value of -1 means a disabled allocation threshold.
+
+    Difference to CPython
+
+       This function is a MicroPython extension. CPython has a similar
+       function - ``set_threshold()``, but due to different GC
+       implementations, its signature and semantics are different.
     """
     ...
 

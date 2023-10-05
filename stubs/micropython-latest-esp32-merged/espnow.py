@@ -1,9 +1,12 @@
 """
-ESP-NOW :doc:`asyncio` support. See: https://docs.micropython.org/en/latest/library/aioespnow.html
+ESP-NOW :doc:`asyncio` support.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/aioespnow.html
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
 # Stubber: v1.13.7
 from typing import Dict, Optional, Tuple, Any
+from _typeshed import Incomplete
 
 KEY_LEN = 16  # type: int
 MAX_DATA_LEN = 250  # type: int
@@ -70,7 +73,6 @@ class ESPNow:
         ``peer`` and ``msg`` bytestrings. This can lead to memory fragmentation if
         the data rate is high. See `ESPNow.irecv()` for a memory-friendly
         alternative.
-
         """
         ...
 
@@ -90,7 +92,7 @@ class ESPNow:
         """
         ...
 
-    def stats(self) -> Any:
+    def stats(self) -> Incomplete:
         """
         Returns:
 
@@ -169,7 +171,7 @@ class ESPNow:
         """
         ...
 
-    def irecv(self, timeout_ms: Optional[Any] = None) -> Any:
+    def irecv(self, timeout_ms: Optional[Any] = None) -> Incomplete:
         """
         Works like `ESPNow.recv()` but will re-use internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
@@ -200,7 +202,7 @@ class ESPNow:
         """
         ...
 
-    def get_peer(self, mac) -> Any:
+    def get_peer(self, mac) -> Incomplete:
         """
         Return information on a registered peer.
 
@@ -218,7 +220,7 @@ class ESPNow:
         """
         ...
 
-    def active(self, flag: Optional[Any] = None) -> Any:
+    def active(self, flag: Optional[Any] = None) -> Incomplete:
         """
         Initialise or de-initialise the ESP-NOW communication protocol depending on
         the value of the ``flag`` optional argument.
@@ -248,7 +250,7 @@ class ESPNow:
         """
         ...
 
-    def send(self, msg) -> Any:
+    def send(self, msg) -> Incomplete:
         """
         Send the data contained in ``msg`` to the peer with given network ``mac``
         address. In the second form, ``mac=None`` and ``sync=True``. The peer must
@@ -295,7 +297,7 @@ class ESPNow:
         """
         ...
 
-    def any(self) -> Any:
+    def any(self) -> Incomplete:
         """
         Check if data is available to be read with `ESPNow.recv()`.
 
@@ -315,7 +317,7 @@ class ESPNow:
         """
         ...
 
-    def del_peer(self, mac) -> Any:
+    def del_peer(self, mac) -> Incomplete:
         """
         Deregister the peer associated with the provided *mac* address.
 
@@ -334,7 +336,7 @@ class ESPNow:
 
     def add_peer(
         self, mac, lmk: Optional[Any] = None, channel: Optional[Any] = None, ifidx: Optional[Any] = None, encrypt: Optional[Any] = None
-    ) -> Any:
+    ) -> Incomplete:
         """
         Add/register the provided *mac* address as a peer. Additional parameters may
         also be specified as positional or keyword arguments (any parameter set to
