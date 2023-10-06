@@ -1,7 +1,9 @@
 """
-wait for events on a set of streams. See: https://docs.micropython.org/en/v1.17/library/select.html
+Wait for events on a set of streams.
 
-|see_cpython_module| :mod:`python:select` https://docs.python.org/3/library/select.html .
+MicroPython module: https://docs.micropython.org/en/v1.17/library/select.html
+
+CPython module: :mod:`python:select` https://docs.python.org/3/library/select.html .
 
 This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
@@ -10,6 +12,7 @@ This module provides functions to efficiently wait for events on multiple
 # source version: v1_17
 # origin module:: repos/micropython/docs/library/select.rst
 from typing import Any, Iterator, List, Optional, Tuple
+from _typeshed import Incomplete
 
 class poll:
     """
@@ -36,7 +39,7 @@ class poll:
         *eventmask* (i.e. will behave as `modify()`).
         """
         ...
-    def unregister(self, obj) -> Any:
+    def unregister(self, obj) -> Incomplete:
         """
         Unregister *obj* from polling.
         """
@@ -64,6 +67,10 @@ class poll:
         these flags set for this stream again.
 
         In case of timeout, an empty list is returned.
+
+        Difference to CPython
+
+           Tuples returned may contain more than 2 elements as described above.
         """
         ...
     def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
@@ -77,15 +84,18 @@ class poll:
         (equivalent to ``poll.modify(obj, 0)``), so new events for such a stream
         won't be processed until new mask is set with `poll.modify()`. This
         behaviour is useful for asynchronous I/O schedulers.
+
+        Difference to CPython
+
+           This function is a MicroPython extension.
         """
         ...
 
-class select:
+def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
     """
     Wait for activity on a set of objects.
 
     This function is provided by some MicroPython ports for compatibility
     and is not efficient. Usage of :class:`Poll` is recommended instead.
     """
-
-    def __init__(self, rlist, wlist, xlist, timeout: Optional[Any] = None) -> None: ...
+    ...

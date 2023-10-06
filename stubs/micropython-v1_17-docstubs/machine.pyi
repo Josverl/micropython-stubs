@@ -1,5 +1,7 @@
 """
-functions related to the hardware. See: https://docs.micropython.org/en/v1.17/library/machine.html
+Functions related to the hardware.
+
+MicroPython module: https://docs.micropython.org/en/v1.17/library/machine.html
 
 The ``machine`` module contains specific functions related to the hardware
 on a particular board. Most functions in this module allow to achieve direct
@@ -25,28 +27,29 @@ damage.
 # + module: machine.SD.rst
 # + module: machine.SDCard.rst
 from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
+from _typeshed import Incomplete
 
-IDLE: Any = ...
+IDLE: Incomplete
 """IRQ wake values."""
-SLEEP: Any = ...
+SLEEP: Incomplete
 """IRQ wake values."""
-DEEPSLEEP: Any = ...
+DEEPSLEEP: Incomplete
 """IRQ wake values."""
-PWRON_RESET: Any = ...
+PWRON_RESET: Incomplete
 """Reset causes."""
-HARD_RESET: Any = ...
+HARD_RESET: Incomplete
 """Reset causes."""
-WDT_RESET: Any = ...
+WDT_RESET: Incomplete
 """Reset causes."""
-DEEPSLEEP_RESET: Any = ...
+DEEPSLEEP_RESET: Incomplete
 """Reset causes."""
-SOFT_RESET: Any = ...
+SOFT_RESET: Incomplete
 """Reset causes."""
-WLAN_WAKE: Any = ...
+WLAN_WAKE: Incomplete
 """Wake-up reasons."""
-PIN_WAKE: Any = ...
+PIN_WAKE: Incomplete
 """Wake-up reasons."""
-RTC_WAKE: Any = ...
+RTC_WAKE: Incomplete
 """Wake-up reasons."""
 
 class Pin:
@@ -111,44 +114,44 @@ class Pin:
     ``Pin.OPEN_DRAIN``, the alternate function will be removed from the pin.
     """
 
-    IN: Any = ...
+    IN: Incomplete
     """Selects the pin mode."""
-    OUT: Any = ...
+    OUT: Incomplete
     """Selects the pin mode."""
-    OPEN_DRAIN: Any = ...
+    OPEN_DRAIN: Incomplete
     """Selects the pin mode."""
-    ALT: Any = ...
+    ALT: Incomplete
     """Selects the pin mode."""
-    ALT_OPEN_DRAIN: Any = ...
+    ALT_OPEN_DRAIN: Incomplete
     """Selects the pin mode."""
-    PULL_UP: Any = ...
+    PULL_UP: Incomplete
     """\
     Selects whether there is a pull up/down resistor.  Use the value
     ``None`` for no pull.
     """
-    PULL_DOWN: Any = ...
+    PULL_DOWN: Incomplete
     """\
     Selects whether there is a pull up/down resistor.  Use the value
     ``None`` for no pull.
     """
-    PULL_HOLD: Any = ...
+    PULL_HOLD: Incomplete
     """\
     Selects whether there is a pull up/down resistor.  Use the value
     ``None`` for no pull.
     """
-    LOW_POWER: Any = ...
+    LOW_POWER: Incomplete
     """Selects the pin drive strength."""
-    MED_POWER: Any = ...
+    MED_POWER: Incomplete
     """Selects the pin drive strength."""
-    HIGH_POWER: Any = ...
+    HIGH_POWER: Incomplete
     """Selects the pin drive strength."""
-    IRQ_FALLING: Any = ...
+    IRQ_FALLING: Incomplete
     """Selects the IRQ trigger type."""
-    IRQ_RISING: Any = ...
+    IRQ_RISING: Incomplete
     """Selects the IRQ trigger type."""
-    IRQ_LOW_LEVEL: Any = ...
+    IRQ_LOW_LEVEL: Incomplete
     """Selects the IRQ trigger type."""
-    IRQ_HIGH_LEVEL: Any = ...
+    IRQ_HIGH_LEVEL: Incomplete
     """Selects the IRQ trigger type."""
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None: ...
     def init(self, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
@@ -193,7 +196,7 @@ class Pin:
         When setting the value this method returns ``None``.
         """
         ...
-    def __call__(self, x: Optional[Any] = None) -> Any:
+    def __call__(self, x: Optional[Any] = None) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
         and get the value of the pin.  It is equivalent to Pin.value([x]).
@@ -210,7 +213,7 @@ class Pin:
         Set pin to "0" output level.
         """
         ...
-    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Any]:
+    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Incomplete]:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is
@@ -268,7 +271,7 @@ class Pin:
         Availability: nrf, rp2, stm32 ports.
         """
         ...
-    def mode(self, mode: Optional[Any] = None) -> Any:
+    def mode(self, mode: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin mode.
         See the constructor documentation for details of the ``mode`` argument.
@@ -276,7 +279,7 @@ class Pin:
         Availability: cc3200, stm32 ports.
         """
         ...
-    def pull(self, pull: Optional[Any] = None) -> Any:
+    def pull(self, pull: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin pull state.
         See the constructor documentation for details of the ``pull`` argument.
@@ -284,7 +287,7 @@ class Pin:
         Availability: cc3200, stm32 ports.
         """
         ...
-    def drive(self, drive: Optional[Any] = None) -> Any:
+    def drive(self, drive: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin drive strength.
         See the constructor documentation for details of the ``drive`` argument.
@@ -391,7 +394,7 @@ class PWM:
         Disable the PWM output.
         """
         ...
-    def freq(self, value: Optional[Any] = None) -> Any:
+    def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the current frequency of the PWM output.
 
@@ -427,7 +430,7 @@ class UART:
     Construct a UART object of the given id.
     """
 
-    RX_ANY: Any = ...
+    RX_ANY: Incomplete
     """\
     IRQ trigger sources
     
@@ -533,7 +536,7 @@ class UART:
         longer than required for a normal transmission of a character.
         """
         ...
-    def irq(self, trigger, priority=1, handler=None, wake=IDLE) -> Any:
+    def irq(self, trigger, priority=1, handler=None, wake=IDLE) -> Incomplete:
         """
         Create a callback to be triggered when data is received on the UART.
 
@@ -572,11 +575,11 @@ class SPI:
     See ``init`` for parameters of initialisation.
     """
 
-    CONTROLLER: Any = ...
+    CONTROLLER: Incomplete
     """for initialising the SPI bus to controller; this is only used for the WiPy"""
-    MSB: Any = ...
+    MSB: Incomplete
     """set the first bit to be the most significant bit"""
-    LSB: Any = ...
+    LSB: Incomplete
     """set the first bit to be the least significant bit"""
     def __init__(self, id, *args, **kwargs) -> None: ...
     def init(
@@ -705,7 +708,7 @@ class I2C:
         Generate a STOP condition on the bus (SDA transitions to high while SCL is high).
         """
         ...
-    def readinto(self, buf, nack=True, /) -> Any:
+    def readinto(self, buf, nack=True, /) -> Incomplete:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
         read is the length of *buf*.  An ACK will be sent on the bus after
@@ -835,24 +838,21 @@ class I2S:
     before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
     """
 
-    RX: Any = ...
+    RX: Incomplete
     """for initialising the I2S bus ``mode`` to receive"""
-    TX: Any = ...
+    TX: Incomplete
     """for initialising the I2S bus ``mode`` to transmit"""
-    STEREO: Any = ...
+    STEREO: Incomplete
     """for initialising the I2S bus ``format`` to stereo"""
-    MONO: Any = ...
-    """\
-    for initialising the I2S bus ``format`` to mono
-    
-    """
+    MONO: Incomplete
+    """for initialising the I2S bus ``format`` to mono"""
     def __init__(self, id, *, sck, ws, sd, mode, bits, format, rate, ibuf) -> None: ...
-    def init(self, sck, *args, **kwargs) -> Any:
+    def init(self, sck, *args, **kwargs) -> Incomplete:
         """
         see Constructor for argument descriptions
         """
         ...
-    def deinit(self) -> Any:
+    def deinit(self) -> Incomplete:
         """
         Deinitialize the I2S bus
         """
@@ -873,7 +873,7 @@ class I2S:
         Returns number of bytes written
         """
         ...
-    def irq(self, handler) -> Any:
+    def irq(self, handler) -> Incomplete:
         """
         Set a callback. ``handler`` is called when ``buf`` is emptied (``write`` method) or becomes full (``readinto`` method).
         Setting a callback changes the ``write`` and ``readinto`` methods to non-blocking operation.
@@ -881,7 +881,7 @@ class I2S:
         """
         ...
     @staticmethod
-    def shift(buf, bits, shift) -> Any:
+    def shift(buf, bits, shift) -> Incomplete:
         """
         bitwise shift of all samples contained in ``buf``. ``bits`` specifies sample size in bits. ``shift`` specifies the number of bits to shift each sample.
         Positive for left shift, negative for right shift.
@@ -894,7 +894,7 @@ class RTC:
     Create an RTC object. See init for parameters of initialization.
     """
 
-    ALARM0: Any = ...
+    ALARM0: Incomplete
     """irq trigger source"""
     def __init__(self, id=0, *args, **kwargs) -> None: ...
     def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
@@ -946,7 +946,7 @@ class RTC:
         Cancel a running alarm.
         """
         ...
-    def irq(self, *, trigger, handler=None, wake=IDLE) -> Any:
+    def irq(self, *, trigger, handler=None, wake=IDLE) -> Incomplete:
         """
         Create an irq object triggered by a real time clock alarm.
 
@@ -965,9 +965,9 @@ class Timer:
     See ``init`` for parameters of initialisation.
     """
 
-    ONE_SHOT: Any = ...
+    ONE_SHOT: Incomplete
     """Timer operating mode."""
-    PERIODIC: Any = ...
+    PERIODIC: Incomplete
     """Timer operating mode."""
     def __init__(self, id, *args, **kwargs) -> None: ...
     def init(self, *, mode=PERIODIC, period=-1, callback=None) -> None:
@@ -1097,7 +1097,7 @@ def bootloader(value: Optional[Any] = None) -> None:
     """
     ...
 
-def disable_irq() -> Any:
+def disable_irq() -> Incomplete:
     """
     Disable interrupt requests.
     Returns the previous IRQ state which should be considered an opaque value.
@@ -1106,7 +1106,7 @@ def disable_irq() -> Any:
     """
     ...
 
-def enable_irq(state) -> Any:
+def enable_irq(state) -> Incomplete:
     """
     Re-enable interrupt requests.
     The *state* parameter should be the value that was returned from the most
@@ -1114,7 +1114,7 @@ def enable_irq(state) -> Any:
     """
     ...
 
-def freq(hz: Optional[Any] = None) -> Any:
+def freq(hz: Optional[Any] = None) -> Incomplete:
     """
     Returns the CPU frequency in hertz.
 
@@ -1122,7 +1122,7 @@ def freq(hz: Optional[Any] = None) -> Any:
     """
     ...
 
-def idle() -> Any:
+def idle() -> Incomplete:
     """
     Gates the clock to the CPU, useful to reduce power consumption at any time during
     short or long periods. Peripherals continue working and execution resumes as soon
@@ -1131,13 +1131,13 @@ def idle() -> Any:
     """
     ...
 
-def sleep() -> Any:
+def sleep() -> Incomplete:
     """
     ``Note:`` This function is deprecated, use `lightsleep()` instead with no arguments.
     """
     ...
 
-def lightsleep(time_ms: Optional[Any] = None) -> Any:
+def lightsleep(time_ms: Optional[Any] = None) -> Incomplete:
     """
     Stops execution in an attempt to enter a low power state.
 
@@ -1187,7 +1187,7 @@ def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
     """
     ...
 
-def wake_reason() -> Any:
+def wake_reason() -> Incomplete:
     """
     Get the wake reason. See :ref:`constants <machine_constants>` for the possible return values.
 
@@ -1222,7 +1222,7 @@ def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     """
     ...
 
-def bitstream(pin, encoding, timing, data, /) -> Any:
+def bitstream(pin, encoding, timing, data, /) -> Incomplete:
     """
     Transmits *data* by bit-banging the specified *pin*. The *encoding* argument
     specifies how the bits are encoded, and *timing* is an encoding-specific timing

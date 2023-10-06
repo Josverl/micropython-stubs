@@ -1,7 +1,9 @@
 """
-binary/ASCII conversions. See: https://docs.micropython.org/en/v1.17/library/binascii.html
+Binary/ASCII conversions.
 
-|see_cpython_module| :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
+MicroPython module: https://docs.micropython.org/en/v1.17/library/binascii.html
+
+CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
 
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
@@ -10,6 +12,7 @@ encodings of it in ASCII form (in both directions).
 # source version: v1_17
 # origin module:: repos/micropython/docs/library/binascii.rst
 from typing import Any, Optional
+from _typeshed import Incomplete
 
 def hexlify(data, sep: Optional[Any] = None) -> bytes:
     """
