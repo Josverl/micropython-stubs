@@ -1,5 +1,7 @@
 """
-access binary data in a structured way. See: https://docs.micropython.org/en/v1.19/library/uctypes.html
+Access binary data in a structured way.
+
+MicroPython module: https://docs.micropython.org/en/v1.19/library/uctypes.html
 
 This module implements "foreign data interface" for MicroPython. The idea
 behind it is similar to CPython's ``ctypes`` modules, but the actual API is
@@ -11,7 +13,7 @@ sub-fields.
 
 # source version: v1_19
 # origin module:: repos/micropython/docs/library/uctypes.rst
-from typing import Any
+from _typeshed import Incomplete
 
 LITTLE_ENDIAN: bytes
 """\
@@ -19,69 +21,69 @@ Layout type for a little-endian packed structure. (Packed means that every
 field occupies exactly as many bytes as defined in the descriptor, i.e.
 the alignment is 1).
 """
-BIG_ENDIAN: Any = ...
+BIG_ENDIAN: Incomplete
 """Layout type for a big-endian packed structure."""
-NATIVE: Any = ...
+NATIVE: Incomplete
 """\
 Layout type for a native structure - with data endianness and alignment
 conforming to the ABI of the system on which MicroPython runs.
 """
-UINT8: int = 1
+UINT8: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-INT8: int = 1
+INT8: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-UINT16: int = 1
+UINT16: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-INT16: int = 1
+INT16: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-UINT32: int = 1
+UINT32: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-INT32: int = 1
+INT32: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-UINT64: int = 1
+UINT64: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-INT64: int = 1
+INT64: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-FLOAT32: Any = ...
+FLOAT32: Incomplete
 """Floating-point types for structure descriptors."""
-FLOAT64: Any = ...
+FLOAT64: Incomplete
 """Floating-point types for structure descriptors."""
-VOID: Any = ...
+VOID: Incomplete
 """\
 ``VOID`` is an alias for ``UINT8``, and is provided to conveniently define
 C's void pointers: ``(uctypes.PTR, uctypes.VOID)``.
 """
-PTR: Any = ...
+PTR: Incomplete
 """\
 Type constants for pointers and arrays. Note that there is no explicit
 constant for structures, it's implicit: an aggregate type without ``PTR``
 or ``ARRAY`` flags is a structure.
 """
-ARRAY: Any = ...
+ARRAY: Incomplete
 """\
 Type constants for pointers and arrays. Note that there is no explicit
 constant for structures, it's implicit: an aggregate type without ``PTR``

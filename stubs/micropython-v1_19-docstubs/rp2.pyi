@@ -1,5 +1,7 @@
 """
-functionality specific to the RP2. See: https://docs.micropython.org/en/v1.19/library/rp2.html
+Functionality specific to the RP2.
+
+MicroPython module: https://docs.micropython.org/en/v1.19/library/rp2.html
 
 The ``rp2`` module contains functions and classes specific to the RP2040, as
 used in the Raspberry Pi Pico.
@@ -9,7 +11,6 @@ See the `RP2040 Python datasheet
 for more information, and `pico-micropython-examples
 <https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
 for example code.
-
 """
 
 # + module: rp2.rst
@@ -19,24 +20,23 @@ for example code.
 # + module: rp2.PIO.rst
 # + module: rp2.StateMachine.rst
 from typing import Any, Optional
+from _typeshed import Incomplete
 
 class PIOASMError(Exception):
     """
     This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
     an error assembling a PIO program.
-
     """
 
 class Flash:
     """
     Gets the singleton object for accessing the SPI flash memory.
-
     """
 
     def __init__(self) -> None: ...
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Any: ...
-    def ioctl(self, cmd, arg) -> Any:
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
@@ -50,55 +50,54 @@ class PIO:
     numbered 0 and 1.
 
     Raises a ``ValueError`` if any other argument is provided.
-
     """
 
-    IN_LOW: Any = ...
+    IN_LOW: Incomplete
     """\
     These constants are used for the *out_init*, *set_init*, and *sideset_init*
     arguments to `asm_pio`.
     """
-    IN_HIGH: Any = ...
+    IN_HIGH: Incomplete
     """\
     These constants are used for the *out_init*, *set_init*, and *sideset_init*
     arguments to `asm_pio`.
     """
-    OUT_LOW: Any = ...
+    OUT_LOW: Incomplete
     """\
     These constants are used for the *out_init*, *set_init*, and *sideset_init*
     arguments to `asm_pio`.
     """
-    OUT_HIGH: Any = ...
+    OUT_HIGH: Incomplete
     """\
     These constants are used for the *out_init*, *set_init*, and *sideset_init*
     arguments to `asm_pio`.
     """
-    SHIFT_LEFT: Any = ...
+    SHIFT_LEFT: Incomplete
     """\
     These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
     to `asm_pio` or `StateMachine.init`.
     """
-    SHIFT_RIGHT: Any = ...
+    SHIFT_RIGHT: Incomplete
     """\
     These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
     to `asm_pio` or `StateMachine.init`.
     """
-    JOIN_NONE: Any = ...
+    JOIN_NONE: Incomplete
     """These constants are used for the *fifo_join* argument to `asm_pio`."""
-    JOIN_TX: Any = ...
+    JOIN_TX: Incomplete
     """These constants are used for the *fifo_join* argument to `asm_pio`."""
-    JOIN_RX: Any = ...
+    JOIN_RX: Incomplete
     """These constants are used for the *fifo_join* argument to `asm_pio`."""
-    IRQ_SM0: Any = ...
+    IRQ_SM0: Incomplete
     """These constants are used for the *trigger* argument to `PIO.irq`."""
-    IRQ_SM1: Any = ...
+    IRQ_SM1: Incomplete
     """These constants are used for the *trigger* argument to `PIO.irq`."""
-    IRQ_SM2: Any = ...
+    IRQ_SM2: Incomplete
     """These constants are used for the *trigger* argument to `PIO.irq`."""
-    IRQ_SM3: Any = ...
+    IRQ_SM3: Incomplete
     """These constants are used for the *trigger* argument to `PIO.irq`."""
     def __init__(self, id) -> None: ...
-    def add_program(self, program) -> Any:
+    def add_program(self, program) -> Incomplete:
         """
         Add the *program* to the instruction memory of this PIO instance.
 
@@ -116,7 +115,7 @@ class PIO:
         It is not an error to remove a program which has already been removed.
         """
         ...
-    def state_machine(self, id, program, *args, **kwargs) -> Any:
+    def state_machine(self, id, program, *args, **kwargs) -> Incomplete:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
         four state machines, numbered 0 to 3.
@@ -127,14 +126,13 @@ class PIO:
         StateMachine(7)
         """
         ...
-    def irq(self, handler=None, trigger=IRQ_SM0, hard=False) -> Any:
+    def irq(self, handler=None, trigger=IRQ_SM0, hard=False) -> Incomplete:
         """
         Returns the IRQ object for this PIO instance.
 
         MicroPython only uses IRQ 0 on each PIO instance. IRQ 1 is not available.
 
         Optionally configure it.
-
         """
         ...
 
@@ -146,7 +144,6 @@ class StateMachine:
 
     Optionally initialize it with the given program *program*: see
     `StateMachine.init`.
-
     """
 
     def __init__(self, id, program, *args, **kwargs) -> None: ...
@@ -197,7 +194,7 @@ class StateMachine:
           re-pushing is triggered.
         """
         ...
-    def active(self, value: Optional[Any] = None) -> Any:
+    def active(self, value: Optional[Any] = None) -> Incomplete:
         """
         Gets or sets whether the state machine is currently running.
 
@@ -207,7 +204,7 @@ class StateMachine:
         False
         """
         ...
-    def restart(self) -> Any:
+    def restart(self) -> Incomplete:
         """
         Restarts the state machine and jumps to the beginning of the program.
 
@@ -221,7 +218,7 @@ class StateMachine:
          - a stalled instruction run using `StateMachine.exec()`
         """
         ...
-    def exec(self, instr) -> Any:
+    def exec(self, instr) -> Incomplete:
         """
         Execute a single PIO instruction. Uses `asm_pio_encode` to encode the
         instruction from the given string *instr*.
@@ -229,7 +226,7 @@ class StateMachine:
         >>> sm.exec("set(0, 1)")
         """
         ...
-    def get(self, buf=None, shift=0) -> Any:
+    def get(self, buf=None, shift=0) -> Incomplete:
         """
         Pull a word from the state machine's RX FIFO.
 
@@ -240,7 +237,7 @@ class StateMachine:
         return value is ``word >> shift``.
         """
         ...
-    def put(self, value, shift=0) -> Any:
+    def put(self, value, shift=0) -> Incomplete:
         """
         Push a word onto the state machine's TX FIFO.
 
@@ -269,7 +266,7 @@ class StateMachine:
         `StateMachine.put()`.
         """
         ...
-    def irq(self, handler=None, trigger=0 | 1, hard=False) -> Any:
+    def irq(self, handler=None, trigger=0 | 1, hard=False) -> Incomplete:
         """
         Returns the IRQ object for the given StateMachine.
 
@@ -289,7 +286,7 @@ def asm_pio(
     push_thresh=32,
     pull_thresh=32,
     fifo_join=PIO.JOIN_NONE,
-) -> Any:
+) -> Incomplete:
     """
     Assemble a PIO program.
 
@@ -326,7 +323,7 @@ def asm_pio(
     """
     ...
 
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Any:
+def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
     instead.
