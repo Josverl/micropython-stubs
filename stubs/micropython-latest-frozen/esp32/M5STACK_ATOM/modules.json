@@ -12,13 +12,17 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.13.7",
+        "version": "1.14.0",
         "stubtype": "frozen"
     },
     "modules": [
         {
             "file": "_boot.py",
             "module": "_boot"
+        },
+        {
+            "file": "aioespnow.py",
+            "module": "aioespnow"
         },
         {
             "file": "apa106.py",
@@ -87,6 +91,10 @@
         {
             "file": "onewire.py",
             "module": "onewire"
+        },
+        {
+            "file": "requests/__init__.py",
+            "module": "__init__"
         },
         {
             "file": "uasyncio.py",

@@ -80,7 +80,7 @@ class BMM150:
         # Sanity checks
         if not self._use_i2c:
             raise ValueError("SPI mode is not supported")
-        if not magnet_odr in _ODR:
+        if magnet_odr not in _ODR:
             raise ValueError("Invalid sampling rate: %d" % magnet_odr)
 
         # Perform soft reset, and power on.
@@ -165,11 +165,8 @@ class BMM150:
             z = (z5 / (z4 * 4)) / 16
         return z
 
-    def reset(self):
-        self._write_reg(_CMD, 0xB6)
-
     def magnet_raw(self):
-        for i in range(0, 10):
+        for i in range(10):
             self._read_reg_into(_DATA, self.scratch)
             if self.scratch[3] & 0x1:
                 return (

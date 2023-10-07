@@ -12,7 +12,7 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.13.7",
+        "version": "1.14.0",
         "stubtype": "frozen"
     },
     "modules": [
@@ -23,30 +23,6 @@
         {
             "file": "apa102.py",
             "module": "apa102"
-        },
-        {
-            "file": "asyncio/__init__.py",
-            "module": "__init__"
-        },
-        {
-            "file": "asyncio/core.py",
-            "module": "core"
-        },
-        {
-            "file": "asyncio/event.py",
-            "module": "event"
-        },
-        {
-            "file": "asyncio/funcs.py",
-            "module": "funcs"
-        },
-        {
-            "file": "asyncio/lock.py",
-            "module": "lock"
-        },
-        {
-            "file": "asyncio/stream.py",
-            "module": "stream"
         },
         {
             "file": "dht.py",
@@ -89,36 +65,12 @@
             "module": "port_diag"
         },
         {
-            "file": "ssd1306.py",
-            "module": "ssd1306"
-        },
-        {
-            "file": "uasyncio.py",
-            "module": "uasyncio"
-        },
-        {
-            "file": "umqtt/__init__.py",
+            "file": "requests/__init__.py",
             "module": "__init__"
-        },
-        {
-            "file": "umqtt/robust.py",
-            "module": "robust"
-        },
-        {
-            "file": "umqtt/simple.py",
-            "module": "simple"
-        },
-        {
-            "file": "upysh.py",
-            "module": "upysh"
         },
         {
             "file": "urequests.py",
             "module": "urequests"
-        },
-        {
-            "file": "urllib/urequest.py",
-            "module": "urequest"
         },
         {
             "file": "webrepl.py",

@@ -12,7 +12,7 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.13.7",
+        "version": "1.14.0",
         "stubtype": "frozen"
     },
     "modules": [
@@ -53,12 +53,12 @@
             "module": "__main__"
         },
         {
-            "file": "uasyncio.py",
-            "module": "uasyncio"
+            "file": "requests/__init__.py",
+            "module": "__init__"
         },
         {
-            "file": "urequests.py",
-            "module": "urequests"
+            "file": "uasyncio.py",
+            "module": "uasyncio"
         }
     ]
 }
