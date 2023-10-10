@@ -45,3 +45,5 @@ publish/*/modules.json
 publish/**/dist
 publish/*/*.dist-info/*
 !publish/*/*.dist-info/METADATA
+# no typings
+typings

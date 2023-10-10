@@ -7,6 +7,17 @@ pytest
 black
 
 
+# download reporting
+ipykernel
+pandas
+matplotlib
+ipywidgets 
+ipympl
+
+# Section: reporting
+google-cloud-bigquery==3.12.0
+
+
 # Section:publishing
 # tomli
 # tomli-w
@@ -15,6 +26,3 @@ black
 # pysondb-v2
 
 # click == 8.0.3
-
-# Section: reporting
-# google-cloud-bigquery

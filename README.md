@@ -23,23 +23,28 @@ Currently over 3.000 stubfiles of multiple MicroPython versionas and modules are
 
 The stubs are packaged and published to PyPi as [Pep 561 stub-only](https://peps.python.org/pep-0561/#stub-only-packages) packages to allow them to be installed and used with ease.
 
-**Demo using VSCode:  **
+
+**Demo using VSCode:**
 ![demo](docs/img/demo.gif)
-## `micropython-<port>[-<board>]-stubs`
 
-The stubs for a specific version port and board of the MicroPython firmware.
-These are built by combining:
-    * The 'Board stubs' generated on a generic board for the port 
-    * The 'Frozen stubs' from the Micropython repository for that specific version and that port & board combination
-    * The 'Core Stubs' to provide a common interface for the Micropython firmware and the CPython core.
+## To install
+- Install in a typings folder (recommended) 
+  `pip install -U micropython-<port>[-<board>]stubs --no-user --target ./typings`
+- Install in a venv (after activating) 
+  `pip install -U micropython-<port>[-<board>]stubs --no-user`
 
-Note: board is omitted if it is `GENERIC`  
+Examples:
+``` bash
+pip install -U micropython-stm32-stubs
 
-    Examples:
-      - micropython-stm32-stubs
-      - micropython-esp32-stubs
-      - micropython-rp2-stubs
-      - micropython-esp8266-stubs
+# Install stubs for a specific version.
+pip install -U micropython-esp32-stubs==1.20.0.*
+
+# Install stubs for a specific board.
+pip install -U micropython-rp2-pico_w-stubs
+```
+
+For more details how to use the stubs please refer to [the documentation on RTD](https://micropython-stubs.readthedocs.io/en/latest/20_using.html)
 
 ## Current MicroPython stub packages 
 
@@ -47,9 +52,15 @@ You can search for [Micropython stub packages on PyPI][PYPI]
 
 For a full overview of all stubs check out [the documentation on read the docs](https://micropython-stubs.readthedocs.io/en/latest/firmware_grp.html), or in  [docs/firmware_grp.md](docs/firmware_grp.md)
 
-# Using the stubs 
+## Usage statistics
 
-To learn how to use the stubs please refer to [the documentation on RTD](https://micropython-stubs.readthedocs.io/en/latest/20_using.html)
+The following graph shows the number of downloads of the stubs from PyPi over time.
+Im not sure what causes the spikes in downloads, but it is interesting to see that the number of downloads is increasing over time, and some of the spikes have corrolation to the publication of new MicroPython versions.
+
+![downloads](statistics/month_port.png)
+![downloads](statistics/month_version.png)
+![downloads](statistics/pie_port.png)
+
 
 
 ## Contributors

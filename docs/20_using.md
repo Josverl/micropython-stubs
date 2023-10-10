@@ -17,7 +17,7 @@ If you do not know the exact version and port,  run the below command in MicroPy
 `import sys; print( "version:", sys.version, "port:", sys.platform)`
 In the documentation these will be referred to as **version**, **port** and **board** 
 
-## Create and activate a venv
+## Create and activate a .venv
 A Python virtual environment is a tool that helps to keep dependencies required by different projects separate by creating isolated python virtual environments for them. This is one of the most important tools that most of the Python developers use.
 To create and activate a virtual environment in your project directory 
     ```bash
