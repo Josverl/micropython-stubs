@@ -1,0 +1,141 @@
+[tool.poetry]
+name = "micropython-esp32-stubs"
+version = "1.21.0.post1"
+description = "MicroPython stubs"
+authors = [
+    "josverl <josverl@users.noreply.github.com>",
+]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
+documentation = "https://micropython-stubs.readthedocs.io/"
+exclude = [
+    "*.ps1",
+    "*.py",
+    "**/__pycache__",
+    "**/dist",
+]
+include = [
+    "**/*.py",
+    "**/*.pyi",
+]
+repository = "https://github.com/josverl/micropython-stubs"
+classifiers = [
+    "Typing :: Typed",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: MicroPython",
+    "Operating System :: OS Independent",
+    "Topic :: Text Editors :: Integrated Development Environments (IDE)",
+    "Topic :: Software Development :: Build Tools",
+]
+packages = [
+    { include = "__builtins__.pyi" },
+    { include = "_asyncio.pyi" },
+    { include = "_boot.pyi" },
+    { include = "_espnow.pyi" },
+    { include = "_onewire.pyi" },
+    { include = "_thread.pyi" },
+    { include = "aioespnow.pyi" },
+    { include = "apa106.pyi" },
+    { include = "array.pyi" },
+    { include = "asyncio/__init__.pyi" },
+    { include = "asyncio/core.pyi" },
+    { include = "asyncio/event.pyi" },
+    { include = "asyncio/funcs.pyi" },
+    { include = "asyncio/lock.pyi" },
+    { include = "asyncio/stream.pyi" },
+    { include = "binascii.pyi" },
+    { include = "bluetooth.pyi" },
+    { include = "btree.pyi" },
+    { include = "cmath.pyi" },
+    { include = "collections.pyi" },
+    { include = "cryptolib.pyi" },
+    { include = "deflate.pyi" },
+    { include = "dht.pyi" },
+    { include = "ds18x20.pyi" },
+    { include = "errno.pyi" },
+    { include = "esp.pyi" },
+    { include = "esp32.pyi" },
+    { include = "espnow.pyi" },
+    { include = "flashbdev.pyi" },
+    { include = "framebuf.pyi" },
+    { include = "gc.pyi" },
+    { include = "hashlib.pyi" },
+    { include = "heapq.pyi" },
+    { include = "inisetup.pyi" },
+    { include = "io.pyi" },
+    { include = "json.pyi" },
+    { include = "logging.pyi" },
+    { include = "machine.pyi" },
+    { include = "math.pyi" },
+    { include = "micropython.pyi" },
+    { include = "mip/__init__.pyi" },
+    { include = "neopixel.pyi" },
+    { include = "network.pyi" },
+    { include = "ntptime.pyi" },
+    { include = "onewire.pyi" },
+    { include = "os.pyi" },
+    { include = "platform.pyi" },
+    { include = "random.pyi" },
+    { include = "requests/__init__.pyi" },
+    { include = "requests.pyi" },
+    { include = "select.pyi" },
+    { include = "socket.pyi" },
+    { include = "ssl.pyi" },
+    { include = "struct.pyi" },
+    { include = "sys.pyi" },
+    { include = "time.pyi" },
+    { include = "uarray.pyi" },
+    { include = "uasyncio/__init__.pyi" },
+    { include = "uasyncio/core.pyi" },
+    { include = "uasyncio/event.pyi" },
+    { include = "uasyncio/funcs.pyi" },
+    { include = "uasyncio/lock.pyi" },
+    { include = "uasyncio/stream.pyi" },
+    { include = "uasyncio.pyi" },
+    { include = "ubinascii.pyi" },
+    { include = "ubluetooth.pyi" },
+    { include = "ucollections.pyi" },
+    { include = "ucryptolib.pyi" },
+    { include = "uctypes.pyi" },
+    { include = "uerrno.pyi" },
+    { include = "uhashlib.pyi" },
+    { include = "uheapq.pyi" },
+    { include = "uio.pyi" },
+    { include = "ujson.pyi" },
+    { include = "umachine.pyi" },
+    { include = "umqtt/__init__.pyi" },
+    { include = "umqtt/robust.pyi" },
+    { include = "umqtt/simple.pyi" },
+    { include = "uos.pyi" },
+    { include = "uplatform.pyi" },
+    { include = "upysh.pyi" },
+    { include = "urandom.pyi" },
+    { include = "ure.pyi" },
+    { include = "urequests.pyi" },
+    { include = "uselect.pyi" },
+    { include = "usocket.pyi" },
+    { include = "ussl.pyi" },
+    { include = "ustruct.pyi" },
+    { include = "usys.pyi" },
+    { include = "utime.pyi" },
+    { include = "uwebsocket.pyi" },
+    { include = "webrepl.pyi" },
+    { include = "webrepl_setup.pyi" },
+    { include = "websocket.pyi" },
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+micropython-stdlib-stubs = ">=0.9.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = [
+    "poetry-core>=1.0.0",
+]
+build-backend = "poetry.core.masonry.api"

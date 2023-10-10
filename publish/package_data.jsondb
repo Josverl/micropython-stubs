@@ -2291,6 +2291,30 @@
             "description": "MicroPython stubs",
             "hash": "25ac5cb5e4ac49a261f318b055d56ee558d9d053",
             "stub_hash": "54f27af507742319632841fe043c75a79b692c95"
+        },
+        "272529815721514668": {
+            "name": "micropython-esp32-stubs",
+            "mpy_version": "1.21.0",
+            "publish": true,
+            "pkg_version": "1.21.0.post1",
+            "path": "micropython-v1_21_0-esp32-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_21_0-esp32-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_21_0-frozen/esp32/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "f10ba365e905680752f1627f82b6648ed4940430",
+            "stub_hash": "aedb2da6d9e7c30ce6d7ee25eabc0f1d7a6cc6f0"
         }
     }
 }

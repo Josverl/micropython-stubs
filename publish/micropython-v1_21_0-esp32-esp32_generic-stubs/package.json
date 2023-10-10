@@ -1,0 +1,24 @@
+{
+    "name": "micropython-esp32-esp32_generic-stubs",
+    "mpy_version": "1.21.0",
+    "publish": true,
+    "pkg_version": "1.21.0.post1",
+    "path": "micropython-v1_21_0-esp32-esp32_generic-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-v1_21_0-esp32-esp32_generic-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-v1_21_0-frozen/esp32/GENERIC"
+        ],
+        [
+            "Core stubs",
+            "micropython-core"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": null,
+    "stub_hash": null
+}
