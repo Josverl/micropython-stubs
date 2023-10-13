@@ -214,7 +214,7 @@ class ESPNow:
         ...
     def irecv(self, timeout_ms: Optional[Any] = None) -> Incomplete:
         """
-        Works like `ESPNow.recv()` but will re-use internal bytearrays to store the
+        Works like `ESPNow.recv()` but will reuse internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
         call.
 
