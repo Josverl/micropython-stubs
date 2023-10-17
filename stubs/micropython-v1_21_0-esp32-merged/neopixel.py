@@ -15,7 +15,10 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
 from _typeshed import Incomplete
 from typing import Tuple
 
-def bitstream(*args, **kwargs) -> Incomplete: ...
+
+def bitstream(*args, **kwargs) -> Incomplete:
+    ...
+
 
 class NeoPixel:
     """
@@ -34,10 +37,13 @@ class NeoPixel:
         Writes the current pixel data to the strip.
         """
         ...
+
     def fill(self, pixel) -> None:
         """
         Sets the value of all pixels to the specified *pixel* value (i.e. an
         RGB/RGBW tuple).
         """
         ...
-    def __init__(self, pin, n, *, bpp=3, timing=1) -> None: ...
+
+    def __init__(self, pin, n, *, bpp=3, timing=1) -> None:
+        ...

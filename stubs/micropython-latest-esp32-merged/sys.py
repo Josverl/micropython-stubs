@@ -5,15 +5,15 @@ MicroPython module: https://docs.micropython.org/en/latest/library/sys.html
 
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import Dict, List, Tuple, Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
+from typing import Dict, List, Tuple
 
 platform = "esp32"  # type: str
 version_info = ()  # type: tuple
 path = []  # type: list
-version = "3.4.0; MicroPython v1.20.0-449-g0bafdaf5f on 2023-09-05"  # type: str
+version = "3.4.0; MicroPython v1.21.0 on 2023-10-06"  # type: str
 ps1 = ">>> "  # type: str
 ps2 = "... "  # type: str
 byteorder = "little"  # type: str
@@ -49,6 +49,6 @@ def exit(retval=0, /) -> Incomplete:
     ...
 
 
-stderr: Any  ## <class 'FileIO'> = <io.FileIO 2>
-stdout: Any  ## <class 'FileIO'> = <io.FileIO 1>
-stdin: Any  ## <class 'FileIO'> = <io.FileIO 0>
+stderr: Incomplete  ## <class 'FileIO'> = <io.FileIO 2>
+stdout: Incomplete  ## <class 'FileIO'> = <io.FileIO 1>
+stdin: Incomplete  ## <class 'FileIO'> = <io.FileIO 0>

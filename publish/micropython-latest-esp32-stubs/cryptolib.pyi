@@ -3,8 +3,8 @@ Cryptographic ciphers.
 
 MicroPython module: https://docs.micropython.org/en/latest/library/cryptolib.html
 """
-from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Optional
 
 class aes:
     def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:

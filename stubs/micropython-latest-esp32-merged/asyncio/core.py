@@ -1,66 +1,66 @@
 """
-Module: 'asyncio.core' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
+Module: 'asyncio.core' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
+from _typeshed import Incomplete
 
 
-def ticks(*args, **kwargs) -> Any:
+def ticks(*args, **kwargs) -> Incomplete:
     ...
 
 
-def create_task(*args, **kwargs) -> Any:
+def create_task(*args, **kwargs) -> Incomplete:
     ...
 
 
-def ticks_diff(*args, **kwargs) -> Any:
+def ticks_diff(*args, **kwargs) -> Incomplete:
     ...
 
 
-def ticks_add(*args, **kwargs) -> Any:
+def ticks_add(*args, **kwargs) -> Incomplete:
     ...
 
 
-def run_until_complete(*args, **kwargs) -> Any:
+def run_until_complete(*args, **kwargs) -> Incomplete:
     ...
 
 
-def new_event_loop(*args, **kwargs) -> Any:
+def new_event_loop(*args, **kwargs) -> Incomplete:
     ...
 
 
-def current_task(*args, **kwargs) -> Any:
+def current_task(*args, **kwargs) -> Incomplete:
     ...
 
 
-def get_event_loop(*args, **kwargs) -> Any:
+def get_event_loop(*args, **kwargs) -> Incomplete:
     ...
 
 
-def sleep(*args, **kwargs) -> Any:
+def sleep(*args, **kwargs) -> Incomplete:
     ...
 
 
-def run(*args, **kwargs) -> Any:
+def run(*args, **kwargs) -> Incomplete:
     ...
 
 
-def sleep_ms(*args, **kwargs) -> Any:
+def sleep_ms(*args, **kwargs) -> Incomplete:
     ...
 
 
 class TaskQueue:
-    def push(self, *args, **kwargs) -> Any:
+    def push(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def peek(self, *args, **kwargs) -> Any:
+    def peek(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def remove(self, *args, **kwargs) -> Any:
+    def remove(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def pop(self, *args, **kwargs) -> Any:
+    def pop(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

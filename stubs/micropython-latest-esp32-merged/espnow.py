@@ -3,10 +3,10 @@ ESP-NOW :doc:`asyncio` support.
 
 MicroPython module: https://docs.micropython.org/en/latest/library/aioespnow.html
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import Dict, Optional, Tuple, Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
+from typing import Any, Dict, Iterator, List, Optional, Tuple
 
 KEY_LEN = 16  # type: int
 MAX_DATA_LEN = 250  # type: int
@@ -15,7 +15,7 @@ MAX_TOTAL_PEER_NUM = 20  # type: int
 ADDR_LEN = 6  # type: int
 
 
-class ESPNow:
+class ESPNow(ESPNowBase, Iterator):
     """
     Returns the singleton ESPNow object. As this is a singleton, all calls to
     `espnow.ESPNow()` return a reference to the same object.
@@ -36,7 +36,7 @@ class ESPNow:
         """
         ...
 
-    def recv(self, timeout_ms: Optional[Any] = None) -> int:
+    def recv(self, timeout_ms: Optional[Any] = None) -> List:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using
@@ -173,7 +173,7 @@ class ESPNow:
 
     def irecv(self, timeout_ms: Optional[Any] = None) -> Incomplete:
         """
-        Works like `ESPNow.recv()` but will re-use internal bytearrays to store the
+        Works like `ESPNow.recv()` but will reuse internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
         call.
 
@@ -250,7 +250,7 @@ class ESPNow:
         """
         ...
 
-    def send(self, msg) -> Incomplete:
+    def send(self, peer, msg, mac=None, sync=True) -> Incomplete:
         """
         Send the data contained in ``msg`` to the peer with given network ``mac``
         address. In the second form, ``mac=None`` and ``sync=True``. The peer must
@@ -435,53 +435,83 @@ class ESPNow:
         """
         ...
 
-    irq: Any  ## <class 'closure'> = <closure>
+    def irq(self, callback) -> Incomplete:
+        """
+        Set a callback function to be called *as soon as possible* after a message has
+        been received from another ESPNow device. The callback function will be called
+        with the `ESPNow` instance object as an argument. For more reliable operation,
+        it is recommended to read out as many messages as are available when the
+        callback is invoked and to set the read timeout to zero, eg: ::
+
+              def recv_cb(e):
+                  while True:  # Read out all messages waiting in the buffer
+                      mac, msg = e.irecv(0)  # Don't wait if no messages left
+                      if mac is None:
+                          return
+                      print(mac, msg)
+              e.irq(recv_cb)
+
+        The `irq()<ESPNow.irq()>` callback method is an alternative method for
+        processing incoming messages, especially if the data rate is moderate
+        and the device is *not too busy* but there are some caveats:
+
+        - The scheduler stack *can* overflow and callbacks will be missed if
+          packets are arriving at a sufficient rate or if other MicroPython components
+          (eg, bluetooth, machine.Pin.irq(), machine.timer, i2s, ...) are exercising
+          the scheduler stack. This method may be less reliable for dealing with
+          bursts of messages, or high throughput or on a device which is busy dealing
+          with other hardware operations.
+
+        - For more information on *scheduled* function callbacks see:
+          `micropython.schedule()<micropython.schedule>`.
+        """
+        ...
 
     def __init__(self) -> None:
         ...
 
 
 class ESPNowBase:
-    def irq(self, *args, **kwargs) -> Any:
+    def irq(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def mod_peer(self, *args, **kwargs) -> Any:
+    def mod_peer(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def get_peers(self, *args, **kwargs) -> Any:
+    def get_peers(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def stats(self, *args, **kwargs) -> Any:
+    def stats(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def set_pmk(self, *args, **kwargs) -> Any:
+    def set_pmk(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def peer_count(self, *args, **kwargs) -> Any:
+    def peer_count(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def recvinto(self, *args, **kwargs) -> Any:
+    def recvinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def send(self, *args, **kwargs) -> Any:
+    def send(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def active(self, *args, **kwargs) -> Any:
+    def active(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def any(self, *args, **kwargs) -> Any:
+    def any(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def get_peer(self, *args, **kwargs) -> Any:
+    def get_peer(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def del_peer(self, *args, **kwargs) -> Any:
+    def del_peer(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def add_peer(self, *args, **kwargs) -> Any:
+    def add_peer(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

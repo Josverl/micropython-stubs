@@ -19,6 +19,7 @@ LOG_DEBUG = 4  # type: int
 LOG_INFO = 3  # type: int
 LOG_ERROR = 1  # type: int
 
+
 def osdebug(level) -> None:
     """
     Turn esp os debugging messages on or off.
@@ -36,17 +37,34 @@ def osdebug(level) -> None:
     """
     ...
 
-def flash_write(byte_offset, bytes) -> Incomplete: ...
-def gpio_matrix_in(*args, **kwargs) -> Incomplete: ...
-def gpio_matrix_out(*args, **kwargs) -> Incomplete: ...
+
+def flash_write(byte_offset, bytes) -> Incomplete:
+    ...
+
+
+def gpio_matrix_in(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def gpio_matrix_out(*args, **kwargs) -> Incomplete:
+    ...
+
+
 def flash_user_start() -> Incomplete:
     """
     Read the memory offset at which the user flash space begins.
     """
     ...
 
-def flash_erase(sector_no) -> Incomplete: ...
-def flash_read(byte_offset, length_or_buffer) -> Incomplete: ...
+
+def flash_erase(sector_no) -> Incomplete:
+    ...
+
+
+def flash_read(byte_offset, length_or_buffer) -> Incomplete:
+    ...
+
+
 def flash_size() -> Incomplete:
     """
     Read the total size of the flash memory.

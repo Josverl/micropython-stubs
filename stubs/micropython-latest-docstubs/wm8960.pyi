@@ -126,7 +126,7 @@ class WM8960:
         ...
     def expand_3d(self, level) -> None:
         """
-        Enable Stereo 3D exansion.  *level* is a number between 0 and 15.
+        Enable Stereo 3D expansion.  *level* is a number between 0 and 15.
         A value of 0 disables the expansion.
         """
         ...

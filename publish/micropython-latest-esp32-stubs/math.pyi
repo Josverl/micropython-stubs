@@ -13,8 +13,8 @@ working with floating-point numbers.
 Availability: not available on WiPy. Floating point support required
 for this module.
 """
-from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Tuple
 
 inf: float
 nan: float
@@ -40,7 +40,7 @@ def trunc(x) -> int:
     """
     ...
 
-def isclose(*args, **kwargs) -> Any: ...
+def isclose(*args, **kwargs) -> Incomplete: ...
 def gamma(x) -> Incomplete:
     """
     Return the gamma function of ``x``.
@@ -195,7 +195,7 @@ def asin(x) -> float:
     """
     ...
 
-def factorial(*args, **kwargs) -> Any: ...
+def factorial(*args, **kwargs) -> Incomplete: ...
 def fabs(x) -> Incomplete:
     """
     Return the absolute value of ``x``.

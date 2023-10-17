@@ -18,6 +18,7 @@ POLLIN = 1  # type: int
 POLLHUP = 16  # type: int
 POLLERR = 8  # type: int
 
+
 def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
     """
     Wait for activity on a set of objects.
@@ -27,12 +28,15 @@ def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
     """
     ...
 
+
 class poll:
     """
     Create an instance of the Poll class.
     """
 
-    def __init__(self) -> None: ...
+    def __init__(self) -> None:
+        ...
+
     def register(self, obj, eventmask: Optional[Any] = None) -> None:
         """
         Register `stream` *obj* for polling. *eventmask* is logical OR of:
@@ -52,17 +56,20 @@ class poll:
         *eventmask* (i.e. will behave as `modify()`).
         """
         ...
+
     def unregister(self, obj) -> Incomplete:
         """
         Unregister *obj* from polling.
         """
         ...
+
     def modify(self, obj, eventmask) -> None:
         """
         Modify the *eventmask* for *obj*. If *obj* is not registered, `OSError`
         is raised with error of ENOENT.
         """
         ...
+
     def poll(self, timeout=-1, /) -> List:
         """
         Wait for at least one of the registered objects to become ready or have an
@@ -86,6 +93,7 @@ class poll:
            Tuples returned may contain more than 2 elements as described above.
         """
         ...
+
     def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
         """
         Like :meth:`poll.poll`, but instead returns an iterator which yields a

@@ -58,6 +58,7 @@ The following data types are supported:
 from _typeshed import Incomplete
 from typing import Tuple
 
+
 def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*
@@ -66,12 +67,14 @@ def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
     """
     ...
 
+
 def unpack(fmt, data) -> Tuple:
     """
     Unpack from the *data* according to the format string *fmt*.
     The return value is a tuple of the unpacked values.
     """
     ...
+
 
 def unpack_from(fmt, data, offset=0, /) -> Tuple:
     """
@@ -81,12 +84,14 @@ def unpack_from(fmt, data, offset=0, /) -> Tuple:
     """
     ...
 
+
 def pack(fmt, v1, *args, **kwargs) -> bytes:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*.
     The return value is a bytes object encoding the values.
     """
     ...
+
 
 def calcsize(fmt) -> int:
     """

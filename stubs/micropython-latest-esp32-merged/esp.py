@@ -7,10 +7,10 @@ The ``esp`` module contains specific functions related to both the ESP8266 and
 ESP32 modules.  Some functions are only available on one or the other of these
 ports.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import Optional, Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
+from typing import Any, Optional
 
 LOG_NONE = 0  # type: int
 LOG_WARNING = 2  # type: int
@@ -42,11 +42,11 @@ def flash_write(byte_offset, bytes) -> Incomplete:
     ...
 
 
-def gpio_matrix_in(*args, **kwargs) -> Any:
+def gpio_matrix_in(*args, **kwargs) -> Incomplete:
     ...
 
 
-def gpio_matrix_out(*args, **kwargs) -> Any:
+def gpio_matrix_out(*args, **kwargs) -> Incomplete:
     ...
 
 

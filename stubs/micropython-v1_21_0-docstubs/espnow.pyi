@@ -8,7 +8,7 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/aioespnow.ht
 # origin module:: repos/micropython/docs/library/espnow.rst
 # source version: v1_21_0
 # origin module:: repos/micropython/docs/library/espnow.rst
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Iterator, List, Optional, Tuple, Iterator
 from _typeshed import Incomplete
 
 MAX_DATA_LEN: Incomplete = 250
@@ -17,7 +17,7 @@ ADDR_LEN: Incomplete = 6
 MAX_TOTAL_PEER_NUM: Incomplete = 20
 MAX_ENCRYPT_PEER_NUM: Incomplete = 6
 
-class ESPNow:
+class ESPNow(ESPNowBase, Iterator):
     """
     Returns the singleton ESPNow object. As this is a singleton, all calls to
     `espnow.ESPNow()` return a reference to the same object.
@@ -127,7 +127,7 @@ class ESPNow:
             - ``ValueError()`` on invalid configuration options or values.
         """
         ...
-    def send(self, msg) -> Incomplete:
+    def send(self, peer, msg, mac=None, sync=True) -> Incomplete:
         """
         Send the data contained in ``msg`` to the peer with given network ``mac``
         address. In the second form, ``mac=None`` and ``sync=True``. The peer must
@@ -173,7 +173,7 @@ class ESPNow:
         actively listening for ESP-NOW traffic (see the Espressif ESP-NOW docs).
         """
         ...
-    def recv(self, timeout_ms: Optional[Any] = None) -> int:
+    def recv(self, timeout_ms: Optional[Any] = None) -> List:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using

@@ -9,11 +9,11 @@ This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import IO, Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
 from stdlib.ssl import *
+from typing import IO
 
 CERT_REQUIRED = 2  # type: int
 PROTOCOL_TLS_CLIENT = 0  # type: int

@@ -15,6 +15,7 @@ that the first item of the list is always the smallest.
 # Stubber: v1.14.0
 from _typeshed import Incomplete
 
+
 def heappop(heap) -> Incomplete:
     """
     Pop the first item from the ``heap``, and return it.  Raise ``IndexError`` if
@@ -24,11 +25,13 @@ def heappop(heap) -> Incomplete:
     """
     ...
 
+
 def heappush(heap, item) -> Incomplete:
     """
     Push the ``item`` onto the ``heap``.
     """
     ...
+
 
 def heapify(x) -> Incomplete:
     """

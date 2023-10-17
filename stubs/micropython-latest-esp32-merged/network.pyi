@@ -33,8 +33,8 @@ For example::
     data = s.recv(1000)
     s.close()
 """
-from typing import List, Optional, Tuple, Union, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, List, Optional, Tuple, Union
 
 PHY_DP83848: int
 PHY_IP101: int
@@ -75,9 +75,9 @@ AUTH_WPA_PSK: int
 AUTH_WPA_WPA2_PSK: int
 ETH_CONNECTED: int
 
-def phy_mode(*args, **kwargs) -> Any: ...
-def country(*args, **kwargs) -> Any: ...
-def hostname(*args, **kwargs) -> Any: ...
+def phy_mode(*args, **kwargs) -> Incomplete: ...
+def country(*args, **kwargs) -> Incomplete: ...
+def hostname(*args, **kwargs) -> Incomplete: ...
 
 class LAN:
     """
@@ -152,7 +152,7 @@ class LAN:
         """
         ...
 
-def PPP(*args, **kwargs) -> Any: ...
+def PPP(*args, **kwargs) -> Incomplete: ...
 
 class WLAN:
     """

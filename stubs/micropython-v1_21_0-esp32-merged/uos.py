@@ -15,17 +15,20 @@ from _typeshed import Incomplete
 from stdlib.os import *
 from typing import Any, IO, Iterator, Optional, Tuple
 
+
 def rmdir(path) -> None:
     """
     Remove a directory.
     """
     ...
 
+
 def stat(path) -> Incomplete:
     """
     Get the status of a file or directory.
     """
     ...
+
 
 def urandom(n) -> bytes:
     """
@@ -34,11 +37,13 @@ def urandom(n) -> bytes:
     """
     ...
 
+
 def rename(old_path, new_path) -> None:
     """
     Rename a file.
     """
     ...
+
 
 def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
@@ -58,6 +63,7 @@ def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     ...
 
+
 def uname() -> uname_result:
     """
     Return a tuple (possibly a named tuple) containing information about the
@@ -72,7 +78,11 @@ def uname() -> uname_result:
     """
     ...
 
-def unlink(*args, **kwargs) -> Incomplete: ...
+
+def unlink(*args, **kwargs) -> Incomplete:
+    ...
+
+
 def statvfs(path) -> Tuple:
     """
     Get the status of a filesystem.
@@ -96,6 +106,7 @@ def statvfs(path) -> Tuple:
     """
     ...
 
+
 def umount(mount_point) -> Incomplete:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
@@ -106,17 +117,20 @@ def umount(mount_point) -> Incomplete:
     """
     ...
 
+
 def sync() -> None:
     """
     Sync all filesystems.
     """
     ...
 
+
 def mkdir(path) -> Incomplete:
     """
     Create a new directory.
     """
     ...
+
 
 def dupterm(stream_object, index=0, /) -> IO:
     """
@@ -141,11 +155,13 @@ def dupterm(stream_object, index=0, /) -> IO:
     """
     ...
 
+
 def chdir(path) -> Incomplete:
     """
     Change current directory.
     """
     ...
+
 
 def remove(path) -> None:
     """
@@ -153,12 +169,17 @@ def remove(path) -> None:
     """
     ...
 
-def dupterm_notify(*args, **kwargs) -> Incomplete: ...
+
+def dupterm_notify(*args, **kwargs) -> Incomplete:
+    ...
+
+
 def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
     With no argument, list the current directory.  Otherwise list the given directory.
     """
     ...
+
 
 def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     """
@@ -181,11 +202,13 @@ def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     """
     ...
 
+
 def getcwd() -> Incomplete:
     """
     Get the current directory.
     """
     ...
+
 
 class VfsFat:
     """
@@ -194,25 +217,52 @@ class VfsFat:
     Objects created by this constructor can be mounted using :func:`mount`.
     """
 
-    def rename(self, *args, **kwargs) -> Incomplete: ...
+    def rename(self, *args, **kwargs) -> Incomplete:
+        ...
+
     @staticmethod
     def mkfs(block_dev) -> None:
         """
         Build a FAT filesystem on *block_dev*.
         """
         ...
-    def mount(self, *args, **kwargs) -> Incomplete: ...
-    def statvfs(self, *args, **kwargs) -> Incomplete: ...
-    def rmdir(self, *args, **kwargs) -> Incomplete: ...
-    def stat(self, *args, **kwargs) -> Incomplete: ...
-    def umount(self, *args, **kwargs) -> Incomplete: ...
-    def remove(self, *args, **kwargs) -> Incomplete: ...
-    def mkdir(self, *args, **kwargs) -> Incomplete: ...
-    def open(self, *args, **kwargs) -> Incomplete: ...
-    def ilistdir(self, *args, **kwargs) -> Incomplete: ...
-    def chdir(self, *args, **kwargs) -> Incomplete: ...
-    def getcwd(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, block_dev) -> None: ...
+
+    def mount(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def statvfs(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def rmdir(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def stat(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def umount(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def remove(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def mkdir(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def open(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def ilistdir(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def chdir(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def getcwd(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def __init__(self, block_dev) -> None:
+        ...
+
 
 class VfsLfs2:
     """
@@ -232,7 +282,9 @@ class VfsLfs2:
     See :ref:`filesystem` for more information.
     """
 
-    def rename(self, *args, **kwargs) -> Incomplete: ...
+    def rename(self, *args, **kwargs) -> Incomplete:
+        ...
+
     @staticmethod
     def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
         """
@@ -242,15 +294,39 @@ class VfsLfs2:
                   for details see `littlefs issue 295`_.
         """
         ...
-    def mount(self, *args, **kwargs) -> Incomplete: ...
-    def statvfs(self, *args, **kwargs) -> Incomplete: ...
-    def rmdir(self, *args, **kwargs) -> Incomplete: ...
-    def stat(self, *args, **kwargs) -> Incomplete: ...
-    def umount(self, *args, **kwargs) -> Incomplete: ...
-    def remove(self, *args, **kwargs) -> Incomplete: ...
-    def mkdir(self, *args, **kwargs) -> Incomplete: ...
-    def open(self, *args, **kwargs) -> Incomplete: ...
-    def ilistdir(self, *args, **kwargs) -> Incomplete: ...
-    def chdir(self, *args, **kwargs) -> Incomplete: ...
-    def getcwd(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
+
+    def mount(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def statvfs(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def rmdir(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def stat(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def umount(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def remove(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def mkdir(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def open(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def ilistdir(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def chdir(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def getcwd(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None:
+        ...

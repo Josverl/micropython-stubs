@@ -72,8 +72,8 @@ Example::
     # Don't forget to close the underlying stream!
     f.close()
 """
-from typing import Dict, Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Dict, Optional
 
 DESC: int
 INCL: int

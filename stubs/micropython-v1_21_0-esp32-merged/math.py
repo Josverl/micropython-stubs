@@ -24,11 +24,13 @@ pi = 3.141593  # type: float
 e = 2.718282  # type: float
 tau = 6.283185  # type: float
 
+
 def ldexp(x, exp) -> Incomplete:
     """
     Return ``x * (2**exp)``.
     """
     ...
+
 
 def lgamma(x) -> float:
     """
@@ -36,18 +38,24 @@ def lgamma(x) -> float:
     """
     ...
 
+
 def trunc(x) -> int:
     """
     Return an integer, being ``x`` rounded towards 0.
     """
     ...
 
-def isclose(*args, **kwargs) -> Incomplete: ...
+
+def isclose(*args, **kwargs) -> Incomplete:
+    ...
+
+
 def gamma(x) -> Incomplete:
     """
     Return the gamma function of ``x``.
     """
     ...
+
 
 def isnan(x) -> bool:
     """
@@ -55,11 +63,13 @@ def isnan(x) -> bool:
     """
     ...
 
+
 def isfinite(x) -> bool:
     """
     Return ``True`` if ``x`` is finite.
     """
     ...
+
 
 def isinf(x) -> bool:
     """
@@ -67,11 +77,13 @@ def isinf(x) -> bool:
     """
     ...
 
+
 def sqrt(x) -> Incomplete:
     """
     Return the square root of ``x``.
     """
     ...
+
 
 def sinh(x) -> float:
     """
@@ -79,11 +91,13 @@ def sinh(x) -> float:
     """
     ...
 
+
 def log(x) -> float:
     """
     Return the natural logarithm of ``x``.
     """
     ...
+
 
 def tan(x) -> float:
     """
@@ -91,11 +105,13 @@ def tan(x) -> float:
     """
     ...
 
+
 def tanh(x) -> float:
     """
     Return the hyperbolic tangent of ``x``.
     """
     ...
+
 
 def log2(x) -> float:
     """
@@ -103,17 +119,20 @@ def log2(x) -> float:
     """
     ...
 
+
 def log10(x) -> float:
     """
     Return the base-10 logarithm of ``x``.
     """
     ...
 
+
 def sin(x) -> float:
     """
     Return the sine of ``x``.
     """
     ...
+
 
 def modf(x) -> Tuple:
     """
@@ -122,11 +141,13 @@ def modf(x) -> Tuple:
     """
     ...
 
+
 def radians(x) -> Incomplete:
     """
     Return degrees ``x`` converted to radians.
     """
     ...
+
 
 def atanh(x) -> float:
     """
@@ -134,11 +155,13 @@ def atanh(x) -> float:
     """
     ...
 
+
 def atan2(y, x) -> float:
     """
     Return the principal value of the inverse tangent of ``y/x``.
     """
     ...
+
 
 def atan(x) -> float:
     """
@@ -146,17 +169,20 @@ def atan(x) -> float:
     """
     ...
 
+
 def ceil(x) -> int:
     """
     Return an integer, being ``x`` rounded towards positive infinity.
     """
     ...
 
+
 def copysign(x, y) -> Incomplete:
     """
     Return ``x`` with the sign of ``y``.
     """
     ...
+
 
 def frexp(x) -> Incomplete:
     """
@@ -167,11 +193,13 @@ def frexp(x) -> Incomplete:
     """
     ...
 
+
 def acos(x) -> float:
     """
     Return the inverse cosine of ``x``.
     """
     ...
+
 
 def pow(x, y) -> Incomplete:
     """
@@ -179,11 +207,13 @@ def pow(x, y) -> Incomplete:
     """
     ...
 
+
 def asinh(x) -> float:
     """
     Return the inverse hyperbolic sine of ``x``.
     """
     ...
+
 
 def acosh(x) -> float:
     """
@@ -191,18 +221,24 @@ def acosh(x) -> float:
     """
     ...
 
+
 def asin(x) -> float:
     """
     Return the inverse sine of ``x``.
     """
     ...
 
-def factorial(*args, **kwargs) -> Incomplete: ...
+
+def factorial(*args, **kwargs) -> Incomplete:
+    ...
+
+
 def fabs(x) -> Incomplete:
     """
     Return the absolute value of ``x``.
     """
     ...
+
 
 def expm1(x) -> Incomplete:
     """
@@ -210,11 +246,13 @@ def expm1(x) -> Incomplete:
     """
     ...
 
+
 def floor(x) -> int:
     """
     Return an integer, being ``x`` rounded towards negative infinity.
     """
     ...
+
 
 def fmod(x, y) -> Incomplete:
     """
@@ -222,11 +260,13 @@ def fmod(x, y) -> Incomplete:
     """
     ...
 
+
 def cos(x) -> float:
     """
     Return the cosine of ``x``.
     """
     ...
+
 
 def degrees(x) -> Incomplete:
     """
@@ -234,11 +274,13 @@ def degrees(x) -> Incomplete:
     """
     ...
 
+
 def cosh(x) -> float:
     """
     Return the hyperbolic cosine of ``x``.
     """
     ...
+
 
 def exp(x) -> float:
     """
@@ -246,11 +288,13 @@ def exp(x) -> float:
     """
     ...
 
+
 def erf(x) -> Incomplete:
     """
     Return the error function of ``x``.
     """
     ...
+
 
 def erfc(x) -> Incomplete:
     """

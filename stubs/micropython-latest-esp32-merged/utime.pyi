@@ -32,8 +32,8 @@ If actual calendar time is not maintained with a system/MicroPython RTC,
 functions below which require reference to current absolute time may
 behave not as expected.
 """
-from typing import Optional, Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Optional, Tuple
 
 def ticks_diff(ticks1, ticks2) -> int:
     """

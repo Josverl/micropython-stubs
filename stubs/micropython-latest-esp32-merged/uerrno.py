@@ -8,10 +8,10 @@ CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html
 This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import Dict, Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
+from typing import Dict
 
 ENOBUFS = 105  # type: int
 ENODEV = 19  # type: int

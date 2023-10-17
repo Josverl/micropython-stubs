@@ -18,8 +18,8 @@ building-blocks for higher-level abstractions such as specific device types.
 ``Note:`` This module is still under development and its classes, functions,
           methods and constants are subject to change.
 """
-from typing import Optional, Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Optional, Tuple
 
 FLAG_NOTIFY: int
 FLAG_READ: int

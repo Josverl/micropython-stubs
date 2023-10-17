@@ -8,6 +8,7 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/cryptolib.ht
 from _typeshed import Incomplete
 from typing import Any, Optional
 
+
 class aes:
     def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
@@ -17,11 +18,13 @@ class aes:
         to the same mutable buffer, in which case data is encrypted in-place.
         """
         ...
+
     def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.
         """
         ...
+
     def __init__(self, key, mode, IV: Optional[Any] = None) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:
