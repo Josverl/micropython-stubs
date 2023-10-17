@@ -15,11 +15,11 @@ Difference to CPython
    by MicroPython (but is a no-op), so where compatibility with CPython matters,
    be sure to use it.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import IO, Optional, Tuple, Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
 from stdlib.socket import *
+from typing import Any, IO, Optional, Tuple
 
 SOCK_STREAM = 1  # type: int
 SOCK_DGRAM = 2  # type: int
@@ -134,7 +134,7 @@ class socket:
         """
         ...
 
-    def fileno(self, *args, **kwargs) -> Any:
+    def fileno(self, *args, **kwargs) -> Incomplete:
         ...
 
     def sendall(self, bytes) -> int:

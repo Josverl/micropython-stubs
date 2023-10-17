@@ -1,30 +1,30 @@
 """
-Module: '_onewire' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
+Module: '_onewire' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
+from _typeshed import Incomplete
 
 
-def reset(*args, **kwargs) -> Any:
+def reset(*args, **kwargs) -> Incomplete:
     ...
 
 
-def writebyte(*args, **kwargs) -> Any:
+def writebyte(*args, **kwargs) -> Incomplete:
     ...
 
 
-def writebit(*args, **kwargs) -> Any:
+def writebit(*args, **kwargs) -> Incomplete:
     ...
 
 
-def crc8(*args, **kwargs) -> Any:
+def crc8(*args, **kwargs) -> Incomplete:
     ...
 
 
-def readbyte(*args, **kwargs) -> Any:
+def readbyte(*args, **kwargs) -> Incomplete:
     ...
 
 
-def readbit(*args, **kwargs) -> Any:
+def readbit(*args, **kwargs) -> Incomplete:
     ...

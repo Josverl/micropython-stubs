@@ -33,10 +33,10 @@ For example::
     data = s.recv(1000)
     s.close()
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import List, Optional, Tuple, Union, Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
+from typing import Any, List, Optional, Tuple, Union
 
 PHY_DP83848 = 4  # type: int
 PHY_IP101 = 2  # type: int
@@ -78,15 +78,15 @@ AUTH_WPA_WPA2_PSK = 4  # type: int
 ETH_CONNECTED = 3  # type: int
 
 
-def phy_mode(*args, **kwargs) -> Any:
+def phy_mode(*args, **kwargs) -> Incomplete:
     ...
 
 
-def country(*args, **kwargs) -> Any:
+def country(*args, **kwargs) -> Incomplete:
     ...
 
 
-def hostname(*args, **kwargs) -> Any:
+def hostname(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -170,7 +170,7 @@ class LAN:
         ...
 
 
-def PPP(*args, **kwargs) -> Any:
+def PPP(*args, **kwargs) -> Incomplete:
     ...
 
 

@@ -8,8 +8,8 @@ CPython module: :mod:`python:platform` https://docs.python.org/3/library/platfor
 This module tries to retrieve as much platform-identifying data as possible. It
 makes this information available via function APIs.
 """
-from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Tuple
 
 def platform() -> str:
     """

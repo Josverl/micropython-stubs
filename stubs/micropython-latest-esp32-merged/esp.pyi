@@ -7,8 +7,8 @@ The ``esp`` module contains specific functions related to both the ESP8266 and
 ESP32 modules.  Some functions are only available on one or the other of these
 ports.
 """
-from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Optional
 
 LOG_NONE: int
 LOG_WARNING: int
@@ -35,8 +35,8 @@ def osdebug(level) -> None:
     ...
 
 def flash_write(byte_offset, bytes) -> Incomplete: ...
-def gpio_matrix_in(*args, **kwargs) -> Any: ...
-def gpio_matrix_out(*args, **kwargs) -> Any: ...
+def gpio_matrix_in(*args, **kwargs) -> Incomplete: ...
+def gpio_matrix_out(*args, **kwargs) -> Incomplete: ...
 def flash_user_start() -> Incomplete:
     """
     Read the memory offset at which the user flash space begins.

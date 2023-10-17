@@ -1,29 +1,29 @@
 """
-Module: 'ds18x20' on micropython-v1.20.0-449-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
+Module: 'ds18x20' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
+from _typeshed import Incomplete
 
 
-def const(*args, **kwargs) -> Any:
+def const(*args, **kwargs) -> Incomplete:
     ...
 
 
 class DS18X20:
-    def read_scratch(self, *args, **kwargs) -> Any:
+    def read_scratch(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write_scratch(self, *args, **kwargs) -> Any:
+    def write_scratch(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read_temp(self, *args, **kwargs) -> Any:
+    def read_temp(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def convert_temp(self, *args, **kwargs) -> Any:
+    def convert_temp(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def scan(self, *args, **kwargs) -> Any:
+    def scan(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

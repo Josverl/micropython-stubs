@@ -8,10 +8,10 @@ CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binasci
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 """
-from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Optional
 
-def crc32(*args, **kwargs) -> Any: ...
+def crc32(*args, **kwargs) -> Incomplete: ...
 def hexlify(data, sep: Optional[Any] = None) -> bytes:
     """
     Convert the bytes in the *data* object to a hexadecimal representation.

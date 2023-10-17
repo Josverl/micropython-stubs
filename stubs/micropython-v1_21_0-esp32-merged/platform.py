@@ -13,6 +13,7 @@ makes this information available via function APIs.
 from _typeshed import Incomplete
 from typing import Tuple
 
+
 def platform() -> str:
     """
     Returns a string identifying the underlying platform. This string is composed
@@ -30,11 +31,13 @@ def platform() -> str:
     """
     ...
 
+
 def python_compiler() -> str:
     """
     Returns a string identifying the compiler used for compiling MicroPython.
     """
     ...
+
 
 def libc_ver() -> Tuple:
     """

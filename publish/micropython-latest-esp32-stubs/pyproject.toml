@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp32-stubs"
-version = "1.21.0a544"
+version = "1.22.0a19"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -32,11 +32,13 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 packages = [
+    { include = "__builtins__.pyi" },
     { include = "_asyncio.pyi" },
     { include = "_boot.pyi" },
     { include = "_espnow.pyi" },
     { include = "_onewire.pyi" },
     { include = "_thread.pyi" },
+    { include = "aioespnow.pyi" },
     { include = "apa106.pyi" },
     { include = "array.pyi" },
     { include = "asyncio/__init__.pyi" },
@@ -66,6 +68,7 @@ packages = [
     { include = "inisetup.pyi" },
     { include = "io.pyi" },
     { include = "json.pyi" },
+    { include = "logging.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
@@ -77,6 +80,8 @@ packages = [
     { include = "os.pyi" },
     { include = "platform.pyi" },
     { include = "random.pyi" },
+    { include = "requests/__init__.pyi" },
+    { include = "requests.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },
     { include = "ssl.pyi" },

@@ -10,40 +10,39 @@ This module implements multithreading support.
 This module is highly experimental and its API is not yet fully settled
 and not yet described in this documentation.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
 
 
-def get_ident(*args, **kwargs) -> Any:
+def get_ident(*args, **kwargs) -> Incomplete:
     ...
 
 
-def start_new_thread(*args, **kwargs) -> Any:
+def start_new_thread(*args, **kwargs) -> Incomplete:
     ...
 
 
-def stack_size(*args, **kwargs) -> Any:
+def stack_size(*args, **kwargs) -> Incomplete:
     ...
 
 
-def exit(*args, **kwargs) -> Any:
+def exit(*args, **kwargs) -> Incomplete:
     ...
 
 
-def allocate_lock(*args, **kwargs) -> Any:
+def allocate_lock(*args, **kwargs) -> Incomplete:
     ...
 
 
 class LockType:
-    def locked(self, *args, **kwargs) -> Any:
+    def locked(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def release(self, *args, **kwargs) -> Any:
+    def release(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def acquire(self, *args, **kwargs) -> Any:
+    def acquire(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

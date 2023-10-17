@@ -12,12 +12,14 @@ data format.
 # Stubber: v1.14.0
 from _typeshed import Incomplete
 
+
 def loads(str) -> Incomplete:
     """
     Parse the JSON *str* and return an object.  Raises :exc:`ValueError` if the
     string is not correctly formed.
     """
     ...
+
 
 def load(stream) -> Incomplete:
     """
@@ -30,6 +32,7 @@ def load(stream) -> Incomplete:
     """
     ...
 
+
 def dumps(obj, separators=None) -> str:
     """
     Return *obj* represented as a JSON string.
@@ -37,6 +40,7 @@ def dumps(obj, separators=None) -> str:
     The arguments have the same meaning as in `dump`.
     """
     ...
+
 
 def dump(obj, stream, separators=None) -> Incomplete:
     """

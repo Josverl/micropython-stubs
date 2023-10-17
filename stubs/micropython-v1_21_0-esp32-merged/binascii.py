@@ -13,7 +13,11 @@ encodings of it in ASCII form (in both directions).
 from _typeshed import Incomplete
 from typing import Any, Optional
 
-def crc32(*args, **kwargs) -> Incomplete: ...
+
+def crc32(*args, **kwargs) -> Incomplete:
+    ...
+
+
 def hexlify(data, sep: Optional[Any] = None) -> bytes:
     """
     Convert the bytes in the *data* object to a hexadecimal representation.
@@ -24,12 +28,14 @@ def hexlify(data, sep: Optional[Any] = None) -> bytes:
     """
     ...
 
+
 def unhexlify(data) -> bytes:
     """
     Convert hexadecimal data to binary representation. Returns bytes string.
     (i.e. inverse of hexlify)
     """
     ...
+
 
 def b2a_base64(data, *, newline=True) -> bytes:
     """
@@ -38,6 +44,7 @@ def b2a_base64(data, *, newline=True) -> bytes:
     followed by a newline character if newline is true, as a bytes object.
     """
     ...
+
 
 def a2b_base64(data) -> bytes:
     """

@@ -15,9 +15,9 @@ Difference to CPython
    by MicroPython (but is a no-op), so where compatibility with CPython matters,
    be sure to use it.
 """
-from typing import IO, Optional, Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.socket import *
+from typing import Any, IO, Optional, Tuple
 
 SOCK_STREAM: int
 SOCK_DGRAM: int
@@ -126,7 +126,7 @@ class socket:
         reasonable value is chosen.
         """
         ...
-    def fileno(self, *args, **kwargs) -> Any: ...
+    def fileno(self, *args, **kwargs) -> Incomplete: ...
     def sendall(self, bytes) -> int:
         """
         Send all data to the socket. The socket must be connected to a remote socket.

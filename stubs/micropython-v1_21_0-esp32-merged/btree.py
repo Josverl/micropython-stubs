@@ -80,6 +80,7 @@ from typing import Any, Dict, Optional
 DESC = 2  # type: int
 INCL = 1  # type: int
 
+
 def open(stream, *, flags=0, pagesize=0, cachesize=0, minkeypage=0) -> Dict:
     """
     Open a database from a random-access `stream` (like an open file). All

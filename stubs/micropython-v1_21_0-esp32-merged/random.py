@@ -31,6 +31,7 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
 from _typeshed import Incomplete
 from typing import Any, Optional
 
+
 def randrange(start, stop, step: Optional[Any] = None) -> int:
     """
     The first form returns a random integer from the range [0, *stop*).
@@ -41,11 +42,13 @@ def randrange(start, stop, step: Optional[Any] = None) -> int:
     """
     ...
 
+
 def random() -> int:
     """
     Return a random floating point number in the range [0.0, 1.0).
     """
     ...
+
 
 def seed(n=None, /) -> None:
     """
@@ -59,12 +62,14 @@ def seed(n=None, /) -> None:
     """
     ...
 
+
 def uniform(a, b) -> int:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
     and *b* <= N <= *a* for *b* < *a*.
     """
     ...
+
 
 def choice(sequence) -> Incomplete:
     """
@@ -73,11 +78,13 @@ def choice(sequence) -> Incomplete:
     """
     ...
 
+
 def randint(a, b) -> int:
     """
     Return a random integer in the range [*a*, *b*].
     """
     ...
+
 
 def getrandbits(n) -> int:
     """

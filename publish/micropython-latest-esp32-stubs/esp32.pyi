@@ -7,8 +7,8 @@ The ``esp32`` module contains functions and classes specifically aimed at
 controlling ESP32 modules.
 """
 from __future__ import annotations
-from typing import List, Optional, Tuple, Union, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, List, Optional, Tuple, Union
 
 WAKEUP_ALL_LOW: bool
 WAKEUP_ANY_HIGH: bool
@@ -313,7 +313,7 @@ class RMT:
         the current channel number.
         """
         ...
-    def deinit(self, *args, **kwargs) -> Any: ...
+    def deinit(self, *args, **kwargs) -> Incomplete: ...
     def clock_div(self) -> Incomplete:
         """
         Return the clock divider. Note that the channel resolution is

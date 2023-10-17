@@ -14,6 +14,7 @@ floating-point support).
 from _typeshed import Incomplete
 from typing import Any, List, Optional
 
+
 class array:
     """
     Create array with elements of given type. Initial contents of the
@@ -27,9 +28,12 @@ class array:
         array, growing it.
         """
         ...
+
     def append(self, val) -> Incomplete:
         """
         Append new element *val* to the end of array, growing it.
         """
         ...
-    def __init__(self, typecode, iterable: Optional[Any] = None) -> None: ...
+
+    def __init__(self, typecode, iterable: Optional[Any] = None) -> None:
+        ...

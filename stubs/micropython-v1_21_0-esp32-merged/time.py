@@ -37,6 +37,7 @@ behave not as expected.
 from _typeshed import Incomplete
 from typing import Any, Optional, Tuple
 
+
 def ticks_diff(ticks1, ticks2) -> int:
     """
     Measure ticks difference between values returned from `ticks_ms()`, `ticks_us()`,
@@ -103,6 +104,7 @@ def ticks_diff(ticks1, ticks2) -> int:
     """
     ...
 
+
 def ticks_add(ticks, delta) -> Incomplete:
     """
     Offset ticks value by a given number, which can be either positive or negative.
@@ -130,6 +132,7 @@ def ticks_add(ticks, delta) -> Incomplete:
     """
     ...
 
+
 def ticks_cpu() -> Incomplete:
     """
     Similar to `ticks_ms()` and `ticks_us()`, but with the highest possible resolution
@@ -144,6 +147,7 @@ def ticks_cpu() -> Incomplete:
     Availability: Not every port implements this function.
     """
     ...
+
 
 def time() -> int:
     """
@@ -172,6 +176,7 @@ def time() -> int:
     """
     ...
 
+
 def ticks_ms() -> int:
     """
     Returns an increasing millisecond counter with an arbitrary reference point, that
@@ -196,11 +201,13 @@ def ticks_ms() -> int:
     """
     ...
 
+
 def ticks_us() -> Incomplete:
     """
     Just like `ticks_ms()` above, but in microseconds.
     """
     ...
+
 
 def time_ns() -> int:
     """
@@ -208,6 +215,7 @@ def time_ns() -> int:
     a big integer, so will allocate on the heap).
     """
     ...
+
 
 def localtime(secs: Optional[Any] = None) -> Tuple:
     """
@@ -231,6 +239,7 @@ def localtime(secs: Optional[Any] = None) -> Tuple:
     """
     ...
 
+
 def sleep_us(us) -> None:
     """
     Delay for given number of microseconds, should be positive or 0.
@@ -240,6 +249,7 @@ def sleep_us(us) -> None:
     processing to perform.
     """
     ...
+
 
 def gmtime(secs: Optional[Any] = None) -> Tuple:
     """
@@ -263,6 +273,7 @@ def gmtime(secs: Optional[Any] = None) -> Tuple:
     """
     ...
 
+
 def sleep_ms(ms) -> None:
     """
     Delay for given number of milliseconds, should be positive or 0.
@@ -274,6 +285,7 @@ def sleep_ms(ms) -> None:
     """
     ...
 
+
 def mktime() -> int:
     """
     This is inverse function of localtime. It's argument is a full 8-tuple
@@ -281,6 +293,7 @@ def mktime() -> int:
     the number of seconds since Jan 1, 2000.
     """
     ...
+
 
 def sleep(seconds) -> Incomplete:
     """

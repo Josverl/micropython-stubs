@@ -6,8 +6,8 @@ MicroPython module: https://docs.micropython.org/en/latest/library/framebuf.html
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
-from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Optional
 
 MONO_HMSB: int
 MONO_HLSB: int
@@ -18,7 +18,7 @@ GS2_HMSB: int
 GS8: int
 GS4_HMSB: int
 
-def FrameBuffer1(*args, **kwargs) -> Any: ...
+def FrameBuffer1(*args, **kwargs) -> Incomplete: ...
 
 class FrameBuffer:
     """
@@ -138,5 +138,5 @@ class FrameBuffer:
         Fill the entire FrameBuffer with the specified color.
         """
         ...
-    def fill_rect(self, *args, **kwargs) -> Any: ...
+    def fill_rect(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, buffer, width, height, format, stride=-1, /) -> None: ...

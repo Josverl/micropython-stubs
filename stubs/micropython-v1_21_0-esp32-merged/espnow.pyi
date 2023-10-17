@@ -4,7 +4,7 @@ ESP-NOW :doc:`asyncio` support.
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/aioespnow.html
 """
 from _typeshed import Incomplete, Incomplete as Incomplete
-from typing import Any, Dict, Optional, Tuple
+from typing import Any, Dict, Iterator, List, Optional, Tuple
 
 KEY_LEN: int
 MAX_DATA_LEN: int
@@ -12,7 +12,7 @@ MAX_ENCRYPT_PEER_NUM: int
 MAX_TOTAL_PEER_NUM: int
 ADDR_LEN: int
 
-class ESPNow:
+class ESPNow(ESPNowBase, Iterator):
     """
     Returns the singleton ESPNow object. As this is a singleton, all calls to
     `espnow.ESPNow()` return a reference to the same object.
@@ -32,7 +32,7 @@ class ESPNow:
           - ``encrypt_num`` is the number of encrypted peers.
         """
         ...
-    def recv(self, timeout_ms: Optional[Any] = None) -> int:
+    def recv(self, timeout_ms: Optional[Any] = None) -> List:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using
@@ -237,7 +237,7 @@ class ESPNow:
             ``True`` if interface is currently *active*, else ``False``.
         """
         ...
-    def send(self, msg) -> Incomplete:
+    def send(self, peer, msg, mac=None, sync=True) -> Incomplete:
         """
         Send the data contained in ``msg`` to the peer with given network ``mac``
         address. In the second form, ``mac=None`` and ``sync=True``. The peer must

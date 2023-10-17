@@ -18,11 +18,13 @@ WAKEUP_ANY_HIGH = True  # type: bool
 HEAP_EXEC = 1  # type: int
 HEAP_DATA = 4  # type: int
 
+
 def raw_temperature() -> int:
     """
     Read the raw value of the internal temperature sensor, returning an integer.
     """
     ...
+
 
 def idf_heap_info(capabilities) -> List[Tuple]:
     """
@@ -62,12 +64,14 @@ def idf_heap_info(capabilities) -> List[Tuple]:
     """
     ...
 
+
 def wake_on_touch(wake) -> None:
     """
     Configure whether or not a touch will wake the device from sleep.
     *wake* should be a boolean value.
     """
     ...
+
 
 def wake_on_ext0(pin, level) -> None:
     """
@@ -77,6 +81,7 @@ def wake_on_ext0(pin, level) -> None:
     """
     ...
 
+
 def wake_on_ext1(pins, level) -> None:
     """
     Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
@@ -85,6 +90,7 @@ def wake_on_ext1(pins, level) -> None:
     """
     ...
 
+
 def wake_on_ulp(wake) -> None:
     """
     Configure whether or not the Ultra-Low-Power co-processor can wake the
@@ -92,12 +98,14 @@ def wake_on_ulp(wake) -> None:
     """
     ...
 
+
 def gpio_deep_sleep_hold(enable) -> None:
     """
     Configure whether non-RTC GPIO pin configuration is retained during
     deep-sleep mode for held pads. *enable* should be a boolean value.
     """
     ...
+
 
 class ULP:
     """
@@ -111,17 +119,22 @@ class ULP:
         Start the ULP running at the given *entry_point*.
         """
         ...
+
     def set_wakeup_period(self, period_index, period_us) -> None:
         """
         Set the wake-up period.
         """
         ...
+
     def load_binary(self, load_addr, program_binary) -> None:
         """
         Load a *program_binary* into the ULP at the given *load_addr*.
         """
         ...
-    def __init__(self) -> None: ...
+
+    def __init__(self) -> None:
+        ...
+
 
 class NVS:
     """
@@ -135,11 +148,13 @@ class NVS:
         exist or has a different type.
         """
         ...
+
     def set_i32(self, key, value) -> None:
         """
         Sets a 32-bit signed integer value for the specified key. Remember to call *commit*!
         """
         ...
+
     def set_blob(self, key, value) -> None:
         """
         Sets a binary blob value for the specified key. The value passed in must support the buffer
@@ -148,11 +163,13 @@ class NVS:
         Remember to call *commit*!
         """
         ...
+
     def commit(self) -> Incomplete:
         """
         Commits changes made by *set_xxx* methods to flash.
         """
         ...
+
     def get_blob(self, key, buffer) -> int:
         """
         Reads the value of the blob for the specified key into the buffer, which must be a bytearray.
@@ -160,12 +177,16 @@ class NVS:
         type, or if the buffer is too small.
         """
         ...
+
     def erase_key(self, key) -> Incomplete:
         """
         Erases a key-value pair.
         """
         ...
-    def __init__(self, namespace) -> None: ...
+
+    def __init__(self, namespace) -> None:
+        ...
+
 
 class Partition:
     """
@@ -179,7 +200,9 @@ class Partition:
     TYPE_DATA = 1  # type: int
     BOOT = 0  # type: int
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+        ...
+
     def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and :ref:`extended
@@ -187,6 +210,7 @@ class Partition:
         :class:`os.AbstractBlockDev`.
         """
         ...
+
     def set_boot(self) -> None:
         """
         Sets the partition as the boot partition.
@@ -197,12 +221,16 @@ class Partition:
            will validate the new image before booting.
         """
         ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+        ...
+
     def info(self) -> Tuple:
         """
         Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``.
         """
         ...
+
     @classmethod
     def find(cls, type=TYPE_APP, subtype=0xFF, label=None, block_size=4096) -> List:
         """
@@ -214,6 +242,7 @@ class Partition:
         objects.
         """
         ...
+
     def get_next_update(self) -> Partition:
         """
         Gets the next update partition after this one, and returns a new Partition object.
@@ -221,6 +250,7 @@ class Partition:
         which returns the next partition to update given the current running one.
         """
         ...
+
     @classmethod
     def mark_app_valid_cancel_rollback(cls) -> Incomplete:
         """
@@ -234,7 +264,10 @@ class Partition:
         necessary when booting firmware that was loaded using esptool.
         """
         ...
-    def __init__(self, id, block_size=4096, /) -> None: ...
+
+    def __init__(self, id, block_size=4096, /) -> None:
+        ...
+
 
 class RMT:
     """
@@ -259,6 +292,7 @@ class RMT:
         configurable so this will always return 80MHz.
         """
         ...
+
     def loop(self, enable_loop) -> None:
         """
         Configure looping on the channel. *enable_loop* is bool, set to ``True`` to
@@ -267,6 +301,7 @@ class RMT:
         current loop iteration will be completed and then transmission will stop.
         """
         ...
+
     def wait_done(self, *, timeout=0) -> bool:
         """
         Returns ``True`` if the channel is idle or ``False`` if a sequence of
@@ -275,6 +310,7 @@ class RMT:
         milliseconds for transmission to complete.
         """
         ...
+
     def write_pulses(self, duration, data: Union[bool, int] = True) -> Incomplete:
         """
         Begin transmitting a sequence. There are three ways to specify this:
@@ -304,6 +340,7 @@ class RMT:
         supported by the hardware.
         """
         ...
+
     @staticmethod
     def bitstream_channel(value: Optional[Any] = None) -> int:
         """
@@ -318,11 +355,16 @@ class RMT:
         the current channel number.
         """
         ...
-    def deinit(self, *args, **kwargs) -> Incomplete: ...
+
+    def deinit(self, *args, **kwargs) -> Incomplete:
+        ...
+
     def clock_div(self) -> Incomplete:
         """
         Return the clock divider. Note that the channel resolution is
         ``1 / (source_freq / clock_div)``.
         """
         ...
-    def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None: ...
+
+    def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None:
+        ...

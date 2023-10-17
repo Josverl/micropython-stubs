@@ -8,11 +8,11 @@ CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
 This module contains additional types of `stream` (file-like) objects
 and helper functions.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import IO, Optional, Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
 from stdlib.io import *
+from typing import Any, IO, Optional
 
 
 def open(name, mode="r", **kwargs) -> Incomplete:
@@ -25,31 +25,31 @@ def open(name, mode="r", **kwargs) -> Incomplete:
 
 
 class StringIO(IO):
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def flush(self, *args, **kwargs) -> Any:
+    def flush(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def getvalue(self, *args, **kwargs) -> Any:
+    def getvalue(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def seek(self, *args, **kwargs) -> Any:
+    def seek(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def tell(self, *args, **kwargs) -> Any:
+    def tell(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readline(self, *args, **kwargs) -> Any:
+    def readline(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def close(self, *args, **kwargs) -> Any:
+    def close(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, string: Optional[Any] = None) -> None:
@@ -74,10 +74,10 @@ class BytesIO(IO):
     following method:
     """
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def flush(self, *args, **kwargs) -> Any:
+    def flush(self, *args, **kwargs) -> Incomplete:
         ...
 
     def getvalue(self) -> Incomplete:
@@ -86,22 +86,22 @@ class BytesIO(IO):
         """
         ...
 
-    def seek(self, *args, **kwargs) -> Any:
+    def seek(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def tell(self, *args, **kwargs) -> Any:
+    def tell(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readline(self, *args, **kwargs) -> Any:
+    def readline(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def close(self, *args, **kwargs) -> Any:
+    def close(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, string: Optional[Any] = None) -> None:
@@ -109,10 +109,10 @@ class BytesIO(IO):
 
 
 class BufferedWriter:
-    def flush(self, *args, **kwargs) -> Any:
+    def flush(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

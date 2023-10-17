@@ -47,6 +47,7 @@ BF_POS = 17  # type: int
 BIG_ENDIAN = 1  # type: int
 FLOAT32 = -268435456  # type: int
 
+
 def sizeof(struct, layout_type=NATIVE, /) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
@@ -54,6 +55,7 @@ def sizeof(struct, layout_type=NATIVE, /) -> int:
     (or its aggregate field).
     """
     ...
+
 
 def bytes_at(addr, size) -> bytes:
     """
@@ -64,6 +66,7 @@ def bytes_at(addr, size) -> bytes:
     """
     ...
 
+
 def bytearray_at(addr, size) -> bytearray:
     """
     Capture memory at the given address and size as bytearray object.
@@ -73,6 +76,7 @@ def bytearray_at(addr, size) -> bytearray:
     """
     ...
 
+
 def addressof(obj) -> int:
     """
     Return address of an object. Argument should be bytes, bytearray or
@@ -81,10 +85,12 @@ def addressof(obj) -> int:
     """
     ...
 
+
 class struct:
     """
     Instantiate a "foreign data structure" object based on structure address in
     memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
 
-    def __init__(self, addr, descriptor, layout_type=NATIVE, /) -> None: ...
+    def __init__(self, addr, descriptor, layout_type=NATIVE, /) -> None:
+        ...

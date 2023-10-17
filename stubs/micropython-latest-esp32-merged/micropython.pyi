@@ -3,8 +3,8 @@ Access and control MicroPython internals.
 
 MicroPython module: https://docs.micropython.org/en/latest/library/micropython.html
 """
-from typing import Optional, Tuple, TypeVar, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Optional, Tuple, TypeVar
 
 def opt_level(level: Optional[Any] = None) -> Incomplete:
     """

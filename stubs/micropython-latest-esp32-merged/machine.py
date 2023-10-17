@@ -10,10 +10,10 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
+from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
 SLEEP = 2  # type: int
 EXT1_WAKE = 3  # type: int
@@ -49,7 +49,7 @@ def disable_irq() -> Incomplete:
     ...
 
 
-def dht_readinto(*args, **kwargs) -> Any:
+def dht_readinto(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -229,7 +229,7 @@ def reset() -> NoReturn:
     ...
 
 
-mem8: Any  ## <class 'mem'> = <8-bit memory>
+mem8: Incomplete  ## <class 'mem'> = <8-bit memory>
 
 
 class PWM:
@@ -297,7 +297,7 @@ class PWM:
         """
         ...
 
-    def duty(self, *args, **kwargs) -> Any:
+    def duty(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0, invert=False) -> None:
@@ -325,8 +325,8 @@ class WDT:
         ...
 
 
-mem32: Any  ## <class 'mem'> = <32-bit memory>
-mem16: Any  ## <class 'mem'> = <16-bit memory>
+mem32: Incomplete  ## <class 'mem'> = <32-bit memory>
+mem16: Incomplete  ## <class 'mem'> = <16-bit memory>
 
 
 class ADCBlock:
@@ -417,10 +417,10 @@ class ADC:
         """
         ...
 
-    def width(self, *args, **kwargs) -> Any:
+    def width(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
     def block(self) -> Incomplete:
@@ -433,7 +433,7 @@ class ADC:
         """
         ...
 
-    def atten(self, *args, **kwargs) -> Any:
+    def atten(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None:
@@ -523,7 +523,7 @@ class I2S:
 
 
 class DAC:
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -746,7 +746,7 @@ class Timer:
         """
         ...
 
-    def value(self, *args, **kwargs) -> Any:
+    def value(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, id=-1, *args, **kwargs) -> None:
@@ -763,22 +763,22 @@ class SoftSPI:
     LSB = 1  # type: int
     MSB = 0  # type: int
 
-    def deinit(self, *args, **kwargs) -> Any:
+    def deinit(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def init(self, *args, **kwargs) -> Any:
+    def init(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write_readinto(self, *args, **kwargs) -> Any:
+    def write_readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None:
@@ -981,10 +981,10 @@ class Pin:
 
 
 class TouchPad:
-    def config(self, *args, **kwargs) -> Any:
+    def config(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -1193,19 +1193,19 @@ class SDCard:
      - *freq* selects the SD/MMC interface frequency in Hz (only supported on the ESP32).
     """
 
-    def ioctl(self, *args, **kwargs) -> Any:
+    def ioctl(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readblocks(self, *args, **kwargs) -> Any:
+    def readblocks(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writeblocks(self, *args, **kwargs) -> Any:
+    def writeblocks(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def info(self, *args, **kwargs) -> Any:
+    def info(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def deinit(self, *args, **kwargs) -> Any:
+    def deinit(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, slot=1, width=1, cd=None, wp=None, sck=None, miso=None, mosi=None, cs=None, freq=20000000) -> None:
@@ -1225,7 +1225,7 @@ class RTC:
         """
         ...
 
-    def memory(self, *args, **kwargs) -> Any:
+    def memory(self, *args, **kwargs) -> Incomplete:
         ...
 
     def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
@@ -1261,43 +1261,43 @@ class SoftI2C(I2C):
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
 
-    def readfrom_mem_into(self, *args, **kwargs) -> Any:
+    def readfrom_mem_into(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readfrom_into(self, *args, **kwargs) -> Any:
+    def readfrom_into(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readfrom_mem(self, *args, **kwargs) -> Any:
+    def readfrom_mem(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writeto_mem(self, *args, **kwargs) -> Any:
+    def writeto_mem(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def scan(self, *args, **kwargs) -> Any:
+    def scan(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writeto(self, *args, **kwargs) -> Any:
+    def writeto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writevto(self, *args, **kwargs) -> Any:
+    def writevto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def start(self, *args, **kwargs) -> Any:
+    def start(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readfrom(self, *args, **kwargs) -> Any:
+    def readfrom(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def init(self, *args, **kwargs) -> Any:
+    def init(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def stop(self, *args, **kwargs) -> Any:
+    def stop(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None:

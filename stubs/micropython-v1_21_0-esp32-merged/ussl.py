@@ -21,6 +21,7 @@ PROTOCOL_TLS_SERVER = 1  # type: int
 CERT_OPTIONAL = 1  # type: int
 CERT_NONE = 0  # type: int
 
+
 def wrap_socket(
     sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
 ) -> IO:
@@ -42,6 +43,7 @@ def wrap_socket(
     :term:`MicroPython port`, some or all keyword arguments above may be not supported.
     """
     ...
+
 
 class SSLContext:
     """
@@ -73,4 +75,6 @@ class SSLContext:
           to present the proper certificate.
         """
         ...
-    def __init__(self, protocol, /) -> None: ...
+
+    def __init__(self, protocol, /) -> None:
+        ...

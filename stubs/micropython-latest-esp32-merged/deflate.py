@@ -18,9 +18,8 @@ This module allows compression and decompression of binary data with the
   by default on ports with the "full features" level or higher (generally this means
   you need to build your own firmware to enable this).
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'family': 'micropython', 'build': '449', 'arch': 'xtensawin', 'ver': 'v1.20.0-449', 'cpu': 'SPIRAM'})
-# Stubber: v1.13.7
-from typing import Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
 
 GZIP = 3  # type: int
@@ -73,16 +72,16 @@ class DeflateIO:
     directions.
     """
 
-    def readline(self, *args, **kwargs) -> Any:
+    def readline(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def close(self, *args, **kwargs) -> Any:
+    def close(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, stream, format=AUTO, wbits=0, close=False, /) -> None:

@@ -8,6 +8,7 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/micropython.
 from _typeshed import Incomplete
 from typing import Any, Optional, Tuple, TypeVar
 
+
 def opt_level(level: Optional[Any] = None) -> Incomplete:
     """
     If *level* is given then this function sets the optimisation level for subsequent
@@ -28,6 +29,7 @@ def opt_level(level: Optional[Any] = None) -> Incomplete:
     """
     ...
 
+
 def mem_info(verbose: Optional[Any] = None) -> None:
     """
     Print information about currently used memory.  If the *verbose* argument
@@ -39,6 +41,7 @@ def mem_info(verbose: Optional[Any] = None) -> None:
     """
     ...
 
+
 def stack_use() -> int:
     """
     Return an integer representing the current amount of stack that is being
@@ -46,6 +49,7 @@ def stack_use() -> int:
     should be used to compute differences in stack usage at different points.
     """
     ...
+
 
 def qstr_info(verbose: Optional[Any] = None) -> None:
     """
@@ -57,6 +61,7 @@ def qstr_info(verbose: Optional[Any] = None) -> None:
     verbose mode it prints out the names of all RAM-interned strings.
     """
     ...
+
 
 def schedule(func, arg) -> Incomplete:
     """
@@ -95,6 +100,7 @@ def schedule(func, arg) -> Incomplete:
     """
     ...
 
+
 def alloc_emergency_exception_buf(size) -> Incomplete:
     """
     Allocate *size* bytes of RAM for the emergency exception buffer (a good
@@ -107,6 +113,7 @@ def alloc_emergency_exception_buf(size) -> Incomplete:
     for all the code following it.
     """
     ...
+
 
 def const(expr: Const_T) -> Const_T:
     """
@@ -130,6 +137,7 @@ def const(expr: Const_T) -> Const_T:
     """
     ...
 
+
 def kbd_intr(chr) -> None:
     """
     Set the character that will raise a `KeyboardInterrupt` exception.  By
@@ -143,5 +151,10 @@ def kbd_intr(chr) -> None:
     """
     ...
 
-def heap_lock() -> int: ...
-def heap_unlock() -> int: ...
+
+def heap_lock() -> int:
+    ...
+
+
+def heap_unlock() -> int:
+    ...

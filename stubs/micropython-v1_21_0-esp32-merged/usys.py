@@ -22,6 +22,7 @@ argv = []  # type: list
 implementation = ()  # type: tuple
 maxsize = 2147483647  # type: int
 
+
 def print_exception(exc, file=stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
@@ -38,6 +39,7 @@ def print_exception(exc, file=stdout, /) -> None:
     """
     ...
 
+
 def exit(retval=0, /) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
@@ -45,6 +47,7 @@ def exit(retval=0, /) -> Incomplete:
     value given as an argument to `SystemExit`.
     """
     ...
+
 
 stderr: Incomplete  ## <class 'FileIO'> = <io.FileIO 2>
 stdout: Incomplete  ## <class 'FileIO'> = <io.FileIO 1>
