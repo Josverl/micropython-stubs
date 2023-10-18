@@ -2315,6 +2315,78 @@
             "description": "MicroPython stubs",
             "hash": "f10ba365e905680752f1627f82b6648ed4940430",
             "stub_hash": "aedb2da6d9e7c30ce6d7ee25eabc0f1d7a6cc6f0"
+        },
+        "277975901601495635": {
+            "name": "micropython-rp2-rpi_pico-stubs",
+            "mpy_version": "1.21.0",
+            "publish": true,
+            "pkg_version": "1.21.0.post1",
+            "path": "micropython-v1_21_0-rp2-rpi_pico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_21_0-rp2-rpi_pico-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_21_0-frozen/rp2/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "5df5fa5bc4cc5baa0cd79b2ea23c41c1875dcca4",
+            "stub_hash": "f9bf65b8ab0bde9f2ea3c8f98527280051b211ec"
+        },
+        "260408678103127605": {
+            "name": "micropython-rp2-rpi_pico_w-stubs",
+            "mpy_version": "1.21.0",
+            "publish": true,
+            "pkg_version": "1.21.0.post1",
+            "path": "micropython-v1_21_0-rp2-rpi_pico_w-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_21_0-rp2-rpi_pico_w-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_21_0-frozen/rp2/RPI_PICO_W"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "cfb34166ff1b52a27f90db9b064cc53f75e53d4b",
+            "stub_hash": "acf9a8d15e16d2e4f8db9133248d781039b11275"
+        },
+        "121077682273290482": {
+            "name": "micropython-samd-seeed_wio_terminal-stubs",
+            "mpy_version": "1.21.0",
+            "publish": true,
+            "pkg_version": "1.21.0.post1",
+            "path": "micropython-v1_21_0-samd-seeed_wio_terminal-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_21_0-samd-seeed_wio_terminal-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_21_0-frozen/samd/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "04a3616d35608e27432f62da1dfa74a139995ff7",
+            "stub_hash": "66fecc8677156fb22916a01d80604343d3e7e782"
         }
     }
 }

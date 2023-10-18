@@ -1,0 +1,24 @@
+{
+    "name": "micropython-rp2-rpi_pico-stubs",
+    "mpy_version": "1.21.0",
+    "publish": true,
+    "pkg_version": "1.21.0.post1",
+    "path": "micropython-v1_21_0-rp2-rpi_pico-stubs",
+    "stub_sources": [
+        [
+            "Merged stubs",
+            "micropython-v1_21_0-rp2-rpi_pico-merged"
+        ],
+        [
+            "Frozen stubs",
+            "micropython-v1_21_0-frozen/rp2/GENERIC"
+        ],
+        [
+            "Core stubs",
+            "micropython-core"
+        ]
+    ],
+    "description": "MicroPython stubs",
+    "hash": "5df5fa5bc4cc5baa0cd79b2ea23c41c1875dcca4",
+    "stub_hash": "f9bf65b8ab0bde9f2ea3c8f98527280051b211ec"
+}
