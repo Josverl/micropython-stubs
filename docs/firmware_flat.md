@@ -57,6 +57,9 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.20| stm32| generic| 59| v1.13.7|[stubs/micropython-v1_20_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-stm32-PYBV11)
 |board| micropython| v1.21| esp32| generic| 87| v1.14.0|[stubs/micropython-v1_21_0-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-esp32)
 |board| micropython| v1.21| esp32| generic| 87| v1.14.0|[stubs/micropython-v1_21_0-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-esp32-ESP32_GENERIC)
+|board| micropython| v1.21| rp2| generic| 64| v1.13.8|[stubs/micropython-v1_21_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-rp2-RPI_PICO)
+|board| micropython| v1.21| rp2| generic| 88| v1.13.8|[stubs/micropython-v1_21_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-rp2-RPI_PICO_W)
+|board| micropython| v1.21| samd| generic| 57| v1.13.8|[stubs/micropython-v1_21_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-samd-SEEED_WIO_TERMINAL)
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/main/stubs/ev3_pybricks_v1_0_0)
 |board| micropython| v1.9.4-Latest| -| ESP module with ESP8266| 43| 1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-esp8266)
@@ -125,6 +128,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| stm32| PYBV10| 10| 1.14.0|[stubs/micropython-latest-frozen/stm32/PYBV10](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/PYBV10)
 |frozen| micropython| latest| stm32| STM32F769DISC| 15| 1.14.0|[stubs/micropython-latest-frozen/stm32/STM32F769DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32F769DISC)
 |frozen| micropython| latest| stm32| STM32F7DISC| 15| 1.14.0|[stubs/micropython-latest-frozen/stm32/STM32F7DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32F7DISC)
+|frozen| micropython| latest| stm32| STM32H573I_DK| 15| 1.14.0|[stubs/micropython-latest-frozen/stm32/STM32H573I_DK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32H573I_DK)
 |frozen| micropython| latest| stm32| VCC_GND_F407ZG| 15| 1.14.0|[stubs/micropython-latest-frozen/stm32/VCC_GND_F407ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/VCC_GND_F407ZG)
 |frozen| micropython| latest| teensy| GENERIC| 2| 1.14.0|[stubs/micropython-latest-frozen/teensy/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/teensy/GENERIC)
 |frozen| micropython| latest| unix| GENERIC| 11| 1.14.0|[stubs/micropython-latest-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/unix/GENERIC)
@@ -402,4 +406,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  9657
+Total modules  9881

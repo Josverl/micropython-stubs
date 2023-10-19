@@ -64,6 +64,7 @@
 |micropython |latest  |frozen  |stm32|PYBV10|10|1.14.0|[stubs/micropython-latest-frozen/stm32/PYBV10](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/PYBV10)
 |micropython |latest  |frozen  |stm32|STM32F769DISC|15|1.14.0|[stubs/micropython-latest-frozen/stm32/STM32F769DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32F769DISC)
 |micropython |latest  |frozen  |stm32|STM32F7DISC|15|1.14.0|[stubs/micropython-latest-frozen/stm32/STM32F7DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32F7DISC)
+|micropython |latest  |frozen  |stm32|STM32H573I_DK|15|1.14.0|[stubs/micropython-latest-frozen/stm32/STM32H573I_DK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32H573I_DK)
 |micropython |latest  |frozen  |stm32|VCC_GND_F407ZG|15|1.14.0|[stubs/micropython-latest-frozen/stm32/VCC_GND_F407ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/VCC_GND_F407ZG)
 |micropython |latest  |frozen  |teensy|GENERIC|2|1.14.0|[stubs/micropython-latest-frozen/teensy/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/teensy/GENERIC)
 |micropython |latest  |frozen  |unix|GENERIC|11|1.14.0|[stubs/micropython-latest-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/unix/GENERIC)
@@ -359,7 +360,10 @@
 |micropython |v1.21   |frozen  |rp2|W5100S_EVB_PICO|20|1.14.0|[stubs/micropython-v1_21_0-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-frozen/rp2/W5100S_EVB_PICO)
 |micropython |v1.21   |frozen  |rp2|W5500_EVB_PICO|20|1.14.0|[stubs/micropython-v1_21_0-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-frozen/rp2/W5500_EVB_PICO)
 |micropython |v1.21   |frozen  |rp2|WEACTSTUDIO|15|1.14.0|[stubs/micropython-v1_21_0-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-frozen/rp2/WEACTSTUDIO)
+|micropython |v1.21   |board   |rp2|generic|64|v1.13.8|[stubs/micropython-v1_21_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-rp2-RPI_PICO)
+|micropython |v1.21   |board   |rp2|generic|88|v1.13.8|[stubs/micropython-v1_21_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-rp2-RPI_PICO_W)
 |micropython |v1.21   |frozen  |samd|GENERIC|11|1.14.0|[stubs/micropython-v1_21_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-frozen/samd/GENERIC)
+|micropython |v1.21   |board   |samd|generic|57|v1.13.8|[stubs/micropython-v1_21_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-samd-SEEED_WIO_TERMINAL)
 |micropython |v1.21   |frozen  |stm32|ARDUINO_GIGA|34|1.14.0|[stubs/micropython-v1_21_0-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-frozen/stm32/ARDUINO_GIGA)
 |micropython |v1.21   |frozen  |stm32|ARDUINO_NICLA_VISION|34|1.14.0|[stubs/micropython-v1_21_0-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-frozen/stm32/ARDUINO_NICLA_VISION)
 |micropython |v1.21   |frozen  |stm32|ARDUINO_PORTENTA_H7|34|1.14.0|[stubs/micropython-v1_21_0-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-frozen/stm32/ARDUINO_PORTENTA_H7)
@@ -438,4 +442,4 @@
 
 ## Metrics
 
-Total stub modules:  9657
+Total stub modules:  9881
