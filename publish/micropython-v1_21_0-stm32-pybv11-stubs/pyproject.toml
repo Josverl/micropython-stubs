@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-stm32-pybv11-stubs"
-version = "1.20.0.post4"
+version = "1.21.0.post1"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -33,13 +33,19 @@ classifiers = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
+    { include = "_asyncio.pyi" },
     { include = "_onewire.pyi" },
-    { include = "_thread.pyi" },
-    { include = "_uasyncio.pyi" },
     { include = "array.pyi" },
+    { include = "asyncio/__init__.pyi" },
+    { include = "asyncio/core.pyi" },
+    { include = "asyncio/event.pyi" },
+    { include = "asyncio/funcs.pyi" },
+    { include = "asyncio/lock.pyi" },
+    { include = "asyncio/stream.pyi" },
     { include = "binascii.pyi" },
     { include = "cmath.pyi" },
     { include = "collections.pyi" },
+    { include = "deflate.pyi" },
     { include = "dht.pyi" },
     { include = "errno.pyi" },
     { include = "framebuf.pyi" },
@@ -71,7 +77,7 @@ packages = [
     { include = "uasyncio/funcs.pyi" },
     { include = "uasyncio/lock.pyi" },
     { include = "uasyncio/stream.pyi" },
-    { include = "uasyncio/task.pyi" },
+    { include = "uasyncio.pyi" },
     { include = "ubinascii.pyi" },
     { include = "ucollections.pyi" },
     { include = "uctypes.pyi" },
@@ -90,9 +96,6 @@ packages = [
     { include = "ustruct.pyi" },
     { include = "usys.pyi" },
     { include = "utime.pyi" },
-    { include = "utimeq.pyi" },
-    { include = "uzlib.pyi" },
-    { include = "zlib.pyi" },
 ]
 
 [tool.poetry.dependencies]

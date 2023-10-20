@@ -2387,6 +2387,54 @@
             "description": "MicroPython stubs",
             "hash": "04a3616d35608e27432f62da1dfa74a139995ff7",
             "stub_hash": "66fecc8677156fb22916a01d80604343d3e7e782"
+        },
+        "305611789122079001": {
+            "name": "micropython-stm32-pybv11-stubs",
+            "mpy_version": "1.21.0",
+            "publish": true,
+            "pkg_version": "1.21.0.post1",
+            "path": "micropython-v1_21_0-stm32-pybv11-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_21_0-stm32-pybv11-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_21_0-frozen/stm32/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "2119aed85467d3eff05ef39168bbb8d1d3cb0a1c",
+            "stub_hash": "5f167e51b6f1b709082106ef6a3346f8be2418c9"
+        },
+        "313915674174341784": {
+            "name": "micropython-stm32-pybv11-stubs",
+            "mpy_version": "1.20.0",
+            "publish": true,
+            "pkg_version": "1.20.0.post4",
+            "path": "micropython-v1_20_0-stm32-pybv11-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_20_0-stm32-pybv11-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_20_0-frozen/stm32/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "f870940888e664a06e86c8ed649091ad17b4ed57",
+            "stub_hash": "259ed7e7ea55a2fb3c626c04c222e4739b304091"
         }
     }
 }
