@@ -21,9 +21,9 @@ if __name__ == "__main__":
     matrix = {}
     # only run latests when running in ACT locally for testing
     if os.environ.get("ACT"):
-        matrix["version"] = micropython_versions(start="v1.17")[-1:]
+        matrix["version"] = micropython_versions(start="v1.20")[-1:]
     else:
-        matrix["version"] = micropython_versions(start="v1.17")
+        matrix["version"] = micropython_versions(start="v1.20")
 
     add_latest = False
     if len(sys.argv) > 1 and (sys.argv[1].lower() in ["--latest", "-l"]):
