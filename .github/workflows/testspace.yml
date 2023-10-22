@@ -12,7 +12,7 @@ on:
       - "test/**"
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
-  STABLE_STUB_VERSION: v1_19_1
+  STABLE_STUB_VERSION: v1_21_0
   LATEST_STUB_VERSION: latest
   
 jobs:

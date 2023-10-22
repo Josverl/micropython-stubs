@@ -10,7 +10,7 @@ on:
   # pull_request:
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
-  PYRIGHT_VERSION: 1.1.204 # Must match pyright_test.py.
+  PYRIGHT_VERSION: 1.1.332 # Must match pyright_test.py.
 
 permissions:
   contents: read

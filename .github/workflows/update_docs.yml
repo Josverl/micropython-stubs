@@ -5,7 +5,7 @@ name: update_docs
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 1 * * *" # Run everyday at 01:00
+    - cron: "0 5 * * *" # Run everyday at 05:00
 
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
