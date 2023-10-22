@@ -129,7 +129,6 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| stm32| PYBV10| 10| 1.14.1|[stubs/micropython-latest-frozen/stm32/PYBV10](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/PYBV10)
 |frozen| micropython| latest| stm32| STM32F769DISC| 15| 1.14.1|[stubs/micropython-latest-frozen/stm32/STM32F769DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32F769DISC)
 |frozen| micropython| latest| stm32| STM32F7DISC| 15| 1.14.1|[stubs/micropython-latest-frozen/stm32/STM32F7DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32F7DISC)
-|frozen| micropython| latest| stm32| STM32H573I_DK| 15| 1.14.1|[stubs/micropython-latest-frozen/stm32/STM32H573I_DK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32H573I_DK)
 |frozen| micropython| latest| stm32| VCC_GND_F407ZG| 15| 1.14.1|[stubs/micropython-latest-frozen/stm32/VCC_GND_F407ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/VCC_GND_F407ZG)
 |frozen| micropython| latest| teensy| GENERIC| 2| 1.14.1|[stubs/micropython-latest-frozen/teensy/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/teensy/GENERIC)
 |frozen| micropython| latest| unix| GENERIC| 11| 1.14.1|[stubs/micropython-latest-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/unix/GENERIC)
@@ -407,4 +406,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  9913
+Total modules  9898
