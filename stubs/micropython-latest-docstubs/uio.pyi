@@ -15,6 +15,22 @@ from typing import IO, Any, Optional
 from _typeshed import Incomplete
 from stdlib.io import *  # type: ignore
 
+class FileIO(IO):
+    """
+    This is type of a file open in binary mode, e.g. using ``open(name, "rb")``.
+    You should not instantiate this class directly.
+    """
+
+    def __init__(self, *args, **kwargs) -> None: ...
+
+class TextIOWrapper(IO):
+    """
+    This is type of a file open in text mode, e.g. using ``open(name, "rt")``.
+    You should not instantiate this class directly.
+    """
+
+    def __init__(self, *args, **kwargs) -> None: ...
+
 class StringIO(IO):
     def __init__(self, string: Optional[Any] = None) -> None: ...
 
