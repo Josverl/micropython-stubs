@@ -63,8 +63,8 @@
 |micropython |latest  |frozen  |stm32|PYBV10|10|1.14.1|[stubs/micropython-latest-frozen/stm32/PYBV10](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/PYBV10)
 |micropython |latest  |frozen  |stm32|STM32F769DISC|15|1.14.1|[stubs/micropython-latest-frozen/stm32/STM32F769DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32F769DISC)
 |micropython |latest  |frozen  |stm32|STM32F7DISC|15|1.14.1|[stubs/micropython-latest-frozen/stm32/STM32F7DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32F7DISC)
-|micropython |latest  |frozen  |stm32|STM32H573I_DK|15|1.14.1|[stubs/micropython-latest-frozen/stm32/STM32H573I_DK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/STM32H573I_DK)
 |micropython |latest  |frozen  |stm32|VCC_GND_F407ZG|15|1.14.1|[stubs/micropython-latest-frozen/stm32/VCC_GND_F407ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/VCC_GND_F407ZG)
+|micropython |latest  |frozen  |teensy|GENERIC|2|1.14.1|[stubs/micropython-latest-frozen/teensy/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/teensy/GENERIC)
 |micropython |latest  |frozen  |unix|GENERIC|11|1.14.1|[stubs/micropython-latest-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/unix/GENERIC)
 |micropython |latest  |frozen  |windows|GENERIC|7|1.14.1|[stubs/micropython-latest-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/windows/GENERIC)
 |micropython |v1.10   |board   |esp32|ESP32 module with ESP32|64|1.5.4|[stubs/micropython-v1_10-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_10-esp32)
@@ -441,4 +441,4 @@
 
 ## Metrics
 
-Total stub modules:  9886
+Total stub modules:  9873
