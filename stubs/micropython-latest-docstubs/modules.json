@@ -8,11 +8,7 @@
         "firmware": "micropython-latest",
         "nodename": "micropython",
         "version": "latest",
-<<<<<<< Updated upstream
-        "release": "v1.21.0-60-g3e2706a18",
-=======
-        "release": "v1.21.0-1-g69e34b6b6",
->>>>>>> Stashed changes
+        "release": "v1.21.0-86-g06a7bf967",
         "sysname": "micropython"
     },
     "stubber": {
