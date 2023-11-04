@@ -10,7 +10,8 @@ def micropython_versions(start="v1.10"):
     g = Github()
     try:
         repo = g.get_repo("micropython/micropython")
-        tags = sorted([tag.name for tag in repo.get_tags() if parse(tag.name) >= parse(start)], reverse=True)
+        # Suppress `v1.22.0-preview` tags
+        tags = sorted([tag.name for tag in repo.get_tags() if "-preview" not in tag.name and parse(tag.name) >= parse(start)], reverse=True)
     except Exception as e:
         print(f"Error: {e}")
         tags = ["v1.19.1"]
