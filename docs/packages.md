@@ -4,18 +4,17 @@
 
 Overview of the published ports and boards.
 
+
+
  - ![](https://img.shields.io/pypi/dm/micropython-stm32-stubs?label=micropython-stm32-stubs) 
  - ![](https://img.shields.io/pypi/dm/micropython-esp32-stubs?label=micropython-esp32-stubs)
  - ![](https://img.shields.io/pypi/dm/micropython-esp8266-stubs?label=micropython-esp8266-stubs)
  - ![](https://img.shields.io/pypi/dm/micropython-rp2-stubs?label=micropython-rp2-stubs)
  - ![](https://img.shields.io/pypi/dm/micropython-esp32-um-tinypico-stubs?label=micropython-esp32-um-tinypico-stubs)
 
- <!-- 
- - ![](https://img.shields.io/pypi/dm/micropython-samd-stubs?label=micropython-rp2-stubs)
+ - ![](https://shields.io/pypi/dm/micropython-samd-seeed_wio_terminal-stubs?label=samd-seeed_wio_terminal)
  - ![](https://img.shields.io/pypi/dm/micropython-rp2-pico-stubs?label=micropython-rp2-pico-stubs)
  - ![](https://img.shields.io/pypi/dm/micropython-rp2-pico-w-stubs?label=micropython-rp2-pico-w-stubs) 
--->
-
 
 **Notes:** 
  - PyPi transforms all names of the ports and boards to small-caps and kebab-case, (not snake_case).
