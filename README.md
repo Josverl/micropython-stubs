@@ -60,11 +60,17 @@ For a full overview of all stubs check out [the documentation on read the docs](
 The following graph shows the number of downloads of the stubs from PyPi over time.
 Im not sure what causes the spikes in downloads, but it is interesting to see that the number of downloads is increasing over time, and some of the spikes have corrolation to the publication of new MicroPython versions.
 
-![downloads](statistics/month_port.png)
-![downloads](statistics/month_version.png)
-![downloads](statistics/pie_port.png)
+In addition some tools such as [the MicroPico VSCode extension](https://marketplace.visualstudio.com/items?itemName=paulober.pico-w-go) bundle a version of the stubs with their tool, so the actual number of users is higher than the number of downloads.
 
-
+<table>
+    <tr>
+        <td><img src="statistics/month_port.png"></td>
+        <td><img src="statistics/month_version.png"> </td>
+    </tr>
+    <tr>
+        <td><img src="statistics/pie_port.png"> </td>
+    </tr>
+</table>
 
 ## Contributors
 Thanks to everyone that has submitted stubs or other relevant pieces of code and information, or published relevant stubs on pypi or github.
@@ -100,6 +106,10 @@ Thanks to everyone that has submitted stubs or other relevant pieces of code and
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mattytrentini"><img src="https://avatars.githubusercontent.com/u/194201?v=4?s=100" width="100px;" alt="Matt Trentini"/><br /><sub><b>Matt Trentini</b></sub></a><br /><a href="#stubs-mattytrentini" title="MicroPython stubs">📝</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://andrew-stclair.com/"><img src="https://avatars.githubusercontent.com/u/4944499?v=4?s=100" width="100px;" alt="Andrew St Clair"/><br /><sub><b>Andrew St Clair</b></sub></a><br /><a href="#stubs-andrew-stclair" title="MicroPython stubs">📝</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://gitlab.com/michal.moravec"><img src="https://avatars.githubusercontent.com/u/24276?v=4?s=100" width="100px;" alt="Michal Moravec"/><br /><sub><b>Michal Moravec</b></sub></a><br /><a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3Amishal" title="Bug reports">🐛</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/paulober"><img src="https://avatars.githubusercontent.com/u/44974737?v=4?s=100" width="100px;" alt="Paul"/><br /><sub><b>Paul</b></sub></a><br /><a href="#tool-paulober" title="Tools">🔧</a> <a href="#stubs-paulober" title="MicroPython stubs">📝</a> <a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3Apaulober" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/samskiter"><img src="https://avatars.githubusercontent.com/u/1271643?v=4?s=100" width="100px;" alt="Sam Duke"/><br /><sub><b>Sam Duke</b></sub></a><br /><a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3Asamskiter" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>

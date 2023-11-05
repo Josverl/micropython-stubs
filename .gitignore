@@ -47,3 +47,6 @@ publish/*/*.dist-info/*
 !publish/*/*.dist-info/METADATA
 # no typings
 typings
+# no node modules
+node_modules
+package*.json

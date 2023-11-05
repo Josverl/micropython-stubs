@@ -226,6 +226,26 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "paulober",
+      "name": "Paul",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44974737?v=4",
+      "profile": "https://github.com/paulober",
+      "contributions": [
+        "tool",
+        "stubs",
+        "bug"
+      ]
+    },
+    {
+      "login": "samskiter",
+      "name": "Sam Duke",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1271643?v=4",
+      "profile": "https://github.com/samskiter",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "commitConvention": "none",
