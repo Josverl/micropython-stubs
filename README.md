@@ -42,6 +42,9 @@ pip install -U micropython-esp32-stubs==1.20.0.*
 
 # Install stubs for a specific board.
 pip install -U micropython-rp2-pico_w-stubs
+
+# install to a typings folder (for use witouth a .venv by pyright or pylance)
+pip install -U micropython-rp2-stubs --target typings --no-user
 ```
 
 For more details how to use the stubs please refer to [the documentation on RTD](https://micropython-stubs.readthedocs.io/en/latest/20_using.html)
