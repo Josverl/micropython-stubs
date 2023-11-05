@@ -2,21 +2,19 @@
 micropython-stubber >= 1.11.4
 
 # for quality reporting
-pyright~=1.1
+pyright
 pytest
 black
 
 
 # download reporting
 ipykernel
+google-cloud-bigquery==3.12.0
 pandas
 matplotlib
 ipywidgets 
-ipympl
-
-# Section: reporting
-google-cloud-bigquery==3.12.0
-
+ipympl # interactive matplotlib figures in jupyter
+keyring # for storing credentials
 
 # Section:publishing
 # tomli
