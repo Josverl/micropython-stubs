@@ -1,0 +1,220 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "-",
+        "platform": "-",
+        "machine": "micropython",
+        "firmware": "micropython-v1_20_0",
+        "nodename": "micropython",
+        "version": "v1.20.0",
+        "release": "v1.20.0",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.14.0",
+        "stubtype": "documentation"
+    },
+    "modules": [
+        {
+            "file": "_thread.pyi",
+            "module": "_thread"
+        },
+        {
+            "file": "array.pyi",
+            "module": "array"
+        },
+        {
+            "file": "binascii.pyi",
+            "module": "binascii"
+        },
+        {
+            "file": "bluetooth.pyi",
+            "module": "bluetooth"
+        },
+        {
+            "file": "btree.pyi",
+            "module": "btree"
+        },
+        {
+            "file": "cmath.pyi",
+            "module": "cmath"
+        },
+        {
+            "file": "collections.pyi",
+            "module": "collections"
+        },
+        {
+            "file": "cryptolib.pyi",
+            "module": "cryptolib"
+        },
+        {
+            "file": "errno.pyi",
+            "module": "errno"
+        },
+        {
+            "file": "esp.pyi",
+            "module": "esp"
+        },
+        {
+            "file": "esp32.pyi",
+            "module": "esp32"
+        },
+        {
+            "file": "framebuf.pyi",
+            "module": "framebuf"
+        },
+        {
+            "file": "gc.pyi",
+            "module": "gc"
+        },
+        {
+            "file": "hashlib.pyi",
+            "module": "hashlib"
+        },
+        {
+            "file": "heapq.pyi",
+            "module": "heapq"
+        },
+        {
+            "file": "io.pyi",
+            "module": "io"
+        },
+        {
+            "file": "json.pyi",
+            "module": "json"
+        },
+        {
+            "file": "lcd160cr.pyi",
+            "module": "lcd160cr"
+        },
+        {
+            "file": "machine.pyi",
+            "module": "machine"
+        },
+        {
+            "file": "math.pyi",
+            "module": "math"
+        },
+        {
+            "file": "micropython.pyi",
+            "module": "micropython"
+        },
+        {
+            "file": "neopixel.pyi",
+            "module": "neopixel"
+        },
+        {
+            "file": "network.pyi",
+            "module": "network"
+        },
+        {
+            "file": "os.pyi",
+            "module": "os"
+        },
+        {
+            "file": "pyb.pyi",
+            "module": "pyb"
+        },
+        {
+            "file": "random.pyi",
+            "module": "random"
+        },
+        {
+            "file": "rp2.pyi",
+            "module": "rp2"
+        },
+        {
+            "file": "select.pyi",
+            "module": "select"
+        },
+        {
+            "file": "socket.pyi",
+            "module": "socket"
+        },
+        {
+            "file": "ssl.pyi",
+            "module": "ssl"
+        },
+        {
+            "file": "stm.pyi",
+            "module": "stm"
+        },
+        {
+            "file": "struct.pyi",
+            "module": "struct"
+        },
+        {
+            "file": "sys.pyi",
+            "module": "sys"
+        },
+        {
+            "file": "time.pyi",
+            "module": "time"
+        },
+        {
+            "file": "uarray.pyi",
+            "module": "uarray"
+        },
+        {
+            "file": "ubinascii.pyi",
+            "module": "ubinascii"
+        },
+        {
+            "file": "uctypes.pyi",
+            "module": "uctypes"
+        },
+        {
+            "file": "uio.pyi",
+            "module": "uio"
+        },
+        {
+            "file": "ujson.pyi",
+            "module": "ujson"
+        },
+        {
+            "file": "uos.pyi",
+            "module": "uos"
+        },
+        {
+            "file": "uselect.pyi",
+            "module": "uselect"
+        },
+        {
+            "file": "usocket.pyi",
+            "module": "usocket"
+        },
+        {
+            "file": "ussl.pyi",
+            "module": "ussl"
+        },
+        {
+            "file": "ustruct.pyi",
+            "module": "ustruct"
+        },
+        {
+            "file": "utime.pyi",
+            "module": "utime"
+        },
+        {
+            "file": "uzlib.pyi",
+            "module": "uzlib"
+        },
+        {
+            "file": "wipy.pyi",
+            "module": "wipy"
+        },
+        {
+            "file": "wm8960.pyi",
+            "module": "wm8960"
+        },
+        {
+            "file": "zephyr.pyi",
+            "module": "zephyr"
+        },
+        {
+            "file": "zlib.pyi",
+            "module": "zlib"
+        }
+    ]
+}
