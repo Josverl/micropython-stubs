@@ -35,6 +35,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.18| rp2| Arduino Nano RP2040 Connect with RP2040| 60| 1.5.3|[stubs/micropython-v1_18-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-rp2)
 |board| micropython| v1.18| stm32| PYBv1.1 with STM32F405RG| 57| 1.5.6|[stubs/micropython-v1_18-stm32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_18-stm32)
 |board| micropython| v1.19.1| esp32| ESP32 module (spiram) with ESP32| 72| 1.9.11|[stubs/micropython-v1_19_1-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32)
+|board| micropython| v1.19.1| esp32| ESP32 module (spiram) with ESP32| 72| 1.9.11|[stubs/micropython-v1_19_1-esp32-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-GENERIC)
 |board| micropython| v1.19.1| esp32| ESP32 module (spiram) with ESP32| 72| 1.5.6|[stubs/micropython-v1_19_1-esp32-UM_TINYPICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-UM_TINYPICO)
 |board| micropython| v1.19.1| esp32| ESP32S3 module with ESP32S3| 75| 1.11.2|[stubs/micropython-v1_19_1-esp32-s3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp32-s3)
 |board| micropython| v1.19.1| esp8266| ESP module (1M) with ESP8266| 57| 1.9.11|[stubs/micropython-v1_19_1-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-esp8266)
@@ -43,6 +44,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.19.1| stm32| PYBv1.1 with STM32F405RG| 55| 1.9.11|[stubs/micropython-v1_19_1-stm32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-stm32)
 |board| micropython| v1.20| esp32| generic| 84| v1.13.7|[stubs/micropython-latest-esp32--OLD](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-esp32--OLD)
 |board| micropython| v1.20| esp32| generic| 78| v1.13.4|[stubs/micropython-v1_20_0-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32)
+|board| micropython| v1.20| esp32| generic| 78| v1.13.4|[stubs/micropython-v1_20_0-esp32-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-GENERIC)
 |board| micropython| v1.20| esp32| generic| 78| v1.13.4|[stubs/micropython-v1_20_0-esp32-OTA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-OTA)
 |board| micropython| v1.20| esp32| generic| 77| v1.13.7|[stubs/micropython-v1_20_0-esp32-S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-S3)
 |board| micropython| v1.20| rp2| generic| 58| v1.13.4|[stubs/micropython-v1_20_0-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-rp2)
@@ -406,4 +408,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  9941
+Total modules  10091
