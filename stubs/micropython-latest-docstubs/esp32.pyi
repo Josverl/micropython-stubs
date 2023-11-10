@@ -128,8 +128,11 @@ class RMT:
     *idle_level*).
     """
 
+    PULSE_MAX: int
+    """Maximum integer that can be set for a pulse duration."""
     def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None: ...
-    def source_freq(self) -> Incomplete:
+    @classmethod
+    def source_freq(cls) -> Incomplete:
         """
         Returns the source clock frequency. Currently the source clock is not
         configurable so this will always return 80MHz.
@@ -171,10 +174,10 @@ class RMT:
         **Mode 3:** *duration* and *data* are lists or tuples of equal length,
         specifying individual durations and the output level for each.
 
-        Durations are in integer units of the channel resolution (as described
-        above), between 1 and 32767 units. Output levels are any value that can
-        be converted to a boolean, with ``True`` representing high voltage and
-        ``False`` representing low.
+        Durations are in integer units of the channel resolution (as
+        described above), between 1 and ``PULSE_MAX`` units. Output levels
+        are any value that can be converted to a boolean, with ``True``
+        representing high voltage and ``False`` representing low.
 
         If transmission of an earlier sequence is in progress then this method will
         block until that transmission is complete before beginning the new sequence.
