@@ -126,6 +126,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| stm32| NUCLEO_F767ZI| 15| 1.14.1|[stubs/micropython-latest-frozen/stm32/NUCLEO_F767ZI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/NUCLEO_F767ZI)
 |frozen| micropython| latest| stm32| NUCLEO_H723ZG| 15| 1.14.1|[stubs/micropython-latest-frozen/stm32/NUCLEO_H723ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/NUCLEO_H723ZG)
 |frozen| micropython| latest| stm32| NUCLEO_H743ZI| 15| 1.14.1|[stubs/micropython-latest-frozen/stm32/NUCLEO_H743ZI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/NUCLEO_H743ZI)
+|frozen| micropython| latest| stm32| NUCLEO_WL55| 5| 1.14.1|[stubs/micropython-latest-frozen/stm32/NUCLEO_WL55](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/NUCLEO_WL55)
 |frozen| micropython| latest| stm32| OLIMEX_E407| 15| 1.14.1|[stubs/micropython-latest-frozen/stm32/OLIMEX_E407](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/OLIMEX_E407)
 |frozen| micropython| latest| stm32| PYBD_SF2| 16| 1.14.1|[stubs/micropython-latest-frozen/stm32/PYBD_SF2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/PYBD_SF2)
 |frozen| micropython| latest| stm32| PYBV10| 10| 1.14.1|[stubs/micropython-latest-frozen/stm32/PYBV10](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/stm32/PYBV10)
@@ -408,4 +409,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  10091
+Total modules  10096
