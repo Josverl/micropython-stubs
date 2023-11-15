@@ -1,17 +1,10 @@
 """
-Functionality specific to the ESP32.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/esp32.html
-
-The ``esp32`` module contains functions and classes specifically aimed at
-controlling ESP32 modules.
+Module: 'esp32' on micropython-v1.19.1-esp32
 """
-from __future__ import annotations
-
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import List, Optional, Tuple, Union, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 HEAP_DATA = 4  # type: int
 HEAP_EXEC = 1  # type: int
@@ -77,12 +70,12 @@ class Partition:
     *block_size* specifies the byte size of an individual block.
     """
 
-    def __init__(self, id, block_size=4096, /) -> None:
+    def __init__(self, id, block_size: int = ...) -> None:
         """"""
         ...
 
     @classmethod
-    def find(cls, type=TYPE_APP, subtype=0xFF, label=None, block_size=4096) -> List:
+    def find(cls, type=..., subtype: int = ..., label: Incomplete | None = ..., block_size: int = ...) -> List:
         """
         Find a partition specified by *type*, *subtype* and *label*.  Returns a
         (possibly empty) list of Partition objects. Note: ``subtype=0xff`` matches any subtype
@@ -127,14 +120,14 @@ class Partition:
         Calling ``mark_app_valid_cancel_rollback`` is required on the first boot of a new
         partition to avoid an automatic rollback at the next boot.
         This uses the ESP-IDF "app rollback" feature with "CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE"
-        and  an ``OSError(-261)`` is raised if called on firmware that doesn't have the
+        and  an ``OSError(-261)`` is raised if called on firmware that doesn\'t have the
         feature enabled.
         It is OK to call ``mark_app_valid_cancel_rollback`` on every boot and it is not
         necessary when booting firmare that was loaded using esptool.
         """
         ...
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+    def readblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete:
         ...
 
     def set_boot(self) -> None:
@@ -143,7 +136,7 @@ class Partition:
         """
         ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+    def writeblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete:
         ...
 
 
@@ -164,12 +157,14 @@ class RMT:
     *idle_level*).
     """
 
-    def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None:
+    def __init__(
+        self, channel, *, pin: Incomplete | None = ..., clock_div: int = ..., idle_level: bool = ..., tx_carrier: Incomplete | None = ...
+    ) -> None:
         """"""
         ...
 
     @staticmethod
-    def bitstream_channel(value: Optional[Any] = None) -> int:
+    def bitstream_channel(value: Optional[Any] = ...) -> int:
         """
         Select which RMT channel is used by the `machine.bitstream` implementation.
         *value* can be ``None`` or a valid RMT channel number.  The default RMT
@@ -209,7 +204,7 @@ class RMT:
         """
         ...
 
-    def wait_done(self, *, timeout=0) -> bool:
+    def wait_done(self, *, timeout: int = ...) -> bool:
         """
         Returns ``True`` if the channel is idle or ``False`` if a sequence of
         pulses started with `RMT.write_pulses` is being transmitted. If the
@@ -218,7 +213,7 @@ class RMT:
         """
         ...
 
-    def write_pulses(self, duration, data: Union[bool, int] = True) -> Incomplete:
+    def write_pulses(self, duration, data: Union[bool, int] = ...) -> Incomplete:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 

@@ -1,17 +1,10 @@
 """
-System error codes.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/errno.html
-
-CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
-
-This module provides access to symbolic error codes for `OSError` exception.
-A particular inventory of codes depends on :term:`MicroPython port`.
+Module: 'errno' on micropython-v1.19.1-esp32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Dict, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 EACCES = 13  # type: int
 EADDRINUSE = 112  # type: int

@@ -1,19 +1,10 @@
 """
-Access binary data in a structured way.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/uctypes.html
-
-This module implements "foreign data interface" for MicroPython. The idea
-behind it is similar to CPython's ``ctypes`` modules, but the actual API is
-different, streamlined and optimized for small size. The basic idea of the
-module is to define data structure layout with about the same power as the
-C language allows, and then access it using familiar dot-syntax to reference
-sub-fields.
+Module: 'uctypes' on micropython-v1.19.1-esp32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 ARRAY = -1073741824  # type: int
 BFINT16 = -671088640  # type: int
@@ -78,7 +69,7 @@ def bytes_at(addr, size) -> bytes:
     ...
 
 
-def sizeof(struct, layout_type=NATIVE, /) -> int:
+def sizeof(struct, layout_type=...) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object
@@ -93,6 +84,6 @@ class struct:
     memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
 
-    def __init__(self, addr, descriptor, layout_type=NATIVE, /) -> None:
+    def __init__(self, addr, descriptor, layout_type=...) -> None:
         """"""
         ...

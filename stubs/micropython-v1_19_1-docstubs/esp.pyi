@@ -1,19 +1,7 @@
-"""
-Functions related to the ESP8266 and ESP32.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/esp.html
-
-The ``esp`` module contains specific functions related to both the ESP8266 and
-ESP32 modules.  Some functions are only available on one or the other of these
-ports.
-"""
-
-# source version: v1_19_1
-# origin module:: repos/micropython/docs/library/esp.rst
+from _typeshed import Incomplete as Incomplete
 from typing import Any, Optional
-from _typeshed import Incomplete
 
-def sleep_type(sleep_type: Optional[Any] = None) -> Incomplete:
+def sleep_type(sleep_type: Optional[Any] = ...) -> Incomplete:
     """
     **Note**: ESP8266 only
 
@@ -32,9 +20,8 @@ def sleep_type(sleep_type: Optional[Any] = None) -> Incomplete:
 
     The system enters the set sleep mode automatically when possible.
     """
-    ...
 
-def deepsleep(time_us=0, /) -> Incomplete:
+def deepsleep(time_us: int = ...) -> Incomplete:
     """
     **Note**: ESP8266 only - use `machine.deepsleep()` on ESP32
 
@@ -45,7 +32,6 @@ def deepsleep(time_us=0, /) -> Incomplete:
     connected to the reset pin. Otherwise the module will sleep until manually
     reset.
     """
-    ...
 
 def flash_id() -> Incomplete:
     """
@@ -53,19 +39,16 @@ def flash_id() -> Incomplete:
 
     Read the device ID of the flash memory.
     """
-    ...
 
 def flash_size() -> Incomplete:
     """
     Read the total size of the flash memory.
     """
-    ...
 
 def flash_user_start() -> Incomplete:
     """
     Read the memory offset at which the user flash space begins.
     """
-    ...
 
 def flash_read(byte_offset, length_or_buffer) -> Incomplete: ...
 def flash_write(byte_offset, bytes) -> Incomplete: ...
@@ -85,7 +68,6 @@ def osdebug(level) -> None:
         * ``LOG_VERBOSE`` -- Bigger chunks of debugging information, or frequent messages
           which can potentially flood the output
     """
-    ...
 
 def set_native_code_location(start, length) -> Incomplete:
     """
@@ -125,4 +107,3 @@ def set_native_code_location(start, length) -> Incomplete:
     will lead to `MemoryError` exception being raised during compilation of
     that function.
     """
-    ...
