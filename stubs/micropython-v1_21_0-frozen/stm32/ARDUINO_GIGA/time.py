@@ -1,5 +1,7 @@
 from utime import *
 from micropython import const
+from _typeshed import Incomplete as Incomplete
+from typing import Any, Optional, Tuple
 
 _TS_YEAR = const(0)
 _TS_MON = const(1)

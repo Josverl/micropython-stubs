@@ -1,5 +1,6 @@
 from utime import *
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete, Incomplete
+from typing import Any, Optional, Tuple
 
 _TS_YEAR: Incomplete
 _TS_MON: Incomplete

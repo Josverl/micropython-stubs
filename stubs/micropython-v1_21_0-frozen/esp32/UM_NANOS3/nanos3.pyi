@@ -9,5 +9,8 @@ SPI_CLK: Incomplete
 I2C_SDA: Incomplete
 I2C_SCL: Incomplete
 
-def set_pixel_power(state) -> None: ...
-def rgb_color_wheel(wheel_pos): ...
+def set_pixel_power(state) -> None:
+    """Enable or Disable power to the onboard NeoPixel to either show colour, or to reduce power for deep sleep."""
+
+def rgb_color_wheel(wheel_pos):
+    """Color wheel to allow for cycling through the rainbow of RGB colors."""
