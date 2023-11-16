@@ -1,36 +1,9 @@
-"""
-Deflate compression & decompression.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/deflate.html
-
-This module allows compression and decompression of binary data with the
-`DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
-(commonly used in the zlib library and gzip archiver).
-
-**Availability:**
-
-* Added in MicroPython v1.21.
-
-* Decompression: Enabled via the ``MICROPY_PY_DEFLATE`` build option, on by default
-  on ports with the "extra features" level or higher (which is most boards).
-
-* Compression: Enabled via the ``MICROPY_PY_DEFLATE_COMPRESS`` build option, on
-  by default on ports with the "full features" level or higher (generally this means
-  you need to build your own firmware to enable this).
-"""
-
-# source version: v1_21_0
-# origin module:: repos/micropython/docs/library/deflate.rst
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 AUTO: Incomplete
-"""Supported values for the *format* parameter."""
 RAW: Incomplete
-"""Supported values for the *format* parameter."""
 ZLIB: Incomplete
-"""Supported values for the *format* parameter."""
 GZIP: Incomplete
-"""Supported values for the *format* parameter."""
 
 class DeflateIO:
     """
@@ -76,4 +49,4 @@ class DeflateIO:
     directions.
     """
 
-    def __init__(self, stream, format=AUTO, wbits=0, close=False, /) -> None: ...
+    def __init__(self, stream, format=..., wbits: int = ..., close: bool = ...) -> None: ...

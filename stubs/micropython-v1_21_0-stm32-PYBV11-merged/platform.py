@@ -1,17 +1,10 @@
 """
-Access to underlying platform’s identifying data.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/platform.html
-
-CPython module: :mod:`python:platform` https://docs.python.org/3/library/platform.html .
-
-This module tries to retrieve as much platform-identifying data as possible. It
-makes this information available via function APIs.
+Module: 'platform' on micropython-v1.21.0-stm32-PYBV11
 """
 # MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
 # Stubber: v1.13.8
 from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete, Incomplete
 
 
 def platform() -> str:

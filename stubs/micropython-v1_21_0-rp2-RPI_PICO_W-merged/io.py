@@ -1,21 +1,15 @@
 """
-Input/output streams.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/io.html
-
-CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
-
-This module contains additional types of `stream` (file-like) objects
-and helper functions.
+Module: 'io' on micropython-v1.21.0-rp2-RPI_PICO_W
 """
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import IO, Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete, Incomplete
+import abc
 from stdlib.io import *
 
 
-def open(name, mode="r", **kwargs) -> Incomplete:
+def open(name, mode: str = ..., **kwargs) -> Incomplete:
     """
     Open a file. Builtin ``open()`` function is aliased to this function.
     All ports (which provide access to file system) are required to support
@@ -29,7 +23,9 @@ class IOBase:
         ...
 
 
-class StringIO(IO):
+class StringIO(
+    IO,
+):
     def write(self, *args, **kwargs) -> Incomplete:
         ...
 
@@ -57,11 +53,13 @@ class StringIO(IO):
     def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, string: Optional[Any] = None) -> None:
+    def __init__(self, string: Optional[Any] = ...) -> None:
         ...
 
 
-class BytesIO(IO):
+class BytesIO(
+    IO,
+):
     """
     In-memory file-like objects for input/output. `StringIO` is used for
     text-mode I/O (similar to a normal file opened with "t" modifier).
@@ -104,5 +102,5 @@ class BytesIO(IO):
     def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, string: Optional[Any] = None) -> None:
+    def __init__(self, string: Optional[Any] = ...) -> None:
         ...

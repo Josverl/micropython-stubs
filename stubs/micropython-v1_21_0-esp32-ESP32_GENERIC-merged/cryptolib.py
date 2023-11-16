@@ -1,28 +1,27 @@
 """
-Cryptographic ciphers.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/cryptolib.html
+Module: 'cryptolib' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
 # Stubber: v1.14.0
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete, Incomplete
 from typing import Any, Optional
 
+
 class aes:
-    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
+    def encrypt(self, in_buf, out_buf: Optional[Any] = ...) -> Incomplete:
         """
         Encrypt *in_buf*. If no *out_buf* is given result is returned as a
         newly allocated `bytes` object. Otherwise, result is written into
         mutable buffer *out_buf*. *in_buf* and *out_buf* can also refer
         to the same mutable buffer, in which case data is encrypted in-place.
         """
-        ...
-    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
+
+    def decrypt(self, in_buf, out_buf: Optional[Any] = ...) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.
         """
-        ...
-    def __init__(self, key, mode, IV: Optional[Any] = None) -> None:
+
+    def __init__(self, key, mode, IV: Optional[Any] = ...) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:
         after initialization, cipher object can be use only either for
@@ -41,4 +40,3 @@ class aes:
             * *IV* is an initialization vector for CBC mode.
             * For Counter mode, *IV* is the initial value for the counter.
         """
-        ...

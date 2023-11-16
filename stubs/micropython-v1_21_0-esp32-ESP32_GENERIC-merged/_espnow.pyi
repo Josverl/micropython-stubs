@@ -1,4 +1,6 @@
 from _typeshed import Incomplete as Incomplete
+import abc
+from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 
 MAX_DATA_LEN: int
 MAX_TOTAL_PEER_NUM: int

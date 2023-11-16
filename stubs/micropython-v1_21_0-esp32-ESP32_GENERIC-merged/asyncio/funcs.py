@@ -5,7 +5,10 @@ Module: 'asyncio.funcs' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_S
 # Stubber: v1.14.0
 from _typeshed import Incomplete
 
-def wait_for_ms(*args, **kwargs) -> Incomplete: ...
+
+def wait_for_ms(*args, **kwargs) -> Incomplete:
+    ...
+
 
 gather: Incomplete  ## <class 'generator'> = <generator>
 wait_for: Incomplete  ## <class 'generator'> = <generator>

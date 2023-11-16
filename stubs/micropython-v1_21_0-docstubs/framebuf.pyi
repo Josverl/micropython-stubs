@@ -1,52 +1,13 @@
-"""
-Frame buffer manipulation.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/framebuf.html
-
-This module provides a general frame buffer which can be used to create
-bitmap images, which can then be sent to a display.
-"""
-
-# source version: v1_21_0
-# origin module:: repos/micropython/docs/library/framebuf.rst
+from _typeshed import Incomplete as Incomplete
 from typing import Any, Optional
-from _typeshed import Incomplete
 
 MONO_VLSB: bytes
-"""\
-Monochrome (1-bit) color format
-This defines a mapping where the bits in a byte are vertically mapped with
-bit 0 being nearest the top of the screen. Consequently each byte occupies
-8 vertical pixels. Subsequent bytes appear at successive horizontal
-locations until the rightmost edge is reached. Further bytes are rendered
-at locations starting at the leftmost edge, 8 pixels lower.
-"""
 MONO_HLSB: bytes
-"""\
-Monochrome (1-bit) color format
-This defines a mapping where the bits in a byte are horizontally mapped.
-Each byte occupies 8 horizontal pixels with bit 7 being the leftmost.
-Subsequent bytes appear at successive horizontal locations until the
-rightmost edge is reached. Further bytes are rendered on the next row, one
-pixel lower.
-"""
 MONO_HMSB: bytes
-"""\
-Monochrome (1-bit) color format
-This defines a mapping where the bits in a byte are horizontally mapped.
-Each byte occupies 8 horizontal pixels with bit 0 being the leftmost.
-Subsequent bytes appear at successive horizontal locations until the
-rightmost edge is reached. Further bytes are rendered on the next row, one
-pixel lower.
-"""
 RGB565: Incomplete
-"""Red Green Blue (16-bit, 5+6+5) color format"""
 GS2_HMSB: Incomplete
-"""Grayscale (2-bit) color format"""
 GS4_HMSB: Incomplete
-"""Grayscale (4-bit) color format"""
 GS8: Incomplete
-"""Grayscale (8-bit) color format"""
 
 class FrameBuffer:
     """
@@ -74,18 +35,16 @@ class FrameBuffer:
     unexpected errors.
     """
 
-    def __init__(self, buffer, width, height, format, stride=-1, /) -> None: ...
+    def __init__(self, buffer, width, height, format, stride: int = ...) -> None: ...
     def fill(self, c) -> None:
         """
         Fill the entire FrameBuffer with the specified color.
         """
-        ...
-    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
+    def pixel(self, x, y, c: Optional[Any] = ...) -> Incomplete:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
         """
-        ...
     def hline(self, x, y, w, c) -> Incomplete: ...
     def vline(self, x, y, h, c) -> Incomplete: ...
     def line(self, x1, y1, x2, y2, c) -> None:
@@ -96,16 +55,14 @@ class FrameBuffer:
         methods draw horizontal and vertical lines respectively up to
         a given length.
         """
-        ...
-    def rect(self, x, y, w, h, c, f: Optional[Any] = None) -> None:
+    def rect(self, x, y, w, h, c, f: Optional[Any] = ...) -> None:
         """
         Draw a rectangle at the given location, size and color.
 
         The optional *f* parameter can be set to ``True`` to fill the rectangle.
         Otherwise just a one pixel outline is drawn.
         """
-        ...
-    def ellipse(self, x, y, xr, yr, c, f, m: Optional[Any] = None) -> None:
+    def ellipse(self, x, y, xr, yr, c, f, m: Optional[Any] = ...) -> None:
         """
         Draw an ellipse at the given location. Radii *xr* and *yr* define the
         geometry; equal values cause a circle to be drawn. The *c* parameter
@@ -119,8 +76,7 @@ class FrameBuffer:
         to be drawn, with bit 0 specifying Q1, b1 Q2, b2 Q3 and b3 Q4. Quadrants
         are numbered counterclockwise with Q1 being top right.
         """
-        ...
-    def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Incomplete:
+    def poly(self, x, y, coords, c, f: Optional[Any] = ...) -> Incomplete:
         """
         Given a list of coordinates, draw an arbitrary (convex or concave) closed
         polygon at the given x, y location using the given color.
@@ -131,22 +87,19 @@ class FrameBuffer:
         The optional *f* parameter can be set to ``True`` to fill the polygon.
         Otherwise just a one pixel outline is drawn.
         """
-        ...
-    def text(self, s, x, y, c: Optional[Any] = None) -> None:
+    def text(self, s, x, y, c: Optional[Any] = ...) -> None:
         """
         Write text to the FrameBuffer using the the coordinates as the upper-left
         corner of the text. The color of the text can be defined by the optional
         argument but is otherwise a default value of 1. All characters have
         dimensions of 8x8 pixels and there is currently no way to change the font.
         """
-        ...
     def scroll(self, xstep, ystep) -> Incomplete:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
         """
-        ...
-    def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
+    def blit(self, fbuf, x, y, key: int = ..., palette: Incomplete | None = ...) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
         If *key* is specified then it should be a color integer and the
@@ -166,4 +119,3 @@ class FrameBuffer:
         current pixel will be that of that *palette* pixel whose x position is the
         color of the corresponding source pixel.
         """
-        ...

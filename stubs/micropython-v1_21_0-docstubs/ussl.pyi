@@ -1,42 +1,13 @@
-"""
-TLS/SSL wrapper for socket objects.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/ssl.html
-
-CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
-
-This module provides access to Transport Layer Security (previously and
-widely known as “Secure Sockets Layer”) encryption and peer authentication
-facilities for network sockets, both client-side and server-side.
-"""
-
-# source version: v1_21_0
-# origin module:: repos/micropython/docs/library/ssl.rst
+from stdlib.ssl import *
+from _typeshed import Incomplete as Incomplete
 from typing import IO
-from _typeshed import Incomplete
-from stdlib.ssl import *  # type: ignore
 
 SSLError: Incomplete
-"""This exception does NOT exist. Instead its base class, OSError, is used."""
 PROTOCOL_TLS_CLIENT: Incomplete
-"""Supported values for the *protocol* parameter."""
 PROTOCOL_TLS_SERVER: Incomplete
-"""Supported values for the *protocol* parameter."""
 CERT_NONE: Incomplete
-"""\
-Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
-attribute.
-"""
 CERT_OPTIONAL: Incomplete
-"""\
-Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
-attribute.
-"""
 CERT_REQUIRED: Incomplete
-"""\
-Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
-attribute.
-"""
 
 class SSLContext:
     """
@@ -44,8 +15,10 @@ class SSLContext:
     constants.
     """
 
-    def __init__(self, protocol, /) -> None: ...
-    def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
+    def __init__(self, protocol) -> None: ...
+    def wrap_socket(
+        self, sock, *, server_side: bool = ..., do_handshake_on_connect: bool = ..., server_hostname: Incomplete | None = ...
+    ) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
         and returns an instance of ssl.SSLSocket, wrapping the underlying stream.
@@ -68,10 +41,16 @@ class SSLContext:
           server certificate.  It also sets the name for Server Name Indication (SNI), allowing the server
           to present the proper certificate.
         """
-        ...
 
 def wrap_socket(
-    sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
+    sock,
+    server_side: bool = ...,
+    keyfile: Incomplete | None = ...,
+    certfile: Incomplete | None = ...,
+    cert_reqs: Incomplete | None = ...,
+    cadata: Incomplete | None = ...,
+    server_hostname: Incomplete | None = ...,
+    do_handshake: bool = ...,
 ) -> IO:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
@@ -90,4 +69,3 @@ def wrap_socket(
     Depending on the underlying module implementation in a particular
     :term:`MicroPython port`, some or all keyword arguments above may be not supported.
     """
-    ...
