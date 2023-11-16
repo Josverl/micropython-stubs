@@ -1,3 +1,0 @@
-from typing import Any
-
-def install(*args, **kwargs) -> Any: ...

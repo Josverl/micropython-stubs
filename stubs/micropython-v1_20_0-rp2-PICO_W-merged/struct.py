@@ -1,62 +1,10 @@
 """
-Pack and unpack primitive data types.
-
-MicroPython module: https://docs.micropython.org/en/v1.20.0/library/struct.html
-
-CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
-
-The following byte orders are supported:
-
-+-----------+------------------------+----------+-----------+
-| Character | Byte order             | Size     | Alignment |
-+===========+========================+==========+===========+
-| @         | native                 | native   | native    |
-+-----------+------------------------+----------+-----------+
-| <         | little-endian          | standard | none      |
-+-----------+------------------------+----------+-----------+
-| >         | big-endian             | standard | none      |
-+-----------+------------------------+----------+-----------+
-| !         | network (= big-endian) | standard | none      |
-+-----------+------------------------+----------+-----------+
-
-The following data types are supported:
-
-+--------+--------------------+-------------------+---------------+
-| Format | C Type             | Python type       | Standard size |
-+========+====================+===================+===============+
-| b      | signed char        | integer           | 1             |
-+--------+--------------------+-------------------+---------------+
-| B      | unsigned char      | integer           | 1             |
-+--------+--------------------+-------------------+---------------+
-| h      | short              | integer           | 2             |
-+--------+--------------------+-------------------+---------------+
-| H      | unsigned short     | integer           | 2             |
-+--------+--------------------+-------------------+---------------+
-| i      | int                | integer (`1<fn>`) | 4             |
-+--------+--------------------+-------------------+---------------+
-| I      | unsigned int       | integer (`1<fn>`) | 4             |
-+--------+--------------------+-------------------+---------------+
-| l      | long               | integer (`1<fn>`) | 4             |
-+--------+--------------------+-------------------+---------------+
-| L      | unsigned long      | integer (`1<fn>`) | 4             |
-+--------+--------------------+-------------------+---------------+
-| q      | long long          | integer (`1<fn>`) | 8             |
-+--------+--------------------+-------------------+---------------+
-| Q      | unsigned long long | integer (`1<fn>`) | 8             |
-+--------+--------------------+-------------------+---------------+
-| f      | float              | float (`2<fn>`)   | 4             |
-+--------+--------------------+-------------------+---------------+
-| d      | double             | float (`2<fn>`)   | 8             |
-+--------+--------------------+-------------------+---------------+
-| s      | char[]             | bytes             |               |
-+--------+--------------------+-------------------+---------------+
-| P      | void *             | integer           |               |
-+--------+--------------------+-------------------+---------------+
+Module: 'struct' on micropython-v1.20.0-rp2-PICO_W
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
 from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
 def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
@@ -76,7 +24,7 @@ def unpack(fmt, data) -> Tuple:
     ...
 
 
-def unpack_from(fmt, data, offset=0, /) -> Tuple:
+def unpack_from(fmt, data, offset: int = ...) -> Tuple:
     """
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *data*. The return

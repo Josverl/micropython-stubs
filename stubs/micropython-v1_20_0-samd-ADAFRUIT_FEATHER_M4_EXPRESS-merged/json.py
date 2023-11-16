@@ -1,17 +1,10 @@
 """
-JSON encoding and decoding.
-
-MicroPython module: https://docs.micropython.org/en/v1.20.0/library/json.html
-
-CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
-
-This modules allows to convert between Python objects and the JSON
-data format.
+Module: 'json' on micropython-v1.20.0-samd-ADAFRUIT_FEATHER_M4_EXPRESS
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'ADAFRUIT_FEATHER_M4_EXPRESS', 'cpu': 'SAMD51J19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
 from typing import Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
 def loads(str) -> Incomplete:
@@ -34,7 +27,7 @@ def load(stream) -> Incomplete:
     ...
 
 
-def dumps(obj, separators=None) -> str:
+def dumps(obj, separators: Incomplete | None = ...) -> str:
     """
     Return *obj* represented as a JSON string.
 
@@ -43,7 +36,7 @@ def dumps(obj, separators=None) -> str:
     ...
 
 
-def dump(obj, stream, separators=None) -> Incomplete:
+def dump(obj, stream, separators: Incomplete | None = ...) -> Incomplete:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
 

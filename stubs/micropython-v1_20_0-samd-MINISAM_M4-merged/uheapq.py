@@ -1,20 +1,10 @@
 """
-Heap queue algorithm.
-
-MicroPython module: https://docs.micropython.org/en/v1.20.0/library/heapq.html
-
-CPython module: :mod:`python:heapq` https://docs.python.org/3/library/heapq.html .
-
-This module implements the
-`min heap queue algorithm <https://en.wikipedia.org/wiki/Heap_%28data_structure%29>`_.
-
-A heap queue is essentially a list that has its elements stored in such a way
-that the first item of the list is always the smallest.
+Module: 'uheapq' on micropython-v1.20.0-samd-MINISAM_M4
 """
 # MCU: OrderedDict({'build': '', 'ver': 'v1.20.0', 'version': '1.20.0', 'port': 'samd', 'board': 'MINISAM_M4', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51G19A', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
 from typing import Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
 def heappop(heap) -> Incomplete:
