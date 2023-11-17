@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.x" # Replace with the Python version you're using
+          python-version: "3.11" # Replace with the Python version you're using
 
       - name: Testspace client install & config
         uses: testspace-com/setup-testspace@v1
