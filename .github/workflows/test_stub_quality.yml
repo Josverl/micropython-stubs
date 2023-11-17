@@ -21,6 +21,10 @@ jobs:
           python-version: "3.x" # Replace with the Python version you're using
           cache: "poetry"
 
+      - name: Testspace client install & config
+        uses: testspace-com/setup-testspace@v1
+        with:
+          domain: josverl
       #----------------------------------------------
       # install project
       #----------------------------------------------
@@ -40,11 +44,15 @@ jobs:
         continue-on-error: true
         run: |
           pwsh -file ./update-stubs.ps1 
-          pytest -m 'snippets' --cache-clear
+          pytest -m 'snippets' --cache-clear --junitxml=./results/results.xml
         env:
           JUPYTER_PLATFORM_DIRS: "1"
           # fix:  DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs
-          
+
+      - name: Testspace push test content
+        run: |
+          testspace ./results/results.xml
+
       - name: compare and update
         run: |
           poetry run python .github/workflows/compare_score.py
