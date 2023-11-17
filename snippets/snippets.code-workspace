@@ -1,0 +1,107 @@
+{
+    "folders": [
+        {
+            "name": "check_stm32",
+            "path": "check_stm32"
+        },
+        {
+            "name": "check_esp32",
+            "path": "check_esp32"
+        },
+        {
+            "name": "check_esp8266",
+            "path": "check_esp8266"
+        },
+        {
+            "name": "check_rp2",
+            "path": "check_rp2"
+        },
+        {
+            "name": "check_samd",
+            "path": "check_samd"
+        },
+        {
+            "name": "check_unix",
+            "path": "check_unix"
+        },
+        {
+            "name": "feat_uasyncio",
+            "path": "feat_uasyncio"
+        },
+        {
+            "name": "feat_micropython",
+            "path": "feat_micropython"
+        },
+        {
+            "name": "feat_stdlib",
+            "path": "feat_stdlib"
+        },
+        {
+            "name": "feat_bluetooth",
+            "path": "feat_bluetooth"
+        },
+        {
+            "name": "feat_networking",
+            "path": "feat_networking"
+        },
+        {
+            "name": "feat_espnow",
+            "path": "feat_espnow"
+        },
+        {
+            "name": "wip_todo",
+            "path": "wip_todo"
+        },
+        {
+            "name": "snippets",
+            "path": "."
+        },
+        {
+            "path": "../repos/micropython-stubs"
+        }
+    ],
+    "settings": {
+        "python.languageServer": "Pylance",
+        "python.analysis.typeCheckingMode": "basic",
+        "python.analysis.diagnosticMode": "openFilesOnly",
+        "python.analysis.diagnosticSeverityOverrides": {
+            "reportMissingModuleSource": "none"
+        },
+        // "python.autoComplete.extraPaths": [],
+        // "python.analysis.typeshedPaths": [],
+        "[python]": {
+            "editor.defaultFormatter": "ms-python.black-formatter"
+        },
+        "workbench.colorCustomizations": {
+            "activityBar.activeBackground": "#f13e97",
+            "activityBar.background": "#f13e97",
+            "activityBar.foreground": "#e7e7e7",
+            "activityBar.inactiveForeground": "#e7e7e799",
+            "activityBarBadge.background": "#305906",
+            "activityBarBadge.foreground": "#e7e7e7",
+            "commandCenter.border": "#e7e7e799",
+            "editorGroup.border": "#f13e97",
+            "panel.border": "#f13e97",
+            "sash.hoverBorder": "#f13e97",
+            "statusBar.background": "#eb117e",
+            "statusBar.foreground": "#e7e7e7",
+            "statusBarItem.hoverBackground": "#f13e97",
+            "statusBarItem.remoteBackground": "#eb117e",
+            "statusBarItem.remoteForeground": "#e7e7e7",
+            "tab.activeBorder": "#f13e97",
+            "titleBar.activeBackground": "#eb117e",
+            "titleBar.activeForeground": "#e7e7e7",
+            "titleBar.inactiveBackground": "#eb117e99",
+            "titleBar.inactiveForeground": "#e7e7e799"
+        },
+        "peacock.color": "#eb117e",
+        "testExplorer.useNativeTesting": true,
+        "python.analysis.enableSyncServer": false,
+        "python.testing.autoTestDiscoverOnSaveEnabled": false
+    },
+    "extensions": {
+        "recommendations": [
+            "ms-python.black-formatter"
+        ]
+    },
+}

@@ -1,26 +1,26 @@
 {
     "workbench.colorCustomizations": {
-        "titleBar.activeBackground": "#215732",
-        "titleBar.activeForeground": "#e7e7e7",
-        "titleBar.inactiveBackground": "#21573299",
-        "titleBar.inactiveForeground": "#e7e7e799",
-        "activityBar.activeBackground": "#2f7c47",
         "activityBar.activeBorder": "#422c74",
+        "activityBar.activeBackground": "#2f7c47",
         "activityBar.background": "#2f7c47",
         "activityBar.foreground": "#e7e7e7",
         "activityBar.inactiveForeground": "#e7e7e799",
-        "panel.border": "#2f7c47",
-        "editorGroup.border": "#2f7c47",
-        "tab.activeBorder": "#2f7c47",
         "activityBarBadge.background": "#422c74",
         "activityBarBadge.foreground": "#e7e7e7",
+        "commandCenter.border": "#e7e7e799",
+        "editorGroup.border": "#2f7c47",
+        "panel.border": "#2f7c47",
+        "sash.hoverBorder": "#2f7c47",
         "statusBar.background": "#215732",
         "statusBar.foreground": "#e7e7e7",
         "statusBarItem.hoverBackground": "#2f7c47",
         "statusBarItem.remoteBackground": "#215732",
         "statusBarItem.remoteForeground": "#e7e7e7",
-        "sash.hoverBorder": "#2f7c47",
-        "commandCenter.border": "#e7e7e799"
+        "tab.activeBorder": "#2f7c47",
+        "titleBar.activeBackground": "#215732",
+        "titleBar.activeForeground": "#e7e7e7",
+        "titleBar.inactiveBackground": "#21573299",
+        "titleBar.inactiveForeground": "#e7e7e799"
     },
     "peacock.color": "#215732",
     "cSpell.words": [
@@ -29,9 +29,6 @@
     "peacock.affectEditorGroupBorder": true,
     "peacock.affectPanelBorder": true,
     "peacock.affectTabActiveBorder": true,
-    "python.testing.pytestArgs": [
-        "tests"
-    ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.analysis.useLibraryCodeForTypes": false,

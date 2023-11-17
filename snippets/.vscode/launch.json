@@ -1,0 +1,17 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "debug build-stubs",
+            "type": "PowerShell",
+            "request": "launch",
+            "script": "${workspaceFolder}/build-stubs.ps1",
+            "args": [
+                "-do_build"
+            ]
+        }
+    ]
+}
