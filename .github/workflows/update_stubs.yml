@@ -1,0 +1,53 @@
+
+# Check out repos in this structure
+# micropython-stubs
+# +-- stubs
+# +-- repos
+#     +-- micropython
+#      -- micropython-lib
+# repro structure needed to allow automatic PR creation to work
+########################################################################################################################################
+name: update_stubs
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 1 * * *" # Run every day at 01:00
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: 1
+
+jobs:
+  ########################################################################################################################################
+  build-stubs:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout stubs repo
+        uses: actions/checkout@v3
+      - name: Install Poetry
+        run: pipx install poetry==1.3.1
+      - run: |
+          poetry config repositories.test-pypi https://test.pypi.org/legacy/
+          poetry config --list
+      - run: |
+          pip install wheel
+          pip install -U micropython-stubber
+      - run: |
+          echo Running in folder $(pwd)
+          stubber --version
+          stubber clone --no-stubs
+
+      - name: Run update-stubs.ps1
+        run: |
+          pwsh -File update-stubs.ps1
+
+      - name: update all_modules.json
+        run: |
+          echo "Updating all_modules.json"
+          # pip install tomli
+          python3 update_all_modules.py
+
+      - name: commit
+        uses: ./.github/actions/commit
+        with:
+          message: "update stubs"

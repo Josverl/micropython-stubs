@@ -61,4 +61,4 @@ jobs:
       - name: commit
         uses: ./.github/actions/commit
         with:
-          message: "Update stubs documentaion"
+          message: "Update stubs documentation"
