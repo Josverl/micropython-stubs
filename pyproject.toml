@@ -21,7 +21,7 @@ exclude = '''
 minversion = "7.0"
 python_functions = ["test_", "*_test"]
 python_files = ["test_*.py", "*_test.py"]
-testpaths = ["snippets"]
+testpaths = ["quality_tests"]
 norecursedirs = [
     "repos",
     "typings*",

@@ -35,10 +35,11 @@ jobs:
       - name: stubber clone
         run: stubber clone
 
+
       - name: update the stubs and test the snippets (not pushed) 
         continue-on-error: true
         run: |
-          pwsh -file ./snippets/update-stubs.ps1 
+          pwsh -file ./update-stubs.ps1 
           pytest -m 'snippets' --cache-clear
         env:
           JUPYTER_PLATFORM_DIRS: "1"

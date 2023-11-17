@@ -176,9 +176,9 @@ def snip_path(feature: str, pytestconfig) -> Path:
         Path: The path to the feature folder.
     """
 
-    snip_path = pytestconfig.inipath.parent / "snippets" / f"feat_{feature}"
+    snip_path = pytestconfig.inipath.parent / "quality_tests" / f"feat_{feature}"
     if not snip_path.exists():
-        snip_path = pytestconfig.inipath.parent / "snippets" / f"check_{feature}"
+        snip_path = pytestconfig.inipath.parent / "quality_tests" / f"check_{feature}"
     return snip_path
 
 
