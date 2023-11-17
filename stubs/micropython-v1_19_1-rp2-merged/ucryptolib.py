@@ -1,16 +1,14 @@
 """
-Cryptographic ciphers.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/cryptolib.html
+Module: 'ucryptolib' on micropython-v1.19.1-rp2
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
 class aes:
-    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
+    def encrypt(self, in_buf, out_buf: Optional[Any] = ...) -> Incomplete:
         """
         Encrypt *in_buf*. If no *out_buf* is given result is returned as a
         newly allocated `bytes` object. Otherwise, result is written into
@@ -19,13 +17,13 @@ class aes:
         """
         ...
 
-    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
+    def decrypt(self, in_buf, out_buf: Optional[Any] = ...) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.
         """
         ...
 
-    def __init__(self, key, mode, IV: Optional[Any] = None) -> None:
+    def __init__(self, key, mode, IV: Optional[Any] = ...) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:
         after initialization, cipher object can be use only either for

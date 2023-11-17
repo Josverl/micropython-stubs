@@ -1,24 +1,10 @@
 """
-Socket module.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/socket.html
-
-CPython module: :mod:`python:socket` https://docs.python.org/3/library/socket.html .
-
-This module provides access to the BSD socket interface.
-
-Difference to CPython
-
-   For efficiency and consistency, socket objects in MicroPython implement a `stream`
-   (file-like) interface directly. In CPython, you need to convert a socket to
-   a file-like object using `makefile()` method. This method is still supported
-   by MicroPython (but is a no-op), so where compatibility with CPython matters,
-   be sure to use it.
+Module: 'usocket' on micropython-v1.19.1-esp8266
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import IO, Optional, Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 from stdlib.socket import *
 
 SOCK_DGRAM = 2  # type: int
@@ -40,7 +26,7 @@ def print_pcbs(*args, **kwargs) -> Any:
     ...
 
 
-def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
+def getaddrinfo(host, port, af: int = ..., type: int = ..., proto: int = ..., flags: int = ...) -> Incomplete:
     """
     Translate the host/port argument into a sequence of 5-tuples that contain all the
     necessary arguments for creating a socket connected to that service. Arguments
@@ -58,19 +44,19 @@ def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
        s = socket.socket()
        # This assumes that if "type" is not specified, an address for
        # SOCK_STREAM will be returned, which may be not true
-       s.connect(socket.getaddrinfo('www.micropython.org', 80)[0][-1])
+       s.connect(socket.getaddrinfo(\'www.micropython.org\', 80)[0][-1])
 
     Recommended use of filtering params::
 
        s = socket.socket()
-       # Guaranteed to return an address which can be connect'ed to for
+       # Guaranteed to return an address which can be connect\'ed to for
        # stream operation.
-       s.connect(socket.getaddrinfo('www.micropython.org', 80, 0, SOCK_STREAM)[0][-1])
+       s.connect(socket.getaddrinfo(\'www.micropython.org\', 80, 0, SOCK_STREAM)[0][-1])
 
     Difference to CPython
 
        CPython raises a ``socket.gaierror`` exception (`OSError` subclass) in case
-       of error in this function. MicroPython doesn't have ``socket.gaierror``
+       of error in this function. MicroPython doesn\'t have ``socket.gaierror``
        and raises OSError directly. Note that error numbers of `getaddrinfo()`
        form a separate namespace and may not match error numbers from
        the :mod:`errno` module. To distinguish `getaddrinfo()` errors, they are
@@ -115,7 +101,7 @@ class socket:
         """
         ...
 
-    def makefile(self, mode="rb", buffering=0, /) -> IO:
+    def makefile(self, mode: str = ..., buffering: int = ...) -> IO:
         """
         Return a file object associated with the socket. The exact returned type depends on the arguments
         given to makefile(). The support is limited to binary modes only ('rb', 'wb', and 'rwb').
@@ -133,7 +119,7 @@ class socket:
         """
         ...
 
-    def listen(self, backlog: Optional[Any] = None) -> None:
+    def listen(self, backlog: Optional[Any] = ...) -> None:
         """
         Enable a server to accept connections. If *backlog* is specified, it must be at least 0
         (if it's lower, it will be set to 0); and specifies the number of unaccepted connections
@@ -184,7 +170,7 @@ class socket:
         chunk by chunk consecutively.
 
         The behaviour of this method on non-blocking sockets is undefined. Due to this,
-        on MicroPython, it's recommended to use `write()` method instead, which
+        on MicroPython, it\'s recommended to use `write()` method instead, which
         has the same "no short writes" policy for blocking sockets, and will return
         number of bytes sent on non-blocking sockets.
         """
@@ -225,7 +211,7 @@ class socket:
         """
         ...
 
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+    def readinto(self, buf, nbytes: Optional[Any] = ...) -> int:
         """
         Read bytes into the *buf*.  If *nbytes* is specified then read at most
         that many bytes.  Otherwise, read at most *len(buf)* bytes. Just as
@@ -235,7 +221,7 @@ class socket:
         """
         ...
 
-    def read(self, size: Optional[Any] = None) -> bytes:
+    def read(self, size: Optional[Any] = ...) -> bytes:
         """
         Read up to size bytes from the socket. Return a bytes object. If *size* is not given, it
         reads all data available from the socket until EOF; as such the method will not return until
@@ -296,5 +282,5 @@ class socket:
         """
         ...
 
-    def __init__(self, af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP, /) -> None:
+    def __init__(self, af=..., type=..., proto=...) -> None:
         ...

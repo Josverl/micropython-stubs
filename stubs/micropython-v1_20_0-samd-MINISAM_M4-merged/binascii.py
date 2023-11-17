@@ -1,24 +1,17 @@
 """
-Binary/ASCII conversions.
-
-MicroPython module: https://docs.micropython.org/en/v1.20.0/library/binascii.html
-
-CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
-
-This module implements conversions between binary data and various
-encodings of it in ASCII form (in both directions).
+Module: 'binascii' on micropython-v1.20.0-samd-MINISAM_M4
 """
 # MCU: OrderedDict({'build': '', 'ver': 'v1.20.0', 'version': '1.20.0', 'port': 'samd', 'board': 'MINISAM_M4', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51G19A', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
 from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
 def crc32(*args, **kwargs) -> Any:
     ...
 
 
-def hexlify(data, sep: Optional[Any] = None) -> bytes:
+def hexlify(data, sep: Optional[Any] = ...) -> bytes:
     """
     Convert the bytes in the *data* object to a hexadecimal representation.
     Returns a bytes object.
@@ -37,7 +30,7 @@ def unhexlify(data) -> bytes:
     ...
 
 
-def b2a_base64(data, *, newline=True) -> bytes:
+def b2a_base64(data, *, newline: bool = ...) -> bytes:
     """
     Encode binary data in base64 format, as in `RFC 3548
     <https://tools.ietf.org/html/rfc3548.html>`_. Returns the encoded data

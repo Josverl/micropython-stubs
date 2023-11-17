@@ -1,13 +1,5 @@
-"""
-Functionality specific to STM32 MCUs.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/stm.html
-
-This module provides functionality specific to STM32 microcontrollers, including
-direct access to peripheral registers.
-"""
 from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 SPI_I2SPR: int
 RTC_DR: int

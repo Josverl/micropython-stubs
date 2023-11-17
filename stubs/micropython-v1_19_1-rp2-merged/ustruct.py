@@ -1,24 +1,10 @@
 """
-Pack and unpack primitive data types.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/struct.html
-
-CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
-
-Supported size/byte order prefixes: ``@``, ``<``, ``>``, ``!``.
-
-Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
-``L``, ``q``, ``Q``, ``s``, ``P``, ``f``, ``d`` (the latter 2 depending
-on the floating-point support).
-
-Difference to CPython
-
-   Whitespace is not supported in format strings.
+Module: 'ustruct' on micropython-v1.19.1-rp2
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
 def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
@@ -38,7 +24,7 @@ def unpack(fmt, data) -> Tuple:
     ...
 
 
-def unpack_from(fmt, data, offset=0, /) -> Tuple:
+def unpack_from(fmt, data, offset: int = ...) -> Tuple:
     """
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *buffer*. The return

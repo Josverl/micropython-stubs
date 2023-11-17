@@ -1,20 +1,10 @@
 """
-Mathematical functions for complex numbers.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/cmath.html
-
-CPython module: :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
-
-The ``cmath`` module provides some basic mathematical functions for
-working with complex numbers.
-
-Availability: not available on WiPy and ESP8266. Floating point support
-required for this module.
+Module: 'cmath' on micropython-v1.19.1-esp32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
 def cos(z) -> float:

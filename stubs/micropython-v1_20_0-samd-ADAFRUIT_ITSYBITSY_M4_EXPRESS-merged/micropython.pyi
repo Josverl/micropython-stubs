@@ -1,12 +1,7 @@
-"""
-Access and control MicroPython internals.
-
-MicroPython module: https://docs.micropython.org/en/v1.20.0/library/micropython.html
-"""
 from typing import Optional, Tuple, TypeVar, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
-def mem_info(verbose: Optional[Any] = None) -> None:
+def mem_info(verbose: Optional[Any] = ...) -> None:
     """
     Print information about currently used memory.  If the *verbose* argument
     is given then extra information is printed.
@@ -15,9 +10,8 @@ def mem_info(verbose: Optional[Any] = None) -> None:
     includes the amount of stack and heap used.  In verbose mode it prints out
     the entire heap indicating which blocks are used and which are free.
     """
-    ...
 
-def opt_level(level: Optional[Any] = None) -> Incomplete:
+def opt_level(level: Optional[Any] = ...) -> Incomplete:
     """
     If *level* is given then this function sets the optimisation level for subsequent
     compilation of scripts, and returns ``None``.  Otherwise it returns the current
@@ -35,9 +29,8 @@ def opt_level(level: Optional[Any] = None) -> Incomplete:
 
     The default optimisation level is usually level 0.
     """
-    ...
 
-def qstr_info(verbose: Optional[Any] = None) -> None:
+def qstr_info(verbose: Optional[Any] = ...) -> None:
     """
     Print information about currently interned strings.  If the *verbose*
     argument is given then extra information is printed.
@@ -46,7 +39,6 @@ def qstr_info(verbose: Optional[Any] = None) -> None:
     includes the number of interned strings and the amount of RAM they use.  In
     verbose mode it prints out the names of all RAM-interned strings.
     """
-    ...
 
 def schedule(func, arg) -> Incomplete:
     """
@@ -83,7 +75,6 @@ def schedule(func, arg) -> Incomplete:
     There is a finite queue to hold the scheduled functions and `schedule()`
     will raise a `RuntimeError` if the queue is full.
     """
-    ...
 
 def stack_use() -> int:
     """
@@ -91,7 +82,6 @@ def stack_use() -> int:
     used.  The absolute value of this is not particularly useful, rather it
     should be used to compute differences in stack usage at different points.
     """
-    ...
 
 def kbd_intr(chr) -> None:
     """
@@ -104,7 +94,6 @@ def kbd_intr(chr) -> None:
     incoming stream of characters that is usually used for the REPL, in case
     that stream is used for other purposes.
     """
-    ...
 
 def const(expr: Const_T) -> Const_T:
     """
@@ -126,7 +115,6 @@ def const(expr: Const_T) -> Const_T:
     written which run under both CPython and MicroPython, by following the above
     pattern.
     """
-    ...
 
 def heap_lock() -> int: ...
 def heap_unlock() -> int: ...

@@ -1,40 +1,5 @@
-"""
-Asynchronous I/O scheduler for writing concurrent code.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/asyncio.html
-
-CPython module:
-`asyncio `<https://docs.python.org/3.8/library/asyncio.html>
-
-Example::
-
-    import asyncio
-
-    async def blink(led, period_ms):
-        while True:
-            led.on()
-            await asyncio.sleep_ms(5)
-            led.off()
-            await asyncio.sleep_ms(period_ms)
-
-    async def main(led1, led2):
-        asyncio.create_task(blink(led1, 700))
-        asyncio.create_task(blink(led2, 400))
-        await asyncio.sleep_ms(10_000)
-
-    # Running on a pyboard
-    from pyb import LED
-    asyncio.run(main(LED(1), LED(2)))
-
-    # Running on a generic board
-    from machine import Pin
-    asyncio.run(main(Pin(1), Pin(2)))
-"""
-
-# source version: v1_21_0
-# origin module:: repos/micropython/docs/library/asyncio.rst
+from _typeshed import Incomplete as Incomplete
 from typing import Any, Coroutine, List, Tuple
-from _typeshed import Incomplete
 
 class Task:
     """
@@ -52,7 +17,6 @@ class Task:
         ignore this exception.  Cleanup code may be run by trapping it, or via
         ``try ... finally``.
         """
-        ...
 
 class Event:
     """
@@ -65,7 +29,6 @@ class Event:
         """
         Returns ``True`` if the event is set, ``False`` otherwise.
         """
-        ...
     def set(self) -> None:
         """
         Set the event.  Any tasks waiting on the event will be scheduled to run.
@@ -73,12 +36,10 @@ class Event:
         Note: This must be called from within a task. It is not safe to call this
         from an IRQ, scheduler callback, or other thread. See `ThreadSafeFlag`.
         """
-        ...
     def clear(self) -> None:
         """
         Clear the event.
         """
-        ...
     def wait(self) -> Coroutine[Incomplete, Any, Any]:
         """
         Wait for the event to be set.  If the event is already set then it returns
@@ -86,7 +47,6 @@ class Event:
 
         This is a coroutine.
         """
-        ...
 
 class ThreadSafeFlag:
     """
@@ -102,13 +62,11 @@ class ThreadSafeFlag:
         Set the flag.  If there is a task waiting on the flag, it will be scheduled
         to run.
         """
-        ...
     def clear(self) -> None:
         """
         Clear the flag. This may be used to ensure that a possibly previously-set
         flag is clear before waiting for it.
         """
-        ...
     def wait(self) -> Coroutine[Incomplete, Any, Any]:
         """
         Wait for the flag to be set.  If the flag is already set then it returns
@@ -118,7 +76,6 @@ class ThreadSafeFlag:
 
         This is a coroutine.
         """
-        ...
 
 class Lock:
     """
@@ -133,7 +90,6 @@ class Lock:
         """
         Returns ``True`` if the lock is locked, otherwise ``False``.
         """
-        ...
     def acquire(self) -> Coroutine[None, Any, Any]:
         """
         Wait for the lock to be in the unlocked state and then lock it in an atomic
@@ -141,14 +97,12 @@ class Lock:
 
         This is a coroutine.
         """
-        ...
     def release(self) -> Incomplete:
         """
         Release the lock.  If any tasks are waiting on the lock then the next one in the
         queue is scheduled to run and the lock remains locked.  Otherwise, no tasks are
         waiting an the lock becomes unlocked.
         """
-        ...
 
 class Stream:
     """
@@ -163,20 +117,17 @@ class Stream:
         Get extra information about the stream, given by *v*.  The valid values for *v* are:
         ``peername``.
         """
-        ...
     def close(self) -> None:
         """
         Close the stream.
         """
-        ...
     def wait_closed(self) -> Coroutine[None, Any, Any]:
         """
         Wait for the stream to close.
 
         This is a coroutine.
         """
-        ...
-    def read(self, n=-1) -> Coroutine[Incomplete, Any, Any]:
+    def read(self, n: int = ...) -> Coroutine[Incomplete, Any, Any]:
         """
         Read up to *n* bytes and return them.  If *n* is not provided or -1 then read all
         bytes until EOF.  The returned value will be an empty bytes object if EOF is
@@ -184,7 +135,6 @@ class Stream:
 
         This is a coroutine.
         """
-        ...
     def readinto(self, buf) -> Coroutine[int, Any, Any]:
         """
         Read up to n bytes into *buf* with n being equal to the length of *buf*.
@@ -193,7 +143,6 @@ class Stream:
 
         This is a coroutine, and a MicroPython extension.
         """
-        ...
     def readexactly(self, n) -> Coroutine[bytes, Any, Any]:
         """
         Read exactly *n* bytes and return them as a bytes object.
@@ -202,28 +151,24 @@ class Stream:
 
         This is a coroutine.
         """
-        ...
     def readline(self) -> Coroutine[Incomplete, Any, Any]:
         """
         Read a line and return it.
 
         This is a coroutine.
         """
-        ...
     def write(self, buf) -> Incomplete:
         """
         Accumulated *buf* to the output buffer.  The data is only flushed when
         `Stream.drain` is called.  It is recommended to call `Stream.drain` immediately
         after calling this function.
         """
-        ...
     def drain(self) -> Coroutine[Incomplete, Any, Any]:
         """
         Drain (write) all buffered output data out to the stream.
 
         This is a coroutine.
         """
-        ...
 
 class Server:
     """
@@ -236,14 +181,12 @@ class Server:
         """
         Close the server.
         """
-        ...
     def wait_closed(self) -> Coroutine[None, Any, Any]:
         """
         Wait for the server to close.
 
         This is a coroutine.
         """
-        ...
 
 class Loop:
     """
@@ -256,51 +199,42 @@ class Loop:
         """
         Create a task from the given *coro* and return the new `Task` object.
         """
-        ...
     def run_forever(self) -> Incomplete:
         """
         Run the event loop until `stop()` is called.
         """
-        ...
     def run_until_complete(self, awaitable) -> Incomplete:
         """
         Run the given *awaitable* until it completes.  If *awaitable* is not a task
         then it will be promoted to one.
         """
-        ...
     def stop(self) -> None:
         """
         Stop the event loop.
         """
-        ...
     def close(self) -> None:
         """
         Close the event loop.
         """
-        ...
     def set_exception_handler(self, handler) -> None:
         """
         Set the exception handler to call when a Task raises an exception that is not
         caught.  The *handler* should accept two arguments: ``(loop, context)``.
         """
-        ...
     def get_exception_handler(self) -> None:
         """
         Get the current exception handler.  Returns the handler, or ``None`` if no
         custom handler is set.
         """
-        ...
     def default_exception_handler(self, context) -> Incomplete:
         """
         The default exception handler that is called.
         """
-        ...
     def call_exception_handler(self, context) -> Incomplete:
         """
         Call the current exception handler.  The argument *context* is passed through and
         is a dictionary containing keys: ``'message'``, ``'exception'``, ``'future'``.
         """
-        ...
 
 def create_task(coro) -> Task:
     """
@@ -308,13 +242,11 @@ def create_task(coro) -> Task:
 
     Returns the corresponding `Task` object.
     """
-    ...
 
 def current_task() -> Task:
     """
     Return the `Task` object associated with the currently running task.
     """
-    ...
 
 def run(coro) -> Incomplete:
     """
@@ -322,7 +254,6 @@ def run(coro) -> Incomplete:
 
     Returns the value returned by *coro*.
     """
-    ...
 
 def sleep(t) -> Coroutine[Incomplete, Any, Any]:
     """
@@ -330,7 +261,6 @@ def sleep(t) -> Coroutine[Incomplete, Any, Any]:
 
     This is a coroutine.
     """
-    ...
 
 def sleep_ms(t) -> Coroutine[Incomplete, Any, Any]:
     """
@@ -338,7 +268,6 @@ def sleep_ms(t) -> Coroutine[Incomplete, Any, Any]:
 
     This is a coroutine, and a MicroPython extension.
     """
-    ...
 
 def wait_for(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
     """
@@ -355,7 +284,6 @@ def wait_for(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
 
     This is a coroutine.
     """
-    ...
 
 def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
     """
@@ -363,9 +291,8 @@ def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
 
     This is a coroutine, and a MicroPython extension.
     """
-    ...
 
-def gather(*awaitables, return_exceptions=False) -> Coroutine[List, Any, Any]:
+def gather(*awaitables, return_exceptions: bool = ...) -> Coroutine[List, Any, Any]:
     """
     Run all *awaitables* concurrently.  Any *awaitables* that are not tasks are
     promoted to tasks.
@@ -374,7 +301,6 @@ def gather(*awaitables, return_exceptions=False) -> Coroutine[List, Any, Any]:
 
     This is a coroutine.
     """
-    ...
 
 def open_connection(host, port) -> Coroutine[Tuple, Any, Any]:
     """
@@ -387,9 +313,8 @@ def open_connection(host, port) -> Coroutine[Tuple, Any, Any]:
 
     This is a coroutine.
     """
-    ...
 
-def start_server(callback, host, port, backlog=5) -> Coroutine[Server, Any, Any]:
+def start_server(callback, host, port, backlog: int = ...) -> Coroutine[Server, Any, Any]:
     """
     Start a TCP server on the given *host* and *port*.  The *callback* will be
     called with incoming, accepted connections, and be passed 2 arguments: reader
@@ -399,13 +324,11 @@ def start_server(callback, host, port, backlog=5) -> Coroutine[Server, Any, Any]
 
     This is a coroutine.
     """
-    ...
 
 def get_event_loop() -> Incomplete:
     """
     Return the event loop used to schedule and run tasks.  See `Loop`.
     """
-    ...
 
 def new_event_loop() -> Incomplete:
     """
@@ -414,4 +337,3 @@ def new_event_loop() -> Incomplete:
     Note: since MicroPython only has a single event loop this function just
     resets the loop's state, it does not create a new one.
     """
-    ...

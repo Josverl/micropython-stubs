@@ -1,47 +1,5 @@
-"""
-Network configuration.
-
-MicroPython module: https://docs.micropython.org/en/v1.20.0/library/network.html
-
-This module provides network drivers and routing configuration. To use this
-module, a MicroPython variant/build with network capabilities must be installed.
-Network drivers for specific hardware are available within this module and are
-used to configure hardware network interface(s). Network services provided
-by configured interfaces are then available for use via the :mod:`socket`
-module.
-
-For example::
-
-    # connect/ show IP config a specific network interface
-    # see below for examples of specific drivers
-    import network
-    import time
-    nic = network.Driver(...)
-    if not nic.isconnected():
-        nic.connect()
-        print("Waiting for connection...")
-        while not nic.isconnected():
-            time.sleep(1)
-    print(nic.ifconfig())
-
-    # now use socket as usual
-    import socket
-    addr = socket.getaddrinfo('micropython.org', 80)[0][-1]
-    s = socket.socket()
-    s.connect(addr)
-    s.send(b'GET / HTTP/1.1\r\nHost: micropython.org\r\n\r\n')
-    data = s.recv(1000)
-    s.close()
-"""
-
-# source version: v1_20_0
-# origin module:: repos/micropython/docs/library/network.rst
-# + module: network.WLAN.rst
-# + module: network.WLANWiPy.rst
-# + module: network.WIZNET5K.rst
-# + module: network.LAN.rst
+from _typeshed import Incomplete as Incomplete
 from typing import Any, List, Optional, Tuple, Union
-from _typeshed import Incomplete
 
 class AbstractNIC:
     """
@@ -50,8 +8,8 @@ class AbstractNIC:
     parameter should be `id`.
     """
 
-    def __init__(self, id=None, *args, **kwargs) -> None: ...
-    def active(self, is_active: Optional[Any] = None) -> None:
+    def __init__(self, id: Incomplete | None = ..., *args, **kwargs) -> None: ...
+    def active(self, is_active: Optional[Any] = ...) -> None:
         """
         Activate ("up") or deactivate ("down") the network interface, if
         a boolean argument is passed. Otherwise, query current state if
@@ -59,8 +17,7 @@ class AbstractNIC:
         interface (behaviour of calling them on inactive interface is
         undefined).
         """
-        ...
-    def connect(self, service_id: Optional[Any] = None, key: Optional[Any] = None, *args, **kwargs) -> None:
+    def connect(self, service_id: Optional[Any] = ..., key: Optional[Any] = ..., *args, **kwargs) -> None:
         """
         Connect the interface to a network. This method is optional, and
         available only for interfaces which are not "always connected".
@@ -76,17 +33,14 @@ class AbstractNIC:
 
         * WiFi: *bssid* keyword to connect to a specific BSSID (MAC address)
         """
-        ...
     def disconnect(self) -> None:
         """
         Disconnect from network.
         """
-        ...
     def isconnected(self) -> bool:
         """
         Returns ``True`` if connected to network, otherwise returns ``False``.
         """
-        ...
     def scan(self, *args, **kwargs) -> List[Tuple]:
         """
         Scan for the available network services/connections. Returns a
@@ -103,8 +57,7 @@ class AbstractNIC:
         duration and other parameters. Where possible, parameter names
         should match those in connect().
         """
-        ...
-    def status(self, param: Optional[Any] = None) -> Incomplete:
+    def status(self, param: Optional[Any] = ...) -> Incomplete:
         """
         Query dynamic status information of the interface.  When called with no
         argument the return value describes the network link status.  Otherwise
@@ -119,8 +72,7 @@ class AbstractNIC:
           connected to the AP.  The list contains tuples of the form
           (MAC, RSSI).
         """
-        ...
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
+    def ifconfig(self, configtuple: Optional[Any] = ...) -> Tuple:
         """
         Get/set IP-level network interface parameters: IP address, subnet mask,
         gateway and DNS server. When called with no arguments, this method returns
@@ -129,7 +81,6 @@ class AbstractNIC:
 
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
-        ...
     def config(self, param) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
@@ -146,7 +97,6 @@ class AbstractNIC:
          print(ap.config('ssid'))
          print(ap.config('channel'))
         """
-        ...
 
 class WLAN:
     """
@@ -158,26 +108,23 @@ class WLAN:
     """
 
     def __init__(self, interface_id) -> None: ...
-    def active(self, is_active: Optional[Any] = None) -> None:
+    def active(self, is_active: Optional[Any] = ...) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
         argument is passed. Otherwise, query current state if no argument is
         provided. Most other methods require active interface.
         """
-        ...
-    def connect(self, ssid=None, key=None, *, bssid=None) -> None:
+    def connect(self, ssid: Incomplete | None = ..., key: Incomplete | None = ..., *, bssid: Incomplete | None = ...) -> None:
         """
         Connect to the specified wireless network, using the specified key.
         If *bssid* is given then the connection will be restricted to the
         access-point with that MAC address (the *ssid* must also be specified
         in this case).
         """
-        ...
     def disconnect(self) -> None:
         """
         Disconnect from the currently connected wireless network.
         """
-        ...
     def scan(self) -> List[Tuple]:
         """
         Scan for the available wireless networks.
@@ -205,8 +152,7 @@ class WLAN:
             * 0 -- visible
             * 1 -- hidden
         """
-        ...
-    def status(self, param: Optional[Any] = None) -> Incomplete:
+    def status(self, param: Optional[Any] = ...) -> Incomplete:
         """
         Return the current status of the wireless connection.
 
@@ -223,15 +169,13 @@ class WLAN:
         When called with one argument *param* should be a string naming the status
         parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
         """
-        ...
     def isconnected(self) -> bool:
         """
         In case of STA mode, returns ``True`` if connected to a WiFi access
         point and has a valid IP address.  In AP mode returns ``True`` when a
         station is connected. Returns ``False`` otherwise.
         """
-        ...
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
+    def ifconfig(self, configtuple: Optional[Any] = ...) -> Tuple:
         """
         Get/set IP-level network interface parameters: IP address, subnet mask,
         gateway and DNS server. When called with no arguments, this method returns
@@ -240,7 +184,6 @@ class WLAN:
 
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
-        ...
     def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
@@ -273,7 +216,6 @@ class WLAN:
         txpower        Maximum transmit power in dBm (integer or float)
         =============  ===========
         """
-        ...
 
 class WLANWiPy:
     """
@@ -290,15 +232,12 @@ class WLANWiPy:
 
     STA: Incomplete
     AP: Incomplete
-    """selects the WLAN mode"""
     WEP: Incomplete
     WPA: Incomplete
     WPA2: Incomplete
-    """selects the network security"""
     INT_ANT: Incomplete
     EXT_ANT: Incomplete
-    """selects the antenna type"""
-    def __init__(self, id=0, *args, **kwargs) -> None: ...
+    def __init__(self, id: int = ..., *args, **kwargs) -> None: ...
     def init(self, mode, *, ssid, auth, channel, antenna) -> Incomplete:
         """
         Set or get the WiFi network processor configuration.
@@ -325,8 +264,7 @@ class WLANWiPy:
            # configure as an station
            wlan.init(mode=WLAN.STA)
         """
-        ...
-    def connect(self, ssid, *, auth=None, bssid=None, timeout=None) -> None:
+    def connect(self, ssid, *, auth: Incomplete | None = ..., bssid: Incomplete | None = ..., timeout: Incomplete | None = ...) -> None:
         """
         Connect to a WiFi access point using the given SSID, and other security
         parameters.
@@ -339,25 +277,21 @@ class WLANWiPy:
              APs with the same ssid.
            - *timeout* is the maximum time in milliseconds to wait for the connection to succeed.
         """
-        ...
     def scan(self) -> List[Tuple]:
         """
         Performs a network scan and returns a list of named tuples with (ssid, bssid, sec, channel, rssi).
         Note that channel is always ``None`` since this info is not provided by the WiPy.
         """
-        ...
     def disconnect(self) -> None:
         """
         Disconnect from the WiFi access point.
         """
-        ...
     def isconnected(self) -> bool:
         """
         In case of STA mode, returns ``True`` if connected to a WiFi access point and has a valid IP address.
         In AP mode returns ``True`` when a station is connected, ``False`` otherwise.
         """
-        ...
-    def ifconfig(self, if_id=0, config: Union[str, Tuple] = "dhcp") -> Tuple:
+    def ifconfig(self, if_id: int = ..., config: Union[str, Tuple] = ...) -> Tuple:
         """
         With no parameters given returns a 4-tuple of *(ip, subnet_mask, gateway, DNS_server)*.
 
@@ -368,37 +302,30 @@ class WLANWiPy:
 
            wlan.ifconfig(config=('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
-        ...
-    def mode(self, mode: Optional[Any] = None) -> Incomplete:
+    def mode(self, mode: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the WLAN mode.
         """
-        ...
-    def ssid(self, ssid: Optional[Any] = None) -> Incomplete:
+    def ssid(self, ssid: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the SSID when in AP mode.
         """
-        ...
-    def auth(self, auth: Optional[Any] = None) -> Incomplete:
+    def auth(self, auth: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the authentication type when in AP mode.
         """
-        ...
-    def channel(self, channel: Optional[Any] = None) -> Incomplete:
+    def channel(self, channel: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the channel (only applicable in AP mode).
         """
-        ...
-    def antenna(self, antenna: Optional[Any] = None) -> Incomplete:
+    def antenna(self, antenna: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the antenna type (external or internal).
         """
-        ...
-    def mac(self, mac_addr: Optional[Any] = None) -> bytes:
+    def mac(self, mac_addr: Optional[Any] = ...) -> bytes:
         """
         Get or set a 6-byte long bytes object with the MAC address.
         """
-        ...
     def irq(self, *, handler, wake) -> Incomplete:
         """
         Create a callback to be triggered when a WLAN event occurs during ``machine.SLEEP``
@@ -409,7 +336,6 @@ class WLANWiPy:
 
         Returns an IRQ object.
         """
-        ...
 
 class WIZNET5K:
     """
@@ -435,8 +361,7 @@ class WIZNET5K:
         Returns ``True`` if the physical Ethernet link is connected and up.
         Returns ``False`` otherwise.
         """
-        ...
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
+    def ifconfig(self, configtuple: Optional[Any] = ...) -> Tuple:
         """
         Get/set IP address, subnet mask, gateway and DNS.
 
@@ -446,12 +371,10 @@ class WIZNET5K:
 
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
-        ...
     def regs(self) -> Incomplete:
         """
         Dump the WIZnet5x00 registers.  Useful for debugging.
         """
-        ...
 
 class LAN:
     """
@@ -476,26 +399,23 @@ class LAN:
       nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=1, ref_clk_mode=Pin.IN)
     """
 
-    def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
-    def active(self, state: Optional[Any] = None) -> Incomplete:
+    def __init__(self, id, *, phy_type: int = ..., phy_addr: int = ..., ref_clk_mode: int = ...) -> None: ...
+    def active(self, state: Optional[Any] = ...) -> Incomplete:
         """
         With a parameter, it sets the interface active if *state* is true, otherwise it
         sets it inactive.
         Without a parameter, it returns the state.
         """
-        ...
     def isconnected(self) -> bool:
         """
         Returns ``True`` if the physical Ethernet link is connected and up.
         Returns ``False`` otherwise.
         """
-        ...
     def status(self) -> Incomplete:
         """
         Returns the LAN status.
         """
-        ...
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
+    def ifconfig(self, configtuple: Optional[Any] = ...) -> Tuple:
         """
         Get/set IP address, subnet mask, gateway and DNS.
 
@@ -505,7 +425,6 @@ class LAN:
 
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
-        ...
     def config(self, config_parameters) -> Incomplete:
         """
         Sets or gets parameters of the LAN interface. The only parameter that can be
@@ -524,4 +443,3 @@ class LAN:
          - ``low_power=bool`` sets or clears low power mode, valid values being ``False``
            or ``True``.
         """
-        ...

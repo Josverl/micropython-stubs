@@ -1,29 +1,21 @@
-"""
-Input/output streams.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/io.html
-
-CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
-
-This module contains additional types of `stream` (file-like) objects
-and helper functions.
-"""
 from typing import IO, Optional, Any
-from _typeshed import Incomplete
+import abc
+from _typeshed import Incomplete as Incomplete
 from stdlib.io import *
 
-def open(name, mode="r", **kwargs) -> Incomplete:
+def open(name, mode: str = ..., **kwargs) -> Incomplete:
     """
     Open a file. Builtin ``open()`` function is aliased to this function.
     All ports (which provide access to file system) are required to support
     *mode* parameter, but support for other arguments vary by port.
     """
-    ...
 
 class IOBase:
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class TextIOWrapper(IO):
+class TextIOWrapper(
+    IO,
+):
     """
     This is type of a file open in text mode, e.g. using ``open(name, "rt")``.
     You should not instantiate this class directly.
@@ -40,7 +32,9 @@ class TextIOWrapper(IO):
     def readinto(self, *args, **kwargs) -> Any: ...
     def __init__(self, *args, **kwargs) -> None: ...
 
-class StringIO(IO):
+class StringIO(
+    IO,
+):
     def write(self, *args, **kwargs) -> Any: ...
     def flush(self, *args, **kwargs) -> Any: ...
     def getvalue(self, *args, **kwargs) -> Any: ...
@@ -50,14 +44,16 @@ class StringIO(IO):
     def close(self, *args, **kwargs) -> Any: ...
     def read(self, *args, **kwargs) -> Any: ...
     def readinto(self, *args, **kwargs) -> Any: ...
-    def __init__(self, string: Optional[Any] = None) -> None: ...
+    def __init__(self, string: Optional[Any] = ...) -> None: ...
 
 class BufferedWriter:
     def flush(self, *args, **kwargs) -> Any: ...
     def write(self, *args, **kwargs) -> Any: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class FileIO(IO):
+class FileIO(
+    IO,
+):
     """
     This is type of a file open in binary mode, e.g. using ``open(name, "rb")``.
     You should not instantiate this class directly.
@@ -74,7 +70,9 @@ class FileIO(IO):
     def readinto(self, *args, **kwargs) -> Any: ...
     def __init__(self, *args, **kwargs) -> None: ...
 
-class BytesIO(IO):
+class BytesIO(
+    IO,
+):
     """
     In-memory file-like objects for input/output. `StringIO` is used for
     text-mode I/O (similar to a normal file opened with "t" modifier).
@@ -93,11 +91,10 @@ class BytesIO(IO):
         """
         Get the current contents of the underlying buffer which holds data.
         """
-        ...
     def seek(self, *args, **kwargs) -> Any: ...
     def tell(self, *args, **kwargs) -> Any: ...
     def readline(self, *args, **kwargs) -> Any: ...
     def close(self, *args, **kwargs) -> Any: ...
     def read(self, *args, **kwargs) -> Any: ...
     def readinto(self, *args, **kwargs) -> Any: ...
-    def __init__(self, string: Optional[Any] = None) -> None: ...
+    def __init__(self, string: Optional[Any] = ...) -> None: ...

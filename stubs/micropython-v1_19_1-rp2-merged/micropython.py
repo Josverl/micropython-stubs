@@ -1,15 +1,13 @@
 """
-Access and control MicroPython internals.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/micropython.html
+Module: 'micropython' on micropython-v1.19.1-rp2
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Optional, Tuple, TypeVar, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
-def opt_level(level: Optional[Any] = None) -> Incomplete:
+def opt_level(level: Optional[Any] = ...) -> Incomplete:
     """
     If *level* is given then this function sets the optimisation level for subsequent
     compilation of scripts, and returns ``None``.  Otherwise it returns the current
@@ -30,7 +28,7 @@ def opt_level(level: Optional[Any] = None) -> Incomplete:
     ...
 
 
-def mem_info(verbose: Optional[Any] = None) -> None:
+def mem_info(verbose: Optional[Any] = ...) -> None:
     """
     Print information about currently used memory.  If the *verbose* argument
     is given then extra information is printed.
@@ -51,7 +49,7 @@ def stack_use() -> int:
     ...
 
 
-def qstr_info(verbose: Optional[Any] = None) -> None:
+def qstr_info(verbose: Optional[Any] = ...) -> None:
     """
     Print information about currently interned strings.  If the *verbose*
     argument is given then extra information is printed.

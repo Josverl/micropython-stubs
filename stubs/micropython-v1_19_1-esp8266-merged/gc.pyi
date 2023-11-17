@@ -1,12 +1,5 @@
-"""
-Control the garbage collector.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/gc.html
-
-CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
-"""
 from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 def mem_alloc() -> int:
     """
@@ -16,7 +9,6 @@ def mem_alloc() -> int:
 
        This function is MicroPython extension.
     """
-    ...
 
 def isenabled(*args, **kwargs) -> Any: ...
 def mem_free() -> int:
@@ -28,9 +20,8 @@ def mem_free() -> int:
 
        This function is MicroPython extension.
     """
-    ...
 
-def threshold(amount: Optional[Any] = None) -> Incomplete:
+def threshold(amount: Optional[Any] = ...) -> Incomplete:
     """
     Set or query the additional GC allocation threshold. Normally, a collection
     is triggered only when a new allocation cannot be satisfied, i.e. on an
@@ -53,23 +44,19 @@ def threshold(amount: Optional[Any] = None) -> Incomplete:
        function - ``set_threshold()``, but due to different GC
        implementations, its signature and semantics are different.
     """
-    ...
 
 def collect() -> None:
     """
     Run a garbage collection.
     """
-    ...
 
 def enable() -> None:
     """
     Enable automatic garbage collection.
     """
-    ...
 
 def disable() -> None:
     """
     Disable automatic garbage collection.  Heap memory can still be allocated,
     and garbage collection can still be initiated manually using :meth:`gc.collect`.
     """
-    ...

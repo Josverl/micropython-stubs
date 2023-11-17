@@ -1,42 +1,10 @@
 """
-Network configuration.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/network.html
-
-This module provides network drivers and routing configuration. To use this
-module, a MicroPython variant/build with network capabilities must be installed.
-Network drivers for specific hardware are available within this module and are
-used to configure hardware network interface(s). Network services provided
-by configured interfaces are then available for use via the :mod:`socket`
-module.
-
-For example::
-
-    # connect/ show IP config a specific network interface
-    # see below for examples of specific drivers
-    import network
-    import time
-    nic = network.Driver(...)
-    if not nic.isconnected():
-        nic.connect()
-        print("Waiting for connection...")
-        while not nic.isconnected():
-            time.sleep(1)
-    print(nic.ifconfig())
-
-    # now use socket as usual
-    import socket
-    addr = socket.getaddrinfo('micropython.org', 80)[0][-1]
-    s = socket.socket()
-    s.connect(addr)
-    s.send(b'GET / HTTP/1.1\r\nHost: micropython.org\r\n\r\n')
-    data = s.recv(1000)
-    s.close()
+Module: 'network' on micropython-v1.19.1-rp2
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import List, Optional, Tuple, Union, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 STA_IF = 0  # type: int
 AP_IF = 1  # type: int
@@ -59,7 +27,7 @@ class WLAN:
     WPA_PSK = 2  # type: int
     OPEN = 1  # type: int
 
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
+    def ifconfig(self, configtuple: Optional[Any] = ...) -> Tuple:
         """
         Get/set IP-level network interface parameters: IP address, subnet mask,
         gateway and DNS server. When called with no arguments, this method returns
@@ -110,7 +78,7 @@ class WLAN:
         """
         ...
 
-    def status(self, param: Optional[Any] = None) -> Incomplete:
+    def status(self, param: Optional[Any] = ...) -> Incomplete:
         """
         Return the current status of the wireless connection.
 
@@ -135,7 +103,7 @@ class WLAN:
         """
         ...
 
-    def active(self, is_active: Optional[Any] = None) -> None:
+    def active(self, is_active: Optional[Any] = ...) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
         argument is passed. Otherwise, query current state if no argument is
@@ -177,7 +145,7 @@ class WLAN:
         """
         ...
 
-    def connect(self, ssid=None, password=None, *, bssid=None) -> None:
+    def connect(self, ssid: Incomplete | None = ..., password: Incomplete | None = ..., *, bssid: Incomplete | None = ...) -> None:
         """
         Connect to the specified wireless network, using the specified password.
         If *bssid* is given then the connection will be restricted to the

@@ -1,32 +1,10 @@
 """
-Hashing algorithms.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/hashlib.html
-
-CPython module: :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
-
-This module implements binary data hashing algorithms. The exact inventory
-of available algorithms depends on a board. Among the algorithms which may
-be implemented:
-
-* SHA256 - The current generation, modern hashing algorithm (of SHA2 series).
-  It is suitable for cryptographically-secure purposes. Included in the
-  MicroPython core and any board is recommended to provide this, unless
-  it has particular code size constraints.
-
-* SHA1 - A previous generation algorithm. Not recommended for new usages,
-  but SHA1 is a part of number of Internet standards and existing
-  applications, so boards targeting network connectivity and
-  interoperability will try to provide this.
-
-* MD5 - A legacy algorithm, not considered cryptographically secure. Only
-  selected boards, targeting interoperability with legacy applications,
-  will offer this.
+Module: 'hashlib' on micropython-v1.19.1-stm32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
 class sha256:
@@ -40,5 +18,5 @@ class sha256:
     def update(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, data: Optional[Any] = None) -> None:
+    def __init__(self, data: Optional[Any] = ...) -> None:
         ...

@@ -1,22 +1,10 @@
 """
-Mathematical functions.
-
-MicroPython module: https://docs.micropython.org/en/v1.20.0/library/math.html
-
-CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
-
-The ``math`` module provides some basic mathematical functions for
-working with floating-point numbers.
-
-*Note:* On the pyboard, floating-point numbers have 32-bit precision.
-
-Availability: not available on WiPy. Floating point support required
-for this module.
+Module: 'math' on micropython-v1.20.0-rp2-PICO_W
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
 from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 inf = inf  # type: float
 nan = nan  # type: float

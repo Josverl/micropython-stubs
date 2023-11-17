@@ -1,15 +1,10 @@
 """
-Functionality specific to STM32 MCUs.
-
-MicroPython module: https://docs.micropython.org/en/v1.20.0/library/stm.html
-
-This module provides functionality specific to STM32 microcontrollers, including
-direct access to peripheral registers.
+Module: 'stm' on micropython-v1.20.0-stm32-PYBV11
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
 # Stubber: v1.13.7
 from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 SPI_I2SPR = 32  # type: int
 RTC_DR = 4  # type: int

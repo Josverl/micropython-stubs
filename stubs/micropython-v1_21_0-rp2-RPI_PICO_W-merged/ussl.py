@@ -1,18 +1,10 @@
 """
-TLS/SSL wrapper for socket objects.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/ssl.html
-
-CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
-
-This module provides access to Transport Layer Security (previously and
-widely known as “Secure Sockets Layer”) encryption and peer authentication
-facilities for network sockets, both client-side and server-side.
+Module: 'ussl' on micropython-v1.21.0-rp2-RPI_PICO_W
 """
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import IO, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete, Incomplete
 from stdlib.ssl import *
 
 CERT_REQUIRED = 2  # type: int
@@ -23,7 +15,14 @@ CERT_NONE = 0  # type: int
 
 
 def wrap_socket(
-    sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
+    sock,
+    server_side: bool = ...,
+    keyfile: Incomplete | None = ...,
+    certfile: Incomplete | None = ...,
+    cert_reqs: Incomplete | None = ...,
+    cadata: Incomplete | None = ...,
+    server_hostname: Incomplete | None = ...,
+    do_handshake: bool = ...,
 ) -> IO:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
@@ -51,7 +50,9 @@ class SSLContext:
     constants.
     """
 
-    def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
+    def wrap_socket(
+        self, sock, *, server_side: bool = ..., do_handshake_on_connect: bool = ..., server_hostname: Incomplete | None = ...
+    ) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
         and returns an instance of ssl.SSLSocket, wrapping the underlying stream.
@@ -76,5 +77,5 @@ class SSLContext:
         """
         ...
 
-    def __init__(self, protocol, /) -> None:
+    def __init__(self, protocol) -> None:
         ...

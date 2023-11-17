@@ -1,17 +1,10 @@
 """
-JSON encoding and decoding.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/json.html
-
-CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
-
-This modules allows to convert between Python objects and the JSON
-data format.
+Module: 'ujson' on micropython-v1.19.1-stm32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
 def loads(str) -> Incomplete:
@@ -34,7 +27,7 @@ def load(stream) -> Incomplete:
     ...
 
 
-def dumps(obj, separators=None) -> str:
+def dumps(obj, separators: Incomplete | None = ...) -> str:
     """
     Return *obj* represented as a JSON string.
 
@@ -43,7 +36,7 @@ def dumps(obj, separators=None) -> str:
     ...
 
 
-def dump(obj, stream, separators=None) -> Incomplete:
+def dump(obj, stream, separators: Incomplete | None = ...) -> Incomplete:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
 

@@ -1,17 +1,10 @@
 """
-System error codes.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/errno.html
-
-CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
-
-This module provides access to symbolic error codes for `OSError` exception.
-A particular inventory of codes depends on :term:`MicroPython port`.
+Module: 'errno' on micropython-v1.21.0-samd-SEEED_WIO_TERMINAL
 """
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
 # Stubber: v1.13.8
 from typing import Dict, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete, Incomplete
 
 ENOBUFS = 105  # type: int
 ENODEV = 19  # type: int

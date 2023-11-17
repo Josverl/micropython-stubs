@@ -1,14 +1,10 @@
 """
-Control the garbage collector.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/gc.html
-
-CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
+Module: 'gc' on micropython-v1.19.1-esp8266
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
 def mem_alloc() -> int:
@@ -38,7 +34,7 @@ def mem_free() -> int:
     ...
 
 
-def threshold(amount: Optional[Any] = None) -> Incomplete:
+def threshold(amount: Optional[Any] = ...) -> Incomplete:
     """
     Set or query the additional GC allocation threshold. Normally, a collection
     is triggered only when a new allocation cannot be satisfied, i.e. on an

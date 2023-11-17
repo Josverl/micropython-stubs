@@ -1,19 +1,14 @@
 """
-Collection and container types.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/collections.html
-
-CPython module: :mod:`python:collections` https://docs.python.org/3/library/collections.html .
-
-This module implements advanced collection and container types to
-hold/accumulate various objects.
+Module: 'ucollections' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
 # Stubber: v1.14.0
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete, Incomplete
+from queue import Queue as Queue
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
 from typing_extensions import NamedTuple as stdlib_NamedTuple
 from typing import Any, Optional
+
 
 def namedtuple(name, fields) -> stdlib_NamedTuple:
     """
@@ -33,7 +28,7 @@ def namedtuple(name, fields) -> stdlib_NamedTuple:
         print(t1.name)
         assert t2.name == t2[1]
     """
-    ...
+
 
 class OrderedDict(stdlib_OrderedDict):
     """
@@ -60,19 +55,43 @@ class OrderedDict(stdlib_OrderedDict):
         b 3
     """
 
-    def popitem(self, *args, **kwargs) -> Incomplete: ...
-    def pop(self, *args, **kwargs) -> Incomplete: ...
-    def values(self, *args, **kwargs) -> Incomplete: ...
-    def setdefault(self, *args, **kwargs) -> Incomplete: ...
-    def update(self, *args, **kwargs) -> Incomplete: ...
-    def copy(self, *args, **kwargs) -> Incomplete: ...
-    def clear(self, *args, **kwargs) -> Incomplete: ...
-    def keys(self, *args, **kwargs) -> Incomplete: ...
-    def get(self, *args, **kwargs) -> Incomplete: ...
-    def items(self, *args, **kwargs) -> Incomplete: ...
+    def popitem(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def pop(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def values(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def setdefault(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def update(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def copy(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def clear(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def keys(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def get(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def items(self, *args, **kwargs) -> Incomplete:
+        ...
+
     @classmethod
-    def fromkeys(cls, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *args, **kwargs) -> None: ...
+    def fromkeys(cls, *args, **kwargs) -> Incomplete:
+        ...
+
+    def __init__(self, *args, **kwargs) -> None:
+        ...
+
 
 class deque(stdlib_deque):
     """
@@ -97,11 +116,12 @@ class deque(stdlib_deque):
         Remove and return an item from the left side of the deque.
         Raises IndexError if no items are present.
         """
-        ...
+
     def append(self, x) -> Incomplete:
         """
         Add *x* to the right side of the deque.
         Raises IndexError if overflow checking is enabled and there is no more room left.
         """
+
+    def __init__(self, iterable, maxlen, flags: Optional[Any] = ...) -> None:
         ...
-    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None: ...

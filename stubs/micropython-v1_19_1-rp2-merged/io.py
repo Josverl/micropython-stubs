@@ -1,21 +1,15 @@
 """
-Input/output streams.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/io.html
-
-CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
-
-This module contains additional types of `stream` (file-like) objects
-and helper functions.
+Module: 'io' on micropython-v1.19.1-esp32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import IO, Optional, Any
-from _typeshed import Incomplete
+import abc
+from _typeshed import Incomplete as Incomplete
 from stdlib.io import *
 
 
-def open(name, mode="r", **kwargs) -> Incomplete:
+def open(name, mode: str = ..., **kwargs) -> Incomplete:
     """
     Open a file. Builtin ``open()`` function is aliased to this function.
     All ports (which provide access to file system) are required to support
@@ -29,7 +23,9 @@ class IOBase:
         ...
 
 
-class TextIOWrapper(IO):
+class TextIOWrapper(
+    IO,
+):
     """
     This is type of a file open in text mode, e.g. using ``open(name, "rt")``.
     You should not instantiate this class directly.
@@ -66,7 +62,9 @@ class TextIOWrapper(IO):
         ...
 
 
-class StringIO(IO):
+class StringIO(
+    IO,
+):
     def write(self, *args, **kwargs) -> Any:
         ...
 
@@ -94,7 +92,7 @@ class StringIO(IO):
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, string: Optional[Any] = None) -> None:
+    def __init__(self, string: Optional[Any] = ...) -> None:
         ...
 
 
@@ -109,7 +107,9 @@ class BufferedWriter:
         ...
 
 
-class FileIO(IO):
+class FileIO(
+    IO,
+):
     """
     This is type of a file open in binary mode, e.g. using ``open(name, "rb")``.
     You should not instantiate this class directly.
@@ -146,7 +146,9 @@ class FileIO(IO):
         ...
 
 
-class BytesIO(IO):
+class BytesIO(
+    IO,
+):
     """
     In-memory file-like objects for input/output. `StringIO` is used for
     text-mode I/O (similar to a normal file opened with "t" modifier).
@@ -189,5 +191,5 @@ class BytesIO(IO):
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, string: Optional[Any] = None) -> None:
+    def __init__(self, string: Optional[Any] = ...) -> None:
         ...

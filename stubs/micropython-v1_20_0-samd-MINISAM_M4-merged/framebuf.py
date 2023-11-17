@@ -1,15 +1,10 @@
 """
-Frame buffer manipulation.
-
-MicroPython module: https://docs.micropython.org/en/v1.20.0/library/framebuf.html
-
-This module provides a general frame buffer which can be used to create
-bitmap images, which can then be sent to a display.
+Module: 'framebuf' on micropython-v1.20.0-samd-MINISAM_M4
 """
 # MCU: OrderedDict({'build': '', 'ver': 'v1.20.0', 'version': '1.20.0', 'port': 'samd', 'board': 'MINISAM_M4', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51G19A', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
 from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 MONO_HMSB = 4  # type: int
 MONO_HLSB = 3  # type: int
@@ -51,7 +46,7 @@ class FrameBuffer:
     unexpected errors.
     """
 
-    def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Incomplete:
+    def poly(self, x, y, coords, c, f: Optional[Any] = ...) -> Incomplete:
         """
         Given a list of coordinates, draw an arbitrary (convex or concave) closed
         polygon at the given x, y location using the given color.
@@ -67,14 +62,14 @@ class FrameBuffer:
     def vline(self, x, y, h, c) -> Incomplete:
         ...
 
-    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
+    def pixel(self, x, y, c: Optional[Any] = ...) -> Incomplete:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
         """
         ...
 
-    def text(self, s, x, y, c: Optional[Any] = None) -> None:
+    def text(self, s, x, y, c: Optional[Any] = ...) -> None:
         """
         Write text to the FrameBuffer using the the coordinates as the upper-left
         corner of the text. The color of the text can be defined by the optional
@@ -83,7 +78,7 @@ class FrameBuffer:
         """
         ...
 
-    def rect(self, x, y, w, h, c, f: Optional[Any] = None) -> None:
+    def rect(self, x, y, w, h, c, f: Optional[Any] = ...) -> None:
         """
         Draw a rectangle at the given location, size and color.
 
@@ -99,7 +94,7 @@ class FrameBuffer:
         """
         ...
 
-    def ellipse(self, x, y, xr, yr, c, f, m: Optional[Any] = None) -> None:
+    def ellipse(self, x, y, xr, yr, c, f, m: Optional[Any] = ...) -> None:
         """
         Draw an ellipse at the given location. Radii *xr* and *yr* define the
         geometry; equal values cause a circle to be drawn. The *c* parameter
@@ -125,7 +120,7 @@ class FrameBuffer:
         """
         ...
 
-    def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
+    def blit(self, fbuf, x, y, key: int = ..., palette: Incomplete | None = ...) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
         If *key* is specified then it should be a color integer and the
@@ -159,5 +154,5 @@ class FrameBuffer:
     def fill_rect(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, buffer, width, height, format, stride=-1, /) -> None:
+    def __init__(self, buffer, width, height, format, stride: int = ...) -> None:
         ...

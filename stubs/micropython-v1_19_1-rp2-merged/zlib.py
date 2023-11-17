@@ -1,22 +1,13 @@
 """
-Zlib decompression.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/zlib.html
-
-CPython module: :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
-
-This module allows to decompress binary data compressed with
-`DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
-(commonly used in zlib library and gzip archiver). Compression
-is not yet implemented.
+Module: 'zlib' on micropython-v1.19.1-rp2
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
-def decompress(data, wbits=0, bufsize=0, /) -> bytes:
+def decompress(data, wbits: int = ..., bufsize: int = ...) -> bytes:
     """
     Return decompressed *data* as bytes. *wbits* is DEFLATE dictionary window
     size used during compression (8-15, the dictionary size is power of 2 of
@@ -51,5 +42,5 @@ class DecompIO:
     def read(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, stream, wbits=0, /) -> None:
+    def __init__(self, stream, wbits: int = ...) -> None:
         ...

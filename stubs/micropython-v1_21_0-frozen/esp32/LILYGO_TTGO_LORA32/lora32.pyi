@@ -2,6 +2,8 @@ from _typeshed import Incomplete
 from machine import Signal as Signal
 
 class Lora32Base:
+    """Base class defining common pins."""
+
     LORA_MOSI: Incomplete
     LORA_MISO: Incomplete
     LORA_SCLK: Incomplete
@@ -19,6 +21,8 @@ class Lora32Base:
     def create_helpers(self) -> None: ...
 
 class Lora32v1_0(Lora32Base):
+    """Device Support for LILYGO TTGO LoRa32 v1.0."""
+
     LORA_RST: Incomplete
     OLED_SDA: Incomplete
     OLED_SCL: Incomplete
@@ -26,11 +30,15 @@ class Lora32v1_0(Lora32Base):
     def __init__(self) -> None: ...
 
 class Lora32v1_2(Lora32Base):
+    """Device Support for LILYGO TTGO LoRa32 v1.2 (T-Fox)."""
+
     DS3231_SDA: Incomplete
     DS3231_SCL: Incomplete
     def __init__(self) -> None: ...
 
 class Lora32(Lora32Base):
+    """Device Support for LILYGO TTGO LoRa32 v1.6 and v2.0."""
+
     SD_CS: Incomplete
     SD_MOSI: Incomplete
     SD_MISO: Incomplete

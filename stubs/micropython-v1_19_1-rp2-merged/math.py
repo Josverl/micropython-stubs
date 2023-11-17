@@ -1,22 +1,10 @@
 """
-Mathematical functions.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/math.html
-
-CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
-
-The ``math`` module provides some basic mathematical functions for
-working with floating-point numbers.
-
-*Note:* On the pyboard, floating-point numbers have 32-bit precision.
-
-Availability: not available on WiPy. Floating point support required
-for this module.
+Module: 'math' on micropython-v1.19.1-rp2
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 inf = inf  # type: float
 nan = nan  # type: float

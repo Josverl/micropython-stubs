@@ -1,14 +1,10 @@
 """
-Functions related to the board.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/pyb.html
-
-The ``pyb`` module contains specific functions related to the board.
+Module: 'pyb' on micropython-v1.21.0-stm32-PYBV11
 """
 # MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
 # Stubber: v1.13.8
 from typing import List, NoReturn, Optional, Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete, Incomplete
 
 hid_mouse = ()  # type: tuple
 hid_keyboard = ()  # type: tuple
@@ -41,7 +37,7 @@ def hid(hidtuple: Tuple) -> Incomplete:
     ...
 
 
-def info(dump_alloc_table: Optional[Any] = None) -> None:
+def info(dump_alloc_table: Optional[Any] = ...) -> None:
     """
     Print out lots of information about the board.
     """
@@ -78,7 +74,7 @@ def elapsed_micros(start) -> int:
     ...
 
 
-def freq(sysclk=0, hclk=0, pclk1=0, pclk2=0) -> Tuple:
+def freq(sysclk: int = ..., hclk: int = ..., pclk1: int = ..., pclk2: int = ...) -> Tuple:
     """
     If given no arguments, returns a tuple of clock frequencies:
     (sysclk, hclk, pclk1, pclk2).
@@ -161,7 +157,7 @@ def elapsed_millis(start) -> int:
     ...
 
 
-def enable_irq(state=True) -> None:
+def enable_irq(state: bool = ...) -> None:
     """
     Enable interrupt requests.
     If ``state`` is ``True`` (the default value) then IRQs are enabled.
@@ -197,7 +193,9 @@ def standby() -> Incomplete:
     ...
 
 
-def usb_mode(modestr: Optional[Any] = None, port=-1, vid=0xF055, pid=-1, msc=(), hid=hid_mouse, high_speed=False) -> str:
+def usb_mode(
+    modestr: Optional[Any] = ..., port: int = ..., vid: int = ..., pid: int = ..., msc=..., hid=..., high_speed: bool = ...
+) -> str:
     """
     If called with no arguments, return the current USB mode as a string.
 
@@ -268,7 +266,7 @@ def micros() -> int:
     ...
 
 
-def mount(device, mountpoint, *, readonly=False, mkfs=False) -> int:
+def mount(device, mountpoint, *, readonly: bool = ..., mkfs: bool = ...) -> int:
     """
     ``Note:`` This function is deprecated. Mounting and unmounting devices should
        be performed by :meth:`os.mount` and :meth:`os.umount` instead.
@@ -493,7 +491,7 @@ class CAN:
         """
         ...
 
-    def recv(self, fifo, list=None, *, timeout=5000) -> Tuple:
+    def recv(self, fifo, list: Incomplete | None = ..., *, timeout: int = ...) -> Tuple:
         """
         Receive data on the bus:
 
@@ -532,20 +530,20 @@ class CAN:
     def init(
         self,
         mode,
-        prescaler=100,
+        prescaler: int = ...,
         *,
-        sjw=1,
-        bs1=6,
-        bs2=8,
-        auto_restart=False,
-        baudrate=0,
-        sample_point=75,
-        num_filter_banks=14,
-        brs_sjw=1,
-        brs_bs1=8,
-        brs_bs2=3,
-        brs_baudrate=0,
-        brs_sample_point=75,
+        sjw: int = ...,
+        bs1: int = ...,
+        bs2: int = ...,
+        auto_restart: bool = ...,
+        baudrate: int = ...,
+        sample_point: int = ...,
+        num_filter_banks: int = ...,
+        brs_sjw: int = ...,
+        brs_bs1: int = ...,
+        brs_bs2: int = ...,
+        brs_baudrate: int = ...,
+        brs_sample_point: int = ...,
     ) -> None:
         """
         Initialise the CAN bus with the given parameters:
@@ -639,7 +637,7 @@ class CAN:
         """
         ...
 
-    def setfilter(self, bank, mode, fifo, params, *, rtr=None, extframe=False) -> None:
+    def setfilter(self, bank, mode, fifo, params, *, rtr: Incomplete | None = ..., extframe: bool = ...) -> None:
         """
         Configure a filter bank:
 
@@ -712,7 +710,7 @@ class CAN:
         """
         ...
 
-    def send(self, data, id, *, timeout=0, rtr=False, extframe=False, fdf=False, brs=False) -> None:
+    def send(self, data, id, *, timeout: int = ..., rtr: bool = ..., extframe: bool = ..., fdf: bool = ..., brs: bool = ...) -> None:
         """
         Send a message on the bus:
 
@@ -747,7 +745,7 @@ class CAN:
         """
         ...
 
-    def info(self, list: Optional[Any] = None) -> Incomplete:
+    def info(self, list: Optional[Any] = ...) -> Incomplete:
         """
         Get information about the controller's error states and TX and RX buffers.
         If *list* is provided then it should be a list object with at least 8 entries,
@@ -771,7 +769,7 @@ class CAN:
         """
         ...
 
-    def clearfilter(self, bank, extframe=False) -> None:
+    def clearfilter(self, bank, extframe: bool = ...) -> None:
         """
         Clear and disables a filter bank:
 
@@ -787,7 +785,20 @@ class CAN:
         """
         ...
 
-    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
+    def __init__(
+        self,
+        bus,
+        mode,
+        baudrate: int = ...,
+        *,
+        prescaler: int = ...,
+        polarity: int = ...,
+        phase: int = ...,
+        bits: int = ...,
+        firstbit=...,
+        ti: bool = ...,
+        crc: Incomplete | None = ...,
+    ) -> None:
         ...
 
 
@@ -863,10 +874,10 @@ class Flash:
     This constructor is deprecated and will be removed in a future version of MicroPython.
     """
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+    def readblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete:
         ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+    def writeblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete:
         ...
 
     def ioctl(self, cmd, arg) -> Incomplete:
@@ -1027,7 +1038,7 @@ class DAC:
         """
         ...
 
-    def write_timed(self, data, freq, *, mode=NORMAL) -> Incomplete:
+    def write_timed(self, data, freq, *, mode=...) -> Incomplete:
         """
         Initiates a burst of RAM to DAC using a DMA transfer.
         The input data is treated as an array of bytes in 8-bit mode, and
@@ -1065,7 +1076,7 @@ class DAC:
         """
         ...
 
-    def init(self, bits=8, *, buffering=None) -> Incomplete:
+    def init(self, bits: int = ..., *, buffering: Incomplete | None = ...) -> Incomplete:
         """
         Reinitialise the DAC.  *bits* can be 8 or 12.  *buffering* can be
         ``None``, ``False`` or ``True``; see above constructor for the meaning
@@ -1079,7 +1090,7 @@ class DAC:
         """
         ...
 
-    def __init__(self, port, bits=8, *, buffering=None) -> None:
+    def __init__(self, port, bits: int = ..., *, buffering: Incomplete | None = ...) -> None:
         ...
 
 
@@ -1102,7 +1113,7 @@ class RTC:
     def init(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def wakeup(self, timeout, callback=None) -> None:
+    def wakeup(self, timeout, callback: Incomplete | None = ...) -> None:
         """
         Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
         milliseconds.  This trigger can wake the pyboard from both the sleep
@@ -1115,7 +1126,7 @@ class RTC:
         """
         ...
 
-    def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
+    def datetime(self, datetimetuple: Optional[Any] = ...) -> Tuple:
         """
         Get or set the date and time of the RTC.
 
@@ -1175,7 +1186,7 @@ class USB_VCP:
         """
         ...
 
-    def recv(self, data, *, timeout=5000) -> int:
+    def recv(self, data, *, timeout: int = ...) -> int:
         """
         Receive data on the bus:
 
@@ -1194,7 +1205,7 @@ class USB_VCP:
         """
         ...
 
-    def init(self, *, flow=-1) -> None:
+    def init(self, *, flow: int = ...) -> None:
         """
         Configure the USB VCP port.  If the *flow* argument is not -1 then the value sets
         the flow control, which can be a bitwise-or of ``USB_VCP.RTS`` and ``USB_VCP.CTS``.
@@ -1202,7 +1213,7 @@ class USB_VCP:
         """
         ...
 
-    def irq(self, handler=None, trigger=IRQ_RX, hard=False) -> None:
+    def irq(self, handler: Incomplete | None = ..., trigger=..., hard: bool = ...) -> None:
         """
         Register *handler* to be called whenever an event specified by *trigger*
         occurs.  The *handler* function must take exactly one argument, which will
@@ -1232,7 +1243,7 @@ class USB_VCP:
         """
         ...
 
-    def read(self, nbytes: Optional[Any] = None) -> bytes:
+    def read(self, nbytes: Optional[Any] = ...) -> bytes:
         """
         Read at most ``nbytes`` from the serial device and return them as a
         bytes object.  If ``nbytes`` is not specified then the method reads
@@ -1257,7 +1268,7 @@ class USB_VCP:
         """
         ...
 
-    def send(self, data, *, timeout=5000) -> int:
+    def send(self, data, *, timeout: int = ...) -> int:
         """
         Send data over the USB VCP:
 
@@ -1268,7 +1279,7 @@ class USB_VCP:
         """
         ...
 
-    def readinto(self, buf, maxlen: Optional[Any] = None) -> int:
+    def readinto(self, buf, maxlen: Optional[Any] = ...) -> int:
         """
         Read bytes from the serial device and store them into ``buf``, which
         should be a buffer-like object.  At most ``len(buf)`` bytes are read.
@@ -1289,7 +1300,7 @@ class USB_VCP:
         """
         ...
 
-    def __init__(self, id=0) -> None:
+    def __init__(self, id: int = ...) -> None:
         ...
 
 
@@ -1324,13 +1335,15 @@ class Timer:
     ENC_AB = 11  # type: int
     ENC_A = 9  # type: int
 
-    def freq(self, value: Optional[Any] = None) -> Incomplete:
+    def freq(self, value: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the frequency for the timer (changes prescaler and period if set).
         """
         ...
 
-    def init(self, *, freq, prescaler, period, mode=UP, div=1, callback=None, deadtime=0, brk=BRK_OFF) -> None:
+    def init(
+        self, *, freq, prescaler, period, mode=..., div: int = ..., callback: Incomplete | None = ..., deadtime: int = ..., brk=...
+    ) -> None:
         """
         Initialise the timer.  Initialisation must be either by frequency (in Hz)
         or by prescaler and period::
@@ -1344,13 +1357,13 @@ class Timer:
             view this as the frequency with which the timer goes through one complete cycle.
 
           - ``prescaler`` [0-0xffff] - specifies the value to be loaded into the
-            timer's Prescaler Register (PSC). The timer clock source is divided by
+            timer\'s Prescaler Register (PSC). The timer clock source is divided by
             (``prescaler + 1``) to arrive at the timer clock. Timers 2-7 and 12-14
             have a clock source of 84 MHz (pyb.freq()[2] * 2), and Timers 1, and 8-11
             have a clock source of 168 MHz (pyb.freq()[3] * 2).
 
           - ``period`` [0-0xffff] for timers 1, 3, 4, and 6-15. [0-0x3fffffff] for timers 2 & 5.
-            Specifies the value to be loaded into the timer's AutoReload
+            Specifies the value to be loaded into the timer\'s AutoReload
             Register (ARR). This determines the period of the timer (i.e. when the
             counter cycles). The timer counter will roll-over after ``period + 1``
             timer clock cycles.
@@ -1380,20 +1393,20 @@ class Timer:
             argument determines if break is enabled and what the polarity is, and
             can be one of ``Timer.BRK_OFF``, ``Timer.BRK_LOW`` or
             ``Timer.BRK_HIGH``. To select the ``BRK_IN`` pin construct a Pin object with
-            ``mode=Pin.ALT, alt=Pin.AFn_TIMx``. The pin's GPIO input features are
+            ``mode=Pin.ALT, alt=Pin.AFn_TIMx``. The pin\'s GPIO input features are
             available in alt mode - ``pull=`` , ``value()`` and ``irq()``.
 
          You must either specify freq or both of period and prescaler.
         """
         ...
 
-    def period(self, value: Optional[Any] = None) -> Incomplete:
+    def period(self, value: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the period of the timer.
         """
         ...
 
-    def prescaler(self, value: Optional[Any] = None) -> Incomplete:
+    def prescaler(self, value: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the prescaler for the timer.
         """
@@ -1424,7 +1437,7 @@ class Timer:
         """
         ...
 
-    def channel(self, channel, mode, pin=None, *args) -> Incomplete:
+    def channel(self, channel, mode, pin: Incomplete | None = ..., *args) -> Incomplete:
         """
         If only a channel number is passed, then a previously initialized channel
         object is returned (or ``None`` if there is no previous channel).
@@ -1511,7 +1524,7 @@ class Timer:
         """
         ...
 
-    def counter(self, value: Optional[Any] = None) -> Incomplete:
+    def counter(self, value: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the timer counter.
         """
@@ -1548,7 +1561,7 @@ class Servo:
     Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
     """
 
-    def speed(self, speed: Optional[Any] = None, time=0) -> Incomplete:
+    def speed(self, speed: Optional[Any] = ..., time: int = ...) -> Incomplete:
         """
         If no arguments are given, this function returns the current speed.
 
@@ -1560,7 +1573,7 @@ class Servo:
         """
         ...
 
-    def pulse_width(self, value: Optional[Any] = None) -> Incomplete:
+    def pulse_width(self, value: Optional[Any] = ...) -> Incomplete:
         """
         If no arguments are given, this function returns the current raw pulse-width
         value.
@@ -1584,7 +1597,7 @@ class Servo:
         """
         ...
 
-    def angle(self, angle: Optional[Any] = None, time=0) -> Incomplete:
+    def angle(self, angle: Optional[Any] = ..., time: int = ...) -> Incomplete:
         """
         If no arguments are given, this function returns the current angle.
 
@@ -1641,7 +1654,18 @@ class UART:
     CTS = 512  # type: int
     RTS = 256  # type: int
 
-    def init(self, baudrate, bits=8, parity=None, stop=1, *, timeout=0, flow=0, timeout_char=0, read_buf_len=64) -> Incomplete:
+    def init(
+        self,
+        baudrate,
+        bits: int = ...,
+        parity: Incomplete | None = ...,
+        stop: int = ...,
+        *,
+        timeout: int = ...,
+        flow: int = ...,
+        timeout_char: int = ...,
+        read_buf_len: int = ...,
+    ) -> Incomplete:
         """
         Initialise the UART bus with the given parameters:
 
@@ -1699,7 +1723,7 @@ class UART:
         """
         ...
 
-    def read(self, nbytes: Optional[Any] = None) -> bytes:
+    def read(self, nbytes: Optional[Any] = ...) -> bytes:
         """
         Read characters.  If ``nbytes`` is specified then read at most that many bytes.
         If ``nbytes`` are available in the buffer, returns immediately, otherwise returns
@@ -1740,7 +1764,7 @@ class UART:
         """
         ...
 
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+    def readinto(self, buf, nbytes: Optional[Any] = ...) -> int:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
         that many bytes.  Otherwise, read at most ``len(buf)`` bytes.
@@ -1760,7 +1784,20 @@ class UART:
         """
         ...
 
-    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
+    def __init__(
+        self,
+        bus,
+        mode,
+        baudrate: int = ...,
+        *,
+        prescaler: int = ...,
+        polarity: int = ...,
+        phase: int = ...,
+        bits: int = ...,
+        firstbit=...,
+        ti: bool = ...,
+        crc: Incomplete | None = ...,
+    ) -> None:
         ...
 
 
@@ -1769,7 +1806,7 @@ class USB_HID:
     Create a new USB_HID object.
     """
 
-    def recv(self, data, *, timeout=5000) -> int:
+    def recv(self, data, *, timeout: int = ...) -> int:
         """
         Receive data on the bus:
 
@@ -1829,7 +1866,7 @@ class I2C:
         """
         ...
 
-    def mem_read(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> Incomplete:
+    def mem_read(self, data, addr, memaddr, *, timeout: int = ..., addr_size: int = ...) -> Incomplete:
         """
         Read from the memory of an I2C device:
 
@@ -1844,7 +1881,7 @@ class I2C:
         """
         ...
 
-    def mem_write(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> None:
+    def mem_write(self, data, addr, memaddr, *, timeout: int = ..., addr_size: int = ...) -> None:
         """
         Write to the memory of an I2C device:
 
@@ -1859,7 +1896,7 @@ class I2C:
         """
         ...
 
-    def recv(self, recv, addr=0x00, *, timeout=5000) -> bytes:
+    def recv(self, recv, addr: int = ..., *, timeout: int = ...) -> bytes:
         """
         Receive data on the bus:
 
@@ -1879,7 +1916,7 @@ class I2C:
         """
         ...
 
-    def send(self, send, addr=0x00, *, timeout=5000) -> None:
+    def send(self, send, addr: int = ..., *, timeout: int = ...) -> None:
         """
         Send data on the bus:
 
@@ -1897,7 +1934,7 @@ class I2C:
         """
         ...
 
-    def init(self, mode, *, addr=0x12, baudrate=400000, gencall=False, dma=False) -> None:
+    def init(self, mode, *, addr: int = ..., baudrate: int = ..., gencall: bool = ..., dma: bool = ...) -> None:
         """
         Initialise the I2C bus with the given parameters:
 
@@ -1915,7 +1952,20 @@ class I2C:
         """
         ...
 
-    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
+    def __init__(
+        self,
+        bus,
+        mode,
+        baudrate: int = ...,
+        *,
+        prescaler: int = ...,
+        polarity: int = ...,
+        phase: int = ...,
+        bits: int = ...,
+        firstbit=...,
+        ti: bool = ...,
+        crc: Incomplete | None = ...,
+    ) -> None:
         ...
 
 
@@ -1945,7 +1995,7 @@ class LED:
         """
         ...
 
-    def intensity(self, value: Optional[Any] = None) -> None:
+    def intensity(self, value: Optional[Any] = ...) -> None:
         """
         Get or set the LED intensity.  Intensity ranges between 0 (off) and 255 (full on).
         If no argument is given, return the LED intensity.
@@ -2067,7 +2117,7 @@ class SPI:
         """
         ...
 
-    def send_recv(self, send, recv=None, *, timeout=5000) -> bytes:
+    def send_recv(self, send, recv: Incomplete | None = ..., *, timeout: int = ...) -> bytes:
         """
         Send and receive data on the bus at the same time:
 
@@ -2081,7 +2131,7 @@ class SPI:
         """
         ...
 
-    def recv(self, recv, *, timeout=5000) -> bytes:
+    def recv(self, recv, *, timeout: int = ...) -> bytes:
         """
         Receive data on the bus:
 
@@ -2094,7 +2144,19 @@ class SPI:
         """
         ...
 
-    def init(self, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
+    def init(
+        self,
+        mode,
+        baudrate: int = ...,
+        *,
+        prescaler: int = ...,
+        polarity: int = ...,
+        phase: int = ...,
+        bits: int = ...,
+        firstbit=...,
+        ti: bool = ...,
+        crc: Incomplete | None = ...,
+    ) -> None:
         """
         Initialise the SPI bus with the given parameters:
 
@@ -2134,7 +2196,7 @@ class SPI:
     def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def send(self, send, *, timeout=5000) -> None:
+    def send(self, send, *, timeout: int = ...) -> None:
         """
         Send data on the bus:
 
@@ -2145,7 +2207,20 @@ class SPI:
         """
         ...
 
-    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
+    def __init__(
+        self,
+        bus,
+        mode,
+        baudrate: int = ...,
+        *,
+        prescaler: int = ...,
+        polarity: int = ...,
+        phase: int = ...,
+        bits: int = ...,
+        firstbit=...,
+        ti: bool = ...,
+        crc: Incomplete | None = ...,
+    ) -> None:
         ...
 
 
@@ -2248,7 +2323,7 @@ class Pin:
     def off(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def init(self, mode, pull=PULL_NONE, *, value=None, alt=-1) -> None:
+    def init(self, mode, pull=..., *, value: Incomplete | None = ..., alt: int = ...) -> None:
         """
         Initialise the pin:
 
@@ -2296,7 +2371,7 @@ class Pin:
         """
         ...
 
-    def value(self, value: Optional[Any] = None) -> int:
+    def value(self, value: Optional[Any] = ...) -> int:
         """
         Get or set the digital logic level of the pin:
 
@@ -2317,14 +2392,14 @@ class Pin:
         ...
 
     @classmethod
-    def dict(cls, dict: Optional[Any] = None) -> Incomplete:
+    def dict(cls, dict: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the pin mapper dictionary.
         """
         ...
 
     @classmethod
-    def debug(cls, state: Optional[Any] = None) -> bool:
+    def debug(cls, state: Optional[Any] = ...) -> bool:
         """
         Get or set the debugging state (``True`` or ``False`` for on or off).
         """
@@ -2383,7 +2458,7 @@ class Pin:
             ...
 
     @classmethod
-    def mapper(cls, fun: Optional[Any] = None) -> Incomplete:
+    def mapper(cls, fun: Optional[Any] = ...) -> Incomplete:
         """
         Get or set the pin mapper function.
         """
@@ -2446,13 +2521,12 @@ class Pin:
     def __init__(self, id, *args, **kwargs) -> None:
         ...
 
-    def __call__(self, x: Optional[Any] = None) -> Incomplete:
+    def __call__(self, x: Optional[Any] = ...) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
         and get the value of the pin.  It is equivalent to Pin.value([x]).
         See :meth:`Pin.value` for more details.
         """
-        ...
 
 
 class SDCard:

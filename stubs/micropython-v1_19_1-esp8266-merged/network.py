@@ -1,42 +1,10 @@
 """
-Network configuration.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/network.html
-
-This module provides network drivers and routing configuration. To use this
-module, a MicroPython variant/build with network capabilities must be installed.
-Network drivers for specific hardware are available within this module and are
-used to configure hardware network interface(s). Network services provided
-by configured interfaces are then available for use via the :mod:`socket`
-module.
-
-For example::
-
-    # connect/ show IP config a specific network interface
-    # see below for examples of specific drivers
-    import network
-    import time
-    nic = network.Driver(...)
-    if not nic.isconnected():
-        nic.connect()
-        print("Waiting for connection...")
-        while not nic.isconnected():
-            time.sleep(1)
-    print(nic.ifconfig())
-
-    # now use socket as usual
-    import socket
-    addr = socket.getaddrinfo('micropython.org', 80)[0][-1]
-    s = socket.socket()
-    s.connect(addr)
-    s.send(b'GET / HTTP/1.1\r\nHost: micropython.org\r\n\r\n')
-    data = s.recv(1000)
-    s.close()
+Module: 'network' on micropython-v1.19.1-esp8266
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import List, Optional, Tuple, Union, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 STA_IF = 0  # type: int
 STAT_CONNECT_FAIL = 4  # type: int
@@ -72,28 +40,25 @@ class WLAN:
     def __init__(self, interface_id) -> None:
         ...
 
-    def active(self, is_active: Optional[Any] = None) -> None:
+    def active(self, is_active: Optional[Any] = ...) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
         argument is passed. Otherwise, query current state if no argument is
         provided. Most other methods require active interface.
         """
-        ...
 
-    def connect(self, ssid=None, password=None, *, bssid=None) -> None:
+    def connect(self, ssid: Incomplete | None = ..., password: Incomplete | None = ..., *, bssid: Incomplete | None = ...) -> None:
         """
         Connect to the specified wireless network, using the specified password.
         If *bssid* is given then the connection will be restricted to the
         access-point with that MAC address (the *ssid* must also be specified
         in this case).
         """
-        ...
 
     def disconnect(self) -> None:
         """
         Disconnect from the currently connected wireless network.
         """
-        ...
 
     def scan(self) -> List[Tuple]:
         """
@@ -122,9 +87,8 @@ class WLAN:
             * 0 -- visible
             * 1 -- hidden
         """
-        ...
 
-    def status(self, param: Optional[Any] = None) -> Incomplete:
+    def status(self, param: Optional[Any] = ...) -> Incomplete:
         """
         Return the current status of the wireless connection.
 
@@ -141,7 +105,6 @@ class WLAN:
         When called with one argument *param* should be a string naming the status
         parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
         """
-        ...
 
     def isconnected(self) -> bool:
         """
@@ -149,9 +112,8 @@ class WLAN:
         point and has a valid IP address.  In AP mode returns ``True`` when a
         station is connected. Returns ``False`` otherwise.
         """
-        ...
 
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
+    def ifconfig(self, configtuple: Optional[Any] = ...) -> Tuple:
         """
         Get/set IP-level network interface parameters: IP address, subnet mask,
         gateway and DNS server. When called with no arguments, this method returns
@@ -160,7 +122,6 @@ class WLAN:
 
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
-        ...
 
     def config(self, *args, **kwargs) -> Incomplete:
         """
@@ -194,4 +155,3 @@ class WLAN:
         txpower        Maximum transmit power in dBm (integer or float)
         =============  ===========
         """
-        ...

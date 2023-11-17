@@ -1,16 +1,4 @@
-"""
-Multithreading support.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/_thread.html
-
-CPython module: :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
-
-This module implements multithreading support.
-
-This module is highly experimental and its API is not yet fully settled
-and not yet described in this documentation.
-"""
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete as Incomplete
 
 def get_ident(*args, **kwargs) -> Incomplete: ...
 def start_new_thread(*args, **kwargs) -> Incomplete: ...

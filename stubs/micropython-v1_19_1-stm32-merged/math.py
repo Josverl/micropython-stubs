@@ -1,22 +1,10 @@
 """
-Mathematical functions.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/math.html
-
-CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
-
-The ``math`` module provides some basic mathematical functions for
-working with floating-point numbers.
-
-*Note:* On the pyboard, floating-point numbers have 32-bit precision.
-
-Availability: not available on WiPy. Floating point support required
-for this module.
+Module: 'math' on micropython-v1.19.1-stm32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 inf = inf  # type: float
 nan = nan  # type: float

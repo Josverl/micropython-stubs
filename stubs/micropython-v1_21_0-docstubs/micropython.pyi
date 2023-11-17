@@ -1,15 +1,7 @@
-"""
-Access and control MicroPython internals.
-
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/micropython.html
-"""
-
-# source version: v1_21_0
-# origin module:: repos/micropython/docs/library/micropython.rst
+from _typeshed import Incomplete as Incomplete
 from typing import Any, Optional, Tuple, TypeVar
-from _typeshed import Incomplete
 
-Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple)  # constant
+Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple)
 
 def const(expr: Const_T) -> Const_T:
     """
@@ -31,9 +23,8 @@ def const(expr: Const_T) -> Const_T:
     written which run under both CPython and MicroPython, by following the above
     pattern.
     """
-    ...
 
-def opt_level(level: Optional[Any] = None) -> Incomplete:
+def opt_level(level: Optional[Any] = ...) -> Incomplete:
     """
     If *level* is given then this function sets the optimisation level for subsequent
     compilation of scripts, and returns ``None``.  Otherwise it returns the current
@@ -51,7 +42,6 @@ def opt_level(level: Optional[Any] = None) -> Incomplete:
 
     The default optimisation level is usually level 0.
     """
-    ...
 
 def alloc_emergency_exception_buf(size) -> Incomplete:
     """
@@ -64,9 +54,8 @@ def alloc_emergency_exception_buf(size) -> Incomplete:
     (eg ``boot.py`` or ``main.py``) and then the emergency exception buffer will be active
     for all the code following it.
     """
-    ...
 
-def mem_info(verbose: Optional[Any] = None) -> None:
+def mem_info(verbose: Optional[Any] = ...) -> None:
     """
     Print information about currently used memory.  If the *verbose* argument
     is given then extra information is printed.
@@ -75,9 +64,8 @@ def mem_info(verbose: Optional[Any] = None) -> None:
     includes the amount of stack and heap used.  In verbose mode it prints out
     the entire heap indicating which blocks are used and which are free.
     """
-    ...
 
-def qstr_info(verbose: Optional[Any] = None) -> None:
+def qstr_info(verbose: Optional[Any] = ...) -> None:
     """
     Print information about currently interned strings.  If the *verbose*
     argument is given then extra information is printed.
@@ -86,7 +74,6 @@ def qstr_info(verbose: Optional[Any] = None) -> None:
     includes the number of interned strings and the amount of RAM they use.  In
     verbose mode it prints out the names of all RAM-interned strings.
     """
-    ...
 
 def stack_use() -> int:
     """
@@ -94,7 +81,6 @@ def stack_use() -> int:
     used.  The absolute value of this is not particularly useful, rather it
     should be used to compute differences in stack usage at different points.
     """
-    ...
 
 def heap_lock() -> int: ...
 def heap_unlock() -> int: ...
@@ -118,7 +104,6 @@ def heap_locked() -> bool:
     Note: `heap_locked()` is not enabled on most ports by default,
     requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
     """
-    ...
 
 def kbd_intr(chr) -> None:
     """
@@ -131,7 +116,6 @@ def kbd_intr(chr) -> None:
     incoming stream of characters that is usually used for the REPL, in case
     that stream is used for other purposes.
     """
-    ...
 
 def schedule(func, arg) -> Incomplete:
     """
@@ -168,4 +152,3 @@ def schedule(func, arg) -> Incomplete:
     There is a finite queue to hold the scheduled functions and `schedule()`
     will raise a `RuntimeError` if the queue is full.
     """
-    ...

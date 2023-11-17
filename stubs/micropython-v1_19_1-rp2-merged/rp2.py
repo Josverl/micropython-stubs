@@ -1,24 +1,13 @@
 """
-Functionality specific to the RP2.
-
-MicroPython module: https://docs.micropython.org/en/v1.19.1/library/rp2.html
-
-The ``rp2`` module contains functions and classes specific to the RP2040, as
-used in the Raspberry Pi Pico.
-
-See the `RP2040 Python datasheet
-<https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf>`_
-for more information, and `pico-micropython-examples
-<https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
-for example code.
+Module: 'rp2' on micropython-v1.19.1-rp2
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete as Incomplete
 
 
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
+def asm_pio_encode(instr, sideset_count, sideset_opt: bool = ...) -> Incomplete:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
     instead.
@@ -31,16 +20,16 @@ def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
 
 def asm_pio(
     *,
-    out_init=None,
-    set_init=None,
-    sideset_init=None,
-    in_shiftdir=0,
-    out_shiftdir=0,
-    autopush=False,
-    autopull=False,
-    push_thresh=32,
-    pull_thresh=32,
-    fifo_join=PIO.JOIN_NONE,
+    out_init: Incomplete | None = ...,
+    set_init: Incomplete | None = ...,
+    sideset_init: Incomplete | None = ...,
+    in_shiftdir: int = ...,
+    out_shiftdir: int = ...,
+    autopush: bool = ...,
+    autopull: bool = ...,
+    push_thresh: int = ...,
+    pull_thresh: int = ...,
+    fifo_join=...,
 ) -> Incomplete:
     """
     Assemble a PIO program.
