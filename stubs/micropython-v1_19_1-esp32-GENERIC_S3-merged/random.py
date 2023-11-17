@@ -1,13 +1,38 @@
 """
-Module: 'random' on micropython-v1.19.1-esp32
+Random numbers.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/random.html
+
+This module implements a pseudo-random number generator (PRNG).
+
+CPython module: :mod:`python:random` https://docs.python.org/3/library/random.html . .
+
+.. note::
+
+   The following notation is used for intervals:
+
+   - () are open interval brackets and do not include their endpoints.
+     For example, (0, 1) means greater than 0 and less than 1.
+     In set notation: (0, 1) = {x | 0 < x < 1}.
+
+   - [] are closed interval brackets which include all their limit points.
+     For example, [0, 1] means greater than or equal to 0 and less than
+     or equal to 1.
+     In set notation: [0, 1] = {x | 0 <= x <= 1}.
+
+.. note::
+
+   The :func:`randrange`, :func:`randint` and :func:`choice` functions are only
+   available if the ``MICROPY_PY_URANDOM_EXTRA_FUNCS`` configuration option is
+   enabled.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32S3 module with ESP32S3', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.11.2
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
-def randrange(start, stop, step: Optional[Any] = ...) -> int:
+def randrange(start, stop, step: Optional[Any] = None) -> int:
     """
     The first form returns a random integer from the range [0, *stop*).
     The second form returns a random integer from the range [*start*, *stop*).
@@ -25,7 +50,7 @@ def random() -> int:
     ...
 
 
-def seed(n: Incomplete | None = ...) -> None:
+def seed(n=None, /) -> None:
     """
     Initialise the random number generator module with the seed *n* which should
     be an integer.  When no argument (or ``None``) is passed in it will (if

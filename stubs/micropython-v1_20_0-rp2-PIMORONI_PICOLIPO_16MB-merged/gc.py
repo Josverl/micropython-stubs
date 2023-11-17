@@ -1,10 +1,14 @@
 """
-Module: 'gc' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
+Control the garbage collector.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/gc.html
+
+CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.7
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
 def mem_alloc() -> int:
@@ -34,7 +38,7 @@ def mem_free() -> int:
     ...
 
 
-def threshold(amount: Optional[Any] = ...) -> Incomplete:
+def threshold(amount: Optional[Any] = None) -> Incomplete:
     """
     Set or query the additional GC allocation threshold. Normally, a collection
     is triggered only when a new allocation cannot be satisfied, i.e. on an

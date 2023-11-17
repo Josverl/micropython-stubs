@@ -1,17 +1,17 @@
 import os, nrf
 
 try:
-    from os import VfsLfs1
+    pass
 
     os.VfsLfs1.mkfs(nrf.Flash())
 except ImportError:
     try:
-        from os import VfsLfs2
+        pass
 
         os.VfsLfs2.mkfs(nrf.Flash())
     except ImportError:
         try:
-            from os import VfsFat
+            pass
 
             os.VfsFat.mkfs(nrf.Flash())
         except ImportError:

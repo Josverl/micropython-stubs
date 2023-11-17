@@ -7,19 +7,6 @@ from typing import Optional, Any
 from _typeshed import Incomplete
 
 class aes:
-    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
-        """
-        Encrypt *in_buf*. If no *out_buf* is given result is returned as a
-        newly allocated `bytes` object. Otherwise, result is written into
-        mutable buffer *out_buf*. *in_buf* and *out_buf* can also refer
-        to the same mutable buffer, in which case data is encrypted in-place.
-        """
-        ...
-    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
-        """
-        Like `encrypt()`, but for decryption.
-        """
-        ...
     def __init__(self, key, mode, IV: Optional[Any] = None) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:
@@ -38,5 +25,18 @@ class aes:
 
             * *IV* is an initialization vector for CBC mode.
             * For Counter mode, *IV* is the initial value for the counter.
+        """
+        ...
+    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
+        """
+        Like `encrypt()`, but for decryption.
+        """
+        ...
+    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
+        """
+        Encrypt *in_buf*. If no *out_buf* is given result is returned as a
+        newly allocated `bytes` object. Otherwise, result is written into
+        mutable buffer *out_buf*. *in_buf* and *out_buf* can also refer
+        to the same mutable buffer, in which case data is encrypted in-place.
         """
         ...

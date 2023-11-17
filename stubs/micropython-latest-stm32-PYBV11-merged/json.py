@@ -8,8 +8,8 @@ CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
 This modules allows to convert between Python objects and the JSON
 data format.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
-# Stubber: v1.13.7
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
 from typing import Any
 from _typeshed import Incomplete
 

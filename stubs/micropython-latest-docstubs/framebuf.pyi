@@ -9,7 +9,10 @@ bitmap images, which can then be sent to a display.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/framebuf.rst
-from typing import Any, Optional
+from typing import (
+    Any,
+    Optional,
+)
 from _typeshed import Incomplete
 
 MONO_VLSB: bytes

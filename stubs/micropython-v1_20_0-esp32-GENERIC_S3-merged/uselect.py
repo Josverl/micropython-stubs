@@ -1,10 +1,17 @@
 """
-Module: 'uselect' on micropython-v1.20.0-esp32-GENERIC_S3
+Wait for events on a set of streams.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/select.html
+
+CPython module: :mod:`python:select` https://docs.python.org/3/library/select.html .
+
+This module provides functions to efficiently wait for events on multiple
+`streams <stream>` (select streams which are ready for operations).
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': 'v1.20.0', 'cpu': 'ESP32S3'})
 # Stubber: v1.13.7
 from typing import Iterator, List, Optional, Tuple, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 POLLOUT = 4  # type: int
 POLLIN = 1  # type: int
@@ -12,7 +19,7 @@ POLLHUP = 16  # type: int
 POLLERR = 8  # type: int
 
 
-def select(rlist, wlist, xlist, timeout: Optional[Any] = ...) -> None:
+def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
     """
     Wait for activity on a set of objects.
 
@@ -30,7 +37,7 @@ class poll:
     def __init__(self) -> None:
         ...
 
-    def register(self, obj, eventmask: Optional[Any] = ...) -> None:
+    def register(self, obj, eventmask: Optional[Any] = None) -> None:
         """
         Register `stream` *obj* for polling. *eventmask* is logical OR of:
 
@@ -48,19 +55,22 @@ class poll:
         Successive calls will update *obj*'s eventmask to the value of
         *eventmask* (i.e. will behave as `modify()`).
         """
+        ...
 
     def unregister(self, obj) -> Incomplete:
         """
         Unregister *obj* from polling.
         """
+        ...
 
     def modify(self, obj, eventmask) -> None:
         """
         Modify the *eventmask* for *obj*. If *obj* is not registered, `OSError`
         is raised with error of ENOENT.
         """
+        ...
 
-    def poll(self, timeout: int = ...) -> List:
+    def poll(self, timeout=-1, /) -> List:
         """
         Wait for at least one of the registered objects to become ready or have an
         exceptional condition, with optional timeout in milliseconds (if *timeout*
@@ -82,8 +92,9 @@ class poll:
 
            Tuples returned may contain more than 2 elements as described above.
         """
+        ...
 
-    def ipoll(self, timeout: int = ..., flags: int = ...) -> Iterator[Tuple]:
+    def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
         """
         Like :meth:`poll.poll`, but instead returns an iterator which yields a
         `callee-owned tuple`. This function provides an efficient, allocation-free
@@ -99,3 +110,4 @@ class poll:
 
            This function is a MicroPython extension.
         """
+        ...

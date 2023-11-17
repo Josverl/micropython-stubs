@@ -13,16 +13,16 @@ working with floating-point numbers.
 Availability: not available on WiPy. Floating point support required
 for this module.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
-# Stubber: v1.13.7
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
 from typing import Tuple, Any
 from _typeshed import Incomplete
 
 inf = inf  # type: float
 nan = nan  # type: float
-pi = 3.141592653589793  # type: float
-e = 2.718281828459045  # type: float
-tau = 6.283185307179586  # type: float
+pi = 3.141593  # type: float
+e = 2.718282  # type: float
+tau = 6.283185  # type: float
 
 
 def ldexp(x, exp) -> Incomplete:
@@ -46,7 +46,7 @@ def trunc(x) -> int:
     ...
 
 
-def isclose(*args, **kwargs) -> Any:
+def isclose(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -229,7 +229,7 @@ def asin(x) -> float:
     ...
 
 
-def factorial(*args, **kwargs) -> Any:
+def factorial(*args, **kwargs) -> Incomplete:
     ...
 
 

@@ -5,15 +5,15 @@ MicroPython module: https://docs.micropython.org/en/latest/library/sys.html
 
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
-# Stubber: v1.13.7
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
 from typing import Dict, List, Tuple, Any
 from _typeshed import Incomplete
 
 platform = "pyboard"  # type: str
 version_info = ()  # type: tuple
 path = []  # type: list
-version = "3.4.0; MicroPython v1.20.0 on 2023-04-26"  # type: str
+version = "3.4.0; MicroPython v1.21.0 on 2023-10-06"  # type: str
 ps1 = ">>> "  # type: str
 ps2 = "... "  # type: str
 byteorder = "little"  # type: str
@@ -49,6 +49,6 @@ def exit(retval=0, /) -> Incomplete:
     ...
 
 
-stderr: Any  ## <class 'FileIO'> = <io.FileIO 2>
-stdout: Any  ## <class 'FileIO'> = <io.FileIO 1>
-stdin: Any  ## <class 'FileIO'> = <io.FileIO 0>
+stderr: Incomplete  ## <class 'FileIO'> = <io.FileIO 2>
+stdout: Incomplete  ## <class 'FileIO'> = <io.FileIO 1>
+stdin: Incomplete  ## <class 'FileIO'> = <io.FileIO 0>

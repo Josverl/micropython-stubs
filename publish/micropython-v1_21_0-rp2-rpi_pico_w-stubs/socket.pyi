@@ -14,6 +14,51 @@ Difference to CPython
    a file-like object using `makefile()` method. This method is still supported
    by MicroPython (but is a no-op), so where compatibility with CPython matters,
    be sure to use it.
+
+Socket address format(s)
+------------------------
+
+The native socket address format of the ``socket`` module is an opaque data type
+returned by `getaddrinfo` function, which must be used to resolve textual address
+(including numeric addresses)::
+
+    sockaddr = socket.getaddrinfo('www.micropython.org', 80)[0][-1]
+    # You must use getaddrinfo() even for numeric addresses
+    sockaddr = socket.getaddrinfo('127.0.0.1', 80)[0][-1]
+    # Now you can use that address
+    sock.connect(sockaddr)
+
+Using `getaddrinfo` is the most efficient (both in terms of memory and processing
+power) and portable way to work with addresses.
+
+However, ``socket`` module (note the difference with native MicroPython
+``socket`` module described here) provides CPython-compatible way to specify
+addresses using tuples, as described below. Note that depending on a
+:term:`MicroPython port`, ``socket`` module can be builtin or need to be
+installed from `micropython-lib` (as in the case of :term:`MicroPython Unix port`),
+and some ports still accept only numeric addresses in the tuple format,
+and require to use `getaddrinfo` function to resolve domain names.
+
+Summing up:
+
+* Always use `getaddrinfo` when writing portable applications.
+* Tuple addresses described below can be used as a shortcut for
+  quick hacks and interactive use, if your port supports them.
+
+Tuple address format for ``socket`` module:
+
+* IPv4: *(ipv4_address, port)*, where *ipv4_address* is a string with
+  dot-notation numeric IPv4 address, e.g. ``"8.8.8.8"``, and *port* is and
+  integer port number in the range 1-65535. Note the domain names are not
+  accepted as *ipv4_address*, they should be resolved first using
+  `socket.getaddrinfo()`.
+* IPv6: *(ipv6_address, port, flowinfo, scopeid)*, where *ipv6_address*
+  is a string with colon-notation numeric IPv6 address, e.g. ``"2001:db8::1"``,
+  and *port* is an integer port number in the range 1-65535. *flowinfo*
+  must be 0. *scopeid* is the interface scope identifier for link-local
+  addresses. Note the domain names are not accepted as *ipv6_address*,
+  they should be resolved first using `socket.getaddrinfo()`. Availability
+  of IPv6 support depends on a :term:`MicroPython port`.
 """
 from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.socket import *

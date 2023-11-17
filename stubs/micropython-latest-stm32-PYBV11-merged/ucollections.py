@@ -8,12 +8,12 @@ CPython module: :mod:`python:collections` https://docs.python.org/3/library/coll
 This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
-# Stubber: v1.13.7
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
 from typing import Optional, Any
+from _typeshed import Incomplete
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
 from typing_extensions import NamedTuple as stdlib_NamedTuple
-from _typeshed import Incomplete
 
 
 def namedtuple(name, fields) -> stdlib_NamedTuple:
@@ -62,38 +62,38 @@ class OrderedDict(stdlib_OrderedDict):
         b 3
     """
 
-    def popitem(self, *args, **kwargs) -> Any:
+    def popitem(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def pop(self, *args, **kwargs) -> Any:
+    def pop(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def values(self, *args, **kwargs) -> Any:
+    def values(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def setdefault(self, *args, **kwargs) -> Any:
+    def setdefault(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def update(self, *args, **kwargs) -> Any:
+    def update(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def copy(self, *args, **kwargs) -> Any:
+    def copy(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def clear(self, *args, **kwargs) -> Any:
+    def clear(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def keys(self, *args, **kwargs) -> Any:
+    def keys(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def get(self, *args, **kwargs) -> Any:
+    def get(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def items(self, *args, **kwargs) -> Any:
+    def items(self, *args, **kwargs) -> Incomplete:
         ...
 
     @classmethod
-    def fromkeys(cls, *args, **kwargs) -> Any:
+    def fromkeys(cls, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *args, **kwargs) -> None:

@@ -1,4 +1,14 @@
-from _typeshed import Incomplete as Incomplete
+"""
+System error codes.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/errno.html
+
+CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
+
+This module provides access to symbolic error codes for `OSError` exception.
+A particular inventory of codes depends on :term:`MicroPython port`.
+"""
+from _typeshed import Incomplete
 from typing import Dict
 
 EACCES: int

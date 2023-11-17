@@ -1,14 +1,16 @@
 """
-Module: 'cryptolib' on micropython-v1.20.0-rp2-PICO_W
+Cryptographic ciphers.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/cryptolib.html
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
 class aes:
-    def encrypt(self, in_buf, out_buf: Optional[Any] = ...) -> Incomplete:
+    def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Encrypt *in_buf*. If no *out_buf* is given result is returned as a
         newly allocated `bytes` object. Otherwise, result is written into
@@ -17,13 +19,13 @@ class aes:
         """
         ...
 
-    def decrypt(self, in_buf, out_buf: Optional[Any] = ...) -> Incomplete:
+    def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.
         """
         ...
 
-    def __init__(self, key, mode, IV: Optional[Any] = ...) -> None:
+    def __init__(self, key, mode, IV: Optional[Any] = None) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:
         after initialization, cipher object can be use only either for

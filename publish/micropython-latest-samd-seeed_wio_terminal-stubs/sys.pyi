@@ -5,8 +5,8 @@ MicroPython module: https://docs.micropython.org/en/latest/library/sys.html
 
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
-from typing import Dict, List, Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Dict, List, Tuple
 
 platform: str
 version_info: tuple
@@ -44,6 +44,6 @@ def exit(retval=0, /) -> Incomplete:
     """
     ...
 
-stderr: Any
-stdout: Any
-stdin: Any
+stderr: Incomplete
+stdout: Incomplete
+stdin: Incomplete

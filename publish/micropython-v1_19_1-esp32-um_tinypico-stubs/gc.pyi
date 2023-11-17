@@ -8,6 +8,26 @@ CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 from typing import Optional, Any
 from _typeshed import Incomplete
 
+def collect() -> None:
+    """
+    Run a garbage collection.
+    """
+    ...
+
+def disable() -> None:
+    """
+    Disable automatic garbage collection.  Heap memory can still be allocated,
+    and garbage collection can still be initiated manually using :meth:`gc.collect`.
+    """
+    ...
+
+def enable() -> None:
+    """
+    Enable automatic garbage collection.
+    """
+    ...
+
+def isenabled(*args, **kwargs) -> Any: ...
 def mem_alloc() -> int:
     """
     Return the number of bytes of heap RAM that are allocated.
@@ -18,7 +38,6 @@ def mem_alloc() -> int:
     """
     ...
 
-def isenabled(*args, **kwargs) -> Any: ...
 def mem_free() -> int:
     """
     Return the number of bytes of available heap RAM, or -1 if this amount
@@ -52,24 +71,5 @@ def threshold(amount: Optional[Any] = None) -> Incomplete:
        This function is a MicroPython extension. CPython has a similar
        function - ``set_threshold()``, but due to different GC
        implementations, its signature and semantics are different.
-    """
-    ...
-
-def collect() -> None:
-    """
-    Run a garbage collection.
-    """
-    ...
-
-def enable() -> None:
-    """
-    Enable automatic garbage collection.
-    """
-    ...
-
-def disable() -> None:
-    """
-    Disable automatic garbage collection.  Heap memory can still be allocated,
-    and garbage collection can still be initiated manually using :meth:`gc.collect`.
     """
     ...

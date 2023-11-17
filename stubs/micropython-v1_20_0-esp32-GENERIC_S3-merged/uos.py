@@ -1,10 +1,18 @@
 """
-Module: 'uos' on micropython-v1.20.0-esp32-GENERIC_S3
+Basic "operating system" services.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/os.html
+
+CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
+
+The ``os`` module contains functions for filesystem access and mounting,
+terminal redirection and duplication, and the ``uname`` and ``urandom``
+functions.
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': 'v1.20.0', 'cpu': 'ESP32S3'})
 # Stubber: v1.13.7
 from typing import IO, Iterator, Optional, Tuple, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 from stdlib.os import *
 
 
@@ -29,7 +37,7 @@ def rename(old_path, new_path) -> None:
     ...
 
 
-def mount(fsobj, mount_point, *, readonly: bool = ...) -> Incomplete:
+def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
     *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
@@ -124,7 +132,7 @@ def chdir(path) -> Incomplete:
     ...
 
 
-def dupterm(stream_object, index: int = ...) -> IO:
+def dupterm(stream_object, index=0, /) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
     object. The *stream_object* argument must be a native stream object, or derive
@@ -155,7 +163,7 @@ def remove(path) -> None:
     ...
 
 
-def listdir(dir: Optional[Any] = ...) -> Incomplete:
+def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
     With no argument, list the current directory.  Otherwise list the given directory.
     """
@@ -166,7 +174,7 @@ def dupterm_notify(*args, **kwargs) -> Any:
     ...
 
 
-def ilistdir(dir: Optional[Any] = ...) -> Iterator[Tuple]:
+def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     """
     This function returns an iterator which then yields tuples corresponding to
     the entries in the directory that it is listing.  With no argument it lists the
@@ -217,7 +225,7 @@ class VfsLfs2:
         ...
 
     @staticmethod
-    def mkfs(block_dev, readsize: int = ..., progsize: int = ..., lookahead: int = ...) -> None:
+    def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
         """
             Build a Lfs2 filesystem on *block_dev*.
 
@@ -259,7 +267,7 @@ class VfsLfs2:
     def getcwd(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, block_dev, readsize: int = ..., progsize: int = ..., lookahead: int = ..., mtime: bool = ...) -> None:
+    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None:
         ...
 
 

@@ -9,7 +9,7 @@
 # Import required libraries
 from micropython import const
 from machine import Pin, ADC
-import machine, time
+import machine
 
 # FeatherS2 Neo Hardware Pin Assignments
 

@@ -1,8 +1,20 @@
 # NeoPixel driver for MicroPython
 # MIT license; Copyright (c) 2016 Damien P. George, 2021 Jim Mussared
 
+"""
+Control of WS2812 / NeoPixel LEDs.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/neopixel.html
+
+This module provides a driver for WS2818 / NeoPixel LEDs.
+
+``Note:`` This module is only included by default on the ESP8266, ESP32 and RP2
+   ports. On STM32 / Pyboard and others, you can either install the
+   ``neopixel`` package using :term:`mip`, or you can download the module
+   directly from :term:`micropython-lib` and copy it to the filesystem.
+"""
 from machine import bitstream
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 from typing import Tuple
 
 
@@ -19,7 +31,7 @@ class NeoPixel:
     # G R B W
     ORDER = (1, 0, 2, 3)
 
-    def __init__(self, pin, n, *, bpp: int = ..., timing: int = ...) -> None:
+    def __init__(self, pin, n, *, bpp=3, timing=1) -> None:
         self.pin = pin
         self.n = n
         self.bpp = bpp

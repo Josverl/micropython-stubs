@@ -1,5 +1,9 @@
-from _typeshed import Incomplete as Incomplete
-import abc
+"""
+ESP-NOW :doc:`asyncio` support.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/aioespnow.html
+"""
+from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 
 MAX_DATA_LEN: int

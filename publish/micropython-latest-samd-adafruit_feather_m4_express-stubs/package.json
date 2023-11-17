@@ -2,12 +2,12 @@
     "name": "micropython-samd-adafruit_feather_m4_express-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.21.0a544",
+    "pkg_version": "1.22.0a162",
     "path": "micropython-latest-samd-adafruit_feather_m4_express-stubs",
     "stub_sources": [
         [
             "Merged stubs",
-            "micropython-latest-samd-adafruit_feather_m4_express-merged"
+            "micropython-latest-samd-ADAFRUIT_FEATHER_M4_EXPRESS-merged"
         ],
         [
             "Frozen stubs",

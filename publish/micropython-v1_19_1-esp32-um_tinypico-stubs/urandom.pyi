@@ -29,6 +29,31 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
 from typing import Optional, Any
 from _typeshed import Incomplete
 
+def choice(sequence) -> Incomplete:
+    """
+    Chooses and returns one item at random from *sequence* (tuple, list or
+    any object that supports the subscript operation).
+    """
+    ...
+
+def getrandbits(n) -> int:
+    """
+    Return an integer with *n* random bits (0 <= n <= 32).
+    """
+    ...
+
+def randint(a, b) -> int:
+    """
+    Return a random integer in the range [*a*, *b*].
+    """
+    ...
+
+def random() -> int:
+    """
+    Return a random floating point number in the range [0.0, 1.0).
+    """
+    ...
+
 def randrange(start, stop, step: Optional[Any] = None) -> int:
     """
     The first form returns a random integer from the range [0, *stop*).
@@ -36,12 +61,6 @@ def randrange(start, stop, step: Optional[Any] = None) -> int:
     The third form returns a random integer from the range [*start*, *stop*) in
     steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
     return odd numbers between 1 and 9 inclusive.
-    """
-    ...
-
-def random() -> int:
-    """
-    Return a random floating point number in the range [0.0, 1.0).
     """
     ...
 
@@ -61,24 +80,5 @@ def uniform(a, b) -> int:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
     and *b* <= N <= *a* for *b* < *a*.
-    """
-    ...
-
-def choice(sequence) -> Incomplete:
-    """
-    Chooses and returns one item at random from *sequence* (tuple, list or
-    any object that supports the subscript operation).
-    """
-    ...
-
-def randint(a, b) -> int:
-    """
-    Return a random integer in the range [*a*, *b*].
-    """
-    ...
-
-def getrandbits(n) -> int:
-    """
-    Return an integer with *n* random bits (0 <= n <= 32).
     """
     ...

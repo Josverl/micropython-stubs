@@ -32,89 +32,10 @@ If actual calendar time is not maintained with a system/MicroPython RTC,
 functions below which require reference to current absolute time may
 behave not as expected.
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
-# Stubber: v1.13.4
+# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
+# Stubber: v1.13.8
 from typing import Optional, Tuple, Any
 from _typeshed import Incomplete
-
-
-def ticks_cpu() -> Incomplete:
-    """
-    Similar to `ticks_ms()` and `ticks_us()`, but with the highest possible resolution
-    in the system. This is usually CPU clocks, and that's why the function is named that
-    way. But it doesn't have to be a CPU clock, some other timing source available in a
-    system (e.g. high-resolution timer) can be used instead. The exact timing unit
-    (resolution) of this function is not specified on ``time`` module level, but
-    documentation for a specific port may provide more specific information. This
-    function is intended for very fine benchmarking or very tight real-time loops.
-    Avoid using it in portable code.
-
-    Availability: Not every port implements this function.
-    """
-    ...
-
-
-def time() -> int:
-    """
-    Returns the number of seconds, as an integer, since the Epoch, assuming that
-    underlying RTC is set and maintained as described above. If an RTC is not set, this
-    function returns number of seconds since a port-specific reference point in time (for
-    embedded boards without a battery-backed RTC, usually since power up or reset). If you
-    want to develop portable MicroPython application, you should not rely on this function
-    to provide higher than second precision.  If you need higher precision, absolute
-    timestamps, use `time_ns()`.  If relative times are acceptable then use the
-    `ticks_ms()` and `ticks_us()` functions.  If you need calendar time, `gmtime()` or
-    `localtime()` without an argument is a better choice.
-
-    Difference to CPython
-
-       In CPython, this function returns number of
-       seconds since Unix epoch, 1970-01-01 00:00 UTC, as a floating-point,
-       usually having microsecond precision. With MicroPython, only Unix port
-       uses the same Epoch, and if floating-point precision allows,
-       returns sub-second precision. Embedded hardware usually doesn't have
-       floating-point precision to represent both long time ranges and subsecond
-       precision, so they use integer value with second precision. Some embedded
-       hardware also lacks battery-powered RTC, so returns number of seconds
-       since last power-up or from other relative, hardware-specific point
-       (e.g. reset).
-    """
-    ...
-
-
-def ticks_add(ticks, delta) -> Incomplete:
-    """
-    Offset ticks value by a given number, which can be either positive or negative.
-    Given a *ticks* value, this function allows to calculate ticks value *delta*
-    ticks before or after it, following modular-arithmetic definition of tick values
-    (see `ticks_ms()` above). *ticks* parameter must be a direct result of call
-    to `ticks_ms()`, `ticks_us()`, or `ticks_cpu()` functions (or from previous
-    call to `ticks_add()`). However, *delta* can be an arbitrary integer number
-    or numeric expression. `ticks_add()` is useful for calculating deadlines for
-    events/tasks. (Note: you must use `ticks_diff()` function to work with
-    deadlines.)
-
-    Examples::
-
-         # Find out what ticks value there was 100ms ago
-         print(ticks_add(time.ticks_ms(), -100))
-
-         # Calculate deadline for operation and test for it
-         deadline = ticks_add(time.ticks_ms(), 200)
-         while ticks_diff(deadline, time.ticks_ms()) > 0:
-             do_a_little_of_something()
-
-         # Find out TICKS_MAX used by this port
-         print(ticks_add(0, -1))
-    """
-    ...
-
-
-def ticks_us() -> Incomplete:
-    """
-    Just like `ticks_ms()` above, but in microseconds.
-    """
-    ...
 
 
 def ticks_diff(ticks1, ticks2) -> int:
@@ -184,6 +105,78 @@ def ticks_diff(ticks1, ticks2) -> int:
     ...
 
 
+def ticks_add(ticks, delta) -> Incomplete:
+    """
+    Offset ticks value by a given number, which can be either positive or negative.
+    Given a *ticks* value, this function allows to calculate ticks value *delta*
+    ticks before or after it, following modular-arithmetic definition of tick values
+    (see `ticks_ms()` above). *ticks* parameter must be a direct result of call
+    to `ticks_ms()`, `ticks_us()`, or `ticks_cpu()` functions (or from previous
+    call to `ticks_add()`). However, *delta* can be an arbitrary integer number
+    or numeric expression. `ticks_add()` is useful for calculating deadlines for
+    events/tasks. (Note: you must use `ticks_diff()` function to work with
+    deadlines.)
+
+    Examples::
+
+         # Find out what ticks value there was 100ms ago
+         print(ticks_add(time.ticks_ms(), -100))
+
+         # Calculate deadline for operation and test for it
+         deadline = ticks_add(time.ticks_ms(), 200)
+         while ticks_diff(deadline, time.ticks_ms()) > 0:
+             do_a_little_of_something()
+
+         # Find out TICKS_MAX used by this port
+         print(ticks_add(0, -1))
+    """
+    ...
+
+
+def ticks_cpu() -> Incomplete:
+    """
+    Similar to `ticks_ms()` and `ticks_us()`, but with the highest possible resolution
+    in the system. This is usually CPU clocks, and that's why the function is named that
+    way. But it doesn't have to be a CPU clock, some other timing source available in a
+    system (e.g. high-resolution timer) can be used instead. The exact timing unit
+    (resolution) of this function is not specified on ``time`` module level, but
+    documentation for a specific port may provide more specific information. This
+    function is intended for very fine benchmarking or very tight real-time loops.
+    Avoid using it in portable code.
+
+    Availability: Not every port implements this function.
+    """
+    ...
+
+
+def time() -> int:
+    """
+    Returns the number of seconds, as an integer, since the Epoch, assuming that
+    underlying RTC is set and maintained as described above. If an RTC is not set, this
+    function returns number of seconds since a port-specific reference point in time (for
+    embedded boards without a battery-backed RTC, usually since power up or reset). If you
+    want to develop portable MicroPython application, you should not rely on this function
+    to provide higher than second precision.  If you need higher precision, absolute
+    timestamps, use `time_ns()`.  If relative times are acceptable then use the
+    `ticks_ms()` and `ticks_us()` functions.  If you need calendar time, `gmtime()` or
+    `localtime()` without an argument is a better choice.
+
+    Difference to CPython
+
+       In CPython, this function returns number of
+       seconds since Unix epoch, 1970-01-01 00:00 UTC, as a floating-point,
+       usually having microsecond precision. With MicroPython, only Unix port
+       uses the same Epoch, and if floating-point precision allows,
+       returns sub-second precision. Embedded hardware usually doesn't have
+       floating-point precision to represent both long time ranges and subsecond
+       precision, so they use integer value with second precision. Some embedded
+       hardware also lacks battery-powered RTC, so returns number of seconds
+       since last power-up or from other relative, hardware-specific point
+       (e.g. reset).
+    """
+    ...
+
+
 def ticks_ms() -> int:
     """
     Returns an increasing millisecond counter with an arbitrary reference point, that
@@ -205,6 +198,21 @@ def ticks_ms() -> int:
     result. Performing mathematical operations and then passing their results
     as arguments to `ticks_diff()` or `ticks_add()` will also lead to
     invalid results from the latter functions.
+    """
+    ...
+
+
+def ticks_us() -> Incomplete:
+    """
+    Just like `ticks_ms()` above, but in microseconds.
+    """
+    ...
+
+
+def time_ns() -> int:
+    """
+    Similar to `time()` but returns nanoseconds since the Epoch, as an integer (usually
+    a big integer, so will allocate on the heap).
     """
     ...
 

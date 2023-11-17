@@ -1,13 +1,19 @@
 """
-Module: 'ucollections' on micropython-v1.19.1-esp32
+Collection and container types.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/collections.html
+
+CPython module: :mod:`python:collections` https://docs.python.org/3/library/collections.html .
+
+This module implements advanced collection and container types to
+hold/accumulate various objects.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
-from queue import Queue as Queue
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
 from typing_extensions import NamedTuple as stdlib_NamedTuple
+from _typeshed import Incomplete
 
 
 class OrderedDict(stdlib_OrderedDict):
@@ -92,7 +98,7 @@ class deque(stdlib_deque):
     methods:
     """
 
-    def __init__(self, iterable, maxlen, flags: Optional[Any] = ...) -> None:
+    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None:
         """"""
         ...
 

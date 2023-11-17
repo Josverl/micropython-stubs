@@ -1,10 +1,17 @@
 """
-Module: 'json' on micropython-v1.19.1-esp32
+JSON encoding and decoding.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/json.html
+
+CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
+
+This modules allows to convert between Python objects and the JSON
+data format.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
 def loads(str) -> Incomplete:
@@ -27,7 +34,7 @@ def load(stream) -> Incomplete:
     ...
 
 
-def dumps(obj, separators: Incomplete | None = ...) -> str:
+def dumps(obj, separators=None) -> str:
     """
     Return *obj* represented as a JSON string.
 
@@ -36,7 +43,7 @@ def dumps(obj, separators: Incomplete | None = ...) -> str:
     ...
 
 
-def dump(obj, stream, separators: Incomplete | None = ...) -> Incomplete:
+def dump(obj, stream, separators=None) -> Incomplete:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
 

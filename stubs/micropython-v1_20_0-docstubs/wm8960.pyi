@@ -1,4 +1,6 @@
-from _typeshed import Incomplete as Incomplete
+""" """
+
+from _typeshed import Incomplete
 
 class WM8960:
     """
@@ -51,27 +53,29 @@ class WM8960:
         i2c,
         sample_rate,
         *,
-        bits: int = ...,
-        swap=...,
-        route=...,
-        left_input=...,
-        right_input=...,
-        sysclk_source=...,
-        mclk_freq: Incomplete | None = ...,
-        primary: bool = ...,
-        adc_sync=...,
-        protocol=...,
-        i2c_address=...,
+        bits=16,
+        swap=SWAP_NONE,
+        route=ROUTE_PLAYBACK_RECORD,
+        left_input=INPUT_MIC3,
+        right_input=INPUT_MIC2,
+        sysclk_source=SYSCLK_MCLK,
+        mclk_freq=None,
+        primary=False,
+        adc_sync=SYNC_DAC,
+        protocol=BUS_I2S,
+        i2c_address=WM8960_I2C_ADDR,
     ) -> None: ...
     def set_left_input(self, input_source) -> Incomplete:
         """
         Specify the source for the left input.  The input source names are listed above.
         """
+        ...
     def set_right_input(self, input_source) -> Incomplete:
         """
         Specify the source for the right input.  The input source names are listed above.
         """
-    def volume(self, module, volume_l: Incomplete | None = ..., volume_r: Incomplete | None = ...) -> Incomplete:
+        ...
+    def volume(self, module, volume_l=None, volume_r=None) -> Incomplete:
         """
         Sets or gets the volume of a certain module.
 
@@ -85,7 +89,8 @@ class WM8960:
 
         For a list of suitable modules and db/step, see the table below.
         """
-    def mute(self, module, mute, soft: bool = ..., ramp=...) -> Incomplete:
+        ...
+    def mute(self, module, mute, soft=True, ramp=MUTE_FAST) -> Incomplete:
         """
         Mute or unmute the output. If *mute* is True, the output is muted, if ``False``
         it is unmuted.
@@ -93,10 +98,12 @@ class WM8960:
         If *soft* is set as True, muting will happen as a soft transition.  The time for
         the transition is defined by *ramp*, which is either ``MUTE_FAST`` or ``MUTE_SLOW``.
         """
+        ...
     def set_data_route(self, route) -> None:
         """
         Set the audio data route.  For the parameter value/names, see the table above.
         """
+        ...
     def set_module(self, module, active) -> None:
         """
         Enable or disable a module, with *active* being ``False`` or ``True``.  For
@@ -106,26 +113,31 @@ class WM8960:
         method.  The first enables output 3, while the `WM8960.mono` method sends a
         mono mix to the left and right output.
         """
+        ...
     def enable_module(self, module) -> None:
         """
         Enable a module.  For the list of module names, see the table above.
         """
+        ...
     def disable_module(self, module) -> None:
         """
         Disable a module.  For the list of module names, see the table above.
         """
+        ...
     def expand_3d(self, level) -> None:
         """
         Enable Stereo 3D exansion.  *level* is a number between 0 and 15.
         A value of 0 disables the expansion.
         """
+        ...
     def mono(self, active) -> Incomplete:
         """
         If *active* is ``True``, a Mono mix is sent to the left and right output
         channel.  This is different from enabling the ``MODULE_MONO_MIX``, which
         enables output 3.
         """
-    def alc_mode(self, channel, mode=...) -> Incomplete:
+        ...
+    def alc_mode(self, channel, mode=ALC_MODE) -> Incomplete:
         """
         Enables or disables ALC mode.  Parameters are:
 
@@ -141,7 +153,8 @@ class WM8960:
             - ALC_MODE:   act as ALC
             - ALC_LIMITER: act as limiter.
         """
-    def alc_gain(self, target: int = ..., max_gain: int = ..., min_gain: float = ..., noise_gate: int = ...) -> Incomplete:
+        ...
+    def alc_gain(self, target=-12, max_gain=30, min_gain=-17.25, noise_gate=-78) -> Incomplete:
         """
         Set the target level, highest and lowest gain levels and the noise gate as dB level.
         Permitted ranges are:
@@ -154,7 +167,8 @@ class WM8960:
         Excess values are limited to the permitted ranges.  A value of -78 or less
         for *noise_gate* disables the noise gate function.
         """
-    def alc_time(self, attack: int = ..., decay: int = ..., hold: int = ...) -> None:
+        ...
+    def alc_time(self, attack=24, decay=192, hold=0) -> None:
         """
         Set the dynamic characteristic of ALC.  The times are given as millisecond
         values.  Permitted ranges are:
@@ -165,6 +179,7 @@ class WM8960:
 
         Excess values are limited within the permitted ranges.
         """
+        ...
     def deemphasis(self, active) -> Incomplete:
         """
         Enables or disables a deemphasis filter for playback, with *active* being
@@ -172,7 +187,9 @@ class WM8960:
         32000, 44100 and 48000.  For other sample rates, the filter setting
         is silently ignored.
         """
+        ...
     def deinit(self) -> None:
         """
         Disable all modules.
         """
+        ...

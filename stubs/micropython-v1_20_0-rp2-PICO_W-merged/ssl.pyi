@@ -1,5 +1,16 @@
+"""
+TLS/SSL wrapper for socket objects.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/ssl.html
+
+CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
+
+This module provides access to Transport Layer Security (previously and
+widely known as “Secure Sockets Layer”) encryption and peer authentication
+facilities for network sockets, both client-side and server-side.
+"""
 from typing import IO, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 from stdlib.ssl import *
 
 CERT_OPTIONAL: int
@@ -7,14 +18,7 @@ CERT_REQUIRED: int
 CERT_NONE: int
 
 def wrap_socket(
-    sock,
-    server_side: bool = ...,
-    keyfile: Incomplete | None = ...,
-    certfile: Incomplete | None = ...,
-    cert_reqs: Incomplete | None = ...,
-    cadata: Incomplete | None = ...,
-    server_hostname: Incomplete | None = ...,
-    do_handshake: bool = ...,
+    sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
 ) -> IO:
     """
     Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
@@ -47,3 +51,4 @@ def wrap_socket(
     Depending on the underlying module implementation in a particular
     :term:`MicroPython port`, some or all keyword arguments above may be not supported.
     """
+    ...

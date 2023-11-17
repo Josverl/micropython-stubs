@@ -1,10 +1,19 @@
 """
-Module: '_thread' on micropython-v1.21.0-rp2-RPI_PICO_W
+Multithreading support.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/_thread.html
+
+CPython module: :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
+
+This module implements multithreading support.
+
+This module is highly experimental and its API is not yet fully settled
+and not yet described in this documentation.
 """
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import Any
-from _typeshed import Incomplete as Incomplete, Incomplete
+from _typeshed import Incomplete
 
 
 def get_ident(*args, **kwargs) -> Incomplete:

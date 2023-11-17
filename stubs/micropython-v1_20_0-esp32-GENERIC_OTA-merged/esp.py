@@ -1,10 +1,16 @@
 """
-Module: 'esp' on micropython-v1.20.0-esp32-GENERIC_OTA
+Functions related to the ESP8266 and ESP32.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/esp.html
+
+The ``esp`` module contains specific functions related to both the ESP8266 and
+ESP32 modules.  Some functions are only available on one or the other of these
+ports.
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC_OTA', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 LOG_NONE = 0  # type: int
 LOG_WARNING = 2  # type: int

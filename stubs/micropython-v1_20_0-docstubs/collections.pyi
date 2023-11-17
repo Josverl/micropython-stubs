@@ -1,7 +1,22 @@
-from _typeshed import Incomplete as Incomplete
-from queue import Queue as Queue
+"""
+Collection and container types.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/collections.html
+
+CPython module: :mod:`python:collections` https://docs.python.org/3/library/collections.html .
+
+This module implements advanced collection and container types to
+hold/accumulate various objects.
+"""
+
+# source version: v1_20_0
+# origin module:: repos/micropython/docs/library/collections.rst
+from typing import (
+    Any,
+    Optional,
+)
+from _typeshed import Incomplete
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
-from typing import Any, Optional
 from typing_extensions import NamedTuple as stdlib_NamedTuple
 
 class deque(stdlib_deque):
@@ -22,17 +37,19 @@ class deque(stdlib_deque):
     methods:
     """
 
-    def __init__(self, iterable, maxlen, flags: Optional[Any] = ...) -> None: ...
+    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None: ...
     def append(self, x) -> Incomplete:
         """
         Add *x* to the right side of the deque.
         Raises IndexError if overflow checking is enabled and there is no more room left.
         """
+        ...
     def popleft(self) -> Incomplete:
         """
         Remove and return an item from the left side of the deque.
         Raises IndexError if no items are present.
         """
+        ...
 
 class OrderedDict(stdlib_OrderedDict):
     """
@@ -79,3 +96,4 @@ def namedtuple(name, fields) -> stdlib_NamedTuple:
         print(t1.name)
         assert t2.name == t2[1]
     """
+    ...

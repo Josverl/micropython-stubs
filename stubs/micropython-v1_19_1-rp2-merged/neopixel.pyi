@@ -1,5 +1,17 @@
+"""
+Control of WS2812 / NeoPixel LEDs.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/neopixel.html
+
+This module provides a driver for WS2818 / NeoPixel LEDs.
+
+``Note:`` This module is only included by default on the ESP8266 and ESP32
+   ports. On STM32 / Pyboard, you can `download the module
+   <https://github.com/micropython/micropython/blob/master/drivers/neopixel/neopixel.py>`_
+   and copy it to the filesystem.
+"""
 from typing import Tuple, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 def bitstream(*args, **kwargs) -> Any: ...
 
@@ -18,9 +30,11 @@ class NeoPixel:
         """
         Writes the current pixel data to the strip.
         """
+        ...
     def fill(self, pixel) -> None:
         """
         Sets the value of all pixels to the specified *pixel* value (i.e. an
         RGB/RGBW tuple).
         """
-    def __init__(self, pin, n, *, bpp: int = ..., timing: int = ...) -> None: ...
+        ...
+    def __init__(self, pin, n, *, bpp=3, timing=1) -> None: ...

@@ -7,7 +7,6 @@
 # Import required libraries
 from micropython import const
 from machine import Pin, ADC
-import time
 
 # ProS3 Hardware Pin Assignments
 

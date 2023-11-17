@@ -13,8 +13,8 @@ working with floating-point numbers.
 Availability: not available on WiPy. Floating point support required
 for this module.
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
-# Stubber: v1.13.4
+# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
+# Stubber: v1.13.8
 from typing import Tuple, Any
 from _typeshed import Incomplete
 
@@ -46,7 +46,7 @@ def trunc(x) -> int:
     ...
 
 
-def isclose(*args, **kwargs) -> Any:
+def isclose(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -229,7 +229,7 @@ def asin(x) -> float:
     ...
 
 
-def factorial(*args, **kwargs) -> Any:
+def factorial(*args, **kwargs) -> Incomplete:
     ...
 
 

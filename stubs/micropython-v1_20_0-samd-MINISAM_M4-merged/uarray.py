@@ -1,10 +1,18 @@
 """
-Module: 'uarray' on micropython-v1.20.0-samd-MINISAM_M4
+Efficient arrays of numeric data.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/array.html
+
+CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html .
+
+Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
+``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
+floating-point support).
 """
 # MCU: OrderedDict({'build': '', 'ver': 'v1.20.0', 'version': '1.20.0', 'port': 'samd', 'board': 'MINISAM_M4', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51G19A', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
 from typing import List, Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
 class array(List):
@@ -27,5 +35,5 @@ class array(List):
         """
         ...
 
-    def __init__(self, typecode, iterable: Optional[Any] = ...) -> None:
+    def __init__(self, typecode, iterable: Optional[Any] = None) -> None:
         ...

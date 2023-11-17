@@ -1,10 +1,14 @@
 """
-Module: 'lcd160cr' on micropython-v1.21.0-stm32-PYBV11
+Control of LCD160CR display.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/lcd160cr.html
+
+This module provides control of the MicroPython LCD160CR display.
 """
 # MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
 # Stubber: v1.13.8
 from typing import Tuple, Any
-from _typeshed import Incomplete as Incomplete, Incomplete
+from _typeshed import Incomplete
 
 LANDSCAPE = 1  # type: int
 PORTRAIT_UPSIDEDOWN = 2  # type: int
@@ -41,9 +45,9 @@ class LCD160CR:
           position, and "Y" when connected in the Y-skin position.  "XY"
           and "YX" are used when the display is connected to the right or
           left side of the pyboard, respectively.
-        - *pwr* is a Pin object connected to the LCD\'s power/enabled pin.
-        - *i2c* is an I2C object connected to the LCD\'s I2C interface.
-        - *spi* is an SPI object connected to the LCD\'s SPI interface.
+        - *pwr* is a Pin object connected to the LCD's power/enabled pin.
+        - *i2c* is an I2C object connected to the LCD's I2C interface.
+        - *spi* is an SPI object connected to the LCD's SPI interface.
         - *i2c_addr* is the I2C address of the display.
 
     One must specify either a valid *connect* or all of *pwr*, *i2c* and *spi*.
@@ -84,7 +88,7 @@ class LCD160CR:
     def rect_interior_no_clip(self, x, y, w, h) -> Incomplete:
         ...
 
-    def touch_config(self, calib: bool = ..., save: bool = ..., irq: Incomplete | None = ...) -> None:
+    def touch_config(self, calib=False, save=False, irq=None) -> None:
         """
         Configure the touch panel:
 
@@ -193,9 +197,7 @@ class LCD160CR:
         """
         ...
 
-    def set_scroll_win(
-        self, win, x: int = ..., y: int = ..., w: int = ..., h: int = ..., vec: int = ..., pat: int = ..., fill: int = ..., color: int = ...
-    ) -> None:
+    def set_scroll_win(self, win, x=-1, y=0, w=0, h=0, vec=0, pat=0, fill=0x07E0, color=0) -> None:
         """
         Configure a window region for scrolling:
 
@@ -228,7 +230,7 @@ class LCD160CR:
         """
         ...
 
-    def fast_spi(self, flush: bool = ...) -> SPI:
+    def fast_spi(self, flush=True) -> SPI:
         """
         Ready the display to accept RGB pixel data on the SPI bus, resetting the location
         of the first byte to go to the top-left corner of the window set by
@@ -347,7 +349,7 @@ class LCD160CR:
         """
         ...
 
-    def screen_dump(self, buf, x: int = ..., y: int = ..., w: Incomplete | None = ..., h: Incomplete | None = ...) -> Incomplete:
+    def screen_dump(self, buf, x=0, y=0, w=None, h=None) -> Incomplete:
         """
         Dump the contents of the screen to the given buffer.  The parameters *x* and *y*
         specify the starting coordinate, and *w* and *h* the size of the region.  If *w*
@@ -358,7 +360,7 @@ class LCD160CR:
         """
         ...
 
-    def set_font(self, font, scale: int = ..., bold: int = ..., trans: int = ..., scroll: int = ...) -> None:
+    def set_font(self, font, scale=0, bold=0, trans=0, scroll=0) -> None:
         """
         Set the font for the text.  Subsequent calls to `write` will use the newly
         configured font.  The parameters are:
@@ -434,13 +436,5 @@ class LCD160CR:
         """
         ...
 
-    def __init__(
-        self,
-        connect: Incomplete | None = ...,
-        *,
-        pwr: Incomplete | None = ...,
-        i2c: Incomplete | None = ...,
-        spi: Incomplete | None = ...,
-        i2c_addr: int = ...,
-    ) -> None:
+    def __init__(self, connect=None, *, pwr=None, i2c=None, spi=None, i2c_addr=98) -> None:
         ...

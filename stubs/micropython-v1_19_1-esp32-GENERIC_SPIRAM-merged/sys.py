@@ -1,10 +1,14 @@
 """
-Module: 'sys' on micropython-v1.19.1-esp32
+System specific functions.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/sys.html
+
+CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Dict, List, Tuple, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 platform = "esp32"  # type: str
 version_info = ()  # type: tuple
@@ -19,7 +23,7 @@ implementation = ()  # type: tuple
 maxsize = 2147483647  # type: int
 
 
-def print_exception(exc, file=...) -> None:
+def print_exception(exc, file=stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
@@ -36,7 +40,7 @@ def print_exception(exc, file=...) -> None:
     ...
 
 
-def exit(retval: int = ...) -> Incomplete:
+def exit(retval=0, /) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its

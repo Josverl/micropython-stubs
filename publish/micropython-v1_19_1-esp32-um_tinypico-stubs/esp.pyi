@@ -10,12 +10,21 @@ ports.
 from typing import Optional, Any
 from _typeshed import Incomplete
 
-LOG_NONE: int
-LOG_WARNING: int
-LOG_VERBOSE: int
 LOG_DEBUG: int
-LOG_INFO: int
 LOG_ERROR: int
+LOG_INFO: int
+LOG_NONE: int
+LOG_VERBOSE: int
+LOG_WARNING: int
+
+def dht_readinto(*args, **kwargs) -> Any: ...
+def flash_erase(sector_no) -> Incomplete: ...
+def flash_read(byte_offset, length_or_buffer) -> Incomplete: ...
+def flash_size() -> Incomplete:
+    """
+    Read the total size of the flash memory.
+    """
+    ...
 
 def flash_user_start() -> Incomplete:
     """
@@ -42,13 +51,3 @@ def osdebug(level) -> None:
           which can potentially flood the output
     """
     ...
-
-def flash_size() -> Incomplete:
-    """
-    Read the total size of the flash memory.
-    """
-    ...
-
-def dht_readinto(*args, **kwargs) -> Any: ...
-def flash_erase(sector_no) -> Incomplete: ...
-def flash_read(byte_offset, length_or_buffer) -> Incomplete: ...

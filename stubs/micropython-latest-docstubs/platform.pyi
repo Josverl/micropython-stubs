@@ -11,7 +11,9 @@ makes this information available via function APIs.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/platform.rst
-from typing import Tuple
+from typing import (
+    Tuple,
+)
 from _typeshed import Incomplete
 
 def platform() -> str:

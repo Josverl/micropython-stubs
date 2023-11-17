@@ -1,10 +1,16 @@
 """
-Module: 'esp' on micropython-v1.20.0-esp32-GENERIC_S3
+Functions related to the ESP8266 and ESP32.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/esp.html
+
+The ``esp`` module contains specific functions related to both the ESP8266 and
+ESP32 modules.  Some functions are only available on one or the other of these
+ports.
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': 'v1.20.0', 'cpu': 'ESP32S3'})
 # Stubber: v1.13.7
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 LOG_NONE = 0  # type: int
 LOG_WARNING = 2  # type: int

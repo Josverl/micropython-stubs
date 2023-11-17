@@ -8,7 +8,10 @@ CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/gc.rst
-from typing import Any, Optional
+from typing import (
+    Any,
+    Optional,
+)
 from _typeshed import Incomplete
 
 def enable() -> None:

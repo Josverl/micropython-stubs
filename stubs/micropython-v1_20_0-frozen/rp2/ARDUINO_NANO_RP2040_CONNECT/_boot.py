@@ -1,5 +1,6 @@
 import os
-import machine, rp2
+import machine
+import rp2
 
 
 # Try to mount the filesystem, and format the flash if it doesn't exist.

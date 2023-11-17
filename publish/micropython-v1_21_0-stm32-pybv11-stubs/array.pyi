@@ -12,7 +12,7 @@ floating-point support).
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, List, Optional
 
-class array:
+class array(List):
     """
     Create array with elements of given type. Initial contents of the
     array are given by *iterable*. If it is not provided, an empty

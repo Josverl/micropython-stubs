@@ -6,8 +6,8 @@ MicroPython module: https://docs.micropython.org/en/latest/library/stm.html
 This module provides functionality specific to STM32 microcontrollers, including
 direct access to peripheral registers.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
-# Stubber: v1.13.7
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
 from typing import Tuple, Any
 from _typeshed import Incomplete
 
@@ -269,6 +269,6 @@ GPIO_BSRRH = 26  # type: int
 GPIO_LCKR = 28  # type: int
 GPIO_IDR = 16  # type: int
 GPIO_BSRRL = 24  # type: int
-mem32: Any  ## <class 'mem'> = <32-bit memory>
-mem8: Any  ## <class 'mem'> = <8-bit memory>
-mem16: Any  ## <class 'mem'> = <16-bit memory>
+mem32: Incomplete  ## <class 'mem'> = <32-bit memory>
+mem8: Incomplete  ## <class 'mem'> = <8-bit memory>
+mem16: Incomplete  ## <class 'mem'> = <16-bit memory>

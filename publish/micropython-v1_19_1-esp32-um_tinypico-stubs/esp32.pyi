@@ -10,101 +10,8 @@ from __future__ import annotations
 from typing import List, Optional, Tuple, Union, Any
 from _typeshed import Incomplete
 
-WAKEUP_ALL_LOW: bool
-WAKEUP_ANY_HIGH: bool
-HEAP_EXEC: int
 HEAP_DATA: int
-
-def idf_heap_info(capabilities) -> List[Tuple]:
-    """
-    Returns information about the ESP-IDF heap memory regions. One of them contains
-    the MicroPython heap and the others are used by ESP-IDF, e.g., for network
-    buffers and other data. This data is useful to get a sense of how much memory
-    is available to ESP-IDF and the networking stack in particular. It may shed
-    some light on situations where ESP-IDF operations fail due to allocation failures.
-    The information returned is *not* useful to troubleshoot Python allocation failures,
-    use `micropython.mem_info()` instead.
-
-    The capabilities parameter corresponds to ESP-IDF's ``MALLOC_CAP_XXX`` values but the
-    two most useful ones are predefined as `esp32.HEAP_DATA` for data heap regions and
-    `esp32.HEAP_EXEC` for executable regions as used by the native code emitter.
-
-    The return value is a list of 4-tuples, where each 4-tuple corresponds to one heap
-    and contains: the total bytes, the free bytes, the largest free block, and
-    the minimum free seen over time.
-
-    Example after booting::
-
-        >>> import esp32; esp32.idf_heap_info(esp32.HEAP_DATA)
-        [(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512, 35108),
-         (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]
-    """
-    ...
-
-def hall_sensor() -> int:
-    """
-    Read the raw value of the internal Hall sensor, returning an integer.
-    """
-    ...
-
-def wake_on_ext1(pins, level) -> None:
-    """
-    Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
-    or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
-    or ``esp32.WAKEUP_ANY_HIGH``.
-    """
-    ...
-
-def raw_temperature() -> int:
-    """
-    Read the raw value of the internal temperature sensor, returning an integer.
-    """
-    ...
-
-def wake_on_ext0(pin, level) -> None:
-    """
-    Configure how EXT0 wakes the device from sleep.  *pin* can be ``None``
-    or a valid Pin object.  *level* should be ``esp32.WAKEUP_ALL_LOW`` or
-    ``esp32.WAKEUP_ANY_HIGH``.
-    """
-    ...
-
-def wake_on_touch(wake) -> None:
-    """
-    Configure whether or not a touch will wake the device from sleep.
-    *wake* should be a boolean value.
-    """
-    ...
-
-def gpio_deep_sleep_hold(enable) -> None:
-    """
-    Configure whether non-RTC GPIO pin configuration is retained during
-    deep-sleep mode for held pads. *enable* should be a boolean value.
-    """
-    ...
-
-class ULP:
-    """
-    This class provides access to the Ultra-Low-Power co-processor.
-    """
-
-    RESERVE_MEM: int
-    def run(self, entry_point) -> Incomplete:
-        """
-        Start the ULP running at the given *entry_point*.
-        """
-        ...
-    def set_wakeup_period(self, period_index, period_us) -> None:
-        """
-        Set the wake-up period.
-        """
-        ...
-    def load_binary(self, load_addr, program_binary) -> None:
-        """
-        Load a *program_binary* into the ULP at the given *load_addr*.
-        """
-        ...
-    def __init__(self) -> None: ...
+HEAP_EXEC: int
 
 class NVS:
     """
@@ -112,15 +19,28 @@ class NVS:
     present).
     """
 
+    def __init__(self, namespace) -> None: ...
+    def commit(self) -> Incomplete:
+        """
+        Commits changes made by *set_xxx* methods to flash.
+        """
+        ...
+    def erase_key(self, key) -> Incomplete:
+        """
+        Erases a key-value pair.
+        """
+        ...
+    def get_blob(self, key, buffer) -> int:
+        """
+        Reads the value of the blob for the specified key into the buffer, which must be a bytearray.
+        Returns the actual length read. Raises an OSError if the key does not exist, has a different
+        type, or if the buffer is too small.
+        """
+        ...
     def get_i32(self, key) -> int:
         """
         Returns the signed integer value for the specified key. Raises an OSError if the key does not
         exist or has a different type.
-        """
-        ...
-    def set_i32(self, key, value) -> None:
-        """
-        Sets a 32-bit signed integer value for the specified key. Remember to call *commit*!
         """
         ...
     def set_blob(self, key, value) -> None:
@@ -131,24 +51,11 @@ class NVS:
         Remember to call *commit*!
         """
         ...
-    def commit(self) -> Incomplete:
+    def set_i32(self, key, value) -> None:
         """
-        Commits changes made by *set_xxx* methods to flash.
-        """
-        ...
-    def get_blob(self, key, buffer) -> int:
-        """
-        Reads the value of the blob for the specified key into the buffer, which must be a bytearray.
-        Returns the actual length read. Raises an OSError if the key does not exist, has a different
-        type, or if the buffer is too small.
+        Sets a 32-bit signed integer value for the specified key. Remember to call *commit*!
         """
         ...
-    def erase_key(self, key) -> Incomplete:
-        """
-        Erases a key-value pair.
-        """
-        ...
-    def __init__(self, namespace) -> None: ...
 
 class Partition:
     """
@@ -157,29 +64,7 @@ class Partition:
     *block_size* specifies the byte size of an individual block.
     """
 
-    RUNNING: int
-    TYPE_APP: int
-    TYPE_DATA: int
-    BOOT: int
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
-    def ioctl(self, cmd, arg) -> Incomplete:
-        """
-        These methods implement the simple and :ref:`extended
-        <block-device-interface>` block protocol defined by
-        :class:`os.AbstractBlockDev`.
-        """
-        ...
-    def set_boot(self) -> None:
-        """
-        Sets the partition as the boot partition.
-        """
-        ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
-    def info(self) -> Tuple:
-        """
-        Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``.
-        """
-        ...
+    def __init__(self, id, block_size=4096, /) -> None: ...
     @classmethod
     def find(cls, type=TYPE_APP, subtype=0xFF, label=None, block_size=4096) -> List:
         """
@@ -191,11 +76,27 @@ class Partition:
         objects.
         """
         ...
+    BOOT: int
+    RUNNING: int
+    TYPE_APP: int
+    TYPE_DATA: int
     def get_next_update(self) -> Partition:
         """
         Gets the next update partition after this one, and returns a new Partition object.
         Typical usage is ``Partition(Partition.RUNNING).get_next_update()``
         which returns the next partition to update given the current running one.
+        """
+        ...
+    def info(self) -> Tuple:
+        """
+        Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``.
+        """
+        ...
+    def ioctl(self, cmd, arg) -> Incomplete:
+        """
+        These methods implement the simple and :ref:`extended
+        <block-device-interface>` block protocol defined by
+        :class:`os.AbstractBlockDev`.
         """
         ...
     @classmethod
@@ -211,7 +112,13 @@ class Partition:
         necessary when booting firmare that was loaded using esptool.
         """
         ...
-    def __init__(self, id, block_size=4096, /) -> None: ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def set_boot(self) -> None:
+        """
+        Sets the partition as the boot partition.
+        """
+        ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
 class RMT:
     """
@@ -230,18 +137,40 @@ class RMT:
     *idle_level*).
     """
 
-    def source_freq(self) -> Incomplete:
+    def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None: ...
+    @staticmethod
+    def bitstream_channel(value: Optional[Any] = None) -> int:
         """
-        Returns the source clock frequency. Currently the source clock is not
-        configurable so this will always return 80MHz.
+        Select which RMT channel is used by the `machine.bitstream` implementation.
+        *value* can be ``None`` or a valid RMT channel number.  The default RMT
+        channel is the highest numbered one.
+
+        Passing in ``None`` disables the use of RMT and instead selects a bit-banging
+        implementation for `machine.bitstream`.
+
+        Passing in no argument will not change the channel.  This function returns
+        the current channel number.
         """
         ...
+    def clock_div(self) -> Incomplete:
+        """
+        Return the clock divider. Note that the channel resolution is
+        ``1 / (source_freq / clock_div)``.
+        """
+        ...
+    def deinit(self, *args, **kwargs) -> Any: ...
     def loop(self, enable_loop) -> None:
         """
         Configure looping on the channel. *enable_loop* is bool, set to ``True`` to
         enable looping on the *next* call to `RMT.write_pulses`. If called with
         ``False`` while a looping sequence is currently being transmitted then the
         current loop iteration will be completed and then transmission will stop.
+        """
+        ...
+    def source_freq(self) -> Incomplete:
+        """
+        Returns the source clock frequency. Currently the source clock is not
+        configurable so this will always return 80MHz.
         """
         ...
     def wait_done(self, *, timeout=0) -> bool:
@@ -281,25 +210,97 @@ class RMT:
         supported by the hardware.
         """
         ...
-    @staticmethod
-    def bitstream_channel(value: Optional[Any] = None) -> int:
+
+class ULP:
+    """
+    This class provides access to the Ultra-Low-Power co-processor.
+    """
+
+    def __init__(self) -> None: ...
+    RESERVE_MEM: int
+    def load_binary(self, load_addr, program_binary) -> None:
         """
-        Select which RMT channel is used by the `machine.bitstream` implementation.
-        *value* can be ``None`` or a valid RMT channel number.  The default RMT
-        channel is the highest numbered one.
-
-        Passing in ``None`` disables the use of RMT and instead selects a bit-banging
-        implementation for `machine.bitstream`.
-
-        Passing in no argument will not change the channel.  This function returns
-        the current channel number.
+        Load a *program_binary* into the ULP at the given *load_addr*.
         """
         ...
-    def deinit(self, *args, **kwargs) -> Any: ...
-    def clock_div(self) -> Incomplete:
+    def run(self, entry_point) -> Incomplete:
         """
-        Return the clock divider. Note that the channel resolution is
-        ``1 / (source_freq / clock_div)``.
+        Start the ULP running at the given *entry_point*.
         """
         ...
-    def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None: ...
+    def set_wakeup_period(self, period_index, period_us) -> None:
+        """
+        Set the wake-up period.
+        """
+        ...
+
+WAKEUP_ALL_LOW: bool
+WAKEUP_ANY_HIGH: bool
+
+def gpio_deep_sleep_hold(enable) -> None:
+    """
+    Configure whether non-RTC GPIO pin configuration is retained during
+    deep-sleep mode for held pads. *enable* should be a boolean value.
+    """
+    ...
+
+def hall_sensor() -> int:
+    """
+    Read the raw value of the internal Hall sensor, returning an integer.
+    """
+    ...
+
+def idf_heap_info(capabilities) -> List[Tuple]:
+    """
+    Returns information about the ESP-IDF heap memory regions. One of them contains
+    the MicroPython heap and the others are used by ESP-IDF, e.g., for network
+    buffers and other data. This data is useful to get a sense of how much memory
+    is available to ESP-IDF and the networking stack in particular. It may shed
+    some light on situations where ESP-IDF operations fail due to allocation failures.
+    The information returned is *not* useful to troubleshoot Python allocation failures,
+    use `micropython.mem_info()` instead.
+
+    The capabilities parameter corresponds to ESP-IDF's ``MALLOC_CAP_XXX`` values but the
+    two most useful ones are predefined as `esp32.HEAP_DATA` for data heap regions and
+    `esp32.HEAP_EXEC` for executable regions as used by the native code emitter.
+
+    The return value is a list of 4-tuples, where each 4-tuple corresponds to one heap
+    and contains: the total bytes, the free bytes, the largest free block, and
+    the minimum free seen over time.
+
+    Example after booting::
+
+        >>> import esp32; esp32.idf_heap_info(esp32.HEAP_DATA)
+        [(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512, 35108),
+         (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]
+    """
+    ...
+
+def raw_temperature() -> int:
+    """
+    Read the raw value of the internal temperature sensor, returning an integer.
+    """
+    ...
+
+def wake_on_ext0(pin, level) -> None:
+    """
+    Configure how EXT0 wakes the device from sleep.  *pin* can be ``None``
+    or a valid Pin object.  *level* should be ``esp32.WAKEUP_ALL_LOW`` or
+    ``esp32.WAKEUP_ANY_HIGH``.
+    """
+    ...
+
+def wake_on_ext1(pins, level) -> None:
+    """
+    Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
+    or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
+    or ``esp32.WAKEUP_ANY_HIGH``.
+    """
+    ...
+
+def wake_on_touch(wake) -> None:
+    """
+    Configure whether or not a touch will wake the device from sleep.
+    *wake* should be a boolean value.
+    """
+    ...

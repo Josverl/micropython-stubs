@@ -6,8 +6,8 @@ MicroPython module: https://docs.micropython.org/en/latest/library/stm.html
 This module provides functionality specific to STM32 microcontrollers, including
 direct access to peripheral registers.
 """
-from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Tuple
 
 SPI_I2SPR: int
 RTC_DR: int
@@ -267,6 +267,6 @@ GPIO_BSRRH: int
 GPIO_LCKR: int
 GPIO_IDR: int
 GPIO_BSRRL: int
-mem32: Any
-mem8: Any
-mem16: Any
+mem32: Incomplete
+mem8: Incomplete
+mem16: Incomplete

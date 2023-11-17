@@ -1,13 +1,19 @@
 """
-Module: 'collections' on micropython-v1.20.0-samd-MINISAM_M4
+Collection and container types.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/collections.html
+
+CPython module: :mod:`python:collections` https://docs.python.org/3/library/collections.html .
+
+This module implements advanced collection and container types to
+hold/accumulate various objects.
 """
 # MCU: OrderedDict({'build': '', 'ver': 'v1.20.0', 'version': '1.20.0', 'port': 'samd', 'board': 'MINISAM_M4', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51G19A', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
-from queue import Queue as Queue
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
 from typing_extensions import NamedTuple as stdlib_NamedTuple
+from _typeshed import Incomplete
 
 
 def namedtuple(name, fields) -> stdlib_NamedTuple:
@@ -126,5 +132,5 @@ class deque(stdlib_deque):
         """
         ...
 
-    def __init__(self, iterable, maxlen, flags: Optional[Any] = ...) -> None:
+    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None:
         ...

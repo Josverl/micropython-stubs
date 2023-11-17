@@ -1,10 +1,22 @@
 """
-Module: 'math' on micropython-v1.19.1-esp32
+Mathematical functions.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/math.html
+
+CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
+
+The ``math`` module provides some basic mathematical functions for
+working with floating-point numbers.
+
+*Note:* On the pyboard, floating-point numbers have 32-bit precision.
+
+Availability: not available on WiPy. Floating point support required
+for this module.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Tuple, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
 def pow(x, y) -> Incomplete:

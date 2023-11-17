@@ -29,11 +29,19 @@ Example::
     # Running on a generic board
     from machine import Pin
     asyncio.run(main(Pin(1), Pin(2)))
+
+Core functions
+--------------
 """
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/asyncio.rst
-from typing import Any, Coroutine, List, Tuple
+from typing import (
+    Any,
+    Coroutine,
+    List,
+    Tuple,
+)
 from _typeshed import Incomplete
 
 class Task:

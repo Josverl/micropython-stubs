@@ -9,8 +9,8 @@ The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
-# Stubber: v1.13.7
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
 from typing import IO, Iterator, Optional, Tuple, Any
 from _typeshed import Incomplete
 from stdlib.os import *
@@ -89,7 +89,7 @@ def sync() -> None:
     ...
 
 
-def unlink(*args, **kwargs) -> Any:
+def unlink(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -226,7 +226,7 @@ class VfsLfs2:
     See :ref:`filesystem` for more information.
     """
 
-    def rename(self, *args, **kwargs) -> Any:
+    def rename(self, *args, **kwargs) -> Incomplete:
         ...
 
     @staticmethod
@@ -239,37 +239,37 @@ class VfsLfs2:
         """
         ...
 
-    def mount(self, *args, **kwargs) -> Any:
+    def mount(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def statvfs(self, *args, **kwargs) -> Any:
+    def statvfs(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def rmdir(self, *args, **kwargs) -> Any:
+    def rmdir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def stat(self, *args, **kwargs) -> Any:
+    def stat(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def umount(self, *args, **kwargs) -> Any:
+    def umount(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def remove(self, *args, **kwargs) -> Any:
+    def remove(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def mkdir(self, *args, **kwargs) -> Any:
+    def mkdir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def open(self, *args, **kwargs) -> Any:
+    def open(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def ilistdir(self, *args, **kwargs) -> Any:
+    def ilistdir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def chdir(self, *args, **kwargs) -> Any:
+    def chdir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def getcwd(self, *args, **kwargs) -> Any:
+    def getcwd(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None:
@@ -283,7 +283,7 @@ class VfsFat:
     Objects created by this constructor can be mounted using :func:`mount`.
     """
 
-    def rename(self, *args, **kwargs) -> Any:
+    def rename(self, *args, **kwargs) -> Incomplete:
         ...
 
     @staticmethod
@@ -293,37 +293,37 @@ class VfsFat:
         """
         ...
 
-    def mount(self, *args, **kwargs) -> Any:
+    def mount(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def statvfs(self, *args, **kwargs) -> Any:
+    def statvfs(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def rmdir(self, *args, **kwargs) -> Any:
+    def rmdir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def stat(self, *args, **kwargs) -> Any:
+    def stat(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def umount(self, *args, **kwargs) -> Any:
+    def umount(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def remove(self, *args, **kwargs) -> Any:
+    def remove(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def mkdir(self, *args, **kwargs) -> Any:
+    def mkdir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def open(self, *args, **kwargs) -> Any:
+    def open(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def ilistdir(self, *args, **kwargs) -> Any:
+    def ilistdir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def chdir(self, *args, **kwargs) -> Any:
+    def chdir(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def getcwd(self, *args, **kwargs) -> Any:
+    def getcwd(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, block_dev) -> None:

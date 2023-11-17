@@ -23,14 +23,14 @@ be implemented:
   selected boards, targeting interoperability with legacy applications,
   will offer this.
 """
-from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Optional
 
 class sha256:
     """
     Create an SHA256 hasher object and optionally feed ``data`` into it.
     """
 
-    def digest(self, *args, **kwargs) -> Any: ...
-    def update(self, *args, **kwargs) -> Any: ...
+    def digest(self, *args, **kwargs) -> Incomplete: ...
+    def update(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, data: Optional[Any] = None) -> None: ...

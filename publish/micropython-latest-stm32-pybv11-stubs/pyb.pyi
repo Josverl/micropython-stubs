@@ -5,8 +5,8 @@ MicroPython module: https://docs.micropython.org/en/latest/library/pyb.html
 
 The ``pyb`` module contains specific functions related to the board.
 """
-from typing import List, NoReturn, Optional, Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, List, NoReturn, Optional, Tuple
 
 hid_mouse: tuple
 hid_keyboard: tuple
@@ -164,7 +164,7 @@ def sync() -> None:
     """
     ...
 
-def servo(*args, **kwargs) -> Any: ...
+def servo(*args, **kwargs) -> Incomplete: ...
 def standby() -> Incomplete:
     """
     Put the pyboard into a "deep sleep" state.
@@ -306,8 +306,8 @@ def repl_uart(uart) -> UART:
     """
     ...
 
-def pwm(*args, **kwargs) -> Any: ...
-def repl_info(*args, **kwargs) -> Any: ...
+def pwm(*args, **kwargs) -> Incomplete: ...
+def repl_info(*args, **kwargs) -> Incomplete: ...
 def stop() -> Incomplete:
     """
     Put the pyboard in a "sleeping" state.
@@ -341,14 +341,14 @@ def bootloader() -> None:
     """
     ...
 
-def country(*args, **kwargs) -> Any: ...
+def country(*args, **kwargs) -> Incomplete: ...
 
 class ADCAll:
-    def read_core_vbat(self, *args, **kwargs) -> Any: ...
-    def read_core_vref(self, *args, **kwargs) -> Any: ...
-    def read_vref(self, *args, **kwargs) -> Any: ...
-    def read_core_temp(self, *args, **kwargs) -> Any: ...
-    def read_channel(self, *args, **kwargs) -> Any: ...
+    def read_core_vbat(self, *args, **kwargs) -> Incomplete: ...
+    def read_core_vref(self, *args, **kwargs) -> Incomplete: ...
+    def read_vref(self, *args, **kwargs) -> Incomplete: ...
+    def read_core_temp(self, *args, **kwargs) -> Incomplete: ...
+    def read_channel(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class Accel:
@@ -376,7 +376,7 @@ class Accel:
         Get the z-axis value.
         """
         ...
-    def read(self, *args, **kwargs) -> Any: ...
+    def read(self, *args, **kwargs) -> Incomplete: ...
     def filtered_xyz(self) -> Tuple:
         """
         Get a 3-tuple of filtered x, y and z values.
@@ -387,7 +387,7 @@ class Accel:
         times the size of what they would be from the raw x(), y() and z() calls.
         """
         ...
-    def write(self, *args, **kwargs) -> Any: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self) -> None: ...
 
 class CAN:
@@ -895,7 +895,7 @@ class ADC:
         ...
     def __init__(self, pin) -> None: ...
 
-SD: Any
+SD: Incomplete
 
 class DAC:
     """
@@ -994,7 +994,7 @@ class RTC:
          - Bit 0x20000 is set if an external reset occurred
         """
         ...
-    def init(self, *args, **kwargs) -> Any: ...
+    def init(self, *args, **kwargs) -> Incomplete: ...
     def wakeup(self, timeout, callback=None) -> None:
         """
         Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
@@ -1515,9 +1515,9 @@ class UART:
         only 7 and 8 bits are supported.
         """
         ...
-    def flush(self, *args, **kwargs) -> Any: ...
-    def irq(self, *args, **kwargs) -> Any: ...
-    def txdone(self, *args, **kwargs) -> Any: ...
+    def flush(self, *args, **kwargs) -> Incomplete: ...
+    def irq(self, *args, **kwargs) -> Incomplete: ...
+    def txdone(self, *args, **kwargs) -> Incomplete: ...
     def sendbreak(self) -> None:
         """
         Send a break condition on the bus.  This drives the bus low for a duration
@@ -1920,10 +1920,10 @@ class SPI:
         prescaler.
         """
         ...
-    def write_readinto(self, *args, **kwargs) -> Any: ...
-    def write(self, *args, **kwargs) -> Any: ...
-    def read(self, *args, **kwargs) -> Any: ...
-    def readinto(self, *args, **kwargs) -> Any: ...
+    def write_readinto(self, *args, **kwargs) -> Incomplete: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
+    def read(self, *args, **kwargs) -> Incomplete: ...
+    def readinto(self, *args, **kwargs) -> Incomplete: ...
     def send(self, send, *, timeout=5000) -> None:
         """
         Send data on the bus:
@@ -2003,8 +2003,8 @@ class Pin:
         function.
         """
         ...
-    def low(self, *args, **kwargs) -> Any: ...
-    def irq(self, *args, **kwargs) -> Any: ...
+    def low(self, *args, **kwargs) -> Incomplete: ...
+    def irq(self, *args, **kwargs) -> Incomplete: ...
     def pin(self) -> int:
         """
         Get the pin number.
@@ -2020,8 +2020,8 @@ class Pin:
         Returns the cpu and board names for this pin.
         """
         ...
-    def on(self, *args, **kwargs) -> Any: ...
-    def off(self, *args, **kwargs) -> Any: ...
+    def on(self, *args, **kwargs) -> Incomplete: ...
+    def off(self, *args, **kwargs) -> Incomplete: ...
     def init(self, mode, pull=PULL_NONE, *, value=None, alt=-1) -> None:
         """
         Initialise the pin:
@@ -2077,7 +2077,7 @@ class Pin:
             is set high, otherwise it is set low.
         """
         ...
-    def high(self, *args, **kwargs) -> Any: ...
+    def high(self, *args, **kwargs) -> Incomplete: ...
     def gpio(self) -> int:
         """
         Returns the base address of the GPIO block associated with this pin.
@@ -2097,53 +2097,53 @@ class Pin:
         ...
 
     class cpu:
-        B9: Any
-        B8: Any
-        B7: Any
-        C0: Any
-        C1: Any
-        C10: Any
-        B3: Any
-        B2: Any
-        B6: Any
-        B4: Any
-        B5: Any
-        B15: Any
-        C7: Any
-        C6: Any
-        C5: Any
-        C8: Any
-        C9: Any
-        C11: Any
-        C13: Any
-        C12: Any
-        C4: Any
-        C2: Any
-        C3: Any
-        D2: Any
-        A15: Any
-        A14: Any
-        A13: Any
-        A2: Any
-        A3: Any
-        A4: Any
-        A1: Any
-        A0: Any
-        A12: Any
-        A10: Any
-        A11: Any
-        B14: Any
-        B11: Any
-        B10: Any
-        B1: Any
-        B12: Any
-        B13: Any
-        A5: Any
-        A7: Any
-        A6: Any
-        B0: Any
-        A8: Any
-        A9: Any
+        B9: Incomplete
+        B8: Incomplete
+        B7: Incomplete
+        C0: Incomplete
+        C1: Incomplete
+        C10: Incomplete
+        B3: Incomplete
+        B2: Incomplete
+        B6: Incomplete
+        B4: Incomplete
+        B5: Incomplete
+        B15: Incomplete
+        C7: Incomplete
+        C6: Incomplete
+        C5: Incomplete
+        C8: Incomplete
+        C9: Incomplete
+        C11: Incomplete
+        C13: Incomplete
+        C12: Incomplete
+        C4: Incomplete
+        C2: Incomplete
+        C3: Incomplete
+        D2: Incomplete
+        A15: Incomplete
+        A14: Incomplete
+        A13: Incomplete
+        A2: Incomplete
+        A3: Incomplete
+        A4: Incomplete
+        A1: Incomplete
+        A0: Incomplete
+        A12: Incomplete
+        A10: Incomplete
+        A11: Incomplete
+        B14: Incomplete
+        B11: Incomplete
+        B10: Incomplete
+        B1: Incomplete
+        B12: Incomplete
+        B13: Incomplete
+        A5: Incomplete
+        A7: Incomplete
+        A6: Incomplete
+        B0: Incomplete
+        A8: Incomplete
+        A9: Incomplete
         def __init__(self, *argv, **kwargs) -> None: ...
 
     @classmethod
@@ -2154,55 +2154,55 @@ class Pin:
         ...
 
     class board:
-        X5: Any
-        X18: Any
-        X4: Any
-        X8: Any
-        X6: Any
-        X7: Any
-        X2: Any
-        X3: Any
-        X19: Any
-        X22: Any
-        X20: Any
-        X21: Any
-        Y5: Any
-        X9: Any
-        Y4: Any
-        Y8: Any
-        Y6: Any
-        Y7: Any
-        Y10: Any
-        Y3: Any
-        Y1: Any
-        Y2: Any
-        Y11: Any
-        Y12: Any
-        Y9: Any
-        SD_CK: Any
-        X17: Any
-        SD: Any
-        SD_D1: Any
-        SD_CMD: Any
-        SD_D0: Any
-        LED_GREEN: Any
-        MMA_INT: Any
-        LED_BLUE: Any
-        MMA_AVDD: Any
-        LED_RED: Any
-        LED_YELLOW: Any
-        X1: Any
-        SD_D2: Any
-        USB_VBUS: Any
-        X12: Any
-        X10: Any
-        X11: Any
-        SD_SW: Any
-        USB_ID: Any
-        SD_D3: Any
-        USB_DP: Any
-        SW: Any
-        USB_DM: Any
+        X5: Incomplete
+        X18: Incomplete
+        X4: Incomplete
+        X8: Incomplete
+        X6: Incomplete
+        X7: Incomplete
+        X2: Incomplete
+        X3: Incomplete
+        X19: Incomplete
+        X22: Incomplete
+        X20: Incomplete
+        X21: Incomplete
+        Y5: Incomplete
+        X9: Incomplete
+        Y4: Incomplete
+        Y8: Incomplete
+        Y6: Incomplete
+        Y7: Incomplete
+        Y10: Incomplete
+        Y3: Incomplete
+        Y1: Incomplete
+        Y2: Incomplete
+        Y11: Incomplete
+        Y12: Incomplete
+        Y9: Incomplete
+        SD_CK: Incomplete
+        X17: Incomplete
+        SD: Incomplete
+        SD_D1: Incomplete
+        SD_CMD: Incomplete
+        SD_D0: Incomplete
+        LED_GREEN: Incomplete
+        MMA_INT: Incomplete
+        LED_BLUE: Incomplete
+        MMA_AVDD: Incomplete
+        LED_RED: Incomplete
+        LED_YELLOW: Incomplete
+        X1: Incomplete
+        SD_D2: Incomplete
+        USB_VBUS: Incomplete
+        X12: Incomplete
+        X10: Incomplete
+        X11: Incomplete
+        SD_SW: Incomplete
+        USB_ID: Incomplete
+        SD_D3: Incomplete
+        USB_DP: Incomplete
+        SW: Incomplete
+        USB_DM: Incomplete
         def __init__(self, *argv, **kwargs) -> None: ...
 
     def __init__(self, id, *args, **kwargs) -> None: ...
@@ -2215,12 +2215,12 @@ class Pin:
         ...
 
 class SDCard:
-    def writeblocks(self, *args, **kwargs) -> Any: ...
-    def power(self, *args, **kwargs) -> Any: ...
-    def present(self, *args, **kwargs) -> Any: ...
-    def readblocks(self, *args, **kwargs) -> Any: ...
-    def ioctl(self, *args, **kwargs) -> Any: ...
-    def read(self, *args, **kwargs) -> Any: ...
-    def write(self, *args, **kwargs) -> Any: ...
-    def info(self, *args, **kwargs) -> Any: ...
+    def writeblocks(self, *args, **kwargs) -> Incomplete: ...
+    def power(self, *args, **kwargs) -> Incomplete: ...
+    def present(self, *args, **kwargs) -> Incomplete: ...
+    def readblocks(self, *args, **kwargs) -> Incomplete: ...
+    def ioctl(self, *args, **kwargs) -> Incomplete: ...
+    def read(self, *args, **kwargs) -> Incomplete: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
+    def info(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...

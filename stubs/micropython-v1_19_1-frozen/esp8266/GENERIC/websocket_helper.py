@@ -1,7 +1,7 @@
 try:
     import usys as sys
 except ImportError:
-    import sys
+    pass
 
 try:
     import ubinascii as binascii

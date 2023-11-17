@@ -1,10 +1,19 @@
 """
-Module: 'umachine' on micropython-v1.19.1-rp2
+Functions related to the hardware.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/machine.html
+
+The ``machine`` module contains specific functions related to the hardware
+on a particular board. Most functions in this module allow to achieve direct
+and unrestricted access to and control of hardware blocks on a system
+(like CPU, timers, buses, etc.). Used incorrectly, this can lead to
+malfunction, lockups, crashes of your board, and in extreme cases, hardware
+damage.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 WDT_RESET = 3  # type: int
 PWRON_RESET = 1  # type: int
@@ -38,7 +47,7 @@ def enable_irq(state) -> Incomplete:
     ...
 
 
-def bitstream(pin, encoding, timing, data) -> Incomplete:
+def bitstream(pin, encoding, timing, data, /) -> Incomplete:
     """
     Transmits *data* by bit-banging the specified *pin*. The *encoding* argument
     specifies how the bits are encoded, and *timing* is an encoding-specific timing
@@ -63,7 +72,7 @@ def bitstream(pin, encoding, timing, data) -> Incomplete:
     ...
 
 
-def deepsleep(time_ms: Optional[Any] = ...) -> NoReturn:
+def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
     """
     Stops execution in an attempt to enter a low power state.
 
@@ -89,7 +98,7 @@ def deepsleep(time_ms: Optional[Any] = ...) -> NoReturn:
     ...
 
 
-def bootloader(value: Optional[Any] = ...) -> None:
+def bootloader(value: Optional[Any] = None) -> None:
     """
     Reset the device and enter its bootloader.  This is typically used to put the
     device into a state where it can be programmed with new firmware.
@@ -108,7 +117,7 @@ def reset() -> NoReturn:
     ...
 
 
-def freq(hz: Optional[Any] = ...) -> Incomplete:
+def freq(hz: Optional[Any] = None) -> Incomplete:
     """
     Returns the CPU frequency in hertz.
 
@@ -134,7 +143,7 @@ def idle() -> Incomplete:
     ...
 
 
-def time_pulse_us(pin, pulse_level, timeout_us: int = ...) -> int:
+def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     """
     Time a pulse on the given *pin*, and return the duration of the pulse in
     microseconds.  The *pulse_level* argument should be 0 to time a low pulse
@@ -153,7 +162,7 @@ def time_pulse_us(pin, pulse_level, timeout_us: int = ...) -> int:
     ...
 
 
-def lightsleep(time_ms: Optional[Any] = ...) -> Incomplete:
+def lightsleep(time_ms: Optional[Any] = None) -> Incomplete:
     """
     Stops execution in an attempt to enter a low power state.
 
@@ -206,7 +215,7 @@ class WDT:
         """
         ...
 
-    def __init__(self, id: int = ..., timeout: int = ...) -> None:
+    def __init__(self, id=0, timeout=5000) -> None:
         ...
 
 
@@ -232,7 +241,7 @@ class PWM:
     Only one of *duty_u16* and *duty_ns* should be specified at a time.
     """
 
-    def freq(self, value: Optional[Any] = ...) -> Incomplete:
+    def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the current frequency of the PWM output.
 
@@ -243,7 +252,7 @@ class PWM:
         """
         ...
 
-    def duty_u16(self, value: Optional[Any] = ...) -> int:
+    def duty_u16(self, value: Optional[Any] = None) -> int:
         """
         Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
         value in the range 0 to 65535 inclusive.
@@ -255,7 +264,7 @@ class PWM:
         """
         ...
 
-    def duty_ns(self, value: Optional[Any] = ...) -> int:
+    def duty_ns(self, value: Optional[Any] = None) -> int:
         """
         Get or set the current pulse width of the PWM output, as a value in nanoseconds.
 
@@ -271,7 +280,7 @@ class PWM:
         """
         ...
 
-    def __init__(self, dest, *, freq: int = ..., duty: int = ..., duty_u16: int = ..., duty_ns: int = ...) -> None:
+    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None:
         ...
 
 
@@ -301,7 +310,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, id, *, sample_ns: Optional[int] = ..., atten: Optional[int] = ...) -> None:
+    def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None:
         ...
 
 
@@ -321,7 +330,7 @@ class I2C:
     of *scl* and *sda* that cannot be changed.
     """
 
-    def readfrom_mem_into(self, addr, memaddr, buf, *, addrsize: int = ...) -> None:
+    def readfrom_mem_into(self, addr, memaddr, buf, *, addrsize=8) -> None:
         """
         Read into *buf* from the peripheral specified by *addr* starting from the
         memory address specified by *memaddr*.  The number of bytes read is the
@@ -333,7 +342,7 @@ class I2C:
         """
         ...
 
-    def readfrom_into(self, addr, buf, stop: bool = ...) -> None:
+    def readfrom_into(self, addr, buf, stop=True, /) -> None:
         """
         Read into *buf* from the peripheral specified by *addr*.
         The number of bytes read will be the length of *buf*.
@@ -343,7 +352,7 @@ class I2C:
         """
         ...
 
-    def readfrom_mem(self, addr, memaddr, nbytes, *, addrsize: int = ...) -> bytes:
+    def readfrom_mem(self, addr, memaddr, nbytes, *, addrsize=8) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr* starting from the memory
         address specified by *memaddr*.
@@ -352,7 +361,7 @@ class I2C:
         """
         ...
 
-    def writeto_mem(self, addr, memaddr, buf, *, addrsize: int = ...) -> None:
+    def writeto_mem(self, addr, memaddr, buf, *, addrsize=8) -> None:
         """
         Write *buf* to the peripheral specified by *addr* starting from the
         memory address specified by *memaddr*.
@@ -371,7 +380,7 @@ class I2C:
         """
         ...
 
-    def writeto(self, addr, buf, stop: bool = ...) -> int:
+    def writeto(self, addr, buf, stop=True, /) -> int:
         """
         Write the bytes from *buf* to the peripheral specified by *addr*.  If a
         NACK is received following the write of a byte from *buf* then the
@@ -381,7 +390,7 @@ class I2C:
         """
         ...
 
-    def writevto(self, addr, vector, stop: bool = ...) -> int:
+    def writevto(self, addr, vector, stop=True, /) -> int:
         """
         Write the bytes contained in *vector* to the peripheral specified by *addr*.
         *vector* should be a tuple or list of objects with the buffer protocol.
@@ -403,7 +412,7 @@ class I2C:
         """
         ...
 
-    def readfrom(self, addr, nbytes, stop: bool = ...) -> bytes:
+    def readfrom(self, addr, nbytes, stop=True, /) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr*.
         If *stop* is true then a STOP condition is generated at the end of the transfer.
@@ -411,7 +420,7 @@ class I2C:
         """
         ...
 
-    def readinto(self, buf, nack: bool = ...) -> Incomplete:
+    def readinto(self, buf, nack=True, /) -> Incomplete:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
         read is the length of *buf*.  An ACK will be sent on the bus after
@@ -421,7 +430,7 @@ class I2C:
         """
         ...
 
-    def init(self, scl, sda, *, freq: int = ...) -> None:
+    def init(self, scl, sda, *, freq=400000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 
@@ -446,7 +455,7 @@ class I2C:
         ...
 
     def __init__(
-        self, id: Union[int, str] = ..., *, scl: Optional[Union[Pin, str]] = ..., sda: Optional[Union[Pin, str]] = ..., freq: int = ...
+        self, id: Union[int, str] = -1, *, scl: Optional[Union[Pin, str]] = None, sda: Optional[Union[Pin, str]] = None, freq=400_000
     ) -> None:
         ...
 
@@ -529,7 +538,7 @@ class I2S:
         """
         ...
 
-    def __init__(self, id, *, sck, ws, sd, mck: Incomplete | None = ..., mode, bits, format, rate, ibuf) -> None:
+    def __init__(self, id, *, sck, ws, sd, mck=None, mode, bits, format, rate, ibuf) -> None:
         ...
 
 
@@ -629,9 +638,7 @@ class Pin:
         """
         ...
 
-    def irq(
-        self, handler: Incomplete | None = ..., trigger=..., *, priority: int = ..., wake: Incomplete | None = ..., hard: bool = ...
-    ) -> Callable[..., Incomplete]:
+    def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Incomplete]:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is
@@ -676,7 +683,7 @@ class Pin:
         """
         ...
 
-    def value(self, x: Optional[Any] = ...) -> int:
+    def value(self, x: Optional[Any] = None) -> int:
         """
         This method allows to set and get the value of the pin, depending on whether
         the argument ``x`` is supplied or not.
@@ -718,7 +725,7 @@ class Pin:
         """
         ...
 
-    def init(self, mode: int = ..., pull: int = ..., *, value: Incomplete | None = ..., drive: int = ..., alt: int = ...) -> None:
+    def init(self, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
         """
         Re-initialise the pin using the given parameters.  Only those arguments that
         are specified will be set.  The rest of the pin peripheral state will remain
@@ -728,15 +735,16 @@ class Pin:
         """
         ...
 
-    def __init__(self, id, mode: int = ..., pull: int = ..., *, value: Incomplete | None = ..., drive: int = ..., alt: int = ...) -> None:
+    def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
         ...
 
-    def __call__(self, x: Optional[Any] = ...) -> Incomplete:
+    def __call__(self, x: Optional[Any] = None) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
         and get the value of the pin.  It is equivalent to Pin.value([x]).
         See :meth:`Pin.value` for more details.
         """
+        ...
 
 
 class SoftSPI:
@@ -767,18 +775,7 @@ class SoftSPI:
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(
-        self,
-        baudrate: int = ...,
-        *,
-        polarity: int = ...,
-        phase: int = ...,
-        bits: int = ...,
-        firstbit=...,
-        sck: Incomplete | None = ...,
-        mosi: Incomplete | None = ...,
-        miso: Incomplete | None = ...,
-    ) -> None:
+    def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None:
         ...
 
 
@@ -794,7 +791,7 @@ class Timer:
     PERIODIC = 1  # type: int
     ONE_SHOT = 0  # type: int
 
-    def init(self, *, mode=..., period: int = ..., callback: Incomplete | None = ...) -> None:
+    def init(self, *, mode=PERIODIC, period=-1, callback=None) -> None:
         """
         Initialise the timer. Example::
 
@@ -832,7 +829,7 @@ class Timer:
         """
         ...
 
-    def __init__(self, id: int = ..., *args, **kwargs) -> None:
+    def __init__(self, id=-1, *args, **kwargs) -> None:
         ...
 
 
@@ -852,7 +849,7 @@ class UART:
         """
         ...
 
-    def init(self, baudrate: int = ..., bits: int = ..., parity: Incomplete | None = ..., stop: int = ..., *args, **kwargs) -> None:
+    def init(self, baudrate=9600, bits=8, parity=None, stop=1, *args, **kwargs) -> None:
         """
         Initialise the UART bus with the given parameters:
 
@@ -905,7 +902,7 @@ class UART:
         """
         ...
 
-    def read(self, nbytes: Optional[Any] = ...) -> bytes:
+    def read(self, nbytes: Optional[Any] = None) -> bytes:
         """
         Read characters.  If ``nbytes`` is specified then read at most that many bytes,
         otherwise read as much data as possible. It may return sooner if a timeout
@@ -939,7 +936,7 @@ class UART:
         """
         ...
 
-    def readinto(self, buf, nbytes: Optional[Any] = ...) -> Union[int, None]:
+    def readinto(self, buf, nbytes: Optional[Any] = None) -> Union[int, None]:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
         that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
@@ -1015,7 +1012,7 @@ class SoftI2C(I2C):
     def write(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, scl, sda, *, freq: int = ..., timeout: int = ...) -> None:
+    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None:
         ...
 
 
@@ -1024,7 +1021,7 @@ class RTC:
     Create an RTC object. See init for parameters of initialization.
     """
 
-    def datetime(self, datetimetuple: Optional[Any] = ...) -> Tuple:
+    def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
 
@@ -1040,7 +1037,7 @@ class RTC:
         """
         ...
 
-    def __init__(self, id: int = ..., *args, **kwargs) -> None:
+    def __init__(self, id=0, *args, **kwargs) -> None:
         ...
 
 
@@ -1066,17 +1063,7 @@ class SPI:
         ...
 
     def init(
-        self,
-        baudrate: int = ...,
-        *,
-        polarity: int = ...,
-        phase: int = ...,
-        bits: int = ...,
-        firstbit=...,
-        sck: Incomplete | None = ...,
-        mosi: Incomplete | None = ...,
-        miso: Incomplete | None = ...,
-        pins: Optional[Tuple],
+        self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -1112,7 +1099,7 @@ class SPI:
         """
         ...
 
-    def read(self, nbytes, write: int = ...) -> bytes:
+    def read(self, nbytes, write=0x00) -> bytes:
         """
         Read a number of bytes specified by ``nbytes`` while continuously writing
         the single byte given by ``write``.
@@ -1129,7 +1116,7 @@ class SPI:
         """
         ...
 
-    def readinto(self, buf, write: int = ...) -> int:
+    def readinto(self, buf, write=0x00) -> int:
         """
         Read into the buffer specified by ``buf`` while continuously writing the
         single byte given by ``write``.
@@ -1176,7 +1163,7 @@ class Signal(Pin):
         """
         ...
 
-    def value(self, x: Optional[Any] = ...) -> int:
+    def value(self, x: Optional[Any] = None) -> int:
         """
         This method allows to set and get the value of the signal, depending on whether
         the argument ``x`` is supplied or not.
@@ -1196,5 +1183,5 @@ class Signal(Pin):
         """
         ...
 
-    def __init__(self, pin_obj, *args, invert: bool = ...) -> None:
+    def __init__(self, pin_obj, *args, invert=False) -> None:
         ...

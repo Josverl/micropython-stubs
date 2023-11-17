@@ -7,7 +7,6 @@
 # Import required libraries
 from micropython import const
 from machine import Pin, ADC
-import time
 
 # TinyS3 Hardware Pin Assignments
 

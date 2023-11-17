@@ -2,12 +2,12 @@
     "name": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.21.0a544",
+    "pkg_version": "1.22.0a162",
     "path": "micropython-latest-rp2-pimoroni_picolipo_16mb-stubs",
     "stub_sources": [
         [
             "Merged stubs",
-            "micropython-latest-rp2-pimoroni_picolipo_16mb-merged"
+            "micropython-latest-rp2-PIMORONI_PICOLIPO_16MB-merged"
         ],
         [
             "Frozen stubs",

@@ -1,5 +1,14 @@
+"""
+Functions related to the ESP8266 and ESP32.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/esp.html
+
+The ``esp`` module contains specific functions related to both the ESP8266 and
+ESP32 modules.  Some functions are only available on one or the other of these
+ports.
+"""
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 LOG_DEBUG: int
 LOG_ERROR: int
@@ -15,11 +24,13 @@ def flash_size() -> Incomplete:
     """
     Read the total size of the flash memory.
     """
+    ...
 
 def flash_user_start() -> Incomplete:
     """
     Read the memory offset at which the user flash space begins.
     """
+    ...
 
 def flash_write(byte_offset, bytes) -> Incomplete: ...
 def gpio_matrix_in(*args, **kwargs) -> Any: ...
@@ -39,3 +50,4 @@ def osdebug(level) -> None:
         * ``LOG_VERBOSE`` -- Bigger chunks of debugging information, or frequent messages
           which can potentially flood the output
     """
+    ...

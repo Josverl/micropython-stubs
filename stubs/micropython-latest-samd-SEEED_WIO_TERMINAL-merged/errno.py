@@ -8,8 +8,8 @@ CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html
 This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
-# Stubber: v1.13.4
+# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
+# Stubber: v1.13.8
 from typing import Dict, Any
 from _typeshed import Incomplete
 

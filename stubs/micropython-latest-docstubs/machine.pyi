@@ -27,7 +27,15 @@ damage.
 # + module: machine.WDT.rst
 # + module: machine.SD.rst
 # + module: machine.SDCard.rst
-from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
+from typing import (
+    Any,
+    Callable,
+    List,
+    NoReturn,
+    Optional,
+    Tuple,
+    Union,
+)
 from _typeshed import Incomplete
 
 mem8: Incomplete
@@ -625,7 +633,7 @@ class UART:
         on timeout.
         """
         ...
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+    def readinto(self, buf, nbytes: Optional[Any] = None) -> Union[int, None]:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
         that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
@@ -635,7 +643,7 @@ class UART:
         timeout.
         """
         ...
-    def readline(self) -> None:
+    def readline(self) -> Union[str, None]:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
@@ -643,7 +651,7 @@ class UART:
         Return value: the line read or ``None`` on timeout.
         """
         ...
-    def write(self, buf) -> int:
+    def write(self, buf) -> Union[int, None]:
         """
         Write the buffer of bytes to the bus.
 

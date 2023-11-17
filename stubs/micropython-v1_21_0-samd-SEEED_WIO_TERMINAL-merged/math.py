@@ -1,10 +1,22 @@
 """
-Module: 'math' on micropython-v1.21.0-samd-SEEED_WIO_TERMINAL
+Mathematical functions.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/math.html
+
+CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
+
+The ``math`` module provides some basic mathematical functions for
+working with floating-point numbers.
+
+*Note:* On the pyboard, floating-point numbers have 32-bit precision.
+
+Availability: not available on WiPy. Floating point support required
+for this module.
 """
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
 # Stubber: v1.13.8
 from typing import Tuple, Any
-from _typeshed import Incomplete as Incomplete, Incomplete
+from _typeshed import Incomplete
 
 inf = inf  # type: float
 nan = nan  # type: float

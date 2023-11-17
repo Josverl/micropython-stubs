@@ -2,12 +2,12 @@
     "name": "micropython-rp2-rpi_pico-stubs",
     "mpy_version": "1.21.0",
     "publish": true,
-    "pkg_version": "1.21.0.post1",
+    "pkg_version": "1.21.0.post2",
     "path": "micropython-v1_21_0-rp2-rpi_pico-stubs",
     "stub_sources": [
         [
             "Merged stubs",
-            "micropython-v1_21_0-rp2-rpi_pico-merged"
+            "micropython-v1_21_0-rp2-RPI_PICO-merged"
         ],
         [
             "Frozen stubs",

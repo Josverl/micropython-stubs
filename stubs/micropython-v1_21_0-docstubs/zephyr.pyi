@@ -1,5 +1,20 @@
-from _typeshed import Incomplete as Incomplete
-from typing import Optional
+"""
+Functionality specific to Zephyr.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/zephyr.html
+
+The ``zephyr`` module contains functions and classes specific to the Zephyr port.
+"""
+
+# + module: zephyr.rst
+# source version: v1_21_0
+# origin module:: repos/micropython/docs/library/zephyr.rst
+# + module: zephyr.DiskAccess.rst
+# + module: zephyr.FlashArea.rst
+from typing import (
+    Optional,
+)
+from _typeshed import Incomplete
 
 class DiskAccess:
     """
@@ -9,14 +24,15 @@ class DiskAccess:
     """
 
     def __init__(self, disk_name) -> None: ...
-    def readblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete: ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
     def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
         :class:`os.AbstractBlockDev`.
         """
+        ...
 
 class FlashArea:
     """
@@ -31,14 +47,15 @@ class FlashArea:
     """
 
     def __init__(self, id, block_size) -> None: ...
-    def readblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete: ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
     def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
         :class:`os.AbstractBlockDev`.
         """
+        ...
 
 def is_preempt_thread() -> Incomplete:
     """
@@ -47,11 +64,13 @@ def is_preempt_thread() -> Incomplete:
     Zephyr preemptible threads are those with non-negative priority values (low priority levels), which therefore,
     can be supplanted as soon as a higher or equal priority thread becomes ready.
     """
+    ...
 
 def current_tid() -> Incomplete:
     """
     Returns the thread id of the current thread, which is used to reference the thread.
     """
+    ...
 
 def thread_analyze() -> Incomplete:
     """
@@ -66,6 +85,7 @@ def thread_analyze() -> Incomplete:
     For more information, see documentation for Zephyr `thread analyzer
     <https://docs.zephyrproject.org/latest/guides/debug_tools/thread-analyzer.html#thread-analyzer>`_.
     """
+    ...
 
 def shell_exec(cmd_in) -> Incomplete:
     """
@@ -74,3 +94,4 @@ def shell_exec(cmd_in) -> Incomplete:
 
     A list of possible commands can be found in the documentation for Zephyr `shell commands <https://docs.zephyrproject.org/latest/reference/shell/index.html?highlight=shell_execute_cmd#commands>`_.
     """
+    ...

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-samd-seeed_wio_terminal-stubs"
-version = "1.21.0a544"
+version = "1.22.0a162"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -32,9 +32,10 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 packages = [
+    { include = "__builtins__.pyi" },
+    { include = "_asyncio.pyi" },
     { include = "_boot.pyi" },
     { include = "_onewire.pyi" },
-    { include = "_uasyncio.pyi" },
     { include = "array.pyi" },
     { include = "asyncio/__init__.pyi" },
     { include = "asyncio/core.pyi" },
@@ -44,6 +45,7 @@ packages = [
     { include = "asyncio/stream.pyi" },
     { include = "binascii.pyi" },
     { include = "collections.pyi" },
+    { include = "deflate.pyi" },
     { include = "dht.pyi" },
     { include = "ds18x20.pyi" },
     { include = "errno.pyi" },
@@ -53,12 +55,12 @@ packages = [
     { include = "heapq.pyi" },
     { include = "io.pyi" },
     { include = "json.pyi" },
-    { include = "logging.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
     { include = "onewire.pyi" },
     { include = "os.pyi" },
+    { include = "platform.pyi" },
     { include = "random.pyi" },
     { include = "samd.pyi" },
     { include = "select.pyi" },
@@ -83,14 +85,13 @@ packages = [
     { include = "ujson.pyi" },
     { include = "umachine.pyi" },
     { include = "uos.pyi" },
+    { include = "uplatform.pyi" },
     { include = "urandom.pyi" },
     { include = "ure.pyi" },
     { include = "uselect.pyi" },
     { include = "ustruct.pyi" },
     { include = "usys.pyi" },
     { include = "utime.pyi" },
-    { include = "uzlib.pyi" },
-    { include = "zlib.pyi" },
 ]
 
 [tool.poetry.dependencies]

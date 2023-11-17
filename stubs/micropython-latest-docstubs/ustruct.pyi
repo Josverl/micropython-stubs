@@ -56,7 +56,9 @@ The following data types are supported:
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/struct.rst
-from typing import Tuple
+from typing import (
+    Tuple,
+)
 from _typeshed import Incomplete
 
 def calcsize(fmt) -> int:

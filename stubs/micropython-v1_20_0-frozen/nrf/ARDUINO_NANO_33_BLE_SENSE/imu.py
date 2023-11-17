@@ -18,7 +18,6 @@ while (True):
     time.sleep_ms(100)
 """
 
-import time
 
 
 class IMU:

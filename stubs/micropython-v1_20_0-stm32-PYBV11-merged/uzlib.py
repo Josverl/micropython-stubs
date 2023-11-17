@@ -1,13 +1,22 @@
 """
-Module: 'uzlib' on micropython-v1.20.0-stm32-PYBV11
+Zlib decompression.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/zlib.html
+
+CPython module: :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
+
+This module allows to decompress binary data compressed with
+`DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
+(commonly used in zlib library and gzip archiver). Compression
+is not yet implemented.
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
 # Stubber: v1.13.7
 from typing import Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
-def decompress(data, wbits: int = ..., bufsize: int = ...) -> bytes:
+def decompress(data, wbits=0, bufsize=0, /) -> bytes:
     """
     Return decompressed *data* as bytes. *wbits* is DEFLATE dictionary window
     size used during compression (8-15, the dictionary size is power of 2 of
@@ -42,5 +51,5 @@ class DecompIO:
     def read(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, stream, wbits: int = ...) -> None:
+    def __init__(self, stream, wbits=0, /) -> None:
         ...

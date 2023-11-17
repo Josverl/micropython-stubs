@@ -10,8 +10,8 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
-# Stubber: v1.13.4
+# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
+# Stubber: v1.13.8
 from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 from _typeshed import Incomplete
 
@@ -22,20 +22,7 @@ WDT_RESET = 32  # type: int
 DEEPSLEEP_RESET = 128  # type: int
 
 
-def disable_irq() -> Incomplete:
-    """
-    Disable interrupt requests.
-    Returns the previous IRQ state which should be considered an opaque value.
-    This return value should be passed to the `enable_irq()` function to restore
-    interrupts to their original state, before `disable_irq()` was called.
-    """
-    ...
-
-
-def reset_cause() -> int:
-    """
-    Get the reset cause. See :ref:`constants <machine_constants>` for the possible return values.
-    """
+def dht_readinto(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -44,6 +31,16 @@ def enable_irq(state) -> Incomplete:
     Re-enable interrupt requests.
     The *state* parameter should be the value that was returned from the most
     recent call to the `disable_irq()` function.
+    """
+    ...
+
+
+def disable_irq() -> Incomplete:
+    """
+    Disable interrupt requests.
+    Returns the previous IRQ state which should be considered an opaque value.
+    This return value should be passed to the `enable_irq()` function to restore
+    interrupts to their original state, before `disable_irq()` was called.
     """
     ...
 
@@ -73,7 +70,29 @@ def bitstream(pin, encoding, timing, data, /) -> Incomplete:
     ...
 
 
-def dht_readinto(*args, **kwargs) -> Any:
+def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
+    """
+    Stops execution in an attempt to enter a low power state.
+
+    If *time_ms* is specified then this will be the maximum time in milliseconds that
+    the sleep will last for.  Otherwise the sleep can last indefinitely.
+
+    With or without a timeout, execution may resume at any time if there are events
+    that require processing.  Such events, or wake sources, should be configured before
+    sleeping, like `Pin` change or `RTC` timeout.
+
+    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
+    highly dependent on the underlying hardware, but the general properties are:
+
+    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
+      from the point where the sleep was requested, with all subsystems operational.
+
+    * A deepsleep may not retain RAM or any other state of the system (for example
+      peripherals or network interfaces).  Upon wake execution is resumed from the main
+      script, similar to a hard or power-on reset. The `reset_cause()` function will
+      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
+      from other resets.
+    """
     ...
 
 
@@ -84,6 +103,13 @@ def bootloader(value: Optional[Any] = None) -> None:
 
     Some ports support passing in an optional *value* argument which can control
     which bootloader to enter, what to pass to it, or other things.
+    """
+    ...
+
+
+def reset_cause() -> int:
+    """
+    Get the reset cause. See :ref:`constants <machine_constants>` for the possible return values.
     """
     ...
 
@@ -188,7 +214,7 @@ class WDT:
     On rp2040 devices, the maximum timeout is 8388 ms.
     """
 
-    def timeout_ms(self, *args, **kwargs) -> Any:
+    def timeout_ms(self, *args, **kwargs) -> Incomplete:
         ...
 
     def feed(self) -> None:
@@ -203,9 +229,9 @@ class WDT:
         ...
 
 
-mem8: Any  ## <class 'mem'> = <8-bit memory>
-mem32: Any  ## <class 'mem'> = <32-bit memory>
-mem16: Any  ## <class 'mem'> = <16-bit memory>
+mem8: Incomplete  ## <class 'mem'> = <8-bit memory>
+mem32: Incomplete  ## <class 'mem'> = <32-bit memory>
+mem16: Incomplete  ## <class 'mem'> = <16-bit memory>
 
 
 class PWM:
@@ -227,6 +253,18 @@ class PWM:
     *invert* is not available at all ports.
     """
 
+    def duty_u16(self, value: Optional[Any] = None) -> int:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+        ...
+
     def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the current frequency of the PWM output.
@@ -238,15 +276,10 @@ class PWM:
         """
         ...
 
-    def duty_u16(self, value: Optional[Any] = None) -> int:
+    def init(self, *, freq, duty_u16, duty_ns) -> None:
         """
-        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
-        value in the range 0 to 65535 inclusive.
-
-        With no arguments the duty cycle is returned.
-
-        With a single *value* argument the duty cycle is set to that value, measured
-        as the ratio ``value / 65535``.
+        Modify settings for the PWM object.  See the above constructor for details
+        about the parameters.
         """
         ...
 
@@ -294,7 +327,7 @@ class ADC:
         """
         ...
 
-    def deinit(self, *args, **kwargs) -> Any:
+    def deinit(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None:
@@ -302,7 +335,7 @@ class ADC:
 
 
 class DAC:
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -587,7 +620,7 @@ class Pin:
         """
         ...
 
-    def toggle(self, *args, **kwargs) -> Any:
+    def toggle(self, *args, **kwargs) -> Incomplete:
         ...
 
     def init(self, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
@@ -662,7 +695,7 @@ class Pin:
         """
         ...
 
-    def disable(self, *args, **kwargs) -> Any:
+    def disable(self, *args, **kwargs) -> Incomplete:
         ...
 
     def drive(self, drive: Optional[Any] = None) -> Incomplete:
@@ -675,167 +708,175 @@ class Pin:
         ...
 
     class board:
-        RX: Any  ## <class 'Pin'> = Pin("RX", mode=IN, pull=PULL_OFF, GPIO=PB27)
-        SCK: Any  ## <class 'Pin'> = Pin("SCK", mode=IN, pull=PULL_OFF, GPIO=PB03)
-        MOSI: Any  ## <class 'Pin'> = Pin("MOSI", mode=IN, pull=PULL_OFF, GPIO=PB02)
-        SDA1: Any  ## <class 'Pin'> = Pin("SDA1", mode=IN, pull=PULL_OFF, GPIO=PA17)
-        SDA0: Any  ## <class 'Pin'> = Pin("SDA0", mode=IN, pull=PULL_OFF, GPIO=PA13)
-        SCL0: Any  ## <class 'Pin'> = Pin("SCL0", mode=IN, pull=PULL_OFF, GPIO=PA12)
-        SCL1: Any  ## <class 'Pin'> = Pin("SCL1", mode=IN, pull=PULL_OFF, GPIO=PA16)
-        LCD_YD: Any  ## <class 'Pin'> = Pin("LCD_YD", mode=IN, pull=PULL_OFF, GPIO=PC13)
-        LCD_YU: Any  ## <class 'Pin'> = Pin("LCD_YU", mode=IN, pull=PULL_OFF, GPIO=PC11)
-        LCD_XR: Any  ## <class 'Pin'> = Pin("LCD_XR", mode=IN, pull=PULL_OFF, GPIO=PC12)
-        MISO: Any  ## <class 'Pin'> = Pin("MISO", mode=IN, pull=PULL_OFF, GPIO=PB00)
-        MIC: Any  ## <class 'Pin'> = Pin("MIC", mode=IN, pull=PULL_OFF, GPIO=PC30)
-        LED_BLUE: Any  ## <class 'Pin'> = Pin("LED_BLUE", mode=OUT, pull=PULL_OFF, GPIO=PA15)
-        LED_LCD: Any  ## <class 'Pin'> = Pin("LED_LCD", mode=IN, pull=PULL_OFF, GPIO=PC05)
-        LCD_XL: Any  ## <class 'Pin'> = Pin("LCD_XL", mode=IN, pull=PULL_OFF, GPIO=PC10)
-        SWITCH_X: Any  ## <class 'Pin'> = Pin("SWITCH_X", mode=IN, pull=PULL_OFF, GPIO=PD08)
-        SWITCH_Y: Any  ## <class 'Pin'> = Pin("SWITCH_Y", mode=IN, pull=PULL_OFF, GPIO=PD09)
-        SWITCH_U: Any  ## <class 'Pin'> = Pin("SWITCH_U", mode=IN, pull=PULL_OFF, GPIO=PD20)
-        SD_CS: Any  ## <class 'Pin'> = Pin("SD_CS", mode=IN, pull=PULL_OFF, GPIO=PC19)
-        USB_DM: Any  ## <class 'Pin'> = Pin("USB_DM", mode=OUT, pull=PULL_OFF, GPIO=PA24)
-        SWITCH_Z: Any  ## <class 'Pin'> = Pin("SWITCH_Z", mode=IN, pull=PULL_OFF, GPIO=PD10)
-        TX: Any  ## <class 'Pin'> = Pin("TX", mode=IN, pull=PULL_OFF, GPIO=PB26)
-        SD_MISO: Any  ## <class 'Pin'> = Pin("SD_MISO", mode=IN, pull=PULL_OFF, GPIO=PC18)
-        SD_MOSI: Any  ## <class 'Pin'> = Pin("SD_MOSI", mode=IN, pull=PULL_OFF, GPIO=PC16)
-        SD_DET: Any  ## <class 'Pin'> = Pin("SD_DET", mode=IN, pull=PULL_OFF, GPIO=PD21)
-        SWITCH_B: Any  ## <class 'Pin'> = Pin("SWITCH_B", mode=IN, pull=PULL_OFF, GPIO=PD12)
-        SWDIO: Any  ## <class 'Pin'> = Pin("SWDIO", mode=IN, pull=PULL_OFF, GPIO=PA31)
-        SD_SCK: Any  ## <class 'Pin'> = Pin("SD_SCK", mode=IN, pull=PULL_OFF, GPIO=PC17)
-        SWCLK: Any  ## <class 'Pin'> = Pin("SWCLK", mode=IN, pull=PULL_OFF, GPIO=PA30)
-        USB_DP: Any  ## <class 'Pin'> = Pin("USB_DP", mode=OUT, pull=PULL_OFF, GPIO=PA25)
-        A6_D6: Any  ## <class 'Pin'> = Pin("A6_D6", mode=IN, pull=PULL_OFF, GPIO=PA04)
-        A7_D7: Any  ## <class 'Pin'> = Pin("A7_D7", mode=IN, pull=PULL_OFF, GPIO=PB07)
-        A5_D5: Any  ## <class 'Pin'> = Pin("A5_D5", mode=IN, pull=PULL_OFF, GPIO=PB06)
-        BUTTON_3: Any  ## <class 'Pin'> = Pin("BUTTON_3", mode=IN, pull=PULL_OFF, GPIO=PC28)
-        BUTTON_2: Any  ## <class 'Pin'> = Pin("BUTTON_2", mode=IN, pull=PULL_OFF, GPIO=PC27)
-        A8_D8: Any  ## <class 'Pin'> = Pin("A8_D8", mode=IN, pull=PULL_OFF, GPIO=PA06)
-        BUTTON_1: Any  ## <class 'Pin'> = Pin("BUTTON_1", mode=IN, pull=PULL_OFF, GPIO=PC26)
-        A0_D0: Any  ## <class 'Pin'> = Pin("A0_D0", mode=IN, pull=PULL_OFF, GPIO=PB08)
-        A4_D4: Any  ## <class 'Pin'> = Pin("A4_D4", mode=IN, pull=PULL_OFF, GPIO=PB05)
-        A3_D3: Any  ## <class 'Pin'> = Pin("A3_D3", mode=IN, pull=PULL_OFF, GPIO=PB04)
-        A1_D1: Any  ## <class 'Pin'> = Pin("A1_D1", mode=IN, pull=PULL_OFF, GPIO=PB09)
-        A2_D2: Any  ## <class 'Pin'> = Pin("A2_D2", mode=IN, pull=PULL_OFF, GPIO=PA07)
-        LCD_SCK: Any  ## <class 'Pin'> = Pin("LCD_SCK", mode=IN, pull=PULL_OFF, GPIO=PB20)
-        LCD_CS: Any  ## <class 'Pin'> = Pin("LCD_CS", mode=IN, pull=PULL_OFF, GPIO=PB21)
-        LCD_D_C: Any  ## <class 'Pin'> = Pin("LCD_D_C", mode=IN, pull=PULL_OFF, GPIO=PC06)
-        I2S_SDOUT: Any  ## <class 'Pin'> = Pin("I2S_SDOUT", mode=IN, pull=PULL_OFF, GPIO=PA22)
-        BUZZER: Any  ## <class 'Pin'> = Pin("BUZZER", mode=IN, pull=PULL_OFF, GPIO=PD11)
-        LCD_RESET: Any  ## <class 'Pin'> = Pin("LCD_RESET", mode=IN, pull=PULL_OFF, GPIO=PC07)
-        LCD_MISO: Any  ## <class 'Pin'> = Pin("LCD_MISO", mode=IN, pull=PULL_OFF, GPIO=PB18)
-        LCD_MOSI: Any  ## <class 'Pin'> = Pin("LCD_MOSI", mode=IN, pull=PULL_OFF, GPIO=PB19)
-        GPCLK0: Any  ## <class 'Pin'> = Pin("GPCLK0", mode=IN, pull=PULL_OFF, GPIO=PB15)
-        GPCLK1: Any  ## <class 'Pin'> = Pin("GPCLK1", mode=IN, pull=PULL_OFF, GPIO=PB12)
-        CS: Any  ## <class 'Pin'> = Pin("CS", mode=IN, pull=PULL_OFF, GPIO=PB01)
-        I2S_SDIN: Any  ## <class 'Pin'> = Pin("I2S_SDIN", mode=IN, pull=PULL_OFF, GPIO=PA21)
-        I2S_LRCLK: Any  ## <class 'Pin'> = Pin("I2S_LRCLK", mode=IN, pull=PULL_OFF, GPIO=PA20)
-        GPCLK2: Any  ## <class 'Pin'> = Pin("GPCLK2", mode=IN, pull=PULL_OFF, GPIO=PB13)
-        I2C_BCLK: Any  ## <class 'Pin'> = Pin("I2C_BCLK", mode=IN, pull=PULL_OFF, GPIO=PB16)
+        LCD_YU: Incomplete  ## <class 'Pin'> = Pin("LCD_YU", mode=IN, pull=PULL_OFF, GPIO=PC11)
+        QSPI_SCK: Incomplete  ## <class 'Pin'> = Pin("QSPI_SCK", mode=IN, pull=PULL_OFF, GPIO=PB10)
+        QSPI_D3: Incomplete  ## <class 'Pin'> = Pin("QSPI_D3", mode=IN, pull=PULL_OFF, GPIO=PA11)
+        QSPI_D2: Incomplete  ## <class 'Pin'> = Pin("QSPI_D2", mode=IN, pull=PULL_OFF, GPIO=PA10)
+        RX: Incomplete  ## <class 'Pin'> = Pin("RX", mode=IN, pull=PULL_OFF, GPIO=PB27)
+        SCL1: Incomplete  ## <class 'Pin'> = Pin("SCL1", mode=IN, pull=PULL_OFF, GPIO=PA16)
+        SCL0: Incomplete  ## <class 'Pin'> = Pin("SCL0", mode=IN, pull=PULL_OFF, GPIO=PA12)
+        SCK: Incomplete  ## <class 'Pin'> = Pin("SCK", mode=IN, pull=PULL_OFF, GPIO=PB03)
+        QSPI_D1: Incomplete  ## <class 'Pin'> = Pin("QSPI_D1", mode=IN, pull=PULL_OFF, GPIO=PA09)
+        MIC: Incomplete  ## <class 'Pin'> = Pin("MIC", mode=IN, pull=PULL_OFF, GPIO=PC30)
+        LED_LCD: Incomplete  ## <class 'Pin'> = Pin("LED_LCD", mode=IN, pull=PULL_OFF, GPIO=PC05)
+        LED_BLUE: Incomplete  ## <class 'Pin'> = Pin("LED_BLUE", mode=OUT, pull=PULL_OFF, GPIO=PA15)
+        MISO: Incomplete  ## <class 'Pin'> = Pin("MISO", mode=IN, pull=PULL_OFF, GPIO=PB00)
+        QSPI_D0: Incomplete  ## <class 'Pin'> = Pin("QSPI_D0", mode=IN, pull=PULL_OFF, GPIO=PA08)
+        QSPI_CS: Incomplete  ## <class 'Pin'> = Pin("QSPI_CS", mode=IN, pull=PULL_OFF, GPIO=PB11)
+        MOSI: Incomplete  ## <class 'Pin'> = Pin("MOSI", mode=IN, pull=PULL_OFF, GPIO=PB02)
+        SDA0: Incomplete  ## <class 'Pin'> = Pin("SDA0", mode=IN, pull=PULL_OFF, GPIO=PA13)
+        SWITCH_X: Incomplete  ## <class 'Pin'> = Pin("SWITCH_X", mode=IN, pull=PULL_OFF, GPIO=PD08)
+        SWITCH_U: Incomplete  ## <class 'Pin'> = Pin("SWITCH_U", mode=IN, pull=PULL_OFF, GPIO=PD20)
+        SWITCH_B: Incomplete  ## <class 'Pin'> = Pin("SWITCH_B", mode=IN, pull=PULL_OFF, GPIO=PD12)
+        SWITCH_Y: Incomplete  ## <class 'Pin'> = Pin("SWITCH_Y", mode=IN, pull=PULL_OFF, GPIO=PD09)
+        USB_DM: Incomplete  ## <class 'Pin'> = Pin("USB_DM", mode=OUT, pull=PULL_OFF, GPIO=PA24)
+        TX: Incomplete  ## <class 'Pin'> = Pin("TX", mode=IN, pull=PULL_OFF, GPIO=PB26)
+        SWITCH_Z: Incomplete  ## <class 'Pin'> = Pin("SWITCH_Z", mode=IN, pull=PULL_OFF, GPIO=PD10)
+        SWDIO: Incomplete  ## <class 'Pin'> = Pin("SWDIO", mode=IN, pull=PULL_OFF, GPIO=PA31)
+        SD_DET: Incomplete  ## <class 'Pin'> = Pin("SD_DET", mode=IN, pull=PULL_OFF, GPIO=PD21)
+        SD_CS: Incomplete  ## <class 'Pin'> = Pin("SD_CS", mode=IN, pull=PULL_OFF, GPIO=PC19)
+        SDA1: Incomplete  ## <class 'Pin'> = Pin("SDA1", mode=IN, pull=PULL_OFF, GPIO=PA17)
+        SD_MISO: Incomplete  ## <class 'Pin'> = Pin("SD_MISO", mode=IN, pull=PULL_OFF, GPIO=PC18)
+        SWCLK: Incomplete  ## <class 'Pin'> = Pin("SWCLK", mode=IN, pull=PULL_OFF, GPIO=PA30)
+        SD_SCK: Incomplete  ## <class 'Pin'> = Pin("SD_SCK", mode=IN, pull=PULL_OFF, GPIO=PC17)
+        SD_MOSI: Incomplete  ## <class 'Pin'> = Pin("SD_MOSI", mode=IN, pull=PULL_OFF, GPIO=PC16)
+        USB_DP: Incomplete  ## <class 'Pin'> = Pin("USB_DP", mode=OUT, pull=PULL_OFF, GPIO=PA25)
+        LCD_YD: Incomplete  ## <class 'Pin'> = Pin("LCD_YD", mode=IN, pull=PULL_OFF, GPIO=PC13)
+        BUTTON_2: Incomplete  ## <class 'Pin'> = Pin("BUTTON_2", mode=IN, pull=PULL_OFF, GPIO=PC27)
+        BUTTON_1: Incomplete  ## <class 'Pin'> = Pin("BUTTON_1", mode=IN, pull=PULL_OFF, GPIO=PC26)
+        A8_D8: Incomplete  ## <class 'Pin'> = Pin("A8_D8", mode=IN, pull=PULL_OFF, GPIO=PA06)
+        BUTTON_3: Incomplete  ## <class 'Pin'> = Pin("BUTTON_3", mode=IN, pull=PULL_OFF, GPIO=PC28)
+        ENABLE_3V3: Incomplete  ## <class 'Pin'> = Pin("ENABLE_3V3", mode=IN, pull=PULL_OFF, GPIO=PC15)
+        CS: Incomplete  ## <class 'Pin'> = Pin("CS", mode=IN, pull=PULL_OFF, GPIO=PB01)
+        BUZZER: Incomplete  ## <class 'Pin'> = Pin("BUZZER", mode=IN, pull=PULL_OFF, GPIO=PD11)
+        A7_D7: Incomplete  ## <class 'Pin'> = Pin("A7_D7", mode=IN, pull=PULL_OFF, GPIO=PB07)
+        A2_D2: Incomplete  ## <class 'Pin'> = Pin("A2_D2", mode=IN, pull=PULL_OFF, GPIO=PA07)
+        A1_D1: Incomplete  ## <class 'Pin'> = Pin("A1_D1", mode=IN, pull=PULL_OFF, GPIO=PB09)
+        A0_D0: Incomplete  ## <class 'Pin'> = Pin("A0_D0", mode=IN, pull=PULL_OFF, GPIO=PB08)
+        A3_D3: Incomplete  ## <class 'Pin'> = Pin("A3_D3", mode=IN, pull=PULL_OFF, GPIO=PB04)
+        A6_D6: Incomplete  ## <class 'Pin'> = Pin("A6_D6", mode=IN, pull=PULL_OFF, GPIO=PA04)
+        A5_D5: Incomplete  ## <class 'Pin'> = Pin("A5_D5", mode=IN, pull=PULL_OFF, GPIO=PB06)
+        A4_D4: Incomplete  ## <class 'Pin'> = Pin("A4_D4", mode=IN, pull=PULL_OFF, GPIO=PB05)
+        ENABLE_5V: Incomplete  ## <class 'Pin'> = Pin("ENABLE_5V", mode=IN, pull=PULL_OFF, GPIO=PC14)
+        LCD_MOSI: Incomplete  ## <class 'Pin'> = Pin("LCD_MOSI", mode=IN, pull=PULL_OFF, GPIO=PB19)
+        LCD_MISO: Incomplete  ## <class 'Pin'> = Pin("LCD_MISO", mode=IN, pull=PULL_OFF, GPIO=PB18)
+        LCD_D_C: Incomplete  ## <class 'Pin'> = Pin("LCD_D_C", mode=IN, pull=PULL_OFF, GPIO=PC06)
+        LCD_RESET: Incomplete  ## <class 'Pin'> = Pin("LCD_RESET", mode=IN, pull=PULL_OFF, GPIO=PC07)
+        LCD_XR: Incomplete  ## <class 'Pin'> = Pin("LCD_XR", mode=IN, pull=PULL_OFF, GPIO=PC12)
+        LCD_XL: Incomplete  ## <class 'Pin'> = Pin("LCD_XL", mode=IN, pull=PULL_OFF, GPIO=PC10)
+        LCD_SCK: Incomplete  ## <class 'Pin'> = Pin("LCD_SCK", mode=IN, pull=PULL_OFF, GPIO=PB20)
+        LCD_CS: Incomplete  ## <class 'Pin'> = Pin("LCD_CS", mode=IN, pull=PULL_OFF, GPIO=PB21)
+        GPCLK2: Incomplete  ## <class 'Pin'> = Pin("GPCLK2", mode=IN, pull=PULL_OFF, GPIO=PB13)
+        GPCLK1: Incomplete  ## <class 'Pin'> = Pin("GPCLK1", mode=IN, pull=PULL_OFF, GPIO=PB12)
+        GPCLK0: Incomplete  ## <class 'Pin'> = Pin("GPCLK0", mode=IN, pull=PULL_OFF, GPIO=PB15)
+        I2C_BCLK: Incomplete  ## <class 'Pin'> = Pin("I2C_BCLK", mode=IN, pull=PULL_OFF, GPIO=PB16)
+        I2S_SDOUT: Incomplete  ## <class 'Pin'> = Pin("I2S_SDOUT", mode=IN, pull=PULL_OFF, GPIO=PA22)
+        I2S_SDIN: Incomplete  ## <class 'Pin'> = Pin("I2S_SDIN", mode=IN, pull=PULL_OFF, GPIO=PA21)
+        I2S_LRCLK: Incomplete  ## <class 'Pin'> = Pin("I2S_LRCLK", mode=IN, pull=PULL_OFF, GPIO=PA20)
 
         def __init__(self, *argv, **kwargs) -> None:
             ...
 
     class cpu:
-        PC04: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC04)
-        PC14: Any  ## <class 'Pin'> = Pin("5V_ENABLE", mode=IN, pull=PULL_OFF, GPIO=PC14)
-        PC05: Any  ## <class 'Pin'> = Pin("LED_LCD", mode=IN, pull=PULL_OFF, GPIO=PC05)
-        PC01: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC01)
-        PC03: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC03)
-        PC02: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC02)
-        PC12: Any  ## <class 'Pin'> = Pin("LCD_XR", mode=IN, pull=PULL_OFF, GPIO=PC12)
-        PC06: Any  ## <class 'Pin'> = Pin("LCD_D_C", mode=IN, pull=PULL_OFF, GPIO=PC06)
-        PC13: Any  ## <class 'Pin'> = Pin("LCD_YD", mode=IN, pull=PULL_OFF, GPIO=PC13)
-        PC07: Any  ## <class 'Pin'> = Pin("LCD_RESET", mode=IN, pull=PULL_OFF, GPIO=PC07)
-        PC11: Any  ## <class 'Pin'> = Pin("LCD_YU", mode=IN, pull=PULL_OFF, GPIO=PC11)
-        PC10: Any  ## <class 'Pin'> = Pin("LCD_XL", mode=IN, pull=PULL_OFF, GPIO=PC10)
-        PB24: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB24)
-        PC00: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC00)
-        PB25: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB25)
-        PB21: Any  ## <class 'Pin'> = Pin("LCD_CS", mode=IN, pull=PULL_OFF, GPIO=PB21)
-        PB23: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB23)
-        PB22: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB22)
-        PB30: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB30)
-        PB26: Any  ## <class 'Pin'> = Pin("TX", mode=IN, pull=PULL_OFF, GPIO=PB26)
-        PB31: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB31)
-        PB27: Any  ## <class 'Pin'> = Pin("RX", mode=IN, pull=PULL_OFF, GPIO=PB27)
-        PB29: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB29)
-        PB28: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB28)
-        PB20: Any  ## <class 'Pin'> = Pin("LCD_SCK", mode=IN, pull=PULL_OFF, GPIO=PB20)
-        PD00: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PD00)
-        PC15: Any  ## <class 'Pin'> = Pin("3V3_ENABLE", mode=IN, pull=PULL_OFF, GPIO=PC15)
-        PD01: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PD01)
-        PC28: Any  ## <class 'Pin'> = Pin("BUTTON_3", mode=IN, pull=PULL_OFF, GPIO=PC28)
-        PC31: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC31)
-        PC30: Any  ## <class 'Pin'> = Pin("MIC", mode=IN, pull=PULL_OFF, GPIO=PC30)
-        PD12: Any  ## <class 'Pin'> = Pin("SWITCH_B", mode=IN, pull=PULL_OFF, GPIO=PD12)
-        PD08: Any  ## <class 'Pin'> = Pin("SWITCH_X", mode=IN, pull=PULL_OFF, GPIO=PD08)
-        PD20: Any  ## <class 'Pin'> = Pin("SWITCH_U", mode=IN, pull=PULL_OFF, GPIO=PD20)
-        PD09: Any  ## <class 'Pin'> = Pin("SWITCH_Y", mode=IN, pull=PULL_OFF, GPIO=PD09)
-        PD11: Any  ## <class 'Pin'> = Pin("BUZZER", mode=IN, pull=PULL_OFF, GPIO=PD11)
-        PD10: Any  ## <class 'Pin'> = Pin("SWITCH_Z", mode=IN, pull=PULL_OFF, GPIO=PD10)
-        PC19: Any  ## <class 'Pin'> = Pin("SD_CS", mode=IN, pull=PULL_OFF, GPIO=PC19)
-        PC27: Any  ## <class 'Pin'> = Pin("BUTTON_2", mode=IN, pull=PULL_OFF, GPIO=PC27)
-        PC20: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC20)
-        PC16: Any  ## <class 'Pin'> = Pin("SD_MOSI", mode=IN, pull=PULL_OFF, GPIO=PC16)
-        PC18: Any  ## <class 'Pin'> = Pin("SD_MISO", mode=IN, pull=PULL_OFF, GPIO=PC18)
-        PC17: Any  ## <class 'Pin'> = Pin("SD_SCK", mode=IN, pull=PULL_OFF, GPIO=PC17)
-        PC25: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC25)
-        PC21: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC21)
-        PC26: Any  ## <class 'Pin'> = Pin("BUTTON_1", mode=IN, pull=PULL_OFF, GPIO=PC26)
-        PC22: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC22)
-        PC24: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC24)
-        PC23: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC23)
-        PD21: Any  ## <class 'Pin'> = Pin("SD_DET", mode=IN, pull=PULL_OFF, GPIO=PD21)
-        PA15: Any  ## <class 'Pin'> = Pin("LED_BLUE", mode=OUT, pull=PULL_OFF, GPIO=PA15)
-        PA23: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA23)
-        PA16: Any  ## <class 'Pin'> = Pin("SCL1", mode=IN, pull=PULL_OFF, GPIO=PA16)
-        PA12: Any  ## <class 'Pin'> = Pin("SCL0", mode=IN, pull=PULL_OFF, GPIO=PA12)
-        PA14: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA14)
-        PA13: Any  ## <class 'Pin'> = Pin("SDA0", mode=IN, pull=PULL_OFF, GPIO=PA13)
-        PA21: Any  ## <class 'Pin'> = Pin("I2S_SDIN", mode=IN, pull=PULL_OFF, GPIO=PA21)
-        PA17: Any  ## <class 'Pin'> = Pin("SDA1", mode=IN, pull=PULL_OFF, GPIO=PA17)
-        PA22: Any  ## <class 'Pin'> = Pin("I2S_SDOUT", mode=IN, pull=PULL_OFF, GPIO=PA22)
-        PA18: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA18)
-        PA20: Any  ## <class 'Pin'> = Pin("I2S_LRCLK", mode=IN, pull=PULL_OFF, GPIO=PA20)
-        PA19: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA19)
-        PA03: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA03)
-        PA11: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA11)
-        PA04: Any  ## <class 'Pin'> = Pin("A6_D6", mode=IN, pull=PULL_OFF, GPIO=PA04)
-        PA00: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA00)
-        PA02: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA02)
-        PA01: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA01)
-        PA09: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA09)
-        PA05: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA05)
-        PA10: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA10)
-        PA06: Any  ## <class 'Pin'> = Pin("A8_D8", mode=IN, pull=PULL_OFF, GPIO=PA06)
-        PA08: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA08)
-        PA07: Any  ## <class 'Pin'> = Pin("A2_D2", mode=IN, pull=PULL_OFF, GPIO=PA07)
-        PB19: Any  ## <class 'Pin'> = Pin("LCD_MOSI", mode=IN, pull=PULL_OFF, GPIO=PB19)
-        PB11: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB11)
-        PA24: Any  ## <class 'Pin'> = Pin("USB_DM", mode=OUT, pull=PULL_OFF, GPIO=PA24)
-        PB12: Any  ## <class 'Pin'> = Pin("GPCLK1", mode=IN, pull=PULL_OFF, GPIO=PB12)
-        PB08: Any  ## <class 'Pin'> = Pin("A0_D0", mode=IN, pull=PULL_OFF, GPIO=PB08)
-        PB10: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB10)
-        PB09: Any  ## <class 'Pin'> = Pin("A1_D1", mode=IN, pull=PULL_OFF, GPIO=PB09)
-        PB17: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB17)
-        PB13: Any  ## <class 'Pin'> = Pin("GPCLK2", mode=IN, pull=PULL_OFF, GPIO=PB13)
-        PB18: Any  ## <class 'Pin'> = Pin("LCD_MISO", mode=IN, pull=PULL_OFF, GPIO=PB18)
-        PB14: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB14)
-        PB16: Any  ## <class 'Pin'> = Pin("I2C_BCLK", mode=IN, pull=PULL_OFF, GPIO=PB16)
-        PB15: Any  ## <class 'Pin'> = Pin("GPCLK0", mode=IN, pull=PULL_OFF, GPIO=PB15)
-        PA31: Any  ## <class 'Pin'> = Pin("SWDIO", mode=IN, pull=PULL_OFF, GPIO=PA31)
-        PB07: Any  ## <class 'Pin'> = Pin("A7_D7", mode=IN, pull=PULL_OFF, GPIO=PB07)
-        PB00: Any  ## <class 'Pin'> = Pin("MISO", mode=IN, pull=PULL_OFF, GPIO=PB00)
-        PA25: Any  ## <class 'Pin'> = Pin("USB_DP", mode=OUT, pull=PULL_OFF, GPIO=PA25)
-        PA30: Any  ## <class 'Pin'> = Pin("SWCLK", mode=IN, pull=PULL_OFF, GPIO=PA30)
-        PA27: Any  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA27)
-        PB05: Any  ## <class 'Pin'> = Pin("A4_D4", mode=IN, pull=PULL_OFF, GPIO=PB05)
-        PB01: Any  ## <class 'Pin'> = Pin("CS", mode=IN, pull=PULL_OFF, GPIO=PB01)
-        PB06: Any  ## <class 'Pin'> = Pin("A5_D5", mode=IN, pull=PULL_OFF, GPIO=PB06)
-        PB02: Any  ## <class 'Pin'> = Pin("MOSI", mode=IN, pull=PULL_OFF, GPIO=PB02)
-        PB04: Any  ## <class 'Pin'> = Pin("A3_D3", mode=IN, pull=PULL_OFF, GPIO=PB04)
-        PB03: Any  ## <class 'Pin'> = Pin("SCK", mode=IN, pull=PULL_OFF, GPIO=PB03)
+        PC04: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC04)
+        PC14: Incomplete  ## <class 'Pin'> = Pin("ENABLE_5V", mode=IN, pull=PULL_OFF, GPIO=PC14)
+        PC05: Incomplete  ## <class 'Pin'> = Pin("LED_LCD", mode=IN, pull=PULL_OFF, GPIO=PC05)
+        PC01: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC01)
+        PC03: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC03)
+        PC02: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC02)
+        PC12: Incomplete  ## <class 'Pin'> = Pin("LCD_XR", mode=IN, pull=PULL_OFF, GPIO=PC12)
+        PC06: Incomplete  ## <class 'Pin'> = Pin("LCD_D_C", mode=IN, pull=PULL_OFF, GPIO=PC06)
+        PC13: Incomplete  ## <class 'Pin'> = Pin("LCD_YD", mode=IN, pull=PULL_OFF, GPIO=PC13)
+        PC07: Incomplete  ## <class 'Pin'> = Pin("LCD_RESET", mode=IN, pull=PULL_OFF, GPIO=PC07)
+        PC11: Incomplete  ## <class 'Pin'> = Pin("LCD_YU", mode=IN, pull=PULL_OFF, GPIO=PC11)
+        PC10: Incomplete  ## <class 'Pin'> = Pin("LCD_XL", mode=IN, pull=PULL_OFF, GPIO=PC10)
+        PB24: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB24)
+        PC00: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC00)
+        PB25: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB25)
+        PB21: Incomplete  ## <class 'Pin'> = Pin("LCD_CS", mode=IN, pull=PULL_OFF, GPIO=PB21)
+        PB23: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB23)
+        PB22: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB22)
+        PB30: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB30)
+        PB26: Incomplete  ## <class 'Pin'> = Pin("TX", mode=IN, pull=PULL_OFF, GPIO=PB26)
+        PB31: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB31)
+        PB27: Incomplete  ## <class 'Pin'> = Pin("RX", mode=IN, pull=PULL_OFF, GPIO=PB27)
+        PB29: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB29)
+        PB28: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB28)
+        PB20: Incomplete  ## <class 'Pin'> = Pin("LCD_SCK", mode=IN, pull=PULL_OFF, GPIO=PB20)
+        PD00: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PD00)
+        PC15: Incomplete  ## <class 'Pin'> = Pin("ENABLE_3V3", mode=IN, pull=PULL_OFF, GPIO=PC15)
+        PD01: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PD01)
+        PC28: Incomplete  ## <class 'Pin'> = Pin("BUTTON_3", mode=IN, pull=PULL_OFF, GPIO=PC28)
+        PC31: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC31)
+        PC30: Incomplete  ## <class 'Pin'> = Pin("MIC", mode=IN, pull=PULL_OFF, GPIO=PC30)
+        PD12: Incomplete  ## <class 'Pin'> = Pin("SWITCH_B", mode=IN, pull=PULL_OFF, GPIO=PD12)
+        PD08: Incomplete  ## <class 'Pin'> = Pin("SWITCH_X", mode=IN, pull=PULL_OFF, GPIO=PD08)
+        PD20: Incomplete  ## <class 'Pin'> = Pin("SWITCH_U", mode=IN, pull=PULL_OFF, GPIO=PD20)
+        PD09: Incomplete  ## <class 'Pin'> = Pin("SWITCH_Y", mode=IN, pull=PULL_OFF, GPIO=PD09)
+        PD11: Incomplete  ## <class 'Pin'> = Pin("BUZZER", mode=IN, pull=PULL_OFF, GPIO=PD11)
+        PD10: Incomplete  ## <class 'Pin'> = Pin("SWITCH_Z", mode=IN, pull=PULL_OFF, GPIO=PD10)
+        PC19: Incomplete  ## <class 'Pin'> = Pin("SD_CS", mode=IN, pull=PULL_OFF, GPIO=PC19)
+        PC27: Incomplete  ## <class 'Pin'> = Pin("BUTTON_2", mode=IN, pull=PULL_OFF, GPIO=PC27)
+        PC20: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC20)
+        PC16: Incomplete  ## <class 'Pin'> = Pin("SD_MOSI", mode=IN, pull=PULL_OFF, GPIO=PC16)
+        PC18: Incomplete  ## <class 'Pin'> = Pin("SD_MISO", mode=IN, pull=PULL_OFF, GPIO=PC18)
+        PC17: Incomplete  ## <class 'Pin'> = Pin("SD_SCK", mode=IN, pull=PULL_OFF, GPIO=PC17)
+        PC25: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC25)
+        PC21: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC21)
+        PC26: Incomplete  ## <class 'Pin'> = Pin("BUTTON_1", mode=IN, pull=PULL_OFF, GPIO=PC26)
+        PC22: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC22)
+        PC24: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC24)
+        PC23: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PC23)
+        PD21: Incomplete  ## <class 'Pin'> = Pin("SD_DET", mode=IN, pull=PULL_OFF, GPIO=PD21)
+        PA15: Incomplete  ## <class 'Pin'> = Pin("LED_BLUE", mode=OUT, pull=PULL_OFF, GPIO=PA15)
+        PA23: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA23)
+        PA16: Incomplete  ## <class 'Pin'> = Pin("SCL1", mode=IN, pull=PULL_OFF, GPIO=PA16)
+        PA12: Incomplete  ## <class 'Pin'> = Pin("SCL0", mode=IN, pull=PULL_OFF, GPIO=PA12)
+        PA14: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA14)
+        PA13: Incomplete  ## <class 'Pin'> = Pin("SDA0", mode=IN, pull=PULL_OFF, GPIO=PA13)
+        PA21: Incomplete  ## <class 'Pin'> = Pin("I2S_SDIN", mode=IN, pull=PULL_OFF, GPIO=PA21)
+        PA17: Incomplete  ## <class 'Pin'> = Pin("SDA1", mode=IN, pull=PULL_OFF, GPIO=PA17)
+        PA22: Incomplete  ## <class 'Pin'> = Pin("I2S_SDOUT", mode=IN, pull=PULL_OFF, GPIO=PA22)
+        PA18: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA18)
+        PA20: Incomplete  ## <class 'Pin'> = Pin("I2S_LRCLK", mode=IN, pull=PULL_OFF, GPIO=PA20)
+        PA19: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA19)
+        PA03: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA03)
+        PA11: Incomplete  ## <class 'Pin'> = Pin("QSPI_D3", mode=IN, pull=PULL_OFF, GPIO=PA11)
+        PA04: Incomplete  ## <class 'Pin'> = Pin("A6_D6", mode=IN, pull=PULL_OFF, GPIO=PA04)
+        PA00: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA00)
+        PA02: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA02)
+        PA01: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA01)
+        PA09: Incomplete  ## <class 'Pin'> = Pin("QSPI_D1", mode=IN, pull=PULL_OFF, GPIO=PA09)
+        PA05: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA05)
+        PA10: Incomplete  ## <class 'Pin'> = Pin("QSPI_D2", mode=IN, pull=PULL_OFF, GPIO=PA10)
+        PA06: Incomplete  ## <class 'Pin'> = Pin("A8_D8", mode=IN, pull=PULL_OFF, GPIO=PA06)
+        PA08: Incomplete  ## <class 'Pin'> = Pin("QSPI_D0", mode=IN, pull=PULL_OFF, GPIO=PA08)
+        PA07: Incomplete  ## <class 'Pin'> = Pin("A2_D2", mode=IN, pull=PULL_OFF, GPIO=PA07)
+        PB19: Incomplete  ## <class 'Pin'> = Pin("LCD_MOSI", mode=IN, pull=PULL_OFF, GPIO=PB19)
+        PB11: Incomplete  ## <class 'Pin'> = Pin("QSPI_CS", mode=IN, pull=PULL_OFF, GPIO=PB11)
+        PA24: Incomplete  ## <class 'Pin'> = Pin("USB_DM", mode=OUT, pull=PULL_OFF, GPIO=PA24)
+        PB12: Incomplete  ## <class 'Pin'> = Pin("GPCLK1", mode=IN, pull=PULL_OFF, GPIO=PB12)
+        PB08: Incomplete  ## <class 'Pin'> = Pin("A0_D0", mode=IN, pull=PULL_OFF, GPIO=PB08)
+        PB10: Incomplete  ## <class 'Pin'> = Pin("QSPI_SCK", mode=IN, pull=PULL_OFF, GPIO=PB10)
+        PB09: Incomplete  ## <class 'Pin'> = Pin("A1_D1", mode=IN, pull=PULL_OFF, GPIO=PB09)
+        PB17: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB17)
+        PB13: Incomplete  ## <class 'Pin'> = Pin("GPCLK2", mode=IN, pull=PULL_OFF, GPIO=PB13)
+        PB18: Incomplete  ## <class 'Pin'> = Pin("LCD_MISO", mode=IN, pull=PULL_OFF, GPIO=PB18)
+        PB14: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PB14)
+        PB16: Incomplete  ## <class 'Pin'> = Pin("I2C_BCLK", mode=IN, pull=PULL_OFF, GPIO=PB16)
+        PB15: Incomplete  ## <class 'Pin'> = Pin("GPCLK0", mode=IN, pull=PULL_OFF, GPIO=PB15)
+        PA31: Incomplete  ## <class 'Pin'> = Pin("SWDIO", mode=IN, pull=PULL_OFF, GPIO=PA31)
+        PB07: Incomplete  ## <class 'Pin'> = Pin("A7_D7", mode=IN, pull=PULL_OFF, GPIO=PB07)
+        PB00: Incomplete  ## <class 'Pin'> = Pin("MISO", mode=IN, pull=PULL_OFF, GPIO=PB00)
+        PA25: Incomplete  ## <class 'Pin'> = Pin("USB_DP", mode=OUT, pull=PULL_OFF, GPIO=PA25)
+        PA30: Incomplete  ## <class 'Pin'> = Pin("SWCLK", mode=IN, pull=PULL_OFF, GPIO=PA30)
+        PA27: Incomplete  ## <class 'Pin'> = Pin("", mode=IN, pull=PULL_OFF, GPIO=PA27)
+        PB05: Incomplete  ## <class 'Pin'> = Pin("A4_D4", mode=IN, pull=PULL_OFF, GPIO=PB05)
+        PB01: Incomplete  ## <class 'Pin'> = Pin("CS", mode=IN, pull=PULL_OFF, GPIO=PB01)
+        PB06: Incomplete  ## <class 'Pin'> = Pin("A5_D5", mode=IN, pull=PULL_OFF, GPIO=PB06)
+        PB02: Incomplete  ## <class 'Pin'> = Pin("MOSI", mode=IN, pull=PULL_OFF, GPIO=PB02)
+        PB04: Incomplete  ## <class 'Pin'> = Pin("A3_D3", mode=IN, pull=PULL_OFF, GPIO=PB04)
+        PB03: Incomplete  ## <class 'Pin'> = Pin("SCK", mode=IN, pull=PULL_OFF, GPIO=PB03)
 
         def __init__(self, *argv, **kwargs) -> None:
             ...
@@ -862,22 +903,22 @@ class SoftSPI:
     LSB = 1  # type: int
     MSB = 0  # type: int
 
-    def deinit(self, *args, **kwargs) -> Any:
+    def deinit(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def init(self, *args, **kwargs) -> Any:
+    def init(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write_readinto(self, *args, **kwargs) -> Any:
+    def write_readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None:
@@ -1078,7 +1119,7 @@ class UART:
         """
         ...
 
-    def write(self, buf) -> int:
+    def write(self, buf) -> Union[int, None]:
         """
         Write the buffer of bytes to the bus.
 
@@ -1086,7 +1127,7 @@ class UART:
         """
         ...
 
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+    def readinto(self, buf, nbytes: Optional[Any] = None) -> Union[int, None]:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
         that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
@@ -1097,7 +1138,7 @@ class UART:
         """
         ...
 
-    def readline(self) -> None:
+    def readline(self) -> Union[str, None]:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
@@ -1123,43 +1164,43 @@ class SoftI2C(I2C):
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
 
-    def readfrom_mem_into(self, *args, **kwargs) -> Any:
+    def readfrom_mem_into(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readfrom_into(self, *args, **kwargs) -> Any:
+    def readfrom_into(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readfrom_mem(self, *args, **kwargs) -> Any:
+    def readfrom_mem(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writeto_mem(self, *args, **kwargs) -> Any:
+    def writeto_mem(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def scan(self, *args, **kwargs) -> Any:
+    def scan(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writeto(self, *args, **kwargs) -> Any:
+    def writeto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writevto(self, *args, **kwargs) -> Any:
+    def writevto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def start(self, *args, **kwargs) -> Any:
+    def start(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readfrom(self, *args, **kwargs) -> Any:
+    def readfrom(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def init(self, *args, **kwargs) -> Any:
+    def init(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def stop(self, *args, **kwargs) -> Any:
+    def stop(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None:
@@ -1195,7 +1236,7 @@ class RTC:
         """
         ...
 
-    def calibration(self, *args, **kwargs) -> Any:
+    def calibration(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, id=0, *args, **kwargs) -> None:

@@ -5,13 +5,13 @@ MicroPython module: https://docs.micropython.org/en/latest/library/gc.html
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
-# Stubber: v1.13.4
+# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
+# Stubber: v1.13.8
 from typing import Optional, Any
 from _typeshed import Incomplete
 
 
-def isenabled(*args, **kwargs) -> Any:
+def isenabled(*args, **kwargs) -> Incomplete:
     ...
 
 

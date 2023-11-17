@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-samd-adafruit_feather_m4_express-stubs"
-version = "1.21.0a544"
+version = "1.22.0a162"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -32,6 +32,7 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 packages = [
+    { include = "__builtins__.pyi" },
     { include = "_boot.pyi" },
     { include = "_onewire.pyi" },
     { include = "_uasyncio.pyi" },

@@ -1,13 +1,55 @@
-from _typeshed import Incomplete as Incomplete
-from typing import Any, Optional
+"""
+Frame buffer manipulation.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/framebuf.html
+
+This module provides a general frame buffer which can be used to create
+bitmap images, which can then be sent to a display.
+"""
+
+# source version: v1_19_1
+# origin module:: repos/micropython/docs/library/framebuf.rst
+from typing import (
+    Any,
+    Optional,
+)
+from _typeshed import Incomplete
 
 MONO_VLSB: bytes
+"""\
+Monochrome (1-bit) color format
+This defines a mapping where the bits in a byte are vertically mapped with
+bit 0 being nearest the top of the screen. Consequently each byte occupies
+8 vertical pixels. Subsequent bytes appear at successive horizontal
+locations until the rightmost edge is reached. Further bytes are rendered
+at locations starting at the leftmost edge, 8 pixels lower.
+"""
 MONO_HLSB: bytes
+"""\
+Monochrome (1-bit) color format
+This defines a mapping where the bits in a byte are horizontally mapped.
+Each byte occupies 8 horizontal pixels with bit 7 being the leftmost.
+Subsequent bytes appear at successive horizontal locations until the
+rightmost edge is reached. Further bytes are rendered on the next row, one
+pixel lower.
+"""
 MONO_HMSB: bytes
+"""\
+Monochrome (1-bit) color format
+This defines a mapping where the bits in a byte are horizontally mapped.
+Each byte occupies 8 horizontal pixels with bit 0 being the leftmost.
+Subsequent bytes appear at successive horizontal locations until the
+rightmost edge is reached. Further bytes are rendered on the next row, one
+pixel lower.
+"""
 RGB565: Incomplete
+"""Red Green Blue (16-bit, 5+6+5) color format"""
 GS2_HMSB: Incomplete
+"""Grayscale (2-bit) color format"""
 GS4_HMSB: Incomplete
+"""Grayscale (4-bit) color format"""
 GS8: Incomplete
+"""Grayscale (8-bit) color format"""
 
 class FrameBuffer:
     """
@@ -35,16 +77,18 @@ class FrameBuffer:
     unexpected errors.
     """
 
-    def __init__(self, buffer, width, height, format, stride: int = ...) -> None: ...
+    def __init__(self, buffer, width, height, format, stride=-1, /) -> None: ...
     def fill(self, c) -> None:
         """
         Fill the entire FrameBuffer with the specified color.
         """
-    def pixel(self, x, y, c: Optional[Any] = ...) -> Incomplete:
+        ...
+    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
         """
+        ...
     def hline(self, x, y, w, c) -> Incomplete: ...
     def vline(self, x, y, h, c) -> Incomplete: ...
     def line(self, x1, y1, x2, y2, c) -> None:
@@ -55,6 +99,7 @@ class FrameBuffer:
         methods draw horizontal and vertical lines respectively up to
         a given length.
         """
+        ...
     def rect(self, x, y, w, h, c) -> Incomplete: ...
     def fill_rect(self, x, y, w, h, c) -> None:
         """
@@ -62,19 +107,22 @@ class FrameBuffer:
         method draws only a 1 pixel outline whereas the `fill_rect` method
         draws both the outline and interior.
         """
-    def text(self, s, x, y, c: Optional[Any] = ...) -> None:
+        ...
+    def text(self, s, x, y, c: Optional[Any] = None) -> None:
         """
         Write text to the FrameBuffer using the the coordinates as the upper-left
         corner of the text. The color of the text can be defined by the optional
         argument but is otherwise a default value of 1. All characters have
         dimensions of 8x8 pixels and there is currently no way to change the font.
         """
+        ...
     def scroll(self, xstep, ystep) -> Incomplete:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
         """
-    def blit(self, fbuf, x, y, key: int = ..., palette: Incomplete | None = ...) -> None:
+        ...
+    def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
         If *key* is specified then it should be a color integer and the
@@ -92,3 +140,4 @@ class FrameBuffer:
         current pixel will be that of that *palette* pixel whose x position is the
         color of the corresponding source pixel.
         """
+        ...

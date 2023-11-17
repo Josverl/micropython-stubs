@@ -27,7 +27,7 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* Merged stubs from `stubs/micropython-v1_21_0-rp2-rpi_pico_w-merged`
+* Merged stubs from `stubs/micropython-v1_21_0-rp2-RPI_PICO_W-merged`
 * Frozen stubs from `stubs/micropython-v1_21_0-frozen/rp2/RPI_PICO_W`
 * Core stubs from `stubs/micropython-core`
 

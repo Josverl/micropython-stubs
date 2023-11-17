@@ -11,7 +11,9 @@
 # Import required libraries
 from micropython import const
 from machine import Pin, SPI, ADC
-import machine, time, esp32
+import machine
+import time
+import esp32
 
 # TinyPICO Hardware Pin Assignments
 

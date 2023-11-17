@@ -2,7 +2,7 @@
     "name": "micropython-stm32-stubs",
     "mpy_version": "1.19.1",
     "publish": true,
-    "pkg_version": "1.19.1.post11",
+    "pkg_version": "1.19.1.post12",
     "path": "micropython-v1_19_1-stm32-stubs",
     "stub_sources": [
         [

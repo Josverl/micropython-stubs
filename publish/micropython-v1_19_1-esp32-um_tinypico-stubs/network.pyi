@@ -36,38 +36,113 @@ For example::
 from typing import List, Optional, Tuple, Union, Any
 from _typeshed import Incomplete
 
-STAT_WRONG_PASSWORD: int
-PHY_IP101: int
-PHY_LAN8720: int
-PHY_RTL8201: int
-PHY_DP83848: int
-MODE_11B: int
-MODE_11G: int
-MODE_11N: int
-STA_IF: int
-STAT_HANDSHAKE_TIMEOUT: int
-STAT_IDLE: int
-STAT_NO_AP_FOUND: int
-STAT_GOT_IP: int
-STAT_ASSOC_FAIL: int
-STAT_BEACON_TIMEOUT: int
-STAT_CONNECTING: int
-AUTH_WPA3_PSK: int
-AUTH_WPA2_ENTERPRISE: int
-AUTH_WPA2_PSK: int
-AUTH_WPA2_WPA3_PSK: int
-AUTH_WEP: int
 AP_IF: int
 AUTH_MAX: int
 AUTH_OPEN: int
-ETH_STOPPED: int
-ETH_INITIALIZED: int
-ETH_GOT_IP: int
-ETH_STARTED: int
+AUTH_WEP: int
+AUTH_WPA2_ENTERPRISE: int
+AUTH_WPA2_PSK: int
+AUTH_WPA2_WPA3_PSK: int
+AUTH_WPA3_PSK: int
 AUTH_WPA_PSK: int
 AUTH_WPA_WPA2_PSK: int
-ETH_DISCONNECTED: int
 ETH_CONNECTED: int
+ETH_DISCONNECTED: int
+ETH_GOT_IP: int
+ETH_INITIALIZED: int
+ETH_STARTED: int
+ETH_STOPPED: int
+
+class LAN:
+    """
+    Create a LAN driver object, initialise the LAN module using the given
+    PHY driver name, and return the LAN object.
+
+    Arguments are:
+
+      - *id* is the number of the Ethernet port, either 0 or 1.
+      - *phy_type* is the name of the PHY driver. For most board the on-board PHY has to be used and
+        is the default. Suitable values are port specific.
+      - *phy_addr* specifies the address of the PHY interface. As with *phy_type*, the hardwired value has
+        to be used for most boards and that value is the default.
+      - *phy_clock* specifies, whether the data clock is provided by the Ethernet controller or the PYH interface.
+        The default value is the one that matches the board. If set to ``True``, the clock is driven by the
+        Ethernet controller, otherwise by the PHY interface.
+
+    For example, with the Seeed Arch Mix board you can  use::
+
+      nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=2, phy_clock=False)
+    """
+
+    def __init__(self, id, *, phy_type=0, phy_addr=0, phy_clock=0) -> None: ...
+    def active(self, state: Optional[Any] = None) -> Incomplete:
+        """
+        With a parameter, it sets the interface active if *state* is true, otherwise it
+        sets it inactive.
+        Without a parameter, it returns the state.
+        """
+        ...
+    def isconnected(self) -> bool:
+        """
+        Returns ``True`` if the physical Ethernet link is connected and up.
+        Returns ``False`` otherwise.
+        """
+        ...
+    def status(self) -> Incomplete:
+        """
+        Returns the LAN status.
+        """
+        ...
+    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
+        """
+        Get/set IP address, subnet mask, gateway and DNS.
+
+        When called with no arguments, this method returns a 4-tuple with the above information.
+
+        To set the above values, pass a 4-tuple with the required information.  For example::
+
+         nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
+        """
+        ...
+    def config(self, config_parameters) -> Incomplete:
+        """
+        Sets or gets parameters of the LAN interface. The only parameter that can be
+        retrieved is the MAC address, using::
+
+           mac = LAN.config("mac")
+
+        The parameters that can be set are:
+
+         - ``trace=n`` sets trace levels; suitable values are:
+
+             - 2: trace TX
+             - 4: trace RX
+             - 8: full trace
+
+         - ``low_power=bool`` sets or clears low power mode, valid values being ``False``
+           or ``True``.
+        """
+        ...
+
+MODE_11B: int
+MODE_11G: int
+MODE_11N: int
+PHY_DP83848: int
+PHY_IP101: int
+PHY_LAN8720: int
+PHY_RTL8201: int
+
+def PPP(*args, **kwargs) -> Any: ...
+
+STAT_ASSOC_FAIL: int
+STAT_BEACON_TIMEOUT: int
+STAT_CONNECTING: int
+STAT_GOT_IP: int
+STAT_HANDSHAKE_TIMEOUT: int
+STAT_IDLE: int
+STAT_NO_AP_FOUND: int
+STAT_WRONG_PASSWORD: int
+STA_IF: int
 
 class WLAN:
     """
@@ -197,75 +272,3 @@ class WLAN:
         ...
 
 def phy_mode(*args, **kwargs) -> Any: ...
-def PPP(*args, **kwargs) -> Any: ...
-
-class LAN:
-    """
-    Create a LAN driver object, initialise the LAN module using the given
-    PHY driver name, and return the LAN object.
-
-    Arguments are:
-
-      - *id* is the number of the Ethernet port, either 0 or 1.
-      - *phy_type* is the name of the PHY driver. For most board the on-board PHY has to be used and
-        is the default. Suitable values are port specific.
-      - *phy_addr* specifies the address of the PHY interface. As with *phy_type*, the hardwired value has
-        to be used for most boards and that value is the default.
-      - *phy_clock* specifies, whether the data clock is provided by the Ethernet controller or the PYH interface.
-        The default value is the one that matches the board. If set to ``True``, the clock is driven by the
-        Ethernet controller, otherwise by the PHY interface.
-
-    For example, with the Seeed Arch Mix board you can  use::
-
-      nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=2, phy_clock=False)
-    """
-
-    def __init__(self, id, *, phy_type=0, phy_addr=0, phy_clock=0) -> None: ...
-    def active(self, state: Optional[Any] = None) -> Incomplete:
-        """
-        With a parameter, it sets the interface active if *state* is true, otherwise it
-        sets it inactive.
-        Without a parameter, it returns the state.
-        """
-        ...
-    def isconnected(self) -> bool:
-        """
-        Returns ``True`` if the physical Ethernet link is connected and up.
-        Returns ``False`` otherwise.
-        """
-        ...
-    def status(self) -> Incomplete:
-        """
-        Returns the LAN status.
-        """
-        ...
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
-        """
-        Get/set IP address, subnet mask, gateway and DNS.
-
-        When called with no arguments, this method returns a 4-tuple with the above information.
-
-        To set the above values, pass a 4-tuple with the required information.  For example::
-
-         nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
-        """
-        ...
-    def config(self, config_parameters) -> Incomplete:
-        """
-        Sets or gets parameters of the LAN interface. The only parameter that can be
-        retrieved is the MAC address, using::
-
-           mac = LAN.config("mac")
-
-        The parameters that can be set are:
-
-         - ``trace=n`` sets trace levels; suitable values are:
-
-             - 2: trace TX
-             - 4: trace RX
-             - 8: full trace
-
-         - ``low_power=bool`` sets or clears low power mode, valid values being ``False``
-           or ``True``.
-        """
-        ...

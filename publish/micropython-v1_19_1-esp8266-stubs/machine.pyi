@@ -693,7 +693,7 @@ class UART:
     Construct a UART object of the given id.
     """
 
-    def readline(self) -> None:
+    def readline(self) -> Union[str, None]:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
@@ -746,7 +746,7 @@ class UART:
             flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
         """
         ...
-    def write(self, buf) -> int:
+    def write(self, buf) -> Union[int, None]:
         """
         Write the buffer of bytes to the bus.
 
@@ -767,7 +767,7 @@ class UART:
          poll.poll(timeout)
         """
         ...
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+    def readinto(self, buf, nbytes: Optional[Any] = None) -> Union[int, None]:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
         that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout

@@ -6,7 +6,12 @@ MicroPython module: https://docs.micropython.org/en/latest/library/micropython.h
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/micropython.rst
-from typing import Any, Optional, Tuple, TypeVar
+from typing import (
+    Any,
+    Optional,
+    Tuple,
+    TypeVar,
+)
 from _typeshed import Incomplete
 
 Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple)  # constant

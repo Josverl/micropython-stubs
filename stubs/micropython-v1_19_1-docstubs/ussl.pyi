@@ -1,21 +1,33 @@
-from stdlib.ssl import *
-from _typeshed import Incomplete as Incomplete
-from typing import IO
+"""
+TLS/SSL wrapper for socket objects.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/ssl.html
+
+CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
+
+This module provides access to Transport Layer Security (previously and
+widely known as “Secure Sockets Layer”) encryption and peer authentication
+facilities for network sockets, both client-side and server-side.
+"""
+
+# source version: v1_19_1
+# origin module:: repos/micropython/docs/library/ssl.rst
+from typing import (
+    IO,
+)
+from _typeshed import Incomplete
+from stdlib.ssl import *  # type: ignore
 
 SSLError: Incomplete
+"""This exception does NOT exist. Instead its base class, OSError, is used."""
 CERT_NONE: Incomplete
+"""Supported values for *cert_reqs* parameter."""
 CERT_OPTIONAL: Incomplete
+"""Supported values for *cert_reqs* parameter."""
 CERT_REQUIRED: Incomplete
+"""Supported values for *cert_reqs* parameter."""
 
-def wrap_socket(
-    sock,
-    server_side: bool = ...,
-    keyfile: Incomplete | None = ...,
-    certfile: Incomplete | None = ...,
-    cert_reqs: Incomplete | None = ...,
-    ca_certs: Incomplete | None = ...,
-    do_handshake: bool = ...,
-) -> IO:
+def wrap_socket(sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, ca_certs=None, do_handshake=True) -> IO:
     """
     Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
     and returns an instance of ssl.SSLSocket, which wraps the underlying stream in
@@ -36,3 +48,4 @@ def wrap_socket(
     Depending on the underlying module implementation in a particular
     :term:`MicroPython port`, some or all keyword arguments above may be not supported.
     """
+    ...

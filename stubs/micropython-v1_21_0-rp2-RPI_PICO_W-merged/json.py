@@ -1,10 +1,17 @@
 """
-Module: 'json' on micropython-v1.21.0-rp2-RPI_PICO_W
+JSON encoding and decoding.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/json.html
+
+CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
+
+This modules allows to convert between Python objects and the JSON
+data format.
 """
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import Any
-from _typeshed import Incomplete as Incomplete, Incomplete
+from _typeshed import Incomplete
 
 
 def loads(str) -> Incomplete:
@@ -27,7 +34,7 @@ def load(stream) -> Incomplete:
     ...
 
 
-def dumps(obj, separators: Incomplete | None = ...) -> str:
+def dumps(obj, separators=None) -> str:
     """
     Return *obj* represented as a JSON string.
 
@@ -36,7 +43,7 @@ def dumps(obj, separators: Incomplete | None = ...) -> str:
     ...
 
 
-def dump(obj, stream, separators: Incomplete | None = ...) -> Incomplete:
+def dump(obj, stream, separators=None) -> Incomplete:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
 

@@ -1,10 +1,21 @@
 """
-Module: '_rp2' on micropython-v1.19.1-rp2
+Functionality specific to the RP2.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/rp2.html
+
+The ``rp2`` module contains functions and classes specific to the RP2040, as
+used in the Raspberry Pi Pico.
+
+See the `RP2040 Python datasheet
+<https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf>`_
+for more information, and `pico-micropython-examples
+<https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
+for example code.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
 def dht_readinto(*args, **kwargs) -> Any:
@@ -21,7 +32,7 @@ class StateMachine:
     `StateMachine.init`.
     """
 
-    def irq(self, handler: Incomplete | None = ..., trigger=..., hard: bool = ...) -> Incomplete:
+    def irq(self, handler=None, trigger=0 | 1, hard=False) -> Incomplete:
         """
         Returns the IRQ object for the given StateMachine.
 
@@ -29,7 +40,7 @@ class StateMachine:
         """
         ...
 
-    def put(self, value, shift: int = ...) -> Incomplete:
+    def put(self, value, shift=0) -> Incomplete:
         """
         Push a word onto the state machine's TX FIFO.
 
@@ -79,17 +90,17 @@ class StateMachine:
     def init(
         self,
         program,
-        freq: int = ...,
+        freq=-1,
         *,
-        in_base: Incomplete | None = ...,
-        out_base: Incomplete | None = ...,
-        set_base: Incomplete | None = ...,
-        jmp_pin: Incomplete | None = ...,
-        sideset_base: Incomplete | None = ...,
-        in_shiftdir: Incomplete | None = ...,
-        out_shiftdir: Incomplete | None = ...,
-        push_thresh: Incomplete | None = ...,
-        pull_thresh: Incomplete | None = ...,
+        in_base=None,
+        out_base=None,
+        set_base=None,
+        jmp_pin=None,
+        sideset_base=None,
+        in_shiftdir=None,
+        out_shiftdir=None,
+        push_thresh=None,
+        pull_thresh=None,
     ) -> None:
         """
         Configure the state machine instance to run the given *program*.
@@ -133,7 +144,7 @@ class StateMachine:
         """
         ...
 
-    def get(self, buf: Incomplete | None = ..., shift: int = ...) -> Incomplete:
+    def get(self, buf=None, shift=0) -> Incomplete:
         """
         Pull a word from the state machine's RX FIFO.
 
@@ -145,7 +156,7 @@ class StateMachine:
         """
         ...
 
-    def active(self, value: Optional[Any] = ...) -> Incomplete:
+    def active(self, value: Optional[Any] = None) -> Incomplete:
         """
         Gets or sets whether the state machine is currently running.
 
@@ -165,10 +176,10 @@ class Flash:
     Gets the singleton object for accessing the SPI flash memory.
     """
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete:
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
         ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete:
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
         ...
 
     def ioctl(self, cmd, arg) -> Incomplete:
@@ -217,7 +228,7 @@ class PIO:
         """
         ...
 
-    def remove_program(self, program: Optional[Any] = ...) -> None:
+    def remove_program(self, program: Optional[Any] = None) -> None:
         """
         Remove *program* from the instruction memory of this PIO instance.
 
@@ -227,7 +238,7 @@ class PIO:
         """
         ...
 
-    def irq(self, handler: Incomplete | None = ..., trigger=..., hard: bool = ...) -> Incomplete:
+    def irq(self, handler=None, trigger=IRQ_SM0, hard=False) -> Incomplete:
         """
         Returns the IRQ object for this PIO instance.
 

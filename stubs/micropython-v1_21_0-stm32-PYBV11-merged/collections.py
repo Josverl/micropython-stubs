@@ -1,11 +1,17 @@
 """
-Module: 'collections' on micropython-v1.21.0-stm32-PYBV11
+Collection and container types.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/collections.html
+
+CPython module: :mod:`python:collections` https://docs.python.org/3/library/collections.html .
+
+This module implements advanced collection and container types to
+hold/accumulate various objects.
 """
 # MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
 # Stubber: v1.13.8
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete, Incomplete
-from queue import Queue as Queue
+from _typeshed import Incomplete
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
 from typing_extensions import NamedTuple as stdlib_NamedTuple
 
@@ -126,5 +132,5 @@ class deque(stdlib_deque):
         """
         ...
 
-    def __init__(self, iterable, maxlen, flags: Optional[Any] = ...) -> None:
+    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None:
         ...

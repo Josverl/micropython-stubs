@@ -4,7 +4,7 @@ Access and control MicroPython internals.
 MicroPython module: https://docs.micropython.org/en/latest/library/micropython.html
 """
 
-# source version: v1_20_0
+# source version: v1_21_0
 # origin module:: repos/micropython/docs/library/micropython.rst
 
 from typing import Any, Callable, Optional, Tuple, TypeVar, Union
@@ -98,11 +98,9 @@ def stack_use() -> int:
     """
     ...
 
-def heap_lock() -> int: ...
-def heap_unlock() -> int: ...
-def heap_locked() -> bool:
+def heap_lock() -> int:
     """
-    Lock or unlock the heap.  When locked no memory allocation can occur and a
+    Lock the heap.  When locked no memory allocation can occur and a
     `MemoryError` will be raised if any heap allocation is attempted.
     `heap_locked()` returns a true value if the heap is currently locked.
 
@@ -110,6 +108,40 @@ def heap_locked() -> bool:
     in a row and the lock-depth will increase, and then `heap_unlock()` must be
     called the same number of times to make the heap available again.
 
+    Both `heap_unlock()` and `heap_locked()` return the current lock depth
+    (after unlocking for the former) as a non-negative integer, with 0 meaning
+    the heap is not locked.
+
+    If the REPL becomes active with the heap locked then it will be forcefully
+    unlocked.
+
+    Note: `heap_locked()` is not enabled on most ports by default,
+    requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
+    """
+    ...
+def heap_unlock() -> int:
+    """
+    Unlock the heap.  When locked no memory allocation can occur and a
+    `MemoryError` will be raised if any heap allocation is attempted.
+    `heap_locked()` returns a true value if the heap is currently locked.
+
+    These functions can be nested, ie `heap_lock()` can be called multiple times
+    in a row and the lock-depth will increase, and then `heap_unlock()` must be
+    called the same number of times to make the heap available again.
+
+    Both `heap_unlock()` and `heap_locked()` return the current lock depth
+    (after unlocking for the former) as a non-negative integer, with 0 meaning
+    the heap is not locked.
+
+    If the REPL becomes active with the heap locked then it will be forcefully
+    unlocked.
+
+    Note: `heap_locked()` is not enabled on most ports by default,
+    requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
+    """
+    ...
+def heap_locked() -> bool:
+    """
     Both `heap_unlock()` and `heap_locked()` return the current lock depth
     (after unlocking for the former) as a non-negative integer, with 0 meaning
     the heap is not locked.

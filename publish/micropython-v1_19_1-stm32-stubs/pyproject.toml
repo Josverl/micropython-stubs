@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-stm32-stubs"
-version = "1.19.1.post11"
+version = "1.19.1.post12"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -32,6 +32,7 @@ classifiers = [
     "Topic :: Software Development :: Build Tools",
 ]
 packages = [
+    { include = "__builtins__.pyi" },
     { include = "_onewire.pyi" },
     { include = "_uasyncio.pyi" },
     { include = "array.pyi" },
@@ -46,6 +47,7 @@ packages = [
     { include = "io.pyi" },
     { include = "json.pyi" },
     { include = "lcd160cr.pyi" },
+    { include = "lcd160cr_test.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
@@ -68,6 +70,7 @@ packages = [
     { include = "uasyncio/funcs.pyi" },
     { include = "uasyncio/lock.pyi" },
     { include = "uasyncio/stream.pyi" },
+    { include = "uasyncio/task.pyi" },
     { include = "ubinascii.pyi" },
     { include = "ucollections.pyi" },
     { include = "uctypes.pyi" },

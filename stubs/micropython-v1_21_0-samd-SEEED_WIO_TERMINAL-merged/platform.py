@@ -1,10 +1,17 @@
 """
-Module: 'platform' on micropython-v1.21.0-samd-SEEED_WIO_TERMINAL
+Access to underlying platform’s identifying data.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/platform.html
+
+CPython module: :mod:`python:platform` https://docs.python.org/3/library/platform.html .
+
+This module tries to retrieve as much platform-identifying data as possible. It
+makes this information available via function APIs.
 """
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
 # Stubber: v1.13.8
 from typing import Tuple, Any
-from _typeshed import Incomplete as Incomplete, Incomplete
+from _typeshed import Incomplete
 
 
 def platform() -> str:

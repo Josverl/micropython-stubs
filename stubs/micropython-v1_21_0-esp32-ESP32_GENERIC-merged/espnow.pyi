@@ -1,5 +1,9 @@
-from _typeshed import Incomplete as Incomplete
-import abc
+"""
+ESP-NOW :doc:`asyncio` support.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/aioespnow.html
+"""
+from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 
 KEY_LEN: int
@@ -8,10 +12,7 @@ MAX_ENCRYPT_PEER_NUM: int
 MAX_TOTAL_PEER_NUM: int
 ADDR_LEN: int
 
-class ESPNow(
-    ESPNowBase,
-    Iterator,
-):
+class ESPNow(ESPNowBase, Iterator):
     """
     Returns the singleton ESPNow object. As this is a singleton, all calls to
     `espnow.ESPNow()` return a reference to the same object.
@@ -30,7 +31,8 @@ class ESPNow(
           - ``peer_num`` is the number of peers which are registered, and
           - ``encrypt_num`` is the number of encrypted peers.
         """
-    def recv(self, timeout_ms: Optional[Any] = ...) -> Union[List, Tuple[None, None]]:
+        ...
+    def recv(self, timeout_ms: Optional[Any] = None) -> Union[List, Tuple[None, None]]:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using
@@ -68,18 +70,21 @@ class ESPNow(
         the data rate is high. See `ESPNow.irecv()` for a memory-friendly
         alternative.
         """
-    def mod_peer(self, mac, param=..., *args, **kwargs) -> None:
+        ...
+    def mod_peer(self, mac, param=value, *args, **kwargs) -> None:
         """
         Modify the parameters of the peer associated with the provided *mac*
         address. Parameters may be provided as positional or keyword arguments
         (see `ESPNow.add_peer()`). Any parameter that is not set (or set to
         ``None``) will retain the existing value for that parameter.
         """
+        ...
     def get_peers(self) -> Tuple:
         """
         Return the "peer info" parameters for all the registered peers (as a tuple
         of tuples).
         """
+        ...
     def stats(self) -> Incomplete:
         """
         Returns:
@@ -95,7 +100,8 @@ class ESPNow(
         **Note**: Dropped packets will still be acknowledged to the sender as
         received.
         """
-    def recvinto(self, data, timeout_ms: Optional[Any] = ...) -> int:
+        ...
+    def recvinto(self, data, timeout_ms: Optional[Any] = None) -> int:
         """
         Wait for an incoming message and return the length of the message in bytes.
         This is the low-level method used by both `recv()<ESPNow.recv()>` and
@@ -128,6 +134,7 @@ class ESPNow(
         - If the list is at least 4 elements long, the rssi and timestamp values
           will be saved as the 3rd and 4th elements.
         """
+        ...
     def set_pmk(self, pmk) -> None:
         """
         Set the Primary Master Key (PMK) which is used to encrypt the Local Master
@@ -153,7 +160,8 @@ class ESPNow(
 
           ``ValueError()`` on invalid *pmk* values.
         """
-    def irecv(self, timeout_ms: Optional[Any] = ...) -> Incomplete:
+        ...
+    def irecv(self, timeout_ms: Optional[Any] = None) -> Incomplete:
         """
         Works like `ESPNow.recv()` but will reuse internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
@@ -182,6 +190,7 @@ class ESPNow(
               if mac is None:   # mac, msg will equal (None, None) on timeout
                   break
         """
+        ...
     def get_peer(self, mac) -> Incomplete:
         """
         Return information on a registered peer.
@@ -198,7 +207,8 @@ class ESPNow(
               registered.
             - ``ValueError()`` on invalid *mac* values.
         """
-    def active(self, flag: Optional[Any] = ...) -> Incomplete:
+        ...
+    def active(self, flag: Optional[Any] = None) -> Incomplete:
         """
         Initialise or de-initialise the ESP-NOW communication protocol depending on
         the value of the ``flag`` optional argument.
@@ -226,7 +236,8 @@ class ESPNow(
 
             ``True`` if interface is currently *active*, else ``False``.
         """
-    def send(self, peer, msg, mac: Incomplete | None = ..., sync: bool = ...) -> Incomplete:
+        ...
+    def send(self, peer, msg, mac=None, sync=True) -> Incomplete:
         """
         Send the data contained in ``msg`` to the peer with given network ``mac``
         address. In the second form, ``mac=None`` and ``sync=True``. The peer must
@@ -268,9 +279,10 @@ class ESPNow(
 
         **Note**: A peer will respond with success if its wifi interface is
         `active()<network.WLAN.active>` and set to the same channel as the sender,
-        regardless of whether it has initialised it\'s ESP-NOW system or is
+        regardless of whether it has initialised it's ESP-NOW system or is
         actively listening for ESP-NOW traffic (see the Espressif ESP-NOW docs).
         """
+        ...
     def any(self) -> Incomplete:
         """
         Check if data is available to be read with `ESPNow.recv()`.
@@ -289,6 +301,7 @@ class ESPNow(
 
            ``True`` if data is available to be read, else ``False``.
         """
+        ...
     def del_peer(self, mac) -> Incomplete:
         """
         Deregister the peer associated with the provided *mac* address.
@@ -304,13 +317,14 @@ class ESPNow(
               registered.
             - ``ValueError()`` on invalid *mac* values.
         """
+        ...
     def add_peer(
-        self, mac, lmk: Optional[Any] = ..., channel: Optional[Any] = ..., ifidx: Optional[Any] = ..., encrypt: Optional[Any] = ...
+        self, mac, lmk: Optional[Any] = None, channel: Optional[Any] = None, ifidx: Optional[Any] = None, encrypt: Optional[Any] = None
     ) -> Incomplete:
         """
         Add/register the provided *mac* address as a peer. Additional parameters may
         also be specified as positional or keyword arguments (any parameter set to
-        ``None`` will be set to it\'s default value):
+        ``None`` will be set to it's default value):
 
         Arguments:
 
@@ -323,7 +337,7 @@ class ESPNow(
               - a byte-string or bytearray or string of length ``espnow.KEY_LEN``
                 (16 bytes), or
 
-              - any non ``True`` python value (default= ``b\'\'``), signifying an
+              - any non ``True`` python value (default= ``b''``), signifying an
                 *empty* key which will disable encryption.
 
             - *channel*: The wifi channel (2.4GHz) to communicate with this peer.
@@ -359,6 +373,7 @@ class ESPNow(
               already registered.
             - ``ValueError()`` on invalid keyword args or values.
         """
+        ...
     def config(self, param) -> str:
         """
         Set or get configuration values of the ESPNow interface. To set values, use
@@ -401,6 +416,7 @@ class ESPNow(
             - ``OSError(num, "ESP_ERR_ESPNOW_NOT_INIT")`` if not initialised.
             - ``ValueError()`` on invalid configuration options or values.
         """
+        ...
     def irq(self, callback) -> Incomplete:
         """
         Set a callback function to be called *as soon as possible* after a message has
@@ -431,6 +447,7 @@ class ESPNow(
         - For more information on *scheduled* function callbacks see:
           `micropython.schedule()<micropython.schedule>`.
         """
+        ...
     def __init__(self) -> None: ...
 
 class ESPNowBase:

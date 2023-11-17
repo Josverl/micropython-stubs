@@ -53,8 +53,8 @@ The following data types are supported:
 | P      | void *             | integer           |               |
 +--------+--------------------+-------------------+---------------+
 """
-from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Tuple
 
 def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
     """

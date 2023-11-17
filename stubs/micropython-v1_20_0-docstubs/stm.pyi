@@ -1,20 +1,63 @@
-from _typeshed import Incomplete as Incomplete
-from typing import Tuple
+"""
+Functionality specific to STM32 MCUs.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/stm.html
+
+This module provides functionality specific to STM32 microcontrollers, including
+direct access to peripheral registers.
+"""
+
+# + module: stm.rst
+# source version: v1_20_0
+# origin module:: repos/micropython/docs/library/stm.rst
+from typing import (
+    Tuple,
+)
+from _typeshed import Incomplete
 
 mem8: bytearray
+"""Read/write 8 bits of memory."""
 mem16: bytearray
+"""Read/write 16 bits of memory."""
 mem32: bytearray
+"""\
+Read/write 32 bits of memory.
+
+Use subscript notation ``[...]`` to index these objects with the address of
+interest.
+
+These memory objects can be used in combination with the peripheral register
+constants to read and write registers of the MCU hardware peripherals, as well
+as all other areas of address space.
+"""
 GPIOA: int
+"""Base address of the GPIOA peripheral."""
 GPIOB: int
+"""Base address of the GPIOB peripheral."""
 GPIO_BSRR: Incomplete
+"""Offset of the GPIO bit set/reset register."""
 GPIO_IDR: Incomplete
+"""Offset of the GPIO input data register."""
 GPIO_ODR: int
+"""\
+Offset of the GPIO output data register.
+
+Constants that are named after a peripheral, like ``GPIOA``, are the absolute
+address of that peripheral.  Constants that have a prefix which is the name of a
+peripheral, like ``GPIO_BSRR``, are relative offsets of the register.  Accessing
+peripheral registers requires adding the absolute base address of the peripheral
+and the relative register offset.  For example ``GPIOA + GPIO_BSRR`` is the
+full, absolute address of the ``GPIOA->BSRR`` register.
+
+Example use:
+"""
 
 def rfcore_status() -> int:
     """
     Returns the status of the second CPU as an integer (the first word of device
     info table).
     """
+    ...
 
 def rfcore_fw_version(id) -> Tuple:
     """
@@ -23,10 +66,12 @@ def rfcore_fw_version(id) -> Tuple:
 
     Returns a 5-tuple with the full version number.
     """
+    ...
 
-def rfcore_sys_hci(ogf, ocf, data, timeout_ms: int = ...) -> bytes:
+def rfcore_sys_hci(ogf, ocf, data, timeout_ms=0) -> bytes:
     """
     Execute a HCI command on the SYS channel.  The execution is synchronous.
 
     Returns a bytes object with the result of the SYS command.
     """
+    ...

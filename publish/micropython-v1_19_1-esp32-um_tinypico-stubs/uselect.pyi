@@ -11,19 +11,10 @@ This module provides functions to efficiently wait for events on multiple
 from typing import Iterator, List, Optional, Tuple, Any
 from _typeshed import Incomplete
 
-POLLOUT: int
-POLLIN: int
-POLLHUP: int
 POLLERR: int
-
-def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
-    """
-    Wait for activity on a set of objects.
-
-    This function is provided by some MicroPython ports for compatibility
-    and is not efficient. Usage of :class:`Poll` is recommended instead.
-    """
-    ...
+POLLHUP: int
+POLLIN: int
+POLLOUT: int
 
 class poll:
     """
@@ -101,3 +92,12 @@ class poll:
            This function is a MicroPython extension.
         """
         ...
+
+def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
+    """
+    Wait for activity on a set of objects.
+
+    This function is provided by some MicroPython ports for compatibility
+    and is not efficient. Usage of :class:`Poll` is recommended instead.
+    """
+    ...

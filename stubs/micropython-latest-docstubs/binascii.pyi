@@ -11,7 +11,10 @@ encodings of it in ASCII form (in both directions).
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/binascii.rst
-from typing import Any, Optional
+from typing import (
+    Any,
+    Optional,
+)
 from _typeshed import Incomplete
 
 def hexlify(data, sep: Optional[Any] = None) -> bytes:

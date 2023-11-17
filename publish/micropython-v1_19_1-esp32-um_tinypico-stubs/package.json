@@ -7,7 +7,7 @@
     "stub_sources": [
         [
             "Merged stubs",
-            "micropython-v1_19_1-esp32-merged"
+            "micropython-v1_19_1-esp32-UM_TINYPICO-merged"
         ],
         [
             "Frozen stubs",

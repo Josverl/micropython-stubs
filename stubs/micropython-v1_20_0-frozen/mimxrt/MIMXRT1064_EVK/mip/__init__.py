@@ -42,7 +42,7 @@ def _chunk(src, dest):
 
 # Check if the specified path exists and matches the hash.
 def _check_exists(path, short_hash):
-    import os
+    pass
 
     try:
         import binascii

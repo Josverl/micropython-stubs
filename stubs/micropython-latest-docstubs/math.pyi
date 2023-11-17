@@ -16,7 +16,9 @@ for this module.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/math.rst
-from typing import Tuple
+from typing import (
+    Tuple,
+)
 from _typeshed import Incomplete
 
 e: float

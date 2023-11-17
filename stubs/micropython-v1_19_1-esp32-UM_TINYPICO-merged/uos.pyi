@@ -1,11 +1,23 @@
+"""
+Basic "operating system" services.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/os.html
+
+CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
+
+The ``os`` module contains functions for filesystem access and mounting,
+terminal redirection and duplication, and the ``uname`` and ``urandom``
+functions.
+"""
 from typing import IO, Iterator, Optional, Tuple, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 from stdlib.os import *
 
 def remove(path) -> None:
     """
     Remove a file.
     """
+    ...
 
 class VfsFat:
     """
@@ -26,6 +38,7 @@ class VfsFat:
         """
         Build a FAT filesystem on *block_dev*.
         """
+        ...
     def mount(self, *args, **kwargs) -> Any: ...
     def rename(self, *args, **kwargs) -> Any: ...
     def rmdir(self, *args, **kwargs) -> Any: ...
@@ -51,7 +64,7 @@ class VfsLfs2:
     See :ref:`filesystem` for more information.
     """
 
-    def __init__(self, block_dev, readsize: int = ..., progsize: int = ..., lookahead: int = ..., mtime: bool = ...) -> None: ...
+    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
     def open(self, *args, **kwargs) -> Any: ...
     def remove(self, *args, **kwargs) -> Any: ...
     def chdir(self, *args, **kwargs) -> Any: ...
@@ -59,13 +72,14 @@ class VfsLfs2:
     def ilistdir(self, *args, **kwargs) -> Any: ...
     def mkdir(self, *args, **kwargs) -> Any: ...
     @staticmethod
-    def mkfs(block_dev, readsize: int = ..., progsize: int = ..., lookahead: int = ...) -> None:
+    def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
         """
             Build a Lfs2 filesystem on *block_dev*.
 
         ``Note:`` There are reports of littlefs v2 failing in certain situations,
                   for details see `littlefs issue 295`_.
         """
+        ...
     def mount(self, *args, **kwargs) -> Any: ...
     def rename(self, *args, **kwargs) -> Any: ...
     def rmdir(self, *args, **kwargs) -> Any: ...
@@ -77,8 +91,9 @@ def chdir(path) -> Incomplete:
     """
     Change current directory.
     """
+    ...
 
-def dupterm(stream_object, index: int = ...) -> IO:
+def dupterm(stream_object, index=0, /) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
     object. The *stream_object* argument must be a native stream object, or derive
@@ -99,14 +114,16 @@ def dupterm(stream_object, index: int = ...) -> IO:
 
     The function returns the previous stream-like object in the given slot.
     """
+    ...
 
 def dupterm_notify(*args, **kwargs) -> Any: ...
 def getcwd() -> Incomplete:
     """
     Get the current directory.
     """
+    ...
 
-def ilistdir(dir: Optional[Any] = ...) -> Iterator[Tuple]:
+def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     """
     This function returns an iterator which then yields tuples corresponding to
     the entries in the directory that it is listing.  With no argument it lists the
@@ -125,18 +142,21 @@ def ilistdir(dir: Optional[Any] = ...) -> Iterator[Tuple]:
        or -1 if unknown.  Its meaning is currently undefined for directory
        entries.
     """
+    ...
 
-def listdir(dir: Optional[Any] = ...) -> Incomplete:
+def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
     With no argument, list the current directory.  Otherwise list the given directory.
     """
+    ...
 
 def mkdir(path) -> Incomplete:
     """
     Create a new directory.
     """
+    ...
 
-def mount(fsobj, mount_point, *, readonly: bool = ...) -> Incomplete:
+def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
     *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
@@ -152,21 +172,25 @@ def mount(fsobj, mount_point, *, readonly: bool = ...) -> Incomplete:
 
     Will raise ``OSError(EPERM)`` if *mount_point* is already mounted.
     """
+    ...
 
 def rename(old_path, new_path) -> None:
     """
     Rename a file.
     """
+    ...
 
 def rmdir(path) -> None:
     """
     Remove a directory.
     """
+    ...
 
 def stat(path) -> Incomplete:
     """
     Get the status of a file or directory.
     """
+    ...
 
 def statvfs(path) -> Tuple:
     """
@@ -189,6 +213,7 @@ def statvfs(path) -> Tuple:
     and the ``f_flags`` parameter may return ``0`` as they can be unavailable
     in a port-specific implementation.
     """
+    ...
 
 def umount(mount_point) -> Incomplete:
     """
@@ -198,6 +223,7 @@ def umount(mount_point) -> Incomplete:
 
     Will raise ``OSError(EINVAL)`` if *mount_point* is not found.
     """
+    ...
 
 def uname() -> uname_result:
     """
@@ -211,6 +237,7 @@ def uname() -> uname_result:
          * ``version`` -- the MicroPython version and build date
          * ``machine`` -- an identifier for the underlying hardware (eg board, CPU)
     """
+    ...
 
 def unlink(*args, **kwargs) -> Any: ...
 def urandom(n) -> bytes:
@@ -218,3 +245,4 @@ def urandom(n) -> bytes:
     Return a bytes object with *n* random bytes. Whenever possible, it is
     generated by the hardware random number generator.
     """
+    ...

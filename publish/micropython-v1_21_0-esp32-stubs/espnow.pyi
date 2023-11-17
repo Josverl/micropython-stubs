@@ -4,7 +4,7 @@ ESP-NOW :doc:`asyncio` support.
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/aioespnow.html
 """
 from _typeshed import Incomplete, Incomplete as Incomplete
-from typing import Any, Dict, Iterator, List, Optional, Tuple
+from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 
 KEY_LEN: int
 MAX_DATA_LEN: int
@@ -32,7 +32,7 @@ class ESPNow(ESPNowBase, Iterator):
           - ``encrypt_num`` is the number of encrypted peers.
         """
         ...
-    def recv(self, timeout_ms: Optional[Any] = None) -> List:
+    def recv(self, timeout_ms: Optional[Any] = None) -> Union[List, Tuple[None, None]]:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using

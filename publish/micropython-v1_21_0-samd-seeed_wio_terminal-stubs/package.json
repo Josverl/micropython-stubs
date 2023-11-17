@@ -2,12 +2,12 @@
     "name": "micropython-samd-seeed_wio_terminal-stubs",
     "mpy_version": "1.21.0",
     "publish": true,
-    "pkg_version": "1.21.0.post1",
+    "pkg_version": "1.21.0.post2",
     "path": "micropython-v1_21_0-samd-seeed_wio_terminal-stubs",
     "stub_sources": [
         [
             "Merged stubs",
-            "micropython-v1_21_0-samd-seeed_wio_terminal-merged"
+            "micropython-v1_21_0-samd-SEEED_WIO_TERMINAL-merged"
         ],
         [
             "Frozen stubs",

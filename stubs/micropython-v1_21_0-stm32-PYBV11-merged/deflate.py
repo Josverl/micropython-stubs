@@ -1,10 +1,27 @@
 """
-Module: 'deflate' on micropython-v1.21.0-stm32-PYBV11
+Deflate compression & decompression.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/deflate.html
+
+This module allows compression and decompression of binary data with the
+`DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
+(commonly used in the zlib library and gzip archiver).
+
+**Availability:**
+
+* Added in MicroPython v1.21.
+
+* Decompression: Enabled via the ``MICROPY_PY_DEFLATE`` build option, on by default
+  on ports with the "extra features" level or higher (which is most boards).
+
+* Compression: Enabled via the ``MICROPY_PY_DEFLATE_COMPRESS`` build option, on
+  by default on ports with the "full features" level or higher (generally this means
+  you need to build your own firmware to enable this).
 """
 # MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
 # Stubber: v1.13.8
 from typing import Any
-from _typeshed import Incomplete as Incomplete, Incomplete
+from _typeshed import Incomplete
 
 GZIP = 3  # type: int
 RAW = 1  # type: int
@@ -68,5 +85,5 @@ class DeflateIO:
     def close(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, stream, format=..., wbits: int = ..., close: bool = ...) -> None:
+    def __init__(self, stream, format=AUTO, wbits=0, close=False, /) -> None:
         ...

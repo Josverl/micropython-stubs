@@ -8,17 +8,22 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 from typing import Dict, List, Tuple, Any
 from _typeshed import Incomplete
 
-platform: str
-version_info: tuple
-path: list
-version: str
-ps1: str
-ps2: str
-byteorder: str
-modules: dict
 argv: list
+byteorder: str
+
+def exit(retval=0, /) -> Incomplete:
+    """
+    Terminate current program with a given exit code. Underlyingly, this
+    function raise as `SystemExit` exception. If an argument is given, its
+    value given as an argument to `SystemExit`.
+    """
+    ...
+
 implementation: tuple
 maxsize: int
+modules: dict
+path: list
+platform: str
 
 def print_exception(exc, file=stdout, /) -> None:
     """
@@ -36,14 +41,10 @@ def print_exception(exc, file=stdout, /) -> None:
     """
     ...
 
-def exit(retval=0, /) -> Incomplete:
-    """
-    Terminate current program with a given exit code. Underlyingly, this
-    function raise as `SystemExit` exception. If an argument is given, its
-    value given as an argument to `SystemExit`.
-    """
-    ...
-
+ps1: str
+ps2: str
 stderr: Any
-stdout: Any
 stdin: Any
+stdout: Any
+version: str
+version_info: tuple

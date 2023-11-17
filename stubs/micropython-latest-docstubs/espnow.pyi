@@ -8,7 +8,16 @@ MicroPython module: https://docs.micropython.org/en/latest/library/aioespnow.htm
 # origin module:: repos/micropython/docs/library/espnow.rst
 # source version: latest
 # origin module:: repos/micropython/docs/library/espnow.rst
-from typing import Any, Dict, Iterator, List, Optional, Tuple, Iterator
+from typing import (
+    Any,
+    Dict,
+    Iterator,
+    List,
+    Optional,
+    Tuple,
+    Union,
+    Iterator,
+)
 from _typeshed import Incomplete
 
 MAX_DATA_LEN: Incomplete = 250
@@ -173,7 +182,7 @@ class ESPNow(ESPNowBase, Iterator):
         actively listening for ESP-NOW traffic (see the Espressif ESP-NOW docs).
         """
         ...
-    def recv(self, timeout_ms: Optional[Any] = None) -> List:
+    def recv(self, timeout_ms: Optional[Any] = None) -> Union[List, Tuple[None, None]]:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using

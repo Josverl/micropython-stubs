@@ -27,7 +27,7 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* Merged stubs from `stubs/micropython-v1_20_0-samd-adafruit_itsybitsy_m4_express-merged`
+* Merged stubs from `stubs/micropython-v1_20_0-samd-ADAFRUIT_ITSYBITSY_M4_EXPRESS-merged`
 * Frozen stubs from `stubs/micropython-v1_20_0-frozen/samd/GENERIC`
 * Core stubs from `stubs/micropython-core`
 

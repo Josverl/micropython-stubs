@@ -1,10 +1,17 @@
 """
-Module: 'errno' on micropython-v1.20.0-rp2-PICO_W
+System error codes.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/errno.html
+
+CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
+
+This module provides access to symbolic error codes for `OSError` exception.
+A particular inventory of codes depends on :term:`MicroPython port`.
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
 from typing import Dict, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 ENOBUFS = 105  # type: int
 ENODEV = 19  # type: int

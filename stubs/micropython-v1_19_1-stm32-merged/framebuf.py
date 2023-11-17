@@ -1,10 +1,15 @@
 """
-Module: 'framebuf' on micropython-v1.19.1-stm32
+Frame buffer manipulation.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/framebuf.html
+
+This module provides a general frame buffer which can be used to create
+bitmap images, which can then be sent to a display.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 MONO_HMSB = 4  # type: int
 MONO_HLSB = 3  # type: int
@@ -49,7 +54,7 @@ class FrameBuffer:
     def rect(self, x, y, w, h, c) -> Incomplete:
         ...
 
-    def pixel(self, x, y, c: Optional[Any] = ...) -> Incomplete:
+    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
@@ -66,7 +71,7 @@ class FrameBuffer:
         """
         ...
 
-    def text(self, s, x, y, c: Optional[Any] = ...) -> None:
+    def text(self, s, x, y, c: Optional[Any] = None) -> None:
         """
         Write text to the FrameBuffer using the the coordinates as the upper-left
         corner of the text. The color of the text can be defined by the optional
@@ -81,7 +86,7 @@ class FrameBuffer:
         """
         ...
 
-    def blit(self, fbuf, x, y, key: int = ..., palette: Incomplete | None = ...) -> None:
+    def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
         If *key* is specified then it should be a color integer and the
@@ -122,5 +127,5 @@ class FrameBuffer:
     def hline(self, x, y, w, c) -> Incomplete:
         ...
 
-    def __init__(self, buffer, width, height, format, stride: int = ...) -> None:
+    def __init__(self, buffer, width, height, format, stride=-1, /) -> None:
         ...

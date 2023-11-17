@@ -5,8 +5,8 @@ MicroPython module: https://docs.micropython.org/en/latest/library/pyb.html
 
 The ``pyb`` module contains specific functions related to the board.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
-# Stubber: v1.13.7
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
 from typing import List, NoReturn, Optional, Tuple, Any
 from _typeshed import Incomplete
 
@@ -179,7 +179,7 @@ def sync() -> None:
     ...
 
 
-def servo(*args, **kwargs) -> Any:
+def servo(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -333,11 +333,11 @@ def repl_uart(uart) -> UART:
     ...
 
 
-def pwm(*args, **kwargs) -> Any:
+def pwm(*args, **kwargs) -> Incomplete:
     ...
 
 
-def repl_info(*args, **kwargs) -> Any:
+def repl_info(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -378,24 +378,24 @@ def bootloader() -> None:
     ...
 
 
-def country(*args, **kwargs) -> Any:
+def country(*args, **kwargs) -> Incomplete:
     ...
 
 
 class ADCAll:
-    def read_core_vbat(self, *args, **kwargs) -> Any:
+    def read_core_vbat(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read_core_vref(self, *args, **kwargs) -> Any:
+    def read_core_vref(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read_vref(self, *args, **kwargs) -> Any:
+    def read_vref(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read_core_temp(self, *args, **kwargs) -> Any:
+    def read_core_temp(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read_channel(self, *args, **kwargs) -> Any:
+    def read_channel(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -431,7 +431,7 @@ class Accel:
         """
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
     def filtered_xyz(self) -> Tuple:
@@ -445,7 +445,7 @@ class Accel:
         """
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self) -> None:
@@ -989,7 +989,7 @@ class ADC:
         ...
 
 
-SD: Any  ## <class 'SDCard'> = <SDCard>
+SD: Incomplete  ## <class 'SDCard'> = <SDCard>
 
 
 class DAC:
@@ -1099,7 +1099,7 @@ class RTC:
         """
         ...
 
-    def init(self, *args, **kwargs) -> Any:
+    def init(self, *args, **kwargs) -> Incomplete:
         ...
 
     def wakeup(self, timeout, callback=None) -> None:
@@ -1667,13 +1667,13 @@ class UART:
         """
         ...
 
-    def flush(self, *args, **kwargs) -> Any:
+    def flush(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def irq(self, *args, **kwargs) -> Any:
+    def irq(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def txdone(self, *args, **kwargs) -> Any:
+    def txdone(self, *args, **kwargs) -> Incomplete:
         ...
 
     def sendbreak(self) -> None:
@@ -2122,16 +2122,16 @@ class SPI:
         """
         ...
 
-    def write_readinto(self, *args, **kwargs) -> Any:
+    def write_readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
     def send(self, send, *, timeout=5000) -> None:
@@ -2218,10 +2218,10 @@ class Pin:
         """
         ...
 
-    def low(self, *args, **kwargs) -> Any:
+    def low(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def irq(self, *args, **kwargs) -> Any:
+    def irq(self, *args, **kwargs) -> Incomplete:
         ...
 
     def pin(self) -> int:
@@ -2242,10 +2242,10 @@ class Pin:
         """
         ...
 
-    def on(self, *args, **kwargs) -> Any:
+    def on(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def off(self, *args, **kwargs) -> Any:
+    def off(self, *args, **kwargs) -> Incomplete:
         ...
 
     def init(self, mode, pull=PULL_NONE, *, value=None, alt=-1) -> None:
@@ -2307,7 +2307,7 @@ class Pin:
         """
         ...
 
-    def high(self, *args, **kwargs) -> Any:
+    def high(self, *args, **kwargs) -> Incomplete:
         ...
 
     def gpio(self) -> int:
@@ -2331,53 +2331,53 @@ class Pin:
         ...
 
     class cpu:
-        B9: Any  ## <class 'Pin'> = Pin(Pin.cpu.B9, mode=Pin.IN)
-        B8: Any  ## <class 'Pin'> = Pin(Pin.cpu.B8, mode=Pin.IN)
-        B7: Any  ## <class 'Pin'> = Pin(Pin.cpu.B7, mode=Pin.IN)
-        C0: Any  ## <class 'Pin'> = Pin(Pin.cpu.C0, mode=Pin.IN)
-        C1: Any  ## <class 'Pin'> = Pin(Pin.cpu.C1, mode=Pin.IN)
-        C10: Any  ## <class 'Pin'> = Pin(Pin.cpu.C10, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        B3: Any  ## <class 'Pin'> = Pin(Pin.cpu.B3, mode=Pin.IN, pull=Pin.PULL_UP)
-        B2: Any  ## <class 'Pin'> = Pin(Pin.cpu.B2, mode=Pin.IN)
-        B6: Any  ## <class 'Pin'> = Pin(Pin.cpu.B6, mode=Pin.IN)
-        B4: Any  ## <class 'Pin'> = Pin(Pin.cpu.B4, mode=Pin.OUT)
-        B5: Any  ## <class 'Pin'> = Pin(Pin.cpu.B5, mode=Pin.OUT)
-        B15: Any  ## <class 'Pin'> = Pin(Pin.cpu.B15, mode=Pin.IN)
-        C7: Any  ## <class 'Pin'> = Pin(Pin.cpu.C7, mode=Pin.IN)
-        C6: Any  ## <class 'Pin'> = Pin(Pin.cpu.C6, mode=Pin.IN)
-        C5: Any  ## <class 'Pin'> = Pin(Pin.cpu.C5, mode=Pin.IN)
-        C8: Any  ## <class 'Pin'> = Pin(Pin.cpu.C8, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        C9: Any  ## <class 'Pin'> = Pin(Pin.cpu.C9, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        C11: Any  ## <class 'Pin'> = Pin(Pin.cpu.C11, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        C13: Any  ## <class 'Pin'> = Pin(Pin.cpu.C13, mode=Pin.IN)
-        C12: Any  ## <class 'Pin'> = Pin(Pin.cpu.C12, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        C4: Any  ## <class 'Pin'> = Pin(Pin.cpu.C4, mode=Pin.IN)
-        C2: Any  ## <class 'Pin'> = Pin(Pin.cpu.C2, mode=Pin.IN)
-        C3: Any  ## <class 'Pin'> = Pin(Pin.cpu.C3, mode=Pin.IN)
-        D2: Any  ## <class 'Pin'> = Pin(Pin.cpu.D2, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        A15: Any  ## <class 'Pin'> = Pin(Pin.cpu.A15, mode=Pin.OUT)
-        A14: Any  ## <class 'Pin'> = Pin(Pin.cpu.A14, mode=Pin.OUT)
-        A13: Any  ## <class 'Pin'> = Pin(Pin.cpu.A13, mode=Pin.OUT)
-        A2: Any  ## <class 'Pin'> = Pin(Pin.cpu.A2, mode=Pin.IN)
-        A3: Any  ## <class 'Pin'> = Pin(Pin.cpu.A3, mode=Pin.IN)
-        A4: Any  ## <class 'Pin'> = Pin(Pin.cpu.A4, mode=Pin.IN)
-        A1: Any  ## <class 'Pin'> = Pin(Pin.cpu.A1, mode=Pin.IN)
-        A0: Any  ## <class 'Pin'> = Pin(Pin.cpu.A0, mode=Pin.IN)
-        A12: Any  ## <class 'Pin'> = Pin(Pin.cpu.A12, mode=Pin.ALT, alt=10)
-        A10: Any  ## <class 'Pin'> = Pin(Pin.cpu.A10, mode=Pin.ALT_OPEN_DRAIN, pull=Pin.PULL_UP, alt=10)
-        A11: Any  ## <class 'Pin'> = Pin(Pin.cpu.A11, mode=Pin.ALT, alt=10)
-        B14: Any  ## <class 'Pin'> = Pin(Pin.cpu.B14, mode=Pin.IN)
-        B11: Any  ## <class 'Pin'> = Pin(Pin.cpu.B11, mode=Pin.IN)
-        B10: Any  ## <class 'Pin'> = Pin(Pin.cpu.B10, mode=Pin.IN)
-        B1: Any  ## <class 'Pin'> = Pin(Pin.cpu.B1, mode=Pin.IN)
-        B12: Any  ## <class 'Pin'> = Pin(Pin.cpu.B12, mode=Pin.IN)
-        B13: Any  ## <class 'Pin'> = Pin(Pin.cpu.B13, mode=Pin.IN)
-        A5: Any  ## <class 'Pin'> = Pin(Pin.cpu.A5, mode=Pin.IN)
-        A7: Any  ## <class 'Pin'> = Pin(Pin.cpu.A7, mode=Pin.IN)
-        A6: Any  ## <class 'Pin'> = Pin(Pin.cpu.A6, mode=Pin.IN)
-        B0: Any  ## <class 'Pin'> = Pin(Pin.cpu.B0, mode=Pin.IN)
-        A8: Any  ## <class 'Pin'> = Pin(Pin.cpu.A8, mode=Pin.IN, pull=Pin.PULL_UP)
-        A9: Any  ## <class 'Pin'> = Pin(Pin.cpu.A9, mode=Pin.IN)
+        B9: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B9, mode=Pin.IN)
+        B8: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B8, mode=Pin.IN)
+        B7: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B7, mode=Pin.IN)
+        C0: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C0, mode=Pin.IN)
+        C1: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C1, mode=Pin.IN)
+        C10: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C10, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        B3: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B3, mode=Pin.IN, pull=Pin.PULL_UP)
+        B2: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B2, mode=Pin.IN)
+        B6: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B6, mode=Pin.IN)
+        B4: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B4, mode=Pin.OUT)
+        B5: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B5, mode=Pin.OUT)
+        B15: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B15, mode=Pin.IN)
+        C7: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C7, mode=Pin.IN)
+        C6: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C6, mode=Pin.IN)
+        C5: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C5, mode=Pin.IN)
+        C8: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C8, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        C9: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C9, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        C11: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C11, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        C13: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C13, mode=Pin.IN)
+        C12: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C12, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        C4: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C4, mode=Pin.IN)
+        C2: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C2, mode=Pin.IN)
+        C3: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C3, mode=Pin.IN)
+        D2: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.D2, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        A15: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A15, mode=Pin.OUT)
+        A14: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A14, mode=Pin.OUT)
+        A13: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A13, mode=Pin.OUT)
+        A2: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A2, mode=Pin.IN)
+        A3: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A3, mode=Pin.IN)
+        A4: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A4, mode=Pin.IN)
+        A1: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A1, mode=Pin.IN)
+        A0: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A0, mode=Pin.IN)
+        A12: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A12, mode=Pin.ALT, alt=10)
+        A10: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A10, mode=Pin.ALT_OPEN_DRAIN, pull=Pin.PULL_UP, alt=10)
+        A11: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A11, mode=Pin.ALT, alt=10)
+        B14: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B14, mode=Pin.IN)
+        B11: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B11, mode=Pin.IN)
+        B10: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B10, mode=Pin.IN)
+        B1: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B1, mode=Pin.IN)
+        B12: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B12, mode=Pin.IN)
+        B13: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B13, mode=Pin.IN)
+        A5: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A5, mode=Pin.IN)
+        A7: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A7, mode=Pin.IN)
+        A6: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A6, mode=Pin.IN)
+        B0: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B0, mode=Pin.IN)
+        A8: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A8, mode=Pin.IN, pull=Pin.PULL_UP)
+        A9: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A9, mode=Pin.IN)
 
         def __init__(self, *argv, **kwargs) -> None:
             ...
@@ -2390,55 +2390,55 @@ class Pin:
         ...
 
     class board:
-        X5: Any  ## <class 'Pin'> = Pin(Pin.cpu.A4, mode=Pin.IN)
-        X18: Any  ## <class 'Pin'> = Pin(Pin.cpu.C13, mode=Pin.IN)
-        X4: Any  ## <class 'Pin'> = Pin(Pin.cpu.A3, mode=Pin.IN)
-        X8: Any  ## <class 'Pin'> = Pin(Pin.cpu.A7, mode=Pin.IN)
-        X6: Any  ## <class 'Pin'> = Pin(Pin.cpu.A5, mode=Pin.IN)
-        X7: Any  ## <class 'Pin'> = Pin(Pin.cpu.A6, mode=Pin.IN)
-        X2: Any  ## <class 'Pin'> = Pin(Pin.cpu.A1, mode=Pin.IN)
-        X3: Any  ## <class 'Pin'> = Pin(Pin.cpu.A2, mode=Pin.IN)
-        X19: Any  ## <class 'Pin'> = Pin(Pin.cpu.C0, mode=Pin.IN)
-        X22: Any  ## <class 'Pin'> = Pin(Pin.cpu.C3, mode=Pin.IN)
-        X20: Any  ## <class 'Pin'> = Pin(Pin.cpu.C1, mode=Pin.IN)
-        X21: Any  ## <class 'Pin'> = Pin(Pin.cpu.C2, mode=Pin.IN)
-        Y5: Any  ## <class 'Pin'> = Pin(Pin.cpu.B12, mode=Pin.IN)
-        X9: Any  ## <class 'Pin'> = Pin(Pin.cpu.B6, mode=Pin.IN)
-        Y4: Any  ## <class 'Pin'> = Pin(Pin.cpu.B9, mode=Pin.IN)
-        Y8: Any  ## <class 'Pin'> = Pin(Pin.cpu.B15, mode=Pin.IN)
-        Y6: Any  ## <class 'Pin'> = Pin(Pin.cpu.B13, mode=Pin.IN)
-        Y7: Any  ## <class 'Pin'> = Pin(Pin.cpu.B14, mode=Pin.IN)
-        Y10: Any  ## <class 'Pin'> = Pin(Pin.cpu.B11, mode=Pin.IN)
-        Y3: Any  ## <class 'Pin'> = Pin(Pin.cpu.B8, mode=Pin.IN)
-        Y1: Any  ## <class 'Pin'> = Pin(Pin.cpu.C6, mode=Pin.IN)
-        Y2: Any  ## <class 'Pin'> = Pin(Pin.cpu.C7, mode=Pin.IN)
-        Y11: Any  ## <class 'Pin'> = Pin(Pin.cpu.B0, mode=Pin.IN)
-        Y12: Any  ## <class 'Pin'> = Pin(Pin.cpu.B1, mode=Pin.IN)
-        Y9: Any  ## <class 'Pin'> = Pin(Pin.cpu.B10, mode=Pin.IN)
-        SD_CK: Any  ## <class 'Pin'> = Pin(Pin.cpu.C12, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        X17: Any  ## <class 'Pin'> = Pin(Pin.cpu.B3, mode=Pin.IN, pull=Pin.PULL_UP)
-        SD: Any  ## <class 'Pin'> = Pin(Pin.cpu.A8, mode=Pin.IN, pull=Pin.PULL_UP)
-        SD_D1: Any  ## <class 'Pin'> = Pin(Pin.cpu.C9, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        SD_CMD: Any  ## <class 'Pin'> = Pin(Pin.cpu.D2, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        SD_D0: Any  ## <class 'Pin'> = Pin(Pin.cpu.C8, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        LED_GREEN: Any  ## <class 'Pin'> = Pin(Pin.cpu.A14, mode=Pin.OUT)
-        MMA_INT: Any  ## <class 'Pin'> = Pin(Pin.cpu.B2, mode=Pin.IN)
-        LED_BLUE: Any  ## <class 'Pin'> = Pin(Pin.cpu.B4, mode=Pin.OUT)
-        MMA_AVDD: Any  ## <class 'Pin'> = Pin(Pin.cpu.B5, mode=Pin.OUT)
-        LED_RED: Any  ## <class 'Pin'> = Pin(Pin.cpu.A13, mode=Pin.OUT)
-        LED_YELLOW: Any  ## <class 'Pin'> = Pin(Pin.cpu.A15, mode=Pin.OUT)
-        X1: Any  ## <class 'Pin'> = Pin(Pin.cpu.A0, mode=Pin.IN)
-        SD_D2: Any  ## <class 'Pin'> = Pin(Pin.cpu.C10, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        USB_VBUS: Any  ## <class 'Pin'> = Pin(Pin.cpu.A9, mode=Pin.IN)
-        X12: Any  ## <class 'Pin'> = Pin(Pin.cpu.C5, mode=Pin.IN)
-        X10: Any  ## <class 'Pin'> = Pin(Pin.cpu.B7, mode=Pin.IN)
-        X11: Any  ## <class 'Pin'> = Pin(Pin.cpu.C4, mode=Pin.IN)
-        SD_SW: Any  ## <class 'Pin'> = Pin(Pin.cpu.A8, mode=Pin.IN, pull=Pin.PULL_UP)
-        USB_ID: Any  ## <class 'Pin'> = Pin(Pin.cpu.A10, mode=Pin.ALT_OPEN_DRAIN, pull=Pin.PULL_UP, alt=10)
-        SD_D3: Any  ## <class 'Pin'> = Pin(Pin.cpu.C11, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
-        USB_DP: Any  ## <class 'Pin'> = Pin(Pin.cpu.A12, mode=Pin.ALT, alt=10)
-        SW: Any  ## <class 'Pin'> = Pin(Pin.cpu.B3, mode=Pin.IN, pull=Pin.PULL_UP)
-        USB_DM: Any  ## <class 'Pin'> = Pin(Pin.cpu.A11, mode=Pin.ALT, alt=10)
+        X5: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A4, mode=Pin.IN)
+        X18: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C13, mode=Pin.IN)
+        X4: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A3, mode=Pin.IN)
+        X8: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A7, mode=Pin.IN)
+        X6: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A5, mode=Pin.IN)
+        X7: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A6, mode=Pin.IN)
+        X2: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A1, mode=Pin.IN)
+        X3: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A2, mode=Pin.IN)
+        X19: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C0, mode=Pin.IN)
+        X22: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C3, mode=Pin.IN)
+        X20: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C1, mode=Pin.IN)
+        X21: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C2, mode=Pin.IN)
+        Y5: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B12, mode=Pin.IN)
+        X9: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B6, mode=Pin.IN)
+        Y4: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B9, mode=Pin.IN)
+        Y8: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B15, mode=Pin.IN)
+        Y6: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B13, mode=Pin.IN)
+        Y7: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B14, mode=Pin.IN)
+        Y10: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B11, mode=Pin.IN)
+        Y3: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B8, mode=Pin.IN)
+        Y1: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C6, mode=Pin.IN)
+        Y2: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C7, mode=Pin.IN)
+        Y11: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B0, mode=Pin.IN)
+        Y12: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B1, mode=Pin.IN)
+        Y9: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B10, mode=Pin.IN)
+        SD_CK: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C12, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        X17: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B3, mode=Pin.IN, pull=Pin.PULL_UP)
+        SD: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A8, mode=Pin.IN, pull=Pin.PULL_UP)
+        SD_D1: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C9, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        SD_CMD: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.D2, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        SD_D0: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C8, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        LED_GREEN: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A14, mode=Pin.OUT)
+        MMA_INT: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B2, mode=Pin.IN)
+        LED_BLUE: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B4, mode=Pin.OUT)
+        MMA_AVDD: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B5, mode=Pin.OUT)
+        LED_RED: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A13, mode=Pin.OUT)
+        LED_YELLOW: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A15, mode=Pin.OUT)
+        X1: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A0, mode=Pin.IN)
+        SD_D2: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C10, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        USB_VBUS: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A9, mode=Pin.IN)
+        X12: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C5, mode=Pin.IN)
+        X10: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B7, mode=Pin.IN)
+        X11: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C4, mode=Pin.IN)
+        SD_SW: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A8, mode=Pin.IN, pull=Pin.PULL_UP)
+        USB_ID: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A10, mode=Pin.ALT_OPEN_DRAIN, pull=Pin.PULL_UP, alt=10)
+        SD_D3: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.C11, mode=Pin.ALT, pull=Pin.PULL_UP, alt=12)
+        USB_DP: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A12, mode=Pin.ALT, alt=10)
+        SW: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.B3, mode=Pin.IN, pull=Pin.PULL_UP)
+        USB_DM: Incomplete  ## <class 'Pin'> = Pin(Pin.cpu.A11, mode=Pin.ALT, alt=10)
 
         def __init__(self, *argv, **kwargs) -> None:
             ...
@@ -2456,28 +2456,28 @@ class Pin:
 
 
 class SDCard:
-    def writeblocks(self, *args, **kwargs) -> Any:
+    def writeblocks(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def power(self, *args, **kwargs) -> Any:
+    def power(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def present(self, *args, **kwargs) -> Any:
+    def present(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readblocks(self, *args, **kwargs) -> Any:
+    def readblocks(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def ioctl(self, *args, **kwargs) -> Any:
+    def ioctl(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def info(self, *args, **kwargs) -> Any:
+    def info(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

@@ -1,5 +1,13 @@
+"""
+Frame buffer manipulation.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/framebuf.html
+
+This module provides a general frame buffer which can be used to create
+bitmap images, which can then be sent to a display.
+"""
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 MONO_HMSB: int
 MONO_HLSB: int
@@ -39,29 +47,33 @@ class FrameBuffer:
     """
 
     def rect(self, x, y, w, h, c) -> Incomplete: ...
-    def pixel(self, x, y, c: Optional[Any] = ...) -> Incomplete:
+    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
         """
+        ...
     def vline(self, x, y, h, c) -> Incomplete: ...
     def scroll(self, xstep, ystep) -> Incomplete:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
         """
-    def text(self, s, x, y, c: Optional[Any] = ...) -> None:
+        ...
+    def text(self, s, x, y, c: Optional[Any] = None) -> None:
         """
         Write text to the FrameBuffer using the the coordinates as the upper-left
         corner of the text. The color of the text can be defined by the optional
         argument but is otherwise a default value of 1. All characters have
         dimensions of 8x8 pixels and there is currently no way to change the font.
         """
+        ...
     def fill(self, c) -> None:
         """
         Fill the entire FrameBuffer with the specified color.
         """
-    def blit(self, fbuf, x, y, key: int = ..., palette: Incomplete | None = ...) -> None:
+        ...
+    def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
         If *key* is specified then it should be a color integer and the
@@ -79,6 +91,7 @@ class FrameBuffer:
         current pixel will be that of that *palette* pixel whose x position is the
         color of the corresponding source pixel.
         """
+        ...
     def line(self, x1, y1, x2, y2, c) -> None:
         """
         Draw a line from a set of coordinates using the given color and
@@ -87,11 +100,13 @@ class FrameBuffer:
         methods draw horizontal and vertical lines respectively up to
         a given length.
         """
+        ...
     def fill_rect(self, x, y, w, h, c) -> None:
         """
         Draw a rectangle at the given location, size and color. The `rect`
         method draws only a 1 pixel outline whereas the `fill_rect` method
         draws both the outline and interior.
         """
+        ...
     def hline(self, x, y, w, c) -> Incomplete: ...
-    def __init__(self, buffer, width, height, format, stride: int = ...) -> None: ...
+    def __init__(self, buffer, width, height, format, stride=-1, /) -> None: ...

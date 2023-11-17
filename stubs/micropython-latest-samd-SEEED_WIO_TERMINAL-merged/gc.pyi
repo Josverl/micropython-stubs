@@ -5,10 +5,10 @@ MicroPython module: https://docs.micropython.org/en/latest/library/gc.html
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
-from typing import Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Optional
 
-def isenabled(*args, **kwargs) -> Any: ...
+def isenabled(*args, **kwargs) -> Incomplete: ...
 def mem_free() -> int:
     """
     Return the number of bytes of heap RAM that is available for Python

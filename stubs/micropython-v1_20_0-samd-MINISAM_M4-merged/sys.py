@@ -1,10 +1,14 @@
 """
-Module: 'sys' on micropython-v1.20.0-samd-MINISAM_M4
+System specific functions.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/sys.html
+
+CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
 # MCU: OrderedDict({'build': '', 'ver': 'v1.20.0', 'version': '1.20.0', 'port': 'samd', 'board': 'MINISAM_M4', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51G19A', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
 from typing import Dict, List, Tuple, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 platform = "samd"  # type: str
 version_info = ()  # type: tuple
@@ -19,7 +23,7 @@ implementation = ()  # type: tuple
 maxsize = 2147483647  # type: int
 
 
-def print_exception(exc, file=...) -> None:
+def print_exception(exc, file=stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
@@ -36,7 +40,7 @@ def print_exception(exc, file=...) -> None:
     ...
 
 
-def exit(retval: int = ...) -> Incomplete:
+def exit(retval=0, /) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its

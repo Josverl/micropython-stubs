@@ -1,4 +1,15 @@
-from _typeshed import Incomplete as Incomplete
+"""
+TLS/SSL wrapper for socket objects.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/ssl.html
+
+CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
+
+This module provides access to Transport Layer Security (previously and
+widely known as “Secure Sockets Layer”) encryption and peer authentication
+facilities for network sockets, both client-side and server-side.
+"""
+from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.ssl import *
 from typing import IO
 
@@ -9,14 +20,7 @@ CERT_OPTIONAL: int
 CERT_NONE: int
 
 def wrap_socket(
-    sock,
-    server_side: bool = ...,
-    keyfile: Incomplete | None = ...,
-    certfile: Incomplete | None = ...,
-    cert_reqs: Incomplete | None = ...,
-    cadata: Incomplete | None = ...,
-    server_hostname: Incomplete | None = ...,
-    do_handshake: bool = ...,
+    sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
 ) -> IO:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
@@ -35,6 +39,7 @@ def wrap_socket(
     Depending on the underlying module implementation in a particular
     :term:`MicroPython port`, some or all keyword arguments above may be not supported.
     """
+    ...
 
 class SSLContext:
     """
@@ -42,9 +47,7 @@ class SSLContext:
     constants.
     """
 
-    def wrap_socket(
-        self, sock, *, server_side: bool = ..., do_handshake_on_connect: bool = ..., server_hostname: Incomplete | None = ...
-    ) -> Incomplete:
+    def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
         and returns an instance of ssl.SSLSocket, wrapping the underlying stream.
@@ -67,4 +70,5 @@ class SSLContext:
           server certificate.  It also sets the name for Server Name Indication (SNI), allowing the server
           to present the proper certificate.
         """
-    def __init__(self, protocol) -> None: ...
+        ...
+    def __init__(self, protocol, /) -> None: ...

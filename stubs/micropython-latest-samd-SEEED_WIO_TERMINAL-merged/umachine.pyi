@@ -10,8 +10,8 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
 PWRON_RESET: int
 HARD_RESET: int
@@ -19,26 +19,21 @@ SOFT_RESET: int
 WDT_RESET: int
 DEEPSLEEP_RESET: int
 
+def dht_readinto(*args, **kwargs) -> Incomplete: ...
+def enable_irq(state) -> Incomplete:
+    """
+    Re-enable interrupt requests.
+    The *state* parameter should be the value that was returned from the most
+    recent call to the `disable_irq()` function.
+    """
+    ...
+
 def disable_irq() -> Incomplete:
     """
     Disable interrupt requests.
     Returns the previous IRQ state which should be considered an opaque value.
     This return value should be passed to the `enable_irq()` function to restore
     interrupts to their original state, before `disable_irq()` was called.
-    """
-    ...
-
-def reset_cause() -> int:
-    """
-    Get the reset cause. See :ref:`constants <machine_constants>` for the possible return values.
-    """
-    ...
-
-def enable_irq(state) -> Incomplete:
-    """
-    Re-enable interrupt requests.
-    The *state* parameter should be the value that was returned from the most
-    recent call to the `disable_irq()` function.
     """
     ...
 
@@ -66,7 +61,31 @@ def bitstream(pin, encoding, timing, data, /) -> Incomplete:
     """
     ...
 
-def dht_readinto(*args, **kwargs) -> Any: ...
+def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
+    """
+    Stops execution in an attempt to enter a low power state.
+
+    If *time_ms* is specified then this will be the maximum time in milliseconds that
+    the sleep will last for.  Otherwise the sleep can last indefinitely.
+
+    With or without a timeout, execution may resume at any time if there are events
+    that require processing.  Such events, or wake sources, should be configured before
+    sleeping, like `Pin` change or `RTC` timeout.
+
+    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
+    highly dependent on the underlying hardware, but the general properties are:
+
+    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
+      from the point where the sleep was requested, with all subsystems operational.
+
+    * A deepsleep may not retain RAM or any other state of the system (for example
+      peripherals or network interfaces).  Upon wake execution is resumed from the main
+      script, similar to a hard or power-on reset. The `reset_cause()` function will
+      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
+      from other resets.
+    """
+    ...
+
 def bootloader(value: Optional[Any] = None) -> None:
     """
     Reset the device and enter its bootloader.  This is typically used to put the
@@ -74,6 +93,12 @@ def bootloader(value: Optional[Any] = None) -> None:
 
     Some ports support passing in an optional *value* argument which can control
     which bootloader to enter, what to pass to it, or other things.
+    """
+    ...
+
+def reset_cause() -> int:
+    """
+    Get the reset cause. See :ref:`constants <machine_constants>` for the possible return values.
     """
     ...
 
@@ -170,7 +195,7 @@ class WDT:
     On rp2040 devices, the maximum timeout is 8388 ms.
     """
 
-    def timeout_ms(self, *args, **kwargs) -> Any: ...
+    def timeout_ms(self, *args, **kwargs) -> Incomplete: ...
     def feed(self) -> None:
         """
         Feed the WDT to prevent it from resetting the system. The application
@@ -180,9 +205,9 @@ class WDT:
         ...
     def __init__(self, id=0, timeout=5000) -> None: ...
 
-mem8: Any
-mem32: Any
-mem16: Any
+mem8: Incomplete
+mem32: Incomplete
+mem16: Incomplete
 
 class PWM:
     """
@@ -203,6 +228,17 @@ class PWM:
     *invert* is not available at all ports.
     """
 
+    def duty_u16(self, value: Optional[Any] = None) -> int:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+        ...
     def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the current frequency of the PWM output.
@@ -213,15 +249,10 @@ class PWM:
         method may raise a ``ValueError`` if the frequency is outside the valid range.
         """
         ...
-    def duty_u16(self, value: Optional[Any] = None) -> int:
+    def init(self, *, freq, duty_u16, duty_ns) -> None:
         """
-        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
-        value in the range 0 to 65535 inclusive.
-
-        With no arguments the duty cycle is returned.
-
-        With a single *value* argument the duty cycle is set to that value, measured
-        as the ratio ``value / 65535``.
+        Modify settings for the PWM object.  See the above constructor for details
+        about the parameters.
         """
         ...
     def duty_ns(self, value: Optional[Any] = None) -> int:
@@ -263,11 +294,11 @@ class ADC:
         such that the minimum value is 0 and the maximum value is 65535.
         """
         ...
-    def deinit(self, *args, **kwargs) -> Any: ...
+    def deinit(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None: ...
 
 class DAC:
-    def write(self, *args, **kwargs) -> Any: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class I2C:
@@ -531,7 +562,7 @@ class Pin:
         The following methods are not part of the core Pin API and only implemented on certain ports.
         """
         ...
-    def toggle(self, *args, **kwargs) -> Any: ...
+    def toggle(self, *args, **kwargs) -> Incomplete: ...
     def init(self, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
         """
         Re-initialise the pin using the given parameters.  Only those arguments that
@@ -598,7 +629,7 @@ class Pin:
         When setting the value this method returns ``None``.
         """
         ...
-    def disable(self, *args, **kwargs) -> Any: ...
+    def disable(self, *args, **kwargs) -> Incomplete: ...
     def drive(self, drive: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin drive strength.
@@ -609,165 +640,173 @@ class Pin:
         ...
 
     class board:
-        RX: Any
-        SCK: Any
-        MOSI: Any
-        SDA1: Any
-        SDA0: Any
-        SCL0: Any
-        SCL1: Any
-        LCD_YD: Any
-        LCD_YU: Any
-        LCD_XR: Any
-        MISO: Any
-        MIC: Any
-        LED_BLUE: Any
-        LED_LCD: Any
-        LCD_XL: Any
-        SWITCH_X: Any
-        SWITCH_Y: Any
-        SWITCH_U: Any
-        SD_CS: Any
-        USB_DM: Any
-        SWITCH_Z: Any
-        TX: Any
-        SD_MISO: Any
-        SD_MOSI: Any
-        SD_DET: Any
-        SWITCH_B: Any
-        SWDIO: Any
-        SD_SCK: Any
-        SWCLK: Any
-        USB_DP: Any
-        A6_D6: Any
-        A7_D7: Any
-        A5_D5: Any
-        BUTTON_3: Any
-        BUTTON_2: Any
-        A8_D8: Any
-        BUTTON_1: Any
-        A0_D0: Any
-        A4_D4: Any
-        A3_D3: Any
-        A1_D1: Any
-        A2_D2: Any
-        LCD_SCK: Any
-        LCD_CS: Any
-        LCD_D_C: Any
-        I2S_SDOUT: Any
-        BUZZER: Any
-        LCD_RESET: Any
-        LCD_MISO: Any
-        LCD_MOSI: Any
-        GPCLK0: Any
-        GPCLK1: Any
-        CS: Any
-        I2S_SDIN: Any
-        I2S_LRCLK: Any
-        GPCLK2: Any
-        I2C_BCLK: Any
+        LCD_YU: Incomplete
+        QSPI_SCK: Incomplete
+        QSPI_D3: Incomplete
+        QSPI_D2: Incomplete
+        RX: Incomplete
+        SCL1: Incomplete
+        SCL0: Incomplete
+        SCK: Incomplete
+        QSPI_D1: Incomplete
+        MIC: Incomplete
+        LED_LCD: Incomplete
+        LED_BLUE: Incomplete
+        MISO: Incomplete
+        QSPI_D0: Incomplete
+        QSPI_CS: Incomplete
+        MOSI: Incomplete
+        SDA0: Incomplete
+        SWITCH_X: Incomplete
+        SWITCH_U: Incomplete
+        SWITCH_B: Incomplete
+        SWITCH_Y: Incomplete
+        USB_DM: Incomplete
+        TX: Incomplete
+        SWITCH_Z: Incomplete
+        SWDIO: Incomplete
+        SD_DET: Incomplete
+        SD_CS: Incomplete
+        SDA1: Incomplete
+        SD_MISO: Incomplete
+        SWCLK: Incomplete
+        SD_SCK: Incomplete
+        SD_MOSI: Incomplete
+        USB_DP: Incomplete
+        LCD_YD: Incomplete
+        BUTTON_2: Incomplete
+        BUTTON_1: Incomplete
+        A8_D8: Incomplete
+        BUTTON_3: Incomplete
+        ENABLE_3V3: Incomplete
+        CS: Incomplete
+        BUZZER: Incomplete
+        A7_D7: Incomplete
+        A2_D2: Incomplete
+        A1_D1: Incomplete
+        A0_D0: Incomplete
+        A3_D3: Incomplete
+        A6_D6: Incomplete
+        A5_D5: Incomplete
+        A4_D4: Incomplete
+        ENABLE_5V: Incomplete
+        LCD_MOSI: Incomplete
+        LCD_MISO: Incomplete
+        LCD_D_C: Incomplete
+        LCD_RESET: Incomplete
+        LCD_XR: Incomplete
+        LCD_XL: Incomplete
+        LCD_SCK: Incomplete
+        LCD_CS: Incomplete
+        GPCLK2: Incomplete
+        GPCLK1: Incomplete
+        GPCLK0: Incomplete
+        I2C_BCLK: Incomplete
+        I2S_SDOUT: Incomplete
+        I2S_SDIN: Incomplete
+        I2S_LRCLK: Incomplete
         def __init__(self, *argv, **kwargs) -> None: ...
 
     class cpu:
-        PC04: Any
-        PC14: Any
-        PC05: Any
-        PC01: Any
-        PC03: Any
-        PC02: Any
-        PC12: Any
-        PC06: Any
-        PC13: Any
-        PC07: Any
-        PC11: Any
-        PC10: Any
-        PB24: Any
-        PC00: Any
-        PB25: Any
-        PB21: Any
-        PB23: Any
-        PB22: Any
-        PB30: Any
-        PB26: Any
-        PB31: Any
-        PB27: Any
-        PB29: Any
-        PB28: Any
-        PB20: Any
-        PD00: Any
-        PC15: Any
-        PD01: Any
-        PC28: Any
-        PC31: Any
-        PC30: Any
-        PD12: Any
-        PD08: Any
-        PD20: Any
-        PD09: Any
-        PD11: Any
-        PD10: Any
-        PC19: Any
-        PC27: Any
-        PC20: Any
-        PC16: Any
-        PC18: Any
-        PC17: Any
-        PC25: Any
-        PC21: Any
-        PC26: Any
-        PC22: Any
-        PC24: Any
-        PC23: Any
-        PD21: Any
-        PA15: Any
-        PA23: Any
-        PA16: Any
-        PA12: Any
-        PA14: Any
-        PA13: Any
-        PA21: Any
-        PA17: Any
-        PA22: Any
-        PA18: Any
-        PA20: Any
-        PA19: Any
-        PA03: Any
-        PA11: Any
-        PA04: Any
-        PA00: Any
-        PA02: Any
-        PA01: Any
-        PA09: Any
-        PA05: Any
-        PA10: Any
-        PA06: Any
-        PA08: Any
-        PA07: Any
-        PB19: Any
-        PB11: Any
-        PA24: Any
-        PB12: Any
-        PB08: Any
-        PB10: Any
-        PB09: Any
-        PB17: Any
-        PB13: Any
-        PB18: Any
-        PB14: Any
-        PB16: Any
-        PB15: Any
-        PA31: Any
-        PB07: Any
-        PB00: Any
-        PA25: Any
-        PA30: Any
-        PA27: Any
-        PB05: Any
-        PB01: Any
-        PB06: Any
-        PB02: Any
-        PB04: Any
-        PB03: Any
+        PC04: Incomplete
+        PC14: Incomplete
+        PC05: Incomplete
+        PC01: Incomplete
+        PC03: Incomplete
+        PC02: Incomplete
+        PC12: Incomplete
+        PC06: Incomplete
+        PC13: Incomplete
+        PC07: Incomplete
+        PC11: Incomplete
+        PC10: Incomplete
+        PB24: Incomplete
+        PC00: Incomplete
+        PB25: Incomplete
+        PB21: Incomplete
+        PB23: Incomplete
+        PB22: Incomplete
+        PB30: Incomplete
+        PB26: Incomplete
+        PB31: Incomplete
+        PB27: Incomplete
+        PB29: Incomplete
+        PB28: Incomplete
+        PB20: Incomplete
+        PD00: Incomplete
+        PC15: Incomplete
+        PD01: Incomplete
+        PC28: Incomplete
+        PC31: Incomplete
+        PC30: Incomplete
+        PD12: Incomplete
+        PD08: Incomplete
+        PD20: Incomplete
+        PD09: Incomplete
+        PD11: Incomplete
+        PD10: Incomplete
+        PC19: Incomplete
+        PC27: Incomplete
+        PC20: Incomplete
+        PC16: Incomplete
+        PC18: Incomplete
+        PC17: Incomplete
+        PC25: Incomplete
+        PC21: Incomplete
+        PC26: Incomplete
+        PC22: Incomplete
+        PC24: Incomplete
+        PC23: Incomplete
+        PD21: Incomplete
+        PA15: Incomplete
+        PA23: Incomplete
+        PA16: Incomplete
+        PA12: Incomplete
+        PA14: Incomplete
+        PA13: Incomplete
+        PA21: Incomplete
+        PA17: Incomplete
+        PA22: Incomplete
+        PA18: Incomplete
+        PA20: Incomplete
+        PA19: Incomplete
+        PA03: Incomplete
+        PA11: Incomplete
+        PA04: Incomplete
+        PA00: Incomplete
+        PA02: Incomplete
+        PA01: Incomplete
+        PA09: Incomplete
+        PA05: Incomplete
+        PA10: Incomplete
+        PA06: Incomplete
+        PA08: Incomplete
+        PA07: Incomplete
+        PB19: Incomplete
+        PB11: Incomplete
+        PA24: Incomplete
+        PB12: Incomplete
+        PB08: Incomplete
+        PB10: Incomplete
+        PB09: Incomplete
+        PB17: Incomplete
+        PB13: Incomplete
+        PB18: Incomplete
+        PB14: Incomplete
+        PB16: Incomplete
+        PB15: Incomplete
+        PA31: Incomplete
+        PB07: Incomplete
+        PB00: Incomplete
+        PA25: Incomplete
+        PA30: Incomplete
+        PA27: Incomplete
+        PB05: Incomplete
+        PB01: Incomplete
+        PB06: Incomplete
+        PB02: Incomplete
+        PB04: Incomplete
+        PB03: Incomplete
         def __init__(self, *argv, **kwargs) -> None: ...
 
     def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None: ...
@@ -788,12 +827,12 @@ class SoftSPI:
 
     LSB: int
     MSB: int
-    def deinit(self, *args, **kwargs) -> Any: ...
-    def init(self, *args, **kwargs) -> Any: ...
-    def write_readinto(self, *args, **kwargs) -> Any: ...
-    def read(self, *args, **kwargs) -> Any: ...
-    def write(self, *args, **kwargs) -> Any: ...
-    def readinto(self, *args, **kwargs) -> Any: ...
+    def deinit(self, *args, **kwargs) -> Incomplete: ...
+    def init(self, *args, **kwargs) -> Incomplete: ...
+    def write_readinto(self, *args, **kwargs) -> Incomplete: ...
+    def read(self, *args, **kwargs) -> Incomplete: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
+    def readinto(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None: ...
 
 class Timer:
@@ -978,14 +1017,14 @@ class UART:
          poll.poll(timeout)
         """
         ...
-    def write(self, buf) -> int:
+    def write(self, buf) -> Union[int, None]:
         """
         Write the buffer of bytes to the bus.
 
         Return value: number of bytes written or ``None`` on timeout.
         """
         ...
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+    def readinto(self, buf, nbytes: Optional[Any] = None) -> Union[int, None]:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
         that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
@@ -995,7 +1034,7 @@ class UART:
         timeout.
         """
         ...
-    def readline(self) -> None:
+    def readline(self) -> Union[str, None]:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
@@ -1018,19 +1057,19 @@ class SoftI2C(I2C):
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
 
-    def readfrom_mem_into(self, *args, **kwargs) -> Any: ...
-    def readfrom_into(self, *args, **kwargs) -> Any: ...
-    def readfrom_mem(self, *args, **kwargs) -> Any: ...
-    def writeto_mem(self, *args, **kwargs) -> Any: ...
-    def scan(self, *args, **kwargs) -> Any: ...
-    def writeto(self, *args, **kwargs) -> Any: ...
-    def writevto(self, *args, **kwargs) -> Any: ...
-    def start(self, *args, **kwargs) -> Any: ...
-    def readfrom(self, *args, **kwargs) -> Any: ...
-    def readinto(self, *args, **kwargs) -> Any: ...
-    def init(self, *args, **kwargs) -> Any: ...
-    def stop(self, *args, **kwargs) -> Any: ...
-    def write(self, *args, **kwargs) -> Any: ...
+    def readfrom_mem_into(self, *args, **kwargs) -> Incomplete: ...
+    def readfrom_into(self, *args, **kwargs) -> Incomplete: ...
+    def readfrom_mem(self, *args, **kwargs) -> Incomplete: ...
+    def writeto_mem(self, *args, **kwargs) -> Incomplete: ...
+    def scan(self, *args, **kwargs) -> Incomplete: ...
+    def writeto(self, *args, **kwargs) -> Incomplete: ...
+    def writevto(self, *args, **kwargs) -> Incomplete: ...
+    def start(self, *args, **kwargs) -> Incomplete: ...
+    def readfrom(self, *args, **kwargs) -> Incomplete: ...
+    def readinto(self, *args, **kwargs) -> Incomplete: ...
+    def init(self, *args, **kwargs) -> Incomplete: ...
+    def stop(self, *args, **kwargs) -> Incomplete: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
 
 class RTC:
@@ -1060,7 +1099,7 @@ class RTC:
            ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
         """
         ...
-    def calibration(self, *args, **kwargs) -> Any: ...
+    def calibration(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, id=0, *args, **kwargs) -> None: ...
 
 class SPI:

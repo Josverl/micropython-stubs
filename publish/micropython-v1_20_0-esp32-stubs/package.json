@@ -2,12 +2,12 @@
     "name": "micropython-esp32-stubs",
     "mpy_version": "1.20.0",
     "publish": true,
-    "pkg_version": "1.20.0.post3",
+    "pkg_version": "1.20.0.post4",
     "path": "micropython-v1_20_0-esp32-stubs",
     "stub_sources": [
         [
             "Merged stubs",
-            "micropython-v1_20_0-esp32-merged"
+            "micropython-v1_20_0-esp32-GENERIC-merged"
         ],
         [
             "Frozen stubs",

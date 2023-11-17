@@ -1,18 +1,32 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Functionality specific to the RP2.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/rp2.html
+
+The ``rp2`` module contains functions and classes specific to the RP2040, as
+used in the Raspberry Pi Pico.
+
+See the `RP2040 Python datasheet
+<https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf>`_
+for more information, and `pico-micropython-examples
+<https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
+for example code.
+"""
+from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional
 
 def asm_pio(
     *,
-    out_init: Incomplete | None = ...,
-    set_init: Incomplete | None = ...,
-    sideset_init: Incomplete | None = ...,
-    in_shiftdir: int = ...,
-    out_shiftdir: int = ...,
-    autopush: bool = ...,
-    autopull: bool = ...,
-    push_thresh: int = ...,
-    pull_thresh: int = ...,
-    fifo_join=...,
+    out_init=None,
+    set_init=None,
+    sideset_init=None,
+    in_shiftdir=0,
+    out_shiftdir=0,
+    autopush=False,
+    autopull=False,
+    push_thresh=32,
+    pull_thresh=32,
+    fifo_join=PIO.JOIN_NONE,
 ) -> Incomplete:
     """
     Assemble a PIO program.
@@ -48,8 +62,9 @@ def asm_pio(
       combined into a single 8-word FIFO for one direction only. The options
       are `PIO.JOIN_NONE`, `PIO.JOIN_RX` and `PIO.JOIN_TX`.
     """
+    ...
 
-def asm_pio_encode(instr, sideset_count, sideset_opt: bool = ...) -> Incomplete:
+def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
     instead.
@@ -57,6 +72,7 @@ def asm_pio_encode(instr, sideset_count, sideset_opt: bool = ...) -> Incomplete:
     >>> rp2.asm_pio_encode("set(0, 1)", 0)
     57345
     """
+    ...
 
 def bootsel_button() -> Incomplete:
     """
@@ -69,6 +85,7 @@ def bootsel_button() -> Incomplete:
     memory, it also temporarily disables interrupts and the other core to
     prevent them from trying to execute code from flash.
     """
+    ...
 
 def country(*args, **kwargs) -> Incomplete: ...
 def const(*args, **kwargs) -> Incomplete: ...

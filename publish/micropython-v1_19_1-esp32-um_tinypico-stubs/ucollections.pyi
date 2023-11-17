@@ -13,26 +13,6 @@ from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdli
 from typing_extensions import NamedTuple as stdlib_NamedTuple
 from _typeshed import Incomplete
 
-def namedtuple(name, fields) -> stdlib_NamedTuple:
-    """
-    This is factory function to create a new namedtuple type with a specific
-    name and set of fields. A namedtuple is a subclass of tuple which allows
-    to access its fields not just by numeric index, but also with an attribute
-    access syntax using symbolic field names. Fields is a sequence of strings
-    specifying field names. For compatibility with CPython it can also be a
-    a string with space-separated field named (but this is less efficient).
-    Example of use::
-
-        from collections import namedtuple
-
-        MyTuple = namedtuple("MyTuple", ("id", "name"))
-        t1 = MyTuple(1, "foo")
-        t2 = MyTuple(2, "bar")
-        print(t1.name)
-        assert t2.name == t2[1]
-    """
-    ...
-
 class OrderedDict(stdlib_OrderedDict):
     """
     ``dict`` type subclass which remembers and preserves the order of keys
@@ -58,19 +38,19 @@ class OrderedDict(stdlib_OrderedDict):
         b 3
     """
 
-    def popitem(self, *args, **kwargs) -> Any: ...
-    def pop(self, *args, **kwargs) -> Any: ...
-    def values(self, *args, **kwargs) -> Any: ...
-    def setdefault(self, *args, **kwargs) -> Any: ...
-    def update(self, *args, **kwargs) -> Any: ...
-    def copy(self, *args, **kwargs) -> Any: ...
+    def __init__(self, *args, **kwargs) -> None: ...
     def clear(self, *args, **kwargs) -> Any: ...
-    def keys(self, *args, **kwargs) -> Any: ...
+    def copy(self, *args, **kwargs) -> Any: ...
     def get(self, *args, **kwargs) -> Any: ...
     def items(self, *args, **kwargs) -> Any: ...
+    def keys(self, *args, **kwargs) -> Any: ...
+    def pop(self, *args, **kwargs) -> Any: ...
+    def popitem(self, *args, **kwargs) -> Any: ...
+    def setdefault(self, *args, **kwargs) -> Any: ...
+    def update(self, *args, **kwargs) -> Any: ...
+    def values(self, *args, **kwargs) -> Any: ...
     @classmethod
     def fromkeys(cls, *args, **kwargs) -> Any: ...
-    def __init__(self, *args, **kwargs) -> None: ...
 
 class deque(stdlib_deque):
     """
@@ -90,16 +70,36 @@ class deque(stdlib_deque):
     methods:
     """
 
-    def popleft(self) -> Incomplete:
-        """
-        Remove and return an item from the left side of the deque.
-        Raises IndexError if no items are present.
-        """
-        ...
+    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None: ...
     def append(self, x) -> Incomplete:
         """
         Add *x* to the right side of the deque.
         Raises IndexError if overflow checking is enabled and there is no more room left.
         """
         ...
-    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None: ...
+    def popleft(self) -> Incomplete:
+        """
+        Remove and return an item from the left side of the deque.
+        Raises IndexError if no items are present.
+        """
+        ...
+
+def namedtuple(name, fields) -> stdlib_NamedTuple:
+    """
+    This is factory function to create a new namedtuple type with a specific
+    name and set of fields. A namedtuple is a subclass of tuple which allows
+    to access its fields not just by numeric index, but also with an attribute
+    access syntax using symbolic field names. Fields is a sequence of strings
+    specifying field names. For compatibility with CPython it can also be a
+    a string with space-separated field named (but this is less efficient).
+    Example of use::
+
+        from collections import namedtuple
+
+        MyTuple = namedtuple("MyTuple", ("id", "name"))
+        t1 = MyTuple(1, "foo")
+        t2 = MyTuple(2, "bar")
+        print(t1.name)
+        assert t2.name == t2[1]
+    """
+    ...

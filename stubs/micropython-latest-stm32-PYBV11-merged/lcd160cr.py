@@ -5,8 +5,8 @@ MicroPython module: https://docs.micropython.org/en/latest/library/lcd160cr.html
 
 This module provides control of the MicroPython LCD160CR display.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
-# Stubber: v1.13.7
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
 from typing import Tuple, Any
 from _typeshed import Incomplete
 
@@ -19,19 +19,19 @@ LANDSCAPE_UPSIDEDOWN = 3  # type: int
 STARTUP_DECO_NONE = 0  # type: int
 
 
-def calcsize(*args, **kwargs) -> Any:
+def calcsize(*args, **kwargs) -> Incomplete:
     ...
 
 
-def pack_into(*args, **kwargs) -> Any:
+def pack_into(*args, **kwargs) -> Incomplete:
     ...
 
 
-def sleep_ms(*args, **kwargs) -> Any:
+def sleep_ms(*args, **kwargs) -> Incomplete:
     ...
 
 
-def const(*args, **kwargs) -> Any:
+def const(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -280,7 +280,7 @@ class LCD160CR:
         """
         ...
 
-    def iflush(self, *args, **kwargs) -> Any:
+    def iflush(self, *args, **kwargs) -> Incomplete:
         ...
 
     def set_brightness(self, value) -> None:
@@ -309,7 +309,7 @@ class LCD160CR:
         """
         ...
 
-    def oflush(self, *args, **kwargs) -> Any:
+    def oflush(self, *args, **kwargs) -> Incomplete:
         ...
 
     def write(self, s) -> None:

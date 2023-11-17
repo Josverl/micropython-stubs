@@ -1,9 +1,18 @@
 """
-Module: 'uctypes' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
+Access binary data in a structured way.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/uctypes.html
+
+This module implements "foreign data interface" for MicroPython. The idea
+behind it is similar to CPython's ``ctypes`` modules, but the actual API is
+different, streamlined and optimized for small size. The basic idea of the
+module is to define data structure layout with about the same power as the
+C language allows, and then access it using familiar dot-syntax to reference
+sub-fields.
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
 # Stubber: v1.14.0
-from _typeshed import Incomplete as Incomplete, Incomplete
+from _typeshed import Incomplete
 
 VOID = 0  # type: int
 NATIVE = 2  # type: int
@@ -39,12 +48,13 @@ BIG_ENDIAN = 1  # type: int
 FLOAT32 = -268435456  # type: int
 
 
-def sizeof(struct, layout_type=...) -> int:
+def sizeof(struct, layout_type=NATIVE, /) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object
     (or its aggregate field).
     """
+    ...
 
 
 def bytes_at(addr, size) -> bytes:
@@ -54,6 +64,7 @@ def bytes_at(addr, size) -> bytes:
     bytes object, so if memory contents change later, created object
     retains original value.
     """
+    ...
 
 
 def bytearray_at(addr, size) -> bytearray:
@@ -63,6 +74,7 @@ def bytearray_at(addr, size) -> bytearray:
     so it can be both written too, and you will access current value
     at the given memory address.
     """
+    ...
 
 
 def addressof(obj) -> int:
@@ -71,6 +83,7 @@ def addressof(obj) -> int:
     other object supporting buffer protocol (and address of this buffer
     is what actually returned).
     """
+    ...
 
 
 class struct:
@@ -79,5 +92,5 @@ class struct:
     memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
 
-    def __init__(self, addr, descriptor, layout_type=...) -> None:
+    def __init__(self, addr, descriptor, layout_type=NATIVE, /) -> None:
         ...

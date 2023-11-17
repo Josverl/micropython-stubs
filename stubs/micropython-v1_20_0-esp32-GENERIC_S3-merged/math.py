@@ -1,10 +1,22 @@
 """
-Module: 'math' on micropython-v1.20.0-esp32-GENERIC_S3
+Mathematical functions.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/math.html
+
+CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
+
+The ``math`` module provides some basic mathematical functions for
+working with floating-point numbers.
+
+*Note:* On the pyboard, floating-point numbers have 32-bit precision.
+
+Availability: not available on WiPy. Floating point support required
+for this module.
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': 'v1.20.0', 'cpu': 'ESP32S3'})
 # Stubber: v1.13.7
 from typing import Tuple, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 inf = inf  # type: float
 nan = nan  # type: float

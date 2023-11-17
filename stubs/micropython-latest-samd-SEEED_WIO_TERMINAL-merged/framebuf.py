@@ -6,8 +6,8 @@ MicroPython module: https://docs.micropython.org/en/latest/library/framebuf.html
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
-# Stubber: v1.13.4
+# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
+# Stubber: v1.13.8
 from typing import Optional, Any
 from _typeshed import Incomplete
 
@@ -21,7 +21,7 @@ GS8 = 6  # type: int
 GS4_HMSB = 2  # type: int
 
 
-def FrameBuffer1(*args, **kwargs) -> Any:
+def FrameBuffer1(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -156,7 +156,7 @@ class FrameBuffer:
         """
         ...
 
-    def fill_rect(self, *args, **kwargs) -> Any:
+    def fill_rect(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, buffer, width, height, format, stride=-1, /) -> None:

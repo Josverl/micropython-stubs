@@ -1,17 +1,24 @@
 """
-Module: 'binascii' on micropython-v1.19.1-rp2
+Binary/ASCII conversions.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/binascii.html
+
+CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
+
+This module implements conversions between binary data and various
+encodings of it in ASCII form (in both directions).
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
 def crc32(*args, **kwargs) -> Any:
     ...
 
 
-def hexlify(data, sep: Optional[Any] = ...) -> bytes:
+def hexlify(data, sep: Optional[Any] = None) -> bytes:
     """
     Convert the bytes in the *data* object to a hexadecimal representation.
     Returns a bytes object.
@@ -30,7 +37,7 @@ def unhexlify(data) -> bytes:
     ...
 
 
-def b2a_base64(data, *, newline: bool = ...) -> bytes:
+def b2a_base64(data, *, newline=True) -> bytes:
     """
     Encode binary data in base64 format, as in `RFC 3548
     <https://tools.ietf.org/html/rfc3548.html>`_. Returns the encoded data

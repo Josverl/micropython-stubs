@@ -11,26 +11,26 @@ A particular inventory of codes depends on :term:`MicroPython port`.
 from _typeshed import Incomplete
 from typing import Dict
 
-ENOBUFS: int
-ENODEV: int
-ENOENT: int
-EISDIR: int
-EIO: int
-EINVAL: int
-EPERM: int
-ETIMEDOUT: int
-ENOMEM: int
-EOPNOTSUPP: int
-ENOTCONN: int
-errorcode: dict
+EACCES: int
+EADDRINUSE: int
 EAGAIN: int
 EALREADY: int
 EBADF: int
-EADDRINUSE: int
-EACCES: int
-EINPROGRESS: int
+ECONNABORTED: int
+ECONNREFUSED: int
+ECONNRESET: int
 EEXIST: int
 EHOSTUNREACH: int
-ECONNABORTED: int
-ECONNRESET: int
-ECONNREFUSED: int
+EINPROGRESS: int
+EINVAL: int
+EIO: int
+EISDIR: int
+ENOBUFS: int
+ENODEV: int
+ENOENT: int
+ENOMEM: int
+ENOTCONN: int
+EOPNOTSUPP: int
+EPERM: int
+ETIMEDOUT: int
+errorcode: dict

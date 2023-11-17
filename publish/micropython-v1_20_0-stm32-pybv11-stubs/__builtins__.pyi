@@ -1,4 +1,5 @@
-# allows for type checking of additional builtins by pyright
+"""Allows for type checking of Micropython specific builtins by pyright and pylance.
+"""
 
 from typing import Tuple, TypeVar
 

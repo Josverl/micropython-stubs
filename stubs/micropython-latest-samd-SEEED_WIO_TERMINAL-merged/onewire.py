@@ -1,9 +1,10 @@
 """
-Module: 'onewire' on micropython-v1.20.0-samd-SEEED_WIO_TERMINAL
+Module: 'onewire' on micropython-v1.21.0-samd-SEEED_WIO_TERMINAL
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
-# Stubber: v1.13.4
+# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
+# Stubber: v1.13.8
 from typing import Any
+from _typeshed import Incomplete
 
 
 class OneWire:
@@ -11,34 +12,34 @@ class OneWire:
     SKIP_ROM = 204  # type: int
     SEARCH_ROM = 240  # type: int
 
-    def select_rom(self, *args, **kwargs) -> Any:
+    def select_rom(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writebyte(self, *args, **kwargs) -> Any:
+    def writebyte(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def crc8(self, *args, **kwargs) -> Any:
+    def crc8(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readbyte(self, *args, **kwargs) -> Any:
+    def readbyte(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readbit(self, *args, **kwargs) -> Any:
+    def readbit(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writebit(self, *args, **kwargs) -> Any:
+    def writebit(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def reset(self, *args, **kwargs) -> Any:
+    def reset(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def scan(self, *args, **kwargs) -> Any:
+    def scan(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

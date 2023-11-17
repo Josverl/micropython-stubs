@@ -1,4 +1,18 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Functionality specific to the RP2.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/rp2.html
+
+The ``rp2`` module contains functions and classes specific to the RP2040, as
+used in the Raspberry Pi Pico.
+
+See the `RP2040 Python datasheet
+<https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf>`_
+for more information, and `pico-micropython-examples
+<https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
+for example code.
+"""
+from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional
 
 def country(*args, **kwargs) -> Incomplete: ...
@@ -13,20 +27,22 @@ def bootsel_button() -> Incomplete:
     memory, it also temporarily disables interrupts and the other core to
     prevent them from trying to execute code from flash.
     """
+    ...
 
 class Flash:
     """
     Gets the singleton object for accessing the SPI flash memory.
     """
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete: ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
     def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
         :class:`os.AbstractBlockDev`.
         """
+        ...
     def __init__(self) -> None: ...
 
 class PIO:
@@ -60,7 +76,8 @@ class PIO:
         >>> rp2.PIO(1).state_machine(3)
         StateMachine(7)
         """
-    def remove_program(self, program: Optional[Any] = ...) -> None:
+        ...
+    def remove_program(self, program: Optional[Any] = None) -> None:
         """
         Remove *program* from the instruction memory of this PIO instance.
 
@@ -68,7 +85,8 @@ class PIO:
 
         It is not an error to remove a program which has already been removed.
         """
-    def irq(self, handler: Incomplete | None = ..., trigger=..., hard: bool = ...) -> Incomplete:
+        ...
+    def irq(self, handler=None, trigger=IRQ_SM0, hard=False) -> Incomplete:
         """
         Returns the IRQ object for this PIO instance.
 
@@ -76,6 +94,7 @@ class PIO:
 
         Optionally configure it.
         """
+        ...
     def add_program(self, program) -> Incomplete:
         """
         Add the *program* to the instruction memory of this PIO instance.
@@ -84,6 +103,7 @@ class PIO:
         limited. If there isn't enough space left in the PIO's program memory
         this method will raise ``OSError(ENOMEM)``.
         """
+        ...
     def __init__(self, id) -> None: ...
 
 class StateMachine:
@@ -96,13 +116,14 @@ class StateMachine:
     `StateMachine.init`.
     """
 
-    def irq(self, handler: Incomplete | None = ..., trigger=..., hard: bool = ...) -> Incomplete:
+    def irq(self, handler=None, trigger=0 | 1, hard=False) -> Incomplete:
         """
         Returns the IRQ object for the given StateMachine.
 
         Optionally configure it.
         """
-    def put(self, value, shift: int = ...) -> Incomplete:
+        ...
+    def put(self, value, shift=0) -> Incomplete:
         """
         Push words onto the state machine's TX FIFO.
 
@@ -116,6 +137,7 @@ class StateMachine:
         Each word is first shifted left by *shift* bits, i.e. the state machine
         receives ``word << shift``.
         """
+        ...
     def restart(self) -> Incomplete:
         """
         Restarts the state machine and jumps to the beginning of the program.
@@ -129,6 +151,7 @@ class StateMachine:
          - the waiting-on-IRQ state
          - a stalled instruction run using `StateMachine.exec()`
         """
+        ...
     def rx_fifo(self) -> int:
         """
         Returns the number of words in the state machine's RX FIFO. A value of 0
@@ -137,6 +160,7 @@ class StateMachine:
         Useful for checking if data is waiting to be read, before calling
         `StateMachine.get()`.
         """
+        ...
     def tx_fifo(self) -> int:
         """
         Returns the number of words in the state machine's TX FIFO. A value of 0
@@ -145,20 +169,21 @@ class StateMachine:
         Useful for checking if there is space to push another word using
         `StateMachine.put()`.
         """
+        ...
     def init(
         self,
         program,
-        freq: int = ...,
+        freq=-1,
         *,
-        in_base: Incomplete | None = ...,
-        out_base: Incomplete | None = ...,
-        set_base: Incomplete | None = ...,
-        jmp_pin: Incomplete | None = ...,
-        sideset_base: Incomplete | None = ...,
-        in_shiftdir: Incomplete | None = ...,
-        out_shiftdir: Incomplete | None = ...,
-        push_thresh: Incomplete | None = ...,
-        pull_thresh: Incomplete | None = ...,
+        in_base=None,
+        out_base=None,
+        set_base=None,
+        jmp_pin=None,
+        sideset_base=None,
+        in_shiftdir=None,
+        out_shiftdir=None,
+        push_thresh=None,
+        pull_thresh=None,
     ) -> None:
         """
         Configure the state machine instance to run the given *program*.
@@ -191,6 +216,7 @@ class StateMachine:
         - *pull_thresh* is the threshold in bits before auto-pull or conditional
           re-pulling is triggered.
         """
+        ...
     def exec(self, instr) -> Incomplete:
         """
         Execute a single PIO instruction.
@@ -205,7 +231,8 @@ class StateMachine:
 
         >>> sm.exec(rp2.asm_pio_encode("out(y, 8)", 0))
         """
-    def get(self, buf: Incomplete | None = ..., shift: int = ...) -> Incomplete:
+        ...
+    def get(self, buf=None, shift=0) -> Incomplete:
         """
         Pull a word from the state machine's RX FIFO.
 
@@ -215,7 +242,8 @@ class StateMachine:
         The value is shifted right by *shift* bits before returning, i.e. the
         return value is ``word >> shift``.
         """
-    def active(self, value: Optional[Any] = ...) -> Incomplete:
+        ...
+    def active(self, value: Optional[Any] = None) -> Incomplete:
         """
         Gets or sets whether the state machine is currently running.
 
@@ -224,4 +252,5 @@ class StateMachine:
         >>> sm.active(0)
         False
         """
+        ...
     def __init__(self, id, program, *args, **kwargs) -> None: ...

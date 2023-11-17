@@ -8,7 +8,11 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/sys.rst
-from typing import Dict, List, Tuple
+from typing import (
+    Dict,
+    List,
+    Tuple,
+)
 from _typeshed import Incomplete
 
 argv: List

@@ -11,13 +11,13 @@ working with complex numbers.
 Availability: not available on WiPy and ESP8266. Floating point support
 required for this module.
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
-# Stubber: v1.13.7
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
 from typing import Tuple, Any
 from _typeshed import Incomplete
 
-e = 2.718281828459045  # type: float
-pi = 3.141592653589793  # type: float
+e = 2.718282  # type: float
+pi = 3.141593  # type: float
 
 
 def polar(z) -> Tuple:

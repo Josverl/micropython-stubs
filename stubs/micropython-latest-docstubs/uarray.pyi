@@ -12,10 +12,14 @@ floating-point support).
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/array.rst
-from typing import Any, List, Optional
+from typing import (
+    Any,
+    List,
+    Optional,
+)
 from _typeshed import Incomplete
 
-class array:
+class array(List):
     """
     Create array with elements of given type. Initial contents of the
     array are given by *iterable*. If it is not provided, an empty

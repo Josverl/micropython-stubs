@@ -9,7 +9,7 @@
 # Import required libraries
 from micropython import const
 from machine import Pin, SPI, ADC
-import machine, time
+import machine
 
 # TinyS2 Hardware Pin Assignments
 

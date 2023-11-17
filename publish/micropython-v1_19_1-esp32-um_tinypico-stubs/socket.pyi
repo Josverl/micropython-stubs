@@ -14,22 +14,67 @@ Difference to CPython
    a file-like object using `makefile()` method. This method is still supported
    by MicroPython (but is a no-op), so where compatibility with CPython matters,
    be sure to use it.
+
+Socket address format(s)
+------------------------
+
+The native socket address format of the ``socket`` module is an opaque data type
+returned by `getaddrinfo` function, which must be used to resolve textual address
+(including numeric addresses)::
+
+    sockaddr = socket.getaddrinfo('www.micropython.org', 80)[0][-1]
+    # You must use getaddrinfo() even for numeric addresses
+    sockaddr = socket.getaddrinfo('127.0.0.1', 80)[0][-1]
+    # Now you can use that address
+    sock.connect(addr)
+
+Using `getaddrinfo` is the most efficient (both in terms of memory and processing
+power) and portable way to work with addresses.
+
+However, ``socket`` module (note the difference with native MicroPython
+``socket`` module described here) provides CPython-compatible way to specify
+addresses using tuples, as described below. Note that depending on a
+:term:`MicroPython port`, ``socket`` module can be builtin or need to be
+installed from `micropython-lib` (as in the case of :term:`MicroPython Unix port`),
+and some ports still accept only numeric addresses in the tuple format,
+and require to use `getaddrinfo` function to resolve domain names.
+
+Summing up:
+
+* Always use `getaddrinfo` when writing portable applications.
+* Tuple addresses described below can be used as a shortcut for
+  quick hacks and interactive use, if your port supports them.
+
+Tuple address format for ``socket`` module:
+
+* IPv4: *(ipv4_address, port)*, where *ipv4_address* is a string with
+  dot-notation numeric IPv4 address, e.g. ``"8.8.8.8"``, and *port* is and
+  integer port number in the range 1-65535. Note the domain names are not
+  accepted as *ipv4_address*, they should be resolved first using
+  `socket.getaddrinfo()`.
+* IPv6: *(ipv6_address, port, flowinfo, scopeid)*, where *ipv6_address*
+  is a string with colon-notation numeric IPv6 address, e.g. ``"2001:db8::1"``,
+  and *port* is an integer port number in the range 1-65535. *flowinfo*
+  must be 0. *scopeid* is the interface scope identifier for link-local
+  addresses. Note the domain names are not accepted as *ipv6_address*,
+  they should be resolved first using `socket.getaddrinfo()`. Availability
+  of IPv6 support depends on a :term:`MicroPython port`.
 """
 from typing import IO, Optional, Tuple, Any
 from _typeshed import Incomplete
 from stdlib.socket import *
 
-SOCK_RAW: int
-SOCK_DGRAM: int
+AF_INET: int
+AF_INET6: int
+IPPROTO_IP: int
+IPPROTO_TCP: int
+IPPROTO_UDP: int
 IP_ADD_MEMBERSHIP: int
+SOCK_DGRAM: int
+SOCK_RAW: int
 SOCK_STREAM: int
 SOL_SOCKET: int
 SO_REUSEADDR: int
-AF_INET6: int
-AF_INET: int
-IPPROTO_UDP: int
-IPPROTO_IP: int
-IPPROTO_TCP: int
 
 def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
     """
@@ -86,17 +131,84 @@ class socket:
          socket(AF_INET, SOCK_DGRAM)
     """
 
-    def recvfrom(self, bufsize) -> Tuple:
+    def __init__(self, af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP, /) -> None: ...
+    def close(self) -> Incomplete:
         """
-        Receive data from the socket. The return value is a pair *(bytes, address)* where *bytes* is a
-        bytes object representing the data received and *address* is the address of the socket sending
-        the data.
+        Mark the socket closed and release all resources. Once that happens, all future operations
+        on the socket object will fail. The remote end will receive EOF indication if
+        supported by protocol.
+
+        Sockets are automatically closed when they are garbage-collected, but it is recommended
+        to `close()` them explicitly as soon you finished working with them.
         """
         ...
-    def recv(self, bufsize) -> bytes:
+    def read(self, size: Optional[Any] = None) -> bytes:
         """
-        Receive data from the socket. The return value is a bytes object representing the data
-        received. The maximum amount of data to be received at once is specified by bufsize.
+        Read up to size bytes from the socket. Return a bytes object. If *size* is not given, it
+        reads all data available from the socket until EOF; as such the method will not return until
+        the socket is closed. This function tries to read as much data as
+        requested (no "short reads"). This may be not possible with
+        non-blocking socket though, and then less data will be returned.
+        """
+        ...
+    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+        """
+        Read bytes into the *buf*.  If *nbytes* is specified then read at most
+        that many bytes.  Otherwise, read at most *len(buf)* bytes. Just as
+        `read()`, this method follows "no short reads" policy.
+
+        Return value: number of bytes read and stored into *buf*.
+        """
+        ...
+    def readline(self) -> Incomplete:
+        """
+        Read a line, ending in a newline character.
+
+        Return value: the line read.
+        """
+        ...
+    def send(self, bytes) -> int:
+        """
+        Send data to the socket. The socket must be connected to a remote socket.
+        Returns number of bytes sent, which may be smaller than the length of data
+        ("short write").
+        """
+        ...
+    def write(self, buf) -> int:
+        """
+        Write the buffer of bytes to the socket. This function will try to
+        write all data to a socket (no "short writes"). This may be not possible
+        with a non-blocking socket though, and returned value will be less than
+        the length of *buf*.
+
+        Return value: number of bytes written.
+        """
+        ...
+    def accept(self) -> Tuple:
+        """
+        Accept a connection. The socket must be bound to an address and listening for connections.
+        The return value is a pair (conn, address) where conn is a new socket object usable to send
+        and receive data on the connection, and address is the address bound to the socket on the
+        other end of the connection.
+        """
+        ...
+    def bind(self, address) -> Incomplete:
+        """
+        Bind the socket to *address*. The socket must not already be bound.
+        """
+        ...
+    def connect(self, address) -> None:
+        """
+        Connect to a remote socket at *address*.
+        """
+        ...
+    def fileno(self, *args, **kwargs) -> Any: ...
+    def listen(self, backlog: Optional[Any] = None) -> None:
+        """
+        Enable a server to accept connections. If *backlog* is specified, it must be at least 0
+        (if it's lower, it will be set to 0); and specifies the number of unaccepted connections
+        that the system will allow before refusing new connections. If not specified, a default
+        reasonable value is chosen.
         """
         ...
     def makefile(self, mode="rb", buffering=0, /) -> IO:
@@ -116,15 +228,19 @@ class socket:
            original socket as well.
         """
         ...
-    def listen(self, backlog: Optional[Any] = None) -> None:
+    def recv(self, bufsize) -> bytes:
         """
-        Enable a server to accept connections. If *backlog* is specified, it must be at least 0
-        (if it's lower, it will be set to 0); and specifies the number of unaccepted connections
-        that the system will allow before refusing new connections. If not specified, a default
-        reasonable value is chosen.
+        Receive data from the socket. The return value is a bytes object representing the data
+        received. The maximum amount of data to be received at once is specified by bufsize.
         """
         ...
-    def fileno(self, *args, **kwargs) -> Any: ...
+    def recvfrom(self, bufsize) -> Tuple:
+        """
+        Receive data from the socket. The return value is a pair *(bytes, address)* where *bytes* is a
+        bytes object representing the data received and *address* is the address of the socket sending
+        the data.
+        """
+        ...
     def sendall(self, bytes) -> int:
         """
         Send all data to the socket. The socket must be connected to a remote socket.
@@ -137,11 +253,10 @@ class socket:
         number of bytes sent on non-blocking sockets.
         """
         ...
-    def setsockopt(self, level, optname, value) -> None:
+    def sendto(self, bytes, address) -> None:
         """
-        Set the value of the given socket option. The needed symbolic constants are defined in the
-        socket module (SO_* etc.). The *value* can be an integer or a bytes-like object representing
-        a buffer.
+        Send data to the socket. The socket should not be connected to a remote socket, since the
+        destination socket is specified by *address*.
         """
         ...
     def setblocking(self, flag) -> Incomplete:
@@ -155,10 +270,11 @@ class socket:
         * ``sock.setblocking(False)`` is equivalent to ``sock.settimeout(0)``
         """
         ...
-    def sendto(self, bytes, address) -> None:
+    def setsockopt(self, level, optname, value) -> None:
         """
-        Send data to the socket. The socket should not be connected to a remote socket, since the
-        destination socket is specified by *address*.
+        Set the value of the given socket option. The needed symbolic constants are defined in the
+        socket module (SO_* etc.). The *value* can be an integer or a bytes-like object representing
+        a buffer.
         """
         ...
     def settimeout(self, value) -> Incomplete:
@@ -195,74 +311,3 @@ class socket:
            your code will work both in MicroPython and CPython.
         """
         ...
-    def readline(self) -> Incomplete:
-        """
-        Read a line, ending in a newline character.
-
-        Return value: the line read.
-        """
-        ...
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
-        """
-        Read bytes into the *buf*.  If *nbytes* is specified then read at most
-        that many bytes.  Otherwise, read at most *len(buf)* bytes. Just as
-        `read()`, this method follows "no short reads" policy.
-
-        Return value: number of bytes read and stored into *buf*.
-        """
-        ...
-    def read(self, size: Optional[Any] = None) -> bytes:
-        """
-        Read up to size bytes from the socket. Return a bytes object. If *size* is not given, it
-        reads all data available from the socket until EOF; as such the method will not return until
-        the socket is closed. This function tries to read as much data as
-        requested (no "short reads"). This may be not possible with
-        non-blocking socket though, and then less data will be returned.
-        """
-        ...
-    def close(self) -> Incomplete:
-        """
-        Mark the socket closed and release all resources. Once that happens, all future operations
-        on the socket object will fail. The remote end will receive EOF indication if
-        supported by protocol.
-
-        Sockets are automatically closed when they are garbage-collected, but it is recommended
-        to `close()` them explicitly as soon you finished working with them.
-        """
-        ...
-    def connect(self, address) -> None:
-        """
-        Connect to a remote socket at *address*.
-        """
-        ...
-    def send(self, bytes) -> int:
-        """
-        Send data to the socket. The socket must be connected to a remote socket.
-        Returns number of bytes sent, which may be smaller than the length of data
-        ("short write").
-        """
-        ...
-    def bind(self, address) -> Incomplete:
-        """
-        Bind the socket to *address*. The socket must not already be bound.
-        """
-        ...
-    def accept(self) -> Tuple:
-        """
-        Accept a connection. The socket must be bound to an address and listening for connections.
-        The return value is a pair (conn, address) where conn is a new socket object usable to send
-        and receive data on the connection, and address is the address bound to the socket on the
-        other end of the connection.
-        """
-        ...
-    def write(self, buf) -> int:
-        """
-        Write the buffer of bytes to the socket. This function will try to
-        write all data to a socket (no "short writes"). This may be not possible
-        with a non-blocking socket though, and returned value will be less than
-        the length of *buf*.
-
-        Return value: number of bytes written.
-        """
-        ...
-    def __init__(self, af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP, /) -> None: ...

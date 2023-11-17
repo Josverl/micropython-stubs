@@ -1,10 +1,16 @@
 """
-Module: 'esp' on micropython-v1.19.1-esp8266
+Functions related to the ESP8266 and ESP32.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/esp.html
+
+The ``esp`` module contains specific functions related to both the ESP8266 and
+ESP32 modules.  Some functions are only available on one or the other of these
+ports.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 SLEEP_MODEM = 2  # type: int
 SLEEP_NONE = 0  # type: int
@@ -30,7 +36,7 @@ def flash_user_start() -> Incomplete:
     ...
 
 
-def sleep_type(sleep_type: Optional[Any] = ...) -> Incomplete:
+def sleep_type(sleep_type: Optional[Any] = None) -> Incomplete:
     """
     **Note**: ESP8266 only
 
@@ -123,7 +129,7 @@ def dht_readinto(*args, **kwargs) -> Any:
     ...
 
 
-def deepsleep(time_us: int = ...) -> Incomplete:
+def deepsleep(time_us=0, /) -> Incomplete:
     """
     **Note**: ESP8266 only - use `machine.deepsleep()` on ESP32
 

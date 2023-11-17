@@ -1,89 +1,90 @@
 """
-Module: 'uasyncio.__init__' on micropython-v1.20.0-stm32-PYBV11
+Module: 'uasyncio.__init__' on micropython-v1.21.0-stm32-PYBV11
 """
-# MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
-# Stubber: v1.13.7
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
 from typing import Any
+from _typeshed import Incomplete
 
 
-def ticks_diff(*args, **kwargs) -> Any:
+def ticks_diff(*args, **kwargs) -> Incomplete:
     ...
 
 
-def run_until_complete(*args, **kwargs) -> Any:
+def run_until_complete(*args, **kwargs) -> Incomplete:
     ...
 
 
-def create_task(*args, **kwargs) -> Any:
+def create_task(*args, **kwargs) -> Incomplete:
     ...
 
 
-def wait_for_ms(*args, **kwargs) -> Any:
+def wait_for_ms(*args, **kwargs) -> Incomplete:
     ...
 
 
-def run(*args, **kwargs) -> Any:
+def run(*args, **kwargs) -> Incomplete:
     ...
 
 
-def new_event_loop(*args, **kwargs) -> Any:
+def new_event_loop(*args, **kwargs) -> Incomplete:
     ...
 
 
-def current_task(*args, **kwargs) -> Any:
+def current_task(*args, **kwargs) -> Incomplete:
     ...
 
 
-def get_event_loop(*args, **kwargs) -> Any:
+def get_event_loop(*args, **kwargs) -> Incomplete:
     ...
 
 
-def ticks(*args, **kwargs) -> Any:
+def ticks(*args, **kwargs) -> Incomplete:
     ...
 
 
-def sleep_ms(*args, **kwargs) -> Any:
+def sleep_ms(*args, **kwargs) -> Incomplete:
     ...
 
 
-def ticks_add(*args, **kwargs) -> Any:
+def ticks_add(*args, **kwargs) -> Incomplete:
     ...
 
 
-def sleep(*args, **kwargs) -> Any:
+def sleep(*args, **kwargs) -> Incomplete:
     ...
 
 
-wait_for: Any  ## <class 'generator'> = <generator>
-gather: Any  ## <class 'generator'> = <generator>
+wait_for: Incomplete  ## <class 'generator'> = <generator>
+gather: Incomplete  ## <class 'generator'> = <generator>
 
 
 class Loop:
-    def call_exception_handler(self, *args, **kwargs) -> Any:
+    def call_exception_handler(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def run_forever(self, *args, **kwargs) -> Any:
+    def run_forever(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def set_exception_handler(self, *args, **kwargs) -> Any:
+    def set_exception_handler(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def get_exception_handler(self, *args, **kwargs) -> Any:
+    def get_exception_handler(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def default_exception_handler(self, *args, **kwargs) -> Any:
+    def default_exception_handler(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def run_until_complete(self, *args, **kwargs) -> Any:
+    def run_until_complete(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def close(self, *args, **kwargs) -> Any:
+    def close(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def stop(self, *args, **kwargs) -> Any:
+    def stop(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def create_task(self, *args, **kwargs) -> Any:
+    def create_task(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -91,16 +92,16 @@ class Loop:
 
 
 class IOQueue:
-    def queue_write(self, *args, **kwargs) -> Any:
+    def queue_write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def queue_read(self, *args, **kwargs) -> Any:
+    def queue_read(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def wait_io_event(self, *args, **kwargs) -> Any:
+    def wait_io_event(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def remove(self, *args, **kwargs) -> Any:
+    def remove(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -108,16 +109,16 @@ class IOQueue:
 
 
 class Event:
-    def set(self, *args, **kwargs) -> Any:
+    def set(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def is_set(self, *args, **kwargs) -> Any:
+    def is_set(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def clear(self, *args, **kwargs) -> Any:
+    def clear(self, *args, **kwargs) -> Incomplete:
         ...
 
-    wait: Any  ## <class 'generator'> = <generator>
+    wait: Incomplete  ## <class 'generator'> = <generator>
 
     def __init__(self, *argv, **kwargs) -> None:
         ...

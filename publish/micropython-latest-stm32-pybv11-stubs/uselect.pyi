@@ -8,8 +8,8 @@ CPython module: :mod:`python:select` https://docs.python.org/3/library/select.ht
 This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
-from typing import Iterator, List, Optional, Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Iterator, List, Optional, Tuple
 
 POLLOUT: int
 POLLIN: int

@@ -1,10 +1,19 @@
 """
-Module: 'neopixel' on micropython-v1.19.1-rp2
+Control of WS2812 / NeoPixel LEDs.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/neopixel.html
+
+This module provides a driver for WS2818 / NeoPixel LEDs.
+
+``Note:`` This module is only included by default on the ESP8266 and ESP32
+   ports. On STM32 / Pyboard, you can `download the module
+   <https://github.com/micropython/micropython/blob/master/drivers/neopixel/neopixel.py>`_
+   and copy it to the filesystem.
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Tuple, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
 def bitstream(*args, **kwargs) -> Any:
@@ -36,5 +45,5 @@ class NeoPixel:
         """
         ...
 
-    def __init__(self, pin, n, *, bpp: int = ..., timing: int = ...) -> None:
+    def __init__(self, pin, n, *, bpp=3, timing=1) -> None:
         ...

@@ -1,5 +1,14 @@
+"""
+Functionality specific to the ESP32.
+
+MicroPython module: https://docs.micropython.org/en/v1.20.0/library/esp32.html
+
+The ``esp32`` module contains functions and classes specifically aimed at
+controlling ESP32 modules.
+"""
+from __future__ import annotations
 from typing import List, Optional, Tuple, Union, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 WAKEUP_ANY_HIGH: bool
 WAKEUP_ALL_LOW: bool
@@ -11,6 +20,7 @@ def wake_on_ulp(wake) -> None:
     Configure whether or not the Ultra-Low-Power co-processor can wake the
     device from sleep. *wake* should be a boolean value.
     """
+    ...
 
 def idf_heap_info(capabilities) -> List[Tuple]:
     """
@@ -36,17 +46,20 @@ def idf_heap_info(capabilities) -> List[Tuple]:
         [(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512, 35108),
          (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]
     """
+    ...
 
 def raw_temperature() -> int:
     """
     Read the raw value of the internal temperature sensor, returning an integer.
     """
+    ...
 
 def wake_on_touch(wake) -> None:
     """
     Configure whether or not a touch will wake the device from sleep.
     *wake* should be a boolean value.
     """
+    ...
 
 def wake_on_ext1(pins, level) -> None:
     """
@@ -54,6 +67,7 @@ def wake_on_ext1(pins, level) -> None:
     or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
     or ``esp32.WAKEUP_ANY_HIGH``.
     """
+    ...
 
 def wake_on_ext0(pin, level) -> None:
     """
@@ -61,17 +75,20 @@ def wake_on_ext0(pin, level) -> None:
     or a valid Pin object.  *level* should be ``esp32.WAKEUP_ALL_LOW`` or
     ``esp32.WAKEUP_ANY_HIGH``.
     """
+    ...
 
 def hall_sensor() -> int:
     """
     Read the raw value of the internal Hall sensor, returning an integer.
     """
+    ...
 
 def gpio_deep_sleep_hold(enable) -> None:
     """
     Configure whether non-RTC GPIO pin configuration is retained during
     deep-sleep mode for held pads. *enable* should be a boolean value.
     """
+    ...
 
 class ULP:
     """
@@ -83,14 +100,17 @@ class ULP:
         """
         Start the ULP running at the given *entry_point*.
         """
+        ...
     def set_wakeup_period(self, period_index, period_us) -> None:
         """
         Set the wake-up period.
         """
+        ...
     def load_binary(self, load_addr, program_binary) -> None:
         """
         Load a *program_binary* into the ULP at the given *load_addr*.
         """
+        ...
     def __init__(self) -> None: ...
 
 class NVS:
@@ -104,10 +124,12 @@ class NVS:
         Returns the signed integer value for the specified key. Raises an OSError if the key does not
         exist or has a different type.
         """
+        ...
     def set_i32(self, key, value) -> None:
         """
         Sets a 32-bit signed integer value for the specified key. Remember to call *commit*!
         """
+        ...
     def set_blob(self, key, value) -> None:
         """
         Sets a binary blob value for the specified key. The value passed in must support the buffer
@@ -115,20 +137,24 @@ class NVS:
         method always writes a blob even if a string is passed in as value.)
         Remember to call *commit*!
         """
+        ...
     def commit(self) -> Incomplete:
         """
         Commits changes made by *set_xxx* methods to flash.
         """
+        ...
     def get_blob(self, key, buffer) -> int:
         """
         Reads the value of the blob for the specified key into the buffer, which must be a bytearray.
         Returns the actual length read. Raises an OSError if the key does not exist, has a different
         type, or if the buffer is too small.
         """
+        ...
     def erase_key(self, key) -> Incomplete:
         """
         Erases a key-value pair.
         """
+        ...
     def __init__(self, namespace) -> None: ...
 
 class Partition:
@@ -142,24 +168,27 @@ class Partition:
     TYPE_APP: int
     TYPE_DATA: int
     BOOT: int
-    def readblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete: ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
     def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
         :class:`os.AbstractBlockDev`.
         """
+        ...
     def set_boot(self) -> None:
         """
         Sets the partition as the boot partition.
         """
-    def writeblocks(self, block_num, buf, offset: Optional[int] = ...) -> Incomplete: ...
+        ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
     def info(self) -> Tuple:
         """
         Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``.
         """
+        ...
     @classmethod
-    def find(cls, type=..., subtype: int = ..., label: Incomplete | None = ..., block_size: int = ...) -> List:
+    def find(cls, type=TYPE_APP, subtype=0xFF, label=None, block_size=4096) -> List:
         """
         Find a partition specified by *type*, *subtype* and *label*.  Returns a
         (possibly empty) list of Partition objects. Note: ``subtype=0xff`` matches any subtype
@@ -168,12 +197,14 @@ class Partition:
         *block_size* specifies the byte size of an individual block used by the returned
         objects.
         """
+        ...
     def get_next_update(self) -> Partition:
         """
         Gets the next update partition after this one, and returns a new Partition object.
         Typical usage is ``Partition(Partition.RUNNING).get_next_update()``
         which returns the next partition to update given the current running one.
         """
+        ...
     @classmethod
     def mark_app_valid_cancel_rollback(cls) -> Incomplete:
         """
@@ -181,12 +212,13 @@ class Partition:
         Calling ``mark_app_valid_cancel_rollback`` is required on the first boot of a new
         partition to avoid an automatic rollback at the next boot.
         This uses the ESP-IDF "app rollback" feature with "CONFIG_BOOTLOADER_APP_ROLLBACK_ENABLE"
-        and  an ``OSError(-261)`` is raised if called on firmware that doesn\'t have the
+        and  an ``OSError(-261)`` is raised if called on firmware that doesn't have the
         feature enabled.
         It is OK to call ``mark_app_valid_cancel_rollback`` on every boot and it is not
         necessary when booting firmare that was loaded using esptool.
         """
-    def __init__(self, id, block_size: int = ...) -> None: ...
+        ...
+    def __init__(self, id, block_size=4096, /) -> None: ...
 
 class RMT:
     """
@@ -210,6 +242,7 @@ class RMT:
         Returns the source clock frequency. Currently the source clock is not
         configurable so this will always return 80MHz.
         """
+        ...
     def loop(self, enable_loop) -> None:
         """
         Configure looping on the channel. *enable_loop* is bool, set to ``True`` to
@@ -217,14 +250,16 @@ class RMT:
         ``False`` while a looping sequence is currently being transmitted then the
         current loop iteration will be completed and then transmission will stop.
         """
-    def wait_done(self, *, timeout: int = ...) -> bool:
+        ...
+    def wait_done(self, *, timeout=0) -> bool:
         """
         Returns ``True`` if the channel is idle or ``False`` if a sequence of
         pulses started with `RMT.write_pulses` is being transmitted. If the
         *timeout* keyword argument is given then block for up to this many
         milliseconds for transmission to complete.
         """
-    def write_pulses(self, duration, data: Union[bool, int] = ...) -> Incomplete:
+        ...
+    def write_pulses(self, duration, data: Union[bool, int] = True) -> Incomplete:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
@@ -252,8 +287,9 @@ class RMT:
         new sequence of pulses. Looping sequences longer than 126 pulses is not
         supported by the hardware.
         """
+        ...
     @staticmethod
-    def bitstream_channel(value: Optional[Any] = ...) -> int:
+    def bitstream_channel(value: Optional[Any] = None) -> int:
         """
         Select which RMT channel is used by the `machine.bitstream` implementation.
         *value* can be ``None`` or a valid RMT channel number.  The default RMT
@@ -265,12 +301,12 @@ class RMT:
         Passing in no argument will not change the channel.  This function returns
         the current channel number.
         """
+        ...
     def deinit(self, *args, **kwargs) -> Any: ...
     def clock_div(self) -> Incomplete:
         """
         Return the clock divider. Note that the channel resolution is
         ``1 / (source_freq / clock_div)``.
         """
-    def __init__(
-        self, channel, *, pin: Incomplete | None = ..., clock_div: int = ..., idle_level: bool = ..., tx_carrier: Incomplete | None = ...
-    ) -> None: ...
+        ...
+    def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None: ...

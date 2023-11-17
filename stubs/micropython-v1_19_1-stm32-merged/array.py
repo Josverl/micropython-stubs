@@ -1,10 +1,18 @@
 """
-Module: 'array' on micropython-v1.19.1-stm32
+Efficient arrays of numeric data.
+
+MicroPython module: https://docs.micropython.org/en/v1.19.1/library/array.html
+
+CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html .
+
+Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
+``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
+floating-point support).
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import List, Optional, Any
-from _typeshed import Incomplete as Incomplete
+from _typeshed import Incomplete
 
 
 class array(List):
@@ -30,5 +38,5 @@ class array(List):
         """
         ...
 
-    def __init__(self, typecode, iterable: Optional[Any] = ...) -> None:
+    def __init__(self, typecode, iterable: Optional[Any] = None) -> None:
         ...
