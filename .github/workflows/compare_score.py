@@ -3,7 +3,6 @@ import os
 
 import requests
 from dotenv import load_dotenv
-from dotenv import load_dotenv
 
 try:
 
@@ -20,7 +19,7 @@ except json.decoder.JSONDecodeError:
 
 # set by pytest in custom conftest reporting
 new_scores = {}
-with open("coverage/snippet_score.json", "r") as f:
+with open("results/snippet_score.json", "r") as f:
     new_scores = json.load(f)
 
 

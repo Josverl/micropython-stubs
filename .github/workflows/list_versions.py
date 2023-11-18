@@ -1,3 +1,19 @@
+"""
+This module retrieves the versions of Micropython from the Micropython repository on GitHub.
+It is used to generate a matrix of versions to create stubs for using Github Actions.
+
+It provides a function `micropython_versions` that returns a list of versions starting from a specified version.
+The module also includes a main block that generates a matrix of versions based on command-line arguments and environment variables.
+The matrix is printed as JSON and can be optionally written to a file if running in a GitHub Actions workflow.
+"""
+import json
+import os
+import sys
+
+from github import Github
+from packaging.version import parse
+
+...
 import json
 import os
 import sys

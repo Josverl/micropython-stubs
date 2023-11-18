@@ -28,8 +28,8 @@ import fasteners
 import pytest
 from loguru import logger as log
 
-SNIPPETS_PREFIX = "snippets/"
-MAX_CACHE_AGE = 24 * 60 * 60
+SNIPPETS_PREFIX = "tests/quality_tests/"
+MAX_CACHE_AGE = 24 * 60 * 60 # 24 hours
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
@@ -175,10 +175,11 @@ def snip_path(feature: str, pytestconfig) -> Path:
     Returns:
         Path: The path to the feature folder.
     """
-
-    snip_path = pytestconfig.inipath.parent / "quality_tests" / f"feat_{feature}"
+    my_path = Path(__file__).parent.absolute()
+    # snip_path = pytestconfig.inipath.parent / "tests/quality_tests" / f"feat_{feature}"
+    snip_path = my_path / f"feat_{feature}"
     if not snip_path.exists():
-        snip_path = pytestconfig.inipath.parent / "quality_tests" / f"check_{feature}"
+        snip_path = my_path  / f"check_{feature}"
     return snip_path
 
 
@@ -221,13 +222,13 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config)
     stats["snippet_score"] = int(stats["passed"] - stats["failed"])
     if stats["snippet_score"] >= 0:
         # Write stats to file
-        (config.rootpath / "coverage").mkdir(exist_ok=True)
-        with open(config.rootpath / "coverage" / "snippet_score.json", "w") as f:
+        (config.rootpath / "results").mkdir(exist_ok=True)
+        with open(config.rootpath / "results" / "snippet_score.json", "w") as f:
             json.dump(stats, f, indent=4)
 
-        print("----------------- terminal summary -----------------")
+        print("----------------- Final summary -----------------")
         print(json.dumps(stats, indent=4))
-        print("----------------------------------------------------")
+        print("-------------------------------------------------")
 
 
 def snipcount(terminalreporter, status: str):

@@ -23,6 +23,8 @@ python_functions = ["test_", "*_test"]
 python_files = ["test_*.py", "*_test.py"]
 testpaths = ["quality_tests"]
 norecursedirs = [
+    "publish",
+    "stubs",
     "repos",
     "typings*",
     ".svn",
