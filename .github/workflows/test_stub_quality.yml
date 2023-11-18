@@ -55,4 +55,4 @@ jobs:
 
       - name: compare and update
         run: |
-          poetry run python .github/workflows/compare_score.py
+          python .github/workflows/compare_score.py
