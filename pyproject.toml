@@ -16,3 +16,34 @@ exclude = '''
     )/
 )
 '''
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+python_functions = ["test_", "*_test"]
+python_files = ["test_*.py", "*_test.py"]
+testpaths = ["quality_tests"]
+norecursedirs = [
+    "publish",
+    "stubs",
+    "repos",
+    "typings*",
+    ".svn",
+    "_build",
+    "tmp*",
+    ".*",
+    "build",
+    "dist",
+    "{arch}",
+    "*.egg",
+]
+junit_family = "xunit1"
+
+addopts = "--verbose --capture=no"
+#  -m 'not snippets'
+# --numprocesses=auto 
+# -m MARKEXPR           Only run tests matching given mark expression. For example: -m 'mark1 and not mark2'.
+# -n --numprocesses=numprocesses - 
+
+markers = [
+    "snippets: test snippets to check the stub quality",
+]

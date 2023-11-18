@@ -1,0 +1,10 @@
+
+micropython-stubber
+
+# for quality reporting
+pyright
+pytest
+fasteners 
+python-dotenv
+pydocstyle
+loguru

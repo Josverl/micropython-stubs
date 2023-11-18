@@ -1,0 +1,117 @@
+import bluetooth
+
+bt = bluetooth.BLE()
+from micropython import const
+
+
+_IO_CAPABILITY_DISPLAY_ONLY = const(0)
+_IO_CAPABILITY_DISPLAY_YESNO = const(1)
+_IO_CAPABILITY_KEYBOARD_ONLY = const(2)
+_IO_CAPABILITY_NO_INPUT_OUTPUT = const(3)
+_IO_CAPABILITY_KEYBOARD_DISPLAY = const(4)
+
+_IRQ_CENTRAL_CONNECT = const(1)
+_IRQ_CENTRAL_DISCONNECT = const(2)
+_IRQ_GATTS_WRITE = const(3)
+_IRQ_GATTS_READ_REQUEST = const(4)
+_IRQ_SCAN_RESULT = const(5)
+_IRQ_SCAN_DONE = const(6)
+_IRQ_PERIPHERAL_CONNECT = const(7)
+_IRQ_PERIPHERAL_DISCONNECT = const(8)
+_IRQ_GATTC_SERVICE_RESULT = const(9)
+_IRQ_GATTC_SERVICE_DONE = const(10)
+_IRQ_GATTC_CHARACTERISTIC_RESULT = const(11)
+_IRQ_GATTC_CHARACTERISTIC_DONE = const(12)
+_IRQ_GATTC_DESCRIPTOR_RESULT = const(13)
+_IRQ_GATTC_DESCRIPTOR_DONE = const(14)
+_IRQ_GATTC_READ_RESULT = const(15)
+_IRQ_GATTC_READ_DONE = const(16)
+_IRQ_GATTC_WRITE_DONE = const(17)
+_IRQ_GATTC_NOTIFY = const(18)
+_IRQ_GATTC_INDICATE = const(19)
+_IRQ_GATTS_INDICATE_DONE = const(20)
+_IRQ_MTU_EXCHANGED = const(21)
+_IRQ_L2CAP_ACCEPT = const(22)
+_IRQ_L2CAP_CONNECT = const(23)
+_IRQ_L2CAP_DISCONNECT = const(24)
+_IRQ_L2CAP_RECV = const(25)
+_IRQ_L2CAP_SEND_READY = const(26)
+_IRQ_CONNECTION_UPDATE = const(27)
+_IRQ_ENCRYPTION_UPDATE = const(28)
+_IRQ_GET_SECRET = const(29)
+_IRQ_SET_SECRET = const(30)
+
+_IRQ_PASSKEY_ACTION = -1
+
+
+# For the _IRQ_GATTS_READ_REQUEST event, the available return codes are:
+
+_GATTS_NO_ERROR = const(0x00)
+_GATTS_ERROR_READ_NOT_PERMITTED = const(0x02)
+_GATTS_ERROR_WRITE_NOT_PERMITTED = const(0x03)
+_GATTS_ERROR_INSUFFICIENT_AUTHENTICATION = const(0x05)
+_GATTS_ERROR_INSUFFICIENT_AUTHORIZATION = const(0x08)
+_GATTS_ERROR_INSUFFICIENT_ENCRYPTION = const(0x0F)
+
+# For the _IRQ_PASSKEY_ACTION event, the available actions are:
+
+_PASSKEY_ACTION_NONE = const(0)
+_PASSKEY_ACTION_INPUT = const(2)
+_PASSKEY_ACTION_DISPLAY = const(3)
+_PASSKEY_ACTION_NUMERIC_COMPARISON = const(4)
+
+# Available flags for characteristics and descriptors are:
+_FLAG_BROADCAST = const(0x0001)
+_FLAG_READ = const(0x0002)
+_FLAG_WRITE_NO_RESPONSE = const(0x0004)
+_FLAG_WRITE = const(0x0008)
+_FLAG_NOTIFY = const(0x0010)
+_FLAG_INDICATE = const(0x0020)
+_FLAG_AUTHENTICATED_SIGNED_WRITE = const(0x0040)
+
+_FLAG_AUX_WRITE = const(0x0100)
+_FLAG_READ_ENCRYPTED = const(0x0200)
+_FLAG_READ_AUTHENTICATED = const(0x0400)
+_FLAG_READ_AUTHORIZED = const(0x0800)
+_FLAG_WRITE_ENCRYPTED = const(0x1000)
+_FLAG_WRITE_AUTHENTICATED = const(0x2000)
+_FLAG_WRITE_AUTHORIZED = const(0x4000)
+
+#The following example registers two services (Heart Rate, and Nordic UART):
+HR_UUID = bluetooth.UUID(0x180D)
+HR_CHAR = (
+    bluetooth.UUID(0x2A37),
+    bluetooth.FLAG_READ | bluetooth.FLAG_NOTIFY,
+)
+HR_SERVICE = (
+    HR_UUID,
+    (HR_CHAR,),
+)
+UART_UUID = bluetooth.UUID("6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
+UART_TX = (
+    bluetooth.UUID("6E400003-B5A3-F393-E0A9-E50E24DCCA9E"),
+    bluetooth.FLAG_READ | bluetooth.FLAG_NOTIFY,
+)
+UART_RX = (
+    bluetooth.UUID("6E400002-B5A3-F393-E0A9-E50E24DCCA9E"),
+    bluetooth.FLAG_WRITE,
+)
+UART_SERVICE = (
+    UART_UUID,
+    (
+        UART_TX,
+        UART_RX,
+    ),
+)
+SERVICES = (
+    HR_SERVICE,
+    UART_SERVICE,
+)
+(
+    (hr,),
+    (
+        tx,
+        rx,
+    ),
+) = bt.gatts_register_services(SERVICES)
+

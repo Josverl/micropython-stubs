@@ -1,0 +1,10 @@
+# download reporting
+ipykernel
+google-cloud-bigquery==3.12.0
+pandas
+matplotlib
+ipywidgets 
+ipympl # interactive matplotlib figures in jupyter
+
+# keyring # for storing credentials
+

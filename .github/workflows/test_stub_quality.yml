@@ -1,0 +1,58 @@
+name: test_stub_quality
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  # Setting an environment variable with the value of a configuration variable
+  SNIPPET_SCORE: ${{ vars.SNIPPET_SCORE }}
+  GH_TOKEN_VARS: ${{ secrets.GH_TOKEN_VARS }}
+
+jobs:
+  test_snippets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      #----------------------------------------------
+
+      - name: Install poetry # poetry is not in the default image
+        run: pipx install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11" # Replace with the Python version you're using
+
+      - name: Testspace client install & config
+        uses: testspace-com/setup-testspace@v1
+        with:
+          domain: josverl
+      #----------------------------------------------
+      # install project
+      #----------------------------------------------
+      - name: Install dependencies for group test
+        run: | 
+          pip install -r requirements-test.txt
+
+      #----------------------------------------------
+      # stubber clone
+      # repos needed for tests
+      #----------------------------------------------
+      - name: stubber clone
+        run: stubber clone
+
+
+      - name: update the stubs and test the snippets (not pushed) 
+        continue-on-error: true
+        run: |
+          pwsh -file ./update-stubs.ps1 
+          pytest -m 'snippets' --cache-clear --junitxml=./results/results.xml
+        env:
+          JUPYTER_PLATFORM_DIRS: "1"
+          # fix:  DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs
+
+      - name: Testspace push test content
+        run: |
+          testspace ./results/results.xml
+
+      - name: compare and update
+        run: |
+          python .github/workflows/compare_score.py

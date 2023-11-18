@@ -50,3 +50,5 @@ typings
 # no node modules
 node_modules
 package*.json
+
+coverage/snippet_score.json
