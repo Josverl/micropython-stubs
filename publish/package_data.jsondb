@@ -3151,6 +3151,54 @@
             "description": "MicroPython stubs",
             "hash": "87ed6221a403dfd41eef405526e79c6a89b81248",
             "stub_hash": "6579a21468621e375971c594ab84e5ca59355611"
+        },
+        "337475968066580769": {
+            "name": "micropython-windows-stubs",
+            "mpy_version": "1.21.0",
+            "publish": true,
+            "pkg_version": "1.21.0.post1",
+            "path": "micropython-v1_21_0-windows-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_21_0-windows-GENERIC-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_21_0-frozen/windows/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "39f0131f83178d6cc3d97816c05d7af42dd3a05e",
+            "stub_hash": "e7315c557bb038fd24e38c5333b3f857e10c2ad7"
+        },
+        "816040894844098838": {
+            "name": "micropython-windows-stubs",
+            "mpy_version": "1.20.0",
+            "publish": true,
+            "pkg_version": "1.20.0.post1",
+            "path": "micropython-v1_20_0-windows-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_20_0-windows-GENERIC-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_20_0-frozen/windows/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "acfccf4ade82a0882fdc4385248a67d21bf699bf",
+            "stub_hash": "e7a9ec1c8d6cde83ff6a2b49a1a82211a55e6dd1"
         }
     }
 }
