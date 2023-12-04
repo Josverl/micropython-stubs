@@ -3,9 +3,6 @@
 
 import os
 
-# SD card
-import machine
-
 sd = bytearray(10 * 1024)
 
 os.mount(sd, "/sd")  # mount
