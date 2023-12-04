@@ -15,12 +15,19 @@ pytestmark = pytest.mark.snippets
 
 log = logging.getLogger()
 
-CORE = ["micropython", "stdlib", "uasyncio:skip port=='esp8266'"]
-
 # features that are not supported by all ports or boards and/or require a specific version
 # format: <port>-<board>:<condition> or <feature>:<condition>
 # if the conditon IS met, the feature is skipped - so please read as SKIP if condition or prefix with 'skip'
 # condition: version<1.21.0 or not port.startswith('esp')
+
+# features that are supported by neary all ports and boards
+CORE = [
+    "micropython",
+    "stdlib",
+    "uasyncio:skip port in ['esp8266', 'webassembly']",
+    "machine:skip port in ['windows', 'webassembly']",
+]
+
 PORTBOARD_FEATURES = {
     "stm32": CORE,
     "stm32-pybv11": CORE,
@@ -45,9 +52,11 @@ PORTBOARD_FEATURES = {
         "bluetooth:skip version<1.21.0",
     ],
     # "rp2-pimoroni_picolipo_16mb": CORE,
+    "webassembly": CORE,
+    "windows": CORE,
 }
 
-SOURCES = ["local"] # , "pypi"] # do not pull from PyPI all the time
+SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 VERSIONS = [
     "latest",
     "v1.21.0",
@@ -189,7 +198,9 @@ def test_pyright(
     with typecheck_lock:
         try:
             # run pyright in the folder with the check_scripts to allow modules to import each other.
-            result = subprocess.run(cmd, shell=use_shell, capture_output=True, cwd=snip_path.as_posix())   
+            result = subprocess.run(
+                cmd, shell=use_shell, capture_output=True, cwd=snip_path.as_posix()
+            )
         except OSError as e:
             raise e
         if result.returncode >= 2:
