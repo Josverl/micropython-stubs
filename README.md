@@ -60,8 +60,6 @@ For a full overview of all stubs check out [the documentation on read the docs](
 The following graph shows the number of downloads of the stubs from PyPi over time.
 Im not sure what causes the spikes in downloads, but it is interesting to see that the number of downloads is increasing over time, and some of the spikes have corrolation to the publication of new MicroPython versions.
 
-In addition some tools such as [the MicroPico VSCode extension](https://marketplace.visualstudio.com/items?itemName=paulober.pico-w-go) bundle a version of the stubs with their distribution, so the actual usage is considerably higher than the number of downloads.
-
 <table>
     <tr>
         <td><img src="statistics/month_port.png"></td>
@@ -72,6 +70,8 @@ In addition some tools such as [the MicroPico VSCode extension](https://marketpl
         <td><img src="statistics/board_version.png"> </td>
     </tr>
 </table>
+
+In addition some tools such as [the MicroPico VSCode extension](https://marketplace.visualstudio.com/items?itemName=paulober.pico-w-go) bundle a version of the stubs with their distribution, so the actual usage is higher than the number of downloads.
 
 ## Contributors
 Thanks to everyone that has submitted stubs or other relevant pieces of code and information, or published relevant stubs on pypi or github.
