@@ -3131,6 +3131,26 @@
             "description": "MicroPython stubs",
             "hash": "505676c38ad3c6a3a29930adb93f91616220a69b",
             "stub_hash": "7075768c341c87ec72f2ce4544c6632ba91a0fea"
+        },
+        "335568883563899844": {
+            "name": "micropython-webassembly-stubs",
+            "mpy_version": "1.21.0",
+            "publish": true,
+            "pkg_version": "1.21.0.post1",
+            "path": "micropython-v1_21_0-webassembly-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_21_0-webassembly-GENERIC-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "87ed6221a403dfd41eef405526e79c6a89b81248",
+            "stub_hash": "6579a21468621e375971c594ab84e5ca59355611"
         }
     }
 }
