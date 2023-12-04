@@ -12,15 +12,18 @@ include = ["**/*.py", "**/*.pyi"]
 repository = "https://github.com/josverl/micropython-stubs"
 
 classifiers = [
-    "Typing :: Typed",
-    "Development Status :: 4 - Beta",
+    "Typing :: Stubs Only",
+    "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: Implementation :: MicroPython",
     "Operating System :: OS Independent",
     "Topic :: Text Editors :: Integrated Development Environments (IDE)",
-    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Embedded Systems",
+    "Topic :: Software Development :: Testing",
+    "Natural Language :: English",
 ]
 
 # Note: anything excluded in .gitignore is not packaged by poetry 
