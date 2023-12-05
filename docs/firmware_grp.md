@@ -387,6 +387,7 @@
 |micropython |v1.21   |board   |stm32|generic|62|v1.13.8|[stubs/micropython-v1_21_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-stm32-PYBV11)
 |micropython |v1.21   |frozen  |teensy|GENERIC|2|1.15.0|[stubs/micropython-v1_21_0-frozen/teensy/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-frozen/teensy/GENERIC)
 |micropython |v1.21   |frozen  |unix|GENERIC|11|1.15.0|[stubs/micropython-v1_21_0-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-frozen/unix/GENERIC)
+|micropython |v1.21   |board   |webassembly|generic|40|v1.15.0|[stubs/micropython-v1_21_0-webassembly-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-webassembly-GENERIC)
 |micropython |v1.21   |frozen  |windows|GENERIC|7|1.15.0|[stubs/micropython-v1_21_0-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-frozen/windows/GENERIC)
 |micropython |v1.9.3  |frozen  |esp8266|micropython|15|1.8.0|[stubs/micropython-v1_9_3-frozen/esp8266/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-frozen/esp8266/GENERIC)
 |micropython |v1.9.3  |frozen  |stm32|micropython|3|1.8.0|[stubs/micropython-v1_9_3-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-frozen/stm32/GENERIC)
@@ -443,4 +444,4 @@
 
 ## Metrics
 
-Total stub modules:  9951
+Total stub modules:  9991
