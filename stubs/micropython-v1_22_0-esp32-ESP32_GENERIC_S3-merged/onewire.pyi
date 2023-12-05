@@ -1,3 +1,0 @@
-from _typeshed import Incomplete as Incomplete
-
-class OneWireError(Exception): ...
