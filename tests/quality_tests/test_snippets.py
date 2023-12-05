@@ -27,7 +27,7 @@ CORE = [
     "uasyncio:skip port in ['esp8266', 'webassembly']",
     "machine:skip port in ['windows', 'webassembly']",
 ]
-
+# a dictionary of features to verify for each port or port_board
 PORTBOARD_FEATURES = {
     "stm32": CORE,
     "stm32-pybv11": CORE,
@@ -54,6 +54,7 @@ PORTBOARD_FEATURES = {
     # "rp2-pimoroni_picolipo_16mb": CORE,
     "webassembly": CORE,
     "windows": CORE,
+    "unix": CORE,
 }
 
 SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time

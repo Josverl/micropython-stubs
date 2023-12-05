@@ -226,9 +226,9 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config)
         with open(config.rootpath / "results" / "snippet_score.json", "w") as f:
             json.dump(stats, f, indent=4)
 
-        print("----------------- Final summary -----------------")
-        print(json.dumps(stats, indent=4))
-        print("-------------------------------------------------")
+        # print("----------------- Final summary -----------------")
+        # print(json.dumps(stats, indent=4))
+        # print("-------------------------------------------------")
 
 
 def snipcount(terminalreporter, status: str):
