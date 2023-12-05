@@ -25,7 +25,7 @@ CORE = [
     "micropython",
     "stdlib",
     "uasyncio:skip port in ['esp8266', 'webassembly']",
-    "machine:skip port in ['windows', 'webassembly']",
+    "machine:skip port in ['windows', 'unix', 'webassembly']",
 ]
 # a dictionary of features to verify for each port or port_board
 PORTBOARD_FEATURES = {
