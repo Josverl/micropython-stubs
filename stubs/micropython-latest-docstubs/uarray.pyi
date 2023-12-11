@@ -12,11 +12,7 @@ floating-point support).
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/array.rst
-from typing import (
-    Any,
-    List,
-    Optional,
-)
+from typing import Any, List, Optional
 from _typeshed import Incomplete
 
 class array(List):

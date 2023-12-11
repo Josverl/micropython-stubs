@@ -75,11 +75,7 @@ Example::
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/btree.rst
-from typing import (
-    Any,
-    Dict,
-    Optional,
-)
+from typing import Any, Dict, Optional
 from _typeshed import Incomplete
 
 INCL: Incomplete

@@ -21,11 +21,7 @@ building-blocks for higher-level abstractions such as specific device types.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/bluetooth.rst
-from typing import (
-    Any,
-    Optional,
-    Tuple,
-)
+from typing import Any, Optional, Tuple
 from _typeshed import Incomplete
 
 class BLE:

@@ -28,11 +28,9 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-latest-rp2-PIMORONI_PICOLIPO_16MB-merged`
-* Frozen stubs from `stubs/micropython-latest-frozen/rp2/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Documentation | micropython | - | - | latest 
-Core | micropython | rp2 | - | latest 

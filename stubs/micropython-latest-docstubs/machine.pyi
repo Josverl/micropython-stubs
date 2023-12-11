@@ -27,15 +27,7 @@ damage.
 # + module: machine.WDT.rst
 # + module: machine.SD.rst
 # + module: machine.SDCard.rst
-from typing import (
-    Any,
-    Callable,
-    List,
-    NoReturn,
-    Optional,
-    Tuple,
-    Union,
-)
+from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 from _typeshed import Incomplete
 
 mem8: Incomplete

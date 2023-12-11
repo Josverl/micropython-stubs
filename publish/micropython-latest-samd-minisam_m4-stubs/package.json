@@ -2,16 +2,12 @@
     "name": "micropython-samd-minisam_m4-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.22.0a162",
+    "pkg_version": "1.22.0a246",
     "path": "micropython-latest-samd-minisam_m4-stubs",
     "stub_sources": [
         [
             "Merged stubs",
             "micropython-latest-samd-MINISAM_M4-merged"
-        ],
-        [
-            "Frozen stubs",
-            "micropython-latest-frozen/samd/GENERIC"
         ],
         [
             "Core stubs",

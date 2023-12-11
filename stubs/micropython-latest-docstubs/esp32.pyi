@@ -11,13 +11,7 @@ controlling ESP32 modules.
 # source version: latest
 # origin module:: repos/micropython/docs/library/esp32.rst
 from __future__ import annotations
-from typing import (
-    Any,
-    List,
-    Optional,
-    Tuple,
-    Union,
-)
+from typing import Any, List, Optional, Tuple, Union
 from _typeshed import Incomplete
 
 HEAP_DATA: Incomplete

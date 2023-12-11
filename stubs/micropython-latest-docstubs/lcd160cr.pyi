@@ -8,9 +8,7 @@ This module provides control of the MicroPython LCD160CR display.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/lcd160cr.rst
-from typing import (
-    Tuple,
-)
+from typing import Tuple
 from _typeshed import Incomplete
 from .machine import SPI
 

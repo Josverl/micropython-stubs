@@ -2,7 +2,7 @@
     "name": "micropython-esp32-stubs",
     "mpy_version": "1.21.0",
     "publish": true,
-    "pkg_version": "1.21.0.post3",
+    "pkg_version": "1.21.0.post4",
     "path": "micropython-v1_21_0-esp32-stubs",
     "stub_sources": [
         [

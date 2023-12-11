@@ -35,11 +35,7 @@ behave not as expected.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/time.rst
-from typing import (
-    Any,
-    Optional,
-    Tuple,
-)
+from typing import Any, Optional, Tuple
 from _typeshed import Incomplete
 
 def gmtime(secs: Optional[Any] = None) -> Tuple:

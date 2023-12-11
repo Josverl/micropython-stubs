@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp32-esp32_generic-stubs"
-version = "1.22.0a162"
+version = "1.22.0a246"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -34,7 +34,6 @@ classifiers = [
 packages = [
     { include = "__builtins__.pyi" },
     { include = "_asyncio.pyi" },
-    { include = "_boot.pyi" },
     { include = "_espnow.pyi" },
     { include = "_onewire.pyi" },
     { include = "_thread.pyi" },
@@ -80,7 +79,6 @@ packages = [
     { include = "os.pyi" },
     { include = "platform.pyi" },
     { include = "random.pyi" },
-    { include = "requests/__init__.pyi" },
     { include = "requests.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },
@@ -95,7 +93,6 @@ packages = [
     { include = "uasyncio/funcs.pyi" },
     { include = "uasyncio/lock.pyi" },
     { include = "uasyncio/stream.pyi" },
-    { include = "uasyncio.pyi" },
     { include = "ubinascii.pyi" },
     { include = "ubluetooth.pyi" },
     { include = "ucollections.pyi" },
@@ -112,7 +109,6 @@ packages = [
     { include = "umqtt/simple.pyi" },
     { include = "uos.pyi" },
     { include = "uplatform.pyi" },
-    { include = "upysh.pyi" },
     { include = "urandom.pyi" },
     { include = "ure.pyi" },
     { include = "urequests.pyi" },
@@ -123,8 +119,6 @@ packages = [
     { include = "usys.pyi" },
     { include = "utime.pyi" },
     { include = "uwebsocket.pyi" },
-    { include = "webrepl.pyi" },
-    { include = "webrepl_setup.pyi" },
     { include = "websocket.pyi" },
 ]
 

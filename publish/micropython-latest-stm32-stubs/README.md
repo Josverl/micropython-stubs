@@ -28,11 +28,9 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-latest-stm32-PYBV11-merged`
-* Frozen stubs from `stubs/micropython-latest-frozen/stm32/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Documentation | micropython | - | - | latest 
-Core | micropython | stm32 | - | latest 

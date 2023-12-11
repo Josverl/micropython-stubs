@@ -1,4 +1,1 @@
-from _typeshed import Incomplete
-
-bdev: Incomplete
-vfs: Incomplete
+from _typeshed import Incomplete as Incomplete

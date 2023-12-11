@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-samd-stubs"
-version = "1.22.0a162"
+version = "1.22.0a246"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -34,7 +34,6 @@ classifiers = [
 packages = [
     { include = "__builtins__.pyi" },
     { include = "_asyncio.pyi" },
-    { include = "_boot.pyi" },
     { include = "_onewire.pyi" },
     { include = "array.pyi" },
     { include = "asyncio/__init__.pyi" },
@@ -74,7 +73,6 @@ packages = [
     { include = "uasyncio/funcs.pyi" },
     { include = "uasyncio/lock.pyi" },
     { include = "uasyncio/stream.pyi" },
-    { include = "uasyncio.pyi" },
     { include = "ubinascii.pyi" },
     { include = "ucollections.pyi" },
     { include = "uctypes.pyi" },

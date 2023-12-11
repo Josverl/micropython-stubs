@@ -36,12 +36,7 @@ Core functions
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/asyncio.rst
-from typing import (
-    Any,
-    Coroutine,
-    List,
-    Tuple,
-)
+from typing import Any, Coroutine, List, Tuple
 from _typeshed import Incomplete
 
 class Task:
