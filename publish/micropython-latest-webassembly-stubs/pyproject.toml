@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-webassembly-stubs"
-version = "1.22.0a246"
+version = "1.22.0a251"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
