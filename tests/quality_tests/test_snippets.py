@@ -109,15 +109,18 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
 def filter_issues(issues: List[Dict], version: str, portboard: str = ""):
     port, board = portboard.split("-") if "-" in portboard else (portboard, "")
     for issue in issues:
-        filename = Path(issue["file"])
-        with open(filename, "r") as f:
-            lines = f.readlines()
-        line = issue["range"]["start"]["line"]
-        if len(lines) > line:
-            theline: str = lines[line]
-            # check if the line contains a stubs-ignore comment
-            if stub_ignore(theline, version, port, board):
-                issue["severity"] = "information"
+        try:
+            filename = Path(issue["file"])
+            with open(filename, "r") as f:
+                lines = f.readlines()
+            line = issue["range"]["start"]["line"]
+            if len(lines) > line:
+                theline: str = lines[line]
+                # check if the line contains a stubs-ignore comment
+                if stub_ignore(theline, version, port, board):
+                    issue["severity"] = "information"
+        except KeyError as e:
+            log.warning(f"Could not process issue: {e} \n{json.dumps(issues, indent=4)}")
     return issues
 
 
@@ -157,7 +160,7 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         # transform : version>=1.20.1 to version>=Version('1.20.1') using a regular expression
         condition = re.sub(r"(\d+\.\d+\.\d+)", r"Version('\1')", condition.strip())
         result = eval(condition, context)
-        print(f'stubs-ignore: {condition} -> {"Skip" if result else "Process"}')
+        # print(f'stubs-ignore: {condition} -> {"Skip" if result else "Process"}')
     except Exception as e:
         log.warning(f"Incorrect stubs-ignore condition: `{condition}`\ncaused: {e}")
         result = False
@@ -165,21 +168,19 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
     return bool(result)
 
 
-def test_pyright(
-    stub_source: str,
-    version: str,
-    portboard: str,
-    feature: str,
-    snip_path: Path,
-    copy_type_stubs: None,  # Avoid needing autouse fixture
-    caplog: pytest.LogCaptureFixture,
-    pytestconfig: pytest.Config,
-):
-    if not snip_path or not snip_path.exists():
-        FileNotFoundError(f"no feature folder for {feature}")
-    caplog.set_level(logging.INFO)
+def run_pyright( snip_path, version, portboard, pytestconfig):
+    """
+    Run Pyright static type checker a path with validation code
 
-    log.info(f"PYRIGHT {portboard}, {feature} {version} from {stub_source}")
+    Args:
+        snip_path (Path): The path to the project.
+        version (str): The version of the stubs .
+        portboard (str): The portboard of the project.
+        pytestconfig: The pytest configuration object.
+
+    Returns:
+        tuple: A tuple containing the information message and the number of errors found.
+    """
 
     cmd = f"pyright --project {snip_path.as_posix()} --outputjson"
     typecheck_lock = fasteners.InterProcessLock(snip_path / "typecheck_lock.file")
@@ -223,6 +224,26 @@ def test_pyright(
 
     info_msg = f"Pyright found {results['summary']['errorCount']} errors and {results['summary']['warningCount']} warnings in {results['summary']['filesAnalyzed']} files."
     errorcount = len([i for i in issues if i["severity"] == "error"])
-    assert errorcount == 0, info_msg
+    return info_msg,errorcount
 
     # return issues
+
+
+def test_ports_boards_pyright(
+    stub_source: str,
+    version: str,
+    portboard: str,
+    feature: str,
+    snip_path: Path,
+    copy_type_stubs,  # Avoid needing autouse fixture
+    caplog: pytest.LogCaptureFixture,
+    pytestconfig: pytest.Config,
+):
+    if not snip_path or not snip_path.exists():
+        FileNotFoundError(f"no feature folder for {feature}")
+    caplog.set_level(logging.INFO)
+
+    log.info(f"PYRIGHT {portboard}, {feature} {version} from {stub_source}")
+
+    info_msg, errorcount = run_pyright(snip_path, version, portboard, pytestconfig)
+    assert errorcount == 0, info_msg

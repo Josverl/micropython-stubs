@@ -2,7 +2,7 @@
 micropython-stubber
 
 # for quality reporting
-pyright
+pyright==1.1.339
 pytest
 fasteners 
 python-dotenv
