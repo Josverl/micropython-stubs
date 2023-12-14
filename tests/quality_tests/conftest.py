@@ -146,7 +146,11 @@ def install_stubs(
         # Add version
         cmd = f"pip install micropython-{portboard}-stubs=={version.lower().lstrip('v')}.* --target {tsc_path} --no-user"
     else:
-        foldername = f"micropython-{flatversion}-{portboard}-stubs"
+        if version == "-": 
+            # stdlib has no version in publish/path
+            foldername = f"micropython-{portboard}-stubs"
+        else:
+            foldername = f"micropython-{flatversion}-{portboard}-stubs"
         # stubsource = pytestconfig.inipath.parent / f"repos/micropython-stubs/publish/{foldername}"
         stubsource = pytestconfig.inipath.parent / f"publish/{foldername}"
         if not stubsource.exists():
@@ -212,6 +216,7 @@ def copy_type_stubs(
             if typings_path.exists():
                 shutil.rmtree(typings_path, ignore_errors=True)
             shutil.copytree(type_stub_cache_path, typings_path)
+            print(f" - copied to {typings_path}")
 
 
 def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config):
@@ -220,7 +225,7 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config)
         stats[status] = snipcount(terminalreporter, status)
     # simple straigth forward scoring
     stats["snippet_score"] = int(stats["passed"] - stats["failed"])
-    if stats["snippet_score"] >= 0:
+    if stats["snippet_score"] > 0:
         # Write stats to file
         (config.rootpath / "results").mkdir(exist_ok=True)
         with open(config.rootpath / "results" / "snippet_score.json", "w") as f:
