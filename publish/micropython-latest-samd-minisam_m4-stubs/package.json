@@ -2,7 +2,7 @@
     "name": "micropython-samd-minisam_m4-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.22.0a251",
+    "pkg_version": "1.22.0a252",
     "path": "micropython-latest-samd-minisam_m4-stubs",
     "stub_sources": [
         [
