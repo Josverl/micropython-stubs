@@ -1,28 +1,23 @@
-import json
 import logging
-import platform
-import re
-import subprocess
 from pathlib import Path
 from typing import Dict, List
 
-import fasteners
 import pytest
-from packaging.version import Version
 
-from test_snippets import SOURCES, port_and_board, run_pyright
+from test_snippets import SOURCES, run_pyright
 
 # only snippets tests
 pytestmark = pytest.mark.snippets
 
 log = logging.getLogger()
 
+HERE = Path(__file__).parent.absolute()
 
 @pytest.mark.parametrize("portboard", ["stdlib"],scope="session") 
 @pytest.mark.parametrize("version", ["-"],scope="session") 
 @pytest.mark.parametrize("feature", ["stdlib"],scope="session") 
 @pytest.mark.parametrize("stub_source", SOURCES,scope="session") 
-@pytest.mark.parametrize("snip_path", [Path('c:/develop/MyPython/micropython-stubs/tests/quality_tests/feat_stdlib')],scope="session") 
+@pytest.mark.parametrize("snip_path", [HERE / "feat_stdlib_only"],scope="session") 
 def test_stdlib_pyright(
     type_stub_cache_path: Path,
     stub_source: str,

@@ -33,6 +33,10 @@
             "path": "feat_micropython"
         },
         {
+            "name": "feat_stdlib_only",
+            "path": "feat_stdlib_only"
+        },
+        {
             "name": "feat_stdlib",
             "path": "feat_stdlib"
         },
@@ -55,9 +59,6 @@
         {
             "name": "snippets",
             "path": "."
-        },
-        {
-            "path": "../repos/micropython-stubs"
         }
     ],
     "settings": {
