@@ -5,6 +5,9 @@ env:
   # Setting an environment variable with the value of a configuration variable
   SNIPPET_SCORE: ${{ vars.SNIPPET_SCORE }}
   GH_TOKEN_VARS: ${{ secrets.GH_TOKEN_VARS }}
+  # fix:  DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs
+  JUPYTER_PLATFORM_DIRS: "1"
+
 
 jobs:
   test_snippets:
@@ -40,14 +43,15 @@ jobs:
         run: stubber clone
 
 
-      - name: update the stubs and test the snippets (not pushed) 
+      - name: update the stubs (not pushed) 
         continue-on-error: true
         run: |
-          pwsh -file ./update-stubs.ps1 
+          pwsh -file ./update-stubs.ps1
+
+      - name: Test the snippets 
+        continue-on-error: true
+        run: |
           pytest -m 'snippets' --cache-clear --junitxml=./results/results.xml
-        env:
-          JUPYTER_PLATFORM_DIRS: "1"
-          # fix:  DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs
 
       - name: Testspace push test content
         run: |
