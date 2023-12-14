@@ -21,7 +21,6 @@ print(sys.implementation)
 
 # Micropython Extensions
 exc = Exception
-sys.print_exception(exc)
 
 port = sys.platform
 if port in ["unix", "windows"]:
