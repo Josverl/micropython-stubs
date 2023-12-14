@@ -1,51 +1,55 @@
-
-
+This is a short description of the steps taken to create the stubs for the micropython-stdlib-stubs distribution.
+There may be some steps and details missing as I have not documented the process as I went along.
 
 1. copy typeshed/stdlib (from pyright fallback)
-2, rename the stubs that are used internally, but are not part of micropython
-    - [ ] codecs
-    - [ ] contextlib
-    - [ ] contextvars
-    - [ ] dataclasses
-    - [ ] decimal
-    - [ ] enum
-    - [ ] fractions
-    - [ ] functools
-    - [ ] numbers
-    - [ ] queue
-    - [ ] selectors
-    - [ ] sre_compile
-    - [ ] sre_constants
-    - [ ] sre_parse
+    ( I used a different version than listed here, but the process should be the same )
+    - ...\.vscode\extensions\ms-python.vscode-pylance-2023.12.1\dist\typeshed-fallback\stdlib
+    - to ...\micropython-stdlib-stubs\stdlib
 
-3. remove all stubs and stub-only packages that are not in micropython
-    - database stubs 
-    - email 
-    - http
-    - .........
+2. Keep only the following **sub folders** / packages 
+    - [ ] `_typeshed`
+    - [ ] `asyncio`
+    - [ ] `collections`
+    - [ ] `os`
 
-4. make some customisations ( is this still needed?) 
-    - sys.pyi - Add to the end of the file:
-    ``` python
-    # MicroPython specific functions
-    # Copyright (c) 2023 Jos Verlinde
+    - remove all other folders (28-ish folders)
 
-    from typing import Optional
-    from _typeshed import Incomplete
-    def atexit(func:Optional[Callable[[],Any]]) -> Optional[Callable[[],Any]]: 
-        """\
-        Register func to be called upon termination. func must be a callable that takes no arguments, 
-        or None to disable the call. The atexit function will return the previous value set by this function, 
-        which is initially None.
+3. Rename the stubs that are used internally, but are not part of micropython
+    with two leading underscores ( __ ) 
+    NOTE: rename them in vscode to that the files that reference them get automagically refactored 
+    - [ ] `codecs.pyi`         --> `__codecs.pyi`
+    - [ ] `contextlib.pyi`     --> `__contextlib.pyi`
+    - [ ] `contextvars.pyi`    --> `__contextvars.pyi`
+    - [ ] `dataclasses.pyi`    --> `__dataclasses.pyi`
+    - [ ] `decimal.pyi`        --> `__decimal.pyi`
+    - [ ] `enum.pyi`           --> `__enum.pyi`
+    - [ ] `fractions.pyi`      --> `__fractions.pyi`
+    - [ ] `functools.pyi`      --> `__functools.pyi`
+    - [ ] `numbers.pyi`        --> `__numbers.pyi`
+    - [ ] `queue.pyi`          --> `__queue.pyi`
+    - [ ] `selectors.pyi`      --> `__selectors.pyi`
+    - [ ] `sre_compile.pyi`    --> `__sre_compile.pyi`
+    - [ ] `sre_constants.pyi`  --> `__sre_constants.pyi`
+    - [ ] `sre_parse.pyi`      --> `__sre_parse.pyi`
 
-        Ports: Unix, Windows
-        """
-        ...
+4. Remove all stubs and stub-only packages that are not in micropython
+    Keep only the following: 
+    - [ ] All `__<package>.pyi` from step 3 
+    - [ ] `__future__.pyi`
+    - [ ] `_ast.pyi`
+    - [ ] `_codecs.pyi`
+    - [ ] `_collections_abc.pyi`
+    - [ ] `_decimal.pyi`
+    - [ ] `abc.pyi`
+    - [ ] `builtins.pyi`
+    - [ ] `io.pyi`
+    - [ ] `re.pyi`
+    - [ ] `socket.pyi`
+    - [ ] `sys.pyi`
+    - [ ] `types.pyi`
+    - [ ] `typing_extensions.pyi`
+    - [ ] `typing.pyi`
 
-    def print_exception(exc, file=sys.stdout, /):
-        """Print exception with a traceback to a file-like object file (or sys.stdout by default)."""
-        ...
-    ```
 
 
 
