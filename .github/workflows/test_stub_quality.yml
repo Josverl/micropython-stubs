@@ -1,5 +1,5 @@
 name: test_stub_quality
-on: [push, pull_request, workflow_dispatch]
+on: [ pull_request, workflow_dispatch] # Not on push to avoid wasting 15 mins CPU 
 
 env:
   # Setting an environment variable with the value of a configuration variable
