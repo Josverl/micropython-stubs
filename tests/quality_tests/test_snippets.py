@@ -109,15 +109,18 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
 def filter_issues(issues: List[Dict], version: str, portboard: str = ""):
     port, board = portboard.split("-") if "-" in portboard else (portboard, "")
     for issue in issues:
-        filename = Path(issue["file"])
-        with open(filename, "r") as f:
-            lines = f.readlines()
-        line = issue["range"]["start"]["line"]
-        if len(lines) > line:
-            theline: str = lines[line]
-            # check if the line contains a stubs-ignore comment
-            if stub_ignore(theline, version, port, board):
-                issue["severity"] = "information"
+        try:
+            filename = Path(issue["file"])
+            with open(filename, "r") as f:
+                lines = f.readlines()
+            line = issue["range"]["start"]["line"]
+            if len(lines) > line:
+                theline: str = lines[line]
+                # check if the line contains a stubs-ignore comment
+                if stub_ignore(theline, version, port, board):
+                    issue["severity"] = "information"
+        except KeyError as e:
+            log.warning(f"Could not process issue: {e} \n{json.dumps(issues, indent=4)}")
     return issues
 
 
