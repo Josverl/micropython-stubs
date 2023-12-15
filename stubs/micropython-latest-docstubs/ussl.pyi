@@ -12,7 +12,7 @@ facilities for network sockets, both client-side and server-side.
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/ssl.rst
-from typing import IO
+from typing import IO, List
 from _typeshed import Incomplete
 from stdlib.ssl import *  # type: ignore
 
@@ -45,6 +45,36 @@ class SSLContext:
     """
 
     def __init__(self, protocol, /) -> None: ...
+    def load_cert_chain(self, certfile, keyfile) -> None:
+        """
+        Load a private key and the corresponding certificate.  The *certfile* is a string
+        with the file path of the certificate.  The *keyfile* is a string with the file path
+        of the private key.
+
+        Difference to CPython
+
+           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
+           strings, in which case they are interpreted as the actual certificate/key data.
+        """
+        ...
+    def load_verify_locations(self, cafile=None, cadata=None) -> None:
+        """
+        Load the CA certificate chain that will validate the peer's certificate.
+        *cafile* is the file path of the CA certificates.  *cadata* is a bytes object
+        containing the CA certificates.  Only one of these arguments should be provided.
+        """
+        ...
+    def get_ciphers(self) -> List[str]:
+        """
+        Get a list of enabled ciphers, returned as a list of strings.
+        """
+        ...
+    def set_ciphers(self, ciphers) -> None:
+        """
+        Set the available ciphers for sockets created with this context.  *ciphers* should be
+        a list of strings in the `IANA cipher suite format <https://wiki.mozilla.org/Security/Cipher_Suites>`_ .
+        """
+        ...
     def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),

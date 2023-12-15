@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-samd-adafruit_itsybitsy_m4_express-stubs"
-version = "1.22.0a252"
+version = "1.22.0a254"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",

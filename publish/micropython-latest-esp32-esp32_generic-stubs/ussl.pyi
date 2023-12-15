@@ -11,7 +11,7 @@ facilities for network sockets, both client-side and server-side.
 """
 from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.ssl import *
-from typing import IO
+from typing import IO, List
 
 CERT_REQUIRED: int
 PROTOCOL_TLS_CLIENT: int

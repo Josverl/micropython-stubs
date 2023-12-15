@@ -13,7 +13,7 @@ facilities for network sockets, both client-side and server-side.
 # Stubber: v1.14.0
 from _typeshed import Incomplete
 from stdlib.ssl import *
-from typing import IO
+from typing import IO, List
 
 CERT_REQUIRED = 2  # type: int
 PROTOCOL_TLS_CLIENT = 0  # type: int

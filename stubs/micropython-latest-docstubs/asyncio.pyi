@@ -379,10 +379,12 @@ def gather(*awaitables, return_exceptions=False) -> Coroutine[List, Any, Any]:
     """
     ...
 
-def open_connection(host, port) -> Coroutine[Tuple, Any, Any]:
+def open_connection(host, port, ssl=None) -> Coroutine[Tuple, Any, Any]:
     """
     Open a TCP connection to the given *host* and *port*.  The *host* address will be
     resolved using `socket.getaddrinfo`, which is currently a blocking call.
+    If *ssl* is a `ssl.SSLContext` object, this context is used to create the transport;
+    if *ssl* is ``True``, a default context is used.
 
     Returns a pair of streams: a reader and a writer stream.
     Will raise a socket-specific ``OSError`` if the host could not be resolved or if
@@ -392,11 +394,13 @@ def open_connection(host, port) -> Coroutine[Tuple, Any, Any]:
     """
     ...
 
-def start_server(callback, host, port, backlog=5) -> Coroutine[Server, Any, Any]:
+def start_server(callback, host, port, backlog=5, ssl=None) -> Coroutine[Server, Any, Any]:
     """
     Start a TCP server on the given *host* and *port*.  The *callback* will be
     called with incoming, accepted connections, and be passed 2 arguments: reader
     and writer streams for the connection.
+
+    If *ssl* is a `ssl.SSLContext` object, this context is used to create the transport.
 
     Returns a `Server` object.
 
