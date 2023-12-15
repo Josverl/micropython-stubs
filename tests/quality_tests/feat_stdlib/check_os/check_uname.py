@@ -21,4 +21,5 @@ assert_type(os_uname.nodename, str)
 assert_type(os_uname.release, str)
 assert_type(os_uname.machine, str)
 assert_type(os_uname.version, str)
-reveal_type(os_uname)
+
+# reveal_type(os_uname)
