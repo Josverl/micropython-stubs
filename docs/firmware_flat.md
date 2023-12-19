@@ -107,6 +107,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| latest| rp2| GENERIC| 14| 1.15.1|[stubs/micropython-latest-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/GENERIC)
 |frozen| micropython| latest| rp2| NULLBITS_BIT_C_PRO| 15| 1.15.1|[stubs/micropython-latest-frozen/rp2/NULLBITS_BIT_C_PRO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/NULLBITS_BIT_C_PRO)
 |frozen| micropython| latest| rp2| RPI_PICO_W| 29| 1.15.1|[stubs/micropython-latest-frozen/rp2/RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/RPI_PICO_W)
+|frozen| micropython| latest| rp2| SIL_RP2040_SHIM| 20| 1.15.1|[stubs/micropython-latest-frozen/rp2/SIL_RP2040_SHIM](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/SIL_RP2040_SHIM)
 |frozen| micropython| latest| rp2| W5100S_EVB_PICO| 20| 1.15.1|[stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO)
 |frozen| micropython| latest| rp2| W5500_EVB_PICO| 20| 1.15.1|[stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| latest| rp2| WEACTSTUDIO| 15| 1.15.1|[stubs/micropython-latest-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/WEACTSTUDIO)
@@ -408,4 +409,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  9981
+Total modules  10001

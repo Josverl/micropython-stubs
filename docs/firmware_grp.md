@@ -41,6 +41,7 @@
 |micropython |latest  |frozen  |rp2|GENERIC|14|1.15.1|[stubs/micropython-latest-frozen/rp2/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/GENERIC)
 |micropython |latest  |frozen  |rp2|NULLBITS_BIT_C_PRO|15|1.15.1|[stubs/micropython-latest-frozen/rp2/NULLBITS_BIT_C_PRO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/NULLBITS_BIT_C_PRO)
 |micropython |latest  |frozen  |rp2|RPI_PICO_W|29|1.15.1|[stubs/micropython-latest-frozen/rp2/RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/RPI_PICO_W)
+|micropython |latest  |frozen  |rp2|SIL_RP2040_SHIM|20|1.15.1|[stubs/micropython-latest-frozen/rp2/SIL_RP2040_SHIM](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/SIL_RP2040_SHIM)
 |micropython |latest  |frozen  |rp2|W5100S_EVB_PICO|20|1.15.1|[stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5100S_EVB_PICO)
 |micropython |latest  |frozen  |rp2|W5500_EVB_PICO|20|1.15.1|[stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/W5500_EVB_PICO)
 |micropython |latest  |frozen  |rp2|WEACTSTUDIO|15|1.15.1|[stubs/micropython-latest-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-frozen/rp2/WEACTSTUDIO)
@@ -444,4 +445,4 @@
 
 ## Metrics
 
-Total stub modules:  9981
+Total stub modules:  10001
