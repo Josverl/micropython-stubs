@@ -70,6 +70,12 @@ def update_stdlib_from_typeshed(dist_stdlib_path:Path, typeshed_path:Path):
     pkg_stdlib_path = dist_stdlib_path / "stdlib"
     shutil.copytree(typeshed_path / "stdlib", pkg_stdlib_path, dirs_exist_ok=True)
 
+    # get the commit hash of typeshed and save it to a file
+    log.info("Save typeshed commit hash to file")
+    typeshed_commit_hash = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=typeshed_path)
+    with open(dist_stdlib_path / "typeshed_commit.txt", "w") as f:
+        f.write(f"https://github.com/python/typeshed@{typeshed_commit_hash.decode('utf-8')}")
+
     log.info("Clean up extraneous folders from stdlib")
     for fldr in pkg_stdlib_path.glob("*"):
         if fldr.is_dir() and fldr.name not in modules_to_keep:
@@ -171,7 +177,7 @@ def update():
     rootpath = Path(__file__).parent.parent.parent
     dist_stdlib_path = rootpath / "publish/micropython-stdlib-stubs"
     docstubs_path = rootpath / "stubs/micropython-v1_21_0-docstubs"
-    typeshed_path = rootpath / "repos/pyright/packages/pyright-internal/typeshed-fallback"
+    typeshed_path = rootpath / "repos/typeshed"
     update_stdlib_from_typeshed(dist_stdlib_path, typeshed_path)
 
     merge_docstubs_into_stdlib(dist_stdlib_path=dist_stdlib_path, docstubs_path=docstubs_path, dry_run=False)

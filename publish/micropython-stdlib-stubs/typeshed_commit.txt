@@ -1,0 +1,2 @@
+https://github.com/python/typeshed
+typeshed commit hash: 1245faf0d5f7baab32834d91606ad22ed758d7f4
