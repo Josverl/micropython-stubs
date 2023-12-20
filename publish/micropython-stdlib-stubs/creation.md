@@ -6,13 +6,15 @@ There may be some steps and details missing as I have not documented the process
     - ...\.vscode\extensions\ms-python.vscode-pylance-2023.12.1\dist\typeshed-fallback\stdlib
     - to ...\micropython-stdlib-stubs\stdlib
 
-2. Keep only the following **sub folders** / packages 
+2. Keep only the following **sub folders** file packages 
     - [ ] `_typeshed`
     - [ ] `asyncio`
     - [ ] `collections`
+    - [ ] `json` ??
+    - [ ] `sys`  
     - [ ] `os`
 
-    - remove all other folders (28-ish folders)
+    - remove all other folders (27-ish folders)
 
 3. Rename the stubs that are used internally, but are not part of micropython
     with two leading underscores ( __ ) 

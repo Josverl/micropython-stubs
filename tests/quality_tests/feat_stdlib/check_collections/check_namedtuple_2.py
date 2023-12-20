@@ -1,11 +1,10 @@
 # ref: https://github.com/Josverl/micropython-stubs/issues/731
- 
 import json
 from collections import namedtuple
 from typing import Union
 
 WifiConfig = namedtuple('WifiConfig', ('ssid', 'password'))
-
+reveal_type(WifiConfig) 
 
 def read_wifi_config() -> Union[WifiConfig, None]:
   try:

@@ -19,4 +19,5 @@
     "typeCheckingMode": "basic",
     "typeshedPath": "./typings",
     "reportMissingModuleSource": "none"
+    
 }
