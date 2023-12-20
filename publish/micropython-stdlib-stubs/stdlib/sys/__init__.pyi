@@ -1,14 +1,13 @@
 import sys
+from _typeshed import OptExcInfo, ProfileFunction, TraceFunction, structseq
 from builtins import object as _object
 from collections.abc import AsyncGenerator, Callable, Coroutine, Sequence
-from importlib.abc import PathEntryFinder  # type: ignore
-from importlib.machinery import ModuleSpec  # type: ignore
+from importlib.abc import PathEntryFinder
+from importlib.machinery import ModuleSpec
 from io import TextIOWrapper
 from types import FrameType, ModuleType, TracebackType
-from typing import Any, NoReturn, Protocol, TextIO, TypeVar, overload
-
-from _typeshed import OptExcInfo, ProfileFunction, TraceFunction, structseq
-from typing_extensions import Literal, TypeAlias, final
+from typing import Any, NoReturn, Protocol, TextIO, TypeVar
+from typing_extensions import Final, Literal, TypeAlias, final
 
 _T = TypeVar("_T")
 
@@ -19,7 +18,7 @@ _OptExcInfo: TypeAlias = OptExcInfo  # noqa: Y047  # TODO: obsolete, remove fall
 # Intentionally omits one deprecated and one optional method of `importlib.abc.MetaPathFinder`
 class _MetaPathFinder(Protocol):
     def find_spec(
-        self, fullname: str, path: Sequence[str] | None, target: ModuleType | None = ...
+        self, __fullname: str, __path: Sequence[str] | None, __target: ModuleType | None = ...
     ) -> ModuleSpec | None: ...
 
 # ----- sys variables -----
@@ -60,14 +59,26 @@ if sys.version_info >= (3, 8):
     pycache_prefix: str | None
 ps1: object
 ps2: object
+
+# TextIO is used instead of more specific types for the standard streams,
+# since they are often monkeypatched at runtime. At startup, the objects
+# are initialized to instances of TextIOWrapper.
+#
+# To use methods from TextIOWrapper, use an isinstance check to ensure that
+# the streams have not been overridden:
+#
+# if isinstance(sys.stdout, io.TextIOWrapper):
+#    sys.stdout.reconfigure(...)
 stdin: TextIO
 stdout: TextIO
 stderr: TextIO
+
 if sys.version_info >= (3, 10):
     stdlib_module_names: frozenset[str]
-__stdin__: TextIOWrapper
-__stdout__: TextIOWrapper
-__stderr__: TextIOWrapper
+
+__stdin__: Final[TextIOWrapper]  # Contains the original value of stdin
+__stdout__: Final[TextIOWrapper]  # Contains the original value of stdout
+__stderr__: Final[TextIOWrapper]  # Contains the original value of stderr
 tracebacklimit: int
 version: str
 api_version: int
@@ -85,13 +96,9 @@ _UninstantiableStructseq: TypeAlias = structseq[Any]
 flags: _flags
 
 if sys.version_info >= (3, 10):
-    _FlagTuple: TypeAlias = tuple[
-        int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int, int
-    ]
+    _FlagTuple: TypeAlias = tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int, int]
 else:
-    _FlagTuple: TypeAlias = tuple[
-        int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int
-    ]
+    _FlagTuple: TypeAlias = tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int]
 
 @final
 class _flags(_UninstantiableStructseq, _FlagTuple):
@@ -135,9 +142,7 @@ class _flags(_UninstantiableStructseq, _FlagTuple):
 float_info: _float_info
 
 @final
-class _float_info(
-    structseq[float], tuple[float, int, int, float, int, int, int, int, float, int, int]
-):
+class _float_info(structseq[float], tuple[float, int, int, float, int, int, int, int, float, int, int]):
     @property
     def max(self) -> float: ...  # DBL_MAX
     @property
@@ -209,8 +214,23 @@ class _int_info(structseq[int], tuple[int, int, int, int]):
     @property
     def str_digits_check_threshold(self) -> int: ...
 
+_ThreadInfoName: TypeAlias = Literal["nt", "pthread", "pthread-stubs", "solaris"]
+_ThreadInfoLock: TypeAlias = Literal["semaphore", "mutex+cond"] | None
+
 @final
-class _version_info(_UninstantiableStructseq, tuple[int, int, int, str, int]):
+class _thread_info(_UninstantiableStructseq, tuple[_ThreadInfoName, _ThreadInfoLock, str | None]):
+    @property
+    def name(self) -> _ThreadInfoName: ...
+    @property
+    def lock(self) -> _ThreadInfoLock: ...
+    @property
+    def version(self) -> str | None: ...
+
+thread_info: _thread_info
+_ReleaseLevel: TypeAlias = Literal["alpha", "beta", "candidate", "final"]
+
+@final
+class _version_info(_UninstantiableStructseq, tuple[int, int, int, _ReleaseLevel, int]):
     @property
     def major(self) -> int: ...
     @property
@@ -218,7 +238,7 @@ class _version_info(_UninstantiableStructseq, tuple[int, int, int, str, int]):
     @property
     def micro(self) -> int: ...
     @property
-    def releaselevel(self) -> str: ...
+    def releaselevel(self) -> _ReleaseLevel: ...
     @property
     def serial(self) -> int: ...
 
@@ -227,18 +247,16 @@ version_info: _version_info
 def call_tracing(__func: Callable[..., _T], __args: Any) -> _T: ...
 def _clear_type_cache() -> None: ...
 def _current_frames() -> dict[int, FrameType]: ...
-def _getframe(__depth: int = ...) -> FrameType: ...
+def _getframe(__depth: int = 0) -> FrameType: ...
 def _debugmallocstats() -> None: ...
-def __displayhook__(__value: object) -> None: ...
-def __excepthook__(
-    __exctype: type[BaseException], __value: BaseException, __traceback: TracebackType | None
-) -> None: ...
+def __displayhook__(__object: object) -> None: ...
+def __excepthook__(__exctype: type[BaseException], __value: BaseException, __traceback: TracebackType | None) -> None: ...
 def exc_info() -> OptExcInfo: ...
 
 if sys.version_info >= (3, 11):
     def exception() -> BaseException | None: ...
 
-def exit(__status: _ExitCode = ...) -> NoReturn: ...
+def exit(__status: _ExitCode = None) -> NoReturn: ...
 def getallocatedblocks() -> int: ...
 def getdefaultencoding() -> str: ...
 
@@ -249,10 +267,7 @@ def getfilesystemencoding() -> str: ...
 def getfilesystemencodeerrors() -> str: ...
 def getrefcount(__object: Any) -> int: ...
 def getrecursionlimit() -> int: ...
-@overload
-def getsizeof(obj: object) -> int: ...
-@overload
-def getsizeof(obj: object, default: int) -> int: ...
+def getsizeof(obj: object, default: int = ...) -> int: ...
 def getswitchinterval() -> float: ...
 def getprofile() -> ProfileFunction | None: ...
 def setprofile(profilefunc: ProfileFunction | None) -> None: ...
@@ -288,10 +303,9 @@ if sys.platform == "win32":
 
 def intern(__string: str) -> str: ...
 def is_finalizing() -> bool: ...
-
-__breakpointhook__: Any  # contains the original value of breakpointhook
-
 def breakpointhook(*args: Any, **kwargs: Any) -> Any: ...
+
+__breakpointhook__ = breakpointhook  # Contains the original value of breakpointhook
 
 if sys.platform != "win32":
     def setdlopenflags(__flags: int) -> None: ...
@@ -310,12 +324,12 @@ if sys.version_info < (3, 9):
 
 if sys.version_info >= (3, 8):
     # Doesn't exist at runtime, but exported in the stubs so pytest etc. can annotate their code more easily.
-    class UnraisableHookArgs:
+    class UnraisableHookArgs(Protocol):
         exc_type: type[BaseException]
         exc_value: BaseException | None
         exc_traceback: TracebackType | None
         err_msg: str | None
-        object: _object | None
+        object: _object
     unraisablehook: Callable[[UnraisableHookArgs], Any]
     def __unraisablehook__(__unraisable: UnraisableHookArgs) -> Any: ...
     def addaudithook(hook: Callable[[str, tuple[Any, ...]], Any]) -> None: ...
@@ -349,3 +363,16 @@ if sys.version_info < (3, 8):
 def set_int_max_str_digits(maxdigits: int) -> None: ...
 def get_int_max_str_digits() -> int: ...
 
+if sys.version_info >= (3, 12):
+    def getunicodeinternedsize() -> int: ...
+    def deactivate_stack_trampoline() -> None: ...
+    def is_stack_trampoline_active() -> bool: ...
+    # It always exists, but raises on non-linux platforms:
+    if sys.platform == "linux":
+        def activate_stack_trampoline(__backend: str) -> None: ...
+    else:
+        def activate_stack_trampoline(__backend: str) -> NoReturn: ...
+
+    from . import _monitoring
+
+    monitoring = _monitoring

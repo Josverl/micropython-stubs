@@ -81,7 +81,7 @@ class Condition(_ContextManagerMixin):
 
 class Semaphore(_ContextManagerMixin):
     _value: int
-    _waiters: deque[Future[Any]] # type: ignore
+    _waiters: deque[Future[Any]]
     if sys.version_info >= (3, 10):
         def __init__(self, value: int = 1) -> None: ...
     else:
