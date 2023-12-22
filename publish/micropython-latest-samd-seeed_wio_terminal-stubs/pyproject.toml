@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-samd-seeed_wio_terminal-stubs"
-version = "1.22.0a280"
+version = "1.22.0a286"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
