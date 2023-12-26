@@ -1,7 +1,7 @@
-This is a short description of the steps taken to create the stubs for the micropython-stdlib-stubs distribution.
+This is a short description of the steps taken to create or update the stubs for the micropython-stdlib-stubs distribution.
 There may be some steps and details missing as I have not documented the process as I went along.
 
-1. copy typeshed/stdlib (from pyright fallback)
+1. copy typeshed/stdlib (from python/typeshed pyright fallback)
     ( I used a different version than listed here, but the process should be the same )
     - ...\.vscode\extensions\ms-python.vscode-pylance-2023.12.1\dist\typeshed-fallback\stdlib
     - to ...\micropython-stdlib-stubs\stdlib

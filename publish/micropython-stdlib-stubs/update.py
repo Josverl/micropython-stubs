@@ -7,6 +7,7 @@ Update the micropython-stlib-stubs
 
 import shutil
 import subprocess
+import time
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List, Union
@@ -15,44 +16,47 @@ from loguru import logger as log
 from stubber.codemod.enrich import enrich_folder
 from stubber.utils.config import CONFIG
 
-# TODO: merge the following lists and just check on the file / folder name 
-modules_to_keep = ["_typeshed", "asyncio", "collections", "sys", "os",] # "json", 
-mp_modules_to_keep = [
-    "__future__.pyi",
-    "_ast.pyi",
-    "_codecs.pyi",
-    "_collections_abc.pyi",
-    "_decimal.pyi",
-    "abc.pyi",
-    "builtins.pyi",
-    "io.pyi",
-    "re.pyi",
-    "socket.pyi",
-    "sys.pyi",
-    "types.pyi",
-    "typing_extensions.pyi",
-    "typing.pyi",
+modules_to_keep = [
+    "_typeshed",
+    "asyncio",
+    "collections",
+    "sys",
+    "os",
+    # "json",
+    "__future__",
+    "_ast",
+    "_codecs",
+    "_collections_abc",
+    "_decimal",
+    "abc",
+    "builtins",
+    "io",
+    "re",
+    "socket",
+    "sys",
+    "types",
+    "typing_extensions",
+    "typing",
+    "ssl",
+    # TODO: TESTING NEEDED WHICH ONES ARE NEEDED
+    # "codecs",
+    # "contextlib",
+    # "contextvars",
+    # "dataclasses", # not in MicroPython
+    # "decimal",
+    "enum",
+    # "fractions",
+    "functools",
+    # "numbers",
+    "queue",
+    "selectors",
+    "sre_compile",
+    "sre_constants",
+    "sre_parse",
 ]
 
-internal_modules_to_keep = [
-    # TODO: TESTING NEEDED WHICH ONES ARE NEEDED
-    # "codecs.pyi",
-    # "contextlib.pyi",
-    # "contextvars.pyi",
-    "dataclasses.pyi",
-    # "decimal.pyi",
-    "enum.pyi",
-    # "fractions.pyi",
-    "functools.pyi",
-    # "numbers.pyi",
-    "queue.pyi",
-    "selectors.pyi",
-    "sre_compile.pyi",
-    "sre_constants.pyi",
-    "sre_parse.pyi",
-    ]
 
-def update_stdlib_from_typeshed(dist_stdlib_path:Path, typeshed_path:Path):
+def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
     """
     Update the standard library from the typeshed folder.
 
@@ -60,30 +64,30 @@ def update_stdlib_from_typeshed(dist_stdlib_path:Path, typeshed_path:Path):
         dist_stdlib_path (Path): The path to the destination stdlib folder.
         typeshed_path (Path): The path to the typeshed folder.
     """
-    log.info("Removing all .pyi files from the stdlib")
-    for spec in ["*.pyi"]:
-        for file in dist_stdlib_path.rglob(spec):
-            if file.is_file():
-                file.unlink()
+    pkg_stdlib_path = dist_stdlib_path / "stdlib"
+    log.info("Clean up the stdlib folder")
+    shutil.rmtree(pkg_stdlib_path, ignore_errors=True)
+    time.sleep(1)
 
     log.info("Copy the typeshed folder to the stdlib")
-    pkg_stdlib_path = dist_stdlib_path / "stdlib"
     shutil.copytree(typeshed_path / "stdlib", pkg_stdlib_path, dirs_exist_ok=True)
 
     # get the commit hash of typeshed and save it to a file
     log.info("Save typeshed commit hash to file")
     typeshed_commit_hash = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=typeshed_path)
     with open(dist_stdlib_path / "typeshed_commit.txt", "w") as f:
-        f.write(f"https://github.com/python/typeshed@{typeshed_commit_hash.decode('utf-8')}")
+        f.write(f"https://github.com/python/typeshed/tree/{typeshed_commit_hash.decode('utf-8')}")
 
     log.info("Clean up extraneous folders from stdlib")
     for fldr in pkg_stdlib_path.glob("*"):
-        if fldr.is_dir() and fldr.name not in modules_to_keep:
+        if fldr.is_dir() and fldr.stem not in modules_to_keep:
             shutil.rmtree(fldr)
+            time.sleep(0.1)
 
     log.info("Clean up extraneous stubs from stdlib")
     for stub in pkg_stdlib_path.glob("*.pyi"):
-        if stub.name not in internal_modules_to_keep and stub.name not in mp_modules_to_keep:
+        if stub.stem not in modules_to_keep:
+            # print(f"Removing {stub.stem}")
             stub.unlink()
 
     # try to limit the "overspeak" of python modules to the bare minimum
@@ -113,7 +117,8 @@ class Boost:
         file (Union[Path, str]): The name of the file in stdlib, or empty if it is the same as stub_name.
         all (List[str]): The __all__ list to use for the module, or empty if no update is needed.
     """
-    stub_name: str 
+
+    stub_name: str
     docstub: str = ""
     file: Union[Path, str] = ""
     all: List[str] = field(default_factory=list)
@@ -122,7 +127,7 @@ class Boost:
         self.file = Path("stdlib") / (self.file or self.stub_name + ".pyi")
 
 
-def merge_docstubs_into_stdlib(*,dist_stdlib_path:Path,docstubs_path:Path, dry_run = True):
+def merge_docstubs_into_stdlib(*, dist_stdlib_path: Path, docstubs_path: Path, dry_run=True):
     """
     Merge docstubs into the stdlib.
 
@@ -135,21 +140,39 @@ def merge_docstubs_into_stdlib(*,dist_stdlib_path:Path,docstubs_path:Path, dry_r
     show_diff = dry_run
 
     boosts = [
-        Boost("collections","collections.pyi","collections/__init__.pyi", all = ["OrderedDict", "defaultdict", "deque", "namedtuple"]),
+        Boost(
+            "collections",
+            "collections.pyi",
+            "collections/__init__.pyi",
+            all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
+        ),
+        Boost(
+            "ssl",
+            "ssl.pyi",
+            "ssl.pyi",
+            # TODO: add ssl.SSLContext.load_cert_chain
+        ),
     ]
 
     for boost in boosts:
         module_path = dist_stdlib_path / boost.file
         if module_path.exists():
             log.info(f"Enriching {module_path}")
-            result = enrich_folder(module_path, docstubs_path, show_diff=show_diff, write_back=write_back, package_name=boost.stub_name)
+            result = enrich_folder(
+                module_path,
+                docstubs_path,
+                show_diff=show_diff,
+                write_back=write_back,
+                package_name=boost.stub_name,
+            )
             if boost.all:
                 update_public_interface(boost, module_path)
 
             if result:
                 log.info(f"Enriched {module_path}")
 
-def update_public_interface(boost:Boost, module_path:Path):
+
+def update_public_interface(boost: Boost, module_path: Path):
     """
     Update the public interface (__all__) of a module.
     Uses very basic parsing - just replace the __all__ line with the new one.
@@ -169,6 +192,7 @@ def update_public_interface(boost:Boost, module_path:Path):
     except Exception as e:
         log.error(f"Failed to update __all__ in {module_path}: {e}")
 
+
 def update():
     """
     Update the stdlib and create a wheel file.
@@ -180,19 +204,13 @@ def update():
     typeshed_path = rootpath / "repos/typeshed"
     update_stdlib_from_typeshed(dist_stdlib_path, typeshed_path)
 
-    merge_docstubs_into_stdlib(dist_stdlib_path=dist_stdlib_path, docstubs_path=docstubs_path, dry_run=False)
+    merge_docstubs_into_stdlib(
+        dist_stdlib_path=dist_stdlib_path, docstubs_path=docstubs_path, dry_run=False
+    )
 
     subprocess.check_call(["poetry", "build"], cwd=dist_stdlib_path)
+
 
 if __name__ == "__main__":
     update()
     print("done")
-
-
-        
-
-
-
-
-
-
