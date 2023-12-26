@@ -151,7 +151,7 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         condition = condition[4:].strip()
     context = {}
     context["Version"] = Version
-    context["version"] = Version(version) if version != "latest" else Version("9999.99.99")
+    context["version"] = Version(version) if not version in ("latest", "-") else Version("9999.99.99")
     context["port"] = port
     context["board"] = board
     context["linter"] = linter

@@ -1,7 +1,7 @@
 from asyncio.events import AbstractEventLoop
 from asyncio.protocols import BaseProtocol
 from collections.abc import Iterable, Mapping
-from stdlib.socket import _Address
+from socket import _Address
 from typing import Any
 
 __all__ = ("BaseTransport", "ReadTransport", "WriteTransport", "Transport", "DatagramTransport", "SubprocessTransport")

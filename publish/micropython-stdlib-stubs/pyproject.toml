@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-stdlib-stubs"
-version = "1.0.1a1"
+version = "1.1.1"
 description = "Micropython stdlib is a reduced and augmented copy of typeshed's stdlib for use by MicroPython stub packages"
 authors = ["josverl <josverl@users.noreply.github.com>"]
 license = "MIT"
@@ -8,7 +8,7 @@ readme = "README.md"
 homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
 documentation = "https://micropython-stubs.readthedocs.io/"
 exclude = ["*.ps1", "*.py", "**/__pycache__", "**/dist", ".venv/**"]
-include = ["**/*.py", "**/*.pyi"]
+include = ["**/*.pyi"]
 repository = "https://github.com/josverl/micropython-stubs"
 
 classifiers = [
@@ -25,6 +25,7 @@ classifiers = [
 
 # Note: anything excluded in .gitignore is not packaged by poetry 
 packages = [{ include = "stdlib/builtins.pyi" }]
+
 
 [tool.poetry.dependencies]
 python = "^3.8"

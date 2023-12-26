@@ -1,9 +1,8 @@
+import _typeshed
 import sys
+from _typeshed import SupportsWrite
 from collections.abc import Callable
 from typing import Any, TypeVar
-
-import _typeshed
-from _typeshed import SupportsWrite
 from typing_extensions import Concatenate, Literal, ParamSpec
 
 _T = TypeVar("_T")
@@ -16,19 +15,11 @@ class ABCMeta(type):
     __abstractmethods__: frozenset[str]
     if sys.version_info >= (3, 11):
         def __new__(
-            __mcls: type[_typeshed.Self],
-            __name: str,
-            __bases: tuple[type, ...],
-            __namespace: dict[str, Any],
-            **kwargs: Any
+            __mcls: type[_typeshed.Self], __name: str, __bases: tuple[type, ...], __namespace: dict[str, Any], **kwargs: Any
         ) -> _typeshed.Self: ...
     else:
         def __new__(
-            mcls: type[_typeshed.Self],
-            name: str,
-            bases: tuple[type, ...],
-            namespace: dict[str, Any],
-            **kwargs: Any
+            mcls: type[_typeshed.Self], name: str, bases: tuple[type, ...], namespace: dict[str, Any], **kwargs: Any
         ) -> _typeshed.Self: ...
 
     def __instancecheck__(cls: ABCMeta, instance: Any) -> bool: ...
@@ -38,18 +29,19 @@ class ABCMeta(type):
 
 def abstractmethod(funcobj: _FuncT) -> _FuncT: ...
 
-class abstractclassmethod(classmethod[_T, _P, _R_co]):  # type: ignore
+class abstractclassmethod(classmethod[_T, _P, _R_co]):
     __isabstractmethod__: Literal[True]
-    def __init__(self, callable: Callable[Concatenate[type[_T], _P], _R_co]) -> None: ...  # type: ignore
+    def __init__(self, callable: Callable[Concatenate[type[_T], _P], _R_co]) -> None: ...
 
-class abstractstaticmethod(staticmethod[_P, _R_co]):  # type: ignore
+class abstractstaticmethod(staticmethod[_P, _R_co]):
     __isabstractmethod__: Literal[True]
-    def __init__(self, callable: Callable[_P, _R_co]) -> None: ...  # type: ignore
+    def __init__(self, callable: Callable[_P, _R_co]) -> None: ...
 
 class abstractproperty(property):
     __isabstractmethod__: Literal[True]
 
-class ABC(metaclass=ABCMeta): ...
+class ABC(metaclass=ABCMeta):
+    __slots__ = ()
 
 def get_cache_token() -> object: ...
 

@@ -52,3 +52,5 @@ node_modules
 package*.json
 
 coverage/snippet_score.json
+**/__NOT__
+publish/micropython-stdlib-stubs_100b1
