@@ -1,8 +1,8 @@
-## Naming conventions
+# Stub folder Naming conventions
 
 Initially `<family>` is `micropython`, but this may be extended to other firmware families
 
- * `<family>-<port>[-<board>]-stubs`  
+ * `<family>-<version>-<port>[-<board>]-stubs`  
     The stubs for a specific version port and board of the MicroPython firmware.
     These is built by combining:
      * The 'Board stubs' generated on a generic board for the port 

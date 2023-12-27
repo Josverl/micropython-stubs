@@ -43,7 +43,7 @@ This includes stubs from the following MicroPython families:
 
  and Micropython Modules: 
  - All frozen MicroPython modules
- - the [LVGL GUI libraries](https://docs.lvgl.io/master/get-started/bindings/micropython.html)
+ - the [LVGL GUI libraries](https://github.com/lvgl/lv_binding_micropython)
  - [ulab native modules](ulab-stubs)
 
 An up-to-date list of all current Firmwares, ports and boards is listed on the [**Firmwares page**](all-stubs) 

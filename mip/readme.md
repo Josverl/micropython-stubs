@@ -1,4 +1,7 @@
-## Why you may need typing.[m]py or typing_extensions.[m]py
+# MicroPython `typing.mpy`
+
+Why you may need typing.[m]py or typing_extensions.[m]py.
+
 When making use of static typing in Python or MicroPython, you often end up using types that are defined in the CPython typing module.
 As Python static typing is 'optimised out' when the source is compiled to byte-code and then to machinecode, there is virtually no runtime overhead.
 
@@ -15,7 +18,7 @@ ImportError: no module named 'typing'
 A solution is to add a minimalistic `typing.py` file to the project, and when your module or script is executed on the MCU, that will be used in place of the CPython typing module.
 
 
-## Cross compiled versions to your MCU
+## Install the `typing` modules to your MCU
 To have the least amount of runtime overhead on your MCU, you can (should) used the cross compiled version of the modules to your MCU.
 
 ```bash
@@ -23,6 +26,8 @@ mpremote mip install github:josverl/micropython-stubs/mip/typing.mpy
 # and where needed also:
 mpremote mip install github:josverl/micropython-stubs/mip/typing_extensions.mpy
 ```
+*Note:* The .mpy modules are cross compiled for micropython 
+
 ```log
 Install github:josverl/micropython-stubs/mip/typing.mpy
 Downloading github:josverl/micropython-stubs/mip/typing.mpy to /lib
@@ -71,7 +76,7 @@ A minimalistic `typing.py` module for MicroPython.
 Ref: https://github.com/micropython/micropython-lib/pull/584  
 Author: [Andrew Leech](https://github.com/andrewleech)  
 
-**Note:** _When that PR is merged, I'll update the above links to point to micropython-lib._
+**Note:** _When that PR is merged, or MicroPython itself can provide this functionality, I'll update the above links to point to micropython-lib._
 
 ### `typing_extensions.py`
 This module is provided to allow the use of older versions of Python (3.7+).

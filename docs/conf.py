@@ -13,7 +13,6 @@
 import os
 import sys
 
-
 # sys.path.insert(0, os.path.abspath("../src"))
 sys.path[1:1] = [os.path.abspath("../docs")]
 from update_docs import update_firmware_docs
@@ -21,7 +20,7 @@ from update_docs import update_firmware_docs
 # -- Project information -----------------------------------------------------
 
 project = "Micropython-Stubs"
-copyright = "2019-2021, Jos Verlinde"
+copyright = "2019-2024, Jos Verlinde"
 author = "Jos Verlinde"
 
 # The full version, including alpha/beta/rc tags
@@ -45,6 +44,12 @@ extensions = [
     "sphinx.ext.intersphinx",  # Link to other projects’ documentation
     # 'sphinx.ext.todo', # Support for todo items
 ]
+
+source_suffix = {
+    '.rst': 'restructuredtext',
+    # '.txt': 'markdown',
+    '.md': 'markdown',
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -89,13 +94,6 @@ autoapi_file_patterns = ["*.py"]
 # only genrate documentation for the useful parts
 autoapi_ignore = [
     "*migrations*",
-    #     "*/version.py",  # not relevant
-    #     "*/micropip.py",  # not my code
-    #     "*/make_stub_files.py",  # not my code
-    #     "*/stubs/**",  # skip the stubs folder (as it will fail on that)
-    #     "*/boot.py",  # not relevant
-    #     "*/logging.py",  # not relevant
-    #     "",
 ]
 
 # -- allow for documenting micropython -------------------------------------------------
@@ -151,3 +149,18 @@ from update_docs import update_firmware_docs
 
 print("update_firmware_docs....")
 update_firmware_docs()
+
+# --------------------------
+# side effect: copy other .md files to documentation folder
+import shutil
+
+docfiles = [ 
+    ("../mip/readme.md","_typing_mpy.md"),
+    ("../publish/readme.md","_folder_naming.md"),
+    ("../tests/quality_tests/readme.md","_qa_testing.md"),
+             ]
+
+for src, dst in docfiles:
+    print(f"copy {src} to {dst}")
+    shutil.copyfile(src, dst)
+

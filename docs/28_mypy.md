@@ -30,7 +30,7 @@ $env:MYPYPATH="./typings"
 
 ### Workarounds for some mypy warnings and errors 
 
-```log
+```
 mypy: "typings\sys.pyi" shadows library module "sys"
 note: A user-defined top-level module with name "sys" is not supported
 ```
