@@ -16,20 +16,15 @@ There may be some steps and details missing as I have not documented the process
 
     - remove all other folders (27-ish folders)
 
-3. Rename the stubs that are used internally, but are not part of micropython
+3. (Not automate ) Rename the stubs that are used internally, but are not part of micropython
     with two leading underscores ( __ ) 
     NOTE: rename them in vscode to that the files that reference them get automagically refactored 
-    - [ ] `codecs.pyi`         --> `__codecs.pyi`
     - [ ] `contextlib.pyi`     --> `__contextlib.pyi`
     - [ ] `contextvars.pyi`    --> `__contextvars.pyi`
     - [ ] `dataclasses.pyi`    --> `__dataclasses.pyi`
-    - [ ] `decimal.pyi`        --> `__decimal.pyi`
     - [ ] `enum.pyi`           --> `__enum.pyi`
-    - [ ] `fractions.pyi`      --> `__fractions.pyi`
     - [ ] `functools.pyi`      --> `__functools.pyi`
-    - [ ] `numbers.pyi`        --> `__numbers.pyi`
     - [ ] `queue.pyi`          --> `__queue.pyi`
-    - [ ] `selectors.pyi`      --> `__selectors.pyi`
     - [ ] `sre_compile.pyi`    --> `__sre_compile.pyi`
     - [ ] `sre_constants.pyi`  --> `__sre_constants.pyi`
     - [ ] `sre_parse.pyi`      --> `__sre_parse.pyi`
