@@ -22,7 +22,13 @@ Stm32
 SAMD
  - ![](https://shields.io/pypi/dm/micropython-samd-seeed_wio_terminal-stubs?label=samd-seeed_wio_terminal)
 
-WEBASSEMBLY
+Windows
+ - ![](https://img.shields.io/pypi/dm/micropython-windows-stubs?label=micropython-windows-stubs)
+
+Unix/Linux
+ - ![](https://img.shields.io/pypi/dm/micropython-unix-stubs?label=micropython-unix-stubs)
+
+Webassembly
  - ![](https://img.shields.io/pypi/dm/micropython-webassembly-stubs?label=micropython-webassembly-stubs)
 
 **Notes:** 
