@@ -131,7 +131,7 @@ class socket:
          socket(AF_INET, SOCK_DGRAM)
     """
 
-    def __init__(self, af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP, /) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
     def close(self) -> Incomplete:
         """
         Mark the socket closed and release all resources. Once that happens, all future operations

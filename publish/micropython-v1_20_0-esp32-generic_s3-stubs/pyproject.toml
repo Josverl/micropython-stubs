@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp32-generic_s3-stubs"
-version = "1.20.0.post2"
+version = "1.20.0.post3"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -120,7 +120,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-micropython-stdlib-stubs = ">=1.1.0"
+micropython-stdlib-stubs = ">=1.1.1"
 
 [tool.poetry.dev-dependencies]
 

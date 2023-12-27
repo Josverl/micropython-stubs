@@ -2,7 +2,7 @@
     "name": "micropython-samd-seeed_wio_terminal-stubs",
     "mpy_version": "1.21.0",
     "publish": true,
-    "pkg_version": "1.21.0.post3",
+    "pkg_version": "1.21.0.post4",
     "path": "micropython-v1_21_0-samd-seeed_wio_terminal-stubs",
     "stub_sources": [
         [
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "f721888c16789522f528d57c0e84c16c7365e95b",
-    "stub_hash": "3161c375be11b233d8addda9eae4380c5cab4756"
+    "hash": null,
+    "stub_hash": null
 }

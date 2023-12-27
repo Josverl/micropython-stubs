@@ -2,6 +2,9 @@
 Access and control MicroPython internals.
 
 MicroPython module: https://docs.micropython.org/en/v1.20.0/library/micropython.html
+
+---
+Module: 'micropython' on micropython-v1.20.0-stm32-PYBV11
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
 # Stubber: v1.13.7

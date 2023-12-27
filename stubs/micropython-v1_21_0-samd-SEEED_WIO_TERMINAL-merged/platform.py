@@ -7,6 +7,9 @@ CPython module: :mod:`python:platform` https://docs.python.org/3/library/platfor
 
 This module tries to retrieve as much platform-identifying data as possible. It
 makes this information available via function APIs.
+
+---
+Module: 'platform' on micropython-v1.21.0-samd-SEEED_WIO_TERMINAL
 """
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
 # Stubber: v1.13.8

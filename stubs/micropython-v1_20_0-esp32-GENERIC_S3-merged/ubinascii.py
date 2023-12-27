@@ -7,6 +7,9 @@ CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binasci
 
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
+
+---
+Module: 'ubinascii' on micropython-v1.20.0-esp32-GENERIC_S3
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': 'v1.20.0', 'cpu': 'ESP32S3'})
 # Stubber: v1.13.7

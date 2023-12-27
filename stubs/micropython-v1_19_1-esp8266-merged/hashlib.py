@@ -22,6 +22,9 @@ be implemented:
 * MD5 - A legacy algorithm, not considered cryptographically secure. Only
   selected boards, targeting interoperability with legacy applications,
   will offer this.
+
+---
+Module: 'hashlib' on micropython-v1.19.1-esp8266
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
 # Stubber: 1.9.11
@@ -40,7 +43,7 @@ class sha256:
     def update(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, data: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -55,5 +58,5 @@ class sha1:
     def update(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, data: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

@@ -9,6 +9,9 @@ This module implements multithreading support.
 
 This module is highly experimental and its API is not yet fully settled
 and not yet described in this documentation.
+
+---
+Module: '_thread' on micropython-v1.20.0-esp32-GENERIC_OTA
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC_OTA', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4

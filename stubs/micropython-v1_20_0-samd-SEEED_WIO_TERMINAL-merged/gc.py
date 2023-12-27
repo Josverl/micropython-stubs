@@ -4,6 +4,9 @@ Control the garbage collector.
 MicroPython module: https://docs.micropython.org/en/v1.20.0/library/gc.html
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
+
+---
+Module: 'gc' on micropython-v1.20.0-samd-SEEED_WIO_TERMINAL
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
 # Stubber: v1.13.4

@@ -7,6 +7,9 @@ CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html
 
 This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
+
+---
+Module: 'errno' on micropython-v1.20.0-esp32-GENERIC_OTA
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC_OTA', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-pico_w-stubs"
-version = "1.20.0.post5"
+version = "1.20.0.post6"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -107,7 +107,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-micropython-stdlib-stubs = ">=1.1.0"
+micropython-stdlib-stubs = ">=1.1.1"
 
 [tool.poetry.dev-dependencies]
 

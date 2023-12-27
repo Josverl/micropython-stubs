@@ -251,19 +251,7 @@ _pio_funcs = {
 }
 
 
-def asm_pio(
-    *,
-    out_init=None,
-    set_init=None,
-    sideset_init=None,
-    in_shiftdir=0,
-    out_shiftdir=0,
-    autopush=False,
-    autopull=False,
-    push_thresh=32,
-    pull_thresh=32,
-    fifo_join=PIO.JOIN_NONE,
-) -> Incomplete:
+def asm_pio(**kw) -> Incomplete:
     """
     Assemble a PIO program.
 

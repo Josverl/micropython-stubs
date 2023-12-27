@@ -2,7 +2,7 @@
     "name": "micropython-samd-adafruit_itsybitsy_m4_express-stubs",
     "mpy_version": "1.20.0",
     "publish": true,
-    "pkg_version": "1.20.0.post4",
+    "pkg_version": "1.20.0.post5",
     "path": "micropython-v1_20_0-samd-adafruit_itsybitsy_m4_express-stubs",
     "stub_sources": [
         [
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "f7d3704561c4c00260868ed7964e9a101f257bae",
-    "stub_hash": "9d01126042725dbd2a6647eb90f0a67ec3c5d1f1"
+    "hash": null,
+    "stub_hash": null
 }

@@ -2,6 +2,9 @@
 Access and control MicroPython internals.
 
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/micropython.html
+
+---
+Module: 'micropython' on micropython-v1.21.0-webassembly-GENERIC
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'webassembly', 'board': 'GENERIC', 'cpu': 'Emscripten', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.0

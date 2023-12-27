@@ -9,6 +9,9 @@ and unrestricted access to and control of hardware blocks on a system
 (like CPU, timers, buses, etc.). Used incorrectly, this can lead to
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
+
+---
+Module: 'machine' on micropython-v1.20.0-esp32-GENERIC
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
@@ -287,7 +290,7 @@ class PWM:
     def duty(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -458,7 +461,7 @@ class UART:
         """
         ...
 
-    def __init__(self, id, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -501,7 +504,7 @@ class ADCBlock:
         """
         ...
 
-    def __init__(self, id, *, bits) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -573,7 +576,7 @@ class ADC:
     def atten(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -655,7 +658,7 @@ class I2S:
         """
         ...
 
-    def __init__(self, id, *, sck, ws, sd, mck=None, mode, bits, format, rate, ibuf) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -813,15 +816,7 @@ class I2C:
         """
         ...
 
-    def __init__(
-        self,
-        id: Union[int, str] = -1,
-        *,
-        scl: Optional[Union[Pin, str]] = None,
-        sda: Optional[Union[Pin, str]] = None,
-        freq=400_000,
-        timeout=50000,
-    ) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -886,7 +881,7 @@ class Timer:
     def value(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, id=-1, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -918,7 +913,7 @@ class SoftSPI:
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1101,7 +1096,7 @@ class Pin:
         """
         ...
 
-    def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
     def __call__(self, x: Optional[Any] = None) -> Incomplete:
@@ -1142,7 +1137,7 @@ class WDT:
         """
         ...
 
-    def __init__(self, id=0, timeout=5000) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1192,7 +1187,7 @@ class SDCard:
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, slot=1, width=1, cd=None, wp=None, sck=None, miso=None, mosi=None, cs=None, freq=20000000) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1228,7 +1223,7 @@ class RTC:
         """
         ...
 
-    def __init__(self, id=0, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1284,7 +1279,7 @@ class SoftI2C(I2C):
     def write(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1373,7 +1368,7 @@ class SPI:
         """
         ...
 
-    def __init__(self, id, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1430,5 +1425,5 @@ class Signal(Pin):
         """
         ...
 
-    def __init__(self, pin_obj, *args, invert=False) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

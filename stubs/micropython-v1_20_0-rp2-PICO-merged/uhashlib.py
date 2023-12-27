@@ -22,6 +22,9 @@ be implemented:
 * MD5 - A legacy algorithm, not considered cryptographically secure. Only
   selected boards, targeting interoperability with legacy applications,
   will offer this.
+
+---
+Module: 'uhashlib' on micropython-v1.20.0-rp2-PICO
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.4
@@ -40,7 +43,7 @@ class sha256:
     def update(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, data: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -55,5 +58,5 @@ class sha1:
     def update(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, data: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

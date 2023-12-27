@@ -62,13 +62,22 @@ class LCD160CR:
     buf: Incomplete
     buf1: Incomplete
     array4: Incomplete
-    def __init__(self, connect=None, *, pwr=None, i2c=None, spi=None, i2c_addr=98) -> None: ...
+    def __init__(
+        self,
+        connect: Incomplete | None = ...,
+        *,
+        pwr: Incomplete | None = ...,
+        i2c: Incomplete | None = ...,
+        spi: Incomplete | None = ...,
+        i2c_addr: int = ...,
+    ) -> None: ...
     def _send(self, cmd) -> None: ...
     def _fcmd2(self, fmt, a0, a1: int = ..., a2: int = ...) -> None: ...
     def _fcmd2b(self, fmt, a0, a1, a2, a3, a4: int = ...) -> None: ...
     def _waitfor(self, n, buf) -> None: ...
     def oflush(self, n: int = ...) -> None: ...
     def iflush(self) -> None: ...
+    @staticmethod
     @staticmethod
     def rgb(r, g, b) -> int:
         """
@@ -79,7 +88,8 @@ class LCD160CR:
         """
         ...
     @staticmethod
-    def clip_line(data, w, h) -> Incomplete:
+    @staticmethod
+    def clip_line(c, w, h) -> Incomplete:
         """
         Clip the given line data.  This is for internal use.
         """
@@ -120,7 +130,7 @@ class LCD160CR:
         logical or of `STARTUP_DECO_NONE`, `STARTUP_DECO_MLOGO`, `STARTUP_DECO_INFO`.
         """
         ...
-    def save_to_flash(self) -> Incomplete:
+    def save_to_flash(self) -> None:
         """
         Save the following parameters to flash so they persist on restart and power up:
         initial decoration, orientation, brightness, UART baud rate, I2C address.
@@ -137,7 +147,7 @@ class LCD160CR:
         Get the 16-bit value of the specified pixel.
         """
         ...
-    def get_line(self, x, y, buf) -> Incomplete:
+    def get_line(self, x, y, buf) -> None:
         """
         Low-level method to get a line of pixels into the given buffer.
         To read *n* pixels *buf* should be *2*n+1* bytes in length.  The first byte
@@ -145,7 +155,7 @@ class LCD160CR:
         pixels in the line starting at coordinate *(x, y)*.
         """
         ...
-    def screen_dump(self, buf, x=0, y=0, w=None, h=None) -> Incomplete:
+    def screen_dump(self, buf, x: int = ..., y: int = ..., w: Incomplete | None = ..., h: Incomplete | None = ...) -> None:
         """
         Dump the contents of the screen to the given buffer.  The parameters *x* and *y*
         specify the starting coordinate, and *w* and *h* the size of the region.  If *w*
@@ -171,7 +181,7 @@ class LCD160CR:
         Set the foreground and background color of the text.
         """
         ...
-    def set_font(self, font, scale=0, bold=0, trans=0, scroll=0) -> None:
+    def set_font(self, font, scale: int = ..., bold: int = ..., trans: int = ..., scroll: int = ...) -> None:
         """
         Set the font for the text.  Subsequent calls to `write` will use the newly
         configured font.  The parameters are:
@@ -203,7 +213,7 @@ class LCD160CR:
         Set the line and fill color for primitive shapes.
         """
         ...
-    def erase(self) -> Incomplete:
+    def erase(self) -> None:
         """
         Erase the entire display to the pen fill color.
         """
@@ -213,8 +223,8 @@ class LCD160CR:
         Draw a single pixel at the given location using the pen line color.
         """
         ...
-    def rect(self, x, y, w, h) -> Incomplete: ...
-    def rect_outline(self, x, y, w, h) -> Incomplete: ...
+    def rect(self, x, y, w, h, cmd: int = ...) -> None: ...
+    def rect_outline(self, x, y, w, h) -> None: ...
     def rect_interior(self, x, y, w, h) -> None:
         """
         Draw a rectangle at the given location and size using the pen line
@@ -228,11 +238,11 @@ class LCD160CR:
         Draw a line between the given coordinates using the pen line color.
         """
         ...
-    def dot_no_clip(self, x, y) -> Incomplete: ...
-    def rect_no_clip(self, x, y, w, h) -> Incomplete: ...
-    def rect_outline_no_clip(self, x, y, w, h) -> Incomplete: ...
-    def rect_interior_no_clip(self, x, y, w, h) -> Incomplete: ...
-    def line_no_clip(self, x1, y1, x2, y2) -> Incomplete:
+    def dot_no_clip(self, x, y) -> None: ...
+    def rect_no_clip(self, x, y, w, h) -> None: ...
+    def rect_outline_no_clip(self, x, y, w, h) -> None: ...
+    def rect_interior_no_clip(self, x, y, w, h) -> None: ...
+    def line_no_clip(self, x1, y1, x2, y2) -> None:
         """
         These methods are as above but don't do any clipping on the input
         coordinates.  They are faster than the clipping versions and can be
@@ -246,12 +256,12 @@ class LCD160CR:
         bytes corresponding to coordinate pairs (x, y).
         """
         ...
-    def poly_line(self, data) -> Incomplete:
+    def poly_line(self, data) -> None:
         """
         Similar to :meth:`LCD160CR.poly_dot` but draws lines between the dots.
         """
         ...
-    def touch_config(self, calib=False, save=False, irq=None) -> None:
+    def touch_config(self, calib: bool = ..., save: bool = ..., irq: Incomplete | None = ...) -> None:
         """
         Configure the touch panel:
 
@@ -284,7 +294,7 @@ class LCD160CR:
         Set the window that SPI data is written to.
         """
         ...
-    def fast_spi(self, flush=True) -> SPI:
+    def fast_spi(self, flush: bool = ...) -> SPI:
         """
         Ready the display to accept RGB pixel data on the SPI bus, resetting the location
         of the first byte to go to the top-left corner of the window set by
@@ -314,7 +324,9 @@ class LCD160CR:
         scroll.
         """
         ...
-    def set_scroll_win(self, win, x=-1, y=0, w=0, h=0, vec=0, pat=0, fill=0x07E0, color=0) -> None:
+    def set_scroll_win(
+        self, win, x: int = ..., y: int = ..., w: int = ..., h: int = ..., vec: int = ..., pat: int = ..., fill: int = ..., color: int = ...
+    ) -> None:
         """
         Configure a window region for scrolling:
 
@@ -331,7 +343,7 @@ class LCD160CR:
             - *color* is the extra color, either of the text or pattern foreground.
         """
         ...
-    def set_scroll_win_param(self, win, param, value) -> Incomplete:
+    def set_scroll_win_param(self, win, param, value) -> None:
         """
         Set a single parameter of a scrolling window region:
 
@@ -347,7 +359,7 @@ class LCD160CR:
         with length 32 or less.
         """
         ...
-    def jpeg_start(self, total_len) -> Incomplete: ...
+    def jpeg_start(self, l) -> None: ...
     def jpeg_data(self, buf) -> None:
         """
         Display a JPEG with the data split across multiple buffers.  There must be
@@ -364,7 +376,7 @@ class LCD160CR:
         The origin of the JPEG is set by :meth:`LCD160CR.set_pos`.
         """
         ...
-    def feed_wdt(self) -> Incomplete:
+    def feed_wdt(self) -> None:
         """
         The first call to this method will start the display's internal watchdog
         timer.  Subsequent calls will feed the watchdog.  The timeout is roughly 30
