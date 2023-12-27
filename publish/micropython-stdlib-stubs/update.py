@@ -181,6 +181,7 @@ def update_public_interface(boost: Boost, module_path: Path):
         boost (Boost): The Boost object containing the module information.
         module_path (Path): The path to the module file.
     """
+    #TODO: fragile, replace by libcst codemod
     try:
         with open(module_path, "r") as f:
             lines = f.readlines()
@@ -197,7 +198,7 @@ def update():
     """
     Update the stdlib and create a wheel file.
     """
-    # TODO Read from CONFIG
+    # TODO: Read from CONFIG
     rootpath = Path(__file__).parent.parent.parent
     dist_stdlib_path = rootpath / "publish/micropython-stdlib-stubs"
     docstubs_path = rootpath / "stubs/micropython-v1_21_0-docstubs"
