@@ -41,7 +41,7 @@ Example from `.vscode/settings.json`
 
 After installing the stubs you may see some warnings that the source code to referenced modules is not found. 
 
-``` log
+```
 Import "machine" could not be resolved from source
 Import "time" could not be resolved from source
 Import "urequests" could not be resolved from source
