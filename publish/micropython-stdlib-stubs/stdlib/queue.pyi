@@ -1,5 +1,5 @@
 import sys
-from threading import Condition, Lock  # type: ignore
+from threading import Condition, Lock
 from typing import Any, Generic, TypeVar
 
 if sys.version_info >= (3, 9):
@@ -15,7 +15,7 @@ class Full(Exception): ...
 class Queue(Generic[_T]):
     maxsize: int
 
-    mutex: Lock  # undocumented # type: ignore
+    mutex: Lock  # undocumented
     not_empty: Condition  # undocumented
     not_full: Condition  # undocumented
     all_tasks_done: Condition  # undocumented

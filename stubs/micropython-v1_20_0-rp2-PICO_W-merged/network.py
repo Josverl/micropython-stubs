@@ -29,9 +29,15 @@ For example::
     addr = socket.getaddrinfo('micropython.org', 80)[0][-1]
     s = socket.socket()
     s.connect(addr)
-    s.send(b'GET / HTTP/1.1\r\nHost: micropython.org\r\n\r\n')
+    s.send(b'GET / HTTP/1.1
+Host: micropython.org
+
+')
     data = s.recv(1000)
     s.close()
+
+---
+Module: 'network' on micropython-v1.20.0-rp2-PICO_W
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
@@ -202,5 +208,5 @@ class WLAN:
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, interface_id) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

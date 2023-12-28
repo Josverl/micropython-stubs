@@ -209,7 +209,7 @@ class CBORDecoder(object):
         """
         data = self.fp.read(amount)
         if len(data) < amount:
-            raise CBORDecodeError("premature end of stream (expected to read {} bytes, got {} " "instead)".format(amount, len(data)))
+            raise CBORDecodeError("premature end of stream (expected to read {} bytes, got {} instead)".format(amount, len(data)))
 
         return data
 

@@ -29,9 +29,15 @@ For example::
     addr = socket.getaddrinfo('micropython.org', 80)[0][-1]
     s = socket.socket()
     s.connect(addr)
-    s.send(b'GET / HTTP/1.1\r\nHost: micropython.org\r\n\r\n')
+    s.send(b'GET / HTTP/1.1
+Host: micropython.org
+
+')
     data = s.recv(1000)
     s.close()
+
+---
+Module: 'network' on micropython-v1.20.0-stm32-PYBV11
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
 # Stubber: v1.13.7

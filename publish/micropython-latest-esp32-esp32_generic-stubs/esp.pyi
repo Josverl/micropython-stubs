@@ -17,12 +17,26 @@ LOG_DEBUG: int
 LOG_INFO: int
 LOG_ERROR: int
 
-def osdebug(level) -> None:
+def osdebug(uart_no, level: Optional[Any] = None) -> Incomplete:
     """
-    Turn esp os debugging messages on or off.
+    :no-index:
 
-    The *level* parameter sets the threshold for the log messages for all esp components.
-    The log levels are defined as constants:
+    ``Note:`` This is the ESP32 form of this function.
+
+    Change the level of OS serial debug log messages. On boot, OS
+    serial debug log messages are limited to Error output only.
+
+    The behaviour of this function depends on the arguments passed to it. The
+    following combinations are supported:
+
+    ``osdebug(None)`` restores the default OS debug log message level
+    (``LOG_ERROR``).
+
+    ``osdebug(0)`` enables all available OS debug log messages (in the
+    default build configuration this is ``LOG_INFO``).
+
+    ``osdebug(0, level)`` sets the OS debug log message level to the
+     specified value. The log levels are defined as constants:
 
         * ``LOG_NONE`` -- No log output
         * ``LOG_ERROR`` -- Critical errors, software module can not recover on its own
@@ -31,6 +45,15 @@ def osdebug(level) -> None:
         * ``LOG_DEBUG`` -- Extra information which is not necessary for normal use (values, pointers, sizes, etc)
         * ``LOG_VERBOSE`` -- Bigger chunks of debugging information, or frequent messages
           which can potentially flood the output
+
+    ``Note:`` ``LOG_DEBUG`` and ``LOG_VERBOSE`` are not compiled into the
+              MicroPython binary by default, to save size. A custom build with a
+              modified "``sdkconfig``" source file is needed to see any output
+              at these log levels.
+
+    ``Note:`` Log output on ESP32 is automatically suspended in "Raw REPL" mode,
+              to prevent communications issues. This means OS level logging is never
+              seen when using ``mpremote run`` and similar tools.
     """
     ...
 

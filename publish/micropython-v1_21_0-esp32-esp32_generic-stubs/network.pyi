@@ -29,7 +29,10 @@ For example::
     addr = socket.getaddrinfo('micropython.org', 80)[0][-1]
     s = socket.socket()
     s.connect(addr)
-    s.send(b'GET / HTTP/1.1\r\nHost: micropython.org\r\n\r\n')
+    s.send(b'GET / HTTP/1.1
+Host: micropython.org
+
+')
     data = s.recv(1000)
     s.close()
 """
@@ -283,4 +286,4 @@ class WLAN:
         in this case).
         """
         ...
-    def __init__(self, interface_id) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...

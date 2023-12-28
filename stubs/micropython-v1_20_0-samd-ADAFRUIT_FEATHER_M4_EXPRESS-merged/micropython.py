@@ -2,6 +2,9 @@
 Access and control MicroPython internals.
 
 MicroPython module: https://docs.micropython.org/en/v1.20.0/library/micropython.html
+
+---
+Module: 'micropython' on micropython-v1.20.0-samd-ADAFRUIT_FEATHER_M4_EXPRESS
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'ADAFRUIT_FEATHER_M4_EXPRESS', 'cpu': 'SAMD51J19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7

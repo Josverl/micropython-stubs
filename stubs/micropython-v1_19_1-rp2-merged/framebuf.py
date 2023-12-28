@@ -5,6 +5,9 @@ MicroPython module: https://docs.micropython.org/en/v1.19.1/library/framebuf.htm
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
+
+---
+Module: 'framebuf' on micropython-v1.19.1-rp2
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
@@ -127,5 +130,5 @@ class FrameBuffer:
     def hline(self, x, y, w, c) -> Incomplete:
         ...
 
-    def __init__(self, buffer, width, height, format, stride=-1, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

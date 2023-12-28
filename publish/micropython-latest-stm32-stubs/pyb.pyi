@@ -388,7 +388,7 @@ class Accel:
         """
         ...
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class CAN:
     """
@@ -713,9 +713,7 @@ class CAN:
         Turn off the CAN bus.
         """
         ...
-    def __init__(
-        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
-    ) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class ExtInt:
     """
@@ -768,7 +766,7 @@ class ExtInt:
         This could be useful for debouncing.
         """
         ...
-    def __init__(self, pin, mode, pull, callback) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Flash:
     """
@@ -790,7 +788,7 @@ class Flash:
         :class:`os.AbstractBlockDev`.
         """
         ...
-    def __init__(self) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class ADC:
     """
@@ -893,7 +891,7 @@ class ADC:
         will be between 0 and 4095.
         """
         ...
-    def __init__(self, pin) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 SD: Incomplete
 
@@ -977,7 +975,7 @@ class DAC:
         De-initialise the DAC making its pin available for other uses.
         """
         ...
-    def __init__(self, port, bits=8, *, buffering=None) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class RTC:
     """
@@ -1041,7 +1039,7 @@ class RTC:
         (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
         """
         ...
-    def __init__(self) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class USB_VCP:
     """
@@ -1163,7 +1161,7 @@ class USB_VCP:
         newline character or ``None`` if no pending data available.
         """
         ...
-    def __init__(self, id=0) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Timer:
     """
@@ -1379,7 +1377,7 @@ class Timer:
         Get or set the timer counter.
         """
         ...
-    def __init__(self, id, *args, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Switch(Pin):
     """
@@ -1397,7 +1395,7 @@ class Switch(Pin):
         Get the switch state.  Returns ``True`` if pressed down, otherwise ``False``.
         """
         ...
-    def __init__(self) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Servo:
     """
@@ -1449,7 +1447,7 @@ class Servo:
             new position.
         """
         ...
-    def __init__(self, id) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class UART:
     """
@@ -1593,9 +1591,7 @@ class UART:
         Return value: the line read or ``None`` on timeout if no data is available.
         """
         ...
-    def __init__(
-        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
-    ) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class USB_HID:
     """
@@ -1622,7 +1618,7 @@ class USB_HID:
             bytearray).
         """
         ...
-    def __init__(self) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class I2C:
     """
@@ -1735,9 +1731,7 @@ class I2C:
          by printing the I2C object.
         """
         ...
-    def __init__(
-        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
-    ) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class LED:
     """
@@ -1775,7 +1769,7 @@ class LED:
         free for general purpose use.
         """
         ...
-    def __init__(self, id) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class LCD:
     """
@@ -1838,7 +1832,7 @@ class LCD:
         instructions/data to send.
         """
         ...
-    def __init__(self, skin_position) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class SPI:
     """
@@ -1934,9 +1928,7 @@ class SPI:
         Return value: ``None``.
         """
         ...
-    def __init__(
-        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
-    ) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Pin:
     """
@@ -2084,13 +2076,15 @@ class Pin:
         """
         ...
     @classmethod
-    def dict(cls, dict: Optional[Any] = None) -> Incomplete:
+    @classmethod
+    def dict(cls, *args, **kwargs) -> Incomplete:
         """
         Get or set the pin mapper dictionary.
         """
         ...
     @classmethod
-    def debug(cls, state: Optional[Any] = None) -> bool:
+    @classmethod
+    def debug(cls, *args, **kwargs) -> bool:
         """
         Get or set the debugging state (``True`` or ``False`` for on or off).
         """
@@ -2147,7 +2141,8 @@ class Pin:
         def __init__(self, *argv, **kwargs) -> None: ...
 
     @classmethod
-    def mapper(cls, fun: Optional[Any] = None) -> Incomplete:
+    @classmethod
+    def mapper(cls, *args, **kwargs) -> Incomplete:
         """
         Get or set the pin mapper function.
         """
@@ -2205,7 +2200,7 @@ class Pin:
         USB_DM: Incomplete
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, id, *args, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
     def __call__(self, x: Optional[Any] = None) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set

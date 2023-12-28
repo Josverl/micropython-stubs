@@ -8,6 +8,9 @@ CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html
 Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
 floating-point support).
+
+---
+Module: 'uarray' on micropython-v1.19.1-stm32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
@@ -38,5 +41,5 @@ class array(List):
         """
         ...
 
-    def __init__(self, typecode, iterable: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

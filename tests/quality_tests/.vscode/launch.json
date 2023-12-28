@@ -4,14 +4,28 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        // {
+        //     "name": "debug build-stubs",
+        //     "type": "PowerShell",
+        //     "request": "launch",
+        //     "script": "${workspaceFolder}/build-stubs.ps1",
+        //     "args": [
+        //         "-do_build"
+        //     ]
+        // },
         {
-            "name": "debug build-stubs",
-            "type": "PowerShell",
+            "name": "Debug pytest tests",
+            "purpose": [
+                "debug-test"
+            ],
+            "type": "python",
             "request": "launch",
-            "script": "${workspaceFolder}/build-stubs.ps1",
-            "args": [
-                "-do_build"
-            ]
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "stopOnEntry": false,
+            // false : Avoid debugpy trying to debug micropython
+            // but may cause issue with pytest-cov coverage reporting 
+            "subProcess": false,
         }
     ]
 }

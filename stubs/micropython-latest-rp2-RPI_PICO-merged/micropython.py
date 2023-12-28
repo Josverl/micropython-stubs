@@ -2,6 +2,9 @@
 Access and control MicroPython internals.
 
 MicroPython module: https://docs.micropython.org/en/latest/library/micropython.html
+
+---
+Module: 'micropython' on micropython-v1.21.0-rp2-RPI_PICO
 """
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8

@@ -11,6 +11,9 @@ See the `RP2040 Python datasheet
 for more information, and `pico-micropython-examples
 <https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
 for example code.
+
+---
+Module: '_rp2' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.7
@@ -181,7 +184,7 @@ class StateMachine:
         """
         ...
 
-    def __init__(self, id, program, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -204,7 +207,7 @@ class Flash:
         """
         ...
 
-    def __init__(self) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -272,5 +275,5 @@ class PIO:
         """
         ...
 
-    def __init__(self, id) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-samd-minisam_m4-stubs"
-version = "1.20.0.post3"
+version = "1.20.0.post5"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -38,7 +38,6 @@ packages = [
     { include = "_uasyncio.pyi" },
     { include = "array.pyi" },
     { include = "binascii.pyi" },
-    { include = "collections.pyi" },
     { include = "dht.pyi" },
     { include = "ds18x20.pyi" },
     { include = "errno.pyi" },
@@ -90,7 +89,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-micropython-stdlib-stubs = ">=0.9.0"
+micropython-stdlib-stubs = ">=1.1.1"
 
 [tool.poetry.dev-dependencies]
 

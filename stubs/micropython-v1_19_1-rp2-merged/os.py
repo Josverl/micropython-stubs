@@ -8,6 +8,9 @@ CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
 The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
+
+---
+Module: 'os' on micropython-v1.19.1-rp2
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
@@ -263,7 +266,7 @@ class VfsLfs2:
     def getcwd(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -317,5 +320,5 @@ class VfsFat:
     def getcwd(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, block_dev) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

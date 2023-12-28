@@ -71,6 +71,9 @@ for which we may introduce buffering support.)
 Note that for efficiency, MicroPython doesn't provide abstract base
 classes corresponding to the hierarchy above, and it's not possible
 to implement, or subclass, a stream class in pure Python.
+
+---
+Module: 'io' on micropython-v1.20.0-samd-ADAFRUIT_FEATHER_M4_EXPRESS
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'ADAFRUIT_FEATHER_M4_EXPRESS', 'cpu': 'SAMD51J19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
@@ -121,7 +124,7 @@ class StringIO(IO):
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, string: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -168,5 +171,5 @@ class BytesIO(IO):
     def readinto(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, string: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

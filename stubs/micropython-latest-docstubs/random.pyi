@@ -29,10 +29,7 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/random.rst
-from typing import (
-    Any,
-    Optional,
-)
+from typing import Any, Optional
 from _typeshed import Incomplete
 
 def getrandbits(n) -> int:

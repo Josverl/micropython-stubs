@@ -19,7 +19,7 @@ class array(List):
     array is created.
     """
 
-    def __init__(self, typecode, iterable: Optional[Any] = None) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
     def append(self, val) -> Incomplete:
         """
         Append new element *val* to the end of array, growing it.

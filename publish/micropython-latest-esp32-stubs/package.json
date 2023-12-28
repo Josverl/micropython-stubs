@@ -2,16 +2,12 @@
     "name": "micropython-esp32-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.22.0a162",
+    "pkg_version": "1.22.0a289",
     "path": "micropython-latest-esp32-stubs",
     "stub_sources": [
         [
             "Merged stubs",
             "micropython-latest-esp32-ESP32_GENERIC-merged"
-        ],
-        [
-            "Frozen stubs",
-            "micropython-latest-frozen/esp32/GENERIC"
         ],
         [
             "Core stubs",

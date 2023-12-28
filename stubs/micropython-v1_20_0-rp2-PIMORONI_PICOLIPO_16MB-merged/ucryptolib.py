@@ -2,6 +2,9 @@
 Cryptographic ciphers.
 
 MicroPython module: https://docs.micropython.org/en/v1.20.0/library/cryptolib.html
+
+---
+Module: 'ucryptolib' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.7
@@ -25,7 +28,7 @@ class aes:
         """
         ...
 
-    def __init__(self, key, mode, IV: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:
         after initialization, cipher object can be use only either for

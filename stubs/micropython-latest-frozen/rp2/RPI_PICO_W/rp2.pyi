@@ -72,19 +72,7 @@ class PIOASMEmit:
 
 _pio_funcs: Incomplete
 
-def asm_pio(
-    *,
-    out_init=None,
-    set_init=None,
-    sideset_init=None,
-    in_shiftdir=0,
-    out_shiftdir=0,
-    autopush=False,
-    autopull=False,
-    push_thresh=32,
-    pull_thresh=32,
-    fifo_join=PIO.JOIN_NONE,
-) -> Incomplete:
+def asm_pio(**kw) -> Incomplete:
     """
     Assemble a PIO program.
 
@@ -121,7 +109,7 @@ def asm_pio(
     """
     ...
 
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
+def asm_pio_encode(instr, sideset_count, sideset_opt: bool = ...) -> Incomplete:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
     instead.

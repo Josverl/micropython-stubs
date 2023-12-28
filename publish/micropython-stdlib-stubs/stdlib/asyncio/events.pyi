@@ -1,27 +1,19 @@
 import ssl
 import sys
+from _typeshed import FileDescriptorLike, ReadableBuffer, StrPath, Unused, WriteableBuffer
 from abc import ABCMeta, abstractmethod
 from collections.abc import Callable, Coroutine, Generator, Sequence
 from contextvars import Context
+from socket import AddressFamily, SocketKind, _Address, _RetAddress, socket
 from typing import IO, Any, Protocol, TypeVar, overload
-
-from _typeshed import FileDescriptorLike, ReadableBuffer, StrPath, Unused, WriteableBuffer
-from stdlib.socket import AddressFamily, SocketKind, _Address, _RetAddress, socket
-from typing_extensions import Literal, Self, TypeAlias
+from typing_extensions import Literal, Self, TypeAlias, TypeVarTuple, Unpack, deprecated
 
 from . import _AwaitableLike, _CoroutineLike
 from .base_events import Server
 from .futures import Future
 from .protocols import BaseProtocol
 from .tasks import Task
-from .transports import (
-    BaseTransport,
-    DatagramTransport,
-    ReadTransport,
-    SubprocessTransport,
-    Transport,
-    WriteTransport,
-)
+from .transports import BaseTransport, DatagramTransport, ReadTransport, SubprocessTransport, Transport, WriteTransport
 from .unix_events import AbstractChildWatcher
 
 if sys.version_info >= (3, 8):
@@ -64,28 +56,23 @@ else:
     )
 
 _T = TypeVar("_T")
+_Ts = TypeVarTuple("_Ts")
 _ProtocolT = TypeVar("_ProtocolT", bound=BaseProtocol)
 _Context: TypeAlias = dict[str, Any]
 _ExceptionHandler: TypeAlias = Callable[[AbstractEventLoop, _Context], object]
 _ProtocolFactory: TypeAlias = Callable[[], BaseProtocol]
-_SSLContext: TypeAlias = bool | None | ssl.SSLContext # type: ignore
+_SSLContext: TypeAlias = bool | None | ssl.SSLContext
 
 class _TaskFactory(Protocol):
     def __call__(
-        self,
-        __loop: AbstractEventLoop,
-        __factory: Coroutine[Any, Any, _T] | Generator[Any, None, _T],
+        self, __loop: AbstractEventLoop, __factory: Coroutine[Any, Any, _T] | Generator[Any, None, _T]
     ) -> Future[_T]: ...
 
 class Handle:
     _cancelled: bool
     _args: Sequence[Any]
     def __init__(
-        self,
-        callback: Callable[..., object],
-        args: Sequence[Any],
-        loop: AbstractEventLoop,
-        context: Context | None = None,
+        self, callback: Callable[..., object], args: Sequence[Any], loop: AbstractEventLoop, context: Context | None = None
     ) -> None: ...
     def cancel(self) -> None: ...
     def _run(self) -> None: ...
@@ -146,35 +133,23 @@ class AbstractEventLoop:
     if sys.version_info >= (3, 9):  # "context" added in 3.9.10/3.10.2
         @abstractmethod
         def call_soon(
-            self, callback: Callable[..., object], *args: Any, context: Context | None = None
+            self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None
         ) -> Handle: ...
         @abstractmethod
         def call_later(
-            self,
-            delay: float,
-            callback: Callable[..., object],
-            *args: Any,
-            context: Context | None = None,
+            self, delay: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None
         ) -> TimerHandle: ...
         @abstractmethod
         def call_at(
-            self,
-            when: float,
-            callback: Callable[..., object],
-            *args: Any,
-            context: Context | None = None,
+            self, when: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None
         ) -> TimerHandle: ...
     else:
         @abstractmethod
-        def call_soon(self, callback: Callable[..., object], *args: Any) -> Handle: ...
+        def call_soon(self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts]) -> Handle: ...
         @abstractmethod
-        def call_later(
-            self, delay: float, callback: Callable[..., object], *args: Any
-        ) -> TimerHandle: ...
+        def call_later(self, delay: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts]) -> TimerHandle: ...
         @abstractmethod
-        def call_at(
-            self, when: float, callback: Callable[..., object], *args: Any
-        ) -> TimerHandle: ...
+        def call_at(self, when: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts]) -> TimerHandle: ...
 
     @abstractmethod
     def time(self) -> float: ...
@@ -185,17 +160,11 @@ class AbstractEventLoop:
     if sys.version_info >= (3, 11):
         @abstractmethod
         def create_task(
-            self,
-            coro: _CoroutineLike[_T],
-            *,
-            name: str | None = None,
-            context: Context | None = None,
+            self, coro: _CoroutineLike[_T], *, name: str | None = None, context: Context | None = None
         ) -> Task[_T]: ...
     elif sys.version_info >= (3, 8):
         @abstractmethod
-        def create_task(
-            self, coro: _CoroutineLike[_T], *, name: str | None = None
-        ) -> Task[_T]: ...
+        def create_task(self, coro: _CoroutineLike[_T], *, name: str | None = None) -> Task[_T]: ...
     else:
         @abstractmethod
         def create_task(self, coro: _CoroutineLike[_T]) -> Task[_T]: ...
@@ -208,16 +177,14 @@ class AbstractEventLoop:
     if sys.version_info >= (3, 9):  # "context" added in 3.9.10/3.10.2
         @abstractmethod
         def call_soon_threadsafe(
-            self, callback: Callable[..., object], *args: Any, context: Context | None = None
+            self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None
         ) -> Handle: ...
     else:
         @abstractmethod
-        def call_soon_threadsafe(self, callback: Callable[..., object], *args: Any) -> Handle: ...
+        def call_soon_threadsafe(self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts]) -> Handle: ...
 
     @abstractmethod
-    def run_in_executor(
-        self, executor: Any, func: Callable[..., _T], *args: Any
-    ) -> Future[_T]: ...
+    def run_in_executor(self, executor: Any, func: Callable[[Unpack[_Ts]], _T], *args: Unpack[_Ts]) -> Future[_T]: ...
     @abstractmethod
     def set_default_executor(self, executor: Any) -> None: ...
     # Network I/O methods returning Futures.
@@ -231,13 +198,9 @@ class AbstractEventLoop:
         type: int = 0,
         proto: int = 0,
         flags: int = 0,
-    ) -> list[
-        tuple[AddressFamily, SocketKind, int, str, tuple[str, int] | tuple[str, int, int, int]]
-    ]: ...
+    ) -> list[tuple[AddressFamily, SocketKind, int, str, tuple[str, int] | tuple[str, int, int, int]]]: ...
     @abstractmethod
-    async def getnameinfo(
-        self, sockaddr: tuple[str, int] | tuple[str, int, int, int], flags: int = 0
-    ) -> tuple[str, str]: ...
+    async def getnameinfo(self, sockaddr: tuple[str, int] | tuple[str, int, int, int], flags: int = 0) -> tuple[str, str]: ...
     if sys.version_info >= (3, 11):
         @overload
         @abstractmethod
@@ -458,7 +421,7 @@ class AbstractEventLoop:
             self,
             transport: BaseTransport,
             protocol: BaseProtocol,
-            sslcontext: ssl.SSLContext, # type: ignore
+            sslcontext: ssl.SSLContext,
             *,
             server_side: bool = False,
             server_hostname: str | None = None,
@@ -520,23 +483,11 @@ class AbstractEventLoop:
 
     @abstractmethod
     async def sock_sendfile(
-        self,
-        sock: socket,
-        file: IO[bytes],
-        offset: int = 0,
-        count: int | None = None,
-        *,
-        fallback: bool | None = None,
+        self, sock: socket, file: IO[bytes], offset: int = 0, count: int | None = None, *, fallback: bool | None = None
     ) -> int: ...
     @abstractmethod
     async def sendfile(
-        self,
-        transport: WriteTransport,
-        file: IO[bytes],
-        offset: int = 0,
-        count: int | None = None,
-        *,
-        fallback: bool = True,
+        self, transport: WriteTransport, file: IO[bytes], offset: int = 0, count: int | None = None, *, fallback: bool = True
     ) -> int: ...
     @abstractmethod
     async def create_datagram_endpoint(
@@ -576,7 +527,7 @@ class AbstractEventLoop:
         bufsize: Literal[0] = 0,
         encoding: None = None,
         errors: None = None,
-        text: Literal[False, None] = ...,
+        text: Literal[False] | None = ...,
         **kwargs: Any,
     ) -> tuple[SubprocessTransport, _ProtocolT]: ...
     @abstractmethod
@@ -596,15 +547,11 @@ class AbstractEventLoop:
         **kwargs: Any,
     ) -> tuple[SubprocessTransport, _ProtocolT]: ...
     @abstractmethod
-    def add_reader(
-        self, fd: FileDescriptorLike, callback: Callable[..., Any], *args: Any
-    ) -> None: ...
+    def add_reader(self, fd: FileDescriptorLike, callback: Callable[[Unpack[_Ts]], Any], *args: Unpack[_Ts]) -> None: ...
     @abstractmethod
     def remove_reader(self, fd: FileDescriptorLike) -> bool: ...
     @abstractmethod
-    def add_writer(
-        self, fd: FileDescriptorLike, callback: Callable[..., Any], *args: Any
-    ) -> None: ...
+    def add_writer(self, fd: FileDescriptorLike, callback: Callable[[Unpack[_Ts]], Any], *args: Unpack[_Ts]) -> None: ...
     @abstractmethod
     def remove_writer(self, fd: FileDescriptorLike) -> bool: ...
     # Completion based I/O methods returning Futures prior to 3.7
@@ -622,18 +569,12 @@ class AbstractEventLoop:
         @abstractmethod
         async def sock_recvfrom(self, sock: socket, bufsize: int) -> tuple[bytes, _RetAddress]: ...
         @abstractmethod
-        async def sock_recvfrom_into(
-            self, sock: socket, buf: WriteableBuffer, nbytes: int = 0
-        ) -> tuple[int, _RetAddress]: ...
+        async def sock_recvfrom_into(self, sock: socket, buf: WriteableBuffer, nbytes: int = 0) -> tuple[int, _RetAddress]: ...
         @abstractmethod
-        async def sock_sendto(
-            self, sock: socket, data: ReadableBuffer, address: _Address
-        ) -> int: ...
+        async def sock_sendto(self, sock: socket, data: ReadableBuffer, address: _Address) -> int: ...
     # Signal handling.
     @abstractmethod
-    def add_signal_handler(
-        self, sig: int, callback: Callable[..., object], *args: Any
-    ) -> None: ...
+    def add_signal_handler(self, sig: int, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts]) -> None: ...
     @abstractmethod
     def remove_signal_handler(self, sig: int) -> bool: ...
     # Error handlers.
@@ -677,8 +618,17 @@ def set_event_loop_policy(policy: AbstractEventLoopPolicy | None) -> None: ...
 def get_event_loop() -> AbstractEventLoop: ...
 def set_event_loop(loop: AbstractEventLoop | None) -> None: ...
 def new_event_loop() -> AbstractEventLoop: ...
-def get_child_watcher() -> AbstractChildWatcher: ...
-def set_child_watcher(watcher: AbstractChildWatcher) -> None: ...
+
+if sys.version_info >= (3, 12):
+    @deprecated("Deprecated as of Python 3.12; will be removed in Python 3.14")
+    def get_child_watcher() -> AbstractChildWatcher: ...
+    @deprecated("Deprecated as of Python 3.12; will be removed in Python 3.14")
+    def set_child_watcher(watcher: AbstractChildWatcher) -> None: ...
+
+else:
+    def get_child_watcher() -> AbstractChildWatcher: ...
+    def set_child_watcher(watcher: AbstractChildWatcher) -> None: ...
+
 def _set_running_loop(__loop: AbstractEventLoop | None) -> None: ...
 def _get_running_loop() -> AbstractEventLoop: ...
 def get_running_loop() -> AbstractEventLoop: ...

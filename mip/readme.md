@@ -1,0 +1,94 @@
+# MicroPython `typing.mpy`
+
+Why you may need typing.[m]py or typing_extensions.[m]py.
+
+When making use of static typing in Python or MicroPython, you often end up using types that are defined in the CPython typing module.
+As Python static typing is 'optimised out' when the source is compiled to byte-code and then to machinecode, there is virtually no runtime overhead.
+
+However there is one remaining issue, and this is with the `import typing` or `from typing import ...`  
+If you try to run an fully typed MicroPython module or script on a MCU, you will get an error like this:
+
+```python
+>>> import example
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "example.py", line 2, in <module>
+ImportError: no module named 'typing'
+```
+A solution is to add a minimalistic `typing.py` file to the project, and when your module or script is executed on the MCU, that will be used in place of the CPython typing module.
+
+
+## Install the `typing` modules to your MCU
+To have the least amount of runtime overhead on your MCU, you can (should) used the cross compiled version of the modules to your MCU.
+
+```bash
+mpremote mip install github:josverl/micropython-stubs/mip/typing.mpy
+# and where needed also:
+mpremote mip install github:josverl/micropython-stubs/mip/typing_extensions.mpy
+```
+*Note:* The .mpy modules are cross compiled for micropython 
+
+```log
+Install github:josverl/micropython-stubs/mip/typing.mpy
+Downloading github:josverl/micropython-stubs/mip/typing.mpy to /lib
+Installing: /lib/typing.mpy
+Done
+```
+_Note that by default mip will install the modules in the `/lib` folder of the MCU._
+
+## Add to your project source
+To avoid needing to `mip install` the modules on every MCU, you can add the modules to your project source.
+mpremote mip does not have a method to retrieve and store modules localy to your project, but it is simple to copy them from your MCU to your local project.
+
+Assuming you have a project folder `src` and a `lib` folder in it, you can copy the modules from the MCU to your project with the following commands:
+
+```bash
+mpremote cp :lib/typing.mpy src/lib/typing.mpy
+mpremote cp :lib/typing_extensions.mpy src/lib/typing_extensions.mpy
+```
+
+## Best portability
+For best portability across MicroPython ports you can use the `typing.py` and `typing_extensions.py` modules. These modules are identical to the `typing.mpy` and `typing_extensions.mpy` modules, but are in source form.
+
+Use the same commands as above, but replace the `.mpy` with `.py` in the commands.
+
+
+## example code
+```python
+"""Example typed Micropython module."""
+from typing import TYPE_CHECKING, Tuple
+
+
+def foo(a: int, b: int) -> Tuple[int, str]:
+    return a, str(b)
+
+print("Hello, typed world!")
+print(f"{foo(1, 2)=}")
+```
+
+------------------------
+
+## About the modules
+
+### `typing.py`
+A minimalistic `typing.py` module for MicroPython.
+
+Ref: https://github.com/micropython/micropython-lib/pull/584  
+Author: [Andrew Leech](https://github.com/andrewleech)  
+
+**Note:** _When that PR is merged, or MicroPython itself can provide this functionality, I'll update the above links to point to micropython-lib._
+
+### `typing_extensions.py`
+This module is provided to allow the use of older versions of Python (3.7+).
+
+In CPython the `typing_extensions` module provide backported type hints from newer versions and enable use of new type system features on older Python versions. 
+For example, typing.TypeGuard is new in Python 3.10, but typing_extensions allows users on previous Python versions to use it too.
+
+As MicroPython has no native typing implementation, the `typing_extensions.py` module is identical to the `typing.py` module.
+
+### References
+
+- Python: [typing — Support for type hints](https://docs.python.org/3/library/typing.html)
+- PyPI: [typing_extensions — Type hints for Python](https://pypi.org/project/typing-extensions/)
+- MicroPython [`mpremote mip`](https://docs.micropython.org/en/latest/reference/packages.html#installing-packages-with-mpremote)
+- [MicroPython-lib](https://github.com/micropython/micropython-lib)

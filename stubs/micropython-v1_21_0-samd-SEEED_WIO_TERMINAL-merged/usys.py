@@ -4,6 +4,9 @@ System specific functions.
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/sys.html
 
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
+
+---
+Module: 'usys' on micropython-v1.21.0-samd-SEEED_WIO_TERMINAL
 """
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
 # Stubber: v1.13.8

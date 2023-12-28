@@ -26,13 +26,7 @@ The ``pyb`` module contains specific functions related to the board.
 # + module: pyb.UART.rst
 # + module: pyb.USB_HID.rst
 # + module: pyb.USB_VCP.rst
-from typing import (
-    Any,
-    List,
-    NoReturn,
-    Optional,
-    Tuple,
-)
+from typing import Any, List, NoReturn, Optional, Tuple
 from _typeshed import Incomplete
 
 hid_mouse: int

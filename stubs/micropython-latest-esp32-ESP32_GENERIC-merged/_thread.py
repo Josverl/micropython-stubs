@@ -9,6 +9,9 @@ This module implements multithreading support.
 
 This module is highly experimental and its API is not yet fully settled
 and not yet described in this documentation.
+
+---
+Module: '_thread' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
 # Stubber: v1.14.0

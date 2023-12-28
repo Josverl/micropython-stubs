@@ -4,7 +4,8 @@
 [![Star on GitHub](https://img.shields.io/github/stars/josverl/micropython-stubs.svg?style=social)](https://github.com/josverl/micropython-stubs/stargazers)
 [![All Contributors](https://img.shields.io/badge/all_contributors-19-green.svg?style=flat-square)](#Contributions)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black "Black badge")
- 
+[![Checked with pyright](https://microsoft.github.io/pyright/img/pyright_badge.svg)](https://microsoft.github.io/pyright/) 
+[![Checked with pyright](https://github.com/Josverl/micropython-stubs/actions/workflows/test_stub_quality.yml/badge.svg?branch=main)](https://microsoft.github.io/pyright/) 
 
 <img src="docs/img/colorstubs.jpg"
      alt="pencil stubs"
@@ -60,8 +61,6 @@ For a full overview of all stubs check out [the documentation on read the docs](
 The following graph shows the number of downloads of the stubs from PyPi over time.
 Im not sure what causes the spikes in downloads, but it is interesting to see that the number of downloads is increasing over time, and some of the spikes have corrolation to the publication of new MicroPython versions.
 
-In addition some tools such as [the MicroPico VSCode extension](https://marketplace.visualstudio.com/items?itemName=paulober.pico-w-go) bundle a version of the stubs with their distribution, so the actual usage is considerably higher than the number of downloads.
-
 <table>
     <tr>
         <td><img src="statistics/month_port.png"></td>
@@ -72,6 +71,8 @@ In addition some tools such as [the MicroPico VSCode extension](https://marketpl
         <td><img src="statistics/board_version.png"> </td>
     </tr>
 </table>
+
+In addition some tools such as [the MicroPico VSCode extension](https://marketplace.visualstudio.com/items?itemName=paulober.pico-w-go) bundle a version of the stubs with their distribution, so the actual usage is higher than the number of downloads.
 
 ## Contributors
 Thanks to everyone that has submitted stubs or other relevant pieces of code and information, or published relevant stubs on pypi or github.

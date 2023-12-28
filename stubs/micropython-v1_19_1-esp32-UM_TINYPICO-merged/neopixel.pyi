@@ -25,7 +25,7 @@ class NeoPixel:
         - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
     """
 
-    def __init__(self, pin, n, *, bpp=3, timing=1) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
     def write(self) -> None:
         """
         Writes the current pixel data to the strip.

@@ -120,7 +120,7 @@ class NVS:
         Erases a key-value pair.
         """
         ...
-    def __init__(self, namespace) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class RMT:
     """
@@ -211,7 +211,7 @@ class RMT:
         ``1 / (source_freq / clock_div)``.
         """
         ...
-    def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Partition:
     """
@@ -262,7 +262,8 @@ class Partition:
         """
         ...
     @classmethod
-    def mark_app_valid_cancel_rollback(cls) -> Incomplete:
+    @classmethod
+    def mark_app_valid_cancel_rollback(cls, *args, **kwargs) -> Incomplete:
         """
         Signals that the current boot is considered successful.
         Calling ``mark_app_valid_cancel_rollback`` is required on the first boot of a new
@@ -274,4 +275,4 @@ class Partition:
         necessary when booting firmare that was loaded using esptool.
         """
         ...
-    def __init__(self, id, block_size=4096, /) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...

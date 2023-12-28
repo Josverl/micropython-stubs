@@ -4,6 +4,9 @@ Control of LCD160CR display.
 MicroPython module: https://docs.micropython.org/en/v1.20.0/library/lcd160cr.html
 
 This module provides control of the MicroPython LCD160CR display.
+
+---
+Module: 'lcd160cr' on micropython-v1.20.0-stm32-PYBV11
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
 # Stubber: v1.13.7
@@ -436,5 +439,5 @@ class LCD160CR:
         """
         ...
 
-    def __init__(self, connect=None, *, pwr=None, i2c=None, spi=None, i2c_addr=98) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

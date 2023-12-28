@@ -2,7 +2,7 @@
     "name": "micropython-samd-adafruit_feather_m4_express-stubs",
     "mpy_version": "1.20.0",
     "publish": true,
-    "pkg_version": "1.20.0.post3",
+    "pkg_version": "1.20.0.post5",
     "path": "micropython-v1_20_0-samd-adafruit_feather_m4_express-stubs",
     "stub_sources": [
         [
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "ae4117f922d020755d0bb2839d502194417d60df",
-    "stub_hash": "f9ed3d093109a22b305174d17b2b2e4e62a778c8"
+    "hash": null,
+    "stub_hash": null
 }

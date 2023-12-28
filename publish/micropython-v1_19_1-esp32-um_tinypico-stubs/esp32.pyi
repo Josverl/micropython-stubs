@@ -19,7 +19,7 @@ class NVS:
     present).
     """
 
-    def __init__(self, namespace) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
     def commit(self) -> Incomplete:
         """
         Commits changes made by *set_xxx* methods to flash.
@@ -64,7 +64,7 @@ class Partition:
     *block_size* specifies the byte size of an individual block.
     """
 
-    def __init__(self, id, block_size=4096, /) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
     @classmethod
     def find(cls, type=TYPE_APP, subtype=0xFF, label=None, block_size=4096) -> List:
         """
@@ -100,7 +100,8 @@ class Partition:
         """
         ...
     @classmethod
-    def mark_app_valid_cancel_rollback(cls) -> Incomplete:
+    @classmethod
+    def mark_app_valid_cancel_rollback(cls, *args, **kwargs) -> Incomplete:
         """
         Signals that the current boot is considered successful.
         Calling ``mark_app_valid_cancel_rollback`` is required on the first boot of a new
@@ -137,7 +138,7 @@ class RMT:
     *idle_level*).
     """
 
-    def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
     @staticmethod
     def bitstream_channel(value: Optional[Any] = None) -> int:
         """
@@ -216,7 +217,7 @@ class ULP:
     This class provides access to the Ultra-Low-Power co-processor.
     """
 
-    def __init__(self) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
     RESERVE_MEM: int
     def load_binary(self, load_addr, program_binary) -> None:
         """

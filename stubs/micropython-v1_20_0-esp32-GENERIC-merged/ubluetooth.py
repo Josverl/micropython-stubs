@@ -17,6 +17,9 @@ building-blocks for higher-level abstractions such as specific device types.
 
 ``Note:`` This module is still under development and its classes, functions,
           methods and constants are subject to change.
+
+---
+Module: 'ubluetooth' on micropython-v1.20.0-esp32-GENERIC
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
@@ -40,7 +43,7 @@ class UUID:
     - A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``.
     """
 
-    def __init__(self, value, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -642,5 +645,5 @@ class BLE:
         """
         ...
 
-    def __init__(self) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

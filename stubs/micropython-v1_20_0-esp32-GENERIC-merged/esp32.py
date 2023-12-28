@@ -5,6 +5,9 @@ MicroPython module: https://docs.micropython.org/en/v1.20.0/library/esp32.html
 
 The ``esp32`` module contains functions and classes specifically aimed at
 controlling ESP32 modules.
+
+---
+Module: 'esp32' on micropython-v1.20.0-esp32-GENERIC
 """
 from __future__ import annotations
 
@@ -127,7 +130,7 @@ class ULP:
         """
         ...
 
-    def __init__(self) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -179,7 +182,7 @@ class NVS:
         """
         ...
 
-    def __init__(self, namespace) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -242,7 +245,8 @@ class Partition:
         ...
 
     @classmethod
-    def mark_app_valid_cancel_rollback(cls) -> Incomplete:
+    @classmethod
+    def mark_app_valid_cancel_rollback(cls, *args, **kwargs) -> Incomplete:
         """
         Signals that the current boot is considered successful.
         Calling ``mark_app_valid_cancel_rollback`` is required on the first boot of a new
@@ -255,7 +259,7 @@ class Partition:
         """
         ...
 
-    def __init__(self, id, block_size=4096, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -356,5 +360,5 @@ class RMT:
         """
         ...
 
-    def __init__(self, channel, *, pin=None, clock_div=8, idle_level=False, tx_carrier=None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

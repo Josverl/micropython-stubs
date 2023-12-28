@@ -6,10 +6,7 @@ MicroPython module: https://docs.micropython.org/en/latest/library/cryptolib.htm
 
 # source version: latest
 # origin module:: repos/micropython/docs/library/cryptolib.rst
-from typing import (
-    Any,
-    Optional,
-)
+from typing import Any, Optional
 from _typeshed import Incomplete
 
 class aes:

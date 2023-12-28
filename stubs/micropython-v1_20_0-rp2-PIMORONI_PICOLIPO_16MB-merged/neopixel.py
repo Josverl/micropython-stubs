@@ -11,6 +11,9 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    directly from
    <https://raw.githubusercontent.com/micropython/micropython-lib/master/micropython/drivers/led/neopixel/neopixel.py>`_
    and copy it to the filesystem.
+
+---
+Module: 'neopixel' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.7
@@ -47,5 +50,5 @@ class NeoPixel:
         """
         ...
 
-    def __init__(self, pin, n, *, bpp=3, timing=1) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

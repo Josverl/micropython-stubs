@@ -2,16 +2,12 @@
     "name": "micropython-samd-adafruit_itsybitsy_m4_express-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.22.0a162",
+    "pkg_version": "1.22.0a289",
     "path": "micropython-latest-samd-adafruit_itsybitsy_m4_express-stubs",
     "stub_sources": [
         [
             "Merged stubs",
             "micropython-latest-samd-ADAFRUIT_ITSYBITSY_M4_EXPRESS-merged"
-        ],
-        [
-            "Frozen stubs",
-            "micropython-latest-frozen/samd/GENERIC"
         ],
         [
             "Core stubs",

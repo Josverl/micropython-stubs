@@ -4,6 +4,9 @@ Functions related to the board.
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/pyb.html
 
 The ``pyb`` module contains specific functions related to the board.
+
+---
+Module: 'pyb' on micropython-v1.21.0-stm32-PYBV11
 """
 # MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
 # Stubber: v1.13.8
@@ -448,7 +451,7 @@ class Accel:
     def write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -787,7 +790,7 @@ class CAN:
         """
         ...
 
-    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -848,7 +851,7 @@ class ExtInt:
         """
         ...
 
-    def __init__(self, pin, mode, pull, callback) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -877,7 +880,7 @@ class Flash:
         """
         ...
 
-    def __init__(self) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -985,7 +988,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, pin) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1079,7 +1082,7 @@ class DAC:
         """
         ...
 
-    def __init__(self, port, bits=8, *, buffering=None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1151,7 +1154,7 @@ class RTC:
         """
         ...
 
-    def __init__(self) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1289,7 +1292,7 @@ class USB_VCP:
         """
         ...
 
-    def __init__(self, id=0) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1517,7 +1520,7 @@ class Timer:
         """
         ...
 
-    def __init__(self, id, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1539,7 +1542,7 @@ class Switch(Pin):
         """
         ...
 
-    def __init__(self) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1597,7 +1600,7 @@ class Servo:
         """
         ...
 
-    def __init__(self, id) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1760,7 +1763,7 @@ class UART:
         """
         ...
 
-    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1791,7 +1794,7 @@ class USB_HID:
         """
         ...
 
-    def __init__(self) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1915,7 +1918,7 @@ class I2C:
         """
         ...
 
-    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1959,7 +1962,7 @@ class LED:
         """
         ...
 
-    def __init__(self, id) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -2033,7 +2036,7 @@ class LCD:
         """
         ...
 
-    def __init__(self, skin_position) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -2145,7 +2148,7 @@ class SPI:
         """
         ...
 
-    def __init__(self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -2317,14 +2320,16 @@ class Pin:
         ...
 
     @classmethod
-    def dict(cls, dict: Optional[Any] = None) -> Incomplete:
+    @classmethod
+    def dict(cls, *args, **kwargs) -> Incomplete:
         """
         Get or set the pin mapper dictionary.
         """
         ...
 
     @classmethod
-    def debug(cls, state: Optional[Any] = None) -> bool:
+    @classmethod
+    def debug(cls, *args, **kwargs) -> bool:
         """
         Get or set the debugging state (``True`` or ``False`` for on or off).
         """
@@ -2383,7 +2388,8 @@ class Pin:
             ...
 
     @classmethod
-    def mapper(cls, fun: Optional[Any] = None) -> Incomplete:
+    @classmethod
+    def mapper(cls, *args, **kwargs) -> Incomplete:
         """
         Get or set the pin mapper function.
         """
@@ -2443,7 +2449,7 @@ class Pin:
         def __init__(self, *argv, **kwargs) -> None:
             ...
 
-    def __init__(self, id, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
     def __call__(self, x: Optional[Any] = None) -> Incomplete:

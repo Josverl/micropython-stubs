@@ -12,14 +12,15 @@
 10_intro_stubs.md
 20_using.md
 22_vscode.md
+23_pyright_advanced.md
 24_pycharm.md
 26_pylint.md
 28_mypy.md
 50_legacy.md
 55_symlink.md
-<!-- parkinglot.md -->
-<!-- changelog.md -->
-
+_typing_mpy.md
+_folder_naming.md
+_qa_testing.md
 ```
 
 ```{toctree}

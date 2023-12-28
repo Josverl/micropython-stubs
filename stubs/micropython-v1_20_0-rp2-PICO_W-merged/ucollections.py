@@ -7,6 +7,9 @@ CPython module: :mod:`python:collections` https://docs.python.org/3/library/coll
 
 This module implements advanced collection and container types to
 hold/accumulate various objects.
+
+---
+Module: 'ucollections' on micropython-v1.20.0-rp2-PICO_W
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
@@ -96,7 +99,7 @@ class OrderedDict(stdlib_OrderedDict):
     def fromkeys(cls, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -132,5 +135,5 @@ class deque(stdlib_deque):
         """
         ...
 
-    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

@@ -10,8 +10,10 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    ``neopixel`` package using :term:`mip`, or you can download the module
    directly from :term:`micropython-lib` and copy it to the filesystem.
 """
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Tuple
+
+def bitstream(*args, **kwargs) -> Incomplete: ...
 
 class NeoPixel:
     """
@@ -23,26 +25,10 @@ class NeoPixel:
         - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
     """
 
-    ORDER: Incomplete
-    pin: Incomplete
-    n: Incomplete
-    bpp: Incomplete
-    buf: Incomplete
-    timing: Incomplete
-    def __init__(self, pin, n, *, bpp=3, timing=1) -> None: ...
-    def __len__(self) -> int:
+    ORDER: tuple
+    def write(self) -> None:
         """
-        Returns the number of LEDs in the strip.
-        """
-        ...
-    def __setitem__(self, index, val) -> None:
-        """
-        Set the pixel at *index* to the value, which is an RGB/RGBW tuple.
-        """
-        ...
-    def __getitem__(self, index) -> Tuple:
-        """
-        Returns the pixel at *index* as an RGB/RGBW tuple.
+        Writes the current pixel data to the strip.
         """
         ...
     def fill(self, pixel) -> None:
@@ -51,8 +37,4 @@ class NeoPixel:
         RGB/RGBW tuple).
         """
         ...
-    def write(self) -> None:
-        """
-        Writes the current pixel data to the strip.
-        """
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

@@ -35,7 +35,7 @@ class FrameBuffer:
     unexpected errors.
     """
 
-    def __init__(self, buffer, width, height, format, stride=-1, /) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
     def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.

@@ -8,6 +8,9 @@ CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
 The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
+
+---
+Module: 'os' on micropython-v1.20.0-esp32-GENERIC_S3
 """
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': 'v1.20.0', 'cpu': 'ESP32S3'})
 # Stubber: v1.13.7
@@ -267,7 +270,7 @@ class VfsLfs2:
     def getcwd(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -321,5 +324,5 @@ class VfsFat:
     def getcwd(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, block_dev) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

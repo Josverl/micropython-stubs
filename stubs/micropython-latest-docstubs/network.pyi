@@ -40,13 +40,7 @@ For example::
 # + module: network.WLANWiPy.rst
 # + module: network.WIZNET5K.rst
 # + module: network.LAN.rst
-from typing import (
-    Any,
-    List,
-    Optional,
-    Tuple,
-    Union,
-)
+from typing import Any, List, Optional, Tuple, Union
 from _typeshed import Incomplete
 
 class AbstractNIC:

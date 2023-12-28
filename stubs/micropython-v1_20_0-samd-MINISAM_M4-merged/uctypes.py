@@ -9,6 +9,9 @@ different, streamlined and optimized for small size. The basic idea of the
 module is to define data structure layout with about the same power as the
 C language allows, and then access it using familiar dot-syntax to reference
 sub-fields.
+
+---
+Module: 'uctypes' on micropython-v1.20.0-samd-MINISAM_M4
 """
 # MCU: OrderedDict({'build': '', 'ver': 'v1.20.0', 'version': '1.20.0', 'port': 'samd', 'board': 'MINISAM_M4', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51G19A', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
@@ -93,5 +96,5 @@ class struct:
     memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
 
-    def __init__(self, addr, descriptor, layout_type=NATIVE, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

@@ -10,6 +10,9 @@ This module implements the
 
 A heap queue is essentially a list that has its elements stored in such a way
 that the first item of the list is always the smallest.
+
+---
+Module: 'heapq' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.7

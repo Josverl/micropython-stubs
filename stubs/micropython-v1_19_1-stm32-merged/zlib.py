@@ -9,6 +9,9 @@ This module allows to decompress binary data compressed with
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
 (commonly used in zlib library and gzip archiver). Compression
 is not yet implemented.
+
+---
+Module: 'zlib' on micropython-v1.19.1-stm32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
@@ -51,5 +54,5 @@ class DecompIO:
     def read(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, stream, wbits=0, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

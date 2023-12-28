@@ -2,7 +2,7 @@
     "name": "micropython-samd-minisam_m4-stubs",
     "mpy_version": "1.20.0",
     "publish": true,
-    "pkg_version": "1.20.0.post3",
+    "pkg_version": "1.20.0.post5",
     "path": "micropython-v1_20_0-samd-minisam_m4-stubs",
     "stub_sources": [
         [
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "4ccbcbe6dfdcdeced20c27d862fb4abbb50da3a3",
-    "stub_hash": "e6be69d34936adaf9c2d290d3c5717caac3f3e0f"
+    "hash": null,
+    "stub_hash": null
 }

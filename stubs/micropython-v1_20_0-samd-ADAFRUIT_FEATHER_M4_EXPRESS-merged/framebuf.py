@@ -5,6 +5,9 @@ MicroPython module: https://docs.micropython.org/en/v1.20.0/library/framebuf.htm
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
+
+---
+Module: 'framebuf' on micropython-v1.20.0-samd-ADAFRUIT_FEATHER_M4_EXPRESS
 """
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'ADAFRUIT_FEATHER_M4_EXPRESS', 'cpu': 'SAMD51J19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
@@ -159,5 +162,5 @@ class FrameBuffer:
     def fill_rect(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, buffer, width, height, format, stride=-1, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

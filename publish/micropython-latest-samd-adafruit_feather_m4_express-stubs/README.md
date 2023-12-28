@@ -28,11 +28,9 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-latest-samd-ADAFRUIT_FEATHER_M4_EXPRESS-merged`
-* Frozen stubs from `stubs/micropython-latest-frozen/samd/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Documentation | micropython | - | - | latest 
-Core | micropython | samd | - | latest 

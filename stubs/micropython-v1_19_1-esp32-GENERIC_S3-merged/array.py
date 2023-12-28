@@ -8,6 +8,9 @@ CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html
 Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
 floating-point support).
+
+---
+Module: 'array' on micropython-v1.19.1-esp32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32S3 module with ESP32S3', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.11.2
@@ -38,5 +41,5 @@ class array(List):
         """
         ...
 
-    def __init__(self, typecode, iterable: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

@@ -2,7 +2,7 @@
     "name": "micropython-esp32-um_tinypico-stubs",
     "mpy_version": "1.19.1",
     "publish": true,
-    "pkg_version": "1.19.1.post8",
+    "pkg_version": "1.19.1.post9",
     "path": "micropython-v1_19_1-esp32-um_tinypico-stubs",
     "stub_sources": [
         [
@@ -19,6 +19,6 @@
         ]
     ],
     "description": "MicroPython stubs",
-    "hash": "ccb4ac87291a2b4dce667d05a9a5d0b9e237bdd4",
-    "stub_hash": "a5cca7560e6e5fb7ce4ee2117ccdd2fc12d861a0"
+    "hash": null,
+    "stub_hash": null
 }

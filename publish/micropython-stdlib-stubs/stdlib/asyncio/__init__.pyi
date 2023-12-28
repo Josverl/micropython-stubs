@@ -1,7 +1,6 @@
 import sys
 from collections.abc import Awaitable, Coroutine, Generator
 from typing import Any, TypeVar
-
 from typing_extensions import TypeAlias
 
 # As at runtime, this depends on all submodules defining __all__ accurately.
@@ -14,8 +13,7 @@ from .protocols import *
 from .queues import *
 from .runners import *
 from .streams import *
-
-# from .subprocess import *
+from .subprocess import *
 from .tasks import *
 from .transports import *
 

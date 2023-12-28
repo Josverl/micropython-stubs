@@ -59,6 +59,9 @@ Tuple address format for ``socket`` module:
   addresses. Note the domain names are not accepted as *ipv6_address*,
   they should be resolved first using `socket.getaddrinfo()`. Availability
   of IPv6 support depends on a :term:`MicroPython port`.
+
+---
+Module: 'usocket' on micropython-v1.19.1-stm32
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
@@ -330,5 +333,5 @@ class socket:
         """
         ...
 
-    def __init__(self, af=AF_INET, type=SOCK_STREAM, proto=IPPROTO_TCP, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

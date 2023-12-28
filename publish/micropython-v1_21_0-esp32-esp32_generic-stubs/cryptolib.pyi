@@ -20,7 +20,7 @@ class aes:
         Like `encrypt()`, but for decryption.
         """
         ...
-    def __init__(self, key, mode, IV: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:
         after initialization, cipher object can be use only either for

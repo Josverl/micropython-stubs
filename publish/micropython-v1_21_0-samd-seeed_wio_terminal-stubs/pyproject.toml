@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-samd-seeed_wio_terminal-stubs"
-version = "1.21.0.post2"
+version = "1.21.0.post4"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -44,7 +44,6 @@ packages = [
     { include = "asyncio/lock.pyi" },
     { include = "asyncio/stream.pyi" },
     { include = "binascii.pyi" },
-    { include = "collections.pyi" },
     { include = "deflate.pyi" },
     { include = "dht.pyi" },
     { include = "ds18x20.pyi" },
@@ -96,7 +95,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-micropython-stdlib-stubs = ">=0.9.0"
+micropython-stdlib-stubs = ">=1.1.1"
 
 [tool.poetry.dev-dependencies]
 

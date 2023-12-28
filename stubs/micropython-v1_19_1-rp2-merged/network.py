@@ -29,9 +29,15 @@ For example::
     addr = socket.getaddrinfo('micropython.org', 80)[0][-1]
     s = socket.socket()
     s.connect(addr)
-    s.send(b'GET / HTTP/1.1\r\nHost: micropython.org\r\n\r\n')
+    s.send(b'GET / HTTP/1.1
+Host: micropython.org
+
+')
     data = s.recv(1000)
     s.close()
+
+---
+Module: 'network' on micropython-v1.19.1-rp2
 """
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
@@ -186,5 +192,5 @@ class WLAN:
         """
         ...
 
-    def __init__(self, interface_id) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
