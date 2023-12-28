@@ -147,6 +147,12 @@ def merge_docstubs_into_stdlib(*, dist_stdlib_path: Path, docstubs_path: Path, d
             all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
         ),
         Boost(
+            "sys",
+            "sys.pyi",
+            "sys/__init__.pyi",
+            # all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
+        ),
+        Boost(
             "ssl",
             "ssl.pyi",
             "ssl.pyi",
