@@ -1,5 +1,12 @@
+"""
+System specific functions.
+
+MicroPython module: https://docs.micropython.org/en/v1.21.0/library/sys.html
+
+CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
+"""
 import sys
-from _typeshed import OptExcInfo, ProfileFunction, TraceFunction, structseq
+from _typeshed import Incomplete, OptExcInfo, ProfileFunction, TraceFunction, structseq
 from builtins import object as _object
 from collections.abc import AsyncGenerator, Callable, Coroutine, Sequence
 from importlib.abc import PathEntryFinder
@@ -17,9 +24,7 @@ _OptExcInfo: TypeAlias = OptExcInfo  # noqa: Y047  # TODO: obsolete, remove fall
 
 # Intentionally omits one deprecated and one optional method of `importlib.abc.MetaPathFinder`
 class _MetaPathFinder(Protocol):
-    def find_spec(
-        self, __fullname: str, __path: Sequence[str] | None, __target: ModuleType | None = ...
-    ) -> ModuleSpec | None: ...
+    def find_spec(self, __fullname: str, __path: Sequence[str] | None, __target: ModuleType | None = ...) -> ModuleSpec | None: ...
 
 # ----- sys variables -----
 if sys.platform != "win32":
@@ -256,7 +261,14 @@ def exc_info() -> OptExcInfo: ...
 if sys.version_info >= (3, 11):
     def exception() -> BaseException | None: ...
 
-def exit(__status: _ExitCode = None) -> NoReturn: ...
+def exit(__status: _ExitCode = None) -> NoReturn:
+    """
+    Terminate current program with a given exit code. Underlyingly, this
+    function raise as `SystemExit` exception. If an argument is given, its
+    value given as an argument to `SystemExit`.
+    """
+    ...
+
 def getallocatedblocks() -> int: ...
 def getdefaultencoding() -> str: ...
 
@@ -272,7 +284,16 @@ def getswitchinterval() -> float: ...
 def getprofile() -> ProfileFunction | None: ...
 def setprofile(profilefunc: ProfileFunction | None) -> None: ...
 def gettrace() -> TraceFunction | None: ...
-def settrace(tracefunc: TraceFunction | None) -> None: ...
+def settrace(tracefunc: TraceFunction | None) -> None:
+    """
+    Enable tracing of bytecode execution.  For details see the `CPython
+    documentation `<https://docs.python.org/3/library/sys.html#sys.settrace>.
+
+    This function requires a custom MicroPython build as it is typically not
+    present in pre-built firmware (due to it affecting performance).  The relevant
+    configuration option is *MICROPY_PY_SYS_SETTRACE*.
+    """
+    ...
 
 if sys.platform == "win32":
     # A tuple of length 5, even though it has more than 5 attributes.
