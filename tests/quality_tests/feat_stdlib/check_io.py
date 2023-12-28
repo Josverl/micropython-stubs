@@ -1,11 +1,10 @@
 import io
-
-from typing import Any, IO, Optional
+from typing import IO, Any, Optional
 
 alloc_size = 512
 
-buffer = io.StringIO(alloc_size) # stub-ignore: version=<1.18.0
-buffer = io.BytesIO(alloc_size) # stub-ignore: version=<1.18.0
+buffer_1 = io.StringIO(alloc_size) # stub-ignore: version=<1.18.0
+buffer_2 = io.BytesIO(alloc_size) # stub-ignore: version=<1.18.0
 
 stream = open("file")
 
