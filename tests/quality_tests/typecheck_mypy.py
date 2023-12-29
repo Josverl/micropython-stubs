@@ -135,8 +135,11 @@ def run_mypy(path: Path):
         with chdir_mgr(path):
             # ref https://mypy.readthedocs.io/en/latest/extending_mypy.html#integrating-mypy-into-another-python-application
             result = mypy_api.run(cmd)
+            errors = result[1]
+            if errors:
+                raise Exception(f"mypy failed in {path} with\n{errors}")
             return result[0]
-    except subprocess.CalledProcessError as e:
+    except Exception as e:
         print(e)
 
 # convert from gitlab to pyright format
