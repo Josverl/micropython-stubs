@@ -13,7 +13,7 @@ import pytest
 from mypy_gitlab_code_quality import generate_report as gitlab_report
 from packaging.version import Version
 
-from tests.quality_tests.typecheck_mypy import check_with_mypy
+from typecheck_mypy import check_with_mypy
 
 log = logging.getLogger()
 

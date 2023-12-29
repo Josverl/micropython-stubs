@@ -106,7 +106,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
         "linter",
         ["pyright", "mypy"],
 )
-def test_ports_boards_typecheck(
+def test_typecheck(
     linter:str,
     stub_source: str,
     version: str,
