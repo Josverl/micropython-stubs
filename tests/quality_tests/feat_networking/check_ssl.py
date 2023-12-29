@@ -45,7 +45,8 @@ def create_ssl_context(cert, key, **kwargs):
 
         def accept(self):
             client, addr = self.sock.accept()
-            return (ssl.wrap_socket(client, cert=cert, key=key, **self.kwargs), # type: ignore : TODO add kwargs to stub definition
+            # TODO: add kwargs to ssl.wrap_socket stub definition
+            return (ssl.wrap_socket(client, cert=cert, key=key, **self.kwargs), # type: ignore 
                     addr)
 
         def close(self):

@@ -2,9 +2,11 @@
 micropython-stubber
 
 # for quality reporting
-pyright==1.1.341
 pytest
+pyright==1.1.341
+mypy
 fasteners 
 python-dotenv
 pydocstyle
 loguru
+mypy_gitlab_code_quality

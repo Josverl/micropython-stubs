@@ -10,14 +10,14 @@
 # includes an implementation of the secret store. See
 # https://github.com/micropython/micropython-lib/tree/master/micropython/bluetooth/aioble
 
-import bluetooth
+import binascii
+import json
 import random
 import struct
 import time
-import json
-import binascii
-from ble_advertising import advertising_payload
 
+import bluetooth
+from ble_advertising import advertising_payload
 from micropython import const
 
 _IRQ_CENTRAL_CONNECT = const(1)
@@ -127,7 +127,8 @@ class BLETemperature:
             return True
         elif event == _IRQ_GET_SECRET:
             sec_type, index, key = data
-            print("get secret:", sec_type, index, bytes(key) if key else None)
+            reveal_type(key) # mypy and pylance see this differently; tuple[Any, builtins.bytes] vs Any
+            print("get secret:", sec_type, index, bytes(key) if key else None) # stubs-ignore : linter=="mypy"
             if key is None:
                 i = 0
                 for (t, _key), value in self._secrets.items():
@@ -137,7 +138,7 @@ class BLETemperature:
                         i += 1
                 return None
             else:
-                key = sec_type, bytes(key)
+                key = sec_type, bytes(key) # stubs-ignore : linter=="mypy"
                 return self._secrets.get(key, None)
 
     def set_temperature(self, temp_deg_c, notify=False, indicate=False):

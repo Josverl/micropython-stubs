@@ -13,7 +13,7 @@
     "ignore": [
         "**/typings"
     ],
-    "pythonVersion": "3.8",
+    // "pythonVersion": "3.8",
     "pythonPlatform": "Linux",
     "verboseOutput": false,
     "typeCheckingMode": "basic",

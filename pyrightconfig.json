@@ -1,7 +1,7 @@
 // https://github.com/microsoft/pyright/blob/main/docs/configuration.md
 {
     "include": [
-        "stubs",
+        "tests", "docs"
     ],
     "exclude": [
         // other artefacts
@@ -22,8 +22,8 @@
         //
     ],
     "ignore": [
-        "tests",
-        "docs",
+        // "tests",
+        // "docs",
         // see also : https://github.com/Josverl/micropython-stubs/issues/412
         // webrepl
         "**/webrepl.py",

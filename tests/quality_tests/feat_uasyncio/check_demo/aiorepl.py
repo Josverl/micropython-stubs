@@ -123,7 +123,7 @@ async def task(g=None, prompt="--> "):
                         sys.stdout.write("\n")
                         if cmd:
                             # Push current command.
-                            hist[hist_i] = cmd
+                            hist[hist_i] = cmd # type: ignore
                             # Increase history length if possible, and rotate ring forward.
                             hist_n = min(_HISTORY_LIMIT - 1, hist_n + 1)
                             hist_i = (hist_i + 1) % _HISTORY_LIMIT
@@ -162,7 +162,7 @@ async def task(g=None, prompt="--> "):
                         key = await s.read(2)
                         if key in ("[A", "[B"):
                             # Stash the current command.
-                            hist[(hist_i - hist_b) % _HISTORY_LIMIT] = cmd # type: ignore - irrelevant
+                            hist[(hist_i - hist_b) % _HISTORY_LIMIT] = cmd # type: ignore
                             # Clear current command.
                             b = "\x08" * len(cmd) # type: ignore
                             sys.stdout.write(b)

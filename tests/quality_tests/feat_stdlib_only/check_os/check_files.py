@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 
 def listdir(path=".", sub=False, JSON=True, gethash=False):
     # Lists the file information of a folder
-    li :List[dict]= []  # type: List[dict]
+    li :List[dict]= []
     if path == ".":  # Get current folder name
         path = os.getcwd()
     files = os.listdir(path)
