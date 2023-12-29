@@ -11,7 +11,7 @@ hold/accumulate various objects.
 import sys
 from _collections_abc import dict_items, dict_keys, dict_values
 from _typeshed import Incomplete, SupportsItems, SupportsKeysAndGetItem, SupportsRichComparison, SupportsRichComparisonT
-from typing import Optional, Any, Generic, NoReturn, TypeVar, overload
+from typing import Any, Generic, NoReturn, TypeVar, overload
 from typing_extensions import NamedTuple as stdlib_NamedTuple, Self, SupportsIndex, final
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
 
@@ -35,7 +35,7 @@ if sys.version_info >= (3, 10):
 else:
     from _collections_abc import *
 
-__all__ = ['OrderedDict', 'defaultdict', 'deque', 'namedtuple']
+__all__ = ["OrderedDict", "defaultdict", "deque", "namedtuple"]
 
 _S = TypeVar("_S")
 _T = TypeVar("_T")

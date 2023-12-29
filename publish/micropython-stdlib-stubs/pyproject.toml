@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-stdlib-stubs"
-version = "1.1.1"
+version = "1.1.1a3"
 description = "Micropython stdlib is a reduced and augmented copy of typeshed's stdlib for use by MicroPython stub packages"
 authors = ["josverl <josverl@users.noreply.github.com>"]
 license = "MIT"

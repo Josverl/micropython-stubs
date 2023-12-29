@@ -2,7 +2,10 @@
 import time
 
 import ds18x20
+import onewire
+from machine import Pin
 
+ow = onewire.OneWire(Pin(12))
 ds = ds18x20.DS18X20(ow)
 roms = ds.scan()
 ds.convert_temp()

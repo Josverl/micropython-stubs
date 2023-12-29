@@ -175,9 +175,7 @@ if sys.version_info >= (3, 10):
         __coro_or_future5: _FutureLike[_T5],
         *,
         return_exceptions: bool,
-    ) -> Future[
-        tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException, _T5 | BaseException]
-    ]: ...
+    ) -> Future[tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException, _T5 | BaseException]]: ...
     @overload
     def gather(  # type: ignore[overload-overlap]
         __coro_or_future1: _FutureLike[_T1],
@@ -337,9 +335,7 @@ else:
 
 if sys.version_info >= (3, 11):
     @overload
-    async def wait(
-        fs: Iterable[_FT], *, timeout: float | None = None, return_when: str = "ALL_COMPLETED"
-    ) -> tuple[set[_FT], set[_FT]]: ...
+    async def wait(fs: Iterable[_FT], *, timeout: float | None = None, return_when: str = "ALL_COMPLETED") -> tuple[set[_FT], set[_FT]]: ...
     @overload
     async def wait(
         fs: Iterable[Task[_T]], *, timeout: float | None = None, return_when: str = "ALL_COMPLETED"
@@ -403,9 +399,7 @@ class Task(Future[_T_co]):  # type: ignore[type-var]  # pyright: ignore[reportGe
             context: Context | None = None,
         ) -> None: ...
     elif sys.version_info >= (3, 8):
-        def __init__(
-            self, coro: _TaskCompatibleCoro[_T_co], *, loop: AbstractEventLoop = ..., name: str | None = ...
-        ) -> None: ...
+        def __init__(self, coro: _TaskCompatibleCoro[_T_co], *, loop: AbstractEventLoop = ..., name: str | None = ...) -> None: ...
     else:
         def __init__(self, coro: _TaskCompatibleCoro[_T_co], *, loop: AbstractEventLoop = ...) -> None: ...
     if sys.version_info >= (3, 8):

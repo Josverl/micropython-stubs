@@ -64,9 +64,7 @@ _ProtocolFactory: TypeAlias = Callable[[], BaseProtocol]
 _SSLContext: TypeAlias = bool | None | ssl.SSLContext
 
 class _TaskFactory(Protocol):
-    def __call__(
-        self, __loop: AbstractEventLoop, __factory: Coroutine[Any, Any, _T] | Generator[Any, None, _T]
-    ) -> Future[_T]: ...
+    def __call__(self, __loop: AbstractEventLoop, __factory: Coroutine[Any, Any, _T] | Generator[Any, None, _T]) -> Future[_T]: ...
 
 class Handle:
     _cancelled: bool
@@ -132,9 +130,7 @@ class AbstractEventLoop:
     # Methods scheduling callbacks.  All these return Handles.
     if sys.version_info >= (3, 9):  # "context" added in 3.9.10/3.10.2
         @abstractmethod
-        def call_soon(
-            self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None
-        ) -> Handle: ...
+        def call_soon(self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None) -> Handle: ...
         @abstractmethod
         def call_later(
             self, delay: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None
@@ -159,9 +155,7 @@ class AbstractEventLoop:
     # Tasks methods
     if sys.version_info >= (3, 11):
         @abstractmethod
-        def create_task(
-            self, coro: _CoroutineLike[_T], *, name: str | None = None, context: Context | None = None
-        ) -> Task[_T]: ...
+        def create_task(self, coro: _CoroutineLike[_T], *, name: str | None = None, context: Context | None = None) -> Task[_T]: ...
     elif sys.version_info >= (3, 8):
         @abstractmethod
         def create_task(self, coro: _CoroutineLike[_T], *, name: str | None = None) -> Task[_T]: ...
@@ -506,13 +500,9 @@ class AbstractEventLoop:
     ) -> tuple[DatagramTransport, _ProtocolT]: ...
     # Pipes and subprocesses.
     @abstractmethod
-    async def connect_read_pipe(
-        self, protocol_factory: Callable[[], _ProtocolT], pipe: Any
-    ) -> tuple[ReadTransport, _ProtocolT]: ...
+    async def connect_read_pipe(self, protocol_factory: Callable[[], _ProtocolT], pipe: Any) -> tuple[ReadTransport, _ProtocolT]: ...
     @abstractmethod
-    async def connect_write_pipe(
-        self, protocol_factory: Callable[[], _ProtocolT], pipe: Any
-    ) -> tuple[WriteTransport, _ProtocolT]: ...
+    async def connect_write_pipe(self, protocol_factory: Callable[[], _ProtocolT], pipe: Any) -> tuple[WriteTransport, _ProtocolT]: ...
     @abstractmethod
     async def subprocess_shell(
         self,

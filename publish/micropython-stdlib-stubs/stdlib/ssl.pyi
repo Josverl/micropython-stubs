@@ -14,7 +14,7 @@ import socket
 import sys
 from _typeshed import Incomplete, ReadableBuffer, StrOrBytesPath, WriteableBuffer
 from collections.abc import Callable, Iterable
-from typing import IO, Any, NamedTuple, overload
+from typing import Any, NamedTuple, overload
 from typing_extensions import Literal, Never, Self, TypeAlias, TypedDict, final
 from stdlib.ssl import *
 

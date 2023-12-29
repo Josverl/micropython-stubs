@@ -7,7 +7,7 @@ import micropython
 
 @micropython.viper
 def foo(self, arg: int) -> int:
-    buf = ptr8(self.linebuf)  # self.linebuf is a bytearray or bytes object # type: ignore #
+    buf = ptr8(self.linebuf)  # type: ignore 
     for x in range(20, 30):
         bar = buf[x]  # Access a data item through the pointer
         # code omitted

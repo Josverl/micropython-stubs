@@ -1,0 +1,22 @@
+
+# mypy global options:
+
+[tool.mypy]
+platform = "linux"
+mypy_path = "typings"
+files = "*.py"
+exclude = [
+    "typings[\\/].*",  # TOML basic string (double-quotes, backslash and other characters need escaping)
+]
+
+follow_imports = "silent"
+follow_imports_for_stubs = true
+no_site_packages = true
+check_untyped_defs = true
+disable_error_code = ["no-redef","assignment"] 
+
+# snippets may re-use the same variable names
+allow_redefinition = true
+
+# warn_unused_configs = true
+# show_error_context = true

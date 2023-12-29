@@ -1,14 +1,9 @@
-import json
 import logging
-import platform
-import re
-import subprocess
 from pathlib import Path
-from typing import Dict, List
 
-import fasteners
 import pytest
-from packaging.version import Version
+from typecheck import (copy_config_files, port_and_board, run_typechecker,
+                       stub_ignore)
 
 # only snippets tests
 pytestmark = pytest.mark.snippets
@@ -57,12 +52,6 @@ VERSIONS = [
 ]
 
 
-def port_and_board(portboard):
-    if "-" in portboard:
-        port, board = portboard.split("-", 1)
-    else:
-        port, board = portboard, ""
-    return port, board
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
@@ -74,6 +63,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
     """
     argnames = "stub_source, version, portboard, feature"
     args_lst = []
+    copy_config_files()
     for src in SOURCES:
         for version in VERSIONS:
             # skip latest for pypi
@@ -106,130 +96,18 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
     metafunc.parametrize(argnames, args_lst, scope="session")
 
 
-def filter_issues(issues: List[Dict], version: str, portboard: str = ""):
-    port, board = portboard.split("-") if "-" in portboard else (portboard, "")
-    for issue in issues:
-        try:
-            filename = Path(issue["file"])
-            with open(filename, "r") as f:
-                lines = f.readlines()
-            line = issue["range"]["start"]["line"]
-            if len(lines) > line:
-                theline: str = lines[line]
-                # check if the line contains a stubs-ignore comment
-                if stub_ignore(theline, version, port, board):
-                    issue["severity"] = "information"
-        except KeyError as e:
-            log.warning(f"Could not process issue: {e} \n{json.dumps(issues, indent=4)}")
-    return issues
 
 
-def stub_ignore(line, version, port, board, linter="pyright", is_source=True) -> bool:
-    """
-    Check if a typecheck error should be ignored based on the version of micropython , the port and the board
-    the same syntax can be used in the source file or in the test case condition :
 
-    format of the source line (is_source=True)
-        import espnow # stubs-ignore: version<1.21.0 or not port.startswith('esp')
-
-    or condition (is_source=False) line:
-        version<1.21.0
-        skip version<1.21.0 # skip prefix to helps human understanding / reading
-        skip port.startswith('esp')
-    """
-    if is_source:
-        comment = line.rsplit("#")[-1].strip()
-        if not (comment.startswith("stubs-ignore") and ":" in comment):
-            return False
-        id, condition = comment.split(":")
-        if id.strip() != "stubs-ignore":
-            return False
-        condition = condition.strip()
-    else:
-        condition = line.strip()
-    if condition.lower().startswith("skip"):
-        condition = condition[4:].strip()
-    context = {}
-    context["Version"] = Version
-    context["version"] = Version(version) if not version in ("latest", "-") else Version("9999.99.99")
-    context["port"] = port
-    context["board"] = board
-    context["linter"] = linter
-
-    try:
-        # transform : version>=1.20.1 to version>=Version('1.20.1') using a regular expression
-        condition = re.sub(r"(\d+\.\d+\.\d+)", r"Version('\1')", condition.strip())
-        result = eval(condition, context)
-        # print(f'stubs-ignore: {condition} -> {"Skip" if result else "Process"}')
-    except Exception as e:
-        log.warning(f"Incorrect stubs-ignore condition: `{condition}`\ncaused: {e}")
-        result = False
-
-    return bool(result)
-
-
-def run_pyright( snip_path, version, portboard, pytestconfig):
-    """
-    Run Pyright static type checker a path with validation code
-
-    Args:
-        snip_path (Path): The path to the project.
-        version (str): The version of the stubs .
-        portboard (str): The portboard of the project.
-        pytestconfig: The pytest configuration object.
-
-    Returns:
-        tuple: A tuple containing the information message and the number of errors found.
-    """
-
-    cmd = f"pyright --project {snip_path.as_posix()} --outputjson"
-    typecheck_lock = fasteners.InterProcessLock(snip_path / "typecheck_lock.file")
-
-    use_shell = platform.system() != "Windows"
-    results = {}
-    with typecheck_lock:
-        try:
-            # run pyright in the folder with the check_scripts to allow modules to import each other.
-            result = subprocess.run(cmd, shell=use_shell, capture_output=True, cwd=snip_path.as_posix())   
-        except OSError as e:
-            raise e
-        if result.returncode >= 2:
-            assert (
-                0
-            ), f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
-        try:
-            results = json.loads(result.stdout)
-        except Exception:
-            assert 0, "Could not load pyright's JSON output..."
-
-    issues: List[Dict] = results["generalDiagnostics"]
-    # for each of the issues - retrieve the line in the source file to inspect if has a trailing comment
-    issues = filter_issues(issues, version, portboard)
-
-    # log the errors  in the issues list so that pytest will capture the output
-    for issue in issues:
-        # log file:line:column?: message
-        try:
-            relative = Path(issue["file"]).relative_to(pytestconfig.rootpath).as_posix()
-        except Exception:
-            relative = issue["file"]
-        msg = f"{relative}:{issue['range']['start']['line']+1}:{issue['range']['start']['character']} {issue['message']}"
-        # caplog.messages.append(msg)
-        if issue["severity"] == "error":
-            log.error(msg)
-        elif issue["severity"] == "warning":
-            log.warning(msg)
-        else:
-            log.info(msg)
-
-    info_msg = f"Pyright found {results['summary']['errorCount']} errors and {results['summary']['warningCount']} warnings in {results['summary']['filesAnalyzed']} files."
-    errorcount = len([i for i in issues if i["severity"] == "error"])
-    return info_msg,errorcount
 
     # return issues
 
-
-def test_ports_boards_pyright(
+@pytest.mark.parametrize(
+        "linter",
+        ["pyright", "mypy"],
+)
+def test_typecheck(
+    linter:str,
     stub_source: str,
     version: str,
     portboard: str,
@@ -243,7 +121,7 @@ def test_ports_boards_pyright(
         FileNotFoundError(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
 
-    log.info(f"PYRIGHT {portboard}, {feature} {version} from {stub_source}")
+    log.info(f"Typecheck {linter} on {portboard}, {feature} {version} from {stub_source}")
 
-    info_msg, errorcount = run_pyright(snip_path, version, portboard, pytestconfig)
+    info_msg, errorcount = run_typechecker(snip_path, version, portboard, pytestconfig, linter=linter)
     assert errorcount == 0, info_msg

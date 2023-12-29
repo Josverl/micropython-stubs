@@ -12,7 +12,7 @@ def is_tuple(imp: Tuple):
 
 # indirect check if sys implementation has a base class of a tuple
 # there must be a cleaner way to do this but I can't find it
-is_tuple(impl)
+is_tuple(impl) # type: ignore # TODO 
 
 
 assert_type(impl, NamedTuple)  # type: ignore # TODO sys.implementation is not a tuple

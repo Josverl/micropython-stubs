@@ -14,6 +14,7 @@ from typing import List, Union
 
 from loguru import logger as log
 from stubber.codemod.enrich import enrich_folder
+from stubber.utils import do_post_processing
 from stubber.utils.config import CONFIG
 
 modules_to_keep = [
@@ -147,6 +148,12 @@ def merge_docstubs_into_stdlib(*, dist_stdlib_path: Path, docstubs_path: Path, d
             all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
         ),
         Boost(
+            "sys",
+            "sys.pyi",
+            "sys/__init__.pyi",
+            # all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
+        ),
+        Boost(
             "ssl",
             "ssl.pyi",
             "ssl.pyi",
@@ -181,7 +188,7 @@ def update_public_interface(boost: Boost, module_path: Path):
         boost (Boost): The Boost object containing the module information.
         module_path (Path): The path to the module file.
     """
-    #TODO: fragile, replace by libcst codemod
+    # TODO: fragile, replace by libcst codemod
     try:
         with open(module_path, "r") as f:
             lines = f.readlines()
@@ -205,9 +212,10 @@ def update():
     typeshed_path = rootpath / "repos/typeshed"
     update_stdlib_from_typeshed(dist_stdlib_path, typeshed_path)
 
-    merge_docstubs_into_stdlib(
-        dist_stdlib_path=dist_stdlib_path, docstubs_path=docstubs_path, dry_run=False
-    )
+    merge_docstubs_into_stdlib(dist_stdlib_path=dist_stdlib_path, docstubs_path=docstubs_path, dry_run=False)
+
+    # tidy up the stubs
+    do_post_processing([dist_stdlib_path], stubgen=False, black=True, autoflake=True)
 
     subprocess.check_call(["poetry", "build"], cwd=dist_stdlib_path)
 

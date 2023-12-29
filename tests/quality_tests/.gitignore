@@ -1,0 +1,9 @@
+# do not check-in folder specific typechecker config
+check_*/pyproject.toml
+check_*/mypy.ini
+check_*/pyrightconfig.json
+
+feat_*/pyproject.toml
+feat_*/mypy.ini
+feat_*/pyrightconfig.json
+

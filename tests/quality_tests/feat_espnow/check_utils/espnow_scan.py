@@ -39,7 +39,8 @@ def ping_peer(enow, peer, channel, num_pings, verbose):
     if set_channel(channel) is None:
         return 0.0
     time.sleep(CHANNEL_SETTLING_TIME)
-    msg = PING_MSG + bytes([channel])  # type: ignore #TODO Operator "+" not supported for types "Literal[b"ping"]" and "bytes"
+    msg = PING_MSG + bytes([channel])  # type: ignore
+    #TODO Operator "+" not supported for types "Literal[b"ping"]" and "bytes"
     frac = sum((enow.send(peer, msg) for _ in range(num_pings))) / num_pings
     if verbose:
         print(f"Channel {channel:2d}: ping response rate = {frac * 100:3.0f}%.")

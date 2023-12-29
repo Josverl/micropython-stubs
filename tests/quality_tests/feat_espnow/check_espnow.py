@@ -9,6 +9,7 @@ sta = network.WLAN(network.STA_IF)  # Or network.AP_IF
 sta.active(True)
 sta.disconnect()  # For ESP8266
 
+reveal_type(espnow.ESPNow)
 e = espnow.ESPNow()
 e.active(True)
 peer = b"\xbb\xbb\xbb\xbb\xbb\xbb"  # MAC address of peer's wifi interface
