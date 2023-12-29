@@ -4,7 +4,7 @@ micropython-stubber
 # for quality reporting
 pytest
 pyright==1.1.341
-mypy==1.6.1
+mypy
 fasteners 
 python-dotenv
 pydocstyle
