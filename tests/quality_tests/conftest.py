@@ -212,7 +212,7 @@ def copy_type_stubs(
     with cache_lock:
         with typecheck_lock:
             log.trace(f"- copy_type_stubs: {version}, {portboard} to {feature}")
-            print(f"\n - copy_type_stubs : {version}, {portboard} to {feature}")
+            # print(f"\n - copy_type_stubs : {version}, {portboard} to {feature}")
             if not snip_path or not snip_path.exists():
                 # skip if no feature folder
                 pytest.skip(f"no feature folder for {feature}")
@@ -220,7 +220,7 @@ def copy_type_stubs(
             if typings_path.exists():
                 shutil.rmtree(typings_path, ignore_errors=True)
             shutil.copytree(type_stub_cache_path, typings_path)
-            print(f" - copied to {typings_path}")
+            # print(f" - copied to {typings_path}")
 
 
 def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config):

@@ -141,7 +141,10 @@ def run_typechecker( snip_path:Path, version:str, portboard:str, pytestconfig:py
             relative = Path(issue["file"]).relative_to(pytestconfig.rootpath).as_posix()
         except Exception:
             relative = issue["file"]
-        msg = f"{relative}:{issue['range']['start']['line']+1}:{issue['range']['start']['character']} {issue['message']}"
+        # try to make a VSCode clickable link in the pytest output
+        # Python style links: From "<path>", line <line>
+        # <path>(<line>,<column>):<message>
+        msg = f"\"{relative}\"({issue['range']['start']['line']+1},{issue['range']['start']['character']}): {issue['message']}"
         # caplog.messages.append(msg)
         if issue["severity"] == "error":
             log.error(msg)

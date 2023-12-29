@@ -1,13 +1,15 @@
 import json
 import logging
+import os
 import shutil
 import subprocess
 import sys
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Dict, List
-from cachetools import cached, TTLCache
-from mypy import api as mypy_api
 
+from cachetools import TTLCache, cached
+from mypy import api as mypy_api
 from mypy_gitlab_code_quality import generate_report as gitlab_report
 
 # Pyright JSON format
@@ -79,8 +81,18 @@ def check_with_mypy(snip_path):
 
 
 def mypy_patch(check_path):
+    """
+    Remove the files that mypy is allergic to from the typings folder in the  path.
+
+    Args:
+        check_path (Path): The path to the snippets folder.
+
+    Raises:
+        Exception: If the check_path does not exist.
+
+    """
     if not check_path.exists():
-        Exception(f"Path {check_path} not found")
+        raise Exception(f"Path {check_path} not found")
 
     for f in ("typings/sys.pyi",):
         file = check_path / f
@@ -93,27 +105,52 @@ def mypy_patch(check_path):
             elif file.is_dir():
                 shutil.rmtree(file)
 
+@contextmanager
+def chdir_mgr(path):
+    """
+    Context manager that changes the current working directory to the specified path,
+    and then restores the original working directory when the context is exited.
+    """
+    oldpwd = os.getcwd()
+    os.chdir(path)
+    try:
+        yield
+    finally:
+        os.chdir(oldpwd)
 
 def run_mypy(path: Path):
+    """
+    Run mypy on the specified path.
+
+    Args:
+        path (Path): The path to run mypy on.
+
+    Returns:
+        str: The result of running mypy.
+    """
     print(f"Running mypy in {path}")
     mypy_patch(path)
-    cmd = [ sys.executable, "-m", "mypy", "--no-error-summary", "--no-color","--show-absolute-path", "."]
+    cmd = ["--no-error-summary", "--no-color", "--show-absolute-path", "."]
     try:
-        output = subprocess.run(
-            cmd,
-            # check=True,
-            cwd=path,
-            capture_output=True,
-            text=True,
-            shell=False,
-        )
-        return output.stdout
+        with chdir_mgr(path):
+            # ref https://mypy.readthedocs.io/en/latest/extending_mypy.html#integrating-mypy-into-another-python-application
+            result = mypy_api.run(cmd)
+            return result[0]
     except subprocess.CalledProcessError as e:
         print(e)
 
 # convert from gitlab to pyright format
 
 def gitlab_to_pyright(report):
+    """
+    Convert GitLab code quality report to Pyright format.
+
+    Args:
+        report (list): List of issues from GitLab code quality report.
+
+    Returns:
+        dict: Pyright code quality report in JSON format.
+    """
     pyright_report = json.loads(HEADER)
     pyright_report["version"] = mypy_version()
     pyright_report["generalDiagnostics"] = []
