@@ -13,3 +13,6 @@ print(buf.write(bytearray(16)))  # type: ignore # TODO  stdlib.io "bytearray" 
 
 
 stream.close()
+
+with open("foo.bar", "wb") as f:
+    f.write(b"deadbeef")
