@@ -1,0 +1,66 @@
+"""
+Module: 'time' on micropython-v1.22.0-rp2-ARDUINO_NANO_RP2040_CONNECT
+"""
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
+from _typeshed import Incomplete
+
+
+def ticks_diff(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def ticks_ms(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def ticks_cpu(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def ticks_add(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def time_ns(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def ticks_us(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def time(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def strftime(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def gmtime(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def localtime(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def const(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def sleep_us(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def sleep_ms(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def mktime(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def sleep(*args, **kwargs) -> Incomplete:
+    ...
