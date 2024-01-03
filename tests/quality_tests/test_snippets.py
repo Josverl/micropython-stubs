@@ -45,9 +45,10 @@ PORTBOARD_FEATURES = {
 SOURCES = ["local"] # , "pypi"] # do not pull from PyPI all the time
 VERSIONS = [
     "latest",
+    "v1.22.0",
     "v1.21.0",
     "v1.20.0",
-    "v1.19.1",
+    # "v1.19.1",
     # "v1.18",
 ]
 
