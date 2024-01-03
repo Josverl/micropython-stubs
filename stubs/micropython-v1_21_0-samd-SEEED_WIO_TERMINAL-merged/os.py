@@ -12,11 +12,11 @@ functions.
 ---
 Module: 'os' on micropython-v1.21.0-samd-SEEED_WIO_TERMINAL
 """
-# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
-# Stubber: v1.13.8
-from typing import IO, Iterator, Optional, Tuple, Any
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
 from stdlib.os import *
+from typing import Any, IO, Iterator, Optional, Tuple
 
 
 def stat(path) -> Incomplete:
