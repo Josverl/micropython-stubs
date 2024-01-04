@@ -6,17 +6,17 @@ MicroPython module: https://docs.micropython.org/en/latest/library/sys.html
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 
 ---
-Module: 'sys' on micropython-v1.21.0-stm32-PYBV11
+Module: 'sys' on micropython-v1.22.0-stm32-PYBV11
 """
-# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
-# Stubber: v1.13.8
-from typing import Dict, List, Tuple, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Dict, List, Tuple
 
 platform = "pyboard"  # type: str
 version_info = ()  # type: tuple
 path = []  # type: list
-version = "3.4.0; MicroPython v1.21.0 on 2023-10-06"  # type: str
+version = "3.4.0; MicroPython v1.22.0 on 2023-12-27"  # type: str
 ps1 = ">>> "  # type: str
 ps2 = "... "  # type: str
 byteorder = "little"  # type: str

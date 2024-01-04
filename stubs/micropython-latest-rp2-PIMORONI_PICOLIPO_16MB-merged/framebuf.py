@@ -5,11 +5,14 @@ MicroPython module: https://docs.micropython.org/en/latest/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
+
+---
+Module: 'framebuf' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Optional, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Any, Optional
 
 MONO_HMSB = 4  # type: int
 MONO_HLSB = 3  # type: int
@@ -21,7 +24,7 @@ GS8 = 6  # type: int
 GS4_HMSB = 2  # type: int
 
 
-def FrameBuffer1(*args, **kwargs) -> Any:
+def FrameBuffer1(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -156,8 +159,8 @@ class FrameBuffer:
         """
         ...
 
-    def fill_rect(self, *args, **kwargs) -> Any:
+    def fill_rect(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, buffer, width, height, format, stride=-1, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

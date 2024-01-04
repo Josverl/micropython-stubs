@@ -9,10 +9,10 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
 floating-point support).
 """
-from typing import List, Optional, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, List, Optional
 
-class array:
+class array(List):
     """
     Create array with elements of given type. Initial contents of the
     array are given by *iterable*. If it is not provided, an empty
@@ -30,4 +30,4 @@ class array:
         Append new element *val* to the end of array, growing it.
         """
         ...
-    def __init__(self, typecode, iterable: Optional[Any] = None) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...

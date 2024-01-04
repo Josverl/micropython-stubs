@@ -632,7 +632,7 @@ class Pin:
         ...
 
     class board:
-        LCD_YU: Incomplete
+        SDA0: Incomplete
         QSPI_SCK: Incomplete
         QSPI_D3: Incomplete
         QSPI_D2: Incomplete
@@ -648,24 +648,25 @@ class Pin:
         QSPI_D0: Incomplete
         QSPI_CS: Incomplete
         MOSI: Incomplete
-        SDA0: Incomplete
+        LCD_YU: Incomplete
+        SDA1: Incomplete
+        SWITCH_Y: Incomplete
         SWITCH_X: Incomplete
         SWITCH_U: Incomplete
-        SWITCH_B: Incomplete
-        SWITCH_Y: Incomplete
+        SWITCH_Z: Incomplete
+        USB_DP: Incomplete
         USB_DM: Incomplete
         TX: Incomplete
-        SWITCH_Z: Incomplete
-        SWDIO: Incomplete
+        SWITCH_B: Incomplete
+        SD_MISO: Incomplete
         SD_DET: Incomplete
         SD_CS: Incomplete
-        SDA1: Incomplete
-        SD_MISO: Incomplete
+        SD_MOSI: Incomplete
+        SWDIO: Incomplete
         SWCLK: Incomplete
         SD_SCK: Incomplete
-        SD_MOSI: Incomplete
-        USB_DP: Incomplete
-        LCD_YD: Incomplete
+        USB_SOF: Incomplete
+        ENABLE_5V: Incomplete
         BUTTON_2: Incomplete
         BUTTON_1: Incomplete
         A8_D8: Incomplete
@@ -681,7 +682,8 @@ class Pin:
         A6_D6: Incomplete
         A5_D5: Incomplete
         A4_D4: Incomplete
-        ENABLE_5V: Incomplete
+        LCD_YD: Incomplete
+        GPCLK0: Incomplete
         LCD_MOSI: Incomplete
         LCD_MISO: Incomplete
         LCD_D_C: Incomplete
@@ -690,13 +692,13 @@ class Pin:
         LCD_XL: Incomplete
         LCD_SCK: Incomplete
         LCD_CS: Incomplete
+        I2C_BCLK: Incomplete
         GPCLK2: Incomplete
         GPCLK1: Incomplete
-        GPCLK0: Incomplete
-        I2C_BCLK: Incomplete
+        I2S_LRCLK: Incomplete
+        LCD_BACKLIGHT: Incomplete
         I2S_SDOUT: Incomplete
         I2S_SDIN: Incomplete
-        I2S_LRCLK: Incomplete
         def __init__(self, *argv, **kwargs) -> None: ...
 
     class cpu:

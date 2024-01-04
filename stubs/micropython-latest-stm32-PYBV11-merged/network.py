@@ -37,12 +37,12 @@ Host: micropython.org
     s.close()
 
 ---
-Module: 'network' on micropython-v1.21.0-stm32-PYBV11
+Module: 'network' on micropython-v1.22.0-stm32-PYBV11
 """
-# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
-# Stubber: v1.13.8
-from typing import List, Optional, Tuple, Union, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Any, List, Optional, Tuple, Union
 
 STA_IF = 0  # type: int
 AP_IF = 1  # type: int

@@ -13,12 +13,12 @@ for more information, and `pico-micropython-examples
 for example code.
 
 ---
-Module: '_rp2' on micropython-v1.21.0-rp2-RPI_PICO_W
+Module: '_rp2' on micropython-v1.22.0-rp2-RPI_PICO_W
 """
-# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.13.8
-from typing import Optional, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Any, Optional
 
 
 def country(*args, **kwargs) -> Incomplete:
@@ -62,68 +62,23 @@ class Flash:
         ...
 
 
-class PIO:
-    """
-    Gets the PIO instance numbered *id*. The RP2040 has two PIO instances,
-    numbered 0 and 1.
-
-    Raises a ``ValueError`` if any other argument is provided.
-    """
-
-    JOIN_TX = 1  # type: int
-    JOIN_NONE = 0  # type: int
-    JOIN_RX = 2  # type: int
-    SHIFT_LEFT = 0  # type: int
-    OUT_HIGH = 3  # type: int
-    OUT_LOW = 2  # type: int
-    SHIFT_RIGHT = 1  # type: int
-    IN_LOW = 0  # type: int
-    IRQ_SM3 = 2048  # type: int
-    IN_HIGH = 1  # type: int
-    IRQ_SM2 = 1024  # type: int
-    IRQ_SM0 = 256  # type: int
-    IRQ_SM1 = 512  # type: int
-
-    def state_machine(self, id, program, *args, **kwargs) -> Incomplete:
-        """
-        Gets the state machine numbered *id*. On the RP2040, each PIO instance has
-        four state machines, numbered 0 to 3.
-
-        Optionally initialize it with a *program*: see `StateMachine.init`.
-
-        >>> rp2.PIO(1).state_machine(3)
-        StateMachine(7)
-        """
+class DMA:
+    def irq(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def remove_program(self, program: Optional[Any] = None) -> None:
-        """
-        Remove *program* from the instruction memory of this PIO instance.
-
-        If no program is provided, it removes all programs.
-
-        It is not an error to remove a program which has already been removed.
-        """
+    def unpack_ctrl(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def irq(self, handler=None, trigger=IRQ_SM0, hard=False) -> Incomplete:
-        """
-        Returns the IRQ object for this PIO instance.
-
-        MicroPython only uses IRQ 0 on each PIO instance. IRQ 1 is not available.
-
-        Optionally configure it.
-        """
+    def pack_ctrl(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def add_program(self, program) -> Incomplete:
-        """
-        Add the *program* to the instruction memory of this PIO instance.
+    def close(self, *args, **kwargs) -> Incomplete:
+        ...
 
-        The amount of memory available for programs on each PIO instance is
-        limited. If there isn't enough space left in the PIO's program memory
-        this method will raise ``OSError(ENOMEM)``.
-        """
+    def config(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def active(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -283,6 +238,74 @@ class StateMachine:
         True
         >>> sm.active(0)
         False
+        """
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class PIO:
+    """
+    Gets the PIO instance numbered *id*. The RP2040 has two PIO instances,
+    numbered 0 and 1.
+
+    Raises a ``ValueError`` if any other argument is provided.
+    """
+
+    JOIN_TX = 1  # type: int
+    JOIN_NONE = 0  # type: int
+    JOIN_RX = 2  # type: int
+    SHIFT_LEFT = 0  # type: int
+    OUT_HIGH = 3  # type: int
+    OUT_LOW = 2  # type: int
+    SHIFT_RIGHT = 1  # type: int
+    IN_LOW = 0  # type: int
+    IRQ_SM3 = 2048  # type: int
+    IN_HIGH = 1  # type: int
+    IRQ_SM2 = 1024  # type: int
+    IRQ_SM0 = 256  # type: int
+    IRQ_SM1 = 512  # type: int
+
+    def state_machine(self, id, program, *args, **kwargs) -> Incomplete:
+        """
+        Gets the state machine numbered *id*. On the RP2040, each PIO instance has
+        four state machines, numbered 0 to 3.
+
+        Optionally initialize it with a *program*: see `StateMachine.init`.
+
+        >>> rp2.PIO(1).state_machine(3)
+        StateMachine(7)
+        """
+        ...
+
+    def remove_program(self, program: Optional[Any] = None) -> None:
+        """
+        Remove *program* from the instruction memory of this PIO instance.
+
+        If no program is provided, it removes all programs.
+
+        It is not an error to remove a program which has already been removed.
+        """
+        ...
+
+    def irq(self, handler=None, trigger=IRQ_SM0, hard=False) -> Incomplete:
+        """
+        Returns the IRQ object for this PIO instance.
+
+        MicroPython only uses IRQ 0 on each PIO instance. IRQ 1 is not available.
+
+        Optionally configure it.
+        """
+        ...
+
+    def add_program(self, program) -> Incomplete:
+        """
+        Add the *program* to the instruction memory of this PIO instance.
+
+        The amount of memory available for programs on each PIO instance is
+        limited. If there isn't enough space left in the PIO's program memory
+        this method will raise ``OSError(ENOMEM)``.
         """
         ...
 

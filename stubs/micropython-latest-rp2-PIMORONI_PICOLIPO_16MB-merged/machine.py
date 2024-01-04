@@ -9,17 +9,20 @@ and unrestricted access to and control of hardware blocks on a system
 (like CPU, timers, buses, etc.). Used incorrectly, this can lead to
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
+
+---
+Module: 'machine' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
 WDT_RESET = 3  # type: int
 PWRON_RESET = 1  # type: int
 
 
-def dht_readinto(*args, **kwargs) -> Any:
+def dht_readinto(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -219,13 +222,13 @@ class WDT:
         """
         ...
 
-    def __init__(self, id=0, timeout=5000) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
-mem8: Any  ## <class 'mem'> = <8-bit memory>
-mem32: Any  ## <class 'mem'> = <32-bit memory>
-mem16: Any  ## <class 'mem'> = <16-bit memory>
+mem8: Incomplete  ## <class 'mem'> = <8-bit memory>
+mem32: Incomplete  ## <class 'mem'> = <32-bit memory>
+mem16: Incomplete  ## <class 'mem'> = <16-bit memory>
 
 
 class PWM:
@@ -247,6 +250,18 @@ class PWM:
     *invert* is not available at all ports.
     """
 
+    def duty_u16(self, value: Optional[Any] = None) -> int:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+        ...
+
     def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the current frequency of the PWM output.
@@ -258,15 +273,10 @@ class PWM:
         """
         ...
 
-    def duty_u16(self, value: Optional[Any] = None) -> int:
+    def init(self, *, freq, duty_u16, duty_ns) -> None:
         """
-        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
-        value in the range 0 to 65535 inclusive.
-
-        With no arguments the duty cycle is returned.
-
-        With a single *value* argument the duty cycle is set to that value, measured
-        as the ratio ``value / 65535``.
+        Modify settings for the PWM object.  See the above constructor for details
+        about the parameters.
         """
         ...
 
@@ -286,7 +296,7 @@ class PWM:
         """
         ...
 
-    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0, invert=False) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -316,7 +326,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -466,15 +476,7 @@ class I2C:
         """
         ...
 
-    def __init__(
-        self,
-        id: Union[int, str] = -1,
-        *,
-        scl: Optional[Union[Pin, str]] = None,
-        sda: Optional[Union[Pin, str]] = None,
-        freq=400_000,
-        timeout=50000,
-    ) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -556,7 +558,7 @@ class I2S:
         """
         ...
 
-    def __init__(self, id, *, sck, ws, sd, mck=None, mode, bits, format, rate, ibuf) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -695,7 +697,7 @@ class Pin:
         """
         ...
 
-    def toggle(self, *args, **kwargs) -> Any:
+    def toggle(self, *args, **kwargs) -> Incomplete:
         ...
 
     def off(self) -> None:
@@ -763,47 +765,47 @@ class Pin:
         ...
 
     class cpu:
-        GPIO26: Any  ## <class 'Pin'> = Pin(GPIO26, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO25: Any  ## <class 'Pin'> = Pin(GPIO25, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO27: Any  ## <class 'Pin'> = Pin(GPIO27, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO28: Any  ## <class 'Pin'> = Pin(GPIO28, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO22: Any  ## <class 'Pin'> = Pin(GPIO22, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO24: Any  ## <class 'Pin'> = Pin(GPIO24, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO23: Any  ## <class 'Pin'> = Pin(GPIO23, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO9: Any  ## <class 'Pin'> = Pin(GPIO9, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO7: Any  ## <class 'Pin'> = Pin(GPIO7, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO6: Any  ## <class 'Pin'> = Pin(GPIO6, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO8: Any  ## <class 'Pin'> = Pin(GPIO8, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO29: Any  ## <class 'Pin'> = Pin(GPIO29, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO3: Any  ## <class 'Pin'> = Pin(GPIO3, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO5: Any  ## <class 'Pin'> = Pin(GPIO5, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO4: Any  ## <class 'Pin'> = Pin(GPIO4, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO12: Any  ## <class 'Pin'> = Pin(GPIO12, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO11: Any  ## <class 'Pin'> = Pin(GPIO11, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO13: Any  ## <class 'Pin'> = Pin(GPIO13, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO14: Any  ## <class 'Pin'> = Pin(GPIO14, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO0: Any  ## <class 'Pin'> = Pin(GPIO0, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO10: Any  ## <class 'Pin'> = Pin(GPIO10, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO1: Any  ## <class 'Pin'> = Pin(GPIO1, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO21: Any  ## <class 'Pin'> = Pin(GPIO21, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO2: Any  ## <class 'Pin'> = Pin(GPIO2, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO19: Any  ## <class 'Pin'> = Pin(GPIO19, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO20: Any  ## <class 'Pin'> = Pin(GPIO20, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO15: Any  ## <class 'Pin'> = Pin(GPIO15, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO16: Any  ## <class 'Pin'> = Pin(GPIO16, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO18: Any  ## <class 'Pin'> = Pin(GPIO18, mode=ALT, pull=PULL_DOWN, alt=31)
-        GPIO17: Any  ## <class 'Pin'> = Pin(GPIO17, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO26: Incomplete  ## <class 'Pin'> = Pin(GPIO26, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO25: Incomplete  ## <class 'Pin'> = Pin(GPIO25, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO27: Incomplete  ## <class 'Pin'> = Pin(GPIO27, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO28: Incomplete  ## <class 'Pin'> = Pin(GPIO28, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO22: Incomplete  ## <class 'Pin'> = Pin(GPIO22, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO24: Incomplete  ## <class 'Pin'> = Pin(GPIO24, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO23: Incomplete  ## <class 'Pin'> = Pin(GPIO23, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO9: Incomplete  ## <class 'Pin'> = Pin(GPIO9, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO7: Incomplete  ## <class 'Pin'> = Pin(GPIO7, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO6: Incomplete  ## <class 'Pin'> = Pin(GPIO6, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO8: Incomplete  ## <class 'Pin'> = Pin(GPIO8, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO29: Incomplete  ## <class 'Pin'> = Pin(GPIO29, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO3: Incomplete  ## <class 'Pin'> = Pin(GPIO3, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO5: Incomplete  ## <class 'Pin'> = Pin(GPIO5, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO4: Incomplete  ## <class 'Pin'> = Pin(GPIO4, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO12: Incomplete  ## <class 'Pin'> = Pin(GPIO12, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO11: Incomplete  ## <class 'Pin'> = Pin(GPIO11, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO13: Incomplete  ## <class 'Pin'> = Pin(GPIO13, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO14: Incomplete  ## <class 'Pin'> = Pin(GPIO14, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO0: Incomplete  ## <class 'Pin'> = Pin(GPIO0, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO10: Incomplete  ## <class 'Pin'> = Pin(GPIO10, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO1: Incomplete  ## <class 'Pin'> = Pin(GPIO1, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO21: Incomplete  ## <class 'Pin'> = Pin(GPIO21, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO2: Incomplete  ## <class 'Pin'> = Pin(GPIO2, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO19: Incomplete  ## <class 'Pin'> = Pin(GPIO19, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO20: Incomplete  ## <class 'Pin'> = Pin(GPIO20, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO15: Incomplete  ## <class 'Pin'> = Pin(GPIO15, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO16: Incomplete  ## <class 'Pin'> = Pin(GPIO16, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO18: Incomplete  ## <class 'Pin'> = Pin(GPIO18, mode=ALT, pull=PULL_DOWN, alt=31)
+        GPIO17: Incomplete  ## <class 'Pin'> = Pin(GPIO17, mode=ALT, pull=PULL_DOWN, alt=31)
 
         def __init__(self, *argv, **kwargs) -> None:
             ...
 
     class board:
-        LED: Any  ## <class 'Pin'> = Pin(GPIO25, mode=ALT, pull=PULL_DOWN, alt=31)
+        LED: Incomplete  ## <class 'Pin'> = Pin(GPIO25, mode=ALT, pull=PULL_DOWN, alt=31)
 
         def __init__(self, *argv, **kwargs) -> None:
             ...
 
-    def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
     def __call__(self, x: Optional[Any] = None) -> Incomplete:
@@ -825,25 +827,25 @@ class SoftSPI:
     LSB = 0  # type: int
     MSB = 1  # type: int
 
-    def deinit(self, *args, **kwargs) -> Any:
+    def deinit(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def init(self, *args, **kwargs) -> Any:
+    def init(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write_readinto(self, *args, **kwargs) -> Any:
+    def write_readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def read(self, *args, **kwargs) -> Any:
+    def read(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -905,7 +907,7 @@ class Timer:
         """
         ...
 
-    def __init__(self, id=-1, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1046,7 +1048,7 @@ class UART:
         """
         ...
 
-    def write(self, buf) -> int:
+    def write(self, buf) -> Union[int, None]:
         """
         Write the buffer of bytes to the bus.
 
@@ -1054,7 +1056,7 @@ class UART:
         """
         ...
 
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+    def readinto(self, buf, nbytes: Optional[Any] = None) -> Union[int, None]:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
         that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
@@ -1065,7 +1067,7 @@ class UART:
         """
         ...
 
-    def readline(self) -> None:
+    def readline(self) -> Union[str, None]:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
@@ -1074,7 +1076,7 @@ class UART:
         """
         ...
 
-    def __init__(self, id, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1091,46 +1093,46 @@ class SoftI2C(I2C):
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
 
-    def readfrom_mem_into(self, *args, **kwargs) -> Any:
+    def readfrom_mem_into(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readfrom_into(self, *args, **kwargs) -> Any:
+    def readfrom_into(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readfrom_mem(self, *args, **kwargs) -> Any:
+    def readfrom_mem(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writeto_mem(self, *args, **kwargs) -> Any:
+    def writeto_mem(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def scan(self, *args, **kwargs) -> Any:
+    def scan(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writeto(self, *args, **kwargs) -> Any:
+    def writeto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def writevto(self, *args, **kwargs) -> Any:
+    def writevto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def start(self, *args, **kwargs) -> Any:
+    def start(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readfrom(self, *args, **kwargs) -> Any:
+    def readfrom(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def readinto(self, *args, **kwargs) -> Any:
+    def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def init(self, *args, **kwargs) -> Any:
+    def init(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def stop(self, *args, **kwargs) -> Any:
+    def stop(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def write(self, *args, **kwargs) -> Any:
+    def write(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1155,7 +1157,7 @@ class RTC:
         """
         ...
 
-    def __init__(self, id=0, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1244,7 +1246,7 @@ class SPI:
         """
         ...
 
-    def __init__(self, id, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -1301,5 +1303,5 @@ class Signal(Pin):
         """
         ...
 
-    def __init__(self, pin_obj, *args, invert=False) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

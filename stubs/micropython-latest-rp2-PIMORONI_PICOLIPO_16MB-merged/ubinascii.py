@@ -7,14 +7,17 @@ CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binasci
 
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
+
+---
+Module: 'ubinascii' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Optional, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Any, Optional
 
 
-def crc32(*args, **kwargs) -> Any:
+def crc32(*args, **kwargs) -> Incomplete:
     ...
 
 

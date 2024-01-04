@@ -10,13 +10,13 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
-from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
 WDT_RESET: int
 PWRON_RESET: int
 
-def dht_readinto(*args, **kwargs) -> Any: ...
+def dht_readinto(*args, **kwargs) -> Incomplete: ...
 def enable_irq(state) -> Incomplete:
     """
     Re-enable interrupt requests.
@@ -199,11 +199,11 @@ class WDT:
         only fed after verifying that everything is functioning correctly.
         """
         ...
-    def __init__(self, id=0, timeout=5000) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
-mem8: Any
-mem32: Any
-mem16: Any
+mem8: Incomplete
+mem32: Incomplete
+mem16: Incomplete
 
 class PWM:
     """
@@ -224,6 +224,17 @@ class PWM:
     *invert* is not available at all ports.
     """
 
+    def duty_u16(self, value: Optional[Any] = None) -> int:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+        ...
     def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the current frequency of the PWM output.
@@ -234,15 +245,10 @@ class PWM:
         method may raise a ``ValueError`` if the frequency is outside the valid range.
         """
         ...
-    def duty_u16(self, value: Optional[Any] = None) -> int:
+    def init(self, *, freq, duty_u16, duty_ns) -> None:
         """
-        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
-        value in the range 0 to 65535 inclusive.
-
-        With no arguments the duty cycle is returned.
-
-        With a single *value* argument the duty cycle is set to that value, measured
-        as the ratio ``value / 65535``.
+        Modify settings for the PWM object.  See the above constructor for details
+        about the parameters.
         """
         ...
     def duty_ns(self, value: Optional[Any] = None) -> int:
@@ -259,7 +265,7 @@ class PWM:
         Disable the PWM output.
         """
         ...
-    def __init__(self, dest, *, freq=0, duty=0, duty_u16=0, duty_ns=0, invert=False) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class ADC:
     """
@@ -285,7 +291,7 @@ class ADC:
         such that the minimum value is 0 and the maximum value is 65535.
         """
         ...
-    def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class I2C:
     """
@@ -420,15 +426,7 @@ class I2C:
         received.  The function returns the number of ACKs that were received.
         """
         ...
-    def __init__(
-        self,
-        id: Union[int, str] = -1,
-        *,
-        scl: Optional[Union[Pin, str]] = None,
-        sda: Optional[Union[Pin, str]] = None,
-        freq=400_000,
-        timeout=50000,
-    ) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class I2S:
     """
@@ -501,7 +499,7 @@ class I2S:
         Returns number of bytes written
         """
         ...
-    def __init__(self, id, *, sck, ws, sd, mck=None, mode, bits, format, rate, ibuf) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Pin:
     """
@@ -635,7 +633,7 @@ class Pin:
         The following methods are not part of the core Pin API and only implemented on certain ports.
         """
         ...
-    def toggle(self, *args, **kwargs) -> Any: ...
+    def toggle(self, *args, **kwargs) -> Incomplete: ...
     def off(self) -> None:
         """
         Set pin to "0" output level.
@@ -697,43 +695,43 @@ class Pin:
         ...
 
     class cpu:
-        GPIO26: Any
-        GPIO25: Any
-        GPIO27: Any
-        GPIO28: Any
-        GPIO22: Any
-        GPIO24: Any
-        GPIO23: Any
-        GPIO9: Any
-        GPIO7: Any
-        GPIO6: Any
-        GPIO8: Any
-        GPIO29: Any
-        GPIO3: Any
-        GPIO5: Any
-        GPIO4: Any
-        GPIO12: Any
-        GPIO11: Any
-        GPIO13: Any
-        GPIO14: Any
-        GPIO0: Any
-        GPIO10: Any
-        GPIO1: Any
-        GPIO21: Any
-        GPIO2: Any
-        GPIO19: Any
-        GPIO20: Any
-        GPIO15: Any
-        GPIO16: Any
-        GPIO18: Any
-        GPIO17: Any
+        GPIO26: Incomplete
+        GPIO25: Incomplete
+        GPIO27: Incomplete
+        GPIO28: Incomplete
+        GPIO22: Incomplete
+        GPIO24: Incomplete
+        GPIO23: Incomplete
+        GPIO9: Incomplete
+        GPIO7: Incomplete
+        GPIO6: Incomplete
+        GPIO8: Incomplete
+        GPIO29: Incomplete
+        GPIO3: Incomplete
+        GPIO5: Incomplete
+        GPIO4: Incomplete
+        GPIO12: Incomplete
+        GPIO11: Incomplete
+        GPIO13: Incomplete
+        GPIO14: Incomplete
+        GPIO0: Incomplete
+        GPIO10: Incomplete
+        GPIO1: Incomplete
+        GPIO21: Incomplete
+        GPIO2: Incomplete
+        GPIO19: Incomplete
+        GPIO20: Incomplete
+        GPIO15: Incomplete
+        GPIO16: Incomplete
+        GPIO18: Incomplete
+        GPIO17: Incomplete
         def __init__(self, *argv, **kwargs) -> None: ...
 
     class board:
-        LED: Any
+        LED: Incomplete
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, id, mode=-1, pull=-1, *, value=None, drive=0, alt=-1) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
     def __call__(self, x: Optional[Any] = None) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
@@ -751,13 +749,13 @@ class SoftSPI:
 
     LSB: int
     MSB: int
-    def deinit(self, *args, **kwargs) -> Any: ...
-    def init(self, *args, **kwargs) -> Any: ...
-    def write_readinto(self, *args, **kwargs) -> Any: ...
-    def read(self, *args, **kwargs) -> Any: ...
-    def write(self, *args, **kwargs) -> Any: ...
-    def readinto(self, *args, **kwargs) -> Any: ...
-    def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None: ...
+    def deinit(self, *args, **kwargs) -> Incomplete: ...
+    def init(self, *args, **kwargs) -> Incomplete: ...
+    def write_readinto(self, *args, **kwargs) -> Incomplete: ...
+    def read(self, *args, **kwargs) -> Incomplete: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
+    def readinto(self, *args, **kwargs) -> Incomplete: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Timer:
     """
@@ -814,7 +812,7 @@ class Timer:
         Deinitialises the timer. Stops the timer, and disables the timer peripheral.
         """
         ...
-    def __init__(self, id=-1, *args, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class UART:
     """
@@ -945,14 +943,14 @@ class UART:
          poll.poll(timeout)
         """
         ...
-    def write(self, buf) -> int:
+    def write(self, buf) -> Union[int, None]:
         """
         Write the buffer of bytes to the bus.
 
         Return value: number of bytes written or ``None`` on timeout.
         """
         ...
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+    def readinto(self, buf, nbytes: Optional[Any] = None) -> Union[int, None]:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
         that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
@@ -962,7 +960,7 @@ class UART:
         timeout.
         """
         ...
-    def readline(self) -> None:
+    def readline(self) -> Union[str, None]:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
@@ -970,7 +968,7 @@ class UART:
         Return value: the line read or ``None`` on timeout.
         """
         ...
-    def __init__(self, id, *args, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class SoftI2C(I2C):
     """
@@ -985,20 +983,20 @@ class SoftI2C(I2C):
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
 
-    def readfrom_mem_into(self, *args, **kwargs) -> Any: ...
-    def readfrom_into(self, *args, **kwargs) -> Any: ...
-    def readfrom_mem(self, *args, **kwargs) -> Any: ...
-    def writeto_mem(self, *args, **kwargs) -> Any: ...
-    def scan(self, *args, **kwargs) -> Any: ...
-    def writeto(self, *args, **kwargs) -> Any: ...
-    def writevto(self, *args, **kwargs) -> Any: ...
-    def start(self, *args, **kwargs) -> Any: ...
-    def readfrom(self, *args, **kwargs) -> Any: ...
-    def readinto(self, *args, **kwargs) -> Any: ...
-    def init(self, *args, **kwargs) -> Any: ...
-    def stop(self, *args, **kwargs) -> Any: ...
-    def write(self, *args, **kwargs) -> Any: ...
-    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
+    def readfrom_mem_into(self, *args, **kwargs) -> Incomplete: ...
+    def readfrom_into(self, *args, **kwargs) -> Incomplete: ...
+    def readfrom_mem(self, *args, **kwargs) -> Incomplete: ...
+    def writeto_mem(self, *args, **kwargs) -> Incomplete: ...
+    def scan(self, *args, **kwargs) -> Incomplete: ...
+    def writeto(self, *args, **kwargs) -> Incomplete: ...
+    def writevto(self, *args, **kwargs) -> Incomplete: ...
+    def start(self, *args, **kwargs) -> Incomplete: ...
+    def readfrom(self, *args, **kwargs) -> Incomplete: ...
+    def readinto(self, *args, **kwargs) -> Incomplete: ...
+    def init(self, *args, **kwargs) -> Incomplete: ...
+    def stop(self, *args, **kwargs) -> Incomplete: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class RTC:
     """
@@ -1020,7 +1018,7 @@ class RTC:
         The meaning of the ``subseconds`` field is hardware dependent.
         """
         ...
-    def __init__(self, id=0, *args, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class SPI:
     """
@@ -1100,7 +1098,7 @@ class SPI:
         Note: on WiPy this function returns the number of bytes read.
         """
         ...
-    def __init__(self, id, *args, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Signal(Pin):
     """
@@ -1152,4 +1150,4 @@ class Signal(Pin):
         to logical 0, while inactive - to logical 1.
         """
         ...
-    def __init__(self, pin_obj, *args, invert=False) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...

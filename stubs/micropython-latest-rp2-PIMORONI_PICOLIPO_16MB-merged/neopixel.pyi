@@ -10,10 +10,10 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    ``neopixel`` package using :term:`mip`, or you can download the module
    directly from :term:`micropython-lib` and copy it to the filesystem.
 """
-from typing import Tuple, Any
-from _typeshed import Incomplete
+from _typeshed import Incomplete, Incomplete as Incomplete
+from typing import Tuple
 
-def bitstream(*args, **kwargs) -> Any: ...
+def bitstream(*args, **kwargs) -> Incomplete: ...
 
 class NeoPixel:
     """
@@ -37,4 +37,4 @@ class NeoPixel:
         RGB/RGBW tuple).
         """
         ...
-    def __init__(self, pin, n, *, bpp=3, timing=1) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None: ...

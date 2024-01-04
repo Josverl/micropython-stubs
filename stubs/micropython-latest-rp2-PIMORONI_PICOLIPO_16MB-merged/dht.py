@@ -1,23 +1,31 @@
 """
-Module: 'dht' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
+Module: 'dht' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
+from _typeshed import Incomplete
 
 
-def dht_readinto(*args, **kwargs) -> Any:
+def dht_readinto(*args, **kwargs) -> Incomplete:
     ...
 
 
+class DHTBase:
+    def measure(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
 class DHT22:
-    def humidity(self, *args, **kwargs) -> Any:
+    def measure(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def temperature(self, *args, **kwargs) -> Any:
+    def temperature(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def measure(self, *args, **kwargs) -> Any:
+    def humidity(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -25,21 +33,13 @@ class DHT22:
 
 
 class DHT11:
-    def humidity(self, *args, **kwargs) -> Any:
+    def measure(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def temperature(self, *args, **kwargs) -> Any:
+    def temperature(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def measure(self, *args, **kwargs) -> Any:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class DHTBase:
-    def measure(self, *args, **kwargs) -> Any:
+    def humidity(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

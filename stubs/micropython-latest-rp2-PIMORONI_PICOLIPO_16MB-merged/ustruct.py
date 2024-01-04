@@ -52,11 +52,14 @@ The following data types are supported:
 +--------+--------------------+-------------------+---------------+
 | P      | void *             | integer           |               |
 +--------+--------------------+-------------------+---------------+
+
+---
+Module: 'ustruct' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Tuple, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Tuple
 
 
 def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:

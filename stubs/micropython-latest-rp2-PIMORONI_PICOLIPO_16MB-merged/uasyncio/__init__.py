@@ -1,126 +1,227 @@
 """
-Module: 'uasyncio.__init__' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
+Asynchronous I/O scheduler for writing concurrent code.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/asyncio.html
+
+CPython module:
+`asyncio `<https://docs.python.org/3.8/library/asyncio.html>
+
+Example::
+
+    import asyncio
+
+    async def blink(led, period_ms):
+        while True:
+            led.on()
+            await asyncio.sleep_ms(5)
+            led.off()
+            await asyncio.sleep_ms(period_ms)
+
+    async def main(led1, led2):
+        asyncio.create_task(blink(led1, 700))
+        asyncio.create_task(blink(led2, 400))
+        await asyncio.sleep_ms(10_000)
+
+    # Running on a pyboard
+    from pyb import LED
+    asyncio.run(main(LED(1), LED(2)))
+
+    # Running on a generic board
+    from machine import Pin
+    asyncio.run(main(Pin(1), Pin(2)))
+
+Core functions
+--------------
+
+---
+Module: 'uasyncio.__init__' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
+from _typeshed import Incomplete
+from typing import Any, Coroutine, List, Tuple
 
 
-def ticks_diff(*args, **kwargs) -> Any:
+def ticks_diff(*args, **kwargs) -> Incomplete:
     ...
 
 
-def run_until_complete(*args, **kwargs) -> Any:
+def get_event_loop() -> Incomplete:
+    """
+    Return the event loop used to schedule and run tasks.  See `Loop`.
+    """
     ...
 
 
-def create_task(*args, **kwargs) -> Any:
+def current_task() -> Task:
+    """
+    Return the `Task` object associated with the currently running task.
+    """
     ...
 
 
-def wait_for_ms(*args, **kwargs) -> Any:
+def create_task(coro) -> Task:
+    """
+    Create a new task from the given coroutine and schedule it to run.
+
+    Returns the corresponding `Task` object.
+    """
     ...
 
 
-def run(*args, **kwargs) -> Any:
+def new_event_loop() -> Incomplete:
+    """
+    Reset the event loop and return it.
+
+    Note: since MicroPython only has a single event loop this function just
+    resets the loop's state, it does not create a new one.
+    """
     ...
 
 
-def new_event_loop(*args, **kwargs) -> Any:
+def ticks(*args, **kwargs) -> Incomplete:
     ...
 
 
-def current_task(*args, **kwargs) -> Any:
+def run_until_complete(*args, **kwargs) -> Incomplete:
     ...
 
 
-def get_event_loop(*args, **kwargs) -> Any:
+def run(coro) -> Incomplete:
+    """
+    Create a new task from the given coroutine and run it until it completes.
+
+    Returns the value returned by *coro*.
+    """
     ...
 
 
-def ticks(*args, **kwargs) -> Any:
+def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
+    """
+    Similar to `wait_for` but *timeout* is an integer in milliseconds.
+
+    This is a coroutine, and a MicroPython extension.
+    """
     ...
 
 
-def sleep_ms(*args, **kwargs) -> Any:
+def sleep_ms(t) -> Coroutine[Incomplete, Any, Any]:
+    """
+    Sleep for *t* milliseconds.
+
+    This is a coroutine, and a MicroPython extension.
+    """
     ...
 
 
-def ticks_add(*args, **kwargs) -> Any:
+def ticks_add(*args, **kwargs) -> Incomplete:
     ...
 
 
-def sleep(*args, **kwargs) -> Any:
+def sleep(t) -> Coroutine[Incomplete, Any, Any]:
+    """
+    Sleep for *t* seconds (can be a float).
+
+    This is a coroutine.
+    """
     ...
 
 
-wait_for: Any  ## <class 'generator'> = <generator>
-gather: Any  ## <class 'generator'> = <generator>
-
-
-class Loop:
-    def call_exception_handler(self, *args, **kwargs) -> Any:
+class TaskQueue:
+    def push(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def run_forever(self, *args, **kwargs) -> Any:
+    def peek(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def set_exception_handler(self, *args, **kwargs) -> Any:
+    def remove(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def get_exception_handler(self, *args, **kwargs) -> Any:
-        ...
-
-    def default_exception_handler(self, *args, **kwargs) -> Any:
-        ...
-
-    def run_until_complete(self, *args, **kwargs) -> Any:
-        ...
-
-    def close(self, *args, **kwargs) -> Any:
-        ...
-
-    def stop(self, *args, **kwargs) -> Any:
-        ...
-
-    def create_task(self, *args, **kwargs) -> Any:
+    def pop(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
-class IOQueue:
-    def queue_write(self, *args, **kwargs) -> Any:
-        ...
-
-    def queue_read(self, *args, **kwargs) -> Any:
-        ...
-
-    def wait_io_event(self, *args, **kwargs) -> Any:
-        ...
-
-    def remove(self, *args, **kwargs) -> Any:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+open_connection: Incomplete  ## <class 'generator'> = <generator>
 
 
 class Event:
-    def set(self, *args, **kwargs) -> Any:
+    """
+    Create a new event which can be used to synchronise tasks.  Events start
+    in the cleared state.
+    """
+
+    def set(self) -> None:
+        """
+        Set the event.  Any tasks waiting on the event will be scheduled to run.
+
+        Note: This must be called from within a task. It is not safe to call this
+        from an IRQ, scheduler callback, or other thread. See `ThreadSafeFlag`.
+        """
         ...
 
-    def is_set(self, *args, **kwargs) -> Any:
+    def is_set(self) -> bool:
+        """
+        Returns ``True`` if the event is set, ``False`` otherwise.
+        """
         ...
 
-    def clear(self, *args, **kwargs) -> Any:
+    def clear(self) -> None:
+        """
+        Clear the event.
+        """
         ...
 
-    wait: Any  ## <class 'generator'> = <generator>
+    wait: Incomplete  ## <class 'generator'> = <generator>
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
+
+
+class Lock:
+    """
+    Create a new lock which can be used to coordinate tasks.  Locks start in
+    the unlocked state.
+
+    In addition to the methods below, locks can be used in an ``async with`` statement.
+    """
+
+    def locked(self) -> bool:
+        """
+        Returns ``True`` if the lock is locked, otherwise ``False``.
+        """
+        ...
+
+    def release(self) -> Incomplete:
+        """
+        Release the lock.  If any tasks are waiting on the lock then the next one in the
+        queue is scheduled to run and the lock remains locked.  Otherwise, no tasks are
+        waiting an the lock becomes unlocked.
+        """
+        ...
+
+    acquire: Incomplete  ## <class 'generator'> = <generator>
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class Task:
+    """
+    This object wraps a coroutine into a running task.  Tasks can be waited on
+    using ``await task``, which will wait for the task to complete and return
+    the return value of the task.
+
+    Tasks should not be created directly, rather use `create_task` to create them.
+    """
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+wait_for: Incomplete  ## <class 'generator'> = <generator>
 
 
 class CancelledError(Exception):

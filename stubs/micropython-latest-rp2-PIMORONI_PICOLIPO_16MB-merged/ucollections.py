@@ -7,16 +7,18 @@ CPython module: :mod:`python:collections` https://docs.python.org/3/library/coll
 
 This module implements advanced collection and container types to
 hold/accumulate various objects.
+
+---
+Module: 'ucollections' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Optional, Any
-from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
-from typing_extensions import NamedTuple as stdlib_NamedTuple
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque, namedtuple as stdlib_namedtuple
+from typing import Any, Optional
 
 
-def namedtuple(name, fields) -> stdlib_NamedTuple:
+def namedtuple(name, fields) -> stdlib_namedtuple:
     """
     This is factory function to create a new namedtuple type with a specific
     name and set of fields. A namedtuple is a subclass of tuple which allows
@@ -62,41 +64,41 @@ class OrderedDict(stdlib_OrderedDict):
         b 3
     """
 
-    def popitem(self, *args, **kwargs) -> Any:
+    def popitem(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def pop(self, *args, **kwargs) -> Any:
+    def pop(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def values(self, *args, **kwargs) -> Any:
+    def values(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def setdefault(self, *args, **kwargs) -> Any:
+    def setdefault(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def update(self, *args, **kwargs) -> Any:
+    def update(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def copy(self, *args, **kwargs) -> Any:
+    def copy(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def clear(self, *args, **kwargs) -> Any:
+    def clear(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def keys(self, *args, **kwargs) -> Any:
+    def keys(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def get(self, *args, **kwargs) -> Any:
+    def get(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def items(self, *args, **kwargs) -> Any:
+    def items(self, *args, **kwargs) -> Incomplete:
         ...
 
     @classmethod
-    def fromkeys(cls, *args, **kwargs) -> Any:
+    def fromkeys(cls, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, *args, **kwargs) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -132,5 +134,5 @@ class deque(stdlib_deque):
         """
         ...
 
-    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

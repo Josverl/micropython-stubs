@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-pimoroni_picolipo_16mb-stubs"
-version = "1.23.0a6"
+version = "1.23.0a9"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -33,15 +33,22 @@ classifiers = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
+    { include = "_asyncio.pyi" },
     { include = "_boot_fat.pyi" },
     { include = "_onewire.pyi" },
     { include = "_rp2.pyi" },
     { include = "_thread.pyi" },
-    { include = "_uasyncio.pyi" },
     { include = "array.pyi" },
+    { include = "asyncio/__init__.pyi" },
+    { include = "asyncio/core.pyi" },
+    { include = "asyncio/event.pyi" },
+    { include = "asyncio/funcs.pyi" },
+    { include = "asyncio/lock.pyi" },
+    { include = "asyncio/stream.pyi" },
     { include = "binascii.pyi" },
     { include = "cmath.pyi" },
     { include = "cryptolib.pyi" },
+    { include = "deflate.pyi" },
     { include = "dht.pyi" },
     { include = "ds18x20.pyi" },
     { include = "errno.pyi" },
@@ -58,6 +65,7 @@ packages = [
     { include = "neopixel.pyi" },
     { include = "onewire.pyi" },
     { include = "os.pyi" },
+    { include = "platform.pyi" },
     { include = "random.pyi" },
     { include = "rp2.pyi" },
     { include = "select.pyi" },
@@ -82,14 +90,13 @@ packages = [
     { include = "ujson.pyi" },
     { include = "umachine.pyi" },
     { include = "uos.pyi" },
+    { include = "uplatform.pyi" },
     { include = "urandom.pyi" },
     { include = "ure.pyi" },
     { include = "uselect.pyi" },
     { include = "ustruct.pyi" },
     { include = "usys.pyi" },
     { include = "utime.pyi" },
-    { include = "uzlib.pyi" },
-    { include = "zlib.pyi" },
 ]
 
 [tool.poetry.dependencies]

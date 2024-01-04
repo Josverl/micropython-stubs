@@ -1,6 +1,6 @@
-from typing import Any
+from _typeshed import Incomplete as Incomplete
 
-def wait_for_ms(*args, **kwargs) -> Any: ...
+def wait_for_ms(*args, **kwargs) -> Incomplete: ...
 
-gather: Any
-wait_for: Any
+wait_for: Incomplete
+gather: Incomplete

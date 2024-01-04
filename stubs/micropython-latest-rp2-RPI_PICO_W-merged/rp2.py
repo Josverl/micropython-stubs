@@ -13,12 +13,12 @@ for more information, and `pico-micropython-examples
 for example code.
 
 ---
-Module: 'rp2' on micropython-v1.21.0-rp2-RPI_PICO_W
+Module: 'rp2' on micropython-v1.22.0-rp2-RPI_PICO_W
 """
-# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.13.8
-from typing import Optional, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Any, Optional
 
 
 def asm_pio(
@@ -102,62 +102,6 @@ def country(*args, **kwargs) -> Incomplete:
 
 def const(*args, **kwargs) -> Incomplete:
     ...
-
-
-class PIOASMEmit:
-    def wrap(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def wait(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def jmp(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def word(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def in_(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def delay(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def start_pass(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def out(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def side(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def wrap_target(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def label(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def irq(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def set(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def mov(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def push(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def pull(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def nop(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
 
 
 class PIOASMError(Exception):

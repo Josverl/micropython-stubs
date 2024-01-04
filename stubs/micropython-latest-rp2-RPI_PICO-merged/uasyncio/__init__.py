@@ -34,19 +34,29 @@ Core functions
 --------------
 
 ---
-Module: 'uasyncio.__init__' on micropython-v1.21.0-rp2-RPI_PICO
+Module: 'uasyncio.__init__' on micropython-v1.22.0-rp2-RPI_PICO
 """
-# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.13.8
-from typing import Coroutine, List, Tuple, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'RPI_PICO', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Any, Coroutine, List, Tuple
 
 
 def ticks_diff(*args, **kwargs) -> Incomplete:
     ...
 
 
-def run_until_complete(*args, **kwargs) -> Incomplete:
+def get_event_loop() -> Incomplete:
+    """
+    Return the event loop used to schedule and run tasks.  See `Loop`.
+    """
+    ...
+
+
+def current_task() -> Task:
+    """
+    Return the `Task` object associated with the currently running task.
+    """
     ...
 
 
@@ -55,24 +65,6 @@ def create_task(coro) -> Task:
     Create a new task from the given coroutine and schedule it to run.
 
     Returns the corresponding `Task` object.
-    """
-    ...
-
-
-def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
-    """
-    Similar to `wait_for` but *timeout* is an integer in milliseconds.
-
-    This is a coroutine, and a MicroPython extension.
-    """
-    ...
-
-
-def run(coro) -> Incomplete:
-    """
-    Create a new task from the given coroutine and run it until it completes.
-
-    Returns the value returned by *coro*.
     """
     ...
 
@@ -87,21 +79,29 @@ def new_event_loop() -> Incomplete:
     ...
 
 
-def current_task() -> Task:
-    """
-    Return the `Task` object associated with the currently running task.
-    """
-    ...
-
-
-def get_event_loop() -> Incomplete:
-    """
-    Return the event loop used to schedule and run tasks.  See `Loop`.
-    """
-    ...
-
-
 def ticks(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def run_until_complete(*args, **kwargs) -> Incomplete:
+    ...
+
+
+def run(coro) -> Incomplete:
+    """
+    Create a new task from the given coroutine and run it until it completes.
+
+    Returns the value returned by *coro*.
+    """
+    ...
+
+
+def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
+    """
+    Similar to `wait_for` but *timeout* is an integer in milliseconds.
+
+    This is a coroutine, and a MicroPython extension.
+    """
     ...
 
 
@@ -127,93 +127,24 @@ def sleep(t) -> Coroutine[Incomplete, Any, Any]:
     ...
 
 
-wait_for: Incomplete  ## <class 'generator'> = <generator>
-gather: Incomplete  ## <class 'generator'> = <generator>
-
-
-class Loop:
-    """
-    This represents the object which schedules and runs tasks.  It cannot be
-    created, use `get_event_loop` instead.
-    """
-
-    def call_exception_handler(self, context) -> Incomplete:
-        """
-        Call the current exception handler.  The argument *context* is passed through and
-        is a dictionary containing keys: ``'message'``, ``'exception'``, ``'future'``.
-        """
+class TaskQueue:
+    def push(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def run_forever(self) -> Incomplete:
-        """
-        Run the event loop until `stop()` is called.
-        """
-        ...
-
-    def set_exception_handler(self, handler) -> None:
-        """
-        Set the exception handler to call when a Task raises an exception that is not
-        caught.  The *handler* should accept two arguments: ``(loop, context)``.
-        """
-        ...
-
-    def get_exception_handler(self) -> None:
-        """
-        Get the current exception handler.  Returns the handler, or ``None`` if no
-        custom handler is set.
-        """
-        ...
-
-    def default_exception_handler(self, context) -> Incomplete:
-        """
-        The default exception handler that is called.
-        """
-        ...
-
-    def run_until_complete(self, awaitable) -> Incomplete:
-        """
-        Run the given *awaitable* until it completes.  If *awaitable* is not a task
-        then it will be promoted to one.
-        """
-        ...
-
-    def close(self) -> None:
-        """
-        Close the event loop.
-        """
-        ...
-
-    def stop(self) -> None:
-        """
-        Stop the event loop.
-        """
-        ...
-
-    def create_task(self, coro) -> Task:
-        """
-        Create a task from the given *coro* and return the new `Task` object.
-        """
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class IOQueue:
-    def queue_write(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def queue_read(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def wait_io_event(self, *args, **kwargs) -> Incomplete:
+    def peek(self, *args, **kwargs) -> Incomplete:
         ...
 
     def remove(self, *args, **kwargs) -> Incomplete:
         ...
 
+    def pop(self, *args, **kwargs) -> Incomplete:
+        ...
+
     def __init__(self, *argv, **kwargs) -> None:
         ...
+
+
+open_connection: Incomplete  ## <class 'generator'> = <generator>
 
 
 class Event:
@@ -247,6 +178,50 @@ class Event:
 
     def __init__(self, *argv, **kwargs) -> None:
         ...
+
+
+class Lock:
+    """
+    Create a new lock which can be used to coordinate tasks.  Locks start in
+    the unlocked state.
+
+    In addition to the methods below, locks can be used in an ``async with`` statement.
+    """
+
+    def locked(self) -> bool:
+        """
+        Returns ``True`` if the lock is locked, otherwise ``False``.
+        """
+        ...
+
+    def release(self) -> Incomplete:
+        """
+        Release the lock.  If any tasks are waiting on the lock then the next one in the
+        queue is scheduled to run and the lock remains locked.  Otherwise, no tasks are
+        waiting an the lock becomes unlocked.
+        """
+        ...
+
+    acquire: Incomplete  ## <class 'generator'> = <generator>
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class Task:
+    """
+    This object wraps a coroutine into a running task.  Tasks can be waited on
+    using ``await task``, which will wait for the task to complete and return
+    the return value of the task.
+
+    Tasks should not be created directly, rather use `create_task` to create them.
+    """
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+wait_for: Incomplete  ## <class 'generator'> = <generator>
 
 
 class CancelledError(Exception):

@@ -7,12 +7,12 @@ The ``esp32`` module contains functions and classes specifically aimed at
 controlling ESP32 modules.
 
 ---
-Module: 'esp32' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
+Module: 'esp32' on micropython-v1.22.0-esp32-ESP32_GENERIC
 """
 from __future__ import annotations
 
-# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
-# Stubber: v1.14.0
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
 from typing import Any, List, Optional, Tuple, Union
 
@@ -289,6 +289,8 @@ class RMT:
     ``100``) and the output level to apply the carrier to (a boolean as per
     *idle_level*).
     """
+
+    PULSE_MAX = 32767  # type: int
 
     @classmethod
     def source_freq(cls) -> Incomplete:

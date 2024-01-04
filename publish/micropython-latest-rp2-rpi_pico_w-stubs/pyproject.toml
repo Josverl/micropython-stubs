@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-rpi_pico_w-stubs"
-version = "1.23.0a6"
+version = "1.23.0a9"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -69,6 +69,7 @@ packages = [
     { include = "heapq.pyi" },
     { include = "io.pyi" },
     { include = "json.pyi" },
+    { include = "logging.pyi" },
     { include = "lwip.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
@@ -82,7 +83,6 @@ packages = [
     { include = "platform.pyi" },
     { include = "random.pyi" },
     { include = "requests/__init__.pyi" },
-    { include = "requests.pyi" },
     { include = "rp2.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },

@@ -2,7 +2,7 @@
     "name": "micropython-samd-seeed_wio_terminal-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.23.0a6",
+    "pkg_version": "1.23.0a9",
     "path": "micropython-latest-samd-seeed_wio_terminal-stubs",
     "stub_sources": [
         [

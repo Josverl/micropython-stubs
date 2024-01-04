@@ -9,12 +9,12 @@ This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 
 ---
-Module: 'ubinascii' on micropython-v1.21.0-rp2-RPI_PICO
+Module: 'ubinascii' on micropython-v1.22.0-rp2-RPI_PICO
 """
-# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.13.8
-from typing import Optional, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'RPI_PICO', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Any, Optional
 
 
 def crc32(*args, **kwargs) -> Incomplete:

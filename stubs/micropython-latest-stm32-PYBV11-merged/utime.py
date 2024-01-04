@@ -33,12 +33,12 @@ functions below which require reference to current absolute time may
 behave not as expected.
 
 ---
-Module: 'utime' on micropython-v1.21.0-stm32-PYBV11
+Module: 'utime' on micropython-v1.22.0-stm32-PYBV11
 """
-# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
-# Stubber: v1.13.8
-from typing import Optional, Tuple, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Any, Optional, Tuple
 
 
 def ticks_diff(ticks1, ticks2) -> int:

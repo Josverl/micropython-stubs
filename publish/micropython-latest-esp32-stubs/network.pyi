@@ -39,44 +39,47 @@ Host: micropython.org
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, List, Optional, Tuple, Union
 
-PHY_DP83848: int
-PHY_IP101: int
-PHY_KSZ8041: int
 PHY_KSZ8081: int
+PHY_KSZ8041: int
+MODE_11G: int
+PHY_KSZ8851SNL: int
 PHY_LAN8710: int
 MODE_LR: int
-MODE_11B: int
-MODE_11G: int
 MODE_11N: int
-STAT_NO_AP_FOUND: int
-STAT_CONNECTING: int
+PHY_IP101: int
+PHY_DM9051: int
+PHY_DP83848: int
 STAT_GOT_IP: int
+STAT_CONNECTING: int
+PHY_LAN8720: int
 STAT_HANDSHAKE_TIMEOUT: int
 STAT_IDLE: int
-PHY_LAN8720: int
-STAT_BEACON_TIMEOUT: int
+PHY_W5500: int
 PHY_RTL8201: int
+STAT_BEACON_TIMEOUT: int
 STAT_WRONG_PASSWORD: int
 STAT_ASSOC_FAIL: int
-AUTH_WAPI_PSK: int
-AUTH_WEP: int
+STAT_NO_AP_FOUND: int
 AUTH_WPA2_ENTERPRISE: int
+AUTH_WEP: int
+MODE_11B: int
 AUTH_WPA2_PSK: int
 AUTH_WPA2_WPA3_PSK: int
-AUTH_OWE: int
-AP_IF: int
 AUTH_MAX: int
+AP_IF: int
+AUTH_WAPI_PSK: int
 AUTH_OPEN: int
-STA_IF: int
-ETH_GOT_IP: int
-ETH_INITIALIZED: int
+AUTH_OWE: int
 ETH_STARTED: int
-ETH_STOPPED: int
+ETH_INITIALIZED: int
 AUTH_WPA3_PSK: int
-ETH_DISCONNECTED: int
-AUTH_WPA_PSK: int
+ETH_STOPPED: int
+STA_IF: int
 AUTH_WPA_WPA2_PSK: int
+AUTH_WPA_PSK: int
+ETH_GOT_IP: int
 ETH_CONNECTED: int
+ETH_DISCONNECTED: int
 
 def phy_mode(*args, **kwargs) -> Incomplete: ...
 def country(*args, **kwargs) -> Incomplete: ...

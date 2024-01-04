@@ -1,9 +1,9 @@
 """
-Module: 'logging' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
+Module: 'logging' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
+from _typeshed import Incomplete
 
 CRITICAL = 50  # type: int
 INFO = 20  # type: int
@@ -13,50 +13,50 @@ WARNING = 30  # type: int
 NOTSET = 0  # type: int
 
 
-def getLogger(*args, **kwargs) -> Any:
+def getLogger(*args, **kwargs) -> Incomplete:
     ...
 
 
-def basicConfig(*args, **kwargs) -> Any:
+def basicConfig(*args, **kwargs) -> Incomplete:
     ...
 
 
-def info(*args, **kwargs) -> Any:
+def info(*args, **kwargs) -> Incomplete:
     ...
 
 
-def debug(*args, **kwargs) -> Any:
+def debug(*args, **kwargs) -> Incomplete:
     ...
 
 
 class Logger:
     level = 0  # type: int
 
-    def warning(self, *args, **kwargs) -> Any:
+    def warning(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def critical(self, *args, **kwargs) -> Any:
+    def critical(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def setLevel(self, *args, **kwargs) -> Any:
+    def setLevel(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def isEnabledFor(self, *args, **kwargs) -> Any:
+    def isEnabledFor(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def exception(self, *args, **kwargs) -> Any:
+    def exception(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def log(self, *args, **kwargs) -> Any:
+    def log(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def error(self, *args, **kwargs) -> Any:
+    def error(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def info(self, *args, **kwargs) -> Any:
+    def info(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def debug(self, *args, **kwargs) -> Any:
+    def debug(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:

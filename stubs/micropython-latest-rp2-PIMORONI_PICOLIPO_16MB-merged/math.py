@@ -12,11 +12,14 @@ working with floating-point numbers.
 
 Availability: not available on WiPy. Floating point support required
 for this module.
+
+---
+Module: 'math' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Tuple, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Tuple
 
 inf = inf  # type: float
 nan = nan  # type: float
@@ -46,7 +49,7 @@ def trunc(x) -> int:
     ...
 
 
-def isclose(*args, **kwargs) -> Any:
+def isclose(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -229,7 +232,7 @@ def asin(x) -> float:
     ...
 
 
-def factorial(*args, **kwargs) -> Any:
+def factorial(*args, **kwargs) -> Incomplete:
     ...
 
 

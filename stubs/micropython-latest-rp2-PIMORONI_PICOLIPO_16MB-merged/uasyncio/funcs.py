@@ -1,14 +1,14 @@
 """
-Module: 'uasyncio.funcs' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
+Module: 'uasyncio.funcs' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
+from _typeshed import Incomplete
 
 
-def wait_for_ms(*args, **kwargs) -> Any:
+def wait_for_ms(*args, **kwargs) -> Incomplete:
     ...
 
 
-gather: Any  ## <class 'generator'> = <generator>
-wait_for: Any  ## <class 'generator'> = <generator>
+wait_for: Incomplete  ## <class 'generator'> = <generator>
+gather: Incomplete  ## <class 'generator'> = <generator>

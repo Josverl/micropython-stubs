@@ -11,11 +11,14 @@ See the `RP2040 Python datasheet
 for more information, and `pico-micropython-examples
 <https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
 for example code.
+
+---
+Module: 'rp2' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
-# MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
-# Stubber: v1.13.7
-from typing import Optional, Any
+# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# Stubber: v1.16.2
 from _typeshed import Incomplete
+from typing import Any, Optional
 
 
 def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
@@ -93,64 +96,8 @@ def bootsel_button() -> Incomplete:
     ...
 
 
-def const(*args, **kwargs) -> Any:
+def const(*args, **kwargs) -> Incomplete:
     ...
-
-
-class PIOASMEmit:
-    def wrap(self, *args, **kwargs) -> Any:
-        ...
-
-    def wait(self, *args, **kwargs) -> Any:
-        ...
-
-    def jmp(self, *args, **kwargs) -> Any:
-        ...
-
-    def word(self, *args, **kwargs) -> Any:
-        ...
-
-    def in_(self, *args, **kwargs) -> Any:
-        ...
-
-    def delay(self, *args, **kwargs) -> Any:
-        ...
-
-    def start_pass(self, *args, **kwargs) -> Any:
-        ...
-
-    def out(self, *args, **kwargs) -> Any:
-        ...
-
-    def side(self, *args, **kwargs) -> Any:
-        ...
-
-    def wrap_target(self, *args, **kwargs) -> Any:
-        ...
-
-    def label(self, *args, **kwargs) -> Any:
-        ...
-
-    def irq(self, *args, **kwargs) -> Any:
-        ...
-
-    def set(self, *args, **kwargs) -> Any:
-        ...
-
-    def mov(self, *args, **kwargs) -> Any:
-        ...
-
-    def push(self, *args, **kwargs) -> Any:
-        ...
-
-    def pull(self, *args, **kwargs) -> Any:
-        ...
-
-    def nop(self, *args, **kwargs) -> Any:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
 
 
 class PIOASMError(Exception):

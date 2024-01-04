@@ -26,6 +26,15 @@ be implemented:
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional
 
+class sha1:
+    """
+    Create an SHA1 hasher object and optionally feed ``data`` into it.
+    """
+
+    def digest(self, *args, **kwargs) -> Incomplete: ...
+    def update(self, *args, **kwargs) -> Incomplete: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
 class sha256:
     """
     Create an SHA256 hasher object and optionally feed ``data`` into it.
@@ -35,9 +44,9 @@ class sha256:
     def update(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class sha1:
+class md5:
     """
-    Create an SHA1 hasher object and optionally feed ``data`` into it.
+    Create an MD5 hasher object and optionally feed ``data`` into it.
     """
 
     def digest(self, *args, **kwargs) -> Incomplete: ...
