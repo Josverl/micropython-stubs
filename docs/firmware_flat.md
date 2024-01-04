@@ -42,7 +42,6 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.19.1| rp2| Arduino Nano RP2040 Connect with RP2040| 68| 1.9.11|[stubs/micropython-v1_19_1-rp2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-rp2)
 |board| micropython| v1.19.1| rp2| Raspberry Pi Pico with RP2040| 52| 1.9.11|[stubs/micropython-v1_19_1-rp2_simple](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-rp2_simple)
 |board| micropython| v1.19.1| stm32| PYBv1.1 with STM32F405RG| 55| 1.9.11|[stubs/micropython-v1_19_1-stm32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_19_1-stm32)
-|board| micropython| v1.20| esp32| generic| 84| v1.13.7|[stubs/micropython-latest-esp32--OLD](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-latest-esp32--OLD)
 |board| micropython| v1.20| esp32| generic| 78| v1.13.4|[stubs/micropython-v1_20_0-esp32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32)
 |board| micropython| v1.20| esp32| generic| 78| v1.13.4|[stubs/micropython-v1_20_0-esp32-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-GENERIC)
 |board| micropython| v1.20| esp32| generic| 78| v1.13.4|[stubs/micropython-v1_20_0-esp32-GENERIC_OTA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_20_0-esp32-GENERIC_OTA)
@@ -59,9 +58,18 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.21| esp32| generic| 87| v1.14.0|[stubs/micropython-v1_21_0-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-esp32-ESP32_GENERIC)
 |board| micropython| v1.21| rp2| generic| 64| v1.13.8|[stubs/micropython-v1_21_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-rp2-RPI_PICO)
 |board| micropython| v1.21| rp2| generic| 88| v1.13.8|[stubs/micropython-v1_21_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-rp2-RPI_PICO_W)
-|board| micropython| v1.21| samd| generic| 57| v1.13.8|[stubs/micropython-v1_21_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-samd-SEEED_WIO_TERMINAL)
+|board| micropython| v1.21| samd| generic| 58| v1.16.2|[stubs/micropython-v1_21_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-samd-SEEED_WIO_TERMINAL)
 |board| micropython| v1.21| stm32| generic| 62| v1.13.8|[stubs/micropython-v1_21_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-stm32-PYBV11)
 |board| micropython| v1.21| webassembly| generic| 40| v1.15.0|[stubs/micropython-v1_21_0-webassembly-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-webassembly-GENERIC)
+|board| micropython| v1.22| esp32| generic| 88| v1.16.2|[stubs/micropython-v1_22_0-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-esp32-ESP32_GENERIC)
+|board| micropython| v1.22| esp32| generic| 88| v1.16.2|[stubs/micropython-v1_22_0-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-esp32-ESP32_GENERIC_S3)
+|board| micropython| v1.22| esp32| generic| 88| v1.16.2|[stubs/micropython-v1_22_0-esp32-Generic_ESP32S3_module](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-esp32-Generic_ESP32S3_module)
+|board| micropython| v1.22| rp2| generic| 90| v1.16.2|[stubs/micropython-v1_22_0-rp2-ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-rp2-ARDUINO_NANO_RP2040_CONNECT)
+|board| micropython| v1.22| rp2| generic| 65| v1.16.2|[stubs/micropython-v1_22_0-rp2-PIMORONI_PICOLIPO_16MB](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-rp2-PIMORONI_PICOLIPO_16MB)
+|board| micropython| v1.22| rp2| generic| 65| v1.16.2|[stubs/micropython-v1_22_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-rp2-RPI_PICO)
+|board| micropython| v1.22| rp2| generic| 90| v1.16.2|[stubs/micropython-v1_22_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-rp2-RPI_PICO_W)
+|board| micropython| v1.22| samd| generic| 58| v1.16.2|[stubs/micropython-v1_22_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-samd-SEEED_WIO_TERMINAL)
+|board| micropython| v1.22| stm32| generic| 63| v1.16.2|[stubs/micropython-v1_22_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-stm32-PYBV11)
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/main/stubs/ev3_pybricks_v1_0_0)
 |board| micropython| v1.9.4-Latest| -| ESP module with ESP8266| 43| 1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-esp8266)
@@ -410,4 +418,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  10056
+Total modules  10668
