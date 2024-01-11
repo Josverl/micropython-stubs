@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-pimoroni_picolipo_16mb-stubs"
-version = "1.23.0a33"
+version = "1.23.0a36"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
