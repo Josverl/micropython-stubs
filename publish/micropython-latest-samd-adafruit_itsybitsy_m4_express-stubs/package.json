@@ -2,7 +2,7 @@
     "name": "micropython-samd-adafruit_itsybitsy_m4_express-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.23.0a41",
+    "pkg_version": "1.23.0a47",
     "path": "micropython-latest-samd-adafruit_itsybitsy_m4_express-stubs",
     "stub_sources": [
         [
