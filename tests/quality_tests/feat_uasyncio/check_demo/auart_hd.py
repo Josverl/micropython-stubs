@@ -22,8 +22,8 @@ from primitives.delay_ms import Delay_ms  # type: ignore
 class Device():
     def __init__(self, uart_no = 4):
         self.uart = UART(uart_no, 9600)
-        self.swriter = asyncio.StreamWriter(self.uart, {})  # type: ignore # TODO: fix type stubs asyncio.StreamWriter
-        self.sreader = asyncio.StreamReader(self.uart)  # type: ignore # TODO: fix type stubs asyncio.StreamReader
+        self.swriter = asyncio.StreamWriter(self.uart, {}) # stubs-ignore: True
+        self.sreader = asyncio.StreamReader(self.uart) # stubs-ignore: True
         asyncio.create_task(self._run())
 
     async def _run(self):
@@ -45,8 +45,8 @@ class Master():
     def __init__(self, uart_no = 2, timeout=4000):
         self.uart = UART(uart_no, 9600)
         self.timeout = timeout
-        self.swriter = asyncio.StreamWriter(self.uart, {}) # type: ignore
-        self.sreader = asyncio.StreamReader(self.uart) # type: ignore
+        self.swriter = asyncio.StreamWriter(self.uart, {}) # stubs: ignore
+        self.sreader = asyncio.StreamReader(self.uart) # stubs: ignore
         self.delay = Delay_ms()
         self.response = []
         asyncio.create_task(self._recv())

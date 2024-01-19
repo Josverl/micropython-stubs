@@ -30,36 +30,36 @@ class _MetaPathFinder(Protocol):
 if sys.platform != "win32":
     abiflags: str
 argv: list[str]
-base_exec_prefix: str
-base_prefix: str
+# base_exec_prefix: str
+# base_prefix: str
 byteorder: Literal["little", "big"]
-builtin_module_names: Sequence[str]  # actually a tuple of strings
-copyright: str
+# builtin_module_names: Sequence[str]  # actually a tuple of strings
+# copyright: str
 if sys.platform == "win32":
     dllhandle: int
-dont_write_bytecode: bool
-displayhook: Callable[[object], Any]
-excepthook: Callable[[type[BaseException], BaseException, TracebackType | None], Any]
-exec_prefix: str
-executable: str
-float_repr_style: Literal["short", "legacy"]
-hexversion: int
-last_type: type[BaseException] | None
-last_value: BaseException | None
-last_traceback: TracebackType | None
+# dont_write_bytecode: bool
+# displayhook: Callable[[object], Any]
+# excepthook: Callable[[type[BaseException], BaseException, TracebackType | None], Any]
+# exec_prefix: str
+# executable: str
+# float_repr_style: Literal["short", "legacy"]
+# hexversion: int
+# last_type: type[BaseException] | None
+# last_value: BaseException | None
+# last_traceback: TracebackType | None
 maxsize: int
-maxunicode: int
-meta_path: list[_MetaPathFinder]
+# maxunicode: int
+# meta_path: list[_MetaPathFinder]
 modules: dict[str, ModuleType]
 if sys.version_info >= (3, 10):
     orig_argv: list[str]
 path: list[str]
-path_hooks: list[Callable[[str], PathEntryFinder]]
-path_importer_cache: dict[str, PathEntryFinder | None]
+# path_hooks: list[Callable[[str], PathEntryFinder]]
+# path_importer_cache: dict[str, PathEntryFinder | None]
 platform: str
 if sys.version_info >= (3, 9):
     platlibdir: str
-prefix: str
+# prefix: str
 if sys.version_info >= (3, 8):
     pycache_prefix: str | None
 ps1: object
@@ -84,10 +84,10 @@ if sys.version_info >= (3, 10):
 __stdin__: Final[TextIOWrapper]  # Contains the original value of stdin
 __stdout__: Final[TextIOWrapper]  # Contains the original value of stdout
 __stderr__: Final[TextIOWrapper]  # Contains the original value of stderr
-tracebacklimit: int
+# tracebacklimit: int
 version: str
-api_version: int
-warnoptions: Any
+# api_version: int
+# warnoptions: Any
 #  Each entry is a tuple of the form (action, message, category, module,
 #    lineno)
 if sys.platform == "win32":
@@ -98,7 +98,7 @@ _xoptions: dict[Any, Any]
 # This can't be represented in the type system, so we just use `structseq[Any]`
 _UninstantiableStructseq: TypeAlias = structseq[Any]
 
-flags: _flags
+# flags: _flags
 
 if sys.version_info >= (3, 10):
     _FlagTuple: TypeAlias = tuple[int, int, int, int, int, int, int, int, int, int, int, int, int, bool, int, int]
@@ -144,7 +144,7 @@ class _flags(_UninstantiableStructseq, _FlagTuple):
         @property
         def safe_path(self) -> bool: ...
 
-float_info: _float_info
+# float_info: _float_info
 
 @final
 class _float_info(structseq[float], tuple[float, int, int, float, int, int, int, int, float, int, int]):
@@ -171,7 +171,7 @@ class _float_info(structseq[float], tuple[float, int, int, float, int, int, int,
     @property
     def rounds(self) -> int: ...  # FLT_ROUNDS
 
-hash_info: _hash_info
+# hash_info: _hash_info
 
 @final
 class _hash_info(structseq[Any | int], tuple[int, int, int, int, int, str, int, int, int]):
@@ -206,7 +206,7 @@ class _implementation:
     # > These non-standard attributes must start with an underscore, and are not described here.
     def __getattr__(self, name: str) -> Any: ...
 
-int_info: _int_info
+# int_info: _int_info
 
 @final
 class _int_info(structseq[int], tuple[int, int, int, int]):
@@ -231,7 +231,7 @@ class _thread_info(_UninstantiableStructseq, tuple[_ThreadInfoName, _ThreadInfoL
     @property
     def version(self) -> str | None: ...
 
-thread_info: _thread_info
+# thread_info: _thread_info
 _ReleaseLevel: TypeAlias = Literal["alpha", "beta", "candidate", "final"]
 
 @final

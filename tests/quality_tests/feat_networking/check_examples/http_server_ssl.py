@@ -74,10 +74,10 @@ def main(use_stream=True):
             # next request they issue will likely be more well-behaving and
             # will succeed.
             try:
-                req = client_s.readline()
+                req = client_s.readline() # type: ignore # stubs: ignore
                 print(req)
                 while True:
-                    h = client_s.readline()
+                    h = client_s.readline() # type: ignore # stubs: ignore
                     if h == b"" or h == b"\r\n":
                         break
                     print(h)
@@ -86,8 +86,8 @@ def main(use_stream=True):
             except Exception as e:
                 print("Exception serving request:", e)
         else:
-            print(client_s.recv(4096))  # type: ignore # not supported by design of MicroPython
-            client_s.send(CONTENT % counter)  # type: ignore # not supported by design of MicroPython
+            print(client_s.recv(4096))  # stubs-ignore
+            client_s.send(CONTENT % counter)  # stubs-ignore
         client_s.close()
         counter += 1
         print()

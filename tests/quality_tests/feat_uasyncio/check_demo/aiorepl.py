@@ -64,9 +64,10 @@ __exec_task = asyncio.create_task(__code())
                 except asyncio.CancelledError: # stubs-ignore: port=="esp32" 
                     pass
             finally:
-                intr_task.cancel()
+                intr_task.cancel() # stubs: ignore
                 try:
-                    await intr_task
+                    await intr_task # stubs: ignore
+                    # "Task" is not awaitable  "Task" is incompatible with protocol "Awaitable[_T_co@Awaitable]"  "__await__" is not present
                 except asyncio.CancelledError: # stubs-ignore: port=="esp32"
                     pass
         else:
@@ -95,7 +96,8 @@ async def task(g=None, prompt="--> "):
         g = __import__("__main__").__dict__
     try:
         micropython.kbd_intr(-1)
-        s = asyncio.StreamReader(sys.stdin) # type: ignore # TODO: fix type stubs asyncio.StreamReader
+        s = asyncio.StreamReader(sys.stdin) # stubs-ignore
+        # TODO: fix type stubs asyncio.StreamReader
         # clear = True
         hist = [None] * _HISTORY_LIMIT
         hist_i = 0  # Index of most recent entry.
@@ -123,7 +125,7 @@ async def task(g=None, prompt="--> "):
                         sys.stdout.write("\n")
                         if cmd:
                             # Push current command.
-                            hist[hist_i] = cmd # type: ignore
+                            hist[hist_i] = cmd  # stubs: ignore
                             # Increase history length if possible, and rotate ring forward.
                             hist_n = min(_HISTORY_LIMIT - 1, hist_n + 1)
                             hist_i = (hist_i + 1) % _HISTORY_LIMIT
@@ -164,9 +166,13 @@ async def task(g=None, prompt="--> "):
                             # Stash the current command.
                             hist[(hist_i - hist_b) % _HISTORY_LIMIT] = cmd # type: ignore
                             # Clear current command.
-                            b = "\x08" * len(cmd) # type: ignore
+                            assert cmd # Added to avoid type check errors below
+                            b = "\x08" * len(cmd) # stubs-ignore
+                            # OK on v 1.20.0
+                            # "None" is incompatible with protocol "Sized"
                             sys.stdout.write(b)
-                            sys.stdout.write(" " * len(cmd)) # type: ignore
+                            sys.stdout.write(" " * len(cmd))
+                            # "None" is incompatible with protocol "Sized"
                             sys.stdout.write(b)
                             # Go backwards or forwards in the history.
                             if key == "[A":

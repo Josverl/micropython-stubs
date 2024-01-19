@@ -1,4 +1,4 @@
-from socket import *  # type:  ignore
+from socket import *
 
 # socket.socket
 # Create STREAM TCP socket

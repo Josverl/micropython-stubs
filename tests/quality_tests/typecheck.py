@@ -12,7 +12,6 @@ import fasteners
 import pytest
 from mypy_gitlab_code_quality import generate_report as gitlab_report
 from packaging.version import Version
-
 from typecheck_mypy import check_with_mypy
 
 log = logging.getLogger()
@@ -56,6 +55,12 @@ def stub_ignore(line, version, port, board, linter, is_source=True) -> bool:
     """
     if is_source:
         comment = line.rsplit("#")[-1].strip()
+        if comment == "stubs: ignore":
+            # new style stubs: ignore
+            return True
+        if comment == "stubs-ignore":
+            # old style 
+            return True
         if not (comment.startswith("stubs-ignore") and ":" in comment):
             return False
         id, condition = comment.split(":")

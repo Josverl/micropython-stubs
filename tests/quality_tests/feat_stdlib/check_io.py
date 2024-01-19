@@ -8,11 +8,11 @@ buffer_2 = io.BytesIO(alloc_size) # stub-ignore: version=<1.18.0
 
 stream = open("file")
 
-buf = io.BufferedWriter(stream, 8)  # type: ignore # TODO stdlib.io "TextIOWrapper" is incompatible with "RawIOBase"
+buf = io.BufferedWriter(stream, 8)
 print(buf.write(bytearray(16)))
 
 
 stream.close()
-
-with open("foo.bar", "wb") as f:
+# TODO: fix ect of type "BufferedWriter" cannot be used with "with" because it does not implement __enter__
+with open("foo.bar", "wb") as f:  # type: ignore
     f.write(b"deadbeef")

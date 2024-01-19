@@ -76,7 +76,8 @@ def check_with_mypy(snip_path):
     """
     raw_results = run_mypy(snip_path)
     results = raw_results.split("\n")
-    results = gitlab_to_pyright(gitlab_report(map(str.rstrip, results)))    
+    gl_report = gitlab_report(map(str.rstrip, results))
+    results = gitlab_to_pyright(gl_report)    
     return results
 
 
@@ -166,7 +167,9 @@ def gitlab_to_pyright(report):
         i["message"] = issue["description"]
         i["rule"] = issue["check_name"]
         # pyright uses 0-based lines - gitlab uses 1-based lines
-        i["range"]["start"]["line"] = int(issue["location"]["lines"]["begin"]) -1 
+        line_no = int(issue["location"]["lines"]["begin"]) -1 
+        i["range"]["start"]["line"] = line_no
+        i["range"]["end"]["line"] = line_no
         pyright_report["generalDiagnostics"].append(i)
 
     for sev in ["error", "warning", "information"]:

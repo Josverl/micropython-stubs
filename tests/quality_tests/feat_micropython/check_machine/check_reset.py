@@ -4,6 +4,6 @@ import machine
 
 # put the device to deep sleep for 10 seconds
 
-machine.reset()  # type: ignore
+machine.reset()
 # detect that reset never returns
 assert False, "reset never returns"

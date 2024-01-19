@@ -27,8 +27,8 @@ def create_ssl_context(cert, key, **kwargs):
     natively, this function will be deprecated.
     """
     if hasattr(ssl, 'SSLContext'):
-        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER, **kwargs) # type: ignore
-        ctx.load_cert_chain(cert, key) # type: ignore
+        ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER, **kwargs)
+        ctx.load_cert_chain(cert, key) # stubs: ignore
         return ctx
 
     if isinstance(cert, str):

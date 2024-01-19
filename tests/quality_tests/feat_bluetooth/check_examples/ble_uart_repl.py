@@ -43,7 +43,7 @@ class BLEUARTStream(io.IOBase):
     def _on_rx(self):
         # Needed for ESP32.
         if hasattr(os, "dupterm_notify"):
-            os.dupterm_notify(None) # type: ignore
+            os.dupterm_notify(None) # stubs-ignore: linter=="pyright"
 
     def read(self, sz=None):
         return self._uart.read(sz)

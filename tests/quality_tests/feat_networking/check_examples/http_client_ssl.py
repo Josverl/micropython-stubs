@@ -23,8 +23,9 @@ def main(use_stream=True):
     else:
         # MicroPython SSLSocket objects implement only stream interface, not
         # socket interface
-        s.send(b"GET / HTTP/1.0\r\n\r\n")  # type: ignore # not supported by design of MicroPython
-        print(s.recv(4096))  # type: ignore # not supported by design of MicroPython
+
+        s.send(b"GET / HTTP/1.0\r\n\r\n")  # stubs-ignore 
+        print(s.recv(4096))  # stubs-ignore 
 
     s.close()
 

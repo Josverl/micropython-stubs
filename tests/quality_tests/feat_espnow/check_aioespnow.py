@@ -5,7 +5,7 @@
 
 import asyncio
 
-import aioespnow  # type: ignore
+import aioespnow  # stubs-ignore: version<"1.22.0"
 import network
 
 # A WLAN interface must be active to send()/recv()
