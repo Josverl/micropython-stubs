@@ -31,7 +31,7 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
         log.debug("os.stat({})".format(full))
         subdir = []
         try:
-            stat = os.stat(full) # type: ignore
+            stat = os.stat(full)
             if stat[0] & 0x4000:  # stat.S_IFDIR
                 info["Type"] = "dir"
                 # recurse folder(s)

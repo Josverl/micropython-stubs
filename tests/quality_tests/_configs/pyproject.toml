@@ -18,9 +18,7 @@ disable_error_code = ["no-redef","assignment"]
 # snippets may re-use the same variable names
 allow_redefinition = true
 
-# Used in stdlib check to verify that CPython module variables are not available
-# such as:  sys.executable
-warn-unused-ignores = true
+# warn-unused-ignores = true
 
 # warn_unused_configs = true
 # show_error_context = true

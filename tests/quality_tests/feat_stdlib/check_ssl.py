@@ -10,4 +10,5 @@ c = ssl.CERT_REQUIRED
 ctx = ssl.SSLContext(protocol=ssl.PROTOCOL_TLS_SERVER) 
 
 # below should not be available in stubs
-nope = ssl.create_default_context() # pyright: ignore [reportGeneralTypeIssues]
+x = ssl.attribute_doesnotexist # pyright: ignore [reportGeneralTypeIssues]
+FIXME = ssl.create_default_context() 

@@ -9,6 +9,6 @@ buffer_2 = uio.BytesIO(alloc_size)
 
 stream = open("file")
 buf = io.BufferedWriter(stream, 8)  # type: ignore # TODO stdlib.io "TextIOWrapper" is incompatible with "RawIOBase"
-print(buf.write(bytearray(16)))  # type: ignore # TODO  stdlib.io "bytearray" is incompatible with protocol "ReadableBuffer"
+print(buf.write(bytearray(16)))
 
 stream.close()

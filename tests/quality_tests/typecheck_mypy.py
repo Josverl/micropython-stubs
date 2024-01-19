@@ -130,7 +130,8 @@ def run_mypy(path: Path):
     """
     print(f"Running mypy in {path}")
     mypy_patch(path)
-    cmd = ["--no-error-summary", "--no-color", "--show-absolute-path", "."]
+    # Note that --warn-unused-ignores does not seem to work as expected in stdlib
+    cmd = ["--warn-unused-ignores","--no-error-summary", "--no-color", "--show-absolute-path", "."]
     try:
         with chdir_mgr(path):
             # ref https://mypy.readthedocs.io/en/latest/extending_mypy.html#integrating-mypy-into-another-python-application

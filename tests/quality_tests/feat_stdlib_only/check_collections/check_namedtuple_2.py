@@ -5,7 +5,7 @@ from collections import namedtuple
 from typing import Union
 
 WifiConfig = namedtuple('WifiConfig', ('ssid', 'password'))
-reveal_type(WifiConfig) 
+# reveal_type(WifiConfig) 
 
 def read_wifi_config() -> Union[WifiConfig, None]:
   try:

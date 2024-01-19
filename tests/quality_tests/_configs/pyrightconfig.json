@@ -19,5 +19,7 @@
     "typeCheckingMode": "basic",
     "typeshedPath": "./typings",
     "reportMissingModuleSource": "none",
+    // Used in stdlib check to verify that CPython module variables are not available
+    // such as:  sys.executable    
     "reportUnnecessaryTypeIgnoreComment" : "error"
 }
