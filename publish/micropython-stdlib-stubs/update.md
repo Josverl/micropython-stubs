@@ -6,47 +6,52 @@ There may be some steps and details missing as I have not documented the process
     - ...\.vscode\extensions\ms-python.vscode-pylance-2023.12.1\dist\typeshed-fallback\stdlib
     - to ...\micropython-stdlib-stubs\stdlib
 
-2. Keep only the following **sub folders** file packages 
-    - [ ] `_typeshed`
-    - [ ] `asyncio`
-    - [ ] `collections`
-    - [ ] `json` ??
-    - [ ] `sys`  
-    - [ ] `os`
+2. Keep only the following packages 
+    - [ ] `_typeshed`,
+    - [ ] `asyncio`,
+    - [ ] `collections`,
+    - [ ] `sys`,
+    - [ ] `os`,
+    - [ ] `__future__`,
+    - [ ] `_ast`,
+    - [ ] `_codecs`,
+    - [ ] `_collections_abc`,
+    - [ ] `_decimal`,
+    - [ ] `abc`,
+    - [ ] `builtins`,
+    - [ ] `io`,
+    - [ ] `re`,
+    - [ ] `socket`,
+    - [ ] `sys`,
+    - [ ] `types`,
+    - [ ] `typing_extensions`,
+    - [ ] `typing`,
+    - [ ] `ssl`,
+    - [ ] `enum`,
+    - [ ] `functools`,
+    - [ ] `queue`,
+    - [ ] `selectors`,
+    - [ ] `sre_compile`,
+    - [ ] `sre_constants`,
+    - [ ] `sre_parse`,
 
     - remove all other folders (27-ish folders)
 
-3. (Not automate ) Rename the stubs that are used internally, but are not part of micropython
-    with two leading underscores ( __ ) 
-    NOTE: rename them in vscode to that the files that reference them get automagically refactored 
-    - [ ] `contextlib.pyi`     --> `__contextlib.pyi`
-    - [ ] `contextvars.pyi`    --> `__contextvars.pyi`
-    - [ ] `dataclasses.pyi`    --> `__dataclasses.pyi`
-    - [ ] `enum.pyi`           --> `__enum.pyi`
-    - [ ] `functools.pyi`      --> `__functools.pyi`
-    - [ ] `queue.pyi`          --> `__queue.pyi`
-    - [ ] `sre_compile.pyi`    --> `__sre_compile.pyi`
-    - [ ] `sre_constants.pyi`  --> `__sre_constants.pyi`
-    - [ ] `sre_parse.pyi`      --> `__sre_parse.pyi`
+3. Merge the docstubs into the stdlib stubs 
+    
+    * Use `enrich_folder` to add the docstrings to the stubs, without overwriting the parameter names and types. This may need to be repeated for modules that are sperated into multiple files.
+    * opdate the exported names ( `__all__` ) to include the newly added names
 
-4. Remove all stubs and stub-only packages that are not in micropython
-    Keep only the following: 
-    - [ ] All `__<package>.pyi` from step 3 
-    - [ ] `__future__.pyi`
-    - [ ] `_ast.pyi`
-    - [ ] `_codecs.pyi`
-    - [ ] `_collections_abc.pyi`
-    - [ ] `_decimal.pyi`
-    - [ ] `abc.pyi`
-    - [ ] `builtins.pyi`
-    - [ ] `io.pyi`
-    - [ ] `re.pyi`
-    - [ ] `socket.pyi`
-    - [ ] `sys.pyi`
-    - [ ] `types.pyi`
-    - [ ] `typing_extensions.pyi`
-    - [ ] `typing.pyi`
 
+    Note that this may lead to some differences between the stubs and the actual implementation.
+
+
+4.  may need some manual / automated editing of the stubs
+    - remove CPython specific attributes that are not supported by micropython
+
+
+
+4.  format the stubs with black and autoflake
 
 
 

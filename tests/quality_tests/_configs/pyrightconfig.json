@@ -18,5 +18,6 @@
     "verboseOutput": false,
     "typeCheckingMode": "basic",
     "typeshedPath": "./typings",
-    "reportMissingModuleSource": "none"
+    "reportMissingModuleSource": "none",
+    "reportUnnecessaryTypeIgnoreComment" : "error"
 }

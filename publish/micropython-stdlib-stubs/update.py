@@ -23,7 +23,6 @@ modules_to_keep = [
     "collections",
     "sys",
     "os",
-    # "json",
     "__future__",
     "_ast",
     "_codecs",
@@ -39,16 +38,8 @@ modules_to_keep = [
     "typing_extensions",
     "typing",
     "ssl",
-    # TODO: TESTING NEEDED WHICH ONES ARE NEEDED
-    # "codecs",
-    # "contextlib",
-    # "contextvars",
-    # "dataclasses", # not in MicroPython
-    # "decimal",
     "enum",
-    # "fractions",
     "functools",
-    # "numbers",
     "queue",
     "selectors",
     "sre_compile",
@@ -151,7 +142,24 @@ def merge_docstubs_into_stdlib(*, dist_stdlib_path: Path, docstubs_path: Path, d
             "sys",
             "sys.pyi",
             "sys/__init__.pyi",
-            # all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
+            all=[
+                "platform",
+                "version_info",
+                "path",
+                "version",
+                "ps1",
+                "ps2",
+                "byteorder",
+                "modules",
+                "argv",
+                "implementation",
+                "maxsize",
+                "stderr",
+                "stdout",
+                "stdin",
+                "print_exception",
+                "exit",
+            ],
         ),
         Boost(
             "ssl",
@@ -192,9 +200,13 @@ def update_public_interface(boost: Boost, module_path: Path):
     try:
         with open(module_path, "r") as f:
             lines = f.readlines()
+        found_all = False
         for i, line in enumerate(lines):
             if line.startswith("__all__ = "):
                 lines[i] = f"__all__ = {repr(boost.all)}\n"
+                found_all = True
+        if not found_all:
+            lines.append(f"__all__ = {repr(boost.all)}\n")
         with open(module_path, "w") as f:
             f.writelines(lines)
     except Exception as e:
