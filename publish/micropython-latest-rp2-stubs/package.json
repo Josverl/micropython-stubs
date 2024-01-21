@@ -2,7 +2,7 @@
     "name": "micropython-rp2-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.23.0a47",
+    "pkg_version": "1.23.0a49",
     "path": "micropython-latest-rp2-stubs",
     "stub_sources": [
         [
