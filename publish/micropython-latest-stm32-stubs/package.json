@@ -2,7 +2,7 @@
     "name": "micropython-stm32-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.23.0a54",
+    "pkg_version": "1.23.0a57",
     "path": "micropython-latest-stm32-stubs",
     "stub_sources": [
         [
