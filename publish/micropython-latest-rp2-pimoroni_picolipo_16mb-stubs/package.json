@@ -2,7 +2,7 @@
     "name": "micropython-rp2-pimoroni_picolipo_16mb-stubs",
     "mpy_version": "latest",
     "publish": true,
-    "pkg_version": "1.23.0a62",
+    "pkg_version": "1.23.0a66",
     "path": "micropython-latest-rp2-pimoroni_picolipo_16mb-stubs",
     "stub_sources": [
         [
