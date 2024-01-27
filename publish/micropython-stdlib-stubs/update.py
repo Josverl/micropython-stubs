@@ -4,98 +4,19 @@ Update the micropython-stlib-stubs
 - merged with (some) micropython documentation.`
 
 """
-
+import re
 import shutil
 import subprocess
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import List, Union
+from typing import List, Optional, Union
 
+import rich_click as click
 from loguru import logger as log
 from stubber.codemod.enrich import enrich_folder
 from stubber.utils import do_post_processing
 from stubber.utils.config import CONFIG
-
-modules_to_keep = [
-    "_typeshed",
-    "asyncio",
-    "collections",
-    "sys",
-    "os",
-    "__future__",
-    "_ast",
-    "_codecs",
-    "_collections_abc",
-    "_decimal",
-    "abc",
-    "builtins",
-    "io",
-    "re",
-    "socket",
-    "sys",
-    "types",
-    "typing_extensions",
-    "typing",
-    "ssl",
-    "enum",
-    "functools",
-    "queue",
-    "selectors",
-    "sre_compile",
-    "sre_constants",
-    "sre_parse",
-]
-
-
-def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
-    """
-    Update the standard library from the typeshed folder.
-
-    Args:
-        dist_stdlib_path (Path): The path to the destination stdlib folder.
-        typeshed_path (Path): The path to the typeshed folder.
-    """
-    pkg_stdlib_path = dist_stdlib_path / "stdlib"
-    log.info("Clean up the stdlib folder")
-    shutil.rmtree(pkg_stdlib_path, ignore_errors=True)
-    time.sleep(1)
-
-    log.info("Copy the typeshed folder to the stdlib")
-    shutil.copytree(typeshed_path / "stdlib", pkg_stdlib_path, dirs_exist_ok=True)
-
-    # get the commit hash of typeshed and save it to a file
-    log.info("Save typeshed commit hash to file")
-    typeshed_commit_hash = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=typeshed_path)
-    with open(dist_stdlib_path / "typeshed_commit.txt", "w") as f:
-        f.write(f"https://github.com/python/typeshed/tree/{typeshed_commit_hash.decode('utf-8')}")
-
-    log.info("Clean up extraneous folders from stdlib")
-    for fldr in pkg_stdlib_path.glob("*"):
-        if fldr.is_dir() and fldr.stem not in modules_to_keep:
-            shutil.rmtree(fldr)
-            time.sleep(0.1)
-
-    log.info("Clean up extraneous stubs from stdlib")
-    for stub in pkg_stdlib_path.glob("*.pyi"):
-        if stub.stem not in modules_to_keep:
-            # print(f"Removing {stub.stem}")
-            stub.unlink()
-
-    # try to limit the "overspeak" of python modules to the bare minimum
-    sub_modules_to_remove = [
-        "os/path.pyi",
-        "sys/_monitoring.pyi",
-        "asyncio/subprocess.pyi",
-        "asyncio/base_subprocess.pyi",
-        "asyncio/taskgroups.pyi",
-        "asyncio/taskgroups.pyi",
-        "asyncio/windows_events.pyi",
-        "asyncio/windows_utils.pyi",
-    ]
-    for name in sub_modules_to_remove:
-        if (pkg_stdlib_path / name).exists():
-            (pkg_stdlib_path / name).unlink()
 
 
 @dataclass
@@ -119,7 +40,133 @@ class Boost:
         self.file = Path("stdlib") / (self.file or self.stub_name + ".pyi")
 
 
-def merge_docstubs_into_stdlib(*, dist_stdlib_path: Path, docstubs_path: Path, dry_run=True):
+stdlib_modules_to_keep = [
+    "_typeshed",
+    "asyncio",
+    "collections",
+    "sys",
+    "os",
+    "__future__",
+    "_ast",
+    "_codecs",
+    "_collections_abc",
+    "_decimal",
+    "abc",
+    "builtins",
+    "io",
+    "re",
+    # "socket",
+    "sys",
+    "types",
+    "typing_extensions",
+    "typing",
+    "ssl",
+    "enum",
+    # "functools",
+    # "queue",
+    # "selectors",
+    "sre_compile",
+    "sre_constants",
+    "sre_parse",
+]
+
+# try to limit the "overspeak" of python modules to the bare minimum
+stdlib_submodules_to_remove = [
+    "os/path.pyi",
+    "sys/_monitoring.pyi",
+    "asyncio/subprocess.pyi",
+    "asyncio/base_subprocess.pyi",
+    "asyncio/taskgroups.pyi",
+    "asyncio/taskgroups.pyi",
+    "asyncio/windows_events.pyi",
+    "asyncio/windows_utils.pyi",
+]
+
+# match "var: type",
+re_var_typ = re.compile(r"^([\w\_]+)\s*:\s*\w+")
+# match var= value
+re_var_val = re.compile(r"^([\w\_]+)\s*=\s*\w+")
+
+
+def find_toplevel_vars(module: Path) -> set:
+    """Find the top level variables defined in a module."""
+    keep = set()
+    if not module.exists():
+        return keep
+    with open(module, "r", encoding="utf-8") as f:
+        for line in f.readlines():
+            if match := re_var_typ.match(line):
+                keep.add(match.group(1))
+            elif match := re_var_val.match(line):
+                keep.add(match.group(1))
+    return keep
+
+
+def update_module_vars(module: Path, keep: set):
+    """
+    Update the module top level  variables to only keep the ones
+    in the `keep` set or starting with _ .
+    """
+    with open(module, "r", encoding="utf-8") as f:
+        lines = f.readlines()
+    with open(module, "w", encoding="utf-8") as f:
+        for line in lines:
+            if match := re_var_typ.match(line):
+                if match.group(1) in keep or match.group(1).startswith("_"):
+                    f.write(line)
+                else:
+                    f.write(f"# {line}")
+            elif match := re_var_val.match(line):
+                if match.group(1) in keep or match.group(1).startswith("_"):
+                    f.write(line)
+                else:
+                    f.write(f"# {line}")
+            else:
+                f.write(line)
+
+
+def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
+    """
+    Update the standard library from the typeshed folder.
+
+    Args:
+        dist_stdlib_path (Path): The path to the destination stdlib folder.
+        typeshed_path (Path): The path to the typeshed folder.
+    """
+    pkg_stdlib_path = dist_stdlib_path / "stdlib"
+    log.info("Clean up the stdlib folder")
+    shutil.rmtree(pkg_stdlib_path, ignore_errors=True)
+    time.sleep(1)
+
+    log.info("Copy the typeshed folder to the stdlib")
+    shutil.copytree(typeshed_path / "stdlib", pkg_stdlib_path, dirs_exist_ok=True)
+
+    # get the commit hash of typeshed and save it to a file
+    log.info("Save typeshed commit hash to file")
+    typeshed_commit_hash = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=typeshed_path)
+    with open(dist_stdlib_path / "typeshed_commit.txt", "w") as f:
+        f.write("# This file contains the commit hash of typeshed used to generate the stubs\n")
+        f.write(f"# https://github.com/python/typeshed/tree/{typeshed_commit_hash.decode('utf-8')}\n")
+        f.write(f"{typeshed_commit_hash.decode('utf-8')}\n")
+
+    log.info("Clean up extraneous folders from stdlib")
+    for fldr in pkg_stdlib_path.glob("*"):
+        if fldr.is_dir() and fldr.stem not in stdlib_modules_to_keep:
+            shutil.rmtree(fldr)
+            time.sleep(0.1)
+
+    log.info("Clean up extraneous stubs from stdlib")
+    for stub in pkg_stdlib_path.glob("*.pyi"):
+        if stub.stem not in stdlib_modules_to_keep:
+            # print(f"Removing {stub.stem}")
+            stub.unlink()
+
+    for name in stdlib_submodules_to_remove:
+        if (pkg_stdlib_path / name).exists():
+            (pkg_stdlib_path / name).unlink()
+
+
+def merge_docstubs_into_stdlib(*, dist_stdlib_path: Path, docstubs_path: Path, boardstub_path: Optional[Path] = None, dry_run=False):
     """
     Merge docstubs into the stdlib.
 
@@ -138,17 +185,10 @@ def merge_docstubs_into_stdlib(*, dist_stdlib_path: Path, docstubs_path: Path, d
             "collections/__init__.pyi",
             all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
         ),
-        Boost(
-            "sys",
-            "sys.pyi",
-            "sys/__init__.pyi",
-        ),
-        Boost(
-            "ssl",
-            "ssl.pyi",
-            "ssl.pyi",
-            # TODO: add ssl.SSLContext.load_cert_chain
-        ),
+        Boost("sys", "sys.pyi", "sys/__init__.pyi"),
+        Boost("ssl", "ssl.pyi", "ssl.pyi"),
+        # TODO: add ssl.SSLContext.load_cert_chain
+        Boost("io", "io.pyi", "io.pyi"),
     ]
 
     for boost in boosts:
@@ -164,6 +204,13 @@ def merge_docstubs_into_stdlib(*, dist_stdlib_path: Path, docstubs_path: Path, d
             )
             if boost.all:
                 update_public_interface(boost, module_path)
+            if boost.docstub:
+                # read the toplevel vars from the docstub and firmware stubs
+                keep = find_toplevel_vars(docstubs_path / boost.docstub)
+                keep.update(find_toplevel_vars(boardstub_path / boost.docstub))
+                if "io" in boost.stub_name:
+                    keep.add("open")  # open is not in the io docstub
+                update_module_vars(module_path, keep)
 
             if result:
                 log.info(f"Enriched {module_path}")
@@ -195,25 +242,39 @@ def update_public_interface(boost: Boost, module_path: Path):
         log.error(f"Failed to update __all__ in {module_path}: {e}")
 
 
-def update():
+@click.command()
+@click.option("--clone", "-c", help="Clone the typeshed repo.", default=False, show_default=True)
+@click.option("--typeshed", "-t", is_flag=True, help="Update stdlib from the typeshed repo.", default=True, show_default=True)
+@click.option("--merge", "-m", is_flag=True, help="Merge the docstubs into the stdlib.", default=True, show_default=True)
+@click.option("--build", "-b", is_flag=True, help="Build the wheel file.", default=True, show_default=True)
+def update(clone: bool = False, typeshed: bool = False, merge: bool = True, build: bool = True):
     """
     Update the stdlib and create a wheel file.
     """
     # TODO: Read from CONFIG
     rootpath = Path(__file__).parent.parent.parent
     dist_stdlib_path = rootpath / "publish/micropython-stdlib-stubs"
-    docstubs_path = rootpath / "stubs/micropython-v1_21_0-docstubs"
+    docstubs_path = rootpath / "stubs/micropython-v1_22_0-docstubs"
+    boardstub_path = rootpath / "stubs/micropython-v1_22_0-esp32-stubs"
     typeshed_path = rootpath / "repos/typeshed"
-    update_stdlib_from_typeshed(dist_stdlib_path, typeshed_path)
+    if clone:
+        # TODO
+        # clone typeshed if needed and switch to the correct hash
+        log.warning("Not implemented yet")
 
-    merge_docstubs_into_stdlib(dist_stdlib_path=dist_stdlib_path, docstubs_path=docstubs_path, dry_run=False)
+    if typeshed:
+        update_stdlib_from_typeshed(dist_stdlib_path, typeshed_path)
+
+    if merge:
+        merge_docstubs_into_stdlib(dist_stdlib_path=dist_stdlib_path, docstubs_path=docstubs_path, boardstub_path=boardstub_path)
 
     # tidy up the stubs
     do_post_processing([dist_stdlib_path], stubgen=False, black=True, autoflake=True)
 
-    subprocess.check_call(["poetry", "build"], cwd=dist_stdlib_path)
+    if build:
+        subprocess.check_call(["poetry", "build"], cwd=dist_stdlib_path)
 
 
 if __name__ == "__main__":
+    # find_toplevel_vars(Path(r"C:\develop\MyPython\micropython-stubs\publish\micropython-v1_22_0-esp32-stubs\sys.pyi"))
     update()
-    print("done")
