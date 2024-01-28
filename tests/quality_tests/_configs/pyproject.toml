@@ -1,5 +1,21 @@
 
 # mypy global options:
+[tool.pyright]
+include = ["."]
+ignore = ["**/typings"]
+exclude = [
+    ".*",
+    "__*",
+    "**/typings",
+]
+
+typeCheckingMode = "basic"
+stubPath = "typings"
+typeshedPath = "typings"
+pythonPlatform = "Linux"
+
+reportMissingModuleSource = "none"
+reportUnnecessaryTypeIgnoreComment = "error"
 
 [tool.mypy]
 platform = "linux"

@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 import platform
 import re
 import shutil
@@ -23,6 +24,9 @@ def copy_config_files():
     my_path = Path(__file__).parent.absolute()
     config_path = my_path / "_configs"
     for folder in list(my_path.glob("check_*")) + list(my_path.glob("feat_*")):
+        # remove the old pyrightconfig.json if it exists
+        if (folder / "pyrightconfig.json").exists():
+            os.remove(folder / "pyrightconfig.json")
         for file in config_path.glob("*.*"):
             if file.name == "readme.md":
                 continue
@@ -165,16 +169,24 @@ def run_typechecker( snip_path:Path, version:str, portboard:str, pytestconfig:py
 
 #=====================================================================================
 
-def check_with_pyright(snip_path):
+def check_with_pyright(snip_path:Path):
     
-    cmd = f"pyright --project {snip_path.as_posix()} --outputjson"
+    # cmd = f"pyright --project {str(snip_path)} --outputjson"
+    cmd = [sys.executable, "-m", "pyright","--project",  str(snip_path),  "--outputjson"] 
+    cmd = [sys.executable, "-m", "pyright",".", "--outputjson"] 
     use_shell = platform.system() != "Windows"
     results = {}
+    
+    # get the cwd 
+    cwd = Path.cwd()
+    os.chdir(snip_path)
     try:
-                # run pyright in the folder with the check_scripts to allow modules to import each other.
-        result = subprocess.run(cmd, shell=use_shell, capture_output=True, cwd=snip_path.as_posix())
+        # run pyright in the folder with the check_scripts to allow modules to import each other.
+        result = subprocess.run(cmd,capture_output=True, cwd=str(snip_path),encoding="utf-8")
     except OSError as e:
         raise e
+    finally:
+        os.chdir(cwd)
     if result.returncode >= 2:
         assert (
                     0
