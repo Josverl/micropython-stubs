@@ -1,7 +1,7 @@
 """
 TLS/SSL wrapper for socket objects.
 
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/ssl.html
+MicroPython module: https://docs.micropython.org/en/v1.22.0/library/ssl.html
 
 CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
@@ -54,7 +54,7 @@ class SSLCertVerificationError(SSLError, ValueError):
     verify_code: int
     verify_message: str
 
-CertificateError = SSLCertVerificationError
+# CertificateError = SSLCertVerificationError
 
 if sys.version_info < (3, 12):
     def wrap_socket(
@@ -182,11 +182,11 @@ class VerifyFlags(enum.IntFlag):
         VERIFY_ALLOW_PROXY_CERTS: int
         VERIFY_X509_PARTIAL_CHAIN: int
 
-VERIFY_DEFAULT: VerifyFlags
-VERIFY_CRL_CHECK_LEAF: VerifyFlags
-VERIFY_CRL_CHECK_CHAIN: VerifyFlags
-VERIFY_X509_STRICT: VerifyFlags
-VERIFY_X509_TRUSTED_FIRST: VerifyFlags
+# VERIFY_DEFAULT: VerifyFlags
+# VERIFY_CRL_CHECK_LEAF: VerifyFlags
+# VERIFY_CRL_CHECK_CHAIN: VerifyFlags
+# VERIFY_X509_STRICT: VerifyFlags
+# VERIFY_X509_TRUSTED_FIRST: VerifyFlags
 
 if sys.version_info >= (3, 10):
     VERIFY_ALLOW_PROXY_CERTS: VerifyFlags
@@ -203,13 +203,13 @@ class _SSLMethod(enum.IntEnum):
     PROTOCOL_TLS_CLIENT: int
     PROTOCOL_TLS_SERVER: int
 
-PROTOCOL_SSLv23: _SSLMethod
-PROTOCOL_SSLv2: _SSLMethod
-PROTOCOL_SSLv3: _SSLMethod
-PROTOCOL_TLSv1: _SSLMethod
-PROTOCOL_TLSv1_1: _SSLMethod
-PROTOCOL_TLSv1_2: _SSLMethod
-PROTOCOL_TLS: _SSLMethod
+# PROTOCOL_SSLv23: _SSLMethod
+# PROTOCOL_SSLv2: _SSLMethod
+# PROTOCOL_SSLv3: _SSLMethod
+# PROTOCOL_TLSv1: _SSLMethod
+# PROTOCOL_TLSv1_1: _SSLMethod
+# PROTOCOL_TLSv1_2: _SSLMethod
+# PROTOCOL_TLS: _SSLMethod
 PROTOCOL_TLS_CLIENT: _SSLMethod
 PROTOCOL_TLS_SERVER: _SSLMethod
 
@@ -237,19 +237,19 @@ class Options(enum.IntFlag):
     elif sys.version_info >= (3, 8) and sys.platform == "linux":
         OP_IGNORE_UNEXPECTED_EOF: int
 
-OP_ALL: Options
-OP_NO_SSLv2: Options
-OP_NO_SSLv3: Options
-OP_NO_TLSv1: Options
-OP_NO_TLSv1_1: Options
-OP_NO_TLSv1_2: Options
-OP_NO_TLSv1_3: Options
-OP_CIPHER_SERVER_PREFERENCE: Options
-OP_SINGLE_DH_USE: Options
-OP_SINGLE_ECDH_USE: Options
-OP_NO_COMPRESSION: Options
-OP_NO_TICKET: Options
-OP_NO_RENEGOTIATION: Options
+# OP_ALL: Options
+# OP_NO_SSLv2: Options
+# OP_NO_SSLv3: Options
+# OP_NO_TLSv1: Options
+# OP_NO_TLSv1_1: Options
+# OP_NO_TLSv1_2: Options
+# OP_NO_TLSv1_3: Options
+# OP_CIPHER_SERVER_PREFERENCE: Options
+# OP_SINGLE_DH_USE: Options
+# OP_SINGLE_ECDH_USE: Options
+# OP_NO_COMPRESSION: Options
+# OP_NO_TICKET: Options
+# OP_NO_RENEGOTIATION: Options
 if sys.version_info >= (3, 8):
     OP_ENABLE_MIDDLEBOX_COMPAT: Options
 if sys.version_info >= (3, 12):
@@ -260,22 +260,22 @@ if sys.version_info >= (3, 11):
 elif sys.version_info >= (3, 8) and sys.platform == "linux":
     OP_IGNORE_UNEXPECTED_EOF: Options
 
-HAS_NEVER_CHECK_COMMON_NAME: bool
-HAS_SSLv2: bool
-HAS_SSLv3: bool
-HAS_TLSv1: bool
-HAS_TLSv1_1: bool
-HAS_TLSv1_2: bool
-HAS_TLSv1_3: bool
-HAS_ALPN: bool
-HAS_ECDH: bool
-HAS_SNI: bool
-HAS_NPN: bool
-CHANNEL_BINDING_TYPES: list[str]
+# HAS_NEVER_CHECK_COMMON_NAME: bool
+# HAS_SSLv2: bool
+# HAS_SSLv3: bool
+# HAS_TLSv1: bool
+# HAS_TLSv1_1: bool
+# HAS_TLSv1_2: bool
+# HAS_TLSv1_3: bool
+# HAS_ALPN: bool
+# HAS_ECDH: bool
+# HAS_SNI: bool
+# HAS_NPN: bool
+# CHANNEL_BINDING_TYPES: list[str]
 
-OPENSSL_VERSION: str
-OPENSSL_VERSION_INFO: tuple[int, int, int, int, int]
-OPENSSL_VERSION_NUMBER: int
+# OPENSSL_VERSION: str
+# OPENSSL_VERSION_INFO: tuple[int, int, int, int, int]
+# OPENSSL_VERSION_NUMBER: int
 
 class AlertDescription(enum.IntEnum):
     ALERT_DESCRIPTION_ACCESS_DENIED: int
@@ -306,33 +306,33 @@ class AlertDescription(enum.IntEnum):
     ALERT_DESCRIPTION_UNSUPPORTED_EXTENSION: int
     ALERT_DESCRIPTION_USER_CANCELLED: int
 
-ALERT_DESCRIPTION_HANDSHAKE_FAILURE: AlertDescription
-ALERT_DESCRIPTION_INTERNAL_ERROR: AlertDescription
-ALERT_DESCRIPTION_ACCESS_DENIED: AlertDescription
-ALERT_DESCRIPTION_BAD_CERTIFICATE: AlertDescription
-ALERT_DESCRIPTION_BAD_CERTIFICATE_HASH_VALUE: AlertDescription
-ALERT_DESCRIPTION_BAD_CERTIFICATE_STATUS_RESPONSE: AlertDescription
-ALERT_DESCRIPTION_BAD_RECORD_MAC: AlertDescription
-ALERT_DESCRIPTION_CERTIFICATE_EXPIRED: AlertDescription
-ALERT_DESCRIPTION_CERTIFICATE_REVOKED: AlertDescription
-ALERT_DESCRIPTION_CERTIFICATE_UNKNOWN: AlertDescription
-ALERT_DESCRIPTION_CERTIFICATE_UNOBTAINABLE: AlertDescription
-ALERT_DESCRIPTION_CLOSE_NOTIFY: AlertDescription
-ALERT_DESCRIPTION_DECODE_ERROR: AlertDescription
-ALERT_DESCRIPTION_DECOMPRESSION_FAILURE: AlertDescription
-ALERT_DESCRIPTION_DECRYPT_ERROR: AlertDescription
-ALERT_DESCRIPTION_ILLEGAL_PARAMETER: AlertDescription
-ALERT_DESCRIPTION_INSUFFICIENT_SECURITY: AlertDescription
-ALERT_DESCRIPTION_NO_RENEGOTIATION: AlertDescription
-ALERT_DESCRIPTION_PROTOCOL_VERSION: AlertDescription
-ALERT_DESCRIPTION_RECORD_OVERFLOW: AlertDescription
-ALERT_DESCRIPTION_UNEXPECTED_MESSAGE: AlertDescription
-ALERT_DESCRIPTION_UNKNOWN_CA: AlertDescription
-ALERT_DESCRIPTION_UNKNOWN_PSK_IDENTITY: AlertDescription
-ALERT_DESCRIPTION_UNRECOGNIZED_NAME: AlertDescription
-ALERT_DESCRIPTION_UNSUPPORTED_CERTIFICATE: AlertDescription
-ALERT_DESCRIPTION_UNSUPPORTED_EXTENSION: AlertDescription
-ALERT_DESCRIPTION_USER_CANCELLED: AlertDescription
+# ALERT_DESCRIPTION_HANDSHAKE_FAILURE: AlertDescription
+# ALERT_DESCRIPTION_INTERNAL_ERROR: AlertDescription
+# ALERT_DESCRIPTION_ACCESS_DENIED: AlertDescription
+# ALERT_DESCRIPTION_BAD_CERTIFICATE: AlertDescription
+# ALERT_DESCRIPTION_BAD_CERTIFICATE_HASH_VALUE: AlertDescription
+# ALERT_DESCRIPTION_BAD_CERTIFICATE_STATUS_RESPONSE: AlertDescription
+# ALERT_DESCRIPTION_BAD_RECORD_MAC: AlertDescription
+# ALERT_DESCRIPTION_CERTIFICATE_EXPIRED: AlertDescription
+# ALERT_DESCRIPTION_CERTIFICATE_REVOKED: AlertDescription
+# ALERT_DESCRIPTION_CERTIFICATE_UNKNOWN: AlertDescription
+# ALERT_DESCRIPTION_CERTIFICATE_UNOBTAINABLE: AlertDescription
+# ALERT_DESCRIPTION_CLOSE_NOTIFY: AlertDescription
+# ALERT_DESCRIPTION_DECODE_ERROR: AlertDescription
+# ALERT_DESCRIPTION_DECOMPRESSION_FAILURE: AlertDescription
+# ALERT_DESCRIPTION_DECRYPT_ERROR: AlertDescription
+# ALERT_DESCRIPTION_ILLEGAL_PARAMETER: AlertDescription
+# ALERT_DESCRIPTION_INSUFFICIENT_SECURITY: AlertDescription
+# ALERT_DESCRIPTION_NO_RENEGOTIATION: AlertDescription
+# ALERT_DESCRIPTION_PROTOCOL_VERSION: AlertDescription
+# ALERT_DESCRIPTION_RECORD_OVERFLOW: AlertDescription
+# ALERT_DESCRIPTION_UNEXPECTED_MESSAGE: AlertDescription
+# ALERT_DESCRIPTION_UNKNOWN_CA: AlertDescription
+# ALERT_DESCRIPTION_UNKNOWN_PSK_IDENTITY: AlertDescription
+# ALERT_DESCRIPTION_UNRECOGNIZED_NAME: AlertDescription
+# ALERT_DESCRIPTION_UNSUPPORTED_CERTIFICATE: AlertDescription
+# ALERT_DESCRIPTION_UNSUPPORTED_EXTENSION: AlertDescription
+# ALERT_DESCRIPTION_USER_CANCELLED: AlertDescription
 
 class _ASN1ObjectBase(NamedTuple):
     nid: int
@@ -443,23 +443,49 @@ class SSLContext:
     def cert_store_stats(self) -> dict[str, int]: ...
     def load_cert_chain(
         self, certfile: StrOrBytesPath, keyfile: StrOrBytesPath | None = None, password: _PasswordType | None = None
-    ) -> None: ...
+    ) -> None:
+        """
+        Load a private key and the corresponding certificate.  The *certfile* is a string
+        with the file path of the certificate.  The *keyfile* is a string with the file path
+        of the private key.
+
+        Difference to CPython
+
+           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
+           strings, in which case they are interpreted as the actual certificate/key data.
+        """
+        ...
     def load_default_certs(self, purpose: Purpose = ...) -> None: ...
     def load_verify_locations(
         self,
         cafile: StrOrBytesPath | None = None,
         capath: StrOrBytesPath | None = None,
         cadata: str | ReadableBuffer | None = None,
-    ) -> None: ...
+    ) -> None:
+        """
+        Load the CA certificate chain that will validate the peer's certificate.
+        *cafile* is the file path of the CA certificates.  *cadata* is a bytes object
+        containing the CA certificates.  Only one of these arguments should be provided.
+        """
+        ...
     @overload
     def get_ca_certs(self, binary_form: Literal[False] = False) -> list[_PeerCertRetDictType]: ...
     @overload
     def get_ca_certs(self, binary_form: Literal[True]) -> list[bytes]: ...
     @overload
     def get_ca_certs(self, binary_form: bool = False) -> Any: ...
-    def get_ciphers(self) -> list[_Cipher]: ...
+    def get_ciphers(self) -> list[_Cipher]:
+        """
+        Get a list of enabled ciphers, returned as a list of strings.
+        """
+        ...
     def set_default_verify_paths(self) -> None: ...
-    def set_ciphers(self, __cipherlist: str) -> None: ...
+    def set_ciphers(self, __cipherlist: str) -> None:
+        """
+        Set the available ciphers for sockets created with this context.  *ciphers* should be
+        a list of strings in the `IANA cipher suite format <https://wiki.mozilla.org/Security/Cipher_Suites>`_ .
+        """
+        ...
     def set_alpn_protocols(self, alpn_protocols: Iterable[str]) -> None: ...
     def set_npn_protocols(self, npn_protocols: Iterable[str]) -> None: ...
     def set_servername_callback(self, server_name_callback: _SrvnmeCbType | None) -> None: ...
@@ -571,22 +597,22 @@ class SSLErrorNumber(enum.IntEnum):
     SSL_ERROR_WANT_X509_LOOKUP: int
     SSL_ERROR_ZERO_RETURN: int
 
-SSL_ERROR_EOF: SSLErrorNumber  # undocumented
-SSL_ERROR_INVALID_ERROR_CODE: SSLErrorNumber  # undocumented
-SSL_ERROR_SSL: SSLErrorNumber  # undocumented
-SSL_ERROR_SYSCALL: SSLErrorNumber  # undocumented
-SSL_ERROR_WANT_CONNECT: SSLErrorNumber  # undocumented
-SSL_ERROR_WANT_READ: SSLErrorNumber  # undocumented
-SSL_ERROR_WANT_WRITE: SSLErrorNumber  # undocumented
-SSL_ERROR_WANT_X509_LOOKUP: SSLErrorNumber  # undocumented
-SSL_ERROR_ZERO_RETURN: SSLErrorNumber  # undocumented
+# SSL_ERROR_EOF: SSLErrorNumber  # undocumented
+# SSL_ERROR_INVALID_ERROR_CODE: SSLErrorNumber  # undocumented
+# SSL_ERROR_SSL: SSLErrorNumber  # undocumented
+# SSL_ERROR_SYSCALL: SSLErrorNumber  # undocumented
+# SSL_ERROR_WANT_CONNECT: SSLErrorNumber  # undocumented
+# SSL_ERROR_WANT_READ: SSLErrorNumber  # undocumented
+# SSL_ERROR_WANT_WRITE: SSLErrorNumber  # undocumented
+# SSL_ERROR_WANT_X509_LOOKUP: SSLErrorNumber  # undocumented
+# SSL_ERROR_ZERO_RETURN: SSLErrorNumber  # undocumented
 
 def get_protocol_name(protocol_code: int) -> str: ...
 
 if sys.version_info < (3, 9):
     AF_INET: int
-PEM_FOOTER: str
-PEM_HEADER: str
-SOCK_STREAM: int
-SOL_SOCKET: int
-SO_TYPE: int
+# PEM_FOOTER: str
+# PEM_HEADER: str
+# SOCK_STREAM: int
+# SOL_SOCKET: int
+# SO_TYPE: int

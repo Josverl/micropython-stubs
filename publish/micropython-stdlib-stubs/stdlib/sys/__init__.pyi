@@ -1,7 +1,7 @@
 """
 System specific functions.
 
-MicroPython module: https://docs.micropython.org/en/v1.21.0/library/sys.html
+MicroPython module: https://docs.micropython.org/en/v1.22.0/library/sys.html
 
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
@@ -9,7 +9,6 @@ import sys
 from _typeshed import Incomplete, OptExcInfo, ProfileFunction, TraceFunction, structseq
 from builtins import object as _object
 from collections.abc import AsyncGenerator, Callable, Coroutine, Sequence
-from importlib.abc import PathEntryFinder
 from importlib.machinery import ModuleSpec
 from io import TextIOWrapper
 from types import FrameType, ModuleType, TracebackType
@@ -84,7 +83,7 @@ if sys.version_info >= (3, 10):
 __stdin__: Final[TextIOWrapper]  # Contains the original value of stdin
 __stdout__: Final[TextIOWrapper]  # Contains the original value of stdout
 __stderr__: Final[TextIOWrapper]  # Contains the original value of stderr
-# tracebacklimit: int
+tracebacklimit: int
 version: str
 # api_version: int
 # warnoptions: Any
