@@ -1,5 +1,6 @@
 
 micropython-stubber
+rich-click
 
 # for quality reporting
 pytest
