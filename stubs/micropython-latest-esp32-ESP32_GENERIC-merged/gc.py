@@ -6,10 +6,10 @@ MicroPython module: https://docs.micropython.org/en/latest/library/gc.html
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 
 ---
-Module: 'gc' on micropython-v1.22.0-esp32-ESP32_GENERIC
+Module: 'gc' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
-# Stubber: v1.16.2
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
 from typing import Any, Optional
 

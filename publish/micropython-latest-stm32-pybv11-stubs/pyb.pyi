@@ -343,337 +343,51 @@ def bootloader() -> None:
 
 def country(*args, **kwargs) -> Incomplete: ...
 
-class DAC:
-    """
-    Construct a new DAC object.
-
-    ``port`` can be a pin object, or an integer (1 or 2).
-    DAC(1) is on pin X5 and DAC(2) is on pin X6.
-
-    ``bits`` is an integer specifying the resolution, and can be 8 or 12.
-    The maximum value for the write and write_timed methods will be
-    2**``bits``-1.
-
-    The *buffering* parameter selects the behaviour of the DAC op-amp output
-    buffer, whose purpose is to reduce the output impedance.  It can be
-    ``None`` to select the default (buffering enabled for :meth:`DAC.noise`,
-    :meth:`DAC.triangle` and :meth:`DAC.write_timed`, and disabled for
-    :meth:`DAC.write`), ``False`` to disable buffering completely, or ``True``
-    to enable output buffering.
-
-    When buffering is enabled the DAC pin can drive loads down to 5KΩ.
-    Otherwise it has an output impedance of 15KΩ maximum: consequently
-    to achieve a 1% accuracy without buffering requires the applied load
-    to be less than 1.5MΩ.  Using the buffer incurs a penalty in accuracy,
-    especially near the extremes of range.
-    """
-
-    CIRCULAR: int
-    NORMAL: int
-    def noise(self, freq) -> None:
-        """
-        Generate a pseudo-random noise signal.  A new random sample is written
-        to the DAC output at the given frequency.
-        """
-        ...
-    def write_timed(self, data, freq, *, mode=NORMAL) -> Incomplete:
-        """
-        Initiates a burst of RAM to DAC using a DMA transfer.
-        The input data is treated as an array of bytes in 8-bit mode, and
-        an array of unsigned half-words (array typecode 'H') in 12-bit mode.
-
-        ``freq`` can be an integer specifying the frequency to write the DAC
-        samples at, using Timer(6).  Or it can be an already-initialised
-        Timer object which is used to trigger the DAC sample.  Valid timers
-        are 2, 4, 5, 6, 7 and 8.
-
-        ``mode`` can be ``DAC.NORMAL`` or ``DAC.CIRCULAR``.
-
-        Example using both DACs at the same time::
-
-          dac1 = DAC(1)
-          dac2 = DAC(2)
-          dac1.write_timed(buf1, pyb.Timer(6, freq=100), mode=DAC.CIRCULAR)
-          dac2.write_timed(buf2, pyb.Timer(7, freq=200), mode=DAC.CIRCULAR)
-        """
-        ...
-    def triangle(self, freq) -> None:
-        """
-        Generate a triangle wave.  The value on the DAC output changes at the given
-        frequency and ramps through the full 12-bit range (up and down). Therefore
-        the frequency of the repeating triangle wave itself is 8192 times smaller.
-        """
-        ...
-    def write(self, value) -> Incomplete:
-        """
-        Direct access to the DAC output.  The minimum value is 0.  The maximum
-        value is 2**``bits``-1, where ``bits`` is set when creating the DAC
-        object or by using the ``init`` method.
-        """
-        ...
-    def init(self, bits=8, *, buffering=None) -> Incomplete:
-        """
-        Reinitialise the DAC.  *bits* can be 8 or 12.  *buffering* can be
-        ``None``, ``False`` or ``True``; see above constructor for the meaning
-        of this parameter.
-        """
-        ...
-    def deinit(self) -> Incomplete:
-        """
-        De-initialise the DAC making its pin available for other uses.
-        """
-        ...
+class ADCAll:
+    def read_core_vbat(self, *args, **kwargs) -> Incomplete: ...
+    def read_core_vref(self, *args, **kwargs) -> Incomplete: ...
+    def read_vref(self, *args, **kwargs) -> Incomplete: ...
+    def read_core_temp(self, *args, **kwargs) -> Incomplete: ...
+    def read_channel(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class ExtInt:
+class Accel:
     """
-    Create an ExtInt object:
-
-      - ``pin`` is the pin on which to enable the interrupt (can be a pin object or any valid pin name).
-      - ``mode`` can be one of:
-        - ``ExtInt.IRQ_RISING`` - trigger on a rising edge;
-        - ``ExtInt.IRQ_FALLING`` - trigger on a falling edge;
-        - ``ExtInt.IRQ_RISING_FALLING`` - trigger on a rising or falling edge.
-      - ``pull`` can be one of:
-        - ``pyb.Pin.PULL_NONE`` - no pull up or down resistors;
-        - ``pyb.Pin.PULL_UP`` - enable the pull-up resistor;
-        - ``pyb.Pin.PULL_DOWN`` - enable the pull-down resistor.
-      - ``callback`` is the function to call when the interrupt triggers.  The
-        callback function must accept exactly 1 argument, which is the line that
-        triggered the interrupt.
+    Create and return an accelerometer object.
     """
 
-    IRQ_FALLING: int
-    IRQ_RISING_FALLING: int
-    IRQ_RISING: int
-    EVT_FALLING: int
-    EVT_RISING_FALLING: int
-    EVT_RISING: int
-    def line(self) -> int:
+    def x(self) -> Incomplete:
         """
-        Return the line number that the pin is mapped to.
+        Get the x-axis value.
         """
         ...
-    @classmethod
-    def regs(cls) -> Incomplete:
+    def tilt(self) -> Incomplete:
         """
-        Dump the values of the EXTI registers.
-        """
-        ...
-    def swint(self) -> Incomplete:
-        """
-        Trigger the callback from software.
+        Get the tilt register.
         """
         ...
-    def enable(self) -> None:
+    def y(self) -> Incomplete:
         """
-        Enable a disabled interrupt.
-        """
-        ...
-    def disable(self) -> None:
-        """
-        Disable the interrupt associated with the ExtInt object.
-        This could be useful for debouncing.
+        Get the y-axis value.
         """
         ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-class Flash:
-    """
-    Create and return a block device that represents the flash device presented
-    to the USB mass storage interface.
-
-    It includes a virtual partition table at the start, and the actual flash
-    starts at block ``0x100``.
-
-    This constructor is deprecated and will be removed in a future version of MicroPython.
-    """
-
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
-    def ioctl(self, cmd, arg) -> Incomplete:
+    def z(self) -> Incomplete:
         """
-        These methods implement the simple and :ref:`extended
-        <block-device-interface>` block protocol defined by
-        :class:`os.AbstractBlockDev`.
+        Get the z-axis value.
         """
         ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-class I2C:
-    """
-    Construct an I2C object on the given bus.  ``bus`` can be 1 or 2, 'X' or
-    'Y'. With no additional parameters, the I2C object is created but not
-    initialised (it has the settings from the last initialisation of
-    the bus, if any).  If extra arguments are given, the bus is initialised.
-    See ``init`` for parameters of initialisation.
-
-    The physical pins of the I2C buses on Pyboards V1.0 and V1.1 are:
-
-      - ``I2C(1)`` is on the X position: ``(SCL, SDA) = (X9, X10) = (PB6, PB7)``
-      - ``I2C(2)`` is on the Y position: ``(SCL, SDA) = (Y9, Y10) = (PB10, PB11)``
-
-    On the Pyboard Lite:
-
-      - ``I2C(1)`` is on the X position: ``(SCL, SDA) = (X9, X10) = (PB6, PB7)``
-      - ``I2C(3)`` is on the Y position: ``(SCL, SDA) = (Y9, Y10) = (PA8, PB8)``
-
-    Calling the constructor with 'X' or 'Y' enables portability between Pyboard
-    types.
-    """
-
-    PERIPHERAL: int
-    MASTER: int
-    CONTROLLER: int
-    SLAVE: int
-    def scan(self) -> List:
+    def read(self, *args, **kwargs) -> Incomplete: ...
+    def filtered_xyz(self) -> Tuple:
         """
-        Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.
-        Only valid when in controller mode.
+        Get a 3-tuple of filtered x, y and z values.
+
+        Implementation note: this method is currently implemented as taking the
+        sum of 4 samples, sampled from the 3 previous calls to this function along
+        with the sample from the current call.  Returned values are therefore 4
+        times the size of what they would be from the raw x(), y() and z() calls.
         """
         ...
-    def mem_read(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> Incomplete:
-        """
-        Read from the memory of an I2C device:
-
-          - ``data`` can be an integer (number of bytes to read) or a buffer to read into
-          - ``addr`` is the I2C device address
-          - ``memaddr`` is the memory location within the I2C device
-          - ``timeout`` is the timeout in milliseconds to wait for the read
-          - ``addr_size`` selects width of memaddr: 8 or 16 bits
-
-        Returns the read data.
-        This is only valid in controller mode.
-        """
-        ...
-    def mem_write(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> None:
-        """
-        Write to the memory of an I2C device:
-
-          - ``data`` can be an integer or a buffer to write from
-          - ``addr`` is the I2C device address
-          - ``memaddr`` is the memory location within the I2C device
-          - ``timeout`` is the timeout in milliseconds to wait for the write
-          - ``addr_size`` selects width of memaddr: 8 or 16 bits
-
-        Returns ``None``.
-        This is only valid in controller mode.
-        """
-        ...
-    def recv(self, recv, addr=0x00, *, timeout=5000) -> bytes:
-        """
-        Receive data on the bus:
-
-          - ``recv`` can be an integer, which is the number of bytes to receive,
-            or a mutable buffer, which will be filled with received bytes
-          - ``addr`` is the address to receive from (only required in controller mode)
-          - ``timeout`` is the timeout in milliseconds to wait for the receive
-
-        Return value: if ``recv`` is an integer then a new buffer of the bytes received,
-        otherwise the same buffer that was passed in to ``recv``.
-        """
-        ...
-    def is_ready(self, addr) -> Incomplete:
-        """
-        Check if an I2C device responds to the given address.  Only valid when in controller mode.
-        """
-        ...
-    def send(self, send, addr=0x00, *, timeout=5000) -> None:
-        """
-        Send data on the bus:
-
-          - ``send`` is the data to send (an integer to send, or a buffer object)
-          - ``addr`` is the address to send to (only required in controller mode)
-          - ``timeout`` is the timeout in milliseconds to wait for the send
-
-        Return value: ``None``.
-        """
-        ...
-    def deinit(self) -> None:
-        """
-        Turn off the I2C bus.
-        """
-        ...
-    def init(self, mode, *, addr=0x12, baudrate=400000, gencall=False, dma=False) -> None:
-        """
-        Initialise the I2C bus with the given parameters:
-
-           - ``mode`` must be either ``I2C.CONTROLLER`` or ``I2C.PERIPHERAL``
-           - ``addr`` is the 7-bit address (only sensible for a peripheral)
-           - ``baudrate`` is the SCL clock rate (only sensible for a controller)
-           - ``gencall`` is whether to support general call mode
-           - ``dma`` is whether to allow the use of DMA for the I2C transfers (note
-             that DMA transfers have more precise timing but currently do not handle bus
-             errors properly)
-
-         The actual clock frequency may be lower than the requested frequency.
-         This is dependent on the platform hardware. The actual rate may be determined
-         by printing the I2C object.
-        """
-        ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-class LCD:
-    """
-    Construct an LCD object in the given skin position.  ``skin_position`` can be 'X' or 'Y', and
-    should match the position where the LCD pyskin is plugged in.
-    """
-
-    def fill(self, colour) -> None:
-        """
-        Fill the screen with the given colour (0 or 1 for white or black).
-
-        This method writes to the hidden buffer.  Use ``show()`` to show the buffer.
-        """
-        ...
-    def light(self, value) -> None:
-        """
-        Turn the backlight on/off.  True or 1 turns it on, False or 0 turns it off.
-        """
-        ...
-    def pixel(self, x, y, colour) -> None:
-        """
-        Set the pixel at ``(x, y)`` to the given colour (0 or 1).
-
-        This method writes to the hidden buffer.  Use ``show()`` to show the buffer.
-        """
-        ...
-    def show(self) -> None:
-        """
-        Show the hidden buffer on the screen.
-        """
-        ...
-    def text(self, str, x, y, colour) -> None:
-        """
-        Draw the given text to the position ``(x, y)`` using the given colour (0 or 1).
-
-        This method writes to the hidden buffer.  Use ``show()`` to show the buffer.
-        """
-        ...
-    def contrast(self, value) -> None:
-        """
-        Set the contrast of the LCD.  Valid values are between 0 and 47.
-        """
-        ...
-    def get(self, x, y) -> int:
-        """
-        Get the pixel at the position ``(x, y)``.  Returns 0 or 1.
-
-        This method reads from the visible buffer.
-        """
-        ...
-    def write(self, str) -> None:
-        """
-        Write the string ``str`` to the screen.  It will appear immediately.
-        """
-        ...
-    def command(self, instr_data, buf) -> None:
-        """
-        Send an arbitrary command to the LCD.  Pass 0 for ``instr_data`` to send an
-        instruction, otherwise pass 1 to send data.  ``buf`` is a buffer with the
-        instructions/data to send.
-        """
-        ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class CAN:
@@ -1001,6 +715,81 @@ class CAN:
         ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
+class ExtInt:
+    """
+    Create an ExtInt object:
+
+      - ``pin`` is the pin on which to enable the interrupt (can be a pin object or any valid pin name).
+      - ``mode`` can be one of:
+        - ``ExtInt.IRQ_RISING`` - trigger on a rising edge;
+        - ``ExtInt.IRQ_FALLING`` - trigger on a falling edge;
+        - ``ExtInt.IRQ_RISING_FALLING`` - trigger on a rising or falling edge.
+      - ``pull`` can be one of:
+        - ``pyb.Pin.PULL_NONE`` - no pull up or down resistors;
+        - ``pyb.Pin.PULL_UP`` - enable the pull-up resistor;
+        - ``pyb.Pin.PULL_DOWN`` - enable the pull-down resistor.
+      - ``callback`` is the function to call when the interrupt triggers.  The
+        callback function must accept exactly 1 argument, which is the line that
+        triggered the interrupt.
+    """
+
+    IRQ_FALLING: int
+    IRQ_RISING_FALLING: int
+    IRQ_RISING: int
+    EVT_FALLING: int
+    EVT_RISING_FALLING: int
+    EVT_RISING: int
+    def line(self) -> int:
+        """
+        Return the line number that the pin is mapped to.
+        """
+        ...
+    @classmethod
+    def regs(cls) -> Incomplete:
+        """
+        Dump the values of the EXTI registers.
+        """
+        ...
+    def swint(self) -> Incomplete:
+        """
+        Trigger the callback from software.
+        """
+        ...
+    def enable(self) -> None:
+        """
+        Enable a disabled interrupt.
+        """
+        ...
+    def disable(self) -> None:
+        """
+        Disable the interrupt associated with the ExtInt object.
+        This could be useful for debouncing.
+        """
+        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+class Flash:
+    """
+    Create and return a block device that represents the flash device presented
+    to the USB mass storage interface.
+
+    It includes a virtual partition table at the start, and the actual flash
+    starts at block ``0x100``.
+
+    This constructor is deprecated and will be removed in a future version of MicroPython.
+    """
+
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def ioctl(self, cmd, arg) -> Incomplete:
+        """
+        These methods implement the simple and :ref:`extended
+        <block-device-interface>` block protocol defined by
+        :class:`os.AbstractBlockDev`.
+        """
+        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
 class ADC:
     """
     Create an ADC object associated with the given pin.
@@ -1104,51 +893,152 @@ class ADC:
         ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class ADCAll:
-    def read_core_vbat(self, *args, **kwargs) -> Incomplete: ...
-    def read_core_vref(self, *args, **kwargs) -> Incomplete: ...
-    def read_vref(self, *args, **kwargs) -> Incomplete: ...
-    def read_core_temp(self, *args, **kwargs) -> Incomplete: ...
-    def read_channel(self, *args, **kwargs) -> Incomplete: ...
+SD: Incomplete
+
+class DAC:
+    """
+    Construct a new DAC object.
+
+    ``port`` can be a pin object, or an integer (1 or 2).
+    DAC(1) is on pin X5 and DAC(2) is on pin X6.
+
+    ``bits`` is an integer specifying the resolution, and can be 8 or 12.
+    The maximum value for the write and write_timed methods will be
+    2**``bits``-1.
+
+    The *buffering* parameter selects the behaviour of the DAC op-amp output
+    buffer, whose purpose is to reduce the output impedance.  It can be
+    ``None`` to select the default (buffering enabled for :meth:`DAC.noise`,
+    :meth:`DAC.triangle` and :meth:`DAC.write_timed`, and disabled for
+    :meth:`DAC.write`), ``False`` to disable buffering completely, or ``True``
+    to enable output buffering.
+
+    When buffering is enabled the DAC pin can drive loads down to 5KΩ.
+    Otherwise it has an output impedance of 15KΩ maximum: consequently
+    to achieve a 1% accuracy without buffering requires the applied load
+    to be less than 1.5MΩ.  Using the buffer incurs a penalty in accuracy,
+    especially near the extremes of range.
+    """
+
+    CIRCULAR: int
+    NORMAL: int
+    def noise(self, freq) -> None:
+        """
+        Generate a pseudo-random noise signal.  A new random sample is written
+        to the DAC output at the given frequency.
+        """
+        ...
+    def write_timed(self, data, freq, *, mode=NORMAL) -> Incomplete:
+        """
+        Initiates a burst of RAM to DAC using a DMA transfer.
+        The input data is treated as an array of bytes in 8-bit mode, and
+        an array of unsigned half-words (array typecode 'H') in 12-bit mode.
+
+        ``freq`` can be an integer specifying the frequency to write the DAC
+        samples at, using Timer(6).  Or it can be an already-initialised
+        Timer object which is used to trigger the DAC sample.  Valid timers
+        are 2, 4, 5, 6, 7 and 8.
+
+        ``mode`` can be ``DAC.NORMAL`` or ``DAC.CIRCULAR``.
+
+        Example using both DACs at the same time::
+
+          dac1 = DAC(1)
+          dac2 = DAC(2)
+          dac1.write_timed(buf1, pyb.Timer(6, freq=100), mode=DAC.CIRCULAR)
+          dac2.write_timed(buf2, pyb.Timer(7, freq=200), mode=DAC.CIRCULAR)
+        """
+        ...
+    def triangle(self, freq) -> None:
+        """
+        Generate a triangle wave.  The value on the DAC output changes at the given
+        frequency and ramps through the full 12-bit range (up and down). Therefore
+        the frequency of the repeating triangle wave itself is 8192 times smaller.
+        """
+        ...
+    def write(self, value) -> Incomplete:
+        """
+        Direct access to the DAC output.  The minimum value is 0.  The maximum
+        value is 2**``bits``-1, where ``bits`` is set when creating the DAC
+        object or by using the ``init`` method.
+        """
+        ...
+    def init(self, bits=8, *, buffering=None) -> Incomplete:
+        """
+        Reinitialise the DAC.  *bits* can be 8 or 12.  *buffering* can be
+        ``None``, ``False`` or ``True``; see above constructor for the meaning
+        of this parameter.
+        """
+        ...
+    def deinit(self) -> Incomplete:
+        """
+        De-initialise the DAC making its pin available for other uses.
+        """
+        ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class Accel:
+class RTC:
     """
-    Create and return an accelerometer object.
+    Create an RTC object.
     """
 
-    def x(self) -> Incomplete:
+    def info(self) -> Incomplete:
         """
-        Get the x-axis value.
-        """
-        ...
-    def tilt(self) -> Incomplete:
-        """
-        Get the tilt register.
-        """
-        ...
-    def y(self) -> Incomplete:
-        """
-        Get the y-axis value.
-        """
-        ...
-    def z(self) -> Incomplete:
-        """
-        Get the z-axis value.
-        """
-        ...
-    def read(self, *args, **kwargs) -> Incomplete: ...
-    def filtered_xyz(self) -> Tuple:
-        """
-        Get a 3-tuple of filtered x, y and z values.
+        Get information about the startup time and reset source.
 
-        Implementation note: this method is currently implemented as taking the
-        sum of 4 samples, sampled from the 3 previous calls to this function along
-        with the sample from the current call.  Returned values are therefore 4
-        times the size of what they would be from the raw x(), y() and z() calls.
+         - The lower 0xffff are the number of milliseconds the RTC took to
+           start up.
+         - Bit 0x10000 is set if a power-on reset occurred.
+         - Bit 0x20000 is set if an external reset occurred
         """
         ...
-    def write(self, *args, **kwargs) -> Incomplete: ...
+    def init(self, *args, **kwargs) -> Incomplete: ...
+    def wakeup(self, timeout, callback=None) -> None:
+        """
+        Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
+        milliseconds.  This trigger can wake the pyboard from both the sleep
+        states: :meth:`pyb.stop` and :meth:`pyb.standby`.
+
+        If ``timeout`` is ``None`` then the wakeup timer is disabled.
+
+        If ``callback`` is given then it is executed at every trigger of the
+        wakeup timer.  ``callback`` must take exactly one argument.
+        """
+        ...
+    def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
+        """
+        Get or set the date and time of the RTC.
+
+        With no arguments, this method returns an 8-tuple with the current
+        date and time.  With 1 argument (being an 8-tuple) it sets the date
+        and time (and ``subseconds`` is reset to 255).
+
+        The 8-tuple has the following format:
+
+            (year, month, day, weekday, hours, minutes, seconds, subseconds)
+
+        ``weekday`` is 1-7 for Monday through Sunday.
+
+        ``subseconds`` counts down from 255 to 0
+        """
+        ...
+    def calibration(self, cal) -> int:
+        """
+        Get or set RTC calibration.
+
+        With no arguments, ``calibration()`` returns the current calibration
+        value, which is an integer in the range [-511 : 512].  With one
+        argument it sets the RTC calibration.
+
+        The RTC Smooth Calibration mechanism adjusts the RTC clock rate by
+        adding or subtracting the given number of ticks from the 32768 Hz
+        clock over a 32 second period (corresponding to 2^20 clock ticks.)
+        Each tick added will speed up the clock by 1 part in 2^20, or 0.954
+        ppm; likewise the RTC clock it slowed by negative values. The
+        usable calibration range is:
+        (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
+        """
+        ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class USB_VCP:
@@ -1730,6 +1620,119 @@ class USB_HID:
         ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
+class I2C:
+    """
+    Construct an I2C object on the given bus.  ``bus`` can be 1 or 2, 'X' or
+    'Y'. With no additional parameters, the I2C object is created but not
+    initialised (it has the settings from the last initialisation of
+    the bus, if any).  If extra arguments are given, the bus is initialised.
+    See ``init`` for parameters of initialisation.
+
+    The physical pins of the I2C buses on Pyboards V1.0 and V1.1 are:
+
+      - ``I2C(1)`` is on the X position: ``(SCL, SDA) = (X9, X10) = (PB6, PB7)``
+      - ``I2C(2)`` is on the Y position: ``(SCL, SDA) = (Y9, Y10) = (PB10, PB11)``
+
+    On the Pyboard Lite:
+
+      - ``I2C(1)`` is on the X position: ``(SCL, SDA) = (X9, X10) = (PB6, PB7)``
+      - ``I2C(3)`` is on the Y position: ``(SCL, SDA) = (Y9, Y10) = (PA8, PB8)``
+
+    Calling the constructor with 'X' or 'Y' enables portability between Pyboard
+    types.
+    """
+
+    PERIPHERAL: int
+    MASTER: int
+    CONTROLLER: int
+    SLAVE: int
+    def scan(self) -> List:
+        """
+        Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.
+        Only valid when in controller mode.
+        """
+        ...
+    def mem_read(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> Incomplete:
+        """
+        Read from the memory of an I2C device:
+
+          - ``data`` can be an integer (number of bytes to read) or a buffer to read into
+          - ``addr`` is the I2C device address
+          - ``memaddr`` is the memory location within the I2C device
+          - ``timeout`` is the timeout in milliseconds to wait for the read
+          - ``addr_size`` selects width of memaddr: 8 or 16 bits
+
+        Returns the read data.
+        This is only valid in controller mode.
+        """
+        ...
+    def mem_write(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> None:
+        """
+        Write to the memory of an I2C device:
+
+          - ``data`` can be an integer or a buffer to write from
+          - ``addr`` is the I2C device address
+          - ``memaddr`` is the memory location within the I2C device
+          - ``timeout`` is the timeout in milliseconds to wait for the write
+          - ``addr_size`` selects width of memaddr: 8 or 16 bits
+
+        Returns ``None``.
+        This is only valid in controller mode.
+        """
+        ...
+    def recv(self, recv, addr=0x00, *, timeout=5000) -> bytes:
+        """
+        Receive data on the bus:
+
+          - ``recv`` can be an integer, which is the number of bytes to receive,
+            or a mutable buffer, which will be filled with received bytes
+          - ``addr`` is the address to receive from (only required in controller mode)
+          - ``timeout`` is the timeout in milliseconds to wait for the receive
+
+        Return value: if ``recv`` is an integer then a new buffer of the bytes received,
+        otherwise the same buffer that was passed in to ``recv``.
+        """
+        ...
+    def is_ready(self, addr) -> Incomplete:
+        """
+        Check if an I2C device responds to the given address.  Only valid when in controller mode.
+        """
+        ...
+    def send(self, send, addr=0x00, *, timeout=5000) -> None:
+        """
+        Send data on the bus:
+
+          - ``send`` is the data to send (an integer to send, or a buffer object)
+          - ``addr`` is the address to send to (only required in controller mode)
+          - ``timeout`` is the timeout in milliseconds to wait for the send
+
+        Return value: ``None``.
+        """
+        ...
+    def deinit(self) -> None:
+        """
+        Turn off the I2C bus.
+        """
+        ...
+    def init(self, mode, *, addr=0x12, baudrate=400000, gencall=False, dma=False) -> None:
+        """
+        Initialise the I2C bus with the given parameters:
+
+           - ``mode`` must be either ``I2C.CONTROLLER`` or ``I2C.PERIPHERAL``
+           - ``addr`` is the 7-bit address (only sensible for a peripheral)
+           - ``baudrate`` is the SCL clock rate (only sensible for a controller)
+           - ``gencall`` is whether to support general call mode
+           - ``dma`` is whether to allow the use of DMA for the I2C transfers (note
+             that DMA transfers have more precise timing but currently do not handle bus
+             errors properly)
+
+         The actual clock frequency may be lower than the requested frequency.
+         This is dependent on the platform hardware. The actual rate may be determined
+         by printing the I2C object.
+        """
+        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
 class LED:
     """
     Create an LED object associated with the given LED:
@@ -1768,66 +1771,161 @@ class LED:
         ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class RTC:
+class LCD:
     """
-    Create an RTC object.
+    Construct an LCD object in the given skin position.  ``skin_position`` can be 'X' or 'Y', and
+    should match the position where the LCD pyskin is plugged in.
     """
 
-    def info(self) -> Incomplete:
+    def fill(self, colour) -> None:
         """
-        Get information about the startup time and reset source.
+        Fill the screen with the given colour (0 or 1 for white or black).
 
-         - The lower 0xffff are the number of milliseconds the RTC took to
-           start up.
-         - Bit 0x10000 is set if a power-on reset occurred.
-         - Bit 0x20000 is set if an external reset occurred
+        This method writes to the hidden buffer.  Use ``show()`` to show the buffer.
         """
         ...
-    def init(self, *args, **kwargs) -> Incomplete: ...
-    def wakeup(self, timeout, callback=None) -> None:
+    def light(self, value) -> None:
         """
-        Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
-        milliseconds.  This trigger can wake the pyboard from both the sleep
-        states: :meth:`pyb.stop` and :meth:`pyb.standby`.
-
-        If ``timeout`` is ``None`` then the wakeup timer is disabled.
-
-        If ``callback`` is given then it is executed at every trigger of the
-        wakeup timer.  ``callback`` must take exactly one argument.
+        Turn the backlight on/off.  True or 1 turns it on, False or 0 turns it off.
         """
         ...
-    def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
+    def pixel(self, x, y, colour) -> None:
         """
-        Get or set the date and time of the RTC.
+        Set the pixel at ``(x, y)`` to the given colour (0 or 1).
 
-        With no arguments, this method returns an 8-tuple with the current
-        date and time.  With 1 argument (being an 8-tuple) it sets the date
-        and time (and ``subseconds`` is reset to 255).
-
-        The 8-tuple has the following format:
-
-            (year, month, day, weekday, hours, minutes, seconds, subseconds)
-
-        ``weekday`` is 1-7 for Monday through Sunday.
-
-        ``subseconds`` counts down from 255 to 0
+        This method writes to the hidden buffer.  Use ``show()`` to show the buffer.
         """
         ...
-    def calibration(self, cal) -> int:
+    def show(self) -> None:
         """
-        Get or set RTC calibration.
+        Show the hidden buffer on the screen.
+        """
+        ...
+    def text(self, str, x, y, colour) -> None:
+        """
+        Draw the given text to the position ``(x, y)`` using the given colour (0 or 1).
 
-        With no arguments, ``calibration()`` returns the current calibration
-        value, which is an integer in the range [-511 : 512].  With one
-        argument it sets the RTC calibration.
+        This method writes to the hidden buffer.  Use ``show()`` to show the buffer.
+        """
+        ...
+    def contrast(self, value) -> None:
+        """
+        Set the contrast of the LCD.  Valid values are between 0 and 47.
+        """
+        ...
+    def get(self, x, y) -> int:
+        """
+        Get the pixel at the position ``(x, y)``.  Returns 0 or 1.
 
-        The RTC Smooth Calibration mechanism adjusts the RTC clock rate by
-        adding or subtracting the given number of ticks from the 32768 Hz
-        clock over a 32 second period (corresponding to 2^20 clock ticks.)
-        Each tick added will speed up the clock by 1 part in 2^20, or 0.954
-        ppm; likewise the RTC clock it slowed by negative values. The
-        usable calibration range is:
-        (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
+        This method reads from the visible buffer.
+        """
+        ...
+    def write(self, str) -> None:
+        """
+        Write the string ``str`` to the screen.  It will appear immediately.
+        """
+        ...
+    def command(self, instr_data, buf) -> None:
+        """
+        Send an arbitrary command to the LCD.  Pass 0 for ``instr_data`` to send an
+        instruction, otherwise pass 1 to send data.  ``buf`` is a buffer with the
+        instructions/data to send.
+        """
+        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+class SPI:
+    """
+    Construct an SPI object on the given bus.  ``bus`` can be 1 or 2, or
+    'X' or 'Y'. With no additional parameters, the SPI object is created but
+    not initialised (it has the settings from the last initialisation of
+    the bus, if any).  If extra arguments are given, the bus is initialised.
+    See ``init`` for parameters of initialisation.
+
+    The physical pins of the SPI buses are:
+
+      - ``SPI(1)`` is on the X position: ``(NSS, SCK, MISO, MOSI) = (X5, X6, X7, X8) = (PA4, PA5, PA6, PA7)``
+      - ``SPI(2)`` is on the Y position: ``(NSS, SCK, MISO, MOSI) = (Y5, Y6, Y7, Y8) = (PB12, PB13, PB14, PB15)``
+
+    At the moment, the NSS pin is not used by the SPI driver and is free
+    for other use.
+    """
+
+    MASTER: int
+    LSB: int
+    SLAVE: int
+    MSB: int
+    PERIPHERAL: int
+    CONTROLLER: int
+    def deinit(self) -> None:
+        """
+        Turn off the SPI bus.
+        """
+        ...
+    def send_recv(self, send, recv=None, *, timeout=5000) -> bytes:
+        """
+        Send and receive data on the bus at the same time:
+
+          - ``send`` is the data to send (an integer to send, or a buffer object).
+          - ``recv`` is a mutable buffer which will be filled with received bytes.
+            It can be the same as ``send``, or omitted.  If omitted, a new buffer will
+            be created.
+          - ``timeout`` is the timeout in milliseconds to wait for the receive.
+
+        Return value: the buffer with the received bytes.
+        """
+        ...
+    def recv(self, recv, *, timeout=5000) -> bytes:
+        """
+        Receive data on the bus:
+
+          - ``recv`` can be an integer, which is the number of bytes to receive,
+            or a mutable buffer, which will be filled with received bytes.
+          - ``timeout`` is the timeout in milliseconds to wait for the receive.
+
+        Return value: if ``recv`` is an integer then a new buffer of the bytes received,
+        otherwise the same buffer that was passed in to ``recv``.
+        """
+        ...
+    def init(self, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
+        """
+        Initialise the SPI bus with the given parameters:
+
+          - ``mode`` must be either ``SPI.CONTROLLER`` or ``SPI.PERIPHERAL``.
+          - ``baudrate`` is the SCK clock rate (only sensible for a controller).
+          - ``prescaler`` is the prescaler to use to derive SCK from the APB bus frequency;
+            use of ``prescaler`` overrides ``baudrate``.
+          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
+          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
+            respectively.
+          - ``bits`` can be 8 or 16, and is the number of bits in each transferred word.
+          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
+          - ``ti`` True indicates Texas Instruments, as opposed to Motorola, signal conventions.
+          - ``crc`` can be None for no CRC, or a polynomial specifier.
+
+        Note that the SPI clock frequency will not always be the requested baudrate.
+        The hardware only supports baudrates that are the APB bus frequency
+        (see :meth:`pyb.freq`) divided by a prescaler, which can be 2, 4, 8, 16, 32,
+        64, 128 or 256.  SPI(1) is on AHB2, and SPI(2) is on AHB1.  For precise
+        control over the SPI clock frequency, specify ``prescaler`` instead of
+        ``baudrate``.
+
+        Printing the SPI object will show you the computed baudrate and the chosen
+        prescaler.
+        """
+        ...
+    def write_readinto(self, *args, **kwargs) -> Incomplete: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
+    def read(self, *args, **kwargs) -> Incomplete: ...
+    def readinto(self, *args, **kwargs) -> Incomplete: ...
+    def send(self, send, *, timeout=5000) -> None:
+        """
+        Send data on the bus:
+
+          - ``send`` is the data to send (an integer to send, or a buffer object).
+          - ``timeout`` is the timeout in milliseconds to wait for the send.
+
+        Return value: ``None``.
         """
         ...
     def __init__(self, *argv, **kwargs) -> None: ...
@@ -2110,104 +2208,6 @@ class Pin:
         See :meth:`Pin.value` for more details.
         """
         ...
-
-class SPI:
-    """
-    Construct an SPI object on the given bus.  ``bus`` can be 1 or 2, or
-    'X' or 'Y'. With no additional parameters, the SPI object is created but
-    not initialised (it has the settings from the last initialisation of
-    the bus, if any).  If extra arguments are given, the bus is initialised.
-    See ``init`` for parameters of initialisation.
-
-    The physical pins of the SPI buses are:
-
-      - ``SPI(1)`` is on the X position: ``(NSS, SCK, MISO, MOSI) = (X5, X6, X7, X8) = (PA4, PA5, PA6, PA7)``
-      - ``SPI(2)`` is on the Y position: ``(NSS, SCK, MISO, MOSI) = (Y5, Y6, Y7, Y8) = (PB12, PB13, PB14, PB15)``
-
-    At the moment, the NSS pin is not used by the SPI driver and is free
-    for other use.
-    """
-
-    MASTER: int
-    LSB: int
-    SLAVE: int
-    MSB: int
-    PERIPHERAL: int
-    CONTROLLER: int
-    def deinit(self) -> None:
-        """
-        Turn off the SPI bus.
-        """
-        ...
-    def send_recv(self, send, recv=None, *, timeout=5000) -> bytes:
-        """
-        Send and receive data on the bus at the same time:
-
-          - ``send`` is the data to send (an integer to send, or a buffer object).
-          - ``recv`` is a mutable buffer which will be filled with received bytes.
-            It can be the same as ``send``, or omitted.  If omitted, a new buffer will
-            be created.
-          - ``timeout`` is the timeout in milliseconds to wait for the receive.
-
-        Return value: the buffer with the received bytes.
-        """
-        ...
-    def recv(self, recv, *, timeout=5000) -> bytes:
-        """
-        Receive data on the bus:
-
-          - ``recv`` can be an integer, which is the number of bytes to receive,
-            or a mutable buffer, which will be filled with received bytes.
-          - ``timeout`` is the timeout in milliseconds to wait for the receive.
-
-        Return value: if ``recv`` is an integer then a new buffer of the bytes received,
-        otherwise the same buffer that was passed in to ``recv``.
-        """
-        ...
-    def init(self, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
-        """
-        Initialise the SPI bus with the given parameters:
-
-          - ``mode`` must be either ``SPI.CONTROLLER`` or ``SPI.PERIPHERAL``.
-          - ``baudrate`` is the SCK clock rate (only sensible for a controller).
-          - ``prescaler`` is the prescaler to use to derive SCK from the APB bus frequency;
-            use of ``prescaler`` overrides ``baudrate``.
-          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
-          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
-            respectively.
-          - ``bits`` can be 8 or 16, and is the number of bits in each transferred word.
-          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
-          - ``ti`` True indicates Texas Instruments, as opposed to Motorola, signal conventions.
-          - ``crc`` can be None for no CRC, or a polynomial specifier.
-
-        Note that the SPI clock frequency will not always be the requested baudrate.
-        The hardware only supports baudrates that are the APB bus frequency
-        (see :meth:`pyb.freq`) divided by a prescaler, which can be 2, 4, 8, 16, 32,
-        64, 128 or 256.  SPI(1) is on AHB2, and SPI(2) is on AHB1.  For precise
-        control over the SPI clock frequency, specify ``prescaler`` instead of
-        ``baudrate``.
-
-        Printing the SPI object will show you the computed baudrate and the chosen
-        prescaler.
-        """
-        ...
-    def write_readinto(self, *args, **kwargs) -> Incomplete: ...
-    def write(self, *args, **kwargs) -> Incomplete: ...
-    def read(self, *args, **kwargs) -> Incomplete: ...
-    def readinto(self, *args, **kwargs) -> Incomplete: ...
-    def send(self, send, *, timeout=5000) -> None:
-        """
-        Send data on the bus:
-
-          - ``send`` is the data to send (an integer to send, or a buffer object).
-          - ``timeout`` is the timeout in milliseconds to wait for the send.
-
-        Return value: ``None``.
-        """
-        ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-SD: Incomplete
 
 class SDCard:
     def writeblocks(self, *args, **kwargs) -> Incomplete: ...

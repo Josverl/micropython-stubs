@@ -19,12 +19,12 @@ building-blocks for higher-level abstractions such as specific device types.
           methods and constants are subject to change.
 
 ---
-Module: 'ubluetooth' on micropython-v1.22.0-rp2-RPI_PICO_W
+Module: 'ubluetooth' on micropython-v1.21.0-rp2-RPI_PICO_W
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
-# Stubber: v1.16.2
+# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.13.8
+from typing import Optional, Tuple, Any
 from _typeshed import Incomplete
-from typing import Any, Optional, Tuple
 
 FLAG_NOTIFY = 16  # type: int
 FLAG_READ = 2  # type: int
@@ -451,7 +451,7 @@ class BLE:
         in all broadcasts, and *resp_data* is send in reply to an active scan.
 
         **Note:** if *adv_data* (or *resp_data*) is ``None``, then the data passed
-        to the previous call to ``gap_advertise`` will be re-used. This allows a
+        to the previous call to ``gap_advertise`` will be reused. This allows a
         broadcaster to resume advertising with just ``gap_advertise(interval_us)``.
         To clear the advertising payload pass an empty ``bytes``, i.e. ``b''``.
         """

@@ -13,12 +13,11 @@ from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.ssl import *
 from typing import IO, List
 
-MBEDTLS_VERSION: str
-PROTOCOL_TLS_SERVER: int
-PROTOCOL_TLS_CLIENT: int
-CERT_NONE: int
 CERT_REQUIRED: int
+PROTOCOL_TLS_CLIENT: int
+PROTOCOL_TLS_SERVER: int
 CERT_OPTIONAL: int
+CERT_NONE: int
 
 def wrap_socket(
     sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
@@ -48,19 +47,6 @@ class SSLContext:
     constants.
     """
 
-    def load_verify_locations(self, cafile=None, cadata=None) -> None:
-        """
-        Load the CA certificate chain that will validate the peer's certificate.
-        *cafile* is the file path of the CA certificates.  *cadata* is a bytes object
-        containing the CA certificates.  Only one of these arguments should be provided.
-        """
-        ...
-    def set_ciphers(self, ciphers) -> None:
-        """
-        Set the available ciphers for sockets created with this context.  *ciphers* should be
-        a list of strings in the `IANA cipher suite format <https://wiki.mozilla.org/Security/Cipher_Suites>`_ .
-        """
-        ...
     def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
@@ -83,23 +69,6 @@ class SSLContext:
         - *server_hostname* is for use as a client, and sets the hostname to check against the received
           server certificate.  It also sets the name for Server Name Indication (SNI), allowing the server
           to present the proper certificate.
-        """
-        ...
-    def load_cert_chain(self, certfile, keyfile) -> None:
-        """
-        Load a private key and the corresponding certificate.  The *certfile* is a string
-        with the file path of the certificate.  The *keyfile* is a string with the file path
-        of the private key.
-
-        Difference to CPython
-
-           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
-           strings, in which case they are interpreted as the actual certificate/key data.
-        """
-        ...
-    def get_ciphers(self) -> List[str]:
-        """
-        Get a list of enabled ciphers, returned as a list of strings.
         """
         ...
     def __init__(self, *argv, **kwargs) -> None: ...

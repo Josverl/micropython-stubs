@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp32-esp32_generic-stubs"
-version = "1.23.0a80"
+version = "1.23.0a87"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -78,7 +78,7 @@ packages = [
     { include = "os.pyi" },
     { include = "platform.pyi" },
     { include = "random.pyi" },
-    { include = "requests/__init__.pyi" },
+    { include = "requests.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },
     { include = "ssl.pyi" },

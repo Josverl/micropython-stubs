@@ -61,13 +61,13 @@ Tuple address format for ``socket`` module:
   of IPv6 support depends on a :term:`MicroPython port`.
 
 ---
-Module: 'socket' on micropython-v1.22.0-stm32-PYBV11
+Module: 'socket' on micropython-v1.21.0-stm32-PYBV11
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
-# Stubber: v1.16.2
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
+from typing import IO, Optional, Tuple, Any
 from _typeshed import Incomplete
 from stdlib.socket import *
-from typing import Any, IO, Optional, Tuple
 
 SO_KEEPALIVE = 8  # type: int
 SO_BROADCAST = 32  # type: int

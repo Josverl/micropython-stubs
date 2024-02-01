@@ -28,15 +28,6 @@ def bootsel_button() -> Incomplete:
     """
     ...
 
-class DMA:
-    def irq(self, *args, **kwargs) -> Incomplete: ...
-    def unpack_ctrl(self, *args, **kwargs) -> Incomplete: ...
-    def pack_ctrl(self, *args, **kwargs) -> Incomplete: ...
-    def close(self, *args, **kwargs) -> Incomplete: ...
-    def config(self, *args, **kwargs) -> Incomplete: ...
-    def active(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
 class StateMachine:
     """
     Get the state machine numbered *id*. The RP2040 has two identical PIO
@@ -121,7 +112,7 @@ class StateMachine:
 
         The program is added to the instruction memory of this PIO instance. If the
         instruction memory already contains this program, then its offset is
-        re-used so as to save on instruction memory.
+        reused so as to save on instruction memory.
 
         - *freq* is the frequency in Hz to run the state machine at. Defaults to
           the system clock frequency.
@@ -186,6 +177,22 @@ class StateMachine:
         ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
+class Flash:
+    """
+    Gets the singleton object for accessing the SPI flash memory.
+    """
+
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def ioctl(self, cmd, arg) -> Incomplete:
+        """
+        These methods implement the simple and extended
+        :ref:`block protocol <block-device-interface>` defined by
+        :class:`os.AbstractBlockDev`.
+        """
+        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
 class PIO:
     """
     Gets the PIO instance numbered *id*. The RP2040 has two PIO instances,
@@ -243,22 +250,6 @@ class PIO:
         The amount of memory available for programs on each PIO instance is
         limited. If there isn't enough space left in the PIO's program memory
         this method will raise ``OSError(ENOMEM)``.
-        """
-        ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-class Flash:
-    """
-    Gets the singleton object for accessing the SPI flash memory.
-    """
-
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
-    def ioctl(self, cmd, arg) -> Incomplete:
-        """
-        These methods implement the simple and extended
-        :ref:`block protocol <block-device-interface>` defined by
-        :class:`os.AbstractBlockDev`.
         """
         ...
     def __init__(self, *argv, **kwargs) -> None: ...

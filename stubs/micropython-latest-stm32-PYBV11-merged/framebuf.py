@@ -7,12 +7,12 @@ This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 
 ---
-Module: 'framebuf' on micropython-v1.22.0-stm32-PYBV11
+Module: 'framebuf' on micropython-v1.21.0-stm32-PYBV11
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
-# Stubber: v1.16.2
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
+from typing import Optional, Any
 from _typeshed import Incomplete
-from typing import Any, Optional
 
 MONO_HMSB = 4  # type: int
 MONO_HLSB = 3  # type: int

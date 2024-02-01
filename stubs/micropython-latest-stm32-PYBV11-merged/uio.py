@@ -73,13 +73,13 @@ classes corresponding to the hierarchy above, and it's not possible
 to implement, or subclass, a stream class in pure Python.
 
 ---
-Module: 'uio' on micropython-v1.22.0-stm32-PYBV11
+Module: 'uio' on micropython-v1.21.0-stm32-PYBV11
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
-# Stubber: v1.16.2
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
+from typing import IO, Optional, Any
 from _typeshed import Incomplete
 from stdlib.io import *
-from typing import Any, IO, Optional
 
 
 def open(name, mode="r", **kwargs) -> Incomplete:

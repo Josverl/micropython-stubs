@@ -37,35 +37,11 @@ from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Coroutine, List, Tuple
 
 def ticks_add(*args, **kwargs) -> Incomplete: ...
-def current_task() -> Task:
-    """
-    Return the `Task` object associated with the currently running task.
-    """
-    ...
-
 def create_task(coro) -> Task:
     """
     Create a new task from the given coroutine and schedule it to run.
 
     Returns the corresponding `Task` object.
-    """
-    ...
-
-def ticks_diff(*args, **kwargs) -> Incomplete: ...
-def get_event_loop() -> Incomplete:
-    """
-    Return the event loop used to schedule and run tasks.  See `Loop`.
-    """
-    ...
-
-def ticks(*args, **kwargs) -> Incomplete: ...
-def run_until_complete(*args, **kwargs) -> Incomplete: ...
-def new_event_loop() -> Incomplete:
-    """
-    Reset the event loop and return it.
-
-    Note: since MicroPython only has a single event loop this function just
-    resets the loop's state, it does not create a new one.
     """
     ...
 
@@ -77,6 +53,30 @@ def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
     """
     ...
 
+def ticks_diff(*args, **kwargs) -> Incomplete: ...
+def run_until_complete(*args, **kwargs) -> Incomplete: ...
+def new_event_loop() -> Incomplete:
+    """
+    Reset the event loop and return it.
+
+    Note: since MicroPython only has a single event loop this function just
+    resets the loop's state, it does not create a new one.
+    """
+    ...
+
+def current_task() -> Task:
+    """
+    Return the `Task` object associated with the currently running task.
+    """
+    ...
+
+def get_event_loop() -> Incomplete:
+    """
+    Return the event loop used to schedule and run tasks.  See `Loop`.
+    """
+    ...
+
+def ticks(*args, **kwargs) -> Incomplete: ...
 def sleep(t) -> Coroutine[Incomplete, Any, Any]:
     """
     Sleep for *t* seconds (can be a float).
@@ -101,15 +101,4 @@ def sleep_ms(t) -> Coroutine[Incomplete, Any, Any]:
     """
     ...
 
-class TaskQueue:
-    def push(self, *args, **kwargs) -> Incomplete: ...
-    def peek(self, *args, **kwargs) -> Incomplete: ...
-    def remove(self, *args, **kwargs) -> Incomplete: ...
-    def pop(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-gather: Incomplete
-wait_for: Incomplete
-open_connection: Incomplete
-
-class CancelledError(Exception): ...
+class TimeoutError(Exception): ...

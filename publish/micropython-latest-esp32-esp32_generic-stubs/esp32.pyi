@@ -249,7 +249,6 @@ class RMT:
     *idle_level*).
     """
 
-    PULSE_MAX: int
     @classmethod
     def source_freq(cls) -> Incomplete:
         """

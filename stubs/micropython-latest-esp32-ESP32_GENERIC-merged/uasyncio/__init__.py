@@ -34,22 +34,15 @@ Core functions
 --------------
 
 ---
-Module: 'uasyncio.__init__' on micropython-v1.22.0-esp32-ESP32_GENERIC
+Module: 'uasyncio.__init__' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
-# Stubber: v1.16.2
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
 from typing import Any, Coroutine, List, Tuple
 
 
 def ticks_add(*args, **kwargs) -> Incomplete:
-    ...
-
-
-def current_task() -> Task:
-    """
-    Return the `Task` object associated with the currently running task.
-    """
     ...
 
 
@@ -62,18 +55,16 @@ def create_task(coro) -> Task:
     ...
 
 
+def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
+    """
+    Similar to `wait_for` but *timeout* is an integer in milliseconds.
+
+    This is a coroutine, and a MicroPython extension.
+    """
+    ...
+
+
 def ticks_diff(*args, **kwargs) -> Incomplete:
-    ...
-
-
-def get_event_loop() -> Incomplete:
-    """
-    Return the event loop used to schedule and run tasks.  See `Loop`.
-    """
-    ...
-
-
-def ticks(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -91,12 +82,21 @@ def new_event_loop() -> Incomplete:
     ...
 
 
-def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
+def current_task() -> Task:
     """
-    Similar to `wait_for` but *timeout* is an integer in milliseconds.
+    Return the `Task` object associated with the currently running task.
+    """
+    ...
 
-    This is a coroutine, and a MicroPython extension.
+
+def get_event_loop() -> Incomplete:
     """
+    Return the event loop used to schedule and run tasks.  See `Loop`.
+    """
+    ...
+
+
+def ticks(*args, **kwargs) -> Incomplete:
     ...
 
 
@@ -127,27 +127,5 @@ def sleep_ms(t) -> Coroutine[Incomplete, Any, Any]:
     ...
 
 
-class TaskQueue:
-    def push(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def peek(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def remove(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def pop(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-gather: Incomplete  ## <class 'generator'> = <generator>
-wait_for: Incomplete  ## <class 'generator'> = <generator>
-open_connection: Incomplete  ## <class 'generator'> = <generator>
-
-
-class CancelledError(Exception):
+class TimeoutError(Exception):
     ...

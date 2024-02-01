@@ -9,12 +9,12 @@ This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
 
 ---
-Module: 'uerrno' on micropython-v1.22.0-stm32-PYBV11
+Module: 'uerrno' on micropython-v1.21.0-stm32-PYBV11
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
-# Stubber: v1.16.2
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
+from typing import Dict, Any
 from _typeshed import Incomplete
-from typing import Dict
 
 ENOBUFS = 105  # type: int
 ENODEV = 19  # type: int

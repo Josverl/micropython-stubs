@@ -10,20 +10,19 @@ widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 
 ---
-Module: 'ssl' on micropython-v1.22.0-esp32-ESP32_GENERIC
+Module: 'ssl' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
-# Stubber: v1.16.2
+# MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
+# Stubber: v1.14.0
 from _typeshed import Incomplete
 from stdlib.ssl import *
 from typing import IO, List
 
-MBEDTLS_VERSION = "mbed TLS 3.4.1"  # type: str
-PROTOCOL_TLS_SERVER = 1  # type: int
-PROTOCOL_TLS_CLIENT = 0  # type: int
-CERT_NONE = 0  # type: int
 CERT_REQUIRED = 2  # type: int
+PROTOCOL_TLS_CLIENT = 0  # type: int
+PROTOCOL_TLS_SERVER = 1  # type: int
 CERT_OPTIONAL = 1  # type: int
+CERT_NONE = 0  # type: int
 
 
 def wrap_socket(
@@ -55,21 +54,6 @@ class SSLContext:
     constants.
     """
 
-    def load_verify_locations(self, cafile=None, cadata=None) -> None:
-        """
-        Load the CA certificate chain that will validate the peer's certificate.
-        *cafile* is the file path of the CA certificates.  *cadata* is a bytes object
-        containing the CA certificates.  Only one of these arguments should be provided.
-        """
-        ...
-
-    def set_ciphers(self, ciphers) -> None:
-        """
-        Set the available ciphers for sockets created with this context.  *ciphers* should be
-        a list of strings in the `IANA cipher suite format <https://wiki.mozilla.org/Security/Cipher_Suites>`_ .
-        """
-        ...
-
     def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
@@ -92,25 +76,6 @@ class SSLContext:
         - *server_hostname* is for use as a client, and sets the hostname to check against the received
           server certificate.  It also sets the name for Server Name Indication (SNI), allowing the server
           to present the proper certificate.
-        """
-        ...
-
-    def load_cert_chain(self, certfile, keyfile) -> None:
-        """
-        Load a private key and the corresponding certificate.  The *certfile* is a string
-        with the file path of the certificate.  The *keyfile* is a string with the file path
-        of the private key.
-
-        Difference to CPython
-
-           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
-           strings, in which case they are interpreted as the actual certificate/key data.
-        """
-        ...
-
-    def get_ciphers(self) -> List[str]:
-        """
-        Get a list of enabled ciphers, returned as a list of strings.
         """
         ...
 

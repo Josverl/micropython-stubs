@@ -11,27 +11,18 @@ malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 
 ---
-Module: 'umachine' on micropython-v1.22.0-stm32-PYBV11
+Module: 'umachine' on micropython-v1.21.0-stm32-PYBV11
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
-# Stubber: v1.16.2
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.13.8
+from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 from _typeshed import Incomplete
-from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
 HARD_RESET = 2  # type: int
-WDT_RESET = 3  # type: int
+PWRON_RESET = 1  # type: int
 SOFT_RESET = 0  # type: int
 DEEPSLEEP_RESET = 4  # type: int
-PWRON_RESET = 1  # type: int
-
-
-def freq(hz: Optional[Any] = None) -> Incomplete:
-    """
-    Returns the CPU frequency in hertz.
-
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-    ...
+WDT_RESET = 3  # type: int
 
 
 def idle() -> Incomplete:
@@ -40,6 +31,15 @@ def idle() -> Incomplete:
     short or long periods. Peripherals continue working and execution resumes as soon
     as any interrupt is triggered (on many ports this includes system timer
     interrupt occurring at regular intervals on the order of millisecond).
+    """
+    ...
+
+
+def freq(hz: Optional[Any] = None) -> Incomplete:
+    """
+    Returns the CPU frequency in hertz.
+
+    On some ports this can also be used to set the CPU frequency by passing in *hz*.
     """
     ...
 
@@ -226,48 +226,6 @@ def bitstream(pin, encoding, timing, data, /) -> Incomplete:
        module for a higher-level API.
     """
     ...
-
-
-class RTC:
-    """
-    Create an RTC object. See init for parameters of initialization.
-    """
-
-    def info(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def init(self, datetime) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-        ...
-
-    def wakeup(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
-        """
-        Get or set the date and time of the RTC.
-
-        With no arguments, this method returns an 8-tuple with the current
-        date and time.  With 1 argument (being an 8-tuple) it sets the date
-        and time.
-
-        The 8-tuple has the following format:
-
-            (year, month, day, weekday, hours, minutes, seconds, subseconds)
-
-        The meaning of the ``subseconds`` field is hardware dependent.
-        """
-        ...
-
-    def calibration(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
 
 
 class Pin:
@@ -661,6 +619,88 @@ class Pin:
         ...
 
 
+class I2S:
+    """
+    Construct an I2S object of the given id:
+
+    - ``id`` identifies a particular I2S bus; it is board and port specific
+
+    Keyword-only parameters that are supported on all ports:
+
+      - ``sck`` is a pin object for the serial clock line
+      - ``ws`` is a pin object for the word select line
+      - ``sd`` is a pin object for the serial data line
+      - ``mck`` is a pin object for the master clock line;
+        master clock frequency is sampling rate * 256
+      - ``mode`` specifies receive or transmit
+      - ``bits`` specifies sample size (bits), 16 or 32
+      - ``format`` specifies channel format, STEREO or MONO
+      - ``rate`` specifies audio sampling rate (Hz);
+        this is the frequency of the ``ws`` signal
+      - ``ibuf`` specifies internal buffer length (bytes)
+
+    For all ports, DMA runs continuously in the background and allows user applications to perform other operations while
+    sample data is transferred between the internal buffer and the I2S peripheral unit.
+    Increasing the size of the internal buffer has the potential to increase the time that user applications can perform non-I2S operations
+    before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
+    """
+
+    RX = 768  # type: int
+    MONO = 0  # type: int
+    STEREO = 1  # type: int
+    TX = 512  # type: int
+
+    @staticmethod
+    def shift(*, buf, bits, shift) -> Incomplete:
+        """
+        bitwise shift of all samples contained in ``buf``. ``bits`` specifies sample size in bits. ``shift`` specifies the number of bits to shift each sample.
+        Positive for left shift, negative for right shift.
+        Typically used for volume control.  Each bit shift changes sample volume by 6dB.
+        """
+        ...
+
+    def init(self, sck, *args, **kwargs) -> Incomplete:
+        """
+        see Constructor for argument descriptions
+        """
+        ...
+
+    def irq(self, handler) -> Incomplete:
+        """
+        Set a callback. ``handler`` is called when ``buf`` is emptied (``write`` method) or becomes full (``readinto`` method).
+        Setting a callback changes the ``write`` and ``readinto`` methods to non-blocking operation.
+        ``handler`` is called in the context of the MicroPython scheduler.
+        """
+        ...
+
+    def readinto(self, buf) -> int:
+        """
+        Read audio samples into the buffer specified by ``buf``.  ``buf`` must support the buffer protocol, such as bytearray or array.
+        "buf" byte ordering is little-endian.  For Stereo format, left channel sample precedes right channel sample. For Mono format,
+        the left channel sample data is used.
+        Returns number of bytes read
+        """
+        ...
+
+    def deinit(self) -> Incomplete:
+        """
+        Deinitialize the I2S bus
+        """
+        ...
+
+    def write(self, buf) -> int:
+        """
+        Write audio samples contained in ``buf``. ``buf`` must support the buffer protocol, such as bytearray or array.
+        "buf" byte ordering is little-endian.  For Stereo format, left channel sample precedes right channel sample. For Mono format,
+        the sample data is written to both the right and left channels.
+        Returns number of bytes written
+        """
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
 class SPI:
     """
     Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -753,115 +793,42 @@ class SPI:
 mem8: Incomplete  ## <class 'mem'> = <8-bit memory>
 
 
-class ADC:
+class RTC:
     """
-    Access the ADC associated with a source identified by *id*.  This
-    *id* may be an integer (usually specifying a channel number), a
-    :ref:`Pin <machine.Pin>` object, or other value supported by the
-    underlying machine.
-
-    If additional keyword-arguments are given then they will configure
-    various aspects of the ADC.  If not given, these settings will take
-    previous or default values.  The settings are:
-
-      - *sample_ns* is the sampling time in nanoseconds.
-
-      - *atten* specifies the input attenuation.
+    Create an RTC object. See init for parameters of initialization.
     """
 
-    VREF = 65535  # type: int
-    CORE_VREF = 256  # type: int
-    CORE_VBAT = 258  # type: int
-    CORE_TEMP = 257  # type: int
+    def info(self, *args, **kwargs) -> Incomplete:
+        ...
 
-    def read_u16(self) -> int:
+    def init(self, datetime) -> None:
         """
-        Take an analog reading and return an integer in the range 0-65535.
-        The return value represents the raw reading taken by the ADC, scaled
-        such that the minimum value is 0 and the maximum value is 65535.
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def wakeup(self, *args, **kwargs) -> Incomplete:
         ...
 
-
-class I2S:
-    """
-    Construct an I2S object of the given id:
-
-    - ``id`` identifies a particular I2S bus; it is board and port specific
-
-    Keyword-only parameters that are supported on all ports:
-
-      - ``sck`` is a pin object for the serial clock line
-      - ``ws`` is a pin object for the word select line
-      - ``sd`` is a pin object for the serial data line
-      - ``mck`` is a pin object for the master clock line;
-        master clock frequency is sampling rate * 256
-      - ``mode`` specifies receive or transmit
-      - ``bits`` specifies sample size (bits), 16 or 32
-      - ``format`` specifies channel format, STEREO or MONO
-      - ``rate`` specifies audio sampling rate (Hz);
-        this is the frequency of the ``ws`` signal
-      - ``ibuf`` specifies internal buffer length (bytes)
-
-    For all ports, DMA runs continuously in the background and allows user applications to perform other operations while
-    sample data is transferred between the internal buffer and the I2S peripheral unit.
-    Increasing the size of the internal buffer has the potential to increase the time that user applications can perform non-I2S operations
-    before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
-    """
-
-    RX = 768  # type: int
-    MONO = 0  # type: int
-    STEREO = 1  # type: int
-    TX = 512  # type: int
-
-    @staticmethod
-    def shift(*, buf, bits, shift) -> Incomplete:
+    def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
         """
-        bitwise shift of all samples contained in ``buf``. ``bits`` specifies sample size in bits. ``shift`` specifies the number of bits to shift each sample.
-        Positive for left shift, negative for right shift.
-        Typically used for volume control.  Each bit shift changes sample volume by 6dB.
+        Get or set the date and time of the RTC.
+
+        With no arguments, this method returns an 8-tuple with the current
+        date and time.  With 1 argument (being an 8-tuple) it sets the date
+        and time.
+
+        The 8-tuple has the following format:
+
+            (year, month, day, weekday, hours, minutes, seconds, subseconds)
+
+        The meaning of the ``subseconds`` field is hardware dependent.
         """
         ...
 
-    def init(self, sck, *args, **kwargs) -> Incomplete:
-        """
-        see Constructor for argument descriptions
-        """
-        ...
-
-    def irq(self, handler) -> Incomplete:
-        """
-        Set a callback. ``handler`` is called when ``buf`` is emptied (``write`` method) or becomes full (``readinto`` method).
-        Setting a callback changes the ``write`` and ``readinto`` methods to non-blocking operation.
-        ``handler`` is called in the context of the MicroPython scheduler.
-        """
-        ...
-
-    def readinto(self, buf) -> int:
-        """
-        Read audio samples into the buffer specified by ``buf``.  ``buf`` must support the buffer protocol, such as bytearray or array.
-        "buf" byte ordering is little-endian.  For Stereo format, left channel sample precedes right channel sample. For Mono format,
-        the left channel sample data is used.
-        Returns number of bytes read
-        """
-        ...
-
-    def deinit(self) -> Incomplete:
-        """
-        Deinitialize the I2S bus
-        """
-        ...
-
-    def write(self, buf) -> int:
-        """
-        Write audio samples contained in ``buf``. ``buf`` must support the buffer protocol, such as bytearray or array.
-        "buf" byte ordering is little-endian.  For Stereo format, left channel sample precedes right channel sample. For Mono format,
-        the sample data is written to both the right and left channels.
-        Returns number of bytes written
-        """
+    def calibration(self, *args, **kwargs) -> Incomplete:
         ...
 
     def __init__(self, *argv, **kwargs) -> None:
@@ -1011,6 +978,39 @@ class I2C:
         Write the bytes from *buf* to the bus.  Checks that an ACK is received
         after each byte and stops transmitting the remaining bytes if a NACK is
         received.  The function returns the number of ACKs that were received.
+        """
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class ADC:
+    """
+    Access the ADC associated with a source identified by *id*.  This
+    *id* may be an integer (usually specifying a channel number), a
+    :ref:`Pin <machine.Pin>` object, or other value supported by the
+    underlying machine.
+
+    If additional keyword-arguments are given then they will configure
+    various aspects of the ADC.  If not given, these settings will take
+    previous or default values.  The settings are:
+
+      - *sample_ns* is the sampling time in nanoseconds.
+
+      - *atten* specifies the input attenuation.
+    """
+
+    VREF = 65535  # type: int
+    CORE_VREF = 256  # type: int
+    CORE_VBAT = 258  # type: int
+    CORE_TEMP = 257  # type: int
+
+    def read_u16(self) -> int:
+        """
+        Take an analog reading and return an integer in the range 0-65535.
+        The return value represents the raw reading taken by the ADC, scaled
+        such that the minimum value is 0 and the maximum value is 65535.
         """
         ...
 

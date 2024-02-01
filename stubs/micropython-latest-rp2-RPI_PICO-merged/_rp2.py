@@ -13,12 +13,12 @@ for more information, and `pico-micropython-examples
 for example code.
 
 ---
-Module: '_rp2' on micropython-v1.22.0-rp2-RPI_PICO
+Module: '_rp2' on micropython-v1.21.0-rp2-RPI_PICO
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'RPI_PICO', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
-# Stubber: v1.16.2
+# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.13.8
+from typing import Optional, Any
 from _typeshed import Incomplete
-from typing import Any, Optional
 
 
 def bootsel_button() -> Incomplete:
@@ -33,29 +33,6 @@ def bootsel_button() -> Incomplete:
     prevent them from trying to execute code from flash.
     """
     ...
-
-
-class DMA:
-    def irq(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def unpack_ctrl(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def pack_ctrl(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def close(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def config(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def active(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
 
 
 class StateMachine:
@@ -147,7 +124,7 @@ class StateMachine:
 
         The program is added to the instruction memory of this PIO instance. If the
         instruction memory already contains this program, then its offset is
-        re-used so as to save on instruction memory.
+        reused so as to save on instruction memory.
 
         - *freq* is the frequency in Hz to run the state machine at. Defaults to
           the system clock frequency.
@@ -218,6 +195,29 @@ class StateMachine:
         ...
 
 
+class Flash:
+    """
+    Gets the singleton object for accessing the SPI flash memory.
+    """
+
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+        ...
+
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+        ...
+
+    def ioctl(self, cmd, arg) -> Incomplete:
+        """
+        These methods implement the simple and extended
+        :ref:`block protocol <block-device-interface>` defined by
+        :class:`os.AbstractBlockDev`.
+        """
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
 class PIO:
     """
     Gets the PIO instance numbered *id*. The RP2040 has two PIO instances,
@@ -279,29 +279,6 @@ class PIO:
         The amount of memory available for programs on each PIO instance is
         limited. If there isn't enough space left in the PIO's program memory
         this method will raise ``OSError(ENOMEM)``.
-        """
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class Flash:
-    """
-    Gets the singleton object for accessing the SPI flash memory.
-    """
-
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
-
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
-
-    def ioctl(self, cmd, arg) -> Incomplete:
-        """
-        These methods implement the simple and extended
-        :ref:`block protocol <block-device-interface>` defined by
-        :class:`os.AbstractBlockDev`.
         """
         ...
 

@@ -6,17 +6,17 @@ MicroPython module: https://docs.micropython.org/en/latest/library/sys.html
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 
 ---
-Module: 'usys' on micropython-v1.22.0-rp2-RPI_PICO
+Module: 'usys' on micropython-v1.21.0-rp2-RPI_PICO
 """
-# MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'RPI_PICO', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
-# Stubber: v1.16.2
+# MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.13.8
+from typing import Dict, List, Tuple, Any
 from _typeshed import Incomplete
-from typing import Dict, List, Tuple
 
 platform = "rp2"  # type: str
 version_info = ()  # type: tuple
 path = []  # type: list
-version = "3.4.0; MicroPython v1.22.0 on 2023-12-27"  # type: str
+version = "3.4.0; MicroPython v1.21.0 on 2023-10-06"  # type: str
 ps1 = ">>> "  # type: str
 ps2 = "... "  # type: str
 byteorder = "little"  # type: str
