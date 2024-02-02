@@ -17,15 +17,21 @@ building-blocks for higher-level abstractions such as specific device types.
 
 ``Note:`` This module is still under development and its classes, functions,
           methods and constants are subject to change.
+
+---
+Module: 'bluetooth' on micropython-v1.22.0-rp2-RPI_PICO_W
 """
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'build': '', 'ver': '1.22.0', 'version': '1.22.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.16.3
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Any, Optional, Tuple
 
-FLAG_NOTIFY: int
-FLAG_READ: int
-FLAG_WRITE: int
-FLAG_INDICATE: int
-FLAG_WRITE_NO_RESPONSE: int
+FLAG_NOTIFY: int = 16
+FLAG_READ: int = 2
+FLAG_WRITE: int = 8
+FLAG_INDICATE: int = 32
+FLAG_WRITE_NO_RESPONSE: int = 4
 
 class UUID:
     """

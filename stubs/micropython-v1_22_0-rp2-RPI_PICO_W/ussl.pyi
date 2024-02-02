@@ -1,11 +1,17 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'ussl' on micropython-v1.22.0-rp2-RPI_PICO_W
+"""
+# MCU: {'build': '', 'ver': '1.22.0', 'version': '1.22.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.16.3
+from __future__ import annotations
+from _typeshed import Incomplete
 
-MBEDTLS_VERSION: str
-PROTOCOL_TLS_SERVER: int
-PROTOCOL_TLS_CLIENT: int
-CERT_NONE: int
-CERT_REQUIRED: int
-CERT_OPTIONAL: int
+MBEDTLS_VERSION: str = "mbed TLS 2.28.3"
+PROTOCOL_TLS_SERVER: int = 1
+PROTOCOL_TLS_CLIENT: int = 0
+CERT_NONE: int = 0
+CERT_REQUIRED: int = 2
+CERT_OPTIONAL: int = 1
 
 def wrap_socket(*args, **kwargs) -> Incomplete: ...
 

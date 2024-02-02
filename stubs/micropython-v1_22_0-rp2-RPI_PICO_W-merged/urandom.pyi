@@ -25,8 +25,14 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
    The :func:`randrange`, :func:`randint` and :func:`choice` functions are only
    available if the ``MICROPY_PY_RANDOM_EXTRA_FUNCS`` configuration option is
    enabled.
+
+---
+Module: 'urandom' on micropython-v1.22.0-rp2-RPI_PICO_W
 """
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'build': '', 'ver': '1.22.0', 'version': '1.22.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.16.3
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Any, Optional
 
 def randrange(start, stop, step: Optional[Any] = None) -> int:

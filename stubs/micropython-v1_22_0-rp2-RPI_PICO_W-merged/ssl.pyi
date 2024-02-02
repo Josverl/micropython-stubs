@@ -8,17 +8,23 @@ CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
+
+---
+Module: 'ssl' on micropython-v1.22.0-rp2-RPI_PICO_W
 """
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'build': '', 'ver': '1.22.0', 'version': '1.22.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.16.3
+from __future__ import annotations
+from _typeshed import Incomplete
 from stdlib.ssl import *
 from typing import IO, List
 
-MBEDTLS_VERSION: str
-PROTOCOL_TLS_SERVER: int
-PROTOCOL_TLS_CLIENT: int
-CERT_NONE: int
-CERT_REQUIRED: int
-CERT_OPTIONAL: int
+MBEDTLS_VERSION: str = "mbed TLS 2.28.3"
+PROTOCOL_TLS_SERVER: int = 1
+PROTOCOL_TLS_CLIENT: int = 0
+CERT_NONE: int = 0
+CERT_REQUIRED: int = 2
+CERT_OPTIONAL: int = 1
 
 def wrap_socket(
     sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
