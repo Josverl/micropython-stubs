@@ -43,7 +43,7 @@ PORTBOARD_FEATURES = {
 
 SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 VERSIONS = [
-    "latest",
+    "preview",
     "v1.22.0",
     "v1.21.0",
     "v1.20.0",
@@ -65,7 +65,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
     for src in SOURCES:
         for version in VERSIONS:
             # skip latest for pypi
-            if src == "pypi" and version in ("preview", "latest"):
+            if src == "pypi" and version in {"preview", "latest"}:
                 continue
             for key in PORTBOARD_FEATURES.keys():
                 portboard = key

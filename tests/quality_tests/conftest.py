@@ -28,8 +28,15 @@ import fasteners
 import pytest
 from loguru import logger as log
 
+from stubber.utils.config import CONFIG
+
 SNIPPETS_PREFIX = "tests/quality_tests/"
-MAX_CACHE_AGE = 24 * 60 * 60 # 24 hours
+MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
+
+
+def flat_version(version):
+    """Converts a version string to a flat version string. (simplified)"""
+    return version.replace(".", "_").replace("-", "_")
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
@@ -56,12 +63,7 @@ def pytest_runtest_makereport(item, call):
         if not "caplog" in item.funcargs:
             return
         caplog = item.funcargs["caplog"]
-        report_txt = (
-            "\n"
-            + "\n".join([r.message for r in caplog.records])
-            + "\n\n"
-            + str(report.longreprtext)
-        )
+        report_txt = "\n" + "\n".join([r.message for r in caplog.records]) + "\n\n" + str(report.longreprtext)
         report.longrepr = report_txt
 
         return report
@@ -90,12 +92,9 @@ def type_stub_cache_path(
     """
 
     log.trace(f"setup install type_stubs to cache: {stub_source}, {version}, {portboard}")
-    flatversion = version.replace(".", "_")
     cache_key = f"stubber/{stub_source}/{version}/{portboard}"
-    # cache_path = pytestconfig.rootpath / "snippets" / "typings_cache"
-    tsc_path = Path(
-        request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}")
-    )
+    flatversion = flat_version(version)
+    tsc_path = Path(request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}"))
     # prevent simultaneous updates to the cache
     cache_lock = fasteners.InterProcessLock(tsc_path.parent / f"{tsc_path.name}.lock")
     # check if stubs are already installed to the cache
@@ -109,7 +108,7 @@ def type_stub_cache_path(
                 log.trace(f"Using cached type stubs for {portboard} {version}")
                 return tsc_path
 
-        ok = install_stubs(portboard, version, stub_source, pytestconfig, flatversion, tsc_path)
+        ok = install_stubs(portboard, version, stub_source, pytestconfig, tsc_path)
         if not ok:
             pytest.skip(f"Could not install stubs for {portboard} {version}")
         # add the timestamp to the cache
@@ -118,9 +117,7 @@ def type_stub_cache_path(
     return tsc_path
 
 
-def install_stubs(
-    portboard, version, stub_source, pytestconfig, flatversion, tsc_path: Path
-) -> bool:
+def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path) -> bool:
     """
     Cleans up prior install to avoid stale files.
     Uses pip to install type stubs for the given portboard and version.
@@ -136,7 +133,12 @@ def install_stubs(
     Returns:
         bool: True if the installation was successful, False otherwise.
     """
-
+    if version == "preview":
+        # use the latest preview version
+        version = CONFIG.all_versions[-1]
+        if not version.endswith("-preview"):
+            raise ValueError(f"Expected preview version, got {version}")
+    flatversion = flat_version(version)
     # clean up prior install to avoid stale files
     if tsc_path.exists():
         shutil.rmtree(tsc_path, ignore_errors=True)
@@ -150,7 +152,7 @@ def install_stubs(
         cmd = f"pip install micropython-{portboard}-stubs=={version.lower().lstrip('v')}.* --pre --target {tsc_path} --no-user --no-cache"
     else:
         # local source and --pre to pull in a pre-release version of stdlib
-        if version == "-": 
+        if version == "-":
             # stdlib has no version in publish/path
             foldername = f"micropython-{portboard}-stubs"
         else:
@@ -187,14 +189,12 @@ def snip_path(feature: str, pytestconfig) -> Path:
     # snip_path = pytestconfig.inipath.parent / "tests/quality_tests" / f"feat_{feature}"
     snip_path = my_path / f"feat_{feature}"
     if not snip_path.exists():
-        snip_path = my_path  / f"check_{feature}"
+        snip_path = my_path / f"check_{feature}"
     return snip_path
 
 
 @pytest.fixture(scope="function")
-def copy_type_stubs(
-    portboard: str, version: str, feature: str, type_stub_cache_path: Path, snip_path: Path
-):
+def copy_type_stubs(portboard: str, version: str, feature: str, type_stub_cache_path: Path, snip_path: Path):
     """
     Copies installed/cached type stubs from the cache to the feature folder.
 
@@ -205,9 +205,7 @@ def copy_type_stubs(
         type_stub_cache_path: The path to the cache folder.
         snip_path: The path to the feature folder.
     """
-    cache_lock = fasteners.InterProcessLock(
-        type_stub_cache_path.parent / f"{type_stub_cache_path.name}.lock"
-    )
+    cache_lock = fasteners.InterProcessLock(type_stub_cache_path.parent / f"{type_stub_cache_path.name}.lock")
     typecheck_lock = fasteners.InterProcessLock(snip_path / "typecheck_lock.file")
     with cache_lock:
         with typecheck_lock:
@@ -244,6 +242,4 @@ def snipcount(terminalreporter, status: str):
     # Count the number of test snippets that have a given status
     if not terminalreporter.stats.get(status, []):
         return 0
-    return len(
-        [rep for rep in terminalreporter.stats[status] if rep.nodeid.startswith(SNIPPETS_PREFIX)]
-    )
+    return len([rep for rep in terminalreporter.stats[status] if rep.nodeid.startswith(SNIPPETS_PREFIX)])
