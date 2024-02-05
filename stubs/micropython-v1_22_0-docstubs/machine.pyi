@@ -27,6 +27,7 @@ damage.
 # + module: machine.WDT.rst
 # + module: machine.SD.rst
 # + module: machine.SDCard.rst
+from __future__ import annotations
 from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 from _typeshed import Incomplete
 
@@ -795,7 +796,7 @@ class SPI:
         """
         ...
 
-class SoftSPI:
+class SoftSPI(SPI):
     """
     Construct a new software SPI object.  Additional parameters must be
     given, usually at least *sck*, *mosi* and *miso*, and these are used

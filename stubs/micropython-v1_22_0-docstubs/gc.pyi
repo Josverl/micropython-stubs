@@ -8,6 +8,7 @@ CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/gc.rst
+from __future__ import annotations
 from typing import Any, Optional
 from _typeshed import Incomplete
 

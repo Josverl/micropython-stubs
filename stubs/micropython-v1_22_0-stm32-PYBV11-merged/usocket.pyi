@@ -60,6 +60,7 @@ Tuple address format for ``socket`` module:
   they should be resolved first using `socket.getaddrinfo()`. Availability
   of IPv6 support depends on a :term:`MicroPython port`.
 """
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.socket import *
 from typing import Any, IO, Optional, Tuple

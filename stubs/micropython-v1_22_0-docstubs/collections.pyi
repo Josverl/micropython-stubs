@@ -11,6 +11,7 @@ hold/accumulate various objects.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/collections.rst
+from __future__ import annotations
 from typing import Any, Optional
 from _typeshed import Incomplete
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque, namedtuple as stdlib_namedtuple

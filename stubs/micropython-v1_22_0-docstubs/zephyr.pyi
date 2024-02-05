@@ -11,6 +11,7 @@ The ``zephyr`` module contains functions and classes specific to the Zephyr port
 # origin module:: repos/micropython/docs/library/zephyr.rst
 # + module: zephyr.DiskAccess.rst
 # + module: zephyr.FlashArea.rst
+from __future__ import annotations
 from typing import Optional
 from _typeshed import Incomplete
 

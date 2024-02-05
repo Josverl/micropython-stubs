@@ -10,6 +10,7 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
@@ -581,13 +582,6 @@ class Pin:
         def __init__(self, *argv, **kwargs) -> None: ...
 
     def __init__(self, *argv, **kwargs) -> None: ...
-    def __call__(self, x: Optional[Any] = None) -> Incomplete:
-        """
-        Pin objects are callable.  The call method provides a (fast) shortcut to set
-        and get the value of the pin.  It is equivalent to Pin.value([x]).
-        See :meth:`Pin.value` for more details.
-        """
-        ...
 
 class SPI:
     """
@@ -983,7 +977,7 @@ class Timer:
         ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class SoftSPI:
+class SoftSPI(SPI):
     """
     Construct a new software SPI object.  Additional parameters must be
     given, usually at least *sck*, *mosi* and *miso*, and these are used

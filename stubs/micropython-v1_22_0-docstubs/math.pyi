@@ -16,6 +16,7 @@ for this module.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/math.rst
+from __future__ import annotations
 from typing import Tuple
 from _typeshed import Incomplete
 

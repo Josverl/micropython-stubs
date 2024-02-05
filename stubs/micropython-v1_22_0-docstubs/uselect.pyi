@@ -11,6 +11,7 @@ This module provides functions to efficiently wait for events on multiple
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/select.rst
+from __future__ import annotations
 from typing import Any, Iterator, List, Optional, Tuple
 from _typeshed import Incomplete
 

@@ -12,6 +12,7 @@ floating-point support).
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/array.rst
+from __future__ import annotations
 from typing import Any, List, Optional
 from _typeshed import Incomplete
 

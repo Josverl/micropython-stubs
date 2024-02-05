@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.22.0/library/stm.html
 This module provides functionality specific to STM32 microcontrollers, including
 direct access to peripheral registers.
 """
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Tuple
 

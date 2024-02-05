@@ -40,6 +40,7 @@ For example::
 # + module: network.WLANWiPy.rst
 # + module: network.WIZNET5K.rst
 # + module: network.LAN.rst
+from __future__ import annotations
 from typing import Any, List, Optional, Tuple, Union
 from _typeshed import Incomplete
 

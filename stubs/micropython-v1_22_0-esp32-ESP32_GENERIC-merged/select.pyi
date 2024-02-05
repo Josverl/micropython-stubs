@@ -8,6 +8,7 @@ CPython module: :mod:`python:select` https://docs.python.org/3/library/select.ht
 This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Iterator, List, Optional, Tuple
 

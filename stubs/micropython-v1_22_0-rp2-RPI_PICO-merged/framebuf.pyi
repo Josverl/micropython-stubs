@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.22.0/library/framebuf.htm
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional
 

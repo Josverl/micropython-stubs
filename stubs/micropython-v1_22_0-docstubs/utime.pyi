@@ -35,6 +35,7 @@ behave not as expected.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/time.rst
+from __future__ import annotations
 from typing import Any, Optional, Tuple
 from _typeshed import Incomplete
 

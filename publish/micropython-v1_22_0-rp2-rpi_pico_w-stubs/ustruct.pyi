@@ -52,8 +52,14 @@ The following data types are supported:
 +--------+--------------------+-------------------+---------------+
 | P      | void *             | integer           |               |
 +--------+--------------------+-------------------+---------------+
+
+---
+Module: 'ustruct' on micropython-v1.22.0-rp2-RPI_PICO_W
 """
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'build': '', 'ver': '1.22.0', 'version': '1.22.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.16.3
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Tuple
 
 def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:

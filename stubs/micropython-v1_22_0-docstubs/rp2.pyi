@@ -19,6 +19,7 @@ for example code.
 # + module: rp2.Flash.rst
 # + module: rp2.PIO.rst
 # + module: rp2.StateMachine.rst
+from __future__ import annotations
 from typing import Any, Optional
 from _typeshed import Incomplete
 

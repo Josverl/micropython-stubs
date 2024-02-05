@@ -29,9 +29,12 @@ For example::
     addr = socket.getaddrinfo('micropython.org', 80)[0][-1]
     s = socket.socket()
     s.connect(addr)
-    s.send(b'GET / HTTP/1.1
-Host: micropython.org
-
+    s.send(b'GET / HTTP/1.1
+
+Host: micropython.org
+
+
+
 ')
     data = s.recv(1000)
     s.close()
@@ -39,6 +42,8 @@ Host: micropython.org
 ---
 Module: 'network' on micropython-v1.22.0-stm32-PYBV11
 """
+from __future__ import annotations
+
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
 # Stubber: v1.16.2
 from _typeshed import Incomplete

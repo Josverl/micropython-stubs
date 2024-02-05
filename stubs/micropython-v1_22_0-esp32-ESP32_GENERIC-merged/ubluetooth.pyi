@@ -18,6 +18,7 @@ building-blocks for higher-level abstractions such as specific device types.
 ``Note:`` This module is still under development and its classes, functions,
           methods and constants are subject to change.
 """
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional, Tuple
 

@@ -13,6 +13,8 @@ damage.
 ---
 Module: 'machine' on micropython-v1.22.0-esp32-ESP32_GENERIC
 """
+from __future__ import annotations
+
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
 # Stubber: v1.16.2
 from _typeshed import Incomplete
@@ -751,7 +753,7 @@ class Timer:
         ...
 
 
-class SoftSPI:
+class SoftSPI(SPI):
     """
     Construct a new software SPI object.  Additional parameters must be
     given, usually at least *sck*, *mosi* and *miso*, and these are used

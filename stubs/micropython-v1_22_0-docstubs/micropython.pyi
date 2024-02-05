@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.22.0/library/micropython.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/micropython.rst
+from __future__ import annotations
 from typing import Any, Optional, Tuple, TypeVar
 from _typeshed import Incomplete
 

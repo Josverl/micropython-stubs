@@ -13,6 +13,8 @@ damage.
 ---
 Module: 'umachine' on micropython-v1.22.0-stm32-PYBV11
 """
+from __future__ import annotations
+
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
 # Stubber: v1.16.2
 from _typeshed import Incomplete
@@ -652,14 +654,6 @@ class Pin:
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
-    def __call__(self, x: Optional[Any] = None) -> Incomplete:
-        """
-        Pin objects are callable.  The call method provides a (fast) shortcut to set
-        and get the value of the pin.  It is equivalent to Pin.value([x]).
-        See :meth:`Pin.value` for more details.
-        """
-        ...
-
 
 class SPI:
     """
@@ -1101,7 +1095,7 @@ class Timer:
         ...
 
 
-class SoftSPI:
+class SoftSPI(SPI):
     """
     Construct a new software SPI object.  Additional parameters must be
     given, usually at least *sck*, *mosi* and *miso*, and these are used

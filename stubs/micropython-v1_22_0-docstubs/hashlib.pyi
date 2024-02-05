@@ -26,6 +26,7 @@ be implemented:
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/hashlib.rst
+from __future__ import annotations
 from typing import Any, Optional
 from _typeshed import Incomplete
 

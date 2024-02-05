@@ -9,6 +9,7 @@ WiPy, such as the heartbeat LED.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/wipy.rst
+from __future__ import annotations
 from typing import Any, Optional
 from _typeshed import Incomplete
 

@@ -9,6 +9,7 @@ bitmap images, which can then be sent to a display.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/framebuf.rst
+from __future__ import annotations
 from typing import Any, Optional
 from _typeshed import Incomplete
 

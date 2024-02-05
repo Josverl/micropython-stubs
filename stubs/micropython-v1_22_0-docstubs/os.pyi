@@ -12,6 +12,7 @@ functions.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/os.rst
+from __future__ import annotations
 from typing import IO, Any, Iterator, Optional, Tuple
 from _typeshed import Incomplete
 from stdlib.os import *  # type: ignore

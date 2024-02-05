@@ -29,6 +29,7 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/random.rst
+from __future__ import annotations
 from typing import Any, Optional
 from _typeshed import Incomplete
 

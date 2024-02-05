@@ -2,8 +2,7 @@ import logging
 from pathlib import Path
 
 import pytest
-from typecheck import (copy_config_files, port_and_board, run_typechecker,
-                       stub_ignore)
+from typecheck import copy_config_files, port_and_board, run_typechecker, stub_ignore
 
 # only snippets tests
 pytestmark = pytest.mark.snippets
@@ -42,7 +41,7 @@ PORTBOARD_FEATURES = {
     # "rp2-pimoroni_picolipo_16mb": CORE,
 }
 
-SOURCES = ["local"] # , "pypi"] # do not pull from PyPI all the time
+SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 VERSIONS = [
     "latest",
     "v1.22.0",
@@ -51,8 +50,6 @@ VERSIONS = [
     # "v1.19.1",
     # "v1.18",
 ]
-
-
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
@@ -68,16 +65,14 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
     for src in SOURCES:
         for version in VERSIONS:
             # skip latest for pypi
-            if src == "pypi" and version == "latest":
+            if src == "pypi" and version in ("preview", "latest"):
                 continue
             for key in PORTBOARD_FEATURES.keys():
                 portboard = key
                 if ":" in portboard:
                     portboard, condition = portboard.split(":", 1)
                     port, board = port_and_board(portboard)
-                    if stub_ignore(
-                        condition, version, port, board, linter="pytest", is_source=False
-                    ):
+                    if stub_ignore(condition, version, port, board, linter="pytest", is_source=False):
                         continue
                 else:
                     port, board = port_and_board(portboard)
@@ -88,27 +83,21 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
                     if ":" in feature:
                         # Check version for features, split feature in name and version
                         feature, condition = feature.split(":", 1)
-                        if stub_ignore(
-                            condition, version, port, board, linter="pytest", is_source=False
-                        ):
+                        if stub_ignore(condition, version, port, board, linter="pytest", is_source=False):
                             continue
                     feature = feature.strip()
                     args_lst.append([src, version, portboard, feature])
     metafunc.parametrize(argnames, args_lst, scope="session")
 
-
-
-
-
-
     # return issues
 
+
 @pytest.mark.parametrize(
-        "linter",
-        ["pyright", "mypy"],
+    "linter",
+    ["pyright", "mypy"],
 )
 def test_typecheck(
-    linter:str,
+    linter: str,
     stub_source: str,
     version: str,
     portboard: str,

@@ -19,7 +19,7 @@ log = logging.getLogger()
 
 
 def copy_config_files():
-    # copy the config files from the __config folder to all check_* and feat_* folders 
+    # copy the config files from the __config folder to all check_* and feat_* folders
     # so that the typecheck can be run from the command line
     my_path = Path(__file__).parent.absolute()
     config_path = my_path / "_configs"
@@ -30,7 +30,7 @@ def copy_config_files():
         for file in config_path.glob("*.*"):
             if file.name == "readme.md":
                 continue
-            try: 
+            try:
                 shutil.copy(file, folder)
             except Exception as e:
                 print(f"Could not copy {file} to {folder} : {e}")
@@ -43,6 +43,7 @@ def port_and_board(portboard):
     else:
         port, board = portboard, ""
     return port, board
+
 
 def stub_ignore(line, version, port, board, linter, is_source=True) -> bool:
     """
@@ -63,7 +64,7 @@ def stub_ignore(line, version, port, board, linter, is_source=True) -> bool:
             # new style stubs: ignore
             return True
         if comment == "stubs-ignore":
-            # old style 
+            # old style
             return True
         if not (comment.startswith("stubs-ignore") and ":" in comment):
             return False
@@ -77,7 +78,7 @@ def stub_ignore(line, version, port, board, linter, is_source=True) -> bool:
         condition = condition[4:].strip()
     context = {}
     context["Version"] = Version
-    context["version"] = Version(version) if not version in ("latest", "-") else Version("9999.99.99")
+    context["version"] = Version(version) if not version in {"preview", "latest", "-"} else Version("9999.99.99")
     context["port"] = port
     context["board"] = board
     context["linter"] = linter
@@ -94,7 +95,7 @@ def stub_ignore(line, version, port, board, linter, is_source=True) -> bool:
     return bool(result)
 
 
-def filter_issues(issues: List[Dict], version: str,*, linter:str, portboard: str = ""):
+def filter_issues(issues: List[Dict], version: str, *, linter: str, portboard: str = ""):
     port, board = portboard.split("-") if "-" in portboard else (portboard, "")
     for issue in issues:
         try:
@@ -111,7 +112,15 @@ def filter_issues(issues: List[Dict], version: str,*, linter:str, portboard: str
             log.warning(f"Could not process issue: {e} \n{json.dumps(issues, indent=4)}")
     return issues
 
-def run_typechecker( snip_path:Path, version:str, portboard:str, pytestconfig:pytest.Config, *, linter:str,):
+
+def run_typechecker(
+    snip_path: Path,
+    version: str,
+    portboard: str,
+    pytestconfig: pytest.Config,
+    *,
+    linter: str,
+):
     """
     Run Pyright static type checker a path with validation code
 
@@ -129,9 +138,9 @@ def run_typechecker( snip_path:Path, version:str, portboard:str, pytestconfig:py
 
     results = {}
     with typecheck_lock:
-        if linter=="pyright":
+        if linter == "pyright":
             results = check_with_pyright(snip_path)
-        elif linter=="mypy":
+        elif linter == "mypy":
             results = check_with_mypy(snip_path)
         else:
             raise NotImplementedError(f"Unknown linter {linter}")
@@ -164,33 +173,31 @@ def run_typechecker( snip_path:Path, version:str, portboard:str, pytestconfig:py
 
     info_msg = f"{linter} found {results['summary']['errorCount']} errors and {results['summary']['warningCount']} warnings in {results['summary']['filesAnalyzed']} files."
     errorcount = len([i for i in issues if i["severity"] == "error"])
-    return info_msg,errorcount
+    return info_msg, errorcount
 
 
-#=====================================================================================
+# =====================================================================================
 
-def check_with_pyright(snip_path:Path):
-    
+
+def check_with_pyright(snip_path: Path):
     # cmd = f"pyright --project {str(snip_path)} --outputjson"
-    cmd = [sys.executable, "-m", "pyright","--project",  str(snip_path),  "--outputjson"] 
-    cmd = [sys.executable, "-m", "pyright",".", "--outputjson"] 
+    cmd = [sys.executable, "-m", "pyright", "--project", str(snip_path), "--outputjson"]
+    cmd = [sys.executable, "-m", "pyright", ".", "--outputjson"]
     use_shell = platform.system() != "Windows"
     results = {}
-    
-    # get the cwd 
+
+    # get the cwd
     cwd = Path.cwd()
     os.chdir(snip_path)
     try:
         # run pyright in the folder with the check_scripts to allow modules to import each other.
-        result = subprocess.run(cmd,capture_output=True, cwd=str(snip_path),encoding="utf-8")
+        result = subprocess.run(cmd, capture_output=True, cwd=str(snip_path), encoding="utf-8")
     except OSError as e:
         raise e
     finally:
         os.chdir(cwd)
     if result.returncode >= 2:
-        assert (
-                    0
-                ), f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
+        assert 0, f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
     try:
         results = json.loads(result.stdout)
     except Exception:

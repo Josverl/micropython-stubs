@@ -5,6 +5,7 @@ MicroPython module: https://docs.micropython.org/en/v1.22.0/library/pyb.html
 
 The ``pyb`` module contains specific functions related to the board.
 """
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, List, NoReturn, Optional, Tuple
 
@@ -2103,13 +2104,6 @@ class Pin:
         def __init__(self, *argv, **kwargs) -> None: ...
 
     def __init__(self, *argv, **kwargs) -> None: ...
-    def __call__(self, x: Optional[Any] = None) -> Incomplete:
-        """
-        Pin objects are callable.  The call method provides a (fast) shortcut to set
-        and get the value of the pin.  It is equivalent to Pin.value([x]).
-        See :meth:`Pin.value` for more details.
-        """
-        ...
 
 class SPI:
     """

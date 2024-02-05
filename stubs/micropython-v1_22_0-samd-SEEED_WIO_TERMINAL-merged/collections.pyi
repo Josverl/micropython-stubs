@@ -8,6 +8,7 @@ CPython module: :mod:`python:collections` https://docs.python.org/3/library/coll
 This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque, namedtuple as stdlib_namedtuple
 from typing import Any, Optional

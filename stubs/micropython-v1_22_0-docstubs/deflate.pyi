@@ -21,6 +21,7 @@ This module allows compression and decompression of binary data with the
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/deflate.rst
+from __future__ import annotations
 from _typeshed import Incomplete
 
 AUTO: Incomplete

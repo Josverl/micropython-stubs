@@ -56,6 +56,7 @@ The following data types are supported:
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/struct.rst
+from __future__ import annotations
 from typing import Tuple
 from _typeshed import Incomplete
 

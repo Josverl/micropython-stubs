@@ -12,22 +12,67 @@ for more information, and `pico-micropython-examples
 <https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
 for example code.
 """
-from _typeshed import Incomplete, Incomplete as Incomplete
-from typing import Any, Optional
+from _rp2 import *
+from _typeshed import Incomplete
 
-def asm_pio(
-    *,
-    out_init=None,
-    set_init=None,
-    sideset_init=None,
-    in_shiftdir=0,
-    out_shiftdir=0,
-    autopush=False,
-    autopull=False,
-    push_thresh=32,
-    pull_thresh=32,
-    fifo_join=PIO.JOIN_NONE,
-) -> Incomplete:
+_PROG_DATA: Incomplete
+_PROG_OFFSET_PIO0: Incomplete
+_PROG_OFFSET_PIO1: Incomplete
+_PROG_EXECCTRL: Incomplete
+_PROG_SHIFTCTRL: Incomplete
+_PROG_OUT_PINS: Incomplete
+_PROG_SET_PINS: Incomplete
+_PROG_SIDESET_PINS: Incomplete
+_PROG_MAX_FIELDS: Incomplete
+
+class PIOASMError(Exception): ...
+
+class PIOASMEmit:
+    labels: Incomplete
+    prog: Incomplete
+    wrap_used: bool
+    sideset_count: int
+    def __init__(
+        self,
+        *,
+        out_init: Incomplete | None = ...,
+        set_init: Incomplete | None = ...,
+        sideset_init: Incomplete | None = ...,
+        in_shiftdir: int = ...,
+        out_shiftdir: int = ...,
+        autopush: bool = ...,
+        autopull: bool = ...,
+        push_thresh: int = ...,
+        pull_thresh: int = ...,
+        fifo_join: int = ...,
+    ) -> None: ...
+    delay_max: int
+    sideset_opt: Incomplete
+    pass_: Incomplete
+    num_instr: int
+    num_sideset: int
+    def start_pass(self, pass_) -> None: ...
+    def __getitem__(self, key): ...
+    def delay(self, delay): ...
+    def side(self, value): ...
+    def wrap_target(self) -> None: ...
+    def wrap(self) -> None: ...
+    def label(self, label) -> None: ...
+    def word(self, instr, label: Incomplete | None = ...): ...
+    def nop(self): ...
+    def jmp(self, cond, label: Incomplete | None = ...): ...
+    def wait(self, polarity, src, index): ...
+    def in_(self, src, data): ...
+    def out(self, dest, data): ...
+    def push(self, value: int = ..., value2: int = ...): ...
+    def pull(self, value: int = ..., value2: int = ...): ...
+    def mov(self, dest, src): ...
+    def irq(self, mod, index: Incomplete | None = ...): ...
+    def set(self, dest, data): ...
+
+_pio_funcs: Incomplete
+
+def asm_pio(**kw) -> Incomplete:
     """
     Assemble a PIO program.
 
@@ -64,7 +109,7 @@ def asm_pio(
     """
     ...
 
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
+def asm_pio_encode(instr, sideset_count, sideset_opt: bool = ...) -> Incomplete:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
     instead.
@@ -73,21 +118,3 @@ def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
     57345
     """
     ...
-
-def bootsel_button() -> Incomplete:
-    """
-    Temporarily turns the QSPI_SS pin into an input and reads its value,
-    returning 1 for low and 0 for high.
-    On a typical RP2040 board with a BOOTSEL button, a return value of 1
-    indicates that the button is pressed.
-
-    Since this function temporarily disables access to the external flash
-    memory, it also temporarily disables interrupts and the other core to
-    prevent them from trying to execute code from flash.
-    """
-    ...
-
-def country(*args, **kwargs) -> Incomplete: ...
-def const(*args, **kwargs) -> Incomplete: ...
-
-class PIOASMError(Exception): ...

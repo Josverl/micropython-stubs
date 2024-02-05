@@ -11,6 +11,7 @@ A particular inventory of codes depends on :term:`MicroPython port`.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/errno.rst
+from __future__ import annotations
 from typing import Dict
 from _typeshed import Incomplete
 

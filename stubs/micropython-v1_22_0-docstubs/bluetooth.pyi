@@ -21,6 +21,7 @@ building-blocks for higher-level abstractions such as specific device types.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/bluetooth.rst
+from __future__ import annotations
 from typing import Any, Optional, Tuple
 from _typeshed import Incomplete
 

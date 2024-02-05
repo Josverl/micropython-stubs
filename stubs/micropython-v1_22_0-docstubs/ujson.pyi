@@ -11,6 +11,7 @@ data format.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/json.rst
+from __future__ import annotations
 from _typeshed import Incomplete
 
 def dump(obj, stream, separators=None) -> Incomplete:

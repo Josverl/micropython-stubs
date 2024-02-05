@@ -8,6 +8,7 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/sys.rst
+from __future__ import annotations
 from typing import Dict, List, Tuple
 from _typeshed import Incomplete
 

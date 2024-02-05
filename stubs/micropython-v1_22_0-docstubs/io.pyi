@@ -75,6 +75,7 @@ to implement, or subclass, a stream class in pure Python.
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/io.rst
+from __future__ import annotations
 from typing import IO, Any, Optional
 from _typeshed import Incomplete
 from stdlib.io import *  # type: ignore

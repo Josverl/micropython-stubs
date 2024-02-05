@@ -32,6 +32,7 @@ This module allows compression and decompression of binary data with the
 
 # source version: v1_22_0
 # origin module:: repos/micropython/docs/library/zlib.rst
+from __future__ import annotations
 from _typeshed import Incomplete
 
 def decompress(data, wbits=15, /) -> Incomplete:
