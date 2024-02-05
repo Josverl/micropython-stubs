@@ -1,6 +1,6 @@
 from _typeshed import Incomplete
 
-_PACKAGE_INDEX: Incomplete
+_PACKAGE_INDEX: str
 _CHUNK_SIZE: int
 
 def _ensure_path_exists(path) -> None: ...

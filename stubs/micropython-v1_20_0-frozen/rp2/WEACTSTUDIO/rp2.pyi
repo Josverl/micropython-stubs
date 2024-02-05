@@ -14,16 +14,17 @@ for example code.
 """
 from _rp2 import *
 from _typeshed import Incomplete
+from micropython import const as const
 
-_PROG_DATA: Incomplete
-_PROG_OFFSET_PIO0: Incomplete
-_PROG_OFFSET_PIO1: Incomplete
-_PROG_EXECCTRL: Incomplete
-_PROG_SHIFTCTRL: Incomplete
-_PROG_OUT_PINS: Incomplete
-_PROG_SET_PINS: Incomplete
-_PROG_SIDESET_PINS: Incomplete
-_PROG_MAX_FIELDS: Incomplete
+_PROG_DATA: int
+_PROG_OFFSET_PIO0: int
+_PROG_OFFSET_PIO1: int
+_PROG_EXECCTRL: int
+_PROG_SHIFTCTRL: int
+_PROG_OUT_PINS: int
+_PROG_SET_PINS: int
+_PROG_SIDESET_PINS: int
+_PROG_MAX_FIELDS: int
 
 class PIOASMError(Exception): ...
 
@@ -72,19 +73,7 @@ class PIOASMEmit:
 
 _pio_funcs: Incomplete
 
-def asm_pio(
-    *,
-    out_init=None,
-    set_init=None,
-    sideset_init=None,
-    in_shiftdir=0,
-    out_shiftdir=0,
-    autopush=False,
-    autopull=False,
-    push_thresh=32,
-    pull_thresh=32,
-    fifo_join=PIO.JOIN_NONE,
-) -> Incomplete:
+def asm_pio(**kw) -> Incomplete:
     """
     Assemble a PIO program.
 
@@ -121,7 +110,7 @@ def asm_pio(
     """
     ...
 
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
+def asm_pio_encode(instr, sideset_count, sideset_opt: bool = ...) -> Incomplete:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
     instead.

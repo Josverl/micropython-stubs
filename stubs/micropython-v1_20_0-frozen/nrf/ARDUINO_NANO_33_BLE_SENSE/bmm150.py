@@ -43,19 +43,19 @@ import array
 import time
 from micropython import const
 
-_DEFAULT_ADDR = const(0x10)
-_CHIP_ID = const(0x40)
-_DATA = const(0x42)
-_POWER = const(0x4B)
-_OPMODE = const(0x4C)
-_INT_STATUS = const(0x4A)
-_TRIM_X1 = const(0x5D)
-_TRIM_Y1 = const(0x5E)
-_TRIM_Z4_LSB = const(0x62)
-_TRIM_Z2_LSB = const(0x68)
-_XYAXES_FLIP = const(-4096)
-_ZHAXES_FLIP = const(-16384)
-_ODR = const((10, 2, 6, 8, 15, 20, 25, 30))
+_DEFAULT_ADDR = 0x10
+_CHIP_ID = 0x40
+_DATA = 0x42
+_POWER = 0x4B
+_OPMODE = 0x4C
+_INT_STATUS = 0x4A
+_TRIM_X1 = 0x5D
+_TRIM_Y1 = 0x5E
+_TRIM_Z4_LSB = 0x62
+_TRIM_Z2_LSB = 0x68
+_XYAXES_FLIP = -4096
+_ZHAXES_FLIP = -16384
+_ODR = (10, 2, 6, 8, 15, 20, 25, 30)
 
 
 class BMM150:

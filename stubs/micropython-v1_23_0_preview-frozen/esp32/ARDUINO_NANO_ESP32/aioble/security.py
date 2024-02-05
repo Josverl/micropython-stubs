@@ -9,20 +9,20 @@ import json
 from .core import log_info, log_warn, ble, register_irq_handler
 from .device import DeviceConnection
 
-_IRQ_ENCRYPTION_UPDATE = const(28)
-_IRQ_GET_SECRET = const(29)
-_IRQ_SET_SECRET = const(30)
-_IRQ_PASSKEY_ACTION = const(31)
+_IRQ_ENCRYPTION_UPDATE = 28
+_IRQ_GET_SECRET = 29
+_IRQ_SET_SECRET = 30
+_IRQ_PASSKEY_ACTION = 31
 
-_IO_CAPABILITY_DISPLAY_ONLY = const(0)
-_IO_CAPABILITY_DISPLAY_YESNO = const(1)
-_IO_CAPABILITY_KEYBOARD_ONLY = const(2)
-_IO_CAPABILITY_NO_INPUT_OUTPUT = const(3)
-_IO_CAPABILITY_KEYBOARD_DISPLAY = const(4)
+_IO_CAPABILITY_DISPLAY_ONLY = 0
+_IO_CAPABILITY_DISPLAY_YESNO = 1
+_IO_CAPABILITY_KEYBOARD_ONLY = 2
+_IO_CAPABILITY_NO_INPUT_OUTPUT = 3
+_IO_CAPABILITY_KEYBOARD_DISPLAY = 4
 
-_PASSKEY_ACTION_INPUT = const(2)
-_PASSKEY_ACTION_DISP = const(3)
-_PASSKEY_ACTION_NUMCMP = const(4)
+_PASSKEY_ACTION_INPUT = 2
+_PASSKEY_ACTION_DISP = 3
+_PASSKEY_ACTION_NUMCMP = 4
 
 _DEFAULT_PATH = "ble_secrets.json"
 
@@ -64,10 +64,7 @@ def _save_secrets(arg=None):
     with open(_path, "w") as f:
         # Convert bytes to hex strings (otherwise JSON will treat them like
         # strings).
-        json_secrets = [
-            (sec_type, binascii.b2a_base64(key), binascii.b2a_base64(value))
-            for (sec_type, key), value in _secrets.items()
-        ]
+        json_secrets = [(sec_type, binascii.b2a_base64(key), binascii.b2a_base64(value)) for (sec_type, key), value in _secrets.items()]
         json.dump(json_secrets, f)
         _modified = False
 

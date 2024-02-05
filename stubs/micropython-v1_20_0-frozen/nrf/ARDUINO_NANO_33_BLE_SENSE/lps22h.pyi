@@ -1,11 +1,11 @@
 from _typeshed import Incomplete
 
-_LPS22_CTRL_REG1: Incomplete
-_LPS22_CTRL_REG2: Incomplete
-_LPS22_STATUS: Incomplete
-_LPS22_TEMP_OUT_L: Incomplete
-_LPS22_PRESS_OUT_XL: Incomplete
-_LPS22_PRESS_OUT_L: Incomplete
+_LPS22_CTRL_REG1: int
+_LPS22_CTRL_REG2: int
+_LPS22_STATUS: int
+_LPS22_TEMP_OUT_L: int
+_LPS22_PRESS_OUT_XL: int
+_LPS22_PRESS_OUT_L: int
 
 class LPS22H:
     i2c: Incomplete

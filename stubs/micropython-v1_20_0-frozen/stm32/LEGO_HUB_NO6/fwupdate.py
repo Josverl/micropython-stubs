@@ -11,10 +11,10 @@ VFS_LFS1 = 2
 VFS_LFS2 = 3
 
 # Constants for creating mboot elements.
-_ELEM_TYPE_END = const(1)
-_ELEM_TYPE_MOUNT = const(2)
-_ELEM_TYPE_FSLOAD = const(3)
-_ELEM_TYPE_STATUS = const(4)
+_ELEM_TYPE_END = 1
+_ELEM_TYPE_MOUNT = 2
+_ELEM_TYPE_FSLOAD = 3
+_ELEM_TYPE_STATUS = 4
 
 
 def check_mem_contains(addr, buf):

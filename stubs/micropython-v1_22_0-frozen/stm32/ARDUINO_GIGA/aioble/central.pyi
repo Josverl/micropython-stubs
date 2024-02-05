@@ -9,27 +9,28 @@ from .core import (
 from .device import Device as Device, DeviceConnection as DeviceConnection, DeviceTimeout as DeviceTimeout
 from _typeshed import Incomplete
 from collections.abc import Generator
+from micropython import const as const
 
-_IRQ_SCAN_RESULT: Incomplete
-_IRQ_SCAN_DONE: Incomplete
-_IRQ_PERIPHERAL_CONNECT: Incomplete
-_IRQ_PERIPHERAL_DISCONNECT: Incomplete
-_ADV_IND: Incomplete
-_ADV_DIRECT_IND: Incomplete
-_ADV_SCAN_IND: Incomplete
-_ADV_NONCONN_IND: Incomplete
-_SCAN_RSP: Incomplete
-_ADV_TYPE_FLAGS: Incomplete
-_ADV_TYPE_NAME: Incomplete
-_ADV_TYPE_SHORT_NAME: Incomplete
-_ADV_TYPE_UUID16_INCOMPLETE: Incomplete
-_ADV_TYPE_UUID16_COMPLETE: Incomplete
-_ADV_TYPE_UUID32_INCOMPLETE: Incomplete
-_ADV_TYPE_UUID32_COMPLETE: Incomplete
-_ADV_TYPE_UUID128_INCOMPLETE: Incomplete
-_ADV_TYPE_UUID128_COMPLETE: Incomplete
-_ADV_TYPE_APPEARANCE: Incomplete
-_ADV_TYPE_MANUFACTURER: Incomplete
+_IRQ_SCAN_RESULT: int
+_IRQ_SCAN_DONE: int
+_IRQ_PERIPHERAL_CONNECT: int
+_IRQ_PERIPHERAL_DISCONNECT: int
+_ADV_IND: int
+_ADV_DIRECT_IND: int
+_ADV_SCAN_IND: int
+_ADV_NONCONN_IND: int
+_SCAN_RSP: int
+_ADV_TYPE_FLAGS: int
+_ADV_TYPE_NAME: int
+_ADV_TYPE_SHORT_NAME: int
+_ADV_TYPE_UUID16_INCOMPLETE: int
+_ADV_TYPE_UUID16_COMPLETE: int
+_ADV_TYPE_UUID32_INCOMPLETE: int
+_ADV_TYPE_UUID32_COMPLETE: int
+_ADV_TYPE_UUID128_INCOMPLETE: int
+_ADV_TYPE_UUID128_COMPLETE: int
+_ADV_TYPE_APPEARANCE: int
+_ADV_TYPE_MANUFACTURER: int
 _active_scanner: Incomplete
 _connecting: Incomplete
 

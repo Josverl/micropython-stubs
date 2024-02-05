@@ -32,21 +32,22 @@ If actual calendar time is not maintained with a system/MicroPython RTC,
 functions below which require reference to current absolute time may
 behave not as expected.
 """
+from __future__ import annotations
 from utime import *
 from micropython import const
 from _typeshed import Incomplete
 
-_TS_YEAR = const(0)
-_TS_MON = const(1)
-_TS_MDAY = const(2)
-_TS_HOUR = const(3)
-_TS_MIN = const(4)
-_TS_SEC = const(5)
-_TS_WDAY = const(6)
-_TS_YDAY = const(7)
-_TS_ISDST = const(8)
+_TS_YEAR = 0
+_TS_MON = 1
+_TS_MDAY = 2
+_TS_HOUR = 3
+_TS_MIN = 4
+_TS_SEC = 5
+_TS_WDAY = 6
+_TS_YDAY = 7
+_TS_ISDST = 8
 
-_WDAY = const(("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"))
+_WDAY = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 _MDAY = const(
     (
         "January",

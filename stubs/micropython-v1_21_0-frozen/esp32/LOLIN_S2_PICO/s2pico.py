@@ -7,26 +7,26 @@ from s2pico_oled import OLED
 # Pin Assignments
 
 # SPI
-SPI_MOSI = const(35)
-SPI_MISO = const(36)
-SPI_CLK = const(37)
+SPI_MOSI = 35
+SPI_MISO = 36
+SPI_CLK = 37
 
 # I2C
-I2C_SDA = const(8)
-I2C_SCL = const(9)
+I2C_SDA = 8
+I2C_SCL = 9
 
 # DAC
-DAC1 = const(17)
-DAC2 = const(18)
+DAC1 = 17
+DAC2 = 18
 
 # LED
-LED = const(10)
+LED = 10
 
 # OLED
-OLED_RST = const(18)
+OLED_RST = 18
 
 # BUTTON
-BUTTON = const(0)
+BUTTON = 0
 
 # Helper methods for built in sensors
 

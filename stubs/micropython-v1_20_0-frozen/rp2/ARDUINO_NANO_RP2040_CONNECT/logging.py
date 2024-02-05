@@ -3,14 +3,14 @@ from micropython import const
 import sys
 import time
 
-CRITICAL = const(50)
-ERROR = const(40)
-WARNING = const(30)
-INFO = const(20)
-DEBUG = const(10)
-NOTSET = const(0)
+CRITICAL = 50
+ERROR = 40
+WARNING = 30
+INFO = 20
+DEBUG = 10
+NOTSET = 0
 
-_DEFAULT_LEVEL = const(WARNING)
+_DEFAULT_LEVEL = WARNING
 
 _level_dict = {
     CRITICAL: "CRITICAL",

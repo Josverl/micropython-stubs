@@ -1,10 +1,11 @@
 from _typeshed import Incomplete
+from micropython import const as const
 
-WS2812_PIN: Incomplete
-BUTTON_PIN: Incomplete
-IR_PIN: Incomplete
-I2C0_SCL_PIN: Incomplete
-I2C0_SDA_PIN: Incomplete
+WS2812_PIN: int
+BUTTON_PIN: int
+IR_PIN: int
+I2C0_SCL_PIN: int
+I2C0_SDA_PIN: int
 GROVE_PORT_PIN: Incomplete
 
 class ATOM:

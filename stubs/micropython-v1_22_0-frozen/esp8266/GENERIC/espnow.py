@@ -6,6 +6,7 @@ ESP-NOW :doc:`asyncio` support.
 
 MicroPython module: https://docs.micropython.org/en/v1.22.0/library/aioespnow.html
 """
+from __future__ import annotations
 from _espnow import *
 from select import poll, POLLIN
 from _typeshed import Incomplete

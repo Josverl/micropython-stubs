@@ -9,7 +9,7 @@ import binascii
 from .core import ble, register_irq_handler, log_error
 
 
-_IRQ_MTU_EXCHANGED = const(21)
+_IRQ_MTU_EXCHANGED = 21
 
 
 # Raised by `with device.timeout()`.

@@ -1,19 +1,19 @@
 from _typeshed import Incomplete
 from collections.abc import Generator
 
-_WHO_AM_I: Incomplete
-_CTRL_REG1_G: Incomplete
-_INT_GEN_SRC_G: Incomplete
-_OUT_TEMP: Incomplete
-_OUT_G: Incomplete
-_CTRL_REG4_G: Incomplete
-_STATUS_REG: Incomplete
-_OUT_XL: Incomplete
-_FIFO_CTRL_REG: Incomplete
-_FIFO_SRC: Incomplete
-_OFFSET_REG_X_M: Incomplete
-_CTRL_REG1_M: Incomplete
-_OUT_M: Incomplete
+_WHO_AM_I: int
+_CTRL_REG1_G: int
+_INT_GEN_SRC_G: int
+_OUT_TEMP: int
+_OUT_G: int
+_CTRL_REG4_G: int
+_STATUS_REG: int
+_OUT_XL: int
+_FIFO_CTRL_REG: int
+_FIFO_SRC: int
+_OFFSET_REG_X_M: int
+_CTRL_REG1_M: int
+_OUT_M: int
 _ACCEL_SCALE: Incomplete
 _GYRO_SCALE: Incomplete
 _MAGNET_SCALE: Incomplete

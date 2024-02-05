@@ -1,16 +1,16 @@
-from _typeshed import Incomplete
+from micropython import const as const
 
-VBUS_SENSE: Incomplete
-VBAT_SENSE: Incomplete
-RGB_DATA: Incomplete
-LDO2: Incomplete
-LED: Incomplete
-AMB_LIGHT: Incomplete
-SPI_MOSI: Incomplete
-SPI_MISO: Incomplete
-SPI_CLK: Incomplete
-I2C_SDA: Incomplete
-I2C_SCL: Incomplete
+VBUS_SENSE: int
+VBAT_SENSE: int
+RGB_DATA: int
+LDO2: int
+LED: int
+AMB_LIGHT: int
+SPI_MOSI: int
+SPI_MISO: int
+SPI_CLK: int
+I2C_SDA: int
+I2C_SCL: int
 
 def led_set(state) -> None:
     """Set the state of the BLUE LED on IO13"""

@@ -19,15 +19,15 @@ from _rp2 import *
 from micropython import const
 from _typeshed import Incomplete
 
-_PROG_DATA = const(0)
-_PROG_OFFSET_PIO0 = const(1)
-_PROG_OFFSET_PIO1 = const(2)
-_PROG_EXECCTRL = const(3)
-_PROG_SHIFTCTRL = const(4)
-_PROG_OUT_PINS = const(5)
-_PROG_SET_PINS = const(6)
-_PROG_SIDESET_PINS = const(7)
-_PROG_MAX_FIELDS = const(8)
+_PROG_DATA = 0
+_PROG_OFFSET_PIO0 = 1
+_PROG_OFFSET_PIO1 = 2
+_PROG_EXECCTRL = 3
+_PROG_SHIFTCTRL = 4
+_PROG_OUT_PINS = 5
+_PROG_SET_PINS = 6
+_PROG_SIDESET_PINS = 7
+_PROG_MAX_FIELDS = 8
 
 
 class PIOASMError(Exception):
@@ -251,19 +251,7 @@ _pio_funcs = {
 }
 
 
-def asm_pio(
-    *,
-    out_init=None,
-    set_init=None,
-    sideset_init=None,
-    in_shiftdir=0,
-    out_shiftdir=0,
-    autopush=False,
-    autopull=False,
-    push_thresh=32,
-    pull_thresh=32,
-    fifo_join=PIO.JOIN_NONE,
-) -> Incomplete:
+def asm_pio(**kw) -> Incomplete:
     """
     Assemble a PIO program.
 

@@ -1,25 +1,26 @@
 from _typeshed import Incomplete
+from micropython import const as const
 
-_CTRL3_C: Incomplete
-_CTRL1_XL: Incomplete
-_CTRL8_XL: Incomplete
-_CTRL9_XL: Incomplete
-_CTRL2_G: Incomplete
-_CTRL7_G: Incomplete
-_OUTX_L_G: Incomplete
-_OUTX_L_XL: Incomplete
-_MLC_STATUS: Incomplete
-_DEFAULT_ADDR: Incomplete
-_WHO_AM_I_REG: Incomplete
-_FUNC_CFG_ACCESS: Incomplete
-_FUNC_CFG_BANK_USER: Incomplete
-_FUNC_CFG_BANK_HUB: Incomplete
-_FUNC_CFG_BANK_EMBED: Incomplete
-_MLC0_SRC: Incomplete
-_MLC_INT1: Incomplete
-_TAP_CFG0: Incomplete
-_EMB_FUNC_EN_A: Incomplete
-_EMB_FUNC_EN_B: Incomplete
+_CTRL3_C: int
+_CTRL1_XL: int
+_CTRL8_XL: int
+_CTRL9_XL: int
+_CTRL2_G: int
+_CTRL7_G: int
+_OUTX_L_G: int
+_OUTX_L_XL: int
+_MLC_STATUS: int
+_DEFAULT_ADDR: int
+_WHO_AM_I_REG: int
+_FUNC_CFG_ACCESS: int
+_FUNC_CFG_BANK_USER: int
+_FUNC_CFG_BANK_HUB: int
+_FUNC_CFG_BANK_EMBED: int
+_MLC0_SRC: int
+_MLC_INT1: int
+_TAP_CFG0: int
+_EMB_FUNC_EN_A: int
+_EMB_FUNC_EN_B: int
 
 class LSM6DSOX:
     bus: Incomplete

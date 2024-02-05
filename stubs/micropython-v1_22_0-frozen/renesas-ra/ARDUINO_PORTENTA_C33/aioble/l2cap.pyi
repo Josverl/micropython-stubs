@@ -1,12 +1,13 @@
 from .core import ble as ble, log_error as log_error, register_irq_handler as register_irq_handler
 from .device import DeviceConnection as DeviceConnection
 from _typeshed import Incomplete
+from micropython import const as const
 
-_IRQ_L2CAP_ACCEPT: Incomplete
-_IRQ_L2CAP_CONNECT: Incomplete
-_IRQ_L2CAP_DISCONNECT: Incomplete
-_IRQ_L2CAP_RECV: Incomplete
-_IRQ_L2CAP_SEND_READY: Incomplete
+_IRQ_L2CAP_ACCEPT: int
+_IRQ_L2CAP_CONNECT: int
+_IRQ_L2CAP_DISCONNECT: int
+_IRQ_L2CAP_RECV: int
+_IRQ_L2CAP_SEND_READY: int
 _listening: bool
 
 def _l2cap_irq(event, data) -> None: ...

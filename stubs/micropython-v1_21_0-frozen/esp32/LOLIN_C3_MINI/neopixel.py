@@ -31,7 +31,7 @@ class NeoPixel:
     # G R B W
     ORDER = (1, 0, 2, 3)
 
-    def __init__(self, pin, n, *, bpp=3, timing=1) -> None:
+    def __init__(self, pin, n, bpp=3, timing=1) -> None:
         self.pin = pin
         self.n = n
         self.bpp = bpp
@@ -47,7 +47,7 @@ class NeoPixel:
         """
         return self.n
 
-    def __setitem__(self, index, val) -> None:
+    def __setitem__(self, i, v) -> None:
         """
         Set the pixel at *index* to the value, which is an RGB/RGBW tuple.
         """
@@ -55,14 +55,14 @@ class NeoPixel:
         for i in range(self.bpp):
             self.buf[offset + self.ORDER[i]] = v[i]
 
-    def __getitem__(self, index) -> Tuple:
+    def __getitem__(self, i) -> Tuple:
         """
         Returns the pixel at *index* as an RGB/RGBW tuple.
         """
         offset = i * self.bpp
         return tuple(self.buf[offset + self.ORDER[i]] for i in range(self.bpp))
 
-    def fill(self, pixel) -> None:
+    def fill(self, v) -> None:
         """
         Sets the value of all pixels to the specified *pixel* value (i.e. an
         RGB/RGBW tuple).

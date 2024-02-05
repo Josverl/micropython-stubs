@@ -5,16 +5,18 @@ MicroPython module: https://docs.micropython.org/en/v1.22.0/library/lcd160cr.htm
 
 This module provides control of the MicroPython LCD160CR display.
 """
+from __future__ import annotations
 from _typeshed import Incomplete
+from micropython import const as const
 from typing import Tuple
 
-PORTRAIT: Incomplete
-LANDSCAPE: Incomplete
-PORTRAIT_UPSIDEDOWN: Incomplete
-LANDSCAPE_UPSIDEDOWN: Incomplete
-STARTUP_DECO_NONE: Incomplete
-STARTUP_DECO_MLOGO: Incomplete
-STARTUP_DECO_INFO: Incomplete
+PORTRAIT: int
+LANDSCAPE: int
+PORTRAIT_UPSIDEDOWN: int
+LANDSCAPE_UPSIDEDOWN: int
+STARTUP_DECO_NONE: int
+STARTUP_DECO_MLOGO: int
+STARTUP_DECO_INFO: int
 _uart_baud_table: Incomplete
 
 class LCD160CR:

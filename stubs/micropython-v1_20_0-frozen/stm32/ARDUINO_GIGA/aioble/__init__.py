@@ -28,5 +28,5 @@ except:
     log_info("GATT server support disabled")
 
 
-ADDR_PUBLIC = const(0)
-ADDR_RANDOM = const(1)
+ADDR_PUBLIC = 0
+ADDR_RANDOM = 1

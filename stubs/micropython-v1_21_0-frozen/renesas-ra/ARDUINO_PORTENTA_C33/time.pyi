@@ -35,15 +35,15 @@ behave not as expected.
 from utime import *
 from _typeshed import Incomplete
 
-_TS_YEAR: Incomplete
-_TS_MON: Incomplete
-_TS_MDAY: Incomplete
-_TS_HOUR: Incomplete
-_TS_MIN: Incomplete
-_TS_SEC: Incomplete
-_TS_WDAY: Incomplete
-_TS_YDAY: Incomplete
-_TS_ISDST: Incomplete
+_TS_YEAR: int
+_TS_MON: int
+_TS_MDAY: int
+_TS_HOUR: int
+_TS_MIN: int
+_TS_SEC: int
+_TS_WDAY: int
+_TS_YDAY: int
+_TS_ISDST: int
 _WDAY: Incomplete
 _MDAY: Incomplete
 

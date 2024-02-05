@@ -1,20 +1,21 @@
 from _typeshed import Incomplete
+from micropython import const as const
 
-_CMD_SYNC: Incomplete
-_CMD_CHANGE_BAUDRATE: Incomplete
-_CMD_ESP_READ_REG: Incomplete
-_CMD_ESP_WRITE_REG: Incomplete
-_CMD_SPI_ATTACH: Incomplete
-_CMD_SPI_FLASH_MD5: Incomplete
-_CMD_SPI_FLASH_PARAMS: Incomplete
-_CMD_SPI_FLASH_BEGIN: Incomplete
-_CMD_SPI_FLASH_DATA: Incomplete
-_CMD_SPI_FLASH_END: Incomplete
-_FLASH_ID: Incomplete
-_FLASH_REG_BASE: Incomplete
+_CMD_SYNC: int
+_CMD_CHANGE_BAUDRATE: int
+_CMD_ESP_READ_REG: int
+_CMD_ESP_WRITE_REG: int
+_CMD_SPI_ATTACH: int
+_CMD_SPI_FLASH_MD5: int
+_CMD_SPI_FLASH_PARAMS: int
+_CMD_SPI_FLASH_BEGIN: int
+_CMD_SPI_FLASH_DATA: int
+_CMD_SPI_FLASH_END: int
+_FLASH_ID: int
+_FLASH_REG_BASE: int
 _FLASH_BLOCK_SIZE: Incomplete
 _FLASH_SECTOR_SIZE: Incomplete
-_FLASH_PAGE_SIZE: Incomplete
+_FLASH_PAGE_SIZE: int
 _ESP_ERRORS: Incomplete
 
 class ESPFlash:

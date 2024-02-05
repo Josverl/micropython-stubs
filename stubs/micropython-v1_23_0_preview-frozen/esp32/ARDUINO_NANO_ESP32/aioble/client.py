@@ -12,27 +12,27 @@ from .core import ble, GattError, register_irq_handler
 from .device import DeviceConnection
 
 
-_IRQ_GATTC_SERVICE_RESULT = const(9)
-_IRQ_GATTC_SERVICE_DONE = const(10)
-_IRQ_GATTC_CHARACTERISTIC_RESULT = const(11)
-_IRQ_GATTC_CHARACTERISTIC_DONE = const(12)
-_IRQ_GATTC_DESCRIPTOR_RESULT = const(13)
-_IRQ_GATTC_DESCRIPTOR_DONE = const(14)
-_IRQ_GATTC_READ_RESULT = const(15)
-_IRQ_GATTC_READ_DONE = const(16)
-_IRQ_GATTC_WRITE_DONE = const(17)
-_IRQ_GATTC_NOTIFY = const(18)
-_IRQ_GATTC_INDICATE = const(19)
+_IRQ_GATTC_SERVICE_RESULT = 9
+_IRQ_GATTC_SERVICE_DONE = 10
+_IRQ_GATTC_CHARACTERISTIC_RESULT = 11
+_IRQ_GATTC_CHARACTERISTIC_DONE = 12
+_IRQ_GATTC_DESCRIPTOR_RESULT = 13
+_IRQ_GATTC_DESCRIPTOR_DONE = 14
+_IRQ_GATTC_READ_RESULT = 15
+_IRQ_GATTC_READ_DONE = 16
+_IRQ_GATTC_WRITE_DONE = 17
+_IRQ_GATTC_NOTIFY = 18
+_IRQ_GATTC_INDICATE = 19
 
-_CCCD_UUID = const(0x2902)
-_CCCD_NOTIFY = const(1)
-_CCCD_INDICATE = const(2)
+_CCCD_UUID = 0x2902
+_CCCD_NOTIFY = 1
+_CCCD_INDICATE = 2
 
-_FLAG_READ = const(0x0002)
-_FLAG_WRITE_NO_RESPONSE = const(0x0004)
-_FLAG_WRITE = const(0x0008)
-_FLAG_NOTIFY = const(0x0010)
-_FLAG_INDICATE = const(0x0020)
+_FLAG_READ = 0x0002
+_FLAG_WRITE_NO_RESPONSE = 0x0004
+_FLAG_WRITE = 0x0008
+_FLAG_NOTIFY = 0x0010
+_FLAG_INDICATE = 0x0020
 
 
 # Forward IRQs directly to static methods on the type that handles them and
@@ -42,17 +42,13 @@ _FLAG_INDICATE = const(0x0020)
 def _client_irq(event, data):
     if event == _IRQ_GATTC_SERVICE_RESULT:
         conn_handle, start_handle, end_handle, uuid = data
-        ClientDiscover._discover_result(
-            conn_handle, start_handle, end_handle, bluetooth.UUID(uuid)
-        )
+        ClientDiscover._discover_result(conn_handle, start_handle, end_handle, bluetooth.UUID(uuid))
     elif event == _IRQ_GATTC_SERVICE_DONE:
         conn_handle, status = data
         ClientDiscover._discover_done(conn_handle, status)
     elif event == _IRQ_GATTC_CHARACTERISTIC_RESULT:
         conn_handle, end_handle, value_handle, properties, uuid = data
-        ClientDiscover._discover_result(
-            conn_handle, end_handle, value_handle, properties, bluetooth.UUID(uuid)
-        )
+        ClientDiscover._discover_result(conn_handle, end_handle, value_handle, properties, bluetooth.UUID(uuid))
     elif event == _IRQ_GATTC_CHARACTERISTIC_DONE:
         conn_handle, status = data
         ClientDiscover._discover_done(conn_handle, status)
@@ -327,9 +323,7 @@ class ClientCharacteristic(BaseClientCharacteristic):
             self._indicate_queue = deque((), 1)
 
     def __str__(self):
-        return "Characteristic: {} {} {} {}".format(
-            self._end_handle, self._value_handle, self.properties, self.uuid
-        )
+        return "Characteristic: {} {} {} {}".format(self._end_handle, self._value_handle, self.properties, self.uuid)
 
     def _connection(self):
         return self.service.connection
@@ -401,24 +395,18 @@ class ClientCharacteristic(BaseClientCharacteristic):
     # Map an incoming notify IRQ to a registered characteristic.
     def _on_notify(conn_handle, value_handle, notify_data):
         if characteristic := ClientCharacteristic._find(conn_handle, value_handle):
-            characteristic._on_notify_indicate(
-                characteristic._notify_queue, characteristic._notify_event, notify_data
-            )
+            characteristic._on_notify_indicate(characteristic._notify_queue, characteristic._notify_event, notify_data)
 
     # Wait for the next indication.
     # Will return immediately if an indication has already been received.
     async def indicated(self, timeout_ms=None):
         self._check(_FLAG_INDICATE)
-        return await self._notified_indicated(
-            self._indicate_queue, self._indicate_event, timeout_ms
-        )
+        return await self._notified_indicated(self._indicate_queue, self._indicate_event, timeout_ms)
 
     # Map an incoming indicate IRQ to a registered characteristic.
     def _on_indicate(conn_handle, value_handle, indicate_data):
         if characteristic := ClientCharacteristic._find(conn_handle, value_handle):
-            characteristic._on_notify_indicate(
-                characteristic._indicate_queue, characteristic._indicate_event, indicate_data
-            )
+            characteristic._on_notify_indicate(characteristic._indicate_queue, characteristic._indicate_event, indicate_data)
 
     # Write to the Client Characteristic Configuration to subscribe to
     # notify/indications for this characteristic.

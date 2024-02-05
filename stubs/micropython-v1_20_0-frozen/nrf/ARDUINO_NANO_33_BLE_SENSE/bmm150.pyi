@@ -1,17 +1,18 @@
 from _typeshed import Incomplete
+from micropython import const as const
 
-_DEFAULT_ADDR: Incomplete
-_CHIP_ID: Incomplete
-_DATA: Incomplete
-_POWER: Incomplete
-_OPMODE: Incomplete
-_INT_STATUS: Incomplete
-_TRIM_X1: Incomplete
-_TRIM_Y1: Incomplete
-_TRIM_Z4_LSB: Incomplete
-_TRIM_Z2_LSB: Incomplete
-_XYAXES_FLIP: Incomplete
-_ZHAXES_FLIP: Incomplete
+_DEFAULT_ADDR: int
+_CHIP_ID: int
+_DATA: int
+_POWER: int
+_OPMODE: int
+_INT_STATUS: int
+_TRIM_X1: int
+_TRIM_Y1: int
+_TRIM_Z4_LSB: int
+_TRIM_Z2_LSB: int
+_XYAXES_FLIP: int
+_ZHAXES_FLIP: int
 _ODR: Incomplete
 
 class BMM150:

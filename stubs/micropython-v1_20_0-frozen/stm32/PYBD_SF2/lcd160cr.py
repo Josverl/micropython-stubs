@@ -16,15 +16,15 @@ from _typeshed import Incomplete
 from typing import Tuple
 
 # for set_orient
-PORTRAIT = const(0)
-LANDSCAPE = const(1)
-PORTRAIT_UPSIDEDOWN = const(2)
-LANDSCAPE_UPSIDEDOWN = const(3)
+PORTRAIT = 0
+LANDSCAPE = 1
+PORTRAIT_UPSIDEDOWN = 2
+LANDSCAPE_UPSIDEDOWN = 3
 
 # for set_startup_deco; can be or'd
-STARTUP_DECO_NONE = const(0)
-STARTUP_DECO_MLOGO = const(1)
-STARTUP_DECO_INFO = const(2)
+STARTUP_DECO_NONE = 0
+STARTUP_DECO_MLOGO = 1
+STARTUP_DECO_INFO = 2
 
 _uart_baud_table = {
     2400: 0,
@@ -179,6 +179,7 @@ class LCD160CR:
     #### MISC METHODS ####
 
     @staticmethod
+    @staticmethod
     def rgb(r, g, b) -> int:
         """
         Return a 16-bit integer representing the given rgb color values.  The
@@ -189,7 +190,8 @@ class LCD160CR:
         return ((b & 0xF8) << 8) | ((g & 0xFC) << 3) | (r >> 3)
 
     @staticmethod
-    def clip_line(data, w, h) -> Incomplete:
+    @staticmethod
+    def clip_line(c, w, h) -> Incomplete:
         """
         Clip the given line data.  This is for internal use.
         """
@@ -481,7 +483,7 @@ class LCD160CR:
         if 0 <= x < self.w and 0 <= y < self.h:
             self._fcmd2("<BBBB", 0x4B, x, y)
 
-    def rect(self, x, y, w, h) -> Incomplete:
+    def rect(self, x, y, w, h, cmd=0x72) -> Incomplete:
         if x + w <= 0 or y + h <= 0 or x >= self.w or y >= self.h:
             return
         elif x < 0 or y < 0:
@@ -699,7 +701,7 @@ class LCD160CR:
         self._fcmd2("<BBB", 0x11, l)
         self._send(s)
 
-    def jpeg_start(self, total_len) -> Incomplete:
+    def jpeg_start(self, l) -> Incomplete:
         if l > 0xFFFF:
             raise ValueError("length must be 65535 or less")
         self.oflush()

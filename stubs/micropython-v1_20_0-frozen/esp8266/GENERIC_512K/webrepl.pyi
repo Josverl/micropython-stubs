@@ -3,7 +3,7 @@ from _typeshed import Incomplete
 listen_s: Incomplete
 client_s: Incomplete
 DEBUG: int
-_DEFAULT_STATIC_HOST: Incomplete
+_DEFAULT_STATIC_HOST: str
 static_host = _DEFAULT_STATIC_HOST
 
 def server_handshake(cl): ...

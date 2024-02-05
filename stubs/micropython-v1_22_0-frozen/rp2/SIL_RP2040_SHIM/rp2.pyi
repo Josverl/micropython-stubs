@@ -12,18 +12,20 @@ for more information, and `pico-micropython-examples
 <https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
 for example code.
 """
+from __future__ import annotations
 from _rp2 import *
 from _typeshed import Incomplete
+from micropython import const as const
 
-_PROG_DATA: Incomplete
-_PROG_OFFSET_PIO0: Incomplete
-_PROG_OFFSET_PIO1: Incomplete
-_PROG_EXECCTRL: Incomplete
-_PROG_SHIFTCTRL: Incomplete
-_PROG_OUT_PINS: Incomplete
-_PROG_SET_PINS: Incomplete
-_PROG_SIDESET_PINS: Incomplete
-_PROG_MAX_FIELDS: Incomplete
+_PROG_DATA: int
+_PROG_OFFSET_PIO0: int
+_PROG_OFFSET_PIO1: int
+_PROG_EXECCTRL: int
+_PROG_SHIFTCTRL: int
+_PROG_OUT_PINS: int
+_PROG_SET_PINS: int
+_PROG_SIDESET_PINS: int
+_PROG_MAX_FIELDS: int
 
 class PIOASMError(Exception): ...
 

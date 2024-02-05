@@ -5,7 +5,7 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/aioespnow.ht
 """
 from _espnow import *
 from _typeshed import Incomplete
-from typing import Any, Iterator, List, Optional, Tuple, Union
+from typing import Iterator, List, Tuple, Union
 
 class ESPNow(ESPNowBase, Iterator):
     """
@@ -21,7 +21,7 @@ class ESPNow(ESPNowBase, Iterator):
     _none_tuple: Incomplete
     _poll: Incomplete
     def __init__(self) -> None: ...
-    def irecv(self, timeout_ms: Optional[Any] = None) -> Incomplete:
+    def irecv(self, timeout_ms: Incomplete | None = ...) -> Incomplete:
         """
         Works like `ESPNow.recv()` but will reuse internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
@@ -51,7 +51,7 @@ class ESPNow(ESPNowBase, Iterator):
                   break
         """
         ...
-    def recv(self, timeout_ms: Optional[Any] = None) -> Union[List, Tuple[None, None]]:
+    def recv(self, timeout_ms: Incomplete | None = ...) -> Union[List, Tuple[None, None]]:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using

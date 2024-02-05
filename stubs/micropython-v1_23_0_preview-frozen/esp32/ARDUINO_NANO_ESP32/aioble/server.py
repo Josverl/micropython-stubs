@@ -19,27 +19,27 @@ from .device import DeviceConnection, DeviceTimeout
 
 _registered_characteristics = {}
 
-_IRQ_GATTS_WRITE = const(3)
-_IRQ_GATTS_READ_REQUEST = const(4)
-_IRQ_GATTS_INDICATE_DONE = const(20)
+_IRQ_GATTS_WRITE = 3
+_IRQ_GATTS_READ_REQUEST = 4
+_IRQ_GATTS_INDICATE_DONE = 20
 
-_FLAG_READ = const(0x0002)
-_FLAG_WRITE_NO_RESPONSE = const(0x0004)
-_FLAG_WRITE = const(0x0008)
-_FLAG_NOTIFY = const(0x0010)
-_FLAG_INDICATE = const(0x0020)
+_FLAG_READ = 0x0002
+_FLAG_WRITE_NO_RESPONSE = 0x0004
+_FLAG_WRITE = 0x0008
+_FLAG_NOTIFY = 0x0010
+_FLAG_INDICATE = 0x0020
 
-_FLAG_READ_ENCRYPTED = const(0x0200)
-_FLAG_READ_AUTHENTICATED = const(0x0400)
-_FLAG_READ_AUTHORIZED = const(0x0800)
-_FLAG_WRITE_ENCRYPTED = const(0x1000)
-_FLAG_WRITE_AUTHENTICATED = const(0x2000)
-_FLAG_WRITE_AUTHORIZED = const(0x4000)
+_FLAG_READ_ENCRYPTED = 0x0200
+_FLAG_READ_AUTHENTICATED = 0x0400
+_FLAG_READ_AUTHORIZED = 0x0800
+_FLAG_WRITE_ENCRYPTED = 0x1000
+_FLAG_WRITE_AUTHENTICATED = 0x2000
+_FLAG_WRITE_AUTHORIZED = 0x4000
 
-_FLAG_WRITE_CAPTURE = const(0x10000)
+_FLAG_WRITE_CAPTURE = 0x10000
 
 
-_WRITE_CAPTURE_QUEUE_LIMIT = const(10)
+_WRITE_CAPTURE_QUEUE_LIMIT = 10
 
 
 def _server_irq(event, data):
@@ -110,9 +110,7 @@ class BaseCharacteristic:
         BaseCharacteristic._capture_queue = deque((), _WRITE_CAPTURE_QUEUE_LIMIT)
         BaseCharacteristic._capture_write_event = asyncio.ThreadSafeFlag()
         BaseCharacteristic._capture_consumed_event = asyncio.ThreadSafeFlag()
-        BaseCharacteristic._capture_task = asyncio.create_task(
-            BaseCharacteristic._run_capture_task()
-        )
+        BaseCharacteristic._capture_task = asyncio.create_task(BaseCharacteristic._run_capture_task())
 
     # Monitor the shared queue for incoming characteristic writes and forward
     # them sequentially to the individual characteristic events.
@@ -214,9 +212,7 @@ class Characteristic(BaseCharacteristic):
         if read:
             flags |= _FLAG_READ
         if write or write_no_response:
-            flags |= (_FLAG_WRITE if write else 0) | (
-                _FLAG_WRITE_NO_RESPONSE if write_no_response else 0
-            )
+            flags |= (_FLAG_WRITE if write else 0) | (_FLAG_WRITE_NO_RESPONSE if write_no_response else 0)
             if capture:
                 # Capture means that we keep track of all writes, and capture
                 # their values (and connection) in a queue. Otherwise we just

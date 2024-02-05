@@ -8,20 +8,21 @@ from .core import (
 )
 from .device import Device as Device, DeviceConnection as DeviceConnection, DeviceTimeout as DeviceTimeout
 from _typeshed import Incomplete
+from micropython import const as const
 
-_IRQ_CENTRAL_CONNECT: Incomplete
-_IRQ_CENTRAL_DISCONNECT: Incomplete
-_ADV_TYPE_FLAGS: Incomplete
-_ADV_TYPE_NAME: Incomplete
-_ADV_TYPE_UUID16_COMPLETE: Incomplete
-_ADV_TYPE_UUID32_COMPLETE: Incomplete
-_ADV_TYPE_UUID128_COMPLETE: Incomplete
-_ADV_TYPE_UUID16_MORE: Incomplete
-_ADV_TYPE_UUID32_MORE: Incomplete
-_ADV_TYPE_UUID128_MORE: Incomplete
-_ADV_TYPE_APPEARANCE: Incomplete
-_ADV_TYPE_MANUFACTURER: Incomplete
-_ADV_PAYLOAD_MAX_LEN: Incomplete
+_IRQ_CENTRAL_CONNECT: int
+_IRQ_CENTRAL_DISCONNECT: int
+_ADV_TYPE_FLAGS: int
+_ADV_TYPE_NAME: int
+_ADV_TYPE_UUID16_COMPLETE: int
+_ADV_TYPE_UUID32_COMPLETE: int
+_ADV_TYPE_UUID128_COMPLETE: int
+_ADV_TYPE_UUID16_MORE: int
+_ADV_TYPE_UUID32_MORE: int
+_ADV_TYPE_UUID128_MORE: int
+_ADV_TYPE_APPEARANCE: int
+_ADV_TYPE_MANUFACTURER: int
+_ADV_PAYLOAD_MAX_LEN: int
 _incoming_connection: Incomplete
 _connect_event: Incomplete
 

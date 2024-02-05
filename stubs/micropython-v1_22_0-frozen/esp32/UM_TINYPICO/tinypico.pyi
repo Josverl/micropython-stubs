@@ -1,18 +1,18 @@
-from _typeshed import Incomplete
 from machine import SPI as SPI
+from micropython import const as const
 
-BAT_VOLTAGE: Incomplete
-BAT_CHARGE: Incomplete
-DOTSTAR_CLK: Incomplete
-DOTSTAR_DATA: Incomplete
-DOTSTAR_PWR: Incomplete
-SPI_MOSI: Incomplete
-SPI_CLK: Incomplete
-SPI_MISO: Incomplete
-I2C_SDA: Incomplete
-I2C_SCL: Incomplete
-DAC1: Incomplete
-DAC2: Incomplete
+BAT_VOLTAGE: int
+BAT_CHARGE: int
+DOTSTAR_CLK: int
+DOTSTAR_DATA: int
+DOTSTAR_PWR: int
+SPI_MOSI: int
+SPI_CLK: int
+SPI_MISO: int
+I2C_SDA: int
+I2C_SCL: int
+DAC1: int
+DAC2: int
 
 def get_battery_voltage():
     """

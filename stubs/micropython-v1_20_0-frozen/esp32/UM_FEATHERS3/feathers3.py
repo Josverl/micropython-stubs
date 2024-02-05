@@ -11,23 +11,23 @@ from machine import Pin, ADC
 # FeatherS3 Hardware Pin Assignments
 
 # Sense Pins
-VBUS_SENSE = const(34)
-VBAT_SENSE = const(2)
+VBUS_SENSE = 34
+VBAT_SENSE = 2
 
 # RGB LED, LDO2 & Other Pins
-RGB_DATA = const(40)
-LDO2 = const(39)
-LED = const(13)
-AMB_LIGHT = const(4)
+RGB_DATA = 40
+LDO2 = 39
+LED = 13
+AMB_LIGHT = 4
 
 # SPI
-SPI_MOSI = const(35)
-SPI_MISO = const(37)
-SPI_CLK = const(36)
+SPI_MOSI = 35
+SPI_MISO = 37
+SPI_CLK = 36
 
 # I2C
-I2C_SDA = const(8)
-I2C_SCL = const(9)
+I2C_SDA = 8
+I2C_SCL = 9
 
 # Helper functions
 

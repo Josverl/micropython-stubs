@@ -9,24 +9,25 @@ from .core import (
 )
 from .device import DeviceConnection as DeviceConnection, DeviceTimeout as DeviceTimeout
 from _typeshed import Incomplete
+from micropython import const as const
 
 _registered_characteristics: Incomplete
-_IRQ_GATTS_WRITE: Incomplete
-_IRQ_GATTS_READ_REQUEST: Incomplete
-_IRQ_GATTS_INDICATE_DONE: Incomplete
-_FLAG_READ: Incomplete
-_FLAG_WRITE_NO_RESPONSE: Incomplete
-_FLAG_WRITE: Incomplete
-_FLAG_NOTIFY: Incomplete
-_FLAG_INDICATE: Incomplete
-_FLAG_READ_ENCRYPTED: Incomplete
-_FLAG_READ_AUTHENTICATED: Incomplete
-_FLAG_READ_AUTHORIZED: Incomplete
-_FLAG_WRITE_ENCRYPTED: Incomplete
-_FLAG_WRITE_AUTHENTICATED: Incomplete
-_FLAG_WRITE_AUTHORIZED: Incomplete
-_FLAG_WRITE_CAPTURE: Incomplete
-_WRITE_CAPTURE_QUEUE_LIMIT: Incomplete
+_IRQ_GATTS_WRITE: int
+_IRQ_GATTS_READ_REQUEST: int
+_IRQ_GATTS_INDICATE_DONE: int
+_FLAG_READ: int
+_FLAG_WRITE_NO_RESPONSE: int
+_FLAG_WRITE: int
+_FLAG_NOTIFY: int
+_FLAG_INDICATE: int
+_FLAG_READ_ENCRYPTED: int
+_FLAG_READ_AUTHENTICATED: int
+_FLAG_READ_AUTHORIZED: int
+_FLAG_WRITE_ENCRYPTED: int
+_FLAG_WRITE_AUTHENTICATED: int
+_FLAG_WRITE_AUTHORIZED: int
+_FLAG_WRITE_CAPTURE: int
+_WRITE_CAPTURE_QUEUE_LIMIT: int
 
 def _server_irq(event, data): ...
 def _server_shutdown() -> None: ...

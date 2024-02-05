@@ -9,7 +9,7 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/aioespnow.ht
 from _espnow import *
 from select import poll, POLLIN
 from _typeshed import Incomplete
-from typing import Any, Iterator, List, Optional, Tuple, Union
+from typing import Iterator, List, Tuple, Union
 
 
 class ESPNow(ESPNowBase, Iterator):
@@ -31,7 +31,7 @@ class ESPNow(ESPNowBase, Iterator):
         self._poll = poll()  # For any() method below...
         self._poll.register(self, POLLIN)
 
-    def irecv(self, timeout_ms: Optional[Any] = None) -> Incomplete:
+    def irecv(self, timeout_ms=None) -> Incomplete:
         """
         Works like `ESPNow.recv()` but will reuse internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
@@ -63,7 +63,7 @@ class ESPNow(ESPNowBase, Iterator):
         n = self.recvinto(self._data, timeout_ms)
         return self._data if n else self._none_tuple
 
-    def recv(self, timeout_ms: Optional[Any] = None) -> Union[List, Tuple[None, None]]:
+    def recv(self, timeout_ms=None) -> Union[List, Tuple[None, None]]:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using

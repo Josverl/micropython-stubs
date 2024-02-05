@@ -11,21 +11,21 @@ from machine import Pin, ADC
 # ProS3 Hardware Pin Assignments
 
 # Sense Pins
-VBUS_SENSE = const(33)
-VBAT_SENSE = const(10)
+VBUS_SENSE = 33
+VBAT_SENSE = 10
 
 # RGB LED & LDO2 Pins
-RGB_DATA = const(18)
-LDO2 = const(17)
+RGB_DATA = 18
+LDO2 = 17
 
 # SPI
-SPI_MOSI = const(35)
-SPI_MISO = const(37)
-SPI_CLK = const(36)
+SPI_MOSI = 35
+SPI_MISO = 37
+SPI_CLK = 36
 
 # I2C
-I2C_SDA = const(8)
-I2C_SCL = const(9)
+I2C_SDA = 8
+I2C_SCL = 9
 
 
 # Helper functions

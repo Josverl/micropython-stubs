@@ -8,6 +8,7 @@ MicroPython module: https://docs.micropython.org/en/v1.22.0/library/lcd160cr.htm
 
 This module provides control of the MicroPython LCD160CR display.
 """
+from __future__ import annotations
 from micropython import const
 from utime import sleep_ms
 from ustruct import calcsize, pack_into
@@ -16,15 +17,15 @@ from _typeshed import Incomplete
 from typing import Tuple
 
 # for set_orient
-PORTRAIT = const(0)
-LANDSCAPE = const(1)
-PORTRAIT_UPSIDEDOWN = const(2)
-LANDSCAPE_UPSIDEDOWN = const(3)
+PORTRAIT = 0
+LANDSCAPE = 1
+PORTRAIT_UPSIDEDOWN = 2
+LANDSCAPE_UPSIDEDOWN = 3
 
 # for set_startup_deco; can be or'd
-STARTUP_DECO_NONE = const(0)
-STARTUP_DECO_MLOGO = const(1)
-STARTUP_DECO_INFO = const(2)
+STARTUP_DECO_NONE = 0
+STARTUP_DECO_MLOGO = 1
+STARTUP_DECO_INFO = 2
 
 _uart_baud_table = {
     2400: 0,

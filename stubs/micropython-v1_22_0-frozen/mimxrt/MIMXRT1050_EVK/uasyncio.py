@@ -37,6 +37,7 @@ Example::
 Core functions
 --------------
 """
+from __future__ import annotations
 from _typeshed import Incomplete
 
 

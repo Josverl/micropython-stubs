@@ -5,7 +5,7 @@ import urequests as requests
 import sys
 
 
-_PACKAGE_INDEX = const("https://micropython.org/pi/v2")
+_PACKAGE_INDEX = "https://micropython.org/pi/v2"
 _CHUNK_SIZE = 128
 
 

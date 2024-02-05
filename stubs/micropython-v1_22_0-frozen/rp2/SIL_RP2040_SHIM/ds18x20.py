@@ -3,9 +3,9 @@
 
 from micropython import const
 
-_CONVERT = const(0x44)
-_RD_SCRATCH = const(0xBE)
-_WR_SCRATCH = const(0x4E)
+_CONVERT = 0x44
+_RD_SCRATCH = 0xBE
+_WR_SCRATCH = 0x4E
 
 
 class DS18X20:

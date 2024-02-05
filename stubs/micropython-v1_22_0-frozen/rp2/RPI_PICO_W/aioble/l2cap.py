@@ -9,11 +9,11 @@ from .core import ble, log_error, register_irq_handler
 from .device import DeviceConnection
 
 
-_IRQ_L2CAP_ACCEPT = const(22)
-_IRQ_L2CAP_CONNECT = const(23)
-_IRQ_L2CAP_DISCONNECT = const(24)
-_IRQ_L2CAP_RECV = const(25)
-_IRQ_L2CAP_SEND_READY = const(26)
+_IRQ_L2CAP_ACCEPT = 22
+_IRQ_L2CAP_CONNECT = 23
+_IRQ_L2CAP_DISCONNECT = 24
+_IRQ_L2CAP_RECV = 25
+_IRQ_L2CAP_SEND_READY = 26
 
 
 # Once we start listening we're listening forever. (Limitation in NimBLE)

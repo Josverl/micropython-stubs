@@ -4,11 +4,11 @@
 from micropython import const
 import struct, machine, fwupdate, spiflash, pyb
 
-_IOCTL_BLOCK_COUNT = const(4)
-_IOCTL_BLOCK_SIZE = const(5)
+_IOCTL_BLOCK_COUNT = 4
+_IOCTL_BLOCK_SIZE = 5
 
-_SPIFLASH_UPDATE_KEY_ADDR = const(1020 * 1024)
-_SPIFLASH_UPDATE_KEY_VALUE = const(0x12345678)
+_SPIFLASH_UPDATE_KEY_ADDR = 1020 * 1024
+_SPIFLASH_UPDATE_KEY_VALUE = 0x12345678
 
 _FILESYSTEM_ADDR = const(0x8000_0000 + 1024 * 1024)
 

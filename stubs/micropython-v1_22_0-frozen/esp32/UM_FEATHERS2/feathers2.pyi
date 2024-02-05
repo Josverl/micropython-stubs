@@ -1,18 +1,18 @@
-from _typeshed import Incomplete
 from machine import SPI as SPI
+from micropython import const as const
 
-LDO2: Incomplete
-DOTSTAR_CLK: Incomplete
-DOTSTAR_DATA: Incomplete
-SPI_MOSI: Incomplete
-SPI_MISO: Incomplete
-SPI_CLK: Incomplete
-I2C_SDA: Incomplete
-I2C_SCL: Incomplete
-DAC1: Incomplete
-DAC2: Incomplete
-LED: Incomplete
-AMB_LIGHT: Incomplete
+LDO2: int
+DOTSTAR_CLK: int
+DOTSTAR_DATA: int
+SPI_MOSI: int
+SPI_MISO: int
+SPI_CLK: int
+I2C_SDA: int
+I2C_SCL: int
+DAC1: int
+DAC2: int
+LED: int
+AMB_LIGHT: int
 
 def set_led(state) -> None: ...
 def toggle_led(state) -> None: ...
