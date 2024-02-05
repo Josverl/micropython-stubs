@@ -28,9 +28,11 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_22_1-rp2-ARDUINO_NANO_RP2040_CONNECT-merged`
+* Frozen stubs from `stubs/micropython-v1_22_1-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT`
 * Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Documentation | micropython | - | - | v1.22.1 
+Core | micropython | rp2 | - | v1.22.1 

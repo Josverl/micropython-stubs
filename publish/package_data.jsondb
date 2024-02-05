@@ -3999,6 +3999,134 @@
             "description": "MicroPython stubs",
             "hash": "907d27c564ac9ad954582e08b2f90ade077622d5",
             "stub_hash": "dd99462160eb27d8f6b80d705addce24db6b6786"
+        },
+        "886499932164595760": {
+            "name": "micropython-rp2-stubs",
+            "mpy_version": "1.22.1",
+            "publish": true,
+            "pkg_version": "1.22.1.post1",
+            "path": "micropython-v1_22_1-rp2-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_22_1-rp2-RPI_PICO-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "5c9d737ef2bd7280d26b0f561e722be4ddeed048",
+            "stub_hash": "ab6cf0f1d26b6a1005d96aa58269f3eef48a1899"
+        },
+        "290838536224953915": {
+            "name": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
+            "mpy_version": "1.22.1",
+            "publish": true,
+            "pkg_version": "1.22.1.post1",
+            "path": "micropython-v1_22_1-rp2-arduino_nano_rp2040_connect-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_22_1-rp2-ARDUINO_NANO_RP2040_CONNECT-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_22_1-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "4acf8d9ec514f3edc02c650b316c484c6532ff67",
+            "stub_hash": "a89241c7f89d1e883e74f72cb64df49308fa6096"
+        },
+        "145971291307551991": {
+            "name": "micropython-rp2-rpi_pico-stubs",
+            "mpy_version": "1.22.1",
+            "publish": true,
+            "pkg_version": "1.22.1.post1",
+            "path": "micropython-v1_22_1-rp2-rpi_pico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_22_1-rp2-RPI_PICO-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "0ae7f52b80bdb25e459e1226cbde1a8300ec4360",
+            "stub_hash": "ab6cf0f1d26b6a1005d96aa58269f3eef48a1899"
+        },
+        "121394509053915950": {
+            "name": "micropython-rp2-rpi_pico_w-stubs",
+            "mpy_version": "1.22.1",
+            "publish": true,
+            "pkg_version": "1.22.1.post1",
+            "path": "micropython-v1_22_1-rp2-rpi_pico_w-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_22_1-rp2-RPI_PICO_W-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_22_1-frozen/rp2/RPI_PICO_W"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "71dcc78e58d7b12f68eda3ba5785b451351cb475",
+            "stub_hash": "62527d1d2ffb5b2519e15a5cac469310adb8cfab"
+        },
+        "175547785434387715": {
+            "name": "micropython-samd-stubs",
+            "mpy_version": "1.22.1",
+            "publish": true,
+            "pkg_version": "1.22.1.post1",
+            "path": "micropython-v1_22_1-samd-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_22_1-samd-SEEED_WIO_TERMINAL-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "9f7824b02b9704e5a4c3755fed9f47c57a567da9",
+            "stub_hash": "60542c6455133acfbd81002944ede00650fed237"
+        },
+        "307214206449098131": {
+            "name": "micropython-samd-seeed_wio_terminal-stubs",
+            "mpy_version": "1.22.1",
+            "publish": true,
+            "pkg_version": "1.22.1.post1",
+            "path": "micropython-v1_22_1-samd-seeed_wio_terminal-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_22_1-samd-SEEED_WIO_TERMINAL-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "84369c4ab16b0d068555ff4218135e6557107071",
+            "stub_hash": "60542c6455133acfbd81002944ede00650fed237"
         }
     }
 }
