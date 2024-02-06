@@ -11,17 +11,17 @@ from machine import Pin, ADC
 # TinyS3 Hardware Pin Assignments
 
 # RGB LED Pins
-RGB_DATA = 41
-RGB_PWR = 42
+RGB_DATA = const(41)
+RGB_PWR = const(42)
 
 # SPI
-SPI_MOSI = 35
-SPI_MISO = 37
-SPI_CLK = 36
+SPI_MOSI = const(35)
+SPI_MISO = const(37)
+SPI_CLK = const(36)
 
 # I2C
-I2C_SDA = 8
-I2C_SCL = 9
+I2C_SDA = const(8)
+I2C_SCL = const(9)
 
 
 # Helper functions

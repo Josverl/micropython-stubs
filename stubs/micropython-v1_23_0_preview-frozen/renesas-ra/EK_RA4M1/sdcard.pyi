@@ -1,12 +1,11 @@
 from _typeshed import Incomplete
-from micropython import const as const
 
-_CMD_TIMEOUT: int
+_CMD_TIMEOUT: Incomplete
 _R1_IDLE_STATE: Incomplete
 _R1_ILLEGAL_COMMAND: Incomplete
-_TOKEN_CMD25: int
-_TOKEN_STOP_TRAN: int
-_TOKEN_DATA: int
+_TOKEN_CMD25: Incomplete
+_TOKEN_STOP_TRAN: Incomplete
+_TOKEN_DATA: Incomplete
 
 class SDCard:
     spi: Incomplete

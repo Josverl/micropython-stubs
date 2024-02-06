@@ -14,7 +14,7 @@ client_s = None
 
 DEBUG = 0
 
-_DEFAULT_STATIC_HOST = "https://micropython.org/webrepl/"
+_DEFAULT_STATIC_HOST = const("https://micropython.org/webrepl/")
 static_host = _DEFAULT_STATIC_HOST
 
 

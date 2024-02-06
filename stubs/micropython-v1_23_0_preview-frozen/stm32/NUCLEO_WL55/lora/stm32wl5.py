@@ -10,9 +10,9 @@ import stm
 from . import sx126x
 from micropython import const
 
-_CMD_CLR_ERRORS = 0x07
+_CMD_CLR_ERRORS = const(0x07)
 
-_REG_OCP = 0x8E7
+_REG_OCP = const(0x8E7)
 
 # Default antenna switch config is as per Nucleo WL-55 board. See UM2592 Fig 18.
 # Possible to work with other antenna switch board configurations by passing

@@ -1,7 +1,7 @@
 """
-Module: 'uasyncio.core' on micropython-v1.23.0-preview-rp2-RPI_PICO_W
+Module: 'uasyncio.core' on micropython-v1.22.1-rp2-RPI_PICO_W
 """
-# MCU: {'family': 'micropython', 'version': '1.23.0-preview', 'build': 'preview.58.gc3ca3612d', 'ver': '1.23.0-preview-preview.58.gc3ca3612d', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
 # Stubber: v1.17.1
 from __future__ import annotations
 from typing import Generator
@@ -53,7 +53,7 @@ _stopper: Generator  ## = <generator>
 class TimeoutError(Exception): ...
 
 _stop_task: Incomplete  ## <class 'NoneType'> = None
-_io_queue: Incomplete  ## <class 'IOQueue'> = <IOQueue object at 20019d10>
+_io_queue: Incomplete  ## <class 'IOQueue'> = <IOQueue object at 200180a0>
 
 class Loop:
     def get_exception_handler(self, *args, **kwargs) -> Incomplete: ...

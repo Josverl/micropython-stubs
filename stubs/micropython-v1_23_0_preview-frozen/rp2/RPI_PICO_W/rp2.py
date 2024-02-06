@@ -1,42 +1,22 @@
 # rp2 module: uses C code from _rp2, plus asm_pio decorator implemented in Python.
 # MIT license; Copyright (c) 2020-2021 Damien P. George
 
-"""
-Functionality specific to the RP2.
-
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/rp2.html
-
-The ``rp2`` module contains functions and classes specific to the RP2040, as
-used in the Raspberry Pi Pico.
-
-See the `RP2040 Python datasheet
-<https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf>`_
-for more information, and `pico-micropython-examples
-<https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
-for example code.
-"""
-from __future__ import annotations
 from _rp2 import *
 from micropython import const
-from _typeshed import Incomplete
 
-_PROG_DATA = 0
-_PROG_OFFSET_PIO0 = 1
-_PROG_OFFSET_PIO1 = 2
-_PROG_EXECCTRL = 3
-_PROG_SHIFTCTRL = 4
-_PROG_OUT_PINS = 5
-_PROG_SET_PINS = 6
-_PROG_SIDESET_PINS = 7
-_PROG_MAX_FIELDS = 8
+_PROG_DATA = const(0)
+_PROG_OFFSET_PIO0 = const(1)
+_PROG_OFFSET_PIO1 = const(2)
+_PROG_EXECCTRL = const(3)
+_PROG_SHIFTCTRL = const(4)
+_PROG_OUT_PINS = const(5)
+_PROG_SET_PINS = const(6)
+_PROG_SIDESET_PINS = const(7)
+_PROG_MAX_FIELDS = const(8)
 
 
 class PIOASMError(Exception):
-    """
-    This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
-    an error assembling a PIO program.
-    """
-
+    pass
 
 
 class PIOASMEmit:
@@ -252,41 +232,7 @@ _pio_funcs = {
 }
 
 
-def asm_pio(**kw) -> Incomplete:
-    """
-    Assemble a PIO program.
-
-    The following parameters control the initial state of the GPIO pins, as one
-    of `PIO.IN_LOW`, `PIO.IN_HIGH`, `PIO.OUT_LOW` or `PIO.OUT_HIGH`. If the
-    program uses more than one pin, provide a tuple, e.g.
-    ``out_init=(PIO.OUT_LOW, PIO.OUT_LOW)``.
-
-    - *out_init* configures the pins used for ``out()`` instructions.
-    - *set_init* configures the pins used for ``set()`` instructions. There can
-      be at most 5.
-    - *sideset_init* configures the pins used side-setting. There can be at
-      most 5.
-
-    The following parameters are used by default, but can be overridden in
-    `StateMachine.init()`:
-
-    - *in_shiftdir* is the default direction the ISR will shift, either
-      `PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`.
-    - *out_shiftdir* is the default direction the OSR will shift, either
-      `PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`.
-    - *push_thresh* is the threshold in bits before auto-push or conditional
-      re-pushing is triggered.
-    - *pull_thresh* is the threshold in bits before auto-pull or conditional
-      re-pulling is triggered.
-
-    The remaining parameters are:
-
-    - *autopush* configures whether auto-push is enabled.
-    - *autopull* configures whether auto-pull is enabled.
-    - *fifo_join* configures whether the 4-word TX and RX FIFOs should be
-      combined into a single 8-word FIFO for one direction only. The options
-      are `PIO.JOIN_NONE`, `PIO.JOIN_RX` and `PIO.JOIN_TX`.
-    """
+def asm_pio(**kw):
     emit = PIOASMEmit(**kw)
 
     def dec(f):
@@ -327,14 +273,7 @@ def asm_pio(**kw) -> Incomplete:
 
 
 # sideset_count is inclusive of enable bit
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
-    """
-    Assemble a single PIO instruction. You usually want to use `asm_pio()`
-    instead.
-
-    >>> rp2.asm_pio_encode("set(0, 1)", 0)
-    57345
-    """
+def asm_pio_encode(instr, sideset_count, sideset_opt=False):
     emit = PIOASMEmit()
     emit.sideset_count = sideset_count
     emit.sideset_opt = sideset_opt != 0

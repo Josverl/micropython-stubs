@@ -46,14 +46,14 @@ import array
 import time
 from micropython import const
 
-_DEFAULT_ADDR = 0x68
-_CHIP_ID = 0x00
-_STATUS = 0x21
-_INIT_ADDR_0 = 0x5B
-_INIT_ADDR_1 = 0x5C
-_DATA_8 = 0x0C
-_DATA_14 = 0x12
-_CMD = 0x7E
+_DEFAULT_ADDR = const(0x68)
+_CHIP_ID = const(0x00)
+_STATUS = const(0x21)
+_INIT_ADDR_0 = const(0x5B)
+_INIT_ADDR_1 = const(0x5C)
+_DATA_8 = const(0x0C)
+_DATA_14 = const(0x12)
+_CMD = const(0x7E)
 _CONFIG_DATA = const(
     b"\xc8\x2e\x00\x2e\x80\x2e\x3d\xb1\xc8\x2e\x00\x2e\x80\x2e\x91\x03\x80\x2e\xbc"
     b"\xb0\x80\x2e\xa3\x03\xc8\x2e\x00\x2e\x80\x2e\x00\xb0\x50\x30\x21\x2e\x59\xf5"

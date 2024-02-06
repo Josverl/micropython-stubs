@@ -9,7 +9,7 @@ from .server import (
     Service as Service,
     register_services as register_services,
 )
-from _typeshed import Incomplete
+from micropython import const as const
 
-ADDR_PUBLIC: Incomplete
-ADDR_RANDOM: Incomplete
+ADDR_PUBLIC: int
+ADDR_RANDOM: int

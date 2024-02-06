@@ -1,10 +1,9 @@
 from _typeshed import Incomplete
-from micropython import const as const
 
 listen_s: Incomplete
 client_s: Incomplete
 DEBUG: int
-_DEFAULT_STATIC_HOST: str
+_DEFAULT_STATIC_HOST: Incomplete
 static_host = _DEFAULT_STATIC_HOST
 
 def server_handshake(cl): ...
