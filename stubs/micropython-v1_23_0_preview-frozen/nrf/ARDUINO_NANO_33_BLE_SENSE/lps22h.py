@@ -40,12 +40,12 @@ while (True):
 import machine
 from micropython import const
 
-_LPS22_CTRL_REG1 = 0x10
-_LPS22_CTRL_REG2 = 0x11
-_LPS22_STATUS = 0x27
-_LPS22_TEMP_OUT_L = 0x2B
-_LPS22_PRESS_OUT_XL = 0x28
-_LPS22_PRESS_OUT_L = 0x29
+_LPS22_CTRL_REG1 = const(0x10)
+_LPS22_CTRL_REG2 = const(0x11)
+_LPS22_STATUS = const(0x27)
+_LPS22_TEMP_OUT_L = const(0x2B)
+_LPS22_PRESS_OUT_XL = const(0x28)
+_LPS22_PRESS_OUT_L = const(0x29)
 
 
 class LPS22H:

@@ -1,7 +1,6 @@
 from _typeshed import Incomplete
-from micropython import const as const
 
-_DEBUG: bool
+_DEBUG: Incomplete
 
 def _clamp(v, vmin, vmax): ...
 def _flag(value, condition): ...

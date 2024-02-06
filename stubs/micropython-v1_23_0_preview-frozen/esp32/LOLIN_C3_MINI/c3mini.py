@@ -6,19 +6,19 @@ from machine import Pin
 # Pin Assignments
 
 # SPI
-SPI_MOSI = 4
-SPI_MISO = 3
-SPI_CLK = 2
+SPI_MOSI = const(4)
+SPI_MISO = const(3)
+SPI_CLK = const(2)
 
 # I2C
-I2C_SDA = 8
-I2C_SCL = 10
+I2C_SDA = const(8)
+I2C_SCL = const(10)
 
 # LED
-LED = 7
+LED = const(7)
 
 # BUTTON
-BUTTON = 0
+BUTTON = const(0)
 
 # Built-in peripherals
 

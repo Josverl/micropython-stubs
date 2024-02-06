@@ -1,16 +1,15 @@
 from _typeshed import Incomplete
-from micropython import const as const
 
-_PAGE_SIZE: int
-_CMD_WRITE: int
-_CMD_READ: int
-_CMD_RDSR: int
-_CMD_WREN: int
-_CMD_WRITE_32: int
-_CMD_READ_32: int
-_CMD_SEC_ERASE: int
-_CMD_SEC_ERASE_32: int
-_CMD_JEDEC_ID: int
+_PAGE_SIZE: Incomplete
+_CMD_WRITE: Incomplete
+_CMD_READ: Incomplete
+_CMD_RDSR: Incomplete
+_CMD_WREN: Incomplete
+_CMD_WRITE_32: Incomplete
+_CMD_READ_32: Incomplete
+_CMD_SEC_ERASE: Incomplete
+_CMD_SEC_ERASE_32: Incomplete
+_CMD_JEDEC_ID: Incomplete
 
 class SPIFlash:
     spi: Incomplete

@@ -6,23 +6,23 @@ from machine import Pin
 # Pin Assignments
 
 # SPI
-SPI_MOSI = 11
-SPI_MISO = 9
-SPI_CLK = 7
+SPI_MOSI = const(11)
+SPI_MISO = const(9)
+SPI_CLK = const(7)
 
 # I2C
-I2C_SDA = 33
-I2C_SCL = 35
+I2C_SDA = const(33)
+I2C_SCL = const(35)
 
 # DAC
-DAC1 = 17
-DAC2 = 18
+DAC1 = const(17)
+DAC2 = const(18)
 
 # LED
-LED = 15
+LED = const(15)
 
 # BUTTON
-BUTTON = 0
+BUTTON = const(0)
 
 # Helper methods for built in sensors
 

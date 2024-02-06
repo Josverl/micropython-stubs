@@ -1,14 +1,14 @@
-from micropython import const as const
+from _typeshed import Incomplete
 
-VBUS_SENSE: int
-VBAT_SENSE: int
-RGB_DATA: int
-LDO2: int
-SPI_MOSI: int
-SPI_MISO: int
-SPI_CLK: int
-I2C_SDA: int
-I2C_SCL: int
+VBUS_SENSE: Incomplete
+VBAT_SENSE: Incomplete
+RGB_DATA: Incomplete
+LDO2: Incomplete
+SPI_MOSI: Incomplete
+SPI_MISO: Incomplete
+SPI_CLK: Incomplete
+I2C_SDA: Incomplete
+I2C_SCL: Incomplete
 
 def set_ldo2_power(state) -> None:
     """Enable or Disable power to the second LDO"""

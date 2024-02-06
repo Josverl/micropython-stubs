@@ -14,26 +14,26 @@ import machine
 # TinyS2 Hardware Pin Assignments
 
 # Sense Pins
-VBUS_SENSE = 21
-VBAT_SENSE = 3
+VBUS_SENSE = const(21)
+VBAT_SENSE = const(3)
 
 
 # RGB LED Pins
-RGB_DATA = 1
-RGB_PWR = 2
+RGB_DATA = const(1)
+RGB_PWR = const(2)
 
 # SPI
-SPI_MOSI = 35
-SPI_MISO = 36
-SPI_CLK = 37
+SPI_MOSI = const(35)
+SPI_MISO = const(36)
+SPI_CLK = const(37)
 
 # I2C
-I2C_SDA = 8
-I2C_SCL = 9
+I2C_SDA = const(8)
+I2C_SCL = const(9)
 
 # DAC
-DAC1 = 17
-DAC2 = 18
+DAC1 = const(17)
+DAC2 = const(18)
 
 
 # Helper functions

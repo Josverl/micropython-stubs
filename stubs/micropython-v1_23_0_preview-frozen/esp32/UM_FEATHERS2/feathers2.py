@@ -14,28 +14,28 @@ import machine, time
 # FeatherS2 Hardware Pin Assignments
 
 # LDO
-LDO2 = 21
+LDO2 = const(21)
 
 # APA102 Dotstar pins
-DOTSTAR_CLK = 45
-DOTSTAR_DATA = 40
+DOTSTAR_CLK = const(45)
+DOTSTAR_DATA = const(40)
 
 # SPI
-SPI_MOSI = 35
-SPI_MISO = 37
-SPI_CLK = 36
+SPI_MOSI = const(35)
+SPI_MISO = const(37)
+SPI_CLK = const(36)
 
 # I2C
-I2C_SDA = 8
-I2C_SCL = 9
+I2C_SDA = const(8)
+I2C_SCL = const(9)
 
 # DAC
-DAC1 = 17
-DAC2 = 18
+DAC1 = const(17)
+DAC2 = const(18)
 
 # LED & Ambient Light Sensor
-LED = 13
-AMB_LIGHT = 4
+LED = const(13)
+AMB_LIGHT = const(4)
 
 # Helper functions
 

@@ -22,20 +22,20 @@ import neopixel
 """
 
 # WS2812
-WS2812_PIN = 27
+WS2812_PIN = const(27)
 
 # Button
-BUTTON_PIN = 39
+BUTTON_PIN = const(39)
 
 # IR
-IR_PIN = 12
+IR_PIN = const(12)
 
 # I2C
-I2C0_SCL_PIN = 21
-I2C0_SDA_PIN = 25
+I2C0_SCL_PIN = const(21)
+I2C0_SDA_PIN = const(25)
 
 # Grove port
-GROVE_PORT_PIN = (26), 32
+GROVE_PORT_PIN = (const(26), const(32))
 
 
 class ATOM:

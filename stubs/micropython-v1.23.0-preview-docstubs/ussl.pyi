@@ -101,9 +101,7 @@ class SSLContext:
         """
         ...
 
-def wrap_socket(
-    sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
-) -> IO:
+def wrap_socket(sock, server_side=False, key=None, cert=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True) -> IO:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
      of this function is to first create an `SSLContext` and then call the `SSLContext.wrap_socket`

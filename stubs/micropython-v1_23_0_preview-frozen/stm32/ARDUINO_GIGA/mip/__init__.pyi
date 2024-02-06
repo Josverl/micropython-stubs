@@ -1,7 +1,6 @@
 from _typeshed import Incomplete
-from micropython import const as const
 
-_PACKAGE_INDEX: str
+_PACKAGE_INDEX: Incomplete
 _CHUNK_SIZE: int
 
 def _ensure_path_exists(path) -> None: ...

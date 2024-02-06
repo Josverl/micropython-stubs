@@ -30,10 +30,7 @@ For example::
     s = socket.socket()
     s.connect(addr)
     s.send(b'GET / HTTP/1.1
-
 Host: micropython.org
-
-
 
 ')
     data = s.recv(1000)

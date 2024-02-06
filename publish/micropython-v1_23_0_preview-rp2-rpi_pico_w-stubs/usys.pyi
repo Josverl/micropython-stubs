@@ -6,9 +6,9 @@ MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/sys.
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 
 ---
-Module: 'usys' on micropython-v1.23.0-preview-rp2-RPI_PICO_W
+Module: 'usys' on micropython-v1.22.1-rp2-RPI_PICO_W
 """
-# MCU: {'family': 'micropython', 'version': '1.23.0-preview', 'build': 'preview.58.gc3ca3612d', 'ver': '1.23.0-preview-preview.58.gc3ca3612d', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
+# MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
 # Stubber: v1.17.1
 from __future__ import annotations
 from _typeshed import Incomplete
@@ -17,7 +17,7 @@ from typing import Dict, List, Tuple
 platform: str = "rp2"
 version_info: tuple = ()
 path: list = []
-version: str = "3.4.0; MicroPython v1.23.0-preview.58.gc3ca3612d on 2024-01-23"
+version: str = "3.4.0; MicroPython v1.22.1 on 2024-01-05"
 ps1: str = ">>> "
 ps2: str = "... "
 byteorder: str = "little"

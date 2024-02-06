@@ -1,8 +1,7 @@
 from .core import ble as ble, log_error as log_error, register_irq_handler as register_irq_handler
 from _typeshed import Incomplete
-from micropython import const as const
 
-_IRQ_MTU_EXCHANGED: int
+_IRQ_MTU_EXCHANGED: Incomplete
 
 class DeviceDisconnectedError(Exception): ...
 

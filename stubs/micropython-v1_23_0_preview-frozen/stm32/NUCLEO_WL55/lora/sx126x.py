@@ -10,80 +10,80 @@ from micropython import const
 from machine import Pin
 from .modem import BaseModem, ConfigError, RxPacket, _clamp, _flag
 
-# Set _DEBUG to True to print all SPI commands sent to the device, and all responses,
+# Set _DEBUG to const(True) to print all SPI commands sent to the device, and all responses,
 # plus a few additional pieces of information.
-_DEBUG = False
+_DEBUG = const(False)
 
-_REG_RXGAINCR = 0x8AC  # Reset value 0x94
-_REG_LSYNCRH = 0x740
-_REG_LSYNCRL = 0x741
+_REG_RXGAINCR = const(0x8AC)  # Reset value 0x94
+_REG_LSYNCRH = const(0x740)
+_REG_LSYNCRL = const(0x741)
 
-_CMD_CFG_DIO_IRQ = 0x08  # args: IrqMask, Irq1Mask, Irq2Mask,. Irq3Mask
-_CMD_CLR_ERRORS = 0x07
-_CMD_CLR_IRQ_STATUS = 0x02  # no args
-_CMD_GET_ERROR = 0x17
-_CMD_GET_IRQ_STATUS = 0x12  # args: (r) Status, IrqStatus
-_CMD_GET_RX_BUFFER_STATUS = 0x13  # args: (r) Status, RxPayloadLength, RxBufferPointer
+_CMD_CFG_DIO_IRQ = const(0x08)  # args: IrqMask, Irq1Mask, Irq2Mask,. Irq3Mask
+_CMD_CLR_ERRORS = const(0x07)
+_CMD_CLR_IRQ_STATUS = const(0x02)  # no args
+_CMD_GET_ERROR = const(0x17)
+_CMD_GET_IRQ_STATUS = const(0x12)  # args: (r) Status, IrqStatus
+_CMD_GET_RX_BUFFER_STATUS = const(0x13)  # args: (r) Status, RxPayloadLength, RxBufferPointer
 # NOTE: _CMD_GET_STATUS seems to have an issue, see _get_status() function below.
-_CMD_GET_STATUS = 0xC0  # args: (r) Status
-_CMD_GET_PACKET_STATUS = 0x14
-_CMD_READ_REGISTER = 0x1D  # args: addr (2b), status, (r) Data0 ... DataN
-_CMD_READ_BUFFER = 0x1E  # args: Offset, (r) Status, Data0 ... DataN
-_CMD_SET_BUFFER_BASE_ADDRESS = 0x8F  # args: TxBaseAddr, RxBaseAddr
-_CMD_SET_MODULATION_PARAMS = 0x8B  # args (LoRa): Sf, Bw, Cr, Ldro
+_CMD_GET_STATUS = const(0xC0)  # args: (r) Status
+_CMD_GET_PACKET_STATUS = const(0x14)
+_CMD_READ_REGISTER = const(0x1D)  # args: addr (2b), status, (r) Data0 ... DataN
+_CMD_READ_BUFFER = const(0x1E)  # args: Offset, (r) Status, Data0 ... DataN
+_CMD_SET_BUFFER_BASE_ADDRESS = const(0x8F)  # args: TxBaseAddr, RxBaseAddr
+_CMD_SET_MODULATION_PARAMS = const(0x8B)  # args (LoRa): Sf, Bw, Cr, Ldro
 _CMD_SET_PACKET_PARAMS = const(0x8C)  # args (LoRa): PbLength, HeaderType, PayloadLength, CrcType, InvertIQ
-_CMD_SET_PACKET_TYPE = 0x8A  # args: PktType
-_CMD_SET_PA_CONFIG = 0x95  # args: PaDutyCycle, HpMax, HpSel, 0x01
-_CMD_SET_RF_FREQUENCY = 0x86  # args: RfFreg
-_CMD_SET_RX = 0x82  # args: Timeout
-_CMD_SET_SLEEP = 0x84  # args: SleepCfg
-_CMD_SET_STANDBY = 0x80  # args: StandbyCfg
-_CMD_SET_DIO3_AS_TCXO_CTRL = 0x97  # args: Trim, Timeout (3b)
-_CMD_SET_DIO2_AS_RF_SWITCH_CTRL = 0x9D
-_CMD_SET_TX = 0x83  # args: Timeout
-_CMD_SET_TX_PARAMS = 0x8E  # args: Power, RampTime
-_CMD_WRITE_BUFFER = 0x0E  # args: Offset, Data0 ... DataN
-_CMD_WRITE_REGISTER = 0x0D  # args: Addr, Data0 ... Data N
+_CMD_SET_PACKET_TYPE = const(0x8A)  # args: PktType
+_CMD_SET_PA_CONFIG = const(0x95)  # args: PaDutyCycle, HpMax, HpSel, 0x01
+_CMD_SET_RF_FREQUENCY = const(0x86)  # args: RfFreg
+_CMD_SET_RX = const(0x82)  # args: Timeout
+_CMD_SET_SLEEP = const(0x84)  # args: SleepCfg
+_CMD_SET_STANDBY = const(0x80)  # args: StandbyCfg
+_CMD_SET_DIO3_AS_TCXO_CTRL = const(0x97)  # args: Trim, Timeout (3b)
+_CMD_SET_DIO2_AS_RF_SWITCH_CTRL = const(0x9D)
+_CMD_SET_TX = const(0x83)  # args: Timeout
+_CMD_SET_TX_PARAMS = const(0x8E)  # args: Power, RampTime
+_CMD_WRITE_BUFFER = const(0x0E)  # args: Offset, Data0 ... DataN
+_CMD_WRITE_REGISTER = const(0x0D)  # args: Addr, Data0 ... Data N
 
-_CMD_CALIBRATE = 0x89
-_CMD_CALIBRATE_IMAGE = 0x98
+_CMD_CALIBRATE = const(0x89)
+_CMD_CALIBRATE_IMAGE = const(0x98)
 
-_STATUS_MODE_MASK = 0x7 << 4
-_STATUS_MODE_SHIFT = 4
-_STATUS_MODE_STANDBY_RC = 0x2
-_STATUS_MODE_STANDBY_HSE32 = 0x3
-_STATUS_MODE_FS = 0x4
-_STATUS_MODE_RX = 0x5
-_STATUS_MODE_TX = 0x6
+_STATUS_MODE_MASK = const(0x7 << 4)
+_STATUS_MODE_SHIFT = const(4)
+_STATUS_MODE_STANDBY_RC = const(0x2)
+_STATUS_MODE_STANDBY_HSE32 = const(0x3)
+_STATUS_MODE_FS = const(0x4)
+_STATUS_MODE_RX = const(0x5)
+_STATUS_MODE_TX = const(0x6)
 
-_STATUS_CMD_MASK = 0x6  # bits 1-3, bit 0 is reserved
-_STATUS_CMD_SHIFT = 1
-_STATUS_CMD_DATA_AVAIL = 0x2
-_STATUS_CMD_TIMEOUT = 0x3
-_STATUS_CMD_ERROR = 0x4
-_STATUS_CMD_EXEC_FAIL = 0x5
-_STATUS_CMD_TX_COMPLETE = 0x6
+_STATUS_CMD_MASK = const(0x6)  # bits 1-3, bit 0 is reserved
+_STATUS_CMD_SHIFT = const(1)
+_STATUS_CMD_DATA_AVAIL = const(0x2)
+_STATUS_CMD_TIMEOUT = const(0x3)
+_STATUS_CMD_ERROR = const(0x4)
+_STATUS_CMD_EXEC_FAIL = const(0x5)
+_STATUS_CMD_TX_COMPLETE = const(0x6)
 
-_CFG_SF_MIN = 6  # inclusive
-_CFG_SF_MAX = 12  # inclusive
+_CFG_SF_MIN = const(6)  # inclusive
+_CFG_SF_MAX = const(12)  # inclusive
 
-_IRQ_TX_DONE = 1 << 0
-_IRQ_RX_DONE = 1 << 1
-_IRQ_PREAMBLE_DETECTED = 1 << 2
-_IRQ_SYNC_DETECTED = 1 << 3
-_IRQ_HEADER_VALID = 1 << 4
-_IRQ_HEADER_ERR = 1 << 5
-_IRQ_CRC_ERR = 1 << 6
-_IRQ_CAD_DONE = 1 << 7
-_IRQ_CAD_DETECTED = 1 << 8
-_IRQ_TIMEOUT = 1 << 9
+_IRQ_TX_DONE = const(1 << 0)
+_IRQ_RX_DONE = const(1 << 1)
+_IRQ_PREAMBLE_DETECTED = const(1 << 2)
+_IRQ_SYNC_DETECTED = const(1 << 3)
+_IRQ_HEADER_VALID = const(1 << 4)
+_IRQ_HEADER_ERR = const(1 << 5)
+_IRQ_CRC_ERR = const(1 << 6)
+_IRQ_CAD_DONE = const(1 << 7)
+_IRQ_CAD_DETECTED = const(1 << 8)
+_IRQ_TIMEOUT = const(1 << 9)
 
 # Register values
-_REG_IQ_POLARITY_SETUP = 0x0736
-_REG_RX_GAIN = 0x08AC
-_REG_RTC_CTRL = 0x0902  # DS 15.3 has a typo on this value! Confirmed from Semtech driver
-_REG_EVT_CLR = 0x0944
-_REG_EVT_CLR_MASK = 0x02
+_REG_IQ_POLARITY_SETUP = const(0x0736)
+_REG_RX_GAIN = const(0x08AC)
+_REG_RTC_CTRL = const(0x0902)  # DS 15.3 has a typo on this value! Confirmed from Semtech driver
+_REG_EVT_CLR = const(0x0944)
+_REG_EVT_CLR_MASK = const(0x02)
 
 # IRQs the driver cares about when receiving
 _IRQ_DRIVER_RX_MASK = const(_IRQ_RX_DONE | _IRQ_TIMEOUT | _IRQ_CRC_ERR | _IRQ_HEADER_ERR)
@@ -97,15 +97,15 @@ _IRQ_DRIVER_RX_MASK = const(_IRQ_RX_DONE | _IRQ_TIMEOUT | _IRQ_CRC_ERR | _IRQ_HE
 # In any case, timeouts here are to catch broken/bad hardware or massive driver
 # bugs rather than commonplace issues.
 #
-_CMD_BUSY_TIMEOUT_BASE_US = 7000
+_CMD_BUSY_TIMEOUT_BASE_US = const(7000)
 
 # Datasheet says 3.5ms needed to run a full Calibrate command (all blocks),
 # however testing shows it can be as much as as 18ms.
-_CALIBRATE_TYPICAL_TIME_US = 3500
-_CALIBRATE_TIMEOUT_US = 30000
+_CALIBRATE_TYPICAL_TIME_US = const(3500)
+_CALIBRATE_TIMEOUT_US = const(30000)
 
 # Magic value used by SetRx command to indicate a continuous receive
-_CONTINUOUS_TIMEOUT_VAL = 0xFFFFFF
+_CONTINUOUS_TIMEOUT_VAL = const(0xFFFFFF)
 
 
 class _SX126x(BaseModem):
