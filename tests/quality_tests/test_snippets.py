@@ -2,7 +2,8 @@ import logging
 from pathlib import Path
 
 import pytest
-from typecheck import copy_config_files, port_and_board, run_typechecker, stub_ignore
+from typecheck import (copy_config_files, port_and_board, run_typechecker,
+                       stub_ignore)
 
 # only snippets tests
 pytestmark = pytest.mark.snippets
@@ -23,6 +24,7 @@ PORTBOARD_FEATURES = {
         "networking",
         "bluetooth:skip version<1.20.0",
         "espnow:skip version<1.21.0",
+        "aioble:skip version<1.20.0",
     ],
     "esp8266": CORE + ["networking"],  # TODO: New board stubs for esp8266, "espnow>=1.21.0"],
     "samd": CORE,
@@ -37,6 +39,7 @@ PORTBOARD_FEATURES = {
     + [
         "networking",
         "bluetooth:skip version<1.21.0",
+        "aioble:skip version<1.21.0",
     ],
     # "rp2-pimoroni_picolipo_16mb": CORE,
 }
@@ -44,8 +47,10 @@ PORTBOARD_FEATURES = {
 SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 VERSIONS = [
     "preview",
+    "v1.22.1",
     "v1.22.0",
     "v1.21.0",
+    "v1.20.1",
     "v1.20.0",
     # "v1.19.1",
     # "v1.18",
