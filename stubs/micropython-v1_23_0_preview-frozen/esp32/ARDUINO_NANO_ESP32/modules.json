@@ -165,6 +165,10 @@
             "module": "senml_unit"
         },
         {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
             "file": "time.py",
             "module": "time"
         },

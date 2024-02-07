@@ -69,6 +69,10 @@
             "module": "__init__"
         },
         {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
             "file": "urequests.py",
             "module": "urequests"
         },

@@ -97,6 +97,10 @@
             "module": "__init__"
         },
         {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
             "file": "tinypico.py",
             "module": "tinypico"
         },

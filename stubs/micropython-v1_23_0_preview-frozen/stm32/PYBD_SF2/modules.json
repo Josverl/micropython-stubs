@@ -65,6 +65,10 @@
             "module": "__init__"
         },
         {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
             "file": "uasyncio.py",
             "module": "uasyncio"
         },

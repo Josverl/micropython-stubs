@@ -93,6 +93,10 @@
             "module": "__init__"
         },
         {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
             "file": "tinys3.py",
             "module": "tinys3"
         },

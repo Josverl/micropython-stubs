@@ -105,6 +105,10 @@
             "module": "ssd1306"
         },
         {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
             "file": "uasyncio.py",
             "module": "uasyncio"
         },

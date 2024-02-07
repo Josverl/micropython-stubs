@@ -81,6 +81,10 @@
             "module": "rp2"
         },
         {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
             "file": "uasyncio.py",
             "module": "uasyncio"
         },

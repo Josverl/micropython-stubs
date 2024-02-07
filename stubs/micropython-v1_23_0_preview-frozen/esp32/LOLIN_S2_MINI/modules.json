@@ -97,6 +97,10 @@
             "module": "s2mini"
         },
         {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
             "file": "uasyncio.py",
             "module": "uasyncio"
         },
