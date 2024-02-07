@@ -10,12 +10,12 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-          python-version: 3.12
-          # cache: pip
+          python-version: 3.12.1
+          cache: pip
         
     - name: Install dependencies
       run: |
-        pip install mpremote
+        pip install -U mpremote micropython-stubber
       
     - name: list connected devices
       run: |
