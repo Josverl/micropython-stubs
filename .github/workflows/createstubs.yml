@@ -20,7 +20,7 @@ jobs:
         git clone https://github.com/Josverl/micropython-stubber repos/micropython-stubber
         stubber clone
 
-    - name: run board stubber repos/micropython-stubber
-      working-directory: 
+    - name: run board stubber 
+      working-directory: repos/micropython-stubber
       run: |
         python3 scripts/board_stubber.py
