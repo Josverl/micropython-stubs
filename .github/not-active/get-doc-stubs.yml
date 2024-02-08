@@ -23,7 +23,7 @@ jobs:
   list-versions-doc:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       # no need to install python
       - run: pip install pygithub packaging
       - run: python .github/workflows/list_versions.py --latest
@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - name: Checkout stubs repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # make Python work
       - name: Set up Python

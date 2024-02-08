@@ -30,7 +30,7 @@ jobs:
   list-versions-pub:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       # no need to install python
       - run: echo Running in folder $(pwd)
       - run: pip install pygithub packaging
@@ -51,7 +51,7 @@ jobs:
 
     steps:
       - name: Checkout stubs repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install pip and tools to allow to run under ACT for testing
         run: |
           apt update
@@ -108,7 +108,7 @@ jobs:
 
     steps:
       - name: Checkout stubs repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install pip and tools to allow to run under ACT for testing
         if: env.ACT

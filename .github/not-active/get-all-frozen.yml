@@ -24,7 +24,7 @@ jobs:
   list-versions-fr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
       - name: Set up Python
@@ -57,7 +57,7 @@ jobs:
 
     steps:
       - name: Checkout stubs repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # make Python work
       - name: Set up Python
@@ -104,7 +104,7 @@ jobs:
 
   #   steps:
   #     - name: Checkout stubs repo
-  #       uses: actions/checkout@v3
+  #       uses: actions/checkout@v4
 
   #     # make Python work
   #     - name: Set up Python
