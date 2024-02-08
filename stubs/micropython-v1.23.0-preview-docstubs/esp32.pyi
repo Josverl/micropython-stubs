@@ -78,7 +78,7 @@ class Partition:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
-        :class:`os.AbstractBlockDev`.
+        :class:`vfs.AbstractBlockDev`.
         """
         ...
     def set_boot(self) -> None:

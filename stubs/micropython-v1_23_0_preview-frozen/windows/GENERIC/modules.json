@@ -41,6 +41,10 @@
             "module": "stream"
         },
         {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
             "file": "uasyncio.py",
             "module": "uasyncio"
         }
