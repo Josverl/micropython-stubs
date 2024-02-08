@@ -86,7 +86,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |documentation| micropython| v1.21| -| micropython| 55| 1.15.0|[stubs/micropython-v1_21_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-docstubs)
 |documentation| micropython| v1.22| -| micropython| 55| 1.16.3|[stubs/micropython-v1_22_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-docstubs)
 |documentation| micropython| v1.22.1| -| micropython| 55| 1.16.3|[stubs/micropython-v1_22_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_1-docstubs)
-|documentation| micropython| v1.23-Latest| -| micropython| 55| 1.17.0|[stubs/micropython-v1.23.0-preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1.23.0-preview-docstubs)
+|documentation| micropython| v1.23-Latest| -| micropython| 56| 1.17.0|[stubs/micropython-v1.23.0-preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1.23.0-preview-docstubs)
 |documentation| micropython| v1.23-Latest| -| micropython| 55| 1.16.3|[stubs/micropython-v1_23_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-docstubs)
 |frozen| loboris| v3.2.24| esp32| loboris| 17| 1.5.5a2|[stubs/loboris-v3_2_24-frozen](https://github.com/Josverl/micropython-stubs/tree/main/stubs/loboris-v3_2_24-frozen)
 |frozen| micropython| v1.10| esp32| micropython| 16| 1.8.0|[stubs/micropython-v1_10-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_10-frozen/esp32/GENERIC)
@@ -513,7 +513,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| v1.23-Latest| rp2| W5100S_EVB_PICO| 21| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/rp2/W5100S_EVB_PICO)
 |frozen| micropython| v1.23-Latest| rp2| W5500_EVB_PICO| 21| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| v1.23-Latest| rp2| WEACTSTUDIO| 15| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/rp2/WEACTSTUDIO)
-|frozen| micropython| v1.23-Latest| samd| GENERIC| 11| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC)
+|frozen| micropython| v1.23-Latest| samd| GENERIC| 1| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC)
 |frozen| micropython| v1.23-Latest| stm32| ARDUINO_GIGA| 35| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_GIGA)
 |frozen| micropython| v1.23-Latest| stm32| ARDUINO_NICLA_VISION| 35| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_NICLA_VISION)
 |frozen| micropython| v1.23-Latest| stm32| ARDUINO_PORTENTA_H7| 35| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7)
@@ -536,8 +536,8 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| v1.23-Latest| stm32| STM32F7DISC| 16| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/STM32F7DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/STM32F7DISC)
 |frozen| micropython| v1.23-Latest| stm32| STM32H573I_DK| 16| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/STM32H573I_DK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/STM32H573I_DK)
 |frozen| micropython| v1.23-Latest| stm32| VCC_GND_F407ZG| 16| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/VCC_GND_F407ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/VCC_GND_F407ZG)
-|frozen| micropython| v1.23-Latest| unix| GENERIC| 11| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/unix/GENERIC)
-|frozen| micropython| v1.23-Latest| windows| GENERIC| 7| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/windows/GENERIC)
+|frozen| micropython| v1.23-Latest| unix| GENERIC| 12| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/unix/GENERIC)
+|frozen| micropython| v1.23-Latest| windows| GENERIC| 8| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/windows/GENERIC)
 |frozen| micropython| v1.9.3| esp8266| micropython| 15| 1.8.0|[stubs/micropython-v1_9_3-frozen/esp8266/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-frozen/esp8266/GENERIC)
 |frozen| micropython| v1.9.3| stm32| micropython| 3| 1.8.0|[stubs/micropython-v1_9_3-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-frozen/stm32/GENERIC)
 |frozen| micropython| v1.9.3| unix| micropython| 2| 1.8.0|[stubs/micropython-v1_9_3-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-frozen/unix/GENERIC)
@@ -551,4 +551,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  13635
+Total modules  13628
