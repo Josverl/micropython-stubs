@@ -21,6 +21,6 @@ jobs:
         stubber clone
 
     - name: run board stubber 
-      working-directory: repos/micropython-stubber
+      # working-directory: repos/micropython-stubber
       run: |
-        python3 scripts/board_stubber.py
+        python3 repos/micropython-stubber/scripts/board_stubber.py
