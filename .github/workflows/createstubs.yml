@@ -17,7 +17,7 @@ jobs:
         pip install -U mpremote micropython-stubber
     - name: clone Repos
       run: |
-        git clone https://github.dev/Josverl/micropython-stubber repos/micropython-stubber
+        git clone https://github.com/Josverl/micropython-stubber repos/micropython-stubber
         stubber clone
 
     - name: list connected devices
