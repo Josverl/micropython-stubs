@@ -20,6 +20,6 @@ jobs:
         git clone https://github.com/Josverl/micropython-stubber repos/micropython-stubber
         stubber clone
 
-    - name: list connected devices
+    - name: run board stubber
       run: |
-        mpremote devs
+        python3 repos/micropython-stubber/scripts/board_stubber.py
