@@ -7,6 +7,12 @@ jobs:
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v4
+    - name: Checkout stubber  repo
+      uses: actions/checkout@v4
+      with:
+        repository: josverl/micropython-stubber
+        path: repos/micropython-stubber
+        
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -15,9 +21,9 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -U mpremote micropython-stubber
+        pipx install poetry --ensurepath
     - name: clone Repos
       run: |
-        git clone https://github.com/Josverl/micropython-stubber repos/micropython-stubber
         stubber clone
 
     - name: run board stubber 
