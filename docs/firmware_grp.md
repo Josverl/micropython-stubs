@@ -530,7 +530,6 @@
 |micropython |v1.23-La|frozen  |stm32|STM32F7DISC|16|1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/STM32F7DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/STM32F7DISC)
 |micropython |v1.23-La|frozen  |stm32|STM32H573I_DK|16|1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/STM32H573I_DK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/STM32H573I_DK)
 |micropython |v1.23-La|frozen  |stm32|VCC_GND_F407ZG|16|1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/VCC_GND_F407ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/VCC_GND_F407ZG)
-|micropython |v1.23-La|frozen  |unix|GENERIC|12|1.17.0|[stubs/micropython-v1_23_0_preview-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/unix/GENERIC)
 |micropython |v1.23-La|frozen  |windows|GENERIC|8|1.17.0|[stubs/micropython-v1_23_0_preview-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/windows/GENERIC)
 |micropython |v1.9.3  |frozen  |esp8266|micropython|15|1.8.0|[stubs/micropython-v1_9_3-frozen/esp8266/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-frozen/esp8266/GENERIC)
 |micropython |v1.9.3  |frozen  |stm32|micropython|3|1.8.0|[stubs/micropython-v1_9_3-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-frozen/stm32/GENERIC)
@@ -587,4 +586,4 @@
 
 ## Metrics
 
-Total stub modules:  13628
+Total stub modules:  13616
