@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -U mpremote micropython-stubber
-        pipx install poetry --ensurepath
+        pipx install poetry
     - name: clone Repos
       run: |
         stubber clone
