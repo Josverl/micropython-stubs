@@ -1,4 +1,4 @@
-# micropython-esp32-um_tinypico-stubs
+# micropython-rp2-stubs
 
 
 This is a stub-only package for MicroPython.
@@ -27,13 +27,12 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
 Included stubs:
-* Merged stubs from `stubs/micropython-v1_19_1-esp32-UM_TINYPICO-merged`
-* Frozen stubs from `stubs/micropython-v1_19_1-frozen/esp32/UM_TINYPICO`
+* Merged stubs from `stubs/micropython-v1_20_0-rp2-PICO-merged`
+* Frozen stubs from `stubs/micropython-v1_20_0-frozen/rp2/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
-Firmware | micropython | esp32 | ESP32 module (spiram) with ESP32 | v1.19.1 
-Documentation | micropython | - | - | v1.19.1 
-Core | micropython | esp32 | - | v1.19.1 
+Documentation | micropython | - | - | v1.20.0 
+Core | micropython | rp2 | - | v1.20.0 
