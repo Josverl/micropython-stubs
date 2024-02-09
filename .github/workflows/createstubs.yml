@@ -3,11 +3,12 @@ name: Createstubs
 on: [push, workflow_dispatch]
 
 jobs:
-  build:
+  createstubs:
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@v4
-    - name: Checkout stubber  repo
+    - name: Checkout stubs repo
+      uses: actions/checkout@v4
+    - name: Checkout stubber repo (scripts)
       uses: actions/checkout@v4
       with:
         repository: josverl/micropython-stubber
@@ -22,11 +23,18 @@ jobs:
       run: |
         pip install -U mpremote micropython-stubber
         pipx install poetry
-    - name: clone Repos
-      run: |
-        stubber clone
+#    - name: clone Repos
+#      run: |
+#        stubber clone
 
     - name: run board stubber 
-      # working-directory: repos/micropython-stubber
       run: |
         python3 repos/micropython-stubber/scripts/board_stubber.py
+
+    - name: check in changes
+      run: |
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git add .
+        git commit -m "create boardstubs"
+        git push    
