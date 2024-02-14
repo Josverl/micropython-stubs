@@ -19,6 +19,46 @@
         {
             "file": "_boot.py",
             "module": "_boot"
+        },
+        {
+            "file": "asyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "asyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "asyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "asyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "asyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "asyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "uasyncio.py",
+            "module": "uasyncio"
         }
     ]
 }
