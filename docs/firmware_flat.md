@@ -513,7 +513,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| v1.23-Latest| rp2| W5100S_EVB_PICO| 21| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/rp2/W5100S_EVB_PICO)
 |frozen| micropython| v1.23-Latest| rp2| W5500_EVB_PICO| 21| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| v1.23-Latest| rp2| WEACTSTUDIO| 15| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/rp2/WEACTSTUDIO)
-|frozen| micropython| v1.23-Latest| samd| GENERIC| 1| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC)
+|frozen| micropython| v1.23-Latest| samd| GENERIC| 11| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC)
 |frozen| micropython| v1.23-Latest| stm32| ARDUINO_GIGA| 35| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_GIGA)
 |frozen| micropython| v1.23-Latest| stm32| ARDUINO_NICLA_VISION| 35| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_NICLA_VISION)
 |frozen| micropython| v1.23-Latest| stm32| ARDUINO_PORTENTA_H7| 35| 1.17.0|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7)
@@ -550,4 +550,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  13616
+Total modules  13626
