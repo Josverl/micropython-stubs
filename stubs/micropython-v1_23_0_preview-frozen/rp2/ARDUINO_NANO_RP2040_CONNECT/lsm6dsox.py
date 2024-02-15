@@ -48,32 +48,32 @@ import array
 from micropython import const
 import time
 
-_CTRL3_C = const(0x12)
-_CTRL1_XL = const(0x10)
-_CTRL8_XL = const(0x17)
-_CTRL9_XL = const(0x18)
+_CTRL3_C = 0x12
+_CTRL1_XL = 0x10
+_CTRL8_XL = 0x17
+_CTRL9_XL = 0x18
 
-_CTRL2_G = const(0x11)
-_CTRL7_G = const(0x16)
+_CTRL2_G = 0x11
+_CTRL7_G = 0x16
 
-_OUTX_L_G = const(0x22)
-_OUTX_L_XL = const(0x28)
-_MLC_STATUS = const(0x38)
+_OUTX_L_G = 0x22
+_OUTX_L_XL = 0x28
+_MLC_STATUS = 0x38
 
-_DEFAULT_ADDR = const(0x6A)
-_WHO_AM_I_REG = const(0x0F)
+_DEFAULT_ADDR = 0x6A
+_WHO_AM_I_REG = 0x0F
 
-_FUNC_CFG_ACCESS = const(0x01)
-_FUNC_CFG_BANK_USER = const(0)
-_FUNC_CFG_BANK_HUB = const(1)
-_FUNC_CFG_BANK_EMBED = const(2)
+_FUNC_CFG_ACCESS = 0x01
+_FUNC_CFG_BANK_USER = 0
+_FUNC_CFG_BANK_HUB = 1
+_FUNC_CFG_BANK_EMBED = 2
 
-_MLC0_SRC = const(0x70)
-_MLC_INT1 = const(0x0D)
-_TAP_CFG0 = const(0x56)
+_MLC0_SRC = 0x70
+_MLC_INT1 = 0x0D
+_TAP_CFG0 = 0x56
 
-_EMB_FUNC_EN_A = const(0x04)
-_EMB_FUNC_EN_B = const(0x05)
+_EMB_FUNC_EN_A = 0x04
+_EMB_FUNC_EN_B = 0x05
 
 
 class LSM6DSOX:

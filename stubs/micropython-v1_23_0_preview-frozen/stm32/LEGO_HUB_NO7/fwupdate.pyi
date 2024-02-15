@@ -1,12 +1,13 @@
 from _typeshed import Incomplete
+from micropython import const as const
 
 VFS_FAT: int
 VFS_LFS1: int
 VFS_LFS2: int
-_ELEM_TYPE_END: Incomplete
-_ELEM_TYPE_MOUNT: Incomplete
-_ELEM_TYPE_FSLOAD: Incomplete
-_ELEM_TYPE_STATUS: Incomplete
+_ELEM_TYPE_END: int
+_ELEM_TYPE_MOUNT: int
+_ELEM_TYPE_FSLOAD: int
+_ELEM_TYPE_STATUS: int
 
 def check_mem_contains(addr, buf): ...
 def dfu_read(filename): ...

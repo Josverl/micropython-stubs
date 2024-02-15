@@ -18,26 +18,26 @@ import esp32
 # TinyPICO Hardware Pin Assignments
 
 # Battery
-BAT_VOLTAGE = const(35)
-BAT_CHARGE = const(34)
+BAT_VOLTAGE = 35
+BAT_CHARGE = 34
 
 # APA102 Dotstar pins for production boards
-DOTSTAR_CLK = const(12)
-DOTSTAR_DATA = const(2)
-DOTSTAR_PWR = const(13)
+DOTSTAR_CLK = 12
+DOTSTAR_DATA = 2
+DOTSTAR_PWR = 13
 
 # SPI
-SPI_MOSI = const(23)
-SPI_CLK = const(18)
-SPI_MISO = const(19)
+SPI_MOSI = 23
+SPI_CLK = 18
+SPI_MISO = 19
 
 # I2C
-I2C_SDA = const(21)
-I2C_SCL = const(22)
+I2C_SDA = 21
+I2C_SCL = 22
 
 # DAC
-DAC1 = const(25)
-DAC2 = const(26)
+DAC1 = 25
+DAC2 = 26
 
 # Helper functions
 

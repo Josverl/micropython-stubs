@@ -6,7 +6,7 @@ import time
 from micropython import const, schedule
 
 # Set to True to get some additional printed debug output.
-_DEBUG = const(False)
+_DEBUG = False
 
 
 def _clamp(v, vmin, vmax):

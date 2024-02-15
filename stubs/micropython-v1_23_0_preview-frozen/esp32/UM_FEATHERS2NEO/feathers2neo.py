@@ -14,29 +14,29 @@ import machine
 # FeatherS2 Neo Hardware Pin Assignments
 
 # Sense Pins
-VBUS_SENSE = const(34)
-VBAT_SENSE = const(2)
+VBUS_SENSE = 34
+VBAT_SENSE = 2
 
 # RGB LED Pins
-RGB_DATA = const(40)
-RGB_PWR = const(39)
+RGB_DATA = 40
+RGB_PWR = 39
 
 # RGB MATRIX LED Pins
-RGB_MATRIX_DATA = const(21)
-RGB_MATRIX_PWR = const(4)
+RGB_MATRIX_DATA = 21
+RGB_MATRIX_PWR = 4
 
 # SPI
-SPI_MOSI = const(35)
-SPI_MISO = const(37)
-SPI_CLK = const(36)
+SPI_MOSI = 35
+SPI_MISO = 37
+SPI_CLK = 36
 
 # I2C
-I2C_SDA = const(8)
-I2C_SCL = const(9)
+I2C_SDA = 8
+I2C_SCL = 9
 
 # DAC
-DAC1 = const(17)
-DAC2 = const(18)
+DAC1 = 17
+DAC2 = 18
 
 
 # Helper functions

@@ -3,16 +3,16 @@
 
 from micropython import const
 
-_PAGE_SIZE = const(256)  # maximum bytes writable in one SPI transfer
-_CMD_WRITE = const(0x02)
-_CMD_READ = const(0x03)
-_CMD_RDSR = const(0x05)
-_CMD_WREN = const(0x06)
-_CMD_WRITE_32 = const(0x12)
-_CMD_READ_32 = const(0x13)
-_CMD_SEC_ERASE = const(0x20)
-_CMD_SEC_ERASE_32 = const(0x21)
-_CMD_JEDEC_ID = const(0x9F)
+_PAGE_SIZE = 256  # maximum bytes writable in one SPI transfer
+_CMD_WRITE = 0x02
+_CMD_READ = 0x03
+_CMD_RDSR = 0x05
+_CMD_WREN = 0x06
+_CMD_WRITE_32 = 0x12
+_CMD_READ_32 = 0x13
+_CMD_SEC_ERASE = 0x20
+_CMD_SEC_ERASE_32 = 0x21
+_CMD_JEDEC_ID = 0x9F
 
 
 class SPIFlash:

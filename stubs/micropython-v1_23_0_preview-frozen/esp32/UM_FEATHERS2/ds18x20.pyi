@@ -1,8 +1,9 @@
 from _typeshed import Incomplete
+from micropython import const as const
 
-_CONVERT: Incomplete
-_RD_SCRATCH: Incomplete
-_WR_SCRATCH: Incomplete
+_CONVERT: int
+_RD_SCRATCH: int
+_WR_SCRATCH: int
 
 class DS18X20:
     ow: Incomplete

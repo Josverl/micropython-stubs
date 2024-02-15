@@ -1,26 +1,27 @@
 from .core import GattError as GattError, ble as ble, register_irq_handler as register_irq_handler
 from .device import DeviceConnection as DeviceConnection
 from _typeshed import Incomplete
+from micropython import const as const
 
-_IRQ_GATTC_SERVICE_RESULT: Incomplete
-_IRQ_GATTC_SERVICE_DONE: Incomplete
-_IRQ_GATTC_CHARACTERISTIC_RESULT: Incomplete
-_IRQ_GATTC_CHARACTERISTIC_DONE: Incomplete
-_IRQ_GATTC_DESCRIPTOR_RESULT: Incomplete
-_IRQ_GATTC_DESCRIPTOR_DONE: Incomplete
-_IRQ_GATTC_READ_RESULT: Incomplete
-_IRQ_GATTC_READ_DONE: Incomplete
-_IRQ_GATTC_WRITE_DONE: Incomplete
-_IRQ_GATTC_NOTIFY: Incomplete
-_IRQ_GATTC_INDICATE: Incomplete
-_CCCD_UUID: Incomplete
-_CCCD_NOTIFY: Incomplete
-_CCCD_INDICATE: Incomplete
-_FLAG_READ: Incomplete
-_FLAG_WRITE_NO_RESPONSE: Incomplete
-_FLAG_WRITE: Incomplete
-_FLAG_NOTIFY: Incomplete
-_FLAG_INDICATE: Incomplete
+_IRQ_GATTC_SERVICE_RESULT: int
+_IRQ_GATTC_SERVICE_DONE: int
+_IRQ_GATTC_CHARACTERISTIC_RESULT: int
+_IRQ_GATTC_CHARACTERISTIC_DONE: int
+_IRQ_GATTC_DESCRIPTOR_RESULT: int
+_IRQ_GATTC_DESCRIPTOR_DONE: int
+_IRQ_GATTC_READ_RESULT: int
+_IRQ_GATTC_READ_DONE: int
+_IRQ_GATTC_WRITE_DONE: int
+_IRQ_GATTC_NOTIFY: int
+_IRQ_GATTC_INDICATE: int
+_CCCD_UUID: int
+_CCCD_NOTIFY: int
+_CCCD_INDICATE: int
+_FLAG_READ: int
+_FLAG_WRITE_NO_RESPONSE: int
+_FLAG_WRITE: int
+_FLAG_NOTIFY: int
+_FLAG_INDICATE: int
 
 def _client_irq(event, data) -> None: ...
 

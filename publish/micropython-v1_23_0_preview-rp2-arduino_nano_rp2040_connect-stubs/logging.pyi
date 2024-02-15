@@ -1,12 +1,13 @@
 from _typeshed import Incomplete
+from micropython import const as const
 
-CRITICAL: Incomplete
-ERROR: Incomplete
-WARNING: Incomplete
-INFO: Incomplete
-DEBUG: Incomplete
-NOTSET: Incomplete
-_DEFAULT_LEVEL: Incomplete
+CRITICAL: int
+ERROR: int
+WARNING: int
+INFO: int
+DEBUG: int
+NOTSET: int
+_DEFAULT_LEVEL = WARNING
 _level_dict: Incomplete
 _loggers: Incomplete
 _stream: Incomplete

@@ -47,24 +47,24 @@ import array
 from micropython import const
 
 
-_WHO_AM_I = const(0xF)
-_CTRL_REG1_G = const(0x10)
-_INT_GEN_SRC_G = const(0x14)
-_OUT_TEMP = const(0x15)
-_OUT_G = const(0x18)
-_CTRL_REG4_G = const(0x1E)
-_STATUS_REG = const(0x27)
-_OUT_XL = const(0x28)
-_FIFO_CTRL_REG = const(0x2E)
-_FIFO_SRC = const(0x2F)
-_OFFSET_REG_X_M = const(0x05)
-_CTRL_REG1_M = const(0x20)
-_OUT_M = const(0x28)
-_ACCEL_SCALE = const((2, 16, 4, 8))
-_GYRO_SCALE = const((245, 500, 2000))
-_MAGNET_SCALE = const((4, 8, 12, 16))
-_ODR_IMU = const((0, 14.9, 59.5, 119, 238, 476, 952))
-_ODR_MAGNET = const((0.625, 1.25, 2.5, 5, 10, 20, 40, 80))
+_WHO_AM_I = 0xF
+_CTRL_REG1_G = 0x10
+_INT_GEN_SRC_G = 0x14
+_OUT_TEMP = 0x15
+_OUT_G = 0x18
+_CTRL_REG4_G = 0x1E
+_STATUS_REG = 0x27
+_OUT_XL = 0x28
+_FIFO_CTRL_REG = 0x2E
+_FIFO_SRC = 0x2F
+_OFFSET_REG_X_M = 0x05
+_CTRL_REG1_M = 0x20
+_OUT_M = 0x28
+_ACCEL_SCALE = (2, 16, 4, 8)
+_GYRO_SCALE = (245, 500, 2000)
+_MAGNET_SCALE = (4, 8, 12, 16)
+_ODR_IMU = (0, 14.9, 59.5, 119, 238, 476, 952)
+_ODR_MAGNET = (0.625, 1.25, 2.5, 5, 10, 20, 40, 80)
 
 
 class LSM9DS1:

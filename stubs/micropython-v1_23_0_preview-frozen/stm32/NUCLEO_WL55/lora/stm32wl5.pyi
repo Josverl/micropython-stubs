@@ -2,9 +2,10 @@ from . import sx126x as sx126x
 from .async_modem import AsyncModem as AsyncModem
 from .sync_modem import SyncModem as SyncModem
 from _typeshed import Incomplete
+from micropython import const as const
 
-_CMD_CLR_ERRORS: Incomplete
-_REG_OCP: Incomplete
+_CMD_CLR_ERRORS: int
+_REG_OCP: int
 
 class NucleoWL55RFConfig:
     _FE_CTRL: Incomplete

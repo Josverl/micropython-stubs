@@ -1,13 +1,13 @@
 from _typeshed import Incomplete
 
-_DEFAULT_ADDR: Incomplete
-_CHIP_ID: Incomplete
-_STATUS: Incomplete
-_INIT_ADDR_0: Incomplete
-_INIT_ADDR_1: Incomplete
-_DATA_8: Incomplete
-_DATA_14: Incomplete
-_CMD: Incomplete
+_DEFAULT_ADDR: int
+_CHIP_ID: int
+_STATUS: int
+_INIT_ADDR_0: int
+_INIT_ADDR_1: int
+_DATA_8: int
+_DATA_14: int
+_CMD: int
 _CONFIG_DATA: Incomplete
 
 class BMI270:
