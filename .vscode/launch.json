@@ -35,7 +35,7 @@
                 "--type",
                 "board"
             ]
-        }
+        },
         {
             "name": "Python: publish 1.19.1 docs",
             "type": "python",
@@ -52,5 +52,23 @@
                 "doc"
             ]
         }
+        {
+            "name": "Python: stubber - cmdline",
+            "type": "python",
+            "request": "launch",
+            "module": "stubber.stubber",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                // "-v",
+                "merge",
+                "--version",
+                "v1.22.1",
+                "--port",
+                "esp32",
+                // "get-frozen",
+                // "preview",
+                // "switch",
+            ]
+        },
     ]
 }
