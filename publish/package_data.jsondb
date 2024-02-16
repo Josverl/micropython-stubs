@@ -20,7 +20,7 @@
             "path": "publish/micropython-v1_18-esp32-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_18-esp32"
                 ],
                 [
@@ -44,7 +44,7 @@
             "path": "publish/micropython-v1_18-stm32-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_18-stm32"
                 ],
                 [
@@ -68,7 +68,7 @@
             "path": "publish/micropython-v1_17-esp32-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_17-esp32"
                 ],
                 [
@@ -92,7 +92,7 @@
             "path": "publish/micropython-v1_17-stm32-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_17-stm32"
                 ],
                 [
@@ -116,7 +116,7 @@
             "path": "publish/micropython-v1_17-esp8266-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_17-esp8266"
                 ],
                 [
@@ -140,7 +140,7 @@
             "path": "publish/micropython-v1_17-rp2-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_17-rp2"
                 ],
                 [
@@ -164,7 +164,7 @@
             "path": "publish/micropython-v1_18-esp8266-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_18-esp8266"
                 ],
                 [
@@ -188,7 +188,7 @@
             "path": "publish/micropython-v1_18-rp2-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_18-rp2"
                 ],
                 [
@@ -212,7 +212,7 @@
             "path": "publish/micropython-v1_19_1-esp32-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_19_1-esp32"
                 ],
                 [
@@ -236,7 +236,7 @@
             "path": "publish/micropython-v1_19_1-esp32-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_19_1-esp32"
                 ],
                 [
@@ -260,7 +260,7 @@
             "path": "publish/micropython-v1_19_1-stm32-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_19_1-stm32"
                 ],
                 [
@@ -284,7 +284,7 @@
             "path": "publish/micropython-v1_19_1-stm32-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_19_1-stm32"
                 ],
                 [
@@ -308,7 +308,7 @@
             "path": "publish/micropython-v1_19_1-esp8266-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_19_1-esp8266"
                 ],
                 [
@@ -332,7 +332,7 @@
             "path": "publish/micropython-v1_19_1-stm32-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_19_1-stm32"
                 ],
                 [
@@ -356,7 +356,7 @@
             "path": "publish/micropython-v1_19_1-esp8266-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_19_1-esp8266"
                 ],
                 [
@@ -380,7 +380,7 @@
             "path": "publish/micropython-v1_18-stm32-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_18-stm32"
                 ],
                 [
@@ -404,7 +404,7 @@
             "path": "publish/micropython-v1_18-esp8266-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_18-esp8266"
                 ],
                 [
@@ -428,7 +428,7 @@
             "path": "publish/micropython-v1_19_1-esp8266-stubs",
             "stub_sources": [
                 [
-                    "Firmware stubs",
+                    "MCU stubs",
                     "stubs/micropython-v1_19_1-esp8266"
                 ],
                 [
