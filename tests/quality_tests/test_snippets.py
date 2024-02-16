@@ -26,7 +26,7 @@ PORTBOARD_FEATURES = {
         "espnow:skip version<1.21.0",
         "aioble:skip version<1.20.0",
     ],
-    "esp8266": CORE + ["networking"],  # TODO: New board stubs for esp8266, "espnow>=1.21.0"],
+    "esp8266": CORE + ["networking"],  # TODO: New MCU stubs for esp8266, "espnow>=1.21.0"],
     "samd": CORE,
     "samd-seeed_wio_terminal": CORE,
     # "samd-ADAFRUIT_ITSYBITSY_M4_EXPRESS": CORE,

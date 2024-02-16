@@ -10,7 +10,7 @@ graph TB
     MPY --> |"fas:fa-folder-tree ports/.../boards/.../manifest.py"| GFS
     LIB -->GFS -->FR
     
-    %% create firmware stubs
+    %% create MCU stubs
     MCU --> CS --> FW
     %% create docstubs
     DOCS --> GDS --> DS --> Merge
