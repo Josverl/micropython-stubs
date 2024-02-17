@@ -73,7 +73,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.22.1| rp2| generic| 90| v1.16.3|[stubs/micropython-v1_22_1-rp2-ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_1-rp2-ARDUINO_NANO_RP2040_CONNECT)
 |board| micropython| v1.22.1| rp2| generic| 64| v1.17.1|[stubs/micropython-v1_22_1-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_1-rp2-RPI_PICO)
 |board| micropython| v1.22.1| rp2| generic| 89| v1.17.1|[stubs/micropython-v1_22_1-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_1-rp2-RPI_PICO_W)
-|board| micropython| v1.22.1| samd| generic| 58| v1.16.3|[stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL)
+|board| micropython| v1.22.1| samd| generic| 58| v1.17.1|[stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL)
 |board| micropython| v1.23-Latest| esp32| generic| 88| v1.16.3|[stubs/micropython-v1_22_1-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_1-esp32-ESP32_GENERIC)
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/main/stubs/ev3_pybricks_v1_0_0)
