@@ -21,12 +21,18 @@ jobs:
           cache: pip
     - name: Install dependencies
       run: |
-        pip install -U mpremote micropython-stubber
         pipx install poetry
+        pip install -U mpremote micropython-stubber
+        # dev versie 
+        pip install git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=modules/mp_downloader
 
     - name: clone Repos
       run: |
         stubber clone
+
+    - name: download Preview firmwares for flashing
+      run: |
+        mp_downloads
 
     - name: run board stubber 
       run: |
