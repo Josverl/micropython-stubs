@@ -3,8 +3,32 @@ name: Createstubs
 on: [push, workflow_dispatch]
 
 jobs:
+  get_firmware:
+    runs-on: ubuntu-latest
+
+    steps:
+      #- uses: actions/checkout@v4
+      #----------------------------------------------
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+            python-version: 3.11
+            cache: pip
+      - name: Install dependencies
+        run: |
+          # dev versie 
+          pip install git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=modules/mp_downloader
+      - name: Get Preview firmwares for flashing
+        run: |
+          mp_downloader
+      - uses: actions/upload-artifact@v2
+        with:
+            name: firmware
+            path: firmware
+
   createstubs:
     runs-on: self-hosted
+    needs: get_firmware
     steps:
     - name: Checkout stubs repo
       uses: actions/checkout@v4
