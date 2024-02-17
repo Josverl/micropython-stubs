@@ -21,10 +21,11 @@ jobs:
       - name: Get Preview firmwares for flashing
         run: |
           mp_downloader
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
             name: firmware
             path: firmware
+            compression-level: 1 # FAST compression
 
   createstubs:
     runs-on: self-hosted
