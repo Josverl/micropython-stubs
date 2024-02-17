@@ -23,13 +23,14 @@ jobs:
       run: |
         pip install -U mpremote micropython-stubber
         pipx install poetry
-#    - name: clone Repos
-#      run: |
-#        stubber clone
+
+    - name: clone Repos
+      run: |
+        stubber clone
 
     - name: run board stubber 
       run: |
-        python3 repos/micropython-stubber/scripts/board_stubber.py
+        stubber get-mcu-stubs
 
     - name: check in changes
       run: |
