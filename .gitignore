@@ -47,6 +47,8 @@ publish/*/*.dist-info/*
 !publish/*/*.dist-info/METADATA
 # no typings
 typings
+# no firmware images
+firmware
 # no node modules
 node_modules
 package*.json
