@@ -1,7 +1,7 @@
 """
 Access and control MicroPython internals.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/micropython.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/micropython.html
 
 ---
 Module: 'micropython' on micropython-v1.23.0-preview-esp32-ESP32_GENERIC

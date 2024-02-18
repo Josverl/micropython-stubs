@@ -1,7 +1,7 @@
 """
 Socket module.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/socket.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/socket.html
 
 CPython module: :mod:`python:socket` https://docs.python.org/3/library/socket.html .
 

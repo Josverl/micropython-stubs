@@ -1,7 +1,7 @@
 """
 ESP-NOW :doc:`asyncio` support.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/aioespnow.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/aioespnow.html
 
 ---
 Module: '_espnow' on micropython-v1.23.0-preview-esp32-ESP32_GENERIC

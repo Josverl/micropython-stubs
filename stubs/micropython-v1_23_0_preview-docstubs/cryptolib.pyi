@@ -1,10 +1,10 @@
 """
 Cryptographic ciphers.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/cryptolib.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/cryptolib.html
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/cryptolib.rst
 from __future__ import annotations
 from typing import Any, Optional

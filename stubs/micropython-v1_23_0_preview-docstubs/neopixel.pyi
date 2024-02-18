@@ -1,7 +1,7 @@
 """
 Control of WS2812 / NeoPixel LEDs.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/neopixel.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/neopixel.html
 
 This module provides a driver for WS2818 / NeoPixel LEDs.
 
@@ -11,7 +11,7 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    directly from :term:`micropython-lib` and copy it to the filesystem.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/neopixel.rst
 from __future__ import annotations
 from typing import Tuple

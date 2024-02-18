@@ -1,7 +1,7 @@
 """
 Network configuration.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/network.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.

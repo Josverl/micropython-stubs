@@ -1,14 +1,14 @@
 """
 Functionality specific to STM32 MCUs.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/stm.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/stm.html
 
 This module provides functionality specific to STM32 microcontrollers, including
 direct access to peripheral registers.
 """
 
 # + module: stm.rst
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/stm.rst
 from __future__ import annotations
 from typing import Tuple

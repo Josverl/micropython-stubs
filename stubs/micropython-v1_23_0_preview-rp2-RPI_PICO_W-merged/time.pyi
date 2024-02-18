@@ -1,7 +1,7 @@
 """
 Time related functions.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/time.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/time.html
 
 CPython module: :mod:`python:time` https://docs.python.org/3/library/time.html .
 

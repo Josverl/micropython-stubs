@@ -1,7 +1,7 @@
 """
 Functions related to the ESP8266 and ESP32.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/esp.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/esp.html
 
 The ``esp`` module contains specific functions related to both the ESP8266 and
 ESP32 modules.  Some functions are only available on one or the other of these

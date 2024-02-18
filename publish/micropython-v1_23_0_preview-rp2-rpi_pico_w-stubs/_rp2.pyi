@@ -1,7 +1,7 @@
 """
 Functionality specific to the RP2.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/rp2.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/rp2.html
 
 The ``rp2`` module contains functions and classes specific to the RP2040, as
 used in the Raspberry Pi Pico.
@@ -46,7 +46,7 @@ class Flash:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
-        :class:`os.AbstractBlockDev`.
+        :class:`vfs.AbstractBlockDev`.
         """
         ...
     def __init__(self, *argv, **kwargs) -> None: ...

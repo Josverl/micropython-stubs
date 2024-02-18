@@ -5467,7 +5467,7 @@
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "e0dcda06"
+        "hash": "26c5822f"
     },
     {
         "family": "micropython",
@@ -5707,7 +5707,7 @@
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "e0dcda06"
+        "hash": "26c5822f"
     },
     {
         "family": "micropython",
@@ -19017,7 +19017,7 @@
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "e0dcda06"
+        "hash": "26c5822f"
     },
     {
         "family": "micropython",
@@ -19257,7 +19257,7 @@
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "e0dcda06"
+        "hash": "26c5822f"
     },
     {
         "family": "micropython",
@@ -21567,7 +21567,7 @@
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "5d1a44cc"
+        "hash": "0526bde5"
     },
     {
         "family": "micropython",
@@ -22027,7 +22027,7 @@
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -22377,7 +22377,7 @@
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -22447,7 +22447,7 @@
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "c2755543"
+        "hash": "238be588"
     },
     {
         "family": "micropython",
@@ -28607,7 +28607,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "37274e9f"
+        "hash": "c42dc994"
     },
     {
         "family": "micropython",
@@ -28717,7 +28717,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "9af5cb53"
+        "hash": "40041d2e"
     },
     {
         "family": "micropython",
@@ -28797,7 +28797,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -28857,7 +28857,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "90fb68d7"
+        "hash": "75b24029"
     },
     {
         "family": "micropython",
@@ -29067,7 +29067,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "9af5cb53"
+        "hash": "40041d2e"
     },
     {
         "family": "micropython",
@@ -29097,7 +29097,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -29167,7 +29167,7 @@
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "90fb68d7"
+        "hash": "75b24029"
     },
     {
         "family": "micropython",
@@ -29277,7 +29277,7 @@
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "4308ac3a"
+        "hash": "5177d33a"
     },
     {
         "family": "micropython",
@@ -29687,7 +29687,7 @@
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -29987,7 +29987,7 @@
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -30057,7 +30057,7 @@
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "c2755543"
+        "hash": "238be588"
     },
     {
         "family": "micropython",
@@ -30177,7 +30177,7 @@
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "5d1a44cc"
+        "hash": "0526bde5"
     },
     {
         "family": "micropython",
@@ -30447,7 +30447,7 @@
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -30477,7 +30477,7 @@
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "abdb7308"
+        "hash": "6d5560d2"
     },
     {
         "family": "micropython",
@@ -30697,7 +30697,7 @@
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -31017,7 +31017,7 @@
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "37274e9f"
+        "hash": "c42dc994"
     },
     {
         "family": "micropython",
@@ -31127,7 +31127,7 @@
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "9af5cb53"
+        "hash": "40041d2e"
     },
     {
         "family": "micropython",
@@ -31207,7 +31207,7 @@
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -31267,7 +31267,7 @@
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "90fb68d7"
+        "hash": "75b24029"
     },
     {
         "family": "micropython",
@@ -31477,7 +31477,7 @@
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "9af5cb53"
+        "hash": "40041d2e"
     },
     {
         "family": "micropython",
@@ -31507,7 +31507,7 @@
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -31577,7 +31577,7 @@
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "90fb68d7"
+        "hash": "75b24029"
     },
     {
         "family": "micropython",
@@ -34167,7 +34167,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "5d1a44cc"
+        "hash": "0526bde5"
     },
     {
         "family": "micropython",
@@ -34437,7 +34437,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",
@@ -34467,7 +34467,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "abdb7308"
+        "hash": "6d5560d2"
     },
     {
         "family": "micropython",
@@ -34687,7 +34687,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.23.0a138",
-        "hash": "f8aed66f"
+        "hash": "06ae1277"
     },
     {
         "family": "micropython",

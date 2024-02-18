@@ -1,13 +1,13 @@
 """
 WiPy specific features.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/wipy.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/wipy.html
 
 The ``wipy`` module contains functions to control specific features of the
 WiPy, such as the heartbeat LED.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/wipy.rst
 from __future__ import annotations
 from typing import Any, Optional

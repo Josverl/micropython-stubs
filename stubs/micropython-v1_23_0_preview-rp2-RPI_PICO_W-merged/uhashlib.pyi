@@ -1,7 +1,7 @@
 """
 Hashing algorithms.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/hashlib.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/hashlib.html
 
 CPython module: :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
 

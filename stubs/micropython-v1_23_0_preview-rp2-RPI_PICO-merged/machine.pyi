@@ -1,7 +1,7 @@
 """
 Functions related to the hardware.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/machine.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/machine.html
 
 The ``machine`` module contains specific functions related to the hardware
 on a particular board. Most functions in this module allow to achieve direct

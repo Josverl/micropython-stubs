@@ -1,7 +1,7 @@
 """
 Mathematical functions for complex numbers.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/cmath.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/cmath.html
 
 CPython module: :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
 

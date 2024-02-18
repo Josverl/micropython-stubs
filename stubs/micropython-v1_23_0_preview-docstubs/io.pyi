@@ -1,7 +1,7 @@
 """
 Input/output streams.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/io.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/io.html
 
 CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
 
@@ -73,7 +73,7 @@ classes corresponding to the hierarchy above, and it's not possible
 to implement, or subclass, a stream class in pure Python.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/io.rst
 from __future__ import annotations
 from typing import IO, Any, Optional

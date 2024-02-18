@@ -1,13 +1,13 @@
 """
 Functionality specific to Zephyr.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/zephyr.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/zephyr.html
 
 The ``zephyr`` module contains functions and classes specific to the Zephyr port.
 """
 
 # + module: zephyr.rst
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/zephyr.rst
 # + module: zephyr.DiskAccess.rst
 # + module: zephyr.FlashArea.rst
@@ -29,7 +29,7 @@ class DiskAccess:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
-        :class:`os.AbstractBlockDev`.
+        :class:`vfs.AbstractBlockDev`.
         """
         ...
 
@@ -52,7 +52,7 @@ class FlashArea:
         """
         These methods implement the simple and extended
         :ref:`block protocol <block-device-interface>` defined by
-        :class:`os.AbstractBlockDev`.
+        :class:`vfs.AbstractBlockDev`.
         """
         ...
 

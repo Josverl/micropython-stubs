@@ -1,7 +1,7 @@
 """
 Low-level Bluetooth radio functionality.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/bluetooth.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/bluetooth.html
 
 This module provides an interface to a Bluetooth controller on a board.
 Currently this supports Bluetooth Low Energy (BLE) in Central, Peripheral,
@@ -19,7 +19,7 @@ building-blocks for higher-level abstractions such as specific device types.
           methods and constants are subject to change.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/bluetooth.rst
 from __future__ import annotations
 from typing import Any, Optional, Tuple

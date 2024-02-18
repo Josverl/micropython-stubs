@@ -1,7 +1,7 @@
 """
 Time related functions.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/time.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/time.html
 
 CPython module: :mod:`python:time` https://docs.python.org/3/library/time.html .
 
@@ -33,7 +33,7 @@ functions below which require reference to current absolute time may
 behave not as expected.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/time.rst
 from __future__ import annotations
 from typing import Any, Optional, Tuple

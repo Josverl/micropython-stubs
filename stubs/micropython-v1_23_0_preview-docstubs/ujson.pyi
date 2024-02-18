@@ -1,7 +1,7 @@
 """
 JSON encoding and decoding.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/json.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/json.html
 
 CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
 
@@ -9,7 +9,7 @@ This modules allows to convert between Python objects and the JSON
 data format.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/json.rst
 from __future__ import annotations
 from _typeshed import Incomplete

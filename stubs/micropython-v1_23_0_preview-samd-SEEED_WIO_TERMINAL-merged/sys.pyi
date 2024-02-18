@@ -1,7 +1,7 @@
 """
 System specific functions.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/sys.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/sys.html
 
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 

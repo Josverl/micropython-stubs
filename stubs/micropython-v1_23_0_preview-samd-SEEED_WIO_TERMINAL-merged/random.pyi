@@ -1,7 +1,7 @@
 """
 Random numbers.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/random.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/random.html
 
 This module implements a pseudo-random number generator (PRNG).
 

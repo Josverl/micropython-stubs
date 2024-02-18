@@ -8,11 +8,11 @@
         "firmware": "micropython-v1_23_0_preview",
         "nodename": "micropython",
         "version": "v1.23.0-preview",
-        "release": "v1.23.0-preview-87-g0285cb2bf",
+        "release": "v1.23.0-preview-138-gdef6ad474",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.16.3",
+        "version": "1.17.3",
         "stubtype": "documentation"
     },
     "modules": [
@@ -219,6 +219,10 @@
         {
             "file": "uzlib.pyi",
             "module": "uzlib"
+        },
+        {
+            "file": "vfs.pyi",
+            "module": "vfs"
         },
         {
             "file": "wipy.pyi",

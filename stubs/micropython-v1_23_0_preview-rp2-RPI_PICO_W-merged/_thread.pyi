@@ -1,7 +1,7 @@
 """
 Multithreading support.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/_thread.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/_thread.html
 
 CPython module: :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
 

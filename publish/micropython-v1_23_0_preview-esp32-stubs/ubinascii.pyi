@@ -1,7 +1,7 @@
 """
 Binary/ASCII conversions.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/binascii.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/binascii.html
 
 CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
 

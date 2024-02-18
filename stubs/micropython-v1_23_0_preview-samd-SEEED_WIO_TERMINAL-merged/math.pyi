@@ -1,7 +1,7 @@
 """
 Mathematical functions.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/math.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/math.html
 
 CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
 

@@ -1,7 +1,7 @@
 """
 Wait for events on a set of streams.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/select.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/select.html
 
 CPython module: :mod:`python:select` https://docs.python.org/3/library/select.html .
 

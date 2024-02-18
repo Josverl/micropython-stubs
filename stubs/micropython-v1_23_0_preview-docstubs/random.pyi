@@ -1,7 +1,7 @@
 """
 Random numbers.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/random.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/random.html
 
 This module implements a pseudo-random number generator (PRNG).
 
@@ -27,7 +27,7 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
    enabled.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/random.rst
 from __future__ import annotations
 from typing import Any, Optional

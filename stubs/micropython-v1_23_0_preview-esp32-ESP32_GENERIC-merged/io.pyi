@@ -1,7 +1,7 @@
 """
 Input/output streams.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/io.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/io.html
 
 CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
 

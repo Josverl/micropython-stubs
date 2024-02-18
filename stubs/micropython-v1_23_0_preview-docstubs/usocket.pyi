@@ -1,7 +1,7 @@
 """
 Socket module.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/socket.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/socket.html
 
 CPython module: :mod:`python:socket` https://docs.python.org/3/library/socket.html .
 
@@ -61,7 +61,7 @@ Tuple address format for ``socket`` module:
   of IPv6 support depends on a :term:`MicroPython port`.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/socket.rst
 from __future__ import annotations
 from typing import IO, Any, Optional, Tuple

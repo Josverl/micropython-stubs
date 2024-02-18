@@ -1,7 +1,7 @@
 """
 Gzip compression & decompression.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/gzip.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/gzip.html
 
 CPython module: :mod:`python:gzip` https://docs.python.org/3/library/gzip.html .
 
@@ -28,7 +28,7 @@ file format.
   in the built-in :mod:`deflate <deflate>` module.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/gzip.rst
 from __future__ import annotations
 from _typeshed import Incomplete

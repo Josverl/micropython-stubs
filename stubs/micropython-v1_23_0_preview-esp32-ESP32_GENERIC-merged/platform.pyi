@@ -1,7 +1,7 @@
 """
 Access to underlying platform’s identifying data.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/platform.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/platform.html
 
 CPython module: :mod:`python:platform` https://docs.python.org/3/library/platform.html .
 

@@ -1,12 +1,12 @@
 """
 Control the garbage collector.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/gc.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/gc.html
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/gc.rst
 from __future__ import annotations
 from typing import Any, Optional

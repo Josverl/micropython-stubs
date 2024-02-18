@@ -1,7 +1,7 @@
 """
 Control the garbage collector.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/gc.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/gc.html
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 

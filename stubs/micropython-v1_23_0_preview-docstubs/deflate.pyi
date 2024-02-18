@@ -1,7 +1,7 @@
 """
 Deflate compression & decompression.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/deflate.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/deflate.html
 
 This module allows compression and decompression of binary data with the
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
@@ -19,7 +19,7 @@ This module allows compression and decompression of binary data with the
   you need to build your own firmware to enable this).
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/deflate.rst
 from __future__ import annotations
 from _typeshed import Incomplete

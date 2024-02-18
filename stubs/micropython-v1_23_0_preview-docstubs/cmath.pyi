@@ -1,7 +1,7 @@
 """
 Mathematical functions for complex numbers.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/cmath.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/cmath.html
 
 CPython module: :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
 
@@ -12,7 +12,7 @@ Availability: not available on WiPy and ESP8266. Floating point support
 required for this module.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/cmath.rst
 from __future__ import annotations
 from typing import Tuple

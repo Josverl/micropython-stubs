@@ -1,7 +1,7 @@
 """
 Mathematical functions.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/math.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/math.html
 
 CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
 
@@ -14,7 +14,7 @@ Availability: not available on WiPy. Floating point support required
 for this module.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/math.rst
 from __future__ import annotations
 from typing import Tuple

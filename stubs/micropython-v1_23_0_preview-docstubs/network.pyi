@@ -1,7 +1,7 @@
 """
 Network configuration.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/network.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/network.html
 
 This module provides network drivers and routing configuration. To use this
 module, a MicroPython variant/build with network capabilities must be installed.
@@ -34,7 +34,7 @@ For example::
     s.close()
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/network.rst
 # + module: network.WLAN.rst
 # + module: network.WLANWiPy.rst

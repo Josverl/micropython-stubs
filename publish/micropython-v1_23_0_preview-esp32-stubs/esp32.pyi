@@ -1,7 +1,7 @@
 """
 Functionality specific to the ESP32.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/esp32.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/esp32.html
 
 The ``esp32`` module contains functions and classes specifically aimed at
 controlling ESP32 modules.
@@ -184,7 +184,7 @@ class Partition:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
-        :class:`os.AbstractBlockDev`.
+        :class:`vfs.AbstractBlockDev`.
         """
         ...
     def set_boot(self) -> None:

@@ -1,7 +1,7 @@
 """
 Cryptographic ciphers.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/cryptolib.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/cryptolib.html
 
 ---
 Module: 'cryptolib' on micropython-v1.22.1-rp2-RPI_PICO

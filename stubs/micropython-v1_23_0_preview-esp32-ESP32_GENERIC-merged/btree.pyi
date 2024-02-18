@@ -1,7 +1,7 @@
 """
 Simple BTree database.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/btree.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/btree.html
 
 The ``btree`` module implements a simple key-value database using external
 storage (disk files, or in general case, a random-access `stream`). Keys are

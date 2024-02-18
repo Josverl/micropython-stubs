@@ -1,12 +1,12 @@
 """
 Functions related to the board.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/pyb.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/pyb.html
 
 The ``pyb`` module contains specific functions related to the board.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/pyb.rst
 # + module: pyb.Accel.rst
 # + module: pyb.ADC.rst
@@ -685,7 +685,7 @@ class Flash:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
-        :class:`os.AbstractBlockDev`.
+        :class:`vfs.AbstractBlockDev`.
         """
         ...
 
@@ -2084,11 +2084,11 @@ def main(filename) -> None:
 def mount(device, mountpoint, *, readonly=False, mkfs=False) -> int:
     """
     ``Note:`` This function is deprecated. Mounting and unmounting devices should
-       be performed by :meth:`os.mount` and :meth:`os.umount` instead.
+       be performed by :meth:`vfs.mount` and :meth:`vfs.umount` instead.
 
     Mount a block device and make it available as part of the filesystem.
     ``device`` must be an object that provides the block protocol. (The
-    following is also deprecated. See :class:`os.AbstractBlockDev` for the
+    following is also deprecated. See :class:`vfs.AbstractBlockDev` for the
     correct way to create a block device.)
 
      - ``readblocks(self, blocknum, buf)``

@@ -1,7 +1,7 @@
 """
 Pack and unpack primitive data types.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/struct.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/struct.html
 
 CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
 
@@ -54,7 +54,7 @@ The following data types are supported:
 +--------+--------------------+-------------------+---------------+
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/struct.rst
 from __future__ import annotations
 from typing import Tuple

@@ -1,7 +1,7 @@
 """
 Frame buffer manipulation.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/framebuf.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.

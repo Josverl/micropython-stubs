@@ -4,7 +4,7 @@
 """
 Control of LCD160CR display.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/lcd160cr.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/lcd160cr.html
 
 This module provides control of the MicroPython LCD160CR display.
 """

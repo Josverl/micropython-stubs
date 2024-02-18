@@ -1,7 +1,7 @@
 """
 Efficient arrays of numeric data.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/array.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/array.html
 
 CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html .
 

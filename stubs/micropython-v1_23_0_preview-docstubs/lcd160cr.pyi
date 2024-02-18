@@ -1,12 +1,12 @@
 """
 Control of LCD160CR display.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/lcd160cr.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/lcd160cr.html
 
 This module provides control of the MicroPython LCD160CR display.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/lcd160cr.rst
 from __future__ import annotations
 from typing import Tuple

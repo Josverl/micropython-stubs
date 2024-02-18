@@ -1,7 +1,7 @@
 """
 Access to underlying platform’s identifying data.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/platform.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/platform.html
 
 CPython module: :mod:`python:platform` https://docs.python.org/3/library/platform.html .
 
@@ -9,7 +9,7 @@ This module tries to retrieve as much platform-identifying data as possible. It
 makes this information available via function APIs.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/platform.rst
 from __future__ import annotations
 from typing import Tuple

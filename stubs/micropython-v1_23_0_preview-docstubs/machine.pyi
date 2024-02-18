@@ -1,7 +1,7 @@
 """
 Functions related to the hardware.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/machine.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/machine.html
 
 The ``machine`` module contains specific functions related to the hardware
 on a particular board. Most functions in this module allow to achieve direct
@@ -11,7 +11,7 @@ malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/machine.rst
 # + module: machine.Pin.rst
 # + module: machine.Signal.rst
@@ -1218,10 +1218,10 @@ class SDCard:
     """
     This class provides access to SD or MMC storage cards using either
     a dedicated SD/MMC interface hardware or through an SPI channel.
-    The class implements the block protocol defined by :class:`os.AbstractBlockDev`.
+    The class implements the block protocol defined by :class:`vfs.AbstractBlockDev`.
     This allows the mounting of an SD card to be as simple as::
 
-      os.mount(machine.SDCard(), "/sd")
+      vfs.mount(machine.SDCard(), "/sd")
 
     The constructor takes the following parameters:
 

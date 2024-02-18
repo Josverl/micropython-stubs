@@ -1,10 +1,10 @@
 """
 Access and control MicroPython internals.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/micropython.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/micropython.html
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/micropython.rst
 from __future__ import annotations
 from typing import Any, Optional, Tuple, TypeVar

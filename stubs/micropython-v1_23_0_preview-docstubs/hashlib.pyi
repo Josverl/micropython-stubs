@@ -1,7 +1,7 @@
 """
 Hashing algorithms.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/hashlib.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/hashlib.html
 
 CPython module: :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
 
@@ -24,7 +24,7 @@ be implemented:
   will offer this.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/hashlib.rst
 from __future__ import annotations
 from typing import Any, Optional

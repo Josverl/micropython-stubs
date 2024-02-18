@@ -1,7 +1,7 @@
 """
 TLS/SSL wrapper for socket objects.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/ssl.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/ssl.html
 
 CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
@@ -10,7 +10,7 @@ widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 """
 
-# source version: v1_23_0_preview
+# source version: v1.23.0-preview
 # origin module:: repos/micropython/docs/library/ssl.rst
 from __future__ import annotations
 from typing import IO, List
@@ -101,9 +101,7 @@ class SSLContext:
         """
         ...
 
-def wrap_socket(
-    sock, server_side=False, keyfile=None, certfile=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True
-) -> IO:
+def wrap_socket(sock, server_side=False, key=None, cert=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True) -> IO:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
      of this function is to first create an `SSLContext` and then call the `SSLContext.wrap_socket`

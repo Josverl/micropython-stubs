@@ -5,7 +5,7 @@
 """
 Asynchronous I/O scheduler for writing concurrent code.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0.preview/library/asyncio.html
+MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/asyncio.html
 
 CPython module:
 `asyncio `<https://docs.python.org/3.8/library/asyncio.html>
