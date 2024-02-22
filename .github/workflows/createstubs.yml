@@ -57,7 +57,7 @@ jobs:
     - name: Install dependencies
       run: |
         # dev versie 
-        pip install git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=modules/mp_downloader        
+        pip install -I git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=modules/mp_downloader
   
     - name: Update firmware to the most recent preview-build on all connected boards
       run: |
