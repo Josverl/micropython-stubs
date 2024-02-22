@@ -62,7 +62,8 @@ jobs:
     - name: Update firmware to the most recent preview-build on all connected boards
       # https://askubuntu.com/a/1342154
       run: |
-        echo ${{ secrets.RUNNER_USERPWD }} |sudo -S -E env PATH=$PATH mp_flasher flash --preview
+        # echo ${{ secrets.RUNNER_USERPWD }} |sudo -S -E env PATH=$PATH mp_flasher flash --preview
+        mp_flasher flash --preview
 
     - name: clone Repos
       run: |
