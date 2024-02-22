@@ -17,10 +17,10 @@ jobs:
       - name: Install dependencies
         run: |
           # dev versie 
-          pip install git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=modules/mp_downloader
+          pip install -I git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=modules/mp_downloader
       - name: Get Preview firmwares for flashing
         run: |
-          mp_downloader
+          mp_downloader --preview
       - uses: actions/upload-artifact@v4
         with:
             name: firmware
