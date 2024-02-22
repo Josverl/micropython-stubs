@@ -60,9 +60,9 @@ jobs:
       run: |
         stubber clone
 
-    - name: download Preview firmwares for flashing
+    - name: Update firmware to the most recent preview-build on all connected boards
       run: |
-        mp_downloads
+        mp_flasher flash --preview
 
     - name: run board stubber 
       run: |
