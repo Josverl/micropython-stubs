@@ -53,17 +53,20 @@ jobs:
       run: |
         pipx install poetry
         pip install -U mpremote micropython-stubber
-        # dev versie 
-        pip install git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=modules/mp_downloader
 
-    - name: clone Repos
+    - name: Install dependencies
       run: |
-        stubber clone
-
+        # dev versie 
+        pip install git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=modules/mp_downloader        
+  
     - name: Update firmware to the most recent preview-build on all connected boards
       run: |
         mp_flasher flash --preview
 
+    - name: clone Repos
+      run: |
+        stubber clone
+  
     - name: run board stubber 
       run: |
         stubber get-mcu-stubs
