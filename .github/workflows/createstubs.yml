@@ -30,6 +30,9 @@ jobs:
   createstubs:
     runs-on: self-hosted
     needs: get_firmware
+    strategy:
+        matrix:
+          version: [preview, v1.22.2, v1.22.1]
     steps:
     - name: Checkout stubs repo
       uses: actions/checkout@v4
@@ -63,7 +66,7 @@ jobs:
       # https://askubuntu.com/a/1342154
       # echo ${{ secrets.RUNNER_USERPWD }} |sudo -S -E env PATH=$PATH mp_flasher flash --preview
       run: |
-        mp_flasher flash --version preview
+        mp_flasher flash --version ${{ matrix.version }}
 
     - name: clone Repos
       run: |
