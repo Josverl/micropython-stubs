@@ -7,7 +7,7 @@ jobs:
     runs-on: self-hosted
     strategy:
       matrix:
-        version: [preview, v1.22.2, v1.22.1]
+        version: [preview, v1.22.2]
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v4
