@@ -3,94 +3,64 @@ name: Createstubs
 on: [push, workflow_dispatch]
 
 jobs:
-  get_firmware:
-    runs-on: ubuntu-latest
-
+  createstubs:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        version: [preview, v1.22.2, v1.22.1]
     steps:
-      - uses: actions/checkout@v4
-      #----------------------------------------------
+      - name: Checkout stubs repo
+        uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-            python-version: 3.11
-            cache: pip
+          python-version: 3.11
+          cache: pip
+          
       - name: Install dependencies
+        run: |
+          pipx install poetry
+          pip install -U mpremote micropython-stubber
+
+      - name: Install mp_downloader
         run: |
           # dev versie 
           pip install -I git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=modules/mp_downloader
-      - name: Get Preview firmwares for flashing
-        run: |
-          mp_downloader --preview --version 1.22.2 --version 1.22.1
-      - uses: actions/upload-artifact@v4
+
+      - uses: actions/cache/restore@v4
         with:
-            name: firmware
-            path: firmware
-            compression-level: 1 # FAST compression
-
-  createstubs:
-    runs-on: self-hosted
-    # needs: get_firmware
-    strategy:
-        matrix:
-          version: [preview, v1.22.2, v1.22.1]
-    steps:
-    - name: Checkout stubs repo
-      uses: actions/checkout@v4
-
-    # - name: Checkout stubber repo (scripts)
-    #   uses: actions/checkout@v4
-    #   with:
-    #     repository: josverl/micropython-stubber
-    #     path: repos/micropython-stubber
-
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-          python-version: 3.11
-          cache: pip
-    - name: Install dependencies
-      run: |
-        pipx install poetry
-        pip install -U mpremote micropython-stubber
-
-    - name: Install mp_downloader
-      run: |
-        # dev versie 
-        pip install -I git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=modules/mp_downloader
-
-    - uses: actions/cache/restore@v4
-      with:
-        path: firmware
-        key: firmware
-  
-    - name: Get Preview firmwares for flashing
-      run: |
-        mp_downloader --version ${{ matrix.version }} --preview
-
-    - uses: actions/cache/save@v4
-      with:
           path: firmware
           key: firmware
-  
 
-    - name: Update firmware to the most recent preview-build on all connected boards
-      # https://askubuntu.com/a/1342154
-      # echo ${{ secrets.RUNNER_USERPWD }} |sudo -S -E env PATH=$PATH mp_flasher flash --preview
-      run: |
-        mp_flasher flash --version ${{ matrix.version }}
+      - name: Get Preview firmwares for flashing
+        run: |
+          mp_downloader --version ${{ matrix.version }} --preview
 
-    - name: clone Repos
-      run: |
-        stubber clone
-  
-    - name: run board stubber 
-      run: |
-        stubber get-mcu-stubs
+      # - uses: actions/cache/save@v4
+      #   with:
+      #       path: firmware
+      #       key: firmware
 
-    - name: check in changes
-      run: |
-        git config user.name github-actions
-        git config user.email github-actions@github.com
-        git add .
-        git commit -m "create boardstubs"
-        git push    
+      - name: Update firmware to the most recent preview-build on all connected boards
+        # https://askubuntu.com/a/1342154
+        # echo ${{ secrets.RUNNER_USERPWD }} |sudo -S -E env PATH=$PATH mp_flasher flash --preview
+        run: |
+          mp_flasher flash --version ${{ matrix.version }}
+
+      - name: clone Repos
+        run: |
+          stubber clone
+
+      - name: run board stubber
+        run: |
+          stubber get-mcu-stubs
+
+      - name: check in changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git pull
+          git add .
+          git commit -m "create boardstubs"
+          git push
