@@ -7,8 +7,17 @@ jobs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - id: set-matrix
-        run: echo "matrix={\"include\":[{\"project\":\"foo\",\"config\":\"Debug\"},{\"project\":\"bar\",\"config\":\"Release\"}]}" >> $GITHUB_OUTPUT
+        shell: python
+        run: | 
+            import os, json
 
+            # GITHUB_OUTPUT is set by github actions
+            matrix = {}
+            matrix['version'] = ["1"]
+            matrix['board']=["RPI_PICO", "RPI_PICO_w"]
+            # output the matrix to a file
+            with open(os.getenv('GITHUB_OUTPUT'), 'a') as file:   #  type: ignore
+                file.write(f"versions={json.dumps(matrix)}")
 
   job20:
     needs: job10
