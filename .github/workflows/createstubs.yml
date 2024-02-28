@@ -3,11 +3,31 @@ name: Createstubs
 on: [push, workflow_dispatch]
 
 jobs:
+########################################################################################################################################
+  list-versions-cs:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 1
+        - name: Set up Python
+          uses: actions/setup-python@v4
+          with:
+            python-version: 3.11 
+        - run: pip install pygithub packaging
+        - run: python .github/workflows/list_versions.py --latest
+          id: dynamic
+    outputs:
+        versions: ${{ steps.dynamic.outputs.versions }}
+########################################################################################################################################
   createstubs:
+    needs: list-versions-cs
     runs-on: self-hosted
     strategy:
-      matrix:
-        version: [preview, v1.22.2]
+      matrix: ${{ fromJSON(needs.list-versions-cs.outputs.versions) }}
+      max-parallel: 1
+    #   matrix:
+    #     version: [preview, v1.22.2]
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v4
@@ -17,7 +37,7 @@ jobs:
         with:
           python-version: 3.11
           cache: pip
-          
+
       - name: Install dependencies
         run: |
           pipx install poetry
@@ -37,11 +57,11 @@ jobs:
             ${{ runner.os }}-firmware-
 
 
-      - name: Get Preview firmwares for flashing
+      - name: Get ${{ matrix.version }} firmwares for flashing
         run: |
-          mptool download --version ${{ matrix.version }} --preview
+          mptool download --version ${{ matrix.version }}
 
-      - name: Update firmware to the most recent preview-build on all connected boards
+      - name: Update firmware to ${{ matrix.version }} on all connected boards
         # cant update stm32 as that requires sudo :-( 
         run: |
           mptool flash --version ${{ matrix.version }}
