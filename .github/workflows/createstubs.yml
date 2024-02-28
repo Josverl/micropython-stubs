@@ -5,17 +5,10 @@ on: [push, workflow_dispatch]
 jobs:
 ########################################################################################################################################
   list-versions-cs:
+    # 'Get a matrix for the latest versions of micropython'
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v4
-          with:
-            fetch-depth: 1
-        - name: Set up Python
-          uses: actions/setup-python@v4
-          with:
-            python-version: 3.11 
-        - run: pip install pygithub packaging
-        - run: python .github/workflows/list_versions.py --latest
+        - uses: ./.github/actions/get-mpversions
           id: dynamic
     outputs:
         versions: ${{ steps.dynamic.outputs.versions }}

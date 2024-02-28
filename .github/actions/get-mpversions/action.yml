@@ -1,0 +1,31 @@
+name: "get-mpversions"
+description: "get the most recent 4 published versions of MicroPython"
+# inputs:
+#   verbose:
+#     description: "show more info"
+#     required: false
+#     default: "true"
+
+
+outputs:
+  versions:
+    description: "The last 4 versions of micropython"
+    value: ${{ steps.dynamic.outputs.versions }}
+
+runs:
+    using: composite
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11 
+
+      - run: pip install pygithub packaging
+        shell: bash
+
+      - run: python .github/actions/get-mpversions/list_versions.py --latest
+        shell: bash
+        id: dynamic
+
