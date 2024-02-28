@@ -8,6 +8,9 @@ jobs:
     # 'Get a matrix for the latest versions of micropython'
     runs-on: ubuntu-latest
     steps:
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 1        
         - uses: ./.github/actions/get-mpversions
           id: dynamic
     outputs:
