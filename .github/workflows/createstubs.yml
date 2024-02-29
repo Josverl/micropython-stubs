@@ -78,3 +78,9 @@ jobs:
           git add .
           git commit -m "create boardstubs"
           git push
+
+      - name: Build App
+        if: always()          
+        run: echo "Done."
+
+
