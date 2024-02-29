@@ -10,7 +10,7 @@ jobs:
     steps:
         - uses: actions/checkout@v4
           with:
-            fetch-depth: 1        
+            fetch-depth: 1
         - uses: ./.github/actions/get-mpversions
           id: dynamic
     outputs:
@@ -80,7 +80,7 @@ jobs:
           git push
 
       - name: Build App
-        if: always()          
+        if: always()
         run: echo "Done."
 
 
