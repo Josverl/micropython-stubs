@@ -18,7 +18,7 @@ jobs:
 ########################################################################################################################################
   createstubs:
     needs: list-versions-cs
-    runs-on: self-hosted
+    runs-on: [self-hosted, mpremote, ARM64]
     strategy:
       matrix: ${{ fromJSON(needs.list-versions-cs.outputs.versions) }}
       max-parallel: 1
