@@ -1,15 +1,14 @@
+# Self hosted runner on linux X64 / ARM64
 
-
-# Self hosted runner un linux
+Create a user `runner` that is member of the dialout and sudo groups
 
 # install tools 
-
 
 ## pipx 
 ```bash
 sudo apt update
 # pipx
-sudo apt install pipx
+sudo apt install pipx -y
 pipx ensurepath
 ``` 
 
@@ -21,14 +20,19 @@ https://docs.github.com/en/actions/hosting-your-own-runners
 > `.../actions_runner/.env`
 ```
 # Add 
-LANG=en_US.UTF-8
-AGENT_TOOLSDIRECTORY=/home/jos/actions-runner/_tools
+LANG=C.UTF8
+# LANG=en_US.UTF-8 
+AGENT_TOOLSDIRECTORY=/home/runner/actions-runner/_tools
 ```
 - [check if additional permissions are needed](https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#linux)
-- testrun 
-- configure to run as a service 
-- start service 
+- testrun
+    `./run.sh`
+- configure to run as a service
+    `sudo ./svc.sh install`
 
+- start service 
+  `sudo ./svc.sh start`
+   ref: https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/configuring-the-self-hosted-runner-application-as-a-service#installing-the-service
 
 # esp8266 devices not recognized 
 By default the brltty service is running and it blocks the usb port used by an esp8266.
