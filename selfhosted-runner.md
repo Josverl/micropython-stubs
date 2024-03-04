@@ -1,40 +1,80 @@
 # Self hosted runner on linux X64 / ARM64
 
+This is a guide to setup a self hosted runner on a linux X64 / ARM64 machine. 
+The guide is based on the [official documentation](https://docs.github.com/en/actions/hosting-your-own-runners) 
+and my own experience setting up a runner on a Raspberry Pi 4 and x64 using Ubuntu 22.04.
+
+
+## create a seperate user for the runner
 Create a user `runner` that is member of the dialout and sudo groups
+```bash
 
-# install tools 
+# create user
+sudo useradd -m -s /bin/bash runner
+# add to dialout group
+sudo usermod -a -G dialout runner
+# add to sudo group
+sudo usermod -a -G sudo runner
+# change to user
+su - runner
+```
 
-## pipx 
+## Install tools 
+### pipx 
 ```bash
 sudo apt update
 # pipx
 sudo apt install pipx -y
 pipx ensurepath
+```
+
+### Remove conflicting packages
+```bash
+# remove braille support as it conflicts with esp8266
+sudo apt remove brltty
 ``` 
 
-# install 
-https://docs.github.com/en/actions/hosting-your-own-runners
+### Install Github Actions runner
+This installs the runner in the home directory of the runner user.
+In this example a runner with `Repository` scope  is created. 
 
 - Install self hosted runner 
 - Configure environment 
 > `.../actions_runner/.env`
 ```
-# Add 
-LANG=C.UTF8
-# LANG=en_US.UTF-8 
+LANG=en_US.UTF-8 
+# Below is used by actions/setup-python to install python
 AGENT_TOOLSDIRECTORY=/home/runner/actions-runner/_tools
 ```
-- [check if additional permissions are needed](https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#linux)
-- testrun
+- testrun  
     `./run.sh`
-- configure to run as a service
+- configure to run as a service  
     `sudo ./svc.sh install`
 
-- start service 
+- start service  
   `sudo ./svc.sh start`
    ref: https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/configuring-the-self-hosted-runner-application-as-a-service#installing-the-service
 
-# esp8266 devices not recognized 
+
+https://docs.github.com/en/actions/hosting-your-own-runners
+[check if additional permissions are needed](https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#linux)
+
+
+# known issues
+
+### actions/setup-python does not support linux-arm64
+The `actions/setup-python` action does not support installing/configuring Python on linux-arm64.
+
+The workaround is to use the `deadsnakes/action` action to install python.
+https://github.com/deadsnakes/action?tab=readme-ov-file#deadsnakesaction
+
+see:  https://github.com/temporalio/sdk-python/pull/172/files#diff-e0c5149ab771083cacddbeaf3336656118f582f6311228e0b8652c3209a7dd2eR32-R39
+
+
+```yaml
+
+
+### esp8266 devices not recognized 
 By default the brltty service is running and it blocks the usb port used by an esp8266.
 
 the below log shows the service blocking the port
@@ -73,5 +113,4 @@ $ sudo dmesg | tail
 $ mpremote devs
 /dev/ttyUSB0 None 1a86:7523 None USB Serial
 ```	
-
 also see: https://stackoverflow.com/questions/70123431/why-would-ch341-uart-is-disconnected-from-ttyusb
