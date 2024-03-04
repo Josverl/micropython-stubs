@@ -18,14 +18,26 @@ sudo usermod -a -G sudo runner
 # change to user
 su - runner
 ```
+## allow the runner to run sudo commands without password
+In order to allow the runner to run sudo commands without a password, add the following line to a file in the `/etc/sudoers.d` directory.
+
+```bash
+# needed to allow deadsnakes/action to install python
+echo "runner ALL=(ALL:ALL) NOPASSWD:/usr/bin/add-apt-repository, /usr/bin/apt-get" | sudo tee /etc/sudoers.d/runner
+
+```
 
 ## Install tools 
 ### pipx 
 ```bash
 sudo apt update
-# pipx
+# pipx is required to be installed on all runners
 sudo apt install pipx -y
 pipx ensurepath
+
+# pmount - mount arbitrary hotpluggable devices as normal user
+# needed by mptool to mount UF2 devices
+sodo apt install pmount
 ```
 
 ### Remove conflicting packages
