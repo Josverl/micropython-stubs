@@ -1,0 +1,3 @@
+from _typeshed import Incomplete as Incomplete
+
+def install(*args, **kwargs) -> Incomplete: ...

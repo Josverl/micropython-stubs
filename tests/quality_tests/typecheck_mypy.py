@@ -2,8 +2,6 @@ import json
 import logging
 import os
 import shutil
-import subprocess
-import sys
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Dict, List
@@ -119,7 +117,7 @@ def chdir_mgr(path):
     finally:
         os.chdir(oldpwd)
 
-def run_mypy(path: Path):
+def run_mypy(path: Path) -> str:
     """
     Run mypy on the specified path.
 
@@ -139,7 +137,10 @@ def run_mypy(path: Path):
             result = mypy_api.run(cmd)
             errors = result[1]
             if errors:
-                raise Exception(f"mypy failed in {path} with\n{errors}")
+                message = errors.split("\n")[0].replace(":","-")
+                err_report = f"{path}:0: error: {message}  [import]"
+                return err_report
+  
             return result[0]
     except Exception as e:
         print(e)

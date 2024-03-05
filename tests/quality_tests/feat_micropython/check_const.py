@@ -30,12 +30,3 @@ assert_type(case8, float)
 # todo: micropython.const - how to test for incorrect assignments?
 # case = const({"foo": "bar"})
 # case = const(["foo", "bar"])
-
-# ----------------------------
-import machine
-
-GPIOA = const(0x48000000)
-GPIO_BSRR = const(0x18)
-GPIO_IDR = const(0x10)
-# set PA2 high
-machine.mem32[GPIOA + GPIO_BSRR] = 1 << 2

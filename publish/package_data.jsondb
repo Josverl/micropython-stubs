@@ -4215,6 +4215,54 @@
             "description": "MicroPython stubs",
             "hash": "71dcc78e58d7b12f68eda3ba5785b451351cb475",
             "stub_hash": "62527d1d2ffb5b2519e15a5cac469310adb8cfab"
+        },
+        "181134048039958822": {
+            "name": "micropython-unix-stubs",
+            "mpy_version": "1.21.0",
+            "publish": true,
+            "pkg_version": "1.21.0.post1",
+            "path": "micropython-v1_21_0-unix-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_21_0-unix-GENERIC-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_21_0-frozen/unix/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "a6c3ca6a555436fdb644bcb055a7a7a013ed8868",
+            "stub_hash": "6ac047db93d9b98767b9bc6d0ffc4da0670f0535"
+        },
+        "259776148236473493": {
+            "name": "micropython-unix-stubs",
+            "mpy_version": "1.20.0",
+            "publish": true,
+            "pkg_version": "1.20.0.post1",
+            "path": "micropython-v1_20_0-unix-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_20_0-unix-GENERIC-merged"
+                ],
+                [
+                    "Frozen stubs",
+                    "micropython-v1_20_0-frozen/unix/GENERIC"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "84fe0c448f37d3a8a918df6b17f69ff7103acc28",
+            "stub_hash": "2183729b5791ee250832ad8f56a1ba754eac0ba3"
         }
     }
 }

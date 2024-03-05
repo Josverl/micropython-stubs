@@ -100,14 +100,15 @@ def filter_issues(issues: List[Dict], version: str, *, linter: str, portboard: s
     for issue in issues:
         try:
             filename = Path(issue["file"])
-            with open(filename, "r") as f:
-                lines = f.readlines()
-            line = issue["range"]["start"]["line"]
-            if len(lines) > line:
-                theline: str = lines[line]
-                # check if the line contains a stubs-ignore comment
-                if stub_ignore(theline, version, port, board, linter=linter):
-                    issue["severity"] = "information"
+            if filename.exists() and filename.is_file():
+                with open(filename, "r") as f:
+                    lines = f.readlines()
+                line = issue["range"]["start"]["line"]
+                if len(lines) > line:
+                    theline: str = lines[line]
+                    # check if the line contains a stubs-ignore comment
+                    if stub_ignore(theline, version, port, board, linter=linter):
+                        issue["severity"] = "information"
         except KeyError as e:
             log.warning(f"Could not process issue: {e} \n{json.dumps(issues, indent=4)}")
     return issues

@@ -25,12 +25,24 @@
             "path": "check_unix"
         },
         {
+            "name": "check_webassembly",
+            "path": "check_webassembly"
+        },
+        {
+            "name": "check_windows",
+            "path": "check_windows"
+        },
+        {
             "name": "feat_uasyncio",
             "path": "feat_uasyncio"
         },
         {
             "name": "feat_micropython",
             "path": "feat_micropython"
+        },
+        {
+            "name": "feat_machine",
+            "path": "feat_machine"
         },
         {
             "name": "feat_stdlib_only",
