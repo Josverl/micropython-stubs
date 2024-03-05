@@ -13,14 +13,6 @@ import sys
 from github import Github
 from packaging.version import parse
 
-...
-import json
-import os
-import sys
-
-from github import Github
-from packaging.version import parse
-
 
 def micropython_versions(start="v1.10"):
     g = Github()
@@ -33,22 +25,28 @@ def micropython_versions(start="v1.10"):
         tags = ["v1.19.1"]
     return tags
 
-# sourcery skip: assign-if-exp, merge-dict-assign
-if __name__ == "__main__":
+
+def main():
     matrix = {}
     # only run latests when running in ACT locally for testing
     if os.environ.get("ACT"):
-        matrix["version"] = micropython_versions(start="v1.20")[-1:]
+        matrix["version"] = micropython_versions(start="v1.20")[:1] # only latest
     else:
-        matrix["version"] = micropython_versions(start="v1.20")
+       matrix["version"] = micropython_versions(start="v1.20")[:3] # last three
 
     add_latest = False
     if len(sys.argv) > 1 and (sys.argv[1].lower() in ["--latest", "-l"]):
-        print("Adding latest")
+        # print("Adding latest")
         matrix["version"].insert(0, "latest")
 
-    print(json.dumps(matrix))
     # GITHUB_OUTPUT is set by github actions
     if os.getenv('GITHUB_OUTPUT'):
         with open(os.getenv('GITHUB_OUTPUT'), 'a') as file:   #  type: ignore
             file.write(f"versions={json.dumps(matrix)}")
+    else:
+        print(json.dumps(matrix))
+
+# sourcery skip: assign-if-exp, merge-dict-assign
+if __name__ == "__main__":
+    main()
+

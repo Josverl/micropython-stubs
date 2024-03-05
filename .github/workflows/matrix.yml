@@ -1,0 +1,53 @@
+name: matrix
+on: push
+jobs:
+  job10:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        shell: python
+        run: | 
+            import os, json
+
+            # GITHUB_OUTPUT is set by github actions
+            matrix = {}
+            # matrix['version'] = ["1"]
+            matrix['board']=["RPI_PICO", "RPI_PICO_w"]
+            # output the matrix to a file
+            with open(os.getenv('GITHUB_OUTPUT'), 'a') as file:   #  type: ignore
+                file.write(f"boards={json.dumps(matrix)}")
+
+  job20:
+    needs: job10
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJSON(needs.job10.outputs.matrix) }}
+    steps:
+      - run: echo ${{ matrix.board}}
+
+# ########################################################################################################################################
+#   list-versions-cs2:
+#     # 'Get a matrix for the latest versions of micropython'
+#     runs-on: ubuntu-latest
+#     steps:
+#         - uses: actions/checkout@v4
+#           with:
+#             fetch-depth: 1
+#         - uses: ./.github/actions/get-mpversions
+#           id: dynamic
+#     outputs:
+#         versions: ${{ steps.dynamic.outputs.versions }}
+# ########################################################################################################################################
+#   job40:
+#     needs: list-versions-cs
+#     runs-on: self-hosted
+#     strategy:
+#       matrix: ${{ fromJSON(needs.list-versions-cs.outputs.versions) }}
+#       max-parallel: 1
+#     #   matrix:
+#     #     version: [preview, v1.22.2]
+#       steps:
+#         - run: | 
+#           - echo ${{ matrix.version }}

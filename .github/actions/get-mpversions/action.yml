@@ -1,0 +1,29 @@
+name: "get-mpversions"
+description: "get the most recent 4 published versions of MicroPython"
+inputs:
+  max:
+    description: "Maximum number of versions to return"
+    required: false
+    default: "4"
+
+
+outputs:
+  versions:
+    description: "Return recent versions of MicroPython"
+    value: ${{ steps.dynamic.outputs.versions }}
+
+runs:
+    using: composite
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.11
+          cache: pip
+
+      - run: pip install pygithub packaging
+        shell: bash
+
+      - run: python .github/actions/get-mpversions/list_versions.py --latest  --preview  --max ${{ inputs.max }}
+        shell: bash
+        id: dynamic
+

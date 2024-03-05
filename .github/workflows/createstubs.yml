@@ -3,20 +3,84 @@ name: Createstubs
 on: [push, workflow_dispatch]
 
 jobs:
-  build:
-    runs-on: self-hosted
+########################################################################################################################################
+  list-versions-cs:
+    # 'Get a matrix for the latest versions of micropython'
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-          python-version: 3.12
-          # cache: pip
-        
-    - name: Install dependencies
-      run: |
-        pip install mpremote
-      
-    - name: list connected devices
-      run: |
-        mpremote devs
+        - uses: actions/checkout@v4
+          with:
+            fetch-depth: 1
+        - uses: ./.github/actions/get-mpversions
+          id: dynamic
+    outputs:
+        versions: ${{ steps.dynamic.outputs.versions }}
+########################################################################################################################################
+  createstubs:
+    needs: list-versions-cs
+    runs-on: [self-hosted, mpremote, ARM64]
+    strategy:
+      matrix: ${{ fromJSON(needs.list-versions-cs.outputs.versions) }}
+      max-parallel: 1
+    #   matrix:
+    #     version: [preview, v1.22.2]
+    steps:
+      - name: Checkout stubs repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+      # if: ${{ matrix.os == 'ubuntu-arm' }}
+        uses: deadsnakes/action@v2.1.1
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pipx install poetry
+          pip install -U mpremote micropython-stubber
+
+      - name: Install mp_downloader
+        run: |
+          # dev versie 
+          pip install -I git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=src/mptool
+
+      - uses: actions/cache@v4
+        with:
+          path: firmware
+          key: ${{ runner.os }}-firmware-${{ matrix.version }}-${{ hashFiles('firmware/firmware.json') }}
+          restore-keys: |
+            ${{ runner.os }}-firmware-${{ matrix.version }}
+            ${{ runner.os }}-firmware-
+
+
+      - name: Get ${{ matrix.version }} firmwares for flashing
+        run: |
+          mptool download --version ${{ matrix.version }}
+
+      - name: Update firmware to ${{ matrix.version }} on all connected boards
+        # cant update stm32 as that requires sudo :-( 
+        run: |
+          mptool flash --version ${{ matrix.version }}
+
+      - name: clone Repos
+        run: |
+          stubber clone
+
+      - name: run board stubber
+        run: |
+          stubber get-mcu-stubs
+
+      - name: check in changes
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git pull
+          git add .
+          git commit -m "create boardstubs"
+          git push
+
+      - name: Build App
+        if: always()
+        run: echo "Done."
+
+
