@@ -37,12 +37,8 @@ jobs:
       - name: Install dependencies
         run: |
           pipx install poetry
-          pip install -U mpremote micropython-stubber
+          pip install -U mpflash mpremote
 
-      - name: Install MicroPython Flash tool
-        run: |
-          # dev versie 
-          pip install mpflash
 
       - uses: actions/cache@v4
         with:
