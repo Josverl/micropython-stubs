@@ -42,7 +42,7 @@ jobs:
       - name: Install mp_downloader
         run: |
           # dev versie 
-          pip install -I git+https://github.com/josverl/micropython-stubber.git@action_board_stubber#subdirectory=src/mptool
+          pip install mpflash
 
       - uses: actions/cache@v4
         with:
@@ -55,12 +55,12 @@ jobs:
 
       - name: Get ${{ matrix.version }} firmwares for flashing
         run: |
-          mptool download --version ${{ matrix.version }}
+          mpflash download --version ${{ matrix.version }}
 
       - name: Update firmware to ${{ matrix.version }} on all connected boards
         # cant update stm32 as that requires sudo :-( 
         run: |
-          mptool flash --version ${{ matrix.version }}
+          mpflash flash --version ${{ matrix.version }}
 
       - name: clone Repos
         run: |
