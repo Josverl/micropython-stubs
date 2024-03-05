@@ -64,7 +64,8 @@ avoid apt install to ask for confirmation
 I assume the same is set on GH hosted runners
 ```bash
 sudo nano /etc/apt/apt.conf.d/90_assume_yes
-APT::Get::Assume-Yes "true"
+APT::Get::Assume-Yes "true";
+
 $ cat /etc/apt/apt.conf.d/90_assume_yes
 ```
 ref : https://superuser.com/questions/164553/automatically-answer-yes-when-using-apt-get-install
