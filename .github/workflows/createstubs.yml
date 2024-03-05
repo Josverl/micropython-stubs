@@ -39,7 +39,7 @@ jobs:
           pipx install poetry
           pip install -U mpremote micropython-stubber
 
-      - name: Install mp_downloader
+      - name: Install MicroPython Flash tool
         run: |
           # dev versie 
           pip install mpflash
