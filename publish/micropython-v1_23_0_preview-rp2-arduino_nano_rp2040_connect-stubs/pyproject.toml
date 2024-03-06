@@ -73,7 +73,6 @@ packages = [
     { include = "framebuf.pyi" },
     { include = "gc.pyi" },
     { include = "hashlib.pyi" },
-    { include = "heapq.pyi" },
     { include = "io.pyi" },
     { include = "json.pyi" },
     { include = "logging.pyi" },

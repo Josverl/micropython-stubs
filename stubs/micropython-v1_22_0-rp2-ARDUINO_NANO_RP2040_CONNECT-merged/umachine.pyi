@@ -10,6 +10,7 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
@@ -778,7 +779,7 @@ class Pin:
         """
         ...
 
-class SoftSPI:
+class SoftSPI(SPI):
     """
     Construct a new software SPI object.  Additional parameters must be
     given, usually at least *sck*, *mosi* and *miso*, and these are used

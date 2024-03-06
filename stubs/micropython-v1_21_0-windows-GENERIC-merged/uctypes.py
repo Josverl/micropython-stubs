@@ -9,6 +9,9 @@ different, streamlined and optimized for small size. The basic idea of the
 module is to define data structure layout with about the same power as the
 C language allows, and then access it using familiar dot-syntax to reference
 sub-fields.
+
+---
+Module: 'uctypes' on micropython-v1.21.0-win32-GENERIC
 """
 # MCU: {'version': '1.21.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.21.0', 'cpu': ''}
 # Stubber: v1.15.0
@@ -93,5 +96,5 @@ class struct:
     memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
 
-    def __init__(self, addr, descriptor, layout_type=NATIVE, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

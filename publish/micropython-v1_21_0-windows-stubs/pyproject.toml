@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-windows-stubs"
-version = "1.21.0.post1"
+version = "1.21.0.post2"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -45,13 +45,11 @@ packages = [
     { include = "asyncio/stream.pyi" },
     { include = "binascii.pyi" },
     { include = "cmath.pyi" },
-    { include = "collections.pyi" },
     { include = "deflate.pyi" },
     { include = "errno.pyi" },
     { include = "gc.pyi" },
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
-    { include = "io.pyi" },
     { include = "json.pyi" },
     { include = "logging.pyi" },
     { include = "machine.pyi" },
@@ -61,16 +59,13 @@ packages = [
     { include = "random.pyi" },
     { include = "struct.pyi" },
     { include = "sys.pyi" },
-    { include = "time.pyi" },
     { include = "uarray.pyi" },
     { include = "uasyncio.pyi" },
     { include = "ubinascii.pyi" },
-    { include = "ucollections.pyi" },
     { include = "uctypes.pyi" },
     { include = "uerrno.pyi" },
     { include = "uhashlib.pyi" },
     { include = "uheapq.pyi" },
-    { include = "uio.pyi" },
     { include = "ujson.pyi" },
     { include = "umachine.pyi" },
     { include = "uos.pyi" },
@@ -78,12 +73,11 @@ packages = [
     { include = "ure.pyi" },
     { include = "ustruct.pyi" },
     { include = "usys.pyi" },
-    { include = "utime.pyi" },
 ]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-micropython-stdlib-stubs = ">=0.9.0"
+micropython-stdlib-stubs = ">=1.1.1"
 
 [tool.poetry.dev-dependencies]
 

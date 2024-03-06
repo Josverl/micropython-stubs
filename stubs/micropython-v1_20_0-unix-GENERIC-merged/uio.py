@@ -71,6 +71,9 @@ for which we may introduce buffering support.)
 Note that for efficiency, MicroPython doesn't provide abstract base
 classes corresponding to the hierarchy above, and it's not possible
 to implement, or subclass, a stream class in pure Python.
+
+---
+Module: 'uio' on micropython-v1.20.0-unix-linux_[GCC_9.4.0]_version
 """
 # MCU: {'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
@@ -121,7 +124,7 @@ class StringIO(IO):
     def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, string: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
@@ -168,5 +171,5 @@ class BytesIO(IO):
     def readinto(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, string: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

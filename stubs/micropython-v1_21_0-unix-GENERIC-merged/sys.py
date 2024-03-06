@@ -4,6 +4,9 @@ System specific functions.
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/sys.html
 
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
+
+---
+Module: 'sys' on micropython-v1.21.0-unix-linux_[GCC_9.4.0]_version
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1

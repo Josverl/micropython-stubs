@@ -16,7 +16,7 @@ jobs:
     outputs:
         versions: ${{ steps.dynamic.outputs.versions }}
 ########################################################################################################################################
-   createstubs:
+  createstubs:
     env:
         # ARCH: ARM64
         ARCH: X64

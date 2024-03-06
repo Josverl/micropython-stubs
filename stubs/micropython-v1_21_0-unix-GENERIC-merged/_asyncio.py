@@ -32,6 +32,9 @@ Example::
 
 Core functions
 --------------
+
+---
+Module: '_asyncio' on micropython-v1.21.0-unix-linux_[GCC_9.4.0]_version
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
@@ -65,5 +68,5 @@ class Task:
     Tasks should not be created directly, rather use `create_task` to create them.
     """
 
-    def __init__(self) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-unix-stubs"
-version = "1.20.0.post1"
+version = "1.20.0.post2"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -43,11 +43,9 @@ packages = [
     { include = "binascii.pyi" },
     { include = "btree.pyi" },
     { include = "cmath.pyi" },
-    { include = "collections.pyi" },
     { include = "cryptolib.pyi" },
     { include = "errno.pyi" },
     { include = "ffi.pyi" },
-    { include = "framebuf.pyi" },
     { include = "gc.pyi" },
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
@@ -55,11 +53,9 @@ packages = [
     { include = "json.pyi" },
     { include = "logging.pyi" },
     { include = "machine.pyi" },
-    { include = "math.pyi" },
     { include = "micropython.pyi" },
     { include = "mip/__init__.pyi" },
     { include = "mip/__main__.pyi" },
-    { include = "os.pyi" },
     { include = "random.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },
@@ -85,7 +81,6 @@ packages = [
     { include = "uio.pyi" },
     { include = "ujson.pyi" },
     { include = "umachine.pyi" },
-    { include = "uos.pyi" },
     { include = "urandom.pyi" },
     { include = "ure.pyi" },
     { include = "urequests.pyi" },
@@ -104,7 +99,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-micropython-stdlib-stubs = ">=0.9.0"
+micropython-stdlib-stubs = ">=1.1.1"
 
 [tool.poetry.dev-dependencies]
 

@@ -31,6 +31,9 @@ by following means:
 If actual calendar time is not maintained with a system/MicroPython RTC,
 functions below which require reference to current absolute time may
 behave not as expected.
+
+---
+Module: 'time' on micropython-v1.20.0-win32-GENERIC
 """
 # MCU: {'version': '1.20.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.20.0', 'cpu': ''}
 # Stubber: v1.15.0

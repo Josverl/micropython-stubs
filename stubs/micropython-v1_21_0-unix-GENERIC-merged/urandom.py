@@ -25,6 +25,9 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
    The :func:`randrange`, :func:`randint` and :func:`choice` functions are only
    available if the ``MICROPY_PY_RANDOM_EXTRA_FUNCS`` configuration option is
    enabled.
+
+---
+Module: 'urandom' on micropython-v1.21.0-unix-linux_[GCC_9.4.0]_version
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1

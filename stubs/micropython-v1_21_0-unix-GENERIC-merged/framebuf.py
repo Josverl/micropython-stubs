@@ -5,6 +5,9 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/framebuf.htm
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
+
+---
+Module: 'framebuf' on micropython-v1.21.0-unix-linux_[GCC_9.4.0]_version
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
@@ -159,5 +162,5 @@ class FrameBuffer:
     def fill_rect(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, buffer, width, height, format, stride=-1, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

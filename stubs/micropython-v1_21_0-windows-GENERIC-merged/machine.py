@@ -9,6 +9,9 @@ and unrestricted access to and control of hardware blocks on a system
 (like CPU, timers, buses, etc.). Used incorrectly, this can lead to
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
+
+---
+Module: 'machine' on micropython-v1.21.0-win32-GENERIC
 """
 # MCU: {'version': '1.21.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.21.0', 'cpu': ''}
 # Stubber: v1.15.0
@@ -100,5 +103,5 @@ class Signal(Pin):
         """
         ...
 
-    def __init__(self, pin_obj, *args, invert=False) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

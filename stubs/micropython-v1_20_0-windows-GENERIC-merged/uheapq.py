@@ -10,6 +10,9 @@ This module implements the
 
 A heap queue is essentially a list that has its elements stored in such a way
 that the first item of the list is always the smallest.
+
+---
+Module: 'uheapq' on micropython-v1.20.0-win32-GENERIC
 """
 # MCU: {'version': '1.20.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.20.0', 'cpu': ''}
 # Stubber: v1.15.0
