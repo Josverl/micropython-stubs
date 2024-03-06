@@ -2,6 +2,10 @@ name: Createstubs
 
 on: [push, workflow_dispatch]
 
+env:
+  ARCH: X64
+  # ARCH: ARM64
+
 jobs:
 ########################################################################################################################################
   list-versions-cs:
@@ -17,11 +21,8 @@ jobs:
         versions: ${{ steps.dynamic.outputs.versions }}
 ########################################################################################################################################
   createstubs:
-    env:
-        # ARCH: ARM64
-        ARCH: X64
     needs: list-versions-cs
-    runs-on: [self-hosted, mpremote, ${{ env.ARCH }}]
+    runs-on: [self-hosted, mpremote, X64]
     strategy:
       matrix: ${{ fromJSON(needs.list-versions-cs.outputs.versions) }}
       max-parallel: 1
