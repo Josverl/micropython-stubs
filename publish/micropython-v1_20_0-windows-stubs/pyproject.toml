@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-windows-stubs"
-version = "1.20.0.post1"
+version = "1.20.0.post2"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -39,7 +39,6 @@ packages = [
     { include = "array.pyi" },
     { include = "binascii.pyi" },
     { include = "cmath.pyi" },
-    { include = "collections.pyi" },
     { include = "errno.pyi" },
     { include = "gc.pyi" },
     { include = "hashlib.pyi" },
@@ -85,7 +84,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-micropython-stdlib-stubs = ">=0.9.0"
+micropython-stdlib-stubs = ">=1.1.1"
 
 [tool.poetry.dev-dependencies]
 

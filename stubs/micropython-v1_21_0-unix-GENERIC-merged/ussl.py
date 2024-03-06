@@ -8,6 +8,9 @@ CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
+
+---
+Module: 'ussl' on micropython-v1.21.0-unix-linux_[GCC_9.4.0]_version
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
@@ -76,5 +79,5 @@ class SSLContext:
         """
         ...
 
-    def __init__(self, protocol, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

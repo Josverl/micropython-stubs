@@ -4,6 +4,9 @@ Control the garbage collector.
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/gc.html
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
+
+---
+Module: 'gc' on micropython-v1.21.0-win32-GENERIC
 """
 # MCU: {'version': '1.21.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.21.0', 'cpu': ''}
 # Stubber: v1.15.0

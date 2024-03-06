@@ -7,6 +7,9 @@ CPython module: :mod:`python:platform` https://docs.python.org/3/library/platfor
 
 This module tries to retrieve as much platform-identifying data as possible. It
 makes this information available via function APIs.
+
+---
+Module: 'platform' on micropython-v1.21.0-unix-linux_[GCC_9.4.0]_version
 """
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1

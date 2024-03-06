@@ -9,6 +9,9 @@ This module allows to decompress binary data compressed with
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
 (commonly used in zlib library and gzip archiver). Compression
 is not yet implemented.
+
+---
+Module: 'uzlib' on micropython-v1.20.0-unix-linux_[GCC_9.4.0]_version
 """
 # MCU: {'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
@@ -51,5 +54,5 @@ class DecompIO:
     def read(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, stream, wbits=0, /) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

@@ -22,6 +22,9 @@ be implemented:
 * MD5 - A legacy algorithm, not considered cryptographically secure. Only
   selected boards, targeting interoperability with legacy applications,
   will offer this.
+
+---
+Module: 'hashlib' on micropython-v1.20.0-win32-GENERIC
 """
 # MCU: {'version': '1.20.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.20.0', 'cpu': ''}
 # Stubber: v1.15.0
@@ -40,5 +43,5 @@ class sha256:
     def update(self, *args, **kwargs) -> Incomplete:
         ...
 
-    def __init__(self, data: Optional[Any] = None) -> None:
+    def __init__(self, *argv, **kwargs) -> None:
         ...

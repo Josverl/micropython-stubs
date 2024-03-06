@@ -9,6 +9,9 @@ This module implements multithreading support.
 
 This module is highly experimental and its API is not yet fully settled
 and not yet described in this documentation.
+
+---
+Module: '_thread' on micropython-v1.20.0-unix-linux_[GCC_9.4.0]_version
 """
 # MCU: {'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1

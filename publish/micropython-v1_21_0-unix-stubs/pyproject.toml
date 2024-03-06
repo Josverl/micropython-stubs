@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-unix-stubs"
-version = "1.21.0.post1"
+version = "1.21.0.post2"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -49,7 +49,6 @@ packages = [
     { include = "binascii.pyi" },
     { include = "btree.pyi" },
     { include = "cmath.pyi" },
-    { include = "collections.pyi" },
     { include = "cryptolib.pyi" },
     { include = "deflate.pyi" },
     { include = "errno.pyi" },
@@ -111,7 +110,7 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-micropython-stdlib-stubs = ">=0.9.0"
+micropython-stdlib-stubs = ">=1.1.1"
 
 [tool.poetry.dev-dependencies]
 
