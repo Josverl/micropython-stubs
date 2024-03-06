@@ -9,10 +9,10 @@ This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 
 ---
-Module: 'binascii' on micropython-v1.22.1-samd-SEEED_WIO_TERMINAL
+Module: 'binascii' on micropython-v1.23.0-preview-samd-SEEED_WIO_TERMINAL
 """
-# MCU: {'build': '', 'ver': '1.22.1', 'version': '1.22.1', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
-# Stubber: v1.17.1
+# MCU: {'version': '1.23.0-preview', 'mpy': 'v6.2', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '176', 'arch': 'armv7emsp', 'ver': '1.23.0-preview-176', 'cpu': 'SAMD51P19A'}
+# Stubber: v1.17.3
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Any, Optional

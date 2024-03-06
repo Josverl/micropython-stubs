@@ -6,10 +6,10 @@ MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/sys.
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 
 ---
-Module: 'usys' on micropython-v1.22.1-samd-SEEED_WIO_TERMINAL
+Module: 'usys' on micropython-v1.23.0-preview-samd-SEEED_WIO_TERMINAL
 """
-# MCU: {'build': '', 'ver': '1.22.1', 'version': '1.22.1', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
-# Stubber: v1.17.1
+# MCU: {'version': '1.23.0-preview', 'mpy': 'v6.2', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '176', 'arch': 'armv7emsp', 'ver': '1.23.0-preview-176', 'cpu': 'SAMD51P19A'}
+# Stubber: v1.17.3
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Dict, List, Tuple
@@ -17,7 +17,7 @@ from typing import Dict, List, Tuple
 platform: str = "samd"
 version_info: tuple = ()
 path: list = []
-version: str = "3.4.0; MicroPython v1.22.1 on 2024-01-05"
+version: str = "3.4.0; MicroPython v1.23.0-preview.176.g90e517862 on 2024-03-04"
 ps1: str = ">>> "
 ps2: str = "... "
 byteorder: str = "little"

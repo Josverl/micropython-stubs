@@ -10,16 +10,16 @@ widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 
 ---
-Module: 'ssl' on micropython-v1.22.1-rp2-RPI_PICO_W
+Module: 'ssl' on micropython-v1.23.0-preview-rp2-RPI_PICO_W
 """
-# MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
-# Stubber: v1.17.1
+# MCU: {'build': 'preview.176.g90e517862', 'ver': '1.23.0-preview-preview.176.g90e517862', 'version': '1.23.0-preview', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.17.3
 from __future__ import annotations
 from _typeshed import Incomplete
 from stdlib.ssl import *
 from typing import IO, List
 
-MBEDTLS_VERSION: str = "mbed TLS 2.28.3"
+MBEDTLS_VERSION: str = "Mbed TLS 3.5.1"
 PROTOCOL_TLS_SERVER: int = 1
 PROTOCOL_TLS_CLIENT: int = 0
 CERT_NONE: int = 0
@@ -59,12 +59,6 @@ class SSLContext:
         containing the CA certificates.  Only one of these arguments should be provided.
         """
         ...
-    def set_ciphers(self, ciphers) -> None:
-        """
-        Set the available ciphers for sockets created with this context.  *ciphers* should be
-        a list of strings in the `IANA cipher suite format <https://wiki.mozilla.org/Security/Cipher_Suites>`_ .
-        """
-        ...
     def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
@@ -101,9 +95,5 @@ class SSLContext:
            strings, in which case they are interpreted as the actual certificate/key data.
         """
         ...
-    def get_ciphers(self) -> List[str]:
-        """
-        Get a list of enabled ciphers, returned as a list of strings.
-        """
-        ...
+    verify_mode: Incomplete  ## <class 'property'> = <property>
     def __init__(self, *argv, **kwargs) -> None: ...

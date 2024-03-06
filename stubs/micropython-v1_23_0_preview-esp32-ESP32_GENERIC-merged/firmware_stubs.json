@@ -1,5 +1,5 @@
-{"firmware": {"family": "micropython", "version": "1.23.0-preview", "build": "preview.6.g3d0b6276f", "ver": "1.23.0-preview-preview.6.g3d0b6276f", "port": "esp32", "board": "ESP32_GENERIC", "cpu": "ESP32", "mpy": "v6.2", "arch": "xtensawin"},
-"stubber": {"version": "v1.16.3"}, "stubtype": "firmware",
+{"firmware": {"version": "1.23.0-preview", "mpy": "v6.2", "port": "esp32", "board": "ESP32_GENERIC", "family": "micropython", "build": "preview.176.g90e517862", "arch": "xtensawin", "ver": "1.23.0-preview-preview.176.g90e517862", "cpu": "ESP32"},
+"stubber": {"version": "v1.17.3"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/_asyncio.pyi"},
 {"module": "_espnow", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/_espnow.pyi"},
@@ -35,7 +35,6 @@
 {"module": "inisetup", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/inisetup.pyi"},
 {"module": "io", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/io.pyi"},
 {"module": "json", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/json.pyi"},
-{"module": "logging", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/logging.pyi"},
 {"module": "machine", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/machine.pyi"},
 {"module": "math", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/math.pyi"},
 {"module": "micropython", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/micropython.pyi"},
@@ -83,7 +82,6 @@
 {"module": "urequests", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/urequests.pyi"},
 {"module": "uselect", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/uselect.pyi"},
 {"module": "usocket", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/usocket.pyi"},
-{"module": "ussl", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/ussl.pyi"},
 {"module": "ustruct", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/ustruct.pyi"},
 {"module": "usys", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/usys.pyi"},
 {"module": "utime", "file": "/remote/stubs/micropython-v1_23_0-preview-esp32-ESP32_GENERIC/utime.pyi"},
