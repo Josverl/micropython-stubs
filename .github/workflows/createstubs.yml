@@ -16,9 +16,12 @@ jobs:
     outputs:
         versions: ${{ steps.dynamic.outputs.versions }}
 ########################################################################################################################################
-  createstubs:
+   createstubs:
+    env:
+        # ARCH: ARM64
+        ARCH: X64
     needs: list-versions-cs
-    runs-on: [self-hosted, mpremote, ARM64]
+    runs-on: [self-hosted, mpremote, ${{ env.ARCH }}]
     strategy:
       matrix: ${{ fromJSON(needs.list-versions-cs.outputs.versions) }}
       max-parallel: 1
@@ -28,8 +31,14 @@ jobs:
       - name: Checkout stubs repo
         uses: actions/checkout@v4
 
-      - name: Set up Python
-      # if: ${{ matrix.os == 'ubuntu-arm' }}
+      - name: Set up Python (most platforms)
+        if: ${{ env.ARCH != 'ARM64' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Python (Linux-ARM64)
+        if: ${{ env.ARCH == 'ARM64' }}
         uses: deadsnakes/action@v2.1.1
         with:
           python-version: "3.11"
@@ -38,7 +47,6 @@ jobs:
         run: |
           pipx install poetry
           pip install -U mpflash mpremote
-
 
       - uses: actions/cache@v4
         with:
