@@ -7,10 +7,10 @@ This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 
 ---
-Module: 'framebuf' on micropython-v1.22.1-rp2-RPI_PICO_W
+Module: 'framebuf' on micropython-v1.23.0-preview-rp2-RPI_PICO_W
 """
-# MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
-# Stubber: v1.17.1
+# MCU: {'build': 'preview.176.g90e517862', 'ver': '1.23.0-preview-preview.176.g90e517862', 'version': '1.23.0-preview', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.17.3
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Any, Optional

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-samd-seeed_wio_terminal-stubs"
-version = "1.23.0a176"
+version = "1.23.0a1"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -56,7 +56,6 @@ packages = [
     { include = "heapq.pyi" },
     { include = "io.pyi" },
     { include = "json.pyi" },
-    { include = "logging.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
