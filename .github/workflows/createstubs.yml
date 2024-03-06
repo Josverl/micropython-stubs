@@ -2,9 +2,7 @@ name: Createstubs
 
 on: [push, workflow_dispatch]
 
-env:
-  ARCH: X64
-  # ARCH: ARM64
+
 
 jobs:
 ########################################################################################################################################
@@ -23,6 +21,9 @@ jobs:
   createstubs:
     needs: list-versions-cs
     runs-on: [self-hosted, mpremote, X64]
+    env:
+      ARCH: X64
+      # ARCH: ARM64    
     strategy:
       matrix: ${{ fromJSON(needs.list-versions-cs.outputs.versions) }}
       max-parallel: 1
@@ -48,15 +49,6 @@ jobs:
         run: |
           pipx install poetry
           pip install -U mpflash mpremote
-
-      - uses: actions/cache@v4
-        with:
-          path: firmware
-          key: ${{ runner.os }}-firmware-${{ matrix.version }}-${{ hashFiles('firmware/firmware.json') }}
-          restore-keys: |
-            ${{ runner.os }}-firmware-${{ matrix.version }}
-            ${{ runner.os }}-firmware-
-
 
       - name: Get ${{ matrix.version }} firmwares for flashing
         run: |
