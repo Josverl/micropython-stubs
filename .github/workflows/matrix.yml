@@ -1,31 +1,129 @@
 name: matrix
 on: push
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  job10:
+  # JOB ######################################################################################################################################
+
+  list-versions-OK:
+    # 'Get a list of latest versions of micropython'
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/get-mpversions
+        id: dynamic
+
+      - run: echo ${{ steps.dynamic.outputs.json }}
+
     outputs:
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
-    steps:
-      - id: set-matrix
-        shell: python
-        run: | 
-            import os, json
+      json: ${{ steps.dynamic.outputs.json }}
 
-            # GITHUB_OUTPUT is set by github actions
-            matrix = {}
-            # matrix['version'] = ["1"]
-            matrix['board']=["RPI_PICO", "RPI_PICO_w"]
-            # output the matrix to a file
-            with open(os.getenv('GITHUB_OUTPUT'), 'a') as file:   #  type: ignore
-                file.write(f"boards={json.dumps(matrix)}")
-
-  job20:
-    needs: job10
+  list-versions:
+    # 'Get a list of latest versions of micropython'
     runs-on: ubuntu-latest
-    strategy:
-      matrix: ${{ fromJSON(needs.job10.outputs.matrix) }}
     steps:
-      - run: echo ${{ matrix.board}}
+        - run: echo faking it
+
+    outputs:
+        json: '["preview", "stable", "v1.22.2"]'
+
+      
+
+  list-boards:
+    # 'Get a list of latest versions of micropython'
+    runs-on: ubuntu-latest
+    steps:
+
+      - run: echo faking it
+    
+    outputs:
+      json: '["SEEED_WIO_TERMINAL", "RPI_PICO_W", "ESP32_GENERIC"]'
+      include: '[{"board": "SEEED_WIO_TERMINAL", "serialport": "COM10"},{"board": "ESP32_GENERIC", "serialport": "COM3", "variant": "OTA"}]'
+
+  # JOB ######################################################################################################################################
+  job20:
+    runs-on: ubuntu-latest
+    needs:
+      - list-versions
+      - list-boards
+    strategy:
+      fail-fast: false
+      matrix:
+        version: ${{ fromJSON(needs.list-versions.outputs.json) }}
+        include: ${{ fromJSON(needs.list-boards.outputs.include) }}
+        variant: []
+        # board: ${{ fromJSON(xx needs.list-boards.outputs.json) }}
+        # exclude:
+        #   - version: preview
+        #     variant: OTA
+        # include:
+        #   - board: ESP32_GENERIC
+        #     variant: OTA
+        #   - board: ESP32_GENERIC
+        #     variant: SPIRAM
+
+
+    name: "Run ${{ matrix.serialport }} ${{ matrix.board }}-${{ matrix.variant }}-${{ matrix.version }}"
+    steps:
+      - name: ${{ matrix.board }}
+        run: echo ${{ matrix.board }}
+
+
+  # JOB ######################################################################################################################################
+#   job10:
+#     runs-on: ubuntu-latest
+#     outputs:
+#       json: ${{ steps.set-matrix.outputs.json }}
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: Set up Python (most platforms)
+#         uses: actions/setup-python@v5
+#         with:
+#           python-version: "3.11"
+
+#       - run: python3 .github/workflows/make_matrix.py
+#         id: set-matrix
+
+#   # JOB ######################################################################################################################################
+
+#   job15:
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       fail-fast: false
+#       max-parallel: 1
+#       matrix:
+#         platform: [x86, x64]
+#         configuration: [Debug, Release]
+#         variant: [dev, standard]
+#         visualstudio: ["2017", "2019", "2022"]
+#         include:
+#           - visualstudio: "2017"
+#             runner: windows-latest
+#             vs_version: "[15, 16]"
+#           - visualstudio: "2019"
+#             runner: windows-2019
+#             vs_version: "[16, 17]"
+#           - visualstudio: "2022"
+#             runner: windows-2022
+#             vs_version: "[17, 18]"
+#         # trim down the number of jobs in the matrix
+#         exclude:
+#           - variant: standard
+#             configuration: Debug
+#           - visualstudio: "2019"
+#             configuration: Debug
+#     steps:
+#       - name: Run a matrix ${{ matrix.runner}} ${{ matrix.platform}} ${{ matrix.configuration}}
+#         run: echo ${{ matrix.runner}} ${{ matrix.platform}} ${{ matrix.configuration}} ${{ matrix.variant}}  ${{ matrix.visualstudio}}  ${{ matrix.vs_version}}
+
+
+
 
 # ########################################################################################################################################
 #   list-versions-cs2:
@@ -49,5 +147,5 @@ jobs:
 #     #   matrix:
 #     #     version: [preview, v1.22.2]
 #       steps:
-#         - run: | 
+#         - run: |
 #           - echo ${{ matrix.version }}

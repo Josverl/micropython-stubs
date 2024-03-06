@@ -3,6 +3,10 @@
 # bind the local folder to the docker container to avoid needing to copy files
 # use the large images to include as many tools as possible from ghcr.io/catthehacker/ubuntu:full-latest
 --reuse
--P ubuntu-latest=ghcr.io/catthehacker/ubuntu:full-latest
-# --bind
-
+-P self-hosted=ghcr.io/catthehacker/ubuntu:full-latest
+# -P self-hosted=catthehacker/ubuntu:act-latest
+# -P mpremote=ghcr.io/catthehacker/ubuntu:full-latest
+# -P X64=ghcr.io/catthehacker/ubuntu:full-latest
+# --bind 
+# -P ubuntu-latest=ghcr.io/catthehacker/ubuntu:full-latest
+# -W .\.github\workflows\matrix.yml

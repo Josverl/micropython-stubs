@@ -8,9 +8,9 @@ inputs:
 
 
 outputs:
-  versions:
-    description: "Return recent versions of MicroPython"
-    value: ${{ steps.dynamic.outputs.versions }}
+  json:
+    description: "Return json list of recent versions of MicroPython"
+    value: ${{ steps.dynamic.outputs.json }}
 
 runs:
     using: composite

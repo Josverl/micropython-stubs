@@ -37,5 +37,8 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
-    "python.formatting.provider": "none"
+    "python.formatting.provider": "none",
+    "yaml.style.flowMapping": "allow",
+    "editor.defaultFoldingRangeProvider": "redhat.vscode-yaml",
+    "editor.defaultFormatter": "redhat.vscode-yaml"
 }

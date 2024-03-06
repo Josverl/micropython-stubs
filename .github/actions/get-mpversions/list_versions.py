@@ -33,7 +33,7 @@ def micropython_versions(start="v1.10"):
 
 
 def main():
-    matrix = {}
+    version_list = [] 
     
     parser = argparse.ArgumentParser()
     parser.add_argument("--stable", "--latest","-s", action=argparse.BooleanOptionalAction,default=True, help="Add latest version")
@@ -44,23 +44,23 @@ def main():
 
     # only run latests when running in ACT locally for testing
     if os.environ.get("ACT"):
-        matrix["version"] = micropython_versions(start="v1.20")[:1] # only latest
+        version_list = micropython_versions(start="v1.20")[:1] # only latest
     else:
-       matrix["version"] = micropython_versions(start="v1.20")[1:args.max] # last three
+       version_list = micropython_versions(start="v1.20")[1:args.max] # last three
 
 
-    print(args)
+    # print(args)
     if args.stable:
-        matrix["version"].insert(0, "stable")
+        version_list.insert(0, "stable")
     if args.preview:
-        matrix["version"].insert(0, "preview")
-    matrix["version"]=matrix["version"][:args.max]
+        version_list.insert(0, "preview")
+    version_list=version_list[:args.max]
     # GITHUB_OUTPUT is set by github actions
     if os.getenv('GITHUB_OUTPUT'):
         with open(os.getenv('GITHUB_OUTPUT'), 'a') as file:   #  type: ignore
-            file.write(f"versions={json.dumps(matrix)}")
+            file.write(f"json={json.dumps(version_list)}")
     else:
-        print(json.dumps(matrix, indent=4))
+        print(f"json={json.dumps(version_list, indent=4)}")
 
 # sourcery skip: assign-if-exp, merge-dict-assign
 if __name__ == "__main__":

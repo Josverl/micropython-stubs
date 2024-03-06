@@ -6,27 +6,35 @@ on: [push, workflow_dispatch]
 
 jobs:
 ########################################################################################################################################
-  list-versions-cs:
-    # 'Get a matrix for the latest versions of micropython'
+  list-versions:
+    # 'Get a list of latest versions of micropython'
     runs-on: ubuntu-latest
     steps:
-        - uses: actions/checkout@v4
-          with:
-            fetch-depth: 1
-        - uses: ./.github/actions/get-mpversions
-          id: dynamic
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/get-mpversions
+        id: dynamic
+
+      - run: echo ${{ steps.dynamic.outputs.json }}
+
     outputs:
-        versions: ${{ steps.dynamic.outputs.versions }}
+      json: ${{ steps.dynamic.outputs.json }}
+
 ########################################################################################################################################
+
   createstubs:
-    needs: list-versions-cs
+    name: Createstubs ${{ matrix.version }}
+    needs: list-versions
     runs-on: [self-hosted, mpremote, X64]
     env:
       ARCH: X64
       # ARCH: ARM64    
     strategy:
-      matrix: ${{ fromJSON(needs.list-versions-cs.outputs.versions) }}
       max-parallel: 1
+      matrix: 
+        version: ${{ fromJSON(needs.list-versions.outputs.json) }}
+
     #   matrix:
     #     version: [preview, v1.22.2]
     steps:
