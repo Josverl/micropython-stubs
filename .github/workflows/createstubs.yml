@@ -32,6 +32,7 @@ jobs:
       # ARCH: ARM64    
     strategy:
       max-parallel: 1
+      fail-fast: false
       matrix: 
         version: ${{ fromJSON(needs.list-versions.outputs.json) }}
 
@@ -63,7 +64,7 @@ jobs:
           mpflash download --version ${{ matrix.version }}
 
       - name: Update firmware to ${{ matrix.version }} on all connected boards
-        # cant update stm32 as that requires sudo :-( 
+        # FIXME: cant update stm32 as that requires sudo :-( 
         run: |
           mpflash flash --version ${{ matrix.version }}
 
@@ -71,21 +72,28 @@ jobs:
         run: |
           stubber clone
 
+      - run: git pull --ff-only
+
       - name: run board stubber
+        continue-on-error: true # avoid stopping the workflow if no boards are detected
         run: |
           stubber get-mcu-stubs
 
-      - name: check in changes
+      - name: Check if there are any changes
+        id: verify_diff
         run: |
-          git config user.name github-actions
+          git diff --quiet ./stubs ./publish || echo "changed=true" >> $GITHUB_OUTPUT
+  
+       
+      - name: check in changes
+        if: steps.verify_diff.outputs.changed == 'true' AND ${{ !env.ACT }}
+        run: |
+          git config user.name "github-actions[bot]"
           git config user.email github-actions@github.com
           git pull
-          git add .
-          git commit -m "create boardstubs"
+          git add ./stubs ./publish
+          git commit --all -m "create boardstubs"
           git push
 
-      - name: Build App
-        if: always()
-        run: echo "Done."
 
 
