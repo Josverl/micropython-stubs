@@ -4,22 +4,27 @@ System specific functions.
 MicroPython module: https://docs.micropython.org/en/v1.22.0/library/sys.html
 
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
+
+---
+Module: 'usys' on micropython-v1.22.0-stm32-PYBV11
 """
+# MCU: {'version': '1.22.0', 'mpy': 'v6.2', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.22.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.17.3
 from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete
 from typing import Dict, List, Tuple
 
-platform: str
-version_info: tuple
-path: list
-version: str
-ps1: str
-ps2: str
-byteorder: str
-modules: dict
-argv: list
-implementation: tuple
-maxsize: int
+platform: str = "pyboard"
+version_info: tuple = ()
+path: list = []
+version: str = "3.4.0; MicroPython v1.22.0 on 2023-12-27"
+ps1: str = ">>> "
+ps2: str = "... "
+byteorder: str = "little"
+modules: dict = {}
+argv: list = []
+implementation: tuple = ()
+maxsize: int = 2147483647
 
 def print_exception(exc, file=stdout, /) -> None:
     """
@@ -45,6 +50,6 @@ def exit(retval=0, /) -> Incomplete:
     """
     ...
 
-stderr: Incomplete
-stdout: Incomplete
-stdin: Incomplete
+stderr: Incomplete  ## <class 'FileIO'> = <io.FileIO 2>
+stdout: Incomplete  ## <class 'FileIO'> = <io.FileIO 1>
+stdin: Incomplete  ## <class 'FileIO'> = <io.FileIO 0>

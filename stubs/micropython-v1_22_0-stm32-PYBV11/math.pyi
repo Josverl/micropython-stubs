@@ -1,10 +1,16 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'math' on micropython-v1.22.0-stm32-PYBV11
+"""
+# MCU: {'version': '1.22.0', 'mpy': 'v6.2', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.22.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.17.3
+from __future__ import annotations
+from _typeshed import Incomplete
 
-inf: float
-nan: float
-pi: float
-e: float
-tau: float
+inf: float = inf
+nan: float = nan
+pi: float = 3.141593
+e: float = 2.718282
+tau: float = 6.283185
 
 def ldexp(*args, **kwargs) -> Incomplete: ...
 def lgamma(*args, **kwargs) -> Incomplete: ...

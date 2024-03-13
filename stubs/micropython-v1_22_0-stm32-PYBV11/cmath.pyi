@@ -1,7 +1,13 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'cmath' on micropython-v1.22.0-stm32-PYBV11
+"""
+# MCU: {'version': '1.22.0', 'mpy': 'v6.2', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.22.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.17.3
+from __future__ import annotations
+from _typeshed import Incomplete
 
-e: float
-pi: float
+e: float = 2.718282
+pi: float = 3.141593
 
 def polar(*args, **kwargs) -> Incomplete: ...
 def sqrt(*args, **kwargs) -> Incomplete: ...

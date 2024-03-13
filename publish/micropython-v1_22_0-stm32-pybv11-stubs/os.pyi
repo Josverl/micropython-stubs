@@ -8,13 +8,18 @@ CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
 The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
+
+---
+Module: 'os' on micropython-v1.22.0-stm32-PYBV11
 """
+# MCU: {'version': '1.22.0', 'mpy': 'v6.2', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.22.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.17.3
 from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete
 from stdlib.os import *
 from typing import Any, IO, Iterator, Optional, Tuple
 
-sep: str
+sep: str = "/"
 
 def statvfs(path) -> Tuple:
     """

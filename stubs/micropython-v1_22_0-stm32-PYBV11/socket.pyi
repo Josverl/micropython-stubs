@@ -1,16 +1,22 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'socket' on micropython-v1.22.0-stm32-PYBV11
+"""
+# MCU: {'version': '1.22.0', 'mpy': 'v6.2', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.22.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.17.3
+from __future__ import annotations
+from _typeshed import Incomplete
 
-SO_KEEPALIVE: int
-SO_BROADCAST: int
-SOL_SOCKET: int
-SO_RCVTIMEO: int
-SO_REUSEADDR: int
-SO_SNDTIMEO: int
-AF_INET6: int
-AF_INET: int
-SOCK_STREAM: int
-SOCK_DGRAM: int
-SOCK_RAW: int
+SO_KEEPALIVE: int = 8
+SO_BROADCAST: int = 32
+SOL_SOCKET: int = 4095
+SO_RCVTIMEO: int = 4102
+SO_REUSEADDR: int = 4
+SO_SNDTIMEO: int = 4101
+AF_INET6: int = 10
+AF_INET: int = 2
+SOCK_STREAM: int = 1
+SOCK_DGRAM: int = 2
+SOCK_RAW: int = 3
 
 def getaddrinfo(*args, **kwargs) -> Incomplete: ...
 

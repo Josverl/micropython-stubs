@@ -7,15 +7,20 @@ CPython module: :mod:`python:select` https://docs.python.org/3/library/select.ht
 
 This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
+
+---
+Module: 'select' on micropython-v1.22.0-stm32-PYBV11
 """
+# MCU: {'version': '1.22.0', 'mpy': 'v6.2', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.22.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.17.3
 from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete
 from typing import Any, Iterator, List, Optional, Tuple
 
-POLLOUT: int
-POLLIN: int
-POLLHUP: int
-POLLERR: int
+POLLOUT: int = 4
+POLLIN: int = 1
+POLLHUP: int = 16
+POLLERR: int = 8
 
 def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
     """

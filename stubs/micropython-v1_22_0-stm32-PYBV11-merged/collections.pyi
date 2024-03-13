@@ -7,9 +7,14 @@ CPython module: :mod:`python:collections` https://docs.python.org/3/library/coll
 
 This module implements advanced collection and container types to
 hold/accumulate various objects.
+
+---
+Module: 'collections' on micropython-v1.22.0-stm32-PYBV11
 """
+# MCU: {'version': '1.22.0', 'mpy': 'v6.2', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.22.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.17.3
 from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque, namedtuple as stdlib_namedtuple
 from typing import Any, Optional
 

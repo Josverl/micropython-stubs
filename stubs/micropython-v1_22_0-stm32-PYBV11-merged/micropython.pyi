@@ -2,9 +2,14 @@
 Access and control MicroPython internals.
 
 MicroPython module: https://docs.micropython.org/en/v1.22.0/library/micropython.html
+
+---
+Module: 'micropython' on micropython-v1.22.0-stm32-PYBV11
 """
+# MCU: {'version': '1.22.0', 'mpy': 'v6.2', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.22.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.17.3
 from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete
 from typing import Any, Optional, Tuple, TypeVar
 
 def opt_level(level: Optional[Any] = None) -> Incomplete:

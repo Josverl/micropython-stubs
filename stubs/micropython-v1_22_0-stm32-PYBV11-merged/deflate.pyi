@@ -17,14 +17,19 @@ This module allows compression and decompression of binary data with the
 * Compression: Enabled via the ``MICROPY_PY_DEFLATE_COMPRESS`` build option, on
   by default on ports with the "full features" level or higher (generally this means
   you need to build your own firmware to enable this).
-"""
-from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
 
-GZIP: int
-RAW: int
-ZLIB: int
-AUTO: int
+---
+Module: 'deflate' on micropython-v1.22.0-stm32-PYBV11
+"""
+# MCU: {'version': '1.22.0', 'mpy': 'v6.2', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.22.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.17.3
+from __future__ import annotations
+from _typeshed import Incomplete
+
+GZIP: int = 3
+RAW: int = 1
+ZLIB: int = 2
+AUTO: int = 0
 
 class DeflateIO:
     """
