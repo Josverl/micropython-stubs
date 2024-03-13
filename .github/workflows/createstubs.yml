@@ -89,7 +89,8 @@ jobs:
   
        
       - name: check in changes
-        if: steps.verify_diff.outputs.changed == 'true' AND ${{ !env.ACT }}
+        continue-on-error: true # avoid raising an error if there is nothing to commit
+        if: steps.verify_diff.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email github-actions@github.com
