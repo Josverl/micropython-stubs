@@ -60,7 +60,7 @@ jobs:
           pip install -U mpflash mpremote
 
       - name: Patch mpremote mip 
-        run: patch /home/jos/actions-runner/_tools/Python/3.11.8/x64/lib/python3.11/site-packages/mpremote/mip.py /home/jos/mpremote_mip.patch-n
+        run: patch /home/jos/actions-runner/_tools/Python/3.11.8/x64/lib/python3.11/site-packages/mpremote/mip.py /home/jos/mpremote_mip.patch -n
         
       - name: Get ${{ matrix.version }} firmwares for flashing
         run: |
