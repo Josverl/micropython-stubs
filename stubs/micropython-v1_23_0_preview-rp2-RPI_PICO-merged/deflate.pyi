@@ -19,10 +19,10 @@ This module allows compression and decompression of binary data with the
   you need to build your own firmware to enable this).
 
 ---
-Module: 'deflate' on micropython-v1.22.1-rp2-RPI_PICO
+Module: 'deflate' on micropython-v1.23.0-preview-rp2-RPI_PICO
 """
-# MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
-# Stubber: v1.17.1
+# MCU: {'build': 'preview.203.gd712feb68', 'ver': '1.23.0-preview-preview.203.gd712feb68', 'version': '1.23.0-preview', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.17.3
 from __future__ import annotations
 from _typeshed import Incomplete
 

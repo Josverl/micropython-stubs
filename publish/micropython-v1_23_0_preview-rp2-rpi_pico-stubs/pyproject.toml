@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-rpi_pico-stubs"
-version = "1.23.0a176"
+version = "1.23.0a1"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -37,7 +37,6 @@ classifiers = [
 packages = [
     { include = "__builtins__.pyi" },
     { include = "_asyncio.pyi" },
-    { include = "_boot_fat.pyi" },
     { include = "_onewire.pyi" },
     { include = "_rp2.pyi" },
     { include = "_thread.pyi" },

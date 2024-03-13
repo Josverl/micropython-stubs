@@ -1,7 +1,7 @@
 """
 Module: 'sys' on micropython-v1.23.0-preview-samd-SEEED_WIO_TERMINAL
 """
-# MCU: {'version': '1.23.0-preview', 'mpy': 'v6.2', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '176', 'arch': 'armv7emsp', 'ver': '1.23.0-preview-176', 'cpu': 'SAMD51P19A'}
+# MCU: {'version': '1.23.0-preview', 'mpy': 'v6.2', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '203', 'arch': 'armv7emsp', 'ver': '1.23.0-preview-203', 'cpu': 'SAMD51P19A'}
 # Stubber: v1.17.3
 from __future__ import annotations
 from _typeshed import Incomplete
@@ -9,7 +9,7 @@ from _typeshed import Incomplete
 platform: str = "samd"
 version_info: tuple = ()
 path: list = []
-version: str = "3.4.0; MicroPython v1.23.0-preview.176.g90e517862 on 2024-03-04"
+version: str = "3.4.0; MicroPython v1.23.0-preview.203.gd712feb68 on 2024-03-09"
 ps1: str = ">>> "
 ps2: str = "... "
 byteorder: str = "little"
