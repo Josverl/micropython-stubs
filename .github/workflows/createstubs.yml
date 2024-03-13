@@ -59,12 +59,14 @@ jobs:
           pipx install poetry
           pip install -U mpflash mpremote
 
+      - name: Patch mpremote mip 
+        run: patch /home/jos/actions-runner/_tools/Python/3.11.8/x64/lib/python3.11/site-packages/mpremote/mip.py /home/jos/mpremote_mip.patch-n
+        
       - name: Get ${{ matrix.version }} firmwares for flashing
         run: |
           mpflash download --version ${{ matrix.version }}
 
       - name: Update firmware to ${{ matrix.version }} on all connected boards
-        # FIXME: cant update stm32 as that requires sudo :-( 
         run: |
           mpflash flash --version ${{ matrix.version }}
 
