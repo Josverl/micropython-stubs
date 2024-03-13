@@ -59,8 +59,9 @@ jobs:
           pipx install poetry
           pip install -U mpflash mpremote
 
-      - name: Patch mpremote mip 
-        run: patch /home/jos/actions-runner/_tools/Python/3.11.8/x64/lib/python3.11/site-packages/mpremote/mip.py /home/jos/mpremote_mip.patch
+      - name: Patch mpremote mip
+        continue-on-error: true 
+        run: patch  -f --no-backup -s /home/jos/actions-runner/_tools/Python/3.11.8/x64/lib/python3.11/site-packages/mpremote/mip.py /home/jos/mpremote_mip.patch
         
       - name: Get ${{ matrix.version }} firmwares for flashing
         run: |
