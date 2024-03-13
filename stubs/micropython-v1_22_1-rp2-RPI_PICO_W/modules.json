@@ -1,5 +1,5 @@
-{"firmware": {"family": "micropython", "version": "1.22.1", "build": "", "ver": "1.22.1", "port": "rp2", "board": "RPI_PICO_W", "cpu": "RP2040", "mpy": "v6.2", "arch": "armv6m"},
-"stubber": {"version": "v1.17.1"}, "stubtype": "firmware",
+{"firmware": {"build": "", "ver": "1.22.1", "version": "1.22.1", "port": "rp2", "board": "RPI_PICO_W", "mpy": "v6.2", "family": "micropython", "cpu": "RP2040", "arch": "armv6m"},
+"stubber": {"version": "v1.17.3"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_22_1-rp2-RPI_PICO_W/_asyncio.pyi"},
 {"module": "_boot_fat", "file": "/remote/stubs/micropython-v1_22_1-rp2-RPI_PICO_W/_boot_fat.pyi"},

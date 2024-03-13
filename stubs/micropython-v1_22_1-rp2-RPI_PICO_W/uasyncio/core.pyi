@@ -1,8 +1,8 @@
 """
 Module: 'uasyncio.core' on micropython-v1.22.1-rp2-RPI_PICO_W
 """
-# MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
-# Stubber: v1.17.1
+# MCU: {'build': '', 'ver': '1.22.1', 'version': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.17.3
 from __future__ import annotations
 from typing import Generator
 from _typeshed import Incomplete
@@ -53,7 +53,7 @@ _stopper: Generator  ## = <generator>
 class TimeoutError(Exception): ...
 
 _stop_task: Incomplete  ## <class 'NoneType'> = None
-_io_queue: Incomplete  ## <class 'IOQueue'> = <IOQueue object at 200180a0>
+_io_queue: Incomplete  ## <class 'IOQueue'> = <IOQueue object at ...>
 
 class Loop:
     def get_exception_handler(self, *args, **kwargs) -> Incomplete: ...

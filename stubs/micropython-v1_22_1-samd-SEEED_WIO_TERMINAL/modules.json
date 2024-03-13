@@ -1,5 +1,5 @@
 {"firmware": {"build": "", "ver": "1.22.1", "version": "1.22.1", "port": "samd", "board": "SEEED_WIO_TERMINAL", "mpy": "v6.2", "family": "micropython", "cpu": "SAMD51P19A", "arch": "armv7emsp"},
-"stubber": {"version": "v1.17.1"}, "stubtype": "firmware",
+"stubber": {"version": "v1.17.3"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL/_asyncio.pyi"},
 {"module": "_onewire", "file": "/remote/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL/_onewire.pyi"},
@@ -22,7 +22,6 @@
 {"module": "heapq", "file": "/remote/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL/heapq.pyi"},
 {"module": "io", "file": "/remote/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL/io.pyi"},
 {"module": "json", "file": "/remote/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL/json.pyi"},
-{"module": "logging", "file": "/remote/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL/logging.pyi"},
 {"module": "machine", "file": "/remote/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL/machine.pyi"},
 {"module": "math", "file": "/remote/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL/math.pyi"},
 {"module": "micropython", "file": "/remote/stubs/micropython-v1_22_1-samd-SEEED_WIO_TERMINAL/micropython.pyi"},
