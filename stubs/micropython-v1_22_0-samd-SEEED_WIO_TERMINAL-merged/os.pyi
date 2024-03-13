@@ -8,9 +8,14 @@ CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
 The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
+
+---
+Module: 'os' on micropython-v1.22.0-samd-SEEED_WIO_TERMINAL
 """
+# MCU: {'build': '', 'ver': '1.22.0', 'version': '1.22.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
+# Stubber: v1.17.3
 from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete
 from stdlib.os import *
 from typing import Any, IO, Iterator, Optional, Tuple
 

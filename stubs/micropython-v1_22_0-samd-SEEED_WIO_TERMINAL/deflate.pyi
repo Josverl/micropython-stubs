@@ -1,9 +1,15 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'deflate' on micropython-v1.22.0-samd-SEEED_WIO_TERMINAL
+"""
+# MCU: {'build': '', 'ver': '1.22.0', 'version': '1.22.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
+# Stubber: v1.17.3
+from __future__ import annotations
+from _typeshed import Incomplete
 
-GZIP: int
-RAW: int
-ZLIB: int
-AUTO: int
+GZIP: int = 3
+RAW: int = 1
+ZLIB: int = 2
+AUTO: int = 0
 
 class DeflateIO:
     def readinto(self, *args, **kwargs) -> Incomplete: ...

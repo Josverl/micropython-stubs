@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-rpi_pico-stubs"
-version = "1.22.0.post2"
+version = "1.22.0.post1"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -36,6 +36,7 @@ classifiers = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
+    { include = "_asyncio.pyi" },
     { include = "_boot_fat.pyi" },
     { include = "_onewire.pyi" },
     { include = "_rp2.pyi" },
@@ -45,6 +46,7 @@ packages = [
     { include = "asyncio/core.pyi" },
     { include = "asyncio/event.pyi" },
     { include = "asyncio/funcs.pyi" },
+    { include = "asyncio/lock.pyi" },
     { include = "asyncio/stream.pyi" },
     { include = "binascii.pyi" },
     { include = "cmath.pyi" },
@@ -52,13 +54,13 @@ packages = [
     { include = "deflate.pyi" },
     { include = "dht.pyi" },
     { include = "ds18x20.pyi" },
+    { include = "errno.pyi" },
     { include = "framebuf.pyi" },
     { include = "gc.pyi" },
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
     { include = "io.pyi" },
     { include = "json.pyi" },
-    { include = "logging.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
@@ -82,6 +84,8 @@ packages = [
     { include = "ubinascii.pyi" },
     { include = "ucollections.pyi" },
     { include = "ucryptolib.pyi" },
+    { include = "uctypes.pyi" },
+    { include = "uerrno.pyi" },
     { include = "uhashlib.pyi" },
     { include = "uheapq.pyi" },
     { include = "uio.pyi" },

@@ -25,9 +25,14 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
    The :func:`randrange`, :func:`randint` and :func:`choice` functions are only
    available if the ``MICROPY_PY_RANDOM_EXTRA_FUNCS`` configuration option is
    enabled.
+
+---
+Module: 'random' on micropython-v1.22.0-samd-SEEED_WIO_TERMINAL
 """
+# MCU: {'build': '', 'ver': '1.22.0', 'version': '1.22.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
+# Stubber: v1.17.3
 from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete
 from typing import Any, Optional
 
 def randrange(start, stop, step: Optional[Any] = None) -> int:
