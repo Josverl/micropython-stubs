@@ -8,7 +8,7 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 ---
 Module: 'usys' on micropython-v1.23.0-preview-samd-SEEED_WIO_TERMINAL
 """
-# MCU: {'version': '1.23.0-preview', 'mpy': 'v6.2', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '203', 'arch': 'armv7emsp', 'ver': '1.23.0-preview-203', 'cpu': 'SAMD51P19A'}
+# MCU: {'version': '1.23.0-preview', 'mpy': 'v6.2', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '205', 'arch': 'armv7emsp', 'ver': '1.23.0-preview-205', 'cpu': 'SAMD51P19A'}
 # Stubber: v1.17.3
 from __future__ import annotations
 from _typeshed import Incomplete
@@ -17,7 +17,7 @@ from typing import Dict, List, Tuple
 platform: str = "samd"
 version_info: tuple = ()
 path: list = []
-version: str = "3.4.0; MicroPython v1.23.0-preview.203.gd712feb68 on 2024-03-09"
+version: str = "3.4.0; MicroPython v1.23.0-preview.205.g2b6f81f2b on 2024-03-14"
 ps1: str = ">>> "
 ps2: str = "... "
 byteorder: str = "little"
