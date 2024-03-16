@@ -1,6 +1,5 @@
 import logging
 from pathlib import Path
-from typing import Dict, List
 
 import pytest
 from test_snippets import SOURCES, run_typechecker

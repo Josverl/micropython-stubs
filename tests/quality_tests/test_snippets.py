@@ -1,7 +1,13 @@
+import json
 import logging
+import platform
+import re
+import subprocess
 from pathlib import Path
 
+import fasteners
 import pytest
+from packaging.version import Version
 from typecheck import (copy_config_files, port_and_board, run_typechecker,
                        stub_ignore)
 
@@ -104,6 +110,8 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
                     args_lst.append([src, version, portboard, feature])
     metafunc.parametrize(argnames, args_lst, scope="session")
 
+from typing import Dict, List
+
 
 def filter_issues(issues: List[Dict], version: str, portboard: str = ""):
     port, board = portboard.split("-") if "-" in portboard else (portboard, "")
@@ -150,7 +158,7 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         condition = condition[4:].strip()
     context = {}
     context["Version"] = Version
-    context["version"] = Version(version) if not version in ("latest", "-") else Version("9999.99.99")
+    context["version"] = Version(version) if not version in ("latest", "-", "preview") else Version("9999.99.99")
     context["port"] = port
     context["board"] = board
     context["linter"] = linter
