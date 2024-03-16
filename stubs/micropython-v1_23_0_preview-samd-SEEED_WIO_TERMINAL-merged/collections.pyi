@@ -62,7 +62,6 @@ class OrderedDict(stdlib_OrderedDict):
         w 5
         b 3
     """
-
     def popitem(self, *args, **kwargs) -> Incomplete: ...
     def pop(self, *args, **kwargs) -> Incomplete: ...
     def values(self, *args, **kwargs) -> Incomplete: ...
@@ -94,7 +93,6 @@ class deque(stdlib_deque):
     As well as supporting `bool` and `len`, deque objects have the following
     methods:
     """
-
     def popleft(self) -> Incomplete:
         """
         Remove and return an item from the left side of the deque.

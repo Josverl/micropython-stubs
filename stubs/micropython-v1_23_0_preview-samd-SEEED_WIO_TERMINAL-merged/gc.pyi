@@ -25,7 +25,6 @@ def mem_free() -> int:
        This function is MicroPython extension.
     """
     ...
-
 def mem_alloc() -> int:
     """
     Return the number of bytes of heap RAM that are allocated by Python code.
@@ -35,19 +34,16 @@ def mem_alloc() -> int:
        This function is MicroPython extension.
     """
     ...
-
 def collect() -> None:
     """
     Run a garbage collection.
     """
     ...
-
 def enable() -> None:
     """
     Enable automatic garbage collection.
     """
     ...
-
 def disable() -> None:
     """
     Disable automatic garbage collection.  Heap memory can still be allocated,

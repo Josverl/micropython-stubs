@@ -1,18 +1,10 @@
 """
-System specific functions.
-
-MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/sys.html
-
-CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
-
----
 Module: 'usys' on micropython-v1.23.0-preview-samd-SEEED_WIO_TERMINAL
 """
 # MCU: {'version': '1.23.0-preview', 'mpy': 'v6.2', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '176', 'arch': 'armv7emsp', 'ver': '1.23.0-preview-176', 'cpu': 'SAMD51P19A'}
 # Stubber: v1.17.3
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Dict, List, Tuple
 
 platform: str = "samd"
 version_info: tuple = ()
@@ -26,29 +18,8 @@ argv: list = []
 implementation: tuple = ()
 maxsize: int = 2147483647
 
-def print_exception(exc, file=stdout, /) -> None:
-    """
-    Print exception with a traceback to a file-like object *file* (or
-    `sys.stdout` by default).
-
-    Difference to CPython
-
-       This is simplified version of a function which appears in the
-       ``traceback`` module in CPython. Unlike ``traceback.print_exception()``,
-       this function takes just exception value instead of exception type,
-       exception value, and traceback object; *file* argument should be
-       positional; further arguments are not supported. CPython-compatible
-       ``traceback`` module can be found in `micropython-lib`.
-    """
-    ...
-
-def exit(retval=0, /) -> Incomplete:
-    """
-    Terminate current program with a given exit code. Underlyingly, this
-    function raise as `SystemExit` exception. If an argument is given, its
-    value given as an argument to `SystemExit`.
-    """
-    ...
+def print_exception(*args, **kwargs) -> Incomplete: ...
+def exit(*args, **kwargs) -> Incomplete: ...
 
 stderr: Incomplete  ## <class 'FileIO'> = <io.FileIO 2>
 stdout: Incomplete  ## <class 'FileIO'> = <io.FileIO 1>
