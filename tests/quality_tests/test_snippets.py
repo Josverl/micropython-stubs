@@ -8,11 +8,10 @@ from pathlib import Path
 import fasteners
 import pytest
 from packaging.version import Version
-from typecheck import (copy_config_files, port_and_board, run_typechecker,
-                       stub_ignore)
+from typecheck import copy_config_files, port_and_board, run_typechecker, stub_ignore
 
 # only snippets tests
-pytestmark = pytest.mark.snippets
+pytestmark = [pytest.mark.snippets]
 
 log = logging.getLogger()
 
@@ -110,6 +109,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
                     args_lst.append([src, version, portboard, feature])
     metafunc.parametrize(argnames, args_lst, scope="session")
 
+
 from typing import Dict, List
 
 
@@ -175,7 +175,7 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
     return bool(result)
 
 
-def run_pyright( snip_path, version, portboard, pytestconfig):
+def run_pyright(snip_path, version, portboard, pytestconfig):
     """
     Run Pyright static type checker a path with validation code
 
@@ -197,15 +197,11 @@ def run_pyright( snip_path, version, portboard, pytestconfig):
     with typecheck_lock:
         try:
             # run pyright in the folder with the check_scripts to allow modules to import each other.
-            result = subprocess.run(
-                cmd, shell=use_shell, capture_output=True, cwd=snip_path.as_posix()
-            )
+            result = subprocess.run(cmd, shell=use_shell, capture_output=True, cwd=snip_path.as_posix())
         except OSError as e:
             raise e
         if result.returncode >= 2:
-            assert (
-                0
-            ), f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
+            assert 0, f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
         try:
             results = json.loads(result.stdout)
         except Exception:
@@ -222,7 +218,9 @@ def run_pyright( snip_path, version, portboard, pytestconfig):
             relative = Path(issue["file"]).relative_to(pytestconfig.rootpath).as_posix()
         except Exception:
             relative = issue["file"]
-        msg = f"{relative}:{issue['range']['start']['line']+1}:{issue['range']['start']['character']} {issue['message']}"
+        msg = (
+            f"{relative}:{issue['range']['start']['line']+1}:{issue['range']['start']['character']} {issue['message']}"
+        )
         # caplog.messages.append(msg)
         if issue["severity"] == "error":
             log.error(msg)
@@ -233,7 +231,7 @@ def run_pyright( snip_path, version, portboard, pytestconfig):
 
     info_msg = f"Pyright found {results['summary']['errorCount']} errors and {results['summary']['warningCount']} warnings in {results['summary']['filesAnalyzed']} files."
     errorcount = len([i for i in issues if i["severity"] == "error"])
-    return info_msg,errorcount
+    return info_msg, errorcount
 
     # return issues
 
