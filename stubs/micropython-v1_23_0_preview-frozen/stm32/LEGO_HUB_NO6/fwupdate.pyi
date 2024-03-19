@@ -4,6 +4,7 @@ from micropython import const as const
 VFS_FAT: int
 VFS_LFS1: int
 VFS_LFS2: int
+VFS_RAW: int
 _ELEM_TYPE_END: int
 _ELEM_TYPE_MOUNT: int
 _ELEM_TYPE_FSLOAD: int
@@ -37,6 +38,15 @@ class Flash:
 def update_mboot(filename) -> None: ...
 def _create_element(kind, body): ...
 def update_app_elements(
-    filename, fs_base, fs_len, fs_type=..., fs_blocksize: int = ..., status_addr: Incomplete | None = ..., addr_64bit: bool = ...
+    filename,
+    fs_base,
+    fs_len,
+    fs_type=...,
+    fs_blocksize: int = ...,
+    status_addr: Incomplete | None = ...,
+    addr_64bit: bool = ...,
+    *,
+    fs_base2: int = ...,
+    fs_len2: int = ...,
 ): ...
 def update_mpy(*args, **kwargs) -> None: ...

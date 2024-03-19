@@ -57,10 +57,6 @@
             "module": "onewire"
         },
         {
-            "file": "spiflash.py",
-            "module": "spiflash"
-        },
-        {
             "file": "uasyncio.py",
             "module": "uasyncio"
         }

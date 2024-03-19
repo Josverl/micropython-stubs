@@ -82,7 +82,9 @@ class deque(stdlib_deque):
     appends and pops from either side of the deque.  New deques are created
     using the following arguments:
 
-        - *iterable* must be the empty tuple, and the new deque is created empty.
+        - *iterable* is an iterable used to populate the deque when it is
+          created.  It can be an empty tuple or list to create a deque that
+          is initially empty.
 
         - *maxlen* must be specified and the deque will be bounded to this
           maximum length.  Once the deque is full, any new items added will
@@ -90,19 +92,20 @@ class deque(stdlib_deque):
 
         - The optional *flags* can be 1 to check for overflow when adding items.
 
-    As well as supporting `bool` and `len`, deque objects have the following
-    methods:
+    Deque objects support `bool`, `len`, iteration and subscript load and store.
+    They also have the following methods:
     """
     def popleft(self) -> Incomplete:
         """
         Remove and return an item from the left side of the deque.
-        Raises IndexError if no items are present.
+        Raises ``IndexError`` if no items are present.
         """
         ...
     def append(self, x) -> Incomplete:
         """
         Add *x* to the right side of the deque.
-        Raises IndexError if overflow checking is enabled and there is no more room left.
+        Raises ``IndexError`` if overflow checking is enabled and there is
+        no more room in the queue.
         """
         ...
     def __init__(self, *argv, **kwargs) -> None: ...
