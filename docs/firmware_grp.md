@@ -589,8 +589,8 @@
 |micropython |v1.23-La|frozen  |stm32|ARDUINO_PORTENTA_H7|35|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7)
 |micropython |v1.23-La|frozen  |stm32|GARATRONIC_PYBSTICK26_F411|1|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |micropython |v1.23-La|frozen  |stm32|GENERIC|9|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/GENERIC)
-|micropython |v1.23-La|frozen  |stm32|LEGO_HUB_NO6|12|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6)
-|micropython |v1.23-La|frozen  |stm32|LEGO_HUB_NO7|12|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO7)
+|micropython |v1.23-La|frozen  |stm32|LEGO_HUB_NO6|11|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6)
+|micropython |v1.23-La|frozen  |stm32|LEGO_HUB_NO7|11|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO7)
 |micropython |v1.23-La|frozen  |stm32|NUCLEO_F429ZI|16|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F429ZI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F429ZI)
 |micropython |v1.23-La|frozen  |stm32|NUCLEO_F439ZI|16|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F439ZI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F439ZI)
 |micropython |v1.23-La|frozen  |stm32|NUCLEO_F746ZG|16|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F746ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F746ZG)
@@ -662,4 +662,4 @@
 
 ## Metrics
 
-Total stub modules:  15723
+Total stub modules:  15721

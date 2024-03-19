@@ -595,8 +595,8 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| v1.23-Latest| stm32| ARDUINO_PORTENTA_H7| 35| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7)
 |frozen| micropython| v1.23-Latest| stm32| GARATRONIC_PYBSTICK26_F411| 1| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |frozen| micropython| v1.23-Latest| stm32| GENERIC| 9| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/GENERIC)
-|frozen| micropython| v1.23-Latest| stm32| LEGO_HUB_NO6| 12| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6)
-|frozen| micropython| v1.23-Latest| stm32| LEGO_HUB_NO7| 12| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO7)
+|frozen| micropython| v1.23-Latest| stm32| LEGO_HUB_NO6| 11| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6)
+|frozen| micropython| v1.23-Latest| stm32| LEGO_HUB_NO7| 11| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO7)
 |frozen| micropython| v1.23-Latest| stm32| NUCLEO_F429ZI| 16| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F429ZI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F429ZI)
 |frozen| micropython| v1.23-Latest| stm32| NUCLEO_F439ZI| 16| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F439ZI](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F439ZI)
 |frozen| micropython| v1.23-Latest| stm32| NUCLEO_F746ZG| 16| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F746ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/NUCLEO_F746ZG)
@@ -626,4 +626,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  15723
+Total modules  15721
