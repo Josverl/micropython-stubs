@@ -81,12 +81,12 @@
             "module": "__init__"
         },
         {
-            "file": "cbor2/decoder.py",
-            "module": "decoder"
+            "file": "cbor2/_decoder.py",
+            "module": "_decoder"
         },
         {
-            "file": "cbor2/encoder.py",
-            "module": "encoder"
+            "file": "cbor2/_encoder.py",
+            "module": "_encoder"
         },
         {
             "file": "dht.py",

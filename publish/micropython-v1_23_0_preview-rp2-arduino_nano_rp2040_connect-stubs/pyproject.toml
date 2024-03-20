@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-arduino_nano_rp2040_connect-stubs"
-version = "1.23.0a246"
+version = "1.23.0a248"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -61,8 +61,8 @@ packages = [
     { include = "binascii.pyi" },
     { include = "bluetooth.pyi" },
     { include = "cbor2/__init__.pyi" },
-    { include = "cbor2/decoder.pyi" },
-    { include = "cbor2/encoder.pyi" },
+    { include = "cbor2/_decoder.pyi" },
+    { include = "cbor2/_encoder.pyi" },
     { include = "cmath.pyi" },
     { include = "cryptolib.pyi" },
     { include = "deflate.pyi" },
