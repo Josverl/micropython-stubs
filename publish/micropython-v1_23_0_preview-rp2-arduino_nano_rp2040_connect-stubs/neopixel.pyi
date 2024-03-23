@@ -9,10 +9,17 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    ports. On STM32 / Pyboard and others, you can either install the
    ``neopixel`` package using :term:`mip`, or you can download the module
    directly from :term:`micropython-lib` and copy it to the filesystem.
+
+---
+Module: 'neopixel' on micropython-v1.22.1-rp2-ARDUINO_NANO_RP2040_CONNECT
 """
+# MCU: {'build': '', 'ver': '1.22.1', 'version': '1.22.1', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.16.3
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Tuple
+
+def bitstream(*args, **kwargs) -> Incomplete: ...
 
 class NeoPixel:
     """
@@ -24,36 +31,16 @@ class NeoPixel:
         - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
     """
 
-    ORDER: Incomplete
-    pin: Incomplete
-    n: Incomplete
-    bpp: Incomplete
-    buf: Incomplete
-    timing: Incomplete
-    def __init__(self, pin, n, bpp: int = ..., timing: int = ...) -> None: ...
-    def __len__(self) -> int:
-        """
-        Returns the number of LEDs in the strip.
-        """
-        ...
-    def __setitem__(self, i, v) -> None:
-        """
-        Set the pixel at *index* to the value, which is an RGB/RGBW tuple.
-        """
-        ...
-    def __getitem__(self, i) -> Tuple:
-        """
-        Returns the pixel at *index* as an RGB/RGBW tuple.
-        """
-        ...
-    def fill(self, v) -> None:
-        """
-        Sets the value of all pixels to the specified *pixel* value (i.e. an
-        RGB/RGBW tuple).
-        """
-        ...
+    ORDER: tuple = ()
     def write(self) -> None:
         """
         Writes the current pixel data to the strip.
         """
         ...
+    def fill(self, pixel) -> None:
+        """
+        Sets the value of all pixels to the specified *pixel* value (i.e. an
+        RGB/RGBW tuple).
+        """
+        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
