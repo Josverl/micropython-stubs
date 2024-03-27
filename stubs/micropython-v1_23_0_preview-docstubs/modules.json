@@ -8,7 +8,7 @@
         "firmware": "micropython-v1_23_0_preview",
         "nodename": "micropython",
         "version": "v1.23.0-preview",
-        "release": "v1.23.0-preview-278-g51d05c442",
+        "release": "v1.23.0-preview-293-gd694ac6e1",
         "sysname": "micropython"
     },
     "stubber": {

@@ -1096,6 +1096,22 @@ class RTC():
                 up the system.
         """
         ...
+    def memory(self, data: Optional[Any]=None) -> bytes:
+        """
+           ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any
+           object which supports the buffer protocol (including `bytes`, `bytearray`,
+           `memoryview` and `array.array`). ``RTC.memory()`` reads RTC memory and returns
+           a `bytes` object.
+        
+           Data written to RTC user memory is persistent across restarts, including
+           `machine.soft_reset()` and `machine.deepsleep()`.
+        
+           The maximum length of RTC user memory is 2048 bytes by default on esp32,
+           and 492 bytes on esp8266.
+        
+           Availability: esp32, esp8266 ports.
+        """
+        ...
 class Timer():
     """
        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
