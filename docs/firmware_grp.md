@@ -569,7 +569,6 @@
 |micropython |v1.23-La|frozen  |mimxrt|TEENSY41|18|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/mimxrt/TEENSY41](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/mimxrt/TEENSY41)
 |micropython |v1.23-La|frozen  |nrf|ARDUINO_NANO_33_BLE_SENSE|15|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE)
 |micropython |v1.23-La|frozen  |nrf|GENERIC|8|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/nrf/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/nrf/GENERIC)
-|micropython |v1.23-La|frozen  |renesas-ra|ARDUINO_PORTENTA_C33|35|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/renesas-ra/ARDUINO_PORTENTA_C33](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/renesas-ra/ARDUINO_PORTENTA_C33)
 |micropython |v1.23-La|frozen  |renesas-ra|EK_RA4M1|1|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/renesas-ra/EK_RA4M1](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/renesas-ra/EK_RA4M1)
 |micropython |v1.23-La|frozen  |renesas-ra|GENERIC|9|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/renesas-ra/GENERIC)
 |micropython |v1.23-La|frozen  |renesas-ra|RA4M1_CLICKER|1|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/renesas-ra/RA4M1_CLICKER](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/renesas-ra/RA4M1_CLICKER)
@@ -584,9 +583,6 @@
 |micropython |v1.23-La|board   |rp2|generic|87|v1.17.3|[stubs/micropython-v1_23_0_preview-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-rp2-RPI_PICO_W)
 |micropython |v1.23-La|frozen  |samd|GENERIC|1|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC)
 |micropython |v1.23-La|board   |samd|generic|57|v1.17.3|[stubs/micropython-v1_23_0_preview-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-samd-SEEED_WIO_TERMINAL)
-|micropython |v1.23-La|frozen  |stm32|ARDUINO_GIGA|35|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_GIGA)
-|micropython |v1.23-La|frozen  |stm32|ARDUINO_NICLA_VISION|35|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_NICLA_VISION)
-|micropython |v1.23-La|frozen  |stm32|ARDUINO_PORTENTA_H7|35|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7)
 |micropython |v1.23-La|frozen  |stm32|GARATRONIC_PYBSTICK26_F411|1|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |micropython |v1.23-La|frozen  |stm32|GENERIC|9|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/GENERIC)
 |micropython |v1.23-La|frozen  |stm32|LEGO_HUB_NO6|11|1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6)
@@ -663,4 +659,4 @@
 
 ## Metrics
 
-Total stub modules:  15752
+Total stub modules:  15612

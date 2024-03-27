@@ -577,7 +577,6 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| v1.23-Latest| mimxrt| TEENSY41| 18| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/mimxrt/TEENSY41](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/mimxrt/TEENSY41)
 |frozen| micropython| v1.23-Latest| nrf| ARDUINO_NANO_33_BLE_SENSE| 15| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/nrf/ARDUINO_NANO_33_BLE_SENSE)
 |frozen| micropython| v1.23-Latest| nrf| GENERIC| 8| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/nrf/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/nrf/GENERIC)
-|frozen| micropython| v1.23-Latest| renesas-ra| ARDUINO_PORTENTA_C33| 35| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/renesas-ra/ARDUINO_PORTENTA_C33](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/renesas-ra/ARDUINO_PORTENTA_C33)
 |frozen| micropython| v1.23-Latest| renesas-ra| EK_RA4M1| 1| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/renesas-ra/EK_RA4M1](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/renesas-ra/EK_RA4M1)
 |frozen| micropython| v1.23-Latest| renesas-ra| GENERIC| 9| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/renesas-ra/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/renesas-ra/GENERIC)
 |frozen| micropython| v1.23-Latest| renesas-ra| RA4M1_CLICKER| 1| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/renesas-ra/RA4M1_CLICKER](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/renesas-ra/RA4M1_CLICKER)
@@ -590,9 +589,6 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| v1.23-Latest| rp2| W5500_EVB_PICO| 21| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| v1.23-Latest| rp2| WEACTSTUDIO| 15| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/rp2/WEACTSTUDIO)
 |frozen| micropython| v1.23-Latest| samd| GENERIC| 1| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/samd/GENERIC)
-|frozen| micropython| v1.23-Latest| stm32| ARDUINO_GIGA| 35| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_GIGA)
-|frozen| micropython| v1.23-Latest| stm32| ARDUINO_NICLA_VISION| 35| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_NICLA_VISION)
-|frozen| micropython| v1.23-Latest| stm32| ARDUINO_PORTENTA_H7| 35| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/ARDUINO_PORTENTA_H7)
 |frozen| micropython| v1.23-Latest| stm32| GARATRONIC_PYBSTICK26_F411| 1| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |frozen| micropython| v1.23-Latest| stm32| GENERIC| 9| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/GENERIC)
 |frozen| micropython| v1.23-Latest| stm32| LEGO_HUB_NO6| 11| 1.17.6|[stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-frozen/stm32/LEGO_HUB_NO6)
@@ -627,4 +623,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  15752
+Total modules  15612
