@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp32-esp32_generic_s3-stubs"
-version = "1.23.0a297"
+version = "1.23.0a314"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",

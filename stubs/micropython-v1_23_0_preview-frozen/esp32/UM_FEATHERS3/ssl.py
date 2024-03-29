@@ -11,14 +11,7 @@ facilities for network sockets, both client-side and server-side.
 """
 from __future__ import annotations
 import tls
-from tls import (
-    CERT_NONE,
-    CERT_OPTIONAL,
-    CERT_REQUIRED,
-    MBEDTLS_VERSION,
-    PROTOCOL_TLS_CLIENT,
-    PROTOCOL_TLS_SERVER,
-)
+from tls import *
 from _typeshed import Incomplete
 from stdlib.ssl import *
 from typing import IO
