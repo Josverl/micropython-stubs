@@ -1,8 +1,13 @@
 [tool.micropython-stubber]
-mpy-stubs-repo-path = "."
+# New config
+"mpy-stubs-path" = "."
+
+#-----------------
+# < v1.18 config
 stub-path = "./stubs"
 publish-path = "./publish"
 template-path = "./publish/template"
+#-----------------
 
 [tool.black]
 # use same config as -stubber
