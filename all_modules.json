@@ -4706,7 +4706,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66e54f2a"
     },
     {
@@ -4716,7 +4716,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "07375537"
     },
     {
@@ -4726,7 +4726,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a0947ad2"
     },
     {
@@ -4736,7 +4736,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5db1ccc0"
     },
     {
@@ -4746,7 +4746,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0526bde5"
     },
     {
@@ -4756,7 +4756,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "aef503d0"
     },
     {
@@ -4766,7 +4766,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -4776,7 +4776,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0f2de399"
     },
     {
@@ -4786,7 +4786,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d3913a92"
     },
     {
@@ -4796,7 +4796,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -4806,7 +4806,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -4816,7 +4816,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -4826,7 +4826,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -4836,7 +4836,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -4846,7 +4846,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2c9d96dd"
     },
     {
@@ -4856,7 +4856,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -4866,7 +4866,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0afa7d8f"
     },
     {
@@ -4876,7 +4876,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0719c5ac"
     },
     {
@@ -4886,7 +4886,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1b569c61"
     },
     {
@@ -4896,7 +4896,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e2679ba4"
     },
     {
@@ -4906,7 +4906,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a01a061"
     },
     {
@@ -4916,7 +4916,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a78dfc6"
     },
     {
@@ -4926,7 +4926,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a145fb0c"
     },
     {
@@ -4936,7 +4936,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -4946,7 +4946,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f32ced95"
     },
     {
@@ -4956,7 +4956,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -4966,7 +4966,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f277f2e"
     },
     {
@@ -4976,7 +4976,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1cd082ba"
     },
     {
@@ -4986,7 +4986,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c723b08f"
     },
     {
@@ -4996,7 +4996,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a290638f"
     },
     {
@@ -5006,7 +5006,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "498ecd2c"
     },
     {
@@ -5016,7 +5016,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -5026,7 +5026,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -5036,7 +5036,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -5046,7 +5046,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6d5560d2"
     },
     {
@@ -5056,7 +5056,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -5066,7 +5066,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -5076,7 +5076,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a8d37d57"
     },
     {
@@ -5086,7 +5086,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -5096,7 +5096,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -5106,7 +5106,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0f2de399"
     },
     {
@@ -5116,7 +5116,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "270e5ec2"
     },
     {
@@ -5126,7 +5126,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -5136,7 +5136,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -5146,7 +5146,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -5156,7 +5156,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -5166,7 +5166,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -5176,7 +5176,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ddddde41"
     },
     {
@@ -5186,7 +5186,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -5196,7 +5196,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3b77cbdb"
     },
     {
@@ -5206,7 +5206,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e2679ba4"
     },
     {
@@ -5216,7 +5216,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a145fb0c"
     },
     {
@@ -5226,7 +5226,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -5236,7 +5236,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f32ced95"
     },
     {
@@ -5246,7 +5246,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -5256,7 +5256,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f277f2e"
     },
     {
@@ -5266,7 +5266,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -5276,7 +5276,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -5286,7 +5286,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -5296,7 +5296,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a99bf204"
     },
     {
@@ -5306,7 +5306,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -5316,7 +5316,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -5326,7 +5326,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a8d37d57"
     },
     {
@@ -5336,7 +5336,7 @@
         "port": "rp2",
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -13316,7 +13316,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66e54f2a"
     },
     {
@@ -13326,7 +13326,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "07375537"
     },
     {
@@ -13336,7 +13336,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1c85c149"
     },
     {
@@ -13346,7 +13346,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5db1ccc0"
     },
     {
@@ -13356,7 +13356,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "aef503d0"
     },
     {
@@ -13366,7 +13366,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2ff112df"
     },
     {
@@ -13376,7 +13376,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "35223618"
     },
     {
@@ -13386,7 +13386,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -13396,7 +13396,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f8f63a2e"
     },
     {
@@ -13406,7 +13406,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "4a56cc1e"
     },
     {
@@ -13416,7 +13416,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -13426,7 +13426,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -13436,7 +13436,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -13446,7 +13446,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -13456,7 +13456,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -13466,7 +13466,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "445ee463"
     },
     {
@@ -13476,7 +13476,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c52ae31e"
     },
     {
@@ -13486,7 +13486,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2c9d96dd"
     },
     {
@@ -13496,7 +13496,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -13506,7 +13506,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0afa7d8f"
     },
     {
@@ -13516,7 +13516,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0719c5ac"
     },
     {
@@ -13526,7 +13526,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1b569c61"
     },
     {
@@ -13536,7 +13536,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "53d42e5f"
     },
     {
@@ -13546,7 +13546,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ea112062"
     },
     {
@@ -13556,7 +13556,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c42dc994"
     },
     {
@@ -13566,7 +13566,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "539f73fd"
     },
     {
@@ -13576,7 +13576,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f6d74946"
     },
     {
@@ -13586,7 +13586,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a01a061"
     },
     {
@@ -13596,7 +13596,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a78dfc6"
     },
     {
@@ -13606,7 +13606,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a23666f6"
     },
     {
@@ -13616,7 +13616,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -13626,7 +13626,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "8c83a33d"
     },
     {
@@ -13636,7 +13636,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "77c51798"
     },
     {
@@ -13646,7 +13646,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -13656,7 +13656,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "40041d2e"
     },
     {
@@ -13666,7 +13666,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1cd082ba"
     },
     {
@@ -13676,7 +13676,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c723b08f"
     },
     {
@@ -13686,7 +13686,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a0b6e356"
     },
     {
@@ -13696,7 +13696,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a290638f"
     },
     {
@@ -13706,7 +13706,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "268c320b"
     },
     {
@@ -13716,7 +13716,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "90197618"
     },
     {
@@ -13726,7 +13726,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "498ecd2c"
     },
     {
@@ -13736,7 +13736,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -13746,7 +13746,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -13756,7 +13756,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -13766,7 +13766,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "51995274"
     },
     {
@@ -13776,7 +13776,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -13786,7 +13786,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "bb54d849"
     },
     {
@@ -13796,7 +13796,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6dada1b2"
     },
     {
@@ -13806,7 +13806,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -13816,7 +13816,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "13fdd346"
     },
     {
@@ -13826,7 +13826,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -13836,7 +13836,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -13846,7 +13846,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f8f63a2e"
     },
     {
@@ -13856,7 +13856,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "4a56cc1e"
     },
     {
@@ -13866,7 +13866,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -13876,7 +13876,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -13886,7 +13886,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -13896,7 +13896,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -13906,7 +13906,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -13916,7 +13916,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "445ee463"
     },
     {
@@ -13926,7 +13926,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ddddde41"
     },
     {
@@ -13936,7 +13936,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -13946,7 +13946,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3b77cbdb"
     },
     {
@@ -13956,7 +13956,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "53d42e5f"
     },
     {
@@ -13966,7 +13966,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a23666f6"
     },
     {
@@ -13976,7 +13976,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -13986,7 +13986,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "77c51798"
     },
     {
@@ -13996,7 +13996,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -14006,7 +14006,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "40041d2e"
     },
     {
@@ -14016,7 +14016,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6554c75a"
     },
     {
@@ -14026,7 +14026,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b7a1524a"
     },
     {
@@ -14036,7 +14036,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -14046,7 +14046,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -14056,7 +14056,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -14066,7 +14066,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a99bf204"
     },
     {
@@ -14076,7 +14076,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "51995274"
     },
     {
@@ -14086,7 +14086,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -14096,7 +14096,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "bb54d849"
     },
     {
@@ -14106,7 +14106,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -14116,7 +14116,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "13fdd346"
     },
     {
@@ -14126,7 +14126,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -14136,7 +14136,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2faa384c"
     },
     {
@@ -14146,7 +14146,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2faa384c"
     },
     {
@@ -25216,7 +25216,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66e54f2a"
     },
     {
@@ -25226,7 +25226,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "aad75eae"
     },
     {
@@ -25236,7 +25236,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5db1ccc0"
     },
     {
@@ -25246,7 +25246,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "74c30542"
     },
     {
@@ -25256,7 +25256,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "31a83b80"
     },
     {
@@ -25266,7 +25266,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "653b56f2"
     },
     {
@@ -25276,7 +25276,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -25286,7 +25286,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -25296,7 +25296,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -25306,7 +25306,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -25316,7 +25316,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b3a3e14a"
     },
     {
@@ -25326,7 +25326,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e3ba2b67"
     },
     {
@@ -25336,7 +25336,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0719c5ac"
     },
     {
@@ -25346,7 +25346,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1b569c61"
     },
     {
@@ -25356,7 +25356,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e2679ba4"
     },
     {
@@ -25366,7 +25366,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "8be40d58"
     },
     {
@@ -25376,7 +25376,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "80eacd4b"
     },
     {
@@ -25386,7 +25386,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6a3d9bbd"
     },
     {
@@ -25396,7 +25396,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5b6c2947"
     },
     {
@@ -25406,7 +25406,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a27d5f1"
     },
     {
@@ -25416,7 +25416,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6a6c0097"
     },
     {
@@ -25426,7 +25426,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b085a8b2"
     },
     {
@@ -25436,7 +25436,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "55574983"
     },
     {
@@ -25446,7 +25446,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c723b08f"
     },
     {
@@ -25456,7 +25456,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "498ecd2c"
     },
     {
@@ -25466,7 +25466,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "157766cc"
     },
     {
@@ -25476,7 +25476,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c41cf98f"
     },
     {
@@ -25486,7 +25486,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b2e3df97"
     },
     {
@@ -25496,7 +25496,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c40b81c5"
     },
     {
@@ -25506,7 +25506,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b240c73c"
     },
     {
@@ -25516,7 +25516,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a6ab25e"
     },
     {
@@ -25526,7 +25526,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "00e40512"
     },
     {
@@ -25536,7 +25536,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "51b6816e"
     },
     {
@@ -25546,7 +25546,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "fbb1e922"
     },
     {
@@ -25556,7 +25556,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "eb8776fc"
     },
     {
@@ -25566,7 +25566,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "653b56f2"
     },
     {
@@ -25576,7 +25576,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -25586,7 +25586,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -25596,7 +25596,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -25606,7 +25606,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -25616,7 +25616,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d594b12"
     },
     {
@@ -25626,7 +25626,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ddddde41"
     },
     {
@@ -25636,7 +25636,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "4ab44946"
     },
     {
@@ -25646,7 +25646,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2bfa4a50"
     },
     {
@@ -25656,7 +25656,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c2fc3523"
     },
     {
@@ -25666,7 +25666,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "fe2bbeec"
     },
     {
@@ -25676,7 +25676,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "90c1bdd3"
     },
     {
@@ -25686,7 +25686,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a7f5b741"
     },
     {
@@ -25696,7 +25696,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b085a8b2"
     },
     {
@@ -25706,7 +25706,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "157766cc"
     },
     {
@@ -25716,7 +25716,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c41cf98f"
     },
     {
@@ -25726,7 +25726,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b2e3df97"
     },
     {
@@ -25736,7 +25736,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a99bf204"
     },
     {
@@ -25746,7 +25746,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b240c73c"
     },
     {
@@ -25756,7 +25756,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a6ab25e"
     },
     {
@@ -25766,7 +25766,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "00e40512"
     },
     {
@@ -25776,7 +25776,7 @@
         "port": "samd",
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "51b6816e"
     },
     {
@@ -25786,7 +25786,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66e54f2a"
     },
     {
@@ -25796,7 +25796,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "aad75eae"
     },
     {
@@ -25806,7 +25806,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5db1ccc0"
     },
     {
@@ -25816,7 +25816,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "74c30542"
     },
     {
@@ -25826,7 +25826,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "31a83b80"
     },
     {
@@ -25836,7 +25836,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "653b56f2"
     },
     {
@@ -25846,7 +25846,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -25856,7 +25856,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -25866,7 +25866,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -25876,7 +25876,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -25886,7 +25886,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b3a3e14a"
     },
     {
@@ -25896,7 +25896,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e3ba2b67"
     },
     {
@@ -25906,7 +25906,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0719c5ac"
     },
     {
@@ -25916,7 +25916,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1b569c61"
     },
     {
@@ -25926,7 +25926,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e2679ba4"
     },
     {
@@ -25936,7 +25936,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "8be40d58"
     },
     {
@@ -25946,7 +25946,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "80eacd4b"
     },
     {
@@ -25956,7 +25956,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6a3d9bbd"
     },
     {
@@ -25966,7 +25966,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5b6c2947"
     },
     {
@@ -25976,7 +25976,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a27d5f1"
     },
     {
@@ -25986,7 +25986,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6a6c0097"
     },
     {
@@ -25996,7 +25996,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b085a8b2"
     },
     {
@@ -26006,7 +26006,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "55574983"
     },
     {
@@ -26016,7 +26016,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c723b08f"
     },
     {
@@ -26026,7 +26026,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "498ecd2c"
     },
     {
@@ -26036,7 +26036,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "157766cc"
     },
     {
@@ -26046,7 +26046,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c41cf98f"
     },
     {
@@ -26056,7 +26056,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b2e3df97"
     },
     {
@@ -26066,7 +26066,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c40b81c5"
     },
     {
@@ -26076,7 +26076,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b240c73c"
     },
     {
@@ -26086,7 +26086,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a6ab25e"
     },
     {
@@ -26096,7 +26096,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "00e40512"
     },
     {
@@ -26106,7 +26106,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "51b6816e"
     },
     {
@@ -26116,7 +26116,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "fbb1e922"
     },
     {
@@ -26126,7 +26126,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "eb8776fc"
     },
     {
@@ -26136,7 +26136,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "653b56f2"
     },
     {
@@ -26146,7 +26146,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -26156,7 +26156,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -26166,7 +26166,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -26176,7 +26176,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -26186,7 +26186,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d594b12"
     },
     {
@@ -26196,7 +26196,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ddddde41"
     },
     {
@@ -26206,7 +26206,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "4ab44946"
     },
     {
@@ -26216,7 +26216,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2bfa4a50"
     },
     {
@@ -26226,7 +26226,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c2fc3523"
     },
     {
@@ -26236,7 +26236,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "fe2bbeec"
     },
     {
@@ -26246,7 +26246,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "90c1bdd3"
     },
     {
@@ -26256,7 +26256,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a7f5b741"
     },
     {
@@ -26266,7 +26266,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b085a8b2"
     },
     {
@@ -26276,7 +26276,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "157766cc"
     },
     {
@@ -26286,7 +26286,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c41cf98f"
     },
     {
@@ -26296,7 +26296,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b2e3df97"
     },
     {
@@ -26306,7 +26306,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a99bf204"
     },
     {
@@ -26316,7 +26316,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b240c73c"
     },
     {
@@ -26326,7 +26326,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a6ab25e"
     },
     {
@@ -26336,7 +26336,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "00e40512"
     },
     {
@@ -26346,7 +26346,7 @@
         "port": "samd",
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "51b6816e"
     },
     {
@@ -29576,7 +29576,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66e54f2a"
     },
     {
@@ -29586,7 +29586,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "07375537"
     },
     {
@@ -29596,7 +29596,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5e5a6403"
     },
     {
@@ -29606,7 +29606,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5e5a6403"
     },
     {
@@ -29616,7 +29616,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5db1ccc0"
     },
     {
@@ -29626,7 +29626,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5177d33a"
     },
     {
@@ -29636,7 +29636,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "aef503d0"
     },
     {
@@ -29646,7 +29646,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e2334d3c"
     },
     {
@@ -29656,7 +29656,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9d53484e"
     },
     {
@@ -29666,7 +29666,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "93dd46b7"
     },
     {
@@ -29676,7 +29676,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "cb6009c1"
     },
     {
@@ -29686,7 +29686,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "61d64b81"
     },
     {
@@ -29696,7 +29696,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "069d10a7"
     },
     {
@@ -29706,7 +29706,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66491999"
     },
     {
@@ -29716,7 +29716,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c364b4a4"
     },
     {
@@ -29726,7 +29726,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "25bb5392"
     },
     {
@@ -29736,7 +29736,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -29746,7 +29746,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "27fe4dfc"
     },
     {
@@ -29756,7 +29756,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f1e6a2b"
     },
     {
@@ -29766,7 +29766,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "4e648609"
     },
     {
@@ -29776,7 +29776,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "bf9c875c"
     },
     {
@@ -29786,7 +29786,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5477b2cb"
     },
     {
@@ -29796,7 +29796,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c0afd8d5"
     },
     {
@@ -29806,7 +29806,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -29816,7 +29816,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "552fabb3"
     },
     {
@@ -29826,7 +29826,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2c9d96dd"
     },
     {
@@ -29836,7 +29836,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -29846,7 +29846,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0afa7d8f"
     },
     {
@@ -29856,7 +29856,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "8ce731e1"
     },
     {
@@ -29866,7 +29866,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "885c01f2"
     },
     {
@@ -29876,7 +29876,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e2679ba4"
     },
     {
@@ -29886,7 +29886,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a01a061"
     },
     {
@@ -29896,7 +29896,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a78dfc6"
     },
     {
@@ -29906,7 +29906,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a145fb0c"
     },
     {
@@ -29916,7 +29916,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -29926,7 +29926,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f32ced95"
     },
     {
@@ -29936,7 +29936,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -29946,7 +29946,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "8fcd5a5b"
     },
     {
@@ -29956,7 +29956,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9af8a694"
     },
     {
@@ -29966,7 +29966,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1cd082ba"
     },
     {
@@ -29976,7 +29976,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c723b08f"
     },
     {
@@ -29986,7 +29986,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6295cce7"
     },
     {
@@ -29996,7 +29996,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f21fe48d"
     },
     {
@@ -30006,7 +30006,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b52eeb0a"
     },
     {
@@ -30016,7 +30016,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5e92ee7e"
     },
     {
@@ -30026,7 +30026,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "439d9111"
     },
     {
@@ -30036,7 +30036,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -30046,7 +30046,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -30056,7 +30056,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -30066,7 +30066,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "56aed996"
     },
     {
@@ -30076,7 +30076,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a32ac0a5"
     },
     {
@@ -30086,7 +30086,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -30096,7 +30096,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "bd614301"
     },
     {
@@ -30106,7 +30106,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ccc040db"
     },
     {
@@ -30116,7 +30116,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -30126,7 +30126,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "70177841"
     },
     {
@@ -30136,7 +30136,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -30146,7 +30146,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -30156,7 +30156,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6ac0b62c"
     },
     {
@@ -30166,7 +30166,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "653b56f2"
     },
     {
@@ -30176,7 +30176,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -30186,7 +30186,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -30196,7 +30196,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -30206,7 +30206,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -30216,7 +30216,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "fc3e781c"
     },
     {
@@ -30226,7 +30226,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -30236,7 +30236,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "552fabb3"
     },
     {
@@ -30246,7 +30246,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ddddde41"
     },
     {
@@ -30256,7 +30256,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -30266,7 +30266,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3b77cbdb"
     },
     {
@@ -30276,7 +30276,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e2679ba4"
     },
     {
@@ -30286,7 +30286,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a145fb0c"
     },
     {
@@ -30296,7 +30296,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -30306,7 +30306,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f32ced95"
     },
     {
@@ -30316,7 +30316,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -30326,7 +30326,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9af8a694"
     },
     {
@@ -30336,7 +30336,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -30346,7 +30346,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -30356,7 +30356,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -30366,7 +30366,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a99bf204"
     },
     {
@@ -30376,7 +30376,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3310408e"
     },
     {
@@ -30386,7 +30386,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -30396,7 +30396,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "bd614301"
     },
     {
@@ -30406,7 +30406,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -30416,7 +30416,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "70177841"
     },
     {
@@ -30426,7 +30426,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -30436,7 +30436,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2faa384c"
     },
     {
@@ -30446,7 +30446,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "08ad09f0"
     },
     {
@@ -30456,7 +30456,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "7c9c50e2"
     },
     {
@@ -30466,7 +30466,7 @@
         "port": "rp2",
         "board": "rpi_pico_w",
         "package": "micropython-rp2-rpi_pico_w-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2faa384c"
     },
     {
@@ -33316,7 +33316,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66e54f2a"
     },
     {
@@ -33326,7 +33326,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "07375537"
     },
     {
@@ -33336,7 +33336,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5e5a6403"
     },
     {
@@ -33346,7 +33346,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5e5a6403"
     },
     {
@@ -33356,7 +33356,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5db1ccc0"
     },
     {
@@ -33366,7 +33366,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0526bde5"
     },
     {
@@ -33376,7 +33376,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "aef503d0"
     },
     {
@@ -33386,7 +33386,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e2334d3c"
     },
     {
@@ -33396,7 +33396,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9d53484e"
     },
     {
@@ -33406,7 +33406,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "93dd46b7"
     },
     {
@@ -33416,7 +33416,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "cb6009c1"
     },
     {
@@ -33426,7 +33426,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "61d64b81"
     },
     {
@@ -33436,7 +33436,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "069d10a7"
     },
     {
@@ -33446,7 +33446,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66491999"
     },
     {
@@ -33456,7 +33456,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c364b4a4"
     },
     {
@@ -33466,7 +33466,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "25bb5392"
     },
     {
@@ -33476,7 +33476,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -33486,7 +33486,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "27fe4dfc"
     },
     {
@@ -33496,7 +33496,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f1e6a2b"
     },
     {
@@ -33506,7 +33506,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "4e648609"
     },
     {
@@ -33516,7 +33516,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "bf9c875c"
     },
     {
@@ -33526,7 +33526,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5477b2cb"
     },
     {
@@ -33536,7 +33536,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c0afd8d5"
     },
     {
@@ -33546,7 +33546,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -33556,7 +33556,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "79717193"
     },
     {
@@ -33566,7 +33566,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5cb1657c"
     },
     {
@@ -33576,7 +33576,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "094e4096"
     },
     {
@@ -33586,7 +33586,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1fd166ba"
     },
     {
@@ -33596,7 +33596,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2c9d96dd"
     },
     {
@@ -33606,7 +33606,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -33616,7 +33616,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0afa7d8f"
     },
     {
@@ -33626,7 +33626,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "8ce731e1"
     },
     {
@@ -33636,7 +33636,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "885c01f2"
     },
     {
@@ -33646,7 +33646,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "53d42e5f"
     },
     {
@@ -33656,7 +33656,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6703370c"
     },
     {
@@ -33666,7 +33666,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a01a061"
     },
     {
@@ -33676,7 +33676,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a78dfc6"
     },
     {
@@ -33686,7 +33686,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a23666f6"
     },
     {
@@ -33696,7 +33696,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f32ced95"
     },
     {
@@ -33706,7 +33706,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -33716,7 +33716,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9a386124"
     },
     {
@@ -33726,7 +33726,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1455ab65"
     },
     {
@@ -33736,7 +33736,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e5ec4272"
     },
     {
@@ -33746,7 +33746,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1cd082ba"
     },
     {
@@ -33756,7 +33756,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c723b08f"
     },
     {
@@ -33766,7 +33766,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6295cce7"
     },
     {
@@ -33776,7 +33776,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f21fe48d"
     },
     {
@@ -33786,7 +33786,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "30b647cd"
     },
     {
@@ -33796,7 +33796,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5e92ee7e"
     },
     {
@@ -33806,7 +33806,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "439d9111"
     },
     {
@@ -33816,7 +33816,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -33826,7 +33826,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -33836,7 +33836,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -33846,7 +33846,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "56aed996"
     },
     {
@@ -33856,7 +33856,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a32ac0a5"
     },
     {
@@ -33866,7 +33866,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -33876,7 +33876,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6f72b18a"
     },
     {
@@ -33886,7 +33886,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "79c0828e"
     },
     {
@@ -33896,7 +33896,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c21d1f65"
     },
     {
@@ -33906,7 +33906,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b948b86f"
     },
     {
@@ -33916,7 +33916,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5ef5f712"
     },
     {
@@ -33926,7 +33926,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "07125955"
     },
     {
@@ -33936,7 +33936,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ccc040db"
     },
     {
@@ -33946,7 +33946,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -33956,7 +33956,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a8d37d57"
     },
     {
@@ -33966,7 +33966,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d8c3ed5b"
     },
     {
@@ -33976,7 +33976,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -33986,7 +33986,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0f2de399"
     },
     {
@@ -33996,7 +33996,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2ad9730c"
     },
     {
@@ -34006,7 +34006,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -34016,7 +34016,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -34026,7 +34026,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -34036,7 +34036,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -34046,7 +34046,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "fc3e781c"
     },
     {
@@ -34056,7 +34056,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -34066,7 +34066,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "79717193"
     },
     {
@@ -34076,7 +34076,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ddddde41"
     },
     {
@@ -34086,7 +34086,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -34096,7 +34096,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3b77cbdb"
     },
     {
@@ -34106,7 +34106,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "53d42e5f"
     },
     {
@@ -34116,7 +34116,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a23666f6"
     },
     {
@@ -34126,7 +34126,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -34136,7 +34136,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f32ced95"
     },
     {
@@ -34146,7 +34146,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -34156,7 +34156,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e5ec4272"
     },
     {
@@ -34166,7 +34166,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -34176,7 +34176,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -34186,7 +34186,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -34196,7 +34196,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a99bf204"
     },
     {
@@ -34206,7 +34206,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3310408e"
     },
     {
@@ -34216,7 +34216,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -34226,7 +34226,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "07125955"
     },
     {
@@ -34236,7 +34236,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "238be588"
     },
     {
@@ -34246,7 +34246,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -34256,7 +34256,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a8d37d57"
     },
     {
@@ -34266,7 +34266,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -34276,7 +34276,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2faa384c"
     },
     {
@@ -34286,7 +34286,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "08ad09f0"
     },
     {
@@ -34296,7 +34296,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "7c9c50e2"
     },
     {
@@ -34306,7 +34306,7 @@
         "port": "rp2",
         "board": "arduino_nano_rp2040_connect",
         "package": "micropython-rp2-arduino_nano_rp2040_connect-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2faa384c"
     },
     {
@@ -38236,7 +38236,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66e54f2a"
     },
     {
@@ -38246,7 +38246,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "07375537"
     },
     {
@@ -38256,7 +38256,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1c85c149"
     },
     {
@@ -38266,7 +38266,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5db1ccc0"
     },
     {
@@ -38276,7 +38276,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "aef503d0"
     },
     {
@@ -38286,7 +38286,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2ff112df"
     },
     {
@@ -38296,7 +38296,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "35223618"
     },
     {
@@ -38306,7 +38306,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -38316,7 +38316,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f8f63a2e"
     },
     {
@@ -38326,7 +38326,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "4a56cc1e"
     },
     {
@@ -38336,7 +38336,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -38346,7 +38346,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -38356,7 +38356,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -38366,7 +38366,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -38376,7 +38376,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -38386,7 +38386,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "445ee463"
     },
     {
@@ -38396,7 +38396,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c52ae31e"
     },
     {
@@ -38406,7 +38406,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2c9d96dd"
     },
     {
@@ -38416,7 +38416,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -38426,7 +38426,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0afa7d8f"
     },
     {
@@ -38436,7 +38436,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0719c5ac"
     },
     {
@@ -38446,7 +38446,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1b569c61"
     },
     {
@@ -38456,7 +38456,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "53d42e5f"
     },
     {
@@ -38466,7 +38466,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ea112062"
     },
     {
@@ -38476,7 +38476,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c42dc994"
     },
     {
@@ -38486,7 +38486,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "539f73fd"
     },
     {
@@ -38496,7 +38496,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f6d74946"
     },
     {
@@ -38506,7 +38506,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a01a061"
     },
     {
@@ -38516,7 +38516,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a78dfc6"
     },
     {
@@ -38526,7 +38526,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a23666f6"
     },
     {
@@ -38536,7 +38536,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -38546,7 +38546,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "8c83a33d"
     },
     {
@@ -38556,7 +38556,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "77c51798"
     },
     {
@@ -38566,7 +38566,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -38576,7 +38576,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "40041d2e"
     },
     {
@@ -38586,7 +38586,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1cd082ba"
     },
     {
@@ -38596,7 +38596,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c723b08f"
     },
     {
@@ -38606,7 +38606,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a0b6e356"
     },
     {
@@ -38616,7 +38616,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a290638f"
     },
     {
@@ -38626,7 +38626,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "268c320b"
     },
     {
@@ -38636,7 +38636,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "90197618"
     },
     {
@@ -38646,7 +38646,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "498ecd2c"
     },
     {
@@ -38656,7 +38656,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -38666,7 +38666,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -38676,7 +38676,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -38686,7 +38686,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "51995274"
     },
     {
@@ -38696,7 +38696,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -38706,7 +38706,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "bb54d849"
     },
     {
@@ -38716,7 +38716,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6dada1b2"
     },
     {
@@ -38726,7 +38726,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -38736,7 +38736,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "13fdd346"
     },
     {
@@ -38746,7 +38746,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -38756,7 +38756,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -38766,7 +38766,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f8f63a2e"
     },
     {
@@ -38776,7 +38776,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "4a56cc1e"
     },
     {
@@ -38786,7 +38786,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -38796,7 +38796,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -38806,7 +38806,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -38816,7 +38816,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -38826,7 +38826,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -38836,7 +38836,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "445ee463"
     },
     {
@@ -38846,7 +38846,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ddddde41"
     },
     {
@@ -38856,7 +38856,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -38866,7 +38866,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3b77cbdb"
     },
     {
@@ -38876,7 +38876,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "53d42e5f"
     },
     {
@@ -38886,7 +38886,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a23666f6"
     },
     {
@@ -38896,7 +38896,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -38906,7 +38906,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "77c51798"
     },
     {
@@ -38916,7 +38916,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -38926,7 +38926,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "40041d2e"
     },
     {
@@ -38936,7 +38936,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6554c75a"
     },
     {
@@ -38946,7 +38946,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b7a1524a"
     },
     {
@@ -38956,7 +38956,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -38966,7 +38966,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -38976,7 +38976,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -38986,7 +38986,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a99bf204"
     },
     {
@@ -38996,7 +38996,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "51995274"
     },
     {
@@ -39006,7 +39006,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -39016,7 +39016,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "bb54d849"
     },
     {
@@ -39026,7 +39026,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -39036,7 +39036,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "13fdd346"
     },
     {
@@ -39046,7 +39046,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -39056,7 +39056,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2faa384c"
     },
     {
@@ -39066,7 +39066,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2faa384c"
     },
     {
@@ -40036,7 +40036,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66e54f2a"
     },
     {
@@ -40046,7 +40046,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "07375537"
     },
     {
@@ -40056,7 +40056,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1c85c149"
     },
     {
@@ -40066,7 +40066,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5db1ccc0"
     },
     {
@@ -40076,7 +40076,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "aef503d0"
     },
     {
@@ -40086,7 +40086,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2ff112df"
     },
     {
@@ -40096,7 +40096,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "35223618"
     },
     {
@@ -40106,7 +40106,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -40116,7 +40116,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f8f63a2e"
     },
     {
@@ -40126,7 +40126,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "4a56cc1e"
     },
     {
@@ -40136,7 +40136,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -40146,7 +40146,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -40156,7 +40156,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -40166,7 +40166,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -40176,7 +40176,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -40186,7 +40186,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "445ee463"
     },
     {
@@ -40196,7 +40196,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c52ae31e"
     },
     {
@@ -40206,7 +40206,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2c9d96dd"
     },
     {
@@ -40216,7 +40216,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -40226,7 +40226,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0afa7d8f"
     },
     {
@@ -40236,7 +40236,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0719c5ac"
     },
     {
@@ -40246,7 +40246,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1b569c61"
     },
     {
@@ -40256,7 +40256,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "53d42e5f"
     },
     {
@@ -40266,7 +40266,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ea112062"
     },
     {
@@ -40276,7 +40276,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "082f8af2"
     },
     {
@@ -40286,7 +40286,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "539f73fd"
     },
     {
@@ -40296,7 +40296,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6b9a8078"
     },
     {
@@ -40306,7 +40306,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a01a061"
     },
     {
@@ -40316,7 +40316,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a78dfc6"
     },
     {
@@ -40326,7 +40326,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a23666f6"
     },
     {
@@ -40336,7 +40336,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -40346,7 +40346,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9bb38103"
     },
     {
@@ -40356,7 +40356,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "77c51798"
     },
     {
@@ -40366,7 +40366,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -40376,7 +40376,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "287810d2"
     },
     {
@@ -40386,7 +40386,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1cd082ba"
     },
     {
@@ -40396,7 +40396,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c723b08f"
     },
     {
@@ -40406,7 +40406,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a0b6e356"
     },
     {
@@ -40416,7 +40416,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a290638f"
     },
     {
@@ -40426,7 +40426,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "268c320b"
     },
     {
@@ -40436,7 +40436,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "90197618"
     },
     {
@@ -40446,7 +40446,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "498ecd2c"
     },
     {
@@ -40456,7 +40456,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -40466,7 +40466,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -40476,7 +40476,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -40486,7 +40486,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "51995274"
     },
     {
@@ -40496,7 +40496,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -40506,7 +40506,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "bb54d849"
     },
     {
@@ -40516,7 +40516,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6dada1b2"
     },
     {
@@ -40526,7 +40526,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -40536,7 +40536,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "13fdd346"
     },
     {
@@ -40546,7 +40546,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -40556,7 +40556,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -40566,7 +40566,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f8f63a2e"
     },
     {
@@ -40576,7 +40576,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "4a56cc1e"
     },
     {
@@ -40586,7 +40586,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -40596,7 +40596,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -40606,7 +40606,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -40616,7 +40616,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -40626,7 +40626,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -40636,7 +40636,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "445ee463"
     },
     {
@@ -40646,7 +40646,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ddddde41"
     },
     {
@@ -40656,7 +40656,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -40666,7 +40666,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3b77cbdb"
     },
     {
@@ -40676,7 +40676,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "53d42e5f"
     },
     {
@@ -40686,7 +40686,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a23666f6"
     },
     {
@@ -40696,7 +40696,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -40706,7 +40706,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "77c51798"
     },
     {
@@ -40716,7 +40716,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -40726,7 +40726,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "287810d2"
     },
     {
@@ -40736,7 +40736,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6554c75a"
     },
     {
@@ -40746,7 +40746,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "b7a1524a"
     },
     {
@@ -40756,7 +40756,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -40766,7 +40766,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -40776,7 +40776,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -40786,7 +40786,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a99bf204"
     },
     {
@@ -40796,7 +40796,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "51995274"
     },
     {
@@ -40806,7 +40806,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -40816,7 +40816,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "bb54d849"
     },
     {
@@ -40826,7 +40826,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -40836,7 +40836,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "13fdd346"
     },
     {
@@ -40846,7 +40846,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -40856,7 +40856,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2faa384c"
     },
     {
@@ -40866,7 +40866,7 @@
         "port": "esp32",
         "board": "esp32_generic_s3",
         "package": "micropython-esp32-esp32_generic_s3-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2faa384c"
     },
     {
@@ -43096,7 +43096,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "66e54f2a"
     },
     {
@@ -43106,7 +43106,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "07375537"
     },
     {
@@ -43116,7 +43116,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a0947ad2"
     },
     {
@@ -43126,7 +43126,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5db1ccc0"
     },
     {
@@ -43136,7 +43136,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0526bde5"
     },
     {
@@ -43146,7 +43146,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "aef503d0"
     },
     {
@@ -43156,7 +43156,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -43166,7 +43166,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0f2de399"
     },
     {
@@ -43176,7 +43176,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d3913a92"
     },
     {
@@ -43186,7 +43186,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -43196,7 +43196,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -43206,7 +43206,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -43216,7 +43216,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -43226,7 +43226,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -43236,7 +43236,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "2c9d96dd"
     },
     {
@@ -43246,7 +43246,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -43256,7 +43256,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0afa7d8f"
     },
     {
@@ -43266,7 +43266,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0719c5ac"
     },
     {
@@ -43276,7 +43276,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1b569c61"
     },
     {
@@ -43286,7 +43286,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e2679ba4"
     },
     {
@@ -43296,7 +43296,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a01a061"
     },
     {
@@ -43306,7 +43306,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0a78dfc6"
     },
     {
@@ -43316,7 +43316,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a145fb0c"
     },
     {
@@ -43326,7 +43326,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -43336,7 +43336,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f32ced95"
     },
     {
@@ -43346,7 +43346,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -43356,7 +43356,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f277f2e"
     },
     {
@@ -43366,7 +43366,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1cd082ba"
     },
     {
@@ -43376,7 +43376,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c723b08f"
     },
     {
@@ -43386,7 +43386,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a290638f"
     },
     {
@@ -43396,7 +43396,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "498ecd2c"
     },
     {
@@ -43406,7 +43406,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -43416,7 +43416,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -43426,7 +43426,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -43436,7 +43436,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "6d5560d2"
     },
     {
@@ -43446,7 +43446,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -43456,7 +43456,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -43466,7 +43466,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a8d37d57"
     },
     {
@@ -43476,7 +43476,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
@@ -43486,7 +43486,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3c16fdaa"
     },
     {
@@ -43496,7 +43496,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "0f2de399"
     },
     {
@@ -43506,7 +43506,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "270e5ec2"
     },
     {
@@ -43516,7 +43516,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "437d6c50"
     },
     {
@@ -43526,7 +43526,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "88472f36"
     },
     {
@@ -43536,7 +43536,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ba1a8d12"
     },
     {
@@ -43546,7 +43546,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f9590b0"
     },
     {
@@ -43556,7 +43556,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "d35d69d4"
     },
     {
@@ -43566,7 +43566,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "ddddde41"
     },
     {
@@ -43576,7 +43576,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ef4c973"
     },
     {
@@ -43586,7 +43586,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "3b77cbdb"
     },
     {
@@ -43596,7 +43596,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "e2679ba4"
     },
     {
@@ -43606,7 +43606,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a145fb0c"
     },
     {
@@ -43616,7 +43616,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "c658d9a9"
     },
     {
@@ -43626,7 +43626,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "f32ced95"
     },
     {
@@ -43636,7 +43636,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "14441ac7"
     },
     {
@@ -43646,7 +43646,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5f277f2e"
     },
     {
@@ -43656,7 +43656,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "06ae1277"
     },
     {
@@ -43666,7 +43666,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "863b5d73"
     },
     {
@@ -43676,7 +43676,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "9ecb3072"
     },
     {
@@ -43686,7 +43686,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a99bf204"
     },
     {
@@ -43696,7 +43696,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1e6af349"
     },
     {
@@ -43706,7 +43706,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "1326ae31"
     },
     {
@@ -43716,7 +43716,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "a8d37d57"
     },
     {
@@ -43726,7 +43726,7 @@
         "port": "rp2",
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
-        "pkg_version": "1.23.0a322",
+        "pkg_version": "1.23.0a323",
         "hash": "5d4fdf43"
     },
     {
