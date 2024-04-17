@@ -51,7 +51,6 @@ class FrameBuffer:
     optionally *stride*.  Invalid *buffer* size or dimensions may lead to
     unexpected errors.
     """
-
     def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Incomplete:
         """
         Given a list of coordinates, draw an arbitrary (convex or concave) closed

@@ -35,7 +35,7 @@ I2C0_SCL_PIN = 21
 I2C0_SDA_PIN = 25
 
 # Grove port
-GROVE_PORT_PIN = (26), const(32)
+GROVE_PORT_PIN = (26), 32
 
 
 class ATOM:

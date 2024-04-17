@@ -42,14 +42,12 @@ class UUID:
     - A 16-bit integer. e.g. ``0x2908``.
     - A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``.
     """
-
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class BLE:
     """
     Returns the singleton BLE object.
     """
-
     def gattc_write(self, conn_handle, value_handle, data, mode=0, /) -> None:
         """
         Issue a remote write to a connected server for the specified

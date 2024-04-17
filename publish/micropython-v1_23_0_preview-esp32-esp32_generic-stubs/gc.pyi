@@ -23,7 +23,6 @@ def mem_alloc() -> int:
        This function is MicroPython extension.
     """
     ...
-
 def isenabled(*args, **kwargs) -> Incomplete: ...
 def mem_free() -> int:
     """
@@ -35,7 +34,6 @@ def mem_free() -> int:
        This function is MicroPython extension.
     """
     ...
-
 def threshold(amount: Optional[Any] = None) -> Incomplete:
     """
     Set or query the additional GC allocation threshold. Normally, a collection
@@ -60,19 +58,16 @@ def threshold(amount: Optional[Any] = None) -> Incomplete:
        implementations, its signature and semantics are different.
     """
     ...
-
 def collect() -> None:
     """
     Run a garbage collection.
     """
     ...
-
 def enable() -> None:
     """
     Enable automatic garbage collection.
     """
     ...
-
 def disable() -> None:
     """
     Disable automatic garbage collection.  Heap memory can still be allocated,

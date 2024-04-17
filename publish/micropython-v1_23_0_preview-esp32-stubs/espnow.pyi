@@ -27,7 +27,6 @@ class ESPNow(ESPNowBase, Iterator):
       Some methods are available only on the ESP32 due to code size
       restrictions on the ESP8266 and differences in the Espressif API.
     """
-
     _data: list = []
     _none_tuple: tuple = ()
     def peer_count(self) -> int:
@@ -212,8 +211,7 @@ class ESPNow(ESPNowBase, Iterator):
            ``True`` if data is available to be read, else ``False``.
         """
         ...
-    def add_peer(
-        self, mac, lmk: Optional[Any] = None, channel: Optional[Any] = None, ifidx: Optional[Any] = None, encrypt: Optional[Any] = None
+    def add_peer(self, mac, lmk: Optional[Any] = None, channel: Optional[Any] = None, ifidx: Optional[Any] = None, encrypt: Optional[Any] = None
     ) -> Incomplete:
         """
         Add/register the provided *mac* address as a peer. Additional parameters may

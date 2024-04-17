@@ -51,13 +51,11 @@ def create_task(coro) -> Task:
     Returns the corresponding `Task` object.
     """
     ...
-
 def current_task() -> Task:
     """
     Return the `Task` object associated with the currently running task.
     """
     ...
-
 def ticks_diff(*args, **kwargs) -> Incomplete: ...
 def ticks_add(*args, **kwargs) -> Incomplete: ...
 def get_event_loop() -> Incomplete:
@@ -65,7 +63,6 @@ def get_event_loop() -> Incomplete:
     Return the event loop used to schedule and run tasks.  See `Loop`.
     """
     ...
-
 def ticks(*args, **kwargs) -> Incomplete: ...
 def run_until_complete(*args, **kwargs) -> Incomplete: ...
 def new_event_loop() -> Incomplete:
@@ -76,7 +73,6 @@ def new_event_loop() -> Incomplete:
     resets the loop's state, it does not create a new one.
     """
     ...
-
 def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
     """
     Similar to `wait_for` but *timeout* is an integer in milliseconds.
@@ -84,7 +80,6 @@ def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
     This is a coroutine, and a MicroPython extension.
     """
     ...
-
 def sleep(t) -> Coroutine[Incomplete, Any, Any]:
     """
     Sleep for *t* seconds (can be a float).
@@ -92,7 +87,6 @@ def sleep(t) -> Coroutine[Incomplete, Any, Any]:
     This is a coroutine.
     """
     ...
-
 def run(coro) -> Incomplete:
     """
     Create a new task from the given coroutine and run it until it completes.
@@ -100,7 +94,6 @@ def run(coro) -> Incomplete:
     Returns the value returned by *coro*.
     """
     ...
-
 def sleep_ms(t) -> Coroutine[Incomplete, Any, Any]:
     """
     Sleep for *t* milliseconds.
@@ -134,7 +127,6 @@ class Task:
 
     Tasks should not be created directly, rather use `create_task` to create them.
     """
-
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class Lock:
@@ -144,7 +136,6 @@ class Lock:
 
     In addition to the methods below, locks can be used in an ``async with`` statement.
     """
-
     def locked(self) -> bool:
         """
         Returns ``True`` if the lock is locked, otherwise ``False``.
@@ -157,6 +148,7 @@ class Lock:
         waiting an the lock becomes unlocked.
         """
         ...
+
     acquire: Generator  ## = <generator>
     def __init__(self, *argv, **kwargs) -> None: ...
 
@@ -165,7 +157,6 @@ class Loop:
     This represents the object which schedules and runs tasks.  It cannot be
     created, use `get_event_loop` instead.
     """
-
     def get_exception_handler(self) -> None:
         """
         Get the current exception handler.  Returns the handler, or ``None`` if no
@@ -215,6 +206,7 @@ class Loop:
         is a dictionary containing keys: ``'message'``, ``'exception'``, ``'future'``.
         """
         ...
+
     _exc_handler: Incomplete  ## <class 'NoneType'> = None
     def __init__(self, *argv, **kwargs) -> None: ...
 
@@ -232,7 +224,6 @@ class Event:
     Create a new event which can be used to synchronise tasks.  Events start
     in the cleared state.
     """
-
     def set(self) -> None:
         """
         Set the event.  Any tasks waiting on the event will be scheduled to run.
@@ -251,6 +242,7 @@ class Event:
         Clear the event.
         """
         ...
+
     wait: Generator  ## = <generator>
     def __init__(self, *argv, **kwargs) -> None: ...
 
@@ -261,7 +253,6 @@ class ThreadSafeFlag:
     callbacks.  Flags start in the cleared state.  The class does not currently
     work under the Unix build of MicroPython.
     """
-
     def set(self) -> None:
         """
         Set the flag.  If there is a task waiting on the flag, it will be scheduled
@@ -275,6 +266,7 @@ class ThreadSafeFlag:
         flag is clear before waiting for it.
         """
         ...
+
     wait: Generator  ## = <generator>
     def __init__(self, *argv, **kwargs) -> None: ...
 

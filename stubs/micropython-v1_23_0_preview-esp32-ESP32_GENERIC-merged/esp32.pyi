@@ -25,7 +25,6 @@ def raw_temperature() -> int:
     Read the raw value of the internal temperature sensor, returning an integer.
     """
     ...
-
 def idf_heap_info(capabilities) -> List[Tuple]:
     """
     Returns information about the ESP-IDF heap memory regions. One of them contains
@@ -63,14 +62,12 @@ def idf_heap_info(capabilities) -> List[Tuple]:
        and "max new split" values printed by :func:`micropython.mem_info()`.
     """
     ...
-
 def wake_on_touch(wake) -> None:
     """
     Configure whether or not a touch will wake the device from sleep.
     *wake* should be a boolean value.
     """
     ...
-
 def wake_on_ext0(pin, level) -> None:
     """
     Configure how EXT0 wakes the device from sleep.  *pin* can be ``None``
@@ -78,7 +75,6 @@ def wake_on_ext0(pin, level) -> None:
     ``esp32.WAKEUP_ANY_HIGH``.
     """
     ...
-
 def wake_on_ext1(pins, level) -> None:
     """
     Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
@@ -86,14 +82,12 @@ def wake_on_ext1(pins, level) -> None:
     or ``esp32.WAKEUP_ANY_HIGH``.
     """
     ...
-
 def wake_on_ulp(wake) -> None:
     """
     Configure whether or not the Ultra-Low-Power co-processor can wake the
     device from sleep. *wake* should be a boolean value.
     """
     ...
-
 def gpio_deep_sleep_hold(enable) -> None:
     """
     Configure whether non-RTC GPIO pin configuration is retained during
@@ -105,7 +99,6 @@ class ULP:
     """
     This class provides access to the Ultra-Low-Power co-processor.
     """
-
     RESERVE_MEM: int = 2040
     def run(self, entry_point) -> Incomplete:
         """
@@ -129,7 +122,6 @@ class NVS:
     Create an object providing access to a namespace (which is automatically created if not
     present).
     """
-
     def get_i32(self, key) -> int:
         """
         Returns the signed integer value for the specified key. Raises an OSError if the key does not
@@ -174,7 +166,6 @@ class Partition:
     of the partition to retrieve, or one of the constants: ``BOOT`` or ``RUNNING``.
     *block_size* specifies the byte size of an individual block.
     """
-
     RUNNING: int = 1
     TYPE_APP: int = 0
     TYPE_DATA: int = 1
@@ -253,7 +244,6 @@ class RMT:
     ``100``) and the output level to apply the carrier to (a boolean as per
     *idle_level*).
     """
-
     PULSE_MAX: int = 32767
     @classmethod
     def source_freq(cls) -> Incomplete:
