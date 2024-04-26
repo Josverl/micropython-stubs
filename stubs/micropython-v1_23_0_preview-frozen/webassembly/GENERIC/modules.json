@@ -12,13 +12,33 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.19.0",
+        "version": "1.20.0",
         "stubtype": "frozen"
     },
     "modules": [
         {
             "file": "abc.py",
             "module": "abc"
+        },
+        {
+            "file": "asyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "asyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "asyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "asyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "asyncio/lock.py",
+            "module": "lock"
         },
         {
             "file": "base64.py",
