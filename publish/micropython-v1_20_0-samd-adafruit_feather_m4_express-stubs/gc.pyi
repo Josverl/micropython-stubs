@@ -5,6 +5,7 @@ MicroPython module: https://docs.micropython.org/en/v1.20.0/library/gc.html
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
+
 from typing import Optional, Any
 from _typeshed import Incomplete
 

@@ -9,6 +9,7 @@ controlling ESP32 modules.
 ---
 Module: 'esp32' on micropython-v1.20.0-esp32-GENERIC_OTA
 """
+
 from __future__ import annotations
 
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC_OTA', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
@@ -130,8 +131,7 @@ class ULP:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class NVS:
@@ -182,8 +182,7 @@ class NVS:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class Partition:
@@ -198,8 +197,7 @@ class Partition:
     TYPE_DATA = 1  # type: int
     BOOT = 0  # type: int
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
     def ioctl(self, cmd, arg) -> Incomplete:
         """
@@ -215,8 +213,7 @@ class Partition:
         """
         ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
     def info(self) -> Tuple:
         """
@@ -259,8 +256,7 @@ class Partition:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class RMT:
@@ -350,8 +346,7 @@ class RMT:
         """
         ...
 
-    def deinit(self, *args, **kwargs) -> Any:
-        ...
+    def deinit(self, *args, **kwargs) -> Any: ...
 
     def clock_div(self) -> Incomplete:
         """
@@ -360,5 +355,4 @@ class RMT:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

@@ -9,6 +9,7 @@ controlling ESP32 modules.
 ---
 Module: 'esp32' on micropython-v1.19.1-esp32
 """
+
 from __future__ import annotations
 
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
@@ -138,8 +139,7 @@ class Partition:
         """
         ...
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
     def set_boot(self) -> None:
         """
@@ -147,8 +147,7 @@ class Partition:
         """
         ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
 
 class RMT:
@@ -194,8 +193,7 @@ class RMT:
         """
         ...
 
-    def deinit(self, *args, **kwargs) -> Any:
-        ...
+    def deinit(self, *args, **kwargs) -> Any: ...
 
     def loop(self, enable_loop) -> None:
         """

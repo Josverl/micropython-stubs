@@ -3,6 +3,7 @@ Access and control MicroPython internals.
 
 MicroPython module: https://docs.micropython.org/en/v1.20.0/library/micropython.html
 """
+
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional, Tuple, TypeVar
 

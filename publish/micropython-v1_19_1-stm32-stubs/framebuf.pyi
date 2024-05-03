@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.19.1/library/framebuf.htm
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 """
+
 from typing import Optional, Any
 from _typeshed import Incomplete
 
@@ -53,6 +54,7 @@ class FrameBuffer:
         If *c* is given, set the specified pixel to the given color.
         """
         ...
+
     def vline(self, x, y, h, c) -> Incomplete: ...
     def scroll(self, xstep, ystep) -> Incomplete:
         """
@@ -60,6 +62,7 @@ class FrameBuffer:
         leave a footprint of the previous colors in the FrameBuffer.
         """
         ...
+
     def text(self, s, x, y, c: Optional[Any] = None) -> None:
         """
         Write text to the FrameBuffer using the the coordinates as the upper-left
@@ -68,11 +71,13 @@ class FrameBuffer:
         dimensions of 8x8 pixels and there is currently no way to change the font.
         """
         ...
+
     def fill(self, c) -> None:
         """
         Fill the entire FrameBuffer with the specified color.
         """
         ...
+
     def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
@@ -92,6 +97,7 @@ class FrameBuffer:
         color of the corresponding source pixel.
         """
         ...
+
     def line(self, x1, y1, x2, y2, c) -> None:
         """
         Draw a line from a set of coordinates using the given color and
@@ -101,6 +107,7 @@ class FrameBuffer:
         a given length.
         """
         ...
+
     def fill_rect(self, x, y, w, h, c) -> None:
         """
         Draw a rectangle at the given location, size and color. The `rect`
@@ -108,5 +115,6 @@ class FrameBuffer:
         draws both the outline and interior.
         """
         ...
+
     def hline(self, x, y, w, c) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...

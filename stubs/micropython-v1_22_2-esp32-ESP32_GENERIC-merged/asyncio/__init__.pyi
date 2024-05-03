@@ -36,6 +36,7 @@ Core functions
 ---
 Module: 'asyncio.__init__' on micropython-v1.22.2-esp32-ESP32_GENERIC
 """
+
 # MCU: {'version': '1.22.2', 'mpy': 'v6.2', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.22.2', 'cpu': 'ESP32'}
 # Stubber: v1.17.3
 from __future__ import annotations
@@ -133,6 +134,7 @@ class Lock:
         Returns ``True`` if the lock is locked, otherwise ``False``.
         """
         ...
+
     def release(self) -> Incomplete:
         """
         Release the lock.  If any tasks are waiting on the lock then the next one in the
@@ -207,43 +209,51 @@ class Loop:
         custom handler is set.
         """
         ...
+
     def default_exception_handler(self, context) -> Incomplete:
         """
         The default exception handler that is called.
         """
         ...
+
     def set_exception_handler(self, handler) -> None:
         """
         Set the exception handler to call when a Task raises an exception that is not
         caught.  The *handler* should accept two arguments: ``(loop, context)``.
         """
         ...
+
     def run_forever(self) -> Incomplete:
         """
         Run the event loop until `stop()` is called.
         """
         ...
+
     def run_until_complete(self, awaitable) -> Incomplete:
         """
         Run the given *awaitable* until it completes.  If *awaitable* is not a task
         then it will be promoted to one.
         """
         ...
+
     def stop(self) -> None:
         """
         Stop the event loop.
         """
         ...
+
     def close(self) -> None:
         """
         Close the event loop.
         """
         ...
+
     def create_task(self, coro) -> Task:
         """
         Create a task from the given *coro* and return the new `Task` object.
         """
         ...
+
     def call_exception_handler(self, context) -> Incomplete:
         """
         Call the current exception handler.  The argument *context* is passed through and
@@ -267,6 +277,7 @@ class ThreadSafeFlag:
         to run.
         """
         ...
+
     def ioctl(self, *args, **kwargs) -> Incomplete: ...
     def clear(self) -> None:
         """
@@ -291,11 +302,13 @@ class Event:
         from an IRQ, scheduler callback, or other thread. See `ThreadSafeFlag`.
         """
         ...
+
     def is_set(self) -> bool:
         """
         Returns ``True`` if the event is set, ``False`` otherwise.
         """
         ...
+
     def clear(self) -> None:
         """
         Clear the event.

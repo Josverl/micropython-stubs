@@ -3,6 +3,7 @@ Cryptographic ciphers.
 
 MicroPython module: https://docs.micropython.org/en/v1.19.1/library/cryptolib.html
 """
+
 from typing import Optional, Any
 from _typeshed import Incomplete
 
@@ -27,11 +28,13 @@ class aes:
             * For Counter mode, *IV* is the initial value for the counter.
         """
         ...
+
     def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.
         """
         ...
+
     def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Encrypt *in_buf*. If no *out_buf* is given result is returned as a

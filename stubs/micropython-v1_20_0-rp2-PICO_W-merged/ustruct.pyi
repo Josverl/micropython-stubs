@@ -53,6 +53,7 @@ The following data types are supported:
 | P      | void *             | integer           |               |
 +--------+--------------------+-------------------+---------------+
 """
+
 from typing import Tuple, Any
 from _typeshed import Incomplete
 

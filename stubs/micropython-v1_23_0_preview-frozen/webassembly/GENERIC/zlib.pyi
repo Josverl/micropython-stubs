@@ -29,6 +29,7 @@ This module allows compression and decompression of binary data with the
 * Compression support will only be available if compression support is enabled
   in the built-in :mod:`deflate <deflate>` module.
 """
+
 from __future__ import annotations
 from _typeshed import Incomplete
 

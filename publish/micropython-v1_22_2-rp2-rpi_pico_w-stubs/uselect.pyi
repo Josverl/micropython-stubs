@@ -11,6 +11,7 @@ This module provides functions to efficiently wait for events on multiple
 ---
 Module: 'uselect' on micropython-v1.22.2-rp2-RPI_PICO_W
 """
+
 # MCU: {'build': '', 'ver': '1.22.2', 'version': '1.22.2', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.17.3
 from __future__ import annotations
@@ -56,17 +57,20 @@ class poll:
         *eventmask* (i.e. will behave as `modify()`).
         """
         ...
+
     def unregister(self, obj) -> Incomplete:
         """
         Unregister *obj* from polling.
         """
         ...
+
     def modify(self, obj, eventmask) -> None:
         """
         Modify the *eventmask* for *obj*. If *obj* is not registered, `OSError`
         is raised with error of ENOENT.
         """
         ...
+
     def poll(self, timeout=-1, /) -> List:
         """
         Wait for at least one of the registered objects to become ready or have an
@@ -90,6 +94,7 @@ class poll:
            Tuples returned may contain more than 2 elements as described above.
         """
         ...
+
     def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
         """
         Like :meth:`poll.poll`, but instead returns an iterator which yields a

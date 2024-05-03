@@ -9,6 +9,7 @@ The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
+
 from typing import IO, Iterator, Optional, Tuple, Any
 from _typeshed import Incomplete
 from stdlib.os import *
@@ -207,6 +208,7 @@ class VfsLfs2:
                   for details see `littlefs issue 295`_.
         """
         ...
+
     def mount(self, *args, **kwargs) -> Any: ...
     def statvfs(self, *args, **kwargs) -> Any: ...
     def rmdir(self, *args, **kwargs) -> Any: ...

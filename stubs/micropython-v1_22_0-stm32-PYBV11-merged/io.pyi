@@ -72,6 +72,7 @@ Note that for efficiency, MicroPython doesn't provide abstract base
 classes corresponding to the hierarchy above, and it's not possible
 to implement, or subclass, a stream class in pure Python.
 """
+
 from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.io import *
@@ -120,6 +121,7 @@ class BytesIO(IO):
         Get the current contents of the underlying buffer which holds data.
         """
         ...
+
     def seek(self, *args, **kwargs) -> Incomplete: ...
     def tell(self, *args, **kwargs) -> Incomplete: ...
     def readline(self, *args, **kwargs) -> Incomplete: ...

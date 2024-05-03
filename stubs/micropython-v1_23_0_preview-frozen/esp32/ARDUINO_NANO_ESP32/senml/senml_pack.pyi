@@ -27,28 +27,32 @@ class SenmlPack(SenmlBase):
     base_unit: Incomplete
     _parent: Incomplete
     actuate: Incomplete
-    def __init__(self, name, callback: Incomplete | None = ...) -> None:
+    def __init__(self, name, callback: Incomplete | None = None) -> None:
         """
         initialize the object
         :param name: {string} the name of the pack
         """
+
     def __iter__(self): ...
     def __enter__(self):
         """
         for supporting the 'with' statement
         :return: self
         """
+
     def __exit__(self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: types.TracebackType | None) -> None:
         """
         when destroyed in a 'with' statement, make certain that the item is removed from the parent list.
         :return: None
         """
+
     @property
     def base_value(self):
         """
         the base value of the pack.
         :return: a number
         """
+
     @base_value.setter
     def base_value(self, value) -> None:
         """
@@ -56,12 +60,14 @@ class SenmlPack(SenmlBase):
         :param value: only number allowed
         :return:
         """
+
     @property
     def base_sum(self):
         """
         the base sum of the pack.
         :return: a number
         """
+
     @base_sum.setter
     def base_sum(self, value) -> None:
         """
@@ -69,6 +75,7 @@ class SenmlPack(SenmlBase):
         :param value: only number allowed
         :return:
         """
+
     @property
     def base_time(self): ...
     @base_time.setter
@@ -78,12 +85,14 @@ class SenmlPack(SenmlBase):
         checks if the type of value is allowed for senml
         :return: None, raisee exception if not ok.
         """
+
     def from_json(self, data) -> None:
         """
         parse a json string and convert it to a senml pack structure
         :param data: a string containing json data.
         :return: None, will r
         """
+
     def _process_incomming_data(self, records, naming_map) -> None:
         """
         generic processor for incomming data (actuators.
@@ -91,7 +100,8 @@ class SenmlPack(SenmlBase):
         :param naming_map: translates cbor to json field names (when needed).
         :return: None
         """
-    def do_actuate(self, raw, naming_map, device: Incomplete | None = ...) -> None:
+
+    def do_actuate(self, raw, naming_map, device: Incomplete | None = None) -> None:
         """
         called while parsing incoming data for a record that is not yet part of this pack object.
         adds a new record and raises the actuate callback of the pack with the newly created record as argument
@@ -100,11 +110,13 @@ class SenmlPack(SenmlBase):
         :param raw: the raw record definition, as found in the json structure. this still has invalid labels.
         :return: None
         """
+
     def to_json(self):
         """
         render the content of this object to a string.
         :return: a string representing the senml pack object
         """
+
     def _build_rec_dict(self, naming_map, appendTo) -> None:
         """
         converts the object to a senml object with the proper naming in place.
@@ -112,29 +124,34 @@ class SenmlPack(SenmlBase):
         :param naming_map: a dictionary used to pick the correct field names for either senml json or senml cbor
         :return:
         """
+
     def from_cbor(self, data) -> None:
         """
         parse a cbor data byte array to a senml pack structure.
         :param data: a byte array.
         :return: None
         """
+
     def to_cbor(self):
         """
         render the content of this object to a cbor byte array
         :return: a byte array
         """
+
     def add(self, item) -> None:
         """
         adds the item to the list of records
         :param item: {SenmlRecord} the item that needs to be added to the pack
         :return: None
         """
+
     def remove(self, item) -> None:
         """
         removes the item from the list of records
         :param item: {SenmlRecord} the item that needs to be removed
         :return: None
         """
+
     def clear(self) -> None:
         """
         clear the list of the pack

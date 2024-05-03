@@ -10,6 +10,7 @@ ports.
 ---
 Module: 'esp' on micropython-v1.19.1-esp32
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Optional, Any
@@ -23,16 +24,13 @@ LOG_VERBOSE = 5  # type: int
 LOG_WARNING = 2  # type: int
 
 
-def dht_readinto(*args, **kwargs) -> Any:
-    ...
+def dht_readinto(*args, **kwargs) -> Any: ...
 
 
-def flash_erase(sector_no) -> Incomplete:
-    ...
+def flash_erase(sector_no) -> Incomplete: ...
 
 
-def flash_read(byte_offset, length_or_buffer) -> Incomplete:
-    ...
+def flash_read(byte_offset, length_or_buffer) -> Incomplete: ...
 
 
 def flash_size() -> Incomplete:
@@ -49,16 +47,13 @@ def flash_user_start() -> Incomplete:
     ...
 
 
-def flash_write(byte_offset, bytes) -> Incomplete:
-    ...
+def flash_write(byte_offset, bytes) -> Incomplete: ...
 
 
-def gpio_matrix_in(*args, **kwargs) -> Any:
-    ...
+def gpio_matrix_in(*args, **kwargs) -> Any: ...
 
 
-def gpio_matrix_out(*args, **kwargs) -> Any:
-    ...
+def gpio_matrix_out(*args, **kwargs) -> Any: ...
 
 
 def osdebug(level) -> None:

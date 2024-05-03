@@ -15,13 +15,13 @@ class Response:
 def request(
     method,
     url,
-    data: Incomplete | None = ...,
-    json: Incomplete | None = ...,
-    headers=...,
-    stream: Incomplete | None = ...,
-    auth: Incomplete | None = ...,
-    timeout: Incomplete | None = ...,
-    parse_headers: bool = ...,
+    data: Incomplete | None = None,
+    json: Incomplete | None = None,
+    headers={},
+    stream: Incomplete | None = None,
+    auth: Incomplete | None = None,
+    timeout: Incomplete | None = None,
+    parse_headers: bool = True,
 ): ...
 def head(url, **kw): ...
 def get(url, **kw): ...

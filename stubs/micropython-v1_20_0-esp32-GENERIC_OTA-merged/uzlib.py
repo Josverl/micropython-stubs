@@ -13,6 +13,7 @@ is not yet implemented.
 ---
 Module: 'uzlib' on micropython-v1.20.0-esp32-GENERIC_OTA
 """
+
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC_OTA', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
 from typing import Any
@@ -45,14 +46,10 @@ class DecompIO:
        basis and may be changed considerably or removed in later versions.
     """
 
-    def readinto(self, *args, **kwargs) -> Any:
-        ...
+    def readinto(self, *args, **kwargs) -> Any: ...
 
-    def readline(self, *args, **kwargs) -> Any:
-        ...
+    def readline(self, *args, **kwargs) -> Any: ...
 
-    def read(self, *args, **kwargs) -> Any:
-        ...
+    def read(self, *args, **kwargs) -> Any: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

@@ -13,6 +13,7 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
 ---
 Module: 'neopixel' on micropython-v1.22.0-rp2-ARDUINO_NANO_RP2040_CONNECT
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
@@ -21,8 +22,7 @@ from _typeshed import Incomplete
 from typing import Tuple
 
 
-def bitstream(*args, **kwargs) -> Incomplete:
-    ...
+def bitstream(*args, **kwargs) -> Incomplete: ...
 
 
 class NeoPixel:
@@ -50,5 +50,4 @@ class NeoPixel:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

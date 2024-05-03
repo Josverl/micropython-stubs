@@ -11,6 +11,7 @@ This module provides functions to efficiently wait for events on multiple
 ---
 Module: 'uselect' on micropython-v1.19.1-esp32
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Iterator, List, Optional, Tuple, Any
@@ -27,9 +28,7 @@ class poll:
     Create an instance of the Poll class.
     """
 
-    def __init__(self) -> None:
-        ...
-
+    def __init__(self) -> None: ...
     def register(self, obj, eventmask: Optional[Any] = None) -> None:
         """
         Register `stream` *obj* for polling. *eventmask* is logical OR of:

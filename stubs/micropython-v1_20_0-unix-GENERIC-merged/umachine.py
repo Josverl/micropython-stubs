@@ -13,6 +13,7 @@ damage.
 ---
 Module: 'umachine' on micropython-v1.20.0-unix-linux_[GCC_9.4.0]_version
 """
+
 # MCU: {'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
 from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
@@ -105,13 +106,11 @@ class Signal(Pin):
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 mem16: Incomplete  ## <class 'mem'> = <16-bit memory>
 
 
 class PinBase:
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

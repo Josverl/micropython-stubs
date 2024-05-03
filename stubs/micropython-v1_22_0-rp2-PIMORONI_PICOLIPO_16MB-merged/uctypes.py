@@ -13,6 +13,7 @@ sub-fields.
 ---
 Module: 'uctypes' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
@@ -97,5 +98,4 @@ class struct:
     memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

@@ -13,6 +13,7 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
 ---
 Module: 'neopixel' on micropython-v1.22.2-esp32-ESP32_GENERIC_S3
 """
+
 # MCU: {'version': '1.22.2', 'mpy': 'v6.2', 'port': 'esp32', 'board': 'ESP32_GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.22.2', 'cpu': 'ESP32S3'}
 # Stubber: v1.17.3
 from __future__ import annotations
@@ -37,10 +38,12 @@ class NeoPixel:
         Writes the current pixel data to the strip.
         """
         ...
+
     def fill(self, pixel) -> None:
         """
         Sets the value of all pixels to the specified *pixel* value (i.e. an
         RGB/RGBW tuple).
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

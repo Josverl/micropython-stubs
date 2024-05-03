@@ -12,6 +12,7 @@ for more information, and `pico-micropython-examples
 <https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
 for example code.
 """
+
 from typing import Optional, Any
 from _typeshed import Incomplete
 

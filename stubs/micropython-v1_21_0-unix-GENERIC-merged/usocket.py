@@ -63,6 +63,7 @@ Tuple address format for ``socket`` module:
 ---
 Module: 'usocket' on micropython-v1.21.0-unix-linux_[GCC_9.4.0]_version
 """
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
 from typing import IO, Optional, Tuple, Any
@@ -85,8 +86,7 @@ MSG_DONTROUTE = 4  # type: int
 MSG_DONTWAIT = 64  # type: int
 
 
-def sockaddr(*args, **kwargs) -> Incomplete:
-    ...
+def sockaddr(*args, **kwargs) -> Incomplete: ...
 
 
 def inet_pton(af, txt_addr) -> Incomplete:
@@ -201,8 +201,7 @@ class socket:
         """
         ...
 
-    def fileno(self, *args, **kwargs) -> Incomplete:
-        ...
+    def fileno(self, *args, **kwargs) -> Incomplete: ...
 
     def settimeout(self, value) -> Incomplete:
         """
@@ -353,5 +352,4 @@ class socket:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

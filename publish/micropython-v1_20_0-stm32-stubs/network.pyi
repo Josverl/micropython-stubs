@@ -36,6 +36,7 @@ Host: micropython.org
     data = s.recv(1000)
     s.close()
 """
+
 from typing import List, Optional, Tuple, Union, Any
 from _typeshed import Incomplete
 

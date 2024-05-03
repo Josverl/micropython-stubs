@@ -8,6 +8,7 @@ CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 ---
 Module: 'gc' on micropython-v1.22.0-samd-SEEED_WIO_TERMINAL
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
@@ -16,8 +17,7 @@ from _typeshed import Incomplete
 from typing import Any, Optional
 
 
-def isenabled(*args, **kwargs) -> Incomplete:
-    ...
+def isenabled(*args, **kwargs) -> Incomplete: ...
 
 
 def mem_free() -> int:

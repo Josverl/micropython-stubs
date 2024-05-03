@@ -5,6 +5,7 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/sys.html
 
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
+
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Dict, List, Tuple
 

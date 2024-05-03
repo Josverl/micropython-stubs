@@ -8,6 +8,7 @@ CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 ---
 Module: 'gc' on micropython-v1.20.0-stm32-PYBV11
 """
+
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
 # Stubber: v1.13.7
 from typing import Optional, Any
@@ -25,8 +26,7 @@ def mem_alloc() -> int:
     ...
 
 
-def isenabled(*args, **kwargs) -> Any:
-    ...
+def isenabled(*args, **kwargs) -> Any: ...
 
 
 def mem_free() -> int:

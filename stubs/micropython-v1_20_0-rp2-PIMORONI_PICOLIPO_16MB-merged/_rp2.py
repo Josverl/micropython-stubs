@@ -15,6 +15,7 @@ for example code.
 ---
 Module: '_rp2' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
 """
+
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.7
 from typing import Optional, Any
@@ -184,8 +185,7 @@ class StateMachine:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class Flash:
@@ -193,11 +193,9 @@ class Flash:
     Gets the singleton object for accessing the SPI flash memory.
     """
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
     def ioctl(self, cmd, arg) -> Incomplete:
         """
@@ -207,8 +205,7 @@ class Flash:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class PIO:
@@ -275,5 +272,4 @@ class PIO:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

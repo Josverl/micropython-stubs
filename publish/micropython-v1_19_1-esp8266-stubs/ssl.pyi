@@ -9,6 +9,7 @@ This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 """
+
 from typing import IO, Any
 from _typeshed import Incomplete
 from stdlib.ssl import *

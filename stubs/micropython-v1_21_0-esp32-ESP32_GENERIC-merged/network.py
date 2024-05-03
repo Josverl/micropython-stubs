@@ -39,6 +39,7 @@ Host: micropython.org
 ---
 Module: 'network' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
 # Stubber: v1.14.0
 from _typeshed import Incomplete
@@ -84,16 +85,9 @@ AUTH_WPA_WPA2_PSK = 4  # type: int
 ETH_CONNECTED = 3  # type: int
 
 
-def phy_mode(*args, **kwargs) -> Incomplete:
-    ...
-
-
-def country(*args, **kwargs) -> Incomplete:
-    ...
-
-
-def hostname(*args, **kwargs) -> Incomplete:
-    ...
+def phy_mode(*args, **kwargs) -> Incomplete: ...
+def country(*args, **kwargs) -> Incomplete: ...
+def hostname(*args, **kwargs) -> Incomplete: ...
 
 
 class LAN:
@@ -119,9 +113,7 @@ class LAN:
       nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=1, ref_clk_mode=Pin.IN)
     """
 
-    def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None:
-        ...
-
+    def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
     def active(self, state: Optional[Any] = None) -> Incomplete:
         """
         With a parameter, it sets the interface active if *state* is true, otherwise it
@@ -176,8 +168,7 @@ class LAN:
         ...
 
 
-def PPP(*args, **kwargs) -> Incomplete:
-    ...
+def PPP(*args, **kwargs) -> Incomplete: ...
 
 
 class WLAN:
@@ -318,5 +309,4 @@ class WLAN:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

@@ -30,6 +30,7 @@ class CBOREncoder:
         Write bytes to the data stream.
         :param data: the bytes to write
         """
+
     def encode(self, obj) -> None:
         """
         Encode the given object using CBOR.

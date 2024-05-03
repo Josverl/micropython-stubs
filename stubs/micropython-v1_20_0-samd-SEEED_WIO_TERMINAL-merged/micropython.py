@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.20.0/library/micropython.
 ---
 Module: 'micropython' on micropython-v1.20.0-samd-SEEED_WIO_TERMINAL
 """
+
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
 # Stubber: v1.13.4
 from typing import Optional, Tuple, TypeVar, Any
@@ -141,9 +142,7 @@ def const(expr: Const_T) -> Const_T:
     ...
 
 
-def heap_lock() -> int:
-    ...
+def heap_lock() -> int: ...
 
 
-def heap_unlock() -> int:
-    ...
+def heap_unlock() -> int: ...

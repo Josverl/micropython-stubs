@@ -6,14 +6,14 @@ MicroPython module: https://docs.micropython.org/en/v1.20.0/library/micropython.
 ---
 Module: 'micropython' on micropython-v1.20.0-unix-linux_[GCC_9.4.0]_version
 """
+
 # MCU: {'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
 from typing import Optional, Tuple, TypeVar, Any
 from _typeshed import Incomplete
 
 
-def mem_total(*args, **kwargs) -> Incomplete:
-    ...
+def mem_total(*args, **kwargs) -> Incomplete: ...
 
 
 def stack_use() -> int:
@@ -25,8 +25,7 @@ def stack_use() -> int:
     ...
 
 
-def mem_peak(*args, **kwargs) -> Incomplete:
-    ...
+def mem_peak(*args, **kwargs) -> Incomplete: ...
 
 
 def schedule(func, arg) -> Incomplete:
@@ -100,8 +99,7 @@ def qstr_info(verbose: Optional[Any] = None) -> None:
     ...
 
 
-def heap_lock() -> int:
-    ...
+def heap_lock() -> int: ...
 
 
 def mem_info(verbose: Optional[Any] = None) -> None:
@@ -139,12 +137,10 @@ def const(expr: Const_T) -> Const_T:
     ...
 
 
-def mem_current(*args, **kwargs) -> Incomplete:
-    ...
+def mem_current(*args, **kwargs) -> Incomplete: ...
 
 
-def heap_unlock() -> int:
-    ...
+def heap_unlock() -> int: ...
 
 
 def kbd_intr(chr) -> None:

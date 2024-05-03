@@ -9,6 +9,7 @@ bitmap images, which can then be sent to a display.
 ---
 Module: 'framebuf' on micropython-v1.21.0-webassembly-GENERIC
 """
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'webassembly', 'board': 'GENERIC', 'cpu': 'Emscripten', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.0
 from typing import Optional, Any
@@ -24,8 +25,7 @@ GS8 = 6  # type: int
 GS4_HMSB = 2  # type: int
 
 
-def FrameBuffer1(*args, **kwargs) -> Incomplete:
-    ...
+def FrameBuffer1(*args, **kwargs) -> Incomplete: ...
 
 
 class FrameBuffer:
@@ -67,8 +67,7 @@ class FrameBuffer:
         """
         ...
 
-    def vline(self, x, y, h, c) -> Incomplete:
-        ...
+    def vline(self, x, y, h, c) -> Incomplete: ...
 
     def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
@@ -150,8 +149,7 @@ class FrameBuffer:
         """
         ...
 
-    def hline(self, x, y, w, c) -> Incomplete:
-        ...
+    def hline(self, x, y, w, c) -> Incomplete: ...
 
     def fill(self, c) -> None:
         """
@@ -159,8 +157,6 @@ class FrameBuffer:
         """
         ...
 
-    def fill_rect(self, *args, **kwargs) -> Incomplete:
-        ...
+    def fill_rect(self, *args, **kwargs) -> Incomplete: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

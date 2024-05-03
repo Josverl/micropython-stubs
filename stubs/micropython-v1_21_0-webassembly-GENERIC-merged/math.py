@@ -16,6 +16,7 @@ for this module.
 ---
 Module: 'math' on micropython-v1.21.0-webassembly-GENERIC
 """
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'webassembly', 'board': 'GENERIC', 'cpu': 'Emscripten', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.0
 from typing import Tuple, Any
@@ -49,8 +50,7 @@ def trunc(x) -> int:
     ...
 
 
-def isclose(*args, **kwargs) -> Incomplete:
-    ...
+def isclose(*args, **kwargs) -> Incomplete: ...
 
 
 def gamma(x) -> Incomplete:
@@ -232,8 +232,7 @@ def asin(x) -> float:
     ...
 
 
-def factorial(*args, **kwargs) -> Incomplete:
-    ...
+def factorial(*args, **kwargs) -> Incomplete: ...
 
 
 def fabs(x) -> Incomplete:

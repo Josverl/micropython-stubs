@@ -6,14 +6,14 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/micropython.
 ---
 Module: 'micropython' on micropython-v1.21.0-webassembly-GENERIC
 """
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'webassembly', 'board': 'GENERIC', 'cpu': 'Emscripten', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.0
 from typing import Optional, Tuple, TypeVar, Any
 from _typeshed import Incomplete
 
 
-def pystack_use(*args, **kwargs) -> Incomplete:
-    ...
+def pystack_use(*args, **kwargs) -> Incomplete: ...
 
 
 def opt_level(level: Optional[Any] = None) -> Incomplete:
@@ -96,8 +96,7 @@ def schedule(func, arg) -> Incomplete:
     ...
 
 
-def heap_lock() -> int:
-    ...
+def heap_lock() -> int: ...
 
 
 def const(expr: Const_T) -> Const_T:
@@ -135,8 +134,7 @@ def mem_info(verbose: Optional[Any] = None) -> None:
     ...
 
 
-def heap_unlock() -> int:
-    ...
+def heap_unlock() -> int: ...
 
 
 def kbd_intr(chr) -> None:

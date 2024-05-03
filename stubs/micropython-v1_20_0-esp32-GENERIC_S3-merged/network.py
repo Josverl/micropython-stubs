@@ -39,6 +39,7 @@ Host: micropython.org
 ---
 Module: 'network' on micropython-v1.20.0-esp32-GENERIC_S3
 """
+
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': 'v1.20.0', 'cpu': 'ESP32S3'})
 # Stubber: v1.13.7
 from typing import List, Optional, Tuple, Union, Any
@@ -70,16 +71,13 @@ AUTH_WPA3_PSK = 6  # type: int
 AUTH_WPA2_WPA3_PSK = 7  # type: int
 
 
-def country(*args, **kwargs) -> Any:
-    ...
+def country(*args, **kwargs) -> Any: ...
 
 
-def hostname(*args, **kwargs) -> Any:
-    ...
+def hostname(*args, **kwargs) -> Any: ...
 
 
-def phy_mode(*args, **kwargs) -> Any:
-    ...
+def phy_mode(*args, **kwargs) -> Any: ...
 
 
 class WLAN:
@@ -91,9 +89,7 @@ class WLAN:
     For example, only STA interface may `WLAN.connect()` to an access point.
     """
 
-    def __init__(self, interface_id) -> None:
-        ...
-
+    def __init__(self, interface_id) -> None: ...
     def active(self, is_active: Optional[Any] = None) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
@@ -219,5 +215,4 @@ class WLAN:
         ...
 
 
-def PPP(*args, **kwargs) -> Any:
-    ...
+def PPP(*args, **kwargs) -> Any: ...

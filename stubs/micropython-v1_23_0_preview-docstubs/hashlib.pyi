@@ -59,12 +59,14 @@ class hash:
         Feed more binary data into hash.
         """
         ...
+
     def digest(self) -> bytes:
         """
         Return hash for all data passed through hash, as a bytes object. After this
         method is called, more data cannot be fed into the hash any longer.
         """
         ...
+
     def hexdigest(self) -> Incomplete:
         """
         This method is NOT implemented. Use ``binascii.hexlify(hash.digest())``

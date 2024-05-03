@@ -26,6 +26,7 @@ be implemented:
 ---
 Module: 'hashlib' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
@@ -39,14 +40,11 @@ class sha256:
     Create an SHA256 hasher object and optionally feed ``data`` into it.
     """
 
-    def digest(self, *args, **kwargs) -> Incomplete:
-        ...
+    def digest(self, *args, **kwargs) -> Incomplete: ...
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    def update(self, *args, **kwargs) -> Incomplete: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class sha1:
@@ -54,11 +52,8 @@ class sha1:
     Create an SHA1 hasher object and optionally feed ``data`` into it.
     """
 
-    def digest(self, *args, **kwargs) -> Incomplete:
-        ...
+    def digest(self, *args, **kwargs) -> Incomplete: ...
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    def update(self, *args, **kwargs) -> Incomplete: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

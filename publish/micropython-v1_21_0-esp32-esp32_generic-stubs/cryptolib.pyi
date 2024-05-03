@@ -3,6 +3,7 @@ Cryptographic ciphers.
 
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/cryptolib.html
 """
+
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional
 
@@ -15,11 +16,13 @@ class aes:
         to the same mutable buffer, in which case data is encrypted in-place.
         """
         ...
+
     def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:

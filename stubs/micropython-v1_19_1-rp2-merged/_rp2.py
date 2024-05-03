@@ -15,14 +15,14 @@ for example code.
 ---
 Module: '_rp2' on micropython-v1.19.1-rp2
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Optional, Any
 from _typeshed import Incomplete
 
 
-def dht_readinto(*args, **kwargs) -> Any:
-    ...
+def dht_readinto(*args, **kwargs) -> Any: ...
 
 
 class StateMachine:
@@ -170,8 +170,7 @@ class StateMachine:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class Flash:
@@ -179,11 +178,9 @@ class Flash:
     Gets the singleton object for accessing the SPI flash memory.
     """
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
     def ioctl(self, cmd, arg) -> Incomplete:
         """
@@ -193,8 +190,7 @@ class Flash:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class PIO:
@@ -261,5 +257,4 @@ class PIO:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

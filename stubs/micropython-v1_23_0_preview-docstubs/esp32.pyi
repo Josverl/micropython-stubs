@@ -67,11 +67,13 @@ class Partition:
         objects.
         """
         ...
+
     def info(self) -> Tuple:
         """
         Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``.
         """
         ...
+
     def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
     def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
     def ioctl(self, cmd, arg) -> Incomplete:
@@ -81,6 +83,7 @@ class Partition:
         :class:`vfs.AbstractBlockDev`.
         """
         ...
+
     def set_boot(self) -> None:
         """
         Sets the partition as the boot partition.
@@ -91,6 +94,7 @@ class Partition:
            will validate the new image before booting.
         """
         ...
+
     def get_next_update(self) -> Partition:
         """
         Gets the next update partition after this one, and returns a new Partition object.
@@ -98,6 +102,7 @@ class Partition:
         which returns the next partition to update given the current running one.
         """
         ...
+
     @classmethod
     def mark_app_valid_cancel_rollback(cls) -> Incomplete:
         """
@@ -139,12 +144,14 @@ class RMT:
         configurable so this will always return 80MHz.
         """
         ...
+
     def clock_div(self) -> Incomplete:
         """
         Return the clock divider. Note that the channel resolution is
         ``1 / (source_freq / clock_div)``.
         """
         ...
+
     def wait_done(self, *, timeout=0) -> bool:
         """
         Returns ``True`` if the channel is idle or ``False`` if a sequence of
@@ -153,6 +160,7 @@ class RMT:
         milliseconds for transmission to complete.
         """
         ...
+
     def loop(self, enable_loop) -> None:
         """
         Configure looping on the channel. *enable_loop* is bool, set to ``True`` to
@@ -161,6 +169,7 @@ class RMT:
         current loop iteration will be completed and then transmission will stop.
         """
         ...
+
     def write_pulses(self, duration, data: Union[bool, int] = True) -> Incomplete:
         """
         Begin transmitting a sequence. There are three ways to specify this:
@@ -190,6 +199,7 @@ class RMT:
         supported by the hardware.
         """
         ...
+
     @staticmethod
     def bitstream_channel(value: Optional[Any] = None) -> int:
         """
@@ -216,11 +226,13 @@ class ULP:
         Set the wake-up period.
         """
         ...
+
     def load_binary(self, load_addr, program_binary) -> None:
         """
         Load a *program_binary* into the ULP at the given *load_addr*.
         """
         ...
+
     def run(self, entry_point) -> Incomplete:
         """
         Start the ULP running at the given *entry_point*.
@@ -239,12 +251,14 @@ class NVS:
         Sets a 32-bit signed integer value for the specified key. Remember to call *commit*!
         """
         ...
+
     def get_i32(self, key) -> int:
         """
         Returns the signed integer value for the specified key. Raises an OSError if the key does not
         exist or has a different type.
         """
         ...
+
     def set_blob(self, key, value) -> None:
         """
         Sets a binary blob value for the specified key. The value passed in must support the buffer
@@ -253,6 +267,7 @@ class NVS:
         Remember to call *commit*!
         """
         ...
+
     def get_blob(self, key, buffer) -> int:
         """
         Reads the value of the blob for the specified key into the buffer, which must be a bytearray.
@@ -260,11 +275,13 @@ class NVS:
         type, or if the buffer is too small.
         """
         ...
+
     def erase_key(self, key) -> Incomplete:
         """
         Erases a key-value pair.
         """
         ...
+
     def commit(self) -> Incomplete:
         """
         Commits changes made by *set_xxx* methods to flash.

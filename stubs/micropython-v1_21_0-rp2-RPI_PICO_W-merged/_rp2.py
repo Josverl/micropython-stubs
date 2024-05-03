@@ -15,14 +15,14 @@ for example code.
 ---
 Module: '_rp2' on micropython-v1.21.0-rp2-RPI_PICO_W
 """
+
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import Optional, Any
 from _typeshed import Incomplete
 
 
-def country(*args, **kwargs) -> Incomplete:
-    ...
+def country(*args, **kwargs) -> Incomplete: ...
 
 
 def bootsel_button() -> Incomplete:
@@ -44,11 +44,9 @@ class Flash:
     Gets the singleton object for accessing the SPI flash memory.
     """
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
     def ioctl(self, cmd, arg) -> Incomplete:
         """
@@ -58,8 +56,7 @@ class Flash:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class PIO:
@@ -126,8 +123,7 @@ class PIO:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class StateMachine:
@@ -286,5 +282,4 @@ class StateMachine:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

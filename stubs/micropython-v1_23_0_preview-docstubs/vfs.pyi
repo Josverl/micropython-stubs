@@ -121,6 +121,7 @@ class AbstractBlockDev:
         The number of bytes to read is given by the length of *buf*.
         """
         ...
+
     def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
         """
         The first form writes aligned, multiples of blocks, and requires that the
@@ -142,6 +143,7 @@ class AbstractBlockDev:
         argument is specified, even if it is zero.
         """
         ...
+
     def ioctl(self, op, arg) -> int:
         """
          Control the block device and query its parameters.  The operation to

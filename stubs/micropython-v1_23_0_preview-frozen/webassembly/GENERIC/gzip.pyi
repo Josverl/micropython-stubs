@@ -27,6 +27,7 @@ file format.
 * Compression support will only be available if compression support is enabled
   in the built-in :mod:`deflate <deflate>` module.
 """
+
 from __future__ import annotations
 from _typeshed import Incomplete
 
@@ -57,7 +58,7 @@ class GzipFile:
 
     def __init__(self, *, fileobj, mode) -> None: ...
 
-def open(filename, mode: str = ...) -> Incomplete:
+def open(filename, mode: str = "rb") -> Incomplete:
     """
     Wrapper around built-in :func:`open` returning a GzipFile instance.
     """

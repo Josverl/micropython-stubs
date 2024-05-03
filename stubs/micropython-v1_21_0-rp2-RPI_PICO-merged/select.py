@@ -11,6 +11,7 @@ This module provides functions to efficiently wait for events on multiple
 ---
 Module: 'select' on micropython-v1.21.0-rp2-RPI_PICO
 """
+
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import Iterator, List, Optional, Tuple, Any
@@ -37,9 +38,7 @@ class poll:
     Create an instance of the Poll class.
     """
 
-    def __init__(self) -> None:
-        ...
-
+    def __init__(self) -> None: ...
     def register(self, obj, eventmask: Optional[Any] = None) -> None:
         """
         Register `stream` *obj* for polling. *eventmask* is logical OR of:

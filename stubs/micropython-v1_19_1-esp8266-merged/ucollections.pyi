@@ -8,6 +8,7 @@ CPython module: :mod:`python:collections` https://docs.python.org/3/library/coll
 This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
+
 from typing import Optional, Any
 from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
 from typing_extensions import NamedTuple as stdlib_NamedTuple
@@ -96,10 +97,12 @@ class deque(stdlib_deque):
         Raises IndexError if no items are present.
         """
         ...
+
     def append(self, x) -> Incomplete:
         """
         Add *x* to the right side of the deque.
         Raises IndexError if overflow checking is enabled and there is no more room left.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

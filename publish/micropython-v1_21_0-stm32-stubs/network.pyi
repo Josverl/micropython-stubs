@@ -36,6 +36,7 @@ Host: micropython.org
     data = s.recv(1000)
     s.close()
 """
+
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, List, Optional, Tuple, Union
 

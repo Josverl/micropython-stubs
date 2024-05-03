@@ -26,6 +26,7 @@ be implemented:
 ---
 Module: 'uhashlib' on micropython-v1.21.0-win32-GENERIC
 """
+
 # MCU: {'version': '1.21.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.21.0', 'cpu': ''}
 # Stubber: v1.15.0
 from typing import Optional, Any
@@ -37,11 +38,8 @@ class sha256:
     Create an SHA256 hasher object and optionally feed ``data`` into it.
     """
 
-    def digest(self, *args, **kwargs) -> Incomplete:
-        ...
+    def digest(self, *args, **kwargs) -> Incomplete: ...
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    def update(self, *args, **kwargs) -> Incomplete: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

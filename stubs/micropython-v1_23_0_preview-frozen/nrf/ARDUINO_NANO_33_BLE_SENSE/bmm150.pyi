@@ -32,22 +32,26 @@ class BMM150:
     trim_xy2: Incomplete
     trim_xyz1: Incomplete
     scratch: Incomplete
-    def __init__(self, bus, cs: Incomplete | None = ..., address=..., magnet_odr: int = ...) -> None:
+    def __init__(self, bus, cs: Incomplete | None = None, address=..., magnet_odr: int = 30) -> None:
         """Initalizes the Magnetometer.
         bus: IMU bus
         address: I2C address (in I2C mode).
         cs: SPI CS pin (in SPI mode).
         magnet_odr: (2, 6, 8, 10, 15, 20, 25, 30)
         """
-    def _read_reg(self, reg, size: int = ...): ...
+
+    def _read_reg(self, reg, size: int = 1): ...
     def _read_reg_into(self, reg, buf) -> None: ...
     def _write_reg(self, reg, val) -> None: ...
     def _compensate_x(self, raw, hall):
         """Compensation equation ported from C driver"""
+
     def _compensate_y(self, raw, hall):
         """Compensation equation ported from C driver"""
+
     def _compensate_z(self, raw, hall):
         """Compensation equation ported from C driver"""
+
     def magnet_raw(self): ...
     def magnet(self):
         """Returns magnetometer vector."""

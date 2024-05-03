@@ -11,6 +11,7 @@ data format.
 ---
 Module: 'json' on micropython-v1.20.0-win32-GENERIC
 """
+
 # MCU: {'version': '1.20.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.20.0', 'cpu': ''}
 # Stubber: v1.15.0
 from typing import Any

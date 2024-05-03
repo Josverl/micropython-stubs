@@ -3,6 +3,7 @@ ESP-NOW :doc:`asyncio` support.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0-preview/library/aioespnow.html
 """
+
 from __future__ import annotations
 from _espnow import *
 from _typeshed import Incomplete
@@ -22,7 +23,7 @@ class ESPNow(ESPNowBase, Iterator):
     _none_tuple: Incomplete
     _poll: Incomplete
     def __init__(self) -> None: ...
-    def irecv(self, timeout_ms: Incomplete | None = ...) -> Incomplete:
+    def irecv(self, timeout_ms: Incomplete | None = None) -> Incomplete:
         """
         Works like `ESPNow.recv()` but will reuse internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
@@ -52,7 +53,8 @@ class ESPNow(ESPNowBase, Iterator):
                   break
         """
         ...
-    def recv(self, timeout_ms: Incomplete | None = ...) -> Union[List, Tuple[None, None]]:
+
+    def recv(self, timeout_ms: Incomplete | None = None) -> Union[List, Tuple[None, None]]:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using
@@ -91,6 +93,7 @@ class ESPNow(ESPNowBase, Iterator):
         alternative.
         """
         ...
+
     def __iter__(self): ...
     def __next__(self): ...
     def any(self) -> Incomplete:

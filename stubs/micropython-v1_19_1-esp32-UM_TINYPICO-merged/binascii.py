@@ -11,6 +11,7 @@ encodings of it in ASCII form (in both directions).
 ---
 Module: 'binascii' on micropython-v1.19.1-esp32
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Optional, Any
@@ -35,8 +36,7 @@ def b2a_base64(data, *, newline=True) -> bytes:
     ...
 
 
-def crc32(*args, **kwargs) -> Any:
-    ...
+def crc32(*args, **kwargs) -> Any: ...
 
 
 def hexlify(data, sep: Optional[Any] = None) -> bytes:

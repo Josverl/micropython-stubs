@@ -39,6 +39,7 @@ Host: micropython.org
 ---
 Module: 'network' on micropython-v1.20.0-rp2-PICO_W
 """
+
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
 from typing import List, Optional, Tuple, Union, Any
@@ -54,16 +55,13 @@ STAT_CONNECTING = 1  # type: int
 STAT_CONNECT_FAIL = -1  # type: int
 
 
-def route(*args, **kwargs) -> Any:
-    ...
+def route(*args, **kwargs) -> Any: ...
 
 
-def hostname(*args, **kwargs) -> Any:
-    ...
+def hostname(*args, **kwargs) -> Any: ...
 
 
-def country(*args, **kwargs) -> Any:
-    ...
+def country(*args, **kwargs) -> Any: ...
 
 
 class WLAN:
@@ -83,8 +81,7 @@ class WLAN:
         """
         ...
 
-    def ioctl(self, *args, **kwargs) -> Any:
-        ...
+    def ioctl(self, *args, **kwargs) -> Any: ...
 
     def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
         """
@@ -126,8 +123,7 @@ class WLAN:
         """
         ...
 
-    def send_ethernet(self, *args, **kwargs) -> Any:
-        ...
+    def send_ethernet(self, *args, **kwargs) -> Any: ...
 
     def status(self, param: Optional[Any] = None) -> Incomplete:
         """
@@ -205,8 +201,6 @@ class WLAN:
         """
         ...
 
-    def deinit(self, *args, **kwargs) -> Any:
-        ...
+    def deinit(self, *args, **kwargs) -> Any: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

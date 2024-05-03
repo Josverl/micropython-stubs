@@ -8,6 +8,7 @@ CPython module: :mod:`python:select` https://docs.python.org/3/library/select.ht
 This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
+
 from typing import Iterator, List, Optional, Tuple, Any
 from _typeshed import Incomplete
 
@@ -50,17 +51,20 @@ class poll:
         *eventmask* (i.e. will behave as `modify()`).
         """
         ...
+
     def unregister(self, obj) -> Incomplete:
         """
         Unregister *obj* from polling.
         """
         ...
+
     def modify(self, obj, eventmask) -> None:
         """
         Modify the *eventmask* for *obj*. If *obj* is not registered, `OSError`
         is raised with error of ENOENT.
         """
         ...
+
     def poll(self, timeout=-1, /) -> List:
         """
         Wait for at least one of the registered objects to become ready or have an
@@ -84,6 +88,7 @@ class poll:
            Tuples returned may contain more than 2 elements as described above.
         """
         ...
+
     def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
         """
         Like :meth:`poll.poll`, but instead returns an iterator which yields a

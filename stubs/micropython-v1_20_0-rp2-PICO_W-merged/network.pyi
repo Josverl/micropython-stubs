@@ -36,6 +36,7 @@ Host: micropython.org
     data = s.recv(1000)
     s.close()
 """
+
 from typing import List, Optional, Tuple, Union, Any
 from _typeshed import Incomplete
 
@@ -68,6 +69,7 @@ class WLAN:
         station is connected. Returns ``False`` otherwise.
         """
         ...
+
     def ioctl(self, *args, **kwargs) -> Any: ...
     def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
         """
@@ -79,6 +81,7 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
+
     def scan(self) -> List[Tuple]:
         """
         Scan for the available wireless networks.
@@ -107,6 +110,7 @@ class WLAN:
             * 1 -- hidden
         """
         ...
+
     def send_ethernet(self, *args, **kwargs) -> Any: ...
     def status(self, param: Optional[Any] = None) -> Incomplete:
         """
@@ -126,6 +130,7 @@ class WLAN:
         parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
         """
         ...
+
     def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
@@ -159,6 +164,7 @@ class WLAN:
         =============  ===========
         """
         ...
+
     def active(self, is_active: Optional[Any] = None) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
@@ -166,11 +172,13 @@ class WLAN:
         provided. Most other methods require active interface.
         """
         ...
+
     def disconnect(self) -> None:
         """
         Disconnect from the currently connected wireless network.
         """
         ...
+
     def connect(self, ssid=None, key=None, *, bssid=None) -> None:
         """
         Connect to the specified wireless network, using the specified key.
@@ -179,5 +187,6 @@ class WLAN:
         in this case).
         """
         ...
+
     def deinit(self, *args, **kwargs) -> Any: ...
     def __init__(self, *argv, **kwargs) -> None: ...

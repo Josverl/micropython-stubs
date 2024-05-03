@@ -21,6 +21,7 @@ building-blocks for higher-level abstractions such as specific device types.
 ---
 Module: 'bluetooth' on micropython-v1.20.0-esp32-GENERIC_S3
 """
+
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': 'v1.20.0', 'cpu': 'ESP32S3'})
 # Stubber: v1.13.7
 from typing import Optional, Tuple, Any
@@ -43,8 +44,7 @@ class UUID:
     - A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``.
     """
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class BLE:
@@ -645,5 +645,4 @@ class BLE:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

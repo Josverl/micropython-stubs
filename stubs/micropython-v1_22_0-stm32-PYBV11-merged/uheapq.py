@@ -14,6 +14,7 @@ that the first item of the list is always the smallest.
 ---
 Module: 'uheapq' on micropython-v1.22.0-stm32-PYBV11
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}

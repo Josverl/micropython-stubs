@@ -33,6 +33,7 @@ Example::
 Core functions
 --------------
 """
+
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Coroutine, List, Tuple
 
@@ -116,49 +117,58 @@ class Loop:
         is a dictionary containing keys: ``'message'``, ``'exception'``, ``'future'``.
         """
         ...
+
     def run_forever(self) -> Incomplete:
         """
         Run the event loop until `stop()` is called.
         """
         ...
+
     def set_exception_handler(self, handler) -> None:
         """
         Set the exception handler to call when a Task raises an exception that is not
         caught.  The *handler* should accept two arguments: ``(loop, context)``.
         """
         ...
+
     def get_exception_handler(self) -> None:
         """
         Get the current exception handler.  Returns the handler, or ``None`` if no
         custom handler is set.
         """
         ...
+
     def default_exception_handler(self, context) -> Incomplete:
         """
         The default exception handler that is called.
         """
         ...
+
     def run_until_complete(self, awaitable) -> Incomplete:
         """
         Run the given *awaitable* until it completes.  If *awaitable* is not a task
         then it will be promoted to one.
         """
         ...
+
     def close(self) -> None:
         """
         Close the event loop.
         """
         ...
+
     def stop(self) -> None:
         """
         Stop the event loop.
         """
         ...
+
     def create_task(self, coro) -> Task:
         """
         Create a task from the given *coro* and return the new `Task` object.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class IOQueue:
@@ -182,11 +192,13 @@ class Event:
         from an IRQ, scheduler callback, or other thread. See `ThreadSafeFlag`.
         """
         ...
+
     def is_set(self) -> bool:
         """
         Returns ``True`` if the event is set, ``False`` otherwise.
         """
         ...
+
     def clear(self) -> None:
         """
         Clear the event.

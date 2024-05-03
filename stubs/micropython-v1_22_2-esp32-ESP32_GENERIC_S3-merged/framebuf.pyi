@@ -9,6 +9,7 @@ bitmap images, which can then be sent to a display.
 ---
 Module: 'framebuf' on micropython-v1.22.2-esp32-ESP32_GENERIC_S3
 """
+
 # MCU: {'version': '1.22.2', 'mpy': 'v6.2', 'port': 'esp32', 'board': 'ESP32_GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.22.2', 'cpu': 'ESP32S3'}
 # Stubber: v1.17.3
 from __future__ import annotations
@@ -64,6 +65,7 @@ class FrameBuffer:
         Otherwise just a one pixel outline is drawn.
         """
         ...
+
     def vline(self, x, y, h, c) -> Incomplete: ...
     def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
@@ -71,6 +73,7 @@ class FrameBuffer:
         If *c* is given, set the specified pixel to the given color.
         """
         ...
+
     def text(self, s, x, y, c: Optional[Any] = None) -> None:
         """
         Write text to the FrameBuffer using the the coordinates as the upper-left
@@ -79,6 +82,7 @@ class FrameBuffer:
         dimensions of 8x8 pixels and there is currently no way to change the font.
         """
         ...
+
     def rect(self, x, y, w, h, c, f: Optional[Any] = None) -> None:
         """
         Draw a rectangle at the given location, size and color.
@@ -87,12 +91,14 @@ class FrameBuffer:
         Otherwise just a one pixel outline is drawn.
         """
         ...
+
     def scroll(self, xstep, ystep) -> Incomplete:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
         """
         ...
+
     def ellipse(self, x, y, xr, yr, c, f, m: Optional[Any] = None) -> None:
         """
         Draw an ellipse at the given location. Radii *xr* and *yr* define the
@@ -108,6 +114,7 @@ class FrameBuffer:
         are numbered counterclockwise with Q1 being top right.
         """
         ...
+
     def line(self, x1, y1, x2, y2, c) -> None:
         """
         Draw a line from a set of coordinates using the given color and
@@ -117,6 +124,7 @@ class FrameBuffer:
         a given length.
         """
         ...
+
     def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
@@ -138,11 +146,13 @@ class FrameBuffer:
         color of the corresponding source pixel.
         """
         ...
+
     def hline(self, x, y, w, c) -> Incomplete: ...
     def fill(self, c) -> None:
         """
         Fill the entire FrameBuffer with the specified color.
         """
         ...
+
     def fill_rect(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...

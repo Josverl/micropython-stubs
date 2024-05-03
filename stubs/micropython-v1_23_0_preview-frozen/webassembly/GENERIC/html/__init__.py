@@ -2,7 +2,6 @@
 General functions for HTML manipulation.
 """
 
-
 _escape_map = {ord("&"): "&amp;", ord("<"): "&lt;", ord(">"): "&gt;"}
 _escape_map_full = {
     ord("&"): "&amp;",

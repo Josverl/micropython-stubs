@@ -9,6 +9,7 @@ This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 """
+
 from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.ssl import *
@@ -56,12 +57,14 @@ class SSLContext:
         containing the CA certificates.  Only one of these arguments should be provided.
         """
         ...
+
     def set_ciphers(self, ciphers) -> None:
         """
         Set the available ciphers for sockets created with this context.  *ciphers* should be
         a list of strings in the `IANA cipher suite format <https://wiki.mozilla.org/Security/Cipher_Suites>`_ .
         """
         ...
+
     def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
@@ -86,6 +89,7 @@ class SSLContext:
           to present the proper certificate.
         """
         ...
+
     def load_cert_chain(self, certfile, keyfile) -> None:
         """
         Load a private key and the corresponding certificate.  The *certfile* is a string
@@ -98,9 +102,11 @@ class SSLContext:
            strings, in which case they are interpreted as the actual certificate/key data.
         """
         ...
+
     def get_ciphers(self) -> List[str]:
         """
         Get a list of enabled ciphers, returned as a list of strings.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

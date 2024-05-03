@@ -63,6 +63,7 @@ Tuple address format for ``socket`` module:
 ---
 Module: 'usocket' on micropython-v1.20.0-rp2-PICO_W
 """
+
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.12.2
 from typing import IO, Optional, Tuple, Any
@@ -81,12 +82,10 @@ IPPROTO_IP = 0  # type: int
 IP_ADD_MEMBERSHIP = 1024  # type: int
 
 
-def reset(*args, **kwargs) -> Any:
-    ...
+def reset(*args, **kwargs) -> Any: ...
 
 
-def print_pcbs(*args, **kwargs) -> Any:
-    ...
+def print_pcbs(*args, **kwargs) -> Any: ...
 
 
 def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
@@ -131,8 +130,7 @@ def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
     ...
 
 
-def callback(*args, **kwargs) -> Any:
-    ...
+def callback(*args, **kwargs) -> Any: ...
 
 
 class socket:
@@ -345,5 +343,4 @@ class socket:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

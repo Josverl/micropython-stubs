@@ -12,6 +12,7 @@ floating-point support).
 ---
 Module: 'array' on micropython-v1.22.0-rp2-ARDUINO_NANO_RP2040_CONNECT
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
@@ -40,5 +41,4 @@ class array(List):
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

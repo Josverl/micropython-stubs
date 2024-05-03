@@ -11,6 +11,7 @@ encodings of it in ASCII form (in both directions).
 ---
 Module: 'binascii' on micropython-v1.22.0-esp32-ESP32_GENERIC
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
@@ -19,8 +20,7 @@ from _typeshed import Incomplete
 from typing import Any, Optional
 
 
-def crc32(*args, **kwargs) -> Incomplete:
-    ...
+def crc32(*args, **kwargs) -> Incomplete: ...
 
 
 def hexlify(data, sep: Optional[Any] = None) -> bytes:

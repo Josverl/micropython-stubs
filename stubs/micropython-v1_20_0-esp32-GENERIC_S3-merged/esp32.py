@@ -9,6 +9,7 @@ controlling ESP32 modules.
 ---
 Module: 'esp32' on micropython-v1.20.0-esp32-GENERIC_S3
 """
+
 from __future__ import annotations
 
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': 'v1.20.0', 'cpu': 'ESP32S3'})
@@ -139,8 +140,7 @@ class NVS:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class RMT:
@@ -230,8 +230,7 @@ class RMT:
         """
         ...
 
-    def deinit(self, *args, **kwargs) -> Any:
-        ...
+    def deinit(self, *args, **kwargs) -> Any: ...
 
     def clock_div(self) -> Incomplete:
         """
@@ -240,8 +239,7 @@ class RMT:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class Partition:
@@ -256,8 +254,7 @@ class Partition:
     TYPE_DATA = 1  # type: int
     BOOT = 0  # type: int
 
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
     def ioctl(self, cmd, arg) -> Incomplete:
         """
@@ -273,8 +270,7 @@ class Partition:
         """
         ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
-        ...
+    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
 
     def info(self) -> Tuple:
         """
@@ -317,5 +313,4 @@ class Partition:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

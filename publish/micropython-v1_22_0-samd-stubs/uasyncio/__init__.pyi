@@ -33,6 +33,7 @@ Example::
 Core functions
 --------------
 """
+
 from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Coroutine, List, Tuple
@@ -125,11 +126,13 @@ class Event:
         from an IRQ, scheduler callback, or other thread. See `ThreadSafeFlag`.
         """
         ...
+
     def is_set(self) -> bool:
         """
         Returns ``True`` if the event is set, ``False`` otherwise.
         """
         ...
+
     def clear(self) -> None:
         """
         Clear the event.
@@ -151,6 +154,7 @@ class Lock:
         Returns ``True`` if the lock is locked, otherwise ``False``.
         """
         ...
+
     def release(self) -> Incomplete:
         """
         Release the lock.  If any tasks are waiting on the lock then the next one in the

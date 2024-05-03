@@ -13,6 +13,7 @@ working with floating-point numbers.
 Availability: not available on WiPy. Floating point support required
 for this module.
 """
+
 from typing import Tuple, Any
 from _typeshed import Incomplete
 

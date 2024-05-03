@@ -9,6 +9,7 @@ bitmap images, which can then be sent to a display.
 ---
 Module: 'framebuf' on micropython-v1.19.1-rp2
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'sysname': 'rp2', 'platform': 'rp2', 'version': '1.19.1', 'release': '1.19.1', 'port': 'rp2', 'family': 'micropython', 'name': 'micropython', 'machine': 'Arduino Nano RP2040 Connect with RP2040', 'nodename': 'rp2'}
 # Stubber: 1.9.11
 from typing import Optional, Any
@@ -24,8 +25,7 @@ GS8 = 6  # type: int
 GS4_HMSB = 2  # type: int
 
 
-def FrameBuffer1(*args, **kwargs) -> Any:
-    ...
+def FrameBuffer1(*args, **kwargs) -> Any: ...
 
 
 class FrameBuffer:
@@ -54,8 +54,7 @@ class FrameBuffer:
     unexpected errors.
     """
 
-    def rect(self, x, y, w, h, c) -> Incomplete:
-        ...
+    def rect(self, x, y, w, h, c) -> Incomplete: ...
 
     def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
@@ -64,8 +63,7 @@ class FrameBuffer:
         """
         ...
 
-    def vline(self, x, y, h, c) -> Incomplete:
-        ...
+    def vline(self, x, y, h, c) -> Incomplete: ...
 
     def scroll(self, xstep, ystep) -> Incomplete:
         """
@@ -127,8 +125,6 @@ class FrameBuffer:
         """
         ...
 
-    def hline(self, x, y, w, c) -> Incomplete:
-        ...
+    def hline(self, x, y, w, c) -> Incomplete: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

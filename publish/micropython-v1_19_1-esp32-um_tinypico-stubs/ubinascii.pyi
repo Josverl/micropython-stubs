@@ -8,6 +8,7 @@ CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binasci
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 """
+
 from typing import Optional, Any
 from _typeshed import Incomplete
 

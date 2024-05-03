@@ -42,11 +42,11 @@ def update_app_elements(
     fs_base,
     fs_len,
     fs_type=...,
-    fs_blocksize: int = ...,
-    status_addr: Incomplete | None = ...,
-    addr_64bit: bool = ...,
+    fs_blocksize: int = 0,
+    status_addr: Incomplete | None = None,
+    addr_64bit: bool = False,
     *,
-    fs_base2: int = ...,
-    fs_len2: int = ...,
+    fs_base2: int = 0,
+    fs_len2: int = 0,
 ): ...
 def update_mpy(*args, **kwargs) -> None: ...

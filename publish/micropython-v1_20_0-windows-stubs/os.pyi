@@ -9,6 +9,7 @@ The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
+
 from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.os import *
 from typing import Any, IO, Iterator, Optional, Tuple

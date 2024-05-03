@@ -39,6 +39,7 @@ Host: micropython.org
 ---
 Module: 'network' on micropython-v1.19.1-esp32
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32S3 module with ESP32S3', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.11.2
 from typing import List, Optional, Tuple, Union, Any
@@ -78,9 +79,7 @@ class WLAN:
     For example, only STA interface may `WLAN.connect()` to an access point.
     """
 
-    def __init__(self, interface_id) -> None:
-        ...
-
+    def __init__(self, interface_id) -> None: ...
     def active(self, is_active: Optional[Any] = None) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
@@ -206,9 +205,7 @@ class WLAN:
         ...
 
 
-def phy_mode(*args, **kwargs) -> Any:
-    ...
+def phy_mode(*args, **kwargs) -> Any: ...
 
 
-def PPP(*args, **kwargs) -> Any:
-    ...
+def PPP(*args, **kwargs) -> Any: ...

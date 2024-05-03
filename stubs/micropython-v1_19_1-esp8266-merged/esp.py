@@ -10,6 +10,7 @@ ports.
 ---
 Module: 'esp' on micropython-v1.19.1-esp8266
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp8266', 'port': 'esp8266', 'machine': 'ESP module (1M) with ESP8266', 'release': '1.19.1', 'nodename': 'esp8266', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp8266', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Optional, Any
@@ -20,16 +21,13 @@ SLEEP_NONE = 0  # type: int
 SLEEP_LIGHT = 1  # type: int
 
 
-def freemem(*args, **kwargs) -> Any:
-    ...
+def freemem(*args, **kwargs) -> Any: ...
 
 
-def free(*args, **kwargs) -> Any:
-    ...
+def free(*args, **kwargs) -> Any: ...
 
 
-def flash_write(byte_offset, bytes) -> Incomplete:
-    ...
+def flash_write(byte_offset, bytes) -> Incomplete: ...
 
 
 def flash_user_start() -> Incomplete:
@@ -61,8 +59,7 @@ def sleep_type(sleep_type: Optional[Any] = None) -> Incomplete:
     ...
 
 
-def malloc(*args, **kwargs) -> Any:
-    ...
+def malloc(*args, **kwargs) -> Any: ...
 
 
 def set_native_code_location(start, length) -> Incomplete:
@@ -124,12 +121,10 @@ def osdebug(level) -> None:
     ...
 
 
-def meminfo(*args, **kwargs) -> Any:
-    ...
+def meminfo(*args, **kwargs) -> Any: ...
 
 
-def dht_readinto(*args, **kwargs) -> Any:
-    ...
+def dht_readinto(*args, **kwargs) -> Any: ...
 
 
 def deepsleep(time_us=0, /) -> Incomplete:
@@ -146,12 +141,10 @@ def deepsleep(time_us=0, /) -> Incomplete:
     ...
 
 
-def check_fw(*args, **kwargs) -> Any:
-    ...
+def check_fw(*args, **kwargs) -> Any: ...
 
 
-def apa102_write(*args, **kwargs) -> Any:
-    ...
+def apa102_write(*args, **kwargs) -> Any: ...
 
 
 def flash_size() -> Incomplete:
@@ -161,12 +154,10 @@ def flash_size() -> Incomplete:
     ...
 
 
-def esf_free_bufs(*args, **kwargs) -> Any:
-    ...
+def esf_free_bufs(*args, **kwargs) -> Any: ...
 
 
-def flash_read(byte_offset, length_or_buffer) -> Incomplete:
-    ...
+def flash_read(byte_offset, length_or_buffer) -> Incomplete: ...
 
 
 def flash_id() -> Incomplete:
@@ -178,5 +169,4 @@ def flash_id() -> Incomplete:
     ...
 
 
-def flash_erase(sector_no) -> Incomplete:
-    ...
+def flash_erase(sector_no) -> Incomplete: ...

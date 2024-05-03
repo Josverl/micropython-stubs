@@ -10,6 +10,7 @@ ports.
 ---
 Module: 'esp' on micropython-v1.22.0-esp32-ESP32_GENERIC
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
@@ -66,16 +67,13 @@ def osdebug(uart_no, level: Optional[Any] = None) -> Incomplete:
     ...
 
 
-def flash_write(byte_offset, bytes) -> Incomplete:
-    ...
+def flash_write(byte_offset, bytes) -> Incomplete: ...
 
 
-def gpio_matrix_in(*args, **kwargs) -> Incomplete:
-    ...
+def gpio_matrix_in(*args, **kwargs) -> Incomplete: ...
 
 
-def gpio_matrix_out(*args, **kwargs) -> Incomplete:
-    ...
+def gpio_matrix_out(*args, **kwargs) -> Incomplete: ...
 
 
 def flash_user_start() -> Incomplete:
@@ -85,12 +83,10 @@ def flash_user_start() -> Incomplete:
     ...
 
 
-def flash_erase(sector_no) -> Incomplete:
-    ...
+def flash_erase(sector_no) -> Incomplete: ...
 
 
-def flash_read(byte_offset, length_or_buffer) -> Incomplete:
-    ...
+def flash_read(byte_offset, length_or_buffer) -> Incomplete: ...
 
 
 def flash_size() -> Incomplete:

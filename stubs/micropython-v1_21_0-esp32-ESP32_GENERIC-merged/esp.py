@@ -10,6 +10,7 @@ ports.
 ---
 Module: 'esp' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
 # Stubber: v1.14.0
 from _typeshed import Incomplete
@@ -41,18 +42,9 @@ def osdebug(level) -> None:
     ...
 
 
-def flash_write(byte_offset, bytes) -> Incomplete:
-    ...
-
-
-def gpio_matrix_in(*args, **kwargs) -> Incomplete:
-    ...
-
-
-def gpio_matrix_out(*args, **kwargs) -> Incomplete:
-    ...
-
-
+def flash_write(byte_offset, bytes) -> Incomplete: ...
+def gpio_matrix_in(*args, **kwargs) -> Incomplete: ...
+def gpio_matrix_out(*args, **kwargs) -> Incomplete: ...
 def flash_user_start() -> Incomplete:
     """
     Read the memory offset at which the user flash space begins.
@@ -60,14 +52,8 @@ def flash_user_start() -> Incomplete:
     ...
 
 
-def flash_erase(sector_no) -> Incomplete:
-    ...
-
-
-def flash_read(byte_offset, length_or_buffer) -> Incomplete:
-    ...
-
-
+def flash_erase(sector_no) -> Incomplete: ...
+def flash_read(byte_offset, length_or_buffer) -> Incomplete: ...
 def flash_size() -> Incomplete:
     """
     Read the total size of the flash memory.

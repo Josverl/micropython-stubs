@@ -8,6 +8,7 @@ This module provides control of the MicroPython LCD160CR display.
 ---
 Module: 'lcd160cr' on micropython-v1.19.1-stm32
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Tuple, Any
@@ -22,20 +23,16 @@ LANDSCAPE_UPSIDEDOWN = 3  # type: int
 STARTUP_DECO_NONE = 0  # type: int
 
 
-def calcsize(*args, **kwargs) -> Any:
-    ...
+def calcsize(*args, **kwargs) -> Any: ...
 
 
-def pack_into(*args, **kwargs) -> Any:
-    ...
+def pack_into(*args, **kwargs) -> Any: ...
 
 
-def sleep_ms(*args, **kwargs) -> Any:
-    ...
+def sleep_ms(*args, **kwargs) -> Any: ...
 
 
-def const(*args, **kwargs) -> Any:
-    ...
+def const(*args, **kwargs) -> Any: ...
 
 
 class LCD160CR:
@@ -88,8 +85,7 @@ class LCD160CR:
         """
         ...
 
-    def rect_interior_no_clip(self, x, y, w, h) -> Incomplete:
-        ...
+    def rect_interior_no_clip(self, x, y, w, h) -> Incomplete: ...
 
     def touch_config(self, calib=False, save=False, irq=None) -> None:
         """
@@ -121,11 +117,9 @@ class LCD160CR:
         """
         ...
 
-    def rect_outline(self, x, y, w, h) -> Incomplete:
-        ...
+    def rect_outline(self, x, y, w, h) -> Incomplete: ...
 
-    def rect_outline_no_clip(self, x, y, w, h) -> Incomplete:
-        ...
+    def rect_outline_no_clip(self, x, y, w, h) -> Incomplete: ...
 
     def dot(self, x, y) -> None:
         """
@@ -133,8 +127,7 @@ class LCD160CR:
         """
         ...
 
-    def rect_no_clip(self, x, y, w, h) -> Incomplete:
-        ...
+    def rect_no_clip(self, x, y, w, h) -> Incomplete: ...
 
     def rect_interior(self, x, y, w, h) -> None:
         """
@@ -145,8 +138,7 @@ class LCD160CR:
         """
         ...
 
-    def dot_no_clip(self, x, y) -> Incomplete:
-        ...
+    def dot_no_clip(self, x, y) -> Incomplete: ...
 
     def set_scroll_buf(self, s) -> None:
         """
@@ -182,8 +174,7 @@ class LCD160CR:
         """
         ...
 
-    def jpeg_start(self, total_len) -> Incomplete:
-        ...
+    def jpeg_start(self, total_len) -> Incomplete: ...
 
     def jpeg_data(self, buf) -> None:
         """
@@ -283,8 +274,7 @@ class LCD160CR:
         """
         ...
 
-    def iflush(self, *args, **kwargs) -> Any:
-        ...
+    def iflush(self, *args, **kwargs) -> Any: ...
 
     def set_brightness(self, value) -> None:
         """
@@ -312,8 +302,7 @@ class LCD160CR:
         """
         ...
 
-    def oflush(self, *args, **kwargs) -> Any:
-        ...
+    def oflush(self, *args, **kwargs) -> Any: ...
 
     def write(self, s) -> None:
         """
@@ -330,8 +319,7 @@ class LCD160CR:
         """
         ...
 
-    def rect(self, x, y, w, h) -> Incomplete:
-        ...
+    def rect(self, x, y, w, h) -> Incomplete: ...
 
     def reset(self) -> None:
         """
@@ -439,5 +427,4 @@ class LCD160CR:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

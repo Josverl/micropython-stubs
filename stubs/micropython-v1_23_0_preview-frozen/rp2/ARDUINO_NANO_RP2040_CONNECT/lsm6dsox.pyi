@@ -33,13 +33,13 @@ class LSM6DSOX:
     def __init__(
         self,
         bus,
-        cs: Incomplete | None = ...,
+        cs: Incomplete | None = None,
         address=...,
-        gyro_odr: int = ...,
-        accel_odr: int = ...,
-        gyro_scale: int = ...,
-        accel_scale: int = ...,
-        ucf: Incomplete | None = ...,
+        gyro_odr: int = 104,
+        accel_odr: int = 104,
+        gyro_scale: int = 2000,
+        accel_scale: int = 4,
+        ucf: Incomplete | None = None,
     ) -> None:
         """Initalizes Gyro and Accelerator.
         accel_odr: (0, 1.6Hz, 3.33Hz, 6.66Hz, 12.5Hz, 26Hz, 52Hz, 104Hz, 208Hz, 416Hz, 888Hz)
@@ -48,15 +48,17 @@ class LSM6DSOX:
         accel_scale: (+/-2g, +/-4g, +/-8g, +-16g)
         ucf: MLC program to load.
         """
-    def _read_reg(self, reg, size: int = ...): ...
+
+    def _read_reg(self, reg, size: int = 1): ...
     def _write_reg(self, reg, val) -> None: ...
     def _read_reg_into(self, reg, buf) -> None: ...
     def reset(self) -> None: ...
     def set_mem_bank(self, bank) -> None: ...
-    def set_embedded_functions(self, enable, emb_ab: Incomplete | None = ...): ...
+    def set_embedded_functions(self, enable, emb_ab: Incomplete | None = None): ...
     def load_mlc(self, ucf) -> None: ...
     def mlc_output(self): ...
     def gyro(self):
         """Returns gyroscope vector in degrees/sec."""
+
     def accel(self):
         """Returns acceleration vector in gravity units (9.81m/s^2)."""

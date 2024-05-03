@@ -36,6 +36,7 @@ Host: micropython.org
     data = s.recv(1000)
     s.close()
 """
+
 from typing import List, Optional, Tuple, Union, Any
 from _typeshed import Incomplete
 
@@ -85,17 +86,20 @@ class LAN:
         Without a parameter, it returns the state.
         """
         ...
+
     def isconnected(self) -> bool:
         """
         Returns ``True`` if the physical Ethernet link is connected and up.
         Returns ``False`` otherwise.
         """
         ...
+
     def status(self) -> Incomplete:
         """
         Returns the LAN status.
         """
         ...
+
     def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
         """
         Get/set IP address, subnet mask, gateway and DNS.
@@ -107,6 +111,7 @@ class LAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
+
     def config(self, config_parameters) -> Incomplete:
         """
         Sets or gets parameters of the LAN interface. The only parameter that can be
@@ -164,6 +169,7 @@ class WLAN:
         provided. Most other methods require active interface.
         """
         ...
+
     def connect(self, ssid=None, password=None, *, bssid=None) -> None:
         """
         Connect to the specified wireless network, using the specified password.
@@ -172,11 +178,13 @@ class WLAN:
         in this case).
         """
         ...
+
     def disconnect(self) -> None:
         """
         Disconnect from the currently connected wireless network.
         """
         ...
+
     def scan(self) -> List[Tuple]:
         """
         Scan for the available wireless networks.
@@ -205,6 +213,7 @@ class WLAN:
             * 1 -- hidden
         """
         ...
+
     def status(self, param: Optional[Any] = None) -> Incomplete:
         """
         Return the current status of the wireless connection.
@@ -223,6 +232,7 @@ class WLAN:
         parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
         """
         ...
+
     def isconnected(self) -> bool:
         """
         In case of STA mode, returns ``True`` if connected to a WiFi access
@@ -230,6 +240,7 @@ class WLAN:
         station is connected. Returns ``False`` otherwise.
         """
         ...
+
     def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
         """
         Get/set IP-level network interface parameters: IP address, subnet mask,
@@ -240,6 +251,7 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
+
     def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work

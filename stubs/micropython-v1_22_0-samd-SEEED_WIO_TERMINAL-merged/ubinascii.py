@@ -11,6 +11,7 @@ encodings of it in ASCII form (in both directions).
 ---
 Module: 'ubinascii' on micropython-v1.22.0-samd-SEEED_WIO_TERMINAL
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
@@ -19,8 +20,7 @@ from _typeshed import Incomplete
 from typing import Any, Optional
 
 
-def crc32(*args, **kwargs) -> Incomplete:
-    ...
+def crc32(*args, **kwargs) -> Incomplete: ...
 
 
 def hexlify(data, sep: Optional[Any] = None) -> bytes:

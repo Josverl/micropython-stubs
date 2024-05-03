@@ -11,16 +11,14 @@ encodings of it in ASCII form (in both directions).
 ---
 Module: 'ubinascii' on micropython-v1.21.0-esp32-Generic_ESP32_module_with_SPIRAM_with_ESP32
 """
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'esp32', 'board': 'Generic_ESP32_module_with_SPIRAM_with_ESP32', 'cpu': 'SPIRAM', 'mpy': 'v6.1', 'arch': 'xtensawin'}
 # Stubber: v1.14.0
 from _typeshed import Incomplete
 from typing import Any, Optional
 
 
-def crc32(*args, **kwargs) -> Incomplete:
-    ...
-
-
+def crc32(*args, **kwargs) -> Incomplete: ...
 def hexlify(data, sep: Optional[Any] = None) -> bytes:
     """
     Convert the bytes in the *data* object to a hexadecimal representation.

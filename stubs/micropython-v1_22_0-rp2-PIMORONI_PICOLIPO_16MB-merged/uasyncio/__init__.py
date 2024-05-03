@@ -36,6 +36,7 @@ Core functions
 ---
 Module: 'uasyncio.__init__' on micropython-v1.22.0-rp2-PIMORONI_PICOLIPO_16MB
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
@@ -44,8 +45,7 @@ from _typeshed import Incomplete
 from typing import Any, Coroutine, List, Tuple
 
 
-def ticks_diff(*args, **kwargs) -> Incomplete:
-    ...
+def ticks_diff(*args, **kwargs) -> Incomplete: ...
 
 
 def get_event_loop() -> Incomplete:
@@ -81,12 +81,10 @@ def new_event_loop() -> Incomplete:
     ...
 
 
-def ticks(*args, **kwargs) -> Incomplete:
-    ...
+def ticks(*args, **kwargs) -> Incomplete: ...
 
 
-def run_until_complete(*args, **kwargs) -> Incomplete:
-    ...
+def run_until_complete(*args, **kwargs) -> Incomplete: ...
 
 
 def run(coro) -> Incomplete:
@@ -116,8 +114,7 @@ def sleep_ms(t) -> Coroutine[Incomplete, Any, Any]:
     ...
 
 
-def ticks_add(*args, **kwargs) -> Incomplete:
-    ...
+def ticks_add(*args, **kwargs) -> Incomplete: ...
 
 
 def sleep(t) -> Coroutine[Incomplete, Any, Any]:
@@ -130,20 +127,15 @@ def sleep(t) -> Coroutine[Incomplete, Any, Any]:
 
 
 class TaskQueue:
-    def push(self, *args, **kwargs) -> Incomplete:
-        ...
+    def push(self, *args, **kwargs) -> Incomplete: ...
 
-    def peek(self, *args, **kwargs) -> Incomplete:
-        ...
+    def peek(self, *args, **kwargs) -> Incomplete: ...
 
-    def remove(self, *args, **kwargs) -> Incomplete:
-        ...
+    def remove(self, *args, **kwargs) -> Incomplete: ...
 
-    def pop(self, *args, **kwargs) -> Incomplete:
-        ...
+    def pop(self, *args, **kwargs) -> Incomplete: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 open_connection: Incomplete  ## <class 'generator'> = <generator>
@@ -178,8 +170,7 @@ class Event:
 
     wait: Incomplete  ## <class 'generator'> = <generator>
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class Lock:
@@ -206,8 +197,7 @@ class Lock:
 
     acquire: Incomplete  ## <class 'generator'> = <generator>
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class Task:
@@ -219,12 +209,10 @@ class Task:
     Tasks should not be created directly, rather use `create_task` to create them.
     """
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 wait_for: Incomplete  ## <class 'generator'> = <generator>
 
 
-class CancelledError(Exception):
-    ...
+class CancelledError(Exception): ...

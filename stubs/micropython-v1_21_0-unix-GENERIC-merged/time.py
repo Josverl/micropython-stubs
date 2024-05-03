@@ -35,6 +35,7 @@ behave not as expected.
 ---
 Module: 'time' on micropython-v1.21.0-unix-linux_[GCC_9.4.0]_version
 """
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
 from typing import Optional, Tuple, Any
@@ -266,8 +267,7 @@ def localtime(secs: Optional[Any] = None) -> Tuple:
     ...
 
 
-def clock(*args, **kwargs) -> Incomplete:
-    ...
+def clock(*args, **kwargs) -> Incomplete: ...
 
 
 def sleep_us(us) -> None:

@@ -26,10 +26,10 @@ tb: Incomplete
 GetSetDescriptorType: Incomplete
 MemberDescriptorType: Incomplete
 
-def new_class(name, bases=..., kwds: Incomplete | None = ..., exec_body: Incomplete | None = ...):
+def new_class(name, bases=(), kwds: Incomplete | None = None, exec_body: Incomplete | None = None):
     """Create a class object dynamically using the appropriate metaclass."""
 
-def prepare_class(name, bases=..., kwds: Incomplete | None = ...):
+def prepare_class(name, bases=(), kwds: Incomplete | None = None):
     """Call the __prepare__ method of the appropriate metaclass.
 
     Returns (metaclass, namespace, kwds) as a 3-tuple

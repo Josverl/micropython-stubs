@@ -11,14 +11,14 @@ encodings of it in ASCII form (in both directions).
 ---
 Module: 'ubinascii' on micropython-v1.20.0-stm32-PYBV11
 """
+
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': 'v1.20.0', 'cpu': 'STM32F405RG'})
 # Stubber: v1.13.7
 from typing import Optional, Any
 from _typeshed import Incomplete
 
 
-def crc32(*args, **kwargs) -> Any:
-    ...
+def crc32(*args, **kwargs) -> Any: ...
 
 
 def hexlify(data, sep: Optional[Any] = None) -> bytes:

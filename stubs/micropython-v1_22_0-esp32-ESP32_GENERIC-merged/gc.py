@@ -8,6 +8,7 @@ CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 ---
 Module: 'gc' on micropython-v1.22.0-esp32-ESP32_GENERIC
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
@@ -27,8 +28,7 @@ def mem_alloc() -> int:
     ...
 
 
-def isenabled(*args, **kwargs) -> Incomplete:
-    ...
+def isenabled(*args, **kwargs) -> Incomplete: ...
 
 
 def mem_free() -> int:

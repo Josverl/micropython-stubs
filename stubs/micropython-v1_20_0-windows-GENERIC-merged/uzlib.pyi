@@ -10,6 +10,7 @@ This module allows to decompress binary data compressed with
 (commonly used in zlib library and gzip archiver). Compression
 is not yet implemented.
 """
+
 from _typeshed import Incomplete, Incomplete as Incomplete
 
 def decompress(data, wbits=0, bufsize=0, /) -> bytes:

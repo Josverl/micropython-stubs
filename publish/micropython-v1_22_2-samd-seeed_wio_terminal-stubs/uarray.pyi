@@ -12,6 +12,7 @@ floating-point support).
 ---
 Module: 'uarray' on micropython-v1.22.2-samd-SEEED_WIO_TERMINAL
 """
+
 # MCU: {'build': '', 'ver': '1.22.2', 'version': '1.22.2', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'arch': 'armv7emsp'}
 # Stubber: v1.17.3
 from __future__ import annotations
@@ -31,9 +32,11 @@ class array(List):
         array, growing it.
         """
         ...
+
     def append(self, val) -> Incomplete:
         """
         Append new element *val* to the end of array, growing it.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

@@ -13,6 +13,7 @@ sub-fields.
 ---
 Module: 'uctypes' on micropython-v1.21.0-webassembly-GENERIC
 """
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'webassembly', 'board': 'GENERIC', 'cpu': 'Emscripten', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.0
 from typing import Any
@@ -96,5 +97,4 @@ class struct:
     memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

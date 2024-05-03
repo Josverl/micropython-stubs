@@ -3,6 +3,7 @@ ESP-NOW :doc:`asyncio` support.
 
 MicroPython module: https://docs.micropython.org/en/v1.22.0/library/aioespnow.html
 """
+
 from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union

@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.20.0/library/micropython.
 ---
 Module: 'micropython' on micropython-v1.20.0-rp2-PIMORONI_PICOLIPO_16MB
 """
+
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PIMORONI_PICOLIPO_16MB', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.7
 from typing import Optional, Tuple, TypeVar, Any
@@ -155,9 +156,7 @@ def kbd_intr(chr) -> None:
     ...
 
 
-def heap_lock() -> int:
-    ...
+def heap_lock() -> int: ...
 
 
-def heap_unlock() -> int:
-    ...
+def heap_unlock() -> int: ...

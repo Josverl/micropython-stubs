@@ -8,6 +8,7 @@ CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 ---
 Module: 'gc' on micropython-v1.20.0-unix-linux_[GCC_9.4.0]_version
 """
+
 # MCU: {'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
 from typing import Optional, Any
@@ -25,8 +26,7 @@ def mem_alloc() -> int:
     ...
 
 
-def isenabled(*args, **kwargs) -> Incomplete:
-    ...
+def isenabled(*args, **kwargs) -> Incomplete: ...
 
 
 def mem_free() -> int:

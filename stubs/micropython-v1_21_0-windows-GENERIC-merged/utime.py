@@ -35,6 +35,7 @@ behave not as expected.
 ---
 Module: 'utime' on micropython-v1.21.0-win32-GENERIC
 """
+
 # MCU: {'version': '1.21.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.21.0', 'cpu': ''}
 # Stubber: v1.15.0
 from typing import Optional, Tuple, Any
@@ -266,8 +267,7 @@ def localtime(secs: Optional[Any] = None) -> Tuple:
     ...
 
 
-def clock(*args, **kwargs) -> Incomplete:
-    ...
+def clock(*args, **kwargs) -> Incomplete: ...
 
 
 def sleep_us(us) -> None:

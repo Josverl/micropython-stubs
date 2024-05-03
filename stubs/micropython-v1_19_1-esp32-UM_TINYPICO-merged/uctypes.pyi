@@ -10,6 +10,7 @@ module is to define data structure layout with about the same power as the
 C language allows, and then access it using familiar dot-syntax to reference
 sub-fields.
 """
+
 from typing import Any
 from _typeshed import Incomplete
 

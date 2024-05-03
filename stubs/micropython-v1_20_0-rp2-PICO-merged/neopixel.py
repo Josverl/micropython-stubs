@@ -15,14 +15,14 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
 ---
 Module: 'neopixel' on micropython-v1.20.0-rp2-PICO
 """
+
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'rp2', 'board': 'PICO', 'cpu': 'RP2040', 'mpy': 'v6.1', 'arch': 'armv6m'})
 # Stubber: v1.13.4
 from typing import Tuple, Any
 from _typeshed import Incomplete
 
 
-def bitstream(*args, **kwargs) -> Any:
-    ...
+def bitstream(*args, **kwargs) -> Any: ...
 
 
 class NeoPixel:
@@ -50,5 +50,4 @@ class NeoPixel:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

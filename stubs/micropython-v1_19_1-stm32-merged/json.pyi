@@ -8,6 +8,7 @@ CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
 This modules allows to convert between Python objects and the JSON
 data format.
 """
+
 from typing import Any
 from _typeshed import Incomplete
 

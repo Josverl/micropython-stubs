@@ -1,6 +1,23 @@
 from _typeshed import Incomplete
 
-def b64encode(s, altchars: Incomplete | None = ...):
+__all__ = [
+    "encode",
+    "decode",
+    "encodebytes",
+    "decodebytes",
+    "b64encode",
+    "b64decode",
+    "b32encode",
+    "b32decode",
+    "b16encode",
+    "b16decode",
+    "standard_b64encode",
+    "standard_b64decode",
+    "urlsafe_b64encode",
+    "urlsafe_b64decode",
+]
+
+def b64encode(s, altchars: Incomplete | None = None):
     """Encode a byte string using Base64.
 
     s is the byte string to encode.  Optional altchars must be a byte
@@ -11,7 +28,7 @@ def b64encode(s, altchars: Incomplete | None = ...):
     The encoded byte string is returned.
     """
 
-def b64decode(s, altchars: Incomplete | None = ..., validate: bool = ...):
+def b64decode(s, altchars: Incomplete | None = None, validate: bool = False):
     """Decode a Base64 encoded byte string.
 
     s is the byte string to decode.  Optional altchars must be a
@@ -66,7 +83,7 @@ def b32encode(s):
     s is the byte string to encode.  The encoded byte string is returned.
     """
 
-def b32decode(s, casefold: bool = ..., map01: Incomplete | None = ...):
+def b32decode(s, casefold: bool = False, map01: Incomplete | None = None):
     """Decode a Base32 encoded byte string.
 
     s is the byte string to decode.  Optional casefold is a flag
@@ -92,7 +109,7 @@ def b16encode(s):
     s is the byte string to encode.  The encoded byte string is returned.
     """
 
-def b16decode(s, casefold: bool = ...):
+def b16decode(s, casefold: bool = False):
     """Decode a Base16 encoded byte string.
 
     s is the byte string to decode.  Optional casefold is a flag

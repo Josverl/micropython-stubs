@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/micropython.
 ---
 Module: 'micropython' on micropython-v1.21.0-rp2-RPI_PICO_W
 """
+
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import Optional, Tuple, TypeVar, Any
@@ -155,9 +156,7 @@ def kbd_intr(chr) -> None:
     ...
 
 
-def heap_lock() -> int:
-    ...
+def heap_lock() -> int: ...
 
 
-def heap_unlock() -> int:
-    ...
+def heap_unlock() -> int: ...

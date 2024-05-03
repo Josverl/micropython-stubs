@@ -16,6 +16,7 @@ for this module.
 ---
 Module: 'math' on micropython-v1.19.1-esp32
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Tuple, Any
@@ -151,8 +152,7 @@ def fabs(x) -> Incomplete:
     ...
 
 
-def factorial(*args, **kwargs) -> Any:
-    ...
+def factorial(*args, **kwargs) -> Any: ...
 
 
 def floor(x) -> int:
@@ -189,8 +189,7 @@ def gamma(x) -> Incomplete:
 inf = inf  # type: float
 
 
-def isclose(*args, **kwargs) -> Any:
-    ...
+def isclose(*args, **kwargs) -> Any: ...
 
 
 def isfinite(x) -> bool:

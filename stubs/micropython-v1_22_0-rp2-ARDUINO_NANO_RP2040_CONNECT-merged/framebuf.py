@@ -9,6 +9,7 @@ bitmap images, which can then be sent to a display.
 ---
 Module: 'framebuf' on micropython-v1.22.0-rp2-ARDUINO_NANO_RP2040_CONNECT
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
@@ -26,8 +27,7 @@ GS8 = 6  # type: int
 GS4_HMSB = 2  # type: int
 
 
-def FrameBuffer1(*args, **kwargs) -> Incomplete:
-    ...
+def FrameBuffer1(*args, **kwargs) -> Incomplete: ...
 
 
 class FrameBuffer:
@@ -69,8 +69,7 @@ class FrameBuffer:
         """
         ...
 
-    def vline(self, x, y, h, c) -> Incomplete:
-        ...
+    def vline(self, x, y, h, c) -> Incomplete: ...
 
     def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
         """
@@ -152,8 +151,7 @@ class FrameBuffer:
         """
         ...
 
-    def hline(self, x, y, w, c) -> Incomplete:
-        ...
+    def hline(self, x, y, w, c) -> Incomplete: ...
 
     def fill(self, c) -> None:
         """
@@ -161,8 +159,6 @@ class FrameBuffer:
         """
         ...
 
-    def fill_rect(self, *args, **kwargs) -> Incomplete:
-        ...
+    def fill_rect(self, *args, **kwargs) -> Incomplete: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

@@ -55,6 +55,7 @@ The following data types are supported:
 | P      | void *             | integer           |               |
 +--------+--------------------+-------------------+---------------+
 """
+
 from __future__ import annotations
 from ustruct import *
 from _typeshed import Incomplete

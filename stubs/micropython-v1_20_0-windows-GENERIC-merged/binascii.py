@@ -11,14 +11,14 @@ encodings of it in ASCII form (in both directions).
 ---
 Module: 'binascii' on micropython-v1.20.0-win32-GENERIC
 """
+
 # MCU: {'version': '1.20.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.20.0', 'cpu': ''}
 # Stubber: v1.15.0
 from typing import Optional, Any
 from _typeshed import Incomplete
 
 
-def crc32(*args, **kwargs) -> Incomplete:
-    ...
+def crc32(*args, **kwargs) -> Incomplete: ...
 
 
 def hexlify(data, sep: Optional[Any] = None) -> bytes:

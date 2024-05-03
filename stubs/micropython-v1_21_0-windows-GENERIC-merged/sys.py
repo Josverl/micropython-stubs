@@ -8,6 +8,7 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 ---
 Module: 'sys' on micropython-v1.21.0-win32-GENERIC
 """
+
 # MCU: {'version': '1.21.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.21.0', 'cpu': ''}
 # Stubber: v1.15.0
 from typing import Dict, List, Tuple, Any
@@ -24,8 +25,7 @@ argv = []  # type: list
 implementation = ()  # type: tuple
 
 
-def exc_info(*args, **kwargs) -> Incomplete:
-    ...
+def exc_info(*args, **kwargs) -> Incomplete: ...
 
 
 def exit(retval=0, /) -> Incomplete:

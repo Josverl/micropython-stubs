@@ -23,6 +23,7 @@ be implemented:
   selected boards, targeting interoperability with legacy applications,
   will offer this.
 """
+
 from typing import Optional, Any
 from _typeshed import Incomplete
 

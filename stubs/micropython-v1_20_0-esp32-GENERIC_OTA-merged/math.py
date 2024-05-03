@@ -16,6 +16,7 @@ for this module.
 ---
 Module: 'math' on micropython-v1.20.0-esp32-GENERIC_OTA
 """
+
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC_OTA', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
 from typing import Tuple, Any
@@ -49,8 +50,7 @@ def trunc(x) -> int:
     ...
 
 
-def isclose(*args, **kwargs) -> Any:
-    ...
+def isclose(*args, **kwargs) -> Any: ...
 
 
 def gamma(x) -> Incomplete:
@@ -232,8 +232,7 @@ def asin(x) -> float:
     ...
 
 
-def factorial(*args, **kwargs) -> Any:
-    ...
+def factorial(*args, **kwargs) -> Any: ...
 
 
 def fabs(x) -> Incomplete:

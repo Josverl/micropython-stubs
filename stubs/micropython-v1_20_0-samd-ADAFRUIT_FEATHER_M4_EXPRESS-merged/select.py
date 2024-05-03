@@ -11,6 +11,7 @@ This module provides functions to efficiently wait for events on multiple
 ---
 Module: 'select' on micropython-v1.20.0-samd-ADAFRUIT_FEATHER_M4_EXPRESS
 """
+
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'samd', 'board': 'ADAFRUIT_FEATHER_M4_EXPRESS', 'cpu': 'SAMD51J19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'})
 # Stubber: v1.13.7
 from typing import Iterator, List, Optional, Tuple, Any
@@ -37,9 +38,7 @@ class poll:
     Create an instance of the Poll class.
     """
 
-    def __init__(self) -> None:
-        ...
-
+    def __init__(self) -> None: ...
     def register(self, obj, eventmask: Optional[Any] = None) -> None:
         """
         Register `stream` *obj* for polling. *eventmask* is logical OR of:

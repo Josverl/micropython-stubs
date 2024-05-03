@@ -18,6 +18,7 @@ This module allows compression and decompression of binary data with the
   by default on ports with the "full features" level or higher (generally this means
   you need to build your own firmware to enable this).
 """
+
 from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 

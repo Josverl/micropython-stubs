@@ -9,6 +9,7 @@ bitmap images, which can then be sent to a display.
 ---
 Module: 'framebuf' on micropython-v1.19.1-esp32
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.5.6
 from typing import Optional, Any
@@ -79,8 +80,7 @@ class FrameBuffer:
         """
         ...
 
-    def hline(self, x, y, w, c) -> Incomplete:
-        ...
+    def hline(self, x, y, w, c) -> Incomplete: ...
 
     def line(self, x1, y1, x2, y2, c) -> None:
         """
@@ -99,8 +99,7 @@ class FrameBuffer:
         """
         ...
 
-    def rect(self, x, y, w, h, c) -> Incomplete:
-        ...
+    def rect(self, x, y, w, h, c) -> Incomplete: ...
 
     def scroll(self, xstep, ystep) -> Incomplete:
         """
@@ -118,12 +117,10 @@ class FrameBuffer:
         """
         ...
 
-    def vline(self, x, y, h, c) -> Incomplete:
-        ...
+    def vline(self, x, y, h, c) -> Incomplete: ...
 
 
-def FrameBuffer1(*args, **kwargs) -> Any:
-    ...
+def FrameBuffer1(*args, **kwargs) -> Any: ...
 
 
 GS2_HMSB = 5  # type: int

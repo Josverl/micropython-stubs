@@ -8,6 +8,7 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 ---
 Module: 'usys' on micropython-v1.22.0-samd-SEEED_WIO_TERMINAL
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.2', 'arch': 'armv7emsp'}

@@ -15,6 +15,7 @@ Difference to CPython
 
    Whitespace is not supported in format strings.
 """
+
 from typing import Tuple, Any
 from _typeshed import Incomplete
 

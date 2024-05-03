@@ -10,6 +10,7 @@ and unrestricted access to and control of hardware blocks on a system
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
+
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
@@ -65,11 +66,13 @@ class Signal(Pin):
         Deactivate signal.
         """
         ...
+
     def on(self) -> None:
         """
         Activate signal.
         """
         ...
+
     def value(self, x: Optional[Any] = None) -> int:
         """
         This method allows to set and get the value of the signal, depending on whether
@@ -89,4 +92,5 @@ class Signal(Pin):
         to logical 0, while inactive - to logical 1.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

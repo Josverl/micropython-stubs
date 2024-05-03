@@ -63,6 +63,7 @@ Tuple address format for ``socket`` module:
 ---
 Module: 'usocket' on micropython-v1.20.0-esp32-GENERIC_S3
 """
+
 # MCU: OrderedDict({'version': '1.20.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': 'v1.20.0', 'cpu': 'ESP32S3'})
 # Stubber: v1.13.7
 from typing import IO, Optional, Tuple, Any
@@ -180,8 +181,7 @@ class socket:
         """
         ...
 
-    def fileno(self, *args, **kwargs) -> Any:
-        ...
+    def fileno(self, *args, **kwargs) -> Any: ...
 
     def sendall(self, bytes) -> int:
         """
@@ -337,5 +337,4 @@ class socket:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

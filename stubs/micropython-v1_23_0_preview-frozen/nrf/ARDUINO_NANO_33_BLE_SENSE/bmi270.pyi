@@ -22,13 +22,13 @@ class BMI270:
     def __init__(
         self,
         bus,
-        cs: Incomplete | None = ...,
+        cs: Incomplete | None = None,
         address=...,
-        gyro_odr: int = ...,
-        gyro_scale: int = ...,
-        accel_odr: int = ...,
-        accel_scale: int = ...,
-        bmm_magnet: Incomplete | None = ...,
+        gyro_odr: int = 100,
+        gyro_scale: int = 2000,
+        accel_odr: int = 100,
+        accel_scale: int = 4,
+        bmm_magnet: Incomplete | None = None,
     ) -> None:
         """Initalizes Gyro and Accelerometer.
         bus: IMU bus
@@ -39,15 +39,18 @@ class BMI270:
         accel_odr: (0.78, 1.5Hz, 3.1Hz, 6.25Hz, 12.5Hz, 25Hz, 50Hz, 100Hz, 200Hz, 400Hz, 800Hz, 1600Hz)
         accel_scale: (+/-2g, +/-4g, +/-8g, +-16g)
         """
-    def _read_reg(self, reg, size: int = ...): ...
+
+    def _read_reg(self, reg, size: int = 1): ...
     def _read_reg_into(self, reg, buf) -> None: ...
     def _write_reg(self, reg, val) -> None: ...
-    def _write_burst(self, reg, data, chunk: int = ...) -> None: ...
-    def _poll_reg(self, reg, mask, retry: int = ..., delay: int = ...): ...
+    def _write_burst(self, reg, data, chunk: int = 16) -> None: ...
+    def _poll_reg(self, reg, mask, retry: int = 10, delay: int = 100): ...
     def reset(self) -> None: ...
     def gyro(self):
         """Returns gyroscope vector in degrees/sec."""
+
     def accel(self):
         """Returns acceleration vector in gravity units (9.81m/s^2)."""
+
     def magnet(self):
         """Returns magnetometer vector."""

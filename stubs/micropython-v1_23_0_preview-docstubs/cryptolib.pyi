@@ -31,6 +31,7 @@ class aes:
             * For Counter mode, *IV* is the initial value for the counter.
         """
         ...
+
     def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Encrypt *in_buf*. If no *out_buf* is given result is returned as a
@@ -39,6 +40,7 @@ class aes:
         to the same mutable buffer, in which case data is encrypted in-place.
         """
         ...
+
     def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.

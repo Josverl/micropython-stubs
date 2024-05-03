@@ -8,6 +8,7 @@ CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binasci
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 """
+
 from __future__ import annotations
 from ubinascii import *
 from _typeshed import Incomplete
@@ -34,7 +35,7 @@ def a2b_base64(ascii) -> bytes:
 
 table_b2a_base64: str
 
-def b2a_base64(bin, newline: bool = ...) -> bytes:
+def b2a_base64(bin, newline: bool = True) -> bytes:
     """
     Encode binary data in base64 format, as in `RFC 3548
     <https://tools.ietf.org/html/rfc3548.html>`_. Returns the encoded data

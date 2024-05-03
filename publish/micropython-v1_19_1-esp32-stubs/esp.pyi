@@ -7,6 +7,7 @@ The ``esp`` module contains specific functions related to both the ESP8266 and
 ESP32 modules.  Some functions are only available on one or the other of these
 ports.
 """
+
 from typing import Optional, Any
 from _typeshed import Incomplete
 

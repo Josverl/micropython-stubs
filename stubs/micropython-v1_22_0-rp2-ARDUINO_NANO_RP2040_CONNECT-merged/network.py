@@ -39,6 +39,7 @@ Host: micropython.org
 ---
 Module: 'network' on micropython-v1.22.0-rp2-ARDUINO_NANO_RP2040_CONNECT
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
@@ -50,16 +51,13 @@ STA_IF = 0  # type: int
 AP_IF = 1  # type: int
 
 
-def route(*args, **kwargs) -> Incomplete:
-    ...
+def route(*args, **kwargs) -> Incomplete: ...
 
 
-def hostname(*args, **kwargs) -> Incomplete:
-    ...
+def hostname(*args, **kwargs) -> Incomplete: ...
 
 
-def country(*args, **kwargs) -> Incomplete:
-    ...
+def country(*args, **kwargs) -> Incomplete: ...
 
 
 class WLAN:
@@ -86,8 +84,7 @@ class WLAN:
         """
         ...
 
-    def ioctl(self, *args, **kwargs) -> Incomplete:
-        ...
+    def ioctl(self, *args, **kwargs) -> Incomplete: ...
 
     def isconnected(self) -> bool:
         """
@@ -203,5 +200,4 @@ class WLAN:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...

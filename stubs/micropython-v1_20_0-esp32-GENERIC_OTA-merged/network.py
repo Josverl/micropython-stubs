@@ -39,6 +39,7 @@ Host: micropython.org
 ---
 Module: 'network' on micropython-v1.20.0-esp32-GENERIC_OTA
 """
+
 # MCU: OrderedDict({'family': 'micropython', 'version': '1.20.0', 'build': '', 'ver': 'v1.20.0', 'port': 'esp32', 'board': 'GENERIC_OTA', 'cpu': 'ESP32', 'mpy': 'v6.1', 'arch': 'xtensawin'})
 # Stubber: v1.13.4
 from typing import List, Optional, Tuple, Union, Any
@@ -80,16 +81,13 @@ ETH_CONNECTED = 3  # type: int
 ETH_DISCONNECTED = 4  # type: int
 
 
-def phy_mode(*args, **kwargs) -> Any:
-    ...
+def phy_mode(*args, **kwargs) -> Any: ...
 
 
-def country(*args, **kwargs) -> Any:
-    ...
+def country(*args, **kwargs) -> Any: ...
 
 
-def hostname(*args, **kwargs) -> Any:
-    ...
+def hostname(*args, **kwargs) -> Any: ...
 
 
 class LAN:
@@ -115,9 +113,7 @@ class LAN:
       nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=1, ref_clk_mode=Pin.IN)
     """
 
-    def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None:
-        ...
-
+    def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
     def active(self, state: Optional[Any] = None) -> Incomplete:
         """
         With a parameter, it sets the interface active if *state* is true, otherwise it
@@ -181,9 +177,7 @@ class WLAN:
     For example, only STA interface may `WLAN.connect()` to an access point.
     """
 
-    def __init__(self, interface_id) -> None:
-        ...
-
+    def __init__(self, interface_id) -> None: ...
     def active(self, is_active: Optional[Any] = None) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
@@ -309,5 +303,4 @@ class WLAN:
         ...
 
 
-def PPP(*args, **kwargs) -> Any:
-    ...
+def PPP(*args, **kwargs) -> Any: ...

@@ -26,6 +26,7 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
    available if the ``MICROPY_PY_RANDOM_EXTRA_FUNCS`` configuration option is
    enabled.
 """
+
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional
 

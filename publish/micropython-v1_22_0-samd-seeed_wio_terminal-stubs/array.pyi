@@ -9,6 +9,7 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
 floating-point support).
 """
+
 from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, List, Optional
@@ -26,9 +27,11 @@ class array(List):
         array, growing it.
         """
         ...
+
     def append(self, val) -> Incomplete:
         """
         Append new element *val* to the end of array, growing it.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

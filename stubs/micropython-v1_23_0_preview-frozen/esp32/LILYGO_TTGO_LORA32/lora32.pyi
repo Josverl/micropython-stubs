@@ -15,7 +15,7 @@ class Lora32Base:
     LED: int
     OLED_SDA: int
     OLED_SCL: int
-    def __init__(self, define_helpers: bool = ...) -> None: ...
+    def __init__(self, define_helpers: bool = True) -> None: ...
     led: Incomplete
     i2c: Incomplete
     oled: Incomplete

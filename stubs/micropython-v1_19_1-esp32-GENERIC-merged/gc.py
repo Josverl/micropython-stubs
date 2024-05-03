@@ -8,6 +8,7 @@ CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 ---
 Module: 'gc' on micropython-v1.19.1-esp32
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'esp32', 'port': 'esp32', 'machine': 'ESP32 module (spiram) with ESP32', 'release': '1.19.1', 'nodename': 'esp32', 'name': 'micropython', 'family': 'micropython', 'sysname': 'esp32', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Optional, Any
@@ -25,8 +26,7 @@ def mem_alloc() -> int:
     ...
 
 
-def isenabled(*args, **kwargs) -> Any:
-    ...
+def isenabled(*args, **kwargs) -> Any: ...
 
 
 def mem_free() -> int:

@@ -61,8 +61,7 @@ class GzipFile:
     arguments.
     """
 
-    def __init__(self, *, fileobj, mode) -> None:
-        ...
+    def __init__(self, *, fileobj, mode) -> None: ...
 
 
 def open(filename, mode="rb") -> Incomplete:

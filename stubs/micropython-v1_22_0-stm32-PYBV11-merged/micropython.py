@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.22.0/library/micropython.
 ---
 Module: 'micropython' on micropython-v1.22.0-stm32-PYBV11
 """
+
 from __future__ import annotations
 
 # MCU: {'family': 'micropython', 'version': '1.22.0', 'build': '', 'ver': 'v1.22.0', 'port': 'stm32', 'board': 'PYBV11', 'cpu': 'STM32F405RG', 'mpy': 'v6.2', 'arch': 'armv7emsp'}
@@ -157,9 +158,7 @@ def kbd_intr(chr) -> None:
     ...
 
 
-def heap_lock() -> int:
-    ...
+def heap_lock() -> int: ...
 
 
-def heap_unlock() -> int:
-    ...
+def heap_unlock() -> int: ...

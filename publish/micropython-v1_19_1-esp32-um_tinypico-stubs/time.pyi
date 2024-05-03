@@ -32,6 +32,7 @@ If actual calendar time is not maintained with a system/MicroPython RTC,
 functions below which require reference to current absolute time may
 behave not as expected.
 """
+
 from typing import Optional, Tuple, Any
 from _typeshed import Incomplete
 

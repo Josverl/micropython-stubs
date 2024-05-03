@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.20.0/library/micropython.
 ---
 Module: 'micropython' on micropython-v1.20.0-win32-GENERIC
 """
+
 # MCU: {'version': '1.20.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.20.0', 'cpu': ''}
 # Stubber: v1.15.0
 from typing import Optional, Tuple, TypeVar, Any
@@ -33,12 +34,10 @@ def opt_level(level: Optional[Any] = None) -> Incomplete:
     ...
 
 
-def mem_peak(*args, **kwargs) -> Incomplete:
-    ...
+def mem_peak(*args, **kwargs) -> Incomplete: ...
 
 
-def mem_total(*args, **kwargs) -> Incomplete:
-    ...
+def mem_total(*args, **kwargs) -> Incomplete: ...
 
 
 def schedule(func, arg) -> Incomplete:
@@ -79,8 +78,7 @@ def schedule(func, arg) -> Incomplete:
     ...
 
 
-def pystack_use(*args, **kwargs) -> Incomplete:
-    ...
+def pystack_use(*args, **kwargs) -> Incomplete: ...
 
 
 def qstr_info(verbose: Optional[Any] = None) -> None:
@@ -104,8 +102,7 @@ def stack_use() -> int:
     ...
 
 
-def heap_lock() -> int:
-    ...
+def heap_lock() -> int: ...
 
 
 def mem_info(verbose: Optional[Any] = None) -> None:
@@ -143,12 +140,10 @@ def const(expr: Const_T) -> Const_T:
     ...
 
 
-def mem_current(*args, **kwargs) -> Incomplete:
-    ...
+def mem_current(*args, **kwargs) -> Incomplete: ...
 
 
-def heap_unlock() -> int:
-    ...
+def heap_unlock() -> int: ...
 
 
 def kbd_intr(chr) -> None:

@@ -1,6 +1,7 @@
 """
 Module: 'uasyncio.stream' on micropython-v1.19.1-stm32
 """
+
 # MCU: {'ver': 'v1.19.1', 'build': '', 'platform': 'stm32', 'port': 'stm32', 'machine': 'PYBv1.1 with STM32F405RG', 'release': '1.19.1', 'nodename': 'pyboard', 'name': 'micropython', 'family': 'micropython', 'sysname': 'pyboard', 'version': '1.19.1'}
 # Stubber: 1.9.11
 from typing import Any
@@ -9,14 +10,11 @@ stream_awrite: Any  ## <class 'generator'> = <generator>
 
 
 class StreamWriter:
-    def get_extra_info(self, *args, **kwargs) -> Any:
-        ...
+    def get_extra_info(self, *args, **kwargs) -> Any: ...
 
-    def write(self, *args, **kwargs) -> Any:
-        ...
+    def write(self, *args, **kwargs) -> Any: ...
 
-    def close(self, *args, **kwargs) -> Any:
-        ...
+    def close(self, *args, **kwargs) -> Any: ...
 
     awrite: Any  ## <class 'generator'> = <generator>
     readexactly: Any  ## <class 'generator'> = <generator>
@@ -28,19 +26,15 @@ class StreamWriter:
     readline: Any  ## <class 'generator'> = <generator>
     wait_closed: Any  ## <class 'generator'> = <generator>
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class Stream:
-    def get_extra_info(self, *args, **kwargs) -> Any:
-        ...
+    def get_extra_info(self, *args, **kwargs) -> Any: ...
 
-    def write(self, *args, **kwargs) -> Any:
-        ...
+    def write(self, *args, **kwargs) -> Any: ...
 
-    def close(self, *args, **kwargs) -> Any:
-        ...
+    def close(self, *args, **kwargs) -> Any: ...
 
     awrite: Any  ## <class 'generator'> = <generator>
     readexactly: Any  ## <class 'generator'> = <generator>
@@ -52,29 +46,23 @@ class Stream:
     readline: Any  ## <class 'generator'> = <generator>
     wait_closed: Any  ## <class 'generator'> = <generator>
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class Server:
-    def close(self, *args, **kwargs) -> Any:
-        ...
+    def close(self, *args, **kwargs) -> Any: ...
 
     wait_closed: Any  ## <class 'generator'> = <generator>
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 class StreamReader:
-    def get_extra_info(self, *args, **kwargs) -> Any:
-        ...
+    def get_extra_info(self, *args, **kwargs) -> Any: ...
 
-    def write(self, *args, **kwargs) -> Any:
-        ...
+    def write(self, *args, **kwargs) -> Any: ...
 
-    def close(self, *args, **kwargs) -> Any:
-        ...
+    def close(self, *args, **kwargs) -> Any: ...
 
     awrite: Any  ## <class 'generator'> = <generator>
     readexactly: Any  ## <class 'generator'> = <generator>
@@ -86,8 +74,7 @@ class StreamReader:
     readline: Any  ## <class 'generator'> = <generator>
     wait_closed: Any  ## <class 'generator'> = <generator>
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 
 open_connection: Any  ## <class 'generator'> = <generator>
