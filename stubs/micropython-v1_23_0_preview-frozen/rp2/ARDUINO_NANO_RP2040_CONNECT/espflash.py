@@ -233,7 +233,7 @@ class ESPFlash:
 
     def flash_attach(self):
         self._command(_CMD_SPI_ATTACH, struct.pack("<II", 0, 0))
-        print(f"Flash attached")
+        print("Flash attached")
 
     def flash_config(self, flash_size=2 * 1024 * 1024):
         self._command(
@@ -256,7 +256,6 @@ class ESPFlash:
         print(f"Flash write size: {size} total_blocks: {total_blocks} block size: {blksize}")
         with open(path, "rb") as f:
             seq = 0
-            subseq = 0
             for i in range(total_blocks):
                 buf = f.read(blksize)
                 # Update digest
@@ -285,7 +284,7 @@ class ESPFlash:
     def flash_verify_file(self, path, digest=None, offset=0):
         if digest is None:
             if self.md5sum is None:
-                raise Exception(f"MD5 checksum missing.")
+                raise Exception("MD5 checksum missing.")
             digest = binascii.hexlify(self.md5sum.digest())
 
         size = os.stat(path)[6]
@@ -297,7 +296,7 @@ class ESPFlash:
         if digest == data[0:32]:
             print("Firmware verified.")
         else:
-            raise Exception(f"Firmware verification failed.")
+            raise Exception("Firmware verification failed.")
 
     def reboot(self):
         payload = struct.pack("<I", 0)

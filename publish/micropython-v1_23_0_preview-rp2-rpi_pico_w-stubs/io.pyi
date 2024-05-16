@@ -117,7 +117,6 @@ class BytesIO(IO):
     ``close()`` are available on these objects, and additionally, a
     following method:
     """
-
     def write(self, *args, **kwargs) -> Incomplete: ...
     def flush(self, *args, **kwargs) -> Incomplete: ...
     def getvalue(self) -> Incomplete:
