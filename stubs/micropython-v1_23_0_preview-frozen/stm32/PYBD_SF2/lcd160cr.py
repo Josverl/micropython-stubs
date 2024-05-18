@@ -10,9 +10,10 @@ This module provides control of the MicroPython LCD160CR display.
 """
 from __future__ import annotations
 from micropython import const
+import machine
 from utime import sleep_ms
 from ustruct import calcsize, pack_into
-import uerrno, machine
+import uerrno
 from _typeshed import Incomplete
 from typing import Tuple
 
