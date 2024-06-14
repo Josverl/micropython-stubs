@@ -1,5 +1,5 @@
 from _typeshed import Incomplete
-from ubinascii import hexlify as hexlify
+from binascii import hexlify as hexlify
 
 class MQTTException(Exception): ...
 

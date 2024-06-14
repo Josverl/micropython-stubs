@@ -1,4 +1,4 @@
-import usocket
+import socket
 
 
 class Response:
@@ -28,9 +28,9 @@ class Response:
         return str(self.content, self.encoding)
 
     def json(self):
-        import ujson
+        import json
 
-        return ujson.loads(self.content)
+        return json.loads(self.content)
 
 
 def request(
@@ -38,21 +38,24 @@ def request(
     url,
     data=None,
     json=None,
-    headers={},
+    headers=None,
     stream=None,
     auth=None,
     timeout=None,
     parse_headers=True,
 ):
+    if headers is None:
+        headers = {}
+
     redirect = None  # redirection url, None means no redirection
     chunked_data = data and getattr(data, "__next__", None) and not getattr(data, "__len__", None)
 
     if auth is not None:
-        import ubinascii
+        import binascii
 
         username, password = auth
         formated = b"{}:{}".format(username, password)
-        formated = str(ubinascii.b2a_base64(formated)[:-1], "ascii")
+        formated = str(binascii.b2a_base64(formated)[:-1], "ascii")
         headers["Authorization"] = "Basic {}".format(formated)
 
     try:
@@ -73,14 +76,14 @@ def request(
         host, port = host.split(":", 1)
         port = int(port)
 
-    ai = usocket.getaddrinfo(host, port, 0, usocket.SOCK_STREAM)
+    ai = socket.getaddrinfo(host, port, 0, socket.SOCK_STREAM)
     ai = ai[0]
 
     resp_d = None
     if parse_headers is not False:
         resp_d = {}
 
-    s = usocket.socket(ai[0], usocket.SOCK_STREAM, ai[2])
+    s = socket.socket(ai[0], socket.SOCK_STREAM, ai[2])
 
     if timeout is not None:
         # Note: settimeout is not supported on all platforms, will raise
@@ -94,33 +97,49 @@ def request(
             context.verify_mode = tls.CERT_NONE
             s = context.wrap_socket(s, server_hostname=host)
         s.write(b"%s /%s HTTP/1.0\r\n" % (method, path))
+
         if "Host" not in headers:
-            s.write(b"Host: %s\r\n" % host)
+            headers["Host"] = host
+
+        if json is not None:
+            assert data is None
+            from json import dumps
+
+            data = dumps(json)
+
+            if "Content-Type" not in headers:
+                headers["Content-Type"] = "application/json"
+
+        if data:
+            if chunked_data:
+                if "Transfer-Encoding" not in headers and "Content-Length" not in headers:
+                    headers["Transfer-Encoding"] = "chunked"
+            elif "Content-Length" not in headers:
+                headers["Content-Length"] = str(len(data))
+
+        if "Connection" not in headers:
+            headers["Connection"] = "close"
+
         # Iterate over keys to avoid tuple alloc
         for k in headers:
             s.write(k)
             s.write(b": ")
             s.write(headers[k])
             s.write(b"\r\n")
-        if json is not None:
-            assert data is None
-            import ujson
 
-            data = ujson.dumps(json)
-            s.write(b"Content-Type: application/json\r\n")
+        s.write(b"\r\n")
+
         if data:
             if chunked_data:
-                s.write(b"Transfer-Encoding: chunked\r\n")
-            else:
-                s.write(b"Content-Length: %d\r\n" % len(data))
-        s.write(b"Connection: close\r\n\r\n")
-        if data:
-            if chunked_data:
-                for chunk in data:
-                    s.write(b"%x\r\n" % len(chunk))
-                    s.write(chunk)
-                    s.write(b"\r\n")
-                s.write("0\r\n\r\n")
+                if headers.get("Transfer-Encoding", None) == "chunked":
+                    for chunk in data:
+                        s.write(b"%x\r\n" % len(chunk))
+                        s.write(chunk)
+                        s.write(b"\r\n")
+                    s.write("0\r\n\r\n")
+                else:
+                    for chunk in data:
+                        s.write(chunk)
             else:
                 s.write(data)
 

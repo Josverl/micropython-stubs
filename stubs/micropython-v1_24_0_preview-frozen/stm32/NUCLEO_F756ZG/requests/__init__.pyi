@@ -17,7 +17,7 @@ def request(
     url,
     data: Incomplete | None = None,
     json: Incomplete | None = None,
-    headers={},
+    headers: Incomplete | None = None,
     stream: Incomplete | None = None,
     auth: Incomplete | None = None,
     timeout: Incomplete | None = None,
