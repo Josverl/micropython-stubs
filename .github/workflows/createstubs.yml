@@ -48,7 +48,7 @@ jobs:
       - name: Install dependencies
         run: |
           pipx install poetry
-          pip install -U mpflash mpremote
+          pip install -U mpflash micropython-stubber
 
       - name: Get ${{ matrix.version }} firmwares for flashing
         run: |
