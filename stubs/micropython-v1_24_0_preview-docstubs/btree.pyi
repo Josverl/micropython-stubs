@@ -115,7 +115,11 @@ class btree:
         """
         ...
 
-    def get(self, key, default=None, /) -> Incomplete:
+    def get(
+        self,
+        key,
+        default=None,
+    ) -> Incomplete:
         """
         Standard dictionary methods.
         """

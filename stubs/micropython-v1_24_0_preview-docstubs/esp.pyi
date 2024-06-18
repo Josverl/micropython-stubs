@@ -35,7 +35,9 @@ def sleep_type(sleep_type: Optional[Any] = None) -> Incomplete:
     """
     ...
 
-def deepsleep(time_us=0, /) -> Incomplete:
+def deepsleep(
+    time_us=0,
+) -> Incomplete:
     """
     **Note**: ESP8266 only - use `machine.deepsleep()` on ESP32
 

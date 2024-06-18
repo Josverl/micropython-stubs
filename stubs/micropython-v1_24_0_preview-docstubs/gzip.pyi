@@ -58,19 +58,26 @@ class GzipFile:
 
     def __init__(self, *, fileobj, mode) -> None: ...
 
-def open(filename, mode, /) -> Incomplete:
+def open(
+    filename,
+    mode,
+) -> Incomplete:
     """
     Wrapper around built-in :func:`open` returning a GzipFile instance.
     """
     ...
 
-def decompress(data, /) -> Incomplete:
+def decompress(
+    data,
+) -> Incomplete:
     """
     Decompresses *data* into a bytes object.
     """
     ...
 
-def compress(data, /) -> Incomplete:
+def compress(
+    data,
+) -> Incomplete:
     """
     Compresses *data* into a bytes object.
     """
