@@ -60,8 +60,13 @@ jobs:
           mpflash flash --version ${{ matrix.version }}
 
       - name: clone Repos
-        run: |
+        run: 
           stubber clone
+
+      - name: get/udate docstubs
+        run: 
+          stubber switch ${{ matrix.version }}
+          stubber get-docstubs
 
       - name: run board stubber
         run: |
