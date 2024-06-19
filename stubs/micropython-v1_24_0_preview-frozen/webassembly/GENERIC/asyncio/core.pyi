@@ -19,6 +19,12 @@ def sleep(t): ...
 
 asyncio_timer: Incomplete
 
+class TopLevelCoro:
+    @staticmethod
+    def set(resolve, reject) -> None: ...
+    @staticmethod
+    def send(value) -> None: ...
+
 class ThenableEvent:
     result: Incomplete
     waiting: Incomplete
@@ -32,7 +38,8 @@ def _schedule_run_iter(dt) -> None: ...
 def _run_iter() -> None: ...
 def create_task(coro): ...
 
-cur_task: Incomplete
+_top_level_task: Incomplete
+cur_task = _top_level_task
 
 class Loop:
     _exc_handler: Incomplete
