@@ -41,6 +41,7 @@ class deque(stdlib_deque):
         Raises IndexError if overflow checking is enabled and there is no more room left.
         """
         ...
+
     def popleft(self) -> Incomplete:
         """
         Remove and return an item from the left side of the deque.

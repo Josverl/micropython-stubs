@@ -34,21 +34,25 @@ class NeoPixel:
         RGB/RGBW tuple).
         """
         ...
+
     def __len__(self) -> int:
         """
         Returns the number of LEDs in the strip.
         """
         ...
+
     def __setitem__(self, index, val) -> None:
         """
         Set the pixel at *index* to the value, which is an RGB/RGBW tuple.
         """
         ...
+
     def __getitem__(self, index) -> Tuple:
         """
         Returns the pixel at *index* as an RGB/RGBW tuple.
         """
         ...
+
     def write(self) -> None:
         """
         Writes the current pixel data to the strip.

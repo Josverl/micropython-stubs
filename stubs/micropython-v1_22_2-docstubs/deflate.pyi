@@ -77,4 +77,10 @@ class DeflateIO:
     directions.
     """
 
-    def __init__(self, stream, format=AUTO, wbits=0, close=False, /) -> None: ...
+    def __init__(
+        self,
+        stream,
+        format=AUTO,
+        wbits=0,
+        close=False,
+    ) -> None: ...

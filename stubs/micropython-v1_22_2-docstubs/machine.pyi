@@ -195,6 +195,7 @@ class Pin:
         Returns ``None``.
         """
         ...
+
     def value(self, x: Optional[Any] = None) -> int:
         """
         This method allows to set and get the value of the pin, depending on whether
@@ -228,6 +229,7 @@ class Pin:
         When setting the value this method returns ``None``.
         """
         ...
+
     def __call__(self, x: Optional[Any] = None) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
@@ -235,16 +237,19 @@ class Pin:
         See :meth:`Pin.value` for more details.
         """
         ...
+
     def on(self) -> None:
         """
         Set pin to "1" output level.
         """
         ...
+
     def off(self) -> None:
         """
         Set pin to "0" output level.
         """
         ...
+
     def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Incomplete]:
         """
            Configure an interrupt handler to be called when the trigger source of the
@@ -289,6 +294,7 @@ class Pin:
         The following methods are not part of the core Pin API and only implemented on certain ports.
         """
         ...
+
     def low(self) -> None:
         """
         Set pin to "0" output level.
@@ -296,6 +302,7 @@ class Pin:
         Availability: nrf, rp2, stm32 ports.
         """
         ...
+
     def high(self) -> None:
         """
         Set pin to "1" output level.
@@ -303,6 +310,7 @@ class Pin:
         Availability: nrf, rp2, stm32 ports.
         """
         ...
+
     def mode(self, mode: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin mode.
@@ -311,6 +319,7 @@ class Pin:
         Availability: cc3200, stm32 ports.
         """
         ...
+
     def pull(self, pull: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin pull state.
@@ -319,6 +328,7 @@ class Pin:
         Availability: cc3200, stm32 ports.
         """
         ...
+
     def drive(self, drive: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin drive strength.
@@ -369,11 +379,13 @@ class Signal(Pin):
         to logical 0, while inactive - to logical 1.
         """
         ...
+
     def on(self) -> None:
         """
         Activate signal.
         """
         ...
+
     def off(self) -> None:
         """
         Deactivate signal.
@@ -404,6 +416,7 @@ class ADC:
         arguments are.
         """
         ...
+
     def block(self) -> Incomplete:
         """
         Return the :ref:`ADCBlock <machine.ADCBlock>` instance associated with
@@ -413,6 +426,7 @@ class ADC:
         :ref:`ADCBlock <machine.ADCBlock>` class.
         """
         ...
+
     def read_u16(self) -> int:
         """
         Take an analog reading and return an integer in the range 0-65535.
@@ -420,6 +434,7 @@ class ADC:
         such that the minimum value is 0 and the maximum value is 65535.
         """
         ...
+
     def read_uv(self) -> int:
         """
         Take an analog reading and return an integer value with units of
@@ -445,6 +460,7 @@ class ADCBlock:
         conversion process.
         """
         ...
+
     def connect(self, channel, source, *args, **kwargs) -> Incomplete:
         """
         Connect up a channel on the ADC peripheral so it is ready for sampling,
@@ -492,11 +508,13 @@ class PWM:
         about the parameters.
         """
         ...
+
     def deinit(self) -> None:
         """
         Disable the PWM output.
         """
         ...
+
     def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the current frequency of the PWM output.
@@ -507,6 +525,7 @@ class PWM:
         method may raise a ``ValueError`` if the frequency is outside the valid range.
         """
         ...
+
     def duty_u16(self, value: Optional[Any] = None) -> int:
         """
         Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
@@ -518,6 +537,7 @@ class PWM:
         as the ratio ``value / 65535``.
         """
         ...
+
     def duty_ns(self, value: Optional[Any] = None) -> int:
         """
         Get or set the current pulse width of the PWM output, as a value in nanoseconds.
@@ -593,6 +613,7 @@ class UART:
           again.
         """
         ...
+
     def deinit(self) -> None:
         """
         Turn off the UART bus.
@@ -602,6 +623,7 @@ class UART:
           A new instance needs to be created in that case.
         """
         ...
+
     def any(self) -> int:
         """
         Returns an integer counting the number of characters that can be read without
@@ -616,6 +638,7 @@ class UART:
          poll.poll(timeout)
         """
         ...
+
     def read(self, nbytes: Optional[Any] = None) -> bytes:
         """
         Read characters.  If ``nbytes`` is specified then read at most that many bytes,
@@ -626,6 +649,7 @@ class UART:
         on timeout.
         """
         ...
+
     def readinto(self, buf, nbytes: Optional[Any] = None) -> Union[int, None]:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
@@ -636,6 +660,7 @@ class UART:
         timeout.
         """
         ...
+
     def readline(self) -> Union[str, None]:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
@@ -644,6 +669,7 @@ class UART:
         Return value: the line read or ``None`` on timeout.
         """
         ...
+
     def write(self, buf) -> Union[int, None]:
         """
         Write the buffer of bytes to the bus.
@@ -651,12 +677,14 @@ class UART:
         Return value: number of bytes written or ``None`` on timeout.
         """
         ...
+
     def sendbreak(self) -> None:
         """
         Send a break condition on the bus. This drives the bus low for a duration
         longer than required for a normal transmission of a character.
         """
         ...
+
     def irq(self, trigger, priority=1, handler=None, wake=IDLE) -> Incomplete:
         """
         Create a callback to be triggered when data is received on the UART.
@@ -683,6 +711,7 @@ class UART:
         Availability: WiPy.
         """
         ...
+
     def flush(self) -> Incomplete:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
@@ -697,6 +726,7 @@ class UART:
         Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
         """
         ...
+
     def txdone(self) -> bool:
         """
         Tells whether all data has been sent or no data transfer is happening. In this case,
@@ -756,11 +786,13 @@ class SPI:
         rate may be determined by printing the SPI object.
         """
         ...
+
     def deinit(self) -> None:
         """
         Turn off the SPI bus.
         """
         ...
+
     def read(self, nbytes, write=0x00) -> bytes:
         """
         Read a number of bytes specified by ``nbytes`` while continuously writing
@@ -768,6 +800,7 @@ class SPI:
         Returns a ``bytes`` object with the data that was read.
         """
         ...
+
     def readinto(self, buf, write=0x00) -> int:
         """
         Read into the buffer specified by ``buf`` while continuously writing the
@@ -777,6 +810,7 @@ class SPI:
         Note: on WiPy this function returns the number of bytes read.
         """
         ...
+
     def write(self, buf) -> int:
         """
         Write the bytes contained in ``buf``.
@@ -785,6 +819,7 @@ class SPI:
         Note: on WiPy this function returns the number of bytes written.
         """
         ...
+
     def write_readinto(self, write_buf, read_buf) -> int:
         """
         Write the bytes from ``write_buf`` while reading into ``read_buf``.  The
@@ -849,6 +884,7 @@ class I2C:
          rate may be determined by printing the I2C object.
         """
         ...
+
     def deinit(self) -> None:
         """
         Turn off the I2C bus.
@@ -856,6 +892,7 @@ class I2C:
         Availability: WiPy.
         """
         ...
+
     def scan(self) -> List:
         """
         Scan all I2C addresses between 0x08 and 0x77 inclusive and return a list of
@@ -863,17 +900,24 @@ class I2C:
         its address (including a write bit) is sent on the bus.
         """
         ...
+
     def start(self) -> None:
         """
         Generate a START condition on the bus (SDA transitions to low while SCL is high).
         """
         ...
+
     def stop(self) -> None:
         """
         Generate a STOP condition on the bus (SDA transitions to high while SCL is high).
         """
         ...
-    def readinto(self, buf, nack=True, /) -> Incomplete:
+
+    def readinto(
+        self,
+        buf,
+        nack=True,
+    ) -> Incomplete:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
         read is the length of *buf*.  An ACK will be sent on the bus after
@@ -882,6 +926,7 @@ class I2C:
         case the peripheral assumes more bytes are going to be read in a later call).
         """
         ...
+
     def write(self, buf) -> int:
         """
         Write the bytes from *buf* to the bus.  Checks that an ACK is received
@@ -889,14 +934,26 @@ class I2C:
         received.  The function returns the number of ACKs that were received.
         """
         ...
-    def readfrom(self, addr, nbytes, stop=True, /) -> bytes:
+
+    def readfrom(
+        self,
+        addr,
+        nbytes,
+        stop=True,
+    ) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr*.
         If *stop* is true then a STOP condition is generated at the end of the transfer.
         Returns a `bytes` object with the data read.
         """
         ...
-    def readfrom_into(self, addr, buf, stop=True, /) -> None:
+
+    def readfrom_into(
+        self,
+        addr,
+        buf,
+        stop=True,
+    ) -> None:
         """
         Read into *buf* from the peripheral specified by *addr*.
         The number of bytes read will be the length of *buf*.
@@ -905,7 +962,13 @@ class I2C:
         The method returns ``None``.
         """
         ...
-    def writeto(self, addr, buf, stop=True, /) -> int:
+
+    def writeto(
+        self,
+        addr,
+        buf,
+        stop=True,
+    ) -> int:
         """
         Write the bytes from *buf* to the peripheral specified by *addr*.  If a
         NACK is received following the write of a byte from *buf* then the
@@ -914,7 +977,13 @@ class I2C:
         The function returns the number of ACKs that were received.
         """
         ...
-    def writevto(self, addr, vector, stop=True, /) -> int:
+
+    def writevto(
+        self,
+        addr,
+        vector,
+        stop=True,
+    ) -> int:
         """
         Write the bytes contained in *vector* to the peripheral specified by *addr*.
         *vector* should be a tuple or list of objects with the buffer protocol.
@@ -929,6 +998,7 @@ class I2C:
         returns the number of ACKs that were received.
         """
         ...
+
     def readfrom_mem(self, addr, memaddr, nbytes, *, addrsize=8) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr* starting from the memory
@@ -937,6 +1007,7 @@ class I2C:
         Returns a `bytes` object with the data read.
         """
         ...
+
     def readfrom_mem_into(self, addr, memaddr, buf, *, addrsize=8) -> None:
         """
         Read into *buf* from the peripheral specified by *addr* starting from the
@@ -948,6 +1019,7 @@ class I2C:
         The method returns ``None``.
         """
         ...
+
     def writeto_mem(self, addr, memaddr, buf, *, addrsize=8) -> None:
         """
         Write *buf* to the peripheral specified by *addr* starting from the
@@ -1014,11 +1086,13 @@ class I2S:
         see Constructor for argument descriptions
         """
         ...
+
     def deinit(self) -> Incomplete:
         """
         Deinitialize the I2S bus
         """
         ...
+
     def readinto(self, buf) -> int:
         """
         Read audio samples into the buffer specified by ``buf``.  ``buf`` must support the buffer protocol, such as bytearray or array.
@@ -1027,6 +1101,7 @@ class I2S:
         Returns number of bytes read
         """
         ...
+
     def write(self, buf) -> int:
         """
         Write audio samples contained in ``buf``. ``buf`` must support the buffer protocol, such as bytearray or array.
@@ -1035,6 +1110,7 @@ class I2S:
         Returns number of bytes written
         """
         ...
+
     def irq(self, handler) -> Incomplete:
         """
         Set a callback. ``handler`` is called when ``buf`` is emptied (``write`` method) or becomes full (``readinto`` method).
@@ -1042,6 +1118,7 @@ class I2S:
         ``handler`` is called in the context of the MicroPython scheduler.
         """
         ...
+
     @staticmethod
     def shift(*, buf, bits, shift) -> Incomplete:
         """
@@ -1074,6 +1151,7 @@ class RTC:
         The meaning of the ``subseconds`` field is hardware dependent.
         """
         ...
+
     def init(self, datetime) -> None:
         """
         Initialise the RTC. Datetime is a tuple of the form:
@@ -1081,16 +1159,19 @@ class RTC:
            ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
         """
         ...
+
     def now(self) -> Tuple:
         """
         Get get the current datetime tuple.
         """
         ...
+
     def deinit(self) -> None:
         """
         Resets the RTC to the time of January 1, 2015 and starts running it again.
         """
         ...
+
     def alarm(self, id, time, *, repeat=False) -> None:
         """
         Set the RTC alarm. Time might be either a millisecond value to program the alarm to
@@ -1098,16 +1179,19 @@ class RTC:
         milliseconds, repeat can be set to ``True`` to make the alarm periodic.
         """
         ...
+
     def alarm_left(self, alarm_id=0) -> int:
         """
         Get the number of milliseconds left before the alarm expires.
         """
         ...
+
     def cancel(self, alarm_id=0) -> None:
         """
         Cancel a running alarm.
         """
         ...
+
     def irq(self, *, trigger, handler=None, wake=IDLE) -> Incomplete:
         """
         Create an irq object triggered by a real time clock alarm.
@@ -1172,6 +1256,7 @@ class Timer:
             ``TypeError: 'NoneType' object isn't callable``
         """
         ...
+
     def deinit(self) -> None:
         """
         Deinitialises the timer. Stops the timer, and disables the timer peripheral.
@@ -1208,6 +1293,7 @@ class SD:
         ``(clk_pin, cmd_pin, dat0_pin)``.
         """
         ...
+
     def deinit(self) -> None:
         """
         Disable the SD card.
@@ -1385,7 +1471,11 @@ def unique_id() -> bytes:
     """
     ...
 
-def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
+def time_pulse_us(
+    pin,
+    pulse_level,
+    timeout_us=1000000,
+) -> int:
     """
     Time a pulse on the given *pin*, and return the duration of the pulse in
     microseconds.  The *pulse_level* argument should be 0 to time a low pulse
@@ -1403,7 +1493,12 @@ def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     """
     ...
 
-def bitstream(pin, encoding, timing, data, /) -> Incomplete:
+def bitstream(
+    pin,
+    encoding,
+    timing,
+    data,
+) -> Incomplete:
     """
     Transmits *data* by bit-banging the specified *pin*. The *encoding* argument
     specifies how the bits are encoded, and *timing* is an encoding-specific timing
