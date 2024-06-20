@@ -4463,6 +4463,26 @@
             "description": "MicroPython stubs",
             "hash": "7b5a47e7679ff3a5110ca68d54baf988c123f08c",
             "stub_hash": "fad1f74eb24244dfd52bdab348bef2d16f0ff556"
+        },
+        "859007300363076805": {
+            "name": "micropython-esp32-esp32_generic_c3-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post1",
+            "path": "micropython-v1_23_0-esp32-esp32_generic_c3-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-esp32-ESP32_GENERIC_C3-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "a9c9fc9d0a732071ab8dd7109e84a43694900e27",
+            "stub_hash": "0d76b38af15c9005ec496aaecfd29d1a7822933e"
         }
     }
 }
