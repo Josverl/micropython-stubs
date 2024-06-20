@@ -27,7 +27,10 @@ argv: list = []
 implementation: tuple = ()
 maxsize: int = 2147483647
 
-def print_exception(exc, file=stdout, /) -> None:
+def print_exception(
+    exc,
+    file=stdout,
+) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
@@ -43,7 +46,9 @@ def print_exception(exc, file=stdout, /) -> None:
     """
     ...
 
-def exit(retval=0, /) -> Incomplete:
+def exit(
+    retval=0,
+) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its

@@ -39,6 +39,7 @@ Host: micropython.org
 ---
 Module: 'network' on micropython-v1.22.1-rp2-ARDUINO_NANO_RP2040_CONNECT
 """
+
 # MCU: {'build': '', 'ver': '1.22.1', 'version': '1.22.1', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.16.3
 from __future__ import annotations
@@ -74,6 +75,7 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
+
     def ioctl(self, *args, **kwargs) -> Incomplete: ...
     def isconnected(self) -> bool:
         """
@@ -82,6 +84,7 @@ class WLAN:
         station is connected. Returns ``False`` otherwise.
         """
         ...
+
     def scan(self) -> List[Tuple]:
         """
         Scan for the available wireless networks.
@@ -110,6 +113,7 @@ class WLAN:
             * 1 -- hidden
         """
         ...
+
     def status(self, param: Optional[Any] = None) -> Incomplete:
         """
         Return the current status of the wireless connection.
@@ -128,11 +132,13 @@ class WLAN:
         parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
         """
         ...
+
     def disconnect(self) -> None:
         """
         Disconnect from the currently connected wireless network.
         """
         ...
+
     def active(self, is_active: Optional[Any] = None) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
@@ -140,6 +146,7 @@ class WLAN:
         provided. Most other methods require active interface.
         """
         ...
+
     def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work
@@ -174,6 +181,7 @@ class WLAN:
         =============  ===========
         """
         ...
+
     def connect(self, ssid=None, key=None, *, bssid=None) -> None:
         """
         Connect to the specified wireless network, using the specified key.
@@ -182,4 +190,5 @@ class WLAN:
         in this case).
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

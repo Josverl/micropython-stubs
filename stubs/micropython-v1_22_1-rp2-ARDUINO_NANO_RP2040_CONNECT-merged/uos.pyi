@@ -12,6 +12,7 @@ functions.
 ---
 Module: 'uos' on micropython-v1.22.1-rp2-ARDUINO_NANO_RP2040_CONNECT
 """
+
 # MCU: {'build': '', 'ver': '1.22.1', 'version': '1.22.1', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.16.3
 from __future__ import annotations
@@ -122,7 +123,10 @@ def mkdir(path) -> Incomplete:
     """
     ...
 
-def dupterm(stream_object, index=0, /) -> IO:
+def dupterm(
+    stream_object,
+    index=0,
+) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
     object. The *stream_object* argument must be a native stream object, or derive
@@ -205,6 +209,7 @@ class VfsFat:
         Build a FAT filesystem on *block_dev*.
         """
         ...
+
     def mount(self, *args, **kwargs) -> Incomplete: ...
     def statvfs(self, *args, **kwargs) -> Incomplete: ...
     def rmdir(self, *args, **kwargs) -> Incomplete: ...
@@ -246,6 +251,7 @@ class VfsLfs2:
                   for details see `littlefs issue 295`_.
         """
         ...
+
     def mount(self, *args, **kwargs) -> Incomplete: ...
     def statvfs(self, *args, **kwargs) -> Incomplete: ...
     def rmdir(self, *args, **kwargs) -> Incomplete: ...

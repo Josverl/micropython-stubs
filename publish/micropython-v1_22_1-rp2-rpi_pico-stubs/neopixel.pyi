@@ -13,6 +13,7 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
 ---
 Module: 'neopixel' on micropython-v1.22.1-rp2-RPI_PICO
 """
+
 # MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
 # Stubber: v1.17.1
 from __future__ import annotations
@@ -37,10 +38,12 @@ class NeoPixel:
         Writes the current pixel data to the strip.
         """
         ...
+
     def fill(self, pixel) -> None:
         """
         Sets the value of all pixels to the specified *pixel* value (i.e. an
         RGB/RGBW tuple).
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

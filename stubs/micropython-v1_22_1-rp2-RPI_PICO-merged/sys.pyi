@@ -8,6 +8,7 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 ---
 Module: 'sys' on micropython-v1.22.1-rp2-RPI_PICO
 """
+
 # MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
 # Stubber: v1.17.1
 from __future__ import annotations
@@ -26,7 +27,10 @@ argv: list = []
 implementation: tuple = ()
 maxsize: int = 2147483647
 
-def print_exception(exc, file=stdout, /) -> None:
+def print_exception(
+    exc,
+    file=stdout,
+) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
@@ -42,7 +46,9 @@ def print_exception(exc, file=stdout, /) -> None:
     """
     ...
 
-def exit(retval=0, /) -> Incomplete:
+def exit(
+    retval=0,
+) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its

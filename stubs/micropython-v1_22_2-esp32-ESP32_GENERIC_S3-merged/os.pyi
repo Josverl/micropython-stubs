@@ -123,7 +123,10 @@ def mkdir(path) -> Incomplete:
     """
     ...
 
-def dupterm(stream_object, index=0, /) -> IO:
+def dupterm(
+    stream_object,
+    index=0,
+) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
     object. The *stream_object* argument must be a native stream object, or derive

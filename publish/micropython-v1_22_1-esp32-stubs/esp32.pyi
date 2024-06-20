@@ -9,6 +9,7 @@ controlling ESP32 modules.
 ---
 Module: 'esp32' on micropython-v1.23.0-preview-esp32-ESP32_GENERIC
 """
+
 # MCU: {'family': 'micropython', 'version': '1.23.0-preview', 'build': 'preview.6.g3d0b6276f', 'ver': '1.23.0-preview-preview.6.g3d0b6276f', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
 # Stubber: v1.16.3
 from __future__ import annotations
@@ -112,16 +113,19 @@ class ULP:
         Start the ULP running at the given *entry_point*.
         """
         ...
+
     def set_wakeup_period(self, period_index, period_us) -> None:
         """
         Set the wake-up period.
         """
         ...
+
     def load_binary(self, load_addr, program_binary) -> None:
         """
         Load a *program_binary* into the ULP at the given *load_addr*.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class NVS:
@@ -136,11 +140,13 @@ class NVS:
         exist or has a different type.
         """
         ...
+
     def set_i32(self, key, value) -> None:
         """
         Sets a 32-bit signed integer value for the specified key. Remember to call *commit*!
         """
         ...
+
     def set_blob(self, key, value) -> None:
         """
         Sets a binary blob value for the specified key. The value passed in must support the buffer
@@ -149,11 +155,13 @@ class NVS:
         Remember to call *commit*!
         """
         ...
+
     def commit(self) -> Incomplete:
         """
         Commits changes made by *set_xxx* methods to flash.
         """
         ...
+
     def get_blob(self, key, buffer) -> int:
         """
         Reads the value of the blob for the specified key into the buffer, which must be a bytearray.
@@ -161,11 +169,13 @@ class NVS:
         type, or if the buffer is too small.
         """
         ...
+
     def erase_key(self, key) -> Incomplete:
         """
         Erases a key-value pair.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class Partition:
@@ -187,6 +197,7 @@ class Partition:
         :class:`os.AbstractBlockDev`.
         """
         ...
+
     def set_boot(self) -> None:
         """
         Sets the partition as the boot partition.
@@ -197,12 +208,14 @@ class Partition:
            will validate the new image before booting.
         """
         ...
+
     def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
     def info(self) -> Tuple:
         """
         Returns a 6-tuple ``(type, subtype, addr, size, label, encrypted)``.
         """
         ...
+
     @classmethod
     def find(cls, type=TYPE_APP, subtype=0xFF, label=None, block_size=4096) -> List:
         """
@@ -214,6 +227,7 @@ class Partition:
         objects.
         """
         ...
+
     def get_next_update(self) -> Partition:
         """
         Gets the next update partition after this one, and returns a new Partition object.
@@ -221,6 +235,7 @@ class Partition:
         which returns the next partition to update given the current running one.
         """
         ...
+
     @classmethod
     @classmethod
     def mark_app_valid_cancel_rollback(cls, *args, **kwargs) -> Incomplete:
@@ -235,6 +250,7 @@ class Partition:
         necessary when booting firmware that was loaded using esptool.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class RMT:
@@ -262,6 +278,7 @@ class RMT:
         configurable so this will always return 80MHz.
         """
         ...
+
     def loop(self, enable_loop) -> None:
         """
         Configure looping on the channel. *enable_loop* is bool, set to ``True`` to
@@ -270,6 +287,7 @@ class RMT:
         current loop iteration will be completed and then transmission will stop.
         """
         ...
+
     def wait_done(self, *, timeout=0) -> bool:
         """
         Returns ``True`` if the channel is idle or ``False`` if a sequence of
@@ -278,6 +296,7 @@ class RMT:
         milliseconds for transmission to complete.
         """
         ...
+
     def write_pulses(self, duration, data: Union[bool, int] = True) -> Incomplete:
         """
         Begin transmitting a sequence. There are three ways to specify this:
@@ -307,6 +326,7 @@ class RMT:
         supported by the hardware.
         """
         ...
+
     @staticmethod
     def bitstream_channel(value: Optional[Any] = None) -> int:
         """
@@ -321,6 +341,7 @@ class RMT:
         the current channel number.
         """
         ...
+
     def deinit(self, *args, **kwargs) -> Incomplete: ...
     def clock_div(self) -> Incomplete:
         """
@@ -328,4 +349,5 @@ class RMT:
         ``1 / (source_freq / clock_div)``.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

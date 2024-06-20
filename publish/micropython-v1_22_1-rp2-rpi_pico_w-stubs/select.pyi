@@ -11,6 +11,7 @@ This module provides functions to efficiently wait for events on multiple
 ---
 Module: 'select' on micropython-v1.22.1-rp2-RPI_PICO_W
 """
+
 # MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
 # Stubber: v1.17.1
 from __future__ import annotations
@@ -56,18 +57,24 @@ class poll:
         *eventmask* (i.e. will behave as `modify()`).
         """
         ...
+
     def unregister(self, obj) -> Incomplete:
         """
         Unregister *obj* from polling.
         """
         ...
+
     def modify(self, obj, eventmask) -> None:
         """
         Modify the *eventmask* for *obj*. If *obj* is not registered, `OSError`
         is raised with error of ENOENT.
         """
         ...
-    def poll(self, timeout=-1, /) -> List:
+
+    def poll(
+        self,
+        timeout=-1,
+    ) -> List:
         """
         Wait for at least one of the registered objects to become ready or have an
         exceptional condition, with optional timeout in milliseconds (if *timeout*
@@ -90,7 +97,12 @@ class poll:
            Tuples returned may contain more than 2 elements as described above.
         """
         ...
-    def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
+
+    def ipoll(
+        self,
+        timeout=-1,
+        flags=0,
+    ) -> Iterator[Tuple]:
         """
         Like :meth:`poll.poll`, but instead returns an iterator which yields a
         `callee-owned tuple`. This function provides an efficient, allocation-free

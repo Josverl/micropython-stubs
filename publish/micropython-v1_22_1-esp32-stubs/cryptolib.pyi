@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.22.1/library/cryptolib.ht
 ---
 Module: 'cryptolib' on micropython-v1.23.0-preview-esp32-ESP32_GENERIC
 """
+
 # MCU: {'family': 'micropython', 'version': '1.23.0-preview', 'build': 'preview.6.g3d0b6276f', 'ver': '1.23.0-preview-preview.6.g3d0b6276f', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
 # Stubber: v1.16.3
 from __future__ import annotations
@@ -21,11 +22,13 @@ class aes:
         to the same mutable buffer, in which case data is encrypted in-place.
         """
         ...
+
     def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:

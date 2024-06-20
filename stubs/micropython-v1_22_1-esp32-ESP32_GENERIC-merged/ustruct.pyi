@@ -56,6 +56,7 @@ The following data types are supported:
 ---
 Module: 'ustruct' on micropython-v1.23.0-preview-esp32-ESP32_GENERIC
 """
+
 # MCU: {'family': 'micropython', 'version': '1.23.0-preview', 'build': 'preview.6.g3d0b6276f', 'ver': '1.23.0-preview-preview.6.g3d0b6276f', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
 # Stubber: v1.16.3
 from __future__ import annotations
@@ -77,7 +78,11 @@ def unpack(fmt, data) -> Tuple:
     """
     ...
 
-def unpack_from(fmt, data, offset=0, /) -> Tuple:
+def unpack_from(
+    fmt,
+    data,
+    offset=0,
+) -> Tuple:
     """
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *data*. The return

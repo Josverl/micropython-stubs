@@ -21,6 +21,7 @@ building-blocks for higher-level abstractions such as specific device types.
 ---
 Module: 'ubluetooth' on micropython-v1.22.1-rp2-RPI_PICO_W
 """
+
 # MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
 # Stubber: v1.17.1
 from __future__ import annotations
@@ -50,7 +51,12 @@ class BLE:
     Returns the singleton BLE object.
     """
 
-    def gatts_notify(self, conn_handle, value_handle, data=None, /) -> None:
+    def gatts_notify(
+        self,
+        conn_handle,
+        value_handle,
+        data=None,
+    ) -> None:
         """
         Sends a notification request to a connected client.
 
@@ -64,7 +70,13 @@ class BLE:
         status of the client to this characteristic.
         """
         ...
-    def gatts_indicate(self, conn_handle, value_handle, data=None, /) -> None:
+
+    def gatts_indicate(
+        self,
+        conn_handle,
+        value_handle,
+        data=None,
+    ) -> None:
         """
         Sends a indication request to a connected client.
 
@@ -81,7 +93,14 @@ class BLE:
         status of the client to this characteristic.
         """
         ...
-    def gattc_write(self, conn_handle, value_handle, data, mode=0, /) -> None:
+
+    def gattc_write(
+        self,
+        conn_handle,
+        value_handle,
+        data,
+        mode=0,
+    ) -> None:
         """
         Issue a remote write to a connected server for the specified
         characteristic or descriptor handle.
@@ -100,7 +119,12 @@ class BLE:
         ``_IRQ_GATTC_WRITE_DONE`` event will be raised.
         """
         ...
-    def gattc_read(self, conn_handle, value_handle, /) -> None:
+
+    def gattc_read(
+        self,
+        conn_handle,
+        value_handle,
+    ) -> None:
         """
         Issue a remote read to a connected server for the specified
         characteristic or descriptor handle.
@@ -109,7 +133,11 @@ class BLE:
         raised. Additionally, the ``_IRQ_GATTC_READ_DONE`` will be raised.
         """
         ...
-    def gattc_exchange_mtu(self, conn_handle, /) -> Incomplete:
+
+    def gattc_exchange_mtu(
+        self,
+        conn_handle,
+    ) -> Incomplete:
         """
         Initiate MTU exchange with a connected server, using the preferred MTU
         set using ``BLE.config(mtu=value)``.
@@ -122,13 +150,23 @@ class BLE:
         peripheral initiating the MTU exchange. NimBLE works for both roles.
         """
         ...
-    def gatts_read(self, value_handle, /) -> Incomplete:
+
+    def gatts_read(
+        self,
+        value_handle,
+    ) -> Incomplete:
         """
         Reads the local value for this handle (which has either been written by
         :meth:`gatts_write <BLE.gatts_write>` or by a remote client).
         """
         ...
-    def gatts_write(self, value_handle, data, send_update=False, /) -> None:
+
+    def gatts_write(
+        self,
+        value_handle,
+        data,
+        send_update=False,
+    ) -> None:
         """
         Writes the local value for this handle, which can be read by a client.
 
@@ -137,7 +175,13 @@ class BLE:
         the characteristic supports) about this write.
         """
         ...
-    def gatts_set_buffer(self, value_handle, len, append=False, /) -> None:
+
+    def gatts_set_buffer(
+        self,
+        value_handle,
+        len,
+        append=False,
+    ) -> None:
         """
         Sets the internal buffer size for a value in bytes. This will limit the
         largest possible write that can be received. The default is 20.
@@ -149,7 +193,11 @@ class BLE:
         like the Nordic UART Service.
         """
         ...
-    def gatts_register_services(self, services_definition, /) -> Incomplete:
+
+    def gatts_register_services(
+        self,
+        services_definition,
+    ) -> Incomplete:
         """
         Configures the server with the specified services, replacing any
         existing services.
@@ -211,7 +259,11 @@ class BLE:
         As for the IRQs above, any required constants should be added to your Python code.
         """
         ...
-    def irq(self, handler, /) -> int:
+
+    def irq(
+        self,
+        handler,
+    ) -> int:
         """
             Registers a callback for events from the BLE stack. The *handler* takes two
             arguments, ``event`` (which will be one of the codes below) and ``data``
@@ -404,7 +456,15 @@ class BLE:
         program.
         """
         ...
-    def gap_connect(self, addr_type, addr, scan_duration_ms=2000, min_conn_interval_us=None, max_conn_interval_us=None, /) -> None:
+
+    def gap_connect(
+        self,
+        addr_type,
+        addr,
+        scan_duration_ms=2000,
+        min_conn_interval_us=None,
+        max_conn_interval_us=None,
+    ) -> None:
         """
         Connect to a peripheral.
 
@@ -427,6 +487,7 @@ class BLE:
         of power usage.
         """
         ...
+
     def gap_advertise(self, interval_us, adv_data=None, *, resp_data=None, connectable=True) -> Incomplete:
         """
         Starts advertising at the specified interval (in **micro** seconds). This
@@ -443,7 +504,11 @@ class BLE:
         To clear the advertising payload pass an empty ``bytes``, i.e. ``b''``.
         """
         ...
-    def config(self, param, /) -> Tuple:
+
+    def config(
+        self,
+        param,
+    ) -> Tuple:
         """
         Get or set configuration values of the BLE interface.  To get a value the
         parameter name should be quoted as a string, and just one parameter is
@@ -506,7 +571,11 @@ class BLE:
           false (i.e. allow "Legacy Pairing").
         """
         ...
-    def active(self, active: Optional[Any] = None, /) -> Incomplete:
+
+    def active(
+        self,
+        active: Optional[Any] = None,
+    ) -> Incomplete:
         """
         Optionally changes the active state of the BLE radio, and returns the
         current state.
@@ -514,7 +583,12 @@ class BLE:
         The radio must be made active before using any other methods on this class.
         """
         ...
-    def gattc_discover_services(self, conn_handle, uuid=None, /) -> Incomplete:
+
+    def gattc_discover_services(
+        self,
+        conn_handle,
+        uuid=None,
+    ) -> Incomplete:
         """
         Query a connected server for its services.
 
@@ -524,7 +598,11 @@ class BLE:
         be raised, followed by ``_IRQ_GATTC_SERVICE_DONE`` on completion.
         """
         ...
-    def gap_disconnect(self, conn_handle, /) -> bool:
+
+    def gap_disconnect(
+        self,
+        conn_handle,
+    ) -> bool:
         """
         Disconnect the specified connection handle. This can either be a
         central that has connected to this device (if acting as a peripheral)
@@ -538,7 +616,13 @@ class BLE:
         otherwise.
         """
         ...
-    def gattc_discover_descriptors(self, conn_handle, start_handle, end_handle, /) -> Incomplete:
+
+    def gattc_discover_descriptors(
+        self,
+        conn_handle,
+        start_handle,
+        end_handle,
+    ) -> Incomplete:
         """
         Query a connected server for descriptors in the specified range.
 
@@ -546,7 +630,14 @@ class BLE:
         will be raised, followed by ``_IRQ_GATTC_DESCRIPTOR_DONE`` on completion.
         """
         ...
-    def gattc_discover_characteristics(self, conn_handle, start_handle, end_handle, uuid=None, /) -> Incomplete:
+
+    def gattc_discover_characteristics(
+        self,
+        conn_handle,
+        start_handle,
+        end_handle,
+        uuid=None,
+    ) -> Incomplete:
         """
         Query a connected server for characteristics in the specified range.
 
@@ -560,7 +651,14 @@ class BLE:
         event will be raised, followed by ``_IRQ_GATTC_CHARACTERISTIC_DONE`` on completion.
         """
         ...
-    def gap_scan(self, duration_ms, interval_us=1280000, window_us=11250, active=False, /) -> Incomplete:
+
+    def gap_scan(
+        self,
+        duration_ms,
+        interval_us=1280000,
+        window_us=11250,
+        active=False,
+    ) -> Incomplete:
         """
         Run a scan operation lasting for the specified duration (in **milli** seconds).
 
@@ -595,4 +693,5 @@ class BLE:
         explicitly stopped), the ``_IRQ_SCAN_DONE`` event will be raised.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

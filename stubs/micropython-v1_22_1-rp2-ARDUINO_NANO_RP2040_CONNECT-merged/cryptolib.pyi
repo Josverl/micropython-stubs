@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.22.1/library/cryptolib.ht
 ---
 Module: 'cryptolib' on micropython-v1.22.1-rp2-ARDUINO_NANO_RP2040_CONNECT
 """
+
 # MCU: {'build': '', 'ver': '1.22.1', 'version': '1.22.1', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.16.3
 from __future__ import annotations
@@ -21,11 +22,13 @@ class aes:
         to the same mutable buffer, in which case data is encrypted in-place.
         """
         ...
+
     def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None:
         """
         Initialize cipher object, suitable for encryption/decryption. Note:

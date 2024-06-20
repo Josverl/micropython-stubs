@@ -52,7 +52,10 @@ BF_POS: int = 17
 BIG_ENDIAN: int = 1
 FLOAT32: int = -268435456
 
-def sizeof(struct, layout_type=NATIVE, /) -> int:
+def sizeof(
+    struct,
+    layout_type=NATIVE,
+) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object

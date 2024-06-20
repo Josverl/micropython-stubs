@@ -12,6 +12,7 @@ floating-point support).
 ---
 Module: 'uarray' on micropython-v1.22.1-rp2-RPI_PICO
 """
+
 # MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
 # Stubber: v1.17.1
 from __future__ import annotations
@@ -31,9 +32,11 @@ class array(List):
         array, growing it.
         """
         ...
+
     def append(self, val) -> Incomplete:
         """
         Append new element *val* to the end of array, growing it.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

@@ -85,7 +85,14 @@ IP_ADD_MEMBERSHIP: int = 1024
 
 def reset(*args, **kwargs) -> Incomplete: ...
 def print_pcbs(*args, **kwargs) -> Incomplete: ...
-def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
+def getaddrinfo(
+    host,
+    port,
+    af=0,
+    type=0,
+    proto=0,
+    flags=0,
+) -> Incomplete:
     """
     Translate the host/port argument into a sequence of 5-tuples that contain all the
     necessary arguments for creating a socket connected to that service. Arguments
@@ -157,7 +164,11 @@ class socket:
         """
         ...
 
-    def makefile(self, mode="rb", buffering=0, /) -> IO:
+    def makefile(
+        self,
+        mode="rb",
+        buffering=0,
+    ) -> IO:
         """
         Return a file object associated with the socket. The exact returned type depends on the arguments
         given to makefile(). The support is limited to binary modes only ('rb', 'wb', and 'rwb').

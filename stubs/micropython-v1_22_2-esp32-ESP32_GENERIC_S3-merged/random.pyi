@@ -52,7 +52,9 @@ def random() -> int:
     """
     ...
 
-def seed(n=None, /) -> None:
+def seed(
+    n=None,
+) -> None:
     """
     Initialise the random number generator module with the seed *n* which should
     be an integer.  When no argument (or ``None``) is passed in it will (if

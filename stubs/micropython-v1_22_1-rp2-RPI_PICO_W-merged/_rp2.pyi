@@ -15,6 +15,7 @@ for example code.
 ---
 Module: '_rp2' on micropython-v1.22.1-rp2-RPI_PICO_W
 """
+
 # MCU: {'family': 'micropython', 'version': '1.22.1', 'build': '', 'ver': '1.22.1', 'port': 'rp2', 'board': 'RPI_PICO_W', 'cpu': 'RP2040', 'mpy': 'v6.2', 'arch': 'armv6m'}
 # Stubber: v1.17.1
 from __future__ import annotations
@@ -49,6 +50,7 @@ class Flash:
         :class:`os.AbstractBlockDev`.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class DMA:
@@ -77,6 +79,7 @@ class StateMachine:
         Optionally configure it.
         """
         ...
+
     def put(self, value, shift=0) -> Incomplete:
         """
         Push words onto the state machine's TX FIFO.
@@ -92,6 +95,7 @@ class StateMachine:
         receives ``word << shift``.
         """
         ...
+
     def restart(self) -> Incomplete:
         """
         Restarts the state machine and jumps to the beginning of the program.
@@ -106,6 +110,7 @@ class StateMachine:
          - a stalled instruction run using `StateMachine.exec()`
         """
         ...
+
     def rx_fifo(self) -> int:
         """
         Returns the number of words in the state machine's RX FIFO. A value of 0
@@ -115,6 +120,7 @@ class StateMachine:
         `StateMachine.get()`.
         """
         ...
+
     def tx_fifo(self) -> int:
         """
         Returns the number of words in the state machine's TX FIFO. A value of 0
@@ -124,6 +130,7 @@ class StateMachine:
         `StateMachine.put()`.
         """
         ...
+
     def init(
         self,
         program,
@@ -171,6 +178,7 @@ class StateMachine:
           re-pulling is triggered.
         """
         ...
+
     def exec(self, instr) -> Incomplete:
         """
         Execute a single PIO instruction.
@@ -186,6 +194,7 @@ class StateMachine:
         >>> sm.exec(rp2.asm_pio_encode("out(y, 8)", 0))
         """
         ...
+
     def get(self, buf=None, shift=0) -> Incomplete:
         """
         Pull a word from the state machine's RX FIFO.
@@ -197,6 +206,7 @@ class StateMachine:
         return value is ``word >> shift``.
         """
         ...
+
     def active(self, value: Optional[Any] = None) -> Incomplete:
         """
         Gets or sets whether the state machine is currently running.
@@ -207,6 +217,7 @@ class StateMachine:
         False
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class PIO:
@@ -241,6 +252,7 @@ class PIO:
         StateMachine(7)
         """
         ...
+
     def remove_program(self, program: Optional[Any] = None) -> None:
         """
         Remove *program* from the instruction memory of this PIO instance.
@@ -250,6 +262,7 @@ class PIO:
         It is not an error to remove a program which has already been removed.
         """
         ...
+
     def irq(self, handler=None, trigger=IRQ_SM0, hard=False) -> Incomplete:
         """
         Returns the IRQ object for this PIO instance.
@@ -259,6 +272,7 @@ class PIO:
         Optionally configure it.
         """
         ...
+
     def add_program(self, program) -> Incomplete:
         """
         Add the *program* to the instruction memory of this PIO instance.
@@ -268,4 +282,5 @@ class PIO:
         this method will raise ``OSError(ENOMEM)``.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

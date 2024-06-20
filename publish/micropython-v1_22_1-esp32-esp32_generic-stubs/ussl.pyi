@@ -12,6 +12,7 @@ facilities for network sockets, both client-side and server-side.
 ---
 Module: 'ussl' on micropython-v1.23.0-preview-esp32-ESP32_GENERIC
 """
+
 # MCU: {'family': 'micropython', 'version': '1.23.0-preview', 'build': 'preview.6.g3d0b6276f', 'ver': '1.23.0-preview-preview.6.g3d0b6276f', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.2', 'arch': 'xtensawin'}
 # Stubber: v1.16.3
 from __future__ import annotations
@@ -61,12 +62,14 @@ class SSLContext:
         containing the CA certificates.  Only one of these arguments should be provided.
         """
         ...
+
     def set_ciphers(self, ciphers) -> None:
         """
         Set the available ciphers for sockets created with this context.  *ciphers* should be
         a list of strings in the `IANA cipher suite format <https://wiki.mozilla.org/Security/Cipher_Suites>`_ .
         """
         ...
+
     def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
@@ -91,6 +94,7 @@ class SSLContext:
           to present the proper certificate.
         """
         ...
+
     def load_cert_chain(self, certfile, keyfile) -> None:
         """
         Load a private key and the corresponding certificate.  The *certfile* is a string
@@ -103,9 +107,11 @@ class SSLContext:
            strings, in which case they are interpreted as the actual certificate/key data.
         """
         ...
+
     def get_ciphers(self) -> List[str]:
         """
         Get a list of enabled ciphers, returned as a list of strings.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...

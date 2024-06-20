@@ -63,6 +63,7 @@ Tuple address format for ``socket`` module:
 ---
 Module: 'socket' on micropython-v1.22.1-rp2-ARDUINO_NANO_RP2040_CONNECT
 """
+
 # MCU: {'build': '', 'ver': '1.22.1', 'version': '1.22.1', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'mpy': 'v6.2', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.16.3
 from __future__ import annotations
@@ -82,7 +83,14 @@ SOCK_STREAM: int = 1
 SOCK_DGRAM: int = 2
 SOCK_RAW: int = 3
 
-def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
+def getaddrinfo(
+    host,
+    port,
+    af=0,
+    type=0,
+    proto=0,
+    flags=0,
+) -> Incomplete:
     """
     Translate the host/port argument into a sequence of 5-tuples that contain all the
     necessary arguments for creating a socket connected to that service. Arguments
@@ -144,13 +152,19 @@ class socket:
         the data.
         """
         ...
+
     def recv(self, bufsize) -> bytes:
         """
         Receive data from the socket. The return value is a bytes object representing the data
         received. The maximum amount of data to be received at once is specified by bufsize.
         """
         ...
-    def makefile(self, mode="rb", buffering=0, /) -> IO:
+
+    def makefile(
+        self,
+        mode="rb",
+        buffering=0,
+    ) -> IO:
         """
         Return a file object associated with the socket. The exact returned type depends on the arguments
         given to makefile(). The support is limited to binary modes only ('rb', 'wb', and 'rwb').
@@ -167,6 +181,7 @@ class socket:
            original socket as well.
         """
         ...
+
     def listen(self, backlog: Optional[Any] = None) -> None:
         """
         Enable a server to accept connections. If *backlog* is specified, it must be at least 0
@@ -175,6 +190,7 @@ class socket:
         reasonable value is chosen.
         """
         ...
+
     def settimeout(self, value) -> Incomplete:
         """
         **Note**: Not every port supports this method, see below.
@@ -209,6 +225,7 @@ class socket:
            your code will work both in MicroPython and CPython.
         """
         ...
+
     def sendall(self, bytes) -> int:
         """
         Send all data to the socket. The socket must be connected to a remote socket.
@@ -221,6 +238,7 @@ class socket:
         number of bytes sent on non-blocking sockets.
         """
         ...
+
     def setsockopt(self, level, optname, value) -> None:
         """
         Set the value of the given socket option. The needed symbolic constants are defined in the
@@ -228,6 +246,7 @@ class socket:
         a buffer.
         """
         ...
+
     def setblocking(self, flag) -> Incomplete:
         """
         Set blocking or non-blocking mode of the socket: if flag is false, the socket is set to non-blocking,
@@ -239,12 +258,14 @@ class socket:
         * ``sock.setblocking(False)`` is equivalent to ``sock.settimeout(0)``
         """
         ...
+
     def sendto(self, bytes, address) -> None:
         """
         Send data to the socket. The socket should not be connected to a remote socket, since the
         destination socket is specified by *address*.
         """
         ...
+
     def readline(self) -> Incomplete:
         """
         Read a line, ending in a newline character.
@@ -252,6 +273,7 @@ class socket:
         Return value: the line read.
         """
         ...
+
     def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
         """
         Read bytes into the *buf*.  If *nbytes* is specified then read at most
@@ -261,6 +283,7 @@ class socket:
         Return value: number of bytes read and stored into *buf*.
         """
         ...
+
     def read(self, size: Optional[Any] = None) -> bytes:
         """
         Read up to size bytes from the socket. Return a bytes object. If *size* is not given, it
@@ -270,6 +293,7 @@ class socket:
         non-blocking socket though, and then less data will be returned.
         """
         ...
+
     def close(self) -> Incomplete:
         """
         Mark the socket closed and release all resources. Once that happens, all future operations
@@ -280,11 +304,13 @@ class socket:
         to `close()` them explicitly as soon you finished working with them.
         """
         ...
+
     def connect(self, address) -> None:
         """
         Connect to a remote socket at *address*.
         """
         ...
+
     def send(self, bytes) -> int:
         """
         Send data to the socket. The socket must be connected to a remote socket.
@@ -292,11 +318,13 @@ class socket:
         ("short write").
         """
         ...
+
     def bind(self, address) -> Incomplete:
         """
         Bind the socket to *address*. The socket must not already be bound.
         """
         ...
+
     def accept(self) -> Tuple:
         """
         Accept a connection. The socket must be bound to an address and listening for connections.
@@ -305,6 +333,7 @@ class socket:
         other end of the connection.
         """
         ...
+
     def write(self, buf) -> int:
         """
         Write the buffer of bytes to the socket. This function will try to
@@ -315,4 +344,5 @@ class socket:
         Return value: number of bytes written.
         """
         ...
+
     def __init__(self, *argv, **kwargs) -> None: ...
