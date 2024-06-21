@@ -541,6 +541,7 @@
 |micropython |v1.22.2 |frozen  |windows|GENERIC|7|1.17.3|[stubs/micropython-v1_22_2-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_2-frozen/windows/GENERIC)
 |micropython |v1.23   |documentation|-|micropython|57|1.20.6|[stubs/micropython-v1_23_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-docstubs)
 |micropython |v1.23   |board   |esp32|generic|87|v1.20.0|[stubs/micropython-v1_23_0-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-esp32-ESP32_GENERIC)
+|micropython |v1.23   |board   |esp32|generic|87|v1.20.0|[stubs/micropython-v1_23_0-esp32-ESP32_GENERIC_C3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-esp32-ESP32_GENERIC_C3)
 |micropython |v1.23   |board   |esp32|generic|87|v1.20.0|[stubs/micropython-v1_23_0-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-esp32-ESP32_GENERIC_S3)
 |micropython |v1.23   |board   |esp8266|generic|83|v1.20.0|[stubs/micropython-v1_23_0-esp8266-ESP8266_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-esp8266-ESP8266_GENERIC)
 |micropython |v1.23   |board   |rp2|generic|64|v1.20.0|[stubs/micropython-v1_23_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-rp2-RPI_PICO)
@@ -729,4 +730,4 @@
 
 ## Metrics
 
-Total stub modules:  17534
+Total stub modules:  17621
