@@ -10,20 +10,20 @@ concurrency:
 jobs:
   # JOB ######################################################################################################################################
 
-  list-versions-REAL:
-    # 'Get a list of latest versions of micropython'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-      - uses: ./.github/actions/get-mpversions
-        id: dynamic
+#   list-versions-REAL:
+#     # 'Get a list of latest versions of micropython'
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
+#         with:
+#           fetch-depth: 1
+#       - uses: ./.github/actions/get-mpversions
+#         id: dynamic
 
-      - run: echo ${{ steps.dynamic.outputs.json }}
+#       - run: echo ${{ steps.dynamic.outputs.json }}
 
-    outputs:
-      json: ${{ steps.dynamic.outputs.json }}
+#     outputs:
+#       mp_versions: ${{ steps.dynamic.outputs.json }}
 
   list-versions:
     # 'Get a list of latest versions of micropython'
@@ -32,7 +32,8 @@ jobs:
         - run: echo faking it
 
     outputs:
-        json: '["preview", "stable", "v1.22.2","v1.21.0"]'
+        # mp_versions: '["preview", "stable", "v1.22.2","v1.21.0"]'
+        mp_versions: '["stable","v1.21.0"]'
 
       
 
@@ -44,37 +45,34 @@ jobs:
       - run: echo faking it
     
     outputs:
-      json: '["SEEED_WIO_TERMINAL", "RPI_PICO_W", "ESP32_GENERIC"]'
-      include: '[{"board": "SEEED_WIO_TERMINAL", "serialport": "COM10"},{"board": "ESP32_GENERIC", "serialport": "COM3", "variant": "OTA"}]'
+      boards: '["SEEED_WIO_TERMINAL", "RPI_PICO_W", "ESP32_GENERIC"]'
+      include: '[{"board": "SEEED_WIO_TERMINAL", "serialport": "COM10"},{"board": "ESP32_GENERIC", "serialport": "COM3"},{"board": "ESP32_GENERIC", "serialport": "COM3","variant": "THREADS"},{"board": "RPI_PICO_W", "serialport": "/dev/ttyACM0"}]'
 
   # JOB ######################################################################################################################################
-  job20:
+  createstubs_matrix:
     runs-on: ubuntu-latest
     needs:
       - list-versions
       - list-boards
     strategy:
       fail-fast: false
+      # max-parallel: 1  # only one version at a time
+    
       matrix:
-        version: ${{ fromJSON(needs.list-versions.outputs.json) }}
+        family: [micropython]
+        version: ${{ fromJSON(needs.list-versions.outputs.mp_versions) }}
+        board: ${{ fromJSON(needs.list-boards.outputs.boards) }}
+        variant: ["-"]
         include: ${{ fromJSON(needs.list-boards.outputs.include) }}
-        variant: []
-        # board: ${{ fromJSON(xx needs.list-boards.outputs.json) }}
-        # exclude:
-        #   - version: preview
-        #     variant: OTA
-        # include:
-        #   - board: ESP32_GENERIC
-        #     variant: OTA
-        #   - board: ESP32_GENERIC
-        #     variant: SPIRAM
 
 
-    name: "Run ${{ matrix.version }} : ${{ matrix.serialport }} ${{ matrix.board }}-${{ matrix.variant }}"
+
+    name: "Run ${{ matrix.version }} | ${{ matrix.serialport }} ${{ matrix.board }} [${{ matrix.variant }}]"
     steps:
       - name: Flash ${{ matrix.board }}
+        if : ${{ matrix.serialport }}
         run: |
-            echo Flash ${{ matrix.version }} ${{ matrix.serialport }} ${{ matrix.board }} ${{ matrix.variant }}
+            echo Flash ${{ matrix.version }}  ${{ matrix.board }} on ${{ matrix.serialport }} [${{ matrix.variant }}]
 
 
   # JOB ######################################################################################################################################
