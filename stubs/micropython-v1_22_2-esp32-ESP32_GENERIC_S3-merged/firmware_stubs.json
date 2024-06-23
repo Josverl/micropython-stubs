@@ -1,5 +1,5 @@
 {"firmware": {"version": "1.22.2", "mpy": "v6.2", "port": "esp32", "board": "ESP32_GENERIC_S3", "family": "micropython", "build": "", "arch": "xtensawin", "ver": "1.22.2", "cpu": "ESP32S3"},
-"stubber": {"version": "v1.17.3"}, "stubtype": "firmware",
+"stubber": {"version": "v1.20.0"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_22_2-esp32-ESP32_GENERIC_S3/_asyncio.pyi"},
 {"module": "_espnow", "file": "/remote/stubs/micropython-v1_22_2-esp32-ESP32_GENERIC_S3/_espnow.pyi"},
