@@ -12,10 +12,10 @@ A heap queue is essentially a list that has its elements stored in such a way
 that the first item of the list is always the smallest.
 
 ---
-Module: 'heapq' on micropython-v1.23.0-esp32-ESP32_GENERIC_S3
+Module: 'heapq' on micropython-v1.24.0-preview-esp32-ESP32_GENERIC_S3
 """
 
-# MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC_S3', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32S3'}
+# MCU: {'version': '1.24.0-preview', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC_S3', 'family': 'micropython', 'build': 'preview.60.gcebc9b0ae', 'arch': 'xtensawin', 'ver': '1.24.0-preview-preview.60.gcebc9b0ae', 'cpu': 'ESP32S3'}
 # Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
