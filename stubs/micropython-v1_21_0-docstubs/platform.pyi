@@ -9,11 +9,10 @@ This module tries to retrieve as much platform-identifying data as possible. It
 makes this information available via function APIs.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/platform.rst
-from typing import (
-    Tuple,
-)
+from __future__ import annotations
+from typing import Tuple
 from _typeshed import Incomplete
 
 def platform() -> str:

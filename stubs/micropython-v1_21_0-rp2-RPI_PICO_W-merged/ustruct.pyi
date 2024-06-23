@@ -52,9 +52,15 @@ The following data types are supported:
 +--------+--------------------+-------------------+---------------+
 | P      | void *             | integer           |               |
 +--------+--------------------+-------------------+---------------+
+
+---
+Module: 'ustruct' on micropython-v1.21.0-rp2-RPI_PICO_W
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Tuple
 
 def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
@@ -72,7 +78,11 @@ def unpack(fmt, data) -> Tuple:
     """
     ...
 
-def unpack_from(fmt, data, offset=0, /) -> Tuple:
+def unpack_from(
+    fmt,
+    data,
+    offset=0,
+) -> Tuple:
     """
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *data*. The return

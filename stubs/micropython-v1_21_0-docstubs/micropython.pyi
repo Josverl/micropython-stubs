@@ -4,14 +4,10 @@ Access and control MicroPython internals.
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/micropython.html
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/micropython.rst
-from typing import (
-    Any,
-    Optional,
-    Tuple,
-    TypeVar,
-)
+from __future__ import annotations
+from typing import Any, Optional, Tuple, TypeVar
 from _typeshed import Incomplete
 
 Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple)  # constant

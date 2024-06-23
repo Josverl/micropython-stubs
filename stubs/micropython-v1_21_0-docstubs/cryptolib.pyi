@@ -4,12 +4,10 @@ Cryptographic ciphers.
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/cryptolib.html
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/cryptolib.rst
-from typing import (
-    Any,
-    Optional,
-)
+from __future__ import annotations
+from typing import Any, Optional
 from _typeshed import Incomplete
 
 class aes:
@@ -33,6 +31,7 @@ class aes:
             * For Counter mode, *IV* is the initial value for the counter.
         """
         ...
+
     def encrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Encrypt *in_buf*. If no *out_buf* is given result is returned as a
@@ -41,6 +40,7 @@ class aes:
         to the same mutable buffer, in which case data is encrypted in-place.
         """
         ...
+
     def decrypt(self, in_buf, out_buf: Optional[Any] = None) -> Incomplete:
         """
         Like `encrypt()`, but for decryption.

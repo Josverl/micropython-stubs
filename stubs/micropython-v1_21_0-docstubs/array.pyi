@@ -10,13 +10,10 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 floating-point support).
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/array.rst
-from typing import (
-    Any,
-    List,
-    Optional,
-)
+from __future__ import annotations
+from typing import Any, List, Optional
 from _typeshed import Incomplete
 
 class array(List):
@@ -32,12 +29,14 @@ class array(List):
         Append new element *val* to the end of array, growing it.
         """
         ...
+
     def extend(self, iterable) -> Incomplete:
         """
         Append new elements as contained in *iterable* to the end of
         array, growing it.
         """
         ...
+
     def __getitem__(self, index) -> List[int]:
         """
         Indexed read of the array, called as ``a[index]`` (where ``a`` is an ``array``).
@@ -49,6 +48,7 @@ class array(List):
         is not present in ``__dict__``, however ``a[index]`` does work.
         """
         ...
+
     def __setitem__(self, index, value) -> Incomplete:
         """
         Indexed write into the array, called as ``a[index] = value`` (where ``a`` is an ``array``).
@@ -59,6 +59,7 @@ class array(List):
         is not present in ``__dict__``, however ``a[index] = value`` does work.
         """
         ...
+
     def __len__(self) -> int:
         """
         Returns the number of items in the array, called as ``len(a)`` (where ``a`` is an ``array``).
@@ -67,6 +68,7 @@ class array(List):
         method is not present in ``__dict__``, however ``len(a)`` does work.
         """
         ...
+
     def __add__(self, other) -> Incomplete:
         """
         Return a new ``array`` that is the concatenation of the array with *other*, called as
@@ -76,6 +78,7 @@ class array(List):
         is not present in ``__dict__``, however ``a + other`` does work.
         """
         ...
+
     def __iadd__(self, other) -> Incomplete:
         """
         Concatenates the array with *other* in-place, called as ``a += other`` (where ``a`` and *other*
@@ -85,6 +88,7 @@ class array(List):
         is not present in ``__dict__``, however ``a += other`` does work.
         """
         ...
+
     def __repr__(self) -> str:
         """
         Returns the string representation of the array, called as ``str(a)`` or ``repr(a)```

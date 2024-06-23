@@ -1,10 +1,17 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: '_espnow' on micropython-v1.21.0-esp32-ESP32_GENERIC
+"""
 
-MAX_DATA_LEN: int
-MAX_TOTAL_PEER_NUM: int
-MAX_ENCRYPT_PEER_NUM: int
-ADDR_LEN: int
-KEY_LEN: int
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+MAX_DATA_LEN: int = 250
+MAX_TOTAL_PEER_NUM: int = 20
+MAX_ENCRYPT_PEER_NUM: int = 6
+ADDR_LEN: int = 6
+KEY_LEN: int = 16
 
 class ESPNowBase:
     def irq(self, *args, **kwargs) -> Incomplete: ...

@@ -1,18 +1,25 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'machine' on micropython-v1.21.0-esp32-ESP32_GENERIC
+"""
 
-SLEEP: int
-EXT1_WAKE: int
-HARD_RESET: int
-TIMER_WAKE: int
-TOUCHPAD_WAKE: int
-PIN_WAKE: int
-PWRON_RESET: int
-WDT_RESET: int
-EXT0_WAKE: int
-ULP_WAKE: int
-DEEPSLEEP_RESET: int
-SOFT_RESET: int
-DEEPSLEEP: int
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+SLEEP: int = 2
+EXT1_WAKE: int = 3
+HARD_RESET: int = 2
+TIMER_WAKE: int = 4
+TOUCHPAD_WAKE: int = 5
+PIN_WAKE: int = 2
+PWRON_RESET: int = 1
+WDT_RESET: int = 3
+EXT0_WAKE: int = 2
+ULP_WAKE: int = 6
+DEEPSLEEP_RESET: int = 4
+SOFT_RESET: int = 5
+DEEPSLEEP: int = 4
 
 def wake_reason(*args, **kwargs) -> Incomplete: ...
 def disable_irq(*args, **kwargs) -> Incomplete: ...
@@ -31,7 +38,7 @@ def reset_cause(*args, **kwargs) -> Incomplete: ...
 def lightsleep(*args, **kwargs) -> Incomplete: ...
 def reset(*args, **kwargs) -> Incomplete: ...
 
-mem8: Incomplete
+mem8: Incomplete  ## <class 'mem'> = <8-bit memory>
 
 class PWM:
     def duty_u16(self, *args, **kwargs) -> Incomplete: ...
@@ -46,8 +53,8 @@ class WDT:
     def feed(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-mem32: Incomplete
-mem16: Incomplete
+mem32: Incomplete  ## <class 'mem'> = <32-bit memory>
+mem16: Incomplete  ## <class 'mem'> = <16-bit memory>
 
 class ADCBlock:
     def init(self, *args, **kwargs) -> Incomplete: ...
@@ -55,14 +62,14 @@ class ADCBlock:
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class ADC:
-    ATTN_6DB: int
-    WIDTH_10BIT: int
-    WIDTH_11BIT: int
-    WIDTH_12BIT: int
-    WIDTH_9BIT: int
-    ATTN_0DB: int
-    ATTN_2_5DB: int
-    ATTN_11DB: int
+    ATTN_6DB: int = 2
+    WIDTH_10BIT: int = 10
+    WIDTH_11BIT: int = 11
+    WIDTH_12BIT: int = 12
+    WIDTH_9BIT: int = 9
+    ATTN_0DB: int = 0
+    ATTN_2_5DB: int = 1
+    ATTN_11DB: int = 3
     def read_u16(self, *args, **kwargs) -> Incomplete: ...
     def init(self, *args, **kwargs) -> Incomplete: ...
     def read_uv(self, *args, **kwargs) -> Incomplete: ...
@@ -73,10 +80,10 @@ class ADC:
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class I2S:
-    RX: int
-    MONO: int
-    STEREO: int
-    TX: int
+    RX: int = 9
+    MONO: int = 0
+    STEREO: int = 1
+    TX: int = 5
     def shift(self, *args, **kwargs) -> Incomplete: ...
     def init(self, *args, **kwargs) -> Incomplete: ...
     def irq(self, *args, **kwargs) -> Incomplete: ...
@@ -106,16 +113,16 @@ class I2C:
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class Timer:
-    ONE_SHOT: int
-    PERIODIC: int
+    ONE_SHOT: int = 0
+    PERIODIC: int = 1
     def deinit(self, *args, **kwargs) -> Incomplete: ...
     def init(self, *args, **kwargs) -> Incomplete: ...
     def value(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class SoftSPI:
-    LSB: int
-    MSB: int
+    LSB: int = 1
+    MSB: int = 0
     def deinit(self, *args, **kwargs) -> Incomplete: ...
     def init(self, *args, **kwargs) -> Incomplete: ...
     def write_readinto(self, *args, **kwargs) -> Incomplete: ...
@@ -125,19 +132,19 @@ class SoftSPI:
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class Pin:
-    OPEN_DRAIN: int
-    OUT: int
-    IRQ_RISING: int
-    WAKE_LOW: int
-    WAKE_HIGH: int
-    PULL_DOWN: int
-    PULL_UP: int
-    DRIVE_1: int
-    IRQ_FALLING: int
-    DRIVE_0: int
-    IN: int
-    DRIVE_2: int
-    DRIVE_3: int
+    OPEN_DRAIN: int = 7
+    OUT: int = 3
+    IRQ_RISING: int = 1
+    WAKE_LOW: int = 4
+    WAKE_HIGH: int = 5
+    PULL_DOWN: int = 1
+    PULL_UP: int = 2
+    DRIVE_1: int = 1
+    IRQ_FALLING: int = 2
+    DRIVE_0: int = 0
+    IN: int = 1
+    DRIVE_2: int = 2
+    DRIVE_3: int = 3
     def irq(self, *args, **kwargs) -> Incomplete: ...
     def on(self, *args, **kwargs) -> Incomplete: ...
     def off(self, *args, **kwargs) -> Incomplete: ...
@@ -155,12 +162,12 @@ class TouchPad:
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class UART:
-    INV_CTS: int
-    CTS: int
-    INV_TX: int
-    INV_RTS: int
-    INV_RX: int
-    RTS: int
+    INV_CTS: int = 8
+    CTS: int = 2
+    INV_TX: int = 32
+    INV_RTS: int = 64
+    INV_RX: int = 4
+    RTS: int = 1
     def deinit(self, *args, **kwargs) -> Incomplete: ...
     def sendbreak(self, *args, **kwargs) -> Incomplete: ...
     def init(self, *args, **kwargs) -> Incomplete: ...
@@ -204,8 +211,8 @@ class SoftI2C:
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class SPI:
-    LSB: int
-    MSB: int
+    LSB: int = 1
+    MSB: int = 0
     def deinit(self, *args, **kwargs) -> Incomplete: ...
     def init(self, *args, **kwargs) -> Incomplete: ...
     def write_readinto(self, *args, **kwargs) -> Incomplete: ...

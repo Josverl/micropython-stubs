@@ -9,12 +9,10 @@ This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/binascii.rst
-from typing import (
-    Any,
-    Optional,
-)
+from __future__ import annotations
+from typing import Any, Optional
 from _typeshed import Incomplete
 
 def hexlify(data, sep: Optional[Any] = None) -> bytes:

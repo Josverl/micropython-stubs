@@ -10,16 +10,10 @@ terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/os.rst
-from typing import (
-    IO,
-    Any,
-    Iterator,
-    Optional,
-    Tuple,
-    Iterator,
-)
+from __future__ import annotations
+from typing import IO, Any, Iterator, Optional, Tuple
 from _typeshed import Incomplete
 from stdlib.os import *  # type: ignore
 
@@ -110,6 +104,7 @@ class AbstractBlockDev:
         The number of bytes to read is given by the length of *buf*.
         """
         ...
+
     def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
         """
         The first form writes aligned, multiples of blocks, and requires that the
@@ -131,6 +126,7 @@ class AbstractBlockDev:
         argument is specified, even if it is zero.
         """
         ...
+
     def ioctl(self, op, arg) -> int:
         """
          Control the block device and query its parameters.  The operation to
@@ -283,7 +279,10 @@ def sync() -> None:
     """
     ...
 
-def dupterm(stream_object, index=0, /) -> IO:
+def dupterm(
+    stream_object,
+    index=0,
+) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
     object. The *stream_object* argument must be a native stream object, or derive

@@ -10,11 +10,10 @@ widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/ssl.rst
-from typing import (
-    IO,
-)
+from __future__ import annotations
+from typing import IO
 from _typeshed import Incomplete
 from stdlib.ssl import *  # type: ignore
 
@@ -46,7 +45,10 @@ class SSLContext:
     constants.
     """
 
-    def __init__(self, protocol, /) -> None: ...
+    def __init__(
+        self,
+        protocol,
+    ) -> None: ...
     def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),

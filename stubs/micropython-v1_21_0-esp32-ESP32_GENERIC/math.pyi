@@ -1,10 +1,17 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'math' on micropython-v1.21.0-esp32-ESP32_GENERIC
+"""
 
-inf: float
-nan: float
-pi: float
-e: float
-tau: float
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+inf: float = inf
+nan: float = nan
+pi: float = 3.141593
+e: float = 2.718282
+tau: float = 6.283185
 
 def ldexp(*args, **kwargs) -> Incomplete: ...
 def lgamma(*args, **kwargs) -> Incomplete: ...

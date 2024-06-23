@@ -8,12 +8,10 @@ ESP32 modules.  Some functions are only available on one or the other of these
 ports.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/esp.rst
-from typing import (
-    Any,
-    Optional,
-)
+from __future__ import annotations
+from typing import Any, Optional
 from _typeshed import Incomplete
 
 def sleep_type(sleep_type: Optional[Any] = None) -> Incomplete:
@@ -37,7 +35,9 @@ def sleep_type(sleep_type: Optional[Any] = None) -> Incomplete:
     """
     ...
 
-def deepsleep(time_us=0, /) -> Incomplete:
+def deepsleep(
+    time_us=0,
+) -> Incomplete:
     """
     **Note**: ESP8266 only - use `machine.deepsleep()` on ESP32
 

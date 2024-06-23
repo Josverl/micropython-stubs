@@ -1,13 +1,20 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'framebuf' on micropython-v1.21.0-rp2-RPI_PICO_W
+"""
 
-MONO_HMSB: int
-MONO_HLSB: int
-RGB565: int
-MONO_VLSB: int
-MVLSB: int
-GS2_HMSB: int
-GS8: int
-GS4_HMSB: int
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+MONO_HMSB: int = 4
+MONO_HLSB: int = 3
+RGB565: int = 1
+MONO_VLSB: int = 0
+MVLSB: int = 0
+GS2_HMSB: int = 5
+GS8: int = 6
+GS4_HMSB: int = 2
 
 def FrameBuffer1(*args, **kwargs) -> Incomplete: ...
 

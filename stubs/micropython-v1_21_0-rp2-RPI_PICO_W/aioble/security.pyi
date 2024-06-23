@@ -1,25 +1,45 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'aioble.security' on micropython-v1.21.0-rp2-RPI_PICO_W
+"""
 
-def load_secrets(*args, **kwargs) -> Incomplete: ...
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from typing import Generator
+from _typeshed import Incomplete
+
+_DEFAULT_PATH: str = "ble_secrets.json"
+_secrets: dict = {}
+_modified: bool = False
+
 def register_irq_handler(*args, **kwargs) -> Incomplete: ...
-def log_info(*args, **kwargs) -> Incomplete: ...
+def load_secrets(*args, **kwargs) -> Incomplete: ...
+def _security_shutdown(*args, **kwargs) -> Incomplete: ...
+def _security_irq(*args, **kwargs) -> Incomplete: ...
+def _save_secrets(*args, **kwargs) -> Incomplete: ...
 def log_warn(*args, **kwargs) -> Incomplete: ...
-def schedule(*args, **kwargs) -> Incomplete: ...
 def const(*args, **kwargs) -> Incomplete: ...
+def schedule(*args, **kwargs) -> Incomplete: ...
+def log_info(*args, **kwargs) -> Incomplete: ...
+
+_path: Incomplete  ## <class 'NoneType'> = None
+pair: Generator  ## = <generator>
 
 class DeviceConnection:
-    def services(self, *args, **kwargs) -> Incomplete: ...
+    _connected: dict = {}
     def is_connected(self, *args, **kwargs) -> Incomplete: ...
+    def _run_task(self, *args, **kwargs) -> Incomplete: ...
+    def services(self, *args, **kwargs) -> Incomplete: ...
     def timeout(self, *args, **kwargs) -> Incomplete: ...
-    l2cap_accept: Incomplete
-    exchange_mtu: Incomplete
-    pair: Incomplete
-    l2cap_connect: Incomplete
-    service: Incomplete
-    disconnect: Incomplete
-    device_task: Incomplete
-    disconnected: Incomplete
+
+    l2cap_accept: Generator  ## = <generator>
+    exchange_mtu: Generator  ## = <generator>
+    pair: Generator  ## = <generator>
+    l2cap_connect: Generator  ## = <generator>
+    service: Generator  ## = <generator>
+    disconnect: Generator  ## = <generator>
+    device_task: Generator  ## = <generator>
+    disconnected: Generator  ## = <generator>
     def __init__(self, *argv, **kwargs) -> None: ...
 
-ble: Incomplete
-pair: Incomplete
+ble: Incomplete  ## <class 'BLE'> = <BLE>

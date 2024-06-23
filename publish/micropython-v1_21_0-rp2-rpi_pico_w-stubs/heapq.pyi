@@ -10,9 +10,15 @@ This module implements the
 
 A heap queue is essentially a list that has its elements stored in such a way
 that the first item of the list is always the smallest.
+
+---
+Module: 'heapq' on micropython-v1.21.0-rp2-RPI_PICO_W
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 
 def heappop(heap) -> Incomplete:
     """

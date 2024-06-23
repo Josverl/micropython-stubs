@@ -73,13 +73,10 @@ Example::
     f.close()
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/btree.rst
-from typing import (
-    Any,
-    Dict,
-    Optional,
-)
+from __future__ import annotations
+from typing import Any, Dict, Optional
 from _typeshed import Incomplete
 
 INCL: Incomplete
@@ -105,42 +102,54 @@ class btree:
         data flushed from buffer to the underlying storage).
         """
         ...
+
     def flush(self) -> Incomplete:
         """
         Flush any data in cache to the underlying stream.
         """
         ...
+
     def __getitem__(self, key) -> Incomplete:
         """
         Standard dictionary methods.
         """
         ...
-    def get(self, key, default=None, /) -> Incomplete:
+
+    def get(
+        self,
+        key,
+        default=None,
+    ) -> Incomplete:
         """
         Standard dictionary methods.
         """
         ...
+
     def __setitem__(self, key, val) -> Incomplete:
         """
         Standard dictionary methods.
         """
         ...
+
     def __delitem__(self, key) -> Incomplete:
         """
         Standard dictionary methods.
         """
         ...
+
     def __contains__(self, key) -> Incomplete:
         """
         Standard dictionary methods.
         """
         ...
+
     def __iter__(self) -> Incomplete:
         """
         A BTree object can be iterated over directly (similar to a dictionary)
         to get access to all keys in order.
         """
         ...
+
     def keys(self, start_key, end_key, flags: Optional[Any] = None) -> Incomplete:
         """
         These methods are similar to standard dictionary methods, but also can
@@ -157,6 +166,7 @@ class btree:
         together.
         """
         ...
+
     def values(self, start_key, end_key, flags: Optional[Any] = None) -> Incomplete:
         """
         These methods are similar to standard dictionary methods, but also can
@@ -173,6 +183,7 @@ class btree:
         together.
         """
         ...
+
     def items(self, start_key, end_key, flags: Optional[Any] = None) -> Incomplete:
         """
         These methods are similar to standard dictionary methods, but also can

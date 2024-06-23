@@ -24,12 +24,10 @@ be implemented:
   will offer this.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/hashlib.rst
-from typing import (
-    Any,
-    Optional,
-)
+from __future__ import annotations
+from typing import Any, Optional
 from _typeshed import Incomplete
 
 class sha256:
@@ -61,12 +59,14 @@ class hash:
         Feed more binary data into hash.
         """
         ...
+
     def digest(self) -> bytes:
         """
         Return hash for all data passed through hash, as a bytes object. After this
         method is called, more data cannot be fed into the hash any longer.
         """
         ...
+
     def hexdigest(self) -> Incomplete:
         """
         This method is NOT implemented. Use ``binascii.hexlify(hash.digest())``

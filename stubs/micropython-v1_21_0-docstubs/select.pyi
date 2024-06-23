@@ -9,16 +9,10 @@ This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/select.rst
-from typing import (
-    Any,
-    Iterator,
-    List,
-    Optional,
-    Tuple,
-    Iterator,
-)
+from __future__ import annotations
+from typing import Any, Iterator, List, Optional, Tuple
 from _typeshed import Incomplete
 
 class poll:
@@ -46,18 +40,24 @@ class poll:
         *eventmask* (i.e. will behave as `modify()`).
         """
         ...
+
     def unregister(self, obj) -> Incomplete:
         """
         Unregister *obj* from polling.
         """
         ...
+
     def modify(self, obj, eventmask) -> None:
         """
         Modify the *eventmask* for *obj*. If *obj* is not registered, `OSError`
         is raised with error of ENOENT.
         """
         ...
-    def poll(self, timeout=-1, /) -> List:
+
+    def poll(
+        self,
+        timeout=-1,
+    ) -> List:
         """
         Wait for at least one of the registered objects to become ready or have an
         exceptional condition, with optional timeout in milliseconds (if *timeout*
@@ -80,7 +80,12 @@ class poll:
            Tuples returned may contain more than 2 elements as described above.
         """
         ...
-    def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
+
+    def ipoll(
+        self,
+        timeout=-1,
+        flags=0,
+    ) -> Iterator[Tuple]:
         """
         Like :meth:`poll.poll`, but instead returns an iterator which yields a
         `callee-owned tuple`. This function provides an efficient, allocation-free

@@ -19,8 +19,9 @@ This module allows compression and decompression of binary data with the
   you need to build your own firmware to enable this).
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/deflate.rst
+from __future__ import annotations
 from _typeshed import Incomplete
 
 AUTO: Incomplete
@@ -76,4 +77,10 @@ class DeflateIO:
     directions.
     """
 
-    def __init__(self, stream, format=AUTO, wbits=0, close=False, /) -> None: ...
+    def __init__(
+        self,
+        stream,
+        format=AUTO,
+        wbits=0,
+        close=False,
+    ) -> None: ...

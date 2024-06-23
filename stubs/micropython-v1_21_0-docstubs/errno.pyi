@@ -9,11 +9,10 @@ This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/errno.rst
-from typing import (
-    Dict,
-)
+from __future__ import annotations
+from typing import Dict
 from _typeshed import Incomplete
 
 EEXIST: Incomplete

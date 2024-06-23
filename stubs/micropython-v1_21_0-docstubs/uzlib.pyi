@@ -30,11 +30,15 @@ This module allows compression and decompression of binary data with the
   in the built-in :mod:`deflate <deflate>` module.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/zlib.rst
+from __future__ import annotations
 from _typeshed import Incomplete
 
-def decompress(data, wbits=15, /) -> Incomplete:
+def decompress(
+    data,
+    wbits=15,
+) -> Incomplete:
     """
     Decompresses *data* into a bytes object.
 
@@ -56,7 +60,10 @@ def decompress(data, wbits=15, /) -> Incomplete:
     """
     ...
 
-def compress(data, wbits=15, /) -> Incomplete:
+def compress(
+    data,
+    wbits=15,
+) -> Incomplete:
     """
     Compresses *data* into a bytes object.
 

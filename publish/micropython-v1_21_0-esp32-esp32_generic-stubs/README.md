@@ -28,11 +28,9 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_21_0-esp32-ESP32_GENERIC-merged`
-* Frozen stubs from `stubs/micropython-v1_21_0-frozen/esp32/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Documentation | micropython | - | - | v1.21.0 
-Core | micropython | esp32 | - | v1.21.0 

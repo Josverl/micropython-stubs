@@ -1,10 +1,17 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'ubluetooth' on micropython-v1.21.0-rp2-RPI_PICO_W
+"""
 
-FLAG_NOTIFY: int
-FLAG_READ: int
-FLAG_WRITE: int
-FLAG_INDICATE: int
-FLAG_WRITE_NO_RESPONSE: int
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+FLAG_NOTIFY: int = 16
+FLAG_READ: int = 2
+FLAG_WRITE: int = 8
+FLAG_INDICATE: int = 32
+FLAG_WRITE_NO_RESPONSE: int = 4
 
 class UUID:
     def __init__(self, *argv, **kwargs) -> None: ...

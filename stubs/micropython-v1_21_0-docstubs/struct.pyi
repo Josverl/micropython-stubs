@@ -54,11 +54,10 @@ The following data types are supported:
 +--------+--------------------+-------------------+---------------+
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/struct.rst
-from typing import (
-    Tuple,
-)
+from __future__ import annotations
+from typing import Tuple
 from _typeshed import Incomplete
 
 def calcsize(fmt) -> int:
@@ -89,7 +88,11 @@ def unpack(fmt, data) -> Tuple:
     """
     ...
 
-def unpack_from(fmt, data, offset=0, /) -> Tuple:
+def unpack_from(
+    fmt,
+    data,
+    offset=0,
+) -> Tuple:
     """
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *data*. The return

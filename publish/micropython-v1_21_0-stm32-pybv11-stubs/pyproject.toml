@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-stm32-pybv11-stubs"
-version = "1.21.0.post4"
+version = "1.21.0.post1"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -63,6 +63,7 @@ packages = [
     { include = "platform.pyi" },
     { include = "pyb.pyi" },
     { include = "random.pyi" },
+    { include = "requests/__init__.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },
     { include = "stm.pyi" },
@@ -76,7 +77,6 @@ packages = [
     { include = "uasyncio/funcs.pyi" },
     { include = "uasyncio/lock.pyi" },
     { include = "uasyncio/stream.pyi" },
-    { include = "uasyncio.pyi" },
     { include = "ubinascii.pyi" },
     { include = "ucollections.pyi" },
     { include = "uctypes.pyi" },

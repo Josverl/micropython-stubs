@@ -9,24 +9,30 @@ and unrestricted access to and control of hardware blocks on a system
 (like CPU, timers, buses, etc.). Used incorrectly, this can lead to
 malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
+
+---
+Module: 'machine' on micropython-v1.21.0-esp32-ESP32_GENERIC
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
-SLEEP: int
-EXT1_WAKE: int
-HARD_RESET: int
-TIMER_WAKE: int
-TOUCHPAD_WAKE: int
-PIN_WAKE: int
-PWRON_RESET: int
-WDT_RESET: int
-EXT0_WAKE: int
-ULP_WAKE: int
-DEEPSLEEP_RESET: int
-SOFT_RESET: int
-DEEPSLEEP: int
+SLEEP: int = 2
+EXT1_WAKE: int = 3
+HARD_RESET: int = 2
+TIMER_WAKE: int = 4
+TOUCHPAD_WAKE: int = 5
+PIN_WAKE: int = 2
+PWRON_RESET: int = 1
+WDT_RESET: int = 3
+EXT0_WAKE: int = 2
+ULP_WAKE: int = 6
+DEEPSLEEP_RESET: int = 4
+SOFT_RESET: int = 5
+DEEPSLEEP: int = 4
 
 def wake_reason() -> Incomplete:
     """
@@ -46,7 +52,12 @@ def disable_irq() -> Incomplete:
     ...
 
 def dht_readinto(*args, **kwargs) -> Incomplete: ...
-def bitstream(pin, encoding, timing, data, /) -> Incomplete:
+def bitstream(
+    pin,
+    encoding,
+    timing,
+    data,
+) -> Incomplete:
     """
     Transmits *data* by bit-banging the specified *pin*. The *encoding* argument
     specifies how the bits are encoded, and *timing* is an encoding-specific timing
@@ -127,7 +138,11 @@ def enable_irq(state) -> Incomplete:
     """
     ...
 
-def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
+def time_pulse_us(
+    pin,
+    pulse_level,
+    timeout_us=1000000,
+) -> int:
     """
     Time a pulse on the given *pin*, and return the duration of the pulse in
     microseconds.  The *pulse_level* argument should be 0 to time a low pulse
@@ -209,7 +224,7 @@ def reset() -> NoReturn:
     """
     ...
 
-mem8: Incomplete
+mem8: Incomplete  ## <class 'mem'> = <8-bit memory>
 
 class PWM:
     """
@@ -298,8 +313,8 @@ class WDT:
 
     def __init__(self, *argv, **kwargs) -> None: ...
 
-mem32: Incomplete
-mem16: Incomplete
+mem32: Incomplete  ## <class 'mem'> = <32-bit memory>
+mem16: Incomplete  ## <class 'mem'> = <16-bit memory>
 
 class ADCBlock:
     """
@@ -354,14 +369,14 @@ class ADC:
       - *atten* specifies the input attenuation.
     """
 
-    ATTN_6DB: int
-    WIDTH_10BIT: int
-    WIDTH_11BIT: int
-    WIDTH_12BIT: int
-    WIDTH_9BIT: int
-    ATTN_0DB: int
-    ATTN_2_5DB: int
-    ATTN_11DB: int
+    ATTN_6DB: int = 2
+    WIDTH_10BIT: int = 10
+    WIDTH_11BIT: int = 11
+    WIDTH_12BIT: int = 12
+    WIDTH_9BIT: int = 9
+    ATTN_0DB: int = 0
+    ATTN_2_5DB: int = 1
+    ATTN_11DB: int = 3
     def read_u16(self) -> int:
         """
         Take an analog reading and return an integer in the range 0-65535.
@@ -427,10 +442,10 @@ class I2S:
     before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
     """
 
-    RX: int
-    MONO: int
-    STEREO: int
-    TX: int
+    RX: int = 9
+    MONO: int = 0
+    STEREO: int = 1
+    TX: int = 5
     @staticmethod
     def shift(*, buf, bits, shift) -> Incomplete:
         """
@@ -514,7 +529,12 @@ class I2C:
         """
         ...
 
-    def readfrom_into(self, addr, buf, stop=True, /) -> None:
+    def readfrom_into(
+        self,
+        addr,
+        buf,
+        stop=True,
+    ) -> None:
         """
         Read into *buf* from the peripheral specified by *addr*.
         The number of bytes read will be the length of *buf*.
@@ -552,7 +572,12 @@ class I2C:
         """
         ...
 
-    def writeto(self, addr, buf, stop=True, /) -> int:
+    def writeto(
+        self,
+        addr,
+        buf,
+        stop=True,
+    ) -> int:
         """
         Write the bytes from *buf* to the peripheral specified by *addr*.  If a
         NACK is received following the write of a byte from *buf* then the
@@ -562,7 +587,12 @@ class I2C:
         """
         ...
 
-    def writevto(self, addr, vector, stop=True, /) -> int:
+    def writevto(
+        self,
+        addr,
+        vector,
+        stop=True,
+    ) -> int:
         """
         Write the bytes contained in *vector* to the peripheral specified by *addr*.
         *vector* should be a tuple or list of objects with the buffer protocol.
@@ -584,7 +614,12 @@ class I2C:
         """
         ...
 
-    def readfrom(self, addr, nbytes, stop=True, /) -> bytes:
+    def readfrom(
+        self,
+        addr,
+        nbytes,
+        stop=True,
+    ) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr*.
         If *stop* is true then a STOP condition is generated at the end of the transfer.
@@ -592,7 +627,11 @@ class I2C:
         """
         ...
 
-    def readinto(self, buf, nack=True, /) -> Incomplete:
+    def readinto(
+        self,
+        buf,
+        nack=True,
+    ) -> Incomplete:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
         read is the length of *buf*.  An ACK will be sent on the bus after
@@ -641,8 +680,8 @@ class Timer:
     See ``init`` for parameters of initialisation.
     """
 
-    ONE_SHOT: int
-    PERIODIC: int
+    ONE_SHOT: int = 0
+    PERIODIC: int = 1
     def deinit(self) -> None:
         """
         Deinitialises the timer. Stops the timer, and disables the timer peripheral.
@@ -692,15 +731,15 @@ class Timer:
     def value(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class SoftSPI:
+class SoftSPI(SPI):
     """
     Construct a new software SPI object.  Additional parameters must be
     given, usually at least *sck*, *mosi* and *miso*, and these are used
     to initialise the bus.  See `SPI.init` for a description of the parameters.
     """
 
-    LSB: int
-    MSB: int
+    LSB: int = 1
+    MSB: int = 0
     def deinit(self, *args, **kwargs) -> Incomplete: ...
     def init(self, *args, **kwargs) -> Incomplete: ...
     def write_readinto(self, *args, **kwargs) -> Incomplete: ...
@@ -773,19 +812,19 @@ class Pin:
     ``Pin.OPEN_DRAIN``, the alternate function will be removed from the pin.
     """
 
-    OPEN_DRAIN: int
-    OUT: int
-    IRQ_RISING: int
-    WAKE_LOW: int
-    WAKE_HIGH: int
-    PULL_DOWN: int
-    PULL_UP: int
-    DRIVE_1: int
-    IRQ_FALLING: int
-    DRIVE_0: int
-    IN: int
-    DRIVE_2: int
-    DRIVE_3: int
+    OPEN_DRAIN: int = 7
+    OUT: int = 3
+    IRQ_RISING: int = 1
+    WAKE_LOW: int = 4
+    WAKE_HIGH: int = 5
+    PULL_DOWN: int = 1
+    PULL_UP: int = 2
+    DRIVE_1: int = 1
+    IRQ_FALLING: int = 2
+    DRIVE_0: int = 0
+    IN: int = 1
+    DRIVE_2: int = 2
+    DRIVE_3: int = 3
     def irq(self, handler=None, trigger=IRQ_FALLING, *, priority=1, wake=None, hard=False) -> Callable[..., Incomplete]:
         """
            Configure an interrupt handler to be called when the trigger source of the
@@ -909,12 +948,12 @@ class UART:
     Construct a UART object of the given id.
     """
 
-    INV_CTS: int
-    CTS: int
-    INV_TX: int
-    INV_RTS: int
-    INV_RX: int
-    RTS: int
+    INV_CTS: int = 8
+    CTS: int = 2
+    INV_TX: int = 32
+    INV_RTS: int = 64
+    INV_RX: int = 4
+    RTS: int = 1
     def deinit(self) -> None:
         """
         Turn off the UART bus.
@@ -1182,8 +1221,8 @@ class SPI:
     See ``init`` for parameters of initialisation.
     """
 
-    LSB: int
-    MSB: int
+    LSB: int = 1
+    MSB: int = 0
     def deinit(self) -> None:
         """
         Turn off the SPI bus.

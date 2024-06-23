@@ -11,6 +11,7 @@ This module is highly experimental and its API is not yet fully settled
 and not yet described in this documentation.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/_thread.rst
+from __future__ import annotations
 from _typeshed import Incomplete

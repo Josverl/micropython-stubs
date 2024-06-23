@@ -6,12 +6,10 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/gc.html
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/gc.rst
-from typing import (
-    Any,
-    Optional,
-)
+from __future__ import annotations
+from typing import Any, Optional
 from _typeshed import Incomplete
 
 def enable() -> None:

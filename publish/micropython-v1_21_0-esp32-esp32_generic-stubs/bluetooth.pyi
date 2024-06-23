@@ -17,16 +17,22 @@ building-blocks for higher-level abstractions such as specific device types.
 
 ``Note:`` This module is still under development and its classes, functions,
           methods and constants are subject to change.
+
+---
+Module: 'bluetooth' on micropython-v1.21.0-esp32-ESP32_GENERIC
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Any, Optional, Tuple
 
-FLAG_NOTIFY: int
-FLAG_READ: int
-FLAG_WRITE: int
-FLAG_INDICATE: int
-FLAG_WRITE_NO_RESPONSE: int
+FLAG_NOTIFY: int = 16
+FLAG_READ: int = 2
+FLAG_WRITE: int = 8
+FLAG_INDICATE: int = 32
+FLAG_WRITE_NO_RESPONSE: int = 4
 
 class UUID:
     """
@@ -45,7 +51,13 @@ class BLE:
     Returns the singleton BLE object.
     """
 
-    def gattc_write(self, conn_handle, value_handle, data, mode=0, /) -> None:
+    def gattc_write(
+        self,
+        conn_handle,
+        value_handle,
+        data,
+        mode=0,
+    ) -> None:
         """
         Issue a remote write to a connected server for the specified
         characteristic or descriptor handle.
@@ -65,7 +77,12 @@ class BLE:
         """
         ...
 
-    def gatts_indicate(self, conn_handle, value_handle, data=None, /) -> None:
+    def gatts_indicate(
+        self,
+        conn_handle,
+        value_handle,
+        data=None,
+    ) -> None:
         """
         Sends a indication request to a connected client.
 
@@ -83,7 +100,11 @@ class BLE:
         """
         ...
 
-    def gattc_discover_services(self, conn_handle, uuid=None, /) -> Incomplete:
+    def gattc_discover_services(
+        self,
+        conn_handle,
+        uuid=None,
+    ) -> Incomplete:
         """
         Query a connected server for its services.
 
@@ -94,7 +115,11 @@ class BLE:
         """
         ...
 
-    def gattc_read(self, conn_handle, value_handle, /) -> None:
+    def gattc_read(
+        self,
+        conn_handle,
+        value_handle,
+    ) -> None:
         """
         Issue a remote read to a connected server for the specified
         characteristic or descriptor handle.
@@ -104,7 +129,10 @@ class BLE:
         """
         ...
 
-    def gattc_exchange_mtu(self, conn_handle, /) -> Incomplete:
+    def gattc_exchange_mtu(
+        self,
+        conn_handle,
+    ) -> Incomplete:
         """
         Initiate MTU exchange with a connected server, using the preferred MTU
         set using ``BLE.config(mtu=value)``.
@@ -118,7 +146,12 @@ class BLE:
         """
         ...
 
-    def gatts_set_buffer(self, value_handle, len, append=False, /) -> None:
+    def gatts_set_buffer(
+        self,
+        value_handle,
+        len,
+        append=False,
+    ) -> None:
         """
         Sets the internal buffer size for a value in bytes. This will limit the
         largest possible write that can be received. The default is 20.
@@ -131,7 +164,12 @@ class BLE:
         """
         ...
 
-    def gatts_write(self, value_handle, data, send_update=False, /) -> None:
+    def gatts_write(
+        self,
+        value_handle,
+        data,
+        send_update=False,
+    ) -> None:
         """
         Writes the local value for this handle, which can be read by a client.
 
@@ -141,7 +179,12 @@ class BLE:
         """
         ...
 
-    def gatts_notify(self, conn_handle, value_handle, data=None, /) -> None:
+    def gatts_notify(
+        self,
+        conn_handle,
+        value_handle,
+        data=None,
+    ) -> None:
         """
         Sends a notification request to a connected client.
 
@@ -156,7 +199,10 @@ class BLE:
         """
         ...
 
-    def gatts_register_services(self, services_definition, /) -> Incomplete:
+    def gatts_register_services(
+        self,
+        services_definition,
+    ) -> Incomplete:
         """
         Configures the server with the specified services, replacing any
         existing services.
@@ -219,14 +265,20 @@ class BLE:
         """
         ...
 
-    def gatts_read(self, value_handle, /) -> Incomplete:
+    def gatts_read(
+        self,
+        value_handle,
+    ) -> Incomplete:
         """
         Reads the local value for this handle (which has either been written by
         :meth:`gatts_write <BLE.gatts_write>` or by a remote client).
         """
         ...
 
-    def irq(self, handler, /) -> int:
+    def irq(
+        self,
+        handler,
+    ) -> int:
         """
             Registers a callback for events from the BLE stack. The *handler* takes two
             arguments, ``event`` (which will be one of the codes below) and ``data``
@@ -437,7 +489,14 @@ class BLE:
         """
         ...
 
-    def gap_connect(self, addr_type, addr, scan_duration_ms=2000, min_conn_interval_us=None, max_conn_interval_us=None, /) -> None:
+    def gap_connect(
+        self,
+        addr_type,
+        addr,
+        scan_duration_ms=2000,
+        min_conn_interval_us=None,
+        max_conn_interval_us=None,
+    ) -> None:
         """
         Connect to a peripheral.
 
@@ -461,7 +520,12 @@ class BLE:
         """
         ...
 
-    def gattc_discover_descriptors(self, conn_handle, start_handle, end_handle, /) -> Incomplete:
+    def gattc_discover_descriptors(
+        self,
+        conn_handle,
+        start_handle,
+        end_handle,
+    ) -> Incomplete:
         """
         Query a connected server for descriptors in the specified range.
 
@@ -470,7 +534,10 @@ class BLE:
         """
         ...
 
-    def config(self, param, /) -> Tuple:
+    def config(
+        self,
+        param,
+    ) -> Tuple:
         """
         Get or set configuration values of the BLE interface.  To get a value the
         parameter name should be quoted as a string, and just one parameter is
@@ -534,7 +601,10 @@ class BLE:
         """
         ...
 
-    def active(self, active: Optional[Any] = None, /) -> Incomplete:
+    def active(
+        self,
+        active: Optional[Any] = None,
+    ) -> Incomplete:
         """
         Optionally changes the active state of the BLE radio, and returns the
         current state.
@@ -543,7 +613,13 @@ class BLE:
         """
         ...
 
-    def gap_scan(self, duration_ms, interval_us=1280000, window_us=11250, active=False, /) -> Incomplete:
+    def gap_scan(
+        self,
+        duration_ms,
+        interval_us=1280000,
+        window_us=11250,
+        active=False,
+    ) -> Incomplete:
         """
         Run a scan operation lasting for the specified duration (in **milli** seconds).
 
@@ -579,7 +655,13 @@ class BLE:
         """
         ...
 
-    def gattc_discover_characteristics(self, conn_handle, start_handle, end_handle, uuid=None, /) -> Incomplete:
+    def gattc_discover_characteristics(
+        self,
+        conn_handle,
+        start_handle,
+        end_handle,
+        uuid=None,
+    ) -> Incomplete:
         """
         Query a connected server for characteristics in the specified range.
 
@@ -594,7 +676,10 @@ class BLE:
         """
         ...
 
-    def gap_disconnect(self, conn_handle, /) -> bool:
+    def gap_disconnect(
+        self,
+        conn_handle,
+    ) -> bool:
         """
         Disconnect the specified connection handle. This can either be a
         central that has connected to this device (if acting as a peripheral)
@@ -609,7 +694,12 @@ class BLE:
         """
         ...
 
-    def gap_passkey(self, conn_handle, action, passkey, /) -> Incomplete:
+    def gap_passkey(
+        self,
+        conn_handle,
+        action,
+        passkey,
+    ) -> Incomplete:
         """
         Respond to a ``_IRQ_PASSKEY_ACTION`` event for the specified *conn_handle*
         and *action*.
@@ -627,7 +717,10 @@ class BLE:
         """
         ...
 
-    def gap_pair(self, conn_handle, /) -> Incomplete:
+    def gap_pair(
+        self,
+        conn_handle,
+    ) -> Incomplete:
         """
         Initiate pairing with the remote device.
 

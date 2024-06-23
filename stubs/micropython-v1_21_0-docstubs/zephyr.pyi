@@ -7,13 +7,12 @@ The ``zephyr`` module contains functions and classes specific to the Zephyr port
 """
 
 # + module: zephyr.rst
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/zephyr.rst
 # + module: zephyr.DiskAccess.rst
 # + module: zephyr.FlashArea.rst
-from typing import (
-    Optional,
-)
+from __future__ import annotations
+from typing import Optional
 from _typeshed import Incomplete
 
 class DiskAccess:

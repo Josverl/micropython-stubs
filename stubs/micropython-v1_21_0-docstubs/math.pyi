@@ -14,11 +14,10 @@ Availability: not available on WiPy. Floating point support required
 for this module.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/math.rst
-from typing import (
-    Tuple,
-)
+from __future__ import annotations
+from typing import Tuple
 from _typeshed import Incomplete
 
 e: float

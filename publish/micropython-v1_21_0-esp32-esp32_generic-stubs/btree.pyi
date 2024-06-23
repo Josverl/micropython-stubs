@@ -71,13 +71,19 @@ Example::
 
     # Don't forget to close the underlying stream!
     f.close()
+
+---
+Module: 'btree' on micropython-v1.21.0-esp32-ESP32_GENERIC
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Any, Dict, Optional
 
-DESC: int
-INCL: int
+DESC: int = 2
+INCL: int = 1
 
 def open(stream, *, flags=0, pagesize=0, cachesize=0, minkeypage=0) -> Dict:
     """

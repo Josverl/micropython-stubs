@@ -6,13 +6,10 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/sys.html
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/sys.rst
-from typing import (
-    Dict,
-    List,
-    Tuple,
-)
+from __future__ import annotations
+from typing import Dict, List, Tuple
 from _typeshed import Incomplete
 
 argv: List
@@ -118,7 +115,9 @@ Only the first three version numbers (major, minor, micro) are supported and
 they can be referenced only by index, not by name.
 """
 
-def exit(retval=0, /) -> Incomplete:
+def exit(
+    retval=0,
+) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its
@@ -140,7 +139,10 @@ def atexit(func) -> Incomplete:
     """
     ...
 
-def print_exception(exc, file=stdout, /) -> None:
+def print_exception(
+    exc,
+    file=stdout,
+) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).

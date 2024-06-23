@@ -1,9 +1,16 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'esp32' on micropython-v1.21.0-esp32-ESP32_GENERIC
+"""
 
-WAKEUP_ALL_LOW: bool
-WAKEUP_ANY_HIGH: bool
-HEAP_EXEC: int
-HEAP_DATA: int
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+WAKEUP_ALL_LOW: bool = False
+WAKEUP_ANY_HIGH: bool = True
+HEAP_EXEC: int = 1
+HEAP_DATA: int = 4
 
 def raw_temperature(*args, **kwargs) -> Incomplete: ...
 def idf_heap_info(*args, **kwargs) -> Incomplete: ...
@@ -14,7 +21,7 @@ def wake_on_ulp(*args, **kwargs) -> Incomplete: ...
 def gpio_deep_sleep_hold(*args, **kwargs) -> Incomplete: ...
 
 class ULP:
-    RESERVE_MEM: int
+    RESERVE_MEM: int = 2040
     def run(self, *args, **kwargs) -> Incomplete: ...
     def set_wakeup_period(self, *args, **kwargs) -> Incomplete: ...
     def load_binary(self, *args, **kwargs) -> Incomplete: ...
@@ -30,10 +37,10 @@ class NVS:
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class Partition:
-    RUNNING: int
-    TYPE_APP: int
-    TYPE_DATA: int
-    BOOT: int
+    RUNNING: int = 1
+    TYPE_APP: int = 0
+    TYPE_DATA: int = 1
+    BOOT: int = 0
     def readblocks(self, *args, **kwargs) -> Incomplete: ...
     def ioctl(self, *args, **kwargs) -> Incomplete: ...
     def set_boot(self, *args, **kwargs) -> Incomplete: ...

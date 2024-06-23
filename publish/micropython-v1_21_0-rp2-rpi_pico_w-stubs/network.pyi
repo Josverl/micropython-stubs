@@ -35,19 +35,25 @@ Host: micropython.org
 ')
     data = s.recv(1000)
     s.close()
+
+---
+Module: 'network' on micropython-v1.21.0-rp2-RPI_PICO_W
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Any, List, Optional, Tuple, Union
 
-STA_IF: int
-STAT_IDLE: int
-STAT_NO_AP_FOUND: int
-STAT_WRONG_PASSWORD: int
-STAT_GOT_IP: int
-AP_IF: int
-STAT_CONNECTING: int
-STAT_CONNECT_FAIL: int
+STA_IF: int = 0
+STAT_IDLE: int = 0
+STAT_NO_AP_FOUND: int = -2
+STAT_WRONG_PASSWORD: int = -3
+STAT_GOT_IP: int = 3
+AP_IF: int = 1
+STAT_CONNECTING: int = 1
+STAT_CONNECT_FAIL: int = -1
 
 def route(*args, **kwargs) -> Incomplete: ...
 def hostname(*args, **kwargs) -> Incomplete: ...
@@ -62,9 +68,9 @@ class WLAN:
     For example, only STA interface may `WLAN.connect()` to an access point.
     """
 
-    PM_PERFORMANCE: int
-    PM_POWERSAVE: int
-    PM_NONE: int
+    PM_PERFORMANCE: int = 10555714
+    PM_POWERSAVE: int = 17
+    PM_NONE: int = 16
     def isconnected(self) -> bool:
         """
         In case of STA mode, returns ``True`` if connected to a WiFi access

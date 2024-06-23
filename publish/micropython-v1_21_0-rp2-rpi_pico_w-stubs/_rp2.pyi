@@ -11,9 +11,15 @@ See the `RP2040 Python datasheet
 for more information, and `pico-micropython-examples
 <https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
 for example code.
+
+---
+Module: '_rp2' on micropython-v1.21.0-rp2-RPI_PICO_W
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Any, Optional
 
 def country(*args, **kwargs) -> Incomplete: ...
@@ -55,19 +61,19 @@ class PIO:
     Raises a ``ValueError`` if any other argument is provided.
     """
 
-    JOIN_TX: int
-    JOIN_NONE: int
-    JOIN_RX: int
-    SHIFT_LEFT: int
-    OUT_HIGH: int
-    OUT_LOW: int
-    SHIFT_RIGHT: int
-    IN_LOW: int
-    IRQ_SM3: int
-    IN_HIGH: int
-    IRQ_SM2: int
-    IRQ_SM0: int
-    IRQ_SM1: int
+    JOIN_TX: int = 1
+    JOIN_NONE: int = 0
+    JOIN_RX: int = 2
+    SHIFT_LEFT: int = 0
+    OUT_HIGH: int = 3
+    OUT_LOW: int = 2
+    SHIFT_RIGHT: int = 1
+    IN_LOW: int = 0
+    IRQ_SM3: int = 2048
+    IN_HIGH: int = 1
+    IRQ_SM2: int = 1024
+    IRQ_SM0: int = 256
+    IRQ_SM1: int = 512
     def state_machine(self, id, program, *args, **kwargs) -> Incomplete:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has

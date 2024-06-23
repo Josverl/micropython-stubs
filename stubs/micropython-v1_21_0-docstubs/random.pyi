@@ -27,12 +27,10 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
    enabled.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/random.rst
-from typing import (
-    Any,
-    Optional,
-)
+from __future__ import annotations
+from typing import Any, Optional
 from _typeshed import Incomplete
 
 def getrandbits(n) -> int:
@@ -70,7 +68,9 @@ def uniform(a, b) -> int:
     """
     ...
 
-def seed(n=None, /) -> None:
+def seed(
+    n=None,
+) -> None:
     """
     Initialise the random number generator module with the seed *n* which should
     be an integer.  When no argument (or ``None``) is passed in it will (if

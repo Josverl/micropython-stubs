@@ -59,27 +59,40 @@ Tuple address format for ``socket`` module:
   addresses. Note the domain names are not accepted as *ipv6_address*,
   they should be resolved first using `socket.getaddrinfo()`. Availability
   of IPv6 support depends on a :term:`MicroPython port`.
+
+---
+Module: 'usocket' on micropython-v1.21.0-esp32-ESP32_GENERIC
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from stdlib.socket import *
 from typing import Any, IO, Optional, Tuple
 
-SOCK_STREAM: int
-SOCK_DGRAM: int
-SOCK_RAW: int
-SO_BROADCAST: int
-SOL_SOCKET: int
-SO_BINDTODEVICE: int
-SO_REUSEADDR: int
-AF_INET6: int
-IP_ADD_MEMBERSHIP: int
-AF_INET: int
-IPPROTO_UDP: int
-IPPROTO_IP: int
-IPPROTO_TCP: int
+SOCK_STREAM: int = 1
+SOCK_DGRAM: int = 2
+SOCK_RAW: int = 3
+SO_BROADCAST: int = 32
+SOL_SOCKET: int = 4095
+SO_BINDTODEVICE: int = 4107
+SO_REUSEADDR: int = 4
+AF_INET6: int = 10
+IP_ADD_MEMBERSHIP: int = 3
+AF_INET: int = 2
+IPPROTO_UDP: int = 17
+IPPROTO_IP: int = 0
+IPPROTO_TCP: int = 6
 
-def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
+def getaddrinfo(
+    host,
+    port,
+    af=0,
+    type=0,
+    proto=0,
+    flags=0,
+) -> Incomplete:
     """
     Translate the host/port argument into a sequence of 5-tuples that contain all the
     necessary arguments for creating a socket connected to that service. Arguments
@@ -149,7 +162,11 @@ class socket:
         """
         ...
 
-    def makefile(self, mode="rb", buffering=0, /) -> IO:
+    def makefile(
+        self,
+        mode="rb",
+        buffering=0,
+    ) -> IO:
         """
         Return a file object associated with the socket. The exact returned type depends on the arguments
         given to makefile(). The support is limited to binary modes only ('rb', 'wb', and 'rwb').

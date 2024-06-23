@@ -1,16 +1,23 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'lwip' on micropython-v1.21.0-rp2-RPI_PICO_W
+"""
 
-SOCK_STREAM: int
-SOCK_RAW: int
-SOCK_DGRAM: int
-SOL_SOCKET: int
-SO_BROADCAST: int
-SO_REUSEADDR: int
-AF_INET6: int
-AF_INET: int
-IP_DROP_MEMBERSHIP: int
-IPPROTO_IP: int
-IP_ADD_MEMBERSHIP: int
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+SOCK_STREAM: int = 1
+SOCK_RAW: int = 3
+SOCK_DGRAM: int = 2
+SOL_SOCKET: int = 1
+SO_BROADCAST: int = 32
+SO_REUSEADDR: int = 4
+AF_INET6: int = 10
+AF_INET: int = 2
+IP_DROP_MEMBERSHIP: int = 1025
+IPPROTO_IP: int = 0
+IP_ADD_MEMBERSHIP: int = 1024
 
 def reset(*args, **kwargs) -> Incomplete: ...
 def print_pcbs(*args, **kwargs) -> Incomplete: ...

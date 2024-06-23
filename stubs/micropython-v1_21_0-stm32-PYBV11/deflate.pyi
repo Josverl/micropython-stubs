@@ -1,9 +1,16 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'deflate' on micropython-v1.21.0-stm32-PYBV11
+"""
 
-GZIP: int
-RAW: int
-ZLIB: int
-AUTO: int
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+GZIP: int = 3
+RAW: int = 1
+ZLIB: int = 2
+AUTO: int = 0
 
 class DeflateIO:
     def readline(self, *args, **kwargs) -> Incomplete: ...

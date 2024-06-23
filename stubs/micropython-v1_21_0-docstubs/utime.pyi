@@ -33,13 +33,10 @@ functions below which require reference to current absolute time may
 behave not as expected.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/time.rst
-from typing import (
-    Any,
-    Optional,
-    Tuple,
-)
+from __future__ import annotations
+from typing import Any, Optional, Tuple
 from _typeshed import Incomplete
 
 def gmtime(secs: Optional[Any] = None) -> Tuple:

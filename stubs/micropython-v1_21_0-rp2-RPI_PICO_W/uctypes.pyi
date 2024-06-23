@@ -1,37 +1,44 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'uctypes' on micropython-v1.21.0-rp2-RPI_PICO_W
+"""
 
-VOID: int
-NATIVE: int
-PTR: int
-SHORT: int
-LONGLONG: int
-INT8: int
-LITTLE_ENDIAN: int
-LONG: int
-UINT: int
-ULONG: int
-ULONGLONG: int
-USHORT: int
-UINT8: int
-UINT16: int
-UINT32: int
-UINT64: int
-INT64: int
-BFUINT16: int
-BFUINT32: int
-BFUINT8: int
-BFINT8: int
-ARRAY: int
-BFINT16: int
-BFINT32: int
-BF_LEN: int
-INT: int
-INT16: int
-INT32: int
-FLOAT64: int
-BF_POS: int
-BIG_ENDIAN: int
-FLOAT32: int
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+VOID: int = 0
+NATIVE: int = 2
+PTR: int = 536870912
+SHORT: int = 402653184
+LONGLONG: int = 939524096
+INT8: int = 134217728
+LITTLE_ENDIAN: int = 0
+LONG: int = 671088640
+UINT: int = 536870912
+ULONG: int = 536870912
+ULONGLONG: int = 805306368
+USHORT: int = 268435456
+UINT8: int = 0
+UINT16: int = 268435456
+UINT32: int = 536870912
+UINT64: int = 805306368
+INT64: int = 939524096
+BFUINT16: int = -805306368
+BFUINT32: int = -536870912
+BFUINT8: int = -1073741824
+BFINT8: int = -939524096
+ARRAY: int = -1073741824
+BFINT16: int = -671088640
+BFINT32: int = -402653184
+BF_LEN: int = 22
+INT: int = 671088640
+INT16: int = 402653184
+INT32: int = 671088640
+FLOAT64: int = -134217728
+BF_POS: int = 17
+BIG_ENDIAN: int = 1
+FLOAT32: int = -268435456
 
 def sizeof(*args, **kwargs) -> Incomplete: ...
 def bytes_at(*args, **kwargs) -> Incomplete: ...

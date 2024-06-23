@@ -11,8 +11,9 @@ C language allows, and then access it using familiar dot-syntax to reference
 sub-fields.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/uctypes.rst
+from __future__ import annotations
 from _typeshed import Incomplete
 
 LITTLE_ENDIAN: bytes
@@ -96,9 +97,17 @@ class struct:
     memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
 
-    def __init__(self, addr, descriptor, layout_type=NATIVE, /) -> None: ...
+    def __init__(
+        self,
+        addr,
+        descriptor,
+        layout_type=NATIVE,
+    ) -> None: ...
 
-def sizeof(struct, layout_type=NATIVE, /) -> int:
+def sizeof(
+    struct,
+    layout_type=NATIVE,
+) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object

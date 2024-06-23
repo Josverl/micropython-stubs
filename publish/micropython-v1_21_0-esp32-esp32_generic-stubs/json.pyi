@@ -7,9 +7,15 @@ CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
 
 This modules allows to convert between Python objects and the JSON
 data format.
+
+---
+Module: 'json' on micropython-v1.21.0-esp32-ESP32_GENERIC
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 
 def loads(str) -> Incomplete:
     """

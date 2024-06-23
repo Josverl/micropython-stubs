@@ -34,14 +34,10 @@ Core functions
 --------------
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/asyncio.rst
-from typing import (
-    Any,
-    Coroutine,
-    List,
-    Tuple,
-)
+from __future__ import annotations
+from typing import Any, Coroutine, List, Tuple
 from _typeshed import Incomplete
 
 class Task:
@@ -74,6 +70,7 @@ class Event:
         Returns ``True`` if the event is set, ``False`` otherwise.
         """
         ...
+
     def set(self) -> None:
         """
         Set the event.  Any tasks waiting on the event will be scheduled to run.
@@ -82,11 +79,13 @@ class Event:
         from an IRQ, scheduler callback, or other thread. See `ThreadSafeFlag`.
         """
         ...
+
     def clear(self) -> None:
         """
         Clear the event.
         """
         ...
+
     def wait(self) -> Coroutine[Incomplete, Any, Any]:
         """
         Wait for the event to be set.  If the event is already set then it returns
@@ -111,12 +110,14 @@ class ThreadSafeFlag:
         to run.
         """
         ...
+
     def clear(self) -> None:
         """
         Clear the flag. This may be used to ensure that a possibly previously-set
         flag is clear before waiting for it.
         """
         ...
+
     def wait(self) -> Coroutine[Incomplete, Any, Any]:
         """
         Wait for the flag to be set.  If the flag is already set then it returns
@@ -142,6 +143,7 @@ class Lock:
         Returns ``True`` if the lock is locked, otherwise ``False``.
         """
         ...
+
     def acquire(self) -> Coroutine[None, Any, Any]:
         """
         Wait for the lock to be in the unlocked state and then lock it in an atomic
@@ -150,6 +152,7 @@ class Lock:
         This is a coroutine.
         """
         ...
+
     def release(self) -> Incomplete:
         """
         Release the lock.  If any tasks are waiting on the lock then the next one in the
@@ -172,11 +175,13 @@ class Stream:
         ``peername``.
         """
         ...
+
     def close(self) -> None:
         """
         Close the stream.
         """
         ...
+
     def wait_closed(self) -> Coroutine[None, Any, Any]:
         """
         Wait for the stream to close.
@@ -184,6 +189,7 @@ class Stream:
         This is a coroutine.
         """
         ...
+
     def read(self, n=-1) -> Coroutine[Incomplete, Any, Any]:
         """
         Read up to *n* bytes and return them.  If *n* is not provided or -1 then read all
@@ -193,6 +199,7 @@ class Stream:
         This is a coroutine.
         """
         ...
+
     def readinto(self, buf) -> Coroutine[int, Any, Any]:
         """
         Read up to n bytes into *buf* with n being equal to the length of *buf*.
@@ -202,6 +209,7 @@ class Stream:
         This is a coroutine, and a MicroPython extension.
         """
         ...
+
     def readexactly(self, n) -> Coroutine[bytes, Any, Any]:
         """
         Read exactly *n* bytes and return them as a bytes object.
@@ -211,6 +219,7 @@ class Stream:
         This is a coroutine.
         """
         ...
+
     def readline(self) -> Coroutine[Incomplete, Any, Any]:
         """
         Read a line and return it.
@@ -218,6 +227,7 @@ class Stream:
         This is a coroutine.
         """
         ...
+
     def write(self, buf) -> Incomplete:
         """
         Accumulated *buf* to the output buffer.  The data is only flushed when
@@ -225,6 +235,7 @@ class Stream:
         after calling this function.
         """
         ...
+
     def drain(self) -> Coroutine[Incomplete, Any, Any]:
         """
         Drain (write) all buffered output data out to the stream.
@@ -245,6 +256,7 @@ class Server:
         Close the server.
         """
         ...
+
     def wait_closed(self) -> Coroutine[None, Any, Any]:
         """
         Wait for the server to close.
@@ -265,44 +277,52 @@ class Loop:
         Create a task from the given *coro* and return the new `Task` object.
         """
         ...
+
     def run_forever(self) -> Incomplete:
         """
         Run the event loop until `stop()` is called.
         """
         ...
+
     def run_until_complete(self, awaitable) -> Incomplete:
         """
         Run the given *awaitable* until it completes.  If *awaitable* is not a task
         then it will be promoted to one.
         """
         ...
+
     def stop(self) -> None:
         """
         Stop the event loop.
         """
         ...
+
     def close(self) -> None:
         """
         Close the event loop.
         """
         ...
+
     def set_exception_handler(self, handler) -> None:
         """
         Set the exception handler to call when a Task raises an exception that is not
         caught.  The *handler* should accept two arguments: ``(loop, context)``.
         """
         ...
+
     def get_exception_handler(self) -> None:
         """
         Get the current exception handler.  Returns the handler, or ``None`` if no
         custom handler is set.
         """
         ...
+
     def default_exception_handler(self, context) -> Incomplete:
         """
         The default exception handler that is called.
         """
         ...
+
     def call_exception_handler(self, context) -> Incomplete:
         """
         Call the current exception handler.  The argument *context* is passed through and

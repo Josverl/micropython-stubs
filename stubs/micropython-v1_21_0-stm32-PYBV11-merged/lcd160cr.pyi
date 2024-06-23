@@ -4,18 +4,25 @@ Control of LCD160CR display.
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/lcd160cr.html
 
 This module provides control of the MicroPython LCD160CR display.
+
+---
+Module: 'lcd160cr' on micropython-v1.21.0-stm32-PYBV11
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Tuple
 
-LANDSCAPE: int
-PORTRAIT_UPSIDEDOWN: int
-PORTRAIT: int
-STARTUP_DECO_INFO: int
-STARTUP_DECO_MLOGO: int
-LANDSCAPE_UPSIDEDOWN: int
-STARTUP_DECO_NONE: int
+PORTRAIT_UPSIDEDOWN: int = 2
+LANDSCAPE_UPSIDEDOWN: int = 3
+LANDSCAPE: int = 1
+PORTRAIT: int = 0
+STARTUP_DECO_INFO: int = 2
+STARTUP_DECO_NONE: int = 0
+STARTUP_DECO_MLOGO: int = 1
+_uart_baud_table: dict = {}
 
 def calcsize(*args, **kwargs) -> Incomplete: ...
 def pack_into(*args, **kwargs) -> Incomplete: ...
@@ -58,34 +65,20 @@ class LCD160CR:
     for how the display can be connected to the pyboard.
     """
 
+    def rect_interior_no_clip(self, x, y, w, h) -> Incomplete: ...
+    def rect_no_clip(self, x, y, w, h) -> Incomplete: ...
+    def rect_outline_no_clip(self, x, y, w, h) -> Incomplete: ...
+    def poly_line(self, data) -> Incomplete:
+        """
+        Similar to :meth:`LCD160CR.poly_dot` but draws lines between the dots.
+        """
+        ...
+
     def line_no_clip(self, x1, y1, x2, y2) -> Incomplete:
         """
         These methods are as above but don't do any clipping on the input
         coordinates.  They are faster than the clipping versions and can be
         used when you know that the coordinates are within the display.
-        """
-        ...
-
-    def erase(self) -> Incomplete:
-        """
-        Erase the entire display to the pen fill color.
-        """
-        ...
-
-    def rect_interior_no_clip(self, x, y, w, h) -> Incomplete: ...
-    def touch_config(self, calib=False, save=False, irq=None) -> None:
-        """
-        Configure the touch panel:
-
-            - If *calib* is ``True`` then the call will trigger a touch calibration of
-              the resistive touch sensor.  This requires the user to touch various
-              parts of the screen.
-            - If *save* is ``True`` then the touch parameters will be saved to NVRAM
-              to persist across reset/power up.
-            - If *irq* is ``True`` then the display will be configured to pull the IRQ
-              line low when a touch force is detected.  If *irq* is ``False`` then this
-              feature is disabled.  If *irq* is ``None`` (the default value) then no
-              change is made to this setting.
         """
         ...
 
@@ -97,21 +90,40 @@ class LCD160CR:
         """
         ...
 
-    def poly_line(self, data) -> Incomplete:
+    def set_font(self, font, scale=0, bold=0, trans=0, scroll=0) -> None:
         """
-        Similar to :meth:`LCD160CR.poly_dot` but draws lines between the dots.
+        Set the font for the text.  Subsequent calls to `write` will use the newly
+        configured font.  The parameters are:
+
+            - *font* is the font family to use, valid values are 0, 1, 2, 3.
+            - *scale* is a scaling value for each character pixel, where the pixels
+              are drawn as a square with side length equal to *scale + 1*.  The value
+              can be between 0 and 63.
+            - *bold* controls the number of pixels to overdraw each character pixel,
+              making a bold effect.  The lower 2 bits of *bold* are the number of
+              pixels to overdraw in the horizontal direction, and the next 2 bits are
+              for the vertical direction.  For example, a *bold* value of 5 will
+              overdraw 1 pixel in both the horizontal and vertical directions.
+            - *trans* can be either 0 or 1 and if set to 1 the characters will be
+              drawn with a transparent background.
+            - *scroll* can be either 0 or 1 and if set to 1 the display will do a
+              soft scroll if the text moves to the next line.
         """
         ...
 
-    def rect_outline(self, x, y, w, h) -> Incomplete: ...
-    def rect_outline_no_clip(self, x, y, w, h) -> Incomplete: ...
-    def dot(self, x, y) -> None:
+    def erase(self) -> Incomplete:
         """
-        Draw a single pixel at the given location using the pen line color.
+        Erase the entire display to the pen fill color.
         """
         ...
 
-    def rect_no_clip(self, x, y, w, h) -> Incomplete: ...
+    def dot_no_clip(self, x, y) -> Incomplete: ...
+    def set_pen(self, line, fill) -> None:
+        """
+        Set the line and fill color for primitive shapes.
+        """
+        ...
+
     def rect_interior(self, x, y, w, h) -> None:
         """
         Draw a rectangle at the given location and size using the pen line
@@ -121,7 +133,13 @@ class LCD160CR:
         """
         ...
 
-    def dot_no_clip(self, x, y) -> Incomplete: ...
+    def dot(self, x, y) -> None:
+        """
+        Draw a single pixel at the given location using the pen line color.
+        """
+        ...
+
+    def rect_outline(self, x, y, w, h) -> Incomplete: ...
     def set_scroll_buf(self, s) -> None:
         """
         Set the string for scrolling in window 8.  The parameter *s* must be a string
@@ -129,10 +147,21 @@ class LCD160CR:
         """
         ...
 
-    def is_touched(self) -> bool:
+    def set_scroll_win(self, win, x=-1, y=0, w=0, h=0, vec=0, pat=0, fill=0x07E0, color=0) -> None:
         """
-        Returns a boolean: ``True`` if there is currently a touch force on the screen,
-        ``False`` otherwise.
+        Configure a window region for scrolling:
+
+            - *win* is the window id to configure.  There are 0..7 standard windows for
+              general purpose use.  Window 8 is the text scroll window (the ticker).
+            - *x*, *y*, *w*, *h* specify the location of the window in the display.
+            - *vec* specifies the direction and speed of scroll: it is a 16-bit value
+              of the form ``0bF.ddSSSSSSSSSSSS``.  *dd* is 0, 1, 2, 3 for +x, +y, -x,
+              -y scrolling. *F* sets the speed format, with 0 meaning that the window
+              is shifted *S % 256* pixel every frame, and 1 meaning that the window
+              is shifted 1 pixel every *S* frames.
+            - *pat* is a 16-bit pattern mask for the background.
+            - *fill* is the fill color.
+            - *color* is the extra color, either of the text or pattern foreground.
         """
         ...
 
@@ -166,27 +195,19 @@ class LCD160CR:
         """
         ...
 
-    def set_spi_win(self, x, y, w, h) -> None:
+    def touch_config(self, calib=False, save=False, irq=None) -> None:
         """
-        Set the window that SPI data is written to.
-        """
-        ...
+        Configure the touch panel:
 
-    def set_scroll_win(self, win, x=-1, y=0, w=0, h=0, vec=0, pat=0, fill=0x07E0, color=0) -> None:
-        """
-        Configure a window region for scrolling:
-
-            - *win* is the window id to configure.  There are 0..7 standard windows for
-              general purpose use.  Window 8 is the text scroll window (the ticker).
-            - *x*, *y*, *w*, *h* specify the location of the window in the display.
-            - *vec* specifies the direction and speed of scroll: it is a 16-bit value
-              of the form ``0bF.ddSSSSSSSSSSSS``.  *dd* is 0, 1, 2, 3 for +x, +y, -x,
-              -y scrolling. *F* sets the speed format, with 0 meaning that the window
-              is shifted *S % 256* pixel every frame, and 1 meaning that the window
-              is shifted 1 pixel every *S* frames.
-            - *pat* is a 16-bit pattern mask for the background.
-            - *fill* is the fill color.
-            - *color* is the extra color, either of the text or pattern foreground.
+            - If *calib* is ``True`` then the call will trigger a touch calibration of
+              the resistive touch sensor.  This requires the user to touch various
+              parts of the screen.
+            - If *save* is ``True`` then the touch parameters will be saved to NVRAM
+              to persist across reset/power up.
+            - If *irq* is ``True`` then the display will be configured to pull the IRQ
+              line low when a touch force is detected.  If *irq* is ``False`` then this
+              feature is disabled.  If *irq* is ``None`` (the default value) then no
+              change is made to this setting.
         """
         ...
 
@@ -205,17 +226,10 @@ class LCD160CR:
         """
         ...
 
-    def fast_spi(self, flush=True) -> SPI:
+    def is_touched(self) -> bool:
         """
-        Ready the display to accept RGB pixel data on the SPI bus, resetting the location
-        of the first byte to go to the top-left corner of the window set by
-        :meth:`LCD160CR.set_spi_win`.
-        The method returns an SPI object which can be used to write the pixel data.
-
-        Pixels should be sent as 16-bit RGB values in the 5-6-5 format.  The destination
-        counter will increase as data is sent, and data can be sent in arbitrary sized
-        chunks.  Once the destination counter reaches the end of the window specified by
-        :meth:`LCD160CR.set_spi_win` it will wrap around to the top-left corner of that window.
+        Returns a boolean: ``True`` if there is currently a touch force on the screen,
+        ``False`` otherwise.
         """
         ...
 
@@ -231,6 +245,26 @@ class LCD160CR:
         """
         ...
 
+    def set_spi_win(self, x, y, w, h) -> None:
+        """
+        Set the window that SPI data is written to.
+        """
+        ...
+
+    def fast_spi(self, flush=True) -> SPI:
+        """
+        Ready the display to accept RGB pixel data on the SPI bus, resetting the location
+        of the first byte to go to the top-left corner of the window set by
+        :meth:`LCD160CR.set_spi_win`.
+        The method returns an SPI object which can be used to write the pixel data.
+
+        Pixels should be sent as 16-bit RGB values in the 5-6-5 format.  The destination
+        counter will increase as data is sent, and data can be sent in arbitrary sized
+        chunks.  Once the destination counter reaches the end of the window specified by
+        :meth:`LCD160CR.set_spi_win` it will wrap around to the top-left corner of that window.
+        """
+        ...
+
     def feed_wdt(self) -> Incomplete:
         """
         The first call to this method will start the display's internal watchdog
@@ -239,6 +273,9 @@ class LCD160CR:
         """
         ...
 
+    def _waitfor(self, *args, **kwargs) -> Incomplete: ...
+    def _send(self, *args, **kwargs) -> Incomplete: ...
+    def _fcmd2(self, *args, **kwargs) -> Incomplete: ...
     @staticmethod
     def rgb(r, g, b) -> int:
         """
@@ -249,30 +286,11 @@ class LCD160CR:
         """
         ...
 
-    def set_pen(self, line, fill) -> None:
-        """
-        Set the line and fill color for primitive shapes.
-        """
-        ...
-
+    def oflush(self, *args, **kwargs) -> Incomplete: ...
     def iflush(self, *args, **kwargs) -> Incomplete: ...
-    def set_brightness(self, value) -> None:
+    def set_text_color(self, fg, bg) -> None:
         """
-        Set the brightness of the display, between 0 and 31.
-        """
-        ...
-
-    @staticmethod
-    def clip_line(data, w, h) -> Incomplete:
-        """
-        Clip the given line data.  This is for internal use.
-        """
-        ...
-
-    def set_power(self, on) -> None:
-        """
-        Turn the display on or off, depending on the given value of *on*: 0 or ``False``
-        will turn the display off, and 1 or ``True`` will turn it on.
+        Set the foreground and background color of the text.
         """
         ...
 
@@ -282,7 +300,7 @@ class LCD160CR:
         """
         ...
 
-    def oflush(self, *args, **kwargs) -> Incomplete: ...
+    def _fcmd2b(self, *args, **kwargs) -> Incomplete: ...
     def write(self, s) -> None:
         """
         Write text to the display, using the current position, color and font.
@@ -305,16 +323,32 @@ class LCD160CR:
         """
         ...
 
-    def screen_load(self, buf) -> None:
+    def get_line(self, x, y, buf) -> Incomplete:
         """
-        Load the entire screen from the given buffer.
+        Low-level method to get a line of pixels into the given buffer.
+        To read *n* pixels *buf* should be *2*n+1* bytes in length.  The first byte
+        is a dummy byte and should be ignored, and subsequent bytes represent the
+        pixels in the line starting at coordinate *(x, y)*.
         """
         ...
 
-    def set_i2c_addr(self, addr) -> None:
+    def set_pixel(self, x, y, c) -> None:
         """
-        Set the I2C address of the display.  The *addr* value must have the
-        lower 2 bits cleared.
+        Set the specified pixel to the given color.  The color should be a 16-bit
+        integer and can be created by :meth:`LCD160CR.rgb`.
+        """
+        ...
+
+    def get_pixel(self, x, y) -> Incomplete:
+        """
+        Get the 16-bit value of the specified pixel.
+        """
+        ...
+
+    def set_pos(self, x, y) -> None:
+        """
+        Set the position for text output using :meth:`LCD160CR.write`.  The position
+        is the upper-left corner of the text.
         """
         ...
 
@@ -329,65 +363,22 @@ class LCD160CR:
         """
         ...
 
-    def set_font(self, font, scale=0, bold=0, trans=0, scroll=0) -> None:
+    def screen_load(self, buf) -> None:
         """
-        Set the font for the text.  Subsequent calls to `write` will use the newly
-        configured font.  The parameters are:
-
-            - *font* is the font family to use, valid values are 0, 1, 2, 3.
-            - *scale* is a scaling value for each character pixel, where the pixels
-              are drawn as a square with side length equal to *scale + 1*.  The value
-              can be between 0 and 63.
-            - *bold* controls the number of pixels to overdraw each character pixel,
-              making a bold effect.  The lower 2 bits of *bold* are the number of
-              pixels to overdraw in the horizontal direction, and the next 2 bits are
-              for the vertical direction.  For example, a *bold* value of 5 will
-              overdraw 1 pixel in both the horizontal and vertical directions.
-            - *trans* can be either 0 or 1 and if set to 1 the characters will be
-              drawn with a transparent background.
-            - *scroll* can be either 0 or 1 and if set to 1 the display will do a
-              soft scroll if the text moves to the next line.
+        Load the entire screen from the given buffer.
         """
         ...
 
-    def set_pos(self, x, y) -> None:
+    @staticmethod
+    def clip_line(data, w, h) -> Incomplete:
         """
-        Set the position for text output using :meth:`LCD160CR.write`.  The position
-        is the upper-left corner of the text.
-        """
-        ...
-
-    def set_text_color(self, fg, bg) -> None:
-        """
-        Set the foreground and background color of the text.
+        Clip the given line data.  This is for internal use.
         """
         ...
 
-    def set_startup_deco(self, value) -> None:
+    def set_brightness(self, value) -> None:
         """
-        Set the start-up decoration of the display.  The *value* parameter can be a
-        logical or of `STARTUP_DECO_NONE`, `STARTUP_DECO_MLOGO`, `STARTUP_DECO_INFO`.
-        """
-        ...
-
-    def get_line(self, x, y, buf) -> Incomplete:
-        """
-        Low-level method to get a line of pixels into the given buffer.
-        To read *n* pixels *buf* should be *2*n+1* bytes in length.  The first byte
-        is a dummy byte and should be ignored, and subsequent bytes represent the
-        pixels in the line starting at coordinate *(x, y)*.
-        """
-        ...
-
-    def set_uart_baudrate(self, baudrate) -> None:
-        """
-        Set the baudrate of the UART interface.
-        """
-        ...
-
-    def get_pixel(self, x, y) -> Incomplete:
-        """
-        Get the 16-bit value of the specified pixel.
+        Set the brightness of the display, between 0 and 31.
         """
         ...
 
@@ -398,10 +389,30 @@ class LCD160CR:
         """
         ...
 
-    def set_pixel(self, x, y, c) -> None:
+    def set_power(self, on) -> None:
         """
-        Set the specified pixel to the given color.  The color should be a 16-bit
-        integer and can be created by :meth:`LCD160CR.rgb`.
+        Turn the display on or off, depending on the given value of *on*: 0 or ``False``
+        will turn the display off, and 1 or ``True`` will turn it on.
+        """
+        ...
+
+    def set_startup_deco(self, value) -> None:
+        """
+        Set the start-up decoration of the display.  The *value* parameter can be a
+        logical or of `STARTUP_DECO_NONE`, `STARTUP_DECO_MLOGO`, `STARTUP_DECO_INFO`.
+        """
+        ...
+
+    def set_i2c_addr(self, addr) -> None:
+        """
+        Set the I2C address of the display.  The *addr* value must have the
+        lower 2 bits cleared.
+        """
+        ...
+
+    def set_uart_baudrate(self, baudrate) -> None:
+        """
+        Set the baudrate of the UART interface.
         """
         ...
 

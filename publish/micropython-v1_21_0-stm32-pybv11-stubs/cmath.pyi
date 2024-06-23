@@ -10,13 +10,19 @@ working with complex numbers.
 
 Availability: not available on WiPy and ESP8266. Floating point support
 required for this module.
+
+---
+Module: 'cmath' on micropython-v1.21.0-stm32-PYBV11
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Tuple
 
-e: float
-pi: float
+e: float = 2.718282
+pi: float = 3.141593
 
 def polar(z) -> Tuple:
     """

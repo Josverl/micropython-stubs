@@ -6,7 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/pyb.html
 The ``pyb`` module contains specific functions related to the board.
 """
 
-# source version: v1_21_0
+# source version: v1.21.0
 # origin module:: repos/micropython/docs/library/pyb.rst
 # + module: pyb.Accel.rst
 # + module: pyb.ADC.rst
@@ -26,13 +26,8 @@ The ``pyb`` module contains specific functions related to the board.
 # + module: pyb.UART.rst
 # + module: pyb.USB_HID.rst
 # + module: pyb.USB_VCP.rst
-from typing import (
-    Any,
-    List,
-    NoReturn,
-    Optional,
-    Tuple,
-)
+from __future__ import annotations
+from typing import Any, List, NoReturn, Optional, Tuple
 from _typeshed import Incomplete
 
 hid_mouse: int
@@ -62,21 +57,25 @@ class Accel:
         times the size of what they would be from the raw x(), y() and z() calls.
         """
         ...
+
     def tilt(self) -> Incomplete:
         """
         Get the tilt register.
         """
         ...
+
     def x(self) -> Incomplete:
         """
         Get the x-axis value.
         """
         ...
+
     def y(self) -> Incomplete:
         """
         Get the y-axis value.
         """
         ...
+
     def z(self) -> Incomplete:
         """
         Get the z-axis value.
@@ -96,6 +95,7 @@ class ADC:
         will be between 0 and 4095.
         """
         ...
+
     def read_timed(self, buf, timer) -> Incomplete:
         """
         Read analog values into ``buf`` at a rate set by the ``timer`` object.
@@ -133,6 +133,7 @@ class ADC:
         it does not return to the calling program until the buffer is full.
         """
         ...
+
     def read_timed_multi(self, adcs, bufs, timer) -> bool:
         """
         This is a static method. It can be used to extract relative timing or
@@ -308,11 +309,13 @@ class CAN:
         See page 680 of the STM32F405 datasheet for more details.
         """
         ...
+
     def deinit(self) -> None:
         """
         Turn off the CAN bus.
         """
         ...
+
     def restart(self) -> Incomplete:
         """
         Force a software restart of the CAN controller without resetting its
@@ -325,6 +328,7 @@ class CAN:
         go into the error active state.
         """
         ...
+
     def state(self) -> Incomplete:
         """
         Return the state of the controller.  The return value can be one of:
@@ -340,6 +344,7 @@ class CAN:
           (TEC overflowed beyond 255).
         """
         ...
+
     def info(self, list: Optional[Any] = None) -> Incomplete:
         """
         Get information about the controller's error states and TX and RX buffers.
@@ -363,6 +368,7 @@ class CAN:
         - number of pending RX messages on fifo 1
         """
         ...
+
     def setfilter(self, bank, mode, fifo, params, *, rtr=None, extframe=False) -> None:
         """
         Configure a filter bank:
@@ -419,6 +425,7 @@ class CAN:
           otherwise a standard identifier (11 bits) is used.
         """
         ...
+
     def clearfilter(self, bank, extframe=False) -> None:
         """
         Clear and disables a filter bank:
@@ -428,11 +435,13 @@ class CAN:
           otherwise the clear a standard identifier (configured with extframe=False).
         """
         ...
+
     def any(self, fifo) -> bool:
         """
         Return ``True`` if any message waiting on the FIFO, else ``False``.
         """
         ...
+
     def recv(self, fifo, list=None, *, timeout=5000) -> Tuple:
         """
         Receive data on the bus:
@@ -468,6 +477,7 @@ class CAN:
              can.recv(0, lst)
         """
         ...
+
     def send(self, data, id, *, timeout=0, rtr=False, extframe=False, fdf=False, brs=False) -> None:
         """
         Send a message on the bus:
@@ -496,6 +506,7 @@ class CAN:
         Return value: ``None``.
         """
         ...
+
     def rxcallback(self, fifo, fun) -> None:
         """
         Register a function to be called when a message is accepted into a empty fifo:
@@ -572,17 +583,20 @@ class DAC:
         of this parameter.
         """
         ...
+
     def deinit(self) -> Incomplete:
         """
         De-initialise the DAC making its pin available for other uses.
         """
         ...
+
     def noise(self, freq) -> None:
         """
         Generate a pseudo-random noise signal.  A new random sample is written
         to the DAC output at the given frequency.
         """
         ...
+
     def triangle(self, freq) -> None:
         """
         Generate a triangle wave.  The value on the DAC output changes at the given
@@ -590,6 +604,7 @@ class DAC:
         the frequency of the repeating triangle wave itself is 8192 times smaller.
         """
         ...
+
     def write(self, value) -> Incomplete:
         """
         Direct access to the DAC output.  The minimum value is 0.  The maximum
@@ -597,6 +612,7 @@ class DAC:
         object or by using the ``init`` method.
         """
         ...
+
     def write_timed(self, data, freq, *, mode=NORMAL) -> Incomplete:
         """
         Initiates a burst of RAM to DAC using a DMA transfer.
@@ -650,22 +666,26 @@ class ExtInt:
         Dump the values of the EXTI registers.
         """
         ...
+
     def disable(self) -> None:
         """
         Disable the interrupt associated with the ExtInt object.
         This could be useful for debouncing.
         """
         ...
+
     def enable(self) -> None:
         """
         Enable a disabled interrupt.
         """
         ...
+
     def line(self) -> int:
         """
         Return the line number that the pin is mapped to.
         """
         ...
+
     def swint(self) -> Incomplete:
         """
         Trigger the callback from software.
@@ -728,6 +748,7 @@ class I2C:
         Turn off the I2C bus.
         """
         ...
+
     def init(self, mode, *, addr=0x12, baudrate=400000, gencall=False, dma=False) -> None:
         """
         Initialise the I2C bus with the given parameters:
@@ -745,11 +766,13 @@ class I2C:
          by printing the I2C object.
         """
         ...
+
     def is_ready(self, addr) -> Incomplete:
         """
         Check if an I2C device responds to the given address.  Only valid when in controller mode.
         """
         ...
+
     def mem_read(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> Incomplete:
         """
         Read from the memory of an I2C device:
@@ -764,6 +787,7 @@ class I2C:
         This is only valid in controller mode.
         """
         ...
+
     def mem_write(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> None:
         """
         Write to the memory of an I2C device:
@@ -778,6 +802,7 @@ class I2C:
         This is only valid in controller mode.
         """
         ...
+
     def recv(self, recv, addr=0x00, *, timeout=5000) -> bytes:
         """
         Receive data on the bus:
@@ -791,6 +816,7 @@ class I2C:
         otherwise the same buffer that was passed in to ``recv``.
         """
         ...
+
     def send(self, send, addr=0x00, *, timeout=5000) -> None:
         """
         Send data on the bus:
@@ -802,6 +828,7 @@ class I2C:
         Return value: ``None``.
         """
         ...
+
     def scan(self) -> List:
         """
         Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.
@@ -823,11 +850,13 @@ class LCD:
         instructions/data to send.
         """
         ...
+
     def contrast(self, value) -> None:
         """
         Set the contrast of the LCD.  Valid values are between 0 and 47.
         """
         ...
+
     def fill(self, colour) -> None:
         """
         Fill the screen with the given colour (0 or 1 for white or black).
@@ -835,6 +864,7 @@ class LCD:
         This method writes to the hidden buffer.  Use ``show()`` to show the buffer.
         """
         ...
+
     def get(self, x, y) -> int:
         """
         Get the pixel at the position ``(x, y)``.  Returns 0 or 1.
@@ -842,11 +872,13 @@ class LCD:
         This method reads from the visible buffer.
         """
         ...
+
     def light(self, value) -> None:
         """
         Turn the backlight on/off.  True or 1 turns it on, False or 0 turns it off.
         """
         ...
+
     def pixel(self, x, y, colour) -> None:
         """
         Set the pixel at ``(x, y)`` to the given colour (0 or 1).
@@ -854,11 +886,13 @@ class LCD:
         This method writes to the hidden buffer.  Use ``show()`` to show the buffer.
         """
         ...
+
     def show(self) -> None:
         """
         Show the hidden buffer on the screen.
         """
         ...
+
     def text(self, str, x, y, colour) -> None:
         """
         Draw the given text to the position ``(x, y)`` using the given colour (0 or 1).
@@ -866,6 +900,7 @@ class LCD:
         This method writes to the hidden buffer.  Use ``show()`` to show the buffer.
         """
         ...
+
     def write(self, str) -> None:
         """
         Write the string ``str`` to the screen.  It will appear immediately.
@@ -893,16 +928,19 @@ class LED:
         free for general purpose use.
         """
         ...
+
     def off(self) -> None:
         """
         Turn the LED off.
         """
         ...
+
     def on(self) -> None:
         """
         Turn the LED on, to maximum intensity.
         """
         ...
+
     def toggle(self) -> Incomplete:
         """
         Toggle the LED between on (maximum intensity) and off.  If the LED is at
@@ -943,18 +981,21 @@ class Pin:
         Get or set the debugging state (``True`` or ``False`` for on or off).
         """
         ...
+
     @classmethod
     def dict(cls, dict: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin mapper dictionary.
         """
         ...
+
     @classmethod
     def mapper(cls, fun: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pin mapper function.
         """
         ...
+
     def init(self, mode, pull=PULL_NONE, *, value=None, alt=-1) -> None:
         """
         Initialise the pin:
@@ -988,6 +1029,7 @@ class Pin:
         Returns: ``None``.
         """
         ...
+
     def value(self, value: Optional[Any] = None) -> int:
         """
         Get or set the digital logic level of the pin:
@@ -998,11 +1040,13 @@ class Pin:
             is set high, otherwise it is set low.
         """
         ...
+
     def __str__(self) -> str:
         """
         Return a string describing the pin object.
         """
         ...
+
     def af(self) -> Incomplete:
         """
         Returns the currently configured alternate-function of the pin. The
@@ -1010,16 +1054,19 @@ class Pin:
         argument to the init function.
         """
         ...
+
     def af_list(self) -> List:
         """
         Returns an array of alternate functions available for this pin.
         """
         ...
+
     def gpio(self) -> int:
         """
         Returns the base address of the GPIO block associated with this pin.
         """
         ...
+
     def mode(self) -> Incomplete:
         """
         Returns the currently configured mode of the pin. The integer returned
@@ -1027,26 +1074,31 @@ class Pin:
         function.
         """
         ...
+
     def name(self) -> str:
         """
         Get the pin name.
         """
         ...
+
     def names(self) -> str:
         """
         Returns the cpu and board names for this pin.
         """
         ...
+
     def pin(self) -> int:
         """
         Get the pin number.
         """
         ...
+
     def port(self) -> Incomplete:
         """
         Get the pin port.
         """
         ...
+
     def pull(self) -> Incomplete:
         """
         Returns the currently configured pull of the pin. The integer returned
@@ -1067,11 +1119,13 @@ class Switch(Pin):
         ``False`` otherwise.
         """
         ...
+
     def value(self) -> bool:
         """
         Get the switch state.  Returns ``True`` if pressed down, otherwise ``False``.
         """
         ...
+
     def callback(self, fun) -> None:
         """
         Register the given function to be called when the switch is pressed down.
@@ -1087,16 +1141,19 @@ class pinaf:
         Return a string describing the alternate function.
         """
         ...
+
     def index(self) -> int:
         """
         Return the alternate function index.
         """
         ...
+
     def name(self) -> str:
         """
         Return the name of the alternate function.
         """
         ...
+
     def reg(self) -> Incomplete:
         """
         Return the base register associated with the peripheral assigned to this
@@ -1128,6 +1185,7 @@ class RTC:
         ``subseconds`` counts down from 255 to 0
         """
         ...
+
     def wakeup(self, timeout, callback=None) -> None:
         """
         Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
@@ -1140,6 +1198,7 @@ class RTC:
         wakeup timer.  ``callback`` must take exactly one argument.
         """
         ...
+
     def info(self) -> Incomplete:
         """
         Get information about the startup time and reset source.
@@ -1150,6 +1209,7 @@ class RTC:
          - Bit 0x20000 is set if an external reset occurred
         """
         ...
+
     def calibration(self, cal) -> int:
         """
         Get or set RTC calibration.
@@ -1186,6 +1246,7 @@ class Servo:
             new position.
         """
         ...
+
     def speed(self, speed: Optional[Any] = None, time=0) -> Incomplete:
         """
         If no arguments are given, this function returns the current speed.
@@ -1197,6 +1258,7 @@ class Servo:
             speed.  If omitted, then the servo accelerates as quickly as possible.
         """
         ...
+
     def pulse_width(self, value: Optional[Any] = None) -> Incomplete:
         """
         If no arguments are given, this function returns the current raw pulse-width
@@ -1205,6 +1267,7 @@ class Servo:
         If an argument is given, this function sets the raw pulse-width value.
         """
         ...
+
     def calibration(self, pulse_min, pulse_max, pulse_centre, pulse_angle_90, pulse_speed_100) -> Tuple:
         """
         If no arguments are given, this function returns the current calibration
@@ -1251,6 +1314,7 @@ class SPI:
         Turn off the SPI bus.
         """
         ...
+
     def init(self, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -1278,6 +1342,7 @@ class SPI:
         prescaler.
         """
         ...
+
     def recv(self, recv, *, timeout=5000) -> bytes:
         """
         Receive data on the bus:
@@ -1290,6 +1355,7 @@ class SPI:
         otherwise the same buffer that was passed in to ``recv``.
         """
         ...
+
     def send(self, send, *, timeout=5000) -> None:
         """
         Send data on the bus:
@@ -1300,6 +1366,7 @@ class SPI:
         Return value: ``None``.
         """
         ...
+
     def send_recv(self, send, recv=None, *, timeout=5000) -> bytes:
         """
         Send and receive data on the bus at the same time:
@@ -1390,6 +1457,7 @@ class Timer:
          You must either specify freq or both of period and prescaler.
         """
         ...
+
     def deinit(self) -> None:
         """
         Deinitialises the timer.
@@ -1400,6 +1468,7 @@ class Timer:
         Stops the timer, and disables the timer peripheral.
         """
         ...
+
     def callback(self, fun) -> None:
         """
         Set the function to be called when the timer triggers.
@@ -1407,6 +1476,7 @@ class Timer:
         If ``fun`` is ``None`` then the callback will be disabled.
         """
         ...
+
     def channel(self, channel, mode, pin=None, *args) -> Incomplete:
         """
         If only a channel number is passed, then a previously initialized channel
@@ -1493,26 +1563,31 @@ class Timer:
             ch1 = timer.channel(1, pyb.Timer.PWM, pulse_width_percent=30)
         """
         ...
+
     def counter(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the timer counter.
         """
         ...
+
     def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the frequency for the timer (changes prescaler and period if set).
         """
         ...
+
     def period(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the period of the timer.
         """
         ...
+
     def prescaler(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the prescaler for the timer.
         """
         ...
+
     def source_freq(self) -> Incomplete:
         """
         Get the frequency of the source of the timer.
@@ -1529,6 +1604,7 @@ class timerchannel:
         If ``fun`` is ``None`` then the callback will be disabled.
         """
         ...
+
     def capture(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the capture value associated with a channel.
@@ -1536,6 +1612,7 @@ class timerchannel:
         capture is the logical name to use when the channel is in input capture mode.
         """
         ...
+
     def compare(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the compare value associated with a channel.
@@ -1543,6 +1620,7 @@ class timerchannel:
         compare is the logical name to use when the channel is in output compare mode.
         """
         ...
+
     def pulse_width(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pulse width value associated with a channel.
@@ -1553,6 +1631,7 @@ class timerchannel:
         In center aligned mode, a pulse width of ``period`` corresponds to a duty cycle of 100%
         """
         ...
+
     def pulse_width_percent(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the pulse width percentage associated with a channel.  The value
@@ -1631,16 +1710,19 @@ class UART:
         only 7 and 8 bits are supported.
         """
         ...
+
     def deinit(self) -> None:
         """
         Turn off the UART bus.
         """
         ...
+
     def any(self) -> int:
         """
         Returns the number of bytes waiting (may be 0).
         """
         ...
+
     def read(self, nbytes: Optional[Any] = None) -> bytes:
         """
         Read characters.  If ``nbytes`` is specified then read at most that many bytes.
@@ -1657,6 +1739,7 @@ class UART:
         on timeout.
         """
         ...
+
     def readchar(self) -> int:
         """
         Receive a single character on the bus.
@@ -1664,6 +1747,7 @@ class UART:
         Return value: The character read, as an integer.  Returns -1 on timeout.
         """
         ...
+
     def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
@@ -1673,6 +1757,7 @@ class UART:
         timeout.
         """
         ...
+
     def readline(self) -> None:
         """
         Read a line, ending in a newline character. If such a line exists, return is
@@ -1682,6 +1767,7 @@ class UART:
         Return value: the line read or ``None`` on timeout if no data is available.
         """
         ...
+
     def write(self, buf) -> int:
         """
         Write the buffer of bytes to the bus.  If characters are 7 or 8 bits wide
@@ -1693,12 +1779,14 @@ class UART:
         were written returns ``None``.
         """
         ...
+
     def writechar(self, char) -> None:
         """
         Write a single character on the bus.  ``char`` is an integer to write.
         Return value: ``None``. See note below if CTS flow control is used.
         """
         ...
+
     def sendbreak(self) -> None:
         """
         Send a break condition on the bus.  This drives the bus low for a duration
@@ -1725,6 +1813,7 @@ class USB_HID:
         otherwise the number of bytes read into ``data`` is returned.
         """
         ...
+
     def send(self, data) -> None:
         """
         Send data over the USB HID interface:
@@ -1754,6 +1843,7 @@ class USB_VCP:
         RTS is used to control read behaviour and CTS, to control write behaviour.
         """
         ...
+
     def setinterrupt(self, chr) -> None:
         """
         Set the character which interrupts running Python code.  This is set
@@ -1764,22 +1854,26 @@ class USB_VCP:
         want to send raw bytes over the USB VCP port.
         """
         ...
+
     def isconnected(self) -> bool:
         """
         Return ``True`` if USB is connected as a serial device, else ``False``.
         """
         ...
+
     def any(self) -> bool:
         """
         Return ``True`` if any characters waiting, else ``False``.
         """
         ...
+
     def close(self) -> Incomplete:
         """
         This method does nothing.  It exists so the USB_VCP object can act as
         a file.
         """
         ...
+
     def read(self, nbytes: Optional[Any] = None) -> bytes:
         """
         Read at most ``nbytes`` from the serial device and return them as a
@@ -1790,6 +1884,7 @@ class USB_VCP:
         with ``None`` value.
         """
         ...
+
     def readinto(self, buf, maxlen: Optional[Any] = None) -> int:
         """
         Read bytes from the serial device and store them into ``buf``, which
@@ -1801,6 +1896,7 @@ class USB_VCP:
         if no pending data available.
         """
         ...
+
     def readline(self) -> bytes:
         """
         Read a whole line from the serial device.
@@ -1809,6 +1905,7 @@ class USB_VCP:
         newline character or ``None`` if no pending data available.
         """
         ...
+
     def readlines(self) -> List:
         """
         Read as much data as possible from the serial device, breaking it into
@@ -1818,6 +1915,7 @@ class USB_VCP:
         Each line will include the newline character.
         """
         ...
+
     def write(self, buf) -> int:
         """
         Write the bytes from ``buf`` to the serial device.
@@ -1825,6 +1923,7 @@ class USB_VCP:
         Returns the number of bytes written.
         """
         ...
+
     def recv(self, data, *, timeout=5000) -> int:
         """
         Receive data on the bus:
@@ -1837,6 +1936,7 @@ class USB_VCP:
         otherwise the number of bytes read into ``data`` is returned.
         """
         ...
+
     def send(self, data, *, timeout=5000) -> int:
         """
         Send data over the USB VCP:
@@ -1847,6 +1947,7 @@ class USB_VCP:
         Return value: number of bytes sent.
         """
         ...
+
     def irq(self, handler=None, trigger=IRQ_RX, hard=False) -> None:
         """
         Register *handler* to be called whenever an event specified by *trigger*

@@ -1,18 +1,25 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'socket' on micropython-v1.21.0-esp32-ESP32_GENERIC
+"""
 
-SOCK_STREAM: int
-SOCK_DGRAM: int
-SOCK_RAW: int
-SO_BROADCAST: int
-SOL_SOCKET: int
-SO_BINDTODEVICE: int
-SO_REUSEADDR: int
-AF_INET6: int
-IP_ADD_MEMBERSHIP: int
-AF_INET: int
-IPPROTO_UDP: int
-IPPROTO_IP: int
-IPPROTO_TCP: int
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+SOCK_STREAM: int = 1
+SOCK_DGRAM: int = 2
+SOCK_RAW: int = 3
+SO_BROADCAST: int = 32
+SOL_SOCKET: int = 4095
+SO_BINDTODEVICE: int = 4107
+SO_REUSEADDR: int = 4
+AF_INET6: int = 10
+IP_ADD_MEMBERSHIP: int = 3
+AF_INET: int = 2
+IPPROTO_UDP: int = 17
+IPPROTO_IP: int = 0
+IPPROTO_TCP: int = 6
 
 def getaddrinfo(*args, **kwargs) -> Incomplete: ...
 

@@ -1,11 +1,18 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'esp' on micropython-v1.21.0-esp32-ESP32_GENERIC
+"""
 
-LOG_NONE: int
-LOG_WARNING: int
-LOG_VERBOSE: int
-LOG_DEBUG: int
-LOG_INFO: int
-LOG_ERROR: int
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+LOG_NONE: int = 0
+LOG_WARNING: int = 2
+LOG_VERBOSE: int = 5
+LOG_DEBUG: int = 4
+LOG_INFO: int = 3
+LOG_ERROR: int = 1
 
 def osdebug(*args, **kwargs) -> Incomplete: ...
 def flash_write(*args, **kwargs) -> Incomplete: ...

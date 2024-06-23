@@ -1,10 +1,17 @@
-from _typeshed import Incomplete as Incomplete
+"""
+Module: 'bluetooth' on micropython-v1.21.0-esp32-ESP32_GENERIC
+"""
 
-FLAG_NOTIFY: int
-FLAG_READ: int
-FLAG_WRITE: int
-FLAG_INDICATE: int
-FLAG_WRITE_NO_RESPONSE: int
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
+
+FLAG_NOTIFY: int = 16
+FLAG_READ: int = 2
+FLAG_WRITE: int = 8
+FLAG_INDICATE: int = 32
+FLAG_WRITE_NO_RESPONSE: int = 4
 
 class UUID:
     def __init__(self, *argv, **kwargs) -> None: ...
