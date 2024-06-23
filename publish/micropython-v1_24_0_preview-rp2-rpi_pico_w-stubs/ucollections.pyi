@@ -9,7 +9,7 @@ This module implements advanced collection and container types to
 hold/accumulate various objects.
 
 ---
-Module: 'ucollections' on micropython-v1.23.0-rp2-RPI_PICO_W
+Module: 'ucollections' on micropython-v1.24.0-preview-rp2-RPI_PICO_W
 """
 # import module from stdlib/module
 from collections import *

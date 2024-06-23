@@ -37,10 +37,10 @@ Host: micropython.org
     s.close()
 
 ---
-Module: 'network' on micropython-v1.23.0-esp32-ESP32_GENERIC
+Module: 'network' on micropython-v1.24.0-preview-esp32-ESP32_GENERIC
 """
 
-# MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32'}
+# MCU: {'version': '1.24.0-preview', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': 'preview.60.gcebc9b0ae', 'arch': 'xtensawin', 'ver': '1.24.0-preview-preview.60.gcebc9b0ae', 'cpu': 'ESP32'}
 # Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
@@ -88,9 +88,10 @@ ETH_GOT_IP: int = 5
 ETH_CONNECTED: int = 3
 ETH_DISCONNECTED: int = 4
 
-def phy_mode(*args, **kwargs) -> Incomplete: ...
 def country(*args, **kwargs) -> Incomplete: ...
 def hostname(*args, **kwargs) -> Incomplete: ...
+def ipconfig(*args, **kwargs) -> Incomplete: ...
+def phy_mode(*args, **kwargs) -> Incomplete: ...
 
 class LAN:
     """
@@ -195,25 +196,6 @@ class WLAN:
     SEC_OPEN: int = 0
     PM_PERFORMANCE: int = 1
     PM_POWERSAVE: int = 2
-    def status(self, param: Optional[Any] = None) -> Incomplete:
-        """
-        Return the current status of the wireless connection.
-
-        When called with no argument the return value describes the network link status.
-        The possible statuses are defined as constants:
-
-            * ``STAT_IDLE`` -- no connection and no activity,
-            * ``STAT_CONNECTING`` -- connecting in progress,
-            * ``STAT_WRONG_PASSWORD`` -- failed due to incorrect password,
-            * ``STAT_NO_AP_FOUND`` -- failed because no access point replied,
-            * ``STAT_CONNECT_FAIL`` -- failed due to other problems,
-            * ``STAT_GOT_IP`` -- connection successful.
-
-        When called with one argument *param* should be a string naming the status
-        parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
-        """
-        ...
-
     def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
         """
         Get/set IP-level network interface parameters: IP address, subnet mask,
@@ -225,6 +207,7 @@ class WLAN:
         """
         ...
 
+    def ipconfig(self, *args, **kwargs) -> Incomplete: ...
     def isconnected(self) -> bool:
         """
         In case of STA mode, returns ``True`` if connected to a WiFi access
@@ -259,6 +242,25 @@ class WLAN:
 
             * 0 -- visible
             * 1 -- hidden
+        """
+        ...
+
+    def status(self, param: Optional[Any] = None) -> Incomplete:
+        """
+        Return the current status of the wireless connection.
+
+        When called with no argument the return value describes the network link status.
+        The possible statuses are defined as constants:
+
+            * ``STAT_IDLE`` -- no connection and no activity,
+            * ``STAT_CONNECTING`` -- connecting in progress,
+            * ``STAT_WRONG_PASSWORD`` -- failed due to incorrect password,
+            * ``STAT_NO_AP_FOUND`` -- failed because no access point replied,
+            * ``STAT_CONNECT_FAIL`` -- failed due to other problems,
+            * ``STAT_GOT_IP`` -- connection successful.
+
+        When called with one argument *param* should be a string naming the status
+        parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
         """
         ...
 
