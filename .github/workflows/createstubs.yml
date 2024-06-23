@@ -9,7 +9,7 @@ on:
         #     - main
         paths:
             - .github/workflows/createstubs.yml
-            
+
 
 jobs:
 ########################################################################################################################################
@@ -69,7 +69,6 @@ jobs:
           mpflash download --version ${{ matrix.version }}
 
       - name: Update firmware to ${{ matrix.version }} on all connected boards
-        # cant update stm32 as that requires sudo :-( 
         run: |
           mpflash flash --version ${{ matrix.version }}
 
@@ -77,23 +76,20 @@ jobs:
         run: |
           stubber clone
 
-      - name: get/udate docstubs
+      - name: Get/update docstubs
         run: |
           stubber switch ${{ matrix.version }}
           stubber get-docstubs
 
-      - name: run board stubber
+      - name: Run board stubber
         run: |
           stubber get-mcu-stubs
 
-      - name: check in changes
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git pull
-          git add .
-          git commit -m "Update boardstubs for ${{ matrix.version }}"
-          git push
+      - name: commit
+        continue-on-error: true
+        uses: ./.github/actions/commit
+        with:
+          message: "Update boardstubs for ${{ matrix.version }}"
 
       - name: Build App
         if: always()
