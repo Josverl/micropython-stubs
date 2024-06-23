@@ -9,9 +9,11 @@ The matrix is printed as JSON and can be optionally written to a file if running
 import argparse
 import json
 import os
+import sys
+from functools import lru_cache
 
 from github import Auth, Github
-from packaging.version import parse
+from packaging.version import Version, parse
 
 # Token with no permissions to avoid throttling
 # https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28#getting-a-higher-rate-limit
@@ -20,6 +22,7 @@ PAT_NO_ACCESS = (
 )
 PAT = os.environ.get("GITHUB_TOKEN") or PAT_NO_ACCESS
 
+@lru_cache()
 def micropython_versions(start="v1.10"):
     g = Github(auth=Auth.Token(PAT))
     try:
@@ -31,6 +34,16 @@ def micropython_versions(start="v1.10"):
         tags = ["stable"]
     return tags
 
+def major_minor(versions):
+    """create a list of the most recent version for each major.minor"""
+    mm_groups = {}
+    for v in versions:
+        major_minor = f"{Version(v).major}.{Version(v).minor}"
+        if major_minor not in mm_groups:
+            mm_groups[major_minor] = [v]
+        else:
+            mm_groups[major_minor].append(v)
+    return [max(v) for v in mm_groups.values()]
 
 def main():
     matrix = {}
@@ -44,12 +57,11 @@ def main():
 
     # only run latests when running in ACT locally for testing
     if os.environ.get("ACT"):
-        matrix["version"] = micropython_versions(start="v1.20")[:1] # only latest
-    else:
-       matrix["version"] = micropython_versions(start="v1.20")[1:args.max] # last three
+        args.max = 1
+    matrix["version"] = major_minor(micropython_versions(start="v1.20"))[1:args.max] 
 
 
-    print(args)
+    # print(args)
     if args.stable:
         matrix["version"].insert(0, "stable")
     if args.preview:
@@ -58,7 +70,8 @@ def main():
     # GITHUB_OUTPUT is set by github actions
     if os.getenv('GITHUB_OUTPUT'):
         with open(os.getenv('GITHUB_OUTPUT'), 'a') as file:   #  type: ignore
-            file.write(f"versions={json.dumps(matrix)}")
+            file.write(f"versions={json.dumps(matrix)}\n")
+            file.write(f'mp_versions={json.dumps(matrix["version"])}\n')
     else:
         print(json.dumps(matrix, indent=4))
 

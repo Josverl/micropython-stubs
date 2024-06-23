@@ -32,10 +32,9 @@ jobs:
       ARCH: X64
       # ARCH: ARM64    
     strategy:
-      matrix: ${{ fromJSON(needs.list-versions-cs.outputs.versions) }}
-      max-parallel: 1
-    #   matrix:
-    #     version: [preview, v1.22.2]
+        max-parallel: 1  # only one version at a time
+        fail-fast: false # keep on trying each version even if one fails
+        matrix: ${{ fromJSON(needs.list-versions-cs.outputs.versions) }}
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v4
