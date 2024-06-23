@@ -14,22 +14,29 @@ name: get-doc-stubs
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 1 * * 5" # Run every Friday at 01:00
+    - cron: "0 22 * * *" # Run every day at 22:00
+  push:
+    # branches:
+    #     - main
+    paths:
+    - .github/workflows/get-doc-stubs.yml
+
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
 
 jobs:
   ########################################################################################################################################
   list-versions-doc:
+    # 'Get a matrix for the latest versions of micropython'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # no need to install python
-      - run: pip install pygithub packaging
-      - run: python .github/workflows/list_versions.py --latest
+        with:
+          fetch-depth: 1
+      - uses: ./.github/actions/get-mpversions
         id: dynamic
     outputs:
-      job_versions: ${{ steps.dynamic.outputs.versions }}
+      versions: ${{ steps.dynamic.outputs.versions }}
 
   ########################################################################################################################################
   get-micropython-doc-stubs:
@@ -38,7 +45,7 @@ jobs:
     continue-on-error: true
     needs: list-versions-doc
     strategy:
-      matrix: ${{ fromJSON(needs.list-versions-doc.outputs.job_versions) }}
+      matrix: ${{ fromJSON(needs.list-versions-doc.outputs.versions) }}
       max-parallel: 1
     
     # Most scripts will be run from the stubber, set that as default
@@ -59,7 +66,7 @@ jobs:
 
       - name: Install Python dependencies (stubber)
         run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install -U -r requirements.txt
 
       # micropython as a sub-module
       - name: "clone and checkout micropython ${{ matrix.version }}"
