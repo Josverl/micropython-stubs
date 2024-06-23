@@ -1,0 +1,8 @@
+169c169
+<                     state.transport.eval("'\\n'.join(p for p in sys.path if p.endswith('/lib'))")
+---
+>                     state.transport.eval("'|'.join(p for p in sys.path if p.endswith('/lib'))")
+171c171
+<                     .split("\n")
+---
+>                     .split("|")

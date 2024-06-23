@@ -50,6 +50,13 @@ jobs:
           pipx install poetry
           pip install -U mpflash micropython-stubber
 
+      - name: Patch mpremote/mip.py
+        continue-on-error: true
+        run: | 
+          MODULE_LOCATION=$(pip show -f mpremote | grep Location | cut -d' ' -f2)
+          patch --forward $MODULE_LOCATION/mpremote/mip.py ./mpremote_mip.patch || true          
+        
+
       - name: Get ${{ matrix.version }} firmwares for flashing
         run: |
           mpflash download --version ${{ matrix.version }}
@@ -60,11 +67,11 @@ jobs:
           mpflash flash --version ${{ matrix.version }}
 
       - name: clone Repos
-        run: 
+        run: |
           stubber clone
 
       - name: get/udate docstubs
-        run: 
+        run: |
           stubber switch ${{ matrix.version }}
           stubber get-docstubs
 
@@ -78,7 +85,7 @@ jobs:
           git config user.email github-actions@github.com
           git pull
           git add .
-          git commit -m "create boardstubs"
+          git commit -m "Update boardstubs for ${{ matrix.version }}"
           git push
 
       - name: Build App
