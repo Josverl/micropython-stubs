@@ -9,11 +9,13 @@ The matrix is printed as JSON and can be optionally written to a file if running
 import json
 import os
 import sys
+from functools import lru_cache
 
 from github import Github
-from packaging.version import parse, Version
+from packaging.version import Version, parse
 
 
+@lru_cache()
 def micropython_versions(start="v1.10"):
     g = Github()
     try:
