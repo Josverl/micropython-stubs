@@ -7,6 +7,9 @@ CPython module: :mod:`python:collections` https://docs.python.org/3/library/coll
 
 This module implements advanced collection and container types to
 hold/accumulate various objects.
+
+---
+Module: 'ucollections' on micropython-v1.21.0-rp2-RPI_PICO
 """
 # import module from stdlib/module
 from collections import *

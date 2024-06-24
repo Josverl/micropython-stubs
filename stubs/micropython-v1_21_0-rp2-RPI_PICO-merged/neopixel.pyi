@@ -9,10 +9,15 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    ports. On STM32 / Pyboard and others, you can either install the
    ``neopixel`` package using :term:`mip`, or you can download the module
    directly from :term:`micropython-lib` and copy it to the filesystem.
+
+---
+Module: 'neopixel' on micropython-v1.21.0-rp2-RPI_PICO
 """
 
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
 from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete
 from typing import Tuple
 
 def bitstream(*args, **kwargs) -> Incomplete: ...
@@ -27,7 +32,7 @@ class NeoPixel:
         - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
     """
 
-    ORDER: tuple
+    ORDER: tuple = ()
     def write(self) -> None:
         """
         Writes the current pixel data to the strip.
