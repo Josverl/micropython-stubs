@@ -76,6 +76,8 @@ to implement, or subclass, a stream class in pure Python.
 Module: 'uio' on micropython-v1.21.0-win32-GENERIC
 """
 
+from __future__ import annotations
+
 # MCU: {'version': '1.21.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.21.0', 'cpu': ''}
 # Stubber: v1.15.0
 from typing import IO, Optional, Any

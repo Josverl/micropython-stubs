@@ -2,7 +2,7 @@
     "name": "micropython-rp2-rpi_pico_w-stubs",
     "mpy_version": "1.21.0",
     "publish": true,
-    "pkg_version": "1.21.0.post1",
+    "pkg_version": "1.21.0.post4",
     "path": "micropython-v1_21_0-rp2-rpi_pico_w-stubs",
     "stub_sources": [
         [

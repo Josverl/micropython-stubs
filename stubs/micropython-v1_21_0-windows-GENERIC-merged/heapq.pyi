@@ -12,6 +12,7 @@ A heap queue is essentially a list that has its elements stored in such a way
 that the first item of the list is always the smallest.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 
 def heappop(heap) -> Incomplete:

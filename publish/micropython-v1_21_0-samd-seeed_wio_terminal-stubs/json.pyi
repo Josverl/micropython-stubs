@@ -9,6 +9,7 @@ This modules allows to convert between Python objects and the JSON
 data format.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 
 def loads(str) -> Incomplete:

@@ -6,6 +6,7 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/sys.html
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Dict, List, Tuple
 
@@ -21,7 +22,10 @@ argv: list
 implementation: tuple
 maxsize: int
 
-def print_exception(exc, file=stdout, /) -> None:
+def print_exception(
+    exc,
+    file=stdout,
+) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
@@ -37,7 +41,9 @@ def print_exception(exc, file=stdout, /) -> None:
     """
     ...
 
-def exit(retval=0, /) -> Incomplete:
+def exit(
+    retval=0,
+) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its

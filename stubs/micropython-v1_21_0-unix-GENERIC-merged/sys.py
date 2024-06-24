@@ -9,6 +9,8 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 Module: 'sys' on micropython-v1.21.0-unix-linux_[GCC_9.4.0]_version
 """
 
+from __future__ import annotations
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
 from typing import Dict, List, Tuple, Any
@@ -31,7 +33,9 @@ executable = "/workspaces/micropython/ports/unix/build-standard/micropython"  # 
 def exc_info(*args, **kwargs) -> Incomplete: ...
 
 
-def exit(retval=0, /) -> Incomplete:
+def exit(
+    retval=0,
+) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its
@@ -55,7 +59,10 @@ def atexit(func) -> Incomplete:
     ...
 
 
-def print_exception(exc, file=stdout, /) -> None:
+def print_exception(
+    exc,
+    file=stdout,
+) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).

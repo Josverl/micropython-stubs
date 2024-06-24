@@ -11,6 +11,7 @@ This module is highly experimental and its API is not yet fully settled
 and not yet described in this documentation.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 
 def get_ident(*args, **kwargs) -> Incomplete: ...

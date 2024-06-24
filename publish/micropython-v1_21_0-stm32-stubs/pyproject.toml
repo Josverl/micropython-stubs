@@ -63,6 +63,7 @@ packages = [
     { include = "platform.pyi" },
     { include = "pyb.pyi" },
     { include = "random.pyi" },
+    { include = "requests/__init__.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },
     { include = "stm.pyi" },

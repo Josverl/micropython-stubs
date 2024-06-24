@@ -14,6 +14,8 @@ damage.
 Module: 'umachine' on micropython-v1.21.0-rp2-RPI_PICO
 """
 
+from __future__ import annotations
+
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
@@ -45,7 +47,12 @@ def disable_irq() -> Incomplete:
     ...
 
 
-def bitstream(pin, encoding, timing, data, /) -> Incomplete:
+def bitstream(
+    pin,
+    encoding,
+    timing,
+    data,
+) -> Incomplete:
     """
     Transmits *data* by bit-banging the specified *pin*. The *encoding* argument
     specifies how the bits are encoded, and *timing* is an encoding-specific timing
@@ -150,7 +157,11 @@ def idle() -> Incomplete:
     ...
 
 
-def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
+def time_pulse_us(
+    pin,
+    pulse_level,
+    timeout_us=1000000,
+) -> int:
     """
     Time a pulse on the given *pin*, and return the duration of the pulse in
     microseconds.  The *pulse_level* argument should be 0 to time a low pulse
@@ -357,7 +368,12 @@ class I2C:
         """
         ...
 
-    def readfrom_into(self, addr, buf, stop=True, /) -> None:
+    def readfrom_into(
+        self,
+        addr,
+        buf,
+        stop=True,
+    ) -> None:
         """
         Read into *buf* from the peripheral specified by *addr*.
         The number of bytes read will be the length of *buf*.
@@ -395,7 +411,12 @@ class I2C:
         """
         ...
 
-    def writeto(self, addr, buf, stop=True, /) -> int:
+    def writeto(
+        self,
+        addr,
+        buf,
+        stop=True,
+    ) -> int:
         """
         Write the bytes from *buf* to the peripheral specified by *addr*.  If a
         NACK is received following the write of a byte from *buf* then the
@@ -405,7 +426,12 @@ class I2C:
         """
         ...
 
-    def writevto(self, addr, vector, stop=True, /) -> int:
+    def writevto(
+        self,
+        addr,
+        vector,
+        stop=True,
+    ) -> int:
         """
         Write the bytes contained in *vector* to the peripheral specified by *addr*.
         *vector* should be a tuple or list of objects with the buffer protocol.
@@ -427,7 +453,12 @@ class I2C:
         """
         ...
 
-    def readfrom(self, addr, nbytes, stop=True, /) -> bytes:
+    def readfrom(
+        self,
+        addr,
+        nbytes,
+        stop=True,
+    ) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr*.
         If *stop* is true then a STOP condition is generated at the end of the transfer.
@@ -435,7 +466,11 @@ class I2C:
         """
         ...
 
-    def readinto(self, buf, nack=True, /) -> Incomplete:
+    def readinto(
+        self,
+        buf,
+        nack=True,
+    ) -> Incomplete:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
         read is the length of *buf*.  An ACK will be sent on the bus after
@@ -825,6 +860,7 @@ class Pin:
         def __init__(self, *argv, **kwargs) -> None: ...
 
     def __init__(self, *argv, **kwargs) -> None: ...
+
     def __call__(self, x: Optional[Any] = None) -> Incomplete:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
@@ -834,7 +870,7 @@ class Pin:
         ...
 
 
-class SoftSPI:
+class SoftSPI(SPI):
     """
     Construct a new software SPI object.  Additional parameters must be
     given, usually at least *sck*, *mosi* and *miso*, and these are used

@@ -61,6 +61,7 @@ Tuple address format for ``socket`` module:
   of IPv6 support depends on a :term:`MicroPython port`.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.socket import *
 from typing import Any, IO, Optional, Tuple
@@ -101,7 +102,14 @@ def inet_ntop(af, bin_addr) -> Incomplete:
     """
     ...
 
-def getaddrinfo(host, port, af=0, type=0, proto=0, flags=0, /) -> Incomplete:
+def getaddrinfo(
+    host,
+    port,
+    af=0,
+    type=0,
+    proto=0,
+    flags=0,
+) -> Incomplete:
     """
     Translate the host/port argument into a sequence of 5-tuples that contain all the
     necessary arguments for creating a socket connected to that service. Arguments
@@ -163,7 +171,11 @@ class socket:
         """
         ...
 
-    def makefile(self, mode="rb", buffering=0, /) -> IO:
+    def makefile(
+        self,
+        mode="rb",
+        buffering=0,
+    ) -> IO:
         """
         Return a file object associated with the socket. The exact returned type depends on the arguments
         given to makefile(). The support is limited to binary modes only ('rb', 'wb', and 'rwb').

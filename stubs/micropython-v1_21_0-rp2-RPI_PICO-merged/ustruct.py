@@ -57,6 +57,8 @@ The following data types are supported:
 Module: 'ustruct' on micropython-v1.21.0-rp2-RPI_PICO
 """
 
+from __future__ import annotations
+
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import Tuple, Any
@@ -80,7 +82,11 @@ def unpack(fmt, data) -> Tuple:
     ...
 
 
-def unpack_from(fmt, data, offset=0, /) -> Tuple:
+def unpack_from(
+    fmt,
+    data,
+    offset=0,
+) -> Tuple:
     """
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *data*. The return

@@ -9,6 +9,7 @@ This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional
 

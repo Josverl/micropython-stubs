@@ -27,10 +27,13 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
    enabled.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional
 
-def seed(n=None, /) -> None:
+def seed(
+    n=None,
+) -> None:
     """
     Initialise the random number generator module with the seed *n* which should
     be an integer.  When no argument (or ``None``) is passed in it will (if

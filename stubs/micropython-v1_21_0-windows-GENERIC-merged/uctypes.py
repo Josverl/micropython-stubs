@@ -14,6 +14,8 @@ sub-fields.
 Module: 'uctypes' on micropython-v1.21.0-win32-GENERIC
 """
 
+from __future__ import annotations
+
 # MCU: {'version': '1.21.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.21.0', 'cpu': ''}
 # Stubber: v1.15.0
 from typing import Any
@@ -53,7 +55,10 @@ BIG_ENDIAN = 1  # type: int
 FLOAT32 = -268435456  # type: int
 
 
-def sizeof(struct, layout_type=NATIVE, /) -> int:
+def sizeof(
+    struct,
+    layout_type=NATIVE,
+) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object

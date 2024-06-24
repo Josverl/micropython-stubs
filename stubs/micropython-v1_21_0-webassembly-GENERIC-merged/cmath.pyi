@@ -12,6 +12,7 @@ Availability: not available on WiPy and ESP8266. Floating point support
 required for this module.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Tuple
 

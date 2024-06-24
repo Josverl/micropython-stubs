@@ -19,6 +19,7 @@ This module allows compression and decompression of binary data with the
   you need to build your own firmware to enable this).
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 
 GZIP: int

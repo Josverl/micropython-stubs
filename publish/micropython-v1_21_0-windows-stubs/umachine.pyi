@@ -11,10 +11,15 @@ malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
 
-def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
+def time_pulse_us(
+    pin,
+    pulse_level,
+    timeout_us=1000000,
+) -> int:
     """
     Time a pulse on the given *pin*, and return the duration of the pulse in
     microseconds.  The *pulse_level* argument should be 0 to time a low pulse

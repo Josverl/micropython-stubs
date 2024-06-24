@@ -14,6 +14,7 @@ Availability: not available on WiPy. Floating point support required
 for this module.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Tuple
 

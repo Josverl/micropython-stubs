@@ -12,15 +12,16 @@ hold/accumulate various objects.
 Module: 'ucollections' on micropython-v1.21.0-rp2-RPI_PICO
 """
 
+from __future__ import annotations
+
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import Optional, Any
 from _typeshed import Incomplete
-from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque
-from typing_extensions import NamedTuple as stdlib_NamedTuple
+from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque, namedtuple as stdlib_namedtuple
 
 
-def namedtuple(name, fields) -> stdlib_NamedTuple:
+def namedtuple(name, fields) -> stdlib_namedtuple:
     """
     This is factory function to create a new namedtuple type with a specific
     name and set of fields. A namedtuple is a subclass of tuple which allows

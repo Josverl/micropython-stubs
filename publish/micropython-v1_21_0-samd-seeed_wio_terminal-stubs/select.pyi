@@ -9,6 +9,7 @@ This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Iterator, List, Optional, Tuple
 
@@ -65,7 +66,10 @@ class poll:
         """
         ...
 
-    def poll(self, timeout=-1, /) -> List:
+    def poll(
+        self,
+        timeout=-1,
+    ) -> List:
         """
         Wait for at least one of the registered objects to become ready or have an
         exceptional condition, with optional timeout in milliseconds (if *timeout*
@@ -89,7 +93,11 @@ class poll:
         """
         ...
 
-    def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
+    def ipoll(
+        self,
+        timeout=-1,
+        flags=0,
+    ) -> Iterator[Tuple]:
         """
         Like :meth:`poll.poll`, but instead returns an iterator which yields a
         `callee-owned tuple`. This function provides an efficient, allocation-free

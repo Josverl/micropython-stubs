@@ -8,9 +8,15 @@ CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html
 Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
 floating-point support).
+
+---
+Module: 'array' on micropython-v1.21.0-esp32-ESP32_GENERIC
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Any, List, Optional
 
 class array(List):

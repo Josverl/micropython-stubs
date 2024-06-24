@@ -32,13 +32,19 @@ Example::
 
 Core functions
 --------------
+
+---
+Module: 'uasyncio.__init__' on micropython-v1.21.0-stm32-PYBV11
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
-from typing import Any, Coroutine, List, Tuple
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from typing import Any, Coroutine, List, Tuple, Generator
+from _typeshed import Incomplete
 
-def ticks_diff(*args, **kwargs) -> Incomplete: ...
-def run_until_complete(*args, **kwargs) -> Incomplete: ...
+_attrs: dict = {}
+
 def create_task(coro) -> Task:
     """
     Create a new task from the given coroutine and schedule it to run.
@@ -47,6 +53,7 @@ def create_task(coro) -> Task:
     """
     ...
 
+def run_until_complete(*args, **kwargs) -> Incomplete: ...
 def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
     """
     Similar to `wait_for` but *timeout* is an integer in milliseconds.
@@ -55,6 +62,7 @@ def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
     """
     ...
 
+def ticks(*args, **kwargs) -> Incomplete: ...
 def run(coro) -> Incomplete:
     """
     Create a new task from the given coroutine and run it until it completes.
@@ -84,7 +92,8 @@ def get_event_loop() -> Incomplete:
     """
     ...
 
-def ticks(*args, **kwargs) -> Incomplete: ...
+def ticks_diff(*args, **kwargs) -> Incomplete: ...
+def ticks_add(*args, **kwargs) -> Incomplete: ...
 def sleep_ms(t) -> Coroutine[Incomplete, Any, Any]:
     """
     Sleep for *t* milliseconds.
@@ -93,7 +102,6 @@ def sleep_ms(t) -> Coroutine[Incomplete, Any, Any]:
     """
     ...
 
-def ticks_add(*args, **kwargs) -> Incomplete: ...
 def sleep(t) -> Coroutine[Incomplete, Any, Any]:
     """
     Sleep for *t* seconds (can be a float).
@@ -102,8 +110,8 @@ def sleep(t) -> Coroutine[Incomplete, Any, Any]:
     """
     ...
 
-wait_for: Incomplete
-gather: Incomplete
+wait_for: Generator  ## = <generator>
+gather: Generator  ## = <generator>
 
 class Loop:
     """
@@ -157,25 +165,98 @@ class Loop:
         """
         ...
 
-    def stop(self) -> None:
-        """
-        Stop the event loop.
-        """
-        ...
-
     def create_task(self, coro) -> Task:
         """
         Create a task from the given *coro* and return the new `Task` object.
         """
         ...
 
+    def stop(self) -> None:
+        """
+        Stop the event loop.
+        """
+        ...
+    _exc_handler: Incomplete  ## <class 'NoneType'> = None
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class IOQueue:
+    def _dequeue(self, *args, **kwargs) -> Incomplete: ...
     def queue_write(self, *args, **kwargs) -> Incomplete: ...
     def queue_read(self, *args, **kwargs) -> Incomplete: ...
-    def wait_io_event(self, *args, **kwargs) -> Incomplete: ...
     def remove(self, *args, **kwargs) -> Incomplete: ...
+    def _enqueue(self, *args, **kwargs) -> Incomplete: ...
+    def wait_io_event(self, *args, **kwargs) -> Incomplete: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+class Lock:
+    """
+    Create a new lock which can be used to coordinate tasks.  Locks start in
+    the unlocked state.
+
+    In addition to the methods below, locks can be used in an ``async with`` statement.
+    """
+
+    def locked(self) -> bool:
+        """
+        Returns ``True`` if the lock is locked, otherwise ``False``.
+        """
+        ...
+
+    def release(self) -> Incomplete:
+        """
+        Release the lock.  If any tasks are waiting on the lock then the next one in the
+        queue is scheduled to run and the lock remains locked.  Otherwise, no tasks are
+        waiting an the lock becomes unlocked.
+        """
+        ...
+    acquire: Generator  ## = <generator>
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+class CancelledError(Exception): ...
+
+class Task:
+    """
+    This object wraps a coroutine into a running task.  Tasks can be waited on
+    using ``await task``, which will wait for the task to complete and return
+    the return value of the task.
+
+    Tasks should not be created directly, rather use `create_task` to create them.
+    """
+
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+class TaskQueue:
+    def push(self, *args, **kwargs) -> Incomplete: ...
+    def peek(self, *args, **kwargs) -> Incomplete: ...
+    def remove(self, *args, **kwargs) -> Incomplete: ...
+    def pop(self, *args, **kwargs) -> Incomplete: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+open_connection: Generator  ## = <generator>
+
+class ThreadSafeFlag:
+    """
+    Create a new flag which can be used to synchronise a task with code running
+    outside the asyncio loop, such as other threads, IRQs, or scheduler
+    callbacks.  Flags start in the cleared state.  The class does not currently
+    work under the Unix build of MicroPython.
+    """
+
+    def set(self) -> None:
+        """
+        Set the flag.  If there is a task waiting on the flag, it will be scheduled
+        to run.
+        """
+        ...
+
+    def ioctl(self, *args, **kwargs) -> Incomplete: ...
+    def clear(self) -> None:
+        """
+        Clear the flag. This may be used to ensure that a possibly previously-set
+        flag is clear before waiting for it.
+        """
+        ...
+    wait: Generator  ## = <generator>
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class Event:
@@ -204,7 +285,44 @@ class Event:
         Clear the event.
         """
         ...
-    wait: Incomplete
+    wait: Generator  ## = <generator>
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class CancelledError(Exception): ...
+class SingletonGenerator:
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+start_server: Generator  ## = <generator>
+
+class TimeoutError(Exception): ...
+
+class StreamWriter:
+    def get_extra_info(self, *args, **kwargs) -> Incomplete: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
+    def close(self, *args, **kwargs) -> Incomplete: ...
+
+    awrite: Generator  ## = <generator>
+    readexactly: Generator  ## = <generator>
+    awritestr: Generator  ## = <generator>
+    drain: Generator  ## = <generator>
+    readinto: Generator  ## = <generator>
+    read: Generator  ## = <generator>
+    aclose: Generator  ## = <generator>
+    readline: Generator  ## = <generator>
+    wait_closed: Generator  ## = <generator>
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+class StreamReader:
+    def get_extra_info(self, *args, **kwargs) -> Incomplete: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
+    def close(self, *args, **kwargs) -> Incomplete: ...
+
+    awrite: Generator  ## = <generator>
+    readexactly: Generator  ## = <generator>
+    awritestr: Generator  ## = <generator>
+    drain: Generator  ## = <generator>
+    readinto: Generator  ## = <generator>
+    read: Generator  ## = <generator>
+    aclose: Generator  ## = <generator>
+    readline: Generator  ## = <generator>
+    wait_closed: Generator  ## = <generator>
+    def __init__(self, *argv, **kwargs) -> None: ...

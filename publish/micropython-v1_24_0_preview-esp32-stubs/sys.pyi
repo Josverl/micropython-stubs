@@ -6,10 +6,10 @@ MicroPython module: https://docs.micropython.org/en/v1.24.0-preview/library/sys.
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 
 ---
-Module: 'sys' on micropython-v1.23.0-esp32-ESP32_GENERIC
+Module: 'sys' on micropython-v1.24.0-preview-esp32-ESP32_GENERIC
 """
 
-# MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32'}
+# MCU: {'version': '1.24.0-preview', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': 'preview.60.gcebc9b0ae', 'arch': 'xtensawin', 'ver': '1.24.0-preview-preview.60.gcebc9b0ae', 'cpu': 'ESP32'}
 # Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
@@ -18,7 +18,7 @@ from typing import Dict, List, Tuple
 platform: str = "esp32"
 version_info: tuple = ()
 path: list = []
-version: str = "3.4.0; MicroPython v1.23.0 on 2024-06-02"
+version: str = "3.4.0; MicroPython v1.24.0-preview.60.gcebc9b0ae on 2024-06-21"
 ps1: str = ">>> "
 ps2: str = "... "
 byteorder: str = "little"

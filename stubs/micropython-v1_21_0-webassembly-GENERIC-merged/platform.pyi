@@ -9,6 +9,7 @@ This module tries to retrieve as much platform-identifying data as possible. It
 makes this information available via function APIs.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Tuple
 

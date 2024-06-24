@@ -10,6 +10,7 @@ terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from stdlib.os import *
 from typing import Any, IO, Iterator, Optional, Tuple
@@ -103,7 +104,10 @@ def chdir(path) -> Incomplete:
     """
     ...
 
-def dupterm(stream_object, index=0, /) -> IO:
+def dupterm(
+    stream_object,
+    index=0,
+) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
     object. The *stream_object* argument must be a native stream object, or derive

@@ -9,6 +9,8 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 Module: 'usys' on micropython-v1.21.0-win32-GENERIC
 """
 
+from __future__ import annotations
+
 # MCU: {'version': '1.21.0', 'mpy': '', 'port': 'win32', 'board': 'GENERIC', 'family': 'micropython', 'build': '', 'arch': '', 'ver': 'v1.21.0', 'cpu': ''}
 # Stubber: v1.15.0
 from typing import Dict, List, Tuple, Any
@@ -28,7 +30,9 @@ implementation = ()  # type: tuple
 def exc_info(*args, **kwargs) -> Incomplete: ...
 
 
-def exit(retval=0, /) -> Incomplete:
+def exit(
+    retval=0,
+) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its
@@ -37,7 +41,10 @@ def exit(retval=0, /) -> Incomplete:
     ...
 
 
-def print_exception(exc, file=stdout, /) -> None:
+def print_exception(
+    exc,
+    file=stdout,
+) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).

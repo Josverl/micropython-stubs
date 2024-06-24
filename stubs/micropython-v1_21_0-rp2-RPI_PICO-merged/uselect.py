@@ -12,6 +12,8 @@ This module provides functions to efficiently wait for events on multiple
 Module: 'uselect' on micropython-v1.21.0-rp2-RPI_PICO
 """
 
+from __future__ import annotations
+
 # MCU: {'build': '', 'ver': 'v1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.13.8
 from typing import Iterator, List, Optional, Tuple, Any
@@ -72,7 +74,10 @@ class poll:
         """
         ...
 
-    def poll(self, timeout=-1, /) -> List:
+    def poll(
+        self,
+        timeout=-1,
+    ) -> List:
         """
         Wait for at least one of the registered objects to become ready or have an
         exceptional condition, with optional timeout in milliseconds (if *timeout*
@@ -96,7 +101,11 @@ class poll:
         """
         ...
 
-    def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
+    def ipoll(
+        self,
+        timeout=-1,
+        flags=0,
+    ) -> Iterator[Tuple]:
         """
         Like :meth:`poll.poll`, but instead returns an iterator which yields a
         `callee-owned tuple`. This function provides an efficient, allocation-free

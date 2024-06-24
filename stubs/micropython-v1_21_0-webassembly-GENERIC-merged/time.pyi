@@ -33,6 +33,7 @@ functions below which require reference to current absolute time may
 behave not as expected.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Optional, Tuple
 

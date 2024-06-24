@@ -4,9 +4,15 @@ Control the garbage collector.
 MicroPython module: https://docs.micropython.org/en/v1.21.0/library/gc.html
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
+
+---
+Module: 'gc' on micropython-v1.21.0-stm32-PYBV11
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Any, Optional
 
 def mem_alloc() -> int:

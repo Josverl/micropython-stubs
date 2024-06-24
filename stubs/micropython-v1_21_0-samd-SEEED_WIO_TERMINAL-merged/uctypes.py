@@ -14,6 +14,8 @@ sub-fields.
 Module: 'uctypes' on micropython-v1.21.0-samd-SEEED_WIO_TERMINAL
 """
 
+from __future__ import annotations
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'}
 # Stubber: v1.16.2
 from _typeshed import Incomplete
@@ -52,7 +54,10 @@ BIG_ENDIAN = 1  # type: int
 FLOAT32 = -268435456  # type: int
 
 
-def sizeof(struct, layout_type=NATIVE, /) -> int:
+def sizeof(
+    struct,
+    layout_type=NATIVE,
+) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object

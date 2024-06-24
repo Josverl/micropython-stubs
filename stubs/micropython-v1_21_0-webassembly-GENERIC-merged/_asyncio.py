@@ -37,6 +37,8 @@ Core functions
 Module: '_asyncio' on micropython-v1.21.0-webassembly-GENERIC
 """
 
+from __future__ import annotations
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'webassembly', 'board': 'GENERIC', 'cpu': 'Emscripten', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.0
 from typing import Coroutine, List, Tuple, Any

@@ -1,20 +1,13 @@
-"""
-Module: 'asyncio.funcs' on micropython-v1.21.0-esp32-ESP32_GENERIC
-"""
-
-# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
-# Stubber: v1.20.0
-from __future__ import annotations
-from typing import Generator
+from . import core as core
 from _typeshed import Incomplete
+from collections.abc import Generator
 
-def wait_for_ms(*args, **kwargs) -> Incomplete: ...
-
-_run: Generator  ## = <generator>
+async def _run(waiter, aw) -> None: ...
+async def wait_for(aw, timeout, sleep=...): ...
+def wait_for_ms(aw, timeout): ...
 
 class _Remove:
-    def remove(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    @staticmethod
+    def remove(t) -> None: ...
 
-gather: Generator  ## = <generator>
-wait_for: Generator  ## = <generator>
+def gather(*aws, return_exceptions: bool = ...) -> Generator[None, None, Incomplete]: ...

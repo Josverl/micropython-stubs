@@ -11,6 +11,7 @@ C language allows, and then access it using familiar dot-syntax to reference
 sub-fields.
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 
 VOID: int
@@ -46,7 +47,10 @@ BF_POS: int
 BIG_ENDIAN: int
 FLOAT32: int
 
-def sizeof(struct, layout_type=NATIVE, /) -> int:
+def sizeof(
+    struct,
+    layout_type=NATIVE,
+) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object

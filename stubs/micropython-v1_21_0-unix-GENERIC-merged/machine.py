@@ -14,13 +14,19 @@ damage.
 Module: 'machine' on micropython-v1.21.0-unix-linux_[GCC_9.4.0]_version
 """
 
+from __future__ import annotations
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'unix', 'board': 'linux_[GCC_9.4.0]_version', 'cpu': '', 'mpy': '', 'arch': ''}
 # Stubber: v1.15.1
 from typing import Callable, List, NoReturn, Optional, Tuple, Union, Any
 from _typeshed import Incomplete
 
 
-def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
+def time_pulse_us(
+    pin,
+    pulse_level,
+    timeout_us=1000000,
+) -> int:
     """
     Time a pulse on the given *pin*, and return the duration of the pulse in
     microseconds.  The *pulse_level* argument should be 0 to time a low pulse

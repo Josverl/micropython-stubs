@@ -5,16 +5,21 @@ MicroPython module: https://docs.micropython.org/en/v1.21.0/library/esp32.html
 
 The ``esp32`` module contains functions and classes specifically aimed at
 controlling ESP32 modules.
+
+---
+Module: 'esp32' on micropython-v1.21.0-esp32-ESP32_GENERIC
 """
 
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.21.0', 'cpu': 'ESP32'}
+# Stubber: v1.20.0
 from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete
 from typing import Any, List, Optional, Tuple, Union
 
-WAKEUP_ALL_LOW: bool
-WAKEUP_ANY_HIGH: bool
-HEAP_EXEC: int
-HEAP_DATA: int
+WAKEUP_ALL_LOW: bool = False
+WAKEUP_ANY_HIGH: bool = True
+HEAP_EXEC: int = 1
+HEAP_DATA: int = 4
 
 def raw_temperature() -> int:
     """
@@ -102,7 +107,7 @@ class ULP:
     This class provides access to the Ultra-Low-Power co-processor.
     """
 
-    RESERVE_MEM: int
+    RESERVE_MEM: int = 2040
     def run(self, entry_point) -> Incomplete:
         """
         Start the ULP running at the given *entry_point*.
@@ -180,10 +185,10 @@ class Partition:
     *block_size* specifies the byte size of an individual block.
     """
 
-    RUNNING: int
-    TYPE_APP: int
-    TYPE_DATA: int
-    BOOT: int
+    RUNNING: int = 1
+    TYPE_APP: int = 0
+    TYPE_DATA: int = 1
+    BOOT: int = 0
     def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
     def ioctl(self, cmd, arg) -> Incomplete:
         """

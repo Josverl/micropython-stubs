@@ -12,16 +12,22 @@ working with floating-point numbers.
 
 Availability: not available on WiPy. Floating point support required
 for this module.
+
+---
+Module: 'math' on micropython-v1.21.0-stm32-PYBV11
 """
 
-from _typeshed import Incomplete, Incomplete as Incomplete
+# MCU: {'version': '1.21.0', 'mpy': 'v6.1', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.21.0', 'cpu': 'STM32F405RG'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from _typeshed import Incomplete
 from typing import Tuple
 
-inf: float
-nan: float
-pi: float
-e: float
-tau: float
+inf: float = inf
+nan: float = nan
+pi: float = 3.141593
+e: float = 2.718282
+tau: float = 6.283185
 
 def ldexp(x, exp) -> Incomplete:
     """

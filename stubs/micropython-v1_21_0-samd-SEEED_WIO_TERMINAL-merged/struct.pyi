@@ -54,6 +54,7 @@ The following data types are supported:
 +--------+--------------------+-------------------+---------------+
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Tuple
 
@@ -72,7 +73,11 @@ def unpack(fmt, data) -> Tuple:
     """
     ...
 
-def unpack_from(fmt, data, offset=0, /) -> Tuple:
+def unpack_from(
+    fmt,
+    data,
+    offset=0,
+) -> Tuple:
     """
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *data*. The return

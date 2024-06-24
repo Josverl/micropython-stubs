@@ -73,6 +73,7 @@ Example::
     f.close()
 """
 
+from __future__ import annotations
 from _typeshed import Incomplete, Incomplete as Incomplete
 from typing import Any, Dict, Optional
 

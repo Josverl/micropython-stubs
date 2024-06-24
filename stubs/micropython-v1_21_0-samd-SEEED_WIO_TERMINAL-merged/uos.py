@@ -13,6 +13,8 @@ functions.
 Module: 'uos' on micropython-v1.21.0-samd-SEEED_WIO_TERMINAL
 """
 
+from __future__ import annotations
+
 # MCU: {'family': 'micropython', 'version': '1.21.0', 'build': '', 'ver': 'v1.21.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.1', 'arch': 'armv7emsp'}
 # Stubber: v1.16.2
 from _typeshed import Incomplete
@@ -120,7 +122,10 @@ def chdir(path) -> Incomplete:
     ...
 
 
-def dupterm(stream_object, index=0, /) -> IO:
+def dupterm(
+    stream_object,
+    index=0,
+) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
     object. The *stream_object* argument must be a native stream object, or derive
