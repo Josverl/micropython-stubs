@@ -2,7 +2,7 @@
 Module: 'sys' on micropython-v1.24.0-preview-rp2-RPI_PICO_W
 """
 
-# MCU: {'build': 'preview.60.gcebc9b0ae', 'ver': '1.24.0-preview-preview.60.gcebc9b0ae', 'version': '1.24.0-preview', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# MCU: {'build': 'preview.62.g908ab1cec', 'ver': '1.24.0-preview-preview.62.g908ab1cec', 'version': '1.24.0-preview', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
@@ -10,7 +10,7 @@ from _typeshed import Incomplete
 platform: str = "rp2"
 version_info: tuple = ()
 path: list = []
-version: str = "3.4.0; MicroPython v1.24.0-preview.60.gcebc9b0ae on 2024-06-21"
+version: str = "3.4.0; MicroPython v1.24.0-preview.62.g908ab1cec on 2024-06-24"
 ps1: str = ">>> "
 ps2: str = "... "
 byteorder: str = "little"

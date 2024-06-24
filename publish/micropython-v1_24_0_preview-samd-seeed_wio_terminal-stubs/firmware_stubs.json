@@ -1,4 +1,4 @@
-{"firmware": {"version": "1.24.0-preview", "mpy": "v6.3", "port": "samd", "board": "SEEED_WIO_TERMINAL", "family": "micropython", "build": "42", "arch": "armv7emsp", "ver": "1.24.0-preview-42", "cpu": "SAMD51P19A"},
+{"firmware": {"version": "1.24.0-preview", "mpy": "v6.3", "port": "samd", "board": "SEEED_WIO_TERMINAL", "family": "micropython", "build": "62", "arch": "armv7emsp", "ver": "1.24.0-preview-62", "cpu": "SAMD51P19A"},
 "stubber": {"version": "v1.20.0"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_24_0-preview-samd-SEEED_WIO_TERMINAL/_asyncio.pyi"},
