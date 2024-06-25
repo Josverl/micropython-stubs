@@ -1,4 +1,4 @@
-{"firmware": {"build": "preview.62.g908ab1cec", "ver": "1.24.0-preview-preview.62.g908ab1cec", "version": "1.24.0-preview", "port": "rp2", "board": "RPI_PICO", "mpy": "v6.3", "family": "micropython", "cpu": "RP2040", "arch": "armv6m"},
+{"firmware": {"build": "preview.63.gcfa55b4ca", "ver": "1.24.0-preview-preview.63.gcfa55b4ca", "version": "1.24.0-preview", "port": "rp2", "board": "RPI_PICO", "mpy": "v6.3", "family": "micropython", "cpu": "RP2040", "arch": "armv6m"},
 "stubber": {"version": "v1.20.0"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_24_0-preview-rp2-RPI_PICO/_asyncio.pyi"},

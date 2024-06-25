@@ -2,16 +2,12 @@
     "name": "micropython-stm32-pybv11-stubs",
     "mpy_version": "1.21.0",
     "publish": true,
-    "pkg_version": "1.21.0.post4",
+    "pkg_version": "1.21.0.post1",
     "path": "micropython-v1_21_0-stm32-pybv11-stubs",
     "stub_sources": [
         [
             "Merged stubs",
             "micropython-v1_21_0-stm32-PYBV11-merged"
-        ],
-        [
-            "Frozen stubs",
-            "micropython-v1_21_0-frozen/stm32/GENERIC"
         ],
         [
             "Core stubs",
