@@ -1,0 +1,80 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "nrf",
+        "platform": "nrf",
+        "machine": "ARDUINO_NANO_33_BLE_SENSE",
+        "firmware": "micropython-nrf-v1_23_0",
+        "nodename": "micropython",
+        "version": "v1.23.0",
+        "release": "v1.23.0",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.23.0",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_mkfs.py",
+            "module": "_mkfs"
+        },
+        {
+            "file": "asyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "asyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "asyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "asyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "asyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "asyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "bmi270.py",
+            "module": "bmi270"
+        },
+        {
+            "file": "bmm150.py",
+            "module": "bmm150"
+        },
+        {
+            "file": "hs3003.py",
+            "module": "hs3003"
+        },
+        {
+            "file": "hts221.py",
+            "module": "hts221"
+        },
+        {
+            "file": "imu.py",
+            "module": "imu"
+        },
+        {
+            "file": "lps22h.py",
+            "module": "lps22h"
+        },
+        {
+            "file": "lsm9ds1.py",
+            "module": "lsm9ds1"
+        },
+        {
+            "file": "uasyncio.py",
+            "module": "uasyncio"
+        }
+    ]
+}

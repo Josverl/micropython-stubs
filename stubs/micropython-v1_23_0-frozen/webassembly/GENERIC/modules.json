@@ -1,0 +1,164 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "webassembly",
+        "platform": "webassembly",
+        "machine": "GENERIC",
+        "firmware": "micropython-webassembly-v1_23_0",
+        "nodename": "micropython",
+        "version": "v1.23.0",
+        "release": "v1.23.0",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.23.0",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "abc.py",
+            "module": "abc"
+        },
+        {
+            "file": "asyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "asyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "asyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "asyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "asyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "base64.py",
+            "module": "base64"
+        },
+        {
+            "file": "binascii.py",
+            "module": "binascii"
+        },
+        {
+            "file": "collections/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "collections/defaultdict.py",
+            "module": "defaultdict"
+        },
+        {
+            "file": "copy.py",
+            "module": "copy"
+        },
+        {
+            "file": "datetime.py",
+            "module": "datetime"
+        },
+        {
+            "file": "fnmatch.py",
+            "module": "fnmatch"
+        },
+        {
+            "file": "functools.py",
+            "module": "functools"
+        },
+        {
+            "file": "gzip.py",
+            "module": "gzip"
+        },
+        {
+            "file": "hmac.py",
+            "module": "hmac"
+        },
+        {
+            "file": "html/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "inspect.py",
+            "module": "inspect"
+        },
+        {
+            "file": "io.py",
+            "module": "io"
+        },
+        {
+            "file": "itertools.py",
+            "module": "itertools"
+        },
+        {
+            "file": "locale.py",
+            "module": "locale"
+        },
+        {
+            "file": "logging.py",
+            "module": "logging"
+        },
+        {
+            "file": "operator.py",
+            "module": "operator"
+        },
+        {
+            "file": "os/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "os/path.py",
+            "module": "path"
+        },
+        {
+            "file": "pathlib.py",
+            "module": "pathlib"
+        },
+        {
+            "file": "stat.py",
+            "module": "stat"
+        },
+        {
+            "file": "string.py",
+            "module": "string"
+        },
+        {
+            "file": "struct.py",
+            "module": "struct"
+        },
+        {
+            "file": "tarfile/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "tarfile/write.py",
+            "module": "write"
+        },
+        {
+            "file": "time.py",
+            "module": "time"
+        },
+        {
+            "file": "types.py",
+            "module": "types"
+        },
+        {
+            "file": "unittest/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "uu.py",
+            "module": "uu"
+        },
+        {
+            "file": "zlib.py",
+            "module": "zlib"
+        }
+    ]
+}

@@ -1,0 +1,92 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "mimxrt",
+        "platform": "mimxrt",
+        "machine": "MIMXRT1064_EVK",
+        "firmware": "micropython-mimxrt-v1_23_0",
+        "nodename": "micropython",
+        "version": "v1.23.0",
+        "release": "v1.23.0",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.23.0",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "asyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "asyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "asyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "asyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "asyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "asyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "mip/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "requests/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
+            "file": "uasyncio.py",
+            "module": "uasyncio"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        }
+    ]
+}

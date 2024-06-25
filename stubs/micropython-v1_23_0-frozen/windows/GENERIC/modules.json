@@ -1,0 +1,52 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "windows",
+        "platform": "windows",
+        "machine": "GENERIC",
+        "firmware": "micropython-windows-v1_23_0",
+        "nodename": "micropython",
+        "version": "v1.23.0",
+        "release": "v1.23.0",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.23.0",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "asyncio/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "asyncio/core.py",
+            "module": "core"
+        },
+        {
+            "file": "asyncio/event.py",
+            "module": "event"
+        },
+        {
+            "file": "asyncio/funcs.py",
+            "module": "funcs"
+        },
+        {
+            "file": "asyncio/lock.py",
+            "module": "lock"
+        },
+        {
+            "file": "asyncio/stream.py",
+            "module": "stream"
+        },
+        {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
+            "file": "uasyncio.py",
+            "module": "uasyncio"
+        }
+    ]
+}

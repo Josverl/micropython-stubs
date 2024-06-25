@@ -1,0 +1,24 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "stm32",
+        "platform": "stm32",
+        "machine": "GARATRONIC_PYBSTICK26_F411",
+        "firmware": "micropython-stm32-v1_23_0",
+        "nodename": "micropython",
+        "version": "v1.23.0",
+        "release": "v1.23.0",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.23.0",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "ssd1306.py",
+            "module": "ssd1306"
+        }
+    ]
+}
