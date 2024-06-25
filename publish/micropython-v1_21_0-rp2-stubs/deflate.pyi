@@ -17,15 +17,20 @@ This module allows compression and decompression of binary data with the
 * Compression: Enabled via the ``MICROPY_PY_DEFLATE_COMPRESS`` build option, on
   by default on ports with the "full features" level or higher (generally this means
   you need to build your own firmware to enable this).
+
+---
+Module: 'deflate' on micropython-v1.21.0-rp2-RPI_PICO
 """
 
+# MCU: {'build': '', 'ver': '1.21.0', 'version': '1.21.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.1', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
 from __future__ import annotations
-from _typeshed import Incomplete, Incomplete as Incomplete
+from _typeshed import Incomplete
 
-GZIP: int
-RAW: int
-ZLIB: int
-AUTO: int
+GZIP: int = 3
+RAW: int = 1
+ZLIB: int = 2
+AUTO: int = 0
 
 class DeflateIO:
     """

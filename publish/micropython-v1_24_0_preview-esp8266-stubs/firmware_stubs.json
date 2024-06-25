@@ -1,4 +1,4 @@
-{"firmware": {"version": "1.24.0-preview", "mpy": "v6.3", "port": "esp8266", "board": "ESP8266_GENERIC", "family": "micropython", "build": "preview.60.gcebc9b0ae", "arch": "xtensa", "ver": "1.24.0-preview-preview.60.gcebc9b0ae", "cpu": "ESP8266"},
+{"firmware": {"version": "1.24.0-preview", "mpy": "v6.3", "port": "esp8266", "board": "ESP8266_GENERIC", "family": "micropython", "build": "preview.62.g908ab1cec", "arch": "xtensa", "ver": "1.24.0-preview-preview.62.g908ab1cec", "cpu": "ESP8266"},
 "stubber": {"version": "v1.20.0"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_24_0-preview-esp8266-ESP8266_GENERIC/_asyncio.pyi"},

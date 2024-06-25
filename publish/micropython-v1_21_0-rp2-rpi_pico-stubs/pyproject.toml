@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-rpi_pico-stubs"
-version = "1.21.0.post1"
+version = "1.21.0.post4"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -34,6 +34,7 @@ classifiers = [
 packages = [
     { include = "__builtins__.pyi" },
     { include = "_asyncio.pyi" },
+    { include = "_boot.pyi" },
     { include = "_boot_fat.pyi" },
     { include = "_onewire.pyi" },
     { include = "_rp2.pyi" },
@@ -78,6 +79,7 @@ packages = [
     { include = "uasyncio/funcs.pyi" },
     { include = "uasyncio/lock.pyi" },
     { include = "uasyncio/stream.pyi" },
+    { include = "uasyncio.pyi" },
     { include = "ubinascii.pyi" },
     { include = "ucollections.pyi" },
     { include = "ucryptolib.pyi" },
