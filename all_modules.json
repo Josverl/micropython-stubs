@@ -16446,7 +16446,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "66e54f2a"
     },
     {
@@ -16456,7 +16456,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "ac7e0d12"
     },
     {
@@ -16466,7 +16466,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "e2df0f6a"
     },
     {
@@ -16476,7 +16476,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "455d922f"
     },
     {
@@ -16486,8 +16486,8 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
-        "hash": "d66cdcaf"
+        "pkg_version": "1.21.0.post1",
+        "hash": "1f5dccab"
     },
     {
         "family": "micropython",
@@ -16496,8 +16496,8 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
-        "hash": "d99a9c26"
+        "pkg_version": "1.21.0.post1",
+        "hash": "55f503f1"
     },
     {
         "family": "micropython",
@@ -16506,8 +16506,8 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
-        "hash": "4e648609"
+        "pkg_version": "1.21.0.post1",
+        "hash": "1702d982"
     },
     {
         "family": "micropython",
@@ -16516,8 +16516,8 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
-        "hash": "bf9c875c"
+        "pkg_version": "1.21.0.post1",
+        "hash": "01f18d76"
     },
     {
         "family": "micropython",
@@ -16526,8 +16526,8 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
-        "hash": "5477b2cb"
+        "pkg_version": "1.21.0.post1",
+        "hash": "709927b9"
     },
     {
         "family": "micropython",
@@ -16536,8 +16536,8 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
-        "hash": "384b7924"
+        "pkg_version": "1.21.0.post1",
+        "hash": "94346b32"
     },
     {
         "family": "micropython",
@@ -16546,7 +16546,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "9b3d50d1"
     },
     {
@@ -16556,7 +16556,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "db41b65e"
     },
     {
@@ -16566,7 +16566,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "4ea23e18"
     },
     {
@@ -16576,8 +16576,8 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
-        "hash": "8ce731e1"
+        "pkg_version": "1.21.0.post1",
+        "hash": "6b40b243"
     },
     {
         "family": "micropython",
@@ -16586,7 +16586,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "99b1aa69"
     },
     {
@@ -16596,7 +16596,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "64808f4b"
     },
     {
@@ -16606,7 +16606,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "c2163366"
     },
     {
@@ -16616,7 +16616,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "91b90688"
     },
     {
@@ -16626,7 +16626,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "a3ca087a"
     },
     {
@@ -16636,7 +16636,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "ce126381"
     },
     {
@@ -16646,7 +16646,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "54cebe44"
     },
     {
@@ -16656,7 +16656,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "09aaef77"
     },
     {
@@ -16666,7 +16666,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "9d60da51"
     },
     {
@@ -16676,7 +16676,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "4d981816"
     },
     {
@@ -16686,7 +16686,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "c723b08f"
     },
     {
@@ -16696,7 +16696,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "81a08d09"
     },
     {
@@ -16706,8 +16706,8 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
-        "hash": "439d9111"
+        "pkg_version": "1.21.0.post1",
+        "hash": "f6cbea75"
     },
     {
         "family": "micropython",
@@ -16716,7 +16716,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "24808f57"
     },
     {
@@ -16726,7 +16726,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "bef1229d"
     },
     {
@@ -16736,7 +16736,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "423a854a"
     },
     {
@@ -16746,7 +16746,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "0aad9b6d"
     },
     {
@@ -16756,7 +16756,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "8767ada1"
     },
     {
@@ -16766,7 +16766,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "7ac7e893"
     },
     {
@@ -16776,7 +16776,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "6b4eefcd"
     },
     {
@@ -16786,7 +16786,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "f81c9d9a"
     },
     {
@@ -16796,7 +16796,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "ac688e2a"
     },
     {
@@ -16806,7 +16806,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "1fa15fe6"
     },
     {
@@ -16816,7 +16816,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "feafb230"
     },
     {
@@ -16826,7 +16826,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "455d922f"
     },
     {
@@ -16836,7 +16836,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "1f5dccab"
     },
     {
@@ -16846,7 +16846,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "55f503f1"
     },
     {
@@ -16856,7 +16856,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "1702d982"
     },
     {
@@ -16866,7 +16866,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "01f18d76"
     },
     {
@@ -16876,7 +16876,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "709927b9"
     },
     {
@@ -16886,18 +16886,8 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "94346b32"
-    },
-    {
-        "family": "micropython",
-        "version": "1.21.0",
-        "mod_name": "uasyncio",
-        "port": "stm32",
-        "board": "pybv11",
-        "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
-        "hash": "1e3b4b10"
     },
     {
         "family": "micropython",
@@ -16906,7 +16896,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "9b3d50d1"
     },
     {
@@ -16916,7 +16906,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "ddddde41"
     },
     {
@@ -16926,7 +16916,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "96ad2b13"
     },
     {
@@ -16936,7 +16926,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "99b1aa69"
     },
     {
@@ -16946,7 +16936,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "91b90688"
     },
     {
@@ -16956,7 +16946,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "a3ca087a"
     },
     {
@@ -16966,7 +16956,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "ce126381"
     },
     {
@@ -16976,7 +16966,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "54cebe44"
     },
     {
@@ -16986,7 +16976,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "9d60da51"
     },
     {
@@ -16996,7 +16986,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "24808f57"
     },
     {
@@ -17006,7 +16996,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "bef1229d"
     },
     {
@@ -17016,7 +17006,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "0aad9b6d"
     },
     {
@@ -17026,7 +17016,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "f797fa90"
     },
     {
@@ -17036,7 +17026,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "7ac7e893"
     },
     {
@@ -17046,7 +17036,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "6b4eefcd"
     },
     {
@@ -17056,7 +17046,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "ac688e2a"
     },
     {
@@ -17066,7 +17056,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "1fa15fe6"
     },
     {
@@ -17076,7 +17066,7 @@
         "port": "stm32",
         "board": "pybv11",
         "package": "micropython-stm32-pybv11-stubs",
-        "pkg_version": "1.21.0.post4",
+        "pkg_version": "1.21.0.post1",
         "hash": "feafb230"
     },
     {
@@ -19097,7 +19087,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.24.0a66",
-        "hash": "b16c34f7"
+        "hash": "92ee55cf"
     },
     {
         "family": "micropython",
@@ -19347,7 +19337,7 @@
         "board": "GENERIC",
         "package": "micropython-rp2-stubs",
         "pkg_version": "1.24.0a66",
-        "hash": "b16c34f7"
+        "hash": "92ee55cf"
     },
     {
         "family": "micropython",
@@ -21057,7 +21047,7 @@
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
         "pkg_version": "1.24.0a66",
-        "hash": "b16c34f7"
+        "hash": "92ee55cf"
     },
     {
         "family": "micropython",
@@ -21307,7 +21297,7 @@
         "board": "rpi_pico",
         "package": "micropython-rp2-rpi_pico-stubs",
         "pkg_version": "1.24.0a66",
-        "hash": "b16c34f7"
+        "hash": "92ee55cf"
     },
     {
         "family": "micropython",
@@ -61767,7 +61757,7 @@
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
         "pkg_version": "1.24.0a66",
-        "hash": "d1f4de93"
+        "hash": "388c14b5"
     },
     {
         "family": "micropython",
@@ -62007,7 +61997,7 @@
         "board": "seeed_wio_terminal",
         "package": "micropython-samd-seeed_wio_terminal-stubs",
         "pkg_version": "1.24.0a66",
-        "hash": "d1f4de93"
+        "hash": "388c14b5"
     },
     {
         "family": "micropython",
@@ -71307,7 +71297,7 @@
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
         "pkg_version": "1.24.0a66",
-        "hash": "d1f4de93"
+        "hash": "388c14b5"
     },
     {
         "family": "micropython",
@@ -71547,7 +71537,7 @@
         "board": "GENERIC",
         "package": "micropython-samd-stubs",
         "pkg_version": "1.24.0a66",
-        "hash": "d1f4de93"
+        "hash": "388c14b5"
     },
     {
         "family": "micropython",
