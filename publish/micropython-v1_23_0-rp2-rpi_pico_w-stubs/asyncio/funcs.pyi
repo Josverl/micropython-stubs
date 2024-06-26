@@ -1,20 +1,13 @@
-"""
-Module: 'asyncio.funcs' on micropython-v1.23.0-rp2-RPI_PICO_W
-"""
-
-# MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.20.0
-from __future__ import annotations
-from typing import Generator
+from . import core as core
 from _typeshed import Incomplete
+from collections.abc import Generator
 
-def wait_for_ms(*args, **kwargs) -> Incomplete: ...
-
-gather: Generator  ## = <generator>
-wait_for: Generator  ## = <generator>
+async def _run(waiter, aw) -> None: ...
+async def wait_for(aw, timeout, sleep=...): ...
+def wait_for_ms(aw, timeout): ...
 
 class _Remove:
-    def remove(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    @staticmethod
+    def remove(t) -> None: ...
 
-_run: Generator  ## = <generator>
+def gather(*aws, return_exceptions: bool = False) -> Generator[None, None, Incomplete]: ...

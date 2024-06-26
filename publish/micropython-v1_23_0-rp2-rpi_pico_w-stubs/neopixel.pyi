@@ -9,18 +9,11 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    ports. On STM32 / Pyboard and others, you can either install the
    ``neopixel`` package using :term:`mip`, or you can download the module
    directly from :term:`micropython-lib` and copy it to the filesystem.
-
----
-Module: 'neopixel' on micropython-v1.23.0-rp2-RPI_PICO_W
 """
 
-# MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Tuple
-
-def bitstream(*args, **kwargs) -> Incomplete: ...
 
 class NeoPixel:
     """
@@ -32,18 +25,40 @@ class NeoPixel:
         - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
     """
 
-    ORDER: tuple = ()
-    def write(self) -> None:
+    ORDER: Incomplete
+    pin: Incomplete
+    n: Incomplete
+    bpp: Incomplete
+    buf: Incomplete
+    timing: Incomplete
+    def __init__(self, pin, n, bpp: int = 3, timing: int = 1) -> None: ...
+    def __len__(self) -> int:
         """
-        Writes the current pixel data to the strip.
+        Returns the number of LEDs in the strip.
         """
         ...
 
-    def fill(self, pixel) -> None:
+    def __setitem__(self, i, v) -> None:
+        """
+        Set the pixel at *index* to the value, which is an RGB/RGBW tuple.
+        """
+        ...
+
+    def __getitem__(self, i) -> Tuple:
+        """
+        Returns the pixel at *index* as an RGB/RGBW tuple.
+        """
+        ...
+
+    def fill(self, v) -> None:
         """
         Sets the value of all pixels to the specified *pixel* value (i.e. an
         RGB/RGBW tuple).
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def write(self) -> None:
+        """
+        Writes the current pixel data to the strip.
+        """
+        ...
