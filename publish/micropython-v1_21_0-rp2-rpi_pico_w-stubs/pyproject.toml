@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-rpi_pico_w-stubs"
-version = "1.21.0.post4"
+version = "1.21.0.post1"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
