@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-rp2-rpi_pico_w-stubs"
-version = "1.23.0.post1"
+version = "1.23.0.post2"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -37,8 +37,6 @@ classifiers = [
 packages = [
     { include = "__builtins__.pyi" },
     { include = "_asyncio.pyi" },
-    { include = "_boot.pyi" },
-    { include = "_boot_fat.pyi" },
     { include = "_onewire.pyi" },
     { include = "_rp2.pyi" },
     { include = "_thread.pyi" },
@@ -99,7 +97,6 @@ packages = [
     { include = "uasyncio/funcs.pyi" },
     { include = "uasyncio/lock.pyi" },
     { include = "uasyncio/stream.pyi" },
-    { include = "uasyncio.pyi" },
     { include = "ubinascii.pyi" },
     { include = "ubluetooth.pyi" },
     { include = "ucollections.pyi" },
@@ -123,8 +120,6 @@ packages = [
     { include = "utime.pyi" },
     { include = "uwebsocket.pyi" },
     { include = "vfs.pyi" },
-    { include = "webrepl.pyi" },
-    { include = "webrepl_setup.pyi" },
     { include = "websocket.pyi" },
 ]
 

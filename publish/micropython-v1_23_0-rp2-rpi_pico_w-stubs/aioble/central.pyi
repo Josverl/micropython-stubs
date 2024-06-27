@@ -1,72 +1,66 @@
-from .core import (
-    ble as ble,
-    ensure_active as ensure_active,
-    log_error as log_error,
-    log_info as log_info,
-    log_warn as log_warn,
-    register_irq_handler as register_irq_handler,
-)
-from .device import Device as Device, DeviceConnection as DeviceConnection, DeviceTimeout as DeviceTimeout
+"""
+Module: 'aioble.central' on micropython-v1.23.0-rp2-RPI_PICO_W
+"""
+
+# MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.20.0
+from __future__ import annotations
+from typing import Generator
 from _typeshed import Incomplete
-from collections.abc import Generator
-from micropython import const as const
 
-_IRQ_SCAN_RESULT: int
-_IRQ_SCAN_DONE: int
-_IRQ_PERIPHERAL_CONNECT: int
-_IRQ_PERIPHERAL_DISCONNECT: int
-_ADV_IND: int
-_ADV_DIRECT_IND: int
-_ADV_SCAN_IND: int
-_ADV_NONCONN_IND: int
-_SCAN_RSP: int
-_ADV_TYPE_FLAGS: int
-_ADV_TYPE_NAME: int
-_ADV_TYPE_SHORT_NAME: int
-_ADV_TYPE_UUID16_INCOMPLETE: int
-_ADV_TYPE_UUID16_COMPLETE: int
-_ADV_TYPE_UUID32_INCOMPLETE: int
-_ADV_TYPE_UUID32_COMPLETE: int
-_ADV_TYPE_UUID128_INCOMPLETE: int
-_ADV_TYPE_UUID128_COMPLETE: int
-_ADV_TYPE_APPEARANCE: int
-_ADV_TYPE_MANUFACTURER: int
-_active_scanner: Incomplete
-_connecting: Incomplete
+def _central_shutdown(*args, **kwargs) -> Incomplete: ...
+def ensure_active(*args, **kwargs) -> Incomplete: ...
+def _central_irq(*args, **kwargs) -> Incomplete: ...
+def register_irq_handler(*args, **kwargs) -> Incomplete: ...
+def log_warn(*args, **kwargs) -> Incomplete: ...
+def log_error(*args, **kwargs) -> Incomplete: ...
+def log_info(*args, **kwargs) -> Incomplete: ...
+def const(*args, **kwargs) -> Incomplete: ...
 
-def _central_irq(event, data) -> None: ...
-def _central_shutdown() -> None: ...
-async def _cancel_pending() -> None: ...
-async def _connect(connection, timeout_ms) -> None: ...
+ble: Incomplete  ## <class 'BLE'> = <BLE>
 
-class ScanResult:
-    device: Incomplete
-    adv_data: Incomplete
-    resp_data: Incomplete
-    rssi: Incomplete
-    connectable: bool
-    def __init__(self, device) -> None: ...
-    def _update(self, adv_type, rssi, adv_data): ...
-    def __str__(self) -> str: ...
-    def _decode_field(self, *adv_type) -> Generator[Incomplete, None, None]: ...
-    def name(self): ...
-    def services(self) -> Generator[Incomplete, None, None]: ...
-    def manufacturer(self, filter: Incomplete | None = None) -> Generator[Incomplete, None, None]: ...
+class DeviceTimeout:
+    _timeout_sleep: Generator  ## = <generator>
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class scan:
-    _queue: Incomplete
-    _event: Incomplete
-    _done: bool
-    _results: Incomplete
-    _duration_ms: Incomplete
-    _interval_us: Incomplete
-    _window_us: Incomplete
-    _active: Incomplete
-    def __init__(
-        self, duration_ms, interval_us: Incomplete | None = None, window_us: Incomplete | None = None, active: bool = False
-    ) -> None: ...
-    async def __aenter__(self): ...
-    async def __aexit__(self, exc_type, exc_val, exc_traceback) -> None: ...
-    def __aiter__(self): ...
-    async def __anext__(self): ...
-    async def cancel(self) -> None: ...
+    cancel: Generator  ## = <generator>
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+_active_scanner: Incomplete  ## <class 'NoneType'> = None
+_cancel_pending: Generator  ## = <generator>
+
+class ScanResult:
+    def _update(self, *args, **kwargs) -> Incomplete: ...
+    def name(self, *args, **kwargs) -> Incomplete: ...
+
+    manufacturer: Generator  ## = <generator>
+    services: Generator  ## = <generator>
+    _decode_field: Generator  ## = <generator>
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+_connecting: set  ## = set()
+_connect: Generator  ## = <generator>
+
+class DeviceConnection:
+    _connected: dict = {}
+    def is_connected(self, *args, **kwargs) -> Incomplete: ...
+    def _run_task(self, *args, **kwargs) -> Incomplete: ...
+    def services(self, *args, **kwargs) -> Incomplete: ...
+    def timeout(self, *args, **kwargs) -> Incomplete: ...
+
+    device_task: Generator  ## = <generator>
+    l2cap_connect: Generator  ## = <generator>
+    pair: Generator  ## = <generator>
+    service: Generator  ## = <generator>
+    l2cap_accept: Generator  ## = <generator>
+    disconnected: Generator  ## = <generator>
+    exchange_mtu: Generator  ## = <generator>
+    disconnect: Generator  ## = <generator>
+    def __init__(self, *argv, **kwargs) -> None: ...
+
+class Device:
+    def addr_hex(self, *args, **kwargs) -> Incomplete: ...
+
+    connect: Generator  ## = <generator>
+    def __init__(self, *argv, **kwargs) -> None: ...
