@@ -9,7 +9,9 @@ on:
         #     - main
         paths:
             - .github/workflows/createstubs.yml
-
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
 
 jobs:
 ########################################################################################################################################
