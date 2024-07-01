@@ -9,7 +9,7 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 Module: 'usys' on micropython-v1.24.0-preview-esp32-ESP32_GENERIC_C3
 """
 
-# MCU: {'version': '1.24.0-preview', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC_C3', 'family': 'micropython', 'build': 'preview.66.gf60c71d13', 'arch': '', 'ver': '1.24.0-preview-preview.66.gf60c71d13', 'cpu': 'ESP32C3'}
+# MCU: {'version': '1.24.0-preview', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC_C3', 'family': 'micropython', 'build': 'preview.86.g557d31ed2', 'arch': '', 'ver': '1.24.0-preview-preview.86.g557d31ed2', 'cpu': 'ESP32C3'}
 # Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
@@ -18,7 +18,7 @@ from typing import Dict, List, Tuple
 platform: str = "esp32"
 version_info: tuple = ()
 path: list = []
-version: str = "3.4.0; MicroPython v1.24.0-preview.66.gf60c71d13 on 2024-06-25"
+version: str = "3.4.0; MicroPython v1.24.0-preview.86.g557d31ed2 on 2024-07-01"
 ps1: str = ">>> "
 ps2: str = "... "
 byteorder: str = "little"
