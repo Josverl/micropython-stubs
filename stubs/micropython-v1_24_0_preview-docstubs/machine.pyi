@@ -1516,6 +1516,15 @@ class USBDevice:
         """
         ...
 
+    def remote_wakeup(self, self) -> bool:
+        """
+        Wake up host if we are in suspend mode and the REMOTE_WAKEUP feature
+        is enabled by the host. This has to be enabled in the USB attributes,
+        and on the host. Returns ``True`` if remote wakeup was enabled and
+        active and the host was woken up.
+        """
+        ...
+
     def submit_xfer(self, ep, buffer) -> bool:
         """
         Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be
