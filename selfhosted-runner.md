@@ -38,7 +38,7 @@ sudo apt install pipx -y
 pipx ensurepath
 
 # pmount - mount arbitrary hotpluggable devices as normal user
-# needed by mptool to mount UF2 devices
+# needed by mpflash to mount UF2 devices
 sudo apt install pmount
 ```
 
