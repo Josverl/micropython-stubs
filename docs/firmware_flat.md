@@ -64,7 +64,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.21| rp2| generic| 64| v1.20.0|[stubs/micropython-v1_21_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-rp2-RPI_PICO)
 |board| micropython| v1.21| rp2| generic| 89| v1.20.0|[stubs/micropython-v1_21_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-rp2-RPI_PICO_W)
 |board| micropython| v1.21| samd| generic| 58| v1.16.2|[stubs/micropython-v1_21_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-samd-SEEED_WIO_TERMINAL)
-|board| micropython| v1.21| stm32| generic| 64| v1.20.0|[stubs/micropython-v1_21_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-stm32-PYBV11)
+|board| micropython| v1.21| stm32| generic| 64| v1.23.0|[stubs/micropython-v1_21_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-stm32-PYBV11)
 |board| micropython| v1.21| unix| generic| 67| v1.15.1|[stubs/micropython-v1_21_0-unix-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-unix-GENERIC)
 |board| micropython| v1.21| webassembly| generic| 40| v1.15.0|[stubs/micropython-v1_21_0-webassembly-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-webassembly-GENERIC)
 |board| micropython| v1.21| win32| generic| 36| v1.15.0|[stubs/micropython-v1_21_0-windows-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-windows-GENERIC)
