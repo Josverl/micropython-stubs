@@ -1516,7 +1516,7 @@ class USBDevice:
         """
         ...
 
-    def remote_wakeup(self, self) -> bool:
+    def remote_wakeup(self) -> bool:
         """
         Wake up host if we are in suspend mode and the REMOTE_WAKEUP feature
         is enabled by the host. This has to be enabled in the USB attributes,
