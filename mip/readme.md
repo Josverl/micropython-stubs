@@ -19,14 +19,15 @@ A solution is to add a minimalistic `typing.py` file to the project, and when yo
 
 
 ## Install the `typing` modules to your MCU
-To have the least amount of runtime overhead on your MCU, you can (should) used the cross compiled version of the modules to your MCU.
+To have the least amount of runtime overhead on your MCU, you should use the cross compiled version of the modules to your MCU.
 
 ```bash
 mpremote mip install github:josverl/micropython-stubs/mip/typing.mpy
 # and where needed also:
 mpremote mip install github:josverl/micropython-stubs/mip/typing_extensions.mpy
 ```
-*Note:* The .mpy modules are cross compiled for micropython 
+*Note:* The .mpy modules are cross compiled for MicroPython v1.23.0 ; mpy-cross emitting mpy v6.3
+
 
 ```log
 Install github:josverl/micropython-stubs/mip/typing.mpy

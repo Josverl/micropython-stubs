@@ -25,6 +25,8 @@ class _AnyCall:
     def __call__(*args, **kwargs):
         pass
 
+    def __getitem__(self, arg):
+        return _anyCall
 
 _anyCall = _AnyCall()
 
