@@ -11,6 +11,7 @@ MicroPython module: https://docs.micropython.org/en/v1.23.0/library/aioespnow.ht
 from __future__ import annotations
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 from _typeshed import Incomplete
+from _espnow import ESPNowBase
 
 MAX_DATA_LEN: Incomplete = 250
 KEY_LEN: Incomplete = 16
