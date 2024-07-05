@@ -18,11 +18,13 @@ def copy_mpy_typings( snip_path:Path, ext:str,pytestconfig: pytest.Config):
     """
     Copy the typings.py and the typings_extension.py files to  snip_path
     """
-    for file in snip_path.glob("typing*.py*"):
+    lib_path = snip_path / "lib"
+    lib_path.mkdir(exist_ok=True)
+    for file in lib_path.glob("typing*.py*"):
         file.unlink()
 
     for file in (pytestconfig.rootpath / "mip").glob(f"typing*{ext}"):
-        shutil.copy(file, snip_path)
+        shutil.copy(file, lib_path )
     return True
 
 
@@ -50,7 +52,7 @@ def test_typing_runtime(
     caplog.set_level(logging.INFO)
     # log.info(f"Typechecker {linter} : {portboard}, {feature} from {stub_source}")
 
-    cmd = f"docker run -u 1000 -v .:/code --rm micropython/unix:{mp_version} micropython {check_file}"
+    cmd = f"docker run -u 1000 -e HOME=/foo -v .:/code -v ./lib:/foo/.micropython/lib --rm micropython/unix:{mp_version} micropython {check_file}"
     result = subprocess.run(cmd, shell=True, cwd=snip_path, text=True, capture_output=True)
     error = [line for line in result.stdout.split("\n") if "Traceback" not in line]
     assert result.returncode == 0, error
