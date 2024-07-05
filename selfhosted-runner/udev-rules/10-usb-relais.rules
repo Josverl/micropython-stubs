@@ -1,0 +1,2 @@
+# give the USB relay a static device name
+ACTION=="add", ATTRS{manufacturer}=="MicroPython", ATTRS{serial}=="e6632c85934e2d28", ATTRS{product}=="Board in FS mode", SYMLINK+="ttyRELAY", OPTIONS+="last_rule"
