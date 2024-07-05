@@ -8,7 +8,8 @@ from pathlib import Path
 import fasteners
 import pytest
 from packaging.version import Version
-from typecheck import copy_config_files, port_and_board, run_typechecker, stub_ignore
+from typecheck import (copy_config_files, port_and_board, run_typechecker,
+                       stub_ignore)
 
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
@@ -60,16 +61,14 @@ PORTBOARD_FEATURES = {
 }
 
 SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
-VERSIONS = [
-    "preview",
-    "v1.22.1",
-    "v1.22.0",
-    "v1.21.0",
-    "v1.20.1",
-    "v1.20.0",
-    # "v1.19.1",
-    # "v1.18",
-]
+
+import sys
+
+HERE = (Path(__file__).parent).resolve()
+sys.path.append(str(HERE.parent.parent / '.github/workflows'))
+from list_versions import major_minor, micropython_versions  # type: ignore
+
+VERSIONS = (["latest"]+major_minor(micropython_versions(start="v1.20")))[:4]
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
