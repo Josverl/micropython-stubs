@@ -11,6 +11,7 @@ Module: 'espnow' on micropython-v1.23.0-esp8266-ESP8266_GENERIC
 # Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from _espnow import ESPNowBase
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 
 MAX_ENCRYPT_PEER_NUM: int = 6

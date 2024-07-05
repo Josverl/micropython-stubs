@@ -11,6 +11,7 @@ Module: 'espnow' on micropython-v1.24.0-preview-esp32-ESP32_GENERIC
 # Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from _espnow import ESPNowBase
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 
 KEY_LEN: int = 16

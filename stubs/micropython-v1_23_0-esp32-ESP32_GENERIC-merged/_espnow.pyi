@@ -11,6 +11,7 @@ Module: '_espnow' on micropython-v1.23.0-esp32-ESP32_GENERIC
 # Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from _espnow import ESPNowBase
 from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 
 MAX_DATA_LEN: int = 250
