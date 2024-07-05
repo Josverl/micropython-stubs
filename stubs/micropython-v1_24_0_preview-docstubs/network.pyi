@@ -22,7 +22,7 @@ For example::
         print("Waiting for connection...")
         while not nic.isconnected():
             time.sleep(1)
-    print(nic.ifconfig())
+    print(nic.ipconfig("addr4"))
 
     # now use socket as usual
     import socket
@@ -41,7 +41,7 @@ For example::
 # + module: network.WIZNET5K.rst
 # + module: network.LAN.rst
 from __future__ import annotations
-from typing import Any, List, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple
 from _typeshed import Incomplete
 
 class AbstractNIC:
@@ -127,8 +127,49 @@ class AbstractNIC:
         """
         ...
 
+    def ipconfig(self, param) -> Incomplete:
+        """
+        Get or set interface-specific IP-configuration interface parameters.
+        Supported parameters are the following (availability of a particular
+        parameter depends on the port and the specific network interface):
+
+        * ``dhcp4`` (``True/False``) obtain an IPv4 address, gateway and dns
+          server via DHCP. This method does not block and wait for an address
+          to be obtained. To check if an address was obtained, use the read-only
+          property ``has_dhcp4``.
+        * ``gw4`` Get/set the IPv4 default-gateway.
+        * ``dhcp6`` (``True/False``) obtain a DNS server via stateless DHCPv6.
+          Obtaining IP Addresses via DHCPv6 is currently not implemented.
+        * ``autoconf6`` (``True/False``) obtain a stateless IPv6 address via
+          the network prefix shared in router advertisements. To check if a
+          stateless address was obtained, use the read-only
+          property ``has_autoconf6``.
+        * ``addr4`` (e.g. ``192.168.0.4/24``) obtain the current IPv4 address
+          and network mask as ``(ip, subnet)``-tuple, regardless of how this
+          address was obtained. This method can be used to set a static IPv4
+          address either as ``(ip, subnet)``-tuple or in CIDR-notation.
+        * ``addr6`` (e.g. ``fe80::1234:5678``) obtain a list of current IPv6
+          addresses as ``(ip, state, preferred_lifetime, valid_lifetime)``-tuple.
+          This include link-local, slaac and static addresses.
+          ``preferred_lifetime`` and ``valid_lifetime`` represent the remaining
+          valid and preferred lifetime of each IPv6 address, in seconds.
+          ``state`` indicates the current state of the address:
+
+          * ``0x08`` - ``0x0f`` indicates the address is tentative, counting the
+            number of probes sent.
+          * ``0x10`` The address is deprecated (but still valid)
+          * ``0x30`` The address is preferred (and valid)
+          * ``0x40`` The address is duplicated and can not be used.
+
+          This method can be used to set a static IPv6
+          address, by setting this parameter to the address, like ``fe80::1234:5678``.
+        """
+        ...
+
     def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
         """
+        ``Note:`` This function is deprecated, use `ipconfig()` instead.
+
         Get/set IP-level network interface parameters: IP address, subnet mask,
         gateway and DNS server. When called with no arguments, this method returns
         a 4-tuple with the above information. To set the above values, pass a
@@ -142,7 +183,7 @@ class AbstractNIC:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
-        `ifconfig()`). These include network-specific and hardware-specific
+        `ipconfig()`). These include network-specific and hardware-specific
         parameters. For setting parameters, the keyword argument
         syntax should be used, and multiple parameters can be set at once. For
         querying, a parameter name should be quoted as a string, and only one
@@ -273,7 +314,7 @@ class WLAN:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
-        `WLAN.ifconfig()`). These include network-specific and hardware-specific
+        `AbstractNIC.ipconfig()`). These include network-specific and hardware-specific
         parameters. For setting parameters, keyword argument syntax should be used,
         multiple parameters can be set at once. For querying, parameters name should
         be quoted as a string, and only one parameter can be queries at time::
@@ -391,16 +432,9 @@ class WLANWiPy:
         """
         ...
 
-    def ifconfig(self, if_id=0, config: Union[str, Tuple] = "dhcp") -> Tuple:
+    def ipconfig(self, param) -> Incomplete:
         """
-        With no parameters given returns a 4-tuple of *(ip, subnet_mask, gateway, DNS_server)*.
-
-        if ``'dhcp'`` is passed as a parameter then the DHCP client is enabled and the IP params
-        are negotiated with the AP.
-
-        If the 4-tuple config is given then a static IP is configured. For instance::
-
-           wlan.ifconfig(config=('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
+        See :meth:`AbstractNIC.ipconfig <AbstractNIC.ipconfig>`. Supported parameters are: ``dhcp4``, ``addr4``, ``gw4``.
         """
         ...
 
@@ -471,25 +505,6 @@ class WIZNET5K:
     """
 
     def __init__(self, spi, pin_cs, pin_rst) -> None: ...
-    def isconnected(self) -> bool:
-        """
-        Returns ``True`` if the physical Ethernet link is connected and up.
-        Returns ``False`` otherwise.
-        """
-        ...
-
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
-        """
-        Get/set IP address, subnet mask, gateway and DNS.
-
-        When called with no arguments, this method returns a 4-tuple with the above information.
-
-        To set the above values, pass a 4-tuple with the required information.  For example::
-
-         nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
-        """
-        ...
-
     def regs(self) -> Incomplete:
         """
         Dump the WIZnet5x00 registers.  Useful for debugging.
