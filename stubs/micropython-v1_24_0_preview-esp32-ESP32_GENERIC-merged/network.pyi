@@ -22,7 +22,7 @@ For example::
         print("Waiting for connection...")
         while not nic.isconnected():
             time.sleep(1)
-    print(nic.ifconfig())
+    print(nic.ipconfig("addr4"))
 
     # now use socket as usual
     import socket
@@ -44,7 +44,7 @@ Module: 'network' on micropython-v1.24.0-preview-esp32-ESP32_GENERIC
 # Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, List, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple
 
 PHY_KSZ8081: int = 6
 PHY_KSZ8041: int = 5
@@ -282,7 +282,7 @@ class WLAN:
         """
         Get or set general network interface parameters. These methods allow to work
         with additional parameters beyond standard IP configuration (as dealt with by
-        `WLAN.ifconfig()`). These include network-specific and hardware-specific
+        `AbstractNIC.ipconfig()`). These include network-specific and hardware-specific
         parameters. For setting parameters, keyword argument syntax should be used,
         multiple parameters can be set at once. For querying, parameters name should
         be quoted as a string, and only one parameter can be queries at time::

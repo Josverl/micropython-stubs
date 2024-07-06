@@ -22,7 +22,7 @@ For example::
         print("Waiting for connection...")
         while not nic.isconnected():
             time.sleep(1)
-    print(nic.ifconfig())
+    print(nic.ipconfig("addr4"))
 
     # now use socket as usual
     import socket
@@ -44,7 +44,7 @@ Module: 'network' on micropython-v1.24.0-preview-stm32-PYBV11
 # Stubber: v1.20.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, List, Optional, Tuple, Union
+from typing import Any, List, Optional, Tuple
 
 STA_IF: int = 0
 AP_IF: int = 1
