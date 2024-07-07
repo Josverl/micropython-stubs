@@ -84,7 +84,6 @@ The diagram below shows the sequence of checks that Pylance/Pyright does to reso
 with the above configuration it will first check the `venv` or the `typings` folder and then look for the stdlib stubs in these folders.
 Without the configuration it will only look for the stdlib stubs in the typeshed stubs that are shipped with Pyright.
 
-
 ## Sample VSCode configuration file.
 
 The below configuration combines the above settings.

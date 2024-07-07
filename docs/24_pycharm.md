@@ -2,7 +2,9 @@
 
 ## Configure PyCharm to use the selected stub folders
 
-PyCharm supports Python stub files, so the simplest option to enable it to 'understand' Micropython is to install the micropython-stubs for your port/board from PyPi.  
+PyCharm supports Python stub files, so the simplest option to enable it to 'understand' MicroPython is to install the micropython-stubs for your port/board from PyPi.  
+
+
 ![Code completions](img/pycharm-completion-2.png)  
 ref: https://www.jetbrains.com/help/pycharm/type-hinting-in-product.html#stub-type-hints
 
@@ -12,7 +14,7 @@ Install the stubs as documented in [using the stubs](20_using.md)
 
 Example: `pip install -U micropython-stm32-stubs==1.19.1.*`
 
-If you have a requirements.txt file you can add the stubs to it, and PyCharm will offer to install them automatically.
+If you have a `requirements-dev.txt` file you can add the stubs to it, and PyCharm will offer to install them automatically.
 
 ```text
 micropython-stm32-stubs==1.19.1.*
@@ -20,7 +22,7 @@ micropython-stm32-stubs==1.19.1.*
 
 After this Pycharm will use the stubs to validate your code and provide hints.
 
-Note that Pycharm's rendering of the docstrings is limited (compared to VSCode), but still quite useful.
+Note that Pycharm's rendering of the docstrings is limited (compared to VSCode), but is still quite useful.
 
 ## Check library imports
 
@@ -33,14 +35,14 @@ Pycharm will show the module's docstring that will allow you to identify which s
 
 As the RP2 PIO code is not valid Python code, PyCharm will show multiple warnings for those code sections. 
 
-Fortunatly PyCharm allws these to be silenced for these sections.
+Fortunatly PyCharm allows these to be silenced for these sections.
 To disable these warnings, add the following line to the top of the file or to the top of the function:
 
 `# noinspection PyStatementEffect,PyArgumentList`
 
 This will suppress the PyCharm warnings for that specific function
 
-Complete sample: 
+*Complete sample:*
 
 ```python
 # noinspection PyStatementEffect,PyArgumentList
@@ -61,22 +63,7 @@ def blink_1hz():
     jmp(x_dec, "delay_low")
 ```
 
-## Legacy configuration: Clone the stubs repo
 
-Note that this is an older method of installation, and generally should not be used unless you have a specific need for stubs not (yet) published, and that cannot be installed from GitHub 
-
-To use stubs from the micropython-stubs repository , follow these steps:
-
-Copy some or all the stubs into a directory in your project, or use a symlink to a clone of the stubs.
-
-- Mark the relevant directories as a source root by choosing **Mark Directory as | Sources Root** from the context menu of the directory.  
-  For example: 
-  
-  - all-stubs/cpython_core-pycopy
-  - all-stubs/micropython-v1_17-frozen/esp32/GENERIC
-  - all-stubs/micropython-v1_17-esp32
-
-You should now be able to use code completion and typechecking for your micropython code in PyCharm
 
 ### Verify the paths
 

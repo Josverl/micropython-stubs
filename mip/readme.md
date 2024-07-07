@@ -29,7 +29,7 @@ mpremote mip install github:josverl/micropython-stubs/mip/typing_extensions.mpy
 *Note:* The .mpy modules are cross compiled for MicroPython v1.23.0 ; mpy-cross emitting mpy v6.3
 
 
-```log
+```
 Install github:josverl/micropython-stubs/mip/typing.mpy
 Downloading github:josverl/micropython-stubs/mip/typing.mpy to /lib
 Installing: /lib/typing.mpy

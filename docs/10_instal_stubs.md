@@ -36,21 +36,33 @@ There are two main ways to install the stubs into your environment
 
 ### Option 2: Virtual Environment (venv)
 
-1. Activate your virtual environment (if you’re using one).
+A Python virtual environment keeps dependencies separate for different projects. It’s a crucial tool for developers. To create and activate a virtual environment in your project directory, follow these steps:
 
-2. Install the stubs:
-   
-   ```bash
+#### Activate your virtual environment (if you’re using one).
+
+##### For Linux/Mac:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+##### For Windows:
+
+```bash
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+```
+
+#### Install the stubs:
+
+1. ```bash
    pip install -U micropython-<port>[-<board>]stubs --no-user
    ```
-
-3. Dive into the world of MicroPython development with confidence!
 
 > [TIPS]
 > 
 > **Requirements File**: Consider adding a `requirements-dev.txt` file to your project with the specified stubs. It’ll help keep your development environment consistent.
-
-More examples:
 
 ```bash
 pip install -U micropython-stm32-stubs --target typings --no-user
@@ -71,3 +83,39 @@ You should be aware that the stubs fro different boards and ports are all instal
 So in you attempt to install or uninstall different stub-packages or versions into a folder or environment, then the result may be not what you expect, as it is essentially a "last writer wins" scenario, and it is likely there will be some stubs left, or missing.
 
 This is one of the reasons I prefer to use a `typings` folder as that give good clarity on what is included, and what not.
+
+## Folder structures
+
+If you install into a typing folder, the resulting folder structure is:
+
+```
+.
+└── typings
+    ├── micropython_rp2_pico_w_stubs-1.20.0.post5.dist-info
+    ├── micropython_stdlib_stubs-1.1.2.dist-info
+    ├── stdlib
+    │   ├── asyncio
+    │   ├── collections
+    │   ├── os
+    │   ├── sys
+    │   └── _typeshed
+    └── uasyncio
+```
+
+if you install into an virtual environment the stubs will be stored in `site-packages`
+
+```
+.venv/lib/python3.12/site-packages/
+├── micropython_rp2_pico_w_stubs-1.20.0.post5.dist-info
+├── micropython_stdlib_stubs-1.1.2.dist-info
+├── pip
+│   ├── ...
+├── pip-24.0.dist-info
+├── stdlib
+│   ├── asyncio
+│   ├── collections
+│   ├── os
+│   ├── sys
+│   └── _typeshed
+└── uasyncio
+```
