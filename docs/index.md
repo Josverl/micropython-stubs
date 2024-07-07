@@ -11,17 +11,24 @@
 
 10_intro_stubs.md
 20_using.md
+21_autocompletion.md
+22_static_type_checking.md
+
 22_vscode.md
 23_pyright_advanced.md
 24_pycharm.md
-26_pylint.md
 28_mypy.md
-50_legacy.md
-55_symlink.md
+26_pylint.md
+50_stub_types.md
+diy_stubs_files.md
+95_symlink.md
 _typing_mpy.md
 _folder_naming.md
 _qa_testing.md
 ```
+
+
+
 
 ```{toctree}
 :caption: 'Stub index'
@@ -30,7 +37,9 @@ packages.md
 firmware_grp.md
 firmware_flat.md
 ```
+
 # Indices and reference
+
 - {ref}`genindex`
 - {ref}`search`
 
