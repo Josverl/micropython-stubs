@@ -33,10 +33,12 @@ Create a user `runner` that is member of the dialout and sudo groups
 ```bash
 # create user
 sudo useradd -m -s /bin/bash runner
-# add to dialout group
-sudo usermod -a -G dialout runner
 # add to sudo group
 sudo uexitermod -a -G sudo runner
+# add to dialout group - access to comports
+sudo usermod -a -G dialout runner
+# access to pmount
+sudo usermod -a -G plugdev runner
 # change to user
 su - runner
 ```
