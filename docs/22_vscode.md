@@ -7,29 +7,24 @@ VSCode  uses Pylance, and optionally a linter such as pylint or mypy.
 `pip install -U micropython-<port>-stubs` 
 For details see [Using stubs](20_using.md)
 
+## 
+
 ## Configure VSCode & Pylance.
 
-VSCode allows the configuration to be set on **_workspace_** , folder or _user_ level. I prefer setting it per workspace or folder as that allows different settings for different projects, but you could do either.
+
 
 ### Install the Python and Pylance extensions.
 
-1. Install the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) from the marketplace. [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance) will be installed as an optional extension.
-2. By default the Pylance checking is sset to `Off` and the language server is set to `Default`
-   I recommend you set the language server to `Pylance` and the checking to `basic` ( or `strict` ) 
-   ![pylance_settings.png](img/pylance_settings.png)
-3. Open a Python (.py) file and the Pylance extension will activate.
-
-### Select the correct Python environment.
-
-If you have created a `venv` make sure to also select it in VSCode using 
-`F1, >Python: select interpreter` or the UX 
-
-![](https://raw.githubusercontent.com/microsoft/vscode-python/main/images/InterpreterSelectionZoom.gif)
+1. Install the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) from the marketplace.
+   The Python extension will automatically install the following extensions by default to provide the best Python development experience in VS Code:
+   - [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance "https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance") - to provide performant Python language support
+   - [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy "https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy") - to provide a seamless debug experience with debugpy
+   
+   
 
 ### Set Pylance as the language Server.
 
-Note: If you've previously set a language server and want to try Pylance, make sure you've set `"python.languageServer": "Default" or "Pylance"` in your settings.json file using the text editor, or using the Settings Editor UI.
-![pylance.png](img/pylance.png)
+Note: If you've previously set a language server and want to try Pylance, make sure you've set `"python.languageServer": "Default" or "Pylance"` in your settings.json file using the text editor, or using the Settings Editor UI. 
 
 Example from `.vscode/settings.json`
 
@@ -39,6 +34,52 @@ Example from `.vscode/settings.json`
     "python.analysis.typeCheckingMode": "basic",
 } 
 ```
+
+> [Note]
+> 
+> Note that the same options from the .toml configuration can also be set in the VSCode configuration for Python/Pylance.
+
+### Select the correct Python environment.
+
+If you have created a `venv` make sure to also select it in VSCode using 
+`F1, >Python: select interpreter` or the UX 
+
+![](https://raw.githubusercontent.com/microsoft/vscode-python/main/images/InterpreterSelectionZoom.gif)
+
+
+
+## Using pyproject.toml
+
+One of the simplest ways to configure the VSCode Python add-ins is to create a pyproject.toml file and add the relevant configuration to that.
+
+
+
+`./pyproject.toml`
+
+```toml
+[tool.pyright]
+include = ["src"]
+ignore = ["**/typings"]
+exclude = [
+    ".*",
+    "__*",
+    "**/typings",
+]
+
+typeCheckingMode = "basic"
+stubPath = "typings"
+typeshedPath = "typings"
+pythonPlatform = "Linux"
+
+reportMissingModuleSource = "none"
+reportUnnecessaryTypeIgnoreComment = "error"
+```
+
+This has the added advantage that the same configuration ca be used by the pyright command line tool if you choose to use it.
+
+
+
+### 
 
 ## Add configuration to suppress unneeded warnings.
 
@@ -52,7 +93,7 @@ Import "urequests" could not be resolved from source
 
 This is because the packages do not include the source code, as it are stub-only packages. 
 
-To supress these warnings add the following to youryour VSCode configuration.
+To supress these warnings add the following to your VSCode configuration.
 
 `.vscode/settings.json`
 
@@ -85,6 +126,14 @@ with the above configuration it will first check the `venv` or the `typings` fol
 Without the configuration it will only look for the stdlib stubs in the typeshed stubs that are shipped with Pyright.
 
 ## Sample VSCode configuration file.
+
+
+
+VSCode allows the configuration to be set on ***workspace*** , folder or *user* level. I prefer setting it per workspace or folder as that allows different settings for different projects, but you could do either.
+
+
+
+
 
 The below configuration combines the above settings.
 
