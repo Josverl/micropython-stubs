@@ -1,6 +1,10 @@
 [tool.poetry]
 name = "micropython-esp32-esp32_generic_c3-stubs"
+<<<<<<< Updated upstream
 version = "1.24.0a100"
+=======
+version = "1.24.0a1"
+>>>>>>> Stashed changes
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -87,6 +91,7 @@ packages = [
     { include = "struct.pyi" },
     { include = "sys.pyi" },
     { include = "time.pyi" },
+    { include = "tls.pyi" },
     { include = "uarray.pyi" },
     { include = "uasyncio/__init__.pyi" },
     { include = "uasyncio/core.pyi" },
