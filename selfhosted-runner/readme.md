@@ -4,6 +4,28 @@ This is a guide to setup a self hosted runner on a linux X64 / ARM64 machine.
 The guide is based on the [official documentation](https://docs.github.com/en/actions/hosting-your-own-runners) 
 and my own experience setting up a runner on a Raspberry Pi 4 and x64 using Ubuntu 22.04.
 
+## install system wide software
+
+```bash
+sudo apt update
+# python & friends
+sudo apt install python3.11 python3-venv python3-pip pipx
+.local/bin/pipx ensurepath
+
+# pwsh is needed for some scripts in workflows
+sudo snap install powershell --classic
+
+# disk mount
+# pmount - mount arbitrary hotpluggable devices as normal user
+# needed by mpflash to mount UF2 devices
+sudo apt install pmount
+
+# more python tools via pipx
+pipx install poetry     # to install stuff 
+pipx install mpremote   # to control the USB Relay
+```
+
+
 ## create a separate user for the runner
 
 Create a user `runner` that is member of the dialout and sudo groups
@@ -30,23 +52,6 @@ echo "runner ALL=(ALL:ALL) NOPASSWD:/usr/bin/add-apt-repository, /usr/bin/apt-ge
 echo "jos ALL=(ALL:ALL) NOPASSWD:/usr/bin/add-apt-repository, /usr/bin/apt-get, /usr/bin/apt install" | sudo tee /etc/sudoers.d/jos
 ```
 
-## Install tools
-
-### pipx
-
-```bash
-# pipx is required to be installed on all runners
-sudo apt install python3-pip python3.12-venv
-# install pipx in the user's root environment
-pip3 install pipx --break-system-packages
-.local/bin/pipx ensurepath
-pipx install poetry     # to install stuff 
-pipx install mpremote   # to control the USB Relay
-
-# pmount - mount arbitrary hotpluggable devices as normal user
-# needed by mpflash to mount UF2 devices
-sudo apt install pmount
-```
 
 ### STM32 - not needed anymore
 
