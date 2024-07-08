@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "micropython-esp32-esp32_generic_c3-stubs"
-version = "1.23.0.post2"
+version = "1.23.0.post1"
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -87,6 +87,7 @@ packages = [
     { include = "struct.pyi" },
     { include = "sys.pyi" },
     { include = "time.pyi" },
+    { include = "tls.pyi" },
     { include = "uarray.pyi" },
     { include = "uasyncio/__init__.pyi" },
     { include = "uasyncio/core.pyi" },
