@@ -1,52 +1,44 @@
-"""
-Module: 'aioble.peripheral' on micropython-v1.23.0-rp2-RPI_PICO_W
-"""
-
-# MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.20.0
-from __future__ import annotations
-from typing import Generator
+from .core import (
+    ble as ble,
+    ensure_active as ensure_active,
+    log_error as log_error,
+    log_info as log_info,
+    log_warn as log_warn,
+    register_irq_handler as register_irq_handler,
+)
+from .device import Device as Device, DeviceConnection as DeviceConnection, DeviceTimeout as DeviceTimeout
 from _typeshed import Incomplete
+from micropython import const as const
 
-def _peripheral_shutdown(*args, **kwargs) -> Incomplete: ...
-def ensure_active(*args, **kwargs) -> Incomplete: ...
-def _peripheral_irq(*args, **kwargs) -> Incomplete: ...
-def register_irq_handler(*args, **kwargs) -> Incomplete: ...
-def log_warn(*args, **kwargs) -> Incomplete: ...
-def log_error(*args, **kwargs) -> Incomplete: ...
-def log_info(*args, **kwargs) -> Incomplete: ...
-def _append(*args, **kwargs) -> Incomplete: ...
-def const(*args, **kwargs) -> Incomplete: ...
+_IRQ_CENTRAL_CONNECT: int
+_IRQ_CENTRAL_DISCONNECT: int
+_ADV_TYPE_FLAGS: int
+_ADV_TYPE_NAME: int
+_ADV_TYPE_UUID16_COMPLETE: int
+_ADV_TYPE_UUID32_COMPLETE: int
+_ADV_TYPE_UUID128_COMPLETE: int
+_ADV_TYPE_UUID16_MORE: int
+_ADV_TYPE_UUID32_MORE: int
+_ADV_TYPE_UUID128_MORE: int
+_ADV_TYPE_APPEARANCE: int
+_ADV_TYPE_MANUFACTURER: int
+_ADV_PAYLOAD_MAX_LEN: int
+_incoming_connection: Incomplete
+_connect_event: Incomplete
 
-class Device:
-    def addr_hex(self, *args, **kwargs) -> Incomplete: ...
-
-    connect: Generator  ## = <generator>
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-_incoming_connection: Incomplete  ## <class 'NoneType'> = None
-_connect_event: Incomplete  ## <class 'NoneType'> = None
-
-class DeviceConnection:
-    _connected: dict = {}
-    def is_connected(self, *args, **kwargs) -> Incomplete: ...
-    def _run_task(self, *args, **kwargs) -> Incomplete: ...
-    def services(self, *args, **kwargs) -> Incomplete: ...
-    def timeout(self, *args, **kwargs) -> Incomplete: ...
-
-    device_task: Generator  ## = <generator>
-    l2cap_connect: Generator  ## = <generator>
-    pair: Generator  ## = <generator>
-    service: Generator  ## = <generator>
-    l2cap_accept: Generator  ## = <generator>
-    disconnected: Generator  ## = <generator>
-    exchange_mtu: Generator  ## = <generator>
-    disconnect: Generator  ## = <generator>
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-class DeviceTimeout:
-    _timeout_sleep: Generator  ## = <generator>
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-ble: Incomplete  ## <class 'BLE'> = <BLE>
-advertise: Generator  ## = <generator>
+def _peripheral_irq(event, data) -> None: ...
+def _peripheral_shutdown() -> None: ...
+def _append(adv_data, resp_data, adv_type, value): ...
+async def advertise(
+    interval_us,
+    adv_data: Incomplete | None = None,
+    resp_data: Incomplete | None = None,
+    connectable: bool = True,
+    limited_disc: bool = False,
+    br_edr: bool = False,
+    name: Incomplete | None = None,
+    services: Incomplete | None = None,
+    appearance: int = 0,
+    manufacturer: Incomplete | None = None,
+    timeout_ms: Incomplete | None = None,
+): ...

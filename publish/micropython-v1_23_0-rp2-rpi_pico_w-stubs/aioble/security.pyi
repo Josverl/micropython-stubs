@@ -1,45 +1,27 @@
-"""
-Module: 'aioble.security' on micropython-v1.23.0-rp2-RPI_PICO_W
-"""
-
-# MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.20.0
-from __future__ import annotations
-from typing import Generator
+from .core import ble as ble, log_info as log_info, log_warn as log_warn, register_irq_handler as register_irq_handler
+from .device import DeviceConnection as DeviceConnection
 from _typeshed import Incomplete
+from micropython import const as const
 
-_modified: bool = False
-_DEFAULT_PATH: str = "ble_secrets.json"
-_secrets: dict = {}
+_IRQ_ENCRYPTION_UPDATE: int
+_IRQ_GET_SECRET: int
+_IRQ_SET_SECRET: int
+_IRQ_PASSKEY_ACTION: int
+_IO_CAPABILITY_DISPLAY_ONLY: int
+_IO_CAPABILITY_DISPLAY_YESNO: int
+_IO_CAPABILITY_KEYBOARD_ONLY: int
+_IO_CAPABILITY_NO_INPUT_OUTPUT: int
+_IO_CAPABILITY_KEYBOARD_DISPLAY: int
+_PASSKEY_ACTION_INPUT: int
+_PASSKEY_ACTION_DISP: int
+_PASSKEY_ACTION_NUMCMP: int
+_DEFAULT_PATH: str
+_secrets: Incomplete
+_modified: bool
+_path: Incomplete
 
-def _security_irq(*args, **kwargs) -> Incomplete: ...
-def register_irq_handler(*args, **kwargs) -> Incomplete: ...
-def _security_shutdown(*args, **kwargs) -> Incomplete: ...
-def log_warn(*args, **kwargs) -> Incomplete: ...
-def log_info(*args, **kwargs) -> Incomplete: ...
-def load_secrets(*args, **kwargs) -> Incomplete: ...
-def schedule(*args, **kwargs) -> Incomplete: ...
-def const(*args, **kwargs) -> Incomplete: ...
-def _save_secrets(*args, **kwargs) -> Incomplete: ...
-
-_path: Incomplete  ## <class 'NoneType'> = None
-pair: Generator  ## = <generator>
-
-class DeviceConnection:
-    _connected: dict = {}
-    def is_connected(self, *args, **kwargs) -> Incomplete: ...
-    def _run_task(self, *args, **kwargs) -> Incomplete: ...
-    def services(self, *args, **kwargs) -> Incomplete: ...
-    def timeout(self, *args, **kwargs) -> Incomplete: ...
-
-    device_task: Generator  ## = <generator>
-    l2cap_connect: Generator  ## = <generator>
-    pair: Generator  ## = <generator>
-    service: Generator  ## = <generator>
-    l2cap_accept: Generator  ## = <generator>
-    disconnected: Generator  ## = <generator>
-    exchange_mtu: Generator  ## = <generator>
-    disconnect: Generator  ## = <generator>
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-ble: Incomplete  ## <class 'BLE'> = <BLE>
+def load_secrets(path: Incomplete | None = None) -> None: ...
+def _save_secrets(arg: Incomplete | None = None) -> None: ...
+def _security_irq(event, data): ...
+def _security_shutdown() -> None: ...
+async def pair(connection, bond: bool = True, le_secure: bool = True, mitm: bool = False, io=..., timeout_ms: int = 20000) -> None: ...

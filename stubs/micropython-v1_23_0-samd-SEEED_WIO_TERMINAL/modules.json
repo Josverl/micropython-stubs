@@ -1,5 +1,5 @@
 {"firmware": {"version": "1.23.0", "mpy": "v6.3", "port": "samd", "board": "SEEED_WIO_TERMINAL", "family": "micropython", "build": "", "arch": "armv7emsp", "ver": "1.23.0", "cpu": "SAMD51P19A"},
-"stubber": {"version": "v1.20.0"}, "stubtype": "firmware",
+"stubber": {"version": "v1.23.0"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_23_0-samd-SEEED_WIO_TERMINAL/_asyncio.pyi"},
 {"module": "_onewire", "file": "/remote/stubs/micropython-v1_23_0-samd-SEEED_WIO_TERMINAL/_onewire.pyi"},

@@ -1,5 +1,5 @@
 {"firmware": {"build": "", "ver": "1.23.0", "version": "1.23.0", "port": "rp2", "board": "RPI_PICO_W", "mpy": "v6.3", "family": "micropython", "cpu": "RP2040", "arch": "armv6m"},
-"stubber": {"version": "v1.20.0"}, "stubtype": "firmware",
+"stubber": {"version": "v1.23.0"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_23_0-rp2-RPI_PICO_W/_asyncio.pyi"},
 {"module": "_onewire", "file": "/remote/stubs/micropython-v1_23_0-rp2-RPI_PICO_W/_onewire.pyi"},
@@ -58,6 +58,7 @@
 {"module": "struct", "file": "/remote/stubs/micropython-v1_23_0-rp2-RPI_PICO_W/struct.pyi"},
 {"module": "sys", "file": "/remote/stubs/micropython-v1_23_0-rp2-RPI_PICO_W/sys.pyi"},
 {"module": "time", "file": "/remote/stubs/micropython-v1_23_0-rp2-RPI_PICO_W/time.pyi"},
+{"module": "tls", "file": "/remote/stubs/micropython-v1_23_0-rp2-RPI_PICO_W/tls.pyi"},
 {"module": "uarray", "file": "/remote/stubs/micropython-v1_23_0-rp2-RPI_PICO_W/uarray.pyi"},
 {"module": "uasyncio.__init__", "file": "/remote/stubs/micropython-v1_23_0-rp2-RPI_PICO_W/uasyncio/__init__.pyi"},
 {"module": "uasyncio.core", "file": "/remote/stubs/micropython-v1_23_0-rp2-RPI_PICO_W/uasyncio/core.pyi"},
