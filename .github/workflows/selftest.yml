@@ -1,0 +1,54 @@
+name: selfhosted_test
+
+on:
+    workflow_dispatch:
+    push:
+        paths:
+            - .github/workflows/selftest.yml
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+  isalive:
+    runs-on: [self-hosted, mpremote, X64]
+    env:
+      ARCH: X64
+      # ARCH: ARM64    
+    strategy:
+        max-parallel: 1  # only one version at a time
+        fail-fast: false # keep on trying each version even if one fails
+    steps:
+      - name: Checkout stubs repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python (most platforms)
+        if: ${{ env.ARCH != 'ARM64' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Python (Linux-ARM64)
+        if: ${{ env.ARCH == 'ARM64' }}
+        uses: deadsnakes/action@v2.1.1
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          # pipx install poetry
+          pip install -U -r requirements.txt
+
+      - name: Patch mpremote/mip.py
+        continue-on-error: true
+        run: | 
+          MODULE_LOCATION=$(pip show -f mpremote | grep Location | cut -d' ' -f2)
+          patch --forward $MODULE_LOCATION/mpremote/mip.py ./mpremote_mip.patch || true          
+        
+
+      - name: Get ${{ matrix.version }} firmwares for flashing
+        run: |
+          mpflash list
+
+
+
