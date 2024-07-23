@@ -87,6 +87,7 @@ packages = [
     { include = "struct.pyi" },
     { include = "sys.pyi" },
     { include = "time.pyi" },
+    { include = "tls.pyi" },
     { include = "uarray.pyi" },
     { include = "uasyncio/__init__.pyi" },
     { include = "uasyncio/core.pyi" },

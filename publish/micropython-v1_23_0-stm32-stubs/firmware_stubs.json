@@ -1,5 +1,5 @@
 {"firmware": {"version": "1.23.0", "mpy": "v6.3", "port": "stm32", "board": "PYBV11", "family": "micropython", "build": "", "arch": "armv7emsp", "ver": "1.23.0", "cpu": "STM32F405RG"},
-"stubber": {"version": "v1.20.0"}, "stubtype": "firmware",
+"stubber": {"version": "v1.23.0"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_23_0-stm32-PYBV11/_asyncio.pyi"},
 {"module": "_onewire", "file": "/remote/stubs/micropython-v1_23_0-stm32-PYBV11/_onewire.pyi"},

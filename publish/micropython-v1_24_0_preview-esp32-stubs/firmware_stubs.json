@@ -1,5 +1,5 @@
-{"firmware": {"version": "1.24.0-preview", "mpy": "v6.3", "port": "esp32", "board": "ESP32_GENERIC", "family": "micropython", "build": "preview.62.g908ab1cec", "arch": "xtensawin", "ver": "1.24.0-preview-preview.62.g908ab1cec", "cpu": "ESP32"},
-"stubber": {"version": "v1.20.0"}, "stubtype": "firmware",
+{"firmware": {"version": "1.24.0-preview", "mpy": "v6.3", "port": "esp32", "board": "ESP32_GENERIC", "family": "micropython", "build": "preview.98.g4d16a9cce", "arch": "xtensawin", "ver": "1.24.0-preview-preview.98.g4d16a9cce", "cpu": "ESP32"},
+"stubber": {"version": "v1.23.0"}, "stubtype": "firmware",
 "modules" :[
 {"module": "_asyncio", "file": "/remote/stubs/micropython-v1_24_0-preview-esp32-ESP32_GENERIC/_asyncio.pyi"},
 {"module": "_espnow", "file": "/remote/stubs/micropython-v1_24_0-preview-esp32-ESP32_GENERIC/_espnow.pyi"},
@@ -55,6 +55,7 @@
 {"module": "struct", "file": "/remote/stubs/micropython-v1_24_0-preview-esp32-ESP32_GENERIC/struct.pyi"},
 {"module": "sys", "file": "/remote/stubs/micropython-v1_24_0-preview-esp32-ESP32_GENERIC/sys.pyi"},
 {"module": "time", "file": "/remote/stubs/micropython-v1_24_0-preview-esp32-ESP32_GENERIC/time.pyi"},
+{"module": "tls", "file": "/remote/stubs/micropython-v1_24_0-preview-esp32-ESP32_GENERIC/tls.pyi"},
 {"module": "uarray", "file": "/remote/stubs/micropython-v1_24_0-preview-esp32-ESP32_GENERIC/uarray.pyi"},
 {"module": "uasyncio.__init__", "file": "/remote/stubs/micropython-v1_24_0-preview-esp32-ESP32_GENERIC/uasyncio/__init__.pyi"},
 {"module": "uasyncio.core", "file": "/remote/stubs/micropython-v1_24_0-preview-esp32-ESP32_GENERIC/uasyncio/core.pyi"},
