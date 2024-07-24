@@ -80,7 +80,7 @@ class _SX126x(BaseModem):
     _sleep: bool
     _dio1: Incomplete
     _busy_timeout: Incomplete
-    _buf: Incomplete
+    _buf_view: Incomplete
     _output_power: int
     _bw: int
     _ramp_val: int
