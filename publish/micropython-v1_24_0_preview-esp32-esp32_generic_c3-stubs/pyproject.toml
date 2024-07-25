@@ -1,6 +1,10 @@
 [tool.poetry]
 name = "micropython-esp32-esp32_generic_c3-stubs"
+<<<<<<< Updated upstream
 version = "1.24.0a133"
+=======
+version = "1.24.0a1"
+>>>>>>> Stashed changes
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",

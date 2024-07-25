@@ -1,6 +1,10 @@
 [tool.poetry]
 name = "micropython-rp2-rpi_pico_w-stubs"
+<<<<<<< Updated upstream
 version = "1.24.0a133"
+=======
+version = "1.24.0a1"
+>>>>>>> Stashed changes
 description = "MicroPython stubs"
 authors = [
     "josverl <josverl@users.noreply.github.com>",
@@ -92,6 +96,7 @@ packages = [
     { include = "struct.pyi" },
     { include = "sys.pyi" },
     { include = "time.pyi" },
+    { include = "tls.pyi" },
     { include = "uarray.pyi" },
     { include = "uasyncio/__init__.pyi" },
     { include = "uasyncio/core.pyi" },

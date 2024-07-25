@@ -14,8 +14,8 @@ damage.
 Module: 'umachine' on micropython-v1.24.0-preview-rp2-RPI_PICO_W
 """
 
-# MCU: {'build': 'preview.86.g557d31ed2', 'ver': '1.24.0-preview-preview.86.g557d31ed2', 'version': '1.24.0-preview', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.20.0
+# MCU: {'build': 'preview.136.gd1bf0eeb0', 'ver': '1.24.0-preview-preview.136.gd1bf0eeb0', 'version': '1.24.0-preview', 'port': 'rp2', 'board': 'RPI_PICO_W', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
+# Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
@@ -1106,6 +1106,28 @@ class USBDevice:
               returns the same object reference.
     """
 
+    def submit_xfer(self, ep, buffer) -> bool:
+        """
+        Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be
+        an object implementing the buffer interface, with read access for
+        ``IN`` endpoints and write access for ``OUT`` endpoints.
+
+        ``Note:`` ``ep`` cannot be the control Endpoint number 0. Control
+           transfers are built up through successive executions of
+           ``control_xfer_cb``, see above.
+
+        Returns ``True`` if successful, ``False`` if the transfer could not
+        be queued (as USB device is not configured by host, or because
+        another transfer is queued on this endpoint.)
+
+        When the USB host completes the transfer, the ``xfer_cb`` callback
+        is called (see above).
+
+        Raises ``OSError`` with reason ``MP_EINVAL`` If the USB device is not
+        active.
+        """
+        ...
+
     def config(self, desc_dev, desc_cfg, desc_strs=None, open_itf_cb=None, reset_cb=None, control_xfer_cb=None, xfer_cb=None) -> None:
         """
         Configures the ``USBDevice`` singleton object with the USB runtime device
@@ -1205,24 +1227,12 @@ class USBDevice:
         """
         ...
 
-    def active(self, value: Optional[Any] = None) -> bool:
+    def remote_wakeup(self) -> bool:
         """
-        Returns the current active state of this runtime USB device as a
-        boolean. The runtime USB device is "active" when it is available to
-        interact with the host, it doesn't mean that a USB Host is actually
-        present.
-
-        If the optional ``value`` argument is set to a truthy value, then
-        the USB device will be activated.
-
-        If the optional ``value`` argument is set to a falsey value, then
-        the USB device is deactivated. While the USB device is deactivated,
-        it will not be detected by the USB Host.
-
-        To simulate a disconnect and a reconnect of the USB device, call
-        ``active(False)`` followed by ``active(True)``. This may be
-        necessary if the runtime device configuration has changed, so that
-        the host sees the new device.
+        Wake up host if we are in suspend mode and the REMOTE_WAKEUP feature
+        is enabled by the host. This has to be enabled in the USB attributes,
+        and on the host. Returns ``True`` if remote wakeup was enabled and
+        active and the host was woken up.
         """
         ...
 
@@ -1247,25 +1257,24 @@ class USBDevice:
         """
         ...
 
-    def submit_xfer(self, ep, buffer) -> bool:
+    def active(self, value: Optional[Any] = None) -> bool:
         """
-        Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be
-        an object implementing the buffer interface, with read access for
-        ``IN`` endpoints and write access for ``OUT`` endpoints.
+        Returns the current active state of this runtime USB device as a
+        boolean. The runtime USB device is "active" when it is available to
+        interact with the host, it doesn't mean that a USB Host is actually
+        present.
 
-        ``Note:`` ``ep`` cannot be the control Endpoint number 0. Control
-           transfers are built up through successive executions of
-           ``control_xfer_cb``, see above.
+        If the optional ``value`` argument is set to a truthy value, then
+        the USB device will be activated.
 
-        Returns ``True`` if successful, ``False`` if the transfer could not
-        be queued (as USB device is not configured by host, or because
-        another transfer is queued on this endpoint.)
+        If the optional ``value`` argument is set to a falsey value, then
+        the USB device is deactivated. While the USB device is deactivated,
+        it will not be detected by the USB Host.
 
-        When the USB host completes the transfer, the ``xfer_cb`` callback
-        is called (see above).
-
-        Raises ``OSError`` with reason ``MP_EINVAL`` If the USB device is not
-        active.
+        To simulate a disconnect and a reconnect of the USB device, call
+        ``active(False)`` followed by ``active(True)``. This may be
+        necessary if the runtime device configuration has changed, so that
+        the host sees the new device.
         """
         ...
 
