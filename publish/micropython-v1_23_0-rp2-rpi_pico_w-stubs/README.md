@@ -28,9 +28,11 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_23_0-rp2-RPI_PICO_W-merged`
+* Frozen stubs from `stubs/micropython-v1_23_0-frozen/rp2/RPI_PICO_W`
 * Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Documentation | micropython | - | - | v1.23.0 
+Core | micropython | rp2 | - | v1.23.0 
