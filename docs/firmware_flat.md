@@ -614,7 +614,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| v1.23| rp2| W5100S_EVB_PICO| 21| 1.23.2|[stubs/micropython-v1_23_0-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/rp2/W5100S_EVB_PICO)
 |frozen| micropython| v1.23| rp2| W5500_EVB_PICO| 21| 1.23.2|[stubs/micropython-v1_23_0-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| v1.23| rp2| WEACTSTUDIO| 15| 1.23.2|[stubs/micropython-v1_23_0-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/rp2/WEACTSTUDIO)
-|frozen| micropython| v1.23| samd| GENERIC| 1| 1.23.2|[stubs/micropython-v1_23_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/samd/GENERIC)
+|frozen| micropython| v1.23| samd| GENERIC| 11| 1.23.2|[stubs/micropython-v1_23_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/samd/GENERIC)
 |frozen| micropython| v1.23| stm32| GARATRONIC_PYBSTICK26_F411| 1| 1.23.2|[stubs/micropython-v1_23_0-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |frozen| micropython| v1.23| stm32| GENERIC| 9| 1.23.2|[stubs/micropython-v1_23_0-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/stm32/GENERIC)
 |frozen| micropython| v1.23| stm32| LEGO_HUB_NO6| 11| 1.23.2|[stubs/micropython-v1_23_0-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/stm32/LEGO_HUB_NO6)
@@ -733,7 +733,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| v1.24-Latest| rp2| W5100S_EVB_PICO| 21| 1.23.2|[stubs/micropython-v1_24_0_preview-frozen/rp2/W5100S_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/rp2/W5100S_EVB_PICO)
 |frozen| micropython| v1.24-Latest| rp2| W5500_EVB_PICO| 21| 1.23.2|[stubs/micropython-v1_24_0_preview-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| v1.24-Latest| rp2| WEACTSTUDIO| 15| 1.23.2|[stubs/micropython-v1_24_0_preview-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/rp2/WEACTSTUDIO)
-|frozen| micropython| v1.24-Latest| samd| GENERIC| 1| 1.23.2|[stubs/micropython-v1_24_0_preview-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/samd/GENERIC)
+|frozen| micropython| v1.24-Latest| samd| GENERIC| 11| 1.23.2|[stubs/micropython-v1_24_0_preview-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/samd/GENERIC)
 |frozen| micropython| v1.24-Latest| stm32| GARATRONIC_PYBSTICK26_F411| 1| 1.23.2|[stubs/micropython-v1_24_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |frozen| micropython| v1.24-Latest| stm32| GENERIC| 9| 1.23.2|[stubs/micropython-v1_24_0_preview-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/stm32/GENERIC)
 |frozen| micropython| v1.24-Latest| stm32| LEGO_HUB_NO6| 11| 1.23.2|[stubs/micropython-v1_24_0_preview-frozen/stm32/LEGO_HUB_NO6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/stm32/LEGO_HUB_NO6)
@@ -769,4 +769,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  19863
+Total modules  19883

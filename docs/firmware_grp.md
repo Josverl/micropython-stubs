@@ -590,7 +590,7 @@
 |micropython |v1.23   |frozen  |rp2|WEACTSTUDIO|15|1.23.2|[stubs/micropython-v1_23_0-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/rp2/WEACTSTUDIO)
 |micropython |v1.23   |board   |rp2|generic|64|v1.23.0|[stubs/micropython-v1_23_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-rp2-RPI_PICO)
 |micropython |v1.23   |board   |rp2|generic|89|v1.23.0|[stubs/micropython-v1_23_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-rp2-RPI_PICO_W)
-|micropython |v1.23   |frozen  |samd|GENERIC|1|1.23.2|[stubs/micropython-v1_23_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/samd/GENERIC)
+|micropython |v1.23   |frozen  |samd|GENERIC|11|1.23.2|[stubs/micropython-v1_23_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/samd/GENERIC)
 |micropython |v1.23   |board   |samd|generic|58|v1.23.0|[stubs/micropython-v1_23_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-samd-SEEED_WIO_TERMINAL)
 |micropython |v1.23   |frozen  |stm32|GARATRONIC_PYBSTICK26_F411|1|1.23.2|[stubs/micropython-v1_23_0-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |micropython |v1.23   |frozen  |stm32|GENERIC|9|1.23.2|[stubs/micropython-v1_23_0-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-frozen/stm32/GENERIC)
@@ -725,7 +725,7 @@
 |micropython |v1.24-La|frozen  |rp2|WEACTSTUDIO|15|1.23.2|[stubs/micropython-v1_24_0_preview-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/rp2/WEACTSTUDIO)
 |micropython |v1.24-La|board   |rp2|generic|64|v1.20.0|[stubs/micropython-v1_24_0_preview-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-rp2-RPI_PICO)
 |micropython |v1.24-La|board   |rp2|generic|88|v1.20.0|[stubs/micropython-v1_24_0_preview-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-rp2-RPI_PICO_W)
-|micropython |v1.24-La|frozen  |samd|GENERIC|1|1.23.2|[stubs/micropython-v1_24_0_preview-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/samd/GENERIC)
+|micropython |v1.24-La|frozen  |samd|GENERIC|11|1.23.2|[stubs/micropython-v1_24_0_preview-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/samd/GENERIC)
 |micropython |v1.24-La|board   |samd|generic|58|v1.20.0|[stubs/micropython-v1_24_0_preview-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-samd-SEEED_WIO_TERMINAL)
 |micropython |v1.24-La|frozen  |stm32|GARATRONIC_PYBSTICK26_F411|1|1.23.2|[stubs/micropython-v1_24_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/stm32/GARATRONIC_PYBSTICK26_F411)
 |micropython |v1.24-La|frozen  |stm32|GENERIC|9|1.23.2|[stubs/micropython-v1_24_0_preview-frozen/stm32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/stm32/GENERIC)
@@ -805,4 +805,4 @@
 
 ## Metrics
 
-Total stub modules:  19863
+Total stub modules:  19883
