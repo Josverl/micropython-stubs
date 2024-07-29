@@ -2,8 +2,8 @@ name: selfhosted_test
 
 on:
     workflow_dispatch:
-    schedule:
-        - cron: "55 * * * *"        
+    # schedule:
+    #     - cron: "55 * * * *"        
     push:
         paths:
             - .github/workflows/selftest.yml
