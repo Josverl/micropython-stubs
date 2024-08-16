@@ -1,5 +1,6 @@
-# Validation Snippets
+# Stub QA testing (Validation Snippets)
 
+<!-- Origin: tests/quality_tests/readme.md -->
 This folder contains a collection of code snippets to help validate the quality of the stubs by providing some code to validate.
 Think of this as 'End to End' tests or integration tests for the stubs.
 
@@ -103,7 +104,7 @@ provides a useful guide.
 
 ## Caching of packages
 
-In order to reducte the time needed to run the tests of the snippets, we cache the packages in the `.pytest_cache` folder.
+In order to reduce the time needed to run the tests of the snippets, we cache the packages in the `.pytest_cache` folder.
 this makes use of the `pytest_cache` plugin : https://pypi.org/project/pytest-cache/
 
 The cache lifetime for each package is 24 hours, after which it will be re-downloaded.

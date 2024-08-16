@@ -34,5 +34,5 @@ goto end
 :end
 
 rem sphinx-build -b linkcheck . _build
-%SPHINXBUILD% -b linkcheck %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
+@REM %SPHINXBUILD% -b linkcheck %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
 popd

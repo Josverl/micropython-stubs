@@ -4,21 +4,47 @@ This is a guide to setup a self hosted runner on a linux X64 / ARM64 machine.
 The guide is based on the [official documentation](https://docs.github.com/en/actions/hosting-your-own-runners) 
 and my own experience setting up a runner on a Raspberry Pi 4 and x64 using Ubuntu 22.04.
 
+## install system wide software
 
-## create a seperate user for the runner
-Create a user `runner` that is member of the dialout and sudo groups
 ```bash
+sudo apt update
+# python & friends
+sudo apt install python3.11 python3-venv python3-pip pipx
+.local/bin/pipx ensurepath
 
+# pwsh is needed for some scripts in workflows
+sudo snap install powershell --classic
+
+# disk mount
+# pmount - mount arbitrary hotpluggable devices as normal user
+# needed by mpflash to mount UF2 devices
+sudo apt install pmount
+
+# more python tools via pipx
+pipx install poetry     # to install stuff 
+pipx install mpremote   # to control the USB Relay
+```
+
+
+## create a separate user for the runner
+
+Create a user `runner` that is member of the dialout and sudo groups
+
+```bash
 # create user
 sudo useradd -m -s /bin/bash runner
-# add to dialout group
-sudo usermod -a -G dialout runner
 # add to sudo group
-sudo usermod -a -G sudo runner
+sudo uexitermod -a -G sudo runner
+# add to dialout group - access to comports
+sudo usermod -a -G dialout runner
+# access to pmount
+sudo usermod -a -G plugdev runner
 # change to user
 su - runner
 ```
-## allow the runner to run sudo commands without password
+
+## allow the runner to run sudo commands
+
 In order to allow the runner to run sudo commands without a password, add the following line to a file in the `/etc/sudoers.d` directory.
 
 ```bash
@@ -26,29 +52,16 @@ In order to allow the runner to run sudo commands without a password, add the fo
 echo "runner ALL=(ALL:ALL) NOPASSWD:/usr/bin/add-apt-repository, /usr/bin/apt-get, /usr/bin/apt install" | sudo tee /etc/sudoers.d/runner
 
 echo "jos ALL=(ALL:ALL) NOPASSWD:/usr/bin/add-apt-repository, /usr/bin/apt-get, /usr/bin/apt install" | sudo tee /etc/sudoers.d/jos
-
 ```
 
-## Install tools 
-### pipx 
-```bash
-sudo apt update
-# pipx is required to be installed on all runners
-sudo apt install pipx -y
-pipx ensurepath
-pipx install poetry
 
-# pmount - mount arbitrary hotpluggable devices as normal user
-# needed by mpflash to mount UF2 devices
-sudo apt install pmount
-```
-
-### STM32 - not needed anymore 
+### STM32 - not needed anymore
 
 The STM32 Cube Programmer CLI - X64 only
 needed to flash STM32 devices
 See : https://www.st.com/en/development-tools/stm32cubeprog.html
 install on linux x64
+
 ```bash
 sudo apt install libusb-1.0.0-dev
 ```
@@ -59,27 +72,22 @@ Files to copy to /etc/udev/rules.d/ on Ubuntu ("sudo cp ./udev-rules/*.* /etc/ud
 Reload the rules with
 `sudo udevadm control --reload-rules && sudo udevadm trigger`
 
+### ### Install Github Actions runner
 
-### Remove conflicting packages
-```bash
-# remove braille support as it conflicts with esp8266
-sudo apt remove brltty
-``` 
-
-### Install Github Actions runner
 This installs the runner in the home directory of the runner user.
 In this example a runner with `Repository` scope  is created. 
 
-- Install self hosted runner 
+- Install self hosted runner : 
+  [Adding self-hosted runners - GitHub Docs](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/adding-self-hosted-runners#adding-a-self-hosted-runner-to-a-repository)
+
 - Configure environment 
-> `.../actions_runner/.env`
-```
-LANG=en_US.UTF-8 
-# Below is used by actions/setup-python to install python
-AGENT_TOOLSDIRECTORY=/home/runner/actions-runner/_tools
-```
+  
+  > `.../actions_runner/.env`
+  > Copy the .env and usbhub_off_on.sh files to the runner's home directory
+
 - testrun  
     `./run.sh`
+
 - configure to run as a service  
     `sudo ./svc.sh install`
 
@@ -87,14 +95,13 @@ AGENT_TOOLSDIRECTORY=/home/runner/actions-runner/_tools
   `sudo ./svc.sh start`
    ref: https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/configuring-the-self-hosted-runner-application-as-a-service#installing-the-service
 
-
-https://docs.github.com/en/actions/hosting-your-own-runners
+https://docs.github.com/en/actions/hosting-ympremote connect /dev/ttyACM0 resume run /home/jos/projects/micropython-stubber/src/mpflash/mpflash/mpremoteboard/mpy_fw_info.pyour-own-runners
 [check if additional permissions are needed](https://github.com/actions/setup-python/blob/main/docs/advanced-usage.md#linux)
-
 
 # known issues
 
 ### actions/setup-python does not support linux-arm64
+
 The `actions/setup-python` action does not support installing/configuring Python on linux-arm64.
 
 The workaround is to use the `deadsnakes/action` action to install python.
@@ -102,10 +109,7 @@ https://github.com/deadsnakes/action?tab=readme-ov-file#deadsnakesaction
 
 see:  https://github.com/temporalio/sdk-python/pull/172/files#diff-e0c5149ab771083cacddbeaf3336656118f582f6311228e0b8652c3209a7dd2eR32-R39
 
-
 ```yaml
-
-
 ### esp8266 devices not recognized 
 By default the brltty service is running and it blocks the usb port used by an esp8266.
 
@@ -121,15 +125,17 @@ $ sudo dmesg | tail
 [981999.500370] input: BRLTTY 6.4 Linux Screen Driver Keyboard as /devices/virtual/input/input49
 [981999.503750] usb 1-2.1.1: usbfs: interface 0 claimed by ch341 while 'brltty' sets config #1
 [981999.504577] ch341-uart ttyUSB0: ch341-uart convert
-``` 
+```
 
 You should remove the service with the following command
+
 ```
 sudo apt remove brltty
 ```
+
 Test by connecting an esp8266 and checking visibility using `mpremote devs`
 
-```bash	
+```bash
 $ sudo dmesg | tail
 [981999.503750] usb 1-2.1.1: usbfs: interface 0 claimed by ch341 while 'brltty' sets config #1
 [981999.504577] ch341-uart ttyUSB0: ch341-uart converter now disconnected from ttyUSB0
@@ -144,28 +150,30 @@ $ sudo dmesg | tail
 
 $ mpremote devs
 /dev/ttyUSB0 None 1a86:7523 None USB Serial
-```	
+```
+
 also see: https://stackoverflow.com/questions/70123431/why-would-ch341-uart-is-disconnected-from-ttyusb
 
+# Note- its simpler to build these targets in a container
 
-# Note- its simpler to build these targets in a container 
-
-# local Build requirements 
+# local Build requirements
 
 If you want to build unix / windows / webassembly targets you need to install the following packages
 avoid apt install to ask for confirmation
 I assume the same is set on GH hosted runners
+
 ```bash
 sudo nano /etc/apt/apt.conf.d/90_assume_yes
 APT::Get::Assume-Yes "true";
 
 $ cat /etc/apt/apt.conf.d/90_assume_yes
 ```
+
 ref : https://superuser.com/questions/164553/automatically-answer-yes-when-using-apt-get-install
 
-
 ## Build unix using ci scripts
-``` bash
+
+```bash
 # requirements
 sudo apt install -y build-essential libffi-dev pkg-config
 # clean
@@ -178,6 +186,7 @@ cp ports/unix/build-standard/micropython ~/builds/unix/micropython
 ```
 
 # build webassembly
+
 ```bash
 # requirements
 source tools/ci.sh && ci_webassembly_setup
@@ -191,9 +200,8 @@ cp ports/webassembly/build/*.wasm ~/builds/webassembly/
 cp ports/webassembly/build/*.js ~/builds/webassembly/
 ```
 
+## build windows
 
-
-## build windows 
 Note: The Windows port's dependencies are not installed silently and need `/etc/apt/apt.conf.d/90_assume_yes`
 to suppress the confirmation prompt.
 
@@ -207,5 +215,4 @@ source tools/ci.sh && ci_windows_build
 # copy 
 mkdir -p ~/builds/windows
 cp ports/windows/build-standard/*.exe ~/builds/windows/
-
 ```

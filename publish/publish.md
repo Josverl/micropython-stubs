@@ -1,5 +1,7 @@
 # Publication script : 
 
+It is to be preferred to use stubber to publish the stubs, but if you need to publish the stubs manually, you can use the following steps.
+
 ``` bash
 python .\publish\publish_stubs.py  --help
 

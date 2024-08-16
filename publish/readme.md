@@ -1,15 +1,16 @@
-# Stub folder Naming conventions
+# Stub folder Naming Conventions.
+<!-- Origin: publish/readme.md -->
 
-Initially `<family>` is `micropython`, but this may be extended to other firmware families
+Initially `<family>` is `micropython`, but this may be extended to other firmware families.
 
  * `<family>-<version>-<port>[-<board>]-stubs`  
     The stubs for a specific version port and board of the MicroPython firmware.
-    These is built by combining:
+    These are built by combining:
      * The 'Board stubs' generated on a generic board for the port 
      * The 'Frozen stubs' from the Micropython repository for that specific version and that port & board combination
      * The 'Core Stubs' to provide a common interface for the Micropython firmware and the CPython core.
     
-    Note: board is omitted if it is `GENERIC`  
+    As most of the boards for a port share the same firmware, the stubs for a port are usually the same for all boards of that port. So the board is optional in the name, but there may be modules missing or different if they are specific to a that board.  
 
     Examples:
       - micropython-stm32-stubs
@@ -18,10 +19,9 @@ Initially `<family>` is `micropython`, but this may be extended to other firmwar
       - micropython-esp8266-stubs
 
  * `<family>-doc-stubs`  
-    Only for MicroPython version 1.17 and later 
-    The documentation stubs for a specific version of micropython.
+    The documentation stubs for a specific version of MicroPython ( V1.17 and newer).
     These stubs are generated based on the documentation of the MicroPython firmware and contain rich type information.
-    however they will contain references to features that are not available in other ports that may not be avaialble on your board.
+    however they will contain references to features that are not available in other ports that may not be available on your board.
 
     The intent is for these stubs to be merged into 
     Example:

@@ -1,9 +1,10 @@
-# MicroPython `typing.mpy`
+# MicroPython's `typing.mpy` module
+<!-- Origin: mip\readme.md  -->
 
 Why you may need typing.[m]py or typing_extensions.[m]py.
 
 When making use of static typing in Python or MicroPython, you often end up using types that are defined in the CPython typing module.
-As Python static typing is 'optimised out' when the source is compiled to byte-code and then to machinecode, there is virtually no runtime overhead.
+As Python static typing is 'optimized out' when the source is compiled to byte-code and then to machine-code, there is virtually no runtime overhead.
 
 However there is one remaining issue, and this is with the `import typing` or `from typing import ...`  
 If you try to run an fully typed MicroPython module or script on a MCU, you will get an error like this:
@@ -29,7 +30,7 @@ mpremote mip install github:josverl/micropython-stubs/mip/typing_extensions.mpy
 *Note:* The .mpy modules are cross compiled for MicroPython v1.23.0 ; mpy-cross emitting mpy v6.3
 
 
-```log
+```
 Install github:josverl/micropython-stubs/mip/typing.mpy
 Downloading github:josverl/micropython-stubs/mip/typing.mpy to /lib
 Installing: /lib/typing.mpy
@@ -39,7 +40,7 @@ _Note that by default mip will install the modules in the `/lib` folder of the M
 
 ## Add to your project source
 To avoid needing to `mip install` the modules on every MCU, you can add the modules to your project source.
-mpremote mip does not have a method to retrieve and store modules localy to your project, but it is simple to copy them from your MCU to your local project.
+mpremote mip does not have a method to retrieve and store modules locally to your project, but it is simple to copy them from your MCU to your local project.
 
 Assuming you have a project folder `src` and a `lib` folder in it, you can copy the modules from the MCU to your project with the following commands:
 
@@ -74,15 +75,16 @@ print(f"{foo(1, 2)=}")
 ### `typing.py`
 A minimalistic `typing.py` module for MicroPython.
 
-Ref: https://github.com/micropython/micropython-lib/pull/584  
-Author: [Andrew Leech](https://github.com/andrewleech)  
+Origin: [micropython-lib:PR584](https://github.com/micropython/micropython-lib/pull/584)  
+Authors:[stinos](https://github.com/stinos) & [Andrew Leech](https://github.com/andrewleech)  
 
-**Note:** _When that PR is merged, or MicroPython itself can provide this functionality, I'll update the above links to point to micropython-lib._
-
+:::{note}
+_When that PR is merged, or MicroPython itself can provide this functionality, I'll update the above links to point to micropython-lib._
+:::
 ### `typing_extensions.py`
 This module is provided to allow the use of older versions of Python (3.7+).
 
-In CPython the `typing_extensions` module provide backported type hints from newer versions and enable use of new type system features on older Python versions. 
+In CPython the `typing_extensions` module provide back-ported type hints from newer versions and enable use of new type system features on older Python versions. 
 For example, typing.TypeGuard is new in Python 3.10, but typing_extensions allows users on previous Python versions to use it too.
 
 As MicroPython has no native typing implementation, the `typing_extensions.py` module is identical to the `typing.py` module.

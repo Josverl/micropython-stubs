@@ -24,7 +24,7 @@ copyright = "2019-2024, Jos Verlinde"
 author = "Jos Verlinde"
 
 # The full version, including alpha/beta/rc tags
-version = release = "1.0"
+version = release = "1.23.0"
 
 
 # -- General configuration ---------------------------------------------------
@@ -45,10 +45,11 @@ extensions = [
     # 'sphinx.ext.todo', # Support for todo items
 ]
 
+
 source_suffix = {
-    '.rst': 'restructuredtext',
+    ".rst": "restructuredtext",
+    ".md": "markdown",
     # '.txt': 'markdown',
-    '.md': 'markdown',
 }
 
 # Add any paths that contain templates here, relative to this directory.
@@ -70,15 +71,23 @@ autodoc_typehints = "both"
 # --- Myst ------
 
 # https://myst-parser.readthedocs.io/en/latest/syntax/optional.html#auto-generated-header-anchors
-myst_heading_anchors = 2
+myst_heading_anchors = 3
+
+myst_enable_extensions = {
+    "colon_fence",
+    "fieldlist",
+    "deflist",
+    "tasklist",
+    "attrs_inline",
+    # "linkify",
+}
+myst_enable_checkboxes = True
 
 suppress_warnings = ["myst.header"]
 # --- AutoAPI ------
 # Generate documentation for the source code in
-
 # autoapi_dirs = ["../stubs"] # --> platte structuur
 
-# autoapi_python_use_implicit_namespaces = True
 # autoapi_dirs = [
 #     "../stubs/micropython-1_15-frozen",
 #     "../stubs/micropython-1_17-frozen",
@@ -91,7 +100,7 @@ suppress_warnings = ["myst.header"]
 autoapi_root = "stubs"
 autoapi_file_patterns = ["*.py"]
 
-# only genrate documentation for the useful parts
+# only genErate documentation for the useful parts
 autoapi_ignore = [
     "*migrations*",
 ]
@@ -135,6 +144,7 @@ except ImportError:
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ["_static"]
 
+
 # -- set custom width -------------------------------------------------
 # ref: https://stackoverflow.com/questions/23211695/modifying-content-width-of-the-sphinx-theme-read-the-docs
 def setup(app):
@@ -149,18 +159,4 @@ from update_docs import update_firmware_docs
 
 print("update_firmware_docs....")
 update_firmware_docs()
-
-# --------------------------
-# side effect: copy other .md files to documentation folder
-import shutil
-
-docfiles = [ 
-    ("../mip/readme.md","_typing_mpy.md"),
-    ("../publish/readme.md","_folder_naming.md"),
-    ("../tests/quality_tests/readme.md","_qa_testing.md"),
-             ]
-
-for src, dst in docfiles:
-    print(f"copy {src} to {dst}")
-    shutil.copyfile(src, dst)
 
