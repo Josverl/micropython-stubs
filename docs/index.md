@@ -16,6 +16,7 @@ definitions.md
 22_vscode.md
 23_pyright_advanced.md
 24_pycharm.md
+27_micropico.md
 28_mypy.md
 26_pylint.md
 microbit_v2 type checking.md

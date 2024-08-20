@@ -95,9 +95,17 @@ File: `.vscode/settings.json`
 }
 ```
 
-The diagram below shows the sequence of checks that Pylance/Pyright does to resolve the stubs for a module.
-with the above configuration it will first check the `venv` or the `typings` folder and then look for the stdlib stubs in these folders.
-Without the configuration it will only look for the stdlib stubs in the typeshed stubs that are shipped with Pyright.
+The `python.analysis.typeshedPaths` setting is a list of paths to search for typeshed stubs. *Only the first path* in the list is used to resolve the stubs for a module. If the stubs are not found in the first path, the included stdlib is used. 
+The default value is `["typings"]`.
+
+:::{note}
+
+If you right-click on a MicroPython stdlib module name in VScode, there are a few options to navigate to the (type) definition of the module.
+
+* *Go to **Type** Definition*, will take you to the stub file in the `typings` folder, that should be a MicroPython stub.
+* *Go to Definition*, will take you to a `.py` source file , which is a CPython stdlib module. ( not what you may expect)
+
+:::
 
 ## VSCode: Sample workspace configuration file.
 
@@ -119,8 +127,6 @@ File: `.vscode/settings.json`
     "python.analysis.typeshedPaths": [
         ".venv/Lib/site-packages"
     ],
-    "python.linting.enabled": true,
-    "python.linting.pylintEnabled": true,
 }
 ```
 
@@ -150,20 +156,26 @@ reportUnnecessaryTypeIgnoreComment = "error"
 
 The use of a pyproject.toml file has the advantage that the same configuration can be used by the pyright command line tool, for instance as part of a CI/CD pipeline.
 
-## Relevant settings
+## Most Relevant settings
 
-A short list of relevant settings for Pylance and Pyright and a recommended value.
+A short list of the most relevant settings for Pylance and Pyright and recommended values for each.
 All settings for both Pylance and Pyright are documented in [Pyright Configuration](https://github.com/microsoft/pyright/blob/main/docs/configuration.md)
+Most of these settings are also documented as part of the vscode documentation for the Python extension, but the Pyright documentation is more complete.
+
 | Setting | Description | Recommended value | Info |
 | ---| --- | --- | --- |
-| `typeCheckingMode` | The level of type checking to perform. | `basic` |
-| `stubPath` | path to the MicroPython stubs. | `"typings"` | Default, does not need to be set 
-| `pythonVersion` | The version of Python to use. | - |  |
-| `typeshedPaths` | path to the MicroPython stdlib stubs. (Only the first path is used) | `[".venv/Lib/site-packages"]` or `["typings"]` | 
+| `typeCheckingMode` | The level of type checking to perform. | `basic` | Use`basic` or `standard`.|
+| `stubPath` | Path to the MicroPython stubs. | `"typings"` | Default is `typings`, only needed if you have a different path. | 
+| `extraPaths` | Additional stubs. | `[]` | used by [MicroPico](project:#micropico) 
+| `pythonVersion` | The version of Python syntax to use. | - | [](pythonVersion) |
+| `typeshedPaths` | (List of) Path to the MicroPython stdlib stubs. (Only the first path is used) | `[".venv/Lib/site-packages"]` or `["typings"]` | Needed to override the stdlib stubs. |
 | `diagnosticSeverityOverrides` | Ignore missing source warnings. | `{"reportMissingModuleSource": "none"}` | [Diag settings](https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings)
 
 
-* MicroPython is based on Python 3.4, but also has some features from newer Python versions. I have found little benefits in changing the `pythonVersion` setting from the default. If you do, please let me know.
+(pythonVersion)=
+#### pythonVersion
+MicroPython is based on Python 3.4, but also has [some features from newer Python versions](https://docs.micropython.org/en/latest/genrst/index.html). I have found little benefit in changing the `pythonVersion` setting from the default. If you do, please let me know.
+
 
 
 

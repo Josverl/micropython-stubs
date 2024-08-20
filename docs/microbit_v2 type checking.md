@@ -1,16 +1,13 @@
-# Using Microbit v2 stubs
+# How to use the Micro:bit v2 stubs
 
-> Note: 
-The [microbit type stubs](https://github.com/microbit-foundation/micropython-microbit-stubs) are independently maintained by the microbit foundation and are not part of the micropython-stubs project. Their stubs are currently not published to PyPI, so you will need to clone the repository and set up a sparse clone to get the typing files you need.  
+
+The [micro:bit type stubs](https://github.com/microbit-foundation/micropython-microbit-stubs) are independently maintained by the microbit foundation and are not part of the micropython-stubs project. Their stubs are currently not published to PyPI, so you will need to clone the repository and set up a sparse clone to get the typing files you need.  
 I just want to make it easier to use them with vscode and pylance; below is a process to get you started.__**
 
 
+Assuming you are using vscode and pylance the below setup should get you started by setting up a sparse clone of just (one of) the typing folder(s) in this repo:
 
-Assuming you are using vscode and pylance the below setup should get you started by setting up a sparce clone of just (one of) the typing folder(s) in this repo:
-
-To clone just the lang/en folder from the micropython-microbit-stubs repository using the sparse-checkout feature of Git.
- 
-Assuming you have a folder for you project called:  project_foo
+Assuming you have a folder for you project called:  **project_foo**
  
 ### Create and navigate to the typings directory:
 
@@ -33,6 +30,7 @@ git init
 - I am assuming you want to clone the lang/en folder. 
   If you want to clone a different folder, replace lang/en with the path of the folder you want to clone.
 ```
+# in the project_foo/typings folder  
 git remote add -f origin https://github.com/microbit-foundation/micropython-microbit-stubs.git
 git config core.sparseCheckout true
 echo "lang/en" >> .git/info/sparse-checkout
@@ -40,6 +38,7 @@ echo "lang/en" >> .git/info/sparse-checkout
 
 ### Pull from the remote repository:
 ```
+# in the project_foo/typings folder  
 git pull origin main
 ```
 
@@ -48,3 +47,5 @@ git pull origin main
 cd ..
 code .
 ```
+
+<!-- TODO: may need a setting to allow pylance to look deep into the sparse checked out folder tree  -->

@@ -11,11 +11,16 @@ There appears to be updates to allow the use of stubs in the `.pyi` format.
 ```
     --prefer-stubs
     Resolve imports to .pyi stubs if available. May reduce no-member messages and increase not-an-iterable messages.
+
 ```
 
 See: https://github.com/pylint-dev/astroid/pull/2182
 
-I have not been able to test or verify this.
+Partial test results are: 
+1) init_hook should be updated to include the stubs folder.
+    `init-hook='import sys;sys.path[1:1] = ["./typings",];`
+2) all modules must be stored in `modulename/__init__.pyi` format, which is not the current format (`modulename.pyi`).
+ 
 :::
 
 ## Pylint:Legacy configuration.
