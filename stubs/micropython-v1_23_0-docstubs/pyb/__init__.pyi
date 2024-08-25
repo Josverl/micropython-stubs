@@ -122,7 +122,7 @@ def hard_reset() -> NoReturn:
 
 def bootloader() -> None:
     """
-    Activate the bootloader without BOOT\* pins.
+    Activate the bootloader without BOOT* pins.
     """
     ...
 
@@ -241,7 +241,7 @@ def have_cdc() -> bool:
     """
     Return True if USB is connected as a serial device, False otherwise.
 
-    .. note:: This function is deprecated.  Use pyb.USB_VCP().isconnected() instead.
+    ``Note:`` This function is deprecated.  Use pyb.USB_VCP().isconnected() instead.
     """
     ...
 
@@ -250,7 +250,7 @@ def hid(hid_tuple: Tuple) -> Incomplete:
     Takes a 4-tuple (or list) and sends it to the USB host (the PC) to
     signal a HID mouse-motion event.
 
-    .. note:: This function is deprecated.  Use :meth:`pyb.USB_HID.send()` instead.
+    ``Note:`` This function is deprecated.  Use :meth:`pyb.USB_HID.send()` instead.
     """
     ...
 
@@ -271,7 +271,7 @@ def main(filename) -> None:
 
 def mount(device, mountpoint, *, readonly=False, mkfs=False) -> int:
     """
-    .. note:: This function is deprecated. Mounting and unmounting devices should
+    ``Note:`` This function is deprecated. Mounting and unmounting devices should
        be performed by :meth:`vfs.mount` and :meth:`vfs.umount` instead.
 
     Mount a block device and make it available as part of the filesystem.

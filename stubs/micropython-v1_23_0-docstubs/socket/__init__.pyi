@@ -3,11 +3,12 @@ Socket module.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/socket.html
 
-|see_cpython_module| :mod:`python:socket`.
+CPython module: :mod:`python:socket` https://docs.python.org/3/library/socket.html .
 
 This module provides access to the BSD socket interface.
 
-.. admonition:: Difference to CPython
+Admonition:Difference to CPython
+   :class: attention
 
    For efficiency and consistency, socket objects in MicroPython implement a `stream`
    (file-like) interface directly. In CPython, you need to convert a socket to
@@ -245,7 +246,8 @@ class socket:
              if not res:
                  # s is still not ready for input, i.e. operation timed out
 
-        .. admonition:: Difference to CPython
+        Admonition:Difference to CPython
+           :class: attention
 
            CPython raises a ``socket.timeout`` exception in case of timeout,
            which is an `OSError` subclass. MicroPython raises an OSError directly
@@ -276,12 +278,14 @@ class socket:
         given to makefile(). The support is limited to binary modes only ('rb', 'wb', and 'rwb').
         CPython's arguments: *encoding*, *errors* and *newline* are not supported.
 
-        .. admonition:: Difference to CPython
+        Admonition:Difference to CPython
+           :class: attention
 
            As MicroPython doesn't support buffered streams, values of *buffering*
            parameter is ignored and treated as if it was 0 (unbuffered).
 
-        .. admonition:: Difference to CPython
+        Admonition:Difference to CPython
+           :class: attention
 
            Closing the file object returned by makefile() WILL close the
            original socket as well.
@@ -363,7 +367,8 @@ def getaddrinfo(
        # stream operation.
        s.connect(socket.getaddrinfo('www.micropython.org', 80, 0, SOCK_STREAM)[0][-1])
 
-    .. admonition:: Difference to CPython
+    Admonition:Difference to CPython
+       :class: attention
 
        CPython raises a ``socket.gaierror`` exception (`OSError` subclass) in case
        of error in this function. MicroPython doesn't have ``socket.gaierror``

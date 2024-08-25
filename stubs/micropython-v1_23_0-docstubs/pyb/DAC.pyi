@@ -12,7 +12,7 @@ class DAC:
 
     ``bits`` is an integer specifying the resolution, and can be 8 or 12.
     The maximum value for the write and write_timed methods will be
-    2\*\*``bits``-1.
+    2**``bits``-1.
 
     The *buffering* parameter selects the behaviour of the DAC op-amp output
     buffer, whose purpose is to reduce the output impedance.  It can be
@@ -68,7 +68,7 @@ class DAC:
     def write(self, value) -> Incomplete:
         """
         Direct access to the DAC output.  The minimum value is 0.  The maximum
-        value is 2\*\*``bits``-1, where ``bits`` is set when creating the DAC
+        value is 2**``bits``-1, where ``bits`` is set when creating the DAC
         object or by using the ``init`` method.
         """
         ...

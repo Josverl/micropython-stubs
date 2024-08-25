@@ -3,13 +3,13 @@ Zlib compression & decompression.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/zlib.html
 
-|see_cpython_module| :mod:`python:zlib`.
+CPython module: :mod:`python:zlib` https://docs.python.org/3/library/zlib.html .
 
 This module allows compression and decompression of binary data with the
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
 (commonly used in the zlib library and gzip archiver).
 
-.. note:: Prefer to use :class:`deflate.DeflateIO` instead of the functions in this
+``Note:`` Prefer to use :class:`deflate.DeflateIO` instead of the functions in this
    module as it provides a streaming interface to compression and decompression
    which is convenient and more memory efficient when working with reading or
    writing compressed data to a file, socket, or stream.

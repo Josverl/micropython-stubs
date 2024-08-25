@@ -36,6 +36,7 @@ classifiers = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
+    { include = "__mpy_types__.pyi" },
     { include = "_asyncio.pyi" },
     { include = "_espnow.pyi" },
     { include = "_onewire.pyi" },
@@ -87,6 +88,7 @@ packages = [
     { include = "struct.pyi" },
     { include = "sys.pyi" },
     { include = "time.pyi" },
+    { include = "tls.pyi" },
     { include = "uarray.pyi" },
     { include = "uasyncio/__init__.pyi" },
     { include = "uasyncio/core.pyi" },

@@ -3,7 +3,7 @@ Input/output streams.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/io.html
 
-CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
+|see_cpython_module| :mod:`python:io`.
 
 This module contains additional types of `stream` (file-like) objects
 and helper functions.
@@ -11,7 +11,7 @@ and helper functions.
 Conceptual hierarchy
 --------------------
 
-Difference to CPython
+.. admonition:: Difference to CPython
 
    Conceptual hierarchy of stream base classes is simplified in MicroPython,
    as described in this section.
@@ -77,13 +77,14 @@ Module: 'uio' on micropython-v1.23.0-esp32-ESP32_GENERIC
 """
 
 # MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32'}
-# Stubber: v1.20.0
+# Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from io import *
 from stdlib.io import *
 from typing import Any, IO, Optional
 
-def open(name, mode="r", **kwargs) -> Incomplete:
+def open(name, mode="r", *kwargs) -> Incomplete:
     """
     Open a file. Builtin ``open()`` function is aliased to this function.
     All ports (which provide access to file system) are required to support

@@ -3,13 +3,13 @@ Gzip compression & decompression.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/gzip.html
 
-|see_cpython_module| :mod:`python:gzip`.
+CPython module: :mod:`python:gzip` https://docs.python.org/3/library/gzip.html .
 
 This module allows compression and decompression of binary data with the
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_ used by the gzip
 file format.
 
-.. note:: Prefer to use :class:`deflate.DeflateIO` instead of the functions in this
+``Note:`` Prefer to use :class:`deflate.DeflateIO` instead of the functions in this
    module as it provides a streaming interface to compression and decompression
    which is convenient and more memory efficient when working with reading or
    writing compressed data to a file, socket, or stream.

@@ -3,7 +3,7 @@ Pack and unpack primitive data types.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/struct.html
 
-CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
+|see_cpython_module| :mod:`python:struct`.
 
 The following byte orders are supported:
 
@@ -60,10 +60,11 @@ Module: 'struct' on micropython-v1.23.0-esp32-ESP32_GENERIC
 """
 
 # MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32'}
-# Stubber: v1.20.0
+# Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Tuple
+from struct import *
 
 def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
     """

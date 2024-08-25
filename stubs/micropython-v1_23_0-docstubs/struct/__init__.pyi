@@ -3,7 +3,7 @@ Pack and unpack primitive data types.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/struct.html
 
-|see_cpython_module| :mod:`python:struct`.
+CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
 
 The following byte orders are supported:
 

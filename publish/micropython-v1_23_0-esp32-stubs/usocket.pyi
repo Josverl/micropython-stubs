@@ -3,11 +3,11 @@ Socket module.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/socket.html
 
-CPython module: :mod:`python:socket` https://docs.python.org/3/library/socket.html .
+|see_cpython_module| :mod:`python:socket`.
 
 This module provides access to the BSD socket interface.
 
-Difference to CPython
+.. admonition:: Difference to CPython
 
    For efficiency and consistency, socket objects in MicroPython implement a `stream`
    (file-like) interface directly. In CPython, you need to convert a socket to
@@ -65,9 +65,10 @@ Module: 'usocket' on micropython-v1.23.0-esp32-ESP32_GENERIC
 """
 
 # MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32'}
-# Stubber: v1.20.0
+# Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from socket import *
 from stdlib.socket import *
 from typing import Any, IO, Optional, Tuple
 
@@ -120,7 +121,7 @@ def getaddrinfo(
        # stream operation.
        s.connect(socket.getaddrinfo('www.micropython.org', 80, 0, SOCK_STREAM)[0][-1])
 
-    Difference to CPython
+    .. admonition:: Difference to CPython
 
        CPython raises a ``socket.gaierror`` exception (`OSError` subclass) in case
        of error in this function. MicroPython doesn't have ``socket.gaierror``
@@ -173,12 +174,12 @@ class socket:
         given to makefile(). The support is limited to binary modes only ('rb', 'wb', and 'rwb').
         CPython's arguments: *encoding*, *errors* and *newline* are not supported.
 
-        Difference to CPython
+        .. admonition:: Difference to CPython
 
            As MicroPython doesn't support buffered streams, values of *buffering*
            parameter is ignored and treated as if it was 0 (unbuffered).
 
-        Difference to CPython
+        .. admonition:: Difference to CPython
 
            Closing the file object returned by makefile() WILL close the
            original socket as well.
@@ -261,7 +262,7 @@ class socket:
              if not res:
                  # s is still not ready for input, i.e. operation timed out
 
-        Difference to CPython
+        .. admonition:: Difference to CPython
 
            CPython raises a ``socket.timeout`` exception in case of timeout,
            which is an `OSError` subclass. MicroPython raises an OSError directly

@@ -3,7 +3,7 @@ System specific functions.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/sys.html
 
-|see_cpython_module| :mod:`python:sys`.
+CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
 
 # source version: v1.23.0
@@ -33,7 +33,8 @@ minimal ports).
 Starting with version 1.22.0-preview, the fourth node *releaselevel* in
 *implementation.version* is either an empty string or ``"preview"``.
 
-.. admonition:: Difference to CPython
+Admonition:Difference to CPython
+:class: attention
 
 CPython mandates more attributes for this object, but the actual useful
 bare minimum is implemented in MicroPython.
@@ -66,7 +67,8 @@ path: List
 """\
 A mutable list of directories to search for imported modules.
 
-.. admonition:: Difference to CPython
+Admonition:Difference to CPython
+:class: attention
 
 On MicroPython, an entry with the value ``".frozen"`` will indicate that import
 should search :term:`frozen modules <frozen module>` at that point in the search.
@@ -112,7 +114,8 @@ version_info: Tuple
 """\
 Python language version that this implementation conforms to, as a tuple of ints.
 
-.. admonition:: Difference to CPython
+Admonition:Difference to CPython
+:class: attention
 
 Only the first three version numbers (major, minor, micro) are supported and
 they can be referenced only by index, not by name.
@@ -135,7 +138,8 @@ def atexit(func) -> Incomplete:
     function will return the previous value set by this function, which is
     initially ``None``.
 
-    .. admonition:: Difference to CPython
+    Admonition:Difference to CPython
+       :class: attention
 
        This function is a MicroPython extension intended to provide similar
        functionality to the :mod:`atexit` module in CPython.
@@ -150,7 +154,8 @@ def print_exception(
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
 
-    .. admonition:: Difference to CPython
+    Admonition:Difference to CPython
+       :class: attention
 
        This is simplified version of a function which appears in the
        ``traceback`` module in CPython. Unlike ``traceback.print_exception()``,
@@ -164,7 +169,7 @@ def print_exception(
 def settrace(tracefunc) -> None:
     """
     Enable tracing of bytecode execution.  For details see the `CPython
-    documentation <https://docs.python.org/3/library/sys.html#sys.settrace>`_.
+    documentation `<https://docs.python.org/3/library/sys.html#sys.settrace>.
 
     This function requires a custom MicroPython build as it is typically not
     present in pre-built firmware (due to it affecting performance).  The relevant

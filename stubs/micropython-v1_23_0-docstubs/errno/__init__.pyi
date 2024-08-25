@@ -3,7 +3,7 @@ System error codes.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/errno.html
 
-|see_cpython_module| :mod:`python:errno`.
+CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
 
 This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.

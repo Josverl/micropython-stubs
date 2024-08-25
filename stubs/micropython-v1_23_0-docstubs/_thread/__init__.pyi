@@ -3,7 +3,7 @@ Multithreading support.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/_thread.html
 
-|see_cpython_module| :mod:`python:_thread`.
+CPython module: :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
 
 This module implements multithreading support.
 

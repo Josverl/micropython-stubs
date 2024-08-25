@@ -136,7 +136,7 @@ def idle() -> Incomplete:
 
 def sleep() -> Incomplete:
     """
-    .. note:: This function is deprecated, use `lightsleep()` instead with no arguments.
+    ``Note:`` This function is deprecated, use `lightsleep()` instead with no arguments.
     """
     ...
 
@@ -253,7 +253,7 @@ def bitstream(
     at best +/- 120ns, however on faster MCUs (ESP8266, ESP32, STM32, Pyboard), it
     will be closer to +/-30ns.
 
-    .. note:: For controlling WS2812 / NeoPixel strips, see the :mod:`neopixel`
+    ``Note:`` For controlling WS2812 / NeoPixel strips, see the :mod:`neopixel`
        module for a higher-level API.
     """
     ...

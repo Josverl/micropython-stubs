@@ -22,7 +22,7 @@ Module: 'vfs' on micropython-v1.23.0-esp32-ESP32_GENERIC
 """
 
 # MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32'}
-# Stubber: v1.20.0
+# Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Optional
@@ -79,7 +79,7 @@ class VfsLfs2:
         """
             Build a Lfs2 filesystem on *block_dev*.
 
-        ``Note:`` There are reports of littlefs v2 failing in certain situations,
+        .. note:: There are reports of littlefs v2 failing in certain situations,
                   for details see `littlefs issue 295`_.
         """
         ...

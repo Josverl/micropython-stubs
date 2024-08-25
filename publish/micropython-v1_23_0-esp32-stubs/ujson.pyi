@@ -3,7 +3,7 @@ JSON encoding and decoding.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/json.html
 
-CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
+|see_cpython_module| :mod:`python:json`.
 
 This modules allows to convert between Python objects and the JSON
 data format.
@@ -13,9 +13,10 @@ Module: 'ujson' on micropython-v1.23.0-esp32-ESP32_GENERIC
 """
 
 # MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32'}
-# Stubber: v1.20.0
+# Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from json import *
 
 def loads(str) -> Incomplete:
     """

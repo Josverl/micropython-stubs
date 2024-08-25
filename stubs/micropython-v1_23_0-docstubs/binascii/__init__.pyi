@@ -3,7 +3,7 @@ Binary/ASCII conversions.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/binascii.html
 
-|see_cpython_module| :mod:`python:binascii`.
+CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
 
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).

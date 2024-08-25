@@ -3,7 +3,7 @@ TLS/SSL wrapper for socket objects.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/ssl.html
 
-|see_cpython_module| :mod:`python:ssl`.
+CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
 This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
@@ -55,7 +55,8 @@ class SSLContext:
         with the file path of the certificate.  The *keyfile* is a string with the file path
         of the private key.
 
-        .. admonition:: Difference to CPython
+        Admonition:Difference to CPython
+           :class: attention
 
            MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
            strings, in which case they are interpreted as the actual certificate/key data.

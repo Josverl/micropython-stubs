@@ -3,7 +3,7 @@ Input/output streams.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/io.html
 
-|see_cpython_module| :mod:`python:io`.
+CPython module: :mod:`python:io` https://docs.python.org/3/library/io.html .
 
 This module contains additional types of `stream` (file-like) objects
 and helper functions.
@@ -11,7 +11,8 @@ and helper functions.
 Conceptual hierarchy
 --------------------
 
-.. admonition:: Difference to CPython
+Admonition:Difference to CPython
+   :class: attention
 
    Conceptual hierarchy of stream base classes is simplified in MicroPython,
    as described in this section.

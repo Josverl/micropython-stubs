@@ -3,7 +3,7 @@ Mathematical functions.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/math.html
 
-|see_cpython_module| :mod:`python:math`.
+CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
 
 The ``math`` module provides some basic mathematical functions for
 working with floating-point numbers.

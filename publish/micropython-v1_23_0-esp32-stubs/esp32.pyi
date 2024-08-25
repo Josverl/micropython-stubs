@@ -11,7 +11,7 @@ Module: 'esp32' on micropython-v1.23.0-esp32-ESP32_GENERIC
 """
 
 # MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32'}
-# Stubber: v1.20.0
+# Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Any, List, Optional, Tuple, Union
@@ -49,7 +49,7 @@ def idf_heap_info(capabilities) -> List[Tuple]:
         [(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512, 35108),
          (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]
 
-    ``Note:`` Free IDF heap memory in the `esp32.HEAP_DATA` region is available
+    .. note:: Free IDF heap memory in the `esp32.HEAP_DATA` region is available
        to be automatically added to the MicroPython heap to prevent a
        MicroPython allocation from failing. However, the information returned
        here is otherwise *not* useful to troubleshoot Python allocation
@@ -202,7 +202,7 @@ class Partition:
         """
         Sets the partition as the boot partition.
 
-        ``Note:`` Do not enter :func:`deepsleep<machine.deepsleep>` after changing
+        .. note:: Do not enter :func:`deepsleep<machine.deepsleep>` after changing
            the OTA boot partition, without first performing a hard
            :func:`reset<machine.reset>` or power cycle. This ensures the bootloader
            will validate the new image before booting.

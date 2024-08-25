@@ -77,7 +77,7 @@ def osdebug(uart_no, level: Optional[Any] = None) -> Incomplete:
     """
     :no-index:
 
-    .. note:: This is the ESP32 form of this function.
+    ``Note:`` This is the ESP32 form of this function.
 
     Change the level of OS serial debug log messages. On boot, OS
     serial debug log messages are limited to Error output only.
@@ -102,12 +102,12 @@ def osdebug(uart_no, level: Optional[Any] = None) -> Incomplete:
         * ``LOG_VERBOSE`` -- Bigger chunks of debugging information, or frequent messages
           which can potentially flood the output
 
-    .. note:: ``LOG_DEBUG`` and ``LOG_VERBOSE`` are not compiled into the
+    ``Note:`` ``LOG_DEBUG`` and ``LOG_VERBOSE`` are not compiled into the
               MicroPython binary by default, to save size. A custom build with a
               modified "``sdkconfig``" source file is needed to see any output
               at these log levels.
 
-    .. note:: Log output on ESP32 is automatically suspended in "Raw REPL" mode,
+    ``Note:`` Log output on ESP32 is automatically suspended in "Raw REPL" mode,
               to prevent communications issues. This means OS level logging is never
               seen when using ``mpremote run`` and similar tools.
     """

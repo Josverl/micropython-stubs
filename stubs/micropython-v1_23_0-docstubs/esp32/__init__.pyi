@@ -90,7 +90,7 @@ class Partition:
         """
         Sets the partition as the boot partition.
 
-        .. note:: Do not enter :func:`deepsleep<machine.deepsleep>` after changing
+        ``Note:`` Do not enter :func:`deepsleep<machine.deepsleep>` after changing
            the OTA boot partition, without first performing a hard
            :func:`reset<machine.reset>` or power cycle. This ensures the bootloader
            will validate the new image before booting.
@@ -355,7 +355,7 @@ def idf_heap_info(capabilities) -> List[Tuple]:
         [(240, 0, 0, 0), (7288, 0, 0, 0), (16648, 4, 4, 4), (79912, 35712, 35512, 35108),
          (15072, 15036, 15036, 15036), (113840, 0, 0, 0)]
 
-    .. note:: Free IDF heap memory in the `esp32.HEAP_DATA` region is available
+    ``Note:`` Free IDF heap memory in the `esp32.HEAP_DATA` region is available
        to be automatically added to the MicroPython heap to prevent a
        MicroPython allocation from failing. However, the information returned
        here is otherwise *not* useful to troubleshoot Python allocation

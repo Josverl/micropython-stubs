@@ -3,7 +3,7 @@ TLS/SSL wrapper for socket objects.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/ssl.html
 
-CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
+|see_cpython_module| :mod:`python:ssl`.
 
 This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
@@ -14,11 +14,12 @@ Module: 'ssl' on micropython-v1.23.0-esp32-ESP32_GENERIC
 """
 
 # MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32'}
-# Stubber: v1.20.0
+# Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
 from stdlib.ssl import *
 from typing import IO, List
+from ssl import *
 
 MBEDTLS_VERSION: str = "mbed TLS 3.4.1"
 PROTOCOL_TLS_SERVER: int = 1
@@ -92,7 +93,7 @@ class SSLContext:
         with the file path of the certificate.  The *keyfile* is a string with the file path
         of the private key.
 
-        Difference to CPython
+        .. admonition:: Difference to CPython
 
            MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
            strings, in which case they are interpreted as the actual certificate/key data.

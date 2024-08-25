@@ -40,8 +40,8 @@ class Timer:
           - ``prescaler`` [0-0xffff] - specifies the value to be loaded into the
             timer's Prescaler Register (PSC). The timer clock source is divided by
             (``prescaler + 1``) to arrive at the timer clock. Timers 2-7 and 12-14
-            have a clock source of 84 MHz (pyb.freq()[2] \* 2), and Timers 1, and 8-11
-            have a clock source of 168 MHz (pyb.freq()[3] \* 2).
+            have a clock source of 84 MHz (pyb.freq()[2] * 2), and Timers 1, and 8-11
+            have a clock source of 168 MHz (pyb.freq()[3] * 2).
 
           - ``period`` [0-0xffff] for timers 1, 3, 4, and 6-15. [0-0x3fffffff] for timers 2 & 5.
             Specifies the value to be loaded into the timer's AutoReload

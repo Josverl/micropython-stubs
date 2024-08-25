@@ -3,7 +3,7 @@ Wait for events on a set of streams.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/select.html
 
-|see_cpython_module| :mod:`python:select`.
+CPython module: :mod:`python:select` https://docs.python.org/3/library/select.html .
 
 This module provides functions to efficiently wait for events on multiple
 `streams <stream>` (select streams which are ready for operations).
@@ -75,7 +75,8 @@ class poll:
 
         In case of timeout, an empty list is returned.
 
-        .. admonition:: Difference to CPython
+        Admonition:Difference to CPython
+           :class: attention
 
            Tuples returned may contain more than 2 elements as described above.
         """
@@ -97,7 +98,8 @@ class poll:
         won't be processed until new mask is set with `poll.modify()`. This
         behaviour is useful for asynchronous I/O schedulers.
 
-        .. admonition:: Difference to CPython
+        Admonition:Difference to CPython
+           :class: attention
 
            This function is a MicroPython extension.
         """

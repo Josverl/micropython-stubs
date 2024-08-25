@@ -5,7 +5,7 @@ MicroPython module: https://docs.micropython.org/en/v1.23.0/library/neopixel.htm
 
 This module provides a driver for WS2818 / NeoPixel LEDs.
 
-``Note:`` This module is only included by default on the ESP8266, ESP32 and RP2
+.. note:: This module is only included by default on the ESP8266, ESP32 and RP2
    ports. On STM32 / Pyboard and others, you can either install the
    ``neopixel`` package using :term:`mip`, or you can download the module
    directly from :term:`micropython-lib` and copy it to the filesystem.
@@ -15,7 +15,7 @@ Module: 'neopixel' on micropython-v1.23.0-esp32-ESP32_GENERIC
 """
 
 # MCU: {'version': '1.23.0', 'mpy': 'v6.3', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensawin', 'ver': '1.23.0', 'cpu': 'ESP32'}
-# Stubber: v1.20.0
+# Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Tuple
