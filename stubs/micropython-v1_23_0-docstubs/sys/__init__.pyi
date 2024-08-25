@@ -121,9 +121,7 @@ Only the first three version numbers (major, minor, micro) are supported and
 they can be referenced only by index, not by name.
 """
 
-def exit(
-    retval=0,
-) -> Incomplete:
+def exit(retval=0, /) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its
@@ -146,10 +144,7 @@ def atexit(func) -> Incomplete:
     """
     ...
 
-def print_exception(
-    exc,
-    file=stdout,
-) -> None:
+def print_exception(exc, file=stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).

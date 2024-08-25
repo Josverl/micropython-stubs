@@ -207,11 +207,7 @@ def unique_id() -> bytes:
     """
     ...
 
-def time_pulse_us(
-    pin,
-    pulse_level,
-    timeout_us=1000000,
-) -> int:
+def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     """
     Time a pulse on the given *pin*, and return the duration of the pulse in
     microseconds.  The *pulse_level* argument should be 0 to time a low pulse
@@ -229,12 +225,7 @@ def time_pulse_us(
     """
     ...
 
-def bitstream(
-    pin,
-    encoding,
-    timing,
-    data,
-) -> Incomplete:
+def bitstream(pin, encoding, timing, data, /) -> Incomplete:
     """
     Transmits *data* by bit-banging the specified *pin*. The *encoding* argument
     specifies how the bits are encoded, and *timing* is an encoding-specific timing

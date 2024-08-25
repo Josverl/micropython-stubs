@@ -75,14 +75,7 @@ class FrameBuffer:
     unexpected errors.
     """
 
-    def __init__(
-        self,
-        buffer,
-        width,
-        height,
-        format,
-        stride=-1,
-    ) -> None: ...
+    def __init__(self, buffer, width, height, format, stride=-1, /) -> None: ...
     def fill(self, c) -> None:
         """
         Fill the entire FrameBuffer with the specified color.

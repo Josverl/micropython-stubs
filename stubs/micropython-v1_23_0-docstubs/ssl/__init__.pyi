@@ -45,10 +45,7 @@ class SSLContext:
     constants.
     """
 
-    def __init__(
-        self,
-        protocol,
-    ) -> None: ...
+    def __init__(self, protocol, /) -> None: ...
     def load_cert_chain(self, certfile, keyfile) -> None:
         """
         Load a private key and the corresponding certificate.  The *certfile* is a string

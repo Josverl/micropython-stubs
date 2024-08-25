@@ -39,13 +39,13 @@ For example::
 from __future__ import annotations
 from typing import Any, List, Optional, Tuple
 from _typeshed import Incomplete
-from abc import ABC
+from typing import Protocol
 from .WLAN import *
 from .WLANWiPy import *
 from .WIZNET5K import *
 from .LAN import *
 
-class AbstractNIC(ABC):
+class AbstractNIC(Protocol):
     """
     Instantiate a network interface object. Parameters are network interface
     dependent. If there are more than one interface of the same type, the first

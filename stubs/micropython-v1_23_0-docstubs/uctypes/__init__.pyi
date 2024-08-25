@@ -97,17 +97,9 @@ class struct:
     memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
 
-    def __init__(
-        self,
-        addr,
-        descriptor,
-        layout_type=NATIVE,
-    ) -> None: ...
+    def __init__(self, addr, descriptor, layout_type=NATIVE, /) -> None: ...
 
-def sizeof(
-    struct,
-    layout_type=NATIVE,
-) -> int:
+def sizeof(struct, layout_type=NATIVE, /) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object

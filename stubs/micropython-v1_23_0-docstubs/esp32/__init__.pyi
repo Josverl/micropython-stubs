@@ -53,11 +53,7 @@ class Partition:
     firmware partitions (typically labelled ``factory``, ``ota_0``, ``ota_1``), and
     ``DATA`` is for other partitions, e.g. ``nvs``, ``otadata``, ``phy_init``, ``vfs``.
     """
-    def __init__(
-        self,
-        id,
-        block_size=4096,
-    ) -> None: ...
+    def __init__(self, id, block_size=4096, /) -> None: ...
     @classmethod
     def find(cls, type=TYPE_APP, subtype=0xFF, label=None, block_size=4096) -> List:
         """

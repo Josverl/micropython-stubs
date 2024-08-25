@@ -148,7 +148,7 @@ class USBDevice:
         """
         ...
 
-    def active(self, value: Optional[Any] = None) -> bool:
+    def active(self, value: Optional[Any] = None, /) -> bool:
         """
         Returns the current active state of this runtime USB device as a
         boolean. The runtime USB device is "active" when it is available to
@@ -169,7 +169,7 @@ class USBDevice:
         """
         ...
 
-    def submit_xfer(self, ep, buffer) -> bool:
+    def submit_xfer(self, ep, buffer, /) -> bool:
         """
         Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be
         an object implementing the buffer interface, with read access for
@@ -191,7 +191,7 @@ class USBDevice:
         """
         ...
 
-    def stall(self, ep, stall: Optional[Any] = None) -> Incomplete:
+    def stall(self, ep, stall: Optional[Any] = None, /) -> Incomplete:
         """
         Calling this function gets or sets the STALL state of a device endpoint.
 
