@@ -1,0 +1,8 @@
+
+### MicroPython v{{ version }}-preview
+
+| Port | Board | Package | pip install |
+|------|-------|---------| ------------|
+{% for module in modules |sort(attribute='port,board') %}| {{ module['port'] }} | {{ module['board'].upper() }} | {{ module['package'] }} | `pip install "git+https://github.com/Josverl/micropython-stubs#subdirectory=publish/micropython-v{{ version.replace('.','_') }}_preview-{{ module['package'].replace('micropython-','') }}"`
+{% endfor %}
+

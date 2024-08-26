@@ -1,0 +1,8 @@
+
+### MicroPython v{{ version }}
+
+| Port | Board | Package | pip install |
+|------|-------|---------| ------------|
+{% for module in modules|sort(attribute='port,board')  %}| {{ module['port'] }} | {{ module['board'].upper() }} | {{ module['package'] }} | `pip install -U {{ module['package'] }}=={{ version }}.*`
+{% endfor %}
+

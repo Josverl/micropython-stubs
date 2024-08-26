@@ -5,43 +5,8 @@
 
 Overview of the published ports and boards.
 
-Stm32 
-
-- ![](https://img.shields.io/pypi/dm/micropython-stm32-stubs?label=micropython-stm32-stubs) 
-  
-  ESP32
-
-- ![](https://img.shields.io/pypi/dm/micropython-esp32-stubs?label=micropython-esp32-stubs)
-
-- ![](https://img.shields.io/pypi/dm/micropython-esp32-um-tinypico-stubs?label=micropython-esp32-um-tinypico-stubs)
-  
-  ESP8266
-
-- ![](https://img.shields.io/pypi/dm/micropython-esp8266-stubs?label=micropython-esp8266-stubs)
-  
-  RP2 / RP2040
-
-- ![](https://img.shields.io/pypi/dm/micropython-rp2-stubs?label=micropython-rp2-stubs)
-
-- ![](https://img.shields.io/pypi/dm/micropython-rp2-pico-stubs?label=micropython-rp2-pico-stubs) | ![](https://img.shields.io/pypi/dm/micropython-rp2-rpi-pico-stubs?label=micropython-rp2-rpi-pico-stubs)
-
-- ![](https://img.shields.io/pypi/dm/micropython-rp2-pico-w-stubs?label=micropython-rp2-pico-w-stubs) | ![](https://img.shields.io/pypi/dm/micropython-rp2-rpi-pico-w-stubs?label=micropython-rp2-rpi-pico-w-stubs) 
-
-SAMD
-
-- ![](https://shields.io/pypi/dm/micropython-samd-seeed_wio_terminal-stubs?label=samd-seeed_wio_terminal)
-
-Windows
-
-- ![](https://img.shields.io/pypi/dm/micropython-windows-stubs?label=micropython-windows-stubs)
-
-Unix/Linux
-
-- ![](https://img.shields.io/pypi/dm/micropython-unix-stubs?label=micropython-unix-stubs)
-
-Webassembly
-
-- ![](https://img.shields.io/pypi/dm/micropython-webassembly-stubs?label=micropython-webassembly-stubs)
+```{include} modules_pypi_body.md
+```
 
 :::{note}
 
@@ -53,12 +18,16 @@ Webassembly
 
 ## Packages on GitHub
 
-- list of (latest) packages that can be installed from GitHub
-- add commands to install 
-  TODO: 
-- currently not yet automatically updated
+The stubs for the preview version of the firmware are available on GitHub.
+Note that installation from git can be a little slower than from PyPi as the entire repository is cloned by pip in order to install the package.
 
-## List of current firmwares and stubs
+Apologies that the urls are long and complex due to the requirements by pip , and the folder naming conventions used in the repo.
+
+```{include} modules_git_body.md
+```
+
+
+## List of current firmwares and all partial stubs
 
 This includes stubs from the following MicroPython families: 
 

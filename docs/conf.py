@@ -156,7 +156,8 @@ def setup(app):
 
 sys.path[1:1] = [".", os.path.abspath("../docs")]
 from update_docs import update_firmware_docs
+from report_pypi_modules import create_md
 
 print("update_firmware_docs....")
 update_firmware_docs()
-
+create_md()
