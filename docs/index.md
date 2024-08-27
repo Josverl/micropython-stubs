@@ -37,7 +37,7 @@ qa_testing.md
 
 ```{toctree}
 :caption: 'Stub index'
-:maxdepth: 2
+:maxdepth: 3
 packages.md
 package_flatview.md
 firmware_grp.md

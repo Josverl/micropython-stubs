@@ -33,11 +33,9 @@ def report_to_md(df_pypi, template, dest_md):
     # iterate over each group in the grouped dataframe
     for version, group in grouped:
         # render the template with the group data
-        rendered_module = template.render(
-            version=version, modules=group.to_dict(orient="records")
-        )
+        rendered_module = template.render(version=version, modules=group.to_dict(orient="records"))
         # append the rendered module to the list
-        rendered_modules.append(rendered_module)
+        rendered_modules.insert(0, rendered_module)
 
     # join the rendered modules into a single string
     rendered_modules_str = "\n".join(rendered_modules)

@@ -49,4 +49,4 @@ This includes stubs from the following MicroPython families:
 
 - [ulab native modules](ulab-stubs)
 
-An up-to-date list of all current Firmwares, ports and boards is listed on the [**Firmwares page**](all-stubs) 
+An up-to-date list of all partial and intermediate stubs for different families,  ports and boards is listed on the [**Firmwares page**](all-stubs) 
