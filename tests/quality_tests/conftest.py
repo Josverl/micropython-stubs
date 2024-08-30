@@ -31,7 +31,7 @@ from pathlib import Path
 import fasteners
 import pytest
 from loguru import logger as log
-from mpflash.versions import get_preview_mp_version, get_stable_mp_version
+from mpflash.versions import clean_version, get_preview_mp_version, get_stable_mp_version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
 MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
@@ -53,8 +53,8 @@ def pytest_addoption(parser: pytest.Parser):
 
 
 def flat_version(version):
-    """Converts a version string to a flat version string. (simplified)"""
-    return version.replace(".", "_").replace("-", "_")
+    """Converts a version string to a flat version string."""
+    return clean_version( version, flat=True)
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

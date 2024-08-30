@@ -16,7 +16,16 @@
                 "c:\\mypython\\micropython-stubs\\tests\\quality_tests\\test_stdlib.py::test_typecheck_stdlib[pyright-snip_path0-local-stdlib---stdlib"
                 
             ],
-            "justMyCode": false
+            "justMyCode": false,
+            "stopOnEntry": false,
+            "subProcess": false
+        },
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
         },
         {
             "name": "Python: file as Module",
