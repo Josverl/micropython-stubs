@@ -135,6 +135,7 @@ def is_docker_running():
     return _docker
 
 
+
 @pytest.fixture(scope="session")
 def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Config):
     """
@@ -142,11 +143,12 @@ def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Confi
     """
     lib_path = snip_path_fx / "lib"
     lib_path.mkdir(exist_ok=True)
-    for file in lib_path.glob("typing*.p*"):
-        file.unlink()
-
-    for file in (pytestconfig.rootpath / "mip").glob(f"typing*{ext}"):
-        shutil.copy(file, lib_path)
+    specs = ["typing*", "abc"]
+    for spec in specs:
+        for file in lib_path.glob(f"{spec}.*"):
+            file.unlink()
+        for file in (pytestconfig.rootpath / "mip").glob(f"{spec}{ext}"):
+            shutil.copy(file, lib_path)
     return True
 
 

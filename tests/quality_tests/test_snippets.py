@@ -40,7 +40,6 @@ def major_minor(versions):
             mm_groups[major_minor].append(v)
     return [max(v) for v in mm_groups.values()]
 
-
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
 
@@ -242,8 +241,6 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         result = False
 
     return bool(result)
-
-
 @pytest.mark.parametrize(
     "linter",
     ["pyright", "mypy", "ruff"],

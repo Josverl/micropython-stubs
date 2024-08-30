@@ -23,3 +23,11 @@ Note:
 Docker on Windows/WSL2 is unable to mount folders from a [REFS filesystem](https://learn.microsoft.com/en-us/windows-server/storage/refs/refs-overview).  (nov'24) 
 
 
+
+command to run the tests: 
+```bash
+docker run -u 1000 -e HOME=/foo -v .:/code -v ./lib:/foo/.micropython/lib --rm micropython/unix:latest micropython check_basics.py
+docker run -u 1000 -e HOME=/foo -v .:/code -v ./lib:/foo/.micropython/lib --rm micropython/unix:latest micropython check_anycall.py
+docker run -u 1000 -e HOME=/foo -v .:/code -v ./lib:/foo/.micropython/lib --rm micropython/unix:latest micropython check_protocol.py
+```
+-c "import sys;print(sys.path);import os;print(os.listdir(sys.patch[2]))"
