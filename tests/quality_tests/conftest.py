@@ -31,7 +31,7 @@ from pathlib import Path
 import fasteners
 import pytest
 from loguru import logger as log
-from mpflash.versions import get_preview_mp_version, get_stable_mp_version, micropython_versions
+from mpflash.versions import clean_version, get_preview_mp_version, get_stable_mp_version, micropython_versions
 from packaging.version import Version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
@@ -179,8 +179,8 @@ def get_test_versions(config: pytest.Config) -> list[str]:
 
 
 def flat_version(version):
-    """Converts a version string to a flat version string. (simplified)"""
-    return version.replace(".", "_").replace("-", "_")
+    """Converts a version string to a flat version string."""
+    return clean_version( version, flat=True)
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
