@@ -56,3 +56,6 @@ package*.json
 coverage/snippet_score.json
 **/__NOT__
 publish/micropython-stdlib-stubs_100b1
+
+# typings runtime checking lib folder
+tests/quality_tests/feat_typing/lib

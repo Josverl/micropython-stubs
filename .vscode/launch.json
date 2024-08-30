@@ -5,70 +5,94 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: file as Module",
-            "type": "python",
-            "request": "launch",
-            "module": "stubber.${fileBasenameNoExtension}",
-            "justMyCode": false
-        },
-        {
-            "name": "Python: Current File from root",
-            "type": "python",
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
-            "args": ["-l"],
-            "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}"
+            "console": "integratedTerminal"
         },
+        // {
+        //     "name": "Python: file as Module",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "module": "stubber.${fileBasenameNoExtension}",
+        //     "justMyCode": false
+        // },
+        // {
+        //     "name": "Python: Current File from root",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "${file}",
+        //     "args": [
+        //         "-l"
+        //     ],
+        //     "console": "integratedTerminal",
+        //     "cwd": "${workspaceFolder}"
+        // },
+        // {
+        //     "name": "Python: publish board",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "./publish/publish_stubs.py",
+        //     "console": "integratedTerminal",
+        //     "cwd": "${workspaceFolder}",
+        //     "args": [
+        //         "--pypi",
+        //         "-V",
+        //         "1.16",
+        //         "--dry-run",
+        //         "--type",
+        //         "board"
+        //     ]
+        // },
+        // {
+        //     "name": "Python: publish 1.19.1 docs",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "./publish/publish_stubs.py",
+        //     "console": "integratedTerminal",
+        //     "cwd": "${workspaceFolder}",
+        //     "args": [
+        //         "--pypi",
+        //         "-V",
+        //         "1.19.1",
+        //         "--dry-run",
+        //         "--type",
+        //         "doc"
+        //     ]
+        // },
+        // {
+        //     "name": "Python: stubber - cmdline",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "module": "stubber.stubber",
+        //     "cwd": "${workspaceFolder}",
+        //     "args": [
+        //         // "-v",
+        //         "merge",
+        //         "--version",
+        //         "v1.22.1",
+        //         "--port",
+        //         "esp32",
+        //         // "get-frozen",
+        //         // "preview",
+        //         // "switch",
+        //     ]
+        // },
         {
-            "name": "Python: publish board",
-            "type": "python",
+            "name": "Debug pytest tests",
+            // "purpose": [
+            //     "debug-test"
+            // ],
+            "type": "debugpy",
             "request": "launch",
-            "program": "./publish/publish_stubs.py",
             "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                "--pypi",
-                "-V",
-                "1.16",
-                "--dry-run",
-                "--type",
-                "board"
-            ]
-        },
-        {
-            "name": "Python: publish 1.19.1 docs",
-            "type": "python",
-            "request": "launch",
-            "program": "./publish/publish_stubs.py",
-            "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                "--pypi",
-                "-V",
-                "1.19.1",
-                "--dry-run",
-                "--type",
-                "doc"
-            ]
-        }
-        {
-            "name": "Python: stubber - cmdline",
-            "type": "python",
-            "request": "launch",
-            "module": "stubber.stubber",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                // "-v",
-                "merge",
-                "--version",
-                "v1.22.1",
-                "--port",
-                "esp32",
-                // "get-frozen",
-                // "preview",
-                // "switch",
-            ]
+            "module": "pytest",
+            "justMyCode": false,
+            "stopOnEntry": false,
+            // false : Avoid debugpy trying to debug micropython
+            // but may cause issue with pytest-cov coverage reporting 
+            "subProcess": false,
         },
     ]
 }

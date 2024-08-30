@@ -29,14 +29,15 @@ import pytest
 from loguru import logger as log
 
 from stubber.utils.config import CONFIG
+from mpflash.versions import micropython_versions, clean_version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
 MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
 
 
 def flat_version(version):
-    """Converts a version string to a flat version string. (simplified)"""
-    return version.replace(".", "_").replace("-", "_")
+    """Converts a version string to a flat version string."""
+    return clean_version( version, flat=True)
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

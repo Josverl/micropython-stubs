@@ -1,10 +1,9 @@
 
 micropython-stubber
-rich-click
 
 # for quality reporting
 pytest
-pyright==1.1.341
+pyright
 mypy
 fasteners 
 python-dotenv
