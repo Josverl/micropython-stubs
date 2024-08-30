@@ -14,3 +14,11 @@ run micropython the micropython unix docker container and run the check script.
 if exit code = 0 : OK 
 else : FAIL te test end report the output. 
 
+
+command to run the tests: 
+```bash
+docker run -u 1000 -e HOME=/foo -v .:/code -v ./lib:/foo/.micropython/lib --rm micropython/unix:latest micropython check_basics.py
+docker run -u 1000 -e HOME=/foo -v .:/code -v ./lib:/foo/.micropython/lib --rm micropython/unix:latest micropython check_anycall.py
+docker run -u 1000 -e HOME=/foo -v .:/code -v ./lib:/foo/.micropython/lib --rm micropython/unix:latest micropython check_protocol.py
+```
+-c "import sys;print(sys.path);import os;print(os.listdir(sys.patch[2]))"

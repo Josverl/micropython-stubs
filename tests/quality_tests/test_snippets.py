@@ -6,10 +6,10 @@ import subprocess
 from pathlib import Path
 
 import fasteners
+from mpflash.versions import micropython_versions
 import pytest
 from packaging.version import Version
-from typecheck import (copy_config_files, port_and_board, run_typechecker,
-                       stub_ignore)
+from typecheck import copy_config_files, port_and_board, run_typechecker, stub_ignore
 
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
@@ -61,14 +61,7 @@ PORTBOARD_FEATURES = {
 }
 
 SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
-
-import sys
-
-HERE = (Path(__file__).parent).resolve()
-sys.path.append(str(HERE.parent.parent / '.github/workflows'))
-from list_versions import major_minor, micropython_versions  # type: ignore
-
-VERSIONS = (["latest"]+major_minor(micropython_versions(start="v1.20")))[:5]
+VERSIONS = micropython_versions(minver="v1.20")[-5:] + ["latest"]
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
@@ -91,7 +84,9 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
                 if ":" in portboard:
                     portboard, condition = portboard.split(":", 1)
                     port, board = port_and_board(portboard)
-                    if stub_ignore(condition, version, port, board, linter="pytest", is_source=False):
+                    if stub_ignore(
+                        condition, version, port, board, linter="pytest", is_source=False
+                    ):
                         continue
                 else:
                     port, board = port_and_board(portboard)
@@ -102,7 +97,9 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
                     if ":" in feature:
                         # Check version for features, split feature in name and version
                         feature, condition = feature.split(":", 1)
-                        if stub_ignore(condition, version, port, board, linter="pytest", is_source=False):
+                        if stub_ignore(
+                            condition, version, port, board, linter="pytest", is_source=False
+                        ):
                             continue
                     feature = feature.strip()
                     args_lst.append([src, version, portboard, feature])
@@ -157,7 +154,9 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         condition = condition[4:].strip()
     context = {}
     context["Version"] = Version
-    context["version"] = Version(version) if not version in ("latest", "-", "preview") else Version("9999.99.99")
+    context["version"] = (
+        Version(version) if not version in ("latest", "-", "preview") else Version("9999.99.99")
+    )
     context["port"] = port
     context["board"] = board
     context["linter"] = linter
@@ -196,11 +195,15 @@ def run_pyright(snip_path, version, portboard, pytestconfig):
     with typecheck_lock:
         try:
             # run pyright in the folder with the check_scripts to allow modules to import each other.
-            result = subprocess.run(cmd, shell=use_shell, capture_output=True, cwd=snip_path.as_posix())
+            result = subprocess.run(
+                cmd, shell=use_shell, capture_output=True, cwd=snip_path.as_posix()
+            )
         except OSError as e:
             raise e
         if result.returncode >= 2:
-            assert 0, f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
+            assert (
+                0
+            ), f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
         try:
             results = json.loads(result.stdout)
         except Exception:
@@ -217,9 +220,7 @@ def run_pyright(snip_path, version, portboard, pytestconfig):
             relative = Path(issue["file"]).relative_to(pytestconfig.rootpath).as_posix()
         except Exception:
             relative = issue["file"]
-        msg = (
-            f"{relative}:{issue['range']['start']['line']+1}:{issue['range']['start']['character']} {issue['message']}"
-        )
+        msg = f"{relative}:{issue['range']['start']['line']+1}:{issue['range']['start']['character']} {issue['message']}"
         # caplog.messages.append(msg)
         if issue["severity"] == "error":
             log.error(msg)
@@ -256,5 +257,7 @@ def test_typecheck(
 
     log.info(f"Typecheck {linter} on {portboard}, {feature} {version} from {stub_source}")
 
-    info_msg, errorcount = run_typechecker(snip_path, version, portboard, pytestconfig, linter=linter)
+    info_msg, errorcount = run_typechecker(
+        snip_path, version, portboard, pytestconfig, linter=linter
+    )
     assert errorcount == 0, info_msg

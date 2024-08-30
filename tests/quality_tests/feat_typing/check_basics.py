@@ -2,7 +2,7 @@
 # which for MicroPython means everything typing-related should be ignored.
 # ref: https://github.com/micropython/micropython-lib/pull/584/
 
-from typing import *
+from typing import List, Tuple, Union, Any, Iterable, TypeVar, Generic, NewType
 
 MyAlias = str
 Vector = List[float]
