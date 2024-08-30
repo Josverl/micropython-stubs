@@ -8,7 +8,6 @@ from conftest import get_test_versions
 from packaging.version import Version
 from typecheck import copy_config_files, port_and_board, run_typechecker
 
-
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
 
@@ -155,8 +154,6 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         result = False
 
     return bool(result)
-
-
 @pytest.mark.parametrize(
     "linter",
     [
