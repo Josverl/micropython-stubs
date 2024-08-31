@@ -4,7 +4,7 @@ import subprocess
 from pathlib import Path
 
 import pytest
-from test_snippets import SOURCES, run_typechecker
+from mpflash.versions import micropython_versions
 
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
@@ -15,7 +15,7 @@ HERE = Path(__file__).parent.absolute()
 
 
 @pytest.fixture(scope="session")
-def copy_mpy_typings(snip_path: Path, ext: str, pytestconfig: pytest.Config):
+def fxt_copy_mpy_typings(snip_path: Path, ext: str, pytestconfig: pytest.Config):
     """
     Copy the typings.py and the typings_extension.py files to snip_path
     return the number of files copied
@@ -24,6 +24,7 @@ def copy_mpy_typings(snip_path: Path, ext: str, pytestconfig: pytest.Config):
     # lib_path.mkdir(exist_ok=True)
     # FIXME: this is a hack to get the lib path in the docker container
     lib_path = snip_path
+
     specs = [f"typing*", f"abc"]
     for spec in specs:
         for file in lib_path.glob(f"{spec}.*"):
@@ -34,20 +35,24 @@ def copy_mpy_typings(snip_path: Path, ext: str, pytestconfig: pytest.Config):
     return len(list((snip_path / "lib").glob("*.*")))
 
 
+# test against recent versions , but a few versions  do not have a matching docker image
+MPY_DOCKER_IMAGES = [
+    v for v in micropython_versions() + ["latest"] if v not in ["v1.22.1", "v1.22.2"]
+]
+
+
 @pytest.mark.parametrize("ext", [".py", ".mpy"], scope="session")
-@pytest.mark.parametrize("mp_version", ["v1.20.0", "latest"], scope="session")
-@pytest.mark.parametrize("version", ["preview"], scope="session")
+@pytest.mark.parametrize("mp_version", MPY_DOCKER_IMAGES, scope="session")
 @pytest.mark.parametrize("feature", ["stdlib"], scope="session")
 @pytest.mark.parametrize(
     "check_file", [f.name for f in (HERE / "feat_typing").glob("check_*.py")], scope="session"
 )
 @pytest.mark.parametrize("snip_path", [HERE / "feat_typing"], scope="session")
 def test_typing_runtime(
-    copy_mpy_typings,
+    fxt_copy_mpy_typings,
     feature: str,
     snip_path: Path,
     check_file,
-    version: str,
     mp_version: str,
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
@@ -60,5 +65,11 @@ def test_typing_runtime(
 
     cmd = f"docker run -u 1000 -e HOME=/foo -v .:/code -v ./lib:/foo/.micropython/lib --rm micropython/unix:{mp_version} micropython {check_file}"
     result = subprocess.run(cmd, shell=True, cwd=snip_path, text=True, capture_output=True)
-    error = [line for line in result.stdout.split("\n") if "Traceback" not in line]
+    error = [
+        line
+        for line in result.stderr.split("\n") + result.stdout.split("\n")
+        if "Traceback" not in line
+    ]
+    if "Unable to find image 'micropython/unix:" in error[0]:
+        pytest.skip(error[0])
     assert result.returncode == 0, error
