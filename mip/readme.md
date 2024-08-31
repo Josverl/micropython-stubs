@@ -19,11 +19,12 @@ ImportError: no module named 'typing'
 A solution is to add a minimalistic `typing.py` file to the project, and when your module or script is executed on the MCU, that will be used in place of the CPython typing module.
 
 
-## Install the `typing` modules to your MCU
+## Install the `typing` and `abc` modules to your MCU
 To have the least amount of runtime overhead on your MCU, you should use the cross compiled version of the modules to your MCU.
 
 ```bash
 mpremote mip install github:josverl/micropython-stubs/mip/typing.mpy
+mpremote mip install github:josverl/micropython-stubs/mip/abc.mpy
 # and where needed also:
 mpremote mip install github:josverl/micropython-stubs/mip/typing_extensions.mpy
 ```
@@ -36,7 +37,8 @@ Downloading github:josverl/micropython-stubs/mip/typing.mpy to /lib
 Installing: /lib/typing.mpy
 Done
 ```
-_Note that by default mip will install the modules in the `/lib` folder of the MCU._
+
+_Note that by default mip will install the modules in the `/lib` folder of the MCU, which may or may not be in the `sys.path`._
 
 ## Add to your project source
 To avoid needing to `mip install` the modules on every MCU, you can add the modules to your project source.
