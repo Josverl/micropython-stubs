@@ -10,7 +10,6 @@ from pathlib import Path
 
 import fasteners
 import pytest
-from test_snippets import SOURCES, run_typechecker
 
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
@@ -177,11 +176,15 @@ def test_typing_runtime(
         FileNotFoundError(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
     # log.info(f"Typechecker {linter} : {portboard}, {feature} from {stub_source}")
-    # user = "foo"
-    # cmd = f"docker run -u 1000 -e HOME=/{user} -v {snip_path}:/code -v {snip_path}/lib:/foo/.micropython/lib --rm micropython/unix:{mp_version} micropython {check_file}"
+
     cmd = f"docker run -u 1000 -v {snip_path_fx}:/code -v {snip_path_fx}/lib:/usr/lib/micropython --rm micropython/unix:{mp_version} micropython /code/{check_file}"
     log.info(f"Running {cmd}")
     result = subprocess.run(cmd, shell=True, cwd=snip_path_fx, text=True, capture_output=True)
-    error = [line for line in result.stdout.split("\n") if "Traceback" not in line]
-    error += [line for line in result.stderr.split("\n") if "Traceback" not in line]
+    error = [
+        line
+        for line in result.stderr.split("\n") + result.stdout.split("\n")
+        if "Traceback" not in line
+    ]
+    if error and "Unable to find image 'micropython/unix:" in error[0]:
+        pytest.skip(error[0])
     assert result.returncode == 0, error
