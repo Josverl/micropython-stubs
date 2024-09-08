@@ -4523,6 +4523,266 @@
             "description": "MicroPython stubs",
             "hash": "ba02f16cfb6517de0abbfcaa145662a12399862c",
             "stub_hash": "7a6d7cd52b273c8e0d1e18f01e19fee992496e73"
+        },
+        "818870039848208056": {
+            "name": "micropython-esp32-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-esp32-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-esp32-ESP32_GENERIC-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "09f3ff2c05b8e81357abf08ad92a0e532e26bc33",
+            "stub_hash": "3faae49bb86a510390cf3053f5951e8097f1b55f"
+        },
+        "496031545610493406": {
+            "name": "micropython-esp32-esp32_generic-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-esp32-esp32_generic-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-esp32-ESP32_GENERIC-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "f1feea63b8e10da52a3b685e760daea1546be9d6",
+            "stub_hash": "3faae49bb86a510390cf3053f5951e8097f1b55f"
+        },
+        "206640760448786061": {
+            "name": "micropython-esp32-esp32_generic_c3-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-esp32-esp32_generic_c3-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-esp32-ESP32_GENERIC_C3-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "d4e25f2132df975f21db4367352875bac9adaa46",
+            "stub_hash": "8e98079aac7551dcfcc36af2c24e081c41d8f3fe"
+        },
+        "213688236931984282": {
+            "name": "micropython-esp32-esp32_generic_s3-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-esp32-esp32_generic_s3-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-esp32-ESP32_GENERIC_S3-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "f9b9167e4968b7b70371d29cad2f2fc5a08a8546",
+            "stub_hash": "61a8703ef2d4f07943d877379f7329a2c39fbc4e"
+        },
+        "267044373892808156": {
+            "name": "micropython-esp8266-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-esp8266-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-esp8266-ESP8266_GENERIC-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "75ac8e5fddc50dd1b8f68ae8171481e6d551da5e",
+            "stub_hash": "f08f10d7867a41bc0e7850451b60c2161b89c973"
+        },
+        "785265400931869752": {
+            "name": "micropython-esp8266-esp8266_generic-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-esp8266-esp8266_generic-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-esp8266-ESP8266_GENERIC-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "d1e1d840c2e1ff3c5333e70a15742a117c8c8259",
+            "stub_hash": "f08f10d7867a41bc0e7850451b60c2161b89c973"
+        },
+        "477210190358369391": {
+            "name": "micropython-rp2-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-rp2-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-rp2-RPI_PICO-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "365a8290333ff49af6231e89e6eab32348896d0a",
+            "stub_hash": "866f6c5517bd0888559298323bc95e2626fba37d"
+        },
+        "522026743750224005": {
+            "name": "micropython-rp2-rpi_pico-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-rp2-rpi_pico-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-rp2-RPI_PICO-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "4af3932227209518bb5b6e747e8ab99cc0b69650",
+            "stub_hash": "866f6c5517bd0888559298323bc95e2626fba37d"
+        },
+        "133816644248793144": {
+            "name": "micropython-rp2-rpi_pico_w-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-rp2-rpi_pico_w-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-rp2-RPI_PICO_W-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "002f8d38700eaf6f02899d3b60c3e1d4b4475ab1",
+            "stub_hash": "7c132f4701ea4531ca130ec12adbf1cc228554a9"
+        },
+        "778031715220290726": {
+            "name": "micropython-samd-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-samd-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-samd-SEEED_WIO_TERMINAL-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "77d1e44f96fbcb3ecf634fddde4ce68fbf7acc86",
+            "stub_hash": "3f12d3af9045de815f7367a5caa96b6de9853379"
+        },
+        "179537502033196907": {
+            "name": "micropython-samd-seeed_wio_terminal-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-samd-seeed_wio_terminal-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-samd-SEEED_WIO_TERMINAL-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "494ae5f39fef6519fbb15f54768b90b7047faf7c",
+            "stub_hash": "3f12d3af9045de815f7367a5caa96b6de9853379"
+        },
+        "231689270239204669": {
+            "name": "micropython-stm32-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-stm32-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-stm32-PYBV11-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "2754f6d51b4252933cb92712549e4f0a9bbbe1d9",
+            "stub_hash": "7a6d7cd52b273c8e0d1e18f01e19fee992496e73"
+        },
+        "714624586131457253": {
+            "name": "micropython-stm32-pybv11-stubs",
+            "mpy_version": "1.23.0",
+            "publish": true,
+            "pkg_version": "1.23.0.post2",
+            "path": "micropython-v1_23_0-stm32-pybv11-stubs",
+            "stub_sources": [
+                [
+                    "Merged stubs",
+                    "micropython-v1_23_0-stm32-PYBV11-merged"
+                ],
+                [
+                    "Core stubs",
+                    "micropython-core"
+                ]
+            ],
+            "description": "MicroPython stubs",
+            "hash": "ba02f16cfb6517de0abbfcaa145662a12399862c",
+            "stub_hash": "7a6d7cd52b273c8e0d1e18f01e19fee992496e73"
         }
     }
 }
