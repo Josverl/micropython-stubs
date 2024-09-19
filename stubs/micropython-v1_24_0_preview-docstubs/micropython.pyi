@@ -12,6 +12,61 @@ from _typeshed import Incomplete
 
 Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple)  # constant
 
+class RingIO:
+    def __init__(self, size) -> None: ...
+    def any(self) -> int:
+        """
+        Returns an integer counting the number of characters that can be read.
+        """
+        ...
+
+    def read(self, nbytes: Optional[Any] = None) -> bytes:
+        """
+        Read available characters. This is a non-blocking function. If ``nbytes``
+        is specified then read at most that many bytes, otherwise read as much
+        data as possible.
+
+        Return value: a bytes object containing the bytes read. Will be
+        zero-length bytes object if no data is available.
+        """
+        ...
+
+    def readline(self, nbytes: Optional[Any] = None) -> bytes:
+        """
+        Read a line, ending in a newline character or return if one exists in
+        the buffer, else return available bytes in buffer. If ``nbytes`` is
+        specified then read at most that many bytes.
+
+        Return value: a bytes object containing the line read.
+        """
+        ...
+
+    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+        """
+        Read available bytes into the provided ``buf``.  If ``nbytes`` is
+        specified then read at most that many bytes.  Otherwise, read at
+        most ``len(buf)`` bytes.
+
+        Return value: Integer count of the number of bytes read into ``buf``.
+        """
+        ...
+
+    def write(self, buf) -> int:
+        """
+        Non-blocking write of bytes from ``buf`` into the ringbuffer, limited
+        by the available space in the ringbuffer.
+
+        Return value: Integer count of bytes written.
+        """
+        ...
+
+    def close(self) -> Incomplete:
+        """
+        No-op provided as part of standard `stream` interface. Has no effect
+        on data in the ringbuffer.
+        """
+        ...
+
 def const(expr: Const_T) -> Const_T:
     """
     Used to declare that the expression is a constant so that the compiler can
@@ -156,6 +211,14 @@ def schedule(func, arg) -> Incomplete:
     Such an IRQ puts restrictions on the code that runs in the IRQ (for example
     the heap may be locked) and scheduling a function to call later will lift
     those restrictions.
+
+    On multi-threaded ports, the scheduled function's behaviour depends on
+    whether the Global Interpreter Lock (GIL) is enabled for the specific port:
+
+    - If GIL is enabled, the function can preempt any thread and run in its
+      context.
+    - If GIL is disabled, the function will only preempt the main thread and run
+      in its context.
 
     Note: If `schedule()` is called from a preempting IRQ, when memory
     allocation is not allowed and the callback to be passed to `schedule()` is

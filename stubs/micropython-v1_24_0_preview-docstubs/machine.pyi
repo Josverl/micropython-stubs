@@ -339,6 +339,14 @@ class Pin:
         """
         ...
 
+    def toggle(self) -> Incomplete:
+        """
+        Toggle output pin from "0" to "1" or vice-versa.
+
+        Availability: mimxrt, samd, rp2 ports.
+        """
+        ...
+
 class Signal(Pin):
     """
             Signal(pin_arguments..., *, invert=False)
