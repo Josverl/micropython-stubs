@@ -11,8 +11,8 @@ name: update_stubs
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 1 * * *" # Run every day at 01:00
+#  schedule:
+#    - cron: "0 1 * * *" # Run every day at 01:00
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
 
