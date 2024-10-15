@@ -224,6 +224,19 @@ class PIO:
     IRQ_SM3: Incomplete
     """These constants are used for the *trigger* argument to `PIO.irq`."""
     def __init__(self, id) -> None: ...
+    def gpio_base(self, base: Optional[Any] = None) -> Incomplete:
+        """
+        Query and optionally set the current GPIO base for this PIO instance.
+
+        If an argument is given then it must be a pin (or integer corresponding to a pin
+        number), restricted to either GPIO0 or GPIO16.  The GPIO base will then be set to
+        that pin.  Setting the GPIO base must be done before any programs are added or state
+        machines created.
+
+        Returns the current GPIO base pin.
+        """
+        ...
+
     def add_program(self, program) -> Incomplete:
         """
         Add the *program* to the instruction memory of this PIO instance.
