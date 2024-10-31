@@ -1,22 +1,58 @@
-# Some base types to be used in the stubs
+"""
+MicroPython-stubs base types that are not present in typeshed.
+
+This is a collection of types that are not present in typeshed, but are used in the micropython stubs.
+
+Common cases are:
+- MicroPython implementation is different from CPython, so the types are different.
+- MicroPython has some types that are not present in CPython.
+
+"""
 
 from __future__ import annotations
 
-from abc import abstractmethod
-from array import array
 import sys
-from typing import (
-    Any,
-    Final,
-    Literal,
-    Protocol,
-    final,
-    overload,
-    runtime_checkable,
-)
+from array import array
+from typing import Any, Final, Literal, Protocol, final, overload, runtime_checkable
 
-from _typeshed import PathLike, structseq
+from _typeshed import structseq
 from typing_extensions import TypeAlias, TypeVar
+from _collections_abc import _check_methods
+import abc
+
+# ------------------
+import _io
+
+class IOBase(_io._IOBase, metaclass=abc.ABCMeta):
+    __doc__ = _io._IOBase.__doc__
+
+class RawIOBase(_io._RawIOBase, IOBase):
+    __doc__ = _io._RawIOBase.__doc__
+
+class BufferedIOBase(_io._BufferedIOBase, IOBase):
+    __doc__ = _io._BufferedIOBase.__doc__
+
+class TextIOBase(_io._TextIOBase, IOBase):
+    __doc__ = _io._TextIOBase.__doc__
+
+# ------------------
+# copied from _typeshed  os.pyi as os.pyi cannot import from a module with the same name
+GenericAlias = type(list[int])
+
+class PathLike(abc.ABC):
+    """Abstract base class for implementing the file system path protocol."""
+
+    @abc.abstractmethod
+    def __fspath__(self):
+        """Return the file system path representation of the object."""
+        raise NotImplementedError
+
+    @classmethod
+    def __subclasshook__(cls, subclass):
+        if cls is PathLike:
+            return _check_methods(subclass, "__fspath__")
+        return NotImplemented
+    __class_getitem__ = classmethod(GenericAlias)
 
 # ------------------------------------------------------------------------------------
 AnyReadableBuf: TypeAlias = bytearray | array | memoryview | bytes
@@ -171,39 +207,6 @@ class AbstractBlockDev(Protocol):
 
         Note that implementations must never implicitly erase blocks if the offset
         argument is specified, even if it is zero.
-        """
-
-    @overload
-    def ioctl(self, op: int, arg: int) -> int | None:
-        """
-        Control the block device and query its parameters.  The operation to
-        perform is given by *op* which is one of the following integers:
-
-          - 1 -- initialise the device (*arg* is unused)
-          - 2 -- shutdown the device (*arg* is unused)
-          - 3 -- sync the device (*arg* is unused)
-          - 4 -- get a count of the number of blocks, should return an integer
-            (*arg* is unused)
-          - 5 -- get the number of bytes in a block, should return an integer,
-            or ``None`` in which case the default value of 512 is used
-            (*arg* is unused)
-          - 6 -- erase a block, *arg* is the block number to erase
-
-        As a minimum ``ioctl(4, ...)`` must be intercepted; for littlefs
-        ``ioctl(6, ...)`` must also be intercepted. The need for others is
-        hardware dependent.
-
-        Prior to any call to ``writeblocks(block, ...)`` littlefs issues
-        ``ioctl(6, block)``. This enables a device driver to erase the block
-        prior to a write if the hardware requires it. Alternatively a driver
-        might intercept ``ioctl(6, block)`` and return 0 (success). In this case
-        the driver assumes responsibility for detecting the need for erasure.
-
-        Unless otherwise stated ``ioctl(op, arg)`` can return ``None``.
-        Consequently an implementation can ignore unused values of ``op``. Where
-        ``op`` is intercepted, the return value for operations 4 and 5 are as
-        detailed above. Other operations should return 0 on success and non-zero
-        for failure, with the value returned being an ``OSError`` errno code.
         """
 
     @overload
