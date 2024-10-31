@@ -3,7 +3,7 @@ Control the garbage collector.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/gc.html
 
-CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
+|see_cpython_module| :mod:`python:gc`.
 
 ---
 Module: 'gc' on micropython-v1.23.0-esp32-ESP32_GENERIC
@@ -19,7 +19,7 @@ def mem_alloc() -> int:
     """
     Return the number of bytes of heap RAM that are allocated by Python code.
 
-    Difference to CPython
+    .. admonition:: Difference to CPython
 
        This function is MicroPython extension.
     """
@@ -31,7 +31,7 @@ def mem_free() -> int:
     Return the number of bytes of heap RAM that is available for Python
     code to allocate, or -1 if this amount is not known.
 
-    Difference to CPython
+    .. admonition:: Difference to CPython
 
        This function is MicroPython extension.
     """
@@ -54,7 +54,7 @@ def threshold(amount: Optional[Any] = None) -> Incomplete:
     Calling the function without argument will return the current value of
     the threshold. A value of -1 means a disabled allocation threshold.
 
-    Difference to CPython
+    .. admonition:: Difference to CPython
 
        This function is a MicroPython extension. CPython has a similar
        function - ``set_threshold()``, but due to different GC

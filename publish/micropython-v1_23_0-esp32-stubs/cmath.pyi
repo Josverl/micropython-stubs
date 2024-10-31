@@ -3,7 +3,7 @@ Mathematical functions for complex numbers.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/cmath.html
 
-CPython module: :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
+|see_cpython_module| :mod:`python:cmath`.
 
 The ``cmath`` module provides some basic mathematical functions for
 working with complex numbers.

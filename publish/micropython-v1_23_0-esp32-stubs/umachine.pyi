@@ -18,7 +18,23 @@ Module: 'umachine' on micropython-v1.23.0-esp32-ESP32_GENERIC
 # Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Callable, List, NoReturn, Optional, Tuple, Union
+from typing import NoReturn, Tuple, Any, Callable, List, Union, Optional
+from machine import IDLE
+from ADC import *
+from ADCBlock import *
+from I2C import *
+from I2S import *
+from PWM import *
+from Pin import *
+from RTC import *
+from SD import *
+from SDCard import *
+from SPI import *
+from Signal import *
+from Timer import *
+from UART import *
+from USBDevice import *
+from WDT import *
 
 ULP_WAKE: int = 6
 SLEEP: int = 2
@@ -130,7 +146,7 @@ def bitstream(
     at best +/- 120ns, however on faster MCUs (ESP8266, ESP32, STM32, Pyboard), it
     will be closer to +/-30ns.
 
-    ``Note:`` For controlling WS2812 / NeoPixel strips, see the :mod:`neopixel`
+    .. note:: For controlling WS2812 / NeoPixel strips, see the :mod:`neopixel`
        module for a higher-level API.
     """
     ...
@@ -202,7 +218,7 @@ def reset_cause() -> int:
 
 def sleep() -> Incomplete:
     """
-    ``Note:`` This function is deprecated, use `lightsleep()` instead with no arguments.
+    .. note:: This function is deprecated, use `lightsleep()` instead with no arguments.
     """
     ...
 

@@ -3,7 +3,7 @@ Time related functions.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/time.html
 
-CPython module: :mod:`python:time` https://docs.python.org/3/library/time.html .
+|see_cpython_module| :mod:`python:time`.
 
 The ``time`` module provides functions for getting the current time and date,
 measuring time intervals, and for delays.
@@ -41,6 +41,7 @@ Module: 'time' on micropython-v1.23.0-esp32-ESP32_GENERIC
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Any, Optional, Tuple
+from time import *
 
 def ticks_diff(ticks1, ticks2) -> int:
     """
@@ -162,7 +163,7 @@ def time() -> int:
     `ticks_ms()` and `ticks_us()` functions.  If you need calendar time, `gmtime()` or
     `localtime()` without an argument is a better choice.
 
-    Difference to CPython
+    .. admonition:: Difference to CPython
 
        In CPython, this function returns number of
        seconds since Unix epoch, 1970-01-01 00:00 UTC, as a floating-point,

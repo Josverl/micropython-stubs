@@ -3,7 +3,7 @@ Access to underlying platform’s identifying data.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/platform.html
 
-CPython module: :mod:`python:platform` https://docs.python.org/3/library/platform.html .
+|see_cpython_module| :mod:`python:platform`.
 
 This module tries to retrieve as much platform-identifying data as possible. It
 makes this information available via function APIs.

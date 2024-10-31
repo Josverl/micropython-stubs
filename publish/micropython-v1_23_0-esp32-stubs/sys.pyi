@@ -3,7 +3,7 @@ System specific functions.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/sys.html
 
-CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
+|see_cpython_module| :mod:`python:sys`.
 
 ---
 Module: 'sys' on micropython-v1.23.0-esp32-ESP32_GENERIC
@@ -35,7 +35,7 @@ def print_exception(
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
 
-    Difference to CPython
+    .. admonition:: Difference to CPython
 
        This is simplified version of a function which appears in the
        ``traceback`` module in CPython. Unlike ``traceback.print_exception()``,

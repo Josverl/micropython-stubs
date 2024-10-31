@@ -36,6 +36,7 @@ classifiers = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
+    { include = "__mpy_types__.pyi" },
     { include = "_asyncio.pyi" },
     { include = "_espnow.pyi" },
     { include = "_onewire.pyi" },
