@@ -20,6 +20,9 @@
     "reportUndefinedVariable": "information",
     "reportSelfClsParameterName": "none",
     "reportInvalidStringEscapeSequence": "none",
-    "reportInvalidTypeVarUse": "none",
-    "reportInvalidTypeArguments": "none",
+    // "reportInvalidTypeVarUse": "information",
+    // "reportInvalidTypeArguments": "information",
+    // "reportArgumentType": "information",
+    // "reportAssertTypeFailure": "information",
+    // "reportAttributeAccessIssue": "information",
 }
