@@ -1,5 +1,5 @@
 # This file contains the commit hash of typeshed used to generate the stubs
-# https://github.com/python/typeshed/tree/1245faf0d5f7baab32834d91606ad22ed758d7f4
+# https://github.com/python/typeshed/tree/d262beb07502cda412db2179fb406d45d1a9486f
 
-1245faf0d5f7baab32834d91606ad22ed758d7f4
+d262beb07502cda412db2179fb406d45d1a9486f
 
