@@ -39,11 +39,36 @@ Although Pycharm's rendering of the docstrings is somewhat limited compared to V
 <!-- todo: explain what the limitations are -->
 :::
 
+
+### Disable typechecker warnings for RP2 PIO code
+As  RP2 ASM PIO code is not exactly valid Python code, typecheckes will show multiple warnings for those code sections. 
+It is possible to disable these warnings for the specific sections of code by using the `@no_type_check` decorator.
+
+    When applied to a function, `@no_type_check` indicates that static type
+    checkers should suppress all type-related errors within that function. From the
+    perspective of a caller, all of the function's parameters and return type are
+    always assumed to be Any, even if they are otherwise annotated or the type
+    checker would normally infer the return type.
+
+```python
+from typing import no_type_check
+
+@no_type_check
+@rp2.asm_pio(set_init=rp2.PIO.OUT_LOW)
+def blink_1hz():
+    # Cycles: 1 + 7 + 32 * (30 + 1) = 1000
+    set(pins, 1)
+    set(x, 31)                              [6]
+    label("delay_high")
+    nop()                                   [29]
+    jmp(x_dec, "delay_high")
+    # ...
+```
+
+
 ### Disable Pycharm warnings for RP2 PIO code
 
-As  RP2 ASM PIO code is not exactly valid Python code, PyCharm will show multiple warnings for those code sections. 
-
-Fortunately PyCharm allows these to be silenced for these sections.
+There is also a pycharm specific way to disable warnings for specific sections of code.
 To disable these warnings, add the following line to the top of the file or to the top of the function:
 
 `# noinspection PyStatementEffect,PyArgumentList`
@@ -62,13 +87,7 @@ def blink_1hz():
     label("delay_high")
     nop()                                   [29]
     jmp(x_dec, "delay_high")
-
-    # Cycles: 1 + 7 + 32 * (30 + 1) = 1000
-    set(pins, 0)
-    set(x, 31)                              [6]
-    label("delay_low")
-    nop()                                   [29]
-    jmp(x_dec, "delay_low")
+    # ...
 ```
 
 

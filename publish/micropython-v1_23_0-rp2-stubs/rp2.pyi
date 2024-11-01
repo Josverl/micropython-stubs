@@ -83,7 +83,7 @@ def asm_pio(
     """
     ...
 
-def bootsel_button() -> Incomplete:
+def bootsel_button() -> int:
     """
     Temporarily turns the QSPI_SS pin into an input and reads its value,
     returning 1 for low and 0 for high.

@@ -1,17 +1,24 @@
 # TODO: rp2.PIO - The functions defined in the asm_pio decorator are not recognized by pyright.
 # ignore for now : other issues to solve first
 """
-Sample from micropython documentaton
+Sample from micropython documentation
 
 # programmable IO
 # ref : https://docs.micropython.org/en/latest/rp2/quickref.html#programmable-io-pio
 """
-from typing import no_type_check
-import rp2
-from machine import Pin
+from typing import Callable, no_type_check
+
+
+def asm_pio(set_init: int) -> Callable[[Callable], Callable]: ...
+
+
+# the no_type_check decorator is used to disable type checking for the decorated function
+# the function is written in assembly language and the type checker will not be able to check it
+# unless the type checker is able to understand the assembly language
+
 
 @no_type_check
-@rp2.asm_pio(set_init=rp2.PIO.OUT_LOW)
+@asm_pio(set_init=0)
 def blink_1hz():
     # Cycles: 1 + 7 + 32 * (30 + 1) = 1000
     set(pins, 1)
@@ -26,15 +33,3 @@ def blink_1hz():
     label("delay_low")
     nop()[29]
     jmp(x_dec, "delay_low")
-
-
-# Create the StateMachine with the blink_1hz program, outputting on Pin(25).
-sm = rp2.StateMachine(0, blink_1hz, freq=2000, set_base=Pin(6))
-
-# Set the IRQ handler to print the millisecond timestamp.
-sm.irq(lambda p: print(time.ticks_ms()))
-
-# Start the StateMachine.
-sm.active(1)
-
-# sm.active(0)

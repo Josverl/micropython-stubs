@@ -1,5 +1,4 @@
 # MicroPython's `typing.mpy` module
-<!-- Origin: mip\readme.md  -->
 
 Why you may need typing.[m]py or typing_extensions.[m]py.
 
@@ -26,16 +25,14 @@ To have the least amount of runtime overhead on your MCU, you should use the cro
 mpremote mip install github:josverl/micropython-stubs/mip/typing.mpy
 # and where needed also:
 mpremote mip install github:josverl/micropython-stubs/mip/typing_extensions.mpy
-```
-*Note:* The .mpy modules are cross compiled for MicroPython v1.23.0 ; mpy-cross emitting mpy v6.3
 
-
-```
+#will output something like:
 Install github:josverl/micropython-stubs/mip/typing.mpy
 Downloading github:josverl/micropython-stubs/mip/typing.mpy to /lib
 Installing: /lib/typing.mpy
 Done
 ```
+*Note:* The .mpy modules are cross compiled for MicroPython v1.23.0 ; mpy-cross emitting mpy v6.3
 _Note that by default mip will install the modules in the `/lib` folder of the MCU._
 
 ## Add to your project source
@@ -68,15 +65,60 @@ print("Hello, typed world!")
 print(f"{foo(1, 2)=}")
 ```
 
-------------------------
+### Using the `@no_type_check` decorator
+
+As RP2 ASM PIO code is not exactly valid Python code, type checkers will show multiple warnings for those code sections. 
+It is possible to disable these warnings for the specific sections of code by using the `@no_type_check` decorator.
+
+    The `@typing.no_type_check` decorator may be supported by type checkers
+    for functions and classes.
+
+    If a type checker supports the `no_type_check` decorator for functions, it
+    should suppress all type errors for the `def` statement and its body including
+    any nested functions or classes. It should also ignore all parameter
+    and return type annotations and treat the function as if it were unannotated.
+
+
+```python
+import typing
+import rp2
+
+@typing.no_type_check
+@rp2.asm_pio(set_init=rp2.PIO.OUT_LOW)
+def blink_1hz():
+    # Cycles: 1 + 7 + 32 * (30 + 1) = 1000
+    set(pins, 1)
+    set(x, 31)                              [6]
+    label("delay_high")
+    nop()                                   [29]
+    jmp(x_dec, "delay_high")
+    # ...
+```
+The same can be used for @micropython.asm_thumb functions
+
+```python
+import typing
+import micropython
+
+@typing.no_type_check
+@micropython.asm_thumb
+def convert2PWM(r0,r1,r2): 
+    #r3=32768
+    mov(r3,1)
+    mov(r4,15)
+    lsl(r3,r4)
+    # 8bits or 10 bit PWM
+    mov(r4,255)
+    cmp(r2,10)
+    bne(PWM8BITS)
+    #...
+```    
+
 
 ## About the modules
 
 ### `typing.py`
 A minimalistic `typing.py` module for MicroPython.
-
-Origin: [micropython-lib:PR584](https://github.com/micropython/micropython-lib/pull/584)  
-Authors:[stinos](https://github.com/stinos) & [Andrew Leech](https://github.com/andrewleech)  
 
 :::{note}
 _When that PR is merged, or MicroPython itself can provide this functionality, I'll update the above links to point to micropython-lib._
@@ -87,7 +129,14 @@ This module is provided to allow the use of older versions of Python (3.7+).
 In CPython the `typing_extensions` module provide back-ported type hints from newer versions and enable use of new type system features on older Python versions. 
 For example, typing.TypeGuard is new in Python 3.10, but typing_extensions allows users on previous Python versions to use it too.
 
-As MicroPython has no native typing implementation, the `typing_extensions.py` module is identical to the `typing.py` module.
+As MicroPython has no native typing implementation, the `typing_extensions.py` module provides identicalfunctionality  to the `typing.py` module.
+
+### Origin 
+The typing modules are the result of the collaboration of the MicroPython community around a PR to the micropython-lib repository.
+
+PR: [micropython-lib:PR584](https://github.com/micropython/micropython-lib/pull/584)  
+Authors:[stinos](https://github.com/stinos) & [Andrew Leech](https://github.com/andrewleech)  
+
 
 ### References
 

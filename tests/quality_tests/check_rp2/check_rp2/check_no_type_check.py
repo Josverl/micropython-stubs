@@ -1,7 +1,7 @@
 # TODO: rp2.PIO - The functions defined in the asm_pio decorator are not recognized by pyright.
 # ignore for now : other issues to solve first
 """
-Sample from micropython documentaton
+Sample from micropython documentation
 
 # programmable IO
 # ref : https://docs.micropython.org/en/latest/rp2/quickref.html#programmable-io-pio
@@ -11,7 +11,7 @@ import rp2
 from machine import Pin
 
 @no_type_check
-@rp2.asm_pio(set_init=rp2.PIO.OUT_LOW)
+@rp2.asm_pio(set_init=0)
 def blink_1hz():
     # Cycles: 1 + 7 + 32 * (30 + 1) = 1000
     set(pins, 1)
