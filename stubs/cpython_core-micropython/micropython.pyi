@@ -1,6 +1,9 @@
 """
-access and control MicroPython internals. See: https://docs.micropython.org/en/v1.19.1/library/micropython.html
+Access and control MicroPython internals. 
+
+See: https://docs.micropython.org/en/v1.19.1/library/micropython.html
 """
+
 from typing import Optional, Any, Callable
 
 def opt_level(level: Optional[Any] = None) -> Any:
@@ -154,5 +157,15 @@ def native(func: Callable) -> Callable:
     This causes the MicroPython compiler to emit native CPU opcodes rather than bytecode.
     It covers the bulk of the MicroPython functionality, so most functions will require no adaptation.
     See: https://docs.micropython.org/en/latest/reference/speed_python.html?highlight=viper#the-native-code-emitter
+    """
+    ...
+
+def asm_thumb(func: Callable) -> Callable:
+    """
+    This decorator is used to mark a function as containing inline assembler code.
+    The assembler code is written is a subset of the ARM Thumb-2 instruction set, and is executed on the target CPU.
+
+    Availability: Only on specific boards where MICROPY_EMIT_INLINE_THUMB is defined.
+    See: https://docs.micropython.org/en/latest/reference/asm_thumb2_index.html
     """
     ...
