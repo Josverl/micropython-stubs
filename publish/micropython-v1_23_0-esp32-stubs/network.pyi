@@ -30,7 +30,10 @@ For example::
     s = socket.socket()
     s.connect(addr)
     s.send(b'GET / HTTP/1.1
+
 Host: micropython.org
+
+
 
 ')
     data = s.recv(1000)
@@ -44,7 +47,12 @@ Module: 'network' on micropython-v1.23.0-esp32-ESP32_GENERIC
 # Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, List, Optional, Tuple, Union
+from typing import Union, List, Any, Optional, Tuple
+from LAN import *
+from WIZNET5K import *
+from WLAN import *
+from WLANWiPy import *
+from abc import ABC
 
 PHY_KSZ8081: int = 6
 PHY_KSZ8041: int = 5

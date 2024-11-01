@@ -79,7 +79,7 @@ class VfsLfs2:
         """
             Build a Lfs2 filesystem on *block_dev*.
 
-        ``Note:`` There are reports of littlefs v2 failing in certain situations,
+        .. note:: There are reports of littlefs v2 failing in certain situations,
                   for details see `littlefs issue 295`_.
         """
         ...

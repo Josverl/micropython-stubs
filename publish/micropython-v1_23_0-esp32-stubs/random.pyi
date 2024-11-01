@@ -5,7 +5,7 @@ MicroPython module: https://docs.micropython.org/en/v1.23.0/library/random.html
 
 This module implements a pseudo-random number generator (PRNG).
 
-CPython module: :mod:`python:random` https://docs.python.org/3/library/random.html . .
+|see_cpython_module| :mod:`python:random` .
 
 .. note::
 

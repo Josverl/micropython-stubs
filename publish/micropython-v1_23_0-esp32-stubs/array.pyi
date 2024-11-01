@@ -3,7 +3,7 @@ Efficient arrays of numeric data.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/array.html
 
-CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html .
+|see_cpython_module| :mod:`python:array`.
 
 Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
@@ -18,6 +18,7 @@ Module: 'array' on micropython-v1.23.0-esp32-ESP32_GENERIC
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Any, List, Optional
+from array import *
 
 class array(List):
     """

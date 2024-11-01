@@ -3,7 +3,7 @@ Hashing algorithms.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/hashlib.html
 
-CPython module: :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
+|see_cpython_module| :mod:`python:hashlib`.
 
 This module implements binary data hashing algorithms. The exact inventory
 of available algorithms depends on a board. Among the algorithms which may

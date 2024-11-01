@@ -339,6 +339,14 @@ class Pin:
         """
         ...
 
+    def toggle(self) -> Incomplete:
+        """
+        Toggle output pin from "0" to "1" or vice-versa.
+
+        Availability: mimxrt, samd, rp2 ports.
+        """
+        ...
+
 class Signal(Pin):
     """
             Signal(pin_arguments..., *, invert=False)
@@ -724,7 +732,7 @@ class UART:
 
         .. note::
 
-            For the rp2, esp8266 and nrf ports the call returns while the last byte is sent.
+            For the esp8266 and nrf ports the call returns while the last byte is sent.
             If required, a one character wait time has to be added in the calling script.
 
         Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
@@ -738,7 +746,7 @@ class UART:
 
         .. note::
 
-            For the rp2, esp8266 and nrf ports the call may return ``True`` even if the last byte
+            For the esp8266 and nrf ports the call may return ``True`` even if the last byte
             of a transfer is still being sent. If required, a one character wait time has to be
             added in the calling script.
 

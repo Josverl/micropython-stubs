@@ -9,6 +9,29 @@ publish-path = "./publish"
 template-path = "./publish/template"
 #-----------------
 
+
+[tool.ruff]
+# Same as Black.
+line-length = 140
+indent-width = 4
+target-version = 'py38'
+
+[tool.ruff.lint]
+extend-select = [
+    # "E501", # line too long
+    "UP", # pyupgrdae
+]
+ignore = [
+    "F401", # unused import
+    "F403", # import *
+    "F821",
+]
+
+
+exclude = [".git", ".*", "__*", "dist", "test"]
+
+
+#-----------------
 [tool.black]
 # use same config as -stubber
 line-length = 140
@@ -49,6 +72,4 @@ addopts = "--verbose --capture=no"
 # -m MARKEXPR           Only run tests matching given mark expression. For example: -m 'mark1 and not mark2'.
 # -n --numprocesses=numprocesses - 
 
-markers = [
-    "snippets: test snippets to check the stub quality",
-]
+markers = ["snippets: test snippets to check the stub quality"]

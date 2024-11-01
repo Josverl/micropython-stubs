@@ -3,7 +3,7 @@ Basic "operating system" services.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/os.html
 
-CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
+|see_cpython_module| :mod:`python:os`.
 
 The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
@@ -19,6 +19,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from stdlib.os import *
 from typing import Any, IO, Iterator, Optional, Tuple
+from os import *
 
 def rmdir(path) -> None:
     """

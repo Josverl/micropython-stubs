@@ -4,6 +4,7 @@ Update the micropython-stlib-stubs
 - merged with (some) micropython documentation.`
 
 """
+
 import re
 import shutil
 import subprocess
@@ -18,29 +19,7 @@ from stubber.codemod.enrich import enrich_folder
 from stubber.utils import do_post_processing
 from stubber.utils.config import CONFIG
 
-
-@dataclass
-class Boost:
-    """
-    Boost class for enriching stub files.
-
-    Attributes:
-        stub_name (str): The name of the stub file in stdlib.
-        docstub (str): The name of the docstub file in docstubs, or empty if no enrichment is needed.
-        file (Union[Path, str]): The name of the file in stdlib, or empty if it is the same as stub_name.
-        all (List[str]): The __all__ list to use for the module, or empty if no update is needed.
-    """
-
-    stub_name: str
-    docstub: str = ""
-    file: Union[Path, str] = ""
-    all: List[str] = field(default_factory=list)
-
-    def __post_init__(self):
-        self.file = Path("stdlib") / (self.file or self.stub_name + ".pyi")
-
-
-stdlib_modules_to_keep = [
+STDLIB_MODULES_TO_KEEP = [
     "_typeshed",
     "asyncio",
     "collections",
@@ -71,7 +50,7 @@ stdlib_modules_to_keep = [
 ]
 
 # try to limit the "overspeak" of python modules to the bare minimum
-stdlib_submodules_to_remove = [
+STDLIB_MODULES_TO_REMOVE = [
     "os/path.pyi",
     "sys/_monitoring.pyi",
     "asyncio/subprocess.pyi",
@@ -81,6 +60,81 @@ stdlib_submodules_to_remove = [
     "asyncio/windows_events.pyi",
     "asyncio/windows_utils.pyi",
 ]
+
+
+TYPE_IGNORES = [
+    # cannot be based on itself
+    ("os", ["path = _path"]),
+    # reportAttributeAccessIssue
+    ("asyncio/taskgroups", [": Context", "from contextvars import Context"]),
+    ("asyncio/base_events", [": Context", "from contextvars import Context"]),
+    ("asyncio/base_futures", [": Context", "from contextvars import Context"]),
+    ("asyncio/events", [": Context", "from contextvars import Context"]),
+    ("asyncio/runners", [": Context", "from contextvars import Context"]),
+    # reportInvalidTypeArguments
+    ("_typeshed", ["Field[Any]"]),
+    # reportArgumentType Literal not assignable to [type]
+    (
+        "builtins",
+        [
+            ": int = -1",
+            ": int = 0",
+            " | None = None",
+            ": bool = True",
+            ": bool = False",
+            ': str | None = "',
+            ': str = "',
+            '| bytearray = b"',
+            ': bytes = b"',
+        ],
+    ),
+    (
+        "collections",
+        [
+            "deque[_T]",  #  Expected no type arguments for class
+            "OrderedDict[",  #  Expected no type arguments for class "OrderedDict"
+            "class deque(stdlib_deque):",
+            "class OrderedDict(stdlib_OrderedDict):",
+            ": _T, /",  ## TypeVar appears only once in generic function signature
+            "[_KT, _VT]",  # TypeVar appears only once in generic function signature
+            ": _T,",  # TypeVar appears only once in generic function signature
+            ": _KT,",  # TypeVar appears only once in generic function signature
+            ": _VT,",  # TypeVar appears only once in generic function signature
+            "-> _T:",  # TypeVar appears only once in generic function signature
+            "-> _KT:",  # TypeVar appears only once in generic function signature
+            "-> _VT:",  # TypeVar appears only once in generic function signature
+            "Iterator[_T]",
+            "Iterator[_KT]",
+        ],
+    ),
+    ("io", ["from io import *"]),
+]
+
+COMMENT_OUT_LINES = [
+    ("asyncio", ["from .subprocess import *"]),
+]
+
+
+@dataclass
+class Boost:
+    """
+    Boost class for enriching stub files.
+
+    Attributes:
+        stub_name (str): The name of the stub file in stdlib.
+        docstub (str): The name of the docstub file in docstubs, or empty if no enrichment is needed.
+        file (Union[Path, str]): The name of the file in stdlib, or empty if it is the same as stub_name.
+        all (List[str]): The __all__ list to use for the module, or empty if no update is needed.
+    """
+
+    stub_name: str
+    docstub: str = ""
+    file: Union[Path, str] = ""
+    all: List[str] = field(default_factory=list)
+
+    def __post_init__(self):
+        self.file = Path("stdlib") / (self.file or self.stub_name + ".pyi")
+
 
 # match "var: type",
 re_var_typ = re.compile(r"^([\w\_]+)\s*:\s*\w+")
@@ -125,6 +179,54 @@ def update_module_vars(module: Path, keep: set):
                 f.write(line)
 
 
+def add_type_ignore(folder: Path):
+    """Add type ignores to some of the lines in the _typeshed stubs."""
+    n = 0
+    for mod, lines in TYPE_IGNORES:
+        file_path = folder / mod / "__init__.pyi"
+        if not file_path.exists():
+            file_path = folder / f"{mod}.pyi"
+            if not file_path.exists():
+                continue
+        with open(file_path, "r") as f:
+            content = f.readlines()
+        with open(file_path, "w") as f:
+            for line in content:
+                _line = line.rstrip("\n")
+                for ignore in lines:
+                    if ignore in _line and not _line.endswith("# type: ignore"):
+                        f.write(f"{_line}  # type: ignore\n")
+                        n += 1
+                        break
+                else:
+                    f.write(line)
+    log.info(f"Added {n} type ignores to {folder}")
+
+
+def comment_out_lines(folder: Path):
+    n = 0
+    for mod, lines in COMMENT_OUT_LINES:
+        file_path = folder / mod / "__init__.pyi"
+        if not file_path.exists():
+            file_path = folder / f"{mod}.pyi"
+            if not file_path.exists():
+                continue
+        with open(file_path, "r") as f:
+            content = f.readlines()
+        with open(file_path, "w") as f:
+            for line in content:
+                _line = line.rstrip("\n")
+                for ignore in lines:
+                    if ignore in _line and not _line.startswith("#"):
+                        f.write(f"# {line}")
+                        n += 1
+                        break
+                else:
+                    f.write(line)
+
+    log.info(f"Commented out {n} lines in {folder}")
+
+
 def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
     """
     Update the standard library from the typeshed folder.
@@ -151,22 +253,28 @@ def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
 
     log.info("Clean up extraneous folders from stdlib")
     for fldr in pkg_stdlib_path.glob("*"):
-        if fldr.is_dir() and fldr.stem not in stdlib_modules_to_keep:
+        if fldr.is_dir() and fldr.stem not in STDLIB_MODULES_TO_KEEP:
             shutil.rmtree(fldr)
             time.sleep(0.1)
 
     log.info("Clean up extraneous stubs from stdlib")
     for stub in pkg_stdlib_path.glob("*.pyi"):
-        if stub.stem not in stdlib_modules_to_keep:
+        if stub.stem not in STDLIB_MODULES_TO_KEEP:
             # print(f"Removing {stub.stem}")
             stub.unlink()
 
-    for name in stdlib_submodules_to_remove:
+    for name in STDLIB_MODULES_TO_REMOVE:
         if (pkg_stdlib_path / name).exists():
             (pkg_stdlib_path / name).unlink()
 
 
-def merge_docstubs_into_stdlib(*, dist_stdlib_path: Path, docstubs_path: Path, boardstub_path: Optional[Path] = None, dry_run=False):
+def merge_docstubs_into_stdlib(
+    *,
+    dist_stdlib_path: Path,
+    docstubs_path: Path,
+    boardstub_path: Optional[Path] = None,
+    dry_run=False,
+):
     """
     Merge docstubs into the stdlib.
 
@@ -244,8 +352,22 @@ def update_public_interface(boost: Boost, module_path: Path):
 
 @click.command()
 @click.option("--clone", "-c", help="Clone the typeshed repo.", default=False, show_default=True)
-@click.option("--typeshed", "-t", is_flag=True, help="Update stdlib from the typeshed repo.", default=True, show_default=True)
-@click.option("--merge", "-m", is_flag=True, help="Merge the docstubs into the stdlib.", default=True, show_default=True)
+@click.option(
+    "--typeshed",
+    "-t",
+    is_flag=True,
+    help="Update stdlib from the typeshed repo.",
+    default=True,
+    show_default=True,
+)
+@click.option(
+    "--merge",
+    "-m",
+    is_flag=True,
+    help="Merge the docstubs into the stdlib.",
+    default=True,
+    show_default=True,
+)
 @click.option("--build", "-b", is_flag=True, help="Build the wheel file.", default=True, show_default=True)
 def update(clone: bool = False, typeshed: bool = False, merge: bool = True, build: bool = True):
     """
@@ -253,23 +375,45 @@ def update(clone: bool = False, typeshed: bool = False, merge: bool = True, buil
     """
     # TODO: Read from CONFIG
     rootpath = Path(__file__).parent.parent.parent
+    log.info(f"using rootpath: {rootpath}")
     dist_stdlib_path = rootpath / "publish/micropython-stdlib-stubs"
-    docstubs_path = rootpath / "stubs/micropython-v1_22_0-docstubs"
-    boardstub_path = rootpath / "stubs/micropython-v1_22_0-esp32-stubs"
+    docstubs_path = rootpath / "stubs/micropython-v1_23_0-docstubs"
+    boardstub_path = rootpath / "stubs/micropython-v1_23_0-esp32-ESP32_GENERIC"
     typeshed_path = rootpath / "repos/typeshed"
+
+    # check that the paths exist
+    assert rootpath.exists(), f"rootpath {rootpath} does not exist"
+    assert dist_stdlib_path.exists(), f"dist_stdlib_path {dist_stdlib_path} does not exist"
+    assert docstubs_path.exists(), f"docstubs_path {docstubs_path} does not exist"
+    assert boardstub_path.exists(), f"boardstub_path {boardstub_path} does not exist"
+    assert typeshed_path.exists(), f"typeshed_path {typeshed_path} does not exist"
+
     if clone:
         # TODO
         # clone typeshed if needed and switch to the correct hash
+        print("in the repos folder run:")
+        print("git clone https://github.com/python/typeshed.git")
         log.warning("Not implemented yet")
 
     if typeshed:
         update_stdlib_from_typeshed(dist_stdlib_path, typeshed_path)
 
     if merge:
-        merge_docstubs_into_stdlib(dist_stdlib_path=dist_stdlib_path, docstubs_path=docstubs_path, boardstub_path=boardstub_path)
+        merge_docstubs_into_stdlib(
+            dist_stdlib_path=dist_stdlib_path,
+            docstubs_path=docstubs_path,
+            boardstub_path=boardstub_path,
+        )
 
     # tidy up the stubs
     do_post_processing([dist_stdlib_path], stubgen=False, black=True, autoflake=True)
+
+    # remove typerchecker noise from typeshed ,
+    # so that the actual issues caused by micropython stubs are more visible
+    add_type_ignore(dist_stdlib_path / "stdlib")
+
+    # comment out some lines that cause issues
+    comment_out_lines(dist_stdlib_path / "stdlib")
 
     if build:
         subprocess.check_call(["poetry", "build"], cwd=dist_stdlib_path)

@@ -6,14 +6,6 @@ MAXGROUPS: int
 
 MAGIC: int
 
-class error(Exception):
-    msg: str
-    pattern: str | bytes | None
-    pos: int | None
-    lineno: int
-    colno: int
-    def __init__(self, msg: str, pattern: str | bytes | None = None, pos: int | None = None) -> None: ...
-
 class _NamedIntConstant(int):
     name: Any
     def __new__(cls, value: int, name: str) -> Self: ...
@@ -30,7 +22,8 @@ AT_LOCALE: dict[_NamedIntConstant, _NamedIntConstant]
 AT_UNICODE: dict[_NamedIntConstant, _NamedIntConstant]
 CH_LOCALE: dict[_NamedIntConstant, _NamedIntConstant]
 CH_UNICODE: dict[_NamedIntConstant, _NamedIntConstant]
-SRE_FLAG_TEMPLATE: int
+if sys.version_info < (3, 13):
+    SRE_FLAG_TEMPLATE: int
 SRE_FLAG_IGNORECASE: int
 SRE_FLAG_LOCALE: int
 SRE_FLAG_MULTILINE: int

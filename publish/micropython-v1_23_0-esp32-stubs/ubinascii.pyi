@@ -3,7 +3,7 @@ Binary/ASCII conversions.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/binascii.html
 
-CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
+|see_cpython_module| :mod:`python:binascii`.
 
 This module implements conversions between binary data and various
 encodings of it in ASCII form (in both directions).
@@ -16,6 +16,7 @@ Module: 'ubinascii' on micropython-v1.23.0-esp32-ESP32_GENERIC
 # Stubber: v1.23.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from binascii import *
 from typing import Any, Optional
 
 def crc32(*args, **kwargs) -> Incomplete: ...

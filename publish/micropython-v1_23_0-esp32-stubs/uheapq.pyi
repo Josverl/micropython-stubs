@@ -3,7 +3,7 @@ Heap queue algorithm.
 
 MicroPython module: https://docs.micropython.org/en/v1.23.0/library/heapq.html
 
-CPython module: :mod:`python:heapq` https://docs.python.org/3/library/heapq.html .
+|see_cpython_module| :mod:`python:heapq`.
 
 This module implements the
 `min heap queue algorithm <https://en.wikipedia.org/wiki/Heap_%28data_structure%29>`_.
