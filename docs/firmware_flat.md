@@ -123,7 +123,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |documentation| micropython| v1.22| -| micropython| 55| 1.16.3|[stubs/micropython-v1_22_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-docstubs)
 |documentation| micropython| v1.22.1| -| micropython| 55| 1.20.6|[stubs/micropython-v1_22_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_1-docstubs)
 |documentation| micropython| v1.22.2| -| micropython| 55| 1.23.2|[stubs/micropython-v1_22_2-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_2-docstubs)
-|documentation| micropython| v1.23| -| micropython| 57| 1.23.2|[stubs/micropython-v1_23_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-docstubs)
+|documentation| micropython| v1.23| -| micropython| 103| 1.23.2|[stubs/micropython-v1_23_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-docstubs)
 |documentation| micropython| v1.23-Latest| -| micropython| 56| 1.17.2|[stubs/micropython-v1.23.0-preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1.23.0-preview-docstubs)
 |documentation| micropython| v1.23-Latest| -| micropython| 57| 1.20.1|[stubs/micropython-v1_23_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-docstubs)
 |documentation| micropython| v1.24| -| micropython| 57| 1.23.2|[stubs/micropython-v1_24_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0-docstubs)
@@ -771,4 +771,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  19998
+Total modules  20044
