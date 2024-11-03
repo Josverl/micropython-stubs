@@ -5,56 +5,41 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python Debugger: pytest",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                // "-p", 
+                // "vscode_pytest", 
+                "--rootdir=c:\\mypython\\micropython-stubs", 
+                "c:\\mypython\\micropython-stubs\\tests\\quality_tests\\test_stdlib.py::test_typecheck_stdlib[pyright-snip_path0-local-stdlib---stdlib"
+                
+            ],
+            "justMyCode": false
+        },
+        {
             "name": "Python: file as Module",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "stubber.${fileBasenameNoExtension}",
             "justMyCode": false
         },
         {
             "name": "Python: Current File from root",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
-            "args": ["-l"],
-            "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}"
-        },
-        {
-            "name": "Python: publish board",
-            "type": "python",
-            "request": "launch",
-            "program": "./publish/publish_stubs.py",
+            "args": [
+                "-l"
+            ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
-            "args": [
-                "--pypi",
-                "-V",
-                "1.16",
-                "--dry-run",
-                "--type",
-                "board"
-            ]
+            "justMyCode": false
         },
-        {
-            "name": "Python: publish 1.19.1 docs",
-            "type": "python",
-            "request": "launch",
-            "program": "./publish/publish_stubs.py",
-            "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}",
-            "args": [
-                "--pypi",
-                "-V",
-                "1.19.1",
-                "--dry-run",
-                "--type",
-                "doc"
-            ]
-        }
         {
             "name": "Python: stubber - cmdline",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "module": "stubber.stubber",
             "cwd": "${workspaceFolder}",
@@ -70,5 +55,15 @@
                 // "switch",
             ]
         },
+        {
+            "name": "Python: Debug Unit Tests",
+            "type": "debugpy",
+            "request": "launch",
+            "purpose": [
+                "debug-test"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+        }
     ]
 }

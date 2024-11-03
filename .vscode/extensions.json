@@ -2,6 +2,7 @@
     "recommendations": [
         "cschleiden.vscode-github-actions",
         "bierner.markdown-mermaid",
-        "ms-toolsai.jupyter-renderers"
+        "ms-toolsai.jupyter-renderers",
+        "ms-python.python"
     ]
 }
