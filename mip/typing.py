@@ -10,8 +10,10 @@ def get_args(type):
     return ()
 
 
-def no_type_check(arg):
-    return arg
+def no_type_check(func):
+    def wrapper(*args, **kwargs):
+        func(*args, **kwargs)
+    return wrapper
 
 
 def overload(func):
