@@ -15,3 +15,6 @@ def get_average(numbers: List[float]) -> float:
 def process_data(data: Dict[str, Any]) -> None:
     # process the data
     pass
+
+
+print("Done.")

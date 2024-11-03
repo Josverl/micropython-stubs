@@ -9,3 +9,9 @@ class Foo(Generic[T]):
 
 class Bar(Foo[Any]):
    pass
+
+f = Foo(int)
+
+b = Bar(f)
+
+print("Done.")

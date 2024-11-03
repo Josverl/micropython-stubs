@@ -3,6 +3,7 @@
 # ref: https://github.com/micropython/micropython-lib/pull/584/
 
 from typing import *
+from typing import _AnyCall
 
 MyAlias = str
 Vector = List[float]
@@ -14,12 +15,35 @@ hintedGlobal: Any = None
 
 
 def func_with_hints(c: int, b: MyAlias, a: Union[int, None], lst: List[float] = [0.0]) -> Any:
-    pass
+    return 42
 
 
-class ClassWithHints(Generic[T]):
+class ClassWithHints(Vector):
 
-    a: int = 0
+    a: Vector = [0,0]
 
-    def foo(self, other: int) -> None:
+    def foo(self, v:Vector) -> None:
         pass
+
+class GenericClassWithHints(Generic[T]):
+
+    a: T = 0
+
+    def foo(self, other: T) -> None:
+        pass
+
+# some runtime exercises 
+
+x = func_with_hints(1, "1", None, lst=3.14)
+assert x , "annotated function must return a value"
+
+# klass = ClassWithHints
+# assert klass
+# print( type(klass) )
+# assert type(klass) != type(_AnyCall)
+
+# klass.a = [1,2]
+# klass.foo([2,3])
+
+
+print("Done.")

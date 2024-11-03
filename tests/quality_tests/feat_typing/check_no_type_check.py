@@ -1,11 +1,5 @@
 # TODO: rp2.PIO - The functions defined in the asm_pio decorator are not recognized by pyright.
 # ignore for now : other issues to solve first
-"""
-Sample from micropython documentation
-
-# programmable IO
-# ref : https://docs.micropython.org/en/latest/rp2/quickref.html#programmable-io-pio
-"""
 from typing import Callable, no_type_check
 
 
@@ -16,6 +10,12 @@ def asm_pio(set_init: int) -> Callable[[Callable], Callable]: ...
 # the function is written in assembly language and the type checker will not be able to check it
 # unless the type checker is able to understand the assembly language
 
+"""
+Sample from micropython documentation
+
+# programmable IO
+# ref : https://docs.micropython.org/en/latest/rp2/quickref.html#programmable-io-pio
+"""
 
 @no_type_check
 @asm_pio(set_init=0)
@@ -33,3 +33,6 @@ def blink_1hz():
     label("delay_low")
     nop()[29]
     jmp(x_dec, "delay_low")
+
+
+print("Done.")

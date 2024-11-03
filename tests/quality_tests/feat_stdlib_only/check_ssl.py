@@ -28,7 +28,7 @@ def create_ssl_context(cert, key, **kwargs):
     """
     if hasattr(ssl, 'SSLContext'):
         ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER, **kwargs)
-        ctx.load_cert_chain(cert, key) 
+        ctx.load_cert_chain(cert, key) # type: ignore # stubs-ignore : linter == "mypy"
         return ctx
 
     if isinstance(cert, str):

@@ -11,6 +11,19 @@ from packaging.version import Version
 from typecheck import (copy_config_files, port_and_board, run_typechecker,
                        stub_ignore)
 
+from mpflash.versions import micropython_versions
+
+def major_minor(versions):
+    """create a list of the most recent version for each major.minor"""
+    mm_groups = {}
+    for v in versions:
+        major_minor = f"{Version(v).major}.{Version(v).minor}"
+        if major_minor not in mm_groups:
+            mm_groups[major_minor] = [v]
+        else:
+            mm_groups[major_minor].append(v)
+    return [max(v) for v in mm_groups.values()]
+
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
 
@@ -66,9 +79,9 @@ import sys
 
 HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / '.github/workflows'))
-from list_versions import major_minor, micropython_versions  # type: ignore
 
-VERSIONS = (["latest"]+major_minor(micropython_versions(start="v1.20")))[:5]
+
+VERSIONS = (["latest"]+major_minor(micropython_versions(minver="v1.20")))[:5]
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):

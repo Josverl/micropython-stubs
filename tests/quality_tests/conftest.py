@@ -27,8 +27,7 @@ from pathlib import Path
 import fasteners
 import pytest
 from loguru import logger as log
-
-from stubber.utils.config import CONFIG
+from mpflash.versions import get_preview_mp_version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
 MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
@@ -135,7 +134,7 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
     """
     if version == "preview":
         # use the latest preview version
-        version = CONFIG.all_versions[-1]
+        version = get_preview_mp_version
         if not version.endswith("-preview"):
             raise ValueError(f"Expected preview version, got {version}")
     flatversion = flat_version(version)
