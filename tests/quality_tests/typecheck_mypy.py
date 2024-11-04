@@ -97,8 +97,8 @@ def mypy_patch(check_path):
         file = check_path / f
 
         if file.exists():
-            print(f"Removing {f}")
             if file.is_file():
+                #  print(f"Removing {f}")
                 file.unlink()
 
             elif file.is_dir():
@@ -130,7 +130,7 @@ def run_mypy(path: Path) -> str:
     mypy_patch(path)
     # Note that --warn-unused-ignores does not seem to work as expected in stdlib
     cmd = ["--warn-unused-ignores","--no-error-summary", "--no-color", "--show-absolute-path", "."]
-    print(f"Running mypy in {path}\nmypy {' '.join(cmd)}")
+    # print(f"Running mypy in {path}\nmypy {' '.join(cmd)}")
     try:
         with chdir_mgr(path):
             # ref https://mypy.readthedocs.io/en/latest/extending_mypy.html#integrating-mypy-into-another-python-application
