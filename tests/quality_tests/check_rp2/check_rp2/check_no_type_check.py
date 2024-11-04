@@ -9,7 +9,13 @@ Sample from micropython documentation
 from typing import no_type_check
 import rp2
 from machine import Pin
+import time
 
+@no_type_check
+def foo() -> str:
+   return 12345  # No error!
+
+# mypy: ignore-errors
 @no_type_check
 @rp2.asm_pio(set_init=0)
 def blink_1hz():

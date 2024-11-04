@@ -7,9 +7,18 @@ Sample from micropython documentaton
 # ref : https://docs.micropython.org/en/latest/rp2/quickref.html#programmable-io-pio
 """
 from typing import no_type_check
+import typing
 import rp2
 from machine import Pin
+import time
 
+
+@no_type_check
+def foo() -> str:
+   return 12345  # No error!
+
+
+# mypy: ignore-errors
 @no_type_check
 @rp2.asm_pio(set_init=rp2.PIO.OUT_LOW)
 def blink_1hz():
