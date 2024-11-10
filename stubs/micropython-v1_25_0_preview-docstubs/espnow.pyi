@@ -376,8 +376,8 @@ class ESPNow(ESPNowBase, Iterator):
 
             - *ifidx*: (ESP32 only) Index of the wifi interface which will be
               used to send data to this peer. Must be an integer set to
-              ``network.STA_IF`` (=0) or ``network.AP_IF`` (=1).
-              (default=0/``network.STA_IF``). See `ESPNow and Wifi Operation`_
+              ``network.WLAN.IF_STA`` (=0) or ``network.WLAN.IF_AP`` (=1).
+              (default=0/``network.WLAN.IF_STA``). See `ESPNow and Wifi Operation`_
               below for more information.
 
             - *encrypt*: (ESP32 only) If set to ``True`` data exchanged with

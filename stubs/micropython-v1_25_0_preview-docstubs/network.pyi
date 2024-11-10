@@ -201,8 +201,8 @@ class AbstractNIC:
 class WLAN:
     """
     Create a WLAN network interface object. Supported interfaces are
-    ``network.STA_IF`` (station aka client, connects to upstream WiFi access
-    points) and ``network.AP_IF`` (access point, allows other WiFi clients to
+    ``network.WLAN.IF_STA`` (station aka client, connects to upstream WiFi access
+    points) and ``network.WLAN.IF_AP`` (access point, allows other WiFi clients to
     connect). Availability of the methods below depends on interface type.
     For example, only STA interface may `WLAN.connect()` to an access point.
     """
@@ -278,7 +278,7 @@ class WLAN:
         Return the current status of the wireless connection.
 
         When called with no argument the return value describes the network link status.
-        The possible statuses are defined as constants:
+        The possible statuses are defined as constants in the :mod:`network` module:
 
             * ``STAT_IDLE`` -- no connection and no activity,
             * ``STAT_CONNECTING`` -- connecting in progress,
