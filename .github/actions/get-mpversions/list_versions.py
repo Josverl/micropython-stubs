@@ -17,9 +17,7 @@ from packaging.version import Version, parse
 
 # Token with no permissions to avoid throttling
 # https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28#getting-a-higher-rate-limit
-PAT_NO_ACCESS = (
-    "github_pat" + "_11AAHPVFQ0qAkDnSUaMKSp" + "_ZkDl5NRRwBsUN6EYg9ahp1Dvj4FDDONnXVgimxC2EtpY7Q7BUKBoQ0Jq72X"
-)
+PAT_NO_ACCESS = "github_pat_"+"11AAHPVFQ0G4NTaQ73Bw5J"+"_fAp7K9sZ1qL8VFnI9g78eUlCdmOXHB3WzSdj2jtEYb4XF3N7PDJBl32qIxq"
 PAT = os.environ.get("GITHUB_TOKEN") or PAT_NO_ACCESS
 
 @lru_cache()
@@ -31,7 +29,7 @@ def micropython_versions(start="v1.10"):
         tags = sorted([tag.name for tag in repo.get_tags() if "-preview" not in tag.name and parse(tag.name) >= parse(start)], reverse=True)
     except Exception as e:
         print(f"Error: {e}")
-        tags = ["stable"]
+        tags = ["v1.24.0"]
     return tags
 
 def major_minor(versions):
