@@ -8,11 +8,11 @@
         "firmware": "micropython-v1_25_0_preview",
         "nodename": "micropython",
         "version": "v1.25.0-preview",
-        "release": "v1.25.0-preview-24-g5dfbd4371",
+        "release": "v1.25.0-preview-25-g3844733d6",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.23.2",
+        "version": "1.23.3",
         "stubtype": "documentation"
     },
     "modules": [
