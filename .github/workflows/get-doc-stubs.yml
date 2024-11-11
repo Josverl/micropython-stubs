@@ -80,6 +80,8 @@ jobs:
 
       - name: Generate document stubs for ${{ matrix.version }}
         run: |
+          # get any recent updates first
+          git pull origin main --force
           stubber get-docstubs
 
       - name: commit
