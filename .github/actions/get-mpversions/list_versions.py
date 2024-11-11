@@ -29,13 +29,15 @@ def micropython_versions(start="v1.10"):
         tags = sorted([tag.name for tag in repo.get_tags() if "-preview" not in tag.name and parse(tag.name) >= parse(start)], reverse=True)
     except Exception as e:
         print(f"Error: {e}")
-        tags = ["v1.24.0"]
+        tags = ["preview", "stable"]
     return tags
 
 def major_minor(versions):
     """create a list of the most recent version for each major.minor"""
     mm_groups = {}
     for v in versions:
+        if v in ["stable", "preview"]:
+            continue
         major_minor = f"{Version(v).major}.{Version(v).minor}"
         if major_minor not in mm_groups:
             mm_groups[major_minor] = [v]
