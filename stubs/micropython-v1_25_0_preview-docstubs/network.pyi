@@ -646,8 +646,11 @@ class PPP:
 
     def config(self, config_parameters) -> Incomplete:
         """
-        Sets or gets parameters of the PPP interface. There are currently no parameter that
-        can be set or retrieved.
+        Sets or gets parameters of the PPP interface. The only parameter that can be
+        retrieved and set is the underlying stream, using::
+
+           stream = PPP.config("stream")
+           PPP.config(stream=stream)
         """
         ...
 
