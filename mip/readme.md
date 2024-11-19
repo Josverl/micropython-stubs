@@ -97,7 +97,7 @@ def blink_1hz():
 ```
 
 I have been exploring better support for  typechecking `@asm_pio` code, but have not integrated it in the published type stubs yet.
-See: https://github.com/Josverl/PIO_ASM_typing dor more details.
+See: https://github.com/Josverl/PIO_ASM_typing for more details.
 
 **The same can be used for `@micropython.asm_thumb` functions**
 
