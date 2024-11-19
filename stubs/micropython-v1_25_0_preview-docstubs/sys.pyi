@@ -123,8 +123,11 @@ def exit(
 ) -> Incomplete:
     """
     Terminate current program with a given exit code. Underlyingly, this
-    function raise as `SystemExit` exception. If an argument is given, its
+    function raises a `SystemExit` exception. If an argument is given, its
     value given as an argument to `SystemExit`.
+
+    On embedded ports (i.e. all ports but Windows and Unix), an unhandled
+    `SystemExit` currently causes a :ref:`soft_reset` of MicroPython.
     """
     ...
 

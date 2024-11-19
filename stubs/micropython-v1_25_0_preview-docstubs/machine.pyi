@@ -1253,7 +1253,7 @@ class RTC:
         a `bytes` object.
 
         Data written to RTC user memory is persistent across restarts, including
-        `machine.soft_reset()` and `machine.deepsleep()`.
+        :ref:`soft_reset` and `machine.deepsleep()`.
 
         The maximum length of RTC user memory is 2048 bytes by default on esp32,
         and 492 bytes on esp8266.
@@ -1611,16 +1611,15 @@ class USBDevice:
 
 def reset() -> NoReturn:
     """
-    Resets the device in a manner similar to pushing the external RESET
-    button.
+    :ref:`Hard resets <hard_reset>` the device in a manner similar to pushing the
+    external RESET button.
     """
     ...
 
 def soft_reset() -> NoReturn:
     """
-    Performs a soft reset of the interpreter, deleting all Python objects and
-    resetting the Python heap.  It tries to retain the method by which the user
-    is connected to the MicroPython REPL (eg serial, USB, Wifi).
+    Performs a :ref:`soft reset <soft_reset>` of the interpreter, deleting all
+    Python objects and resetting the Python heap.
     """
     ...
 
