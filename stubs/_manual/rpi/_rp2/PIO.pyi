@@ -1,5 +1,9 @@
 """
-Module: '_rp2' on micropython-v1.23.0-rp2-RPI_PICO
+Functionality specific to the RP2.
+Note that this `_rp2` module is not documented seperately, but as part of the `rp2` module.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/rp2.html
+
 """
 
 # MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}

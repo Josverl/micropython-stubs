@@ -1,3 +1,9 @@
+"""
+Functionality specific to the RP2.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/rp2.html
+"""
+
 from typing import Optional
 from _typeshed import Incomplete
 from _mpy_shed import AbstractBlockDev  # type: ignore
