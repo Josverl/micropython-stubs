@@ -24,7 +24,6 @@ from .DMA import DMA
 from .Flash import Flash
 from .PIO import PIO
 from .StateMachine import StateMachine
-from .irq import irq
 
 def bootsel_button() -> int:
     """

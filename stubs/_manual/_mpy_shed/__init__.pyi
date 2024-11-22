@@ -13,14 +13,38 @@ from __future__ import annotations
 
 import sys
 from array import array
-from typing import Any, AnyStr, Final, Literal, Protocol, final, overload, runtime_checkable
+from typing import Any, AnyStr, Final, Literal, Protocol, final, overload, runtime_checkable, Type
 from typing_extensions import Self
 
-from _typeshed import structseq
+from _typeshed import structseq, Incomplete
 from typing_extensions import TypeAlias, TypeVar
 
 # from _collections_abc import _check_methods
 import abc
+
+# ------------------
+# IRQ object, used in the machine, bluetooth, _rp2 and rp2 modules
+# TODO: Not sure what the correct implementation is
+# esp32
+# object <IRQ> is of type IRQ
+#   trigger -- <function>
+class _IRQ_ESP32:
+    def trigger(self) -> int: ...
+    # def flags(self) -> int: ...
+
+# rp2040
+# object <irq> is of type irq
+#   flags -- <function>
+#   trigger -- <function>
+class _IRQ_RP2:
+    def flags(self) -> int: ...
+    def trigger(self) -> int: ...
+
+# pybv11
+# NoneType
+_IRQ_PYB: TypeAlias = None
+
+_IRQ: TypeAlias = Type[_IRQ_ESP32] | Type[_IRQ_RP2] | Type[_IRQ_PYB] | Incomplete
 
 # ------------------
 import _io

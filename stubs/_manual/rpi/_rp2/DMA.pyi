@@ -24,14 +24,14 @@ from typing import Any
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
-from .irq import irq
+from _mpy_shed import _IRQ
 
 class DMA:
     """
     Claim one of the DMA controller channels for exclusive use.
     """
 
-    def irq(self, handler=None, hard=False) -> irq:
+    def irq(self, handler=None, hard=False) -> _IRQ:
         """
         Returns the IRQ object for this DMA channel and optionally configures it.
         """

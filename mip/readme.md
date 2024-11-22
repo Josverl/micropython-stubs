@@ -65,8 +65,9 @@ print("Hello, typed world!")
 print(f"{foo(1, 2)=}")
 ```
 
-### Using the `@no_type_check` decorator
+### Using the `@no_type_check` decorator with `@asm_xxx`code
 
+**`@asm_pio` functions**
 As RP2 ASM PIO code is not exactly valid Python code, type checkers will show multiple warnings for those code sections. 
 It is possible to disable these warnings for the specific sections of code by using the `@no_type_check` decorator.
 
@@ -94,7 +95,11 @@ def blink_1hz():
     jmp(x_dec, "delay_high")
     # ...
 ```
-The same can be used for @micropython.asm_thumb functions
+
+I have been exploring better support for  typechecking `@asm_pio` code, but have not integrated it in the published type stubs yet.
+See: https://github.com/Josverl/PIO_ASM_typing for more details.
+
+**The same can be used for `@micropython.asm_thumb` functions**
 
 ```python
 import typing

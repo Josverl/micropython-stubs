@@ -8,13 +8,13 @@ from __future__ import annotations
 
 from typing import Callable, Final, Literal, Optional
 
+from _mpy_shed import _IRQ
 from _typeshed import Incomplete
 from typing_extensions import TypeAlias
 
-from .irq import irq
 from .StateMachine import StateMachine
 
-_PIO_ASM_Program: TypeAlias = Incomplete # ? Callable
+_PIO_ASM_Program: TypeAlias = Incomplete  # ? Callable
 _IRQ_TRIGGERS = Literal[256, 512, 1024, 2048]
 
 class PIO:
@@ -82,7 +82,7 @@ class PIO:
         handler: Optional[Callable[[PIO], None]] = None,
         trigger: _IRQ_TRIGGERS | None = None,
         hard: bool = False,
-    ) -> irq:
+    ) -> _IRQ:
         """
         Returns the IRQ object for this PIO instance.
 
