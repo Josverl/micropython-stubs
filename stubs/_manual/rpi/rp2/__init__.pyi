@@ -117,9 +117,9 @@ _pio_funcs: Dict[str, Any]
 
 def asm_pio(
     *,
-    out_init: Union[Pin, List[Pin], None] = None,
-    set_init: Union[Pin, List[Pin], None] = None,
-    sideset_init: Union[Pin, List[Pin], None] = None,
+    out_init: Union[Pin, List[Pin], int, None] = None,
+    set_init: Union[Pin, List[Pin], int, None] = None,
+    sideset_init: Union[Pin, List[Pin], int, None] = None,
     in_shiftdir=0,
     out_shiftdir=0,
     autopush=False,
