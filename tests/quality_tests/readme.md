@@ -111,6 +111,4 @@ The cache lifetime for each package is 24 hours, after which it will be re-downl
 The cache can be cleared by:
  -  running the following command: `pytest --clearcache`
  - deleting the `.pytest_cache` folder
- - By pressing the 'refresh-test' 🔄️ button in the test explorer. 
-   Note:  This is a side-effect/bug of the current version (v2023.18.0) of the python explorer extension.
 
