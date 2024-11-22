@@ -27,7 +27,7 @@ from pathlib import Path
 import fasteners
 import pytest
 from loguru import logger as log
-from mpflash.versions import get_preview_mp_version
+from mpflash.versions import get_preview_mp_version, get_stable_mp_version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
 MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
@@ -62,7 +62,12 @@ def pytest_runtest_makereport(item, call):
         if not "caplog" in item.funcargs:
             return
         caplog = item.funcargs["caplog"]
-        report_txt = "\n" + "\n".join([r.message for r in caplog.records]) + "\n\n" + str(report.longreprtext)
+        report_txt = (
+            "\n"
+            + "\n".join([r.message for r in caplog.records])
+            + "\n\n"
+            + str(report.longreprtext)
+        )
         report.longrepr = report_txt
 
         return report
@@ -90,10 +95,12 @@ def type_stub_cache_path(
         Path: The path to the cache folder.
     """
 
-    log.trace(f"setup install type_stubs to cache: {stub_source}, {version}, {portboard}")
+    log.debug(f"setup install type_stubs to cache: {stub_source}, {version}, {portboard}")
     cache_key = f"stubber/{stub_source}/{version}/{portboard}"
     flatversion = flat_version(version)
-    tsc_path = Path(request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}"))
+    tsc_path = Path(
+        request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}")
+    )
     # prevent simultaneous updates to the cache
     cache_lock = fasteners.InterProcessLock(tsc_path.parent / f"{tsc_path.name}.lock")
     # check if stubs are already installed to the cache
@@ -104,7 +111,7 @@ def type_stub_cache_path(
             # if timestamp is not older than 24 hours, use cache
 
             if timestamp and timestamp > (time.time() - MAX_CACHE_AGE):
-                log.trace(f"Using cached type stubs for {portboard} {version}")
+                log.debug(f"Using cached type stubs for {portboard} {version}")
                 return tsc_path
 
         ok = install_stubs(portboard, version, stub_source, pytestconfig, tsc_path)
@@ -134,9 +141,13 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
     """
     if version == "preview":
         # use the latest preview version
-        version = get_preview_mp_version
+        version = get_preview_mp_version()
         if not version.endswith("-preview"):
             raise ValueError(f"Expected preview version, got {version}")
+    elif version == "latest":
+        # use the latest release version
+        version = get_stable_mp_version()
+        
     flatversion = flat_version(version)
     # clean up prior install to avoid stale files
     if tsc_path.exists():
@@ -193,7 +204,9 @@ def snip_path(feature: str, pytestconfig) -> Path:
 
 
 @pytest.fixture(scope="function")
-def copy_type_stubs(portboard: str, version: str, feature: str, type_stub_cache_path: Path, snip_path: Path):
+def copy_type_stubs(
+    portboard: str, version: str, feature: str, type_stub_cache_path: Path, snip_path: Path
+):
     """
     Copies installed/cached type stubs from the cache to the feature folder.
 
@@ -204,7 +217,9 @@ def copy_type_stubs(portboard: str, version: str, feature: str, type_stub_cache_
         type_stub_cache_path: The path to the cache folder.
         snip_path: The path to the feature folder.
     """
-    cache_lock = fasteners.InterProcessLock(type_stub_cache_path.parent / f"{type_stub_cache_path.name}.lock")
+    cache_lock = fasteners.InterProcessLock(
+        type_stub_cache_path.parent / f"{type_stub_cache_path.name}.lock"
+    )
     typecheck_lock = fasteners.InterProcessLock(snip_path / "typecheck_lock.file")
     with cache_lock:
         with typecheck_lock:
@@ -241,4 +256,6 @@ def snipcount(terminalreporter, status: str):
     # Count the number of test snippets that have a given status
     if not terminalreporter.stats.get(status, []):
         return 0
-    return len([rep for rep in terminalreporter.stats[status] if rep.nodeid.startswith(SNIPPETS_PREFIX)])
+    return len(
+        [rep for rep in terminalreporter.stats[status] if rep.nodeid.startswith(SNIPPETS_PREFIX)]
+    )
