@@ -103,6 +103,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.23-Latest| esp32| generic| 86| v1.17.3|[stubs/micropython-v1_23_0_preview-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-esp32-ESP32_GENERIC_S3)
 |board| micropython| v1.23-Latest| rp2| generic| 87| v1.17.3|[stubs/micropython-v1_23_0_preview-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-rp2-RPI_PICO_W)
 |board| micropython| v1.23-Latest| samd| generic| 57| v1.17.3|[stubs/micropython-v1_23_0_preview-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0_preview-samd-SEEED_WIO_TERMINAL)
+|board| micropython| v1.24| samd| generic| 58| v1.23.0|[stubs/micropython-v1_24_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0-samd-SEEED_WIO_TERMINAL)
 |board| micropython| v1.24-Latest| esp32| generic| 88| v1.23.0|[stubs/micropython-v1_24_0_preview-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-esp32-ESP32_GENERIC)
 |board| micropython| v1.24-Latest| esp32| generic| 88| v1.23.0|[stubs/micropython-v1_24_0_preview-esp32-ESP32_GENERIC_C3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-esp32-ESP32_GENERIC_C3)
 |board| micropython| v1.24-Latest| esp32| generic| 87| v1.20.0|[stubs/micropython-v1_24_0_preview-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-esp32-ESP32_GENERIC_S3)
@@ -771,4 +772,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  19998
+Total modules  20056
