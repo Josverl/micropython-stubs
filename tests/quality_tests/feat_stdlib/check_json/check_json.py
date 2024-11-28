@@ -1,5 +1,6 @@
 import json
-
+from io import IOBase
+from typing import cast
 
 JSON_DATA = """
 [
@@ -34,8 +35,15 @@ with open("data.json", "w") as file:
     json.dump(data, file)
 
 with open("data.json", "w") as file:
-    separators = (",", ":")  # Change the default separators
-    json.dump(data, file, separators=separators)
+    seps_1 = (",", ":")  # Change the default separators
+    reveal_type(seps_1)  # separators: Tuple[str, str]
+    s1 = s2 = "?"
+    seps_2 = (s1, s2)  # Change the default separators
+
+    json.dump(data, file)
+    json.dump(data, file, (",", ":"))
+    json.dump(data, file, seps_1)
+    json.dump(data, file, seps_2)
 
 with open("data.json") as file:
     data = json.load(file)

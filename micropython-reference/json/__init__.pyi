@@ -13,11 +13,30 @@ data format.
 # origin module:: repos/micropython/docs/library/json.rst
 from __future__ import annotations
 
-from typing import Any, AnyStr
+from typing import Any, AnyStr, Incomplete, Tuple, overload
 
 from _mpy_shed import IOBase
 
-def dump(obj: Any, stream: IOBase, separators: tuple[str, str] | None = None, /) -> None:
+@overload
+def dumps(obj: Any) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any, separators: Tuple[str, str]) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase | Incomplete, /) -> None:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
 
@@ -27,15 +46,18 @@ def dump(obj: Any, stream: IOBase, separators: tuple[str, str] | None = None, /)
     """
     ...
 
-def dumps(obj: Any, separators: tuple[str, str] | None = None) -> str:
+@overload
+def dump(obj: Any, stream: IOBase | Incomplete, separators: Tuple[str, str], /) -> None:
     """
-    Return *obj* represented as a JSON string.
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
 
-    The arguments have the same meaning as in `dump`.
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
     """
     ...
 
-def load(stream: IOBase) -> Any:
+def load(stream: IOBase | Incomplete) -> Any:
     """
     Parse the given *stream*, interpreting it as a JSON string and
     deserialising the data to a Python object.  The resulting object is
