@@ -50,7 +50,7 @@ class Timer:
         /,
         *,
         mode: int = PERIODIC,
-        period: int = -1,
+        period: int | None = None,
         callback: Callable[[Timer], None] | None = None,
     ):
         """
@@ -61,11 +61,64 @@ class Timer:
         See ``init`` for parameters of initialisation.
         """
 
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        *,
+        mode: int = PERIODIC,
+        freq: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+    ):
+        """
+        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
+        virtual timer (if supported by a board).
+        ``id`` shall not be passed as a keyword argument.
+
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        *,
+        mode: int = PERIODIC,
+        tick_hz: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+    ):
+        """
+        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
+        virtual timer (if supported by a board).
+        ``id`` shall not be passed as a keyword argument.
+
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
     def init(
         self,
         *,
         mode: int = PERIODIC,
-        period: int = -1,
+        period: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+    ) -> None: ...
+    @overload
+    def init(
+        self,
+        *,
+        mode: int = PERIODIC,
+        freq: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+    ) -> None: ...
+    @overload
+    def init(
+        self,
+        *,
+        mode: int = PERIODIC,
+        tick_hz: int | None = None,
         callback: Callable[[Timer], None] | None = None,
     ) -> None:
         """

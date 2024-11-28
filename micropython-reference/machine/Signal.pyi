@@ -99,7 +99,7 @@ class Signal:
     @overload
     def __init__(
         self,
-        id: Pin | str,
+        id: Pin | str | int,
         /,
         mode: int = -1,
         pull: int = -1,

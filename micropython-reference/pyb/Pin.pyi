@@ -98,7 +98,7 @@ class Pin:
     """enable the pull-up resistor on the pin"""
     def __init__(
         self,
-        id: Pin | str,
+        id: Pin | str | int,
         /,
         mode: int = IN,
         pull: int = PULL_NONE,
