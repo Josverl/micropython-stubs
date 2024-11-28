@@ -1,20 +1,9 @@
 # https://docs.micropython.org/en/latest/pyboard/quickref.html
 
 import time
+
 import pyb
-from pyb import LED
-from pyb import Switch
-from pyb import Pin
-from pyb import Servo
-from pyb import ExtInt
-from pyb import RTC
-from pyb import Timer
-from pyb import ADC
-from pyb import DAC
-from pyb import UART
-from pyb import SPI
-from pyb import CAN
-from pyb import Accel
+from pyb import ADC, CAN, DAC, LED, RTC, SPI, UART, Accel, ExtInt, Pin, Servo, Switch, Timer
 
 # samples need a buffer to store the data
 buf = b"00000000"
@@ -133,7 +122,7 @@ spi.send_recv("hello")  # send and receive 5 bytes
 
 
 can = CAN(1, CAN.LOOPBACK)
-can.setfilter(0, CAN.LIST16, 0, (123, 124, 125, 126)) # stubs-ignore : version<=1.18.0
+can.setfilter(0, CAN.LIST16, 0, (123, 124, 125, 126))  # stubs-ignore : version<=1.18.0
 can.send("message!", 123)  # send a message with id 123
 can.recv(0)  # receive message on FIFO 0
 
@@ -143,3 +132,21 @@ can.recv(0)  # receive message on FIFO 0
 
 accel = Accel()
 print(accel.x(), accel.y(), accel.z(), accel.tilt())
+
+
+# timer
+#  Example usage to toggle an LED at a fixed frequency:
+
+tim = pyb.Timer(4)  # create a timer object using timer 4
+tim.init(freq=2)  # trigger at 2Hz
+tim.callback(lambda t: pyb.LED(1).toggle())
+
+#  Further examples:
+
+tim = pyb.Timer(4, freq=100)  # freq in Hz
+tim = pyb.Timer(4, prescaler=0, period=99)
+tim.counter()  # get counter (can also set)
+tim.prescaler(2)  # set prescaler (can also get)
+tim.period(199)  # set period (can also get)
+tim.callback(lambda t: ...)  # set callback for update interrupt (t=tim instance)
+tim.callback(None)  # clear callback

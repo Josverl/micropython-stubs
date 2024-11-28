@@ -29,3 +29,4 @@ i2s.write(buf)  # write buffer of audio samples to I2S device
 
 i2s = I2S(1, sck=Pin("X5"), ws=Pin("X6"), sd=Pin("Y4"), mode=I2S.RX, bits=16, format=I2S.MONO, rate=22050, ibuf=40000)  # create I2S object
 i2s.readinto(buf)  # fill buffer with audio samples from I2S device
+

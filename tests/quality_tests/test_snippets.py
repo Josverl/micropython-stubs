@@ -16,8 +16,11 @@ def major_minor(versions):
     """create a list of the most recent version for each major.minor"""
     mm_groups = {}
     for v in versions:
+        if v.endswith("-preview"):
+            mm_groups["preview"] = [v]
+            continue
         major_minor = f"{Version(v).major}.{Version(v).minor}"
-        if major_minor not in mm_groups:
+        if major_minor not in mm_groups or "-preview" in v:
             mm_groups[major_minor] = [v]
         else:
             mm_groups[major_minor].append(v)
@@ -82,7 +85,7 @@ HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
 
-VERSIONS = (["latest"] + major_minor(micropython_versions(minver="v1.20")))[:5]
+VERSIONS = sorted(major_minor(micropython_versions(cache_it=False)), reverse=True)[:5]
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
@@ -186,7 +189,7 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         # transform : version>=1.20.1 to version>=Version('1.20.1') using a regular expression
         condition = re.sub(r"(\d+\.\d+\.\d+)", r"Version('\1')", condition.strip())
         result = eval(condition, context)
-        # print(f'stubs-ignore: {condition} -> {"Skip" if result else "Process"}')
+        log.debug(f'stubs-ignore: {condition} -> {"Skip" if result else "Process"}')
     except Exception as e:
         log.warning(f"Incorrect stubs-ignore condition: `{condition}`\ncaused: {e}")
         result = False

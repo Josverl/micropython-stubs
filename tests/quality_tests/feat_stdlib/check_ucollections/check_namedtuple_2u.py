@@ -17,5 +17,5 @@ def read_wifi_config() -> Union[WifiConfig, None]:
         ssid=data['ssid'],
         password=data.get('password'),
     )
-  except:
+  except OSError:
     return None

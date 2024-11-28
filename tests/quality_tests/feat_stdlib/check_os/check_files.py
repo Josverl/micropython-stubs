@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 
 def listdir(path=".", sub=False, JSON=True, gethash=False):
     # Lists the file information of a folder
-    li :List[dict]= []
+    li: List[dict] = []
     if path == ".":  # Get current folder name
         path = os.getcwd()
     files = os.listdir(path)
@@ -29,13 +29,13 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
         else:
             full = "%s/%s" % (path, file)
         log.debug("os.stat({})".format(full))
-        subdir = []
+        subdir: List[str] = []
         try:
             stat = os.stat(full)
             if stat[0] & 0x4000:  # stat.S_IFDIR
                 info["Type"] = "dir"
                 # recurse folder(s)
-                if sub == True:
+                if sub:
                     log.debug("Folder :{}".format(full))
                     subdir = listdir(path=full, sub=True, JSON=False, gethash=gethash)
             else:
@@ -52,9 +52,10 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
         info["Fullname"] = full
         li.append(info)
         # recurse folder(s)
-        if sub == True:
+        if sub:
+            reveal_type(subdir)
             li = li + subdir
-    if JSON == True:
+    if JSON:
         return json.dumps(li)
     else:
         return li

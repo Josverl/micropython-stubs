@@ -1,4 +1,4 @@
-import ffi  # stub-ignore :port!='unix'
+import ffi  # stubs-ignore :port!='unix'
 import uctypes
 
 libc = ffi.open("libc.so.6")

@@ -8,6 +8,10 @@ import micropython
 import uasyncio as asyncio
 from micropython import const
 
+from uasyncio import Task as uTask
+from asyncio import Task, StreamReader
+
+
 # Import statement (needs to be global, and does not return).
 _RE_IMPORT = re.compile("^import ([^ ]+)( as ([^ ]+))?")
 _RE_FROM_IMPORT = re.compile("^from [^ ]+ import ([^ ]+)( as ([^ ]+))?")
@@ -57,7 +61,7 @@ __exec_task = asyncio.create_task(__code())
             # Concurrently wait for either Ctrl-C from the stream or task
             # completion.
             intr_task = asyncio.create_task(kbd_intr_task(exec_task, s))
-
+            reveal_type(intr_task) 
             try:
                 try:
                     return await exec_task # type: ignore # pyright/mypy doesn't like the await here

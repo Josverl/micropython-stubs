@@ -2,12 +2,18 @@
 
 from machine import Timer
 
-tim = Timer(period=5000, mode=Timer.ONE_SHOT, callback=lambda t: print(1))
-tim.init(period=2000, mode=Timer.PERIODIC, callback=lambda t: print(2))
 
+def mycallback(t):
+    pass
 
-from machine import Timer
+tim  = tim=Timer(-1)
+# periodic at 1kHz
+tim.init(mode=Timer.PERIODIC, freq=1000, callback=mycallback)
 
-tim = Timer(period=5000, mode=Timer.ONE_SHOT, callback=lambda t: print(1))
-tim.init(period=2000, mode=Timer.PERIODIC, callback=lambda t: print(2))
+# periodic with 100ms period
+tim.init(period=100, callback=mycallback)
+
+# one shot firing after 1000ms
+tim.init(mode=Timer.ONE_SHOT, period=1000, callback=mycallback)
+
 

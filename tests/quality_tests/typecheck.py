@@ -78,7 +78,9 @@ def stub_ignore(line, version, port, board, linter, is_source=True) -> bool:
         condition = condition[4:].strip()
     context = {}
     context["Version"] = Version
-    context["version"] = Version(version) if not version in {"preview", "latest", "-"} else Version("9999.99.99")
+    context["version"] = (
+        Version(version) if not version in {"preview", "latest", "-"} else Version("9999.99.99")
+    )
     context["port"] = port
     context["board"] = board
     context["linter"] = linter
@@ -183,7 +185,6 @@ def run_typechecker(
 def check_with_pyright(snip_path: Path):
     # cmd = f"pyright --project {str(snip_path)} --outputjson"
     cmd = [sys.executable, "-m", "pyright", "--project", str(snip_path), "--outputjson"]
-    cmd = [sys.executable, "-m", "pyright", ".", "--outputjson"]
     use_shell = platform.system() != "Windows"
     results = {}
 
@@ -198,7 +199,9 @@ def check_with_pyright(snip_path: Path):
     finally:
         os.chdir(cwd)
     if result.returncode >= 2:
-        assert 0, f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
+        assert (
+            0
+        ), f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
     try:
         results = json.loads(result.stdout)
     except Exception:
