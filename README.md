@@ -29,13 +29,13 @@ Stubs are like cheat sheets for your code. They provide hints, auto-completion, 
 For installation instructions and configuration of your preferred IDE, please refer to the [documentation](https://micropython-stubs.readthedocs.io/en/main/)
 ## Explore Available Stubs
 
-Curious about which versions, ports, and boards are covered? Check out the [online viewer](https://flatgithub.com/Josverl/micropython-stubs/?filename=all_modules.json) or search for [MicroPython stub packages on PyPI](PYPI).
+Curious about which versions, ports, and boards are covered? Check out the [online viewer](https://flatgithub.com/Josverl/micropython-stubs/?filename=all_modules.json) or search for [MicroPython stub packages on PyPI](https://pypi.org/search/?q=-stubs&o=&c=Programming+Language+%3A%3A+Python+%3A%3A+Implementation+%3A%3A+MicroPython).
 
 For a comprehensive overview of all stubs, dive into the documentation on [the documentation on read the docs](https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html).
 
 ## Sponsoring
 
-In order to build accurate stubs I need access to a board to flash it with a specific version of micropython an run part of the stubbing software on the board.
+In order to build accurate stubs I need access to a board to flash it with a specific version of MicroPython and run part of the stubbing software (createsubs.py) on the board.
 
 You can help me by: 
 
@@ -49,7 +49,7 @@ You can help me by:
 
 Thanks to everyone that has submitted stubs or other relevant pieces of code and information, or published relevant stubs on pypi or github.
 
-Add authors of typings.py
+<!-- TODO: Add authors of typings.py -->
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -101,6 +101,5 @@ I invite everyone that has generated stubs for a board or port not on the curren
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. 
 
-[samples]: https://github.com/josverl/micropython-stubs/tree/main/docs/samples
-[Discussions]: https://github.com/Josverl/micropython-stubs/discussions/categories/ideas
-[PYPI]: https://pypi.org/search/?q=-stubs&o=&c=Programming+Language+%3A%3A+Python+%3A%3A+Implementation+%3A%3A+MicroPython
+[Discussions]: https://github.com/orgs/micropython/discussions/categories/general
+
