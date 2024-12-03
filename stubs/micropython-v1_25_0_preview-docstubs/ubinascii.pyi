@@ -47,3 +47,11 @@ def b2a_base64(data, *, newline=True) -> bytes:
     followed by a newline character if newline is true, as a bytes object.
     """
     ...
+
+def crc32(data, value: Optional[Any] = None) -> Incomplete:
+    """
+    Compute CRC-32, the 32-bit checksum of *data*, starting with an initial CRC
+    of *value*. The default initial CRC is zero. The algorithm is consistent
+    with the ZIP file checksum.
+    """
+    ...
