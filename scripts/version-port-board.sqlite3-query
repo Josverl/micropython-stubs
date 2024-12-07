@@ -1,0 +1,10 @@
+-- database: ./package_data.db
+SELECT
+    mpy_version,
+    port,
+    GROUP_CONCAT(DISTINCT board) AS boards
+FROM
+    packages
+GROUP BY
+    mpy_version,
+    port;
