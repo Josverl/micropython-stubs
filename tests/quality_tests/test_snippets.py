@@ -85,7 +85,7 @@ HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
 
-VERSIONS = sorted(major_minor(micropython_versions(cache_it=False)), reverse=True)[:5]
+VERSIONS = sorted(major_minor(micropython_versions()), reverse=True)[:5]
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
