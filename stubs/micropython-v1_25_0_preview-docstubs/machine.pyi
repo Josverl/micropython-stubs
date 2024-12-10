@@ -1228,9 +1228,12 @@ class RTC:
         """
         ...
 
-    def cancel(self, alarm_id=0) -> None:
+    def alarm_cancel(self, alarm_id=0) -> None:
         """
         Cancel a running alarm.
+
+        The mimxrt port also exposes this function as ``RTC.cancel(alarm_id=0)``, but this is
+        scheduled to be removed in MicroPython 2.0.
         """
         ...
 
