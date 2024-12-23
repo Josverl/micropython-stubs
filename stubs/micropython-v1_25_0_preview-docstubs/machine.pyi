@@ -1198,13 +1198,22 @@ class RTC:
         """
         Initialise the RTC. Datetime is a tuple of the form:
 
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
         """
         ...
 
     def now(self) -> Tuple:
         """
         Get get the current datetime tuple.
+
+        Availability: WiPy.
         """
         ...
 
@@ -1228,9 +1237,12 @@ class RTC:
         """
         ...
 
-    def cancel(self, alarm_id=0) -> None:
+    def alarm_cancel(self, alarm_id=0) -> None:
         """
         Cancel a running alarm.
+
+        The mimxrt port also exposes this function as ``RTC.cancel(alarm_id=0)``, but this is
+        scheduled to be removed in MicroPython 2.0.
         """
         ...
 
