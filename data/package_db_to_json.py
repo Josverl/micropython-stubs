@@ -1,19 +1,24 @@
 # %%
 # Configure logging to output to the notebook
 import logging
+import sqlite3
+from pathlib import Path
+
+import jsons
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s - %(message)s")
 log = logging.getLogger()
 
 # %%
-import sqlite3
-from pathlib import Path
 
 db_path = Path("../data/all_packages.db")
 if not db_path.exists():
-    raise FileNotFoundError("Database file not found")
+    db_path = Path("repos/micropython-stubs/data/all_packages.db")
+    if not db_path.exists():
+        raise FileNotFoundError("Database file not found")
 
 conn = sqlite3.connect(db_path)
+conn.row_factory = sqlite3.Row  # return rows as dicts
 cursor = conn.cursor()
 
 # %%
@@ -29,13 +34,14 @@ stublist = cursor.fetchall()
 log.info(f"found {len(stublist)} unique stub/version combinations")
 
 # %%
-import json
-from pathlib import Path
+
 
 schema = "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/packages-v1.0.0.json"
 output = {"$schema": schema, "packages": stublist}
 
-with open("../data/stub-packages.json", "w") as f:
-    json.dump(output, f, indent=4)
+with open(db_path.with_name("stub-packages.json"), "w") as f:
+    text = jsons.dumps(output, jdkwargs={"indent": 4})
+    f.write(text)
+
 
 # %%
