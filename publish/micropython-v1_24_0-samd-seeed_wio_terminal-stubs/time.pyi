@@ -33,45 +33,11 @@ functions below which require reference to current absolute time may
 behave not as expected.
 
 ---
-Time related functions.
-
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/time.html
-
-CPython module: :mod:`python:time` https://docs.python.org/3/library/time.html .
-
-The ``time`` module provides functions for getting the current time and date,
-measuring time intervals, and for delays.
-
-**Time Epoch**: Unix port uses standard for POSIX systems epoch of
-1970-01-01 00:00:00 UTC. However, some embedded ports use epoch of
-2000-01-01 00:00:00 UTC. Epoch year may be determined with ``gmtime(0)[0]``.
-
-**Maintaining actual calendar date/time**: This requires a
-Real Time Clock (RTC). On systems with underlying OS (including some
-RTOS), an RTC may be implicit. Setting and maintaining actual calendar
-time is responsibility of OS/RTOS and is done outside of MicroPython,
-it just uses OS API to query date/time. On baremetal ports however
-system time depends on ``machine.RTC()`` object. The current calendar time
-may be set using ``machine.RTC().datetime(tuple)`` function, and maintained
-by following means:
-
-* By a backup battery (which may be an additional, optional component for
-  a particular board).
-* Using networked time protocol (requires setup by a port/user).
-* Set manually by a user on each power-up (many boards then maintain
-  RTC time across hard resets, though some may require setting it again
-  in such case).
-
-If actual calendar time is not maintained with a system/MicroPython RTC,
-functions below which require reference to current absolute time may
-behave not as expected.
-
----
 Module: 'time' on micropython-v1.24.0-samd-SEEED_WIO_TERMINAL
 """
 
-# MCU: {'version': '1.24.0', 'mpy': 'v6.3', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.24.0', 'cpu': 'SAMD51P19A'}
-# Stubber: v1.23.0
+# MCU: {'family': 'micropython', 'version': '1.24.0', 'build': '', 'ver': '1.24.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.3', 'arch': 'armv7emsp'}
+# Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Any, Optional, Tuple

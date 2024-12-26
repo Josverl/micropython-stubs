@@ -56,71 +56,14 @@ The following data types are supported:
 +--------+--------------------+-------------------+---------------+
 
 ---
-Pack and unpack primitive data types.
-
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/struct.html
-
-CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
-
-The following byte orders are supported:
-
-+-----------+------------------------+----------+-----------+
-| Character | Byte order             | Size     | Alignment |
-+===========+========================+==========+===========+
-| @         | native                 | native   | native    |
-+-----------+------------------------+----------+-----------+
-| <         | little-endian          | standard | none      |
-+-----------+------------------------+----------+-----------+
-| >         | big-endian             | standard | none      |
-+-----------+------------------------+----------+-----------+
-| !         | network (= big-endian) | standard | none      |
-+-----------+------------------------+----------+-----------+
-
-The following data types are supported:
-
-+--------+--------------------+-------------------+---------------+
-| Format | C Type             | Python type       | Standard size |
-+========+====================+===================+===============+
-| b      | signed char        | integer           | 1             |
-+--------+--------------------+-------------------+---------------+
-| B      | unsigned char      | integer           | 1             |
-+--------+--------------------+-------------------+---------------+
-| h      | short              | integer           | 2             |
-+--------+--------------------+-------------------+---------------+
-| H      | unsigned short     | integer           | 2             |
-+--------+--------------------+-------------------+---------------+
-| i      | int                | integer (`1<fn>`) | 4             |
-+--------+--------------------+-------------------+---------------+
-| I      | unsigned int       | integer (`1<fn>`) | 4             |
-+--------+--------------------+-------------------+---------------+
-| l      | long               | integer (`1<fn>`) | 4             |
-+--------+--------------------+-------------------+---------------+
-| L      | unsigned long      | integer (`1<fn>`) | 4             |
-+--------+--------------------+-------------------+---------------+
-| q      | long long          | integer (`1<fn>`) | 8             |
-+--------+--------------------+-------------------+---------------+
-| Q      | unsigned long long | integer (`1<fn>`) | 8             |
-+--------+--------------------+-------------------+---------------+
-| e      | n/a (half-float)   | float (`2<fn>`)   | 2             |
-+--------+--------------------+-------------------+---------------+
-| f      | float              | float (`2<fn>`)   | 4             |
-+--------+--------------------+-------------------+---------------+
-| d      | double             | float (`2<fn>`)   | 8             |
-+--------+--------------------+-------------------+---------------+
-| s      | char[]             | bytes             |               |
-+--------+--------------------+-------------------+---------------+
-| P      | void *             | integer           |               |
-+--------+--------------------+-------------------+---------------+
-
----
 Module: 'ustruct' on micropython-v1.24.0-samd-SEEED_WIO_TERMINAL
 """
 
-# MCU: {'version': '1.24.0', 'mpy': 'v6.3', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.24.0', 'cpu': 'SAMD51P19A'}
-# Stubber: v1.23.0
+# MCU: {'family': 'micropython', 'version': '1.24.0', 'build': '', 'ver': '1.24.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.3', 'arch': 'armv7emsp'}
+# Stubber: v1.24.0
 from __future__ import annotations
-from typing import Tuple, Any, Generator
 from _typeshed import Incomplete
+from typing import Tuple
 
 def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
     """

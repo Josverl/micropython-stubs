@@ -10,25 +10,14 @@ Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
 floating-point support).
 
 ---
-Efficient arrays of numeric data.
-
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/array.html
-
-CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html .
-
-Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
-``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
-floating-point support).
-
----
 Module: 'uarray' on micropython-v1.24.0-samd-SEEED_WIO_TERMINAL
 """
 
-# MCU: {'version': '1.24.0', 'mpy': 'v6.3', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.24.0', 'cpu': 'SAMD51P19A'}
-# Stubber: v1.23.0
+# MCU: {'family': 'micropython', 'version': '1.24.0', 'build': '', 'ver': '1.24.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.3', 'arch': 'armv7emsp'}
+# Stubber: v1.24.0
 from __future__ import annotations
-from typing import List, Optional, Any, Generator
 from _typeshed import Incomplete
+from typing import Any, List, Optional
 
 class array(List):
     """

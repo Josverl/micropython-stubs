@@ -10,22 +10,11 @@ terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 
 ---
-Basic "operating system" services.
-
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/os.html
-
-CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
-
-The ``os`` module contains functions for filesystem access and mounting,
-terminal redirection and duplication, and the ``uname`` and ``urandom``
-functions.
-
----
 Module: 'os' on micropython-v1.24.0-samd-SEEED_WIO_TERMINAL
 """
 
-# MCU: {'version': '1.24.0', 'mpy': 'v6.3', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.24.0', 'cpu': 'SAMD51P19A'}
-# Stubber: v1.23.0
+# MCU: {'family': 'micropython', 'version': '1.24.0', 'build': '', 'ver': '1.24.0', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.3', 'arch': 'armv7emsp'}
+# Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
 from stdlib.os import *
