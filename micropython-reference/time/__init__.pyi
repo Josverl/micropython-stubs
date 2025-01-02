@@ -45,9 +45,9 @@ _TicksMs: TypeAlias = int
 _TicksUs: TypeAlias = int
 _TicksCPU: TypeAlias = int
 _Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
-_Time8Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int]
+_TimeTuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int]
 
-def gmtime(secs: int | None = None, /) -> _Time8Tuple:
+def gmtime(secs: int | None = None, /) -> _TimeTuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
     8-tuple which contains: ``(year, month, mday, hour, minute, second, weekday, yearday)``
@@ -69,7 +69,7 @@ def gmtime(secs: int | None = None, /) -> _Time8Tuple:
     """
     ...
 
-def localtime(secs: int | None = None, /) -> _Time8Tuple:
+def localtime(secs: int | None = None, /) -> _TimeTuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
     8-tuple which contains: ``(year, month, mday, hour, minute, second, weekday, yearday)``
@@ -91,7 +91,7 @@ def localtime(secs: int | None = None, /) -> _Time8Tuple:
     """
     ...
 
-def mktime(local_time: _Time8Tuple, /) -> int:
+def mktime(local_time: _TimeTuple, /) -> int:
     """
     This is inverse function of localtime. It's argument is a full 8-tuple
     which expresses a time as per localtime. It returns an integer which is
