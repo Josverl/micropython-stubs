@@ -13,9 +13,9 @@ data format.
 # origin module:: repos/micropython/docs/library/json.rst
 from __future__ import annotations
 
-from typing import Any, AnyStr, Incomplete, Tuple, overload
+from typing import Any, AnyStr, Tuple, overload
 
-from _mpy_shed import IOBase
+from _mpy_shed import IOBase, Incomplete
 
 @overload
 def dumps(obj: Any) -> str:
