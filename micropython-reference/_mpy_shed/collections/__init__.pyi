@@ -8,7 +8,8 @@ from _typeshed import (SupportsItems, SupportsKeysAndGetItem,
 from typing_extensions import Self
 
 if sys.version_info >= (3, 9):
-    from types import GenericAlias
+    # from types import GenericAlias
+    from _mpy_shed import GenericAlias
 
 if sys.version_info >= (3, 10):
     from collections.abc import (Callable, ItemsView, Iterable, Iterator,
