@@ -1,11 +1,5 @@
 # MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.23.0
-# MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.23.0
-# MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.23.0
-# MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.23.0
 """
 Functionality specific to the RP2.
 
@@ -28,11 +22,11 @@ from __future__ import annotations
 from typing import Callable, List, Union
 
 from _rp2 import PIO
-from _rp2.DMA import DMA as DMA
-from _rp2.Flash import Flash as Flash
-from _rp2.PIO import PIO as PIO
+from _rp2.DMA import DMA
+from _rp2.Flash import Flash
+from _rp2.PIO import PIO
 from _rp2.PIOASMEmit import PIOASMEmit
-from _rp2.StateMachine import StateMachine as StateMachine
+from _rp2.StateMachine import StateMachine
 from _typeshed import Incomplete
 from machine import Pin
 from typing_extensions import TypeAlias

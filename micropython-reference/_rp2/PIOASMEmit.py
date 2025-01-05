@@ -1,8 +1,13 @@
+"""
+Module: '_rp2.PIOASMEmit'
+"""
 
 from __future__ import annotations
 
 from typing import Callable, Dict, List, Union
+
 from _typeshed import Incomplete
+
 
 class PIOASMEmit:
     """
@@ -23,6 +28,7 @@ class PIOASMEmit:
     pass_: int
     num_instr: int
     num_sideset: int
+
     def __init__(
         self,
         *,

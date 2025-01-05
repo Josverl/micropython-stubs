@@ -1,6 +1,11 @@
+"""
+Module: '_rp2.Flash'
+"""
+
 from typing import Optional
-from _typeshed import Incomplete
+
 from _mpy_shed import AbstractBlockDev  # type: ignore
+from _typeshed import Incomplete
 
 class Flash(AbstractBlockDev):
     """
