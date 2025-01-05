@@ -15,10 +15,9 @@ from __future__ import annotations
 import abc
 import sys
 from array import array
-from typing import (Any, Final, Literal, Protocol, Type, final, overload,
-                    runtime_checkable)
+from typing import Any, Final, Literal, Protocol, Type, final, overload, runtime_checkable
 
-from _typeshed import Incomplete, structseq
+from _typeshed import Incomplete, structseq, AnyStr_co
 from typing_extensions import TypeAlias, TypeVar
 
 # ------------------
@@ -46,22 +45,29 @@ _IRQ_PYB: TypeAlias = None
 _IRQ: TypeAlias = Type[_IRQ_ESP32] | Type[_IRQ_RP2] | Type[_IRQ_PYB] | Incomplete
 
 # ------------------
-import _io
+# from typeshed/stdlib/io.pyi
+from _io import (
+    # DEFAULT_BUFFER_SIZE as DEFAULT_BUFFER_SIZE,
+    # BlockingIOError as BlockingIOError,
+    # BufferedRandom as BufferedRandom,
+    # BufferedReader as BufferedReader,
+    # BufferedRWPair as BufferedRWPair,
+    # BufferedWriter as BufferedWriter,
+    BytesIO as BytesIO,
+    FileIO as FileIO,
+    IncrementalNewlineDecoder as IncrementalNewlineDecoder,
+    StringIO as StringIO,
+    TextIOWrapper as TextIOWrapper,
+    _BufferedIOBase,
+    _IOBase,
+    _RawIOBase,
+    _TextIOBase,
+    # _WrappedBuffer as _WrappedBuffer,  # used elsewhere in typeshed
+    open as open,
+    # open_code as open_code,
+)
 
-from .io_modes import (_OpenTextMode, _OpenTextModeReading,
-                       _OpenTextModeUpdating, _OpenTextModeWriting)
-
-class IOBase(_io._IOBase, metaclass=abc.ABCMeta):
-    __doc__ = _io._IOBase.__doc__
-
-class RawIOBase(_io._RawIOBase, IOBase):
-    __doc__ = _io._RawIOBase.__doc__
-
-class BufferedIOBase(_io._BufferedIOBase, IOBase):
-    __doc__ = _io._BufferedIOBase.__doc__
-
-class TextIOBase(_io._TextIOBase, IOBase):
-    __doc__ = _io._TextIOBase.__doc__
+class IOBase(_IOBase, metaclass=abc.ABCMeta): ...
 
 # Howard
 _OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int)
@@ -216,21 +222,16 @@ class TextIOWrapper(IOBase):
 # copied from _typeshed  os.pyi as os.pyi cannot import from a module with the same name
 GenericAlias = type(list[int])
 
-class PathLike(abc.ABC):
-    """Abstract base class for implementing the file system path protocol."""
+# pathlike is used in multiple stdlib stubs - bit does not exists in micropython
+# copied from typeshed/stdlib/os.pyi as os.pyi cannot import from a module with the same name
 
+# mypy and pyright object to this being both ABC and Protocol.
+# At runtime it inherits from ABC and is not a Protocol, but it will be
+# on the allowlist for use as a Protocol starting in 3.14.
+@runtime_checkable
+class PathLike(ABC, Protocol[AnyStr_co]):  # type: ignore[misc]  # pyright: ignore[reportGeneralTypeIssues]
     @abc.abstractmethod
-    def __fspath__(self):
-        """Return the file system path representation of the object."""
-        raise NotImplementedError
-
-    @classmethod
-    def __subclasshook__(cls, subclass):
-        ...
-        # if cls is PathLike:
-        #     return _check_methods(subclass, "__fspath__")
-        # return NotImplemented
-    __class_getitem__ = classmethod(...)
+    def __fspath__(self) -> AnyStr_co: ...
 
 # ------------------------------------------------------------------------------------
 AnyReadableBuf: TypeAlias = bytearray | array | memoryview | bytes
@@ -455,7 +456,3 @@ class AbstractBlockDev(Protocol):
 
 # HID_Tuple is used in multiple pyb.submodulles
 HID_Tuple: TypeAlias = tuple[int, int, int, int, bytes]
-
-# pathlike is used in multiple stdlib stubs - bit does not exists in micropython
-# copied from typeshed/stdlib/os.pyi as os.pyi cannot import from a module with the same name
-

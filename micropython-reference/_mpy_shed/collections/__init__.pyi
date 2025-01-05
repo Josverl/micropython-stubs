@@ -1,10 +1,13 @@
 import sys
-from typing import (Any, Generic, NoReturn, SupportsIndex, TypeVar, final,
-                    overload)
+from typing import Any, Generic, NoReturn, SupportsIndex, TypeVar, final, overload
 
 from _collections_abc import dict_items, dict_keys, dict_values
-from _typeshed import (SupportsItems, SupportsKeysAndGetItem,
-                       SupportsRichComparison, SupportsRichComparisonT)
+from _typeshed import (
+    SupportsItems,
+    SupportsKeysAndGetItem,
+    SupportsRichComparison,
+    SupportsRichComparisonT,
+)
 from typing_extensions import Self
 
 if sys.version_info >= (3, 9):
@@ -12,13 +15,32 @@ if sys.version_info >= (3, 9):
     from _mpy_shed import GenericAlias
 
 if sys.version_info >= (3, 10):
-    from collections.abc import (Callable, ItemsView, Iterable, Iterator,
-                                 KeysView, Mapping, MutableMapping,
-                                 MutableSequence, Sequence, ValuesView)
+    from collections.abc import (
+        Callable,
+        ItemsView,
+        Iterable,
+        Iterator,
+        KeysView,
+        Mapping,
+        MutableMapping,
+        MutableSequence,
+        Sequence,
+        ValuesView,
+    )
 else:
     from _collections_abc import *
 
-__all__ = ["ChainMap", "Counter", "OrderedDict", "UserDict", "UserList", "UserString", "defaultdict", "deque", "namedtuple"]
+__all__ = [
+    "ChainMap",
+    "Counter",
+    "OrderedDict",
+    "UserDict",
+    "UserList",
+    "UserString",
+    "defaultdict",
+    "deque",
+    "namedtuple",
+]
 
 _S = TypeVar("_S")
 _T = TypeVar("_T")
@@ -46,7 +68,10 @@ class UserDict(MutableMapping[_KT, _VT]):
     def __init__(self, dict: None = None, /) -> None: ...
     @overload
     def __init__(
-        self: UserDict[str, _VT], dict: None = None, /, **kwargs: _VT  # pyright: ignore[reportInvalidTypeVarUse]  #11780
+        self: UserDict[str, _VT],
+        dict: None = None,
+        /,
+        **kwargs: _VT,  # pyright: ignore[reportInvalidTypeVarUse]  #11780
     ) -> None: ...
     @overload
     def __init__(self, dict: SupportsKeysAndGetItem[_KT, _VT], /) -> None: ...
@@ -92,11 +117,15 @@ class UserDict(MutableMapping[_KT, _VT]):
         @overload
         def __or__(self, other: UserDict[_KT, _VT] | dict[_KT, _VT]) -> Self: ...
         @overload
-        def __or__(self, other: UserDict[_T1, _T2] | dict[_T1, _T2]) -> UserDict[_KT | _T1, _VT | _T2]: ...
+        def __or__(
+            self, other: UserDict[_T1, _T2] | dict[_T1, _T2]
+        ) -> UserDict[_KT | _T1, _VT | _T2]: ...
         @overload
         def __ror__(self, other: UserDict[_KT, _VT] | dict[_KT, _VT]) -> Self: ...
         @overload
-        def __ror__(self, other: UserDict[_T1, _T2] | dict[_T1, _T2]) -> UserDict[_KT | _T1, _VT | _T2]: ...
+        def __ror__(
+            self, other: UserDict[_T1, _T2] | dict[_T1, _T2]
+        ) -> UserDict[_KT | _T1, _VT | _T2]: ...
         # UserDict.__ior__ should be kept roughly in line with MutableMapping.update()
         @overload  # type: ignore[misc]
         def __ior__(self, other: SupportsKeysAndGetItem[_KT, _VT]) -> Self: ...
@@ -146,12 +175,18 @@ class UserList(MutableSequence[_T]):
     # The runtime signature is "item, *args", and the arguments are then passed
     # to `list.index`. In order to give more precise types, we pretend that the
     # `item` argument is positional-only.
-    def index(self, item: _T, start: SupportsIndex = 0, stop: SupportsIndex = sys.maxsize, /) -> int: ...
+    def index(
+        self, item: _T, start: SupportsIndex = 0, stop: SupportsIndex = sys.maxsize, /
+    ) -> int: ...
     # All arguments are passed to `list.sort` at runtime, so the signature should be kept in line with `list.sort`.
     @overload
-    def sort(self: UserList[SupportsRichComparisonT], *, key: None = None, reverse: bool = False) -> None: ...
+    def sort(
+        self: UserList[SupportsRichComparisonT], *, key: None = None, reverse: bool = False
+    ) -> None: ...
     @overload
-    def sort(self, *, key: Callable[[_T], SupportsRichComparison], reverse: bool = False) -> None: ...
+    def sort(
+        self, *, key: Callable[[_T], SupportsRichComparison], reverse: bool = False
+    ) -> None: ...
     def extend(self, other: Iterable[_T]) -> None: ...
 
 class UserString(Sequence[UserString]):
@@ -182,8 +217,12 @@ class UserString(Sequence[UserString]):
     def casefold(self) -> Self: ...
     def center(self, width: int, *args: Any) -> Self: ...
     def count(self, sub: str | UserString, start: int = 0, end: int = sys.maxsize) -> int: ...
-    def encode(self: UserString, encoding: str | None = "utf-8", errors: str | None = "strict") -> bytes: ...
-    def endswith(self, suffix: str | tuple[str, ...], start: int | None = 0, end: int | None = sys.maxsize) -> bool: ...
+    def encode(
+        self: UserString, encoding: str | None = "utf-8", errors: str | None = "strict"
+    ) -> bytes: ...
+    def endswith(
+        self, suffix: str | tuple[str, ...], start: int | None = 0, end: int | None = sys.maxsize
+    ) -> bool: ...
     def expandtabs(self, tabsize: int = 8) -> Self: ...
     def find(self, sub: str | UserString, start: int = 0, end: int = sys.maxsize) -> int: ...
     def format(self, *args: Any, **kwds: Any) -> str: ...
@@ -211,7 +250,9 @@ class UserString(Sequence[UserString]):
         def removeprefix(self, prefix: str | UserString, /) -> Self: ...
         def removesuffix(self, suffix: str | UserString, /) -> Self: ...
 
-    def replace(self, old: str | UserString, new: str | UserString, maxsplit: int = -1) -> Self: ...
+    def replace(
+        self, old: str | UserString, new: str | UserString, maxsplit: int = -1
+    ) -> Self: ...
     def rfind(self, sub: str | UserString, start: int = 0, end: int = sys.maxsize) -> int: ...
     def rindex(self, sub: str | UserString, start: int = 0, end: int = sys.maxsize) -> int: ...
     def rjust(self, width: int, *args: Any) -> Self: ...
@@ -220,7 +261,9 @@ class UserString(Sequence[UserString]):
     def split(self, sep: str | None = None, maxsplit: int = -1) -> list[str]: ...
     def rsplit(self, sep: str | None = None, maxsplit: int = -1) -> list[str]: ...
     def splitlines(self, keepends: bool = False) -> list[str]: ...
-    def startswith(self, prefix: str | tuple[str, ...], start: int | None = 0, end: int | None = sys.maxsize) -> bool: ...
+    def startswith(
+        self, prefix: str | tuple[str, ...], start: int | None = 0, end: int | None = sys.maxsize
+    ) -> bool: ...
     def strip(self, chars: str | None = None) -> Self: ...
     def swapcase(self) -> Self: ...
     def title(self) -> Self: ...
@@ -363,13 +406,17 @@ class OrderedDict(dict[_KT, _VT]):
     # See #3800 & https://github.com/python/typing/issues/548#issuecomment-683336963.
     @classmethod
     @overload
-    def fromkeys(cls, iterable: Iterable[_T], value: None = None) -> OrderedDict[_T, Any | None]: ...
+    def fromkeys(
+        cls, iterable: Iterable[_T], value: None = None
+    ) -> OrderedDict[_T, Any | None]: ...
     @classmethod
     @overload
     def fromkeys(cls, iterable: Iterable[_T], value: _S) -> OrderedDict[_T, _S]: ...
     # Keep OrderedDict.setdefault in line with MutableMapping.setdefault, modulo positional-only differences.
     @overload
-    def setdefault(self: OrderedDict[_KT, _T | None], key: _KT, default: None = None) -> _T | None: ...
+    def setdefault(
+        self: OrderedDict[_KT, _T | None], key: _KT, default: None = None
+    ) -> _T | None: ...
     @overload
     def setdefault(self, key: _KT, default: _VT) -> _VT: ...
     # Same as dict.pop, but accepts keyword arguments
@@ -395,7 +442,9 @@ class defaultdict(dict[_KT, _VT]):
     @overload
     def __init__(self) -> None: ...
     @overload
-    def __init__(self: defaultdict[str, _VT], **kwargs: _VT) -> None: ...  # pyright: ignore[reportInvalidTypeVarUse]  #11780
+    def __init__(
+        self: defaultdict[str, _VT], **kwargs: _VT
+    ) -> None: ...  # pyright: ignore[reportInvalidTypeVarUse]  #11780
     @overload
     def __init__(self, default_factory: Callable[[], _VT] | None, /) -> None: ...
     @overload
@@ -406,7 +455,9 @@ class defaultdict(dict[_KT, _VT]):
         **kwargs: _VT,
     ) -> None: ...
     @overload
-    def __init__(self, default_factory: Callable[[], _VT] | None, map: SupportsKeysAndGetItem[_KT, _VT], /) -> None: ...
+    def __init__(
+        self, default_factory: Callable[[], _VT] | None, map: SupportsKeysAndGetItem[_KT, _VT], /
+    ) -> None: ...
     @overload
     def __init__(
         self: defaultdict[str, _VT],  # pyright: ignore[reportInvalidTypeVarUse]  #11780
@@ -416,7 +467,9 @@ class defaultdict(dict[_KT, _VT]):
         **kwargs: _VT,
     ) -> None: ...
     @overload
-    def __init__(self, default_factory: Callable[[], _VT] | None, iterable: Iterable[tuple[_KT, _VT]], /) -> None: ...
+    def __init__(
+        self, default_factory: Callable[[], _VT] | None, iterable: Iterable[tuple[_KT, _VT]], /
+    ) -> None: ...
     @overload
     def __init__(
         self: defaultdict[str, _VT],  # pyright: ignore[reportInvalidTypeVarUse]  #11780
@@ -458,7 +511,9 @@ class ChainMap(MutableMapping[_KT, _VT]):
     def __bool__(self) -> bool: ...
     # Keep ChainMap.setdefault in line with MutableMapping.setdefault, modulo positional-only differences.
     @overload
-    def setdefault(self: ChainMap[_KT, _T | None], key: _KT, default: None = None) -> _T | None: ...
+    def setdefault(
+        self: ChainMap[_KT, _T | None], key: _KT, default: None = None
+    ) -> _T | None: ...
     @overload
     def setdefault(self, key: _KT, default: _VT) -> _VT: ...
     @overload
