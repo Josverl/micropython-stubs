@@ -452,3 +452,10 @@ class AbstractBlockDev(Protocol):
         detailed above. Other operations should return 0 on success and non-zero
         for failure, with the value returned being an ``OSError`` errno code.
         """
+
+# HID_Tuple is used in multiple pyb.submodulles
+HID_Tuple: TypeAlias = tuple[int, int, int, int, bytes]
+
+# pathlike is used in multiple stdlib stubs - bit does not exists in micropython
+# copied from typeshed/stdlib/os.pyi as os.pyi cannot import from a module with the same name
+

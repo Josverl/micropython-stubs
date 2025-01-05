@@ -14,13 +14,16 @@ from array import array
 from collections.abc import Sequence
 from typing import NoReturn, overload
 
-from _mpy_shed import (AbstractBlockDev, _OldAbstractBlockDev,
-                       _OldAbstractReadOnlyBlockDev)
+from _mpy_shed import (
+    AbstractBlockDev,
+    _OldAbstractBlockDev,
+    _OldAbstractReadOnlyBlockDev,
+    HID_Tuple,
+)
 from typing_extensions import TypeAlias
 
 from .UART import UART
 
-HID_Tuple: TypeAlias = tuple[int, int, int, int, bytes]
 from .Accel import *
 from .ADC import *
 from .CAN import *
