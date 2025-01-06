@@ -752,7 +752,7 @@
 |micropython |v1.24-La|frozen  |unix|GENERIC|12|1.23.2|[stubs/micropython-v1_24_0_preview-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/unix/GENERIC)
 |micropython |v1.24-La|frozen  |webassembly|GENERIC|36|1.23.2|[stubs/micropython-v1_24_0_preview-frozen/webassembly/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/webassembly/GENERIC)
 |micropython |v1.24-La|frozen  |windows|GENERIC|8|1.23.2|[stubs/micropython-v1_24_0_preview-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0_preview-frozen/windows/GENERIC)
-|micropython |v1.24.1 |documentation|-|micropython|57|1.23.3|[stubs/micropython-v1_24_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-docstubs)
+|micropython |v1.24.1 |documentation|-|micropython|104|1.24.0|[stubs/micropython-v1_24_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-docstubs)
 |micropython |v1.24.1 |board   |esp32|generic|88|v1.24.0|[stubs/micropython-v1_24_1-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-esp32-ESP32_GENERIC)
 |micropython |v1.24.1 |board   |esp32|generic|88|v1.24.0|[stubs/micropython-v1_24_1-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-esp32-ESP32_GENERIC_S3)
 |micropython |v1.24.1 |board   |rp2|generic|91|v1.24.0|[stubs/micropython-v1_24_1-rp2-ARDUINO_NANO_RP2040_CONNECT](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-rp2-ARDUINO_NANO_RP2040_CONNECT)
@@ -817,4 +817,4 @@
 
 ## Metrics
 
-Total stub modules:  20721
+Total stub modules:  20768
