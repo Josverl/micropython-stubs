@@ -19,10 +19,11 @@ from typing import Tuple
 
 from machine import Pin
 from typing_extensions import TypeAlias
+from _mpy_shed import _NeoPixelBase
 
 _Color: TypeAlias = tuple[int, int, int] | tuple[int, int, int, int]
 
-class NeoPixel:
+class NeoPixel(_NeoPixelBase):
     """
     This class stores pixel data for a WS2812 LED strip connected to a pin. The
     application should set pixel data and then call :meth:`NeoPixel.write`

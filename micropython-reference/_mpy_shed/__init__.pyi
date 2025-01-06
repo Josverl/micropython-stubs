@@ -15,7 +15,7 @@ from __future__ import annotations
 import abc
 import sys
 from array import array
-from typing import Any, Final, Literal, Protocol, Type, final, overload, runtime_checkable
+from typing import Any, Final, Literal, Protocol, Tuple, Type, final, overload, runtime_checkable
 
 from _typeshed import Incomplete, structseq, AnyStr_co
 from typing_extensions import TypeAlias, TypeVar
@@ -456,3 +456,55 @@ class AbstractBlockDev(Protocol):
 
 # HID_Tuple is used in multiple pyb.submodulles
 HID_Tuple: TypeAlias = tuple[int, int, int, int, bytes]
+
+###########################
+# HashLib
+
+# manual addition to hashlib.pyi
+
+class _Hash(abc.ABC):
+    """
+    Abstract base class for hashing algorithms that defines methods available in all algorithms.
+    """
+
+    def update(self, data: AnyReadableBuf, /) -> None:
+        """
+        Feed more binary data into hash.
+        """
+
+    def digest(self) -> bytes:
+        """
+        Return hash for all data passed through hash, as a bytes object. After this
+        method is called, more data cannot be fed into the hash any longer.
+        """
+
+    def hexdigest(self) -> str:
+        """
+        This method is NOT implemented. Use ``binascii.hexlify(hash.digest())``
+        to achieve a similar effect.
+        """
+
+###########################
+# neopixel
+class _NeoPixelBase:
+    """
+    a class to add a few missing methods to the NeoPixel class
+    """
+
+    def __len__(self) -> int:
+        """
+        Returns the number of LEDs in the strip.
+        """
+        ...
+
+    def __setitem__(self, index: int, val, /) -> None:
+        """
+        Set the pixel at *index* to the value, which is an RGB/RGBW tuple.
+        """
+        ...
+
+    def __getitem__(self, index: int, /) -> Tuple:
+        """
+        Returns the pixel at *index* as an RGB/RGBW tuple.
+        """
+        ...

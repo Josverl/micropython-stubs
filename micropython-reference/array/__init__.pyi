@@ -21,8 +21,6 @@ from typing_extensions import TypeVar
 
 _T = TypeVar("_T", int, float, str)
 
-_T = TypeVar("_T", int, float, str)
-
 class array(MutableSequence[_T], Generic[_T]):
     """
     |see_cpython_module| :mod:`python:array`.
