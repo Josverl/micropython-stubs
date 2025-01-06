@@ -13,7 +13,8 @@ Module: 'usys' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Dict, List, Tuple
+from _mpy_shed import IOBase
+from typing import Callable, Dict, List, NoReturn, Tuple
 
 platform: str = "esp32"
 version_info: tuple = ()
@@ -27,15 +28,13 @@ argv: list = []
 implementation: tuple = ()
 maxsize: int = 2147483647
 
-def print_exception(
-    exc,
-    file=stdout,
-) -> None:
+def print_exception(exc: BaseException, file: IOBase = stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
 
-    Difference to CPython
+    Admonition:Difference to CPython
+       :class: attention
 
        This is simplified version of a function which appears in the
        ``traceback`` module in CPython. Unlike ``traceback.print_exception()``,
@@ -46,9 +45,7 @@ def print_exception(
     """
     ...
 
-def exit(
-    retval=0,
-) -> Incomplete:
+def exit(retval: object = 0, /) -> NoReturn:
     """
     Terminate current program with a given exit code. Underlyingly, this
     function raise as `SystemExit` exception. If an argument is given, its

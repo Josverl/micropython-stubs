@@ -15,7 +15,8 @@ Module: 'esp' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from typing import Any, Optional, overload
 
 LOG_NONE: int = 0
 LOG_WARNING: int = 2
@@ -64,18 +65,43 @@ def osdebug(uart_no, level: Optional[Any] = None) -> Incomplete:
     """
     ...
 
-def flash_write(byte_offset, bytes) -> Incomplete: ...
+def flash_write(byte_offset: int, bytes: AnyReadableBuf, /) -> None:
+    """
+    Writes given bytes buffer to the flash memory starting at the given byte offset.
+    """
+
 def gpio_matrix_in(*args, **kwargs) -> Incomplete: ...
 def gpio_matrix_out(*args, **kwargs) -> Incomplete: ...
-def flash_user_start() -> Incomplete:
+def flash_user_start() -> int:
     """
     Read the memory offset at which the user flash space begins.
     """
     ...
 
-def flash_erase(sector_no) -> Incomplete: ...
-def flash_read(byte_offset, length_or_buffer) -> Incomplete: ...
-def flash_size() -> Incomplete:
+def flash_erase(sector_no: int, /) -> None:
+    """
+    Erases the given *sector* of flash memory.
+    """
+
+@overload
+def flash_read(byte_offset: int, length_or_buffer: int, /) -> bytes:
+    """
+    Reads bytes from the flash memory starting at the given byte offset.
+    If length is specified: reads the given length of bytes and returns them as ``bytes``.
+    If a buffer is given: reads the buf length of bytes and writes them into the buffer.
+    Note: esp32 doesn't support passing a length, just a buffer.
+    """
+
+@overload
+def flash_read(byte_offset: int, length_or_buffer: AnyWritableBuf, /) -> None:
+    """
+    Reads bytes from the flash memory starting at the given byte offset.
+    If length is specified: reads the given length of bytes and returns them as ``bytes``.
+    If a buffer is given: reads the buf length of bytes and writes them into the buffer.
+    Note: esp32 doesn't support passing a length, just a buffer.
+    """
+
+def flash_size() -> int:
     """
     Read the total size of the flash memory.
     """

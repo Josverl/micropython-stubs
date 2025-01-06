@@ -41,7 +41,15 @@ Module: '_asyncio' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Coroutine, List, Tuple
+from _mpy_shed import AnyReadableBuf
+from abc import ABC
+from typing import Any, Callable, Coroutine, Dict, Generic, Iterable, List, Tuple
+from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+_T = TypeVar("_T")
+_C: TypeAlias = Coroutine[Any, None, _T] | Awaitable[_T]
+StreamReader: TypeAlias = "Stream"
+StreamWriter: TypeAlias = "Stream"
 
 class TaskQueue:
     def push(self, *args, **kwargs) -> Incomplete: ...
@@ -50,13 +58,17 @@ class TaskQueue:
     def pop(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class Task:
+class Task(Awaitable[_T], Iterable[_T], Generic[_T], ABC):
     """
-    This object wraps a coroutine into a running task.  Tasks can be waited on
-    using ``await task``, which will wait for the task to complete and return
-    the return value of the task.
-
-    Tasks should not be created directly, rather use `create_task` to create them.
+    class Task
+    ----------
     """
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None:
+        """
+        This object wraps a coroutine into a running task.  Tasks can be waited on
+        using ``await task``, which will wait for the task to complete and return
+        the return value of the task.
+
+        Tasks should not be created directly, rather use `create_task` to create them.
+        """

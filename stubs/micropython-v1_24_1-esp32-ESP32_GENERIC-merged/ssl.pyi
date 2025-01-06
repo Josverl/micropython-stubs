@@ -17,8 +17,14 @@ Module: 'ssl' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from ssl import *
+from _mpy_shed import StrOrBytesPath
+from socket import socket
 from stdlib.ssl import *
-from typing import IO, List
+from typing import List
+from typing_extensions import TypeAlias
+
+SSLSocket: TypeAlias = Incomplete
 
 MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"
 PROTOCOL_TLS_SERVER: int = 1
@@ -27,7 +33,16 @@ CERT_NONE: int = 0
 CERT_REQUIRED: int = 2
 CERT_OPTIONAL: int = 1
 
-def wrap_socket(sock, server_side=False, key=None, cert=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True) -> IO:
+def wrap_socket(
+    sock: socket,
+    server_side: bool = False,
+    keyfile: StrOrBytesPath | None = None,
+    certfile: StrOrBytesPath | None = None,
+    cert_reqs: int = CERT_NONE,
+    ca_certs: str | None = None,
+    do_handshake: bool = True,
+    /,
+) -> SSLSocket:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
      of this function is to first create an `SSLContext` and then call the `SSLContext.wrap_socket`
@@ -61,7 +76,14 @@ class SSLContext:
         """
         ...
 
-    def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
+    def wrap_socket(
+        self,
+        sock,
+        *,
+        server_side=False,
+        do_handshake_on_connect=True,
+        server_hostname=None,
+    ) -> Incomplete:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
         and returns an instance of ssl.SSLSocket, wrapping the underlying stream.
@@ -92,7 +114,8 @@ class SSLContext:
         with the file path of the certificate.  The *keyfile* is a string with the file path
         of the private key.
 
-        Difference to CPython
+        Admonition:Difference to CPython
+           :class: attention
 
            MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
            strings, in which case they are interpreted as the actual certificate/key data.

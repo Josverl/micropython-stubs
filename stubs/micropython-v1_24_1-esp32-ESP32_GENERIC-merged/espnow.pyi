@@ -223,7 +223,12 @@ class ESPNow(ESPNowBase, Iterator):
         ...
 
     def add_peer(
-        self, mac, lmk: Optional[Any] = None, channel: Optional[Any] = None, ifidx: Optional[Any] = None, encrypt: Optional[Any] = None
+        self,
+        mac,
+        lmk: Optional[Any] = None,
+        channel: Optional[Any] = None,
+        ifidx: Optional[Any] = None,
+        encrypt: Optional[Any] = None,
     ) -> Incomplete:
         """
         Add/register the provided *mac* address as a peer. Additional parameters may

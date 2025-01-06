@@ -17,26 +17,66 @@ Module: 'array' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, List, Optional
+from array import *
+from collections.abc import MutableSequence, Sequence
+from typing import Any, Generic, overload
+from typing_extensions import TypeVar
 
-class array(List):
+_T = TypeVar("_T", int, float, str)
+
+class array(MutableSequence[_T], Generic[_T]):
     """
-    Create array with elements of given type. Initial contents of the
-    array are given by *iterable*. If it is not provided, an empty
-    array is created.
+    |see_cpython_module| :mod:`python:array`.
+
+    Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
+    ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
+    floating-point support).
+
+     +-----------+--------------------+-------------------+-----------------------+
+     | Type code | C Type             | Python Type       | Minimum size in bytes |
+     +===========+====================+===================+=======================+
+     | ``'b'``   | signed char        | int               | 1                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'B'``   | unsigned char      | int               | 1                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'h'``   | signed short       | int               | 2                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'H'``   | unsigned short     | int               | 2                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'i'``   | signed int         | int               | 2                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'I'``   | unsigned int       | int               | 2                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'l'``   | signed long        | int               | 4                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'L'``   | unsigned long      | int               | 4                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'q'``   | signed long long   | int               | 8                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'Q'``   | unsigned long long | int               | 8                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'f'``   | float              | float             | 4                     |
+     +-----------+--------------------+-------------------+-----------------------+
+     | ``'d'``   | double             | float             | 8                     |
+     +-----------+--------------------+-------------------+-----------------------+
     """
 
-    def extend(self, iterable) -> Incomplete:
+    def extend(self, iterable: Sequence[Any], /) -> None:
         """
         Append new elements as contained in *iterable* to the end of
         array, growing it.
         """
         ...
 
-    def append(self, val) -> Incomplete:
+    def append(self, val: Any, /) -> None:
         """
         Append new element *val* to the end of array, growing it.
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None:
+        """
+        Create array with elements of given type. Initial contents of the
+        array are given by *iterable*. If it is not provided, an empty
+        array is created.
+        """

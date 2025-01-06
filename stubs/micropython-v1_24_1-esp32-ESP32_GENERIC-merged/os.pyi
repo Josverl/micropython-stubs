@@ -17,6 +17,8 @@ Module: 'os' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from os import *
+from _mpy_shed import uname_result
 from stdlib.os import *
 from typing import Any, IO, Iterator, Optional, Tuple
 
@@ -109,10 +111,7 @@ def mkdir(path) -> Incomplete:
     """
     ...
 
-def dupterm(
-    stream_object,
-    index=0,
-) -> IO:
+def dupterm(stream_object, index=0, /) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
     object. The *stream_object* argument must be a native stream object, or derive

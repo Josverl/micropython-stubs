@@ -40,12 +40,20 @@ Module: 'asyncio.__init__' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # MCU: {'family': 'micropython', 'version': '1.24.1', 'build': '', 'ver': '1.24.1', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'cpu': 'ESP32', 'mpy': 'v6.3', 'arch': 'xtensawin'}
 # Stubber: v1.24.0
 from __future__ import annotations
-from typing import Any, Coroutine, List, Tuple, Generator
+from typing import Any, Callable, Coroutine, Dict, Generic, Iterable, List, Tuple, Generator
 from _typeshed import Incomplete
+from _mpy_shed import AnyReadableBuf
+from abc import ABC
+from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+_T = TypeVar("_T")
+_C: TypeAlias = Coroutine[Any, None, _T] | Awaitable[_T]
+StreamReader: TypeAlias = "Stream"
+StreamWriter: TypeAlias = "Stream"
 
 _attrs: dict = {}
 
-def create_task(coro) -> Task:
+def create_task(coro: _C, /) -> Task:
     """
     Create a new task from the given coroutine and schedule it to run.
 
@@ -61,7 +69,7 @@ def current_task() -> Task:
 
 def ticks_diff(*args, **kwargs) -> Incomplete: ...
 def ticks_add(*args, **kwargs) -> Incomplete: ...
-def get_event_loop() -> Incomplete:
+def get_event_loop() -> Loop:
     """
     Return the event loop used to schedule and run tasks.  See `Loop`.
     """
@@ -69,7 +77,7 @@ def get_event_loop() -> Incomplete:
 
 def ticks(*args, **kwargs) -> Incomplete: ...
 def run_until_complete(*args, **kwargs) -> Incomplete: ...
-def new_event_loop() -> Incomplete:
+def new_event_loop() -> Loop:
     """
     Reset the event loop and return it.
 
@@ -78,7 +86,7 @@ def new_event_loop() -> Incomplete:
     """
     ...
 
-def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
+def wait_for_ms(awaitable: Awaitable[_T], timeout: int, /) -> Coroutine[Incomplete, Any, Any]:
     """
     Similar to `wait_for` but *timeout* is an integer in milliseconds.
 
@@ -86,7 +94,7 @@ def wait_for_ms(awaitable, timeout) -> Coroutine[Incomplete, Any, Any]:
     """
     ...
 
-def sleep(t) -> Coroutine[Incomplete, Any, Any]:
+def sleep(t: float, /) -> Coroutine[Incomplete, Any, Any]:
     """
     Sleep for *t* seconds (can be a float).
 
@@ -94,7 +102,7 @@ def sleep(t) -> Coroutine[Incomplete, Any, Any]:
     """
     ...
 
-def run(coro) -> Incomplete:
+def run(coro: Coroutine[Any, None, _T] | Awaitable[_T], /) -> _T:
     """
     Create a new task from the given coroutine and run it until it completes.
 
@@ -102,7 +110,7 @@ def run(coro) -> Incomplete:
     """
     ...
 
-def sleep_ms(t) -> Coroutine[Incomplete, Any, Any]:
+def sleep_ms(t: int, /) -> Coroutine[Incomplete, Any, Any]:
     """
     Sleep for *t* milliseconds.
 
@@ -127,23 +135,25 @@ wait_for: Generator  ## = <generator>
 open_connection: Generator  ## = <generator>
 start_server: Generator  ## = <generator>
 
-class Task:
+class Task(Awaitable[_T], Iterable[_T], Generic[_T], ABC):
     """
-    This object wraps a coroutine into a running task.  Tasks can be waited on
-    using ``await task``, which will wait for the task to complete and return
-    the return value of the task.
-
-    Tasks should not be created directly, rather use `create_task` to create them.
+    class Task
+    ----------
     """
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None:
+        """
+        This object wraps a coroutine into a running task.  Tasks can be waited on
+        using ``await task``, which will wait for the task to complete and return
+        the return value of the task.
 
-class Lock:
+        Tasks should not be created directly, rather use `create_task` to create them.
+        """
+
+class Lock(Awaitable[None], ABC):
     """
-    Create a new lock which can be used to coordinate tasks.  Locks start in
-    the unlocked state.
-
-    In addition to the methods below, locks can be used in an ``async with`` statement.
+    class Lock
+    ----------
     """
 
     def locked(self) -> bool:
@@ -152,7 +162,7 @@ class Lock:
         """
         ...
 
-    def release(self) -> Incomplete:
+    def release(self) -> None:
         """
         Release the lock.  If any tasks are waiting on the lock then the next one in the
         queue is scheduled to run and the lock remains locked.  Otherwise, no tasks are
@@ -160,7 +170,13 @@ class Lock:
         """
         ...
     acquire: Generator  ## = <generator>
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None:
+        """
+        Create a new lock which can be used to coordinate tasks.  Locks start in
+        the unlocked state.
+
+        In addition to the methods below, locks can be used in an ``async with`` statement.
+        """
 
 class Loop:
     """
@@ -175,26 +191,26 @@ class Loop:
         """
         ...
 
-    def default_exception_handler(self, context) -> Incomplete:
+    def default_exception_handler(self, context: Dict[str, Any], /) -> None:
         """
         The default exception handler that is called.
         """
         ...
 
-    def set_exception_handler(self, handler) -> None:
+    def set_exception_handler(self, handler: Callable[[Loop, Dict[str, Any]], None] | None, /) -> None:
         """
         Set the exception handler to call when a Task raises an exception that is not
         caught.  The *handler* should accept two arguments: ``(loop, context)``.
         """
         ...
 
-    def run_forever(self) -> Incomplete:
+    def run_forever(self) -> None:
         """
         Run the event loop until `stop()` is called.
         """
         ...
 
-    def run_until_complete(self, awaitable) -> Incomplete:
+    def run_until_complete(self, awaitable: Awaitable[_T], /) -> None:
         """
         Run the given *awaitable* until it completes.  If *awaitable* is not a task
         then it will be promoted to one.
@@ -213,20 +229,24 @@ class Loop:
         """
         ...
 
-    def create_task(self, coro) -> Task:
+    def create_task(self, coro: _C, /) -> Task:
         """
         Create a task from the given *coro* and return the new `Task` object.
         """
         ...
 
-    def call_exception_handler(self, context) -> Incomplete:
+    def call_exception_handler(self, context: Dict[str, Any], /) -> None:
         """
         Call the current exception handler.  The argument *context* is passed through and
         is a dictionary containing keys: ``'message'``, ``'exception'``, ``'future'``.
         """
         ...
     _exc_handler: Incomplete  ## <class 'NoneType'> = None
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None:
+        """
+        This represents the object which schedules and runs tasks.  It cannot be
+        created, use `get_event_loop` instead.
+        """
 
 class IOQueue:
     def queue_read(self, *args, **kwargs) -> Incomplete: ...
@@ -239,8 +259,8 @@ class IOQueue:
 
 class Event:
     """
-    Create a new event which can be used to synchronise tasks.  Events start
-    in the cleared state.
+    class Event
+    -----------
     """
 
     def set(self) -> None:
@@ -264,13 +284,16 @@ class Event:
         """
         ...
     wait: Generator  ## = <generator>
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None:
+        """
+        Create a new event which can be used to synchronise tasks.  Events start
+        in the cleared state.
+        """
 
 class ThreadSafeFlag:
     """
-    Create a new flag which can be used to synchronise a task with code running
-    outside the asyncio loop, such as other threads, IRQs, or scheduler
-    callbacks.  Flags start in the cleared state.
+    class ThreadSafeFlag
+    --------------------
     """
 
     def set(self) -> None:
@@ -288,7 +311,12 @@ class ThreadSafeFlag:
         """
         ...
     wait: Generator  ## = <generator>
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None:
+        """
+        Create a new flag which can be used to synchronise a task with code running
+        outside the asyncio loop, such as other threads, IRQs, or scheduler
+        callbacks.  Flags start in the cleared state.
+        """
 
 class TimeoutError(Exception): ...
 
