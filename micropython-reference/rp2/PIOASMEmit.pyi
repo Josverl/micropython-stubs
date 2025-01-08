@@ -4,7 +4,7 @@ Module: '_rp2.PIOASMEmit'
 
 from __future__ import annotations
 
-from typing import Callable, Dict, List, Union
+from typing import Dict, List
 
 from _typeshed import Incomplete
 
