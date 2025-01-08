@@ -14,8 +14,9 @@ data format.
 from __future__ import annotations
 
 from typing import Any, AnyStr, Tuple, overload
+from _typeshed import Incomplete
 
-from _mpy_shed import IOBase, Incomplete
+from _mpy_shed import IOBase
 
 @overload
 def dumps(obj: Any) -> str:

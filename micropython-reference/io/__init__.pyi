@@ -81,7 +81,9 @@ from __future__ import annotations
 from array import array
 from typing import TypeVar, overload
 
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, IOBase, PathLike
+
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, IOBase, PathLike, TextIOWrapper, FileIO
+from _mpy_shed.io_modes import _OpenBinaryMode, _OpenTextModeWriting
 from typing_extensions import TypeVar
 
 _T = TypeVar("_T")
@@ -205,7 +207,7 @@ class BytesIO(IOBase):
         ...
 
 @overload
-def open(name: _OpenFile, /, **kwargs) -> "TextIOWrapper":
+def open(name: _OpenFile, /, **kwargs) -> TextIOWrapper:
     """
     Open a file. Builtin ``open()`` function is aliased to this function.
     All ports (which provide access to file system) are required to support
@@ -213,7 +215,7 @@ def open(name: _OpenFile, /, **kwargs) -> "TextIOWrapper":
     """
 
 @overload
-def open(name: _OpenFile, mode: _OpenTextModeWriting = ..., /, **kwargs) -> "TextIOWrapper":
+def open(name: _OpenFile, mode: _OpenTextModeWriting = ..., /, **kwargs) -> TextIOWrapper:
     """
     Open a file. Builtin ``open()`` function is aliased to this function.
     All ports (which provide access to file system) are required to support
@@ -221,7 +223,7 @@ def open(name: _OpenFile, mode: _OpenTextModeWriting = ..., /, **kwargs) -> "Tex
     """
 
 @overload
-def open(name: _OpenFile, mode: _OpenBinaryMode = ..., /, **kwargs) -> "FileIO":
+def open(name: _OpenFile, mode: _OpenBinaryMode = ..., /, **kwargs) -> FileIO:
     """
     Open a file. Builtin ``open()`` function is aliased to this function.
     All ports (which provide access to file system) are required to support

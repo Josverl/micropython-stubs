@@ -6,8 +6,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
-
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 
 class DMA:
     """

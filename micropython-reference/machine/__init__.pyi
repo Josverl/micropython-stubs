@@ -19,21 +19,21 @@ from typing import Any, NoReturn, Optional, overload
 
 from _typeshed import Incomplete
 
-from .ADC import *
-from .ADCBlock import *
-from .I2C import *
-from .I2S import *
-from .Pin import *
-from .PWM import *
-from .RTC import *
-from .SD import *
-from .SDCard import *
-from .Signal import *
-from .SPI import *
-from .Timer import *
-from .UART import *
-from .USBDevice import *
-from .WDT import *
+from machine.ADC import ADC
+from machine.ADCBlock import ADCBlock
+from machine.I2C import I2C
+from machine.I2S import I2S
+from machine.Pin import Pin
+from machine.PWM import PWM
+from machine.RTC import RTC
+from machine.SD import SD
+from machine.SDCard import SDCard
+from machine.Signal import Signal
+from machine.SPI import SPI
+from machine.Timer import Timer
+from machine.UART import UART
+from machine.USBDevice import USBDevice
+from machine.WDT import WDT
 
 mem8: Incomplete
 """Read/write 8 bits of memory."""

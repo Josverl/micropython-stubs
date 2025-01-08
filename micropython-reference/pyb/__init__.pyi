@@ -22,26 +22,24 @@ from _mpy_shed import (
 )
 from typing_extensions import TypeAlias
 
-from .UART import UART
-
-from .Accel import *
-from .ADC import *
-from .CAN import *
-from .DAC import *
-from .ExtInt import *
-from .Flash import *
-from .I2C import *
-from .LCD import *
-from .LED import *
-from .Pin import *
-from .RTC import *
-from .Servo import *
-from .SPI import *
-from .Switch import *
-from .Timer import *
-from .UART import *
-from .USB_HID import *
-from .USB_VCP import *
+from pyb.Accel import Accel
+from pyb.ADC import ADC
+from pyb.CAN import CAN
+from pyb.DAC import DAC
+from pyb.ExtInt import ExtInt
+from pyb.Flash import Flash
+from pyb.I2C import I2C
+from pyb.LCD import LCD
+from pyb.LED import LED
+from pyb.Pin import Pin
+from pyb.RTC import RTC
+from pyb.Servo import Servo
+from pyb.SPI import SPI
+from pyb.Switch import Switch
+from pyb.Timer import Timer
+from pyb.UART import UART
+from pyb.USB_HID import USB_HID
+from pyb.USB_VCP import USB_VCP
 
 hid_mouse: HID_Tuple
 """\

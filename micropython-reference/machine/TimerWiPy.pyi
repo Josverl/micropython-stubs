@@ -45,7 +45,15 @@ class TimerWiPy:
         """
         ...
 
-    def channel(self, channel, *, freq, period, polarity=POSITIVE, duty_cycle=0) -> Incomplete:
+    def channel(
+        self,
+        channel,
+        *,
+        freq: int,
+        period: int,
+        polarity: Incomplete,
+        duty_cycle: int = 0,
+    ) -> Incomplete:
         """
         If only a channel identifier passed, then a previously initialized channel
         object is returned (or ``None`` if there is no previous channel).

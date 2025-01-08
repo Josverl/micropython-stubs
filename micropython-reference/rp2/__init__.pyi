@@ -18,12 +18,12 @@ for example code.
 from __future__ import annotations
 
 from typing import Callable, List, Union
-
-from .PIO import PIO
-from .PIOASMEmit import PIOASMEmit
 from _typeshed import Incomplete
-from machine import Pin
 from typing_extensions import TypeAlias
+
+from rp2.PIO import PIO
+from rp2.PIOASMEmit import PIOASMEmit
+from machine import Pin
 
 _PIO_ASM_Program: TypeAlias = Callable
 

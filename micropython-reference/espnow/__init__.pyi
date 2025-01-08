@@ -10,10 +10,13 @@ MicroPython module: https://docs.micropython.org/en/v1.24.0/library/aioespnow.ht
 # origin module:: repos/micropython/docs/library/espnow.rst
 from __future__ import annotations
 
-from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
+from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, Union
 
 from _espnow import ESPNowBase  # type: ignore
-from _typeshed import Incomplete
+from _typeshed import Incomplete, TypeAlias
+
+_MACAddress: TypeAlias = bytes  # # MAC address (a 6-byte byte-string)
+_PeerInfo: TypeAlias = Tuple[_MACAddress, bytes, int, int, bool]  # # peer info tuple
 
 MAX_DATA_LEN: Incomplete = 250
 KEY_LEN: Incomplete = 16
@@ -133,7 +136,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def send(self, peer, msg, mac=None, sync=True) -> Incomplete:
+    def send(self, peer, msg, mac: _MACAddress | None = None, sync=True) -> Incomplete:
         """
         Send the data contained in ``msg`` to the peer with given network ``mac``
         address. In the second form, ``mac=None`` and ``sync=True``. The peer must
@@ -180,7 +183,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def recv(self, timeout_ms: Optional[Any] = None) -> Union[List, Tuple[None, None]]:
+    def recv(self, timeout_ms: Optional[Any] = None) -> Tuple[_MACAddress | None, bytes | None]:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using
@@ -220,7 +223,9 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def irecv(self, timeout_ms: Optional[Any] = None) -> Incomplete:
+    def irecv(
+        self, timeout_ms: Optional[int] = None
+    ) -> Tuple[_MACAddress | bytearray | None, bytearray | None]:
         """
         Works like `ESPNow.recv()` but will reuse internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
@@ -251,7 +256,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def recvinto(self, data, timeout_ms: Optional[Any] = None) -> int:
+    def recvinto(self, data: List, timeout_ms: Optional[int] = None) -> int:
         """
         Wait for an incoming message and return the length of the message in bytes.
         This is the low-level method used by both `recv()<ESPNow.recv()>` and
@@ -286,7 +291,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def any(self) -> Incomplete:
+    def any(self) -> bool:
         """
         Check if data is available to be read with `ESPNow.recv()`.
 
@@ -306,7 +311,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def stats(self) -> Incomplete:
+    def stats(self) -> Tuple[int, int, int, int, int]:
         """
         Returns:
 
@@ -323,7 +328,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def set_pmk(self, pmk) -> None:
+    def set_pmk(self, pmk: bytes | bytearray | str) -> None:
         """
         Set the Primary Master Key (PMK) which is used to encrypt the Local Master
         Keys (LMK) for encrypting messages. If this is not set, a default PMK is
@@ -352,11 +357,11 @@ class ESPNow(ESPNowBase, Iterator):
 
     def add_peer(
         self,
-        mac,
-        lmk: Optional[Any] = None,
-        channel: Optional[Any] = None,
-        ifidx: Optional[Any] = None,
-        encrypt: Optional[Any] = None,
+        mac: _MACAddress,
+        lmk: Optional[bytes | bytearray | str] = None,
+        channel: Optional[int] = None,
+        ifidx: Optional[int] = None,
+        encrypt: Optional[bool] = True,
     ) -> Incomplete:
         """
         Add/register the provided *mac* address as a peer. Additional parameters may
@@ -412,7 +417,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def del_peer(self, mac) -> Incomplete:
+    def del_peer(self, mac: _MACAddress) -> None:
         """
         Deregister the peer associated with the provided *mac* address.
 
@@ -429,7 +434,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def get_peer(self, mac) -> Incomplete:
+    def get_peer(self, mac: _MACAddress) -> _PeerInfo:
         """
         Return information on a registered peer.
 
@@ -458,14 +463,21 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def get_peers(self) -> Tuple:
+    def get_peers(self) -> Tuple[_PeerInfo, ...]:
         """
         Return the "peer info" parameters for all the registered peers (as a tuple
         of tuples).
         """
         ...
 
-    def mod_peer(self, mac, param=value, *args, **kwargs) -> None:
+    def mod_peer(
+        self,
+        mac: _MACAddress,
+        lmk: Optional[bytes | bytearray | str] = None,
+        channel: Optional[int] = None,
+        ifidx: Optional[int] = None,
+        encrypt: Optional[bool] = True,
+    ) -> None:
         """
         Modify the parameters of the peer associated with the provided *mac*
         address. Parameters may be provided as positional or keyword arguments
@@ -474,7 +486,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def irq(self, callback) -> Incomplete:
+    def irq(self, callback:Callable) -> Incomplete:
         """
         Set a callback function to be called *as soon as possible* after a message has
         been received from another ESPNow device. The callback function will be called

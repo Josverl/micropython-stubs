@@ -6,15 +6,14 @@ from __future__ import annotations
 
 from typing import Callable, Final, Literal, Optional
 
-from _typeshed import Incomplete
 from _mpy_shed import _IRQ
+from _typeshed import Incomplete
 from typing_extensions import TypeAlias
-
 
 from .StateMachine import StateMachine
 
-_PIO_ASM_Program: TypeAlias = Incomplete # ? Callable
-_IRQ_TRIGGERS = Literal[256, 512, 1024, 2048]
+_PIO_ASM_Program: TypeAlias = Incomplete  # ? Callable
+_IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 
 class PIO:
     """
@@ -26,17 +25,17 @@ class PIO:
 
     #
     JOIN_NONE: int = 0
-    """These constants are used for the *fifo_join* argument to `asm_pio`."""    
+    """These constants are used for the *fifo_join* argument to `asm_pio`."""
     JOIN_TX: int = 1
-    """These constants are used for the *fifo_join* argument to `asm_pio`."""    
+    """These constants are used for the *fifo_join* argument to `asm_pio`."""
     JOIN_RX: int = 2
-    """These constants are used for the *fifo_join* argument to `asm_pio`."""    
+    """These constants are used for the *fifo_join* argument to `asm_pio`."""
     #
     IN_LOW: Final[int] = 0
     """\
     These constants are used for the *out_init*, *set_init*, and *sideset_init*
     arguments to `asm_pio`.
-    """    
+    """
     IN_HIGH: Final[int] = 1
     """\
     These constants are used for the *out_init*, *set_init*, and *sideset_init*
@@ -47,7 +46,7 @@ class PIO:
     """\
     These constants are used for the *out_init*, *set_init*, and *sideset_init*
     arguments to `asm_pio`.
-    """    
+    """
     OUT_HIGH: Final[int] = 3
     """\
     These constants are used for the *out_init*, *set_init*, and *sideset_init*
@@ -58,12 +57,12 @@ class PIO:
     """\
     These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
     to `asm_pio` or `StateMachine.init`.
-    """    
+    """
     SHIFT_RIGHT: Final[int] = 1
     """\
     These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
     to `asm_pio` or `StateMachine.init`.
-    """    
+    """
 
     def __init__(self, id) -> None: ...
     def add_program(self, program: _PIO_ASM_Program) -> None:

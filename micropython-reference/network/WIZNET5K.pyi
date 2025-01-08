@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any
 
-import pyb
+from machine import Pin, SPI
 
 class WIZNET5K:
     """
@@ -16,7 +16,7 @@ class WIZNET5K:
     Example usage::
 
         import network
-        nic = network.WIZNET5K(pyb.SPI(1), pyb.Pin.board.X5, pyb.Pin.board.X4)
+        nic = network.WIZNET5K(SPI(1), Pin.board.X5, Pin.board.X4)
         print(nic.ifconfig())
 
         # now use socket as usual
@@ -33,22 +33,22 @@ class WIZNET5K:
     It is possible to use other SPI buses and other pins for nSS and nRESET.
     """
 
-    def __init__(self, spi: pyb.SPI, pin_cs: pyb.Pin, pin_rst: pyb.Pin, /) -> None:
+    def __init__(self, spi: SPI, pin_cs: Pin, pin_rst: Pin, /) -> None:
         """
         Create a WIZNET5K driver object, initialise the WIZnet5x00 module using the given
         SPI bus and pins, and return the WIZNET5K object.
 
         Arguments are:
 
-          - *spi* is an :ref:`SPI object <pyb.SPI>` which is the SPI bus that the WIZnet5x00 is
+          - *spi* is an :ref:`SPI object <SPI>` which is the SPI bus that the WIZnet5x00 is
             connected to (the MOSI, MISO and SCLK pins).
-          - *pin_cs* is a :ref:`Pin object <pyb.Pin>` which is connected to the WIZnet5x00 nSS pin.
-          - *pin_rst* is a :ref:`Pin object <pyb.Pin>` which is connected to the WIZnet5x00 nRESET pin.
+          - *pin_cs* is a :ref:`Pin object <Pin>` which is connected to the WIZnet5x00 nSS pin.
+          - *pin_rst* is a :ref:`Pin object <Pin>` which is connected to the WIZnet5x00 nRESET pin.
 
         All of these objects will be initialised by the driver, so there is no need to
         initialise them yourself.  For example, you can use::
 
-          nic = network.WIZNET5K(pyb.SPI(1), pyb.Pin.board.X5, pyb.Pin.board.X4)
+          nic = network.WIZNET5K(SPI(1), Pin.board.X5, Pin.board.X4)
         """
 
     def regs(self) -> Any:

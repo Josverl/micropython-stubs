@@ -1,8 +1,107 @@
-""" """
+"""
+A MicroPython driver for the WM8960 audio codec.
+"""
 
 from __future__ import annotations
 
 from _typeshed import Incomplete
+
+from micropython import const
+
+WM8960_I2C_ADDR = const(0x1A)
+"""Default I2C address"""
+
+# Config symbol names
+# Modules
+MODULE_ADC = const(0)
+"""ADC module in WM8960"""
+MODULE_DAC = const(1)
+"""DAC module in WM8960"""
+MODULE_VREF = const(2)
+"""VREF module"""
+MODULE_HEADPHONE = const(3)
+"""Headphone"""
+MODULE_MIC_BIAS = const(4)
+"""Mic bias"""
+MODULE_MIC = const(5)
+"""Input Mic"""
+MODULE_LINE_IN = const(6)
+"""Analog in PGA"""
+MODULE_LINE_OUT = const(7)
+"""Line out module"""
+MODULE_SPEAKER = const(8)
+"""Speaker module"""
+MODULE_OMIX = const(9)
+"""Output mixer"""
+MODULE_MONO_OUT = const(10)
+"""Mono mix"""
+
+# Route
+ROUTE_BYPASS = const(0)
+"""LINEIN->Headphone."""
+ROUTE_PLAYBACK = const(1)
+""" I2SIN->DAC->Headphone."""
+ROUTE_PLAYBACK_RECORD = const(2)
+"""I2SIN->DAC->Headphone, LINEIN->ADC->I2SOUT."""
+ROUTE_RECORD = const(5)
+"""LINEIN->ADC->I2SOUT."""
+
+# Input
+INPUT_CLOSED = const(0)
+"""Input device is closed"""
+INPUT_MIC1 = const(1)
+"""Input as single ended mic, only use L/RINPUT1"""
+INPUT_MIC2 = const(2)
+"""Input as diff. mic, use L/RINPUT1 and L/RINPUT2"""
+INPUT_MIC3 = const(3)
+"""Input as diff. mic, use L/RINPUT1 and L/RINPUT3"""
+INPUT_LINE2 = const(4)
+"""Input as line input, only use L/RINPUT2"""
+INPUT_LINE3 = const(5)
+"""Input as line input, only use L/RINPUT3"""
+
+# ADC sync input
+SYNC_ADC = const(0)
+"""Use ADCLRC pin for ADC sync"""
+SYNC_DAC = const(1)
+"""used DACLRC pin for ADC sync"""
+
+# Protocol type
+BUS_I2S = const(2)
+"""I2S type"""
+BUS_LEFT_JUSTIFIED = const(1)
+"""Left justified mode"""
+BUS_RIGHT_JUSTIFIED = const(0)
+"""Right justified mode"""
+BUS_PCMA = const(3)
+"""PCM A mode"""
+BUS_PCMB = const(3 | (1 << 4))
+"""PCM B mode"""
+
+# Channel swap
+SWAP_NONE = const(0)
+SWAP_INPUT = const(1)
+SWAP_OUTPUT = const(2)
+
+# Mute settings
+MUTE_FAST = const(0)
+MUTE_SLOW = const(1)
+
+# ALC settings
+ALC_OFF = const(0)
+ALC_RIGHT = const(1)
+ALC_LEFT = const(2)
+ALC_STEREO = const(3)
+ALC_MODE = const(0)
+"""ALC mode"""
+ALC_LIMITER = const(1)
+"""Limiter mode"""
+
+# Clock Source
+SYSCLK_MCLK = const(0)
+"""sysclk source from external MCLK"""
+SYSCLK_PLL = const(1)
+"""sysclk source from internal PLL"""
 
 class WM8960:
     """
@@ -67,19 +166,19 @@ class WM8960:
         protocol=BUS_I2S,
         i2c_address=WM8960_I2C_ADDR,
     ) -> None: ...
-    def set_left_input(self, input_source) -> Incomplete:
+    def set_left_input(self, input_source) -> None:
         """
         Specify the source for the left input.  The input source names are listed above.
         """
         ...
 
-    def set_right_input(self, input_source) -> Incomplete:
+    def set_right_input(self, input_source) -> None:
         """
         Specify the source for the right input.  The input source names are listed above.
         """
         ...
 
-    def volume(self, module, volume_l=None, volume_r=None) -> Incomplete:
+    def volume(self, module, volume_l=None, volume_r=None) -> None:
         """
         Sets or gets the volume of a certain module.
 
@@ -95,7 +194,7 @@ class WM8960:
         """
         ...
 
-    def mute(self, module, mute, soft=True, ramp=MUTE_FAST) -> Incomplete:
+    def mute(self, module, mute, soft=True, ramp=MUTE_FAST) -> None:
         """
         Mute or unmute the output. If *mute* is True, the output is muted, if ``False``
         it is unmuted.
@@ -141,7 +240,7 @@ class WM8960:
         """
         ...
 
-    def mono(self, active) -> Incomplete:
+    def mono(self, active) -> None:
         """
         If *active* is ``True``, a Mono mix is sent to the left and right output
         channel.  This is different from enabling the ``MODULE_MONO_MIX``, which
@@ -149,7 +248,7 @@ class WM8960:
         """
         ...
 
-    def alc_mode(self, channel, mode=ALC_MODE) -> Incomplete:
+    def alc_mode(self, channel, mode: int = ALC_MODE) -> None:
         """
         Enables or disables ALC mode.  Parameters are:
 
@@ -167,7 +266,7 @@ class WM8960:
         """
         ...
 
-    def alc_gain(self, target=-12, max_gain=30, min_gain=-17.25, noise_gate=-78) -> Incomplete:
+    def alc_gain(self, target=-12, max_gain=30, min_gain=-17.25, noise_gate=-78) -> None:
         """
         Set the target level, highest and lowest gain levels and the noise gate as dB level.
         Permitted ranges are:
@@ -195,7 +294,7 @@ class WM8960:
         """
         ...
 
-    def deemphasis(self, active) -> Incomplete:
+    def deemphasis(self, active) -> None:
         """
         Enables or disables a deemphasis filter for playback, with *active* being
         ``False`` or ``True``.  This filter is applied only for sample rates of
@@ -208,4 +307,16 @@ class WM8960:
         """
         Disable all modules.
         """
+        ...
+
+    def set_internal_pll_config(self, input_mclk, output_clk):
+        """ """
+        ...
+
+    def set_master_clock(self, sysclk, sample_rate, bit_width):
+        """ """
+        ...
+
+    def set_speaker_clock(self, sysclk):
+        """ """
         ...

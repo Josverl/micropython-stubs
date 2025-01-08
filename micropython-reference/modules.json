@@ -353,52 +353,8 @@
             "module": "__init__"
         },
         {
-            "file": "uarray.pyi",
-            "module": "uarray"
-        },
-        {
-            "file": "ubinascii.pyi",
-            "module": "ubinascii"
-        },
-        {
             "file": "uctypes/__init__.pyi",
             "module": "__init__"
-        },
-        {
-            "file": "uio.pyi",
-            "module": "uio"
-        },
-        {
-            "file": "ujson.pyi",
-            "module": "ujson"
-        },
-        {
-            "file": "uos.pyi",
-            "module": "uos"
-        },
-        {
-            "file": "uselect.pyi",
-            "module": "uselect"
-        },
-        {
-            "file": "usocket.pyi",
-            "module": "usocket"
-        },
-        {
-            "file": "ussl.pyi",
-            "module": "ussl"
-        },
-        {
-            "file": "ustruct.pyi",
-            "module": "ustruct"
-        },
-        {
-            "file": "utime.pyi",
-            "module": "utime"
-        },
-        {
-            "file": "uzlib.pyi",
-            "module": "uzlib"
         },
         {
             "file": "vfs/__init__.pyi",
