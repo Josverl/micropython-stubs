@@ -33,9 +33,9 @@ class VfsFat:
     Objects created by this constructor can be mounted using :func:`mount`.
     """
 
-    def __init__(self, block_dev) -> None: ...
+    def __init__(self, block_dev: AbstractBlockDev) -> None: ...
     @staticmethod
-    def mkfs(block_dev) -> None:
+    def mkfs(block_dev: AbstractBlockDev) -> None:
         """
         Build a FAT filesystem on *block_dev*.
         """
@@ -51,9 +51,9 @@ class VfsLfs1:
     See :ref:`filesystem` for more information.
     """
 
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32) -> None: ...
+    def __init__(self, block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32) -> None: ...
     @staticmethod
-    def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
+    def mkfs(block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32) -> None:
         """
             Build a Lfs1 filesystem on *block_dev*.
 
@@ -80,9 +80,9 @@ class VfsLfs2:
     See :ref:`filesystem` for more information.
     """
 
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
+    def __init__(self, block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
     @staticmethod
-    def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
+    def mkfs(block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32) -> None:
         """
             Build a Lfs2 filesystem on *block_dev*.
 
@@ -99,7 +99,7 @@ class VfsPosix:
     the host filesystem is used.
     """
 
-    def __init__(self, root=None) -> None: ...
+    def __init__(self, root: str | None = None) -> None: ...
 
 class AbstractBlockDev:
     """
@@ -108,7 +108,7 @@ class AbstractBlockDev:
     """
 
     def __init__(self, *args, **kwargs) -> None: ...
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+    def readblocks(self, block_num: int, buf, offset: Optional[int] = 0) -> Incomplete:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -124,7 +124,7 @@ class AbstractBlockDev:
         """
         ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+    def writeblocks(self, block_num: int, buf, offset: Optional[int] = 0) -> Incomplete:
         """
         The first form writes aligned, multiples of blocks, and requires that the
         blocks that are written to be first erased (if necessary) by this method.
@@ -146,7 +146,7 @@ class AbstractBlockDev:
         """
         ...
 
-    def ioctl(self, op, arg) -> int:
+    def ioctl(self, op: int, arg) -> int:
         """
          Control the block device and query its parameters.  The operation to
          perform is given by *op* which is one of the following integers:
@@ -179,7 +179,7 @@ class AbstractBlockDev:
         """
         ...
 
-def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
+def mount(fsobj, mount_point: str, *, readonly=False) -> Incomplete:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
     *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
@@ -197,7 +197,7 @@ def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     ...
 
-def umount(mount_point) -> Incomplete:
+def umount(mount_point: Incomplete) -> Incomplete:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
     or a previously-mounted filesystem object.  During the unmount process the
