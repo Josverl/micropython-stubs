@@ -70,7 +70,6 @@ from typing import Literal, Tuple, overload
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
-from stdlib.socket import *  # type: ignore
 from typing_extensions import TypeAlias
 
 _Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str

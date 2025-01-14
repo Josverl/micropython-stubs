@@ -18,7 +18,6 @@ from typing import IO, Any, Iterator, Optional, Tuple
 
 from _mpy_shed import uname_result
 from _typeshed import Incomplete
-from stdlib.os import *  # type: ignore
 
 class VfsFat:
     """
