@@ -41,7 +41,7 @@ class _SubscriptableType:
 _Subscriptable = _SubscriptableType()
 
 
-def TypeVar(type, *types):
+def TypeVar(type, *types, **kwargs):
     return None
 
 
