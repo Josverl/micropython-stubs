@@ -21,8 +21,12 @@ from typing_extensions import TypeAlias, TypeVar
 
 from .subscriptable import Subscriptable as Subscriptable
 from .IRQs import _IRQ
-from .NeoPixelBase import _NeoPixelBase as _NeoPixelBase
-from blockdevice import AbstractBlockDev as AbstractBlockDev, _OldAbstractBlockDev, _OldAbstractReadOnlyBlockDev
+from .neopixelbase import _NeoPixelBase as _NeoPixelBase
+from blockdevice import (
+    AbstractBlockDev as AbstractBlockDev,
+    _OldAbstractBlockDev,
+    _OldAbstractReadOnlyBlockDev,
+)
 
 from .io_mp import (
     BytesIO as BytesIO,
