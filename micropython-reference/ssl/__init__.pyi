@@ -19,7 +19,6 @@ from typing import List
 
 from _mpy_shed import StrOrBytesPath
 from _typeshed import Incomplete
-from stdlib.ssl import *  # type: ignore
 from typing_extensions import TypeAlias
 
 SSLSocket: TypeAlias = Incomplete
