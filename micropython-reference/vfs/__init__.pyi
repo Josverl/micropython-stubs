@@ -26,7 +26,7 @@ from typing import Optional
 
 from _typeshed import Incomplete
 
-from _mpy_shed.blockdevice import AbstractBlockDev as _AbstractBlockDev
+from _mpy_shed.blockdevice import AbstractBlockDev as AbstractBlockDev
 
 class VfsFat:
     """

@@ -15,7 +15,7 @@ damage.
 # origin module:: repos/micropython/docs/library/machine.rst
 from __future__ import annotations
 
-from typing import Any, NoReturn, Optional, overload
+from typing import Any, Final, NoReturn, Optional, overload
 
 from _typeshed import Incomplete
 
@@ -35,11 +35,11 @@ from machine.UART import UART
 from machine.USBDevice import USBDevice
 from machine.WDT import WDT
 
-mem8: Incomplete
+mem8: bytearray
 """Read/write 8 bits of memory."""
-mem16: Incomplete
+mem16: bytearray
 """Read/write 16 bits of memory."""
-mem32: int
+mem32: bytearray
 """\
 Read/write 32 bits of memory.
 
@@ -49,27 +49,27 @@ memory being accessed.
 
 Example use (registers are specific to an stm32 microcontroller):
 """
-IDLE: Incomplete
+IDLE: Final[int]
 """IRQ wake values."""
-SLEEP: Incomplete
+SLEEP: Final[int]
 """IRQ wake values."""
-DEEPSLEEP: Incomplete
+DEEPSLEEP: Final[int]
 """IRQ wake values."""
-PWRON_RESET: Incomplete
+PWRON_RESET: Final[int]
 """Reset causes."""
-HARD_RESET: Incomplete
+HARD_RESET: Final[int]
 """Reset causes."""
-WDT_RESET: Incomplete
+WDT_RESET: Final[int]
 """Reset causes."""
-DEEPSLEEP_RESET: Incomplete
+DEEPSLEEP_RESET: Final[int]
 """Reset causes."""
-SOFT_RESET: Incomplete
+SOFT_RESET: Final[int]
 """Reset causes."""
-WLAN_WAKE: Incomplete
+WLAN_WAKE: Final[int]
 """Wake-up reasons."""
-PIN_WAKE: Incomplete
+PIN_WAKE: Final[int]
 """Wake-up reasons."""
-RTC_WAKE: Incomplete
+RTC_WAKE: Final[int]
 """Wake-up reasons."""
 
 def reset() -> NoReturn:
