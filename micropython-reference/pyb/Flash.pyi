@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import overload
 
-from _mpy_shed import AbstractBlockDev
+from vfs import AbstractBlockDev
 
 class Flash(AbstractBlockDev):
     """

@@ -23,7 +23,7 @@ from .subscriptable import Subscriptable as Subscriptable
 from .IRQs import _IRQ
 from .neopixelbase import _NeoPixelBase as _NeoPixelBase
 from blockdevice import (
-    AbstractBlockDev as AbstractBlockDev,
+    _BlockDeviceProtocol as _BlockDeviceProtocol,
     _OldAbstractBlockDev,
     _OldAbstractReadOnlyBlockDev,
 )

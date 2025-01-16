@@ -28,8 +28,9 @@ from typing_extensions import TypeAlias, TypeVar
 _OldAbstractReadOnlyBlockDev: TypeAlias = Any
 _OldAbstractBlockDev: TypeAlias = Any
 
+# documented as AbstractBlockDev in the vfs module documentation
 @runtime_checkable
-class AbstractBlockDev(Protocol):
+class _BlockDeviceProtocol(Protocol):
     """
     Block devices
     -------------

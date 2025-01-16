@@ -13,7 +13,8 @@ from __future__ import annotations
 
 from typing import Any, List, Optional, Tuple, overload
 
-from _mpy_shed import AbstractBlockDev, AnyReadableBuf
+from _mpy_shed import AnyReadableBuf
+from vfs import AbstractBlockDev
 from _typeshed import Incomplete
 from machine import Pin
 

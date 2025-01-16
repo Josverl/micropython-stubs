@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from _mpy_shed import AbstractBlockDev
+from vfs import AbstractBlockDev
 
 from .Pin import Pin
 

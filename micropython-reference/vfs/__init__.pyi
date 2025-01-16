@@ -26,7 +26,7 @@ from typing import Optional
 
 from _typeshed import Incomplete
 
-from _mpy_shed.blockdevice import AbstractBlockDev as AbstractBlockDev
+from _mpy_shed import _BlockDeviceProtocol as AbstractBlockDev
 
 class VfsFat:
     """
@@ -109,13 +109,16 @@ class VfsPosix:
 
 # Attempt to allow the use / definition of the same class defined in two places ( for version overlap)
 # vfs module is not available  < v1.24.0
-class AbstractBlockDev(_AbstractBlockDev):
+from abc import ABC, abstractmethod
+
+class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround for Abstract Device not present in board-stubs
     """
     Construct a block device object.  The parameters to the constructor are
     dependent on the specific block device.
     """
 
     def __init__(self, *args, **kwargs) -> None: ...
+    @abstractmethod
     def readblocks(self, block_num: int, buf, offset: Optional[int] = 0) -> Incomplete:
         """
         The first form reads aligned, multiples of blocks.
@@ -132,6 +135,7 @@ class AbstractBlockDev(_AbstractBlockDev):
         """
         ...
 
+    @abstractmethod
     def writeblocks(self, block_num: int, buf, offset: Optional[int] = 0) -> Incomplete:
         """
         The first form writes aligned, multiples of blocks, and requires that the
@@ -154,6 +158,7 @@ class AbstractBlockDev(_AbstractBlockDev):
         """
         ...
 
+    @abstractmethod
     def ioctl(self, op: int, arg) -> int | None:
         """
          Control the block device and query its parameters.  The operation to

@@ -8,9 +8,8 @@ from typing import Callable, Final, Literal, Optional
 
 from _mpy_shed import _IRQ
 from _typeshed import Incomplete
+from rp2.StateMachine import StateMachine
 from typing_extensions import TypeAlias
-
-from .StateMachine import StateMachine
 
 _PIO_ASM_Program: TypeAlias = Incomplete  # ? Callable
 _IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]

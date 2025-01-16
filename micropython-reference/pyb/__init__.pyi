@@ -15,7 +15,6 @@ from collections.abc import Sequence
 from typing import NoReturn, overload
 
 from _mpy_shed import (
-    AbstractBlockDev,
     _OldAbstractBlockDev,
     _OldAbstractReadOnlyBlockDev,
     HID_Tuple,
@@ -40,6 +39,8 @@ from pyb.Timer import Timer
 from pyb.UART import UART
 from pyb.USB_HID import USB_HID
 from pyb.USB_VCP import USB_VCP
+
+from vfs import AbstractBlockDev
 
 hid_mouse: HID_Tuple
 """\

@@ -4,8 +4,8 @@ Module: '_rp2.Flash'
 
 from typing import Optional
 
-from _mpy_shed import AbstractBlockDev  # type: ignore
 from _typeshed import Incomplete
+from vfs import AbstractBlockDev  # type: ignore
 
 class Flash(AbstractBlockDev):
     """
