@@ -10,14 +10,6 @@ from collections.abc import Generator
 from typing import Any, Coroutine
 
 from _typeshed import Incomplete
-from typing_extensions import TypeAlias
-
-# from . import core as core
-# _T = TypeVar("_T")
-# _C: TypeAlias = Coroutine[Any, None, _T] | Awaitable[_T]
-
-StreamReader: TypeAlias = Stream
-StreamWriter: TypeAlias = Stream
 
 class Stream:
     """
@@ -170,3 +162,48 @@ async def start_server(
     ...
 
 async def stream_awrite(self, buf, off: int = 0, sz: int = -1) -> None: ...
+
+class StreamReader:
+    """
+    Represents a reader object that provides APIs to read data from the IO stream. As an asynchronous iterable, the object supports the `async for` statement.
+    It is not recommended to instantiate `StreamReader` objects directly; use open_connection() and start_server() instead.
+    """
+
+    # TODO: not documented in the micropython reference, but available runtime
+
+    awritestr: Generator  ## = <generator>
+    wait_closed: Generator  ## = <generator>
+    drain: Generator  ## = <generator>
+    readexactly: Generator  ## = <generator>
+    readinto: Generator  ## = <generator>
+    read: Generator  ## = <generator>
+    awrite: Generator  ## = <generator>
+    readline: Generator  ## = <generator>
+    aclose: Generator  ## = <generator>
+
+    def __init__(self, *argv, **kwargs) -> None: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
+    def get_extra_info(self, *args, **kwargs) -> Incomplete: ...
+    def close(self, *args, **kwargs) -> Incomplete: ...
+
+class StreamWriter:
+    """
+    Represents a writer object that provides APIs to write data to the IO stream.
+    It is not recommended to instantiate `StreamWriter` objects directly; use open_connection() and start_server() instead.
+    """
+
+    # TODO: not documented in the micropython reference, but available runtime
+
+    awritestr: Generator  ## = <generator>
+    wait_closed: Generator  ## = <generator>
+    drain: Generator  ## = <generator>
+    readexactly: Generator  ## = <generator>
+    readinto: Generator  ## = <generator>
+    read: Generator  ## = <generator>
+    awrite: Generator  ## = <generator>
+    readline: Generator  ## = <generator>
+    aclose: Generator  ## = <generator>
+    def __init__(self, *argv, **kwargs) -> None: ...
+    def write(self, *args, **kwargs) -> Incomplete: ...
+    def get_extra_info(self, *args, **kwargs) -> Incomplete: ...
+    def close(self, *args, **kwargs) -> Incomplete: ...

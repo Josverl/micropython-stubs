@@ -19,8 +19,6 @@ from .task import TaskQueue as TaskQueue
 
 _T = TypeVar("_T")
 _C: TypeAlias = Coroutine[Any, None, _T] | Awaitable[_T]
-# StreamReader: TypeAlias = Stream
-# StreamWriter: TypeAlias = Stream
 
 class CancelledError(BaseException): ...
 class TimeoutError(Exception): ...
