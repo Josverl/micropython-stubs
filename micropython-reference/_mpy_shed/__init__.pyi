@@ -34,7 +34,7 @@ from .io_mp import (
     IncrementalNewlineDecoder as IncrementalNewlineDecoder,
     StringIO as StringIO,
     TextIOWrapper as TextIOWrapper,
-    IOBase as IOBase,
+    IOBase_mp as IOBase_mp,
     _BufferedIOBase,
     _IOBase,
     _RawIOBase,

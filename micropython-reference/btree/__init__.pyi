@@ -79,7 +79,7 @@ from __future__ import annotations
 
 from typing import Dict, Iterable
 
-from _mpy_shed import IOBase
+from _mpy_shed import IOBase_mp
 from _typeshed import Incomplete
 
 INCL: Incomplete
@@ -219,7 +219,7 @@ class btree:
         ...
 
 def open(
-    stream: IOBase,  # [bytes, Any],
+    stream: IOBase_mp,  # [bytes, Any],
     /,
     *,
     flags: int = 0,

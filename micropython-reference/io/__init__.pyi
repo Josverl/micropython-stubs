@@ -82,7 +82,7 @@ from array import array
 from typing import TypeVar, overload
 
 
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, IOBase, PathLike, TextIOWrapper, FileIO
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, IOBase_mp, PathLike, TextIOWrapper, FileIO
 from _mpy_shed.io_modes import _OpenBinaryMode, _OpenTextModeWriting
 from typing_extensions import TypeVar
 
@@ -94,7 +94,7 @@ AnyReadableBuf = TypeVar("AnyReadableBuf", bytearray, array, memoryview, bytes)
 AnyWritableBuf = TypeVar("AnyWritableBuf", bytearray, array, memoryview)
 _Self = TypeVar("_Self")
 
-class StringIO(IOBase):
+class StringIO(IOBase_mp):
     """
     Str stream from a str (wrapper).
     """
@@ -141,7 +141,7 @@ class StringIO(IOBase):
              This constructor is a MicroPython extension.
         """
 
-class BytesIO(IOBase):
+class BytesIO(IOBase_mp):
     """
     Bytes stream from a bytes array (wrapper).
     """

@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from typing import Callable, Dict, List, NoReturn, Tuple
 
-from _mpy_shed import IOBase
+from _mpy_shed import IOBase_mp
 from _typeshed import Incomplete
 
 argv: List
@@ -147,7 +147,7 @@ def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
     ...
 
-def print_exception(exc: BaseException, file: IOBase = stdout, /) -> None:
+def print_exception(exc: BaseException, file: IOBase_mp = stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).

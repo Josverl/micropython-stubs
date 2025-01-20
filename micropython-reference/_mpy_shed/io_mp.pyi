@@ -30,7 +30,6 @@ from typing import TypeVar
 
 from .pathlike import PathLike
 
-class IOBase(_IOBase, metaclass=abc.ABCMeta): ...
 
 # Howard
 _OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int)
@@ -46,6 +45,7 @@ _OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int
 #         You should not instantiate this class directly.
 #         """
 
+class IOBase_mp(_IOBase, metaclass=abc.ABCMeta): ...
 # IO Base alternative from Howard
 
 # @runtime_checkable
