@@ -22,7 +22,7 @@ represented by VFS classes.
 # origin module:: repos/micropython/docs/library/vfs.rst
 from __future__ import annotations
 
-from typing import Optional
+from typing import Optional, overload
 
 from _typeshed import Incomplete
 
@@ -119,7 +119,12 @@ class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround 
 
     def __init__(self, *args, **kwargs) -> None: ...
     @abstractmethod
-    def readblocks(self, block_num: int, buf, offset: Optional[int] = 0) -> Incomplete:
+    @overload
+    def readblocks(self, block_num: int, buf) -> Incomplete: ...
+    #
+    @abstractmethod
+    @overload
+    def readblocks(self, block_num: int, buf, offset: int) -> Incomplete:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -136,7 +141,12 @@ class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround 
         ...
 
     @abstractmethod
-    def writeblocks(self, block_num: int, buf, offset: Optional[int] = 0) -> Incomplete:
+    @overload
+    def writeblocks(self, block_num: int, buf) -> Incomplete: ...
+    #
+    @abstractmethod
+    @overload
+    def writeblocks(self, block_num: int, buf, offset: int) -> Incomplete:
         """
         The first form writes aligned, multiples of blocks, and requires that the
         blocks that are written to be first erased (if necessary) by this method.
@@ -159,7 +169,12 @@ class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround 
         ...
 
     @abstractmethod
-    def ioctl(self, op: int, arg) -> int | None:
+    @overload
+    def ioctl(self, op: int, arg) -> None: ...
+    #
+    @abstractmethod
+    @overload
+    def ioctl(self, op: int) -> int:
         """
          Control the block device and query its parameters.  The operation to
          perform is given by *op* which is one of the following integers:
