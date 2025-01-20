@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Callable
+from typing import Callable, overload
 
 class Switch:
     """
@@ -27,6 +27,7 @@ class Switch:
         Create and return a switch object.
         """
 
+    @overload
     def __call__(self) -> bool:
         """
         Call switch object directly to get its state: ``True`` if pressed down,
