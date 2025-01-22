@@ -20,11 +20,17 @@ class RTC:
 
 
 
-    The documentation for RTC is in a poor state; better to experiment and use `dir`!
+    The documentation for RTC is in a poor state;1
     """
 
     ALARM0: Incomplete
     """irq trigger source"""
+    @overload
+    def __init__(self, id: int = 0):
+        """
+        Create an RTC object. See init for parameters of initialization.
+        """
+
     @overload
     def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int]):
         """

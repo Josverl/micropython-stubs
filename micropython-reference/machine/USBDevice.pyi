@@ -211,7 +211,7 @@ class USBDevice:
         """
         ...
 
-    def stall(self, ep, stall: Any | None = None, /) -> Incomplete:
+    def stall(self, ep, stall: bool | None = None, /) -> bool:
         """
         Calling this function gets or sets the STALL state of a device endpoint.
 

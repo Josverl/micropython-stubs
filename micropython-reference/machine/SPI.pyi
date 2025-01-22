@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 from typing import overload
+from typing_extensions import TypeAlias
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
 
-from .Pin import Pin
+from machine.Pin import Pin, PinLike
 
 class SPI:
     """
@@ -93,9 +94,9 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        sck: Pin | None = None,
-        mosi: Pin | None = None,
-        miso: Pin | None = None,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
     ):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -119,7 +120,7 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        pins: tuple[Pin, Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike, PinLike] | None = None,
     ):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -141,9 +142,9 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        sck: Pin | None = None,
-        mosi: Pin | None = None,
-        miso: Pin | None = None,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -176,7 +177,7 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        pins: tuple[Pin, Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike, PinLike] | None = None,
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -263,7 +264,7 @@ class SoftSPI(SPI):
         phase=0,
         bits=8,
         firstbit=MSB,
-        sck=None,
-        mosi=None,
-        miso=None,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
     ) -> None: ...

@@ -147,7 +147,7 @@ def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
     ...
 
-def print_exception(exc: BaseException, file: IOBase_mp = stdout, /) -> None:
+def print_exception(exc: Exception|BaseException, file: IOBase_mp = stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).

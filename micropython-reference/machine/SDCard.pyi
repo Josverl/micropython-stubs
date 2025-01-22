@@ -1,10 +1,11 @@
 """ """
 
 from __future__ import annotations
+from typing_extensions import TypeAlias
 
 from vfs import AbstractBlockDev
 
-from .Pin import Pin
+from machine.Pin import Pin, PinLike
 
 class SDCard(AbstractBlockDev):
     """
@@ -103,12 +104,12 @@ class SDCard(AbstractBlockDev):
         self,
         slot: int = 1,
         width: int = 1,
-        cd: int | str | Pin | None = None,
-        wp: int | str | Pin | None = None,
-        sck: int | str | Pin | None = None,
-        miso: int | str | Pin | None = None,
-        mosi: int | str | Pin | None = None,
-        cs: int | str | Pin | None = None,
+        cd: PinLike | None = None,
+        wp: PinLike | None = None,
+        sck: PinLike | None = None,
+        miso: PinLike | None = None,
+        mosi: PinLike | None = None,
+        cs: PinLike | None = None,
         freq: int = 20000000,
         /,
     ) -> None:

@@ -11,7 +11,7 @@ controlling ESP32 modules.
 # origin module:: repos/micropython/docs/library/esp32.rst
 from __future__ import annotations
 
-from typing import Any, List, Optional, Tuple, overload
+from typing import Any, List, Optional, Tuple, overload, Sequence
 
 from _mpy_shed import AnyReadableBuf
 from vfs import AbstractBlockDev
@@ -64,7 +64,7 @@ class Partition(AbstractBlockDev):
         """
 
     @staticmethod
-    def find(type: int = TYPE_APP, subtype: int = 0xFF, label: str | None = None, /) -> List:
+    def find(type: int = TYPE_APP, subtype: int = 0xFF, /, label: str | None = None) -> List:
         """
         Find a partition specified by *type*, *subtype* and *label*.  Returns a
         (possibly empty) list of Partition objects. Note: ``subtype=0xff`` matches any subtype
@@ -83,7 +83,18 @@ class Partition(AbstractBlockDev):
 
     def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> None: ...
     def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> None: ...
-    def ioctl(self, cmd, arg) -> Incomplete:
+    #
+    @overload
+    def ioctl(self, op: int, arg) -> None:
+        """
+        These methods implement the simple and :ref:`extended
+        <block-device-interface>` block protocol defined by
+        :class:`vfs.AbstractBlockDev`.
+        """
+        ...
+
+    @overload
+    def ioctl(self, op: int) -> int:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
@@ -229,7 +240,9 @@ class RMT:
         ...
 
     @overload
-    def write_pulses(self, duration: List[int] | Tuple[int, ...], data: bool = True, /) -> None:
+    def write_pulses(
+        self, duration: Sequence[int] | Tuple[int, ...], data: bool = True, /
+    ) -> None:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
@@ -259,7 +272,7 @@ class RMT:
         """
 
     @overload
-    def write_pulses(self, duration: int, data: List[bool] | Tuple[bool, ...], /) -> None:
+    def write_pulses(self, duration: int, data: Sequence[bool] | Tuple[bool, ...], /) -> None:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
@@ -291,8 +304,8 @@ class RMT:
     @overload
     def write_pulses(
         self,
-        duration: List[int] | Tuple[int, ...],
-        data: List[bool] | Tuple[bool, ...],
+        duration: Sequence[int] | Tuple[int, ...],
+        data: List[bool] | Tuple[bool, ...] | int,
         /,
     ) -> None:
         """

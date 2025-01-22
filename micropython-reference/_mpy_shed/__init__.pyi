@@ -48,8 +48,9 @@ from .pathlike import PathLike
 GenericAlias = type(list[int])
 
 # ------------------------------------------------------------------------------------
-AnyReadableBuf: TypeAlias = bytearray | array | memoryview | bytes
-AnyWritableBuf: TypeAlias = bytearray | array | memoryview
+# TODO: need some to allow string to be passed in : uart_1.write("hello")
+AnyReadableBuf: TypeAlias = bytearray | array | memoryview | bytes | Incomplete
+AnyWritableBuf: TypeAlias = bytearray | array | memoryview | Incomplete
 
 # ------------------------------------------------------------------------------------
 StrOrBytesPath: TypeAlias = str | bytes | PathLike[str] | PathLike[bytes]
