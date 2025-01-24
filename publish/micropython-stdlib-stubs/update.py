@@ -371,7 +371,7 @@ def update_public_interface(boost: Boost, module_path: Path):
 @click.option("--build", "-b", is_flag=True, help="Build the wheel file.", default=True, show_default=True)
 def update(clone: bool = False, typeshed: bool = False, merge: bool = True, build: bool = True):
     """
-    Update the stdlib and create a wheel file.
+    Update the micropython-stdlib-stubs package and create a wheel file.
     """
     # TODO: Read from CONFIG
     rootpath = Path(__file__).parent.parent.parent
@@ -392,7 +392,9 @@ def update(clone: bool = False, typeshed: bool = False, merge: bool = True, buil
         # TODO
         # clone typeshed if needed and switch to the correct hash
         print("in the repos folder run:")
-        print("git clone https://github.com/python/typeshed.git")
+        print("git clone https://github.com/python/typeshed.git\n"
+              "cd typeshed\n"
+              "git checkout <commit-hash>")
         log.warning("Not implemented yet")
 
     if typeshed:
