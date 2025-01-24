@@ -41,7 +41,7 @@ class _SubscriptableType:
 _Subscriptable = _SubscriptableType()
 
 
-def TypeVar(type, *types):
+def TypeVar(name, *types, bound: Any | None = None, covariant = False, contravariant = False, infer_variance = False):
     return None
 
 
