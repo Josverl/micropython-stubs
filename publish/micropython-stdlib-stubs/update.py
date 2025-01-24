@@ -252,9 +252,7 @@ def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
     typeshed_commit_hash = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=typeshed_path)
     with open(dist_stdlib_path / "typeshed_commit.txt", "w") as f:
         f.write("# This file contains the commit hash of typeshed used to generate the stubs\n")
-        f.write(
-            f"# https://github.com/python/typeshed/tree/{typeshed_commit_hash.decode('utf-8')}\n"
-        )
+        f.write(f"# https://github.com/python/typeshed/tree/{typeshed_commit_hash.decode('utf-8')}\n")
         f.write(f"{typeshed_commit_hash.decode('utf-8')}\n")
 
     log.info("Clean up extraneous folders from stdlib")
@@ -385,9 +383,7 @@ def update_public_interface(boost: Boost, module_path: Path):
     default=True,
     show_default=True,
 )
-@click.option(
-    "--build", "-b", is_flag=True, help="Build the wheel file.", default=True, show_default=True
-)
+@click.option("--build", "-b", is_flag=True, help="Build the wheel file.", default=True, show_default=True)
 def update(clone: bool = False, typeshed: bool = False, merge: bool = True, build: bool = True):
     """
     Update the micropython-stdlib-stubs package and create a wheel file.
@@ -412,11 +408,7 @@ def update(clone: bool = False, typeshed: bool = False, merge: bool = True, buil
         # TODO
         # clone typeshed if needed and switch to the correct hash
         print("in the repos folder run:")
-        print(
-            "git clone https://github.com/python/typeshed.git\n"
-            "cd typeshed\n"
-            "git checkout <commit-hash>"
-        )
+        print("git clone https://github.com/python/typeshed.git\n" "cd typeshed\n" "git checkout <commit-hash>")
         log.warning("Not implemented yet")
 
     if typeshed:
@@ -440,7 +432,7 @@ def update(clone: bool = False, typeshed: bool = False, merge: bool = True, buil
     comment_out_lines(dist_stdlib_path / "stdlib")
 
     if build:
-        subprocess.check_call(["poetry", "build"], cwd=dist_stdlib_path)
+        subprocess.check_call(["uv", "build"], cwd=dist_stdlib_path)
 
 
 if __name__ == "__main__":
