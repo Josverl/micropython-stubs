@@ -128,12 +128,12 @@ class Boost:
     """
 
     stub_name: str
-    docstub: str = ""
-    file: Union[Path, str] = ""
+    source: str = ""
+    target: Union[Path, str] = ""
     all: List[str] = field(default_factory=list)
 
     def __post_init__(self):
-        self.file = Path("stdlib") / (self.file or self.stub_name + ".pyi")
+        self.target = Path("stdlib") / (self.target or self.stub_name + ".pyi")
 
 
 # match "var: type",
@@ -145,6 +145,8 @@ re_var_val = re.compile(r"^([\w\_]+)\s*=\s*\w+")
 def find_toplevel_vars(module: Path) -> set:
     """Find the top level variables defined in a module."""
     keep = set()
+    if module.is_dir():
+        module = module / "__init__.pyi"
     if not module.exists():
         return keep
     with open(module, "r", encoding="utf-8") as f:
@@ -161,6 +163,8 @@ def update_module_vars(module: Path, keep: set):
     Update the module top level  variables to only keep the ones
     in the `keep` set or starting with _ .
     """
+    if module.is_dir():
+        module = module / "__init__.pyi"
     with open(module, "r", encoding="utf-8") as f:
         lines = f.readlines()
     with open(module, "w", encoding="utf-8") as f:
@@ -289,39 +293,48 @@ def merge_docstubs_into_stdlib(
     boosts = [
         Boost(
             "collections",
-            "collections.pyi",
-            "collections/__init__.pyi",
+            "collections",
+            "collections",
             all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
         ),
-        Boost("sys", "sys.pyi", "sys/__init__.pyi"),
-        Boost("ssl", "ssl.pyi", "ssl.pyi"),
-        # TODO: add ssl.SSLContext.load_cert_chain
-        Boost("io", "io.pyi", "io.pyi"),
+        Boost("sys", "sys", "sys"),
+        Boost("ssl", "ssl", "ssl.pyi"),
+        Boost("io", "io", "io.pyi"),
+        # Asyncio is a bit special, Work TODO
+        # Boost("asyncio", "asyncio", "asyncio"),
     ]
 
     for boost in boosts:
-        module_path = dist_stdlib_path / boost.file
-        if module_path.exists():
-            log.info(f"Enriching {module_path}")
+        source_path = docstubs_path / boost.source
+        target_path = dist_stdlib_path / boost.target
+        if not source_path.exists():
+            log.warning(f"Docstub {source_path} does not exist")
+            continue
+        if not target_path.exists():
+            log.warning(f"Stub {target_path} does not exist")
+            continue
+        if target_path.exists():
+            log.info(f"Enriching {target_path}")
             result = enrich_folder(
-                module_path,
-                docstubs_path,
+                source_path,  # source
+                target_path,  # desr
                 show_diff=show_diff,
                 write_back=write_back,
-                package_name=boost.stub_name,
+                ext=".pyi",
+                # package_name=boost.stub_name,
             )
             if boost.all:
-                update_public_interface(boost, module_path)
-            if boost.docstub:
+                update_public_interface(boost, target_path)
+            if boost.source:
                 # read the toplevel vars from the docstub and firmware stubs
-                keep = find_toplevel_vars(docstubs_path / boost.docstub)
-                keep.update(find_toplevel_vars(boardstub_path / boost.docstub))
+                keep = find_toplevel_vars(docstubs_path / boost.source)
+                keep.update(find_toplevel_vars(boardstub_path / boost.source))
                 if "io" in boost.stub_name:
                     keep.add("open")  # open is not in the io docstub
-                update_module_vars(module_path, keep)
+                update_module_vars(target_path, keep)
 
             if result:
-                log.info(f"Enriched {module_path}")
+                log.info(f"Enriched {target_path}")
 
 
 def update_public_interface(boost: Boost, module_path: Path):
@@ -334,6 +347,8 @@ def update_public_interface(boost: Boost, module_path: Path):
         module_path (Path): The path to the module file.
     """
     # TODO: fragile, replace by libcst codemod
+    if module_path.is_dir():
+        module_path = module_path / "__init__.pyi"
     try:
         with open(module_path, "r") as f:
             lines = f.readlines()
@@ -374,11 +389,12 @@ def update(clone: bool = False, typeshed: bool = False, merge: bool = True, buil
     Update the micropython-stdlib-stubs package and create a wheel file.
     """
     # TODO: Read from CONFIG
+    flat_version = "v1_24_1"
     rootpath = Path(__file__).parent.parent.parent
     log.info(f"using rootpath: {rootpath}")
     dist_stdlib_path = rootpath / "publish/micropython-stdlib-stubs"
-    docstubs_path = rootpath / "stubs/micropython-v1_23_0-docstubs"
-    boardstub_path = rootpath / "stubs/micropython-v1_23_0-esp32-ESP32_GENERIC"
+    docstubs_path = rootpath / f"stubs/micropython-{flat_version}-docstubs"
+    boardstub_path = rootpath / f"stubs/micropython-{flat_version}-esp32-ESP32_GENERIC"
     typeshed_path = rootpath / "repos/typeshed"
 
     # check that the paths exist
@@ -392,9 +408,7 @@ def update(clone: bool = False, typeshed: bool = False, merge: bool = True, buil
         # TODO
         # clone typeshed if needed and switch to the correct hash
         print("in the repos folder run:")
-        print("git clone https://github.com/python/typeshed.git\n"
-              "cd typeshed\n"
-              "git checkout <commit-hash>")
+        print("git clone https://github.com/python/typeshed.git\n" "cd typeshed\n" "git checkout <commit-hash>")
         log.warning("Not implemented yet")
 
     if typeshed:

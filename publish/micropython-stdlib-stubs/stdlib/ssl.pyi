@@ -1,7 +1,7 @@
 """
 TLS/SSL wrapper for socket objects.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0/library/ssl.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/ssl.html
 
 CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
@@ -41,8 +41,9 @@ from _ssl import (
 from _typeshed import Incomplete, ReadableBuffer, StrOrBytesPath, WriteableBuffer
 from collections.abc import Callable, Iterable
 from typing import Any, Literal, NamedTuple, TypedDict, overload
-from typing_extensions import Never, Self, TypeAlias
-from stdlib.ssl import *
+from typing_extensions import Awaitable, TypeVar, Never, Self, TypeAlias
+from _mpy_shed import StrOrBytesPath
+from socket import socket
 
 if sys.version_info >= (3, 13):
     from _ssl import HAS_PSK as HAS_PSK
@@ -61,6 +62,7 @@ _PCTRTTT: TypeAlias = tuple[_PCTRTT, ...]
 _PeerCertRetDictType: TypeAlias = dict[str, str | _PCTRTTT | _PCTRTT]
 _PeerCertRetType: TypeAlias = _PeerCertRetDictType | bytes | None
 _SrvnmeCbType: TypeAlias = Callable[[SSLSocket | SSLObject, str | None, SSLSocket], int | None]
+SSLSocket: TypeAlias = Incomplete
 
 # socket_error = OSError
 
@@ -524,6 +526,35 @@ class SSLContext:
         server_hostname: str | bytes | None = None,
         session: SSLSession | None = None,
     ) -> SSLObject: ...
+    @overload  # force copy during stub merge
+    def load_cert_chain(self, certfile, keyfile) -> None:
+        """
+        Load a private key and the corresponding certificate.  The *certfile* is a string
+        with the file path of the certificate.  The *keyfile* is a string with the file path
+        of the private key.
+
+        Admonition:Difference to CPython
+           :class: attention
+
+           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
+           strings, in which case they are interpreted as the actual certificate/key data.
+        """
+        ...
+
+    @overload  # force copy during stub merge
+    def load_cert_chain(self, certfile, keyfile) -> None:  # type: ignore
+        """
+        Load a private key and the corresponding certificate.  The *certfile* is a string
+        with the file path of the certificate.  The *keyfile* is a string with the file path
+        of the private key.
+
+        Admonition:Difference to CPython
+           :class: attention
+
+           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
+           strings, in which case they are interpreted as the actual certificate/key data.
+        """
+        ...
 
 class SSLObject:
     context: SSLContext

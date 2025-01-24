@@ -14,7 +14,7 @@ functions.
 # origin module:: repos/micropython/docs/library/os.rst
 from __future__ import annotations
 
-from typing import IO, Any, Iterator, Optional, Tuple
+from typing import IO, Any, Iterator, Optional, Tuple, overload
 
 from _mpy_shed import uname_result
 from _typeshed import Incomplete
@@ -61,6 +61,7 @@ def uname() -> uname_result:
     """
     ...
 
+@overload
 def urandom(n) -> bytes:
     """
     Return a bytes object with *n* random bytes. Whenever possible, it is
@@ -68,18 +69,21 @@ def urandom(n) -> bytes:
     """
     ...
 
+@overload
 def chdir(path) -> Incomplete:
     """
     Change current directory.
     """
     ...
 
+@overload
 def getcwd() -> Incomplete:
     """
     Get the current directory.
     """
     ...
 
+@overload
 def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     """
     This function returns an iterator which then yields tuples corresponding to
@@ -101,42 +105,49 @@ def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     """
     ...
 
+@overload
 def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
     With no argument, list the current directory.  Otherwise list the given directory.
     """
     ...
 
+@overload
 def mkdir(path) -> Incomplete:
     """
     Create a new directory.
     """
     ...
 
+@overload
 def remove(path) -> None:
     """
     Remove a file.
     """
     ...
 
+@overload
 def rmdir(path) -> None:
     """
     Remove a directory.
     """
     ...
 
+@overload
 def rename(old_path, new_path) -> None:
     """
     Rename a file.
     """
     ...
 
+@overload
 def stat(path) -> Incomplete:
     """
     Get the status of a file or directory.
     """
     ...
 
+@overload
 def statvfs(path) -> Tuple:
     """
     Get the status of a filesystem.
@@ -160,12 +171,14 @@ def statvfs(path) -> Tuple:
     """
     ...
 
+@overload
 def sync() -> None:
     """
     Sync all filesystems.
     """
     ...
 
+@overload
 def dupterm(stream_object, index=0, /) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
@@ -189,12 +202,14 @@ def dupterm(stream_object, index=0, /) -> IO:
     """
     ...
 
+@overload
 def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     See `vfs.mount`.
     """
     ...
 
+@overload
 def umount(mount_point) -> Incomplete:
     """
     See `vfs.umount`.

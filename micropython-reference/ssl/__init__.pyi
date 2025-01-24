@@ -15,13 +15,13 @@ facilities for network sockets, both client-side and server-side.
 from __future__ import annotations
 
 from socket import socket
-from typing import List
+from typing import List, overload
 
 from _mpy_shed import StrOrBytesPath
 from _typeshed import Incomplete
 from typing_extensions import TypeAlias
+from socket import socket
 
-SSLSocket: TypeAlias = Incomplete
 SSLError: None
 """This exception does NOT exist. Instead its base class, OSError, is used."""
 PROTOCOL_TLS_CLIENT: int = 0
@@ -52,7 +52,8 @@ class SSLContext:
     """
 
     def __init__(self, protocol, /) -> None: ...
-    def load_cert_chain(self, certfile, keyfile) -> None:
+    @overload  # force copy during stub merge
+    def load_cert_chain(self, certfile, keyfile) -> None:  # type: ignore
         """
         Load a private key and the corresponding certificate.  The *certfile* is a string
         with the file path of the certificate.  The *keyfile* is a string with the file path
@@ -145,5 +146,9 @@ def wrap_socket(
     :term:`MicroPython port`, some or all keyword arguments above may be not supported.
     """
     ...
+
+class SSLSocket(socket.socket):
+    # definition will come from the typeshed stub that this will be merged with
+    pass
 
 # type: ignore
