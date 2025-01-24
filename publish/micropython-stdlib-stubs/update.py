@@ -9,6 +9,7 @@ import re
 import shutil
 import subprocess
 import time
+import shutil
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List, Optional, Union
@@ -365,6 +366,19 @@ def update_public_interface(boost: Boost, module_path: Path):
         log.error(f"Failed to update __all__ in {module_path}: {e}")
 
 
+def update_mpy_shed(rootpath: Path, dist_stdlib_path: Path):
+    """
+    Update the _mpy_shed from the reference stubs.
+    """
+    log.info("Update _mpy_shed from the reference stubs")
+    shutil.rmtree(dist_stdlib_path / "_mpy_shed", ignore_errors=True)
+    shutil.copytree(
+        rootpath / "micropython-reference/_mpy_shed",
+        dist_stdlib_path / "_mpy_shed",
+        dirs_exist_ok=True,
+    )
+
+
 @click.command()
 @click.option("--clone", "-c", help="Clone the typeshed repo.", default=False, show_default=True)
 @click.option(
@@ -413,6 +427,9 @@ def update(clone: bool = False, typeshed: bool = False, merge: bool = True, buil
 
     if typeshed:
         update_stdlib_from_typeshed(dist_stdlib_path, typeshed_path)
+
+    ## always update the _mpy_shed
+    update_mpy_shed(rootpath, dist_stdlib_path)
 
     if merge:
         merge_docstubs_into_stdlib(
