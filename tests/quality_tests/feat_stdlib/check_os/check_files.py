@@ -1,61 +1,33 @@
-# runs on MicroPython (and Python)
-# get file and folder information and return this as JSON
-# params : folder , traverse subdirectory , output format, gethash
-# intended to allow simple processing of files
-# jos_verlinde@hotmail.com
-import json
-import logging
 import os
-from typing import Any, Dict, List, Optional, Tuple, Union
 
-import ubinascii
-import uhashlib
+# Create a new file and write to it
+with open("newfile.txt", "w") as f:
+    f.write("Hello, world!")
 
-logging.basicConfig(level=logging.DEBUG)
-log = logging.getLogger(__name__)
+# Append to the existing file
+with open("newfile.txt", "a") as f:
+    f.write("\nAppending a new line.")
 
+# Read the file
+with open("newfile.txt", "r") as f:
+    content = f.read()
+    print("File content:\n", content)
 
-def listdir(path=".", sub=False, JSON=True, gethash=False):
-    # Lists the file information of a folder
-    li: List[dict] = []
-    if path == ".":  # Get current folder name
-        path = os.getcwd()
-    files = os.listdir(path)
-    for file in files:
-        # get size of each file
-        info = {"Path": path, "Name": file, "Size": 0}
-        if path[-1] == "/":
-            full = "%s%s" % (path, file)
-        else:
-            full = "%s/%s" % (path, file)
-        log.debug("os.stat({})".format(full))
-        subdir: List[str] = []
-        try:
-            stat = os.stat(full)
-            if stat[0] & 0x4000:  # stat.S_IFDIR
-                info["Type"] = "dir"
-                # recurse folder(s)
-                if sub:
-                    log.debug("Folder :{}".format(full))
-                    subdir = listdir(path=full, sub=True, JSON=False, gethash=gethash)
-            else:
-                info["Size"] = stat[6]
-                info["Type"] = "file"
-                if gethash:
-                    with open(full, "rb") as f:
-                        h = uhashlib.sha256(f.read())
-                        info["Hash"] = ubinascii.hexlify(h.digest())
-        except OSError as e:
-            log.error("error:{} processing file:{}".format(e, full))
-            info["OSError"] = e.args[0]
-            info["Type"] = "OSError"
-        info["Fullname"] = full
-        li.append(info)
-        # recurse folder(s)
-        if sub:
-            reveal_type(subdir)
-            li = li + subdir
-    if JSON:
-        return json.dumps(li)
-    else:
-        return li
+# Rename the file
+os.rename("newfile.txt", "renamedfile.txt")
+
+# # Check if the file exists
+# if os.path.exists("renamedfile.txt"):
+#     print("File exists.")
+
+# Remove the file
+os.remove("renamedfile.txt")
+
+# Create a new directory
+os.mkdir("newdir")
+
+# List contents of the directory
+print("Directory contents:", os.listdir("newdir"))
+
+# Remove the directory
+os.rmdir("newdir")

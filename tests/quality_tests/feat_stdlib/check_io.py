@@ -1,5 +1,5 @@
 import io
-from typing import IO, Any, Optional
+# from typing import IO, Any, Optional
 
 alloc_size = 512
 

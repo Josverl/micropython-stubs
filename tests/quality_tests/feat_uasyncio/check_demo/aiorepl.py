@@ -100,7 +100,7 @@ async def task(g=None, prompt="--> "):
         g = __import__("__main__").__dict__
     try:
         micropython.kbd_intr(-1)
-        s = asyncio.StreamReader(sys.stdin) # stubs-ignore
+        s = asyncio.StreamReader(sys.stdin)
         # TODO: fix type stubs asyncio.StreamReader
         # clear = True
         hist = [None] * _HISTORY_LIMIT

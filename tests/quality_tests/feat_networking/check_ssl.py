@@ -26,16 +26,16 @@ def create_ssl_context(cert, key, **kwargs):
     ``SSLContext`` objects. Once MicroPython implements ``SSLContext``
     natively, this function will be deprecated.
     """
-    if hasattr(ssl, 'SSLContext'):
+    if hasattr(ssl, "SSLContext"):
         ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER, **kwargs)
-        ctx.load_cert_chain(cert, key) # stubs: ignore
+        ctx.load_cert_chain(cert, key)  # stubs: ignore
         return ctx
 
     if isinstance(cert, str):
-        with open(cert, 'rb') as f:
+        with open(cert, "rb") as f:
             cert = f.read()
     if isinstance(key, str):
-        with open(key, 'rb') as f:
+        with open(key, "rb") as f:
             key = f.read()
 
     class FakeSSLSocket:
@@ -46,8 +46,7 @@ def create_ssl_context(cert, key, **kwargs):
         def accept(self):
             client, addr = self.sock.accept()
             # TODO: add kwargs to ssl.wrap_socket stub definition
-            return (ssl.wrap_socket(client, cert=cert, key=key, **self.kwargs), # type: ignore 
-                    addr)
+            return (ssl.wrap_socket(client, cert=cert, key=key, **self.kwargs), addr)
 
         def close(self):
             self.sock.close()

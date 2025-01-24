@@ -1,8 +1,8 @@
 # board : ESP32
 # ref : https://docs.micropython.org/en/latest/esp32/quickref.html
 import utime as time
-
 import machine
+
 
 machine.freq()  # get the current frequency of the CPU
 machine.freq(240000000)  # set the CPU frequency to 240 MHz
@@ -24,14 +24,6 @@ print(p2.value())  # get value, 0 or 1
 p4 = Pin(4, Pin.IN, Pin.PULL_UP)  # enable internal pull-up resistor
 p5 = Pin(5, Pin.OUT, value=1)  # set pin high on creation
 
-# UART (serial bus)
-# See machine.UART.
-
-from machine import UART
-
-uart1 = UART(1, baudrate=9600, tx=33, rx=32)
-uart1.write("hello")  # write 5 bytes
-uart1.read(5)  # read up to 5 bytes
 
 
 # Software SPI bus

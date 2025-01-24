@@ -1,8 +1,9 @@
+from machine import I2C
+from machine import I2S, Pin
 buf = b"00000000"
 
 # I2C bus
 
-from machine import I2C
 
 i2c = I2C("X", freq=400000)  # create hardware I2c object
 
@@ -20,7 +21,6 @@ i2c.writeto_mem(0x42, 0x10, "xy")  # write 2 bytes to peripheral 0x42, periphera
 # I2S bus
 # See machine.I2S.
 
-from machine import I2S, Pin
 
 i2s = I2S(
     2, sck=Pin("Y6"), ws=Pin("Y5"), sd=Pin("Y8"), mode=I2S.TX, bits=16, format=I2S.STEREO, rate=44100, ibuf=40000
