@@ -22,27 +22,28 @@ from _typeshed import Incomplete
 from typing_extensions import TypeAlias
 
 SSLSocket: TypeAlias = Incomplete
-SSLError: Incomplete
+SSLError: None
 """This exception does NOT exist. Instead its base class, OSError, is used."""
-PROTOCOL_TLS_CLIENT: Incomplete
+PROTOCOL_TLS_CLIENT: int = 0
 """Supported values for the *protocol* parameter."""
-PROTOCOL_TLS_SERVER: Incomplete
+PROTOCOL_TLS_SERVER: int = 1
 """Supported values for the *protocol* parameter."""
-CERT_NONE: Incomplete
+CERT_NONE: int = 0
 """\
 Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
 attribute.
 """
-CERT_OPTIONAL: Incomplete
+CERT_OPTIONAL: int = 1
 """\
 Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
 attribute.
 """
-CERT_REQUIRED: Incomplete
+CERT_REQUIRED: int = 2
 """\
 Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
 attribute.
 """
+MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"
 
 class SSLContext:
     """
@@ -93,7 +94,7 @@ class SSLContext:
         server_side=False,
         do_handshake_on_connect=True,
         server_hostname=None,
-    ) -> Incomplete:
+    ) -> SSLSocket:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
         and returns an instance of ssl.SSLSocket, wrapping the underlying stream.
@@ -119,14 +120,12 @@ class SSLContext:
         ...
 
 def wrap_socket(
-    sock: socket,
-    server_side: bool = False,
-    keyfile: StrOrBytesPath | None = None,
-    certfile: StrOrBytesPath | None = None,
-    cert_reqs: int = CERT_NONE,
-    ca_certs: str | None = None,
-    do_handshake: bool = True,
-    /,
+    self,
+    sock,
+    *,
+    server_side=False,
+    do_handshake_on_connect=True,
+    server_hostname=None,
 ) -> SSLSocket:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
@@ -146,3 +145,5 @@ def wrap_socket(
     :term:`MicroPython port`, some or all keyword arguments above may be not supported.
     """
     ...
+
+# type: ignore
