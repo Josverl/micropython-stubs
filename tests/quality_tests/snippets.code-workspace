@@ -33,6 +33,10 @@
             "path": "check_windows"
         },
         {
+            "name": "feat_aioble",
+            "path": "feat_aioble"
+        },
+        {
             "name": "feat_uasyncio",
             "path": "feat_uasyncio"
         },
