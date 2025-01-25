@@ -526,35 +526,6 @@ class SSLContext:
         server_hostname: str | bytes | None = None,
         session: SSLSession | None = None,
     ) -> SSLObject: ...
-    @overload  # force copy during stub merge
-    def load_cert_chain(self, certfile, keyfile) -> None:
-        """
-        Load a private key and the corresponding certificate.  The *certfile* is a string
-        with the file path of the certificate.  The *keyfile* is a string with the file path
-        of the private key.
-
-        Admonition:Difference to CPython
-           :class: attention
-
-           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
-           strings, in which case they are interpreted as the actual certificate/key data.
-        """
-        ...
-
-    @overload  # force copy during stub merge
-    def load_cert_chain(self, certfile, keyfile) -> None:  # type: ignore
-        """
-        Load a private key and the corresponding certificate.  The *certfile* is a string
-        with the file path of the certificate.  The *keyfile* is a string with the file path
-        of the private key.
-
-        Admonition:Difference to CPython
-           :class: attention
-
-           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
-           strings, in which case they are interpreted as the actual certificate/key data.
-        """
-        ...
 
 class SSLObject:
     context: SSLContext

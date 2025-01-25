@@ -379,6 +379,17 @@ def update_mpy_shed(rootpath: Path, dist_stdlib_path: Path):
     )
 
 
+def update_asyncio_manual(dist_stdlib_path: Path):
+    """
+    Update the asyncio stubs from the manual updated copy.
+    """
+    log.info("Update asyncio stubs from handcrafted copy")
+    src_asyncio = dist_stdlib_path / "handcrafted/asyncio"
+    dst_asyncio = dist_stdlib_path / "stdlib/asyncio"
+    shutil.rmtree(dst_asyncio, ignore_errors=True)
+    shutil.copytree(src_asyncio, dst_asyncio, dirs_exist_ok=True)
+
+
 @click.command()
 @click.option("--clone", "-c", help="Clone the typeshed repo.", default=False, show_default=True)
 @click.option(
@@ -430,6 +441,8 @@ def update(clone: bool = False, typeshed: bool = False, merge: bool = True, buil
 
     ## always update the _mpy_shed
     update_mpy_shed(rootpath, dist_stdlib_path)
+    ## always update the asyncio stubs
+    update_asyncio_manual(dist_stdlib_path)
 
     if merge:
         merge_docstubs_into_stdlib(
@@ -453,5 +466,5 @@ def update(clone: bool = False, typeshed: bool = False, merge: bool = True, buil
 
 
 if __name__ == "__main__":
-    # find_toplevel_vars(Path(r"C:\develop\MyPython\micropython-stubs\publish\micropython-v1_22_0-esp32-stubs\sys.pyi"))
+
     update()
