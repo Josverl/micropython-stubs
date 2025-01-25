@@ -5,10 +5,11 @@ import sys
 import time
 
 import micropython
-import uasyncio as asyncio
+
+# import uasyncio as asyncio
+import asyncio
 from micropython import const
 
-from uasyncio import Task as uTask
 from asyncio import Task, StreamReader
 
 
@@ -61,18 +62,20 @@ __exec_task = asyncio.create_task(__code())
             # Concurrently wait for either Ctrl-C from the stream or task
             # completion.
             intr_task = asyncio.create_task(kbd_intr_task(exec_task, s))
-            reveal_type(intr_task) 
+            reveal_type(intr_task)
             try:
                 try:
-                    return await exec_task # type: ignore # pyright/mypy doesn't like the await here
-                except asyncio.CancelledError: # stubs-ignore: port=="esp32" 
+                    return await exec_task  # type: ignore # pyright/mypy doesn't like the await here
+                except asyncio.CancelledError:
+                    # stubs-ignore: port=="esp32"
                     pass
             finally:
-                intr_task.cancel() # stubs: ignore
+                intr_task.cancel()
                 try:
-                    await intr_task # stubs: ignore
-                    # "Task" is not awaitable  "Task" is incompatible with protocol "Awaitable[_T_co@Awaitable]"  "__await__" is not present
-                except asyncio.CancelledError: # stubs-ignore: port=="esp32"
+                    await intr_task
+
+                except asyncio.CancelledError:
+                    # stubs-ignore: port=="esp32"
                     pass
         else:
             # Excute code snippet directly.
@@ -103,7 +106,7 @@ async def task(g=None, prompt="--> "):
         s = asyncio.StreamReader(sys.stdin)
         # TODO: fix type stubs asyncio.StreamReader
         # clear = True
-        hist = [None] * _HISTORY_LIMIT
+        hist = [] * _HISTORY_LIMIT
         hist_i = 0  # Index of most recent entry.
         hist_n = 0  # Number of history entries.
         c = 0  # ord of most recent character.
@@ -111,7 +114,7 @@ async def task(g=None, prompt="--> "):
         while True:
             hist_b = 0  # How far back in the history are we currently.
             sys.stdout.write(prompt)
-            cmd = ""
+            cmd = b""
             while True:
                 b = await s.read(1)
                 pc = c  # save previous character
@@ -129,6 +132,7 @@ async def task(g=None, prompt="--> "):
                         sys.stdout.write("\n")
                         if cmd:
                             # Push current command.
+                            hist[1] = cmd  # stubs: ignore
                             hist[hist_i] = cmd  # stubs: ignore
                             # Increase history length if possible, and rotate ring forward.
                             hist_n = min(_HISTORY_LIMIT - 1, hist_n + 1)
@@ -168,10 +172,10 @@ async def task(g=None, prompt="--> "):
                         key = await s.read(2)
                         if key in ("[A", "[B"):
                             # Stash the current command.
-                            hist[(hist_i - hist_b) % _HISTORY_LIMIT] = cmd # type: ignore
+                            hist[(hist_i - hist_b) % _HISTORY_LIMIT] = cmd
                             # Clear current command.
-                            assert cmd # Added to avoid type check errors below
-                            b = "\x08" * len(cmd) # stubs-ignore
+                            assert cmd  # Added to avoid type check errors below
+                            b = "\x08" * len(cmd)  # stubs-ignore
                             # OK on v 1.20.0
                             # "None" is incompatible with protocol "Sized"
                             sys.stdout.write(b)
@@ -192,6 +196,7 @@ async def task(g=None, prompt="--> "):
                         pass
                 else:
                     sys.stdout.write(b)
+                    assert cmd is not None  # Added to avoid type check errors below
                     cmd += b
     finally:
         micropython.kbd_intr(3)
