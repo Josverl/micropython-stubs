@@ -11,24 +11,26 @@ def _handle_esperror(self, err, peer):
         raise err
 
     esperr = err.args[1]
-    if esperr == 'ESP_ERR_ESPNOW_NOT_INIT':
+    if esperr == "ESP_ERR_ESPNOW_NOT_INIT":
         if self.debug:
             print("LazyESPNow: init()")
         self.active(True)
 
-    elif esperr == 'ESP_ERR_ESPNOW_NOT_FOUND':
+    elif esperr == "ESP_ERR_ESPNOW_NOT_FOUND":
         if self.debug:
             print("LazyESPNow: add_peer()")
         # Restore the saved options for this peer - if we have it
         args = self._saved_peers.get(peer, [])
         self.add_peer(peer, *args)
 
-    elif esperr == 'ESP_ERR_ESPNOW_EXIST':
-        if self.debug: print("LazyESPNow: del_peer()")
+    elif esperr == "ESP_ERR_ESPNOW_EXIST":
+        if self.debug:
+            print("LazyESPNow: del_peer()")
         self.del_peer(peer)
 
-    elif esperr == 'ESP_ERR_ESPNOW_FULL':
-        if self.debug: print("LazyESPNow: del_peer()")
+    elif esperr == "ESP_ERR_ESPNOW_FULL":
+        if self.debug:
+            print("LazyESPNow: del_peer()")
         # Peers are listed in the order they were registered
         peers = self.get_peers()
         n_tot, _n_enc = self.peer_count()
@@ -41,19 +43,21 @@ def _handle_esperror(self, err, peer):
         self._saved_peers[peer] = args  # Save options for deleted peer
         self.del_peer(peer)
 
-    elif esperr == 'ESP_ERR_ESPNOW_IF':
+    elif esperr == "ESP_ERR_ESPNOW_IF":
         channel, if_idx = self.get_peer(peer)[2:3] if peer else 0, self.default_if
-        if self.debug: print("LazyESPNow: activating", ('STA_IF','AP_IF')[if_idx])
+        if self.debug:
+            print("LazyESPNow: activating", ("STA_IF", "AP_IF")[if_idx])
         wlan = network.WLAN(if_idx)
         wlan.active(True)
         if if_idx == network.STA_IF:
-            wlan.disconnect()         # ESP8266 may auto-connect to last AP.
+            wlan.disconnect()  # ESP8266 may auto-connect to last AP.
         if channel:
             wlan.config(channel=channel)
         wlan.config(ps_mode=self.ps_mode)
 
     else:
         raise err
+
 
 # A wrapper for methods which catches esp errors and tries to fix them
 # Eg: if device is not initialised, call active(True)
@@ -67,7 +71,7 @@ def _catch_esperror(method):
             except OSError as err:
                 # Correct any esp errors
                 peer = args[1] if len(args) > 1 else None
-                _handle_esperror(args[0], err, peer)
+                _handle_esperror(args, err, peer)
         raise RuntimeError("_handle_OSError(): ESP Exception handling failed.")
 
     return wrapper
@@ -76,7 +80,7 @@ def _catch_esperror(method):
 class LazyESPNow(espnow.ESPNow):
     default_if = network.STA_IF
     debug = None
-    _saved_peers = {}
+    _saved_peers = {}  # stubs-ignore : linter in ["mypy"]
     wlans = [network.WLAN(i) for i in [network.STA_IF, network.AP_IF]]
 
     def __init__(self, default_if=network.STA_IF):
@@ -88,7 +92,7 @@ class LazyESPNow(espnow.ESPNow):
             wlan = network.WLAN(self.default_if)
             wlan.active(True)
             if self.default_if == network.STA_IF:
-                wlan.disconnect()   # ESP8266 may auto-connect to last AP.
+                wlan.disconnect()  # ESP8266 may auto-connect to last AP.
 
     @_catch_esperror
     def irecv(self, t=None):
@@ -123,9 +127,7 @@ class LazyESPNow(espnow.ESPNow):
         try:
             _ = super().get_peer(mac)
         except OSError:
-            self.add_peer(
-                mac, lmk, 0, ifidx,
-                encrypt if encrypt is not None else bool(lmk))
+            self.add_peer(mac, lmk, 0, ifidx, encrypt if encrypt is not None else bool(lmk))
         for num_tries in (0, 10):
             for chan in range(14):
                 super().mod_peer(mac, channel=chan)

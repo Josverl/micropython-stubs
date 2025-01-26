@@ -39,8 +39,7 @@ def ping_peer(enow, peer, channel, num_pings, verbose):
     if set_channel(channel) is None:
         return 0.0
     time.sleep(CHANNEL_SETTLING_TIME)
-    msg = PING_MSG + bytes([channel])  # type: ignore
-    #TODO Operator "+" not supported for types "Literal[b"ping"]" and "bytes"
+    msg = PING_MSG + bytes([channel])
     frac = sum((enow.send(peer, msg) for _ in range(num_pings))) / num_pings
     if verbose:
         print(f"Channel {channel:2d}: ping response rate = {frac * 100:3.0f}%.")
@@ -76,8 +75,7 @@ def scan(peer, num_pings=NUM_PINGS, verbose=False):
 
     # A list of the ping success rates (fraction) for each channel
     ping_fracs = [
-        ping_peer(enow, peer, channel, num_pings, verbose)
-        for channel in range(1, MAX_CHANNEL + 1)
+        ping_peer(enow, peer, channel, num_pings, verbose) for channel in range(1, MAX_CHANNEL + 1)
     ]
     max_frac = max(ping_fracs)
     if max_frac < (MIN_PING_RESPONSE_PC + 5) / 100:

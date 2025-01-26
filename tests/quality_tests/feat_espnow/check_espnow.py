@@ -4,6 +4,8 @@ import espnow
 import network
 
 # SENDER CODE
+
+
 # A WLAN interface must be active to send()/recv()
 sta = network.WLAN(network.STA_IF)  # Or network.AP_IF
 sta.active(True)
@@ -17,7 +19,7 @@ e.add_peer(peer)  # Must add_peer() before send()
 
 e.send(peer, "Starting...")
 for i in range(100):
-    e.send(peer, str(i) * 20, True)
+    e.send(peer, str(i) * 20, True)  # type: ignore # TODO: https://github.com/orgs/micropython/discussions/16654
 e.send(peer, b"end")
 
 ## Receiver:

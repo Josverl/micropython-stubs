@@ -1,34 +1,6 @@
-# """
-# timer.py: A module for creating convenient timers based on generators
-
-# Examples:
-
-#     machine_test = False
-#     for t in timer_ms(1500, sleep_ms=200):
-#         print(t)
-#         if machine_test:
-#             break
-#     else:
-#         print("Timed out - no data")
-
-#     try:
-#         for t in timer_ms(30000, 1000, raise_on_timeout=True):
-#             print(t)
-#     except TimeoutError as err:
-#         print(err)
-
-#     for t in timer_ms():
-#         print(t)
-#         if utime.time() == 0:
-#             break
-
-#     timer = timer_ms(timeout_ms=30000, countdown=True)
-#     timer = countdown_timer_ms(timeout_ms=30000)
-
-#     with Timer(10000) as t:
-#         while t.check():
-#             print("Waiting", t.time())
-# """
+"""
+timer.py: A module for creating convenient timers based on generators
+"""
 
 from utime import sleep, sleep_ms, ticks_diff, ticks_ms
 
@@ -70,7 +42,8 @@ def _sleep_ms(timer, delay_ms):
 # Make a timer generator which raises exception if the timeout is reached
 def _raise_on_timeout(timer, exc=True):
     yield from timer
-    raise TimeoutError if exc is True else exc  # type: ignore
+    if exc is True:
+        raise TimeoutError
 
 
 # Make a timer generator a countdown timer

@@ -37,6 +37,14 @@
             "path": "feat_aioble"
         },
         {
+            "name": "feat_bluetooth",
+            "path": "feat_bluetooth"
+        },
+        {
+            "name": "feat_espnow",
+            "path": "feat_espnow"
+        },
+        {
             "name": "feat_uasyncio",
             "path": "feat_uasyncio"
         },
@@ -49,24 +57,16 @@
             "path": "feat_machine"
         },
         {
-            "name": "feat_stdlib_only",
-            "path": "feat_stdlib_only"
-        },
-        {
             "name": "feat_stdlib",
             "path": "feat_stdlib"
         },
         {
-            "name": "feat_bluetooth",
-            "path": "feat_bluetooth"
+            "name": "feat_stdlib_only",
+            "path": "feat_stdlib_only"
         },
         {
             "name": "feat_networking",
             "path": "feat_networking"
-        },
-        {
-            "name": "feat_espnow",
-            "path": "feat_espnow"
         },
         {
             "name": "wip_todo",

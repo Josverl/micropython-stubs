@@ -41,7 +41,7 @@ log = logging.getLogger()
 CORE = [
     "micropython",
     "stdlib",
-    "uasyncio:skip port in ['esp8266', 'webassembly']",
+    "asyncio:skip port in ['esp8266', 'webassembly']",
     "machine:skip port in ['windows', 'unix', 'webassembly']",
 ]
 # a dictionary of features to verify for each port or port_board
@@ -53,7 +53,6 @@ PORTBOARD_FEATURES = {
         "networking",
         "bluetooth:skip version<1.20.0",
         "espnow:skip version<1.21.0",
-        "aioble:skip version<1.20.0",
     ],
     "esp8266": CORE + ["networking"],  # TODO: New MCU stubs for esp8266, "espnow>=1.21.0"],
     "samd": CORE,
