@@ -22,8 +22,8 @@ from primitives.delay_ms import Delay_ms  # type: ignore
 class Device:
     def __init__(self, uart_no=4):
         self.uart = UART(uart_no, 9600)
-        self.swriter = asyncio.StreamWriter(self.uart, {})  # stubs-ignore: True
-        self.sreader = asyncio.StreamReader(self.uart)  # stubs-ignore: True
+        self.swriter = asyncio.StreamWriter(self.uart, {})  # stubs-ignore: linter=="mypy"
+        self.sreader = asyncio.StreamReader(self.uart)  # stubs-ignore: linter=="mypy"
         asyncio.create_task(self._run())
 
     async def _run(self):
@@ -31,9 +31,11 @@ class Device:
         while True:
             res = await self.sreader.readline()
             for response in responses:
-                await self.swriter.awrite("{}\r\n".format(response))
+                await self.swriter.awrite(  # stubs-ignore: linter=="mypy"
+                    "{}\r\n".format(response)
+                )
                 # Demo the fact that the master tolerates slow response.
-                await asyncio.sleep_ms(300)
+                await asyncio.sleep_ms(300)  # stubs-ignore: linter=="mypy"
 
 
 # The master's send_command() method sends a command and waits for a number of
@@ -46,8 +48,8 @@ class Master:
     def __init__(self, uart_no=2, timeout=4000):
         self.uart = UART(uart_no, 9600)
         self.timeout = timeout
-        self.swriter = asyncio.StreamWriter(self.uart, {})  # stubs: ignore
-        self.sreader = asyncio.StreamReader(self.uart)  # stubs: ignore
+        self.swriter = asyncio.StreamWriter(self.uart, {})  # stubs-ignore: linter=="mypy"
+        self.sreader = asyncio.StreamReader(self.uart)  # stubs-ignore: linter=="mypy"
         self.delay = Delay_ms()
         self.response = []
         asyncio.create_task(self._recv())
@@ -63,7 +65,7 @@ class Master:
         if command is None:
             print("Timeout test.")
         else:
-            await self.swriter.awrite("{}\r\n".format(command))
+            await self.swriter.awrite("{}\r\n".format(command))  # stubs-ignore: linter=="mypy"
             print("Command sent:", command)
         self.delay.trigger(self.timeout)  # Re-initialise timer
         while self.delay.running():

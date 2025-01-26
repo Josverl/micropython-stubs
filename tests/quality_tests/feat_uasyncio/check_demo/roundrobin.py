@@ -18,17 +18,17 @@ period = 5
 async def foo(n):
     global count
     while True:
-        await asyncio.sleep_ms(0)
+        await asyncio.sleep_ms(0)  # stubs-ignore: linter=="mypy"
         count += 1
-        print('Foo', n)
+        print("Foo", n)
 
 
 async def main(delay):
     for n in range(1, 4):
         asyncio.create_task(foo(n))
-    print('Testing for {:d} seconds'.format(delay))
+    print("Testing for {:d} seconds".format(delay))
     await asyncio.sleep(delay)
 
 
 asyncio.run(main(period))
-print('Coro executions per sec =', count/period)
+print("Coro executions per sec =", count / period)
