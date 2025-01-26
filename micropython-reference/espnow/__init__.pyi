@@ -10,7 +10,7 @@ MicroPython module: https://docs.micropython.org/en/v1.24.0/library/aioespnow.ht
 # origin module:: repos/micropython/docs/library/espnow.rst
 from __future__ import annotations
 
-from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, Union
+from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, overload
 
 from _espnow import ESPNowBase  # type: ignore
 from _typeshed import Incomplete, TypeAlias
@@ -62,6 +62,12 @@ class ESPNow(ESPNowBase, Iterator):
     when the message is read by the application.
     """
     def __init__(self) -> None: ...
+    #
+    @overload
+    def __iter__(self) -> ESPNow: ...
+    @overload
+    def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
+    #
     def active(self, flag: Optional[Any] = None) -> Incomplete:
         """
         Initialise or de-initialise the ESP-NOW communication protocol depending on
@@ -136,7 +142,13 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def send(self, peer, msg, mac: _MACAddress | None = None, sync=True) -> Incomplete:
+    def send(
+        self,
+        peer: _MACAddress,
+        msg: str | bytes,
+        mac: _MACAddress | None = None,
+        sync=True,
+    ) -> bool:
         """
         Send the data contained in ``msg`` to the peer with given network ``mac``
         address. In the second form, ``mac=None`` and ``sync=True``. The peer must
@@ -486,7 +498,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def irq(self, callback:Callable) -> Incomplete:
+    def irq(self, callback: Callable) -> Incomplete:
         """
         Set a callback function to be called *as soon as possible* after a message has
         been received from another ESPNow device. The callback function will be called
