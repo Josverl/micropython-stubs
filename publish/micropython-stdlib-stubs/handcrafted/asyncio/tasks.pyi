@@ -88,14 +88,10 @@ ALL_COMPLETED = concurrent.futures.ALL_COMPLETED
 if sys.version_info >= (3, 13):
     class _SyncAndAsyncIterator(Iterator[_T_co], AsyncIterator[_T_co], Protocol[_T_co]): ...
 
-    def as_completed(
-        fs: Iterable[_FutureLike[_T]], *, timeout: float | None = None
-    ) -> _SyncAndAsyncIterator[Future[_T]]: ...
+    def as_completed(fs: Iterable[_FutureLike[_T]], *, timeout: float | None = None) -> _SyncAndAsyncIterator[Future[_T]]: ...
 
 elif sys.version_info >= (3, 10):
-    def as_completed(
-        fs: Iterable[_FutureLike[_T]], *, timeout: float | None = None
-    ) -> Iterator[Future[_T]]: ...
+    def as_completed(fs: Iterable[_FutureLike[_T]], *, timeout: float | None = None) -> Iterator[Future[_T]]: ...
 
 else:
     def as_completed(
@@ -108,9 +104,7 @@ else:
 @overload
 def ensure_future(coro_or_future: _FT, *, loop: AbstractEventLoop | None = None) -> _FT: ...  # type: ignore[overload-overlap]
 @overload
-def ensure_future(
-    coro_or_future: Awaitable[_T], *, loop: AbstractEventLoop | None = None
-) -> Task[_T]: ...
+def ensure_future(coro_or_future: Awaitable[_T], *, loop: AbstractEventLoop | None = None) -> Task[_T]: ...
 
 # `gather()` actually returns a list with length equal to the number
 # of tasks passed; however, Tuple is used similar to the annotation for
@@ -174,9 +168,7 @@ if sys.version_info >= (3, 10):
     @overload
     def gather(*coros_or_futures: _FutureLike[_T], return_exceptions: Literal[False] = False) -> Future[list[_T]]: ...  # type: ignore[overload-overlap]
     @overload
-    def gather(
-        coro_or_future1: _FutureLike[_T1], /, *, return_exceptions: bool
-    ) -> Future[tuple[_T1 | BaseException]]: ...
+    def gather(coro_or_future1: _FutureLike[_T1], /, *, return_exceptions: bool) -> Future[tuple[_T1 | BaseException]]: ...
     @overload
     def gather(
         coro_or_future1: _FutureLike[_T1],
@@ -203,9 +195,7 @@ if sys.version_info >= (3, 10):
         /,
         *,
         return_exceptions: bool,
-    ) -> Future[
-        tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException]
-    ]: ...
+    ) -> Future[tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException]]: ...
     @overload
     def gather(
         coro_or_future1: _FutureLike[_T1],
@@ -247,9 +237,7 @@ if sys.version_info >= (3, 10):
         ]
     ]: ...
     @overload
-    def gather(
-        *coros_or_futures: _FutureLike[_T], return_exceptions: bool
-    ) -> Future[list[_T | BaseException]]: ...
+    def gather(*coros_or_futures: _FutureLike[_T], return_exceptions: bool) -> Future[list[_T | BaseException]]: ...
 
 else:
     @overload
@@ -358,9 +346,7 @@ else:
         *,
         loop: AbstractEventLoop | None = None,
         return_exceptions: bool,
-    ) -> Future[
-        tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException]
-    ]: ...
+    ) -> Future[tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException]]: ...
     @overload
     def gather(  # type: ignore[overload-overlap]
         coro_or_future1: _FutureLike[_T1],
@@ -390,9 +376,7 @@ else:
         return_exceptions: bool,
     ) -> Future[list[_T | BaseException]]: ...
 
-def run_coroutine_threadsafe(
-    coro: _FutureLike[_T], loop: AbstractEventLoop
-) -> concurrent.futures.Future[_T]: ...
+def run_coroutine_threadsafe(coro: _FutureLike[_T], loop: AbstractEventLoop) -> concurrent.futures.Future[_T]: ...
 
 if sys.version_info >= (3, 10):
     def shield(arg: _FutureLike[_T]) -> Future[_T]: ...
@@ -413,9 +397,7 @@ else:
     async def sleep(delay: float, *, loop: AbstractEventLoop | None = None) -> None: ...
     @overload
     async def sleep(delay: float, result: _T, *, loop: AbstractEventLoop | None = None) -> _T: ...
-    async def wait_for(
-        fut: _FutureLike[_T], timeout: float | None, *, loop: AbstractEventLoop | None = None
-    ) -> _T: ...
+    async def wait_for(fut: _FutureLike[_T], timeout: float | None, *, loop: AbstractEventLoop | None = None) -> _T: ...
     # MicroPython addition
     @overload
     async def sleep_ms(delay: float) -> None: ...
@@ -424,9 +406,7 @@ else:
 
 if sys.version_info >= (3, 11):
     @overload
-    async def wait(
-        fs: Iterable[_FT], *, timeout: float | None = None, return_when: str = "ALL_COMPLETED"
-    ) -> tuple[set[_FT], set[_FT]]: ...
+    async def wait(fs: Iterable[_FT], *, timeout: float | None = None, return_when: str = "ALL_COMPLETED") -> tuple[set[_FT], set[_FT]]: ...
     @overload
     async def wait(
         fs: Iterable[Task[_T]], *, timeout: float | None = None, return_when: str = "ALL_COMPLETED"
@@ -466,18 +446,14 @@ else:
 if sys.version_info >= (3, 12):
     _TaskCompatibleCoro: TypeAlias = Coroutine[Any, Any, _T_co]
 elif sys.version_info >= (3, 9):
-    _TaskCompatibleCoro: TypeAlias = (
-        Generator[_TaskYieldType, None, _T_co] | Coroutine[Any, Any, _T_co]
-    )
+    _TaskCompatibleCoro: TypeAlias = Generator[_TaskYieldType, None, _T_co] | Coroutine[Any, Any, _T_co]
 else:
     _TaskCompatibleCoro: TypeAlias = Generator[_TaskYieldType, None, _T_co] | Awaitable[_T_co]
 
 def all_tasks(loop: AbstractEventLoop | None = None) -> set[Task[Any]]: ...
 
 if sys.version_info >= (3, 11):
-    def create_task(
-        coro: _CoroutineLike[_T], *, name: str | None = None, context: Context | None = None
-    ) -> Task[_T]: ...
+    def create_task(coro: _CoroutineLike[_T], *, name: str | None = None, context: Context | None = None) -> Task[_T]: ...
 
 else:
     def create_task(coro: _CoroutineLike[_T], *, name: str | None = None) -> Task[_T]: ...
