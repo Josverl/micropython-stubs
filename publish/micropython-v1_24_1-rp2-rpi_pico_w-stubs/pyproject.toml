@@ -1,25 +1,12 @@
-[tool.poetry]
+[project]
 name = "micropython-rp2-rpi_pico_w-stubs"
-version = "1.24.1.post1"
 description = "MicroPython stubs"
-authors = [
-    "josverl <josverl@users.noreply.github.com>",
-]
-license = "MIT"
+version = "1.24.1.post1"
 readme = "README.md"
-homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
-documentation = "https://micropython-stubs.readthedocs.io/"
-exclude = [
-    "*.ps1",
-    "*.py",
-    "**/__pycache__",
-    "**/dist",
+license = "MIT"
+authors = [
+    { name = "Jos Verlinde", email = "josverl@users.noreply.github.com" },
 ]
-include = [
-    "**/*.py",
-    "**/*.pyi",
-]
-repository = "https://github.com/josverl/micropython-stubs"
 classifiers = [
     "Typing :: Stubs Only",
     "Development Status :: 5 - Production/Stable",
@@ -34,13 +21,31 @@ classifiers = [
     "Topic :: Software Development :: Testing",
     "Natural Language :: English",
 ]
+dependencies = [
+    "micropython-stdlib-stubs  >=1.24.0",
+]
+
+[project.urls]
+homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
+documentation = "https://micropython-stubs.readthedocs.io/"
+repository = "https://github.com/josverl/micropython-stubs"
+
+[tool.poetry]
+exclude = [
+    "*.ps1",
+    "*.py",
+    "**/__pycache__",
+    "**/dist",
+]
+include = [
+    "**/*.py",
+    "**/*.pyi",
+]
 packages = [
     { include = "__builtins__.pyi" },
-    { include = "__mpy_types__.pyi" },
-    { include = "_asyncio.pyi" },
+    { include = "_boot.pyi" },
     { include = "_boot_fat.pyi" },
     { include = "_onewire.pyi" },
-    { include = "_rp2.pyi" },
     { include = "_thread.pyi" },
     { include = "aioble/__init__.pyi" },
     { include = "aioble/central.pyi" },
@@ -52,12 +57,6 @@ packages = [
     { include = "aioble/security.pyi" },
     { include = "aioble/server.pyi" },
     { include = "array.pyi" },
-    { include = "asyncio/__init__.pyi" },
-    { include = "asyncio/core.pyi" },
-    { include = "asyncio/event.pyi" },
-    { include = "asyncio/funcs.pyi" },
-    { include = "asyncio/lock.pyi" },
-    { include = "asyncio/stream.pyi" },
     { include = "binascii.pyi" },
     { include = "bluetooth.pyi" },
     { include = "cmath.pyi" },
@@ -70,7 +69,6 @@ packages = [
     { include = "gc.pyi" },
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
-    { include = "io.pyi" },
     { include = "json.pyi" },
     { include = "lwip.pyi" },
     { include = "machine.pyi" },
@@ -94,12 +92,7 @@ packages = [
     { include = "time.pyi" },
     { include = "tls.pyi" },
     { include = "uarray.pyi" },
-    { include = "uasyncio/__init__.pyi" },
-    { include = "uasyncio/core.pyi" },
-    { include = "uasyncio/event.pyi" },
-    { include = "uasyncio/funcs.pyi" },
-    { include = "uasyncio/lock.pyi" },
-    { include = "uasyncio/stream.pyi" },
+    { include = "uasyncio.pyi" },
     { include = "ubinascii.pyi" },
     { include = "ubluetooth.pyi" },
     { include = "ucollections.pyi" },
@@ -118,19 +111,17 @@ packages = [
     { include = "urequests.pyi" },
     { include = "uselect.pyi" },
     { include = "usocket.pyi" },
+    { include = "ussl.pyi" },
     { include = "ustruct.pyi" },
     { include = "usys.pyi" },
     { include = "utime.pyi" },
     { include = "uwebsocket.pyi" },
+    { include = "uzlib.pyi" },
     { include = "vfs.pyi" },
+    { include = "webrepl.pyi" },
+    { include = "webrepl_setup.pyi" },
     { include = "websocket.pyi" },
 ]
-
-[tool.poetry.dependencies]
-python = "^3.8"
-micropython-stdlib-stubs = ">=1.1.1"
-
-[tool.poetry.dev-dependencies]
 
 [build-system]
 requires = [

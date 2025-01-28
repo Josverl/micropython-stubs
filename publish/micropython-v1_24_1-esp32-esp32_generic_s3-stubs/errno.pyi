@@ -1,7 +1,7 @@
 """
 System error codes.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/errno.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/errno.html
 
 CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
 
@@ -17,6 +17,7 @@ Module: 'errno' on micropython-v1.24.1-esp32-ESP32_GENERIC_S3
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Dict
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 ENOBUFS: int = 105
 ENODEV: int = 19

@@ -1,7 +1,7 @@
 """
 Heap queue algorithm.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/heapq.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/heapq.html
 
 CPython module: :mod:`python:heapq` https://docs.python.org/3/library/heapq.html .
 
@@ -19,8 +19,12 @@ Module: 'heapq' on micropython-v1.24.1-esp32-ESP32_GENERIC_S3
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from typing import Any
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-def heappop(heap) -> Incomplete:
+_T = TypeVar("_T")
+
+def heappop(heap: list[_T], /) -> _T:
     """
     Pop the first item from the ``heap``, and return it.  Raise ``IndexError`` if
     ``heap`` is empty.
@@ -29,13 +33,13 @@ def heappop(heap) -> Incomplete:
     """
     ...
 
-def heappush(heap, item) -> Incomplete:
+def heappush(heap: list[_T], item: _T, /) -> None:
     """
     Push the ``item`` onto the ``heap``.
     """
     ...
 
-def heapify(x) -> Incomplete:
+def heapify(x: list[Any], /) -> None:
     """
     Convert the list ``x`` into a heap.  This is an in-place operation.
     """

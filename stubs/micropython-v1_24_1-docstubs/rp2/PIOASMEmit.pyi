@@ -1,5 +1,10 @@
 """
-Module: '_rp2.PIOASMEmit'
+Module: 'rp2.PIOASMEmit'
+
+The PIOASMEmit class provides a comprehensive interface for constructing PIO programs,
+handling the intricacies of instruction encoding, label management, and program state.
+This allows users to build complex PIO programs in pythone, leveraging the flexibility
+and power of the PIO state machine.
 """
 
 from __future__ import annotations
@@ -7,7 +12,6 @@ from __future__ import annotations
 from typing import Dict, List
 
 from _typeshed import Incomplete
-
 
 class PIOASMEmit:
     """

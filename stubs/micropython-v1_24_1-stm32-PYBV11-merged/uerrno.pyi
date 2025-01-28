@@ -1,14 +1,4 @@
 """
-System error codes.
-
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/errno.html
-
-CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
-
-This module provides access to symbolic error codes for `OSError` exception.
-A particular inventory of codes depends on :term:`MicroPython port`.
-
----
 Module: 'uerrno' on micropython-v1.24.1-stm32-PYBV11
 """
 
@@ -16,7 +6,6 @@ Module: 'uerrno' on micropython-v1.24.1-stm32-PYBV11
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Dict
 
 ENOBUFS: int = 105
 ENODEV: int = 19

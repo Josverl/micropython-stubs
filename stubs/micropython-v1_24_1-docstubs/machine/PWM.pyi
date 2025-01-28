@@ -6,6 +6,7 @@ from typing import overload, Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin
+from machine.Pin import Pin, PinLike
 
 class PWM:
     """
@@ -60,7 +61,7 @@ class PWM:
 
     def __init__(
         self,
-        dest: Pin | int,
+        dest: PinLike,
         /,
         *,
         freq: int = ...,
@@ -123,6 +124,32 @@ class PWM:
         """
 
     @overload
+    def freq(self) -> int:
+        """
+        Get or set the current frequency of the PWM output.
+
+        With no arguments the frequency in Hz is returned.
+
+        With a single *value* argument the frequency is set to that value in Hz.  The
+        method may raise a ``ValueError`` if the frequency is outside the valid range.
+        """
+
+    @overload
+    def freq(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current frequency of the PWM output.
+
+        With no arguments the frequency in Hz is returned.
+
+        With a single *value* argument the frequency is set to that value in Hz.  The
+        method may raise a ``ValueError`` if the frequency is outside the valid range.
+        """
+
+    @overload
     def duty_u16(self) -> int:
         """
         Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
@@ -148,6 +175,58 @@ class PWM:
 
         With a single *value* argument the duty cycle is set to that value, measured
         as the ratio ``value / 65535``.
+        """
+
+    @overload
+    def duty_u16(self) -> int:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+
+    @overload
+    def duty_u16(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+
+    @overload
+    def duty_ns(self) -> int:
+        """
+        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
+
+        With no arguments the pulse width in nanoseconds is returned.
+
+        With a single *value* argument the pulse width is set to that value.
+        """
+
+    @overload
+    def duty_ns(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
+
+        With no arguments the pulse width in nanoseconds is returned.
+
+        With a single *value* argument the pulse width is set to that value.
         """
 
     @overload

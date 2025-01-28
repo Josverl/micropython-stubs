@@ -1,7 +1,7 @@
 """
 Access to underlying platform’s identifying data.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/platform.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/platform.html
 
 CPython module: :mod:`python:platform` https://docs.python.org/3/library/platform.html .
 
@@ -17,6 +17,7 @@ Module: 'platform' on micropython-v1.24.1-esp32-ESP32_GENERIC_S3
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Tuple
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def platform() -> str:
     """

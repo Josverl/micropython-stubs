@@ -5,6 +5,8 @@ from _typeshed import Incomplete
 from typing import overload, Any, Callable, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
+PinLike: TypeAlias = Pin | int | str
+
 class Pin:
     """
     A pin object is used to control I/O pins (also known as GPIO - general-purpose
@@ -257,6 +259,90 @@ class Pin:
         """
 
     @overload
+    def value(self) -> int:
+        """
+        This method allows to set and get the value of the pin, depending on whether
+        the argument ``x`` is supplied or not.
+
+        If the argument is omitted then this method gets the digital logic level of
+        the pin, returning 0 or 1 corresponding to low and high voltage signals
+        respectively.  The behaviour of this method depends on the mode of the pin:
+
+          - ``Pin.IN`` - The method returns the actual input value currently present
+            on the pin.
+          - ``Pin.OUT`` - The behaviour and return value of the method is undefined.
+          - ``Pin.OPEN_DRAIN`` - If the pin is in state '0' then the behaviour and
+            return value of the method is undefined.  Otherwise, if the pin is in
+            state '1', the method returns the actual input value currently present
+            on the pin.
+
+        If the argument is supplied then this method sets the digital logic level of
+        the pin.  The argument ``x`` can be anything that converts to a boolean.
+        If it converts to ``True``, the pin is set to state '1', otherwise it is set
+        to state '0'.  The behaviour of this method depends on the mode of the pin:
+
+          - ``Pin.IN`` - The value is stored in the output buffer for the pin.  The
+            pin state does not change, it remains in the high-impedance state.  The
+            stored value will become active on the pin as soon as it is changed to
+            ``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode.
+          - ``Pin.OUT`` - The output buffer is set to the given value immediately.
+          - ``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage
+            state.  Otherwise the pin is set to high-impedance state.
+
+        When setting the value this method returns ``None``.
+        """
+
+    @overload
+    def value(self, x: Any, /) -> None:
+        """
+        This method allows to set and get the value of the pin, depending on whether
+        the argument ``x`` is supplied or not.
+
+        If the argument is omitted then this method gets the digital logic level of
+        the pin, returning 0 or 1 corresponding to low and high voltage signals
+        respectively.  The behaviour of this method depends on the mode of the pin:
+
+          - ``Pin.IN`` - The method returns the actual input value currently present
+            on the pin.
+          - ``Pin.OUT`` - The behaviour and return value of the method is undefined.
+          - ``Pin.OPEN_DRAIN`` - If the pin is in state '0' then the behaviour and
+            return value of the method is undefined.  Otherwise, if the pin is in
+            state '1', the method returns the actual input value currently present
+            on the pin.
+
+        If the argument is supplied then this method sets the digital logic level of
+        the pin.  The argument ``x`` can be anything that converts to a boolean.
+        If it converts to ``True``, the pin is set to state '1', otherwise it is set
+        to state '0'.  The behaviour of this method depends on the mode of the pin:
+
+          - ``Pin.IN`` - The value is stored in the output buffer for the pin.  The
+            pin state does not change, it remains in the high-impedance state.  The
+            stored value will become active on the pin as soon as it is changed to
+            ``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode.
+          - ``Pin.OUT`` - The output buffer is set to the given value immediately.
+          - ``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage
+            state.  Otherwise the pin is set to high-impedance state.
+
+        When setting the value this method returns ``None``.
+        """
+
+    @overload
+    def __call__(self) -> int:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
+
+    @overload
+    def __call__(self, x: Any, /) -> None:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
+
+    @overload
     def __call__(self) -> int:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
@@ -373,6 +459,42 @@ class Pin:
         """
 
     @overload
+    def mode(self) -> int:
+        """
+        Get or set the pin mode.
+        See the constructor documentation for details of the ``mode`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def mode(self, mode: int, /) -> None:
+        """
+        Get or set the pin mode.
+        See the constructor documentation for details of the ``mode`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def pull(self) -> int:
+        """
+        Get or set the pin pull state.
+        See the constructor documentation for details of the ``pull`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def pull(self, pull: int, /) -> None:
+        """
+        Get or set the pin pull state.
+        See the constructor documentation for details of the ``pull`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
     def pull(self) -> int:
         """
         Get or set the pin pull state.
@@ -401,7 +523,26 @@ class Pin:
         ...
 
     @overload
+    def drive(self, /) -> int:
+        """
+        Get or set the pin drive strength.
+        See the constructor documentation for details of the ``drive`` argument.
+
+        Availability: cc3200 port.
+        """
+
+    @overload
     def drive(self, drive: int, /) -> None:
+        """
+        Get or set the pin drive strength.
+        See the constructor documentation for details of the ``drive`` argument.
+
+        Availability: cc3200 port.
+        """
+        ...
+
+    @overload
+    def drive(self, /) -> int:
         """
         Get or set the pin drive strength.
         See the constructor documentation for details of the ``drive`` argument.

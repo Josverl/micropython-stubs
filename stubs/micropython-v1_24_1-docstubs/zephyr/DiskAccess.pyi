@@ -4,8 +4,6 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-from DiskAccess import *
-from FlashArea import *
 
 class DiskAccess:
     """

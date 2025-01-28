@@ -6,6 +6,9 @@ from typing import Sequence, overload, List, Optional, Union
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin
+from machine.Pin import Pin, PinLike
+
+ID_T: TypeAlias = int | str
 
 class I2C:
     """
@@ -45,7 +48,7 @@ class I2C:
     """
 
     @overload
-    def __init__(self, id: int, /, *, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -62,7 +65,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, id: int, /, *, scl: Pin, sda: Pin, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -76,6 +79,68 @@ class I2C:
         Note that some ports/boards will have default values of *scl* and *sda*
         that can be changed in this constructor.  Others will have fixed values
         of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
+
+    @overload
+    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
+        """
+        Construct and return a new I2C object using the following parameters:
+
+           - *id* identifies a particular I2C peripheral.  Allowed values for
+             depend on the particular port/board
+           - *scl* should be a pin object specifying the pin to use for SCL.
+           - *sda* should be a pin object specifying the pin to use for SDA.
+           - *freq* should be an integer which sets the maximum frequency
+             for SCL.
+
+        Note that some ports/boards will have default values of *scl* and *sda*
+        that can be changed in this constructor.  Others will have fixed values
+        of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
+        """
+        Construct and return a new I2C object using the following parameters:
+
+           - *id* identifies a particular I2C peripheral.  Allowed values for
+             depend on the particular port/board
+           - *scl* should be a pin object specifying the pin to use for SCL.
+           - *sda* should be a pin object specifying the pin to use for SDA.
+           - *freq* should be an integer which sets the maximum frequency
+             for SCL.
+
+        Note that some ports/boards will have default values of *scl* and *sda*
+        that can be changed in this constructor.  Others will have fixed values
+        of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
         """
 
     @overload
@@ -93,7 +158,35 @@ class I2C:
         """
 
     @overload
-    def init(self, *, scl: Pin, sda: Pin, freq: int = 400_000) -> None:
+    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
+
+    @overload
+    def init(self, *, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
+
+    @overload
+    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 

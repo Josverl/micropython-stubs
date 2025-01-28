@@ -1,7 +1,7 @@
 """
 Mathematical functions for complex numbers.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/cmath.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/cmath.html
 
 CPython module: :mod:`python:cmath` https://docs.python.org/3/library/cmath.html .
 
@@ -20,7 +20,7 @@ Module: 'cmath' on micropython-v1.24.1-esp32-ESP32_GENERIC
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import SupportsComplex, SupportsFloat, SupportsIndex, Tuple
-from typing_extensions import TypeAlias
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _C: TypeAlias = SupportsFloat | SupportsComplex | SupportsIndex | complex
 

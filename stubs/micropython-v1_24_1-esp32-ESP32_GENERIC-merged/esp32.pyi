@@ -1,7 +1,7 @@
 """
 Functionality specific to the ESP32.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/esp32.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/esp32.html
 
 The ``esp32`` module contains functions and classes specifically aimed at
 controlling ESP32 modules.
@@ -14,9 +14,11 @@ Module: 'esp32' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import AbstractBlockDev, AnyReadableBuf
+from _mpy_shed import AnyReadableBuf
 from machine import Pin
-from typing import Any, List, Optional, Tuple, overload
+from typing import Any, List, Optional, Sequence, Tuple, Union, overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar
+from vfs import AbstractBlockDev
 
 WAKEUP_ALL_LOW: bool = False
 WAKEUP_ANY_HIGH: bool = True
@@ -205,7 +207,18 @@ class Partition(AbstractBlockDev):
     TYPE_DATA: int = 1
     BOOT: int = 0
     def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> None: ...
-    def ioctl(self, cmd, arg) -> Incomplete:
+    #
+    @overload
+    def ioctl(self, op: int, arg) -> None:
+        """
+        These methods implement the simple and :ref:`extended
+        <block-device-interface>` block protocol defined by
+        :class:`vfs.AbstractBlockDev`.
+        """
+        ...
+
+    @overload
+    def ioctl(self, op: int) -> int:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
@@ -232,7 +245,7 @@ class Partition(AbstractBlockDev):
         ...
 
     @staticmethod
-    def find(type: int = TYPE_APP, subtype: int = 0xFF, label: str | None = None, /) -> List:
+    def find(type: int = TYPE_APP, subtype: int = 0xFF, /, label: str | None = None) -> List:
         """
         Find a partition specified by *type*, *subtype* and *label*.  Returns a
         (possibly empty) list of Partition objects. Note: ``subtype=0xff`` matches any subtype
@@ -342,7 +355,7 @@ class RMT:
         ...
 
     @overload
-    def write_pulses(self, duration: List[int] | Tuple[int, ...], data: bool = True, /) -> None:
+    def write_pulses(self, duration: Sequence[int] | Tuple[int, ...], data: bool = True, /) -> None:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
@@ -372,7 +385,7 @@ class RMT:
         """
 
     @overload
-    def write_pulses(self, duration: int, data: List[bool] | Tuple[bool, ...], /) -> None:
+    def write_pulses(self, duration: int, data: Sequence[bool] | Tuple[bool, ...], /) -> None:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
@@ -404,8 +417,8 @@ class RMT:
     @overload
     def write_pulses(
         self,
-        duration: List[int] | Tuple[int, ...],
-        data: List[bool] | Tuple[bool, ...],
+        duration: Sequence[int] | Tuple[int, ...],
+        data: List[bool] | Tuple[bool, ...] | int,
         /,
     ) -> None:
         """

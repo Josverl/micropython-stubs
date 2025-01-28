@@ -1,7 +1,7 @@
 """
 Access binary data in a structured way.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/uctypes.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/uctypes.html
 
 This module implements "foreign data interface" for MicroPython. The idea
 behind it is similar to CPython's ``ctypes`` modules, but the actual API is
@@ -18,8 +18,8 @@ Module: 'uctypes' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import AnyReadableBuf
-from typing_extensions import TypeAlias
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _ScalarProperty: TypeAlias = int
 _RecursiveProperty: TypeAlias = tuple[int, _property]
@@ -72,7 +72,7 @@ BF_POS: int = 17
 BIG_ENDIAN: int = 1
 FLOAT32: int = -268435456
 
-def sizeof(struct: struct | _descriptor, layout_type: int = NATIVE, /) -> int:
+def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object

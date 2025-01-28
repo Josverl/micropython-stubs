@@ -182,6 +182,54 @@ class I2C:
         This is only valid in controller mode.
         """
 
+    @overload
+    def mem_read(
+        self,
+        data: int,
+        addr: int,
+        memaddr: int,
+        /,
+        *,
+        timeout: int = 5000,
+        addr_size: int = 8,
+    ) -> bytes:
+        """
+        Read from the memory of an I2C device:
+
+          - ``data`` can be an integer (number of bytes to read) or a buffer to read into
+          - ``addr`` is the I2C device address
+          - ``memaddr`` is the memory location within the I2C device
+          - ``timeout`` is the timeout in milliseconds to wait for the read
+          - ``addr_size`` selects width of memaddr: 8 or 16 bits
+
+        Returns the read data.
+        This is only valid in controller mode.
+        """
+
+    @overload
+    def mem_read(
+        self,
+        data: AnyWritableBuf,
+        addr: int,
+        memaddr: int,
+        /,
+        *,
+        timeout: int = 5000,
+        addr_size: int = 8,
+    ) -> AnyWritableBuf:
+        """
+        Read from the memory of an I2C device:
+
+          - ``data`` can be an integer (number of bytes to read) or a buffer to read into
+          - ``addr`` is the I2C device address
+          - ``memaddr`` is the memory location within the I2C device
+          - ``timeout`` is the timeout in milliseconds to wait for the read
+          - ``addr_size`` selects width of memaddr: 8 or 16 bits
+
+        Returns the read data.
+        This is only valid in controller mode.
+        """
+
     def mem_write(
         self,
         data: int | AnyWritableBuf,
@@ -205,6 +253,48 @@ class I2C:
         This is only valid in controller mode.
         """
         ...
+
+    @overload
+    def recv(
+        self,
+        recv: int,
+        addr: int = 0x00,
+        /,
+        *,
+        timeout: int = 5000,
+    ) -> bytes:
+        """
+        Receive data on the bus:
+
+          - ``recv`` can be an integer, which is the number of bytes to receive,
+            or a mutable buffer, which will be filled with received bytes
+          - ``addr`` is the address to receive from (only required in controller mode)
+          - ``timeout`` is the timeout in milliseconds to wait for the receive
+
+        Return value: if ``recv`` is an integer then a new buffer of the bytes received,
+        otherwise the same buffer that was passed in to ``recv``.
+        """
+
+    @overload
+    def recv(
+        self,
+        recv: AnyWritableBuf,
+        addr: int = 0x00,
+        /,
+        *,
+        timeout: int = 5000,
+    ) -> AnyWritableBuf:
+        """
+        Receive data on the bus:
+
+          - ``recv`` can be an integer, which is the number of bytes to receive,
+            or a mutable buffer, which will be filled with received bytes
+          - ``addr`` is the address to receive from (only required in controller mode)
+          - ``timeout`` is the timeout in milliseconds to wait for the receive
+
+        Return value: if ``recv`` is an integer then a new buffer of the bytes received,
+        otherwise the same buffer that was passed in to ``recv``.
+        """
 
     @overload
     def recv(

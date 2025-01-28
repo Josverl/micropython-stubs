@@ -1,7 +1,7 @@
 """
 Binary/ASCII conversions.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/binascii.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/binascii.html
 
 CPython module: :mod:`python:binascii` https://docs.python.org/3/library/binascii.html .
 
@@ -16,7 +16,8 @@ Module: 'binascii' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from binascii import *
+from typing import Any, Optional
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def crc32(*args, **kwargs) -> Incomplete: ...
 def hexlify(data: bytes, sep: str | bytes = ..., /) -> bytes:

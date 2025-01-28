@@ -1,7 +1,7 @@
 """
 Access binary data in a structured way.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/uctypes.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/uctypes.html
 
 This module implements "foreign data interface" for MicroPython. The idea
 behind it is similar to CPython's ``ctypes`` modules, but the actual API is
@@ -18,6 +18,26 @@ Module: 'uctypes' on micropython-v1.24.1-esp32-ESP32_GENERIC_S3
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+_ScalarProperty: TypeAlias = int
+_RecursiveProperty: TypeAlias = tuple[int, _property]
+_ArrayProperty: TypeAlias = tuple[int, int]
+_ArrayOfAggregateProperty: TypeAlias = tuple[int, int, _property]
+_PointerToAPrimitiveProperty: TypeAlias = tuple[int, int]
+_PointerToAaAggregateProperty: TypeAlias = tuple[int, "_property"]
+_BitfieldProperty: TypeAlias = int
+_property: TypeAlias = (
+    _ScalarProperty
+    | _RecursiveProperty
+    | _ArrayProperty
+    | _ArrayOfAggregateProperty
+    | _PointerToAPrimitiveProperty
+    | _PointerToAaAggregateProperty
+    | _BitfieldProperty
+)
+_descriptor: TypeAlias = tuple[str, _property]
 
 VOID: int = 0
 NATIVE: int = 2
@@ -52,10 +72,7 @@ BF_POS: int = 17
 BIG_ENDIAN: int = 1
 FLOAT32: int = -268435456
 
-def sizeof(
-    struct,
-    layout_type=NATIVE,
-) -> int:
+def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object
@@ -63,7 +80,7 @@ def sizeof(
     """
     ...
 
-def bytes_at(addr, size) -> bytes:
+def bytes_at(addr: int, size: int, /) -> bytes:
     """
     Capture memory at the given address and size as bytes object. As bytes
     object is immutable, memory is actually duplicated and copied into
@@ -72,7 +89,7 @@ def bytes_at(addr, size) -> bytes:
     """
     ...
 
-def bytearray_at(addr, size) -> bytearray:
+def bytearray_at(addr: int, size: int, /) -> bytearray:
     """
     Capture memory at the given address and size as bytearray object.
     Unlike bytes_at() function above, memory is captured by reference,
@@ -81,7 +98,7 @@ def bytearray_at(addr, size) -> bytearray:
     """
     ...
 
-def addressof(obj) -> int:
+def addressof(obj: AnyReadableBuf, /) -> int:
     """
     Return address of an object. Argument should be bytes, bytearray or
     other object supporting buffer protocol (and address of this buffer
@@ -91,8 +108,12 @@ def addressof(obj) -> int:
 
 class struct:
     """
-    Instantiate a "foreign data structure" object based on structure address in
-    memory, descriptor (encoded as a dictionary), and layout type (see below).
+    Module contents
+    ---------------
     """
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None:
+        """
+        Instantiate a "foreign data structure" object based on structure address in
+        memory, descriptor (encoded as a dictionary), and layout type (see below).
+        """

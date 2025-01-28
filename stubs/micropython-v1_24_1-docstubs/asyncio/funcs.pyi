@@ -10,6 +10,7 @@ from collections.abc import Generator
 from typing import Any, Coroutine
 
 from _typeshed import Incomplete
+
 # from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 # from . import core as core
@@ -44,7 +45,7 @@ class _Remove:
     @staticmethod
     def remove(t) -> None: ...
 
-def gather(*aws, return_exceptions: bool = False) -> Generator[None, None, Incomplete]:
+async def gather(*aws, return_exceptions: bool = False) -> Generator[None, None, Incomplete]:
     """
     Run all *awaitables* concurrently.  Any *awaitables* that are not tasks are
     promoted to tasks.

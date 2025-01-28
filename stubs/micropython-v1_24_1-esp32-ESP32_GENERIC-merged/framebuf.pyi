@@ -1,7 +1,7 @@
 """
 Frame buffer manipulation.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/framebuf.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
@@ -14,8 +14,9 @@ Module: 'framebuf' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import AnyWritableBuf
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing import Any, Optional, overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 MONO_HMSB: int = 4
 MONO_HLSB: int = 3

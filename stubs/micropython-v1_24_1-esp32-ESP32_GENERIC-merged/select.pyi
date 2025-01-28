@@ -1,7 +1,7 @@
 """
 Wait for events on a set of streams.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/select.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/select.html
 
 CPython module: :mod:`python:select` https://docs.python.org/3/library/select.html .
 
@@ -16,8 +16,8 @@ Module: 'select' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from select import *
 from typing import Any, Iterable, Iterator, List, Optional, Tuple
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 POLLOUT: int = 4
 POLLIN: int = 1

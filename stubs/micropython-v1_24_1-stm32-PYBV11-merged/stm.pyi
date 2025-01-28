@@ -1,7 +1,7 @@
 """
 Functionality specific to STM32 MCUs.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/stm.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/stm.html
 
 This module provides functionality specific to STM32 microcontrollers, including
 direct access to peripheral registers.
@@ -15,6 +15,7 @@ Module: 'stm' on micropython-v1.24.1-stm32-PYBV11
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Tuple
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 SPI_I2SPR: int = 32
 RTC_DR: int = 4

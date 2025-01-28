@@ -10,7 +10,7 @@ MicroPython module: https://docs.micropython.org/en/v1.24.0/library/aioespnow.ht
 # origin module:: repos/micropython/docs/library/espnow.rst
 from __future__ import annotations
 from _typeshed import TypeAlias, Incomplete
-from typing import Callable, Any, Dict, Iterator, List, Optional, Tuple, Union
+from typing import Callable, overload, Any, Dict, Iterator, List, Optional, Tuple, Union
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _espnow import ESPNowBase  # type: ignore
 
@@ -135,7 +135,13 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def send(self, peer, msg, mac: _MACAddress | None = None, sync=True) -> Incomplete:
+    def send(
+        self,
+        peer: _MACAddress,
+        msg: str | bytes,
+        mac: _MACAddress | None = None,
+        sync=True,
+    ) -> bool:
         """
         Send the data contained in ``msg`` to the peer with given network ``mac``
         address. In the second form, ``mac=None`` and ``sync=True``. The peer must
@@ -514,6 +520,16 @@ class ESPNow(ESPNowBase, Iterator):
           `micropython.schedule()<micropython.schedule>`.
         """
         ...
+    #
+    @overload
+    def __iter__(self) -> ESPNow: ...
+    #
+    @overload
+    def __iter__(self) -> ESPNow: ...
+    @overload
+    def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
+    @overload
+    def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
 
 class AIOESPNow(ESPNow):
     """

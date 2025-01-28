@@ -1,7 +1,7 @@
 """
 JSON encoding and decoding.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/json.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/json.html
 
 CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
 
@@ -16,9 +16,9 @@ Module: 'json' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from json import *
-from _mpy_shed import IOBase
+from _mpy_shed import IOBase_mp
 from typing import Any, AnyStr, Tuple, overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def loads(str: AnyStr) -> Any:
     """
@@ -27,7 +27,7 @@ def loads(str: AnyStr) -> Any:
     """
     ...
 
-def load(stream: IOBase | Incomplete) -> Any:
+def load(stream: IOBase_mp | Incomplete) -> Any:
     """
     Parse the given *stream*, interpreting it as a JSON string and
     deserialising the data to a Python object.  The resulting object is
@@ -57,7 +57,7 @@ def dumps(obj: Any, separators: Tuple[str, str]) -> str:
     ...
 
 @overload
-def dump(obj: Any, stream: IOBase | Incomplete, /) -> None:
+def dump(obj: Any, stream: IOBase_mp | Incomplete, /) -> None:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
 
@@ -68,7 +68,7 @@ def dump(obj: Any, stream: IOBase | Incomplete, /) -> None:
     ...
 
 @overload
-def dump(obj: Any, stream: IOBase | Incomplete, separators: Tuple[str, str], /) -> None:
+def dump(obj: Any, stream: IOBase_mp | Incomplete, separators: Tuple[str, str], /) -> None:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
 

@@ -1,7 +1,7 @@
 """
 Control of WS2812 / NeoPixel LEDs.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/neopixel.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/neopixel.html
 
 This module provides a driver for WS2818 / NeoPixel LEDs.
 
@@ -21,7 +21,7 @@ from _typeshed import Incomplete
 from _mpy_shed import _NeoPixelBase
 from machine import Pin
 from typing import Tuple
-from typing_extensions import TypeAlias
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _Color: TypeAlias = tuple[int, int, int] | tuple[int, int, int, int]
 

@@ -123,7 +123,7 @@ class struct:
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
 
-def sizeof(struct: struct | _descriptor, layout_type: int = NATIVE, /) -> int:
+def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object

@@ -1,7 +1,7 @@
 """
 Low-level Bluetooth radio functionality.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/bluetooth.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/bluetooth.html
 
 This module provides an interface to a Bluetooth controller on a board.
 Currently this supports Bluetooth Low Energy (BLE) in Central, Peripheral,
@@ -27,8 +27,8 @@ Module: 'bluetooth' on micropython-v1.24.1-esp32-ESP32_GENERIC
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
-from typing import Any, Callable, overload
-from typing_extensions import TypeAlias
+from typing import Any, Callable, Optional, Tuple, overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _Flag: TypeAlias = int
 _Descriptor: TypeAlias = tuple["UUID", _Flag]

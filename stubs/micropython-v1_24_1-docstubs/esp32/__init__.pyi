@@ -11,7 +11,7 @@ controlling ESP32 modules.
 # origin module:: repos/micropython/docs/library/esp32.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, List, Optional, Tuple, Union
+from typing import Sequence, overload, Any, List, Optional, Tuple, Union
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf
 from machine import Pin
@@ -63,7 +63,7 @@ class Partition(AbstractBlockDev):
         """
 
     @staticmethod
-    def find(type: int = TYPE_APP, subtype: int = 0xFF, label: str | None = None, /) -> List:
+    def find(type: int = TYPE_APP, subtype: int = 0xFF, /, label: str | None = None) -> List:
         """
         Find a partition specified by *type*, *subtype* and *label*.  Returns a
         (possibly empty) list of Partition objects. Note: ``subtype=0xff`` matches any subtype
@@ -82,7 +82,36 @@ class Partition(AbstractBlockDev):
 
     def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> None: ...
     def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> None: ...
-    def ioctl(self, cmd, arg) -> Incomplete:
+    #
+    @overload
+    def ioctl(self, op: int, arg) -> None:
+        """
+        These methods implement the simple and :ref:`extended
+        <block-device-interface>` block protocol defined by
+        :class:`vfs.AbstractBlockDev`.
+        """
+        ...
+
+    @overload
+    def ioctl(self, op: int) -> int:
+        """
+        These methods implement the simple and :ref:`extended
+        <block-device-interface>` block protocol defined by
+        :class:`vfs.AbstractBlockDev`.
+        """
+        ...
+    #
+    @overload
+    def ioctl(self, op: int, arg) -> None:
+        """
+        These methods implement the simple and :ref:`extended
+        <block-device-interface>` block protocol defined by
+        :class:`vfs.AbstractBlockDev`.
+        """
+        ...
+
+    @overload
+    def ioctl(self, op: int) -> int:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
@@ -228,7 +257,7 @@ class RMT:
         ...
 
     @overload
-    def write_pulses(self, duration: List[int] | Tuple[int, ...], data: bool = True, /) -> None:
+    def write_pulses(self, duration: Sequence[int] | Tuple[int, ...], data: bool = True, /) -> None:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
@@ -258,7 +287,7 @@ class RMT:
         """
 
     @overload
-    def write_pulses(self, duration: int, data: List[bool] | Tuple[bool, ...], /) -> None:
+    def write_pulses(self, duration: int, data: Sequence[bool] | Tuple[bool, ...], /) -> None:
         """
         Begin transmitting a sequence. There are three ways to specify this:
 
@@ -290,8 +319,103 @@ class RMT:
     @overload
     def write_pulses(
         self,
-        duration: List[int] | Tuple[int, ...],
-        data: List[bool] | Tuple[bool, ...],
+        duration: Sequence[int] | Tuple[int, ...],
+        data: List[bool] | Tuple[bool, ...] | int,
+        /,
+    ) -> None:
+        """
+        Begin transmitting a sequence. There are three ways to specify this:
+
+        **Mode 1:** *duration* is a list or tuple of durations. The optional *data*
+        argument specifies the initial output level. The output level will toggle
+        after each duration.
+
+        **Mode 2:** *duration* is a positive integer and *data* is a list or tuple
+        of output levels. *duration* specifies a fixed duration for each.
+
+        **Mode 3:** *duration* and *data* are lists or tuples of equal length,
+        specifying individual durations and the output level for each.
+
+        Durations are in integer units of the channel resolution (as
+        described above), between 1 and ``PULSE_MAX`` units. Output levels
+        are any value that can be converted to a boolean, with ``True``
+        representing high voltage and ``False`` representing low.
+
+        If transmission of an earlier sequence is in progress then this method will
+        block until that transmission is complete before beginning the new sequence.
+
+        If looping has been enabled with `RMT.loop`, the sequence will be
+        repeated indefinitely. Further calls to this method will block until the
+        end of the current loop iteration before immediately beginning to loop the
+        new sequence of pulses. Looping sequences longer than 126 pulses is not
+        supported by the hardware.
+        """
+
+    @overload
+    def write_pulses(self, duration: Sequence[int] | Tuple[int, ...], data: bool = True, /) -> None:
+        """
+        Begin transmitting a sequence. There are three ways to specify this:
+
+        **Mode 1:** *duration* is a list or tuple of durations. The optional *data*
+        argument specifies the initial output level. The output level will toggle
+        after each duration.
+
+        **Mode 2:** *duration* is a positive integer and *data* is a list or tuple
+        of output levels. *duration* specifies a fixed duration for each.
+
+        **Mode 3:** *duration* and *data* are lists or tuples of equal length,
+        specifying individual durations and the output level for each.
+
+        Durations are in integer units of the channel resolution (as
+        described above), between 1 and ``PULSE_MAX`` units. Output levels
+        are any value that can be converted to a boolean, with ``True``
+        representing high voltage and ``False`` representing low.
+
+        If transmission of an earlier sequence is in progress then this method will
+        block until that transmission is complete before beginning the new sequence.
+
+        If looping has been enabled with `RMT.loop`, the sequence will be
+        repeated indefinitely. Further calls to this method will block until the
+        end of the current loop iteration before immediately beginning to loop the
+        new sequence of pulses. Looping sequences longer than 126 pulses is not
+        supported by the hardware.
+        """
+
+    @overload
+    def write_pulses(self, duration: int, data: Sequence[bool] | Tuple[bool, ...], /) -> None:
+        """
+        Begin transmitting a sequence. There are three ways to specify this:
+
+        **Mode 1:** *duration* is a list or tuple of durations. The optional *data*
+        argument specifies the initial output level. The output level will toggle
+        after each duration.
+
+        **Mode 2:** *duration* is a positive integer and *data* is a list or tuple
+        of output levels. *duration* specifies a fixed duration for each.
+
+        **Mode 3:** *duration* and *data* are lists or tuples of equal length,
+        specifying individual durations and the output level for each.
+
+        Durations are in integer units of the channel resolution (as
+        described above), between 1 and ``PULSE_MAX`` units. Output levels
+        are any value that can be converted to a boolean, with ``True``
+        representing high voltage and ``False`` representing low.
+
+        If transmission of an earlier sequence is in progress then this method will
+        block until that transmission is complete before beginning the new sequence.
+
+        If looping has been enabled with `RMT.loop`, the sequence will be
+        repeated indefinitely. Further calls to this method will block until the
+        end of the current loop iteration before immediately beginning to loop the
+        new sequence of pulses. Looping sequences longer than 126 pulses is not
+        supported by the hardware.
+        """
+
+    @overload
+    def write_pulses(
+        self,
+        duration: Sequence[int] | Tuple[int, ...],
+        data: List[bool] | Tuple[bool, ...] | int,
         /,
     ) -> None:
         """

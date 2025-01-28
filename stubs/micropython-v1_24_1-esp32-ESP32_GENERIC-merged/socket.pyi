@@ -1,7 +1,7 @@
 """
 Socket module.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/socket.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/socket.html
 
 CPython module: :mod:`python:socket` https://docs.python.org/3/library/socket.html .
 
@@ -69,11 +69,9 @@ Module: 'socket' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from socket import *
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from stdlib.socket import *
-from typing import Literal, Tuple, overload
-from typing_extensions import TypeAlias
+from typing import Any, IO, Literal, Optional, Tuple, overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str
 Socket: TypeAlias = socket

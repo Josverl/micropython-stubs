@@ -81,6 +81,170 @@ class BLE:
         """
 
     @overload
+    def active(self) -> bool:
+        """
+        Optionally changes the active state of the BLE radio, and returns the
+        current state.
+
+        The radio must be made active before using any other methods on this class.
+        """
+
+    @overload
+    def active(self, active: bool, /) -> None:
+        """
+        Optionally changes the active state of the BLE radio, and returns the
+        current state.
+
+        The radio must be made active before using any other methods on this class.
+        """
+
+    @overload
+    def active(self) -> bool:
+        """
+        Optionally changes the active state of the BLE radio, and returns the
+        current state.
+
+        The radio must be made active before using any other methods on this class.
+        """
+
+    @overload
+    def active(self, active: bool, /) -> None:
+        """
+        Optionally changes the active state of the BLE radio, and returns the
+        current state.
+
+        The radio must be made active before using any other methods on this class.
+        """
+
+    @overload
+    def config(self, param: str, /) -> Any:
+        """
+        Get or set configuration values of the BLE interface.  To get a value the
+        parameter name should be quoted as a string, and just one parameter is
+        queried at a time.  To set values use the keyword syntax, and one or more
+        parameter can be set at a time.
+
+        Currently supported values are:
+
+        - ``'mac'``: The current address in use, depending on the current address mode.
+          This returns a tuple of ``(addr_type, addr)``.
+
+          See :meth:`gatts_write <BLE.gatts_write>` for details about address type.
+
+          This may only be queried while the interface is currently active.
+
+        - ``'addr_mode'``: Sets the address mode. Values can be:
+
+            * 0x00 - PUBLIC - Use the controller's public address.
+            * 0x01 - RANDOM - Use a generated static address.
+            * 0x02 - RPA - Use resolvable private addresses.
+            * 0x03 - NRPA - Use non-resolvable private addresses.
+
+          By default the interface mode will use a PUBLIC address if available, otherwise
+          it will use a RANDOM address.
+
+        - ``'gap_name'``: Get/set the GAP device name used by service 0x1800,
+          characteristic 0x2a00.  This can be set at any time and changed multiple
+          times.
+
+        - ``'rxbuf'``: Get/set the size in bytes of the internal buffer used to store
+          incoming events.  This buffer is global to the entire BLE driver and so
+          handles incoming data for all events, including all characteristics.
+          Increasing this allows better handling of bursty incoming data (for
+          example scan results) and the ability to receive larger characteristic values.
+
+        - ``'mtu'``: Get/set the MTU that will be used during a ATT MTU exchange. The
+          resulting MTU will be the minimum of this and the remote device's MTU.
+          ATT MTU exchange will not happen automatically (unless the remote device initiates
+          it), and must be manually initiated with
+          :meth:`gattc_exchange_mtu<BLE.gattc_exchange_mtu>`.
+          Use the ``_IRQ_MTU_EXCHANGED`` event to discover the MTU for a given connection.
+
+        - ``'bond'``: Sets whether bonding will be enabled during pairing. When
+          enabled, pairing requests will set the "bond" flag and the keys will be stored
+          by both devices.
+
+        - ``'mitm'``: Sets whether MITM-protection is required for pairing.
+
+        - ``'io'``: Sets the I/O capabilities of this device.
+
+          Available options are::
+
+            _IO_CAPABILITY_DISPLAY_ONLY = const(0)
+            _IO_CAPABILITY_DISPLAY_YESNO = const(1)
+            _IO_CAPABILITY_KEYBOARD_ONLY = const(2)
+            _IO_CAPABILITY_NO_INPUT_OUTPUT = const(3)
+            _IO_CAPABILITY_KEYBOARD_DISPLAY = const(4)
+
+        - ``'le_secure'``: Sets whether "LE Secure" pairing is required. Default is
+          false (i.e. allow "Legacy Pairing").
+        """
+
+    @overload
+    def config(self, **kwargs) -> None:
+        """
+        Get or set configuration values of the BLE interface.  To get a value the
+        parameter name should be quoted as a string, and just one parameter is
+        queried at a time.  To set values use the keyword syntax, and one or more
+        parameter can be set at a time.
+
+        Currently supported values are:
+
+        - ``'mac'``: The current address in use, depending on the current address mode.
+          This returns a tuple of ``(addr_type, addr)``.
+
+          See :meth:`gatts_write <BLE.gatts_write>` for details about address type.
+
+          This may only be queried while the interface is currently active.
+
+        - ``'addr_mode'``: Sets the address mode. Values can be:
+
+            * 0x00 - PUBLIC - Use the controller's public address.
+            * 0x01 - RANDOM - Use a generated static address.
+            * 0x02 - RPA - Use resolvable private addresses.
+            * 0x03 - NRPA - Use non-resolvable private addresses.
+
+          By default the interface mode will use a PUBLIC address if available, otherwise
+          it will use a RANDOM address.
+
+        - ``'gap_name'``: Get/set the GAP device name used by service 0x1800,
+          characteristic 0x2a00.  This can be set at any time and changed multiple
+          times.
+
+        - ``'rxbuf'``: Get/set the size in bytes of the internal buffer used to store
+          incoming events.  This buffer is global to the entire BLE driver and so
+          handles incoming data for all events, including all characteristics.
+          Increasing this allows better handling of bursty incoming data (for
+          example scan results) and the ability to receive larger characteristic values.
+
+        - ``'mtu'``: Get/set the MTU that will be used during a ATT MTU exchange. The
+          resulting MTU will be the minimum of this and the remote device's MTU.
+          ATT MTU exchange will not happen automatically (unless the remote device initiates
+          it), and must be manually initiated with
+          :meth:`gattc_exchange_mtu<BLE.gattc_exchange_mtu>`.
+          Use the ``_IRQ_MTU_EXCHANGED`` event to discover the MTU for a given connection.
+
+        - ``'bond'``: Sets whether bonding will be enabled during pairing. When
+          enabled, pairing requests will set the "bond" flag and the keys will be stored
+          by both devices.
+
+        - ``'mitm'``: Sets whether MITM-protection is required for pairing.
+
+        - ``'io'``: Sets the I/O capabilities of this device.
+
+          Available options are::
+
+            _IO_CAPABILITY_DISPLAY_ONLY = const(0)
+            _IO_CAPABILITY_DISPLAY_YESNO = const(1)
+            _IO_CAPABILITY_KEYBOARD_ONLY = const(2)
+            _IO_CAPABILITY_NO_INPUT_OUTPUT = const(3)
+            _IO_CAPABILITY_KEYBOARD_DISPLAY = const(4)
+
+        - ``'le_secure'``: Sets whether "LE Secure" pairing is required. Default is
+          false (i.e. allow "Legacy Pairing").
+        """
+
+    @overload
     def config(self, param: str, /) -> Any:
         """
         Get or set configuration values of the BLE interface.  To get a value the
@@ -278,6 +442,134 @@ class BLE:
         Get or set configuration values of the BLE interface.  To get a value the
         parameter name should be quoted as a string, and just one parameter is
         queried at a time.  To set values use the keyword syntax, and one or more
+        parameter can be set at a time.
+
+        Currently supported values are:
+
+        - ``'mac'``: The current address in use, depending on the current address mode.
+          This returns a tuple of ``(addr_type, addr)``.
+
+          See :meth:`gatts_write <BLE.gatts_write>` for details about address type.
+
+          This may only be queried while the interface is currently active.
+
+        - ``'addr_mode'``: Sets the address mode. Values can be:
+
+            * 0x00 - PUBLIC - Use the controller's public address.
+            * 0x01 - RANDOM - Use a generated static address.
+            * 0x02 - RPA - Use resolvable private addresses.
+            * 0x03 - NRPA - Use non-resolvable private addresses.
+
+          By default the interface mode will use a PUBLIC address if available, otherwise
+          it will use a RANDOM address.
+
+        - ``'gap_name'``: Get/set the GAP device name used by service 0x1800,
+          characteristic 0x2a00.  This can be set at any time and changed multiple
+          times.
+
+        - ``'rxbuf'``: Get/set the size in bytes of the internal buffer used to store
+          incoming events.  This buffer is global to the entire BLE driver and so
+          handles incoming data for all events, including all characteristics.
+          Increasing this allows better handling of bursty incoming data (for
+          example scan results) and the ability to receive larger characteristic values.
+
+        - ``'mtu'``: Get/set the MTU that will be used during a ATT MTU exchange. The
+          resulting MTU will be the minimum of this and the remote device's MTU.
+          ATT MTU exchange will not happen automatically (unless the remote device initiates
+          it), and must be manually initiated with
+          :meth:`gattc_exchange_mtu<BLE.gattc_exchange_mtu>`.
+          Use the ``_IRQ_MTU_EXCHANGED`` event to discover the MTU for a given connection.
+
+        - ``'bond'``: Sets whether bonding will be enabled during pairing. When
+          enabled, pairing requests will set the "bond" flag and the keys will be stored
+          by both devices.
+
+        - ``'mitm'``: Sets whether MITM-protection is required for pairing.
+
+        - ``'io'``: Sets the I/O capabilities of this device.
+
+          Available options are::
+
+            _IO_CAPABILITY_DISPLAY_ONLY = const(0)
+            _IO_CAPABILITY_DISPLAY_YESNO = const(1)
+            _IO_CAPABILITY_KEYBOARD_ONLY = const(2)
+            _IO_CAPABILITY_NO_INPUT_OUTPUT = const(3)
+            _IO_CAPABILITY_KEYBOARD_DISPLAY = const(4)
+
+        - ``'le_secure'``: Sets whether "LE Secure" pairing is required. Default is
+          false (i.e. allow "Legacy Pairing").
+        """
+
+    @overload
+    def config(self, param: str, /) -> Any:
+        """
+        Get or set configuration values of the BLE interface.  To get a value the
+        parameter name should be quoted as a string, and just one parameter is
+        queried at a time.  To set values use the keyword syntax, and one ore more
+        parameter can be set at a time.
+
+        Currently supported values are:
+
+        - ``'mac'``: The current address in use, depending on the current address mode.
+          This returns a tuple of ``(addr_type, addr)``.
+
+          See :meth:`gatts_write <BLE.gatts_write>` for details about address type.
+
+          This may only be queried while the interface is currently active.
+
+        - ``'addr_mode'``: Sets the address mode. Values can be:
+
+            * 0x00 - PUBLIC - Use the controller's public address.
+            * 0x01 - RANDOM - Use a generated static address.
+            * 0x02 - RPA - Use resolvable private addresses.
+            * 0x03 - NRPA - Use non-resolvable private addresses.
+
+          By default the interface mode will use a PUBLIC address if available, otherwise
+          it will use a RANDOM address.
+
+        - ``'gap_name'``: Get/set the GAP device name used by service 0x1800,
+          characteristic 0x2a00.  This can be set at any time and changed multiple
+          times.
+
+        - ``'rxbuf'``: Get/set the size in bytes of the internal buffer used to store
+          incoming events.  This buffer is global to the entire BLE driver and so
+          handles incoming data for all events, including all characteristics.
+          Increasing this allows better handling of bursty incoming data (for
+          example scan results) and the ability to receive larger characteristic values.
+
+        - ``'mtu'``: Get/set the MTU that will be used during a ATT MTU exchange. The
+          resulting MTU will be the minimum of this and the remote device's MTU.
+          ATT MTU exchange will not happen automatically (unless the remote device initiates
+          it), and must be manually initiated with
+          :meth:`gattc_exchange_mtu<BLE.gattc_exchange_mtu>`.
+          Use the ``_IRQ_MTU_EXCHANGED`` event to discover the MTU for a given connection.
+
+        - ``'bond'``: Sets whether bonding will be enabled during pairing. When
+          enabled, pairing requests will set the "bond" flag and the keys will be stored
+          by both devices.
+
+        - ``'mitm'``: Sets whether MITM-protection is required for pairing.
+
+        - ``'io'``: Sets the I/O capabilities of this device.
+
+          Available options are::
+
+            _IO_CAPABILITY_DISPLAY_ONLY = const(0)
+            _IO_CAPABILITY_DISPLAY_YESNO = const(1)
+            _IO_CAPABILITY_KEYBOARD_ONLY = const(2)
+            _IO_CAPABILITY_NO_INPUT_OUTPUT = const(3)
+            _IO_CAPABILITY_KEYBOARD_DISPLAY = const(4)
+
+        - ``'le_secure'``: Sets whether "LE Secure" pairing is required. Default is
+          false (i.e. allow "Legacy Pairing").
+        """
+
+    @overload
+    def config(self, **kwargs) -> None:
+        """
+        Get or set configuration values of the BLE interface.  To get a value the
+        parameter name should be quoted as a string, and just one parameter is
+        queried at a time.  To set values use the keyword syntax, and one ore more
         parameter can be set at a time.
 
         Currently supported values are:

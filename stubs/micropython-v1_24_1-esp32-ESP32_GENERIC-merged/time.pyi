@@ -1,7 +1,7 @@
 """
 Time related functions.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/time.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/time.html
 
 CPython module: :mod:`python:time` https://docs.python.org/3/library/time.html .
 
@@ -40,15 +40,16 @@ Module: 'time' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from time import *
-from typing import Tuple
-from typing_extensions import TypeAlias, TypeVar
+from typing import Any, Optional, Tuple
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _TicksMs: TypeAlias = int
 _TicksUs: TypeAlias = int
 _TicksCPU: TypeAlias = int
 _Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
-_TimeTuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int]
+_Time8Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int]
+_Time9Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int, int]
+_TimeTuple: TypeAlias = _Time8Tuple | _Time9Tuple
 
 def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     """

@@ -236,6 +236,177 @@ class CAN:
         """
 
     @overload
+    def info(self) -> list[int]:
+        """
+        Get information about the controller's error states and TX and RX buffers.
+        If *list* is provided then it should be a list object with at least 8 entries,
+        which will be filled in with the information.  Otherwise a new list will be
+        created and filled in.  In both cases the return value of the method is the
+        populated list.
+
+        The values in the list are:
+
+        - TEC value
+        - REC value
+        - number of times the controller enterted the Error Warning state (wrapped
+          around to 0 after 65535)
+        - number of times the controller enterted the Error Passive state (wrapped
+          around to 0 after 65535)
+        - number of times the controller enterted the Bus Off state (wrapped
+          around to 0 after 65535)
+        - number of pending TX messages
+        - number of pending RX messages on fifo 0
+        - number of pending RX messages on fifo 1
+        """
+
+    @overload
+    def info(self, list: list[int], /) -> list[int]:
+        """
+        Get information about the controller's error states and TX and RX buffers.
+        If *list* is provided then it should be a list object with at least 8 entries,
+        which will be filled in with the information.  Otherwise a new list will be
+        created and filled in.  In both cases the return value of the method is the
+        populated list.
+
+        The values in the list are:
+
+        - TEC value
+        - REC value
+        - number of times the controller enterted the Error Warning state (wrapped
+          around to 0 after 65535)
+        - number of times the controller enterted the Error Passive state (wrapped
+          around to 0 after 65535)
+        - number of times the controller enterted the Bus Off state (wrapped
+          around to 0 after 65535)
+        - number of pending TX messages
+        - number of pending RX messages on fifo 0
+        - number of pending RX messages on fifo 1
+        """
+
+    @overload
+    def setfilter(self, bank: int, mode: int, fifo: int, params: Sequence[int], /) -> None:
+        """
+        Configure a filter bank:
+
+        - *bank* is the classic CAN controller filter bank, or CAN FD filter index, to configure.
+        - *mode* is the mode the filter should operate in, see the tables below.
+        - *fifo* is which fifo (0 or 1) a message should be stored in, if it is accepted by this filter.
+        - *params* is an array of values the defines the filter. The contents of the array depends on the *mode* argument.
+
+        +-----------+---------------------------------------------------------+
+        |*mode*     |Contents of *params* array for classic CAN controller    |
+        +===========+=========================================================+
+        |CAN.LIST16 |Four 16 bit ids that will be accepted                    |
+        +-----------+---------------------------------------------------------+
+        |CAN.LIST32 |Two 32 bit ids that will be accepted                     |
+        +-----------+---------------------------------------------------------+
+        |CAN.MASK16 |Two 16 bit id/mask pairs. E.g. (1, 3, 4, 4)              |
+        |           | | The first pair, 1 and 3 will accept all ids           |
+        |           | | that have bit 0 = 1 and bit 1 = 0.                    |
+        |           | | The second pair, 4 and 4, will accept all ids         |
+        |           | | that have bit 2 = 1.                                  |
+        +-----------+---------------------------------------------------------+
+        |CAN.MASK32 |As with CAN.MASK16 but with only one 32 bit id/mask pair.|
+        +-----------+---------------------------------------------------------+
+
+        +-----------+---------------------------------------------------------+
+        |*mode*     |Contents of *params* array for CAN FD controller         |
+        +===========+=========================================================+
+        |CAN.RANGE  |Two ids that represent a range of accepted ids.          |
+        +-----------+---------------------------------------------------------+
+        |CAN.DUAL   |Two ids that will be accepted. For example (1, 2)        |
+        +-----------+---------------------------------------------------------+
+        |CAN.MASK   |One filter ID and a mask. For example (0x111, 0x7FF)     |
+        +-----------+---------------------------------------------------------+
+
+        - *rtr* For classic CAN controllers, this is an array of booleans that states if
+          a filter should accept a remote transmission request message. If this argument
+          is not given then it defaults to ``False`` for all entries. The length of the
+          array depends on the *mode* argument. For CAN FD, this argument is ignored.
+
+        +-----------+----------------------+
+        |*mode*     |length of *rtr* array |
+        +===========+======================+
+        |CAN.LIST16 |4                     |
+        +-----------+----------------------+
+        |CAN.LIST32 |2                     |
+        +-----------+----------------------+
+        |CAN.MASK16 |2                     |
+        +-----------+----------------------+
+        |CAN.MASK32 |1                     |
+        +-----------+----------------------+
+
+        - *extframe* If True the frame will have an extended identifier (29 bits),
+          otherwise a standard identifier (11 bits) is used.
+        """
+
+    @overload
+    def setfilter(
+        self,
+        bank: int,
+        mode: int,
+        fifo: int,
+        params: Sequence[int],
+        /,
+        *,
+        rtr: Sequence[bool],
+    ) -> None:
+        """
+        Configure a filter bank:
+
+        - *bank* is the classic CAN controller filter bank, or CAN FD filter index, to configure.
+        - *mode* is the mode the filter should operate in, see the tables below.
+        - *fifo* is which fifo (0 or 1) a message should be stored in, if it is accepted by this filter.
+        - *params* is an array of values the defines the filter. The contents of the array depends on the *mode* argument.
+
+        +-----------+---------------------------------------------------------+
+        |*mode*     |Contents of *params* array for classic CAN controller    |
+        +===========+=========================================================+
+        |CAN.LIST16 |Four 16 bit ids that will be accepted                    |
+        +-----------+---------------------------------------------------------+
+        |CAN.LIST32 |Two 32 bit ids that will be accepted                     |
+        +-----------+---------------------------------------------------------+
+        |CAN.MASK16 |Two 16 bit id/mask pairs. E.g. (1, 3, 4, 4)              |
+        |           | | The first pair, 1 and 3 will accept all ids           |
+        |           | | that have bit 0 = 1 and bit 1 = 0.                    |
+        |           | | The second pair, 4 and 4, will accept all ids         |
+        |           | | that have bit 2 = 1.                                  |
+        +-----------+---------------------------------------------------------+
+        |CAN.MASK32 |As with CAN.MASK16 but with only one 32 bit id/mask pair.|
+        +-----------+---------------------------------------------------------+
+
+        +-----------+---------------------------------------------------------+
+        |*mode*     |Contents of *params* array for CAN FD controller         |
+        +===========+=========================================================+
+        |CAN.RANGE  |Two ids that represent a range of accepted ids.          |
+        +-----------+---------------------------------------------------------+
+        |CAN.DUAL   |Two ids that will be accepted. For example (1, 2)        |
+        +-----------+---------------------------------------------------------+
+        |CAN.MASK   |One filter ID and a mask. For example (0x111, 0x7FF)     |
+        +-----------+---------------------------------------------------------+
+
+        - *rtr* For classic CAN controllers, this is an array of booleans that states if
+          a filter should accept a remote transmission request message. If this argument
+          is not given then it defaults to ``False`` for all entries. The length of the
+          array depends on the *mode* argument. For CAN FD, this argument is ignored.
+
+        +-----------+----------------------+
+        |*mode*     |length of *rtr* array |
+        +===========+======================+
+        |CAN.LIST16 |4                     |
+        +-----------+----------------------+
+        |CAN.LIST32 |2                     |
+        +-----------+----------------------+
+        |CAN.MASK16 |2                     |
+        +-----------+----------------------+
+        |CAN.MASK32 |1                     |
+        +-----------+----------------------+
+
+        - *extframe* If True the frame will have an extended identifier (29 bits),
+          otherwise a standard identifier (11 bits) is used.
+        """
+
+    @overload
     def setfilter(self, bank: int, mode: int, fifo: int, params: Sequence[int], /) -> None:
         """
         Configure a filter bank:
@@ -373,6 +544,114 @@ class CAN:
         Return ``True`` if any message waiting on the FIFO, else ``False``.
         """
         ...
+
+    @overload
+    def recv(self, fifo: int, /, *, timeout: int = 5000) -> tuple[int, bool, int, memoryview]:
+        """
+        Receive data on the bus:
+
+          - *fifo* is an integer, which is the FIFO to receive on
+          - *list* is an optional list object to be used as the return value
+          - *timeout* is the timeout in milliseconds to wait for the receive.
+
+        Return value: A tuple containing five values.
+
+          - The id of the message.
+          - A boolean that indicates if the message ID is standard or extended.
+          - A boolean that indicates if the message is an RTR message.
+          - The FMI (Filter Match Index) value.
+          - An array containing the data.
+
+        If *list* is ``None`` then a new tuple will be allocated, as well as a new
+        bytes object to contain the data (as the fifth element in the tuple).
+
+        If *list* is not ``None`` then it should be a list object with a least five
+        elements.  The fifth element should be a memoryview object which is created
+        from either a bytearray or an array of type 'B' or 'b', and this array must
+        have enough room for at least 8 bytes.  The list object will then be
+        populated with the first four return values above, and the memoryview object
+        will be resized inplace to the size of the data and filled in with that data.
+        The same list and memoryview objects can be reused in subsequent calls to
+        this method, providing a way of receiving data without using the heap.
+        For example::
+
+             buf = bytearray(8)
+             lst = [0, 0, 0, 0, memoryview(buf)]
+             # No heap memory is allocated in the following call
+             can.recv(0, lst)
+        """
+
+    @overload
+    def recv(self, fifo: int, list: None, /, *, timeout: int = 5000) -> tuple[int, bool, int, memoryview]:
+        """
+        Receive data on the bus:
+
+          - *fifo* is an integer, which is the FIFO to receive on
+          - *list* is an optional list object to be used as the return value
+          - *timeout* is the timeout in milliseconds to wait for the receive.
+
+        Return value: A tuple containing five values.
+
+          - The id of the message.
+          - A boolean that indicates if the message ID is standard or extended.
+          - A boolean that indicates if the message is an RTR message.
+          - The FMI (Filter Match Index) value.
+          - An array containing the data.
+
+        If *list* is ``None`` then a new tuple will be allocated, as well as a new
+        bytes object to contain the data (as the fifth element in the tuple).
+
+        If *list* is not ``None`` then it should be a list object with a least five
+        elements.  The fifth element should be a memoryview object which is created
+        from either a bytearray or an array of type 'B' or 'b', and this array must
+        have enough room for at least 8 bytes.  The list object will then be
+        populated with the first four return values above, and the memoryview object
+        will be resized inplace to the size of the data and filled in with that data.
+        The same list and memoryview objects can be reused in subsequent calls to
+        this method, providing a way of receiving data without using the heap.
+        For example::
+
+             buf = bytearray(8)
+             lst = [0, 0, 0, 0, memoryview(buf)]
+             # No heap memory is allocated in the following call
+             can.recv(0, lst)
+        """
+
+    @overload
+    def recv(self, fifo: int, list: list[int | bool | memoryview], /, *, timeout: int = 5000) -> None:
+        """
+        Receive data on the bus:
+
+          - *fifo* is an integer, which is the FIFO to receive on
+          - *list* is an optional list object to be used as the return value
+          - *timeout* is the timeout in milliseconds to wait for the receive.
+
+        Return value: A tuple containing five values.
+
+          - The id of the message.
+          - A boolean that indicates if the message ID is standard or extended.
+          - A boolean that indicates if the message is an RTR message.
+          - The FMI (Filter Match Index) value.
+          - An array containing the data.
+
+        If *list* is ``None`` then a new tuple will be allocated, as well as a new
+        bytes object to contain the data (as the fifth element in the tuple).
+
+        If *list* is not ``None`` then it should be a list object with a least five
+        elements.  The fifth element should be a memoryview object which is created
+        from either a bytearray or an array of type 'B' or 'b', and this array must
+        have enough room for at least 8 bytes.  The list object will then be
+        populated with the first four return values above, and the memoryview object
+        will be resized inplace to the size of the data and filled in with that data.
+        The same list and memoryview objects can be reused in subsequent calls to
+        this method, providing a way of receiving data without using the heap.
+        For example::
+
+             buf = bytearray(8)
+             lst = [0, 0, 0, 0, memoryview(buf)]
+             # No heap memory is allocated in the following call
+             can.recv(0, lst)
+        """
 
     @overload
     def recv(self, fifo: int, /, *, timeout: int = 5000) -> tuple[int, bool, int, memoryview]:

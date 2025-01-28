@@ -37,6 +37,26 @@ class Flash(AbstractBlockDev):
         The *start* and *len* offsets are in bytes, and must be a multiple of the block size (typically 512 for internal flash).
         """
 
+    @overload
+    def __init__(self):
+        """
+        Create and return a block device that represents the flash device presented
+        to the USB mass storage interface.
+
+        It includes a virtual partition table at the start, and the actual flash
+        starts at block ``0x100``.
+
+        This constructor is deprecated and will be removed in a future version of MicroPython.
+        """
+
+    @overload
+    def __init__(self, *, start: int = -1, len: int = -1):
+        """
+        Create and return a block device that accesses the flash at the specified offset. The length defaults to the remaining size of the device.
+
+        The *start* and *len* offsets are in bytes, and must be a multiple of the block size (typically 512 for internal flash).
+        """
+
     def readblocks(self, blocknum: int, buf: bytes, offset: int = 0, /) -> None:
         """
         These methods implement the simple and :ref:`extended

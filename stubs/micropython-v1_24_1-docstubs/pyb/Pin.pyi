@@ -126,6 +126,20 @@ class Pin:
 
     @overload
     @staticmethod
+    def debug() -> bool:
+        """
+        Get or set the debugging state (``True`` or ``False`` for on or off).
+        """
+
+    @overload
+    @staticmethod
+    def debug(state: bool, /) -> None:
+        """
+        Get or set the debugging state (``True`` or ``False`` for on or off).
+        """
+
+    @overload
+    @staticmethod
     def dict() -> Dict[str, Pin]:
         """
         Get or set the pin mapper dictionary.
@@ -136,6 +150,34 @@ class Pin:
     def dict(dict: Dict[str, Pin], /) -> None:
         """
         Get or set the pin mapper dictionary.
+        """
+
+    @overload
+    @staticmethod
+    def dict() -> Dict[str, Pin]:
+        """
+        Get or set the pin mapper dictionary.
+        """
+
+    @overload
+    @staticmethod
+    def dict(dict: Dict[str, Pin], /) -> None:
+        """
+        Get or set the pin mapper dictionary.
+        """
+
+    @overload
+    @staticmethod
+    def mapper() -> Callable[[str], Pin]:
+        """
+        Get or set the pin mapper function.
+        """
+
+    @overload
+    @staticmethod
+    def mapper(fun: Callable[[str], Pin], /) -> None:
+        """
+        Get or set the pin mapper function.
         """
 
     @overload
@@ -192,6 +234,28 @@ class Pin:
         Returns: ``None``.
         """
         ...
+
+    @overload
+    def value(self) -> int:
+        """
+        Get or set the digital logic level of the pin:
+
+          - With no argument, return 0 or 1 depending on the logic level of the pin.
+          - With ``value`` given, set the logic level of the pin.  ``value`` can be
+            anything that converts to a boolean.  If it converts to ``True``, the pin
+            is set high, otherwise it is set low.
+        """
+
+    @overload
+    def value(self, value: Any, /) -> None:
+        """
+        Get or set the digital logic level of the pin:
+
+          - With no argument, return 0 or 1 depending on the logic level of the pin.
+          - With ``value`` given, set the logic level of the pin.  ``value`` can be
+            anything that converts to a boolean.  If it converts to ``True``, the pin
+            is set high, otherwise it is set low.
+        """
 
     @overload
     def value(self) -> int:
@@ -280,6 +344,22 @@ class Pin:
         function.
         """
         ...
+
+    @overload
+    def __call__(self) -> int:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
+
+    @overload
+    def __call__(self, x: Any, /) -> None:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
 
     @overload
     def __call__(self) -> int:

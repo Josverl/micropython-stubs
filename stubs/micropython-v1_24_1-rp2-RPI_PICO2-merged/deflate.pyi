@@ -1,7 +1,7 @@
 """
 Deflate compression & decompression.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/deflate.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/deflate.html
 
 This module allows compression and decompression of binary data with the
 `DEFLATE algorithm <https://en.wikipedia.org/wiki/DEFLATE>`_
@@ -26,6 +26,7 @@ Module: 'deflate' on micropython-v1.24.1-rp2-RPI_PICO2
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 GZIP: int = 3
 RAW: int = 1
