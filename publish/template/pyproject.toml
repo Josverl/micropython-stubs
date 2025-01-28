@@ -1,15 +1,12 @@
-[tool.poetry]
+[project]
 name = "template"
-version = "0.1.0"
 description = "template"
-authors = ["josverl <josverl@users.noreply.github.com>"]
-license = "MIT"
+version = "0.1.0"
 readme = "README.md"
-homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
-documentation = "https://micropython-stubs.readthedocs.io/"
-exclude = ["*.ps1", "*.py", "**/__pycache__", "**/dist"]
-include = ["**/*.py", "**/*.pyi"]
-repository = "https://github.com/josverl/micropython-stubs"
+license = "MIT"
+authors = [
+    { name = "Jos Verlinde", email = "josverl@users.noreply.github.com" },
+]
 
 classifiers = [
     "Typing :: Stubs Only",
@@ -25,14 +22,23 @@ classifiers = [
     "Topic :: Software Development :: Testing",
     "Natural Language :: English",
 ]
+# dependencies are updated from the template during build
+dependencies = ["micropython-stdlib-stubs  >=1.24.0"]
+
+[project.urls]
+homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
+documentation = "https://micropython-stubs.readthedocs.io/"
+repository = "https://github.com/josverl/micropython-stubs"
+
+
+
+[tool.poetry]
+exclude = ["*.ps1", "*.py", "**/__pycache__", "**/dist"]
+include = ["**/*.py", "**/*.pyi"]
 
 # Note: anything excluded in .gitignore is not packaged by poetry 
 packages = []
 
-[tool.poetry.dependencies]
-python = "^3.8"
-micropython-stdlib-stubs = ">=1.1.1"
-# micropython-stdlib-stubs = { path = "C:\\develop\\MyPython\\micropython-stubber\\repos\\micropython-stubs\\publish\\micropython-stdlib-minimal" }
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
