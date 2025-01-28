@@ -69,6 +69,10 @@
             "path": "feat_networking"
         },
         {
+            "name": "feat_typing",
+            "path": "feat_typing"
+        },
+        {
             "name": "wip_todo",
             "path": "wip_todo"
         },

@@ -55,9 +55,13 @@ from machine import ADC
 adc = ADC(Pin(32))  # create ADC object on ADC pin
 adc.read()  # read value, 0-4095 across voltage range 0.0v - 1.0v
 
-adc.atten(ADC.ATTN_11DB)  # set 11dB input attenuation (voltage range roughly 0.0v - 3.6v)
-adc.width(ADC.WIDTH_9BIT)  # set 9 bit return values (returned range 0-511)
-adc.read()  # read value using the newly configured attenuation and width
+# set 11dB input attenuation (voltage range roughly 0.0v - 3.6v)
+adc.atten(ADC.ATTN_11DB)
+# set 9 bit return values (returned range 0-511)
+adc.width(ADC.WIDTH_9BIT)  # stubs-ignore : board.endswith("_c6" ) or board.endswith("_s3" )
+
+# read value using the newly configured attenuation and width
+adc.read()
 
 
 # Software SPI bus
@@ -128,7 +132,7 @@ i2c = I2C(scl=Pin(5), sda=Pin(4), freq=100000)
 
 # I2S bus
 
-from machine import I2S, Pin
+from machine import I2S, Pin  # stubs-ignore : board.endswith("_c6" )
 
 i2s = I2S(
     0,
@@ -155,10 +159,3 @@ i2s = I2S(
     ibuf=40000,
 )  # create I2S object
 i2s.readinto(buf)  # fill buffer with audio samples from I2S device
-
-# Capacitive touch
-
-from machine import Pin, TouchPad
-
-t = TouchPad(Pin(14))
-t.read()  # Returns a smaller number when touched

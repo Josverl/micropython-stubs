@@ -7,7 +7,9 @@ b = ssl.CERT_OPTIONAL
 c = ssl.CERT_REQUIRED
 
 # valid
-ctx = ssl.SSLContext(protocol=ssl.PROTOCOL_TLS_SERVER)  # stubs-ignore: board == 'rpi_pico_w'
+ctx = ssl.SSLContext(
+    protocol=ssl.PROTOCOL_TLS_SERVER  # stubs-ignore: board in ['rpi_pico_w'] or port == 'esp32'
+)
 
 # below should NOT be available in stubs
 # test wiith ignoring the error - which will raise an error in pyright / mypy if it is not needed

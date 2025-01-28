@@ -54,6 +54,9 @@ PORTBOARD_FEATURES = {
         "bluetooth:skip version<1.20.0",
         "espnow:skip version<1.21.0",
     ],
+    "esp32-esp32_generic_c6:skip version<1.24.0": CORE + ["networking", "bluetooth", "espnow"],
+    "esp32-esp32_generic_s3:skip version<1.24.0": CORE + ["networking", "bluetooth", "espnow"],
+    #
     "esp8266": CORE + ["networking"],  # TODO: New MCU stubs for esp8266, "espnow>=1.21.0"],
     "samd": CORE,
     "samd-seeed_wio_terminal": CORE,

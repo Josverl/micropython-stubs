@@ -17,7 +17,7 @@ log = logging.getLogger(__name__)
 
 def listdir(path=".", sub=False, JSON=True, gethash=False):
     # Lists the file information of a folder
-    li :List[dict]= []
+    li: List[dict] = []
     if path == ".":  # Get current folder name
         path = os.getcwd()
     files = os.listdir(path)
@@ -53,6 +53,7 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
         li.append(info)
         # recurse folder(s)
         if sub == True:
+            assert isinstance(subdir, list)
             li = li + subdir
     if JSON == True:
         return json.dumps(li)
