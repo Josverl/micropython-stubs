@@ -127,7 +127,7 @@ class BLETemperature:
             return True
         elif event == _IRQ_GET_SECRET:
             sec_type, index, key = data
-            print("get secret:", sec_type, index, bytes(key) if key else None)
+            # print("get secret:", sec_type, index, bytes(key) if key else None)
             if key is None:
                 i = 0
                 for (t, _key), value in self._secrets.items():
@@ -137,7 +137,7 @@ class BLETemperature:
                         i += 1
                 return None
             else:
-                key = sec_type, bytes(key)
+                key = sec_type, bytes(key)  # stubs-ignore: linter == "mypy"
                 return self._secrets.get(key, None)
 
     def set_temperature(self, temp_deg_c, notify=False, indicate=False):

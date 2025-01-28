@@ -2,6 +2,7 @@
 # author: vladkvit
 
 import micropython
+from micropython import const
 import asyncio
 
 # import aiorepl
@@ -36,22 +37,26 @@ aioble.register_services(temp_service)
 debug_pin1 = Pin(1, Pin.OUT)
 debug_pin2 = Pin(2, Pin.OUT)
 
+
 def timer_isr(timer):
     debug_pin2.on()
-    test_value = ticks_us() # give MP something to do
+    test_value = ticks_us()  # give MP something to do
     debug_pin2.off()
 
+
 tim = Timer(0)
-tim.init(freq=20000, callback = timer_isr)
+tim.init(freq=20000, callback=timer_isr)
+
 
 async def timer_task_f(event):
     while True:
-        await asyncio.sleep_ms(4)
+        await asyncio.sleep_ms(4)  # stubs-ignore: linter == "mypy"
         event.set()
 
+
 async def sensor_task(event):
-    my_buf = bytearray(100+4)
-    
+    my_buf = bytearray(100 + 4)
+
     while True:
         debug_pin1.on()
         temp_characteristic.write(my_buf, send_update=True)
@@ -72,6 +77,7 @@ async def peripheral_task():
             print("Connection from", connection.device)
             await connection.disconnected(timeout_ms=None)
 
+
 async def main():
     # repl = asyncio.create_task(aiorepl.task())
 
@@ -80,5 +86,6 @@ async def main():
     t1 = asyncio.create_task(sensor_task(timer_event))
     t2 = asyncio.create_task(peripheral_task())
     await asyncio.gather(t1, t2, timer_task)
-        
+
+
 asyncio.run(main())

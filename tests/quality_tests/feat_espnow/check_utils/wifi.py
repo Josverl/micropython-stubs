@@ -163,9 +163,9 @@ def status():
         try:
             p = "|".join(
                 (
-                    x  # stubs-ignore : linter in ["mypy"]
+                    x  # stubs-ignore : linter == "mypy"
                     for x in names
-                    if protocol & getattr(network, x)  # stubs-ignore : linter in ["mypy"]
+                    if protocol & getattr(network, x)  # stubs-ignore : linter == "mypy"
                 )
             )
         except AttributeError:

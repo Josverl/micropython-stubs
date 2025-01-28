@@ -80,7 +80,7 @@ def _catch_esperror(method):
 class LazyESPNow(espnow.ESPNow):
     default_if = network.STA_IF
     debug = None
-    _saved_peers = {}  # stubs-ignore : linter in ["mypy"]
+    _saved_peers = {}  # stubs-ignore : linter == "mypy"
     wlans = [network.WLAN(i) for i in [network.STA_IF, network.AP_IF]]
 
     def __init__(self, default_if=network.STA_IF):

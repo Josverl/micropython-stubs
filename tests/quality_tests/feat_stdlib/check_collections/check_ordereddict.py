@@ -14,8 +14,7 @@ d3 = OrderedDict(
     [("z", 1), ("a", 2)]  # stubs-ignore:  linter in ["pyright"]
 )  # TODO: This @overload#3  used to work before a custom stdlib was added
 
-# stubs-ignore: port in ["samd"]
-# More items can be added as usual
+
 
 d3["w"] = 5
 d3["b"] = 3
