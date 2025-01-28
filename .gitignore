@@ -30,8 +30,6 @@ scratch
 
 # no daughter repos
 repos
-micropython
-micropython-lib
 
 # The lines below will influence the contents of the -stub packages created with poetry
 # poetry will exlude all .ignored files from the project
