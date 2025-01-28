@@ -24,11 +24,22 @@ If you have suggestions or find any issues with the stubs, please report them in
 For an overview of  Micropython Stubs please see: https://micropython-stubs.readthedocs.io/en/main/ 
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
-<!-- 
+
 
 # Installing directy from the repository
 
-pip install "git+https://github.com/Josverl/micropython-stubs@reference/rp2#subdirectory=publish/micropython-stdlib-stubs" --target typings
-pip install "git+https://github.com/Josverl/micropython-stubs@reference/rp2#subdirectory=publish/micropython-v1_24_1-esp32-esp32_generic_c6-stubs" --target typings
+The below installs 2 stub packages 
+ - from the branch : reference/rp2
+    - from the folder : publish/micropython-stdlib-stubs
+    - from the folder : publish/micropython-v1_24_1-rp2-rpi_pico_w-stubs
+ - to the folder : typings
 
- -->
+```bash
+pip install "git+https://github.com/Josverl/micropython-stubs@reference/rp2#subdirectory=publish/micropython-stdlib-stubs" --target typings
+pip install "git+https://github.com/Josverl/micropython-stubs@reference/rp2#subdirectory=publish/micropython-v1_24_1-rp2-rpi_pico_w-stubs" --target typings
+```
+
+*Note:* This is quite a long command, so it is best to copy and paste it into the terminal.
+it is also quite slow to install, as it needs to download all the files from the repository, 
+but it works well to test out a preview of the stubs.
+
