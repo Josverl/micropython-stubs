@@ -8,7 +8,6 @@ CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
-
 """
 
 from __future__ import annotations
