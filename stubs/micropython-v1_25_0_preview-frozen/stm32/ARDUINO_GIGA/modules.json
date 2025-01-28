@@ -1,0 +1,140 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "stm32",
+        "platform": "stm32",
+        "machine": "ARDUINO_GIGA",
+        "firmware": "micropython-stm32-v1_25_0_preview",
+        "nodename": "micropython",
+        "version": "v1.25.0-preview",
+        "release": "v1.25.0-preview",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.24.0",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "aioble/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "aioble/central.py",
+            "module": "central"
+        },
+        {
+            "file": "aioble/client.py",
+            "module": "client"
+        },
+        {
+            "file": "aioble/core.py",
+            "module": "core"
+        },
+        {
+            "file": "aioble/device.py",
+            "module": "device"
+        },
+        {
+            "file": "aioble/l2cap.py",
+            "module": "l2cap"
+        },
+        {
+            "file": "aioble/peripheral.py",
+            "module": "peripheral"
+        },
+        {
+            "file": "aioble/security.py",
+            "module": "security"
+        },
+        {
+            "file": "aioble/server.py",
+            "module": "server"
+        },
+        {
+            "file": "cbor2/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "cbor2/_decoder.py",
+            "module": "_decoder"
+        },
+        {
+            "file": "cbor2/_encoder.py",
+            "module": "_encoder"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "logging.py",
+            "module": "logging"
+        },
+        {
+            "file": "mip/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "msgpack.py",
+            "module": "msgpack"
+        },
+        {
+            "file": "msgpackrpc.py",
+            "module": "msgpackrpc"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "requests/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "senml/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "senml/senml_base.py",
+            "module": "senml_base"
+        },
+        {
+            "file": "senml/senml_pack.py",
+            "module": "senml_pack"
+        },
+        {
+            "file": "senml/senml_record.py",
+            "module": "senml_record"
+        },
+        {
+            "file": "senml/senml_unit.py",
+            "module": "senml_unit"
+        },
+        {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
+            "file": "time.py",
+            "module": "time"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        }
+    ]
+}
