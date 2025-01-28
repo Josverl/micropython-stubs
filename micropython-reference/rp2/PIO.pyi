@@ -1,5 +1,5 @@
 """
-Module: '_rp2.PIO'
+Module: 'rp2.PIO'
 """
 
 from __future__ import annotations

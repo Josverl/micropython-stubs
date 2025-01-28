@@ -1,5 +1,5 @@
 """
-Module: '_rp2.Flash'
+Module: 'rp2.Flash'
 """
 
 from typing import Optional

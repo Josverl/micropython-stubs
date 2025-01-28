@@ -1,5 +1,5 @@
 """
-Module: '_rp2.DMA'
+Module: 'rp2.DMA'
 """
 
 from __future__ import annotations

@@ -1,5 +1,5 @@
 """
-Module: '_rp2.StateMachine'
+Module: 'rp2.StateMachine'
 """
 
 from __future__ import annotations
