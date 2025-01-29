@@ -13,6 +13,14 @@ for more information, and `pico-micropython-examples
 for example code.
 
 ---
+Module: 'rp2.PIOASMEmit'
+
+The PIOASMEmit class provides a comprehensive interface for constructing PIO programs,
+handling the intricacies of instruction encoding, label management, and program state.
+This allows users to build complex PIO programs in pythone, leveraging the flexibility
+and power of the PIO state machine.
+
+---
 Module: 'rp2' on micropython-v1.24.1-rp2-RPI_PICO_W
 """
 
@@ -20,17 +28,22 @@ Module: 'rp2' on micropython-v1.24.1-rp2-RPI_PICO_W
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import _IRQ
-from typing import Any, Optional
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
+from typing import Union, Dict, List, Callable, Final, Literal, Any, Optional
 from typing_extensions import Awaitable, TypeAlias, TypeVar
+from vfs import AbstractBlockDev
+from machine import Pin
+
+_PIO_ASM_Program: TypeAlias = Incomplete
+_IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 
 _pio_funcs: dict = {}
 
 def asm_pio(
     *,
-    out_init=None,
-    set_init=None,
-    sideset_init=None,
+    out_init: Union[Pin, List[Pin], int, List[int], None] = None,
+    set_init: Union[Pin, List[Pin], int, List[int], None] = None,
+    sideset_init: Union[Pin, List[Pin], int, List[int], None] = None,
     in_shiftdir=0,
     out_shiftdir=0,
     autopush=False,
@@ -38,7 +51,7 @@ def asm_pio(
     push_thresh=32,
     pull_thresh=32,
     fifo_join=PIO.JOIN_NONE,
-) -> Incomplete:
+) -> Callable[..., PIOASMEmit]:
     """
     Assemble a PIO program.
 
@@ -75,7 +88,7 @@ def asm_pio(
     """
     ...
 
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
+def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> int:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
     instead.
@@ -102,23 +115,61 @@ def country(*args, **kwargs) -> Incomplete: ...
 def const(*args, **kwargs) -> Incomplete: ...
 
 class PIOASMEmit:
-    def in_(self, *args, **kwargs) -> Incomplete: ...
-    def side(self, *args, **kwargs) -> Incomplete: ...
-    def out(self, *args, **kwargs) -> Incomplete: ...
-    def jmp(self, *args, **kwargs) -> Incomplete: ...
-    def start_pass(self, *args, **kwargs) -> Incomplete: ...
-    def wrap(self, *args, **kwargs) -> Incomplete: ...
-    def word(self, *args, **kwargs) -> Incomplete: ...
-    def wait(self, *args, **kwargs) -> Incomplete: ...
-    def wrap_target(self, *args, **kwargs) -> Incomplete: ...
-    def delay(self, *args, **kwargs) -> Incomplete: ...
-    def label(self, *args, **kwargs) -> Incomplete: ...
-    def irq(self, *args, **kwargs) -> Incomplete: ...
-    def set(self, *args, **kwargs) -> Incomplete: ...
-    def mov(self, *args, **kwargs) -> Incomplete: ...
-    def push(self, *args, **kwargs) -> Incomplete: ...
-    def pull(self, *args, **kwargs) -> Incomplete: ...
-    def nop(self, *args, **kwargs) -> Incomplete: ...
+    """
+    The PIOASMEmit class provides a comprehensive interface for constructing PIO programs,
+    handling the intricacies of instruction encoding, label management, and program state.
+    This allows users to build complex PIO programs in pythone, leveraging the flexibility
+    and power of the PIO state machine.
+
+    The class should not be instantiated directly, but used via the `@asm_pio` decorator.
+    """
+
+    def in_(self, src, data): ...
+    def side(self, value: int):
+        """\
+        This is a modifier which can be applied to any instruction, and is used to control side-set pin values.
+        value: the value (bits) to output on the side-set pins
+
+        When an instruction has side 0 next to it, the corresponding output is set LOW, 
+        and when it has side 1 next to it, the corresponding output is set HIGH. 
+        There can be up to 5 side-set pins, in which case side N is interpreted as a binary number.
+
+        `side(0b00011)` sets the first and the second side-set pin HIGH, and the others LOW.
+        """
+        ...
+
+    def out(self, dest, data): ...
+    def jmp(self, cond, label: str | None = ...): ...
+    def start_pass(self, pass_) -> None:
+        """The start_pass method is used to start a pass over the instructions,
+        setting up the necessary state for the pass. It handles wrapping instructions
+        if needed and adjusts the delay maximum based on the number of side-set bits.
+        """
+
+        ...
+
+    def wrap(self) -> None:
+        """
+        The wrap method sets the wrap point for the program, ensuring the program loops correctly.
+        """
+        ...
+
+    def word(self, instr, label: str | None = ...): ...
+    def wait(self, polarity, src, index): ...
+    def wrap_target(self) -> None: ...
+    def delay(self, delay: int):
+        """
+        The delay method allows setting a delay for the current instruction,
+        ensuring it does not exceed the maximum allowed delay.
+        """
+
+    def label(self, label: str) -> None: ...
+    def irq(self, mod, index: Incomplete | None = ...): ...
+    def set(self, dest, data): ...
+    def mov(self, dest, src): ...
+    def push(self, value: int = ..., value2: int = ...): ...
+    def pull(self, value: int = ..., value2: int = ...): ...
+    def nop(self): ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class PIOASMError(Exception): ...
@@ -133,7 +184,7 @@ class StateMachine:
     `StateMachine.init`.
     """
 
-    def irq(self, handler=None, trigger=0 | 1, hard=False) -> Incomplete:
+    def irq(self, handler=None, trigger=0 | 1, hard=False) -> _IRQ:
         """
         Returns the IRQ object for the given StateMachine.
 
@@ -141,7 +192,7 @@ class StateMachine:
         """
         ...
 
-    def put(self, value, shift=0) -> Incomplete:
+    def put(self, value, shift=0):
         """
         Push words onto the state machine's TX FIFO.
 
@@ -157,7 +208,7 @@ class StateMachine:
         """
         ...
 
-    def restart(self) -> Incomplete:
+    def restart(self) -> None:
         """
         Restarts the state machine and jumps to the beginning of the program.
 
@@ -194,18 +245,18 @@ class StateMachine:
 
     def init(
         self,
-        program,
-        freq=-1,
+        program: int,
+        freq: int = 1,
         *,
-        in_base=None,
-        out_base=None,
-        set_base=None,
-        jmp_pin=None,
-        sideset_base=None,
-        in_shiftdir=None,
-        out_shiftdir=None,
-        push_thresh=None,
-        pull_thresh=None,
+        in_base: Pin | None = None,
+        out_base: Pin | None = None,
+        set_base: Pin | None = None,
+        jmp_pin: Pin | None = None,
+        sideset_base: Pin | None = None,
+        in_shiftdir: int | None = None,
+        out_shiftdir: int | None = None,
+        push_thresh: int | None = None,
+        pull_thresh: int | None = None,
     ) -> None:
         """
         Configure the state machine instance to run the given *program*.
@@ -240,7 +291,7 @@ class StateMachine:
         """
         ...
 
-    def exec(self, instr) -> Incomplete:
+    def exec(self, instr) -> None:
         """
         Execute a single PIO instruction.
 
@@ -268,7 +319,7 @@ class StateMachine:
         """
         ...
 
-    def active(self, value: Optional[Any] = None) -> Incomplete:
+    def active(self, value: Optional[Any] = None) -> bool:
         """
         Gets or sets whether the state machine is currently running.
 
@@ -302,7 +353,7 @@ class PIO:
     IRQ_SM2: int = 1024
     IRQ_SM0: int = 256
     IRQ_SM1: int = 512
-    def state_machine(self, id, program, *args, **kwargs) -> StateMachine:
+    def state_machine(self, id: int, program: _PIO_ASM_Program, *args, **kwargs) -> StateMachine:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
         four state machines, numbered 0 to 3.
@@ -314,7 +365,7 @@ class PIO:
         """
         ...
 
-    def remove_program(self, program: Optional[Any] = None) -> None:
+    def remove_program(self, program: Optional[_PIO_ASM_Program] = None) -> None:
         """
         Remove *program* from the instruction memory of this PIO instance.
 
@@ -324,7 +375,12 @@ class PIO:
         """
         ...
 
-    def irq(self, handler=None, trigger=IRQ_SM0 | IRQ_SM1 | IRQ_SM2 | IRQ_SM3, hard=False) -> _IRQ:
+    def irq(
+        self,
+        handler: Optional[Callable[[PIO], None]] = None,
+        trigger: _IRQ_TRIGGERS | None = None,
+        hard: bool = False,
+    ) -> _IRQ:
         """
         Returns the IRQ object for this PIO instance.
 
@@ -334,7 +390,7 @@ class PIO:
         """
         ...
 
-    def add_program(self, program) -> None:
+    def add_program(self, program: _PIO_ASM_Program) -> None:
         """
         Add the *program* to the instruction memory of this PIO instance.
 
@@ -372,7 +428,7 @@ class DMA:
         """
         ...
 
-    def pack_ctrl(self, default=None, *kwargs) -> int:
+    def pack_ctrl(self, default=None, **kwargs) -> int:
         """
         Pack the values provided in the keyword arguments into the named fields of a new control
         register value. Any field that is not provided will be set to a default value. The
@@ -438,7 +494,14 @@ class DMA:
         """
         ...
 
-    def config(self, read=None, write=None, count=None, ctrl=None, trigger=False) -> None:
+    def config(
+        self,
+        read: int | AnyReadableBuf | None = None,
+        write: int | AnyWritableBuf | None = None,
+        count: int = -1,
+        ctrl: int = -1,
+        trigger: bool = False,
+    ) -> None:
         """
         Configure the DMA registers for the channel and optionally start the transfer.
         Parameters are:
@@ -459,7 +522,7 @@ class DMA:
         """
         ...
 
-    def active(self, value: Optional[Any] = None) -> bool:
+    def active(self, value: Any | None = None) -> bool:
         """
         Gets or sets whether the DMA channel is currently running.
 
@@ -472,7 +535,7 @@ class DMA:
 
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class Flash:
+class Flash(AbstractBlockDev):
     """
     Gets the singleton object for accessing the SPI flash memory.
     """

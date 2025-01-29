@@ -26,6 +26,8 @@ If you have suggestions or find any issues with the stubs, please report them in
 For an overview of  Micropython Stubs please see: https://micropython-stubs.readthedocs.io/en/main/ 
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
+
+
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_25_0_preview-rp2-ARDUINO_NANO_RP2040_CONNECT-merged`
 * Frozen stubs from `stubs/micropython-v1_25_0_preview-frozen/rp2/ARDUINO_NANO_RP2040_CONNECT`
