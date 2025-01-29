@@ -323,46 +323,6 @@ class socket:
         """
 
     @overload
-    def makefile(self, mode: Literal["rb", "wb", "rwb"] = "rb", buffering: int = 0, /) -> Socket:
-        """
-        Return a file object associated with the socket. The exact returned type depends on the arguments
-        given to makefile(). The support is limited to binary modes only ('rb', 'wb', and 'rwb').
-        CPython's arguments: *encoding*, *errors* and *newline* are not supported.
-
-        Admonition:Difference to CPython
-           :class: attention
-
-           As MicroPython doesn't support buffered streams, values of *buffering*
-           parameter is ignored and treated as if it was 0 (unbuffered).
-
-        Admonition:Difference to CPython
-           :class: attention
-
-           Closing the file object returned by makefile() WILL close the
-           original socket as well.
-        """
-
-    @overload
-    def makefile(self, mode: str, buffering: int = 0, /) -> Socket:
-        """
-        Return a file object associated with the socket. The exact returned type depends on the arguments
-        given to makefile(). The support is limited to binary modes only ('rb', 'wb', and 'rwb').
-        CPython's arguments: *encoding*, *errors* and *newline* are not supported.
-
-        Admonition:Difference to CPython
-           :class: attention
-
-           As MicroPython doesn't support buffered streams, values of *buffering*
-           parameter is ignored and treated as if it was 0 (unbuffered).
-
-        Admonition:Difference to CPython
-           :class: attention
-
-           Closing the file object returned by makefile() WILL close the
-           original socket as well.
-        """
-
-    @overload
     def read(self) -> bytes:
         """
         Read up to size bytes from the socket. Return a bytes object. If *size* is not given, it
@@ -380,46 +340,6 @@ class socket:
         the socket is closed. This function tries to read as much data as
         requested (no "short reads"). This may be not possible with
         non-blocking socket though, and then less data will be returned.
-        """
-
-    @overload
-    def read(self) -> bytes:
-        """
-        Read up to size bytes from the socket. Return a bytes object. If *size* is not given, it
-        reads all data available from the socket until EOF; as such the method will not return until
-        the socket is closed. This function tries to read as much data as
-        requested (no "short reads"). This may be not possible with
-        non-blocking socket though, and then less data will be returned.
-        """
-
-    @overload
-    def read(self, size: int, /) -> bytes:
-        """
-        Read up to size bytes from the socket. Return a bytes object. If *size* is not given, it
-        reads all data available from the socket until EOF; as such the method will not return until
-        the socket is closed. This function tries to read as much data as
-        requested (no "short reads"). This may be not possible with
-        non-blocking socket though, and then less data will be returned.
-        """
-
-    @overload
-    def readinto(self, buf: AnyWritableBuf, /) -> int | None:
-        """
-        Read bytes into the *buf*.  If *nbytes* is specified then read at most
-        that many bytes.  Otherwise, read at most *len(buf)* bytes. Just as
-        `read()`, this method follows "no short reads" policy.
-
-        Return value: number of bytes read and stored into *buf*.
-        """
-
-    @overload
-    def readinto(self, buf: AnyWritableBuf, nbytes: int, /) -> int | None:
-        """
-        Read bytes into the *buf*.  If *nbytes* is specified then read at most
-        that many bytes.  Otherwise, read at most *len(buf)* bytes. Just as
-        `read()`, this method follows "no short reads" policy.
-
-        Return value: number of bytes read and stored into *buf*.
         """
 
     @overload

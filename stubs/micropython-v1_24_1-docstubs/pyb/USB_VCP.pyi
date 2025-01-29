@@ -86,52 +86,6 @@ class USB_VCP:
         """
 
     @overload
-    def read(self) -> bytes | None:
-        """
-        Read at most ``nbytes`` from the serial device and return them as a
-        bytes object.  If ``nbytes`` is not specified then the method reads
-        all available bytes from the serial device.
-        USB_VCP `stream` implicitly works in non-blocking mode,
-        so if no pending data available, this method will return immediately
-        with ``None`` value.
-        """
-
-    @overload
-    def read(self, nbytes, /) -> bytes | None:
-        """
-        Read at most ``nbytes`` from the serial device and return them as a
-        bytes object.  If ``nbytes`` is not specified then the method reads
-        all available bytes from the serial device.
-        USB_VCP `stream` implicitly works in non-blocking mode,
-        so if no pending data available, this method will return immediately
-        with ``None`` value.
-        """
-
-    @overload
-    def readinto(self, buf: AnyWritableBuf, /) -> int | None:
-        """
-        Read bytes from the serial device and store them into ``buf``, which
-        should be a buffer-like object.  At most ``len(buf)`` bytes are read.
-        If ``maxlen`` is given and then at most ``min(maxlen, len(buf))`` bytes
-        are read.
-
-        Returns the number of bytes read and stored into ``buf`` or ``None``
-        if no pending data available.
-        """
-
-    @overload
-    def readinto(self, buf: AnyWritableBuf, maxlen: int, /) -> int | None:
-        """
-        Read bytes from the serial device and store them into ``buf``, which
-        should be a buffer-like object.  At most ``len(buf)`` bytes are read.
-        If ``maxlen`` is given and then at most ``min(maxlen, len(buf))`` bytes
-        are read.
-
-        Returns the number of bytes read and stored into ``buf`` or ``None``
-        if no pending data available.
-        """
-
-    @overload
     def readinto(self, buf: AnyWritableBuf, /) -> int | None:
         """
         Read bytes from the serial device and store them into ``buf``, which
@@ -181,32 +135,6 @@ class USB_VCP:
         Returns the number of bytes written.
         """
         ...
-
-    @overload
-    def recv(self, data: int, /, *, timeout: int = 5000) -> bytes | None:
-        """
-        Receive data on the bus:
-
-          - ``data`` can be an integer, which is the number of bytes to receive,
-            or a mutable buffer, which will be filled with received bytes.
-          - ``timeout`` is the timeout in milliseconds to wait for the receive.
-
-        Return value: if ``data`` is an integer then a new buffer of the bytes received,
-        otherwise the number of bytes read into ``data`` is returned.
-        """
-
-    @overload
-    def recv(self, data: AnyWritableBuf, /, *, timeout: int = 5000) -> int | None:
-        """
-        Receive data on the bus:
-
-          - ``data`` can be an integer, which is the number of bytes to receive,
-            or a mutable buffer, which will be filled with received bytes.
-          - ``timeout`` is the timeout in milliseconds to wait for the receive.
-
-        Return value: if ``data`` is an integer then a new buffer of the bytes received,
-        otherwise the number of bytes read into ``data`` is returned.
-        """
 
     @overload
     def recv(self, data: int, /, *, timeout: int = 5000) -> bytes | None:

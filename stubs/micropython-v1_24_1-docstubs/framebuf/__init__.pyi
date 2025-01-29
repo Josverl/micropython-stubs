@@ -123,20 +123,6 @@ class FrameBuffer:
         If *c* is given, set the specified pixel to the given color.
         """
 
-    @overload
-    def pixel(self, x: int, y: int, /) -> int:
-        """
-        If *c* is not given, get the color value of the specified pixel.
-        If *c* is given, set the specified pixel to the given color.
-        """
-
-    @overload
-    def pixel(self, x: int, y: int, c: int, /) -> None:
-        """
-        If *c* is not given, get the color value of the specified pixel.
-        If *c* is given, set the specified pixel to the given color.
-        """
-
     def hline(self, x: int, y: int, w: int, c: int, /) -> None:
         """
         Draw a line from a set of coordinates using the given color and

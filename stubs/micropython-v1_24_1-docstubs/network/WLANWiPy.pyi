@@ -77,44 +77,6 @@ class WLANWiPy:
         values.
         """
 
-    @overload
-    def __init__(self, id: int = 0, /):
-        """
-        Create a WLAN object, and optionally configure it. See `init()` for params of configuration.
-
-        .. note::
-
-        The ``WLAN`` constructor is special in the sense that if no arguments besides the id are given,
-        it will return the already existing ``WLAN`` instance without re-configuring it. This is
-        because ``WLAN`` is a system feature of the WiPy. If the already existing instance is not
-        initialized it will do the same as the other constructors an will initialize it with default
-        values.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: int,
-        /,
-        *,
-        mode: int,
-        ssid: str,
-        auth: tuple[str, str],
-        channel: int,
-        antenna: int,
-    ):
-        """
-        Create a WLAN object, and optionally configure it. See `init()` for params of configuration.
-
-        .. note::
-
-        The ``WLAN`` constructor is special in the sense that if no arguments besides the id are given,
-        it will return the already existing ``WLAN`` instance without re-configuring it. This is
-        because ``WLAN`` is a system feature of the WiPy. If the already existing instance is not
-        initialized it will do the same as the other constructors an will initialize it with default
-        values.
-        """
-
     def init(
         self,
         mode: int,
@@ -214,18 +176,6 @@ class WLANWiPy:
         """
 
     @overload
-    def mode(self) -> int:
-        """
-        Get or set the WLAN mode.
-        """
-
-    @overload
-    def mode(self, mode: int, /) -> None:
-        """
-        Get or set the WLAN mode.
-        """
-
-    @overload
     def ssid(self) -> str:
         """
         Get or set the SSID when in AP mode.
@@ -235,30 +185,6 @@ class WLANWiPy:
     def ssid(self, ssid: str, /) -> None:
         """
         Get or set the SSID when in AP mode.
-        """
-
-    @overload
-    def ssid(self) -> str:
-        """
-        Get or set the SSID when in AP mode.
-        """
-
-    @overload
-    def ssid(self, ssid: str, /) -> None:
-        """
-        Get or set the SSID when in AP mode.
-        """
-
-    @overload
-    def auth(self) -> int:
-        """
-        Get or set the authentication type when in AP mode.
-        """
-
-    @overload
-    def auth(self, auth: int, /) -> None:
-        """
-        Get or set the authentication type when in AP mode.
         """
 
     @overload
@@ -286,18 +212,6 @@ class WLANWiPy:
         """
 
     @overload
-    def channel(self) -> int:
-        """
-        Get or set the channel (only applicable in AP mode).
-        """
-
-    @overload
-    def channel(self, channel: int, /) -> None:
-        """
-        Get or set the channel (only applicable in AP mode).
-        """
-
-    @overload
     def antenna(self) -> int:
         """
         Get or set the antenna type (external or internal).
@@ -307,30 +221,6 @@ class WLANWiPy:
     def antenna(self, antenna: int, /) -> None:
         """
         Get or set the antenna type (external or internal).
-        """
-
-    @overload
-    def antenna(self) -> int:
-        """
-        Get or set the antenna type (external or internal).
-        """
-
-    @overload
-    def antenna(self, antenna: int, /) -> None:
-        """
-        Get or set the antenna type (external or internal).
-        """
-
-    @overload
-    def mac(self) -> bytes:
-        """
-        Get or set a 6-byte long bytes object with the MAC address.
-        """
-
-    @overload
-    def mac(self, mac: bytes, /) -> None:
-        """
-        Get or set a 6-byte long bytes object with the MAC address.
         """
 
     @overload

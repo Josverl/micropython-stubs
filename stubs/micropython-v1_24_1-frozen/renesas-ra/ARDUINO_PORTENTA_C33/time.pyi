@@ -36,16 +36,13 @@ behave not as expected.
 from __future__ import annotations
 from utime import *
 from _typeshed import Incomplete
-from typing import Tuple
+from _mpy_shed import _TimeTuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _TicksMs: TypeAlias = int
 _TicksUs: TypeAlias = int
 _TicksCPU: TypeAlias = int
 _Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
-_Time8Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int]
-_Time9Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int, int]
-_TimeTuple: TypeAlias = _Time8Tuple | _Time9Tuple
 
 _TS_YEAR: int
 _TS_MON: int

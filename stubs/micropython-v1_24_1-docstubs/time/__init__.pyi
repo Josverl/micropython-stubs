@@ -40,14 +40,12 @@ from _typeshed import Incomplete
 from typing import Any, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias, TypeVar
+from _mpy_shed import _TimeTuple
 
 _TicksMs: TypeAlias = int
 _TicksUs: TypeAlias = int
 _TicksCPU: TypeAlias = int
 _Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
-_Time8Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int]
-_Time9Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int, int]
-_TimeTuple: TypeAlias = _Time8Tuple | _Time9Tuple
 
 def gmtime(secs: int | None = None, /) -> Tuple:
     """

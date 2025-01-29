@@ -102,52 +102,6 @@ class array(MutableSequence[_T], Generic[_T]):
         """
 
     @overload
-    def __getitem__(self, index: int) -> _T:
-        """
-        Indexed read of the array, called as ``a[index]`` (where ``a`` is an ``array``).
-        Returns a value if *index* is an ``int`` and an ``array`` if *index* is a slice.
-        Negative indices count from the end and ``IndexError`` is thrown if the index is
-        out of range.
-
-        **Note:** ``__getitem__`` cannot be called directly (``a.__getitem__(index)`` fails) and
-        is not present in ``__dict__``, however ``a[index]`` does work.
-        """
-
-    @overload
-    def __getitem__(self, sl: slice) -> array[_T]:
-        """
-        Indexed read of the array, called as ``a[index]`` (where ``a`` is an ``array``).
-        Returns a value if *index* is an ``int`` and an ``array`` if *index* is a slice.
-        Negative indices count from the end and ``IndexError`` is thrown if the index is
-        out of range.
-
-        **Note:** ``__getitem__`` cannot be called directly (``a.__getitem__(index)`` fails) and
-        is not present in ``__dict__``, however ``a[index]`` does work.
-        """
-
-    @overload
-    def __setitem__(self, index: int, value: _T) -> None:
-        """
-        Indexed write into the array, called as ``a[index] = value`` (where ``a`` is an ``array``).
-        ``value`` is a single value if *index* is an ``int`` and an ``array`` if *index* is a slice.
-        Negative indices count from the end and ``IndexError`` is thrown if the index is out of range.
-
-        **Note:** ``__setitem__`` cannot be called directly (``a.__setitem__(index, value)`` fails) and
-        is not present in ``__dict__``, however ``a[index] = value`` does work.
-        """
-
-    @overload
-    def __setitem__(self, sl: slice, values: array[_T]) -> None:
-        """
-        Indexed write into the array, called as ``a[index] = value`` (where ``a`` is an ``array``).
-        ``value`` is a single value if *index* is an ``int`` and an ``array`` if *index* is a slice.
-        Negative indices count from the end and ``IndexError`` is thrown if the index is out of range.
-
-        **Note:** ``__setitem__`` cannot be called directly (``a.__setitem__(index, value)`` fails) and
-        is not present in ``__dict__``, however ``a[index] = value`` does work.
-        """
-
-    @overload
     def __setitem__(self, index: int, value: _T) -> None:
         """
         Indexed write into the array, called as ``a[index] = value`` (where ``a`` is an ``array``).

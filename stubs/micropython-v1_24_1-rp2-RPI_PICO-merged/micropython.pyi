@@ -636,3 +636,35 @@ class RingIO:
         ...
 
     def __init__(self, *argv, **kwargs) -> None: ...
+
+# decorators
+@overload
+def viper(func: Callable) -> Callable:
+    """
+    The Viper code emitter is not fully compliant. It supports special Viper native data types in pursuit of performance.
+    Integer processing is non-compliant because it uses machine words: arithmetic on 32 bit hardware is performed modulo 2**32.
+    Like the Native emitter Viper produces machine instructions but further optimisations are performed, substantially increasing
+    performance especially for integer arithmetic and bit manipulations.
+    See: https://docs.micropython.org/en/latest/reference/speed_python.html?highlight=viper#the-native-code-emitter
+    """
+    ...
+
+@overload
+def native(func: Callable) -> Callable:
+    """
+    This causes the MicroPython compiler to emit native CPU opcodes rather than bytecode.
+    It covers the bulk of the MicroPython functionality, so most functions will require no adaptation.
+    See: https://docs.micropython.org/en/latest/reference/speed_python.html#the-native-code-emitter
+    """
+    ...
+
+@overload
+def asm_thumb(func: Callable) -> Callable:
+    """
+    This decorator is used to mark a function as containing inline assembler code.
+    The assembler code is written is a subset of the ARM Thumb-2 instruction set, and is executed on the target CPU.
+
+    Availability: Only on specific boards where MICROPY_EMIT_INLINE_THUMB is defined.
+    See: https://docs.micropython.org/en/latest/reference/asm_thumb2_index.html
+    """
+    ...

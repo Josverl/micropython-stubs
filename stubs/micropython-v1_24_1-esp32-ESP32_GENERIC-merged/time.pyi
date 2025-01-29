@@ -40,6 +40,7 @@ Module: 'time' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from _mpy_shed import _TimeTuple
 from typing import Any, Optional, Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
@@ -47,9 +48,6 @@ _TicksMs: TypeAlias = int
 _TicksUs: TypeAlias = int
 _TicksCPU: TypeAlias = int
 _Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
-_Time8Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int]
-_Time9Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int, int]
-_TimeTuple: TypeAlias = _Time8Tuple | _Time9Tuple
 
 def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     """

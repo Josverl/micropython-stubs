@@ -79,36 +79,6 @@ def randrange(start: int, stop: int, step: int, /) -> int:
     return odd numbers between 1 and 9 inclusive.
     """
 
-@overload
-def randrange(stop: int, /) -> int:
-    """
-    The first form returns a random integer from the range [0, *stop*).
-    The second form returns a random integer from the range [*start*, *stop*).
-    The third form returns a random integer from the range [*start*, *stop*) in
-    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
-    return odd numbers between 1 and 9 inclusive.
-    """
-
-@overload
-def randrange(start: int, stop: int, /) -> int:
-    """
-    The first form returns a random integer from the range [0, *stop*).
-    The second form returns a random integer from the range [*start*, *stop*).
-    The third form returns a random integer from the range [*start*, *stop*) in
-    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
-    return odd numbers between 1 and 9 inclusive.
-    """
-
-@overload
-def randrange(start: int, stop: int, step: int, /) -> int:
-    """
-    The first form returns a random integer from the range [0, *stop*).
-    The second form returns a random integer from the range [*start*, *stop*).
-    The third form returns a random integer from the range [*start*, *stop*) in
-    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
-    return odd numbers between 1 and 9 inclusive.
-    """
-
 def random() -> int:
     """
     Return a random floating point number in the range [0.0, 1.0).
