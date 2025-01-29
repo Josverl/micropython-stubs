@@ -36,7 +36,7 @@ micropython.stack_use()
 micropython.heap_lock()
 micropython.heap_unlock()
 
-micropython.kbd_intr("0x03")
+micropython.kbd_intr(0x03)
 
 
 # supply params to the function
