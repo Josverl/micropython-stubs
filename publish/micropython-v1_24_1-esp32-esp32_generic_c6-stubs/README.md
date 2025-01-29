@@ -26,6 +26,8 @@ If you have suggestions or find any issues with the stubs, please report them in
 For an overview of  Micropython Stubs please see: https://micropython-stubs.readthedocs.io/en/main/ 
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
+
+
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_24_1-esp32-ESP32_GENERIC_C6-merged`
 * Frozen stubs from `stubs/micropython-v1_24_1-frozen/esp32/GENERIC`
