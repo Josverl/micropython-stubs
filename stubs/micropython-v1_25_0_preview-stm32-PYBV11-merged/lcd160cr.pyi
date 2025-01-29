@@ -14,8 +14,8 @@ Module: 'lcd160cr' on micropython-v1.24.1-stm32-PYBV11
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from pyb import SPI
-from typing import Tuple
+from pyb import I2C, Pin, SPI
+from typing import Any, Tuple, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 PORTRAIT: int = 0
@@ -34,47 +34,38 @@ def pack_into(*args, **kwargs) -> Incomplete: ...
 
 class LCD160CR:
     """
-    Construct an LCD160CR object.  The parameters are:
+    The LCD160CR class provides an interface to the display.  Create an
+    instance of this class and use its methods to draw to the LCD and get
+    the status of the touch panel.
 
-        - *connect* is a string specifying the physical connection of the LCD
-          display to the board; valid values are "X", "Y", "XY", "YX".
-          Use "X" when the display is connected to a pyboard in the X-skin
-          position, and "Y" when connected in the Y-skin position.  "XY"
-          and "YX" are used when the display is connected to the right or
-          left side of the pyboard, respectively.
-        - *pwr* is a Pin object connected to the LCD's power/enabled pin.
-        - *i2c* is an I2C object connected to the LCD's I2C interface.
-        - *spi* is an SPI object connected to the LCD's SPI interface.
-        - *i2c_addr* is the I2C address of the display.
+    For example::
 
-    One must specify either a valid *connect* or all of *pwr*, *i2c* and *spi*.
-    If a valid *connect* is given then any of *pwr*, *i2c* or *spi* which are
-    not passed as parameters (i.e. they are ``None``) will be created based on the
-    value of *connect*.  This allows to override the default interface to the
-    display if needed.
+        import lcd160cr
 
-    The default values are:
-
-        - "X" is for the X-skin and uses:
-          ``pwr=Pin("X4")``, ``i2c=I2C("X")``, ``spi=SPI("X")``
-        - "Y" is for the Y-skin and uses:
-          ``pwr=Pin("Y4")``, ``i2c=I2C("Y")``, ``spi=SPI("Y")``
-        - "XY" is for the right-side and uses:
-          ``pwr=Pin("X4")``, ``i2c=I2C("Y")``, ``spi=SPI("X")``
-        - "YX" is for the left-side and uses:
-          ``pwr=Pin("Y4")``, ``i2c=I2C("X")``, ``spi=SPI("Y")``
-
-    See `this image <http://micropython.org/resources/LCD160CRv10-positions.jpg>`_
-    for how the display can be connected to the pyboard.
+        lcd = lcd160cr.LCD160CR('X')
+        lcd.set_orient(lcd160cr.PORTRAIT)
+        lcd.set_pos(0, 0)
+        lcd.set_text_color(lcd.rgb(255, 0, 0), lcd.rgb(0, 0, 0))
+        lcd.set_font(1)
+        lcd.write('Hello MicroPython!')
+        print('touch:', lcd.get_touch())
     """
 
-    def set_brightness(self, value) -> None:
+    def set_brightness(self, value: int, /) -> None:
         """
         Set the brightness of the display, between 0 and 31.
         """
         ...
 
-    def screen_dump(self, buf, x=0, y=0, w=None, h=None) -> Incomplete:
+    def screen_dump(
+        self,
+        buf: AnyWritableBuf,
+        x: int = 0,
+        y: int = 0,
+        w: int | None = None,
+        h: int | None = None,
+        /,
+    ) -> None:
         """
         Dump the contents of the screen to the given buffer.  The parameters *x* and *y*
         specify the starting coordinate, and *w* and *h* the size of the region.  If *w*
@@ -85,20 +76,28 @@ class LCD160CR:
         """
         ...
 
-    def screen_load(self, buf) -> None:
+    def screen_load(self, buf: AnyReadableBuf, /) -> None:
         """
         Load the entire screen from the given buffer.
         """
         ...
 
-    def set_orient(self, orient) -> None:
+    def set_orient(self, orient: str, /) -> None:
         """
         Set the orientation of the display.  The *orient* parameter can be one
         of `PORTRAIT`, `LANDSCAPE`, `PORTRAIT_UPSIDEDOWN`, `LANDSCAPE_UPSIDEDOWN`.
         """
         ...
 
-    def set_font(self, font, scale=0, bold=0, trans=0, scroll=0) -> None:
+    def set_font(
+        self,
+        font: int,
+        scale: int = 0,
+        bold: int = 0,
+        trans: int = 0,
+        scroll: int = 0,
+        /,
+    ) -> None:
         """
         Set the font for the text.  Subsequent calls to `write` will use the newly
         configured font.  The parameters are:
@@ -119,14 +118,14 @@ class LCD160CR:
         """
         ...
 
-    def set_i2c_addr(self, addr) -> None:
+    def set_i2c_addr(self, addr: int, /) -> None:
         """
         Set the I2C address of the display.  The *addr* value must have the
         lower 2 bits cleared.
         """
         ...
 
-    def rect_interior(self, x, y, w, h) -> None:
+    def rect_interior(self, x: int, y: int, w: int, h: int, /) -> None:
         """
         Draw a rectangle at the given location and size using the pen line
         color for the outline, and the pen fill color for the interior.
@@ -135,17 +134,29 @@ class LCD160CR:
         """
         ...
 
-    def rect_no_clip(self, x, y, w, h) -> Incomplete: ...
-    def save_to_flash(self) -> Incomplete:
+    def rect_no_clip(self, x: int, y: int, w: int, h: int, /) -> None:
+        """
+        These methods are as above but don't do any clipping on the input
+        coordinates.  They are faster than the clipping versions and can be
+        used when you know that the coordinates are within the display.
+        """
+
+    def save_to_flash(self) -> None:
         """
         Save the following parameters to flash so they persist on restart and power up:
         initial decoration, orientation, brightness, UART baud rate, I2C address.
         """
         ...
 
-    def rect_interior_no_clip(self, x, y, w, h) -> Incomplete: ...
+    def rect_interior_no_clip(self, x: int, y: int, w: int, h: int, /) -> None:
+        """
+        These methods are as above but don't do any clipping on the input
+        coordinates.  They are faster than the clipping versions and can be
+        used when you know that the coordinates are within the display.
+        """
+
     @staticmethod
-    def rgb(r, g, b) -> int:
+    def rgb(r: int, g: int, b: int, /) -> int:
         """
         Return a 16-bit integer representing the given rgb color values.  The
         16-bit value can be used to set the font color (see
@@ -154,16 +165,29 @@ class LCD160CR:
         """
         ...
 
-    def rect_outline(self, x, y, w, h) -> Incomplete: ...
-    def rect_outline_no_clip(self, x, y, w, h) -> Incomplete: ...
-    def set_startup_deco(self, value) -> None:
+    def rect_outline(self, x: int, y: int, w: int, h: int, /) -> None:
+        """
+        Draw a rectangle at the given location and size using the pen line
+        color for the outline, and the pen fill color for the interior.
+        The `rect` method draws the outline and interior, while the other methods
+        just draw one or the other.
+        """
+
+    def rect_outline_no_clip(self, x: int, y: int, w: int, h: int, /) -> None:
+        """
+        These methods are as above but don't do any clipping on the input
+        coordinates.  They are faster than the clipping versions and can be
+        used when you know that the coordinates are within the display.
+        """
+
+    def set_startup_deco(self, value: bool | str, /) -> None:
         """
         Set the start-up decoration of the display.  The *value* parameter can be a
         logical or of `STARTUP_DECO_NONE`, `STARTUP_DECO_MLOGO`, `STARTUP_DECO_INFO`.
         """
         ...
 
-    def set_scroll_win_param(self, win, param, value) -> Incomplete:
+    def set_scroll_win_param(self, win: int, param: int, value: int, /) -> None:
         """
         Set a single parameter of a scrolling window region:
 
@@ -174,13 +198,13 @@ class LCD160CR:
         """
         ...
 
-    def set_spi_win(self, x, y, w, h) -> None:
+    def set_spi_win(self, x: int, y: int, w: int, h: int, /) -> None:
         """
         Set the window that SPI data is written to.
         """
         ...
 
-    def show_framebuf(self, buf) -> None:
+    def show_framebuf(self, buf: AnyReadableBuf, /) -> None:
         """
         Show the given buffer on the display.  *buf* should be an array of bytes containing
         the 16-bit RGB values for the pixels, and they will be written to the area
@@ -192,32 +216,44 @@ class LCD160CR:
         """
         ...
 
-    def set_text_color(self, fg, bg) -> None:
+    def set_text_color(self, fg: int, bg: int, /) -> None:
         """
         Set the foreground and background color of the text.
         """
         ...
 
-    def set_uart_baudrate(self, baudrate) -> None:
+    def set_uart_baudrate(self, baudrate: int, /) -> None:
         """
         Set the baudrate of the UART interface.
         """
         ...
 
-    def set_pen(self, line, fill) -> None:
+    def set_pen(self, line: int, fill: int, /) -> None:
         """
         Set the line and fill color for primitive shapes.
         """
         ...
 
-    def set_pos(self, x, y) -> None:
+    def set_pos(self, x: int, y: int, /) -> None:
         """
         Set the position for text output using :meth:`LCD160CR.write`.  The position
         is the upper-left corner of the text.
         """
         ...
 
-    def set_scroll_win(self, win, x=-1, y=0, w=0, h=0, vec=0, pat=0, fill=0x07E0, color=0) -> None:
+    def set_scroll_win(
+        self,
+        win: int,
+        x: int = -1,
+        y: int = 0,
+        w: int = 0,
+        h: int = 0,
+        vec: int = 0,
+        pat: int = 0,
+        fill: int = 0x07E0,
+        color: int = 0,
+        /,
+    ) -> None:
         """
         Configure a window region for scrolling:
 
@@ -235,35 +271,35 @@ class LCD160CR:
         """
         ...
 
-    def set_pixel(self, x, y, c) -> None:
+    def set_pixel(self, x: int, y: int, c: int, /) -> None:
         """
         Set the specified pixel to the given color.  The color should be a 16-bit
         integer and can be created by :meth:`LCD160CR.rgb`.
         """
         ...
 
-    def set_scroll_buf(self, s) -> None:
+    def set_scroll_buf(self, s: str, /) -> None:
         """
         Set the string for scrolling in window 8.  The parameter *s* must be a string
         with length 32 or less.
         """
         ...
 
-    def set_power(self, on) -> None:
+    def set_power(self, on: bool, /) -> None:
         """
         Turn the display on or off, depending on the given value of *on*: 0 or ``False``
         will turn the display off, and 1 or ``True`` will turn it on.
         """
         ...
 
-    def set_scroll(self, on) -> None:
+    def set_scroll(self, on: bool, /) -> None:
         """
         Turn scrolling on or off.  This controls globally whether any window regions will
         scroll.
         """
         ...
 
-    def touch_config(self, calib=False, save=False, irq=None) -> None:
+    def touch_config(self, calib: bool = False, save: bool = False, irq: bool | None = None, /) -> None:
         """
         Configure the touch panel:
 
@@ -280,7 +316,7 @@ class LCD160CR:
         ...
 
     @staticmethod
-    def clip_line(data, w, h) -> Incomplete:
+    def clip_line(data: Any, w: int, h: int, /) -> int:
         """
         Clip the given line data.  This is for internal use.
         """
@@ -288,33 +324,39 @@ class LCD160CR:
 
     def _send(self, *args, **kwargs) -> Incomplete: ...
     def _waitfor(self, *args, **kwargs) -> Incomplete: ...
-    def erase(self) -> Incomplete:
+    def erase(self) -> None:
         """
         Erase the entire display to the pen fill color.
         """
         ...
 
-    def dot(self, x, y) -> None:
+    def dot(self, x: int, y: int, /) -> None:
         """
         Draw a single pixel at the given location using the pen line color.
         """
         ...
 
-    def dot_no_clip(self, x, y) -> Incomplete: ...
-    def poly_line(self, data) -> Incomplete:
+    def dot_no_clip(self, x: int, y: int, /) -> None:
+        """
+        These methods are as above but don't do any clipping on the input
+        coordinates.  They are faster than the clipping versions and can be
+        used when you know that the coordinates are within the display.
+        """
+
+    def poly_line(self, data: AnyReadableBuf, /) -> None:
         """
         Similar to :meth:`LCD160CR.poly_dot` but draws lines between the dots.
         """
         ...
 
-    def line(self, x1, y1, x2, y2) -> None:
+    def line(self, x1: int, y1: int, x2: int, y2: int, /) -> None:
         """
         Draw a line between the given coordinates using the pen line color.
         """
         ...
 
     def _fcmd2b(self, *args, **kwargs) -> Incomplete: ...
-    def write(self, s) -> None:
+    def write(self, s: str, /) -> None:
         """
         Write text to the display, using the current position, color and font.
         As text is written the position is automatically incremented.  The
@@ -323,15 +365,29 @@ class LCD160CR:
         ...
 
     def _fcmd2(self, *args, **kwargs) -> Incomplete: ...
-    def rect(self, x, y, w, h) -> Incomplete: ...
+    def rect(self, x: int, y: int, w: int, h: int, /) -> None:
+        """
+        Draw a rectangle at the given location and size using the pen line
+        color for the outline, and the pen fill color for the interior.
+        The `rect` method draws the outline and interior, while the other methods
+        just draw one or the other.
+        """
+
     def reset(self) -> None:
         """
         Reset the display.
         """
         ...
 
-    def jpeg_start(self, total_len) -> Incomplete: ...
-    def jpeg(self, buf) -> None:
+    def jpeg_start(self, total_len: int, /) -> None:
+        """
+        Display a JPEG with the data split across multiple buffers.  There must be
+        a single call to `jpeg_start` to begin with, specifying the total number of
+        bytes in the JPEG.  Then this number of bytes must be transferred to the
+        display using one or more calls to the `jpeg_data` command.
+        """
+
+    def jpeg(self, buf: AnyReadableBuf, /) -> None:
         """
         Display a JPEG.  *buf* should contain the entire JPEG data. JPEG data should
         not include EXIF information. The following encodings are supported: Baseline
@@ -340,7 +396,7 @@ class LCD160CR:
         """
         ...
 
-    def jpeg_data(self, buf) -> None:
+    def jpeg_data(self, buf: AnyReadableBuf, /) -> None:
         """
         Display a JPEG with the data split across multiple buffers.  There must be
         a single call to `jpeg_start` to begin with, specifying the total number of
@@ -349,7 +405,7 @@ class LCD160CR:
         """
         ...
 
-    def poly_dot(self, data) -> None:
+    def poly_dot(self, data: AnyReadableBuf, /) -> None:
         """
         Draw a sequence of dots using the pen line color.
         The *data* should be a buffer of bytes, with each successive pair of
@@ -357,7 +413,7 @@ class LCD160CR:
         """
         ...
 
-    def line_no_clip(self, x1, y1, x2, y2) -> Incomplete:
+    def line_no_clip(self, x1: int, y1: int, x2: int, y2: int, /) -> None:
         """
         These methods are as above but don't do any clipping on the input
         coordinates.  They are faster than the clipping versions and can be
@@ -366,7 +422,7 @@ class LCD160CR:
         ...
 
     def oflush(self, *args, **kwargs) -> Incomplete: ...
-    def fast_spi(self, flush=True) -> SPI:
+    def fast_spi(self, flush: bool = True, /) -> SPI:
         """
         Ready the display to accept RGB pixel data on the SPI bus, resetting the location
         of the first byte to go to the top-left corner of the window set by
@@ -380,7 +436,7 @@ class LCD160CR:
         """
         ...
 
-    def get_line(self, x, y, buf) -> Incomplete:
+    def get_line(self, x: int, y: int, buf: AnyWritableBuf, /) -> None:
         """
         Low-level method to get a line of pixels into the given buffer.
         To read *n* pixels *buf* should be *2*n+1* bytes in length.  The first byte
@@ -396,7 +452,7 @@ class LCD160CR:
         """
         ...
 
-    def feed_wdt(self) -> Incomplete:
+    def feed_wdt(self) -> None:
         """
         The first call to this method will start the display's internal watchdog
         timer.  Subsequent calls will feed the watchdog.  The timeout is roughly 30
@@ -405,7 +461,7 @@ class LCD160CR:
         ...
 
     def iflush(self, *args, **kwargs) -> Incomplete: ...
-    def get_pixel(self, x, y) -> Incomplete:
+    def get_pixel(self, x: int, y: int, /) -> int:
         """
         Get the 16-bit value of the specified pixel.
         """
@@ -419,4 +475,76 @@ class LCD160CR:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    @overload
+    def __init__(self, connect: str, /):
+        """
+        Construct an LCD160CR object.  The parameters are:
+
+            - *connect* is a string specifying the physical connection of the LCD
+              display to the board; valid values are "X", "Y", "XY", "YX".
+              Use "X" when the display is connected to a pyboard in the X-skin
+              position, and "Y" when connected in the Y-skin position.  "XY"
+              and "YX" are used when the display is connected to the right or
+              left side of the pyboard, respectively.
+            - *pwr* is a Pin object connected to the LCD's power/enabled pin.
+            - *i2c* is an I2C object connected to the LCD's I2C interface.
+            - *spi* is an SPI object connected to the LCD's SPI interface.
+            - *i2c_addr* is the I2C address of the display.
+
+        One must specify either a valid *connect* or all of *pwr*, *i2c* and *spi*.
+        If a valid *connect* is given then any of *pwr*, *i2c* or *spi* which are
+        not passed as parameters (i.e. they are ``None``) will be created based on the
+        value of *connect*.  This allows to override the default interface to the
+        display if needed.
+
+        The default values are:
+
+            - "X" is for the X-skin and uses:
+              ``pwr=Pin("X4")``, ``i2c=I2C("X")``, ``spi=SPI("X")``
+            - "Y" is for the Y-skin and uses:
+              ``pwr=Pin("Y4")``, ``i2c=I2C("Y")``, ``spi=SPI("Y")``
+            - "XY" is for the right-side and uses:
+              ``pwr=Pin("X4")``, ``i2c=I2C("Y")``, ``spi=SPI("X")``
+            - "YX" is for the left-side and uses:
+              ``pwr=Pin("Y4")``, ``i2c=I2C("X")``, ``spi=SPI("Y")``
+
+        See `this image <http://micropython.org/resources/LCD160CRv10-positions.jpg>`_
+        for how the display can be connected to the pyboard.
+        """
+
+    @overload
+    def __init__(self, *, pwr: Pin, i2c: I2C, spi: SPI, i2c_addr: int = 98):
+        """
+        Construct an LCD160CR object.  The parameters are:
+
+            - *connect* is a string specifying the physical connection of the LCD
+              display to the board; valid values are "X", "Y", "XY", "YX".
+              Use "X" when the display is connected to a pyboard in the X-skin
+              position, and "Y" when connected in the Y-skin position.  "XY"
+              and "YX" are used when the display is connected to the right or
+              left side of the pyboard, respectively.
+            - *pwr* is a Pin object connected to the LCD's power/enabled pin.
+            - *i2c* is an I2C object connected to the LCD's I2C interface.
+            - *spi* is an SPI object connected to the LCD's SPI interface.
+            - *i2c_addr* is the I2C address of the display.
+
+        One must specify either a valid *connect* or all of *pwr*, *i2c* and *spi*.
+        If a valid *connect* is given then any of *pwr*, *i2c* or *spi* which are
+        not passed as parameters (i.e. they are ``None``) will be created based on the
+        value of *connect*.  This allows to override the default interface to the
+        display if needed.
+
+        The default values are:
+
+            - "X" is for the X-skin and uses:
+              ``pwr=Pin("X4")``, ``i2c=I2C("X")``, ``spi=SPI("X")``
+            - "Y" is for the Y-skin and uses:
+              ``pwr=Pin("Y4")``, ``i2c=I2C("Y")``, ``spi=SPI("Y")``
+            - "XY" is for the right-side and uses:
+              ``pwr=Pin("X4")``, ``i2c=I2C("Y")``, ``spi=SPI("X")``
+            - "YX" is for the left-side and uses:
+              ``pwr=Pin("Y4")``, ``i2c=I2C("X")``, ``spi=SPI("Y")``
+
+        See `this image <http://micropython.org/resources/LCD160CRv10-positions.jpg>`_
+        for how the display can be connected to the pyboard.
+        """

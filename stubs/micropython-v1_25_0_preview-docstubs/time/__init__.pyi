@@ -40,13 +40,14 @@ from _typeshed import Incomplete
 from typing import Any, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias, TypeVar
+from _mpy_shed import _TimeTuple
 
 _TicksMs: TypeAlias = int
 _TicksUs: TypeAlias = int
 _TicksCPU: TypeAlias = int
 _Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
 
-def gmtime(secs: Optional[Any] = None) -> Tuple:
+def gmtime(secs: int | None = None, /) -> Tuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
     8-tuple which contains: ``(year, month, mday, hour, minute, second, weekday, yearday)``
@@ -68,7 +69,7 @@ def gmtime(secs: Optional[Any] = None) -> Tuple:
     """
     ...
 
-def localtime(secs: Optional[Any] = None) -> Tuple:
+def localtime(secs: int | None = None, /) -> Tuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
     8-tuple which contains: ``(year, month, mday, hour, minute, second, weekday, yearday)``
@@ -90,7 +91,7 @@ def localtime(secs: Optional[Any] = None) -> Tuple:
     """
     ...
 
-def mktime() -> int:
+def mktime(local_time: _TimeTuple, /) -> int:
     """
     This is inverse function of localtime. It's argument is a full 8-tuple
     which expresses a time as per localtime. It returns an integer which is
@@ -98,7 +99,7 @@ def mktime() -> int:
     """
     ...
 
-def sleep(seconds) -> Incomplete:
+def sleep(seconds: float, /) -> None:
     """
     Sleep for the given number of seconds. Some boards may accept *seconds* as a
     floating-point number to sleep for a fractional number of seconds. Note that
@@ -107,7 +108,7 @@ def sleep(seconds) -> Incomplete:
     """
     ...
 
-def sleep_ms(ms) -> None:
+def sleep_ms(ms: int, /) -> None:
     """
     Delay for given number of milliseconds, should be positive or 0.
 
@@ -118,7 +119,7 @@ def sleep_ms(ms) -> None:
     """
     ...
 
-def sleep_us(us) -> None:
+def sleep_us(us: int, /) -> None:
     """
     Delay for given number of microseconds, should be positive or 0.
 
@@ -152,13 +153,13 @@ def ticks_ms() -> int:
     """
     ...
 
-def ticks_us() -> Incomplete:
+def ticks_us() -> _TicksUs:
     """
     Just like `ticks_ms()` above, but in microseconds.
     """
     ...
 
-def ticks_cpu() -> Incomplete:
+def ticks_cpu() -> _TicksCPU:
     """
     Similar to `ticks_ms()` and `ticks_us()`, but with the highest possible resolution
     in the system. This is usually CPU clocks, and that's why the function is named that
@@ -173,7 +174,7 @@ def ticks_cpu() -> Incomplete:
     """
     ...
 
-def ticks_add(ticks, delta) -> Incomplete:
+def ticks_add(ticks: _Ticks, delta: int, /) -> _Ticks:
     """
     Offset ticks value by a given number, which can be either positive or negative.
     Given a *ticks* value, this function allows to calculate ticks value *delta*
@@ -200,7 +201,7 @@ def ticks_add(ticks, delta) -> Incomplete:
     """
     ...
 
-def ticks_diff(ticks1, ticks2) -> int:
+def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     """
     Measure ticks difference between values returned from `ticks_ms()`, `ticks_us()`,
     or `ticks_cpu()` functions, as a signed value which may wrap around.

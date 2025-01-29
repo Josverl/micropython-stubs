@@ -13,34 +13,34 @@ hold/accumulate various objects.
 # origin module:: repos/micropython/docs/library/collections.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional, Tuple
+from typing import Dict, Generic, overload, Any, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from collections.abc import Iterable, Mapping
 
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
 
-class deque(stdlib_deque):
+class deque:
     """
-    Deques (double-ended queues) are a list-like container that support O(1)
-    appends and pops from either side of the deque.  New deques are created
-    using the following arguments:
-
-        - *iterable* is an iterable used to populate the deque when it is
-          created.  It can be an empty tuple or list to create a deque that
-          is initially empty.
-
-        - *maxlen* must be specified and the deque will be bounded to this
-          maximum length.  Once the deque is full, any new items added will
-          discard items from the opposite end.
-
-        - The optional *flags* can be 1 to check for overflow when adding items.
-
-    Deque objects support `bool`, `len`, iteration and subscript load and store.
-    They also have the following methods:
+    Minimal implementation of a deque that implements a FIFO buffer.
     """
 
-    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None: ...
-    def append(self, x) -> Incomplete:
+    def __init__(self, iterable: tuple[Any], maxlen: int, flags: int = 0, /) -> None:
+        """
+        Deques (double-ended queues) are a list-like container that support O(1)
+        appends and pops from either side of the deque.  New deques are created
+        using the following arguments:
+
+            - *iterable* must be the empty tuple, and the new deque is created empty.
+
+            - *maxlen* must be specified and the deque will be bounded to this
+              maximum length.  Once the deque is full, any new items added will
+              discard items from the opposite end.
+
+            - The optional *flags* can be 1 to check for overflow when adding items.
+        """
+
+    def append(self, x: Any, /) -> None:
         """
         Add *x* to the right side of the deque.
         Raises ``IndexError`` if overflow checking is enabled and there is
@@ -63,7 +63,7 @@ class deque(stdlib_deque):
         """
         ...
 
-    def popleft(self) -> Incomplete:
+    def popleft(self) -> Any:
         """
         Remove and return an item from the left side of the deque.
         Raises ``IndexError`` if no items are present.
@@ -79,7 +79,7 @@ class deque(stdlib_deque):
         """
         ...
 
-class OrderedDict(stdlib_OrderedDict):
+class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
     """
     ``dict`` type subclass which remembers and preserves the order of keys
     added. When ordered dict is iterated over, keys/items are returned in
@@ -104,9 +104,85 @@ class OrderedDict(stdlib_OrderedDict):
         b 3
     """
 
-    def __init__(self, *args, **kwargs) -> None: ...
+    @overload
+    def __init__(self):
+        """
+        ``dict`` type subclass which remembers and preserves the order of keys
+        added. When ordered dict is iterated over, keys/items are returned in
+        the order they were added::
 
-def namedtuple(name, fields) -> type[Tuple[Any, ...]]:
+            from collections import OrderedDict
+
+            # To make benefit of ordered keys, OrderedDict should be initialized
+            # from sequence of (key, value) pairs.
+            d = OrderedDict([("z", 1), ("a", 2)])
+            # More items can be added as usual
+            d["w"] = 5
+            d["b"] = 3
+            for k, v in d.items():
+                print(k, v)
+
+        Output::
+
+            z 1
+            a 2
+            w 5
+            b 3
+        """
+
+    @overload
+    def __init__(self, **kwargs: _VT):
+        """
+        ``dict`` type subclass which remembers and preserves the order of keys
+        added. When ordered dict is iterated over, keys/items are returned in
+        the order they were added::
+
+            from collections import OrderedDict
+
+            # To make benefit of ordered keys, OrderedDict should be initialized
+            # from sequence of (key, value) pairs.
+            d = OrderedDict([("z", 1), ("a", 2)])
+            # More items can be added as usual
+            d["w"] = 5
+            d["b"] = 3
+            for k, v in d.items():
+                print(k, v)
+
+        Output::
+
+            z 1
+            a 2
+            w 5
+            b 3
+        """
+
+    @overload
+    def __init__(self, map: Mapping[_KT, _VT], **kwargs: _VT):
+        """
+        ``dict`` type subclass which remembers and preserves the order of keys
+        added. When ordered dict is iterated over, keys/items are returned in
+        the order they were added::
+
+            from collections import OrderedDict
+
+            # To make benefit of ordered keys, OrderedDict should be initialized
+            # from sequence of (key, value) pairs.
+            d = OrderedDict([("z", 1), ("a", 2)])
+            # More items can be added as usual
+            d["w"] = 5
+            d["b"] = 3
+            for k, v in d.items():
+                print(k, v)
+
+        Output::
+
+            z 1
+            a 2
+            w 5
+            b 3
+        """
+
+def namedtuple(name: str, fields: str | Iterable[str]) -> type[Tuple[Any, ...]]:
     """
     This is factory function to create a new namedtuple type with a specific
     name and set of fields. A namedtuple is a subclass of tuple which allows

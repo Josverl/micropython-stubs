@@ -64,10 +64,10 @@ Module: 'struct' on micropython-v1.24.1-rp2-ARDUINO_NANO_RP2040_CONNECT
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from typing import Tuple
+from typing import Any, Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
+def pack_into(fmt: str | bytes, buffer: AnyWritableBuf, offset: int, /, *v: Any) -> None:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*
     into a *buffer* starting at *offset*. *offset* may be negative to count
@@ -75,14 +75,14 @@ def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
     """
     ...
 
-def unpack(fmt, data) -> Tuple:
+def unpack(fmt: str | bytes, data: AnyReadableBuf, /) -> Tuple:
     """
     Unpack from the *data* according to the format string *fmt*.
     The return value is a tuple of the unpacked values.
     """
     ...
 
-def unpack_from(fmt, data, offset=0, /) -> Tuple:
+def unpack_from(fmt: str | bytes, data: AnyReadableBuf, offset: int = 0, /) -> Tuple:
     """
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *data*. The return
@@ -90,14 +90,17 @@ def unpack_from(fmt, data, offset=0, /) -> Tuple:
     """
     ...
 
-def pack(fmt, v1, *args, **kwargs) -> bytes:
+def pack(fmt: str | bytes, /, *v: Any) -> bytes:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*.
     The return value is a bytes object encoding the values.
     """
     ...
 
-def calcsize(fmt) -> int:
+def calcsize(
+    fmt: str | bytes,
+    /,
+) -> int:
     """
     Return the number of bytes needed to store the given *fmt*.
     """

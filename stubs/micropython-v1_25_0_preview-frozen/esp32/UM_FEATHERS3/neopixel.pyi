@@ -14,18 +14,32 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import _NeoPixelBase
+from machine import Pin
 from typing import Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
+_Color: TypeAlias = tuple[int, int, int] | tuple[int, int, int, int]
+
 class NeoPixel(_NeoPixelBase):
     """
-    Construct an NeoPixel object.  The parameters are:
+    This class stores pixel data for a WS2812 LED strip connected to a pin. The
+    application should set pixel data and then call :meth:`NeoPixel.write`
+    when it is ready to update the strip.
 
-        - *pin* is a machine.Pin instance.
-        - *n* is the number of LEDs in the strip.
-        - *bpp* is 3 for RGB LEDs, and 4 for RGBW LEDs.
-        - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz). You
-          may also supply a timing tuple as accepted by `machine.bitstream()`.
+    For example::
+
+        import neopixel
+
+        # 32 LED strip connected to X8.
+        p = machine.Pin.board.X8
+        n = neopixel.NeoPixel(p, 32)
+
+        # Draw a red gradient.
+        for i in range(32):
+            n[i] = (i * 8, 0, 0)
+
+        # Update the strip.
+        n.write()
     """
 
     ORDER: Incomplete
@@ -34,7 +48,16 @@ class NeoPixel(_NeoPixelBase):
     bpp: Incomplete
     buf: Incomplete
     timing: Incomplete
-    def __init__(self, pin, n, bpp: int = 3, timing: int = 1) -> None: ...
+    def __init__(self, pin, n, bpp: int = 3, timing: int = 1) -> None:
+        """
+        Construct an NeoPixel object.  The parameters are:
+
+            - *pin* is a machine.Pin instance.
+            - *n* is the number of LEDs in the strip.
+            - *bpp* is 3 for RGB LEDs, and 4 for RGBW LEDs.
+            - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
+        """
+
     def __len__(self) -> int:
         """
         Returns the number of LEDs in the strip.

@@ -7,8 +7,11 @@ MicroPython module: https://docs.micropython.org/en/v1.25.0/library/aioespnow.ht
 from __future__ import annotations
 from _espnow import *
 from _typeshed import Incomplete
-from typing import Iterator, List, Tuple, Union
+from typing import Iterator, List, Tuple, Union, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+_MACAddress: TypeAlias = bytes
+_PeerInfo: TypeAlias = Tuple[_MACAddress, bytes, int, int, bool]
 
 class ESPNow(ESPNowBase, Iterator):
     """
@@ -23,7 +26,7 @@ class ESPNow(ESPNowBase, Iterator):
     _data: Incomplete
     _none_tuple: Incomplete
     def __init__(self) -> None: ...
-    def irecv(self, timeout_ms: Incomplete | None = None) -> Incomplete:
+    def irecv(self, timeout_ms: Incomplete | None = None) -> Tuple[_MACAddress | bytearray | None, bytearray | None]:
         """
         Works like `ESPNow.recv()` but will reuse internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
@@ -126,5 +129,12 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def __iter__(self): ...
-    def __next__(self): ...
+    @overload
+    def __iter__(self) -> ESPNow: ...
+    #
+    @overload
+    def __iter__(self) -> ESPNow: ...
+    @overload
+    def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
+    @overload
+    def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...

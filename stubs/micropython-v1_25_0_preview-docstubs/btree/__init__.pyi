@@ -77,8 +77,9 @@ Example::
 # origin module:: repos/micropython/docs/library/btree.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Dict, Optional
+from typing import Iterable, Any, Dict, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from _mpy_shed import IOBase_mp
 
 INCL: Incomplete
 """\
@@ -104,50 +105,56 @@ class btree:
         """
         ...
 
-    def flush(self) -> Incomplete:
+    def flush(self) -> None:
         """
         Flush any data in cache to the underlying stream.
         """
         ...
 
-    def __getitem__(self, key) -> Incomplete:
+    def __getitem__(self, key: bytes, /) -> bytes:
         """
         Standard dictionary methods.
         """
         ...
 
-    def get(self, key, default=None, /) -> Incomplete:
+    def get(self, key: bytes, default: bytes | None = None, /) -> bytes | None:
         """
         Standard dictionary methods.
         """
         ...
 
-    def __setitem__(self, key, val) -> Incomplete:
+    def __setitem__(self, key: bytes, val: bytes, /) -> None:
         """
         Standard dictionary methods.
         """
         ...
 
-    def __delitem__(self, key) -> Incomplete:
+    def __delitem__(self, key: bytes, /) -> None:
         """
         Standard dictionary methods.
         """
         ...
 
-    def __contains__(self, key) -> Incomplete:
+    def __contains__(self, key: bytes, /) -> bool:
         """
         Standard dictionary methods.
         """
         ...
 
-    def __iter__(self) -> Incomplete:
+    def __iter__(self) -> Iterable[bytes]:
         """
         A BTree object can be iterated over directly (similar to a dictionary)
         to get access to all keys in order.
         """
         ...
 
-    def keys(self, start_key, end_key, flags: Optional[Any] = None) -> Incomplete:
+    def keys(
+        self,
+        start_key: bytes | None = None,
+        end_key: bytes | None = None,
+        flags: int = 0,
+        /,
+    ) -> Iterable[bytes]:
         """
         These methods are similar to standard dictionary methods, but also can
         take optional parameters to iterate over a key sub-range, instead of
@@ -164,7 +171,13 @@ class btree:
         """
         ...
 
-    def values(self, start_key, end_key, flags: Optional[Any] = None) -> Incomplete:
+    def values(
+        self,
+        start_key: bytes | None = None,
+        end_key: bytes | None = None,
+        flags: int = 0,
+        /,
+    ) -> Iterable[bytes]:
         """
         These methods are similar to standard dictionary methods, but also can
         take optional parameters to iterate over a key sub-range, instead of
@@ -181,7 +194,13 @@ class btree:
         """
         ...
 
-    def items(self, start_key, end_key, flags: Optional[Any] = None) -> Incomplete:
+    def items(
+        self,
+        start_key: bytes | None = None,
+        end_key: bytes | None = None,
+        flags: int = 0,
+        /,
+    ) -> Iterable[tuple[bytes, bytes]]:
         """
         These methods are similar to standard dictionary methods, but also can
         take optional parameters to iterate over a key sub-range, instead of
@@ -198,7 +217,15 @@ class btree:
         """
         ...
 
-def open(stream, *, flags=0, pagesize=0, cachesize=0, minkeypage=0) -> Dict:
+def open(
+    stream: IOBase_mp,  # [bytes, Any],
+    /,
+    *,
+    flags: int = 0,
+    pagesize: int = 0,
+    cachesize: int = 0,
+    minkeypage: int = 0,
+) -> Dict:
     """
     Open a database from a random-access `stream` (like an open file). All
     other parameters are optional and keyword-only, and allow to tweak advanced

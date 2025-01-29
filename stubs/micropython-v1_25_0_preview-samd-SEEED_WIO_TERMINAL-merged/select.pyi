@@ -16,7 +16,7 @@ Module: 'select' on micropython-v1.24.1-samd-SEEED_WIO_TERMINAL
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Iterator, List, Optional, Tuple
+from typing import Any, Iterable, Iterator, List, Optional, Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 POLLOUT: int = 4
@@ -24,7 +24,13 @@ POLLIN: int = 1
 POLLHUP: int = 16
 POLLERR: int = 8
 
-def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
+def select(
+    rlist: Iterable[Any],
+    wlist: Iterable[Any],
+    xlist: Iterable[Any],
+    timeout: int = -1,
+    /,
+) -> None:
     """
     Wait for activity on a set of objects.
 

@@ -4,8 +4,9 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from vfs import AbstractBlockDev
 
-class Flash:
+class Flash(AbstractBlockDev):
     """
     Gets the singleton object for accessing the SPI flash memory.
     """

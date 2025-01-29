@@ -2,14 +2,15 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, List, Optional
+from typing import overload, Any, List, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
 class USB_VCP:
     """
-    Create a new USB_VCP object.  The *id* argument specifies which USB VCP port to
-    use.
+    The USB_VCP class allows creation of a `stream`-like object representing the USB
+    virtual comm port.  It can be used to read and write data over USB to
+    the connected host.
     """
 
     RTS: Incomplete
@@ -18,8 +19,13 @@ class USB_VCP:
     """to select the flow control type."""
     IRQ_RX: Incomplete
     """IRQ trigger values for :meth:`USB_VCP.irq`."""
-    def __init__(self, id=0) -> None: ...
-    def init(self, *, flow=-1) -> None:
+    def __init__(self, id: int = 0, /) -> None:
+        """
+        Create a new USB_VCP object.  The *id* argument specifies which USB VCP port to
+        use.
+        """
+
+    def init(self, *, flow: int = -1) -> None:
         """
         Configure the USB VCP port.  If the *flow* argument is not -1 then the value sets
         the flow control, which can be a bitwise-or of ``USB_VCP.RTS`` and ``USB_VCP.CTS``.
@@ -27,7 +33,7 @@ class USB_VCP:
         """
         ...
 
-    def setinterrupt(self, chr) -> None:
+    def setinterrupt(self, chr: int, /) -> None:
         """
         Set the character which interrupts running Python code.  This is set
         to 3 (CTRL-C) by default, and when a CTRL-C character is received over
@@ -50,14 +56,15 @@ class USB_VCP:
         """
         ...
 
-    def close(self) -> Incomplete:
+    def close(self) -> None:
         """
         This method does nothing.  It exists so the USB_VCP object can act as
         a file.
         """
         ...
 
-    def read(self, nbytes: Optional[Any] = None) -> bytes:
+    @overload
+    def read(self) -> bytes | None:
         """
         Read at most ``nbytes`` from the serial device and return them as a
         bytes object.  If ``nbytes`` is not specified then the method reads
@@ -66,9 +73,20 @@ class USB_VCP:
         so if no pending data available, this method will return immediately
         with ``None`` value.
         """
-        ...
 
-    def readinto(self, buf, maxlen: Optional[Any] = None) -> int:
+    @overload
+    def read(self, nbytes, /) -> bytes | None:
+        """
+        Read at most ``nbytes`` from the serial device and return them as a
+        bytes object.  If ``nbytes`` is not specified then the method reads
+        all available bytes from the serial device.
+        USB_VCP `stream` implicitly works in non-blocking mode,
+        so if no pending data available, this method will return immediately
+        with ``None`` value.
+        """
+
+    @overload
+    def readinto(self, buf: AnyWritableBuf, /) -> int | None:
         """
         Read bytes from the serial device and store them into ``buf``, which
         should be a buffer-like object.  At most ``len(buf)`` bytes are read.
@@ -78,7 +96,18 @@ class USB_VCP:
         Returns the number of bytes read and stored into ``buf`` or ``None``
         if no pending data available.
         """
-        ...
+
+    @overload
+    def readinto(self, buf: AnyWritableBuf, maxlen: int, /) -> int | None:
+        """
+        Read bytes from the serial device and store them into ``buf``, which
+        should be a buffer-like object.  At most ``len(buf)`` bytes are read.
+        If ``maxlen`` is given and then at most ``min(maxlen, len(buf))`` bytes
+        are read.
+
+        Returns the number of bytes read and stored into ``buf`` or ``None``
+        if no pending data available.
+        """
 
     def readline(self) -> bytes:
         """
@@ -99,7 +128,7 @@ class USB_VCP:
         """
         ...
 
-    def write(self, buf) -> int:
+    def write(self, buf: AnyReadableBuf, /) -> int:
         """
         Write the bytes from ``buf`` to the serial device.
 
@@ -107,7 +136,8 @@ class USB_VCP:
         """
         ...
 
-    def recv(self, data, *, timeout=5000) -> int:
+    @overload
+    def recv(self, data: int, /, *, timeout: int = 5000) -> bytes | None:
         """
         Receive data on the bus:
 
@@ -118,9 +148,21 @@ class USB_VCP:
         Return value: if ``data`` is an integer then a new buffer of the bytes received,
         otherwise the number of bytes read into ``data`` is returned.
         """
-        ...
 
-    def send(self, data, *, timeout=5000) -> int:
+    @overload
+    def recv(self, data: AnyWritableBuf, /, *, timeout: int = 5000) -> int | None:
+        """
+        Receive data on the bus:
+
+          - ``data`` can be an integer, which is the number of bytes to receive,
+            or a mutable buffer, which will be filled with received bytes.
+          - ``timeout`` is the timeout in milliseconds to wait for the receive.
+
+        Return value: if ``data`` is an integer then a new buffer of the bytes received,
+        otherwise the number of bytes read into ``data`` is returned.
+        """
+
+    def send(self, buf: AnyWritableBuf | bytes | int, /, *, timeout: int = 5000) -> int:
         """
         Send data over the USB VCP:
 

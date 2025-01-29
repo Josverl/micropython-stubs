@@ -2,19 +2,83 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional, Tuple
+from typing import Callable, overload, Any, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from machine import IDLE
 
 class RTC:
     """
-    Create an RTC object. See init for parameters of initialization.
+    The RTC is an independent clock that keeps track of the date
+    and time.
+
+    Example usage::
+
+        rtc = machine.RTC()
+        rtc.datetime((2020, 1, 21, 2, 10, 32, 36, 0))
+        print(rtc.datetime())
+
+
+
+    The documentation for RTC is in a poor state;1
     """
 
     ALARM0: Incomplete
     """irq trigger source"""
-    def __init__(self, id=0, *args, **kwargs) -> None: ...
-    def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
+    @overload
+    def __init__(self, id: int = 0):
+        """
+        Create an RTC object. See init for parameters of initialization.
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    def datetime(self, datetimetuple: Any | None = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
 
@@ -30,7 +94,8 @@ class RTC:
         """
         ...
 
-    def init(self, datetime) -> None:
+    @overload
+    def init(self) -> None:
         """
         Initialise the RTC. Datetime is a tuple of the form:
 
@@ -43,7 +108,96 @@ class RTC:
         the stm32 and renesas-ra ports just (re-)starts the RTC and does not
         accept arguments.
         """
-        ...
+
+    @overload
+    def init(self, datetime: tuple[int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int, int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int, int, int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int, int, int, int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
 
     def now(self) -> Tuple:
         """
@@ -59,15 +213,63 @@ class RTC:
         """
         ...
 
-    def alarm(self, id, time, *, repeat=False) -> None:
+    @overload
+    def alarm(self, id: int, time: int, /, *, repeat: bool = False) -> None:
         """
         Set the RTC alarm. Time might be either a millisecond value to program the alarm to
         current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
         milliseconds, repeat can be set to ``True`` to make the alarm periodic.
         """
-        ...
 
-    def alarm_left(self, alarm_id=0) -> int:
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    def alarm_left(self, alarm_id: int = 0, /) -> int:
         """
         Get the number of milliseconds left before the alarm expires.
         """
@@ -82,7 +284,14 @@ class RTC:
         """
         ...
 
-    def irq(self, *, trigger, handler=None, wake=IDLE) -> Incomplete:
+    def irq(
+        self,
+        /,
+        *,
+        trigger: int,
+        handler: Callable[[RTC], None] | None = None,
+        wake: int = IDLE,
+    ) -> None:
         """
         Create an irq object triggered by a real time clock alarm.
 
@@ -93,7 +302,7 @@ class RTC:
         """
         ...
 
-    def memory(self, data: Optional[Any] = None) -> bytes:
+    def memory(self, data: Any | None = None) -> bytes:
         """
         ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any
         object which supports the buffer protocol (including `bytes`, `bytearray`,

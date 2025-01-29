@@ -54,7 +54,7 @@ class SSLContext:
 
     def wrap_socket(
         self, sock, server_side: bool = False, do_handshake_on_connect: bool = True, server_hostname: Incomplete | None = None
-    ) -> Incomplete:
+    ) -> SSLSocket:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
         and returns an instance of ssl.SSLSocket, wrapping the underlying stream.
