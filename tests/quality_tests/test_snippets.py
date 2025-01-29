@@ -73,6 +73,7 @@ PORTBOARD_FEATURES = {
         "aioble:skip version<1.21.0",
     ],
     "rp2-rpi_pico2:skip version<1.24.0": CORE,
+    "rp2-rpi_pico2_w:skip version=<1.24.0": CORE,
     # "rp2-pimoroni_picolipo_16mb": CORE,
     "webassembly:skip version<1.23.0": CORE,
     "windows": CORE,
