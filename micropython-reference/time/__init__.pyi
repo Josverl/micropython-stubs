@@ -40,15 +40,14 @@ from __future__ import annotations
 from typing import Tuple, TypeVar
 
 from typing_extensions import TypeAlias, TypeVar
+from _mpy_shed import _TimeTuple
 
 _TicksMs: TypeAlias = int
 _TicksUs: TypeAlias = int
 _TicksCPU: TypeAlias = int
 _Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
+
 # Not all ports use the same time tuple :-) Some use 8-tuple, some use 9-tuple.
-_Time8Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int]
-_Time9Tuple: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int, int]
-_TimeTuple: TypeAlias = _Time8Tuple | _Time9Tuple
 
 def gmtime(secs: int | None = None, /) -> _TimeTuple:
     """

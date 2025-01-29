@@ -672,19 +672,6 @@ def const(expr) -> int:
     """
     ...
 
-def kbd_intr(chr) -> None:
-    """
-    Set the character that will raise a `KeyboardInterrupt` exception.  By
-    default this is set to 3 during script execution, corresponding to Ctrl-C.
-    Passing -1 to this function will disable capture of Ctrl-C, and passing 3
-    will restore it.
-
-    This function can be used to prevent the capturing of Ctrl-C on the
-    incoming stream of characters that is usually used for the REPL, in case
-    that stream is used for other purposes.
-    """
-    ...
-
 def heap_lock() -> int:
     """
     Lock the heap.  When locked no memory allocation can occur and a

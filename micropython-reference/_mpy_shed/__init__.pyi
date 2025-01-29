@@ -41,6 +41,8 @@ from .io_mp import (
     _TextIOBase,
     open as open,
 )
+
+from .time_mp import _TimeTuple as _TimeTuple
 from .pathlike import PathLike
 
 # ------------------
