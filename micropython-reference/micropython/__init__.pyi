@@ -579,28 +579,6 @@ def heap_unlock() -> int:
     requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
     """
 
-def heap_locked() -> bool:
-    """
-    Lock or unlock the heap.  When locked no memory allocation can occur and a
-    `MemoryError` will be raised if any heap allocation is attempted.
-    `heap_locked()` returns a true value if the heap is currently locked.
-
-    These functions can be nested, ie `heap_lock()` can be called multiple times
-    in a row and the lock-depth will increase, and then `heap_unlock()` must be
-    called the same number of times to make the heap available again.
-
-    Both `heap_unlock()` and `heap_locked()` return the current lock depth
-    (after unlocking for the former) as a non-negative integer, with 0 meaning
-    the heap is not locked.
-
-    If the REPL becomes active with the heap locked then it will be forcefully
-    unlocked.
-
-    Note: `heap_locked()` is not enabled on most ports by default,
-    requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
-    """
-    ...
-
 def kbd_intr(chr: int) -> None:
     """
     Set the character that will raise a `KeyboardInterrupt` exception.  By
@@ -707,28 +685,94 @@ def kbd_intr(chr) -> None:
     """
     ...
 
-def heap_lock() -> Incomplete: ...
-def heap_unlock() -> Incomplete: ...
+def heap_lock() -> int:
+    """
+    Lock the heap.  When locked no memory allocation can occur and a
+    `MemoryError` will be raised if any heap allocation is attempted.
+    `heap_locked()` returns a true value if the heap is currently locked.
+
+    These functions can be nested, ie `heap_lock()` can be called multiple times
+    in a row and the lock-depth will increase, and then `heap_unlock()` must be
+    called the same number of times to make the heap available again.
+
+    Both `heap_unlock()` and `heap_locked()` return the current lock depth
+    (after unlocking for the former) as a non-negative integer, with 0 meaning
+    the heap is not locked.
+
+    If the REPL becomes active with the heap locked then it will be forcefully
+    unlocked.
+
+    Note: `heap_locked()` is not enabled on most ports by default,
+    requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
+    """
+    ...
+
+def heap_unlock() -> int:
+    """
+    Unlock the heap.  When locked no memory allocation can occur and a
+    `MemoryError` will be raised if any heap allocation is attempted.
+    `heap_locked()` returns a true value if the heap is currently locked.
+
+    These functions can be nested, ie `heap_lock()` can be called multiple times
+    in a row and the lock-depth will increase, and then `heap_unlock()` must be
+    called the same number of times to make the heap available again.
+
+    Both `heap_unlock()` and `heap_locked()` return the current lock depth
+    (after unlocking for the former) as a non-negative integer, with 0 meaning
+    the heap is not locked.
+
+    If the REPL becomes active with the heap locked then it will be forcefully
+    unlocked.
+
+    Note: `heap_locked()` is not enabled on most ports by default,
+    requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
+    """
+    ...
+
+def heap_locked() -> bool:
+    """
+    Lock or unlock the heap.  When locked no memory allocation can occur and a
+    `MemoryError` will be raised if any heap allocation is attempted.
+    `heap_locked()` returns a true value if the heap is currently locked.
+
+    These functions can be nested, ie `heap_lock()` can be called multiple times
+    in a row and the lock-depth will increase, and then `heap_unlock()` must be
+    called the same number of times to make the heap available again.
+
+    Both `heap_unlock()` and `heap_locked()` return the current lock depth
+    (after unlocking for the former) as a non-negative integer, with 0 meaning
+    the heap is not locked.
+
+    If the REPL becomes active with the heap locked then it will be forcefully
+    unlocked.
+
+    Note: `heap_locked()` is not enabled on most ports by default,
+    requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
+    """
+    ...
 
 # decorators
-
+@overload
 def viper(func: Callable) -> Callable:
     """
     The Viper code emitter is not fully compliant. It supports special Viper native data types in pursuit of performance.
     Integer processing is non-compliant because it uses machine words: arithmetic on 32 bit hardware is performed modulo 2**32.
     Like the Native emitter Viper produces machine instructions but further optimisations are performed, substantially increasing
     performance especially for integer arithmetic and bit manipulations.
-    """
-    ...
-
-def native(func: Callable) -> Callable:
-    """
-    This causes the MicroPython compiler to emit native CPU opcodes rather than bytecode.
-    It covers the bulk of the MicroPython functionality, so most functions will require no adaptation.
     See: https://docs.micropython.org/en/latest/reference/speed_python.html?highlight=viper#the-native-code-emitter
     """
     ...
 
+@overload
+def native(func: Callable) -> Callable:
+    """
+    This causes the MicroPython compiler to emit native CPU opcodes rather than bytecode.
+    It covers the bulk of the MicroPython functionality, so most functions will require no adaptation.
+    See: https://docs.micropython.org/en/latest/reference/speed_python.html#the-native-code-emitter
+    """
+    ...
+
+@overload
 def asm_thumb(func: Callable) -> Callable:
     """
     This decorator is used to mark a function as containing inline assembler code.
