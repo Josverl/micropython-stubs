@@ -6,7 +6,6 @@ import time
 
 import micropython
 
-# import uasyncio as asyncio
 import asyncio
 from micropython import const
 
@@ -190,12 +189,12 @@ async def task(g=None, prompt="--> "):
                             # Update current command.
                             cmd = hist[(hist_i - hist_b) % _HISTORY_LIMIT]
                             sys.stdout.write(cmd)  # stubs-ignore: linter=="mypy"
-                    # else:
-                    #     # sys.stdout.write("\\x")
-                    #     # sys.stdout.write(hex(c))
-                    #     pass
+                    else:
+                        sys.stdout.write("\\x")
+                        sys.stdout.write(hex(c))
+                        pass
                 else:
-                    sys.stdout.write(b)  # stubs-ignore: linter=="mypy"
+                    sys.stdout.write(b)  # type: ignore # TODO write(bytes) not supported by stubs
                     assert cmd is not None  # Added to avoid type check errors below
                     cmd += b
     finally:
