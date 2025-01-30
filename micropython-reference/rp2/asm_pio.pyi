@@ -1,196 +1,145 @@
 """
-Functionality specific to the RP2.
+This module provides type hints for the `rp2.asm_pio` module in the Raspberry Pi Pico Python SDK.
+It includes definitions for constants, functions, and directives used in PIO assembly programming.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/rp2.html
+The module includes docstrings for each function and directive, providing information on their usage and parameters.
 
-The ``rp2`` module contains functions and classes specific to the RP2040, as
-used in the Raspberry Pi Pico.
+Note: This module is intended for use with type checking and does not contain actual implementations of the functions.
 
-See the `RP2040 Python datasheet
-<https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf>`_
-for more information, and `pico-micropython-examples
-<https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
-for example code.
+For more information on PIO assembly programming and the Raspberry Pi Pico Python SDK, refer to the following documents:
+- raspberry-pi-pico-python-sdk.pdf: https://datasheets.raspberrypi.org/pico/raspberry-pi-pico-python-sdk.pdf
+- raspberry-pi-pico-c-sdk.pdf: https://datasheets.raspberrypi.org/pico/raspberry-pi-pico-c-sdk.pdf
+
+For a simpler and clearer reference on PIO assembly, you can also visit: https://dernulleffekt.de/doku.php?id=raspberrypipico:pico_pio
+
+
+rp2.PIO type hints have to be loaded manually. Add the following lines to the top of the file with the PIO assembler code:
+
+```py	
+# -----------------------------------------------
+# add type hints for the rp2.PIO Instructions
+try: 
+    from typing_extensions import TYPE_CHECKING # type: ignore
+except ImportError:
+    TYPE_CHECKING = False
+if TYPE_CHECKING:
+    from rp2.asm_pio import *
+# -----------------------------------------------
+```
 """
 
-# source version: v1.24.0
-# origin module:: repos/micropython/docs/library/rp2.rst
-# 2024 - Jos Verlinde - PIO additions
+from typing import Final, Optional
 
-from __future__ import annotations
-
-from typing import Callable, Dict, List, Union, overload
 from _typeshed import Incomplete
-from typing_extensions import TypeAlias
+from typing_extensions import TYPE_CHECKING
 
-from rp2.PIO import PIO
-from machine import Pin
+from micropython import const  # type: ignore
 
-_PIO_ASM_Program: TypeAlias = Callable
+#  ref: https://github.com/Josverl/PIO_ASM_typing
 
-class PIOASMError(Exception):
-    """
-    This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
-    an error assembling a PIO program.
-    """
+#  The decorator has limited type information, to improve this it may be needed to depend on Pyton 3.10 or later to allow for a better support for type hints
+#  The type hints are not complete, also some of the methods currently need to be duplicated to allow for the fluent style of programming. e.g. out().side(0)
+#  The text for the docstrings originates from multiple locations, and is not always consistent. - Micropython RP2 Documentation - not fully complete on all methods and classes - RP2 python and C datasheets - sometime the language does not make sense in a python context.
+#  The defined methods and functions are also avaiable to the type checkers after/outside the scope where the @rp2.asm_pio decorator is used, this is not needed and should be removed. This can/will be confusing when the same names are used in the PIO assembler code and in the python code.
 
-def asm_pio(
-    *,
-    out_init: Union[Pin, List[Pin], int, List[int], None] = None,
-    set_init: Union[Pin, List[Pin], int, List[int], None] = None,
-    sideset_init: Union[Pin, List[Pin], int, List[int], None] = None,
-    in_shiftdir=0,
-    out_shiftdir=0,
-    autopush=False,
-    autopull=False,
-    push_thresh=32,
-    pull_thresh=32,
-    fifo_join=PIO.JOIN_NONE,
-) -> Callable[..., PIOASMEmit]:
-    """
-    Assemble a PIO program.
+if TYPE_CHECKING:
+    # defined functions are all methods of the (frozen) class PIOASMEmit:
+    # but also have a self method
+    from rp2 import PIOASMEmit
 
-    The following parameters control the initial state of the GPIO pins, as one
-    of `PIO.IN_LOW`, `PIO.IN_HIGH`, `PIO.OUT_LOW` or `PIO.OUT_HIGH`. If the
-    program uses more than one pin, provide a tuple, e.g.
-    ``out_init=(PIO.OUT_LOW, PIO.OUT_LOW)``.
+    # constants defined for PIO assembly
+    gpio = const(0)
+    # "pin": see below, translated to 1
+    # "irq": see below function, translated to 2
+    # source/dest constants for in_, out, mov, set
+    pins = 0
+    x = 1
+    y = 2
+    null = 3
+    pindirs = 4
+    pc = 5
+    status = 5
+    isr = 6
+    osr = 7
+    exec = (8,)  # translated to 4 for mov, 7 for ou
+    # operation functions for mov's src
+    def invert(x: int) -> int:
+        return x | 8
 
-    - *out_init* configures the pins used for ``out()`` instructions.
-    - *set_init* configures the pins used for ``set()`` instructions. There can
-      be at most 5.
-    - *sideset_init* configures the pins used side-setting. There can be at
-      most 5.
-
-    The following parameters are used by default, but can be overridden in
-    `StateMachine.init()`:
-
-    - *in_shiftdir* is the default direction the ISR will shift, either
-      `PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`.
-    - *out_shiftdir* is the default direction the OSR will shift, either
-      `PIO.SHIFT_LEFT` or `PIO.SHIFT_RIGHT`.
-    - *push_thresh* is the threshold in bits before auto-push or conditional
-      re-pushing is triggered.
-    - *pull_thresh* is the threshold in bits before auto-pull or conditional
-      re-pulling is triggered.
-
-    The remaining parameters are:
-
-    - *autopush* configures whether auto-push is enabled.
-    - *autopull* configures whether auto-pull is enabled.
-    - *fifo_join* configures whether the 4-word TX and RX FIFOs should be
-      combined into a single 8-word FIFO for one direction only. The options
-      are `PIO.JOIN_NONE`, `PIO.JOIN_RX` and `PIO.JOIN_TX`.
-    """
-    ...
-
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> int:
-    """
-    Assemble a single PIO instruction. You usually want to use `asm_pio()`
-    instead.
-
-    >>> rp2.asm_pio_encode("set(0, 1)", 0)
-    57345
-    """
-    ...
-
-def bootsel_button() -> int:
-    # actually defined in _rp2
-    """
-    Temporarily turns the QSPI_SS pin into an input and reads its value,
-    returning 1 for low and 0 for high.
-    On a typical RP2040 board with a BOOTSEL button, a return value of 1
-    indicates that the button is pressed.
-
-    Since this function temporarily disables access to the external flash
-    memory, it also temporarily disables interrupts and the other core to
-    prevent them from trying to execute code from flash.
-    """
-    ...
-
-class PIOASMEmit:
-    """
-    The PIOASMEmit class provides a comprehensive interface for constructing PIO programs,
-    handling the intricacies of instruction encoding, label management, and program state.
-    This allows users to build complex PIO programs in pythone, leveraging the flexibility
-    and power of the PIO state machine.
-
-    The class should not be instantiated directly, but used via the `@asm_pio` decorator.
-    """
-
-    labels: Dict
-    prog: List
-    wrap_used: bool
-    sideset_count: int
-    delay_max: int
-    sideset_opt: bool
-    pass_: int
-    num_instr: int
-    num_sideset: int
-
+    def reverse(x: int) -> int:
+        return x | 16
+    # jmp condition constants
+    not_x = 1
+    x_dec = 2
+    not_y = 3
+    y_dec = 4
+    x_not_y = 5
+    pin = 6
+    not_osre = 7
+    # constants and modifiers for irq
     # constants for push, pull
     noblock = 0x01
     block = 0x21
+    clear = 0x40
 
-    def __init__(
-        self,
-        *,
-        out_init: int | List | None = ...,
-        set_init: int | List | None = ...,
-        sideset_init: int | List | None = ...,
-        in_shiftdir: int = ...,
-        out_shiftdir: int = ...,
-        autopush: bool = ...,
-        autopull: bool = ...,
-        push_thresh: int = ...,
-        pull_thresh: int = ...,
-        fifo_join: int = ...,
-    ) -> None: ...
-    @overload  # force merge
-    def __getitem__(self, key): ...
-    @overload  # force merge
-    def __getitem__(self, key: int): ...
-    #
-    @overload  # force merge
-    def start_pass(self, pass_) -> None:
-        """The start_pass method is used to start a pass over the instructions,
-        setting up the necessary state for the pass. It handles wrapping instructions
-        if needed and adjusts the delay maximum based on the number of side-set bits.
-        """
-        ...
+    iffull = 0x40
+    ifempty = 0x40
 
-    @overload  # force merge
-    def delay(self, delay: int):
+    # rel = lambda x: x | 0x10
+    def rel(x: int) -> int:
+        """Relative IRQ number"""
+        return x | 0x10
+    ####################################################################################
+    #  missing
+    # .define ( PUBLIC ) <symbol> <value>
+    # Define an integer symbol named <symbol> with the value <value> (see Section # 3.3.3).
+    # If this .define appears before the first program in the input file, then the
+    # define is global to all programs, otherwise it is local to the program in which it
+    # occurs. If PUBLIC is specified the symbol will be emitted into the assembled
+    # output for use by user code. For the SDK this takes the form of:
+    # #define <program_name>_<symbol> value for program symbols or #define <symbol>
+    # value for global symbols
+
+    # .origin <offset>
+    # Optional directive to specify the PIO instruction memory offset at which the
+    # program must load. Most commonly this is used for programs that must load
+    # at offset 0, because they use data based JMPs with the (absolute) jmp target
+    # being stored in only a few bits. This directive is invalid outside of a program
+
+    ####################################################################################
+
+    def delay(delay: int) -> PIOASMEmit:
         """rp2.PIO delay modifier.
-        
+
         The delay method allows setting a delay for the current instruction,
         ensuring it does not exceed the maximum allowed delay.
         """
+        ...
 
-    @overload  # force merge
-    def side(self, value: int):
-        """rp2.PIO side modifier.
+    def side(value: int) -> PIOASMEmit:
+        """rp2.PIO WRAP modifier.
         This is a modifier which can be applied to any instruction, and is used to control side-set pin values.
         value: the value (bits) to output on the side-set pins
 
-        When an instruction has side 0 next to it, the corresponding output is set LOW, 
-        and when it has side 1 next to it, the corresponding output is set HIGH. 
+        When an instruction has side 0 next to it, the corresponding output is set LOW,
+        and when it has side 1 next to it, the corresponding output is set HIGH.
         There can be up to 5 side-set pins, in which case side N is interpreted as a binary number.
 
         `side(0b00011)` sets the first and the second side-set pin HIGH, and the others LOW.
         """
         ...
 
-    @overload  # force merge
-    def wrap_target(self) -> None: 
+    def wrap_target() -> None:
         """rp2.PIO WRAP_TARGET directive.
 
         This directive specifies the instruction where
         execution continues due to program wrapping. This directive is invalid outside
         of a program, may only be used once within a program, and if not specified
         defaults to the start of the program
-        """        
-    @overload  # force merge
-    def wrap(self) -> None:
+        """
+        ...
+
+    def wrap() -> None:
         """rp2.PIO WRAP directive.
 
         Placed after an instruction, this directive specifies the instruction after which,
@@ -200,11 +149,9 @@ class PIOASMEmit:
         defaults to after the last program instruction.
         """
         ...
-    # all below functions are PIO instructions used in the fluent notation
 
-    @overload  # force merge
-    def label(self, label: str) -> None:
-        """rp2.PIO instruction.
+    def label(label: str) -> None:
+        """rp2.PIO LABEL directive.
 
         Labels are of the form:
 
@@ -218,8 +165,7 @@ class PIOASMEmit:
         """
         ...
 
-    @overload  # force merge
-    def word(self, instr, label: Incomplete | None = ...) -> PIOASMEmit:
+    def word(instr, label: Incomplete | None = ...) -> PIOASMEmit:
         """rp2.PIO instruction.
 
         Stores a raw 16-bit value as an instruction in the program. This directive is
@@ -227,8 +173,7 @@ class PIOASMEmit:
         """
         ...
 
-    @overload  # force merge
-    def nop(self) -> PIOASMEmit:
+    def nop() -> PIOASMEmit:
         """rp2.PIO NOP instruction.
 
         Assembles to mov y, y. "No operation", has no particular side effect, but a useful vehicle for a side-set
@@ -236,8 +181,7 @@ class PIOASMEmit:
         """
         ...
 
-    @overload  # force merge
-    def jmp(self, condition, label: Incomplete | None = ...) -> PIOASMEmit:
+    def jmp(condition, label: Incomplete | None = ...) -> PIOASMEmit:
         """rp2.PIO JMP instruction.
 
         Set program counter to Address if Condition is true, otherwise no operation.
@@ -272,8 +216,7 @@ class PIOASMEmit:
         """
         ...
 
-    @overload  # force merge
-    def wait(self, polarity: int, src: int, index: int, /) -> PIOASMEmit:
+    def wait(polarity: int, src: int, index: int, /) -> PIOASMEmit:
         """rp2.PIO WAIT instruction.
 
         Stall until some condition is met.
@@ -308,8 +251,7 @@ class PIOASMEmit:
         """
         ...
 
-    @overload  # force merge
-    def in_(self, src: int, data) -> PIOASMEmit:
+    def in_(src, data) -> PIOASMEmit:
         """rp2.PIO IN instruction.
 
         Shift Bit count bits from Source into the Input Shift Register (ISR).
@@ -342,8 +284,7 @@ class PIOASMEmit:
         """
         ...
 
-    @overload  # force merge
-    def out(self, destination: int, bit_count: int) -> PIOASMEmit:
+    def out(destination: int, bit_count: int) -> PIOASMEmit:
         """rp2.PIO OUT instruction.
 
         Shift Bit count bits out of the Output Shift Register (OSR), and write those bits to Destination.
@@ -381,9 +322,8 @@ class PIOASMEmit:
         """
         ...
 
-    @overload  # force merge
-    def push(self, value: int = ..., value2: int = ...) -> PIOASMEmit:
-        """rp2.PIO PUSH instruction.
+    def push(value: int = ..., value2: int = ...) -> PIOASMEmit:
+        """rp2.PIO PUSH instruction..
 
         Push the contents of the ISR into the RX FIFO, as a single 32-bit word. Clear ISR to all-zeroes.
         * IfFull: If 1, do nothing unless the total input shift count has reached its threshold, SHIFTCTRL_PUSH_THRESH (the same
@@ -401,9 +341,8 @@ class PIOASMEmit:
         """
         ...
 
-    @overload  # force merge
-    def pull(self, block: int = block, timeout: int = 0) -> PIOASMEmit:
-        """rp2.PIO PULL instruction.
+    def pull(block: int = block, timeout: int = 0) -> PIOASMEmit:
+        """rp2.PIO PULL instruction..
 
         Load a 32-bit word from the TX FIFO into the OSR.
         * IfEmpty: If 1, do nothing unless the total output shift count has reached its threshold, SHIFTCTRL_PULL_THRESH (the
@@ -428,9 +367,8 @@ class PIOASMEmit:
         """
         ...
 
-    @overload  # force merge
-    def mov(self, dest, src, operation: int | None = None) -> PIOASMEmit:
-        """rp2.PIO MOV instruction.
+    def mov(dest, src, operation: Optional[int] = None) -> PIOASMEmit:
+        """rp2.PIO MOV instruction..
 
         Copy data from Source to Destination.
 
@@ -475,8 +413,7 @@ class PIOASMEmit:
         """
         ...
 
-    @overload  # force merge
-    def irq(self, mod, index: Incomplete | None = ...) -> PIOASMEmit:
+    def irq(mod, index: Incomplete | None = ...) -> PIOASMEmit:
         """rp2.PIO instruction.
 
         Set or clear the IRQ flag selected by Index argument.
@@ -494,10 +431,10 @@ class PIOASMEmit:
         The modulo addition bit allows relative addressing of 'IRQ' and 'WAIT' instructions, for synchronising state machines
         which are running the same program. Bit 2 (the third LSB) is unaffected by this addition.
         If Wait is set, Delay cycles do not begin until after the wait period elapses."""
+        ...
 
-    @overload  # force merge
-    def set(self, destination: int, data) -> PIOASMEmit:
-        """rp2.PIO SET instruction.
+    def set(destination, data) -> PIOASMEmit:
+        """rp2.PIO SET instruction..
 
         Write immediate value Data to Destination.
 

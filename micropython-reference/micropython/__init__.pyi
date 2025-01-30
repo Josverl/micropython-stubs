@@ -637,85 +637,6 @@ def schedule(func: Callable[[_T], None], arg: _T, /) -> None:
     """
     ...
 
-def alloc_emergency_exception_buf(size) -> Any:
-    """
-    Allocate *size* bytes of RAM for the emergency exception buffer (a good
-    size is around 100 bytes).  The buffer is used to create exceptions in cases
-    when normal RAM allocation would fail (eg within an interrupt handler) and
-    therefore give useful traceback information in these situations.
-
-    A good way to use this function is to put it at the start of your main script
-    (eg ``boot.py`` or ``main.py``) and then the emergency exception buffer will be active
-    for all the code following it.
-    """
-    ...
-
-def const(expr) -> int:
-    """
-    Used to declare that the expression is a constant so that the compile can
-    optimise it.  The use of this function should be as follows::
-
-     from micropython import const
-
-     CONST_X = const(123)
-     CONST_Y = const(2 * CONST_X + 1)
-
-    Constants declared this way are still accessible as global variables from
-    outside the module they are declared in.  On the other hand, if a constant
-    begins with an underscore then it is hidden, it is not available as a global
-    variable, and does not take up any memory during execution.
-
-    This `const` function is recognised directly by the MicroPython parser and is
-    provided as part of the :mod:`micropython` module mainly so that scripts can be
-    written which run under both CPython and MicroPython, by following the above
-    pattern.
-    """
-    ...
-
-def heap_lock() -> int:
-    """
-    Lock the heap.  When locked no memory allocation can occur and a
-    `MemoryError` will be raised if any heap allocation is attempted.
-    `heap_locked()` returns a true value if the heap is currently locked.
-
-    These functions can be nested, ie `heap_lock()` can be called multiple times
-    in a row and the lock-depth will increase, and then `heap_unlock()` must be
-    called the same number of times to make the heap available again.
-
-    Both `heap_unlock()` and `heap_locked()` return the current lock depth
-    (after unlocking for the former) as a non-negative integer, with 0 meaning
-    the heap is not locked.
-
-    If the REPL becomes active with the heap locked then it will be forcefully
-    unlocked.
-
-    Note: `heap_locked()` is not enabled on most ports by default,
-    requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
-    """
-    ...
-
-def heap_unlock() -> int:
-    """
-    Unlock the heap.  When locked no memory allocation can occur and a
-    `MemoryError` will be raised if any heap allocation is attempted.
-    `heap_locked()` returns a true value if the heap is currently locked.
-
-    These functions can be nested, ie `heap_lock()` can be called multiple times
-    in a row and the lock-depth will increase, and then `heap_unlock()` must be
-    called the same number of times to make the heap available again.
-
-    Both `heap_unlock()` and `heap_locked()` return the current lock depth
-    (after unlocking for the former) as a non-negative integer, with 0 meaning
-    the heap is not locked.
-
-    If the REPL becomes active with the heap locked then it will be forcefully
-    unlocked.
-
-    Note: `heap_locked()` is not enabled on most ports by default,
-    requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
-    """
-    ...
-
 def heap_locked() -> bool:
     """
     Lock or unlock the heap.  When locked no memory allocation can occur and a
@@ -739,7 +660,7 @@ def heap_locked() -> bool:
     ...
 
 # decorators
-@overload
+@overload  # force merge
 def viper(func: Callable) -> Callable:
     """
     The Viper code emitter is not fully compliant. It supports special Viper native data types in pursuit of performance.
@@ -750,7 +671,7 @@ def viper(func: Callable) -> Callable:
     """
     ...
 
-@overload
+@overload  # force merge
 def native(func: Callable) -> Callable:
     """
     This causes the MicroPython compiler to emit native CPU opcodes rather than bytecode.
@@ -759,7 +680,7 @@ def native(func: Callable) -> Callable:
     """
     ...
 
-@overload
+@overload  # force merge
 def asm_thumb(func: Callable) -> Callable:
     """
     This decorator is used to mark a function as containing inline assembler code.

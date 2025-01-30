@@ -298,6 +298,7 @@ def merge_docstubs_into_stdlib(
             "collections",
             all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
         ),
+        Boost("os", "os", "os"),
         Boost("sys", "sys", "sys"),
         Boost("ssl", "ssl", "ssl.pyi"),
         Boost("io", "io", "io.pyi"),
