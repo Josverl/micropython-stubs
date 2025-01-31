@@ -118,13 +118,13 @@ class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround 
     """
 
     def __init__(self, *args, **kwargs) -> None: ...
-    @abstractmethod
-    @overload
-    def readblocks(self, block_num: int, buf) -> Incomplete: ...
     #
     @abstractmethod
-    @overload
-    def readblocks(self, block_num: int, buf, offset: int) -> Incomplete:
+    @overload  # force merge
+    def readblocks(self, block_num: int, buf: Incomplete) -> Incomplete: ...
+    @abstractmethod
+    @overload  # force merge
+    def readblocks(self, block_num: int, buf: Incomplete, offset: int) -> Incomplete:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -141,9 +141,8 @@ class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround 
         ...
 
     @abstractmethod
-    @overload
-    def writeblocks(self, block_num: int, buf) -> Incomplete: ...
-    #
+    @overload  # force merge
+    def writeblocks(self, block_num: int, buf: Incomplete) -> Incomplete: ...
     @abstractmethod
     @overload
     def writeblocks(self, block_num: int, buf, offset: int) -> Incomplete:
@@ -207,7 +206,7 @@ class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround 
         """
         ...
 
-def mount(fsobj, mount_point: str, *, readonly=False) -> Incomplete:
+def mount(fsobj, mount_point: str, *, readonly: bool = False) -> Incomplete:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
     *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
