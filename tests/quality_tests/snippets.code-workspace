@@ -57,6 +57,10 @@
             "path": "feat_machine"
         },
         {
+            "name": "feat_networking",
+            "path": "feat_networking"
+        },
+        {
             "name": "feat_stdlib",
             "path": "feat_stdlib"
         },
@@ -67,10 +71,6 @@
         {
             "name": "feat_typing",
             "path": "feat_typing"
-        },
-        {
-            "name": "feat_networking",
-            "path": "feat_networking"
         },
         {
             "name": "wip_todo",

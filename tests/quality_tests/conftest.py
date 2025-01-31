@@ -156,10 +156,10 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
     # Install type stubs for portboard and version
     if stub_source == "pypi":
         # Add version
-        cmd = f"uv pip install micropython-{portboard}-stubs=={version.lower().lstrip('v')}.* --target {tsc_path} --no-cache"
+        cmd = f"uv pip install micropython-{portboard}-stubs=={version.lower().lstrip('v')}.* --target {tsc_path}"
     elif stub_source == "pypi-pre":
         # Add version and --pre
-        cmd = f"uv pip install micropython-{portboard}-stubs=={version.lower().lstrip('v')}.* --pre --target {tsc_path} --no-cache"
+        cmd = f"uv pip install micropython-{portboard}-stubs=={version.lower().lstrip('v')}.* --pre --target {tsc_path}"
     else:
         # local source and --pre to pull in a pre-release version of stdlib
         if version == "-":
@@ -168,11 +168,11 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
         else:
             foldername = f"micropython-{flatversion}-{portboard}-stubs"
         # stubsource = pytestconfig.inipath.parent / f"repos/micropython-stubs/publish/{foldername}"
-        stdlib_source = pytestconfig.inipath.parent / f"publish/{foldername}"
-        stubs_source = pytestconfig.inipath.parent / f"publish/micropython-stdlib-stubs"
+        stubs_source = pytestconfig.inipath.parent / f"publish/{foldername}"
+        stdlib_source = pytestconfig.inipath.parent / f"publish/micropython-stdlib-stubs"
         if not stubs_source.exists():
             pytest.skip(f"Could not find stubs for {portboard} {version} at {stubs_source}")
-        cmd = f"uv pip install {stdlib_source} {stubs_source} --pre --target {tsc_path} --no-cache"
+        cmd = f"uv pip install {stdlib_source}[mypy] {stubs_source} --pre --target {tsc_path}"
 
     try:
         subprocess.run(cmd, shell=True, check=True, capture_output=True, text=True)
