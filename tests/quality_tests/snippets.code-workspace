@@ -33,8 +33,24 @@
             "path": "check_windows"
         },
         {
-            "name": "feat_uasyncio",
-            "path": "feat_uasyncio"
+            "name": "feat_aioble",
+            "path": "feat_aioble"
+        },
+        {
+            "name": "feat_asm_pio",
+            "path": "feat_asm_pio"
+        },
+        {
+            "name": "feat_asyncio",
+            "path": "feat_asyncio"
+        },
+        {
+            "name": "feat_bluetooth",
+            "path": "feat_bluetooth"
+        },
+        {
+            "name": "feat_espnow",
+            "path": "feat_espnow"
         },
         {
             "name": "feat_micropython",
@@ -45,24 +61,20 @@
             "path": "feat_machine"
         },
         {
-            "name": "feat_stdlib_only",
-            "path": "feat_stdlib_only"
+            "name": "feat_networking",
+            "path": "feat_networking"
         },
         {
             "name": "feat_stdlib",
             "path": "feat_stdlib"
         },
         {
-            "name": "feat_bluetooth",
-            "path": "feat_bluetooth"
+            "name": "feat_stdlib_only",
+            "path": "feat_stdlib_only"
         },
         {
-            "name": "feat_networking",
-            "path": "feat_networking"
-        },
-        {
-            "name": "feat_espnow",
-            "path": "feat_espnow"
+            "name": "feat_typing",
+            "path": "feat_typing"
         },
         {
             "name": "wip_todo",
@@ -71,6 +83,10 @@
         {
             "name": "snippets",
             "path": "."
+        },
+        {
+            "name": "micropython-reference",
+            "path": "../../micropython-reference"
         }
     ],
     "settings": {

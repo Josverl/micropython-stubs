@@ -3,10 +3,13 @@
 from __future__ import annotations
 
 from typing import List, Sequence, overload
+from typing_extensions import TypeAlias
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
-from .Pin import Pin
+from machine.Pin import Pin, PinLike
+
+ID_T: TypeAlias = int | str
 
 class I2C:
     """
@@ -46,7 +49,7 @@ class I2C:
     """
 
     @overload
-    def __init__(self, id: int, /, *, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -63,7 +66,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, id: int, /, *, scl: Pin, sda: Pin, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -77,6 +80,20 @@ class I2C:
         Note that some ports/boards will have default values of *scl* and *sda*
         that can be changed in this constructor.  Others will have fixed values
         of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
         """
 
     @overload
@@ -94,7 +111,7 @@ class I2C:
         """
 
     @overload
-    def init(self, *, scl: Pin, sda: Pin, freq: int = 400_000) -> None:
+    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 
@@ -206,7 +223,9 @@ class I2C:
         """
         ...
 
-    def readfrom_mem_into(self, addr: int, memaddr: int, buf: AnyWritableBuf, /, *, addrsize: int = 8) -> None:
+    def readfrom_mem_into(
+        self, addr: int, memaddr: int, buf: AnyWritableBuf, /, *, addrsize: int = 8
+    ) -> None:
         """
         Read into *buf* from the peripheral specified by *addr* starting from the
         memory address specified by *memaddr*.  The number of bytes read is the
@@ -218,7 +237,9 @@ class I2C:
         """
         ...
 
-    def writeto_mem(self, addr: int, memaddr: int, buf: AnyReadableBuf, /, *, addrsize: int = 8) -> None:
+    def writeto_mem(
+        self, addr: int, memaddr: int, buf: AnyReadableBuf, /, *, addrsize: int = 8
+    ) -> None:
         """
         Write *buf* to the peripheral specified by *addr* starting from the
         memory address specified by *memaddr*.

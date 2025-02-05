@@ -1,7 +1,7 @@
 """
 Functions related to the hardware.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/machine.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/machine.html
 
 The ``machine`` module contains specific functions related to the hardware
 on a particular board. Most functions in this module allow to achieve direct
@@ -18,24 +18,13 @@ Module: 'machine' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from ADC import *
-from ADCBlock import *
-from I2C import *
-from I2S import *
-from PWM import *
-from Pin import *
-from RTC import *
-from SD import *
-from SDCard import *
-from SPI import *
-from Signal import *
-from Timer import *
-from UART import *
-from USBDevice import *
-from WDT import *
-from machine import IDLE
-from _mpy_shed import _IRQ, AbstractBlockDev, AnyReadableBuf, AnyWritableBuf
+from typing_extensions import Awaitable, TypeAlias, TypeVar
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from typing import NoReturn, Optional, Union, Tuple, Any, Callable, List, Sequence, overload
+from vfs import AbstractBlockDev
+
+ID_T: TypeAlias = int | str
+PinLike: TypeAlias = Pin | int | str
 
 ULP_WAKE: int = 6
 SLEEP: int = 2
@@ -189,32 +178,6 @@ def freq() -> int:
     Returns the CPU frequency in hertz.
 
     On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-@overload
-def freq(self) -> int:
-    """
-    Get or set the current frequency of the PWM output.
-
-    With no arguments the frequency in Hz is returned.
-
-    With a single *value* argument the frequency is set to that value in Hz.  The
-    method may raise a ``ValueError`` if the frequency is outside the valid range.
-    """
-
-@overload
-def freq(
-    self,
-    value: int,
-    /,
-) -> None:
-    """
-    Get or set the current frequency of the PWM output.
-
-    With no arguments the frequency in Hz is returned.
-
-    With a single *value* argument the frequency is set to that value in Hz.  The
-    method may raise a ``ValueError`` if the frequency is outside the valid range.
     """
 
 @overload
@@ -598,8 +561,8 @@ class UART:
         stop: int = 1,
         /,
         *,
-        tx: Pin | None = None,
-        rx: Pin | None = None,
+        tx: PinLike | None = None,
+        rx: PinLike | None = None,
         txbuf: int | None = None,
         rxbuf: int | None = None,
         timeout: int | None = None,
@@ -667,7 +630,7 @@ class UART:
         stop: int = 1,
         /,
         *,
-        pins: tuple[Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -730,7 +693,7 @@ class UART:
         stop: int = 1,
         /,
         *,
-        pins: tuple[Pin, Pin, Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -893,15 +856,15 @@ class UART:
     @overload
     def __init__(
         self,
-        id: int | str,
+        id: ID_T,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
-        tx: Pin | None = None,
-        rx: Pin | None = None,
+        tx: PinLike | None = None,
+        rx: PinLike | None = None,
         txbuf: int | None = None,
         rxbuf: int | None = None,
         timeout: int | None = None,
@@ -915,14 +878,14 @@ class UART:
     @overload
     def __init__(
         self,
-        id: int | str,
+        id: ID_T,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
-        pins: tuple[Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike] | None = None,
     ):
         """
         Construct a UART object of the given id.
@@ -931,14 +894,14 @@ class UART:
     @overload
     def __init__(
         self,
-        id: int | str,
+        id: ID_T,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
-        pins: tuple[Pin, Pin, Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ):
         """
         Construct a UART object of the given id.
@@ -1149,9 +1112,9 @@ class I2S:
     def init(
         self,
         *,
-        sck: Pin,
-        ws: Pin,
-        sd: Pin,
+        sck: PinLike,
+        ws: PinLike,
+        sd: PinLike,
         mode: int,
         bits: int,
         format: int,
@@ -1392,7 +1355,7 @@ class I2C:
         """
 
     @overload
-    def init(self, *, scl: Pin, sda: Pin, freq: int = 400_000) -> None:
+    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 
@@ -1420,7 +1383,7 @@ class I2C:
         ...
 
     @overload
-    def __init__(self, id: int, /, *, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -1437,7 +1400,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, id: int, /, *, scl: Pin, sda: Pin, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -1451,6 +1414,20 @@ class I2C:
         Note that some ports/boards will have default values of *scl* and *sda*
         that can be changed in this constructor.  Others will have fixed values
         of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
         """
 
 class Timer:
@@ -1900,11 +1877,74 @@ class Pin:
         """
 
     @overload
+    def __call__(self) -> int:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
+
+    @overload
     def __call__(self, x: Any, /) -> None:
         """
         Pin objects are callable.  The call method provides a (fast) shortcut to set
         and get the value of the pin.  It is equivalent to Pin.value([x]).
         See :meth:`Pin.value` for more details.
+        """
+
+    @overload
+    def mode(self) -> int:
+        """
+        Get or set the pin mode.
+        See the constructor documentation for details of the ``mode`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def mode(self, mode: int, /) -> None:
+        """
+        Get or set the pin mode.
+        See the constructor documentation for details of the ``mode`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def pull(self) -> int:
+        """
+        Get or set the pin pull state.
+        See the constructor documentation for details of the ``pull`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def pull(self, pull: int, /) -> None:
+        """
+        Get or set the pin pull state.
+        See the constructor documentation for details of the ``pull`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def drive(self, drive: int, /) -> None:
+        """
+        Get or set the pin drive strength.
+        See the constructor documentation for details of the ``drive`` argument.
+
+        Availability: cc3200 port.
+        """
+        ...
+
+    @overload
+    def drive(self, /) -> int:
+        """
+        Get or set the pin drive strength.
+        See the constructor documentation for details of the ``drive`` argument.
+
+        Availability: cc3200 port.
         """
 
 class TouchPad:
@@ -2087,7 +2127,7 @@ class RTC:
 
 
 
-    The documentation for RTC is in a poor state; better to experiment and use `dir`!
+    The documentation for RTC is in a poor state;1
     """
 
     @overload
@@ -2180,6 +2220,12 @@ class RTC:
         ...
 
     @overload
+    def __init__(self, id: int = 0):
+        """
+        Create an RTC object. See init for parameters of initialization.
+        """
+
+    @overload
     def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int]):
         """
         Create an RTC object. See init for parameters of initialization.
@@ -2225,6 +2271,62 @@ class RTC:
         Create an RTC object. See init for parameters of initialization.
 
         The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def alarm(self, id: int, time: int, /, *, repeat: bool = False) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
         """
 
 class SoftI2C(I2C):
@@ -2326,9 +2428,9 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        sck: Pin | None = None,
-        mosi: Pin | None = None,
-        miso: Pin | None = None,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -2361,7 +2463,7 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        pins: tuple[Pin, Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike, PinLike] | None = None,
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -2447,9 +2549,9 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        sck: Pin | None = None,
-        mosi: Pin | None = None,
-        miso: Pin | None = None,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
     ):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -2473,7 +2575,7 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        pins: tuple[Pin, Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike, PinLike] | None = None,
     ):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -2486,7 +2588,7 @@ class SPI:
         See ``init`` for parameters of initialisation.
         """
 
-class Signal:
+class Signal(Pin):
     """
     The Signal class is a simple extension of the `Pin` class. Unlike Pin, which
     can be only in "absolute" 0 and 1 states, a Signal can be in "asserted"
@@ -2609,7 +2711,7 @@ class Signal:
         """
 
     @overload
-    def __init__(self, pin_obj: Pin, invert: bool = False, /):
+    def __init__(self, pin_obj: PinLike, invert: bool = False, /):
         """
         Create a Signal object. There're two ways to create it:
 
@@ -2631,7 +2733,7 @@ class Signal:
     @overload
     def __init__(
         self,
-        id: Pin | str | int,
+        id: PinLike,
         /,
         mode: int = -1,
         pull: int = -1,

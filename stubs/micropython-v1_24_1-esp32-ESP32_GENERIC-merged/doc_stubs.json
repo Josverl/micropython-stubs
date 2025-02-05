@@ -357,6 +357,10 @@
             "module": "uarray"
         },
         {
+            "file": "uasyncio.pyi",
+            "module": "uasyncio"
+        },
+        {
             "file": "ubinascii.pyi",
             "module": "ubinascii"
         },
@@ -371,6 +375,10 @@
         {
             "file": "ujson.pyi",
             "module": "ujson"
+        },
+        {
+            "file": "umachine.pyi",
+            "module": "umachine"
         },
         {
             "file": "uos.pyi",

@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 from typing import Callable, overload
+from typing_extensions import TypeAlias
 
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
 from machine import IDLE
 
-from .Pin import Pin
+from machine.Pin import Pin, PinLike
+
+ID_T: TypeAlias = int | str
 
 class UART:
     """
@@ -81,15 +84,15 @@ class UART:
     @overload
     def __init__(
         self,
-        id: int | str,
+        id: ID_T,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
-        tx: Pin | None = None,
-        rx: Pin | None = None,
+        tx: PinLike | None = None,
+        rx: PinLike | None = None,
         txbuf: int | None = None,
         rxbuf: int | None = None,
         timeout: int | None = None,
@@ -103,14 +106,14 @@ class UART:
     @overload
     def __init__(
         self,
-        id: int | str,
+        id: ID_T,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
-        pins: tuple[Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike] | None = None,
     ):
         """
         Construct a UART object of the given id.
@@ -119,14 +122,14 @@ class UART:
     @overload
     def __init__(
         self,
-        id: int | str,
+        id: ID_T,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
-        pins: tuple[Pin, Pin, Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ):
         """
         Construct a UART object of the given id.
@@ -141,8 +144,8 @@ class UART:
         stop: int = 1,
         /,
         *,
-        tx: Pin | None = None,
-        rx: Pin | None = None,
+        tx: PinLike | None = None,
+        rx: PinLike | None = None,
         txbuf: int | None = None,
         rxbuf: int | None = None,
         timeout: int | None = None,
@@ -210,7 +213,7 @@ class UART:
         stop: int = 1,
         /,
         *,
-        pins: tuple[Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -273,7 +276,7 @@ class UART:
         stop: int = 1,
         /,
         *,
-        pins: tuple[Pin, Pin, Pin, Pin] | None = None,
+        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:

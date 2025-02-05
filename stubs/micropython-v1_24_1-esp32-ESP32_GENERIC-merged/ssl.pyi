@@ -1,7 +1,7 @@
 """
 TLS/SSL wrapper for socket objects.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/ssl.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/ssl.html
 
 CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
@@ -17,12 +17,10 @@ Module: 'ssl' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from ssl import *
 from _mpy_shed import StrOrBytesPath
 from socket import socket
-from stdlib.ssl import *
 from typing import List
-from typing_extensions import TypeAlias
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 SSLSocket: TypeAlias = Incomplete
 
@@ -35,13 +33,14 @@ CERT_OPTIONAL: int = 1
 
 def wrap_socket(
     sock: socket,
+    *,
     server_side: bool = False,
-    keyfile: StrOrBytesPath | None = None,
-    certfile: StrOrBytesPath | None = None,
-    cert_reqs: int = CERT_NONE,
-    ca_certs: str | None = None,
+    key: Incomplete = None,
+    cert: Incomplete = None,
+    cert_reqs: int = 0,
+    cadata: bytes | None = None,
+    server_hostname: str | None = None,
     do_handshake: bool = True,
-    /,
 ) -> SSLSocket:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
@@ -68,7 +67,7 @@ class SSLContext:
     constants.
     """
 
-    def load_verify_locations(self, cafile=None, cadata=None) -> None:
+    def load_verify_locations(self, cafile=None, cadata: bytes = None) -> None:
         """
         Load the CA certificate chain that will validate the peer's certificate.
         *cafile* is the file path of the CA certificates.  *cadata* is a bytes object
@@ -78,12 +77,12 @@ class SSLContext:
 
     def wrap_socket(
         self,
-        sock,
+        sock: socket,
         *,
-        server_side=False,
-        do_handshake_on_connect=True,
-        server_hostname=None,
-    ) -> Incomplete:
+        server_side: bool = False,
+        do_handshake_on_connect: bool = True,
+        server_hostname: str | None = None,
+    ) -> SSLSocket:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
         and returns an instance of ssl.SSLSocket, wrapping the underlying stream.

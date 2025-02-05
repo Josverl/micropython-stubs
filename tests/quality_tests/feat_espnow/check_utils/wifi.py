@@ -71,12 +71,12 @@ def channel(channel=0):
         raise OSError("can not set channel when connected to wifi network.")
     if _ap.isconnected():
         raise OSError("can not set channel when clients are connected to AP.")
-    if _sta.active() and not is_esp8266:
+    if _sta.active() and not is_esp8266:  # stubs-ignore : linter == "mypy" and version < 1.24.0
         _sta.config(channel=channel)  # On ESP32 use STA interface
         return _sta.config("channel")
     else:
         # On ESP8266, use the AP interface to set the channel
-        ap_save = _ap.active()
+        ap_save = _ap.active()  # stubs-ignore : linter == "mypy" and version < 1.24.0
         _ap.active(True)
         _ap.config(channel=channel)
         _ap.active(ap_save)
@@ -121,7 +121,7 @@ def reset(
         disconnect()  # For ESP8266
         try:
             _sta.config(pm=pm)
-        except (ValueError):
+        except ValueError:
             pass
     try:
         wlan = _sta if sta else _ap if ap else None
@@ -137,7 +137,9 @@ def status():
     from binascii import hexlify
 
     for name, w in (("STA", _sta), ("AP", _ap)):
-        active = "on," if w.active() else "off,"
+        active = (
+            "on," if w.active() else "off,"  # stubs-ignore : linter == "mypy" and version < 1.24.0
+        )
         mac = w.config("mac")
         hex = hexlify(mac, ":").decode()
         print("{:3s}: {:4s} mac= {} ({})".format(name, active, hex, mac))
@@ -153,7 +155,7 @@ def status():
             _sta.PM_NONE: "PM_NONE",
             _sta.PM_PERFORMANCE: "PM_PERFORMANCE",
             _sta.PM_POWERSAVE: "PM_POWERSAVE",
-            }
+        }
         print(", pm={:d} ({})".format(pm_mode, names[pm_mode]), end="")
     except (AttributeError, ValueError):
         print(", pm={}".format(pm_mode), end="")
@@ -161,7 +163,13 @@ def status():
         names = ("MODE_11B", "MODE_11G", "MODE_11N", "MODE_LR")
         protocol = _sta.config("protocol")
         try:
-            p = "|".join((x for x in names if protocol & getattr(network, x)))
+            p = "|".join(
+                (
+                    x  # stubs-ignore : linter == "mypy"
+                    for x in names
+                    if protocol & getattr(network, x)  # stubs-ignore : linter == "mypy"
+                )
+            )
         except AttributeError:
             p = ""
         print(", protocol={:d} ({})".format(protocol, p), end="")

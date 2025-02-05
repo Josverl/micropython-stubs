@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional, Tuple
+from typing import Any, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class LAN:
@@ -29,7 +29,7 @@ class LAN:
     """
 
     def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
-    def active(self, state: Optional[Any] = None) -> Incomplete:
+    def active(self, state: Any | None = None) -> Incomplete:
         """
         With a parameter, it sets the interface active if *state* is true, otherwise it
         sets it inactive.
@@ -50,7 +50,7 @@ class LAN:
         """
         ...
 
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
+    def ifconfig(self, configtuple: Any | None = None) -> Tuple:
         """
         Get/set IP address, subnet mask, gateway and DNS.
 

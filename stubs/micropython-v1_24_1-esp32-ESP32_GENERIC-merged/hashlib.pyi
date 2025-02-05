@@ -1,7 +1,7 @@
 """
 Hashing algorithms.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/hashlib.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/hashlib.html
 
 CPython module: :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
 
@@ -31,8 +31,9 @@ Module: 'hashlib' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import AnyReadableBuf, _Hash
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _Hash
 from typing import overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class sha1(_Hash):
     """

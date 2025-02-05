@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 from _typeshed import Incomplete
+from typing_extensions import TypeAlias
 
-from .Pin import Pin
+from machine.Pin import Pin, PinLike
 
 ATTN_0DB: int = ...
 
@@ -22,7 +23,7 @@ class ADC:
        val = adc.read_u16()     # read a raw analog value in the range 0-65535
     """
 
-    def __init__(self, pin: int | Pin, /) -> None:
+    def __init__(self, pin: PinLike, /) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a

@@ -20,8 +20,26 @@ class RTC:
         """
         Create an RTC object.
         """
+    @overload
+    def datetime(self, datetimetuple: tuple[int, int, int, int, int, int, int, int], /) -> None:
+        """
+        Get or set the date and time of the RTC.
 
-    def datetime(self, datetimetuple: tuple[int, int, int, int, int, int, int, int], /) -> Tuple:
+        With no arguments, this method returns an 8-tuple with the current
+        date and time.  With 1 argument (being an 8-tuple) it sets the date
+        and time (and ``subseconds`` is reset to 255).
+
+        The 8-tuple has the following format:
+
+            (year, month, day, weekday, hours, minutes, seconds, subseconds)
+
+        ``weekday`` is 1-7 for Monday through Sunday.
+
+        ``subseconds`` counts down from 255 to 0
+        """
+        ...
+    @overload
+    def datetime(self,  /) -> Tuple:
         """
         Get or set the date and time of the RTC.
 

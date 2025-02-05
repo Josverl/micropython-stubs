@@ -1,7 +1,7 @@
 """
 Wait for events on a set of streams.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/select.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/select.html
 
 CPython module: :mod:`python:select` https://docs.python.org/3/library/select.html .
 
@@ -16,14 +16,21 @@ Module: 'select' on micropython-v1.24.1-rp2-RPI_PICO2
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Iterator, List, Optional, Tuple
+from typing import Any, Iterable, Iterator, List, Optional, Tuple
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 POLLOUT: int = 4
 POLLIN: int = 1
 POLLHUP: int = 16
 POLLERR: int = 8
 
-def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
+def select(
+    rlist: Iterable[Any],
+    wlist: Iterable[Any],
+    xlist: Iterable[Any],
+    timeout: int = -1,
+    /,
+) -> None:
     """
     Wait for activity on a set of objects.
 
@@ -71,10 +78,7 @@ class poll:
         """
         ...
 
-    def poll(
-        self,
-        timeout=-1,
-    ) -> List:
+    def poll(self, timeout=-1, /) -> List:
         """
         Wait for at least one of the registered objects to become ready or have an
         exceptional condition, with optional timeout in milliseconds (if *timeout*
@@ -92,17 +96,14 @@ class poll:
 
         In case of timeout, an empty list is returned.
 
-        Difference to CPython
+        Admonition:Difference to CPython
+           :class: attention
 
            Tuples returned may contain more than 2 elements as described above.
         """
         ...
 
-    def ipoll(
-        self,
-        timeout=-1,
-        flags=0,
-    ) -> Iterator[Tuple]:
+    def ipoll(self, timeout=-1, flags=0, /) -> Iterator[Tuple]:
         """
         Like :meth:`poll.poll`, but instead returns an iterator which yields a
         `callee-owned tuple`. This function provides an efficient, allocation-free
@@ -114,7 +115,8 @@ class poll:
         won't be processed until new mask is set with `poll.modify()`. This
         behaviour is useful for asynchronous I/O schedulers.
 
-        Difference to CPython
+        Admonition:Difference to CPython
+           :class: attention
 
            This function is a MicroPython extension.
         """

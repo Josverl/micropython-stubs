@@ -56,3 +56,21 @@ Examples
  - == 3.1: specifically version 3.1 (or 3.1.0), excludes all pre-releases, post releases, developmental releases and any 3.1.x maintenance releases.
  - == 3.1.*: any version that starts with 3.1. Equivalent to the ~=3.1.0 compatible release clause.
  - ~=3.1.0, != 3.1.3: version 3.1.0 or later, but not version 3.1.3 and not version 3.2.0 or later.
+
+
+# Installing directy from the repository
+
+The below installs 2 stub packages 
+ - from the branch : reference/rp2
+    - from the folder : publish/micropython-stdlib-stubs
+    - from the folder : publish/micropython-v1_24_1-rp2-rpi_pico_w-stubs
+ - to the folder : typings
+
+```bash
+pip install "git+https://github.com/Josverl/micropython-stubs@reference/rp2#subdirectory=publish/micropython-stdlib-stubs" --target typings
+pip install "git+https://github.com/Josverl/micropython-stubs@reference/rp2#subdirectory=publish/micropython-v1_24_1-rp2-rpi_pico_w-stubs" --target typings
+```
+
+*Note:* This is quite a long command, so it is best to copy and paste it into the terminal.
+it is also quite slow to install, as it needs to download all the files from the repository, 
+but it works well to test out a preview of the stubs.

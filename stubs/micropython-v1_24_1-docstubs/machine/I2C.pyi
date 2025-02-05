@@ -2,39 +2,87 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import List, Optional, Union
+from typing import Sequence, overload, List
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin
+from machine.Pin import Pin, PinLike
+
+ID_T: TypeAlias = int | str
 
 class I2C:
     """
-    Construct and return a new I2C object using the following parameters:
+    I2C is a two-wire protocol for communicating between devices.  At the physical
+    level it consists of 2 wires: SCL and SDA, the clock and data lines respectively.
 
-       - *id* identifies a particular I2C peripheral.  Allowed values for
-         depend on the particular port/board
-       - *scl* should be a pin object specifying the pin to use for SCL.
-       - *sda* should be a pin object specifying the pin to use for SDA.
-       - *freq* should be an integer which sets the maximum frequency
-         for SCL.
-       - *timeout* is the maximum time in microseconds to allow for I2C
-         transactions.  This parameter is not allowed on some ports.
+    I2C objects are created attached to a specific bus.  They can be initialised
+    when created, or initialised later on.
 
-    Note that some ports/boards will have default values of *scl* and *sda*
-    that can be changed in this constructor.  Others will have fixed values
-    of *scl* and *sda* that cannot be changed.
+    Printing the I2C object gives you information about its configuration.
+
+    Both hardware and software I2C implementations exist via the
+    :ref:`machine.I2C <machine.I2C>` and `machine.SoftI2C` classes.  Hardware I2C uses
+    underlying hardware support of the system to perform the reads/writes and is
+    usually efficient and fast but may have restrictions on which pins can be used.
+    Software I2C is implemented by bit-banging and can be used on any pin but is not
+    as efficient.  These classes have the same methods available and differ primarily
+    in the way they are constructed.
+
+    Example usage::
+
+        from machine import I2C
+
+        i2c = I2C(freq=400000)          # create I2C peripheral at frequency of 400kHz
+                                        # depending on the port, extra parameters may be required
+                                        # to select the peripheral and/or pins to use
+
+        i2c.scan()                      # scan for peripherals, returning a list of 7-bit addresses
+
+        i2c.writeto(42, b'123')         # write 3 bytes to peripheral with 7-bit address 42
+        i2c.readfrom(42, 4)             # read 4 bytes from peripheral with 7-bit address 42
+
+        i2c.readfrom_mem(42, 8, 3)      # read 3 bytes from memory of peripheral 42,
+                                        #   starting at memory-address 8 in the peripheral
+        i2c.writeto_mem(42, 2, b'\x10') # write 1 byte to memory of peripheral 42
+                                        #   starting at address 2 in the peripheral
     """
 
-    def __init__(
-        self,
-        id: Union[int, str] = -1,
-        *,
-        scl: Optional[Union[Pin, str]] = None,
-        sda: Optional[Union[Pin, str]] = None,
-        freq=400_000,
-        timeout=50000,
-    ) -> None: ...
-    def init(self, scl, sda, *, freq=400000) -> None:
+    @overload
+    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
+        """
+        Construct and return a new I2C object using the following parameters:
+
+           - *id* identifies a particular I2C peripheral.  Allowed values for
+             depend on the particular port/board
+           - *scl* should be a pin object specifying the pin to use for SCL.
+           - *sda* should be a pin object specifying the pin to use for SDA.
+           - *freq* should be an integer which sets the maximum frequency
+             for SCL.
+
+        Note that some ports/boards will have default values of *scl* and *sda*
+        that can be changed in this constructor.  Others will have fixed values
+        of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
+        """
+        Construct and return a new I2C object using the following parameters:
+
+           - *id* identifies a particular I2C peripheral.  Allowed values for
+             depend on the particular port/board
+           - *scl* should be a pin object specifying the pin to use for SCL.
+           - *sda* should be a pin object specifying the pin to use for SDA.
+           - *freq* should be an integer which sets the maximum frequency
+             for SCL.
+
+        Note that some ports/boards will have default values of *scl* and *sda*
+        that can be changed in this constructor.  Others will have fixed values
+        of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 
@@ -46,7 +94,34 @@ class I2C:
          requested frequency. This is dependent on the platform hardware. The actual
          rate may be determined by printing the I2C object.
         """
-        ...
+
+    @overload
+    def init(self, *, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
+
+    @overload
+    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
 
     def deinit(self) -> None:
         """
@@ -76,7 +151,7 @@ class I2C:
         """
         ...
 
-    def readinto(self, buf, nack=True, /) -> Incomplete:
+    def readinto(self, buf: AnyWritableBuf, nack: bool = True, /) -> None:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
         read is the length of *buf*.  An ACK will be sent on the bus after
@@ -86,7 +161,7 @@ class I2C:
         """
         ...
 
-    def write(self, buf) -> int:
+    def write(self, buf: AnyReadableBuf, /) -> int:
         """
         Write the bytes from *buf* to the bus.  Checks that an ACK is received
         after each byte and stops transmitting the remaining bytes if a NACK is
@@ -94,7 +169,7 @@ class I2C:
         """
         ...
 
-    def readfrom(self, addr, nbytes, stop=True, /) -> bytes:
+    def readfrom(self, addr: int, nbytes: int, stop: bool = True, /) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr*.
         If *stop* is true then a STOP condition is generated at the end of the transfer.
@@ -102,7 +177,7 @@ class I2C:
         """
         ...
 
-    def readfrom_into(self, addr, buf, stop=True, /) -> None:
+    def readfrom_into(self, addr: int, buf: AnyWritableBuf, stop: bool = True, /) -> None:
         """
         Read into *buf* from the peripheral specified by *addr*.
         The number of bytes read will be the length of *buf*.
@@ -112,7 +187,7 @@ class I2C:
         """
         ...
 
-    def writeto(self, addr, buf, stop=True, /) -> int:
+    def writeto(self, addr: int, buf: AnyReadableBuf, stop: bool = True, /) -> int:
         """
         Write the bytes from *buf* to the peripheral specified by *addr*.  If a
         NACK is received following the write of a byte from *buf* then the
@@ -122,7 +197,7 @@ class I2C:
         """
         ...
 
-    def writevto(self, addr, vector, stop=True, /) -> int:
+    def writevto(self, addr: int, vector: Sequence[AnyReadableBuf], stop: bool = True, /) -> int:
         """
         Write the bytes contained in *vector* to the peripheral specified by *addr*.
         *vector* should be a tuple or list of objects with the buffer protocol.
@@ -138,7 +213,7 @@ class I2C:
         """
         ...
 
-    def readfrom_mem(self, addr, memaddr, nbytes, *, addrsize=8) -> bytes:
+    def readfrom_mem(self, addr: int, memaddr: int, nbytes: int, /, *, addrsize: int = 8) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr* starting from the memory
         address specified by *memaddr*.
@@ -147,7 +222,7 @@ class I2C:
         """
         ...
 
-    def readfrom_mem_into(self, addr, memaddr, buf, *, addrsize=8) -> None:
+    def readfrom_mem_into(self, addr: int, memaddr: int, buf: AnyWritableBuf, /, *, addrsize: int = 8) -> None:
         """
         Read into *buf* from the peripheral specified by *addr* starting from the
         memory address specified by *memaddr*.  The number of bytes read is the
@@ -159,7 +234,7 @@ class I2C:
         """
         ...
 
-    def writeto_mem(self, addr, memaddr, buf, *, addrsize=8) -> None:
+    def writeto_mem(self, addr: int, memaddr: int, buf: AnyReadableBuf, /, *, addrsize: int = 8) -> None:
         """
         Write *buf* to the peripheral specified by *addr* starting from the
         memory address specified by *memaddr*.

@@ -2,30 +2,60 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import List
+from typing import overload, List
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
 class I2C:
     """
-    Construct an I2C object on the given bus.  ``bus`` can be 1 or 2, 'X' or
-    'Y'. With no additional parameters, the I2C object is created but not
-    initialised (it has the settings from the last initialisation of
-    the bus, if any).  If extra arguments are given, the bus is initialised.
-    See ``init`` for parameters of initialisation.
+    I2C is a two-wire protocol for communicating between devices.  At the physical
+    level it consists of 2 wires: SCL and SDA, the clock and data lines respectively.
 
-    The physical pins of the I2C buses on Pyboards V1.0 and V1.1 are:
+    I2C objects are created attached to a specific bus.  They can be initialised
+    when created, or initialised later on.
 
-      - ``I2C(1)`` is on the X position: ``(SCL, SDA) = (X9, X10) = (PB6, PB7)``
-      - ``I2C(2)`` is on the Y position: ``(SCL, SDA) = (Y9, Y10) = (PB10, PB11)``
+    Example::
 
-    On the Pyboard Lite:
+        from pyb import I2C
 
-      - ``I2C(1)`` is on the X position: ``(SCL, SDA) = (X9, X10) = (PB6, PB7)``
-      - ``I2C(3)`` is on the Y position: ``(SCL, SDA) = (Y9, Y10) = (PA8, PB8)``
+        i2c = I2C(1)                             # create on bus 1
+        i2c = I2C(1, I2C.CONTROLLER)             # create and init as a controller
+        i2c.init(I2C.CONTROLLER, baudrate=20000) # init as a controller
+        i2c.init(I2C.PERIPHERAL, addr=0x42)      # init as a peripheral with given address
+        i2c.deinit()                             # turn off the I2C unit
 
-    Calling the constructor with 'X' or 'Y' enables portability between Pyboard
-    types.
+    Printing the i2c object gives you information about its configuration.
+
+    The basic methods are send and recv::
+
+        i2c.send('abc')      # send 3 bytes
+        i2c.send(0x42)       # send a single byte, given by the number
+        data = i2c.recv(3)   # receive 3 bytes
+
+    To receive inplace, first create a bytearray::
+
+        data = bytearray(3)  # create a buffer
+        i2c.recv(data)       # receive 3 bytes, writing them into data
+
+    You can specify a timeout (in ms)::
+
+        i2c.send(b'123', timeout=2000)   # timeout after 2 seconds
+
+    A controller must specify the recipient's address::
+
+        i2c.init(I2C.CONTROLLER)
+        i2c.send('123', 0x42)        # send 3 bytes to peripheral with address 0x42
+        i2c.send(b'456', addr=0x42)  # keyword for address
+
+    Master also has other methods::
+
+        i2c.is_ready(0x42)           # check if peripheral 0x42 is ready
+        i2c.scan()                   # scan for peripherals on the bus, returning
+                                     #   a list of valid addresses
+        i2c.mem_read(3, 0x42, 2)     # read 3 bytes from memory of peripheral 0x42,
+                                     #   starting at address 2 in the peripheral
+        i2c.mem_write('abc', 0x42, 2, timeout=1000) # write 'abc' (3 bytes) to memory of peripheral 0x42
+                                                    # starting at address 2 in the peripheral, timeout after 1 second
     """
 
     CONTROLLER: Incomplete
@@ -33,15 +63,54 @@ class I2C:
     PERIPHERAL: Incomplete
     """for initialising the bus to peripheral mode"""
     def __init__(
-        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
-    ) -> None: ...
+        self,
+        bus: int | str,
+        mode: str,
+        /,
+        *,
+        addr: int = 0x12,
+        baudrate: int = 400_000,
+        gencall: bool = False,
+        dma: bool = False,
+    ) -> None:
+        """
+        Construct an I2C object on the given bus.  ``bus`` can be 1 or 2, 'X' or
+        'Y'. With no additional parameters, the I2C object is created but not
+        initialised (it has the settings from the last initialisation of
+        the bus, if any).  If extra arguments are given, the bus is initialised.
+        See ``init`` for parameters of initialisation.
+
+        The physical pins of the I2C buses on Pyboards V1.0 and V1.1 are:
+
+          - ``I2C(1)`` is on the X position: ``(SCL, SDA) = (X9, X10) = (PB6, PB7)``
+          - ``I2C(2)`` is on the Y position: ``(SCL, SDA) = (Y9, Y10) = (PB10, PB11)``
+
+        On the Pyboard Lite:
+
+          - ``I2C(1)`` is on the X position: ``(SCL, SDA) = (X9, X10) = (PB6, PB7)``
+          - ``I2C(3)`` is on the Y position: ``(SCL, SDA) = (Y9, Y10) = (PA8, PB8)``
+
+        Calling the constructor with 'X' or 'Y' enables portability between Pyboard
+        types.
+        """
+
     def deinit(self) -> None:
         """
         Turn off the I2C bus.
         """
         ...
 
-    def init(self, mode, *, addr=0x12, baudrate=400000, gencall=False, dma=False) -> None:
+    def init(
+        self,
+        bus: int | str,
+        mode: str,
+        /,
+        *,
+        addr: int = 0x12,
+        baudrate: int = 400_000,
+        gencall: bool = False,
+        dma: bool = False,
+    ) -> None:
         """
         Initialise the I2C bus with the given parameters:
 
@@ -59,13 +128,23 @@ class I2C:
         """
         ...
 
-    def is_ready(self, addr) -> Incomplete:
+    def is_ready(self, addr: int, /) -> bool:
         """
         Check if an I2C device responds to the given address.  Only valid when in controller mode.
         """
         ...
 
-    def mem_read(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> Incomplete:
+    @overload
+    def mem_read(
+        self,
+        data: int,
+        addr: int,
+        memaddr: int,
+        /,
+        *,
+        timeout: int = 5000,
+        addr_size: int = 8,
+    ) -> bytes:
         """
         Read from the memory of an I2C device:
 
@@ -78,9 +157,41 @@ class I2C:
         Returns the read data.
         This is only valid in controller mode.
         """
-        ...
 
-    def mem_write(self, data, addr, memaddr, *, timeout=5000, addr_size=8) -> None:
+    @overload
+    def mem_read(
+        self,
+        data: AnyWritableBuf,
+        addr: int,
+        memaddr: int,
+        /,
+        *,
+        timeout: int = 5000,
+        addr_size: int = 8,
+    ) -> AnyWritableBuf:
+        """
+        Read from the memory of an I2C device:
+
+          - ``data`` can be an integer (number of bytes to read) or a buffer to read into
+          - ``addr`` is the I2C device address
+          - ``memaddr`` is the memory location within the I2C device
+          - ``timeout`` is the timeout in milliseconds to wait for the read
+          - ``addr_size`` selects width of memaddr: 8 or 16 bits
+
+        Returns the read data.
+        This is only valid in controller mode.
+        """
+
+    def mem_write(
+        self,
+        data: int | AnyWritableBuf,
+        addr: int,
+        memaddr: int,
+        /,
+        *,
+        timeout: int = 5000,
+        addr_size: int = 8,
+    ) -> None:
         """
         Write to the memory of an I2C device:
 
@@ -95,7 +206,15 @@ class I2C:
         """
         ...
 
-    def recv(self, recv, addr=0x00, *, timeout=5000) -> bytes:
+    @overload
+    def recv(
+        self,
+        recv: int,
+        addr: int = 0x00,
+        /,
+        *,
+        timeout: int = 5000,
+    ) -> bytes:
         """
         Receive data on the bus:
 
@@ -107,9 +226,35 @@ class I2C:
         Return value: if ``recv`` is an integer then a new buffer of the bytes received,
         otherwise the same buffer that was passed in to ``recv``.
         """
-        ...
 
-    def send(self, send, addr=0x00, *, timeout=5000) -> None:
+    @overload
+    def recv(
+        self,
+        recv: AnyWritableBuf,
+        addr: int = 0x00,
+        /,
+        *,
+        timeout: int = 5000,
+    ) -> AnyWritableBuf:
+        """
+        Receive data on the bus:
+
+          - ``recv`` can be an integer, which is the number of bytes to receive,
+            or a mutable buffer, which will be filled with received bytes
+          - ``addr`` is the address to receive from (only required in controller mode)
+          - ``timeout`` is the timeout in milliseconds to wait for the receive
+
+        Return value: if ``recv`` is an integer then a new buffer of the bytes received,
+        otherwise the same buffer that was passed in to ``recv``.
+        """
+
+    def send(
+        self,
+        addr: int = 0x00,
+        /,
+        *,
+        timeout: int = 5000,
+    ) -> None:
         """
         Send data on the bus:
 

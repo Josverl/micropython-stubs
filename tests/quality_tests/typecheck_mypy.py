@@ -55,13 +55,13 @@ SEVERITY_MAP = {
 log = logging.getLogger()
 
 
-@cached(cache=TTLCache(maxsize=128, ttl=60*20))
+@cached(cache=TTLCache(maxsize=128, ttl=60 * 20))
 def mypy_version():
     "quick way to get the mypy version"
     return mypy_api.run(["--version"])[0].strip()
 
 
-def check_with_mypy(snip_path):
+def check_with_mypy(snip_path, patch: bool):
     """
     Run mypy on the specified path and return the type checking results.
 
@@ -72,10 +72,10 @@ def check_with_mypy(snip_path):
         json: The type checking results in pyright format.
 
     """
-    raw_results = run_mypy(snip_path)
+    raw_results = run_mypy(snip_path, patch)
     results = raw_results.split("\n")
     gl_report = gitlab_report(map(str.rstrip, results))
-    results = gitlab_to_pyright(gl_report)    
+    results = gitlab_to_pyright(gl_report)
     return results
 
 
@@ -104,6 +104,7 @@ def mypy_patch(check_path):
             elif file.is_dir():
                 shutil.rmtree(file)
 
+
 @contextmanager
 def chdir_mgr(path):
     """
@@ -117,7 +118,8 @@ def chdir_mgr(path):
     finally:
         os.chdir(oldpwd)
 
-def run_mypy(path: Path) -> str:
+
+def run_mypy(path: Path, patch: bool = False) -> str:
     """
     Run mypy on the specified path.
 
@@ -127,9 +129,16 @@ def run_mypy(path: Path) -> str:
     Returns:
         str: The result of running mypy.
     """
-    mypy_patch(path)
+    if patch:
+        mypy_patch(path)
     # Note that --warn-unused-ignores does not seem to work as expected in stdlib
-    cmd = ["--warn-unused-ignores","--no-error-summary", "--no-color", "--show-absolute-path", "."]
+    cmd = [
+        "--warn-unused-ignores",
+        "--no-error-summary",
+        "--no-color",
+        "--show-absolute-path",
+        ".",
+    ]
     # print(f"Running mypy in {path}\nmypy {' '.join(cmd)}")
     try:
         with chdir_mgr(path):
@@ -137,15 +146,17 @@ def run_mypy(path: Path) -> str:
             result = mypy_api.run(cmd)
             errors = result[1]
             if errors:
-                message = errors.split("\n")[0].replace(":","-")
+                message = errors.split("\n")[0].replace(":", "-")
                 err_report = f"{path}:0: error: {message}  [import]"
                 return err_report
-  
+
             return result[0]
     except Exception as e:
         print(e)
 
+
 # convert from gitlab to pyright format
+
 
 def gitlab_to_pyright(report):
     """
@@ -168,7 +179,7 @@ def gitlab_to_pyright(report):
         i["message"] = issue["description"]
         i["rule"] = issue["check_name"]
         # pyright uses 0-based lines - gitlab uses 1-based lines
-        line_no = int(issue["location"]["lines"]["begin"]) -1 
+        line_no = int(issue["location"]["lines"]["begin"]) - 1
         i["range"]["start"]["line"] = line_no
         i["range"]["end"]["line"] = line_no
         pyright_report["generalDiagnostics"].append(i)
@@ -177,6 +188,3 @@ def gitlab_to_pyright(report):
         count = len([d for d in pyright_report["generalDiagnostics"] if d["severity"] == sev])
         pyright_report["summary"][f"{sev}Count"] = count
     return pyright_report
-
-
-

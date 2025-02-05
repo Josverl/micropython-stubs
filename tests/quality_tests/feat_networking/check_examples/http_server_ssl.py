@@ -1,3 +1,5 @@
+# https://github.com/micropython/micropython/tree/master/examples/network
+
 import binascii
 import socket
 import ssl
@@ -61,9 +63,12 @@ def main(use_stream=True):
         print("Client address:", client_addr)
         print("Client socket:", client_s)
         # CPython uses key keyfile/certfile arguments, but MicroPython uses key/cert
-        client_s = ssl.wrap_socket(
-            client_s, server_side=True, keyfile=key, certfile=cert
-        )  # corrected from dsample # TODO: ssl.wrap_socket - file PR to correct sample
+        client_s = ssl.wrap_socket(  # stubs-ignore : linter == "mypy" and version < 1.24.0
+            client_s,
+            server_side=True,
+            key=key,  # stubs: ignore : version < 1.24.0
+            cert=cert,  # stubs: ignore : version < 1.24.0
+        )
         print(client_s)
         print("Request:")
         if use_stream:
@@ -74,10 +79,10 @@ def main(use_stream=True):
             # next request they issue will likely be more well-behaving and
             # will succeed.
             try:
-                req = client_s.readline() # type: ignore # stubs: ignore
+                req = client_s.readline()
                 print(req)
                 while True:
-                    h = client_s.readline() # type: ignore # stubs: ignore
+                    h = client_s.readline()
                     if h == b"" or h == b"\r\n":
                         break
                     print(h)

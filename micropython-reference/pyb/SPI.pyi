@@ -228,7 +228,7 @@ class SPI:
 
     def send_recv(
         self,
-        send: int | bytearray | array | bytes,
+        send: int | AnyWritableBuf,
         recv: AnyWritableBuf | None = None,
         /,
         *,

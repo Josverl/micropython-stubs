@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
+from typing import Any
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class PPP:
@@ -73,7 +73,7 @@ class PPP:
         """
         ...
 
-    def ifconfig(self, configtuple: Optional[Any] = None) -> Incomplete:
+    def ifconfig(self, configtuple: Any | None = None) -> Incomplete:
         """
         See `AbstractNIC.ifconfig`.
         """

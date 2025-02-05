@@ -10,9 +10,9 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 # origin module:: repos/micropython/docs/library/sys.rst
 from __future__ import annotations
 
-from typing import Callable, Dict, List, NoReturn, Tuple
+from typing import Callable, Dict, List, NoReturn, Tuple, overload
 
-from _mpy_shed import IOBase
+from _mpy_shed import IOBase_mp
 from _typeshed import Incomplete
 
 argv: List
@@ -78,7 +78,7 @@ should search :term:`frozen modules <frozen module>` at that point in the search
 If no frozen module is found then search will *not* look for a directory called
 ``.frozen``, instead it will continue with the next entry in ``sys.path``.
 """
-platform: Incomplete
+platform: str
 """\
 The platform that MicroPython is running on. For OS/RTOS ports, this is
 usually an identifier of the OS, e.g. ``"linux"``. For baremetal ports it
@@ -87,12 +87,12 @@ reference board. It thus can be used to distinguish one board from another.
 If you need to check whether your program runs on MicroPython (vs other
 Python implementation), use `sys.implementation` instead.
 """
-ps1: Incomplete
+ps1: str
 """\
 Mutable attributes holding strings, which are used for the REPL prompt.  The defaults
 give the standard Python prompt of ``>>>`` and ``...``.
 """
-ps2: Incomplete
+ps2: str
 """\
 Mutable attributes holding strings, which are used for the REPL prompt.  The defaults
 give the standard Python prompt of ``>>>`` and ``...``.
@@ -124,6 +124,7 @@ Only the first three version numbers (major, minor, micro) are supported and
 they can be referenced only by index, not by name.
 """
 
+@overload
 def exit(retval: object = 0, /) -> NoReturn:
     """
     Terminate current program with a given exit code. Underlyingly, this
@@ -132,6 +133,7 @@ def exit(retval: object = 0, /) -> NoReturn:
     """
     ...
 
+@overload
 def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
     Register *func* to be called upon termination.  *func* must be a callable
@@ -147,7 +149,8 @@ def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
     ...
 
-def print_exception(exc: BaseException, file: IOBase = stdout, /) -> None:
+@overload
+def print_exception(exc: Exception | BaseException, file: IOBase_mp = stdout, /) -> None:
     """
     Print exception with a traceback to a file-like object *file* (or
     `sys.stdout` by default).
@@ -164,6 +167,7 @@ def print_exception(exc: BaseException, file: IOBase = stdout, /) -> None:
     """
     ...
 
+@overload
 def settrace(tracefunc) -> None:
     """
     Enable tracing of bytecode execution.  For details see the `CPython

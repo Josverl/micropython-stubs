@@ -1,9 +1,4 @@
 """
-ESP-NOW :doc:`asyncio` support.
-
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/aioespnow.html
-
----
 Module: '_espnow' on micropython-v1.24.1-esp32-ESP32_GENERIC
 """
 
@@ -11,8 +6,6 @@ Module: '_espnow' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from _espnow import ESPNowBase
-from typing import Any, Dict, Iterator, List, Optional, Tuple, Union
 
 MAX_DATA_LEN: int = 250
 MAX_TOTAL_PEER_NUM: int = 20

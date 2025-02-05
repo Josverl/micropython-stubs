@@ -1,7 +1,7 @@
 """
 Hashing algorithms.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/hashlib.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/hashlib.html
 
 CPython module: :mod:`python:hashlib` https://docs.python.org/3/library/hashlib.html .
 
@@ -31,22 +31,74 @@ Module: 'hashlib' on micropython-v1.24.1-rp2-RPI_PICO_W
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _Hash
+from typing import overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-class sha256:
+class sha256(_Hash):
     """
-    Create an SHA256 hasher object and optionally feed ``data`` into it.
-    """
-
-    def digest(self, *args, **kwargs) -> Incomplete: ...
-    def update(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-class sha1:
-    """
-    Create an SHA1 hasher object and optionally feed ``data`` into it.
+    The current generation, modern hashing algorithm (of SHA2 series).
+    It is suitable for cryptographically-secure purposes. Included in the
+    MicroPython core and any board is recommended to provide this, unless
+    it has particular code size constraints.
     """
 
     def digest(self, *args, **kwargs) -> Incomplete: ...
     def update(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    @overload
+    def __init__(self):
+        """
+        Create an SHA256 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self, data: AnyReadableBuf):
+        """
+        Create an SHA256 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self):
+        """
+        Create an SHA256 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self, data: AnyReadableBuf):
+        """
+        Create an SHA256 hasher object and optionally feed ``data`` into it.
+        """
+
+class sha1(_Hash):
+    """
+    A previous generation algorithm. Not recommended for new usages,
+    but SHA1 is a part of number of Internet standards and existing
+    applications, so boards targeting network connectivity and
+    interoperability will try to provide this.
+    """
+
+    def digest(self, *args, **kwargs) -> Incomplete: ...
+    def update(self, *args, **kwargs) -> Incomplete: ...
+    @overload
+    def __init__(self):
+        """
+        Create an SHA1 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self, data: AnyReadableBuf):
+        """
+        Create an SHA1 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self):
+        """
+        Create an SHA1 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self, data: AnyReadableBuf):
+        """
+        Create an SHA1 hasher object and optionally feed ``data`` into it.
+        """

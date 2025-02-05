@@ -1,7 +1,7 @@
 """
 Mathematical functions.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/math.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/math.html
 
 CPython module: :mod:`python:math` https://docs.python.org/3/library/math.html .
 
@@ -22,6 +22,7 @@ Module: 'math' on micropython-v1.24.1-esp32-ESP32_GENERIC
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import SupportsFloat, Tuple
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 inf: float = inf
 nan: float = nan

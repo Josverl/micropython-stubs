@@ -12,7 +12,7 @@ from typing import Dict, List
 import fasteners
 import pytest
 from mypy_gitlab_code_quality import generate_report as gitlab_report
-from packaging.version import Version
+from packaging.version import Version, InvalidVersion
 from typecheck_mypy import check_with_mypy
 
 log = logging.getLogger()
@@ -144,7 +144,15 @@ def run_typechecker(
         if linter == "pyright":
             results = check_with_pyright(snip_path)
         elif linter == "mypy":
-            results = check_with_mypy(snip_path)
+            patch = False
+            try:
+                if Version(version) < Version("1.24.1"):
+                    patch = True
+            except InvalidVersion:
+                # likely preview or stdlib
+                pass
+
+            results = check_with_mypy(snip_path, patch=patch)
         else:
             raise NotImplementedError(f"Unknown linter {linter}")
             results = []

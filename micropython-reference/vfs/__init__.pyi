@@ -22,9 +22,11 @@ represented by VFS classes.
 # origin module:: repos/micropython/docs/library/vfs.rst
 from __future__ import annotations
 
-from typing import Optional
+from typing import Optional, overload
 
 from _typeshed import Incomplete
+
+from _mpy_shed import _BlockDeviceProtocol
 
 class VfsFat:
     """
@@ -33,7 +35,7 @@ class VfsFat:
     Objects created by this constructor can be mounted using :func:`mount`.
     """
 
-    def __init__(self, block_dev:AbstractBlockDev) -> None: ...
+    def __init__(self, block_dev: AbstractBlockDev) -> None: ...
     @staticmethod
     def mkfs(block_dev: AbstractBlockDev) -> None:
         """
@@ -55,7 +57,7 @@ class VfsLfs1:
         self, block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32
     ) -> None: ...
     @staticmethod
-    def mkfs(block_dev:AbstractBlockDev, readsize=32, progsize=32, lookahead=32) -> None:
+    def mkfs(block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32) -> None:
         """
             Build a Lfs1 filesystem on *block_dev*.
 
@@ -105,14 +107,24 @@ class VfsPosix:
 
     def __init__(self, root: str | None = None) -> None: ...
 
-class AbstractBlockDev:
+# Attempt to allow the use / definition of the same class defined in two places ( for version overlap)
+# vfs module is not available  < v1.24.0
+from abc import ABC, abstractmethod
+
+class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround for Abstract Device not present in board-stubs
     """
     Construct a block device object.  The parameters to the constructor are
     dependent on the specific block device.
     """
 
     def __init__(self, *args, **kwargs) -> None: ...
-    def readblocks(self, block_num:int, buf, offset: Optional[int] = 0) -> Incomplete:
+    #
+    @abstractmethod
+    @overload  # force merge
+    def readblocks(self, block_num: int, buf: Incomplete) -> Incomplete: ...
+    @abstractmethod
+    @overload  # force merge
+    def readblocks(self, block_num: int, buf: Incomplete, offset: int) -> Incomplete:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -128,7 +140,12 @@ class AbstractBlockDev:
         """
         ...
 
-    def writeblocks(self, block_num:int, buf, offset: Optional[int] = 0) -> Incomplete:
+    @abstractmethod
+    @overload  # force merge
+    def writeblocks(self, block_num: int, buf: Incomplete) -> Incomplete: ...
+    @abstractmethod
+    @overload
+    def writeblocks(self, block_num: int, buf, offset: int) -> Incomplete:
         """
         The first form writes aligned, multiples of blocks, and requires that the
         blocks that are written to be first erased (if necessary) by this method.
@@ -150,7 +167,13 @@ class AbstractBlockDev:
         """
         ...
 
-    def ioctl(self, op: int, arg) -> int | None:
+    @abstractmethod
+    @overload
+    def ioctl(self, op: int, arg) -> None: ...
+    #
+    @abstractmethod
+    @overload
+    def ioctl(self, op: int) -> int:
         """
          Control the block device and query its parameters.  The operation to
          perform is given by *op* which is one of the following integers:
@@ -183,7 +206,7 @@ class AbstractBlockDev:
         """
         ...
 
-def mount(fsobj, mount_point: str, *, readonly=False) -> Incomplete:
+def mount(fsobj, mount_point: str, *, readonly: bool = False) -> Incomplete:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
     *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
@@ -201,7 +224,7 @@ def mount(fsobj, mount_point: str, *, readonly=False) -> Incomplete:
     """
     ...
 
-def umount(mount_point:Incomplete) -> Incomplete:
+def umount(mount_point: Incomplete) -> Incomplete:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
     or a previously-mounted filesystem object.  During the unmount process the

@@ -1,7 +1,7 @@
 """
 Random numbers.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/random.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/random.html
 
 This module implements a pseudo-random number generator (PRNG).
 
@@ -34,10 +34,10 @@ Module: 'random' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from _mpy_shed import Subscriptable
 from typing import overload
-from typing_extensions import TypeVar
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-_T = TypeVar("_T")
 _T = TypeVar("_T")
 
 @overload

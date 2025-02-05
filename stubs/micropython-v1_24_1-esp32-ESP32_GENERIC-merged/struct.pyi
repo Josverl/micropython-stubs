@@ -1,7 +1,7 @@
 """
 Pack and unpack primitive data types.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/struct.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/struct.html
 
 CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
 
@@ -63,9 +63,9 @@ Module: 'struct' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from struct import *
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing import Any, Tuple
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def pack_into(fmt: str | bytes, buffer: AnyWritableBuf, offset: int, /, *v: Any) -> None:
     """

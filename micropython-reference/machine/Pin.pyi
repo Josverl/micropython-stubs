@@ -3,8 +3,11 @@
 from __future__ import annotations
 
 from typing import Any, Callable, overload
+from typing_extensions import TypeAlias
 
 from _typeshed import Incomplete
+
+PinLike: TypeAlias = Pin | int | str
 
 class Pin:
     """
@@ -402,7 +405,7 @@ class Pin:
         ...
 
     @overload
-    def drive(self, drive: int, /) -> None:
+    def drive(self, /) -> int:
         """
         Get or set the pin drive strength.
         See the constructor documentation for details of the ``drive`` argument.

@@ -1,0 +1,454 @@
+diff --git a/typings/stdlib/asyncio/__init__.pyi b/typings/stdlib/asyncio/__init__.pyi
+index d5e7c37..eedde0a 100644
+--- a/typings/stdlib/asyncio/__init__.pyi
++++ b/typings/stdlib/asyncio/__init__.pyi
+@@ -17,6 +17,9 @@ from .streams import *
+ 
+ # from .subprocess import *
+ from .tasks import *
++from .tasks import sleep_ms as sleep_ms
++from .micropython import *
++
+ from .transports import *
+ 
+ if sys.version_info >= (3, 9):
+diff --git a/typings/stdlib/asyncio/micropython.pyi b/typings/stdlib/asyncio/micropython.pyi
+new file mode 100644
+index 0000000..4276382
+--- /dev/null
++++ b/typings/stdlib/asyncio/micropython.pyi
+@@ -0,0 +1,41 @@
++
++
++class ThreadSafeFlag:
++    """
++    class ThreadSafeFlag
++    --------------------
++    """
++
++    state: int
++    def __init__(self) -> None:
++        """
++        Create a new flag which can be used to synchronise a task with code running
++        outside the asyncio loop, such as other threads, IRQs, or scheduler
++        callbacks.  Flags start in the cleared state.
++        """
++
++    def ioctl(self, req, flags): ...
++    def set(self) -> None:
++        """
++        Set the flag.  If there is a task waiting on the flag, it will be scheduled
++        to run.
++        """
++        ...
++
++    def clear(self) -> None:
++        """
++        Clear the flag. This may be used to ensure that a possibly previously-set
++        flag is clear before waiting for it.
++        """
++        ...
++
++    async def wait(self) -> Generator[Incomplete]:
++        """
++        Wait for the flag to be set.  If the flag is already set then it returns
++        immediately.  The flag is automatically reset upon return from ``wait``.
++
++        A flag may only be waited on by a single task at a time.
++
++        This is a coroutine.
++        """
++        ...
+diff --git a/typings/stdlib/asyncio/streams.pyi b/typings/stdlib/asyncio/streams.pyi
+index ed95583..0796a23 100644
+--- a/typings/stdlib/asyncio/streams.pyi
++++ b/typings/stdlib/asyncio/streams.pyi
+@@ -1,6 +1,6 @@
+ import ssl
+ import sys
+-from _typeshed import ReadableBuffer, StrPath
++from _typeshed import ReadableBuffer, StrPath, Incomplete
+ from collections.abc import Awaitable, Callable, Iterable, Sequence, Sized
+ from types import ModuleType
+ from typing import Any, Protocol, SupportsIndex
+@@ -10,7 +10,13 @@ from . import events, protocols, transports
+ from .base_events import Server
+ 
+ if sys.platform == "win32":
+-    __all__ = ("StreamReader", "StreamWriter", "StreamReaderProtocol", "open_connection", "start_server")
++    __all__ = (
++        "StreamReader",
++        "StreamWriter",
++        "StreamReaderProtocol",
++        "open_connection",
++        "start_server",
++    )
+ else:
+     __all__ = (
+         "StreamReader",
+@@ -22,7 +28,9 @@ else:
+         "start_unix_server",
+     )
+ 
+-_ClientConnectedCallback: TypeAlias = Callable[[StreamReader, StreamWriter], Awaitable[None] | None]
++_ClientConnectedCallback: TypeAlias = Callable[
++    [StreamReader, StreamWriter], Awaitable[None] | None
++]
+ 
+ class _ReaduntilBuffer(ReadableBuffer, Sized, Protocol): ...
+ 
+@@ -39,10 +47,12 @@ if sys.version_info >= (3, 10):
+         client_connected_cb: _ClientConnectedCallback,
+         host: str | Sequence[str] | None = None,
+         port: int | str | None = None,
++        backlog: int = 5,  # MicroPython backlog argument
+         *,
+-        limit: int = 65536,
+-        ssl_handshake_timeout: float | None = ...,
+-        **kwds: Any,
++        ssl: Incomplete | None = ...,
++        # limit: int = 65536,
++        # ssl_handshake_timeout: float | None = ...,
++        # **kwds: Any,
+     ) -> Server: ...
+ 
+ else:
+@@ -72,11 +82,19 @@ if sys.platform != "win32":
+             path: StrPath | None = None, *, limit: int = 65536, **kwds: Any
+         ) -> tuple[StreamReader, StreamWriter]: ...
+         async def start_unix_server(
+-            client_connected_cb: _ClientConnectedCallback, path: StrPath | None = None, *, limit: int = 65536, **kwds: Any
++            client_connected_cb: _ClientConnectedCallback,
++            path: StrPath | None = None,
++            *,
++            limit: int = 65536,
++            **kwds: Any,
+         ) -> Server: ...
+     else:
+         async def open_unix_connection(
+-            path: StrPath | None = None, *, loop: events.AbstractEventLoop | None = None, limit: int = 65536, **kwds: Any
++            path: StrPath | None = None,
++            *,
++            loop: events.AbstractEventLoop | None = None,
++            limit: int = 65536,
++            **kwds: Any,
+         ) -> tuple[StreamReader, StreamWriter]: ...
+         async def start_unix_server(
+             client_connected_cb: _ClientConnectedCallback,
+@@ -94,22 +112,24 @@ class StreamReaderProtocol(FlowControlMixin, protocols.Protocol):
+     def __init__(
+         self,
+         stream_reader: StreamReader,
+-        client_connected_cb: _ClientConnectedCallback | None = None,
+-        loop: events.AbstractEventLoop | None = None,
++        # client_connected_cb: _ClientConnectedCallback | None = None,
++        # loop: events.AbstractEventLoop | None = None,
+     ) -> None: ...
+     def __del__(self) -> None: ...
+ 
+ class StreamWriter:
+     def __init__(
+         self,
+-        transport: transports.WriteTransport,
+-        protocol: protocols.BaseProtocol,
+-        reader: StreamReader | None,
+-        loop: events.AbstractEventLoop,
++        transport: transports.WriteTransport | Incomplete,
++        protocol: protocols.BaseProtocol | Incomplete,
++        # MicroPython doesn't support reader and loop arguments
++        # reader: StreamReader | None,
++        # loop: events.AbstractEventLoop,
+     ) -> None: ...
+     @property
+     def transport(self) -> transports.WriteTransport: ...
+-    def write(self, data: bytes | bytearray | memoryview) -> None: ...
++    def write(self, data: bytes | bytearray | memoryview | str) -> None: ...
++    def awrite(self, data: bytes | bytearray | memoryview | str) -> Awaitable: ...
+     def writelines(self, data: Iterable[bytes | bytearray | memoryview]) -> None: ...
+     def write_eof(self) -> None: ...
+     def can_write_eof(self) -> bool: ...
+@@ -129,7 +149,11 @@ class StreamWriter:
+         ) -> None: ...
+     elif sys.version_info >= (3, 11):
+         async def start_tls(
+-            self, sslcontext: ssl.SSLContext, *, server_hostname: str | None = None, ssl_handshake_timeout: float | None = None
++            self,
++            sslcontext: ssl.SSLContext,
++            *,
++            server_hostname: str | None = None,
++            ssl_handshake_timeout: float | None = None,
+         ) -> None: ...
+ 
+     if sys.version_info >= (3, 13):
+@@ -137,8 +161,16 @@ class StreamWriter:
+     elif sys.version_info >= (3, 11):
+         def __del__(self) -> None: ...
+ 
++# StreamReader: TypeAlias = StreamWriter
++
+ class StreamReader:
+-    def __init__(self, limit: int = 65536, loop: events.AbstractEventLoop | None = None) -> None: ...
++    def __init__(
++        self,
++        transport: transports.WriteTransport | Incomplete,
++        protocol: protocols.BaseProtocol | Incomplete = None,
++        # limit: int = 65536,
++        # loop: events.AbstractEventLoop | None = None,
++    ) -> None: ...
+     def exception(self) -> Exception: ...
+     def set_exception(self, exc: Exception) -> None: ...
+     def set_transport(self, transport: transports.BaseTransport) -> None: ...
+@@ -147,7 +179,9 @@ class StreamReader:
+     def feed_data(self, data: Iterable[SupportsIndex]) -> None: ...
+     async def readline(self) -> bytes: ...
+     if sys.version_info >= (3, 13):
+-        async def readuntil(self, separator: _ReaduntilBuffer | tuple[_ReaduntilBuffer, ...] = b"\n") -> bytes: ...
++        async def readuntil(
++            self, separator: _ReaduntilBuffer | tuple[_ReaduntilBuffer, ...] = b"\n"
++        ) -> bytes: ...
+     else:
+         async def readuntil(self, separator: _ReaduntilBuffer = b"\n") -> bytes: ...
+ 
+diff --git a/typings/stdlib/asyncio/tasks.pyi b/typings/stdlib/asyncio/tasks.pyi
+index d929791..51dd813 100644
+--- a/typings/stdlib/asyncio/tasks.pyi
++++ b/typings/stdlib/asyncio/tasks.pyi
+@@ -29,6 +29,7 @@ if sys.version_info >= (3, 12):
+         "wait_for",
+         "as_completed",
+         "sleep",
++        "sleep_ms",
+         "gather",
+         "shield",
+         "ensure_future",
+@@ -87,20 +88,29 @@ ALL_COMPLETED = concurrent.futures.ALL_COMPLETED
+ if sys.version_info >= (3, 13):
+     class _SyncAndAsyncIterator(Iterator[_T_co], AsyncIterator[_T_co], Protocol[_T_co]): ...
+ 
+-    def as_completed(fs: Iterable[_FutureLike[_T]], *, timeout: float | None = None) -> _SyncAndAsyncIterator[Future[_T]]: ...
++    def as_completed(
++        fs: Iterable[_FutureLike[_T]], *, timeout: float | None = None
++    ) -> _SyncAndAsyncIterator[Future[_T]]: ...
+ 
+ elif sys.version_info >= (3, 10):
+-    def as_completed(fs: Iterable[_FutureLike[_T]], *, timeout: float | None = None) -> Iterator[Future[_T]]: ...
++    def as_completed(
++        fs: Iterable[_FutureLike[_T]], *, timeout: float | None = None
++    ) -> Iterator[Future[_T]]: ...
+ 
+ else:
+     def as_completed(
+-        fs: Iterable[_FutureLike[_T]], *, loop: AbstractEventLoop | None = None, timeout: float | None = None
++        fs: Iterable[_FutureLike[_T]],
++        *,
++        loop: AbstractEventLoop | None = None,
++        timeout: float | None = None,
+     ) -> Iterator[Future[_T]]: ...
+ 
+ @overload
+ def ensure_future(coro_or_future: _FT, *, loop: AbstractEventLoop | None = None) -> _FT: ...  # type: ignore[overload-overlap]
+ @overload
+-def ensure_future(coro_or_future: Awaitable[_T], *, loop: AbstractEventLoop | None = None) -> Task[_T]: ...
++def ensure_future(
++    coro_or_future: Awaitable[_T], *, loop: AbstractEventLoop | None = None
++) -> Task[_T]: ...
+ 
+ # `gather()` actually returns a list with length equal to the number
+ # of tasks passed; however, Tuple is used similar to the annotation for
+@@ -113,7 +123,11 @@ if sys.version_info >= (3, 10):
+     def gather(coro_or_future1: _FutureLike[_T1], /, *, return_exceptions: Literal[False] = False) -> Future[tuple[_T1]]: ...  # type: ignore[overload-overlap]
+     @overload
+     def gather(  # type: ignore[overload-overlap]
+-        coro_or_future1: _FutureLike[_T1], coro_or_future2: _FutureLike[_T2], /, *, return_exceptions: Literal[False] = False
++        coro_or_future1: _FutureLike[_T1],
++        coro_or_future2: _FutureLike[_T2],
++        /,
++        *,
++        return_exceptions: Literal[False] = False,
+     ) -> Future[tuple[_T1, _T2]]: ...
+     @overload
+     def gather(  # type: ignore[overload-overlap]
+@@ -160,10 +174,16 @@ if sys.version_info >= (3, 10):
+     @overload
+     def gather(*coros_or_futures: _FutureLike[_T], return_exceptions: Literal[False] = False) -> Future[list[_T]]: ...  # type: ignore[overload-overlap]
+     @overload
+-    def gather(coro_or_future1: _FutureLike[_T1], /, *, return_exceptions: bool) -> Future[tuple[_T1 | BaseException]]: ...
++    def gather(
++        coro_or_future1: _FutureLike[_T1], /, *, return_exceptions: bool
++    ) -> Future[tuple[_T1 | BaseException]]: ...
+     @overload
+     def gather(
+-        coro_or_future1: _FutureLike[_T1], coro_or_future2: _FutureLike[_T2], /, *, return_exceptions: bool
++        coro_or_future1: _FutureLike[_T1],
++        coro_or_future2: _FutureLike[_T2],
++        /,
++        *,
++        return_exceptions: bool,
+     ) -> Future[tuple[_T1 | BaseException, _T2 | BaseException]]: ...
+     @overload
+     def gather(
+@@ -183,7 +203,9 @@ if sys.version_info >= (3, 10):
+         /,
+         *,
+         return_exceptions: bool,
+-    ) -> Future[tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException]]: ...
++    ) -> Future[
++        tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException]
++    ]: ...
+     @overload
+     def gather(
+         coro_or_future1: _FutureLike[_T1],
+@@ -194,7 +216,15 @@ if sys.version_info >= (3, 10):
+         /,
+         *,
+         return_exceptions: bool,
+-    ) -> Future[tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException, _T5 | BaseException]]: ...
++    ) -> Future[
++        tuple[
++            _T1 | BaseException,
++            _T2 | BaseException,
++            _T3 | BaseException,
++            _T4 | BaseException,
++            _T5 | BaseException,
++        ]
++    ]: ...
+     @overload
+     def gather(
+         coro_or_future1: _FutureLike[_T1],
+@@ -217,12 +247,18 @@ if sys.version_info >= (3, 10):
+         ]
+     ]: ...
+     @overload
+-    def gather(*coros_or_futures: _FutureLike[_T], return_exceptions: bool) -> Future[list[_T | BaseException]]: ...
++    def gather(
++        *coros_or_futures: _FutureLike[_T], return_exceptions: bool
++    ) -> Future[list[_T | BaseException]]: ...
+ 
+ else:
+     @overload
+     def gather(  # type: ignore[overload-overlap]
+-        coro_or_future1: _FutureLike[_T1], /, *, loop: AbstractEventLoop | None = None, return_exceptions: Literal[False] = False
++        coro_or_future1: _FutureLike[_T1],
++        /,
++        *,
++        loop: AbstractEventLoop | None = None,
++        return_exceptions: Literal[False] = False,
+     ) -> Future[tuple[_T1]]: ...
+     @overload
+     def gather(  # type: ignore[overload-overlap]
+@@ -281,11 +317,17 @@ else:
+     ) -> Future[tuple[_T1, _T2, _T3, _T4, _T5, _T6]]: ...
+     @overload
+     def gather(  # type: ignore[overload-overlap]
+-        *coros_or_futures: _FutureLike[_T], loop: AbstractEventLoop | None = None, return_exceptions: Literal[False] = False
++        *coros_or_futures: _FutureLike[_T],
++        loop: AbstractEventLoop | None = None,
++        return_exceptions: Literal[False] = False,
+     ) -> Future[list[_T]]: ...
+     @overload
+     def gather(  # type: ignore[overload-overlap]
+-        coro_or_future1: _FutureLike[_T1], /, *, loop: AbstractEventLoop | None = None, return_exceptions: bool
++        coro_or_future1: _FutureLike[_T1],
++        /,
++        *,
++        loop: AbstractEventLoop | None = None,
++        return_exceptions: bool,
+     ) -> Future[tuple[_T1 | BaseException]]: ...
+     @overload
+     def gather(  # type: ignore[overload-overlap]
+@@ -316,7 +358,9 @@ else:
+         *,
+         loop: AbstractEventLoop | None = None,
+         return_exceptions: bool,
+-    ) -> Future[tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException]]: ...
++    ) -> Future[
++        tuple[_T1 | BaseException, _T2 | BaseException, _T3 | BaseException, _T4 | BaseException]
++    ]: ...
+     @overload
+     def gather(  # type: ignore[overload-overlap]
+         coro_or_future1: _FutureLike[_T1],
+@@ -341,10 +385,14 @@ else:
+     ]: ...
+     @overload
+     def gather(
+-        *coros_or_futures: _FutureLike[_T], loop: AbstractEventLoop | None = None, return_exceptions: bool
++        *coros_or_futures: _FutureLike[_T],
++        loop: AbstractEventLoop | None = None,
++        return_exceptions: bool,
+     ) -> Future[list[_T | BaseException]]: ...
+ 
+-def run_coroutine_threadsafe(coro: _FutureLike[_T], loop: AbstractEventLoop) -> concurrent.futures.Future[_T]: ...
++def run_coroutine_threadsafe(
++    coro: _FutureLike[_T], loop: AbstractEventLoop
++) -> concurrent.futures.Future[_T]: ...
+ 
+ if sys.version_info >= (3, 10):
+     def shield(arg: _FutureLike[_T]) -> Future[_T]: ...
+@@ -353,6 +401,11 @@ if sys.version_info >= (3, 10):
+     @overload
+     async def sleep(delay: float, result: _T) -> _T: ...
+     async def wait_for(fut: _FutureLike[_T], timeout: float | None) -> _T: ...
++    # MicroPython addition
++    @overload
++    async def sleep_ms(delay: float) -> None: """1""" ...
++    @overload
++    async def sleep_ms(delay: int) -> None: """2""" ...
+ 
+ else:
+     def shield(arg: _FutureLike[_T], *, loop: AbstractEventLoop | None = None) -> Future[_T]: ...
+@@ -360,11 +413,20 @@ else:
+     async def sleep(delay: float, *, loop: AbstractEventLoop | None = None) -> None: ...
+     @overload
+     async def sleep(delay: float, result: _T, *, loop: AbstractEventLoop | None = None) -> _T: ...
+-    async def wait_for(fut: _FutureLike[_T], timeout: float | None, *, loop: AbstractEventLoop | None = None) -> _T: ...
++    async def wait_for(
++        fut: _FutureLike[_T], timeout: float | None, *, loop: AbstractEventLoop | None = None
++    ) -> _T: ...
++    # MicroPython addition
++    @overload
++    async def sleep_ms(delay: float) -> None: """3""" ...
++    @overload
++    async def sleep_ms(delay: int) -> None: """4""" ...
+ 
+ if sys.version_info >= (3, 11):
+     @overload
+-    async def wait(fs: Iterable[_FT], *, timeout: float | None = None, return_when: str = "ALL_COMPLETED") -> tuple[set[_FT], set[_FT]]: ...
++    async def wait(
++        fs: Iterable[_FT], *, timeout: float | None = None, return_when: str = "ALL_COMPLETED"
++    ) -> tuple[set[_FT], set[_FT]]: ...
+     @overload
+     async def wait(
+         fs: Iterable[Task[_T]], *, timeout: float | None = None, return_when: str = "ALL_COMPLETED"
+@@ -377,7 +439,10 @@ elif sys.version_info >= (3, 10):
+     ) -> tuple[set[_FT], set[_FT]]: ...
+     @overload
+     async def wait(
+-        fs: Iterable[Awaitable[_T]], *, timeout: float | None = None, return_when: str = "ALL_COMPLETED"
++        fs: Iterable[Awaitable[_T]],
++        *,
++        timeout: float | None = None,
++        return_when: str = "ALL_COMPLETED",
+     ) -> tuple[set[Task[_T]], set[Task[_T]]]: ...
+ 
+ else:
+@@ -401,14 +466,18 @@ else:
+ if sys.version_info >= (3, 12):
+     _TaskCompatibleCoro: TypeAlias = Coroutine[Any, Any, _T_co]
+ elif sys.version_info >= (3, 9):
+-    _TaskCompatibleCoro: TypeAlias = Generator[_TaskYieldType, None, _T_co] | Coroutine[Any, Any, _T_co]
++    _TaskCompatibleCoro: TypeAlias = (
++        Generator[_TaskYieldType, None, _T_co] | Coroutine[Any, Any, _T_co]
++    )
+ else:
+     _TaskCompatibleCoro: TypeAlias = Generator[_TaskYieldType, None, _T_co] | Awaitable[_T_co]
+ 
+ def all_tasks(loop: AbstractEventLoop | None = None) -> set[Task[Any]]: ...
+ 
+ if sys.version_info >= (3, 11):
+-    def create_task(coro: _CoroutineLike[_T], *, name: str | None = None, context: Context | None = None) -> Task[_T]: ...
++    def create_task(
++        coro: _CoroutineLike[_T], *, name: str | None = None, context: Context | None = None
++    ) -> Task[_T]: ...
+ 
+ else:
+     def create_task(coro: _CoroutineLike[_T], *, name: str | None = None) -> Task[_T]: ...

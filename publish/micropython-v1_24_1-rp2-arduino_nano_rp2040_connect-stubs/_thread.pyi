@@ -1,7 +1,7 @@
 """
 Multithreading support.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/_thread.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/_thread.html
 
 CPython module: :mod:`python:_thread` https://docs.python.org/3/library/_thread.html .
 
@@ -18,6 +18,7 @@ Module: '_thread' on micropython-v1.24.1-rp2-ARDUINO_NANO_RP2040_CONNECT
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def get_ident(*args, **kwargs) -> Incomplete: ...
 def start_new_thread(*args, **kwargs) -> Incomplete: ...

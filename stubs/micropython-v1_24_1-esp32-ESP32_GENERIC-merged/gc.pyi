@@ -1,7 +1,7 @@
 """
 Control the garbage collector.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/gc.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/gc.html
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 
@@ -14,6 +14,7 @@ Module: 'gc' on micropython-v1.24.1-esp32-ESP32_GENERIC
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def mem_alloc() -> int:
     """

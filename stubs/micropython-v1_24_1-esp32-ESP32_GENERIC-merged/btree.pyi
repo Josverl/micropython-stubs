@@ -1,7 +1,7 @@
 """
 Simple BTree database.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/btree.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/btree.html
 
 The ``btree`` module implements a simple key-value database using external
 storage (disk files, or in general case, a random-access `stream`). Keys are
@@ -80,14 +80,15 @@ Module: 'btree' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import IOBase
+from _mpy_shed import IOBase_mp
 from typing import Dict, Iterable
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 DESC: int = 2
 INCL: int = 1
 
 def open(
-    stream: IOBase,  # [bytes, Any],
+    stream: IOBase_mp,  # [bytes, Any],
     /,
     *,
     flags: int = 0,

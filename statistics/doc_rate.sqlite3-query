@@ -1,0 +1,36 @@
+-- database: ./docstrings.db
+
+
+with counts as (
+    select 
+        (select count(*) from docstrings) as total,
+        (select count(*) from docstrings WHERE length(docstring) > 0) as non_empty
+)
+select (cast(non_empty as float) / total) * 100 as percentage
+from counts;
+
+
+
+
+    select 
+        (select count(*) from docstrings) as total,
+        (select count(*) from docstrings WHERE length(docstring) > 0) as non_empty
+)
+select (cast(non_empty as float) / total) * 100 as percentage
+from counts;
+
+
+with counts as (
+    select 
+        module,
+        count(*) as total,
+        sum(case when length(docstring) > 0 then 1 else 0 end) as non_empty
+    from docstrings
+    group by module
+)
+select 
+    module,
+    round((cast(non_empty as float) / total) * 100, 1) as percentage
+from counts;
+
+    

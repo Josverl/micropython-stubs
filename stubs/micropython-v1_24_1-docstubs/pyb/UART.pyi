@@ -2,54 +2,156 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
+from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
 class UART:
     """
-    Construct a UART object on the given bus.
-    For Pyboard ``bus`` can be 1-4, 6, 'XA', 'XB', 'YA', or 'YB'.
-    For Pyboard Lite ``bus`` can be 1, 2, 6, 'XB', or 'YA'.
-    For Pyboard D ``bus`` can be 1-4, 'XA', 'YA' or 'YB'.
-    With no additional parameters, the UART object is created but not
-    initialised (it has the settings from the last initialisation of
-    the bus, if any).  If extra arguments are given, the bus is initialised.
-    See ``init`` for parameters of initialisation.
+    UART implements the standard UART/USART duplex serial communications protocol.  At
+    the physical level it consists of 2 lines: RX and TX.  The unit of communication
+    is a character (not to be confused with a string character) which can be 8 or 9
+    bits wide.
 
-    The physical pins of the UART buses on Pyboard are:
+    UART objects can be created and initialised using::
 
-      - ``UART(4)`` is on ``XA``: ``(TX, RX) = (X1, X2) = (PA0, PA1)``
-      - ``UART(1)`` is on ``XB``: ``(TX, RX) = (X9, X10) = (PB6, PB7)``
-      - ``UART(6)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PC6, PC7)``
-      - ``UART(3)`` is on ``YB``: ``(TX, RX) = (Y9, Y10) = (PB10, PB11)``
-      - ``UART(2)`` is on: ``(TX, RX) = (X3, X4) = (PA2, PA3)``
+        from pyb import UART
 
-    The Pyboard Lite supports UART(1), UART(2) and UART(6) only, pins are:
+        uart = UART(1, 9600)                         # init with given baudrate
+        uart.init(9600, bits=8, parity=None, stop=1) # init with given parameters
 
-      - ``UART(1)`` is on ``XB``: ``(TX, RX) = (X9, X10) = (PB6, PB7)``
-      - ``UART(6)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PC6, PC7)``
-      - ``UART(2)`` is on: ``(TX, RX) = (X1, X2) = (PA2, PA3)``
+    Bits can be 7, 8 or 9.  Parity can be None, 0 (even) or 1 (odd).  Stop can be 1 or 2.
 
-    The Pyboard D supports UART(1), UART(2), UART(3) and UART(4) only, pins are:
+    *Note:* with parity=None, only 8 and 9 bits are supported.  With parity enabled,
+    only 7 and 8 bits are supported.
 
-      - ``UART(4)`` is on ``XA``: ``(TX, RX) = (X1, X2) = (PA0, PA1)``
-      - ``UART(1)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PA9, PA10)``
-      - ``UART(3)`` is on ``YB``: ``(TX, RX) = (Y9, Y10) = (PB10, PB11)``
-      - ``UART(2)`` is on: ``(TX, RX) = (X3, X4) = (PA2, PA3)``
+    A UART object acts like a `stream` object and reading and writing is done
+    using the standard stream methods::
 
-    *Note:* Pyboard D has ``UART(1)`` on ``YA``, unlike Pyboard and Pyboard Lite that both
-    have ``UART(1)`` on ``XB`` and ``UART(6)`` on ``YA``.
+        uart.read(10)       # read 10 characters, returns a bytes object
+        uart.read()         # read all available characters
+        uart.readline()     # read a line
+        uart.readinto(buf)  # read and store into the given buffer
+        uart.write('abc')   # write the 3 characters
+
+    Individual characters can be read/written using::
+
+        uart.readchar()     # read 1 character and returns it as an integer
+        uart.writechar(42)  # write 1 character
+
+    To check if there is anything to be read, use::
+
+        uart.any()          # returns the number of characters waiting
+
+
+    *Note:* The stream functions ``read``, ``write``, etc. are new in MicroPython v1.3.4.
+    Earlier versions use ``uart.send`` and ``uart.recv``.
     """
 
     RTS: Incomplete
     """to select the flow control type."""
     CTS: Incomplete
     """to select the flow control type."""
+    @overload
+    def __init__(self, bus: int | str, /):
+        """
+        Construct a UART object on the given bus.
+        For Pyboard ``bus`` can be 1-4, 6, 'XA', 'XB', 'YA', or 'YB'.
+        For Pyboard Lite ``bus`` can be 1, 2, 6, 'XB', or 'YA'.
+        For Pyboard D ``bus`` can be 1-4, 'XA', 'YA' or 'YB'.
+        With no additional parameters, the UART object is created but not
+        initialised (it has the settings from the last initialisation of
+        the bus, if any).  If extra arguments are given, the bus is initialised.
+        See ``init`` for parameters of initialisation.
+
+        The physical pins of the UART buses on Pyboard are:
+
+          - ``UART(4)`` is on ``XA``: ``(TX, RX) = (X1, X2) = (PA0, PA1)``
+          - ``UART(1)`` is on ``XB``: ``(TX, RX) = (X9, X10) = (PB6, PB7)``
+          - ``UART(6)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PC6, PC7)``
+          - ``UART(3)`` is on ``YB``: ``(TX, RX) = (Y9, Y10) = (PB10, PB11)``
+          - ``UART(2)`` is on: ``(TX, RX) = (X3, X4) = (PA2, PA3)``
+
+        The Pyboard Lite supports UART(1), UART(2) and UART(6) only, pins are:
+
+          - ``UART(1)`` is on ``XB``: ``(TX, RX) = (X9, X10) = (PB6, PB7)``
+          - ``UART(6)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PC6, PC7)``
+          - ``UART(2)`` is on: ``(TX, RX) = (X1, X2) = (PA2, PA3)``
+
+        The Pyboard D supports UART(1), UART(2), UART(3) and UART(4) only, pins are:
+
+          - ``UART(4)`` is on ``XA``: ``(TX, RX) = (X1, X2) = (PA0, PA1)``
+          - ``UART(1)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PA9, PA10)``
+          - ``UART(3)`` is on ``YB``: ``(TX, RX) = (Y9, Y10) = (PB10, PB11)``
+          - ``UART(2)`` is on: ``(TX, RX) = (X3, X4) = (PA2, PA3)``
+
+        *Note:* Pyboard D has ``UART(1)`` on ``YA``, unlike Pyboard and Pyboard Lite that both
+        have ``UART(1)`` on ``XB`` and ``UART(6)`` on ``YA``.
+        """
+
+    @overload
     def __init__(
-        self, bus, mode, baudrate=328125, *, prescaler=-1, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None
-    ) -> None: ...
-    def init(self, baudrate, bits=8, parity=None, stop=1, *, timeout=0, flow=0, timeout_char=0, read_buf_len=64) -> Incomplete:
+        self,
+        bus: int | str,
+        baudrate: int,
+        /,
+        bits: int = 8,
+        parity: int | None = None,
+        stop: int = 1,
+        *,
+        timeout: int = 0,
+        flow: int = 0,
+        timeout_char: int = 0,
+        read_buf_len: int = 64,
+    ):
+        """
+        Construct a UART object on the given bus.
+        For Pyboard ``bus`` can be 1-4, 6, 'XA', 'XB', 'YA', or 'YB'.
+        For Pyboard Lite ``bus`` can be 1, 2, 6, 'XB', or 'YA'.
+        For Pyboard D ``bus`` can be 1-4, 'XA', 'YA' or 'YB'.
+        With no additional parameters, the UART object is created but not
+        initialised (it has the settings from the last initialisation of
+        the bus, if any).  If extra arguments are given, the bus is initialised.
+        See ``init`` for parameters of initialisation.
+
+        The physical pins of the UART buses on Pyboard are:
+
+          - ``UART(4)`` is on ``XA``: ``(TX, RX) = (X1, X2) = (PA0, PA1)``
+          - ``UART(1)`` is on ``XB``: ``(TX, RX) = (X9, X10) = (PB6, PB7)``
+          - ``UART(6)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PC6, PC7)``
+          - ``UART(3)`` is on ``YB``: ``(TX, RX) = (Y9, Y10) = (PB10, PB11)``
+          - ``UART(2)`` is on: ``(TX, RX) = (X3, X4) = (PA2, PA3)``
+
+        The Pyboard Lite supports UART(1), UART(2) and UART(6) only, pins are:
+
+          - ``UART(1)`` is on ``XB``: ``(TX, RX) = (X9, X10) = (PB6, PB7)``
+          - ``UART(6)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PC6, PC7)``
+          - ``UART(2)`` is on: ``(TX, RX) = (X1, X2) = (PA2, PA3)``
+
+        The Pyboard D supports UART(1), UART(2), UART(3) and UART(4) only, pins are:
+
+          - ``UART(4)`` is on ``XA``: ``(TX, RX) = (X1, X2) = (PA0, PA1)``
+          - ``UART(1)`` is on ``YA``: ``(TX, RX) = (Y1, Y2) = (PA9, PA10)``
+          - ``UART(3)`` is on ``YB``: ``(TX, RX) = (Y9, Y10) = (PB10, PB11)``
+          - ``UART(2)`` is on: ``(TX, RX) = (X3, X4) = (PA2, PA3)``
+
+        *Note:* Pyboard D has ``UART(1)`` on ``YA``, unlike Pyboard and Pyboard Lite that both
+        have ``UART(1)`` on ``XB`` and ``UART(6)`` on ``YA``.
+        """
+
+    def init(
+        self,
+        baudrate: int,
+        /,
+        bits: int = 8,
+        parity: int | None = None,
+        stop: int = 1,
+        *,
+        timeout: int = 0,
+        flow: int = 0,
+        timeout_char: int = 0,
+        read_buf_len: int = 64,
+    ):
         """
         Initialise the UART bus with the given parameters:
 
@@ -87,7 +189,8 @@ class UART:
         """
         ...
 
-    def read(self, nbytes: Optional[Any] = None) -> bytes:
+    @overload
+    def read(self) -> bytes | None:
         """
         Read characters.  If ``nbytes`` is specified then read at most that many bytes.
         If ``nbytes`` are available in the buffer, returns immediately, otherwise returns
@@ -102,7 +205,23 @@ class UART:
         Return value: a bytes object containing the bytes read in.  Returns ``None``
         on timeout.
         """
-        ...
+
+    @overload
+    def read(self, nbytes: int, /) -> bytes | None:
+        """
+        Read characters.  If ``nbytes`` is specified then read at most that many bytes.
+        If ``nbytes`` are available in the buffer, returns immediately, otherwise returns
+        when sufficient characters arrive or the timeout elapses.
+
+        If ``nbytes`` is not given then the method reads as much data as possible.  It
+        returns after the timeout has elapsed.
+
+        *Note:* for 9 bit characters each character takes two bytes, ``nbytes`` must
+        be even, and the number of characters is ``nbytes/2``.
+
+        Return value: a bytes object containing the bytes read in.  Returns ``None``
+        on timeout.
+        """
 
     def readchar(self) -> int:
         """
@@ -112,7 +231,8 @@ class UART:
         """
         ...
 
-    def readinto(self, buf, nbytes: Optional[Any] = None) -> int:
+    @overload
+    def readinto(self, buf: AnyWritableBuf, /) -> int | None:
         """
         Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
         that many bytes.  Otherwise, read at most ``len(buf)`` bytes.
@@ -120,7 +240,16 @@ class UART:
         Return value: number of bytes read and stored into ``buf`` or ``None`` on
         timeout.
         """
-        ...
+
+    @overload
+    def readinto(self, buf: AnyWritableBuf, nbytes: int, /) -> int | None:
+        """
+        Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
+        that many bytes.  Otherwise, read at most ``len(buf)`` bytes.
+
+        Return value: number of bytes read and stored into ``buf`` or ``None`` on
+        timeout.
+        """
 
     def readline(self) -> None:
         """
@@ -132,7 +261,7 @@ class UART:
         """
         ...
 
-    def write(self, buf) -> int:
+    def write(self, buf: AnyWritableBuf, /) -> int:
         """
         Write the buffer of bytes to the bus.  If characters are 7 or 8 bits wide
         then each byte is one character.  If characters are 9 bits wide then two
@@ -144,7 +273,7 @@ class UART:
         """
         ...
 
-    def writechar(self, char) -> None:
+    def writechar(self, char: int, /) -> None:
         """
         Write a single character on the bus.  ``char`` is an integer to write.
         Return value: ``None``. See note below if CTS flow control is used.

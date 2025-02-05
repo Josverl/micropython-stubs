@@ -2,7 +2,7 @@ from collections import OrderedDict
 
 # To make benefit of ordered keys, OrderedDict should be initialized
 # from sequence of (key, value) pairs.
-d = OrderedDict([("z", 1), ("a", 2)])
+d = OrderedDict([("z", 1), ("a", 2)])  # stubs-ignore: linter == "pyright"
 # More items can be added as usual
 
 d["w"] = 5

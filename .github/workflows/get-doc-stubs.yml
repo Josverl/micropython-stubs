@@ -82,7 +82,8 @@ jobs:
         run: |
           # get any recent updates first
           git pull origin main --force
-          stubber get-docstubs
+          # get the latest docs, and enrich from the reference-stubs
+          stubber get-docstubs --enrich
 
       - name: commit
         uses: ./.github/actions/commit

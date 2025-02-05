@@ -1,7 +1,7 @@
 """
 Frame buffer manipulation.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/framebuf.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/framebuf.html
 
 This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
@@ -14,7 +14,9 @@ Module: 'framebuf' on micropython-v1.24.1-rp2-RPI_PICO2
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from typing import Any, Optional, overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 MONO_HMSB: int = 4
 MONO_HLSB: int = 3
@@ -29,28 +31,20 @@ def FrameBuffer1(*args, **kwargs) -> Incomplete: ...
 
 class FrameBuffer:
     """
-    Construct a FrameBuffer object.  The parameters are:
+    The FrameBuffer class provides a pixel buffer which can be drawn upon with
+    pixels, lines, rectangles, text and even other FrameBuffer's. It is useful
+    when generating output for displays.
 
-        - *buffer* is an object with a buffer protocol which must be large
-          enough to contain every pixel defined by the width, height and
-          format of the FrameBuffer.
-        - *width* is the width of the FrameBuffer in pixels
-        - *height* is the height of the FrameBuffer in pixels
-        - *format* specifies the type of pixel used in the FrameBuffer;
-          permissible values are listed under Constants below. These set the
-          number of bits used to encode a color value and the layout of these
-          bits in *buffer*.
-          Where a color value c is passed to a method, c is a small integer
-          with an encoding that is dependent on the format of the FrameBuffer.
-        - *stride* is the number of pixels between each horizontal line
-          of pixels in the FrameBuffer. This defaults to *width* but may
-          need adjustments when implementing a FrameBuffer within another
-          larger FrameBuffer or screen. The *buffer* size must accommodate
-          an increased step size.
+    For example::
 
-    One must specify valid *buffer*, *width*, *height*, *format* and
-    optionally *stride*.  Invalid *buffer* size or dimensions may lead to
-    unexpected errors.
+        import framebuf
+
+        # FrameBuffer needs 2 bytes for every RGB565 pixel
+        fbuf = framebuf.FrameBuffer(bytearray(100 * 10 * 2), 100, 10, framebuf.RGB565)
+
+        fbuf.fill(0)
+        fbuf.text('MicroPython!', 0, 0, 0xffff)
+        fbuf.hline(0, 9, 96, 0xffff)
     """
 
     def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Incomplete:
@@ -66,15 +60,30 @@ class FrameBuffer:
         """
         ...
 
-    def vline(self, x, y, h, c) -> Incomplete: ...
-    def pixel(self, x, y, c: Optional[Any] = None) -> Incomplete:
+    def vline(self, x: int, y: int, h: int, c: int, /) -> None:
+        """
+        Draw a line from a set of coordinates using the given color and
+        a thickness of 1 pixel. The `line` method draws the line up to
+        a second set of coordinates whereas the `hline` and `vline`
+        methods draw horizontal and vertical lines respectively up to
+        a given length.
+        """
+
+    @overload
+    def pixel(self, x: int, y: int, /) -> int:
         """
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
         """
-        ...
 
-    def text(self, s, x, y, c: Optional[Any] = None) -> None:
+    @overload
+    def pixel(self, x: int, y: int, c: int, /) -> None:
+        """
+        If *c* is not given, get the color value of the specified pixel.
+        If *c* is given, set the specified pixel to the given color.
+        """
+
+    def text(self, s: str, x: int, y: int, c: int = 1, /) -> None:
         """
         Write text to the FrameBuffer using the the coordinates as the upper-left
         corner of the text. The color of the text can be defined by the optional
@@ -83,7 +92,7 @@ class FrameBuffer:
         """
         ...
 
-    def rect(self, x, y, w, h, c, f: Optional[Any] = None) -> None:
+    def rect(self, x: int, y: int, w: int, h: int, c: int, /) -> None:
         """
         Draw a rectangle at the given location, size and color.
 
@@ -92,7 +101,7 @@ class FrameBuffer:
         """
         ...
 
-    def scroll(self, xstep, ystep) -> Incomplete:
+    def scroll(self, xstep: int, ystep: int, /) -> None:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
@@ -115,7 +124,7 @@ class FrameBuffer:
         """
         ...
 
-    def line(self, x1, y1, x2, y2, c) -> None:
+    def line(self, x1: int, y1: int, x2: int, y2: int, c: int, /) -> None:
         """
         Draw a line from a set of coordinates using the given color and
         a thickness of 1 pixel. The `line` method draws the line up to
@@ -125,7 +134,15 @@ class FrameBuffer:
         """
         ...
 
-    def blit(self, fbuf, x, y, key=-1, palette=None) -> None:
+    def blit(
+        self,
+        fbuf: FrameBuffer,
+        x: int,
+        y: int,
+        key: int = -1,
+        pallet: FrameBuffer | None = None,
+        /,
+    ) -> None:
         """
         Draw another FrameBuffer on top of the current one at the given coordinates.
         If *key* is specified then it should be a color integer and the
@@ -147,12 +164,44 @@ class FrameBuffer:
         """
         ...
 
-    def hline(self, x, y, w, c) -> Incomplete: ...
-    def fill(self, c) -> None:
+    def hline(self, x: int, y: int, w: int, c: int, /) -> None:
+        """
+        Draw a line from a set of coordinates using the given color and
+        a thickness of 1 pixel. The `line` method draws the line up to
+        a second set of coordinates whereas the `hline` and `vline`
+        methods draw horizontal and vertical lines respectively up to
+        a given length.
+        """
+
+    def fill(self, c: int, /) -> None:
         """
         Fill the entire FrameBuffer with the specified color.
         """
         ...
 
     def fill_rect(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, *argv, **kwargs) -> None:
+        """
+        Construct a FrameBuffer object.  The parameters are:
+
+            - *buffer* is an object with a buffer protocol which must be large
+              enough to contain every pixel defined by the width, height and
+              format of the FrameBuffer.
+            - *width* is the width of the FrameBuffer in pixels
+            - *height* is the height of the FrameBuffer in pixels
+            - *format* specifies the type of pixel used in the FrameBuffer;
+              permissible values are listed under Constants below. These set the
+              number of bits used to encode a color value and the layout of these
+              bits in *buffer*.
+              Where a color value c is passed to a method, c is a small integer
+              with an encoding that is dependent on the format of the FrameBuffer.
+            - *stride* is the number of pixels between each horizontal line
+              of pixels in the FrameBuffer. This defaults to *width* but may
+              need adjustments when implementing a FrameBuffer within another
+              larger FrameBuffer or screen. The *buffer* size must accommodate
+              an increased step size.
+
+        One must specify valid *buffer*, *width*, *height*, *format* and
+        optionally *stride*.  Invalid *buffer* size or dimensions may lead to
+        unexpected errors.
+        """

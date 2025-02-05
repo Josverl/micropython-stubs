@@ -26,11 +26,15 @@ If you have suggestions or find any issues with the stubs, please report them in
 For an overview of  Micropython Stubs please see: https://micropython-stubs.readthedocs.io/en/main/ 
  * List of all stubs : https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html
 
+
+
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_24_1-samd-SEEED_WIO_TERMINAL-merged`
+* Frozen stubs from `stubs/micropython-v1_24_1-frozen/samd/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Documentation | micropython | - | - | v1.24.1 
+Core | micropython | samd | - | v1.24.1 

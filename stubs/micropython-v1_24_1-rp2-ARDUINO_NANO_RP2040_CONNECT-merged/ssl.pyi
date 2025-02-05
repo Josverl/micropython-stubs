@@ -1,7 +1,7 @@
 """
 TLS/SSL wrapper for socket objects.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/ssl.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/ssl.html
 
 CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
@@ -17,8 +17,12 @@ Module: 'ssl' on micropython-v1.24.1-rp2-ARDUINO_NANO_RP2040_CONNECT
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from stdlib.ssl import *
-from typing import IO, List
+from _mpy_shed import StrOrBytesPath
+from socket import socket
+from typing import List
+from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+SSLSocket: TypeAlias = Incomplete
 
 MBEDTLS_VERSION: str = "Mbed TLS 3.5.1"
 PROTOCOL_TLS_SERVER: int = 1
@@ -27,7 +31,17 @@ CERT_NONE: int = 0
 CERT_REQUIRED: int = 2
 CERT_OPTIONAL: int = 1
 
-def wrap_socket(sock, server_side=False, key=None, cert=None, cert_reqs=None, cadata=None, server_hostname=None, do_handshake=True) -> IO:
+def wrap_socket(
+    sock: socket,
+    *,
+    server_side: bool = False,
+    key: Incomplete = None,
+    cert: Incomplete = None,
+    cert_reqs: int = 0,
+    cadata: bytes | None = None,
+    server_hostname: str | None = None,
+    do_handshake: bool = True,
+) -> SSLSocket:
     """
      Wrap the given *sock* and return a new wrapped-socket object.  The implementation
      of this function is to first create an `SSLContext` and then call the `SSLContext.wrap_socket`
@@ -53,7 +67,7 @@ class SSLContext:
     constants.
     """
 
-    def load_verify_locations(self, cafile=None, cadata=None) -> None:
+    def load_verify_locations(self, cafile=None, cadata: bytes = None) -> None:
         """
         Load the CA certificate chain that will validate the peer's certificate.
         *cafile* is the file path of the CA certificates.  *cadata* is a bytes object
@@ -61,7 +75,14 @@ class SSLContext:
         """
         ...
 
-    def wrap_socket(self, sock, *, server_side=False, do_handshake_on_connect=True, server_hostname=None) -> Incomplete:
+    def wrap_socket(
+        self,
+        sock: socket,
+        *,
+        server_side: bool = False,
+        do_handshake_on_connect: bool = True,
+        server_hostname: str | None = None,
+    ) -> SSLSocket:
         """
         Takes a `stream` *sock* (usually socket.socket instance of ``SOCK_STREAM`` type),
         and returns an instance of ssl.SSLSocket, wrapping the underlying stream.
@@ -92,7 +113,8 @@ class SSLContext:
         with the file path of the certificate.  The *keyfile* is a string with the file path
         of the private key.
 
-        Difference to CPython
+        Admonition:Difference to CPython
+           :class: attention
 
            MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
            strings, in which case they are interpreted as the actual certificate/key data.

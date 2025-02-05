@@ -1,7 +1,7 @@
 """
 Efficient arrays of numeric data.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.1/library/array.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/array.html
 
 CPython module: :mod:`python:array` https://docs.python.org/3/library/array.html .
 
@@ -17,10 +17,9 @@ Module: 'array' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from array import *
 from collections.abc import MutableSequence, Sequence
 from typing import Any, Generic, overload
-from typing_extensions import TypeVar
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _T = TypeVar("_T", int, float, str)
 
@@ -79,4 +78,50 @@ class array(MutableSequence[_T], Generic[_T]):
         Create array with elements of given type. Initial contents of the
         array are given by *iterable*. If it is not provided, an empty
         array is created.
+        """
+
+    @overload
+    def __getitem__(self, index: int) -> _T:
+        """
+        Indexed read of the array, called as ``a[index]`` (where ``a`` is an ``array``).
+        Returns a value if *index* is an ``int`` and an ``array`` if *index* is a slice.
+        Negative indices count from the end and ``IndexError`` is thrown if the index is
+        out of range.
+
+        **Note:** ``__getitem__`` cannot be called directly (``a.__getitem__(index)`` fails) and
+        is not present in ``__dict__``, however ``a[index]`` does work.
+        """
+
+    @overload
+    def __getitem__(self, sl: slice) -> array[_T]:
+        """
+        Indexed read of the array, called as ``a[index]`` (where ``a`` is an ``array``).
+        Returns a value if *index* is an ``int`` and an ``array`` if *index* is a slice.
+        Negative indices count from the end and ``IndexError`` is thrown if the index is
+        out of range.
+
+        **Note:** ``__getitem__`` cannot be called directly (``a.__getitem__(index)`` fails) and
+        is not present in ``__dict__``, however ``a[index]`` does work.
+        """
+
+    @overload
+    def __setitem__(self, index: int, value: _T) -> None:
+        """
+        Indexed write into the array, called as ``a[index] = value`` (where ``a`` is an ``array``).
+        ``value`` is a single value if *index* is an ``int`` and an ``array`` if *index* is a slice.
+        Negative indices count from the end and ``IndexError`` is thrown if the index is out of range.
+
+        **Note:** ``__setitem__`` cannot be called directly (``a.__setitem__(index, value)`` fails) and
+        is not present in ``__dict__``, however ``a[index] = value`` does work.
+        """
+
+    @overload
+    def __setitem__(self, sl: slice, values: array[_T]) -> None:
+        """
+        Indexed write into the array, called as ``a[index] = value`` (where ``a`` is an ``array``).
+        ``value`` is a single value if *index* is an ``int`` and an ``array`` if *index* is a slice.
+        Negative indices count from the end and ``IndexError`` is thrown if the index is out of range.
+
+        **Note:** ``__setitem__`` cannot be called directly (``a.__setitem__(index, value)`` fails) and
+        is not present in ``__dict__``, however ``a[index] = value`` does work.
         """

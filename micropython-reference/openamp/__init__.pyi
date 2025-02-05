@@ -34,6 +34,7 @@ Example usage::
 from __future__ import annotations
 
 from _typeshed import Incomplete
+from typing import Callable, Optional
 
 class Endpoint:
     """
@@ -53,7 +54,13 @@ class Endpoint:
            destination address will be assigned by the library when the endpoint is bound.
     """
 
-    def __init__(self, name, callback, src=ENDPOINT_ADDR_ANY, dest=ENDPOINT_ADDR_ANY) -> None: ...
+    def __init__(
+        self,
+        name,
+        callback: Callable,
+        src: Optional[Incomplete] = None,
+        dest: Optional[Incomplete] = None,
+    ) -> None: ...
     def deinit(self) -> Incomplete:
         """
         Destroy the endpoint and release all of its resources.
@@ -116,7 +123,7 @@ class RemoteProc:
         """
         ...
 
-def new_service_callback(ns_callback) -> None:
+def new_service_callback(ns_callback: Callable) -> None:
     """
     Set the new service callback.
 

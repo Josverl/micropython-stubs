@@ -82,7 +82,7 @@ rtc.datetime()  # get date and time
 
 
 p = Pin("X1")  # X1 has TIM2, CH1
-tim = Timer(2, 1000)
+tim = Timer(2, freq=1000)
 ch = tim.channel(1, Timer.PWM, pin=p)
 ch.pulse_width_percent(50)
 
@@ -138,15 +138,22 @@ print(accel.x(), accel.y(), accel.z(), accel.tilt())
 #  Example usage to toggle an LED at a fixed frequency:
 
 tim = pyb.Timer(4)  # create a timer object using timer 4
-tim.init(freq=2)  # trigger at 2Hz
+
+tim.init(freq=100)  # stubs-ignore : version < 1.24.0
+tim.init(prescaler=83, period=999)  # stubs-ignore : version < 1.24.0
 tim.callback(lambda t: pyb.LED(1).toggle())
 
 #  Further examples:
+
+
+def a_callback(t):
+    print("callback")
+
 
 tim = pyb.Timer(4, freq=100)  # freq in Hz
 tim = pyb.Timer(4, prescaler=0, period=99)
 tim.counter()  # get counter (can also set)
 tim.prescaler(2)  # set prescaler (can also get)
 tim.period(199)  # set period (can also get)
-tim.callback(lambda t: ...)  # set callback for update interrupt (t=tim instance)
+tim.callback(a_callback)  # set callback for update interrupt (t=tim instance)
 tim.callback(None)  # clear callback

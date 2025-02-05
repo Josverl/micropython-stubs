@@ -3,11 +3,14 @@
 from __future__ import annotations
 
 from typing import Callable
+from typing_extensions import TypeAlias
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
 
-from .Pin import Pin
+from machine.Pin import Pin, PinLike
+
+ID_T: TypeAlias = int | str
 
 class I2S:
     """
@@ -90,12 +93,12 @@ class I2S:
     """for initialising the I2S bus ``format`` to mono"""
     def __init__(
         self,
-        id: int,
+        id: ID_T,
         /,
         *,
-        sck: Pin,
-        ws: Pin,
-        sd: Pin,
+        sck: PinLike,
+        ws: PinLike,
+        sd: PinLike,
         mode: int,
         bits: int,
         format: int,
@@ -133,9 +136,9 @@ class I2S:
     def init(
         self,
         *,
-        sck: Pin,
-        ws: Pin,
-        sd: Pin,
+        sck: PinLike,
+        ws: PinLike,
+        sd: PinLike,
         mode: int,
         bits: int,
         format: int,

@@ -1,0 +1,2 @@
+# avoid checking in _mpy_shed in two places
+_mpy_shed

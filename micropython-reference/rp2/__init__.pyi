@@ -1,5 +1,3 @@
-# MCU: {'build': '', 'ver': '1.23.0', 'version': '1.23.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
-# Stubber: v1.23.0
 """
 Functionality specific to the RP2.
 
@@ -17,26 +15,19 @@ for example code.
 
 # source version: v1.24.0
 # origin module:: repos/micropython/docs/library/rp2.rst
+# 2024 - Jos Verlinde - PIO additions
+
 from __future__ import annotations
 
-from typing import Callable, List, Union
-
-from _rp2 import PIO
-from _rp2.DMA import DMA
-from _rp2.Flash import Flash
-from _rp2.PIO import PIO
-from _rp2.PIOASMEmit import PIOASMEmit
-from _rp2.StateMachine import StateMachine
+from typing import Callable, Dict, List, Union, overload
 from _typeshed import Incomplete
-from machine import Pin
 from typing_extensions import TypeAlias
 
-# from .DMA import *
-# from .Flash import *
-# from .PIO import *
-# from .StateMachine import *
+from rp2.PIO import PIO
+from rp2.PIOASMEmit import PIOASMEmit
+from machine import Pin
 
-_PIO_ASM_Program: TypeAlias = Incomplete
+_PIO_ASM_Program: TypeAlias = Callable
 
 class PIOASMError(Exception):
     """
@@ -104,6 +95,7 @@ def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> int:
     ...
 
 def bootsel_button() -> int:
+    # actually defined in _rp2
     """
     Temporarily turns the QSPI_SS pin into an input and reads its value,
     returning 1 for low and 0 for high.

@@ -1,7 +1,7 @@
 """
 Collection and container types.
 
-MicroPython module: https://docs.micropython.org/en/v1.23.0/library/collections.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/collections.html
 
 CPython module: :mod:`python:collections` https://docs.python.org/3/library/collections.html .
 
@@ -13,9 +13,9 @@ from __future__ import annotations
 import sys
 from _collections_abc import dict_items, dict_keys, dict_values
 from _typeshed import Incomplete, SupportsItems, SupportsKeysAndGetItem, SupportsRichComparison, SupportsRichComparisonT
-from typing import Any, Generic, NoReturn, SupportsIndex, TypeVar, final, overload
-from typing_extensions import Self
-from stdlib.collections import OrderedDict as stdlib_OrderedDict, deque as stdlib_deque, namedtuple as stdlib_namedtuple
+from typing import Dict, Any, Generic, NoReturn, SupportsIndex, TypeVar, final, overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar, Self
+from collections.abc import Iterable, Mapping
 
 if sys.version_info >= (3, 9):
     from types import GenericAlias
@@ -264,24 +264,9 @@ class UserString(Sequence[UserString]):
     def upper(self) -> Self: ...
     def zfill(self, width: int) -> Self: ...
 
-class deque(stdlib_deque):  # type: ignore
+class deque:
     """
-    Deques (double-ended queues) are a list-like container that support O(1)
-    appends and pops from either side of the deque.  New deques are created
-    using the following arguments:
-
-        - *iterable* is an iterable used to populate the deque when it is
-          created.  It can be an empty tuple or list to create a deque that
-          is initially empty.
-
-        - *maxlen* must be specified and the deque will be bounded to this
-          maximum length.  Once the deque is full, any new items added will
-          discard items from the opposite end.
-
-        - The optional *flags* can be 1 to check for overflow when adding items.
-
-    Deque objects support `bool`, `len`, iteration and subscript load and store.
-    They also have the following methods:
+    Minimal implementation of a deque that implements a FIFO buffer.
     """
 
     @property
@@ -439,7 +424,7 @@ class _odict_items(dict_items[_KT_co, _VT_co]):  # type: ignore[misc]  # pyright
 class _odict_values(dict_values[_KT_co, _VT_co]):  # type: ignore[misc]  # pyright: ignore[reportGeneralTypeIssues]
     def __reversed__(self) -> Iterator[_VT_co]: ...
 
-class OrderedDict(stdlib_OrderedDict):  # type: ignore
+class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):  # type: ignore
     """
     ``dict`` type subclass which remembers and preserves the order of keys
     added. When ordered dict is iterated over, keys/items are returned in
@@ -502,6 +487,84 @@ class OrderedDict(stdlib_OrderedDict):  # type: ignore
         def __ror__(self, value: dict[_KT, _VT], /) -> Self: ...  # type: ignore
         @overload
         def __ror__(self, value: dict[_T1, _T2], /) -> OrderedDict[_KT | _T1, _VT | _T2]: ...  # type: ignore[misc]  # type: ignore
+
+    @overload
+    def __init__(self):
+        """
+        ``dict`` type subclass which remembers and preserves the order of keys
+        added. When ordered dict is iterated over, keys/items are returned in
+        the order they were added::
+
+            from collections import OrderedDict
+
+            # To make benefit of ordered keys, OrderedDict should be initialized
+            # from sequence of (key, value) pairs.
+            d = OrderedDict([("z", 1), ("a", 2)])
+            # More items can be added as usual
+            d["w"] = 5
+            d["b"] = 3
+            for k, v in d.items():
+                print(k, v)
+
+        Output::
+
+            z 1
+            a 2
+            w 5
+            b 3
+        """
+
+    @overload
+    def __init__(self, **kwargs: _VT):
+        """
+        ``dict`` type subclass which remembers and preserves the order of keys
+        added. When ordered dict is iterated over, keys/items are returned in
+        the order they were added::
+
+            from collections import OrderedDict
+
+            # To make benefit of ordered keys, OrderedDict should be initialized
+            # from sequence of (key, value) pairs.
+            d = OrderedDict([("z", 1), ("a", 2)])
+            # More items can be added as usual
+            d["w"] = 5
+            d["b"] = 3
+            for k, v in d.items():
+                print(k, v)
+
+        Output::
+
+            z 1
+            a 2
+            w 5
+            b 3
+        """
+
+    @overload
+    def __init__(self, map: Mapping[_KT, _VT], **kwargs: _VT):  # type: ignore
+        """
+        ``dict`` type subclass which remembers and preserves the order of keys
+        added. When ordered dict is iterated over, keys/items are returned in
+        the order they were added::
+
+            from collections import OrderedDict
+
+            # To make benefit of ordered keys, OrderedDict should be initialized
+            # from sequence of (key, value) pairs.
+            d = OrderedDict([("z", 1), ("a", 2)])
+            # More items can be added as usual
+            d["w"] = 5
+            d["b"] = 3
+            for k, v in d.items():
+                print(k, v)
+
+        Output::
+
+            z 1
+            a 2
+            w 5
+            b 3
+        """
 
 class defaultdict(dict[_KT, _VT]):  # type: ignore
     default_factory: Callable[[], _VT] | None

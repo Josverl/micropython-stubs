@@ -30,7 +30,11 @@
         "code",
         "stubs",
         "test",
-        "tool"
+        "tool",
+        "research",
+        "example",
+        "data",
+        "platform"
       ]
     },
     {
@@ -80,6 +84,18 @@
       "profile": "https://github.com/pycom",
       "contributions": [
         "infra"
+      ]
+    },
+    {
+      "login": "hlovatt",
+      "name": "Howard Lovatt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8424169?v=4",
+      "profile": "https://github.com/hlovatt",
+      "contributions": [
+        "research",
+        "ideas",
+        "stubs",
+        "example"
       ]
     },
     {
@@ -138,8 +154,6 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/17012831?v=4",
       "profile": "https://github.com/RonaldHiemstra",
       "contributions": [
-        "stubs",
-        "content",
         "doc"
       ]
     },
@@ -196,7 +210,6 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/6247921?v=4",
       "profile": "https://github.com/mrkeuz",
       "contributions": [
-        "code",
         "test"
       ]
     },
@@ -233,6 +246,7 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/44974737?v=4",
       "profile": "https://github.com/paulober",
       "contributions": [
+        "platform",
         "tool",
         "stubs",
         "bug"
@@ -245,6 +259,106 @@
       "profile": "https://github.com/samskiter",
       "contributions": [
         "bug"
+      ]
+    },
+    {
+      "login": "jimmo",
+      "name": "Jim Mussared",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5102768?v=4",
+      "profile": "https://jimmo.id.au/",
+      "contributions": [
+        "stubs",
+        "platform"
+      ]
+    },
+    {
+      "login": "stinos",
+      "name": "stinos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1902997?v=4",
+      "profile": "https://github.com/stinos",
+      "contributions": [
+        "stubs"
+      ]
+    },
+    {
+      "login": "andrewleech",
+      "name": "Andrew Leech",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3318786?v=4",
+      "profile": "https://www.gitlab.com/alelec",
+      "contributions": [
+        "stubs"
+      ]
+    },
+    {
+      "login": "maxi07",
+      "name": "Maxi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7480270?v=4",
+      "profile": "https://github.com/maxi07",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "DeflateAwning",
+      "name": "DeflateAwning",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11021263?v=4",
+      "profile": "https://github.com/DeflateAwning",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "bixb922",
+      "name": "bixb922",
+      "avatar_url": "https://avatars.githubusercontent.com/u/70152274?v=4",
+      "profile": "https://github.com/bixb922",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "Sylvain-BROCAS",
+      "name": "Sylvain BROCAS",
+      "avatar_url": "https://avatars.githubusercontent.com/u/82153591?v=4",
+      "profile": "https://github.com/Sylvain-BROCAS",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "victorallume",
+      "name": "victorallume",
+      "avatar_url": "https://avatars.githubusercontent.com/u/97857677?v=4",
+      "profile": "https://github.com/victorallume",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "Omid888",
+      "name": "Omid Ataollahi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30343035?v=4",
+      "profile": "https://github.com/Omid888",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "ddribin",
+      "name": "Dave Dribin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20428?v=4",
+      "profile": "https://www.dribin.org/dave/",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "peterhinch",
+      "name": "Peter Hinch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8437477?v=4",
+      "profile": "https://github.com/peterhinch",
+      "contributions": [
+        "example"
       ]
     }
   ],

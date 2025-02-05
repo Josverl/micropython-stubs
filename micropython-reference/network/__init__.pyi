@@ -41,14 +41,13 @@ from __future__ import annotations
 from abc import abstractmethod
 from typing import Any, List, Protocol, Tuple, overload
 
-import pyb
 from _typeshed import Incomplete
 
-from .LAN import *
-from .PPP import *
-from .WIZNET5K import *
-from .WLAN import *
-from .WLANWiPy import *
+from network.LAN import LAN
+from network.PPP import PPP
+from network.WLAN import WLAN
+from network.WIZNET5K import WIZNET5K
+from network.WLANWiPy import WLANWiPy
 
 class AbstractNIC(Protocol):
     """

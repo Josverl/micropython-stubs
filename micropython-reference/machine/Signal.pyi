@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 from typing import Any, overload
+from typing_extensions import TypeAlias
 
-from .Pin import Pin
+from machine.Pin import Pin, PinLike
 
-class Signal:
+class Signal(Pin):
     """
     The Signal class is a simple extension of the `Pin` class. Unlike Pin, which
     can be only in "absolute" 0 and 1 states, a Signal can be in "asserted"
@@ -77,7 +78,7 @@ class Signal:
     """
 
     @overload
-    def __init__(self, pin_obj: Pin, invert: bool = False, /):
+    def __init__(self, pin_obj: PinLike, invert: bool = False, /):
         """
         Create a Signal object. There're two ways to create it:
 
@@ -99,7 +100,7 @@ class Signal:
     @overload
     def __init__(
         self,
-        id: Pin | str | int,
+        id: PinLike,
         /,
         mode: int = -1,
         pull: int = -1,

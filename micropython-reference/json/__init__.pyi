@@ -14,8 +14,9 @@ data format.
 from __future__ import annotations
 
 from typing import Any, AnyStr, Tuple, overload
+from _typeshed import Incomplete
 
-from _mpy_shed import IOBase, Incomplete
+from _mpy_shed import IOBase_mp
 
 @overload
 def dumps(obj: Any) -> str:
@@ -36,7 +37,7 @@ def dumps(obj: Any, separators: Tuple[str, str]) -> str:
     ...
 
 @overload
-def dump(obj: Any, stream: IOBase | Incomplete, /) -> None:
+def dump(obj: Any, stream: IOBase_mp | Incomplete, /) -> None:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
 
@@ -47,7 +48,7 @@ def dump(obj: Any, stream: IOBase | Incomplete, /) -> None:
     ...
 
 @overload
-def dump(obj: Any, stream: IOBase | Incomplete, separators: Tuple[str, str], /) -> None:
+def dump(obj: Any, stream: IOBase_mp | Incomplete, separators: Tuple[str, str], /) -> None:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.
 
@@ -57,7 +58,7 @@ def dump(obj: Any, stream: IOBase | Incomplete, separators: Tuple[str, str], /) 
     """
     ...
 
-def load(stream: IOBase | Incomplete) -> Any:
+def load(stream: IOBase_mp | Incomplete) -> Any:
     """
     Parse the given *stream*, interpreting it as a JSON string and
     deserialising the data to a Python object.  The resulting object is

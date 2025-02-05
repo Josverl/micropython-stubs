@@ -16,9 +16,10 @@ def server():
                 pass
 
         #  Echo the MAC and message back to the sender
-        if not enow.send(peer, msg):
-            print("ERROR: send() failed to", peer)
-            return
+        if msg:
+            if not enow.send(peer, msg):
+                print("ERROR: send() failed to", peer)
+                return
 
         if msg == b"!done":
             return

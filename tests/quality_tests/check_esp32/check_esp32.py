@@ -5,8 +5,11 @@ import esp32
 # Hal sensor (magnetometer) has been removed
 # https://github.com/micropython/micropython/pull/11528
 
-esp32.raw_temperature()  # read the internal temperature of the MCU, in Fahrenheit
-esp32.ULP()  # access to the Ultra-Low-Power Co-processor
+# read the internal temperature of the MCU, in Fahrenheit
+esp32.raw_temperature()  # stubs-ignore : board.endswith("_c6" ) or board.endswith("_s3" )
+
+# access to the Ultra-Low-Power Co-processor
+esp32.ULP()  # stubs-ignore : board.endswith("_c6" )
 
 
 # RMT

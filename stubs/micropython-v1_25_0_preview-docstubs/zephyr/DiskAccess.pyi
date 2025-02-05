@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class DiskAccess:
@@ -13,8 +12,8 @@ class DiskAccess:
     """
 
     def __init__(self, disk_name) -> None: ...
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete: ...
+    def readblocks(self, block_num, buf, offset: int | None = 0) -> Incomplete: ...
+    def writeblocks(self, block_num, buf, offset: int | None = 0) -> Incomplete: ...
     def ioctl(self, cmd, arg) -> Incomplete:
         """
         These methods implement the simple and extended
