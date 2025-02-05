@@ -37,6 +37,10 @@
             "path": "feat_aioble"
         },
         {
+            "name": "feat_asm_pio",
+            "path": "feat_asm_pio"
+        },
+        {
             "name": "feat_asyncio",
             "path": "feat_asyncio"
         },

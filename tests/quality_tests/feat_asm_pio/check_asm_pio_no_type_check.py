@@ -8,7 +8,7 @@ Sample from micropython documentaton
 """
 import time
 import typing
-from typing import no_type_check
+from typing import no_type_check, no_type_check_decorator
 
 import rp2
 from machine import Pin
