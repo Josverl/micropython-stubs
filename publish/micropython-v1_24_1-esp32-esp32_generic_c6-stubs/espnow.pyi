@@ -1,11 +1,9 @@
 """
 ESP-NOW :doc:`asyncio` support.
 
-MicroPython module: 
-https://docs.micropython.org/en/v1.24.0/library/aioespnow.html
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/aioespnow.html
 
-https://docs.micropython.org/en/v1.24.0/library/espnow.html
-
+---
 Module: 'espnow' on micropython-v1.24.1-esp32-ESP32_GENERIC_C6
 """
 
