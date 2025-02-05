@@ -13,7 +13,7 @@ Module: 'pyb' on micropython-v1.24.1-stm32-PYBV11
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import NoReturn, Dict, List, Any, Callable, Optional, overload, Tuple
+from typing import NoReturn, Any, Dict, List, Callable, overload, Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 from _mpy_shed import HID_Tuple, _OldAbstractBlockDev, _OldAbstractReadOnlyBlockDev, AnyReadableBuf, AnyWritableBuf
 from collections.abc import Sequence

@@ -387,3 +387,16 @@ class VfsFat:
     def chdir(self, *args, **kwargs) -> Incomplete: ...
     def getcwd(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
+
+@overload  # force merge
+def dupterm_notify(obj_in: Any, /) -> None:
+    # https://github.com/orgs/micropython/discussions/16680
+    """
+    Notify the REPL that input is available on the stream-like object that was
+    previously set by `dupterm`.  This is used by the stream-like object to
+    notify the REPL that there is input available for reading.
+
+    The *obj_in* argument must be the stream-like object that was previously set
+    by `dupterm` or None .
+    """
+    ...

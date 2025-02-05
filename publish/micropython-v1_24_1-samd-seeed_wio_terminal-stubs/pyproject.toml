@@ -66,7 +66,6 @@ packages = [
     { include = "samd.pyi" },
     { include = "select.pyi" },
     { include = "struct.pyi" },
-    { include = "sys.pyi" },
     { include = "time.pyi" },
     { include = "uarray.pyi" },
     { include = "uasyncio.pyi" },

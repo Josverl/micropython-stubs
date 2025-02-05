@@ -32,8 +32,7 @@ Module: 'hashlib' on micropython-v1.24.1-rp2-RPI_PICO2
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _Hash
-from abc import ABC
-from typing import Any, Optional, overload
+from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class sha256(_Hash):

@@ -85,7 +85,6 @@ packages = [
     { include = "socket.pyi" },
     { include = "ssl.pyi" },
     { include = "struct.pyi" },
-    { include = "sys.pyi" },
     { include = "time.pyi" },
     { include = "tls.pyi" },
     { include = "uarray.pyi" },

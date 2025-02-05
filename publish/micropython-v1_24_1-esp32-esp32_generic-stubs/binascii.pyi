@@ -16,7 +16,6 @@ Module: 'binascii' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def crc32(*args, **kwargs) -> Incomplete: ...

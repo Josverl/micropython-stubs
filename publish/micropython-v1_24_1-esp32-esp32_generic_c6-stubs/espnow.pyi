@@ -1,9 +1,11 @@
 """
 ESP-NOW :doc:`asyncio` support.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/aioespnow.html
+MicroPython module: 
+https://docs.micropython.org/en/v1.24.0/library/aioespnow.html
 
----
+https://docs.micropython.org/en/v1.24.0/library/espnow.html
+
 Module: 'espnow' on micropython-v1.24.1-esp32-ESP32_GENERIC_C6
 """
 
@@ -329,7 +331,7 @@ class ESPNow(ESPNowBase, Iterator):
         self,
         peer: _MACAddress,
         msg: str | bytes,
-        mac: _MACAddress | None = None,
+        mac: _MACAddress | None | Incomplete = None,
         sync=True,
     ) -> bool:
         """
@@ -498,9 +500,9 @@ class ESPNow(ESPNowBase, Iterator):
 
     def __init__(self, *argv, **kwargs) -> None: ...
     #
-    @overload
+    @overload  # force merge
     def __iter__(self) -> ESPNow: ...
-    @overload
+    @overload  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
 
 class ESPNowBase:
