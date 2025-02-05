@@ -18,7 +18,8 @@ import rich_click as click
 from loguru import logger as log
 from stubber.codemod.enrich import enrich_folder
 from stubber.utils import do_post_processing
-from stubber.utils.config import CONFIG
+from stubber.utils.config import readconfig
+from mpflash.versions import clean_version, get_stable_mp_version
 
 STDLIB_MODULES_TO_KEEP = [
     "_typeshed",
@@ -394,6 +395,14 @@ def update_asyncio_manual(dist_stdlib_path: Path):
 @click.command()
 @click.option("--clone", "-c", help="Clone the typeshed repo.", default=False, show_default=True)
 @click.option(
+    "--version",
+    "-v",
+    type=str,
+    help="Specify Micropython version",
+    default="1.24.1",
+    show_default=True,
+)
+@click.option(
     "--typeshed",
     "-t",
     is_flag=True,
@@ -410,14 +419,33 @@ def update_asyncio_manual(dist_stdlib_path: Path):
     show_default=True,
 )
 @click.option("--build", "-b", is_flag=True, help="Build the wheel file.", default=True, show_default=True)
-def update(clone: bool = False, typeshed: bool = False, merge: bool = True, build: bool = True):
+def update(
+    version: Optional[str] = None,
+    clone: bool = False,
+    typeshed: bool = False,
+    merge: bool = True,
+    build: bool = True,
+):
     """
     Update the micropython-stdlib-stubs package and create a wheel file.
     """
-    # TODO: Read from CONFIG
-    flat_version = "v1_24_1"
-    rootpath = Path(__file__).parent.parent.parent
-    log.info(f"using rootpath: {rootpath}")
+    # Read from CONFIG, from a parent's pyproject.toml
+    CONFIG = readconfig(Path(__file__).parent.parent)
+
+    log.info(CONFIG.config_path)
+    # print(repr(CONFIG))
+    if not version:
+        version = get_stable_mp_version()
+
+    flat_version = clean_version(version, flat=True, drop_v=False)
+    log.info(f"Build micropython-stdlib-stubs for version: {version}")
+
+    rootpath = CONFIG.config_path
+    # if not rootpath.is_absolute() and CONFIG.config_path:
+    #     rootpath = CONFIG.config_path / rootpath
+
+    log.info(f"Using rootpath: {rootpath}")
+
     dist_stdlib_path = rootpath / "publish/micropython-stdlib-stubs"
     docstubs_path = rootpath / f"stubs/micropython-{flat_version}-docstubs"
     boardstub_path = rootpath / f"stubs/micropython-{flat_version}-esp32-ESP32_GENERIC"
@@ -463,7 +491,11 @@ def update(clone: bool = False, typeshed: bool = False, merge: bool = True, buil
     comment_out_lines(dist_stdlib_path / "stdlib")
 
     if build:
-        subprocess.check_call(["uv", "build", "--wheel"], cwd=dist_stdlib_path)
+        subprocess.check_call(
+            # ["uv", "build", "--wheel"],
+            ["uv", "build", "--index-strategy", "unsafe-best-match", "--wheel"],
+            cwd=dist_stdlib_path,
+        )
 
 
 if __name__ == "__main__":
