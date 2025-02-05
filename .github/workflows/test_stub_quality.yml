@@ -24,10 +24,6 @@ jobs:
         with:
           python-version: "3.11" # Replace with the Python version you're using
 
-      - name: Testspace client install & config
-        uses: testspace-com/setup-testspace@v1
-        with:
-          domain: josverl
       #----------------------------------------------
       # install project
       #----------------------------------------------
@@ -53,9 +49,6 @@ jobs:
         run: |
           pytest -m 'snippets' --cache-clear --junitxml=./results/results.xml
 
-      - name: Testspace push test content
-        run: |
-          testspace ./results/results.xml
 
       - name: compare and update
         run: |
