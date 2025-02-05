@@ -12,181 +12,361 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.23.3",
+        "version": "1.24.0",
         "stubtype": "documentation"
     },
     "modules": [
         {
-            "file": "_thread.pyi",
-            "module": "_thread"
+            "file": "_thread/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "array.pyi",
-            "module": "array"
+            "file": "array/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "asyncio.pyi",
-            "module": "asyncio"
+            "file": "asyncio/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "binascii.pyi",
-            "module": "binascii"
+            "file": "binascii/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "bluetooth.pyi",
-            "module": "bluetooth"
+            "file": "bluetooth/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "btree.pyi",
-            "module": "btree"
+            "file": "btree/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "cmath.pyi",
-            "module": "cmath"
+            "file": "cmath/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "collections.pyi",
-            "module": "collections"
+            "file": "collections/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "cryptolib.pyi",
-            "module": "cryptolib"
+            "file": "cryptolib/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "deflate.pyi",
-            "module": "deflate"
+            "file": "deflate/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "errno.pyi",
-            "module": "errno"
+            "file": "errno/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "esp.pyi",
-            "module": "esp"
+            "file": "esp/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "esp32.pyi",
-            "module": "esp32"
+            "file": "esp32/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "espnow.pyi",
-            "module": "espnow"
+            "file": "espnow/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "framebuf.pyi",
-            "module": "framebuf"
+            "file": "framebuf/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "gc.pyi",
-            "module": "gc"
+            "file": "gc/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "gzip.pyi",
-            "module": "gzip"
+            "file": "gzip/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "hashlib.pyi",
-            "module": "hashlib"
+            "file": "hashlib/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "heapq.pyi",
-            "module": "heapq"
+            "file": "heapq/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "io.pyi",
-            "module": "io"
+            "file": "io/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "json.pyi",
-            "module": "json"
+            "file": "json/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "lcd160cr.pyi",
-            "module": "lcd160cr"
+            "file": "lcd160cr/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "machine.pyi",
-            "module": "machine"
+            "file": "machine/ADC.pyi",
+            "module": "ADC"
         },
         {
-            "file": "math.pyi",
-            "module": "math"
+            "file": "machine/ADCBlock.pyi",
+            "module": "ADCBlock"
         },
         {
-            "file": "micropython.pyi",
-            "module": "micropython"
+            "file": "machine/ADCWiPy.pyi",
+            "module": "ADCWiPy"
         },
         {
-            "file": "neopixel.pyi",
-            "module": "neopixel"
+            "file": "machine/I2C.pyi",
+            "module": "I2C"
         },
         {
-            "file": "network.pyi",
-            "module": "network"
+            "file": "machine/I2S.pyi",
+            "module": "I2S"
         },
         {
-            "file": "openamp.pyi",
-            "module": "openamp"
+            "file": "machine/PWM.pyi",
+            "module": "PWM"
         },
         {
-            "file": "os.pyi",
-            "module": "os"
+            "file": "machine/Pin.pyi",
+            "module": "Pin"
         },
         {
-            "file": "platform.pyi",
-            "module": "platform"
+            "file": "machine/RTC.pyi",
+            "module": "RTC"
         },
         {
-            "file": "pyb.pyi",
-            "module": "pyb"
+            "file": "machine/SD.pyi",
+            "module": "SD"
         },
         {
-            "file": "random.pyi",
-            "module": "random"
+            "file": "machine/SDCard.pyi",
+            "module": "SDCard"
         },
         {
-            "file": "rp2.pyi",
-            "module": "rp2"
+            "file": "machine/SPI.pyi",
+            "module": "SPI"
         },
         {
-            "file": "select.pyi",
-            "module": "select"
+            "file": "machine/Signal.pyi",
+            "module": "Signal"
         },
         {
-            "file": "socket.pyi",
-            "module": "socket"
+            "file": "machine/Timer.pyi",
+            "module": "Timer"
         },
         {
-            "file": "ssl.pyi",
-            "module": "ssl"
+            "file": "machine/TimerWiPy.pyi",
+            "module": "TimerWiPy"
         },
         {
-            "file": "stm.pyi",
-            "module": "stm"
+            "file": "machine/UART.pyi",
+            "module": "UART"
         },
         {
-            "file": "struct.pyi",
-            "module": "struct"
+            "file": "machine/USBDevice.pyi",
+            "module": "USBDevice"
         },
         {
-            "file": "sys.pyi",
-            "module": "sys"
+            "file": "machine/WDT.pyi",
+            "module": "WDT"
         },
         {
-            "file": "time.pyi",
-            "module": "time"
+            "file": "machine/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "math/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "micropython/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "neopixel/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "network/LAN.pyi",
+            "module": "LAN"
+        },
+        {
+            "file": "network/PPP.pyi",
+            "module": "PPP"
+        },
+        {
+            "file": "network/WIZNET5K.pyi",
+            "module": "WIZNET5K"
+        },
+        {
+            "file": "network/WLAN.pyi",
+            "module": "WLAN"
+        },
+        {
+            "file": "network/WLANWiPy.pyi",
+            "module": "WLANWiPy"
+        },
+        {
+            "file": "network/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "openamp/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "os/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "platform/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "pyb/ADC.pyi",
+            "module": "ADC"
+        },
+        {
+            "file": "pyb/Accel.pyi",
+            "module": "Accel"
+        },
+        {
+            "file": "pyb/CAN.pyi",
+            "module": "CAN"
+        },
+        {
+            "file": "pyb/DAC.pyi",
+            "module": "DAC"
+        },
+        {
+            "file": "pyb/ExtInt.pyi",
+            "module": "ExtInt"
+        },
+        {
+            "file": "pyb/Flash.pyi",
+            "module": "Flash"
+        },
+        {
+            "file": "pyb/I2C.pyi",
+            "module": "I2C"
+        },
+        {
+            "file": "pyb/LCD.pyi",
+            "module": "LCD"
+        },
+        {
+            "file": "pyb/LED.pyi",
+            "module": "LED"
+        },
+        {
+            "file": "pyb/Pin.pyi",
+            "module": "Pin"
+        },
+        {
+            "file": "pyb/RTC.pyi",
+            "module": "RTC"
+        },
+        {
+            "file": "pyb/SPI.pyi",
+            "module": "SPI"
+        },
+        {
+            "file": "pyb/Servo.pyi",
+            "module": "Servo"
+        },
+        {
+            "file": "pyb/Switch.pyi",
+            "module": "Switch"
+        },
+        {
+            "file": "pyb/Timer.pyi",
+            "module": "Timer"
+        },
+        {
+            "file": "pyb/UART.pyi",
+            "module": "UART"
+        },
+        {
+            "file": "pyb/USB_HID.pyi",
+            "module": "USB_HID"
+        },
+        {
+            "file": "pyb/USB_VCP.pyi",
+            "module": "USB_VCP"
+        },
+        {
+            "file": "pyb/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "random/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "rp2/DMA.pyi",
+            "module": "DMA"
+        },
+        {
+            "file": "rp2/Flash.pyi",
+            "module": "Flash"
+        },
+        {
+            "file": "rp2/PIO.pyi",
+            "module": "PIO"
+        },
+        {
+            "file": "rp2/StateMachine.pyi",
+            "module": "StateMachine"
+        },
+        {
+            "file": "rp2/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "select/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "socket/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "ssl/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "stm/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "struct/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "sys/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "time/__init__.pyi",
+            "module": "__init__"
         },
         {
             "file": "uarray.pyi",
             "module": "uarray"
         },
         {
+            "file": "uasyncio.pyi",
+            "module": "uasyncio"
+        },
+        {
             "file": "ubinascii.pyi",
             "module": "ubinascii"
         },
         {
-            "file": "uctypes.pyi",
-            "module": "uctypes"
+            "file": "uctypes/__init__.pyi",
+            "module": "__init__"
         },
         {
             "file": "uio.pyi",
@@ -195,6 +375,10 @@
         {
             "file": "ujson.pyi",
             "module": "ujson"
+        },
+        {
+            "file": "umachine.pyi",
+            "module": "umachine"
         },
         {
             "file": "uos.pyi",
@@ -225,24 +409,36 @@
             "module": "uzlib"
         },
         {
-            "file": "vfs.pyi",
-            "module": "vfs"
+            "file": "vfs/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "wipy.pyi",
-            "module": "wipy"
+            "file": "wipy/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "wm8960.pyi",
-            "module": "wm8960"
+            "file": "wm8960/__init__.pyi",
+            "module": "__init__"
         },
         {
-            "file": "zephyr.pyi",
-            "module": "zephyr"
+            "file": "zephyr/DiskAccess.pyi",
+            "module": "DiskAccess"
         },
         {
-            "file": "zlib.pyi",
-            "module": "zlib"
+            "file": "zephyr/FlashArea.pyi",
+            "module": "FlashArea"
+        },
+        {
+            "file": "zephyr/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "zephyr/zsensor.pyi",
+            "module": "zsensor"
+        },
+        {
+            "file": "zlib/__init__.pyi",
+            "module": "__init__"
         }
     ]
 }
