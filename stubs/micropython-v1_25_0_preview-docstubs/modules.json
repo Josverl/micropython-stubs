@@ -9,6 +9,7 @@
         "nodename": "micropython",
         "version": "v1.25.0-preview",
         "release": "v1.25.0-preview-217-gb4f53a0e5",
+
         "sysname": "micropython"
     },
     "stubber": {
