@@ -36,7 +36,6 @@ from __future__ import annotations
 
 from asyncio.funcs import wait_for as wait_for, wait_for_ms as wait_for_ms, gather as gather
 from asyncio.event import Event as Event, ThreadSafeFlag as ThreadSafeFlag
-from asyncio.lock import Lock as Lock
 from asyncio.stream import (
     open_connection as open_connection,
     start_server as start_server,

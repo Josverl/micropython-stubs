@@ -13,7 +13,6 @@ encodings of it in ASCII form (in both directions).
 # origin module:: repos/micropython/docs/library/binascii.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 def hexlify(data: bytes, sep: str | bytes = ..., /) -> bytes:

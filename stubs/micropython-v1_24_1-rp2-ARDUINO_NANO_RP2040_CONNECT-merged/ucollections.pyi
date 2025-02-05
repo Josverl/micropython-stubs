@@ -17,7 +17,7 @@ Module: 'ucollections' on micropython-v1.24.1-rp2-ARDUINO_NANO_RP2040_CONNECT
 from __future__ import annotations
 from _typeshed import Incomplete
 from collections.abc import Iterable, Mapping
-from typing import Any, Dict, Generic, Optional, Tuple, overload
+from typing import Any, Dict, Generic, Tuple, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _KT = TypeVar("_KT")

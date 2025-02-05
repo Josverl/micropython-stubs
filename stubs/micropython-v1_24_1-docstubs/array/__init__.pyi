@@ -14,7 +14,7 @@ floating-point support).
 # origin module:: repos/micropython/docs/library/array.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Generic, overload, Any, List, Optional
+from typing import Generic, overload, Any
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from collections.abc import MutableSequence, Sequence
 

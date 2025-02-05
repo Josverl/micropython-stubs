@@ -10,7 +10,7 @@ The ``pyb`` module contains specific functions related to the board.
 # origin module:: repos/micropython/docs/library/pyb.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, NoReturn, Optional, Tuple
+from typing import overload, NoReturn
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .UART import UART

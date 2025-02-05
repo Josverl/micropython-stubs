@@ -15,7 +15,7 @@ damage.
 # origin module:: repos/micropython/docs/library/machine.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Final, overload, Any, NoReturn, Optional
+from typing import overload, Any, NoReturn, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from machine.Pin import Pin
 from machine.Signal import Signal

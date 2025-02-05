@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Callable, Optional
+from typing import Any, Callable
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class TimerWiPy:

@@ -35,7 +35,7 @@ Module: 'random' on micropython-v1.24.1-esp32-ESP32_GENERIC
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import Subscriptable
-from typing import Any, Optional, Protocol, overload, runtime_checkable
+from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _T = TypeVar("_T")

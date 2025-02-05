@@ -145,9 +145,7 @@ class Server:
 
     async def _serve(self, s, cb, ssl) -> Generator[Incomplete]: ...
 
-async def start_server(
-    cb, host, port, backlog: int = 5, ssl: Incomplete | None = None
-) -> Coroutine[Server, Any, Any]:
+async def start_server(cb, host, port, backlog: int = 5, ssl: Incomplete | None = None) -> Coroutine[Server, Any, Any]:
     """
     Start a TCP server on the given *host* and *port*.  The *callback* will be
     called with incoming, accepted connections, and be passed 2 arguments: reader

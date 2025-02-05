@@ -18,9 +18,9 @@ Module: 'machine' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Final, NoReturn, Tuple, Any, Callable, List, Sequence, Union, overload, Optional
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
+from typing import NoReturn, Optional, Union, Tuple, Any, Callable, List, Sequence, overload
 from vfs import AbstractBlockDev
 
 ID_T: TypeAlias = int | str

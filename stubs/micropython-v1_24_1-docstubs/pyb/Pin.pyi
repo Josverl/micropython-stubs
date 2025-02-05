@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, Dict, overload, Any, List, Optional
+from typing import Callable, Dict, overload, Any, List
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class Pin:

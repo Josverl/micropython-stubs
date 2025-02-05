@@ -37,7 +37,7 @@ behave not as expected.
 # origin module:: repos/micropython/docs/library/time.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional, Tuple
+from typing import Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias, TypeVar
 from _mpy_shed import _TimeTuple

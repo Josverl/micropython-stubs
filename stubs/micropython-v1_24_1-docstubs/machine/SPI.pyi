@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Optional, Tuple
+from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin

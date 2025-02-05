@@ -16,7 +16,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf
 from machine import Pin
-from typing import Any, List, Optional, Sequence, Tuple, Union, overload
+from typing import Any, List, Optional, Sequence, Tuple, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 from vfs import AbstractBlockDev
 

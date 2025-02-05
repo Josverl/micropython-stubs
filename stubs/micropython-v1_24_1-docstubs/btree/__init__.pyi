@@ -77,7 +77,7 @@ Example::
 # origin module:: repos/micropython/docs/library/btree.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Iterable, Any, Dict, Optional
+from typing import Iterable, Dict
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import IOBase_mp
 

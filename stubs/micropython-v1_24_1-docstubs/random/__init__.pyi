@@ -31,7 +31,7 @@ CPython module: :mod:`python:random` https://docs.python.org/3/library/random.ht
 # origin module:: repos/micropython/docs/library/random.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Protocol, overload, runtime_checkable, Any, Optional
+from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import Subscriptable
 

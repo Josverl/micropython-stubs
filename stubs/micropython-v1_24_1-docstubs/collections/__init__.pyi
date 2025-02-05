@@ -13,7 +13,7 @@ hold/accumulate various objects.
 # origin module:: repos/micropython/docs/library/collections.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Dict, Generic, overload, Any, Optional, Tuple
+from typing import Dict, Generic, overload, Any, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from collections.abc import Iterable, Mapping
 

@@ -27,7 +27,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import _BlockDeviceProtocol
 from abc import ABC, abstractmethod
-from typing import Optional, overload
+from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def umount(mount_point: Incomplete) -> Incomplete:
@@ -40,7 +40,7 @@ def umount(mount_point: Incomplete) -> Incomplete:
     """
     ...
 
-def mount(fsobj, mount_point: str, *, readonly=False) -> Incomplete:
+def mount(fsobj, mount_point: str, *, readonly: bool = False) -> Incomplete:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
     *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
@@ -129,13 +129,13 @@ class VfsFat:
     def __init__(self, *argv, **kwargs) -> None: ...
 
 class AbstractBlockDev:
-    @abstractmethod
-    @overload
-    def readblocks(self, block_num: int, buf) -> Incomplete: ...
     #
     @abstractmethod
-    @overload
-    def readblocks(self, block_num: int, buf, offset: int) -> Incomplete:
+    @overload  # force merge
+    def readblocks(self, block_num: int, buf: Incomplete) -> Incomplete: ...
+    @abstractmethod
+    @overload  # force merge
+    def readblocks(self, block_num: int, buf: Incomplete, offset: int) -> Incomplete:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -152,9 +152,8 @@ class AbstractBlockDev:
         ...
 
     @abstractmethod
-    @overload
-    def writeblocks(self, block_num: int, buf) -> Incomplete: ...
-    #
+    @overload  # force merge
+    def writeblocks(self, block_num: int, buf: Incomplete) -> Incomplete: ...
     @abstractmethod
     @overload
     def writeblocks(self, block_num: int, buf, offset: int) -> Incomplete:

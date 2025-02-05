@@ -6,8 +6,7 @@ Core functions
 
 from __future__ import annotations
 
-from abc import ABC
-from typing import Any, Callable, Coroutine, Dict, Generic, Iterable, List, Tuple
+from typing import Any, Coroutine
 
 from _mpy_shed import AnyReadableBuf
 from _typeshed import Incomplete

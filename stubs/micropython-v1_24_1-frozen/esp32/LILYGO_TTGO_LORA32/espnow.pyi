@@ -129,12 +129,12 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    @overload
+    @overload  # force merge
     def __iter__(self) -> ESPNow: ...
     #
-    @overload
+    @overload  # force merge
     def __iter__(self) -> ESPNow: ...
-    @overload
+    @overload  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
-    @overload
+    @overload  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional, Tuple
+from typing import Any, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class LAN:

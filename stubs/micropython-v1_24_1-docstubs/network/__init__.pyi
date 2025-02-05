@@ -38,7 +38,7 @@ For example::
 # origin module:: repos/micropython/docs/library/network.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, List, Optional, Tuple
+from typing import overload, Any, List, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing import Protocol
 from network.WLAN import WLAN

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, Final, Literal, Any, Optional
+from typing import Callable, Literal, Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
 from rp2.StateMachine import StateMachine

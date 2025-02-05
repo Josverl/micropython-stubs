@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, Callable, Optional
+from typing import overload, Any, Callable
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 PinLike: TypeAlias = Pin | int | str

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, overload, Any, Optional, Tuple
+from typing import Callable, overload, Any, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from machine import IDLE
 

@@ -13,7 +13,7 @@ Module: 'gc' on micropython-v1.24.1-samd-SEEED_WIO_TERMINAL
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional, overload
+from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def isenabled(*args, **kwargs) -> Incomplete: ...

@@ -658,7 +658,7 @@ def schedule(func: Callable[[_T], None], arg: _T, /) -> None:
     ...
 
 # decorators
-@overload
+@overload  # force merge
 def viper(func: Callable) -> Callable:
     """
     The Viper code emitter is not fully compliant. It supports special Viper native data types in pursuit of performance.
@@ -669,7 +669,7 @@ def viper(func: Callable) -> Callable:
     """
     ...
 
-@overload
+@overload  # force merge
 def native(func: Callable) -> Callable:
     """
     This causes the MicroPython compiler to emit native CPU opcodes rather than bytecode.
@@ -678,7 +678,7 @@ def native(func: Callable) -> Callable:
     """
     ...
 
-@overload
+@overload  # force merge
 def asm_thumb(func: Callable) -> Callable:
     """
     This decorator is used to mark a function as containing inline assembler code.

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, Optional, Tuple
+from typing import overload, Any
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class Servo:

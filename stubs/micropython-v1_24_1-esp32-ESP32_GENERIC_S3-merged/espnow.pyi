@@ -329,7 +329,7 @@ class ESPNow(ESPNowBase, Iterator):
         self,
         peer: _MACAddress,
         msg: str | bytes,
-        mac: _MACAddress | None = None,
+        mac: _MACAddress | None | Incomplete = None,
         sync=True,
     ) -> bool:
         """
@@ -498,9 +498,9 @@ class ESPNow(ESPNowBase, Iterator):
 
     def __init__(self, *argv, **kwargs) -> None: ...
     #
-    @overload
+    @overload  # force merge
     def __iter__(self) -> ESPNow: ...
-    @overload
+    @overload  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
 
 class ESPNowBase:

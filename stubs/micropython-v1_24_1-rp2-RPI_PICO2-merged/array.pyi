@@ -18,7 +18,7 @@ Module: 'array' on micropython-v1.24.1-rp2-RPI_PICO2
 from __future__ import annotations
 from _typeshed import Incomplete
 from collections.abc import MutableSequence, Sequence
-from typing import Any, Generic, List, Optional, overload
+from typing import Any, Generic, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _T = TypeVar("_T", int, float, str)

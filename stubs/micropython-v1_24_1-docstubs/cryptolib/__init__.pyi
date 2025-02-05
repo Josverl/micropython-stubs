@@ -8,7 +8,7 @@ MicroPython module: https://docs.micropython.org/en/v1.24.0/library/cryptolib.ht
 # origin module:: repos/micropython/docs/library/cryptolib.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, Optional
+from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 

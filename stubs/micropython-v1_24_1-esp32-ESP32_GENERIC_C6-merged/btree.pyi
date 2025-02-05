@@ -81,7 +81,7 @@ Module: 'btree' on micropython-v1.24.1-esp32-ESP32_GENERIC_C6
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import IOBase_mp
-from typing import Any, Dict, Iterable, Optional
+from typing import Dict, Iterable
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 DESC: int = 2

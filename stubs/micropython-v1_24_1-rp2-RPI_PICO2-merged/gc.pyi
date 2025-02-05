@@ -13,7 +13,7 @@ Module: 'gc' on micropython-v1.24.1-rp2-RPI_PICO2
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional, overload
+from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def mem_alloc() -> int:

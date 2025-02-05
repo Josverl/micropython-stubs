@@ -70,7 +70,7 @@ Module: 'socket' on micropython-v1.24.1-esp32-ESP32_GENERIC_C6
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from typing import Any, IO, Literal, Optional, Tuple, overload
+from typing import Literal, Tuple, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str

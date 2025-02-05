@@ -10,7 +10,7 @@ CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 # origin module:: repos/micropython/docs/library/gc.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, Optional
+from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 def enable() -> None:
