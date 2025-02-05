@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import overload
+from typing_extensions import deprecated
 
 from vfs import AbstractBlockDev
 
@@ -16,7 +17,7 @@ class Flash(AbstractBlockDev):
     configuration <filesystem>` or implement a low-level storage system for your
     application.
     """
-
+    @deprecated("This constructor is deprecated and will be removed in a future version of MicroPython")
     @overload
     def __init__(self):
         """

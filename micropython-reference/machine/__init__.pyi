@@ -18,6 +18,7 @@ from __future__ import annotations
 from typing import Any, Final, NoReturn, Optional, overload
 
 from _typeshed import Incomplete
+from typing_extensions import deprecated
 
 from machine.ADC import ADC
 from machine.ADCBlock import ADCBlock
@@ -177,6 +178,7 @@ def idle() -> None:
     """
     ...
 
+@deprecated("use :func:`lightsleep()` instead.")
 def sleep() -> None:
     """
     ``Note:`` This function is deprecated, use :func:`lightsleep()` instead with no arguments.
