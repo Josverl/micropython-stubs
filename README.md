@@ -107,6 +107,7 @@ npx all-contributors-cli add user things
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/victorallume"><img src="https://avatars.githubusercontent.com/u/97857677?v=4?s=100" width="100px;" alt="victorallume"/><br /><sub><b>victorallume</b></sub></a><br /><a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3Avictorallume" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Omid888"><img src="https://avatars.githubusercontent.com/u/30343035?v=4?s=100" width="100px;" alt="Omid Ataollahi"/><br /><sub><b>Omid Ataollahi</b></sub></a><br /><a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3AOmid888" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.dribin.org/dave/"><img src="https://avatars.githubusercontent.com/u/20428?v=4?s=100" width="100px;" alt="Dave Dribin"/><br /><sub><b>Dave Dribin</b></sub></a><br /><a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3Addribin" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/peterhinch"><img src="https://avatars.githubusercontent.com/u/8437477?v=4?s=100" width="100px;" alt="Peter Hinch"/><br /><sub><b>Peter Hinch</b></sub></a><br /><a href="#example-peterhinch" title="Examples">💡</a></td>
     </tr>
   </tbody>
 </table>
