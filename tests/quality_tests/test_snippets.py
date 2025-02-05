@@ -44,6 +44,7 @@ CORE = [
     "asyncio:skip port in ['esp8266', 'webassembly']",
     "machine:skip port in ['windows', 'unix', 'webassembly']",
 ]
+RP2_CORE = CORE + ["asm_pio:skip version < 1.24.0"]
 # a dictionary of features to verify for each port or port_board
 PORTBOARD_FEATURES = {
     "stm32": CORE,
@@ -61,19 +62,19 @@ PORTBOARD_FEATURES = {
     "samd": CORE,
     "samd-seeed_wio_terminal": CORE,
     # "samd-ADAFRUIT_ITSYBITSY_M4_EXPRESS": CORE,
-    "rp2": CORE,
-    "rp2-pico:skip version>1.20.0": CORE,  # renamed later to rp2-rpi_pico
-    "rp2-pico_w:skip version>1.20.0": CORE + ["networking"],
+    "rp2": RP2_CORE,
+    "rp2-pico:skip version>1.20.0": RP2_CORE,  # renamed later to rp2-rpi_pico
+    "rp2-pico_w:skip version>1.20.0": RP2_CORE + ["networking"],
     #
-    "rp2-rpi_pico:skip version<1.21.0": CORE,
-    "rp2-rpi_pico_w:skip version<1.21.0": CORE
+    "rp2-rpi_pico:skip version<1.21.0": RP2_CORE,
+    "rp2-rpi_pico_w:skip version<1.21.0": RP2_CORE
     + [
         "networking",
         "bluetooth:skip version<1.21.0",
         "aioble:skip version<1.21.0",
     ],
-    "rp2-rpi_pico2:skip version<1.24.0": CORE,
-    "rp2-rpi_pico2_w:skip version=<1.24.0": CORE,
+    "rp2-rpi_pico2:skip version<1.24.0": RP2_CORE,
+    "rp2-rpi_pico2_w:skip version=<1.24.0": RP2_CORE,
     # "rp2-pimoroni_picolipo_16mb": CORE,
     "webassembly:skip version<1.23.0": CORE,
     "windows": CORE,

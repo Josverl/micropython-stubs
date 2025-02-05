@@ -21,6 +21,7 @@ import _thread
 from machine import Pin
 from rp2 import PIO, StateMachine, asm_pio
 from collections import deque
+from micropython import const
 
 _UART_BAUD = const(115_200)
 _TX_PIN = const(2)
@@ -28,7 +29,13 @@ _RX_PIN = const(0)
 
 print(f"Baudrate: {_UART_BAUD}; Tx pin: {_TX_PIN}; Rx pin: {_RX_PIN}")
 
-@asm_pio(sideset_init=PIO.OUT_HIGH, out_init=PIO.OUT_HIGH, out_shiftdir=PIO.SHIFT_RIGHT, fifo_join=PIO.JOIN_TX, )
+
+@asm_pio(
+    sideset_init=PIO.OUT_HIGH,
+    out_init=PIO.OUT_HIGH,
+    out_shiftdir=PIO.SHIFT_RIGHT,
+    fifo_join=PIO.JOIN_TX,
+)
 def uart_tx():
     # fmt: off
     # Block with TX deasserted until data available
@@ -43,7 +50,11 @@ def uart_tx():
     nop()      .side(1)       [6]
     # fmt: on
 
-@asm_pio(in_shiftdir=PIO.SHIFT_RIGHT, fifo_join=PIO.JOIN_RX, )
+
+@asm_pio(
+    in_shiftdir=PIO.SHIFT_RIGHT,
+    fifo_join=PIO.JOIN_RX,
+)
 def uart_rx():
     # fmt: off
     label("start")
@@ -90,50 +101,64 @@ sm_tx = StateMachine(
 sm_tx.active(1)
 
 
-fifo_tx = deque((), 64)
-fifo_rx = deque((), 64)
+fifo_tx = deque((), 64)  # stubs-ignore : linter == "mypy"
+fifo_rx = deque((), 64)  # stubs-ignore : linter == "mypy"
 
-def core1_task(sm_tx, sm_rx, fifo_tx, fifo_rx): # Push and pull between PIO's and in-memory FIFOs to allow larger buffers
+
+def core1_task(
+    sm_tx, sm_rx, fifo_tx, fifo_rx
+):  # Push and pull between PIO's and in-memory FIFOs to allow larger buffers
     while True:
-        if sm_rx.rx_fifo() > 0: # Prevent trying to pull from empty FIFO to avoid blocking
+        if sm_rx.rx_fifo() > 0:  # Prevent trying to pull from empty FIFO to avoid blocking
             # Get a 32-bit word from PIO's FIFO, convert it to a character and then append it to the in-memory FIFO
-            fifo_rx.append(chr(sm_rx.get(None, 24))) # Shift right by 24 bits before returning
-        
-        if len(fifo_tx) > 0: # Prevent trying to pull from empty in-memory FIFO to avoid exception
-            if sm_tx.tx_fifo() < 8: # Prevent trying to push into full FIFO to avoid blocking
+            fifo_rx.append(chr(sm_rx.get(None, 24)))  # Shift right by 24 bits before returning
+
+        if len(fifo_tx) > 0:  # Prevent trying to pull from empty in-memory FIFO to avoid exception
+            if sm_tx.tx_fifo() < 8:  # Prevent trying to push into full FIFO to avoid blocking
                 # Pop a character out of in-memory FIFO, convert it to binary and push it into PIO's FIFO
                 sm_tx.put(ord(fifo_tx.popleft()))
+
 
 sm_rx.active(1)
 _thread.start_new_thread(core1_task, (sm_tx, sm_rx, fifo_tx, fifo_rx))
 
-def receive(len = -1): # Pull "len" amount of characters out of the FIFO, return them as one string
+
+def receive(len=-1):  # Pull "len" amount of characters out of the FIFO, return them as one string
     global fifo_rx
     out = ""
-    
+
     if len == -1:
         while True:
-            try: out += fifo_rx.popleft()
-            except IndexError: return out # Exit upon emptying FIFO
-    
+            try:
+                out += fifo_rx.popleft()
+            except IndexError:
+                return out  # Exit upon emptying FIFO
+
     for _ in range(len):
-        try: out += fifo_rx.popleft()
-        except IndexError: break # Exit prematurely when FIFO is empty; blocking could be potentially used
+        try:
+            out += fifo_rx.popleft()
+        except IndexError:
+            break  # Exit prematurely when FIFO is empty; blocking could be potentially used
     return out
+
 
 def receive_until(until):
     global fifo_rx
     out = ""
     char = ""
     while char != until:
-        try: char = fifo_rx.popleft()
-        except IndexError: continue
+        try:
+            char = fifo_rx.popleft()
+        except IndexError:
+            continue
         out += char
     return out
+
 
 def transmit(string):
     global fifo_tx
     for character in string:
         fifo_tx.append(character)
-        
+
+
 print("DONE")
