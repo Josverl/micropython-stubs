@@ -63,7 +63,12 @@ def main(use_stream=True):
         print("Client address:", client_addr)
         print("Client socket:", client_s)
         # CPython uses key keyfile/certfile arguments, but MicroPython uses key/cert
-        client_s = ssl.wrap_socket(client_s, server_side=True, key=key, cert=cert)
+        client_s = ssl.wrap_socket(  # stubs-ignore : linter == "mypy" and version < 1.24.0
+            client_s,
+            server_side=True,
+            key=key,  # stubs: ignore : version < 1.24.0
+            cert=cert,  # stubs: ignore : version < 1.24.0
+        )
         print(client_s)
         print("Request:")
         if use_stream:

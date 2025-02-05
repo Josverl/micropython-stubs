@@ -8,8 +8,9 @@ import logging
 import os
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-import ubinascii  # type: ignore
-import uhashlib  # type: ignore
+# omitted from test snippet as not part of stdlib
+# import ubinascii
+# import uhashlib
 
 logging.basicConfig(level=logging.DEBUG)
 log = logging.getLogger(__name__)
@@ -43,8 +44,9 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
                 info["Type"] = "file"
                 if gethash:
                     with open(full, "rb") as f:
-                        h = uhashlib.sha256(f.read())
-                        info["Hash"] = ubinascii.hexlify(h.digest())
+                        pass
+                        # h = uhashlib.sha256(f.read())
+                        # info["Hash"] = ubinascii.hexlify(h.digest())
         except OSError as e:
             log.error("error:{} processing file:{}".format(e, full))
             info["OSError"] = e.args[0]

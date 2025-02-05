@@ -19,7 +19,8 @@ e.add_peer(peer)  # Must add_peer() before send()
 
 e.send(peer, "Starting...")
 for i in range(100):
-    e.send(peer, str(i) * 20, True)  # type: ignore # TODO: https://github.com/orgs/micropython/discussions/16654
+    e.send(peer, str(i) * 20, True)  # stubs-ignore : version >= 1.24.0
+    # TODO: https://github.com/orgs/micropython/discussions/16654
 e.send(peer, b"end")
 
 ## Receiver:
@@ -49,7 +50,8 @@ for mac, msg in e:
         break
 
 # Documented , but not detected by createstubs.py
-print(e.peers_table)  # type: ignore # TODO: espnow ESPNow.peers_table - deal with undetectable attributes
+print(e.peers_table)  # stubs-ignore: version >= 1.24.1
+# TODO: espnow ESPNow.peers_table - deal with undetectable attributes
 # List of peers (MAC addresses) that have been added
 # A reference to the peer device table: a dict of known peer devices and rssi values:
 

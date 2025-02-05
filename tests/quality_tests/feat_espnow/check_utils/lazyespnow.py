@@ -88,7 +88,7 @@ class LazyESPNow(espnow.ESPNow):
         super().__init__()
 
     def _check_init(self):
-        if not any((w.active() for w in self.wlans)):
+        if not any((w.active() for w in self.wlans)):  # stubs-ignore : linter == "mypy"
             wlan = network.WLAN(self.default_if)
             wlan.active(True)
             if self.default_if == network.STA_IF:
@@ -113,7 +113,7 @@ class LazyESPNow(espnow.ESPNow):
     @_catch_esperror
     def __next__(self):
         self._check_init()
-        return super().__next__()
+        return super().__next__()  # stubs-ignore : version < 1.24.1
 
     @_catch_esperror
     def get_peer(self, mac):
