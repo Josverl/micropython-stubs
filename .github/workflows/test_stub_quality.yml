@@ -29,27 +29,35 @@ jobs:
       #----------------------------------------------
       - name: Install dependencies for group test
         run: | 
+          python -m venv .venv
+          source .venv/bin/activate
           pip install -r requirements-test.txt
+
 
       #----------------------------------------------
       # stubber clone
       # repos needed for tests
       #----------------------------------------------
       - name: stubber clone
-        run: stubber clone
+        run: | 
+          source .venv/bin/activate
+          stubber clone
 
 
       - name: update the stubs (not pushed) 
         continue-on-error: true
         run: |
+          source .venv/bin/activate
           pwsh -file ./update-stubs.ps1
 
       - name: Test the snippets 
         continue-on-error: true
         run: |
+          source .venv/bin/activate
           pytest -m 'snippets' --cache-clear --junitxml=./results/results.xml
 
 
       - name: compare and update
         run: |
+          source .venv/bin/activate
           python .github/workflows/compare_score.py
