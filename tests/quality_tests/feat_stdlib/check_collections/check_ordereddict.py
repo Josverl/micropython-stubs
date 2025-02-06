@@ -10,17 +10,15 @@ d2["c"] = 3
 
 # To make benefit of ordered keys, OrderedDict should be initialized
 # from sequence of (key, value) pairs.
-d3 = OrderedDict(
-    [("z", 1), ("a", 2)]  # stubs-ignore:  linter in ["pyright"] or version < 1.24.0
-)  # TODO: This @overload#3  used to work before a custom stdlib was added
+# issue https://github.com/Josverl/micropython-stubs/issues/789
+# d3 = OrderedDict(
+#     [("z", 1), ("a", 2)]  # stubs-ignore:  linter in ["pyright"] or version < 1.24.0
+# )  # TODO: This @overload#3  used to work before a custom stdlib was added
 
+d3 = OrderedDict()
 
 
 d3["w"] = 5
 d3["b"] = 3
 for k, v in d3.items():
     print(k, v)
-
-# Argument of type "list[tuple[str, int]]"
-# cannot be assigned to parameter "map" of type "Mapping[_KT@OrderedDict, _VT@OrderedDict]" in function "__init__"
-# "list[tuple[str, int]]" is not assignable to "Mapping[_KT@OrderedDict, _VT@OrderedDict]" (reportArgumentType)
