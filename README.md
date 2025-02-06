@@ -5,7 +5,7 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-19-green.svg?style=flat-square)](#Contributions)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black "Black badge")
 [![Checked with pyright](https://microsoft.github.io/pyright/img/pyright_badge.svg)](https://microsoft.github.io/pyright/) 
-[![Checked with pyright](https://github.com/Josverl/micropython-stubs/actions/workflows/test_stub_quality.yml/badge.svg?branch=main)](https://microsoft.github.io/pyright/) 
+<!-- [![Checked with pyright](https://github.com/Josverl/micropython-stubs/actions/workflows/test_stub_quality.yml/badge.svg?branch=main)](https://microsoft.github.io/pyright/) -->
 
 Welcome to the MicroPython Stubs repository! 
 
