@@ -43,7 +43,7 @@ You can help me by:
 
 - sending me a spare board you may have,
 
-- or by sponsoring me though Github
+- or by sponsoring me through Github
 
 ## Contributors
 
