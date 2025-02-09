@@ -2,83 +2,19 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, overload, Any, Tuple
+from typing import Any, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from machine import IDLE
 
 class RTC:
     """
-    The RTC is an independent clock that keeps track of the date
-    and time.
-
-    Example usage::
-
-        rtc = machine.RTC()
-        rtc.datetime((2020, 1, 21, 2, 10, 32, 36, 0))
-        print(rtc.datetime())
-
-
-
-    The documentation for RTC is in a poor state;1
+    Create an RTC object. See init for parameters of initialization.
     """
 
     ALARM0: Incomplete
     """irq trigger source"""
-    @overload
-    def __init__(self, id: int = 0):
-        """
-        Create an RTC object. See init for parameters of initialization.
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    def datetime(self, datetimetuple: Any | None = None) -> Tuple:
+    def __init__(self, id=0, *args, **kwargs) -> None: ...
+    def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
 
@@ -94,61 +30,13 @@ class RTC:
         """
         ...
 
-    @overload
-    def init(self) -> None:
+    def init(self, datetime) -> None:
         """
         Initialise the RTC. Datetime is a tuple of the form:
 
            ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
         """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
+        ...
 
     def now(self) -> Tuple:
         """
@@ -162,82 +50,27 @@ class RTC:
         """
         ...
 
-    @overload
-    def alarm(self, id: int, time: int, /, *, repeat: bool = False) -> None:
+    def alarm(self, id, time, *, repeat=False) -> None:
         """
         Set the RTC alarm. Time might be either a millisecond value to program the alarm to
         current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
         milliseconds, repeat can be set to ``True`` to make the alarm periodic.
         """
+        ...
 
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    def alarm_left(self, alarm_id: int = 0, /) -> int:
+    def alarm_left(self, alarm_id=0) -> int:
         """
         Get the number of milliseconds left before the alarm expires.
         """
         ...
 
-    def cancel(self, alarm_id: int = 0, /) -> None:
+    def cancel(self, alarm_id=0) -> None:
         """
         Cancel a running alarm.
         """
         ...
 
-    def irq(
-        self,
-        /,
-        *,
-        trigger: int,
-        handler: Callable[[RTC], None] | None = None,
-        wake: int = IDLE,
-    ) -> None:
+    def irq(self, *, trigger, handler=None, wake=IDLE) -> Incomplete:
         """
         Create an irq object triggered by a real time clock alarm.
 
@@ -248,7 +81,7 @@ class RTC:
         """
         ...
 
-    def memory(self, data: Any | None = None) -> bytes:
+    def memory(self, data: Optional[Any] = None) -> bytes:
         """
         ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any
         object which supports the buffer protocol (including `bytes`, `bytearray`,
