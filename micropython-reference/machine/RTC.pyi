@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import Any, Callable, Tuple, overload
+from typing_extensions import deprecated
 
 from _typeshed import Incomplete
 from machine import IDLE
@@ -225,7 +226,14 @@ class RTC:
         """
         ...
 
+    @deprecated("The mimxrt port ``RTC.cancel(alarm_id=0)``, but this is scheduled to be removed in MicroPython 2.0")
     def cancel(self, alarm_id: int = 0, /) -> None:
+        """
+        Cancel a running alarm.
+        """
+        ...
+
+    def alarm_cancel(self, alarm_id: int = 0, /) -> None:
         """
         Cancel a running alarm.
         """
