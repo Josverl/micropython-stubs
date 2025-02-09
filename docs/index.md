@@ -26,6 +26,7 @@ microbit_v2 type checking.md
 :caption: 'Advanced:'
 :maxdepth: 2
 typing_mpy.md
+32_rp2_asm.md
 20_install_detailed.md
 stub_types.md
 stub_locations.md
