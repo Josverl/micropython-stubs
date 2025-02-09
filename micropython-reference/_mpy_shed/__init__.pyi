@@ -43,7 +43,7 @@ from .io_mp import (
 )
 
 from .time_mp import _TimeTuple as _TimeTuple
-from .pathlike import PathLike
+from .pathlike import PathLike as PathLike
 
 # ------------------
 # copied from _typeshed  os.pyi as os.pyi cannot import from a module with the same name
