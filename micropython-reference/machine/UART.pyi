@@ -116,7 +116,7 @@ class UART:
         pins: tuple[PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of two pins.
         """
 
     @overload
@@ -132,7 +132,7 @@ class UART:
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of four pins.
         """
 
     @overload
@@ -215,6 +215,7 @@ class UART:
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
+        # Tuple two pins for TX and RX
         """
         Initialise the UART bus with the given parameters:
 
@@ -278,6 +279,7 @@ class UART:
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:
+        # Tuple four pins for TX, RX, RTS and CTS
         """
         Initialise the UART bus with the given parameters:
 
