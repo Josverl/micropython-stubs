@@ -19,8 +19,8 @@ e.add_peer(peer)  # Must add_peer() before send()
 
 e.send(peer, "Starting...")
 for i in range(100):
-    e.send(peer, str(i) * 20, True)  # stubs-ignore : version >= 1.24.0
-    # TODO: https://github.com/orgs/micropython/discussions/16654
+    e.send(peer, str(i) * 20, True)
+
 e.send(peer, b"end")
 
 ## Receiver:
@@ -60,3 +60,7 @@ print(e.peers_table)  # stubs-ignore: version >= 1.24.1
 bcast = b"\xff" * 6
 e.add_peer(bcast)
 e.send(bcast, "Hello World!")
+e.send("Hello World!")
+e.send(b"Hello World!")
+
+
