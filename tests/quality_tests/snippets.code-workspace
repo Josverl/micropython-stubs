@@ -83,10 +83,6 @@
         {
             "name": "snippets",
             "path": "."
-        },
-        {
-            "name": "micropython-reference",
-            "path": "../../micropython-reference"
         }
     ],
     "settings": {
