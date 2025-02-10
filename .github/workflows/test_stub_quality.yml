@@ -44,11 +44,11 @@ jobs:
           stubber clone
 
 
-      - name: update the stubs (not pushed) 
-        continue-on-error: true
-        run: |
-          source .venv/bin/activate
-          pwsh -file ./update-stubs.ps1
+    #   - name: update the stubs (not pushed) 
+    #     continue-on-error: true
+    #     run: |
+    #       source .venv/bin/activate
+    #       pwsh -file ./update-stubs.ps1
 
       - name: Test the snippets 
         continue-on-error: true

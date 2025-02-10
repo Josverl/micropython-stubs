@@ -60,8 +60,10 @@ def asm_pio(
     - *out_init* configures the pins used for ``out()`` instructions.
     - *set_init* configures the pins used for ``set()`` instructions. There can
       be at most 5.
-    - *sideset_init* configures the pins used side-setting. There can be at
-      most 5.
+    - *sideset_init* configures the pins used for ``.side()`` modifiers. There
+      can be at most 5.
+    - *side_pindir* when set to ``True`` configures ``.side()`` modifiers to be
+      used for pin directions, instead of pin values (the default, when ``False``).
 
     The following parameters are used by default, but can be overridden in
     `StateMachine.init()`:

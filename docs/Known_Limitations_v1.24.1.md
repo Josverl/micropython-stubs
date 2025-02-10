@@ -17,8 +17,28 @@ feat_stdlib_only\check_ssl.py:48: | `return (ssl.wrap_socket(client, cert=cert, 
 feat_stdlib_only\check_collections\check_ordereddict.py:5: | `d = OrderedDict([("z", 1), ("a", 2)])  # stubs-ignore: linter == "pyright"`| -
 feat_stdlib_only\check_sys\check_sys.py:31: | `previous = sys.atexit(byebye) # stubs-ignore: linter == "mypy"`| error: Module has no attribute "atexit"; maybe "exit"?  [attr-defined]
 feat_asyncio\check_demo\aiorepl.py:67: |`return await exec_task  `| # type: ignore # pyright/mypy doesn't like the await here
-feat_asyncio\check_demo\aiorepl.py:197: |`sys.stdout.write(b)  # type: ignore `| # TODO write(bytes) not supported by stubs
-feat_asyncio\check_demo\auart_hd.py:17: |`from primitives.delay_ms import Delay_ms  # type: ignore`|
+feat_asyncio\check_demo\aiorepl.py:197: |`sys.stdout.write(b)  # type: ignore `| # TODO sys.stdout.write(bytes) not supported by stubs
+feat_stdlib\check_uio.py:11: |`buf = io.BufferedWriter(stream, 8)  # type: ignore "`| # TODO stdlib.io "TextIOWrapper" is incompatible with "RawIOBase
+feat_stdlib\check_json\check_json.py:56: |`json.dump(data, file, indent=4)  # type: ignore`| #TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:59: |`data = json.load(file, cls=None)  # type: ignore`| #TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:60: |`data = json.load(file, object_hook=None)  # type: ignore`| #TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:61: |`data = json.load(file, object_pairs_hook=None)  # type: ignore`|#TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:62: |`data = json.load(file, parse_float=None)  # type: ignore`|#TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:63: |`data = json.load(file, parse_int=None)  # type: ignore`|#TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:64: |`data = json.load(file, parse_constant=None)  # type: ignore`|#TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:67: |`data = json.loads(JSON_DATA, cls=None)  # type: ignore`|#TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:68: |`data = json.loads(JSON_DATA, object_hook=None)  # type: ignore`|#TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:69: |`data = json.loads(JSON_DATA, object_pairs_hook=None)  # type: ignore`|#TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:70: |`data = json.loads(JSON_DATA, parse_float=None)  # type: ignore`|#TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:71: |`data = json.loads(JSON_DATA, parse_int=None)  # type: ignore`|#TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_json\check_json.py:72: |`data = json.loads(JSON_DATA, parse_constant=None)  # type: ignore`|#TODO - Json dump/load expose too many params to the user
+feat_stdlib\check_sys\check_implementation.py:12: |`assert_type(impl, NamedTuple)  # type: ignore `| # TODO sys.implementation is not a tuple
+feat_stdlib_only\check_ssl.py:31: |`ctx.load_cert_chain(cert, key) # type: ignore`| 
+
+
+QA test | code fragment| type check error 
+--------|--------------| ----------------
+feat_asyncio\check_demo\auart_hd.py:17: |`from primitives.delay_ms import Delay_ms  # type: ignore`| # possibly error in test code
 
 ## MYPY  micropython stdlib stubs
 
@@ -86,7 +106,6 @@ feat_stdlib\check_os\check_uname.py:26: | `assert_type(os_uname.version, str)  #
 
 QA test | code fragment| type check error 
 --------|--------------| ----------------
-
 feat_espnow\check_espnow.py:22: |`e.send(peer, str(i) * 20, True)  # type: ignore `| # TODO: https://github.com/orgs/micropython/discussions/16654
 feat_espnow\check_espnow.py:52: |`print(e.peers_table)  # type: ignore `|# TODO: espnow ESPNow.peers_table - deal with undetectable attributes
 feat_espnow\check_utils\timer.py:114: |`i, dt = next(self.timer)  # type: ignore`|
@@ -99,19 +118,3 @@ feat_micropython\check_uctypes.py:84: |`WWDG.WWDG_CR.WDGA = 1  # type: ignore # 
 feat_micropython\check_uctypes.py:85: |`print("Current counter:", WWDG.WWDG_CR.T) # type: ignore `|uctypes - known member does not work
 feat_micropython\check_micropython\check_asm_thumb.py:1: |`# type: ignore`| micropython.asm_thumb - document that the opcodes are not recognized
 feat_micropython\check_micropython\check_viper.py:10: |`buf = ptr8(self.linebuf)  # type: ignore`| micropython.viper - document that the opcodes are not recognized
-feat_stdlib\check_uio.py:11: |`buf = io.BufferedWriter(stream, 8)  # type: ignore "`| # TODO stdlib.io "TextIOWrapper" is incompatible with "RawIOBase
-feat_stdlib\check_json\check_json.py:56: |`json.dump(data, file, indent=4)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:59: |`data = json.load(file, cls=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:60: |`data = json.load(file, object_hook=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:61: |`data = json.load(file, object_pairs_hook=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:62: |`data = json.load(file, parse_float=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:63: |`data = json.load(file, parse_int=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:64: |`data = json.load(file, parse_constant=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:67: |`data = json.loads(JSON_DATA, cls=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:68: |`data = json.loads(JSON_DATA, object_hook=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:69: |`data = json.loads(JSON_DATA, object_pairs_hook=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:70: |`data = json.loads(JSON_DATA, parse_float=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:71: |`data = json.loads(JSON_DATA, parse_int=None)  # type: ignore`|
-feat_stdlib\check_json\check_json.py:72: |`data = json.loads(JSON_DATA, parse_constant=None)  # type: ignore`|
-feat_stdlib\check_sys\check_implementation.py:12: |`assert_type(impl, NamedTuple)  # type: ignore | # TODO sys.implementation is not a tuple`
-feat_stdlib_only\check_ssl.py:31: |`ctx.load_cert_chain(cert, key) # type: ignore`| 

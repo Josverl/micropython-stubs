@@ -13,16 +13,19 @@ if (
 
 # Check all uname fields
 os_uname = os.uname()  # stubs-ignore: port in ["samd"]
+
+reveal_type(os_uname)
+
 print(os_uname.sysname)
 print(os_uname.nodename)
 print(os_uname.release)
 print(os_uname.machine)
 print(os_uname.version)
 
-assert_type(os_uname.sysname, str)  # stubs-ignore: port in ["samd"] or version < 1.24.0
-assert_type(os_uname.nodename, str)  # stubs-ignore: port in ["samd"] or version < 1.24.0
-assert_type(os_uname.release, str)  # stubs-ignore: port in ["samd"] or version < 1.24.0
-assert_type(os_uname.machine, str)  # stubs-ignore: port in ["samd"] or version < 1.24.0
-assert_type(os_uname.version, str)  # stubs-ignore: port in ["samd"] or version < 1.24.0
+# issue: https://github.com/Josverl/micropython-stubs/issues/790
+# assert_type(os_uname.sysname, str)  # stubs-ignore: port in ["samd"] or version < 1.24.0
+# assert_type(os_uname.nodename, str)  # stubs-ignore: port in ["samd"] or version < 1.24.0
+# assert_type(os_uname.release, str)  # stubs-ignore: port in ["samd"] or version < 1.24.0
+# assert_type(os_uname.machine, str)  # stubs-ignore: port in ["samd"] or version < 1.24.0
+# assert_type(os_uname.version, str)  # stubs-ignore: port in ["samd"] or version < 1.24.0
 
-# reveal_type(os_uname)

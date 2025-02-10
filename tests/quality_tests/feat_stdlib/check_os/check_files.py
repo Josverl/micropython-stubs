@@ -20,6 +20,10 @@ os.rename("newfile.txt", "renamedfile.txt")
 # if os.path.exists("renamedfile.txt"):
 #     print("File exists.")
 
+x = os.stat("newfile.txt")
+
+y = os.stat(3) # Should raise an error 
+
 # Remove the file
 os.remove("renamedfile.txt")
 
