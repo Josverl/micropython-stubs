@@ -95,7 +95,7 @@
         // "python.autoComplete.extraPaths": [],
         // "python.analysis.typeshedPaths": [],
         "[python]": {
-            "editor.defaultFormatter": "ms-python.black-formatter"
+            // "editor.defaultFormatter": "ms-python.black-formatter"
         },
         "workbench.colorCustomizations": {
             "activityBar.activeBackground": "#f13e97",
@@ -122,11 +122,11 @@
         "peacock.color": "#eb117e",
         "testExplorer.useNativeTesting": true,
         "python.analysis.enableSyncServer": false,
-        "python.testing.autoTestDiscoverOnSaveEnabled": false
+        "python.testing.autoTestDiscoverOnSaveEnabled": false,
+        "editor.defaultFormatter": null,
+        "ruff.lineLength": 120,
+        "ruff.lint.enable": false,
+        "python.testing.pytestEnabled": true
     },
-    "extensions": {
-        "recommendations": [
-            "ms-python.black-formatter"
-        ]
-    },
+    "extensions": {},
 }
