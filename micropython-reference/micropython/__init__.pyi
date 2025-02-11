@@ -357,3 +357,16 @@ def asm_thumb(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     See: https://docs.micropython.org/en/latest/reference/asm_thumb2_index.html
     """
     ...
+
+@overload  # force merge
+def asm_xtensa(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
+    """
+    This decorator is used to mark a function as containing inline assembler code for the esp8266.
+    The assembler code is written in the Xtensa instruction set, and is executed on the target CPU.
+
+    Availability: Only on eps8266 boards.
+    """
+    ...
+    # See :
+    # - https://github.com/orgs/micropython/discussions/12965
+    # - https://github.com/micropython/micropython/pull/16731
