@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import abc  # type: ignore - not collections.abc
 import sys
-from array import array
+
 from typing import Final, final
 
 from _typeshed import Incomplete, structseq, AnyStr_co
@@ -22,11 +22,12 @@ from typing_extensions import TypeAlias, TypeVar
 from .subscriptable import Subscriptable as Subscriptable
 from .IRQs import _IRQ
 from .neopixelbase import _NeoPixelBase as _NeoPixelBase
-from blockdevice import (
+from .blockdevice import (
     _BlockDeviceProtocol as _BlockDeviceProtocol,
     _OldAbstractBlockDev,
     _OldAbstractReadOnlyBlockDev,
 )
+from .buffer_mp import AnyReadableBuf as AnyReadableBuf, AnyWritableBuf as AnyWritableBuf
 
 from .io_mp import (
     BytesIO as BytesIO,
@@ -48,11 +49,6 @@ from .pathlike import PathLike as PathLike
 # ------------------
 # copied from _typeshed  os.pyi as os.pyi cannot import from a module with the same name
 GenericAlias = type(list[int])
-
-# ------------------------------------------------------------------------------------
-# TODO: need some to allow string to be passed in : uart_1.write("hello")
-AnyReadableBuf: TypeAlias = bytearray | array | memoryview | bytes | Incomplete
-AnyWritableBuf: TypeAlias = bytearray | array | memoryview | Incomplete
 
 # ------------------------------------------------------------------------------------
 StrOrBytesPath: TypeAlias = str | bytes | PathLike[str] | PathLike[bytes]
