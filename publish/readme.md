@@ -18,15 +18,6 @@ Initially `<family>` is `micropython`, but this may be extended to other firmwar
       - micropython-rp2-stubs
       - micropython-esp8266-stubs
 
- * `<family>-doc-stubs`  
-    The documentation stubs for a specific version of MicroPython ( V1.17 and newer).
-    These stubs are generated based on the documentation of the MicroPython firmware and contain rich type information.
-    however they will contain references to features that are not available in other ports that may not be available on your board.
-
-    The intent is for these stubs to be merged into 
-    Example:
-      - micropython-doc-stubs
-
 **Note:** that the different stubs packages have significant overlaps in the types they provide.
 If you install multiple stubs packages, the last installed package may/will overwrite some of the types by another package.
 
