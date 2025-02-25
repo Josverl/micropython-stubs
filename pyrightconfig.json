@@ -1,7 +1,8 @@
 // https://github.com/microsoft/pyright/blob/main/docs/configuration.md
 {
     "include": [
-        "tests", "docs"
+        "tests",
+        "docs"
     ],
     "exclude": [
         // other artefacts
@@ -74,7 +75,7 @@
     "pythonPlatform": "All",
     "verboseOutput": false,
     //"stubPath": "./typings",
-    "typeCheckingMode": "off",
+    "typeCheckingMode": "basic",
     // errors
     "reportMissingImports": "error",
     "reportMissingModuleSource": "error",
@@ -233,13 +234,13 @@
     //             "stubs/micropython-pico-go/stdlib"
     //         ],
     //     },
-        // default 
-        // {
-        //     "root": "stubs",
-        //     "extraPaths": [
-        //         "stubs/cpython_core-pycopy",
-        //         "all-stubs/micropython-latest-docstubs",
-        //     ],
-        // },
+    // default 
+    // {
+    //     "root": "stubs",
+    //     "extraPaths": [
+    //         "stubs/cpython_core-pycopy",
+    //         "all-stubs/micropython-latest-docstubs",
+    //     ],
+    // },
     // ]
 }

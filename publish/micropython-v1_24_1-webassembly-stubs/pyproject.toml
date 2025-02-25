@@ -1,0 +1,121 @@
+[project]
+name = "micropython-webassembly-stubs"
+description = "MicroPython stubs"
+version = "1.24.1.post1"
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Jos Verlinde", email = "josverl@users.noreply.github.com" },
+]
+classifiers = [
+    "Typing :: Stubs Only",
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: MicroPython",
+    "Operating System :: OS Independent",
+    "Topic :: Text Editors :: Integrated Development Environments (IDE)",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Embedded Systems",
+    "Topic :: Software Development :: Testing",
+    "Natural Language :: English",
+]
+dependencies = [
+    "micropython-stdlib-stubs  >=1.24.0",
+]
+
+[project.urls]
+homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
+documentation = "https://micropython-stubs.readthedocs.io/"
+repository = "https://github.com/josverl/micropython-stubs"
+
+[tool.poetry]
+exclude = [
+    "*.ps1",
+    "*.py",
+    "**/__pycache__",
+    "**/dist",
+]
+include = [
+    "**/*.py",
+    "**/*.pyi",
+]
+packages = [
+    { include = "__builtins__.pyi" },
+    { include = "array.pyi" },
+    { include = "base64.pyi" },
+    { include = "binascii.pyi" },
+    { include = "cmath.pyi" },
+    { include = "copy.pyi" },
+    { include = "datetime.pyi" },
+    { include = "deflate.pyi" },
+    { include = "errno.pyi" },
+    { include = "fnmatch.pyi" },
+    { include = "framebuf.pyi" },
+    { include = "functools.pyi" },
+    { include = "gc.pyi" },
+    { include = "gzip.pyi" },
+    { include = "hashlib.pyi" },
+    { include = "heapq.pyi" },
+    { include = "hmac.pyi" },
+    { include = "html/__init__.pyi" },
+    { include = "inspect.pyi" },
+    { include = "itertools.pyi" },
+    { include = "js.pyi" },
+    { include = "jsffi.pyi" },
+    { include = "json.pyi" },
+    { include = "locale.pyi" },
+    { include = "logging.pyi" },
+    { include = "math.pyi" },
+    { include = "micropython.pyi" },
+    { include = "mip.pyi" },
+    { include = "operator.pyi" },
+    { include = "os/__init__.pyi" },
+    { include = "os/path.pyi" },
+    { include = "pathlib.pyi" },
+    { include = "platform.pyi" },
+    { include = "pyscript/__init__.pyi" },
+    { include = "pyscript/fs.pyi" },
+    { include = "pyscript/web.pyi" },
+    { include = "random.pyi" },
+    { include = "select.pyi" },
+    { include = "stat.pyi" },
+    { include = "string.pyi" },
+    { include = "struct.pyi" },
+    { include = "tarfile/__init__.pyi" },
+    { include = "tarfile/write.pyi" },
+    { include = "time.pyi" },
+    { include = "uarray.pyi" },
+    { include = "uasyncio.pyi" },
+    { include = "ubinascii.pyi" },
+    { include = "ucollections.pyi" },
+    { include = "uctypes.pyi" },
+    { include = "uerrno.pyi" },
+    { include = "uhashlib.pyi" },
+    { include = "uheapq.pyi" },
+    { include = "uio.pyi" },
+    { include = "ujson.pyi" },
+    { include = "umachine.pyi" },
+    { include = "unittest/__init__.pyi" },
+    { include = "uos.pyi" },
+    { include = "uplatform.pyi" },
+    { include = "urandom.pyi" },
+    { include = "ure.pyi" },
+    { include = "uselect.pyi" },
+    { include = "usocket.pyi" },
+    { include = "ussl.pyi" },
+    { include = "ustruct.pyi" },
+    { include = "usys.pyi" },
+    { include = "utime.pyi" },
+    { include = "uu.pyi" },
+    { include = "uzlib.pyi" },
+    { include = "vfs.pyi" },
+    { include = "zlib.pyi" },
+]
+
+[build-system]
+requires = [
+    "poetry-core>=1.0.0",
+]
+build-backend = "poetry.core.masonry.api"
