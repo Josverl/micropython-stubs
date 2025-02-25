@@ -1,5 +1,5 @@
 # pyscript referene stubs 
- - Version : 2025.1.3
+ - Version : 2025.2.3
 
 ## Steps to create detailed pyright stubs 
 
@@ -19,6 +19,7 @@
   - from the pyscript repo : `core/src/stdlib/typings/pyscript`
   - to the micropython-stubs repo `reference/pyscript` 
 
+- check with pylance/pyright, mypy, ruff
 
 ## Create MCU/Firmware stubs on pyscript.com
 Steps to run createstubs on pyscript.com 
@@ -26,7 +27,7 @@ Steps to run createstubs on pyscript.com
 
 - create a project in pyscript.com
     - set script type to mpy 
-    - use pytscript 2025.1.3 or newer to be able to use [`pyscript.fs`](https://docs.pyscript.net/2025.2.3/api/#pyscriptfs)
+    - use pyscript 2025.2.3 or newer to be able to use [`pyscript.fs`](https://docs.pyscript.net/2025.2.3/api/#pyscriptfs)
 - copy the createstubs.py script to the project
 - add the script to mount , sync and dismount a local filesystem
 
@@ -37,7 +38,12 @@ Steps to run createstubs on pyscript.com
     - these will sync back to the local folder 
 - [optionally] copy from he temp folder to the micropython-stubs repo to the `stubs folder`
 - rename the `stubs/micropython-v1_24_1-webassembly` folder to `stubs/micropython-v1_24_1-webassembly-GENERIC` 
-*stub postprocessing:*
+
+*Postprocessing:*
+ - *Manual merge/copy:* # TODO: integrate this in the automatic merge process 
+    - copy the 'pyright' stubs
+        - from: `reference/pyright`
+        - into `stubs/micropython-v1_24_1-webassembly-GENERIC/pyright` 
+        (overwriting the existing files)
 - `stubber merge --port webassembly --version v1.24.1`
 - `stubber build --port webassembly --version v1.24.1`
-
