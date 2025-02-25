@@ -1,20 +1,10 @@
 """
-Module: 'pyscript.fs' on micropython-v1.24.1-webassembly
+Pyscript 2025.2.3 type-stub.
+see: https://docs.pyscript.net/2025.2.3/api/
 """
 
-# MCU: {'family': 'micropython', 'version': '1.24.1', 'build': '', 'ver': '1.24.1', 'port': 'webassembly', 'board': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.24.0
-from __future__ import annotations
-from typing import Any, Final, Generator
-from _typeshed import Incomplete
+mounted = ...
 
-mounted: dict = {}
-
-def unmount(*args, **kwargs) -> Generator:  ## = <generator>
-    ...
-
-def mount(*args, **kwargs) -> Generator:  ## = <generator>
-    ...
-
-def sync(*args, **kwargs) -> Generator:  ## = <generator>
-    ...
+async def mount(path, mode=..., root=..., id=...) -> None: ...
+async def sync(path) -> None: ...
+async def unmount(path) -> None: ...

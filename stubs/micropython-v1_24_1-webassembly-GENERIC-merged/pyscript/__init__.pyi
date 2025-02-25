@@ -1,70 +1,37 @@
 """
-Module: 'pyscript.__init__' on micropython-v1.24.1-webassembly
+PyScript makes available convenience objects, functions and attributes.
+
+These APIs will work with both Pyodide and Micropython in exactly the same way.
+
+PyScript can run in two contexts: the main browser thread, or on a web worker. T
+he following three categories of API functionality explain features that are common for:
+ - both main thread and worker, 
+ - main thread only, 
+ - and worker only. 
+ 
+ Most features work in both contexts in exactly the same manner, but please be aware that some are specific to either the main thread 
+ or a worker context.
+
 """
 
-# MCU: {'family': 'micropython', 'version': '1.24.1', 'build': '', 'ver': '1.24.1', 'port': 'webassembly', 'board': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.24.0
-from __future__ import annotations
-from typing import Any, Final, Generator
-from _typeshed import Incomplete
+from polyscript import lazy_py_modules as py_import  # type: ignore
+from pyscript.display import HTML, display
+from pyscript.events import Event, when
+from pyscript.fetch import fetch
+from pyscript.magic_js import js_modules  # type: ignore
+from pyscript.magic_js import (
+    RUNNING_IN_WORKER,
+    PyWorker,
+    config,
+    current_target,
+    document,
+    js_import,
+    sync,
+    window,
+)
+from pyscript.storage import Storage, storage
+from pyscript.websocket import WebSocket
+from pyscript.workers import create_named_worker, workers
 
-config: dict = {}
-RUNNING_IN_WORKER: Final[bool] = False
-
-def display(*args, **kwargs) -> Incomplete: ...
-def current_target(*args, **kwargs) -> Incomplete: ...
-def fetch(*args, **kwargs) -> Incomplete: ...
-def when(*args, **kwargs) -> Incomplete: ...
-
-workers: Incomplete  ## <class '_ReadOnlyProxy'> = <_ReadOnlyProxy object at ...>
-
-class HTML:
-    def _repr_html_(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-class Storage:
-    def popitem(self, *args, **kwargs) -> Incomplete: ...
-    def pop(self, *args, **kwargs) -> Incomplete: ...
-    def values(self, *args, **kwargs) -> Incomplete: ...
-    def setdefault(self, *args, **kwargs) -> Incomplete: ...
-    def update(self, *args, **kwargs) -> Incomplete: ...
-    def keys(self, *args, **kwargs) -> Incomplete: ...
-    def copy(self, *args, **kwargs) -> Incomplete: ...
-    def get(self, *args, **kwargs) -> Incomplete: ...
-    def items(self, *args, **kwargs) -> Incomplete: ...
-    @classmethod
-    def fromkeys(cls, *args, **kwargs) -> Incomplete: ...
-    def sync(*args, **kwargs) -> Generator:  ## = <generator>
-        ...
-
-    def clear(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-def storage(*args, **kwargs) -> Generator:  ## = <generator>
+if not RUNNING_IN_WORKER:
     ...
-
-class WebSocket:
-    OPEN: Final[int] = 1
-    CLOSED: Final[int] = 3
-    CLOSING: Final[int] = 2
-    CONNECTING: Final[int] = 0
-    def send(self, *args, **kwargs) -> Incomplete: ...
-    def close(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-def create_named_worker(*args, **kwargs) -> Generator:  ## = <generator>
-    ...
-
-py_import: Incomplete  ## <class 'JsProxy'> = <JsProxy 128>
-
-class Event:
-    def add_listener(self, *args, **kwargs) -> Incomplete: ...
-    def remove_listener(self, *args, **kwargs) -> Incomplete: ...
-    def trigger(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-
-sync: Incomplete  ## <class 'NotSupported'> = <NotSupported pyscript.sync [pyscript.sync works only when running in a worker]>
-PyWorker: Incomplete  ## <class 'JsProxy'> = <JsProxy 15>
-js_modules: Incomplete  ## <class 'JsProxy'> = <JsProxy 7>
-js_import: Incomplete  ## <class 'JsProxy'> = <JsProxy 16>
-document: Incomplete  ## <class 'JsProxy'> = <JsProxy 17>

@@ -1,4781 +1,929 @@
 """
-Module: 'pyscript.web' on micropython-v1.24.1-webassembly
+Lightweight interface to the DOM and HTML elements.
+
+As a convenience, and to ensure backwards compatibility, PyScript allows the use of inline event handlers via custom HTML attributes.
+
+Warning: 
+    This classic pattern of coding (inline event handlers) is no longer considered good practice in web development circles.
+
+We include this behaviour for historic reasons, but the folks at Mozilla have a good explanation of why this is currently considered bad practice.
+
+These attributes, expressed as py-* or mpy-* attributes of an HTML element, reference the name of a Python function to run when the event is fired. 
+You should replace the * with the actual name of an event (e.g. py-click or mpy-click). This is similar to how all event handlers on elements start 
+with on in standard HTML (e.g. onclick). The rule of thumb is to simply replace on with py- or mpy- and then reference the name of a Python function.
 """
-# MCU: {'family': 'micropython', 'version': '1.24.1', 'build': '', 'ver': '1.24.1', 'port': 'webassembly', 'board': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.24.0
-from __future__ import annotations
-from typing import Any, Final, Generator
+
+from pyscript import Event, document
+from pyscript import when as when
+from pyscript.ffi import create_proxy
+
+"""Lightweight interface to the DOM and HTML elements."""
+from typing import Any, Generator, List
+
 from _typeshed import Incomplete
+from typing_extensions import Self
 
-ELEMENT_CLASSES: list = []
-_B: Final[str] = 'on_'
-def when(*args, **kwargs) -> Incomplete:
+def wrap_dom_element(dom_element):
+    """Wrap an existing DOM element in an instance of a subclass of `Element`.
+
+    This is just a convenience function to avoid having to import the `Element` class
+    and use its class method.
+    """
     ...
 
-def wrap_dom_element(*args, **kwargs) -> Incomplete:
+class Element:
+    element_classes_by_tag_name = ...
+    @classmethod
+    def get_tag_name(cls) -> str:
+        """Return the HTML tag name for the class.
+
+        For classes that have a trailing underscore (because they clash with a Python
+        keyword or built-in), we remove it to get the tag name. e.g. for the `input_`
+        class, the tag name is `input`.
+
+        """
+        ...
+
+    @classmethod
+    def register_element_classes(cls, element_classes) -> None:
+        """Register an iterable of element classes."""
+        ...
+
+    @classmethod
+    def unregister_element_classes(cls, element_classes) -> None:
+        """Unregister an iterable of element classes."""
+        ...
+
+    @classmethod
+    def wrap_dom_element(cls, dom_element):
+        """Wrap an existing DOM element in an instance of a subclass of `Element`.
+
+        We look up the `Element` subclass by the DOM element's tag name. For any unknown
+        elements (custom tags etc.) use *this* class (`Element`).
+        """
+        ...
+
+    def __init__(self, dom_element=..., classes=..., style=..., **kwargs) -> None:
+        """Create a new, or wrap an existing DOM element.
+
+        If `dom_element` is None we are being called to *create* a new element.
+        Otherwise, we are being called to *wrap* an existing DOM element.
+        """
+        ...
+
+    def __eq__(self, obj) -> bool:
+        """Check for equality by comparing the underlying DOM element."""
+        ...
+
+    def __getitem__(self, key) -> ElementCollection:
+        """Get an item within the element's children.
+
+        If `key` is an integer or a slice we use it to index/slice the element's
+        children. Otherwise, we use `key` as a query selector.
+        """
+        ...
+
+    def __getattr__(self, name) -> Event | Any:
+        """
+        Get an attribute from the element.
+
+        If the attribute is an event (e.g. "on_click"), we wrap it in an `Event`
+        instance and return that. Otherwise, we return the attribute from the
+        underlying DOM element.
+        """
+        ...
+
+    def __setattr__(self, name, value) -> None: ...
+    def get_event(self, name) -> Event:
+        """
+        Get an `Event` instance for the specified event name.
+        """
+        ...
+
+    @property
+    def children(self) -> ElementCollection:
+        """Return the element's children as an `ElementCollection`."""
+        ...
+
+    @property
+    def classes(self) -> Classes:
+        """Return the element's `classList` as a `Classes` instance."""
+        ...
+
+    @property
+    def parent(self) -> None:
+        """Return the element's `parent `Element`."""
+        ...
+
+    @property
+    def style(self) -> Style:
+        """Return the element's `style` attribute as a `Style` instance."""
+        ...
+
+    def append(self, *items) -> None:
+        """Append the specified items to the element."""
+        ...
+
+    def clone(self, clone_id=...):
+        """Make a clone of the element (clones the underlying DOM object too)."""
+        ...
+
+    def find(self, selector) -> ElementCollection:
+        """Find all elements that match the specified selector.
+
+        Return the results as a (possibly empty) `ElementCollection`.
+        """
+        ...
+
+    def show_me(self) -> None:
+        """Convenience method for 'element.scrollIntoView()'."""
+        ...
+
+    def update(self, classes=..., style=..., **kwargs) -> None:
+        """Update the element with the specified classes, styles, and DOM properties."""
+        ...
+
+class Classes:
+    """A set-like interface to an element's `classList`."""
+
+    def __init__(self, element: Element) -> None: ...
+    def __contains__(self, item) -> bool: ...
+    def __eq__(self, other) -> bool: ...
+    def __iter__(self): ...
+    def __len__(self) -> int: ...
+    def __repr__(self) -> str: ...
+    def __str__(self) -> str: ...
+    def add(self, *class_names) -> None:
+        """Add one or more classes to the element."""
+        ...
+
+    def contains(self, class_name) -> bool:
+        """Check if the element has the specified class."""
+        ...
+
+    def remove(self, *class_names) -> None:
+        """Remove one or more classes from the element."""
+        ...
+
+    def replace(self, old_class, new_class) -> None:
+        """Replace one of the element's classes with another."""
+        ...
+
+    def toggle(self, *class_names) -> None:
+        """Toggle one or more of the element's classes."""
+        ...
+
+class HasOptions:
+    """Mix-in for elements that have an options attribute.
+
+    The elements that support options are: <datalist>, <optgroup>, and <select>.
+    """
+
+    @property
+    def options(self) -> Options:
+        """Return the element's options as an `Options"""
+        ...
+
+class Options:
+    """This class represents the <option>s of a <datalist>, <optgroup> or <select>.
+
+    It allows access to add and remove <option>s by using the `add`, `remove` and
+    `clear` methods.
+    """
+
+    def __init__(self, element) -> None: ...
+    def __getitem__(self, key): ...
+    def __iter__(self) -> Generator[Any, Any, None]: ...
+    def __len__(self) -> int: ...
+    def __repr__(self) -> str: ...
+    @property
+    def options(self) -> list[Any]:
+        """Return the list of options."""
+        ...
+
+    @property
+    def selected(self):
+        """Return the selected option."""
+        ...
+
+    def add(self, value=..., html=..., text=..., before=..., **kwargs) -> None:
+        """Add a new option to the element"""
+        ...
+
+    def clear(self) -> None:
+        """Remove all options."""
+        ...
+
+    def remove(self, index) -> None:
+        """Remove the option at the specified index."""
+        ...
+
+class Style:
+    """A dict-like interface to an element's `style` attribute."""
+
+    def __init__(self, element: Element) -> None: ...
+    def __getitem__(self, key) -> Element: ...
+    def __setitem__(self, key, value) -> None: ...
+    def remove(self, key) -> None:
+        """Remove a CSS property from the element."""
+        ...
+
+    def set(self, **kwargs) -> None:
+        """Set one or more CSS properties on the element."""
+        ...
+
+    @property
+    def visible(self) -> Incomplete: ...
+    @visible.setter
+    def visible(self, value) -> None: ...
+
+class ContainerElement(Element):
+    """Base class for elements that can contain other elements."""
+
+    def __init__(
+        self, *args, children=..., dom_element=..., style=..., classes=..., **kwargs
+    ) -> None: ...
+    def __iter__(self) -> Generator[Any, Any, None]: ...
+
+class ClassesCollection:
+    """A set-like interface to the classes of the elements in a collection."""
+
+    def __init__(self, collection) -> None: ...
+    def __contains__(self, class_name) -> bool: ...
+    def __eq__(self, other) -> bool: ...
+    def __iter__(self) -> Generator[Any, Any, None]: ...
+    def __len__(self) -> int: ...
+    def __repr__(self) -> str: ...
+    def __str__(self) -> str: ...
+    def add(self, *class_names) -> None:
+        """Add one or more classes to the elements in the collection."""
+        ...
+
+    def contains(self, class_name) -> bool:
+        """Check if any element in the collection has the specified class."""
+        ...
+
+    def remove(self, *class_names) -> None:
+        """Remove one or more classes from the elements in the collection."""
+        ...
+
+    def replace(self, old_class, new_class) -> None:
+        """Replace one of the classes in the elements in the collection with another."""
+        ...
+
+    def toggle(self, *class_names) -> None:
+        """Toggle one or more classes on the elements in the collection."""
+        ...
+
+class StyleCollection:
+    """A dict-like interface to the styles of the elements in a collection."""
+
+    def __init__(self, collection) -> None: ...
+    def __getitem__(self, key) -> list[Any]: ...
+    def __setitem__(self, key, value) -> None: ...
+    def __repr__(self) -> str: ...
+    def remove(self, key) -> None:
+        """Remove a CSS property from the elements in the collection."""
+        ...
+
+class ElementCollection:
+    @classmethod
+    def wrap_dom_elements(cls, dom_elements) -> Self:
+        """Wrap an iterable of dom_elements in an `ElementCollection`."""
+        ...
+
+    def __init__(self, elements: List[Element]) -> None: ...
+    def __eq__(self, obj) -> bool:
+        """Check for equality by comparing the underlying DOM elements."""
+        ...
+
+    def __getitem__(self, key) -> ElementCollection:
+        """Get an item in the collection.
+
+        If `key` is an integer or a slice we use it to index/slice the collection.
+        Otherwise, we use `key` as a query selector.
+        """
+        ...
+
+    def __iter__(self) -> Generator[Any, Any, None]: ...
+    def __len__(self) -> int: ...
+    def __repr__(self) -> str: ...
+    def __getattr__(self, name) -> list[Any]: ...
+    def __setattr__(self, name, value) -> None: ...
+    @property
+    def classes(self) -> ClassesCollection:
+        """Return the classes of the elements in the collection as a `ClassesCollection`."""
+        ...
+
+    @property
+    def elements(self):
+        """Return the elements in the collection as a list."""
+        ...
+
+    @property
+    def style(self) -> StyleCollection:
+        """"""
+        ...
+
+    def find(self, selector) -> ElementCollection:
+        """Find all elements that match the specified selector.
+
+        Return the results as a (possibly empty) `ElementCollection`.
+        """
+        ...
+
+class a(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"""
+
     ...
 
-def create_proxy(*args, **kwargs) -> Incomplete:
+class abbr(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/abbr"""
+
     ...
 
+class address(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/address"""
 
-class ins():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class label():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class kbd():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class nav():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class input_():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class img():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class meter():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class mark():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class legend():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class menu():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class li():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class map_():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class link():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-page: Incomplete ## <class 'Page'> = <Page object at ...>
-
-class h1():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class form():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class h2():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class h3():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class figcaption():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class footer():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class figure():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class iframe():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class hgroup():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class header():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class hr():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class h4():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class h5():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class head():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class h6():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class thead():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class th():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class title():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class tbody():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class template():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class tfoot():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class textarea():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class wbr():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class video():
-    element_classes_by_tag_name: dict = {}
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def snap(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    parent: Incomplete ## <class 'property'> = <property>
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class Page():
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    title: Incomplete ## <class 'property'> = <property>
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class tr():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class track():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class var():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class ul():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class object_():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class pre():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class picture():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class progress():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class table():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class ol():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class param():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class optgroup():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    options: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class summary():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class strong():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class sup():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class section():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class small():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class span():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class source():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class Element():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class div():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class ElementCollection():
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    elements: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def wrap_dom_elements(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    classes: Incomplete ## <class 'property'> = <property>
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class td():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-document: Incomplete ## <class 'JsProxy'> = <JsProxy 17>
-
-class html():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-_A: Incomplete ## <class 'NoneType'> = None
-
-class q():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class embed():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class style():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class script():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class body():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class u():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class i():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class Classes():
-    def add(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def contains(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def toggle(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def replace(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def remove(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class sub():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class select():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    options: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class time():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class s():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class main():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class data():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class code():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class output():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class meta():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class p():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class Event():
-    def add_listener(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def remove_listener(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def trigger(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class a():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class dt():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class b():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class fieldset():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class col():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class cite():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class colgroup():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class br():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class button():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class caption():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class canvas():
-    element_classes_by_tag_name: dict = {}
-    def download(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def draw(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    style: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class dl():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+class area(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area"""
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
-
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class article(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article"""
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    ...
 
+class aside(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside"""
 
-class dialog():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+class audio(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio"""
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+class b(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/b"""
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+class base(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base"""
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+class blockquote(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote"""
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class body(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body"""
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    ...
 
+class br(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br"""
 
-class em():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+class button(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"""
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+class canvas(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"""
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+    def download(self, filename: str = ...) -> None:
+        """Download the current element with the filename provided in input.
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+        Inputs:
+            * filename (str): name of the file being downloaded
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
+        Output:
+            None
+        """
         ...
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    def draw(self, what, width=..., height=...) -> None:
+        """Draw `what` on the current element
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+        Inputs:
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
+            * what (canvas image source): An element to draw into the context. The
+                specification permits any canvas image source, specifically, an
+                HTMLImageElement, an SVGImageElement, an HTMLVideoElement,
+                an HTMLCanvasElement, an ImageBitmap, an OffscreenCanvas, or a
+                VideoFrame.
+        """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class caption(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/caption"""
 
+    ...
 
-class datalist():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class cite(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/cite"""
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+class code(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/code"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+class col(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/col"""
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    options: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+class colgroup(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/colgroup"""
 
-    classes: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class data(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/data"""
 
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class datalist(ContainerElement, HasOptions):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist"""
 
+    ...
 
-class dd():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class dd(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dd"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+class del_(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/del"""
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+class details(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/details"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class dialog(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"""
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class div(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"""
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class dl(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dl"""
 
+    ...
 
-class details():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class dt(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dt"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+class em(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em"""
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+class embed(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class fieldset(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/fieldset"""
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class figcaption(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figcaption"""
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class figure(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/figure"""
 
+    ...
 
-class del_():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class footer(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+class form(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"""
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+class h1(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h1"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class h2(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h2"""
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class h3(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h3"""
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class h4(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h4"""
 
+    ...
 
-class Style():
-    def set(self, *args, **kwargs) -> Incomplete:
-        ...
+class h5(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h5"""
 
-    def remove(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    visible: Incomplete ## <class 'property'> = <property>
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class h6(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/h6"""
 
+    ...
 
-class ClassesCollection():
-    def contains(self, *args, **kwargs) -> Incomplete:
-        ...
+class head(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head"""
 
-    def _all_class_names(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def toggle(self, *args, **kwargs) -> Incomplete:
-        ...
+class header(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header"""
 
-    def remove(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def add(self, *args, **kwargs) -> Incomplete:
-        ...
+class hgroup(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hgroup"""
 
-    def replace(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class hr(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/hr"""
 
+    ...
 
-class ContainerElement():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class html(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+class i(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/i"""
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+class iframe(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class img(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"""
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class input_(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"""
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class ins(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ins"""
 
+    ...
 
-class StyleCollection():
-    def remove(self, *args, **kwargs) -> Incomplete:
-        ...
+class kbd(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd"""
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    ...
 
+class label(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"""
 
-class blockquote():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+class legend(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/legend"""
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+class li(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li"""
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+class link(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link"""
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+class main(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main"""
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class map_(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/map"""
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    ...
 
+class mark(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark"""
 
-class HasOptions():
-    options: Incomplete ## <class 'property'> = <property>
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    ...
 
+class menu(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/menu"""
 
-class option():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+class meta(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta"""
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+class meter(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meter"""
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+class nav(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav"""
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+class object_(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object"""
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class ol(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol"""
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    ...
 
+class optgroup(ContainerElement, HasOptions):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/optgroup"""
 
-class Options():
-    def remove(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def add(self, *args, **kwargs) -> Incomplete:
-        ...
+class option(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option"""
 
-    def clear(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    selected: Incomplete ## <class 'property'> = <property>
-    options: Incomplete ## <class 'property'> = <property>
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class output(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output"""
 
+    ...
 
-class audio():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class p(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+class param(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/param"""
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+class picture(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/picture"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class pre(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/pre"""
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class progress(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress"""
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class q(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/q"""
 
+    ...
 
-class aside():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class s(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/s"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+class script(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script"""
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+class section(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class select(ContainerElement, HasOptions):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select"""
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class small(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/small"""
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class source(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/source"""
 
+    ...
 
-class base():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class span(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+class strong(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong"""
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+class style(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class sub(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sub"""
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class summary(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/summary"""
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class sup(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/sup"""
 
+    ...
 
-class abbr():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class table(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+class tbody(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tbody"""
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+class td(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/td"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class template(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"""
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class textarea(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"""
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class tfoot(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tfoot"""
 
+    ...
 
-class address():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class th(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/th"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+class thead(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/thead"""
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+class time(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/time"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class title(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title"""
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+class tr(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/tr"""
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+class track(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track"""
 
+    ...
 
-class article():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class u(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/u"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+class ul(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"""
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+class var(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/var"""
 
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
-        ...
+class video(ContainerElement):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"""
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
-        ...
+    def snap(
+        self, to: Element | str = ..., width: int | None = ..., height: int | None = ...
+    ) -> canvas | Element:
+        """
+        Capture a snapshot (i.e. a single frame) of a video to a canvas.
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+        Inputs:
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+            * to: the canvas to save the video frame to (if None, one is created).
+            * width: width of the snapshot (defaults to the video width).
+            * height: height of the snapshot (defaults to the video height).
 
-    def __init__(self, *argv, **kwargs) -> None:
+        Output:
+            (Element) canvas element where the video frame snapshot was drawn into
+        """
         ...
 
-
-class area():
-    element_classes_by_tag_name: dict = {}
-    def show_me(self, *args, **kwargs) -> Incomplete:
-        ...
+class wbr(Element):
+    """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/wbr"""
 
-    def get_event(self, *args, **kwargs) -> Incomplete:
-        ...
+    ...
 
-    def clone(self, *args, **kwargs) -> Incomplete:
-        ...
+ELEMENT_CLASSES = ...
 
-    def update(self, *args, **kwargs) -> Incomplete:
-        ...
+class Page:
+    """Represents the whole page."""
 
-    def find(self, *args, **kwargs) -> Incomplete:
-        ...
+    def __init__(self) -> None: ...
+    def __getitem__(self, selector) -> ElementCollection:
+        """Get an item on the page.
 
-    def append(self, *args, **kwargs) -> Incomplete:
+        We don't index/slice the page like we do with `Element` and `ElementCollection`
+        as it is a bit muddier what the ideal behavior should be. Instead, we simply
+        use this as a convenience method to `find` elements on the page.
+        """
         ...
 
-    style: Incomplete ## <class 'property'> = <property>
-    parent: Incomplete ## <class 'property'> = <property>
-    children: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def get_tag_name(cls, *args, **kwargs) -> Incomplete:
+    @property
+    def title(self) -> str:
+        """Return the page title."""
         ...
 
-    @classmethod
-    def wrap_dom_element(cls, *args, **kwargs) -> Incomplete:
+    @title.setter
+    def title(self, value) -> None:
+        """Set the page title."""
         ...
 
-    classes: Incomplete ## <class 'property'> = <property>
-    @classmethod
-    def register_element_classes(cls, *args, **kwargs) -> Incomplete:
+    def append(self, *items) -> None:
+        """Shortcut for `page.body.append`."""
         ...
 
-    @classmethod
-    def unregister_element_classes(cls, *args, **kwargs) -> Incomplete:
-        ...
+    def find(self, selector) -> ElementCollection:
+        """Find all elements that match the specified selector.
 
-    def __init__(self, *argv, **kwargs) -> None:
+        Return the results as a (possibly empty) `ElementCollection`.
+        """
         ...
 
+page = ...
+page = ...
+page = ...
+page = ...
+page = ...
+page = ...
+page = ...
