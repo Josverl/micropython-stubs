@@ -6,10 +6,6 @@ from typing import Callable, Literal, Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
 from rp2.StateMachine import StateMachine
-from rp2 import bootsel_button
-from rp2.DMA import DMA
-from rp2.Flash import Flash
-from rp2.PIOASMEmit import PIOASMEmit
 
 _PIO_ASM_Program: TypeAlias = Incomplete
 _IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
