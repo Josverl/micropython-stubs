@@ -693,7 +693,9 @@
 |micropython |v1.24.1 |frozen  |stm32|VCC_GND_F407ZG|9|1.24.0|[stubs/micropython-v1_24_1-frozen/stm32/VCC_GND_F407ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-frozen/stm32/VCC_GND_F407ZG)
 |micropython |v1.24.1 |board   |stm32|generic|63|v1.24.0|[stubs/micropython-v1_24_1-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-stm32-PYBV11)
 |micropython |v1.24.1 |frozen  |unix|GENERIC|5|1.24.0|[stubs/micropython-v1_24_1-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-frozen/unix/GENERIC)
+|micropython |v1.24.1 |board   |unix|generic|73|v1.24.0|[stubs/micropython-v1_24_1-unix-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-unix-GENERIC)
 |micropython |v1.24.1 |frozen  |webassembly|GENERIC|30|1.24.0|[stubs/micropython-v1_24_1-frozen/webassembly/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-frozen/webassembly/GENERIC)
+|micropython |v1.24.1 |board   |webassembly|generic|78|v1.24.0|[stubs/micropython-v1_24_1-webassembly-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-webassembly-GENERIC)
 |micropython |v1.24.1 |frozen  |windows|GENERIC|1|1.24.0|[stubs/micropython-v1_24_1-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-frozen/windows/GENERIC)
 |micropython |v1.24.1 |board   |windows|generic|37|v1.24.0|[stubs/micropython-v1_24_1-windows-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-windows-GENERIC)
 |micropython |v1.25-La|documentation|-|micropython|107|1.24.0|[stubs/micropython-v1_25_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0_preview-docstubs)
@@ -765,6 +767,7 @@
 |micropython |v1.25-La|frozen  |stm32|STM32F7DISC|9|1.24.0|[stubs/micropython-v1_25_0_preview-frozen/stm32/STM32F7DISC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0_preview-frozen/stm32/STM32F7DISC)
 |micropython |v1.25-La|frozen  |stm32|STM32H573I_DK|9|1.24.0|[stubs/micropython-v1_25_0_preview-frozen/stm32/STM32H573I_DK](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0_preview-frozen/stm32/STM32H573I_DK)
 |micropython |v1.25-La|frozen  |stm32|VCC_GND_F407ZG|9|1.24.0|[stubs/micropython-v1_25_0_preview-frozen/stm32/VCC_GND_F407ZG](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0_preview-frozen/stm32/VCC_GND_F407ZG)
+|micropython |v1.25-La|board   |unix|generic|73|v1.24.0|[stubs/micropython-v1_25_0-preview-unix-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-preview-unix-GENERIC)
 |micropython |v1.25-La|frozen  |unix|GENERIC|5|1.24.0|[stubs/micropython-v1_25_0_preview-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0_preview-frozen/unix/GENERIC)
 |micropython |v1.25-La|frozen  |webassembly|GENERIC|30|1.24.0|[stubs/micropython-v1_25_0_preview-frozen/webassembly/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0_preview-frozen/webassembly/GENERIC)
 |micropython |v1.25-La|board   |windows|generic|37|v1.24.0|[stubs/micropython-v1_25_0-preview-windows-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-preview-windows-GENERIC)
@@ -825,4 +828,4 @@
 
 ## Metrics
 
-Total stub modules:  19833
+Total stub modules:  20057
