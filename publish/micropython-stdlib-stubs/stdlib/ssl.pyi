@@ -62,7 +62,7 @@ _PCTRTTT: TypeAlias = tuple[_PCTRTT, ...]
 _PeerCertRetDictType: TypeAlias = dict[str, str | _PCTRTTT | _PCTRTT]
 _PeerCertRetType: TypeAlias = _PeerCertRetDictType | bytes | None
 _SrvnmeCbType: TypeAlias = Callable[[SSLSocket | SSLObject, str | None, SSLSocket], int | None]
-SSLSocket: TypeAlias = Incomplete
+# SSLSocket: TypeAlias = Incomplete
 
 # socket_error = OSError
 

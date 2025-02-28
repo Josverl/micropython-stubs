@@ -41,6 +41,7 @@ STDLIB_MODULES_TO_KEEP = [
     "types",
     "typing_extensions",
     "typing",
+    "tls",
     "ssl",
     "enum",
     # "functools",
@@ -304,7 +305,8 @@ def merge_docstubs_into_stdlib(
         Boost("ssl", "ssl", "ssl.pyi"),
         Boost("io", "io", "io.pyi"),
         # evaluating
-        Boost("arrau", "array", "array.pyi"),
+        Boost("array", "array", "array.pyi"),
+        Boost("tls", "tls", "tls.pyi"),
     ]
 
     for boost in boosts:

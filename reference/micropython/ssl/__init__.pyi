@@ -11,11 +11,12 @@ facilities for network sockets, both client-side and server-side.
 """
 
 from __future__ import annotations
-from _typeshed import Incomplete
-from socket import socket
-from typing_extensions import TypeAlias
 
-SSLSocket: TypeAlias = Incomplete
+from socket import socket
+from typing import List, Tuple, overload
+
+from _typeshed import Incomplete
+from typing_extensions import TypeAlias
 
 MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"
 PROTOCOL_TLS_SERVER: int = 1
@@ -101,7 +102,7 @@ class SSLContext:
           to present the proper certificate.
         """
         ...
-
+    @overload # force merge
     def load_cert_chain(self, certfile, keyfile) -> None:
         """
         Load a private key and the corresponding certificate.  The *certfile* is a string
@@ -117,5 +118,18 @@ class SSLContext:
         ...
 
     def __init__(self, *argv, **kwargs) -> None: ...
+
+class SSLSocket(socket):
+    """
+    A socket object that wraps a socket object to provide SSL support.
+    """
+    #TODO : SSLSocket is undocumented
+    
+    def read(self, len=1024, buffer=None) -> bytes: ...
+    def write(self, buf) -> int : ...
+    def shutdown(self):...
+    def do_handshake(self):...
+    def shared_ciphers(self)->List[Tuple]:...
+
 
 # type: ignore
