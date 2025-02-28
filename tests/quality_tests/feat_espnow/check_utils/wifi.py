@@ -39,6 +39,7 @@
 
 import sys
 import time
+
 import network
 
 
@@ -151,22 +152,22 @@ def status():
     pm_mode = None
     try:
         pm_mode = _sta.config("pm")
-        names = {
+        pm_names = {
             _sta.PM_NONE: "PM_NONE",
             _sta.PM_PERFORMANCE: "PM_PERFORMANCE",
             _sta.PM_POWERSAVE: "PM_POWERSAVE",
         }
-        print(", pm={:d} ({})".format(pm_mode, names[pm_mode]), end="")
+        print(", pm={:d} ({})".format(pm_mode, pm_names[pm_mode]), end="")
     except (AttributeError, ValueError):
         print(", pm={}".format(pm_mode), end="")
     try:
-        names = ("MODE_11B", "MODE_11G", "MODE_11N", "MODE_LR")
+        mode_names = ("MODE_11B", "MODE_11G", "MODE_11N", "MODE_LR")
         protocol = _sta.config("protocol")
         try:
             p = "|".join(
                 (
                     x  # stubs-ignore : linter == "mypy"
-                    for x in names
+                    for x in mode_names
                     if protocol & getattr(network, x)  # stubs-ignore : linter == "mypy"
                 )
             )
@@ -178,3 +179,4 @@ def status():
     print()
     if _sta.isconnected():
         print("     ifconfig:", _sta.ifconfig())
+

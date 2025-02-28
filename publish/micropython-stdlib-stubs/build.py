@@ -9,17 +9,16 @@ import re
 import shutil
 import subprocess
 import time
-import shutil
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import List, Optional, Union
 
 import rich_click as click
 from loguru import logger as log
+from mpflash.versions import clean_version, get_stable_mp_version
 from stubber.codemod.enrich import enrich_folder
 from stubber.utils import do_post_processing
 from stubber.utils.config import readconfig
-from mpflash.versions import clean_version, get_stable_mp_version
 
 STDLIB_MODULES_TO_KEEP = [
     "_typeshed",
@@ -33,6 +32,7 @@ STDLIB_MODULES_TO_KEEP = [
     "_collections_abc",
     "_decimal",
     "abc",
+    "array",
     "builtins",
     "io",
     "re",
@@ -41,6 +41,7 @@ STDLIB_MODULES_TO_KEEP = [
     "types",
     "typing_extensions",
     "typing",
+    "tls",
     "ssl",
     "enum",
     # "functools",
@@ -120,7 +121,7 @@ COMMENT_OUT_LINES = [
 @dataclass
 class Boost:
     """
-    Boost class for enriching stub files.
+    Boost class for enriching stdlib-stubs with information from MicroPython-stubs.
 
     Attributes:
         stub_name (str): The name of the stub file in stdlib.
@@ -303,8 +304,9 @@ def merge_docstubs_into_stdlib(
         Boost("sys", "sys", "sys"),
         Boost("ssl", "ssl", "ssl.pyi"),
         Boost("io", "io", "io.pyi"),
-        # Asyncio is a bit special, Work TODO
-        # Boost("asyncio", "asyncio", "asyncio"),
+        # evaluating
+        Boost("array", "array", "array.pyi"),
+        Boost("tls", "tls", "tls.pyi"),
     ]
 
     for boost in boosts:
@@ -375,7 +377,7 @@ def update_mpy_shed(rootpath: Path, dist_stdlib_path: Path):
     log.info("Update _mpy_shed from the reference stubs")
     shutil.rmtree(dist_stdlib_path / "_mpy_shed", ignore_errors=True)
     shutil.copytree(
-        rootpath / "micropython-reference/_mpy_shed",
+        rootpath / "reference/micropython/_mpy_shed",
         dist_stdlib_path / "_mpy_shed",
         dirs_exist_ok=True,
     )
