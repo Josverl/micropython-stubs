@@ -108,7 +108,12 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.24.1| rp2| generic| 90| v1.24.0|[stubs/micropython-v1_24_1-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-rp2-RPI_PICO_W)
 |board| micropython| v1.24.1| samd| generic| 58| v1.24.0|[stubs/micropython-v1_24_1-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-samd-SEEED_WIO_TERMINAL)
 |board| micropython| v1.24.1| stm32| generic| 63| v1.24.0|[stubs/micropython-v1_24_1-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-stm32-PYBV11)
+|board| micropython| v1.24.1| unix| generic| 73| v1.24.0|[stubs/micropython-v1_24_1-unix-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-unix-GENERIC)
+|board| micropython| v1.24.1| webassembly| generic| 78| v1.24.0|[stubs/micropython-v1_24_1-webassembly-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-webassembly-GENERIC)
+|board| micropython| v1.24.1| windows| generic| 37| v1.24.0|[stubs/micropython-v1_24_1-windows-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-windows-GENERIC)
 |board| micropython| v1.25-Latest| rp2| generic| 90| v1.24.0|[stubs/micropython-v1_25_0_preview-rp2-RPI_PICO2_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0_preview-rp2-RPI_PICO2_W)
+|board| micropython| v1.25-Latest| unix| generic| 73| v1.24.0|[stubs/micropython-v1_25_0-preview-unix-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-preview-unix-GENERIC)
+|board| micropython| v1.25-Latest| windows| generic| 37| v1.24.0|[stubs/micropython-v1_25_0-preview-windows-GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-preview-windows-GENERIC)
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/main/stubs/ev3_pybricks_v1_0_0)
 |board| micropython| v1.9.4-Latest| -| ESP module with ESP8266| 43| 1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-esp8266)
@@ -120,11 +125,11 @@ This page provides an overview of all collected and generated module stubs by ty
 |documentation| micropython| v1.21| -| micropython| 55| 1.23.2|[stubs/micropython-v1_21_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_21_0-docstubs)
 |documentation| micropython| v1.22| -| micropython| 55| 1.16.3|[stubs/micropython-v1_22_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_0-docstubs)
 |documentation| micropython| v1.22.1| -| micropython| 55| 1.20.6|[stubs/micropython-v1_22_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_1-docstubs)
-|documentation| micropython| v1.22.2| -| micropython| 101| 1.24.0|[stubs/micropython-v1_22_2-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_2-docstubs)
-|documentation| micropython| v1.23| -| micropython| 105| 1.24.0|[stubs/micropython-v1_23_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-docstubs)
+|documentation| micropython| v1.22.2| -| micropython| 101| 1.24.2|[stubs/micropython-v1_22_2-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_22_2-docstubs)
+|documentation| micropython| v1.23| -| micropython| 105| 1.24.2|[stubs/micropython-v1_23_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_23_0-docstubs)
 |documentation| micropython| v1.24| -| micropython| 57| 1.23.3|[stubs/micropython-v1_24_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_0-docstubs)
-|documentation| micropython| v1.24.1| -| micropython| 106| 1.24.0|[stubs/micropython-v1_24_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-docstubs)
-|documentation| micropython| v1.25-Latest| -| micropython| 106| 1.24.0|[stubs/micropython-v1_25_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0_preview-docstubs)
+|documentation| micropython| v1.24.1| -| micropython| 106| 1.24.2|[stubs/micropython-v1_24_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-docstubs)
+|documentation| micropython| v1.25-Latest| -| micropython| 107| 1.24.2|[stubs/micropython-v1_25_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0_preview-docstubs)
 |documentation| micropython| vpreview| -| micropython| 106| 1.24.0|[stubs/micropython-preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-preview-docstubs)
 |frozen| loboris| v3.2.24| esp32| loboris| 17| 1.5.5a2|[stubs/loboris-v3_2_24-frozen](https://github.com/Josverl/micropython-stubs/tree/main/stubs/loboris-v3_2_24-frozen)
 |frozen| micropython| v1.10| esp32| micropython| 16| 1.8.0|[stubs/micropython-v1_10-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_10-frozen/esp32/GENERIC)
@@ -787,4 +792,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  19758
+Total modules  20057

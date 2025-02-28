@@ -27,6 +27,10 @@ PROTOCOL_TLS_CLIENT: Incomplete
 """Supported values for the *protocol* parameter."""
 PROTOCOL_TLS_SERVER: Incomplete
 """Supported values for the *protocol* parameter."""
+PROTOCOL_DTLS_CLIENT: Incomplete  # (when DTLS support is enabled): Incomplete
+"""Supported values for the *protocol* parameter."""
+PROTOCOL_DTLS_SERVER: Incomplete  # (when DTLS support is enabled): Incomplete
+"""Supported values for the *protocol* parameter."""
 CERT_NONE: Incomplete
 """\
 Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`

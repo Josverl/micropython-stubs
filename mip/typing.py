@@ -113,6 +113,10 @@ class TextIO:
     pass
 
 
+class Protocol:
+    pass
+
+
 AnyStr = str
 Text = str
 Pattern = str
