@@ -377,7 +377,7 @@ def update_mpy_shed(rootpath: Path, dist_stdlib_path: Path):
     log.info("Update _mpy_shed from the reference stubs")
     shutil.rmtree(dist_stdlib_path / "_mpy_shed", ignore_errors=True)
     shutil.copytree(
-        rootpath / "reference/micropython/_mpy_shed",
+        rootpath / "reference/_mpy_shed",
         dist_stdlib_path / "_mpy_shed",
         dirs_exist_ok=True,
     )
