@@ -14,6 +14,7 @@ sub-fields.
 # source version: v1.24.0
 # origin module:: repos/micropython/docs/library/uctypes.rst
 from __future__ import annotations
+
 from typing import overload
 
 from _mpy_shed import AnyReadableBuf
@@ -125,7 +126,7 @@ class struct:
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
     @overload # force push 
-    def __getattr__(self, a): ...`
+    def __getattr__(self, a): ...
 
 def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) -> int:
     """
