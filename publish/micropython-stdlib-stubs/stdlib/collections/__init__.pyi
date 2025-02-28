@@ -48,14 +48,7 @@ _KT_co = TypeVar("_KT_co", covariant=True)
 _VT_co = TypeVar("_VT_co", covariant=True)
 
 # namedtuple is special-cased in the type checker; the initializer is ignored.
-def namedtuple(
-    typename: str,
-    field_names: str | Iterable[str],
-    *,
-    rename: bool = False,
-    module: str | None = None,
-    defaults: Iterable[Any] | None = None,
-) -> type[tuple[Any, ...]]:
+def namedtuple(name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
     """
     This is factory function to create a new namedtuple type with a specific
     name and set of fields. A namedtuple is a subclass of tuple which allows

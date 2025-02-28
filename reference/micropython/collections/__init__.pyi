@@ -19,6 +19,8 @@ from typing import Any, Dict, Generic, Tuple, TypeVar, overload
 from _typeshed import Incomplete
 from typing_extensions import TypeVar
 
+_T = TypeVar("_T")
+
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
 
@@ -45,7 +47,7 @@ class deque:
             - The optional *flags* can be 1 to check for overflow when adding items.
         """
 
-    def append(self, x: Any, /) -> None:
+    def append(self, x: _T, /) -> None:
         """
         Add *x* to the right side of the deque.
         Raises ``IndexError`` if overflow checking is enabled and there is
@@ -53,7 +55,7 @@ class deque:
         """
         ...
 
-    def appendleft(self, x) -> Incomplete:
+    def appendleft(self, x: _T, /) -> Incomplete:
         """
         Add *x* to the left side of the deque.
         Raises ``IndexError`` if overflow checking is enabled and there is
@@ -75,7 +77,7 @@ class deque:
         """
         ...
 
-    def extend(self, iterable) -> Incomplete:
+    def extend(self, iterable: Iterable[_T], /) -> Incomplete:
         """
         Extend the deque by appending all the items from *iterable* to
         the right of the deque.

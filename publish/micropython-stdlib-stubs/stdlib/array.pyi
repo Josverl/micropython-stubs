@@ -13,7 +13,7 @@ floating-point support).
 from __future__ import annotations
 import sys
 from _typeshed import Incomplete, ReadableBuffer, SupportsRead, SupportsWrite
-from collections.abc import MutableSequence, Iterable
+from collections.abc import MutableSequence, Sequence, Iterable
 
 # pytype crashes if array inherits from collections.abc.MutableSequence instead of typing.MutableSequence
 from typing import Generic, Any, Literal, MutableSequence, SupportsIndex, TypeVar, overload  # noqa: Y022
@@ -82,7 +82,7 @@ class array(MutableSequence[_T], Generic[_T]):
     def __init__(self, typecode: str, initializer: Iterable[_T], /) -> None: ...
     @overload
     def __init__(self, typecode: str, initializer: bytes | bytearray = ..., /) -> None: ...
-    def append(self, v: _T, /) -> None:
+    def append(self, val: Any, /) -> None:
         """
         Append new element *val* to the end of array, growing it.
         """
@@ -91,7 +91,7 @@ class array(MutableSequence[_T], Generic[_T]):
     def buffer_info(self) -> tuple[int, int]: ...
     def byteswap(self) -> None: ...
     def count(self, v: _T, /) -> int: ...
-    def extend(self, bb: Iterable[_T], /) -> None:
+    def extend(self, iterable: Sequence[Any], /) -> None:
         """
         Append new elements as contained in *iterable* to the end of
         array, growing it.
@@ -182,7 +182,7 @@ class array(MutableSequence[_T], Generic[_T]):
         """
 
     def __delitem__(self, key: SupportsIndex | slice, /) -> None: ...
-    def __add__(self, value: array[_T], /) -> array[_T]:
+    def __add__(self, other: array[_T]) -> array[_T]:
         """
         Return a new ``array`` that is the concatenation of the array with *other*, called as
         ``a + other`` (where ``a`` and *other* are both ``arrays``).
@@ -195,7 +195,7 @@ class array(MutableSequence[_T], Generic[_T]):
     def __eq__(self, value: object, /) -> bool: ...
     def __ge__(self, value: array[_T], /) -> bool: ...
     def __gt__(self, value: array[_T], /) -> bool: ...
-    def __iadd__(self, value: array[_T], /) -> Self:
+    def __iadd__(self, other: array[_T]) -> Self:
         """
         Concatenates the array with *other* in-place, called as ``a += other`` (where ``a`` and *other*
         are both ``arrays``).  Equivalent to ``extend(other)``.

@@ -12,7 +12,7 @@ facilities for network sockets, both client-side and server-side.
 
 from __future__ import annotations
 
-from socket import socket
+import socket
 from typing import List, Tuple, overload
 
 from _typeshed import Incomplete
@@ -26,7 +26,7 @@ CERT_REQUIRED: int = 2
 CERT_OPTIONAL: int = 1
 
 def wrap_socket(
-    sock: socket,
+    sock: socket.socket,
     *,
     server_side: bool = False,
     key: Incomplete = None,
@@ -63,7 +63,7 @@ class SSLContext:
 
     verify_mode: Incomplete  ## <class 'property'> = <property>
 
-    def load_verify_locations(self, cafile=None, cadata: bytes = None) -> None:
+    def load_verify_locations(self, cafile=None, cadata: bytes | None = None) -> None:
         """
         Load the CA certificate chain that will validate the peer's certificate.
         *cafile* is the file path of the CA certificates.  *cadata* is a bytes object
@@ -122,14 +122,52 @@ class SSLContext:
 class SSLSocket(socket):
     """
     A socket object that wraps a socket object to provide SSL support.
+
+    Non-blocking SSL streams works differently in MicroPython compared to CPython.  In
+    CPython a write to an SSLSocket may raise ssl.SSLWantReadError.  In MicroPython an
+    SSLSocket behaves like a normal socket/stream and can be polled for reading/writing.
+
     """
     #TODO : SSLSocket is undocumented
-    
-    def read(self, len=1024, buffer=None) -> bytes: ...
-    def write(self, buf) -> int : ...
-    def shutdown(self):...
-    def do_handshake(self):...
-    def shared_ciphers(self)->List[Tuple]:...
+    # ref: micropython\extmod\modtls_axtls.c ( read ... close) 
+
+    # repos\micropython\extmod\modtls_mbedtls.c
+    @overload # force merge
+    def read(self, *argv, **kwargs) -> Incomplete: ...
+    @overload # force merge
+    def readinto(self, *argv, **kwargs) -> Incomplete: ...
+    @overload # force merge
+    def readline(self, *argv, **kwargs) -> Incomplete: ...
+    @overload # force merge
+    def write(self, *argv, **kwargs) -> Incomplete: ...
+    @overload # force merge
+    def setblocking(self, *argv, **kwargs) -> Incomplete: ...
+    @overload # force merge
+    def close(self, *argv, **kwargs) -> Incomplete: ...
+    #if MICROPY_PY_SSL_FINALISER
+    @overload # force merge
+    def __del__(self, *argv, **kwargs) -> Incomplete: ...
+    #endif
+    # ifdef MICROPY_UNIX_COVERAGE
+    @overload # force merge
+    def ioctl(self, *argv, **kwargs) -> Incomplete: ...
+    #endif
+    #ifdef (MBEDTLS_SSL_KEEP_PEER_CERTIFICATE)
+    @overload # force merge
+    def getpeercert(self, *argv, **kwargs) -> Incomplete: ...
+    #endif
+    @overload # force merge
+    def cipher(self, *argv, **kwargs) -> Incomplete: ...
+    #ifdef MBEDTLS_SSL_PROTO_DTLS
+    @overload # force merge
+    def recv(self, *argv, **kwargs) -> Incomplete: ...
+    @overload # force merge
+    def recv_into(self, *argv, **kwargs) -> Incomplete: ...
+    @overload # force merge
+    def send(self, *argv, **kwargs) -> Incomplete: ...
+    @overload # force merge
+    def sendall(self, *argv, **kwargs) -> Incomplete: ...
+    #endif
 
 
 # type: ignore

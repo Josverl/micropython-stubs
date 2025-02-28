@@ -326,6 +326,8 @@ def merge_docstubs_into_stdlib(
                 show_diff=show_diff,
                 write_back=write_back,
                 ext=".pyi",
+                copy_params=True,
+                copy_docstr=True,
                 # package_name=boost.stub_name,
             )
             if boost.all:
