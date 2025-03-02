@@ -2,35 +2,20 @@
 # from typeshed/stdlib/io.pyi
 
 import abc
-from _io import (
-    BytesIO as BytesIO,
-)
-from _io import (
-    FileIO as FileIO,
-)
-from _io import (
-    IncrementalNewlineDecoder as IncrementalNewlineDecoder,
-)
-from _io import (
-    StringIO as StringIO,
-)
-from _io import (
-    TextIOWrapper as TextIOWrapper,
-)
-from _io import (
-    _BufferedIOBase,
-    _IOBase,
-    _RawIOBase,
-    _TextIOBase,
-)
-from _io import (
-    open as open,
-)
 from types import TracebackType
-from typing import Self, TypeVar
+from typing import TypeVar
 
-from .pathlike import PathLike
+from _io import BytesIO as BytesIO
+from _io import FileIO as FileIO
+from _io import IncrementalNewlineDecoder as IncrementalNewlineDecoder
+from _io import StringIO as StringIO
+from _io import TextIOWrapper as TextIOWrapper
+from _io import _BufferedIOBase, _IOBase, _RawIOBase, _TextIOBase
+from _io import open as open
+from typing_extensions import Self
+
 from .buffer_mp import AnyReadableBuf, AnyWritableBuf
+from .pathlike import PathLike
 
 # class IOBase_mp(_IOBase, metaclass=abc.ABCMeta): ...
 class IOBase_mp(Stream, metaclass=abc.ABCMeta): ...
