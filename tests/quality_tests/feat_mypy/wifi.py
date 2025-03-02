@@ -72,12 +72,12 @@ def channel(channel=0):
         raise OSError("can not set channel when connected to wifi network.")
     if _ap.isconnected():
         raise OSError("can not set channel when clients are connected to AP.")
-    if _sta.active() and not is_esp8266:  # stubs-ignore : linter == "mypy" and version < 1.24.0
+    if _sta.active() and not is_esp8266: 
         _sta.config(channel=channel)  # On ESP32 use STA interface
         return _sta.config("channel")
     else:
         # On ESP8266, use the AP interface to set the channel
-        ap_save = _ap.active()  # stubs-ignore : linter == "mypy" and version < 1.24.0
+        ap_save = _ap.active()
         _ap.active(True)
         _ap.config(channel=channel)
         _ap.active(ap_save)
@@ -139,7 +139,7 @@ def status():
 
     for name, w in (("STA", _sta), ("AP", _ap)):
         active = (
-            "on," if w.active() else "off,"  # stubs-ignore : linter == "mypy" and version < 1.24.0
+            "on," if w.active() else "off,"   
         )
         mac = w.config("mac")
         hex = hexlify(mac, ":").decode()
@@ -166,9 +166,9 @@ def status():
         try:
             p = "|".join(
                 (
-                    x  # stubs-ignore : linter == "mypy"
+                    x  
                     for x in mode_names
-                    if protocol & getattr(network, x)  # stubs-ignore : linter == "mypy"
+                    if protocol & getattr(network, x)  
                 )
             )
         except AttributeError:
