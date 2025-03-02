@@ -97,7 +97,7 @@ ps2: str
 Mutable attributes holding strings, which are used for the REPL prompt.  The defaults
 give the standard Python prompt of ``>>>`` and ``...``.
 """
-stderr: Incomplete
+stderr: Incomplete 
 """Standard error `stream`."""
 stdin: Incomplete
 """Standard input `stream`."""
