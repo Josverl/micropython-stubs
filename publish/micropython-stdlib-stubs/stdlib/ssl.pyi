@@ -124,7 +124,7 @@ if sys.version_info < (3, 12):
         """
         ...
 
-def create_default_context(
+def __mpy_has_no_create_default_context(
     purpose: Purpose = ...,
     *,
     cafile: StrOrBytesPath | None = None,

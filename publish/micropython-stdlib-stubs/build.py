@@ -121,8 +121,15 @@ TYPE_IGNORES = [
     ("io", ["from io import *"]),
 ]
 
+# comment out some lines to hide the existance of CPython apis that do not exists in MicroPython
 COMMENT_OUT_LINES = [
     ("asyncio", ["from .subprocess import *"]),
+]
+
+# change some lines to hide the existance of CPython apis that do not exists in MicroPython
+# this is for things such as function or classdefs that extend beyond a single line
+CHANGE_LINES = [
+    ("ssl", [("def create_default_context", "def __mpy_has_no_create_default_context")]),
 ]
 
 
@@ -227,9 +234,9 @@ def comment_out_lines(folder: Path):
             file_path = folder / f"{mod}.pyi"
             if not file_path.exists():
                 continue
-        with open(file_path, "r") as f:
+        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
             content = f.readlines()
-        with open(file_path, "w") as f:
+        with open(file_path, "w", encoding="utf-8") as f:
             for line in content:
                 _line = line.rstrip("\n")
                 for ignore in lines:
@@ -239,8 +246,31 @@ def comment_out_lines(folder: Path):
                         break
                 else:
                     f.write(line)
-
     log.info(f"Commented out {n} lines in {folder}")
+
+
+def change_lines(folder: Path):
+    """used to make changes to the names of functions in the stdlib stubs to hide the
+    existance of CPython apis that do not exists in MicroPython.
+    todo: replace functionality by libcst codemod for a more robust implementation
+    """
+    n = 0
+    for mod, lines in CHANGE_LINES:
+        file_path = folder / mod / "__init__.pyi"
+        if not file_path.exists():
+            file_path = folder / f"{mod}.pyi"
+            if not file_path.exists():
+                continue
+        with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+            content = f.readlines()
+        with open(file_path, "w", encoding="utf-8") as f:
+            for line in content:
+                _line = line
+                for old, new in lines:
+                    if old in _line:
+                        line = line.replace(old, new)
+                        n += 1
+                f.write(line)
 
 
 def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
@@ -503,6 +533,9 @@ def update(
 
     # comment out some lines that cause issues
     comment_out_lines(dist_stdlib_path / "stdlib")
+
+    # hide cpython APIs by renaming defs in the stdlib stubs
+    change_lines(dist_stdlib_path / "stdlib")
 
     if build:
         subprocess.check_call(
