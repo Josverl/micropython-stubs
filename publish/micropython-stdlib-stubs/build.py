@@ -17,40 +17,48 @@ import rich_click as click
 from loguru import logger as log
 from mpflash.versions import clean_version, get_stable_mp_version
 from stubber.codemod.enrich import enrich_folder
+from stubber.modcat import STDLIB_ONLY_MODULES
 from stubber.utils import do_post_processing
 from stubber.utils.config import readconfig
 
-STDLIB_MODULES_TO_KEEP = [
-    "_typeshed",
-    "asyncio",
-    "collections",
-    "sys",
-    "os",
-    "__future__",
-    "_ast",
-    "_codecs",
-    "_collections_abc",
-    "_decimal",
-    "abc",
-    "array",
-    "builtins",
-    "io",
-    "re",
-    # "socket",
-    "sys",
-    "types",
-    "typing_extensions",
-    "typing",
-    "tls",
-    "ssl",
-    "enum",
-    # "functools",
-    # "queue",
-    # "selectors",
-    "sre_compile",
-    "sre_constants",
-    "sre_parse",
-]
+# these modules will be kept in the stdlib folder
+STDLIB_MODULES_TO_KEEP = list(
+    set(STDLIB_ONLY_MODULES)
+    | set(
+        [
+            "_typeshed",
+            "asyncio",
+            "collections",
+            "sys",
+            "os",
+            "__future__",
+            "_ast",
+            "_codecs",
+            "_collections_abc",
+            "_decimal",
+            "abc",
+            "array",
+            "builtins",
+            "io",
+            "re",
+            # "socket",
+            "sys",
+            "types",
+            "typing_extensions",
+            "typing",
+            "tls",
+            "ssl",
+            "enum",
+            # "functools",
+            # "queue",
+            # "selectors",
+            "sre_compile",
+            "sre_constants",
+            "sre_parse",
+        ]
+    )
+)
+
 
 # try to limit the "overspeak" of python modules to the bare minimum
 STDLIB_MODULES_TO_REMOVE = [
@@ -136,7 +144,8 @@ class Boost:
     all: List[str] = field(default_factory=list)
 
     def __post_init__(self):
-        self.target = Path("stdlib") / (self.target or self.stub_name + ".pyi")
+        self.source = self.source or self.stub_name
+        self.target = Path("stdlib") / (self.target or self.stub_name)
 
 
 # match "var: type",
@@ -279,7 +288,7 @@ def merge_docstubs_into_stdlib(
     *,
     dist_stdlib_path: Path,
     docstubs_path: Path,
-    boardstub_path: Optional[Path] = None,
+    boardstub_path: Path,
     dry_run=False,
 ):
     """
@@ -296,17 +305,17 @@ def merge_docstubs_into_stdlib(
     boosts = [
         Boost(
             "collections",
-            "collections",
-            "collections",
+            # "collections",
+            # "collections",
             all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
         ),
-        Boost("os", "os", "os"),
-        Boost("sys", "sys", "sys"),
-        Boost("ssl", "ssl", "ssl.pyi"),
-        Boost("io", "io", "io.pyi"),
+        Boost("os"),
+        Boost("sys"),
+        Boost("ssl"),
+        Boost("io"),
+        Boost("array"),
         # evaluating
-        Boost("array", "array", "array.pyi"),
-        Boost("tls", "tls", "tls.pyi"),
+        Boost("tls"),
     ]
 
     for boost in boosts:
@@ -316,32 +325,33 @@ def merge_docstubs_into_stdlib(
             log.warning(f"Docstub {source_path} does not exist")
             continue
         if not target_path.exists():
-            log.warning(f"Stub {target_path} does not exist")
-            continue
-        if target_path.exists():
-            log.info(f"Enriching {target_path}")
-            result = enrich_folder(
-                source_path,  # source
-                target_path,  # desr
-                show_diff=show_diff,
-                write_back=write_back,
-                ext=".pyi",
-                copy_params=True,
-                copy_docstr=True,
-                # package_name=boost.stub_name,
-            )
-            if boost.all:
-                update_public_interface(boost, target_path)
-            if boost.source:
-                # read the toplevel vars from the docstub and firmware stubs
-                keep = find_toplevel_vars(docstubs_path / boost.source)
-                keep.update(find_toplevel_vars(boardstub_path / boost.source))
-                if "io" in boost.stub_name:
-                    keep.add("open")  # open is not in the io docstub
-                update_module_vars(target_path, keep)
+            if target_path.with_suffix(".pyi").exists():
+                target_path = target_path.with_suffix(".pyi")
+            else:
+                continue
+        log.info(f"Enriching {target_path}")
+        result = enrich_folder(
+            source_path,  # source
+            target_path,  # desr
+            show_diff=show_diff,
+            write_back=write_back,
+            ext=".pyi",
+            copy_params=True,
+            copy_docstr=True,
+            # package_name=boost.stub_name,
+        )
+        if boost.all:
+            update_public_interface(boost, target_path)
+        if boost.source:
+            # read the toplevel vars from the docstub and firmware stubs
+            keep = find_toplevel_vars(docstubs_path / boost.source)
+            keep.update(find_toplevel_vars(boardstub_path / boost.source))
+            if "io" in boost.stub_name:
+                keep.add("open")  # open is not in the io docstub
+            update_module_vars(target_path, keep)
 
-            if result:
-                log.info(f"Enriched {target_path}")
+        if result:
+            log.info(f"Enriched {target_path}")
 
 
 def update_public_interface(boost: Boost, module_path: Path):
