@@ -36,7 +36,7 @@ disable_error_code = ["no-redef", "assignment"]
 allow_redefinition = true
 
 # other optional settings
-# warn-unused-ignores = true
+warn_unused_ignores = true  # allows to verify the absense of methods/classes in stubs 
 # warn_unused_configs = true
 # show_error_context = true
 

@@ -1,5 +1,5 @@
 
-- no _asyncio.pyi stud to avoid conflist with stdlib re-use
+- no _asyncio.pyi stubs to avoid conflict with stdlib re-use
 
 - Generators 
     are not values - but are always callables, or coroutines
