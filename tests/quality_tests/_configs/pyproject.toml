@@ -20,7 +20,7 @@ reportUnnecessaryTypeIgnoreComment = "error"
 [tool.mypy]
 platform = "linux"
 mypy_path = "typings"
-# custom-typeshed-dir = "typings"
+custom_typeshed_dir = "typings" # allow mypy to use micropython-stdlib
 files = "*.py"
 exclude = [
     "typings[\\/].*", # TOML basic string 

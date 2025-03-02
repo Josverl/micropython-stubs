@@ -103,7 +103,7 @@ async def task(g=None, prompt="--> "):
         s = asyncio.StreamReader(sys.stdin)  
         # TODO: fix type stubs asyncio.StreamReader
         # clear = True
-        hist = [] * _HISTORY_LIMIT  
+        hist:list[bytes]  = [] * _HISTORY_LIMIT  
         hist_i = 0  # Index of most recent entry.
         hist_n = 0  # Number of history entries.
         c = 0  # ord of most recent character.
