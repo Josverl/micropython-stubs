@@ -140,8 +140,7 @@ def rename(old_path, new_path) -> None:
     """
     ...
 
-@overload
-def stat(path) -> Incomplete:
+def stat(path:str|bytes) -> Tuple:
     """
     Get the status of a file or directory.
     """
