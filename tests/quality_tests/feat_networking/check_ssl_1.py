@@ -13,4 +13,4 @@ ctx = ssl.SSLContext(
 
 # below should NOT be available in stubs
 # test wiith ignoring the error - which will raise an error in pyright / mypy if it is not needed
-not_there = ssl.create_default_context()  # type: ignore # stubs-ignore : linter == "mypy" and version < 1.24.0
+not_there = ssl.create_default_context()  

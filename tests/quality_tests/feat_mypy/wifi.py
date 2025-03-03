@@ -60,7 +60,7 @@ try:
 except AttributeError:
     default_pm_mode = None
 try:
-    default_protocol = network.MODE_11B | network.MODE_11G | network.MODE_11N
+    default_protocol = network.MODE_11B | network.MODE_11G | network.MODE_11N # stubs-ignore : port not in ["esp32"]
 except AttributeError:
     default_protocol = None
 

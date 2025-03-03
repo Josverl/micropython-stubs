@@ -101,8 +101,7 @@ sm_tx = StateMachine(
 sm_tx.active(1)
 
 
-fifo_tx = deque((), 64)  # stubs-ignore : linter == "mypy"
-fifo_rx = deque((), 64)  # stubs-ignore : linter == "mypy"
+fifo_rx = deque((), 64)  
 
 
 def core1_task(

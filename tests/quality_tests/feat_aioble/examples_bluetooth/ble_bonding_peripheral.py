@@ -137,7 +137,7 @@ class BLETemperature:
                         i += 1
                 return None
             else:
-                key = sec_type, bytes(key)  # stubs-ignore: linter == "mypy"
+                key = sec_type, bytes(key)  
                 return self._secrets.get(key, None)
 
     def set_temperature(self, temp_deg_c, notify=False, indicate=False):

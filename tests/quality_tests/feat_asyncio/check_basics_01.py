@@ -28,7 +28,7 @@ async def bar2(x):
 async def main():
     tasks = [None] * 3  # For CPython compaibility must store a reference see 2.2 Note
     for x in range(3):
-        tasks[x] = asyncio.create_task(bar2(x))  # stubs-ignore: linter=="mypy"
+        tasks[x] = asyncio.create_task(bar2(x))  
     await asyncio.sleep(10)
 
 asyncio.run(main())

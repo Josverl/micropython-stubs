@@ -1,7 +1,7 @@
 import sys
 import time
 import network
-import espnow
+import espnow # stubs-ignore : port not in ["esp32"]
 
 MAX_CHANNEL = 14  # Maximum wifi channel to scan (2.4MHz band)
 NUM_PINGS = 10  # The default number of pings to send on each channel
