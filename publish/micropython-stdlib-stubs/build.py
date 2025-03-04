@@ -335,8 +335,6 @@ def merge_docstubs_into_stdlib(
     boosts = [
         Boost(
             "collections",
-            # "collections",
-            # "collections",
             all=["OrderedDict", "defaultdict", "deque", "namedtuple"],
         ),
         Boost("os"),
@@ -368,7 +366,6 @@ def merge_docstubs_into_stdlib(
             ext=".pyi",
             copy_params=True,
             copy_docstr=True,
-            # package_name=boost.stub_name,
         )
         if boost.all:
             update_public_interface(boost, target_path)
@@ -525,7 +522,7 @@ def update(
         )
 
     # tidy up the stubs
-    do_post_processing([dist_stdlib_path], stubgen=False, black=True, autoflake=True)
+    do_post_processing([dist_stdlib_path / "stdlib"], stubgen=False, black=True, autoflake=True)
 
     # remove typerchecker noise from typeshed ,
     # so that the actual issues caused by micropython stubs are more visible
@@ -536,6 +533,9 @@ def update(
 
     # hide cpython APIs by renaming defs in the stdlib stubs
     change_lines(dist_stdlib_path / "stdlib")
+
+    # update the last changed date-time so uv can detect the update
+    Path(dist_stdlib_path / "pyproject.toml").touch()
 
     if build:
         subprocess.check_call(
