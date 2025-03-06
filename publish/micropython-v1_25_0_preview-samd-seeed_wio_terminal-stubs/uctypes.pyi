@@ -17,7 +17,7 @@ Module: 'uctypes' on micropython-v1.24.1-samd-SEEED_WIO_TERMINAL
 # MCU: {'family': 'micropython', 'version': '1.24.1', 'build': '', 'ver': '1.24.1', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'cpu': 'SAMD51P19A', 'mpy': 'v6.3', 'arch': 'armv7emsp'}
 # Stubber: v1.24.0
 from __future__ import annotations
-from typing import Any, Generator
+from typing import overload, Any, Generator
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing_extensions import Awaitable, TypeAlias, TypeVar
@@ -118,3 +118,6 @@ class struct:
         Instantiate a "foreign data structure" object based on structure address in
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
+
+    @overload  # force push
+    def __getattr__(self, a): ...

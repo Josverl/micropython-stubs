@@ -1,7 +1,7 @@
 [project]
 name = "micropython-windows-stubs"
 description = "MicroPython stubs"
-version = "1.25.0a1"
+version = "1.25.0a308"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -43,7 +43,6 @@ include = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
-    { include = "array.pyi" },
     { include = "binascii.pyi" },
     { include = "cmath.pyi" },
     { include = "deflate.pyi" },
@@ -55,9 +54,7 @@ packages = [
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
-    { include = "os.pyi" },
     { include = "random.pyi" },
-    { include = "ssl.pyi" },
     { include = "struct.pyi" },
     { include = "time.pyi" },
     { include = "uarray.pyi" },

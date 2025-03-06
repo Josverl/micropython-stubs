@@ -12,11 +12,13 @@ Module: 'micropython' on micropython-v1.24.1-webassembly
 from __future__ import annotations
 from typing import Callable, Optional, Tuple, overload, Any, Final, Generator
 from _typeshed import Incomplete
-from typing_extensions import Awaitable, TypeAlias, TypeVar
+from typing_extensions import Awaitable, ParamSpec, TypeAlias, TypeVar
 
 _T = TypeVar("_T")
 _F = TypeVar("_F", bound=Callable[..., Any])
 Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple)
+_Param = ParamSpec("_Param")
+_Ret = TypeVar("_Ret")
 
 def pystack_use(*args, **kwargs) -> Incomplete: ...
 @overload
@@ -60,166 +62,6 @@ def opt_level(level: int, /) -> None:
     """
 
 @overload
-def opt_level() -> int:
-    """
-    If *level* is given then this function sets the optimisation level for subsequent
-    compilation of scripts, and returns ``None``.  Otherwise it returns the current
-    optimisation level.
-
-    The optimisation level controls the following compilation features:
-
-    - Assertions: at level 0 assertion statements are enabled and compiled into the
-      bytecode; at levels 1 and higher assertions are not compiled.
-    - Built-in ``__debug__`` variable: at level 0 this variable expands to ``True``;
-      at levels 1 and higher it expands to ``False``.
-    - Source-code line numbers: at levels 0, 1 and 2 source-code line number are
-      stored along with the bytecode so that exceptions can report the line number
-      they occurred at; at levels 3 and higher line numbers are not stored.
-
-    The default optimisation level is usually level 0.
-    """
-
-@overload
-def opt_level(level: int, /) -> None:
-    """
-    If *level* is given then this function sets the optimisation level for subsequent
-    compilation of scripts, and returns ``None``.  Otherwise it returns the current
-    optimisation level.
-
-    The optimisation level controls the following compilation features:
-
-    - Assertions: at level 0 assertion statements are enabled and compiled into the
-      bytecode; at levels 1 and higher assertions are not compiled.
-    - Built-in ``__debug__`` variable: at level 0 this variable expands to ``True``;
-      at levels 1 and higher it expands to ``False``.
-    - Source-code line numbers: at levels 0, 1 and 2 source-code line number are
-      stored along with the bytecode so that exceptions can report the line number
-      they occurred at; at levels 3 and higher line numbers are not stored.
-
-    The default optimisation level is usually level 0.
-    """
-
-@overload
-def opt_level() -> int:
-    """
-    If *level* is given then this function sets the optimisation level for subsequent
-    compilation of scripts, and returns ``None``.  Otherwise it returns the current
-    optimisation level.
-
-    The optimisation level controls the following compilation features:
-
-    - Assertions: at level 0 assertion statements are enabled and compiled into the
-      bytecode; at levels 1 and higher assertions are not compiled.
-    - Built-in ``__debug__`` variable: at level 0 this variable expands to ``True``;
-      at levels 1 and higher it expands to ``False``.
-    - Source-code line numbers: at levels 0, 1 and 2 source-code line number are
-      stored along with the bytecode so that exceptions can report the line number
-      they occurred at; at levels 3 and higher line numbers are not stored.
-
-    The default optimisation level is usually level 0.
-    """
-
-@overload
-def opt_level(level: int, /) -> None:
-    """
-    If *level* is given then this function sets the optimisation level for subsequent
-    compilation of scripts, and returns ``None``.  Otherwise it returns the current
-    optimisation level.
-
-    The optimisation level controls the following compilation features:
-
-    - Assertions: at level 0 assertion statements are enabled and compiled into the
-      bytecode; at levels 1 and higher assertions are not compiled.
-    - Built-in ``__debug__`` variable: at level 0 this variable expands to ``True``;
-      at levels 1 and higher it expands to ``False``.
-    - Source-code line numbers: at levels 0, 1 and 2 source-code line number are
-      stored along with the bytecode so that exceptions can report the line number
-      they occurred at; at levels 3 and higher line numbers are not stored.
-
-    The default optimisation level is usually level 0.
-    """
-
-@overload
-def opt_level() -> int:
-    """
-    If *level* is given then this function sets the optimisation level for subsequent
-    compilation of scripts, and returns ``None``.  Otherwise it returns the current
-    optimisation level.
-
-    The optimisation level controls the following compilation features:
-
-    - Assertions: at level 0 assertion statements are enabled and compiled into the
-      bytecode; at levels 1 and higher assertions are not compiled.
-    - Built-in ``__debug__`` variable: at level 0 this variable expands to ``True``;
-      at levels 1 and higher it expands to ``False``.
-    - Source-code line numbers: at levels 0, 1 and 2 source-code line number are
-      stored along with the bytecode so that exceptions can report the line number
-      they occurred at; at levels 3 and higher line numbers are not stored.
-
-    The default optimisation level is usually level 0.
-    """
-
-@overload
-def opt_level(level: int, /) -> None:
-    """
-    If *level* is given then this function sets the optimisation level for subsequent
-    compilation of scripts, and returns ``None``.  Otherwise it returns the current
-    optimisation level.
-
-    The optimisation level controls the following compilation features:
-
-    - Assertions: at level 0 assertion statements are enabled and compiled into the
-      bytecode; at levels 1 and higher assertions are not compiled.
-    - Built-in ``__debug__`` variable: at level 0 this variable expands to ``True``;
-      at levels 1 and higher it expands to ``False``.
-    - Source-code line numbers: at levels 0, 1 and 2 source-code line number are
-      stored along with the bytecode so that exceptions can report the line number
-      they occurred at; at levels 3 and higher line numbers are not stored.
-
-    The default optimisation level is usually level 0.
-    """
-
-@overload
-def opt_level() -> int:
-    """
-    If *level* is given then this function sets the optimisation level for subsequent
-    compilation of scripts, and returns ``None``.  Otherwise it returns the current
-    optimisation level.
-
-    The optimisation level controls the following compilation features:
-
-    - Assertions: at level 0 assertion statements are enabled and compiled into the
-      bytecode; at levels 1 and higher assertions are not compiled.
-    - Built-in ``__debug__`` variable: at level 0 this variable expands to ``True``;
-      at levels 1 and higher it expands to ``False``.
-    - Source-code line numbers: at levels 0, 1 and 2 source-code line number are
-      stored along with the bytecode so that exceptions can report the line number
-      they occurred at; at levels 3 and higher line numbers are not stored.
-
-    The default optimisation level is usually level 0.
-    """
-
-@overload
-def opt_level(level: int, /) -> None:
-    """
-    If *level* is given then this function sets the optimisation level for subsequent
-    compilation of scripts, and returns ``None``.  Otherwise it returns the current
-    optimisation level.
-
-    The optimisation level controls the following compilation features:
-
-    - Assertions: at level 0 assertion statements are enabled and compiled into the
-      bytecode; at levels 1 and higher assertions are not compiled.
-    - Built-in ``__debug__`` variable: at level 0 this variable expands to ``True``;
-      at levels 1 and higher it expands to ``False``.
-    - Source-code line numbers: at levels 0, 1 and 2 source-code line number are
-      stored along with the bytecode so that exceptions can report the line number
-      they occurred at; at levels 3 and higher line numbers are not stored.
-
-    The default optimisation level is usually level 0.
-    """
-
-@overload
 def mem_info() -> None:
     """
     Print information about currently used memory.  If the *verbose* argument
@@ -239,182 +81,6 @@ def mem_info(verbose: Any, /) -> None:
     The information that is printed is implementation dependent, but currently
     includes the amount of stack and heap used.  In verbose mode it prints out
     the entire heap indicating which blocks are used and which are free.
-    """
-
-@overload
-def mem_info() -> None:
-    """
-    Print information about currently used memory.  If the *verbose* argument
-    is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the amount of stack and heap used.  In verbose mode it prints out
-    the entire heap indicating which blocks are used and which are free.
-    """
-
-@overload
-def mem_info(verbose: Any, /) -> None:
-    """
-    Print information about currently used memory.  If the *verbose* argument
-    is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the amount of stack and heap used.  In verbose mode it prints out
-    the entire heap indicating which blocks are used and which are free.
-    """
-
-@overload
-def mem_info() -> None:
-    """
-    Print information about currently used memory.  If the *verbose* argument
-    is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the amount of stack and heap used.  In verbose mode it prints out
-    the entire heap indicating which blocks are used and which are free.
-    """
-
-@overload
-def mem_info(verbose: Any, /) -> None:
-    """
-    Print information about currently used memory.  If the *verbose* argument
-    is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the amount of stack and heap used.  In verbose mode it prints out
-    the entire heap indicating which blocks are used and which are free.
-    """
-
-@overload
-def mem_info() -> None:
-    """
-    Print information about currently used memory.  If the *verbose* argument
-    is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the amount of stack and heap used.  In verbose mode it prints out
-    the entire heap indicating which blocks are used and which are free.
-    """
-
-@overload
-def mem_info(verbose: Any, /) -> None:
-    """
-    Print information about currently used memory.  If the *verbose* argument
-    is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the amount of stack and heap used.  In verbose mode it prints out
-    the entire heap indicating which blocks are used and which are free.
-    """
-
-@overload
-def mem_info() -> None:
-    """
-    Print information about currently used memory.  If the *verbose* argument
-    is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the amount of stack and heap used.  In verbose mode it prints out
-    the entire heap indicating which blocks are used and which are free.
-    """
-
-@overload
-def mem_info(verbose: Any, /) -> None:
-    """
-    Print information about currently used memory.  If the *verbose* argument
-    is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the amount of stack and heap used.  In verbose mode it prints out
-    the entire heap indicating which blocks are used and which are free.
-    """
-
-@overload
-def qstr_info() -> None:
-    """
-    Print information about currently interned strings.  If the *verbose*
-    argument is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the number of interned strings and the amount of RAM they use.  In
-    verbose mode it prints out the names of all RAM-interned strings.
-    """
-
-@overload
-def qstr_info(verbose: bool, /) -> None:
-    """
-    Print information about currently interned strings.  If the *verbose*
-    argument is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the number of interned strings and the amount of RAM they use.  In
-    verbose mode it prints out the names of all RAM-interned strings.
-    """
-
-@overload
-def qstr_info() -> None:
-    """
-    Print information about currently interned strings.  If the *verbose*
-    argument is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the number of interned strings and the amount of RAM they use.  In
-    verbose mode it prints out the names of all RAM-interned strings.
-    """
-
-@overload
-def qstr_info(verbose: bool, /) -> None:
-    """
-    Print information about currently interned strings.  If the *verbose*
-    argument is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the number of interned strings and the amount of RAM they use.  In
-    verbose mode it prints out the names of all RAM-interned strings.
-    """
-
-@overload
-def qstr_info() -> None:
-    """
-    Print information about currently interned strings.  If the *verbose*
-    argument is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the number of interned strings and the amount of RAM they use.  In
-    verbose mode it prints out the names of all RAM-interned strings.
-    """
-
-@overload
-def qstr_info(verbose: bool, /) -> None:
-    """
-    Print information about currently interned strings.  If the *verbose*
-    argument is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the number of interned strings and the amount of RAM they use.  In
-    verbose mode it prints out the names of all RAM-interned strings.
-    """
-
-@overload
-def qstr_info() -> None:
-    """
-    Print information about currently interned strings.  If the *verbose*
-    argument is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the number of interned strings and the amount of RAM they use.  In
-    verbose mode it prints out the names of all RAM-interned strings.
-    """
-
-@overload
-def qstr_info(verbose: bool, /) -> None:
-    """
-    Print information about currently interned strings.  If the *verbose*
-    argument is given then extra information is printed.
-
-    The information that is printed is implementation dependent, but currently
-    includes the number of interned strings and the amount of RAM they use.  In
-    verbose mode it prints out the names of all RAM-interned strings.
     """
 
 @overload
@@ -629,7 +295,7 @@ class RingIO:
 
 # decorators
 @overload  # force merge
-def viper(func: Callable) -> Callable:
+def viper(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     The Viper code emitter is not fully compliant. It supports special Viper native data types in pursuit of performance.
     Integer processing is non-compliant because it uses machine words: arithmetic on 32 bit hardware is performed modulo 2**32.
@@ -640,7 +306,7 @@ def viper(func: Callable) -> Callable:
     ...
 
 @overload  # force merge
-def native(func: Callable) -> Callable:
+def native(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     This causes the MicroPython compiler to emit native CPU opcodes rather than bytecode.
     It covers the bulk of the MicroPython functionality, so most functions will require no adaptation.
@@ -649,7 +315,7 @@ def native(func: Callable) -> Callable:
     ...
 
 @overload  # force merge
-def asm_thumb(func: Callable) -> Callable:
+def asm_thumb(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     This decorator is used to mark a function as containing inline assembler code.
     The assembler code is written is a subset of the ARM Thumb-2 instruction set, and is executed on the target CPU.
@@ -658,3 +324,16 @@ def asm_thumb(func: Callable) -> Callable:
     See: https://docs.micropython.org/en/latest/reference/asm_thumb2_index.html
     """
     ...
+
+@overload  # force merge
+def asm_xtensa(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
+    """
+    This decorator is used to mark a function as containing inline assembler code for the esp8266.
+    The assembler code is written in the Xtensa instruction set, and is executed on the target CPU.
+
+    Availability: Only on eps8266 boards.
+    """
+    ...
+    # See :
+    # - https://github.com/orgs/micropython/discussions/12965
+    # - https://github.com/micropython/micropython/pull/16731

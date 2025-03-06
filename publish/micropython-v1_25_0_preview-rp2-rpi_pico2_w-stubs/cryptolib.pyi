@@ -12,7 +12,7 @@ Module: 'cryptolib' on micropython-v1.25.0-preview-rp2-UNKNOWN_BOARD
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from typing import Any, Optional, overload
+from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class aes:

@@ -1,7 +1,7 @@
 [project]
 name = "micropython-stm32-pybv11-stubs"
 description = "MicroPython stubs"
-version = "1.24.1.post1"
+version = "1.24.1.post2"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -44,7 +44,6 @@ include = [
 packages = [
     { include = "__builtins__.pyi" },
     { include = "_onewire.pyi" },
-    { include = "array.pyi" },
     { include = "binascii.pyi" },
     { include = "cmath.pyi" },
     { include = "deflate.pyi" },
@@ -61,7 +60,6 @@ packages = [
     { include = "micropython.pyi" },
     { include = "network.pyi" },
     { include = "onewire.pyi" },
-    { include = "os.pyi" },
     { include = "platform.pyi" },
     { include = "pyb.pyi" },
     { include = "random.pyi" },

@@ -17,7 +17,7 @@ Module: 'uctypes' on micropython-v1.24.1-webassembly
 # MCU: {'family': 'micropython', 'version': '1.24.1', 'build': '', 'ver': '1.24.1', 'port': 'webassembly', 'board': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
 # Stubber: v1.24.0
 from __future__ import annotations
-from typing import Any, Final, Generator
+from typing import overload, Any, Final, Generator
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing_extensions import Awaitable, TypeAlias, TypeVar
@@ -119,3 +119,6 @@ class struct:
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
         ...
+
+    @overload  # force push
+    def __getattr__(self, a): ...

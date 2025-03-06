@@ -921,15 +921,7 @@ def scandir(path: None = None) -> _ScandirIterator[str]: ...
 def scandir(path: int) -> _ScandirIterator[str]: ...
 @overload
 def scandir(path: GenericPath[AnyStr]) -> _ScandirIterator[AnyStr]: ...
-@overload
-def stat(path) -> Incomplete:
-    """
-    Get the status of a file or directory.
-    """
-    ...
-
-@overload
-def stat(path) -> Incomplete:
+def stat(path: str | bytes) -> stat_result:
     """
     Get the status of a file or directory.
     """

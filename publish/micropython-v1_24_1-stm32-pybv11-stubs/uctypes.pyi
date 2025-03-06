@@ -19,6 +19,7 @@ Module: 'uctypes' on micropython-v1.24.1-stm32-PYBV11
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _ScalarProperty: TypeAlias = int
@@ -117,3 +118,6 @@ class struct:
         Instantiate a "foreign data structure" object based on structure address in
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
+
+    @overload  # force push
+    def __getattr__(self, a): ...

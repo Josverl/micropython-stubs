@@ -1,7 +1,7 @@
 [project]
 name = "micropython-rp2-rpi_pico-stubs"
 description = "MicroPython stubs"
-version = "1.25.0a217"
+version = "1.25.0a308"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -47,7 +47,6 @@ packages = [
     { include = "_boot_fat.pyi" },
     { include = "_onewire.pyi" },
     { include = "_thread.pyi" },
-    { include = "array.pyi" },
     { include = "binascii.pyi" },
     { include = "cmath.pyi" },
     { include = "cryptolib.pyi" },
@@ -65,7 +64,6 @@ packages = [
     { include = "micropython.pyi" },
     { include = "neopixel.pyi" },
     { include = "onewire.pyi" },
-    { include = "os.pyi" },
     { include = "platform.pyi" },
     { include = "random.pyi" },
     { include = "rp2/__init__.pyi" },

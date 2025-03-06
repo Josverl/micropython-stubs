@@ -43,6 +43,7 @@ from collections.abc import Callable, Iterable
 from typing import Any, Literal, NamedTuple, TypedDict, overload
 from typing_extensions import Awaitable, TypeVar, Never, Self, TypeAlias
 from _mpy_shed import StrOrBytesPath
+from tls import *
 
 if sys.version_info >= (3, 13):
     from _ssl import HAS_PSK as HAS_PSK

@@ -330,12 +330,62 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
+    @overload
     def send(
         self,
-        peer: _MACAddress,
+        mac: _MACAddress,
         msg: str | bytes,
-        mac: _MACAddress | None = None,
-        sync=True,
+        sync: bool = True,
+    ) -> bool:
+        """
+        Send the data contained in ``msg`` to the peer with given network ``mac``
+        address. In the second form, ``mac=None`` and ``sync=True``. The peer must
+        be registered with `ESPNow.add_peer()<ESPNow.add_peer()>` before the
+        message can be sent.
+
+        Arguments:
+
+          - *mac*: byte string exactly ``espnow.ADDR_LEN`` (6 bytes) long or
+            ``None``. If *mac* is ``None`` (ESP32 only) the message will be sent
+            to all registered peers, except any broadcast or multicast MAC
+            addresses.
+
+          - *msg*: string or byte-string up to ``espnow.MAX_DATA_LEN`` (250)
+            bytes long.
+
+          - *sync*:
+
+            - ``True``: (default) send ``msg`` to the peer(s) and wait for a
+              response (or not).
+
+            - ``False`` send ``msg`` and return immediately. Responses from the
+              peers will be discarded.
+
+        Returns:
+
+          ``True`` if ``sync=False`` or if ``sync=True`` and *all* peers respond,
+          else ``False``.
+
+        Raises:
+
+          - ``OSError(num, "ESP_ERR_ESPNOW_NOT_INIT")`` if not initialised.
+          - ``OSError(num, "ESP_ERR_ESPNOW_NOT_FOUND")`` if peer is not registered.
+          - ``OSError(num, "ESP_ERR_ESPNOW_IF")`` the wifi interface is not
+            `active()<network.WLAN.active>`.
+          - ``OSError(num, "ESP_ERR_ESPNOW_NO_MEM")`` internal ESP-NOW buffers are
+            full.
+          - ``ValueError()`` on invalid values for the parameters.
+
+        **Note**: A peer will respond with success if its wifi interface is
+        `active()<network.WLAN.active>` and set to the same channel as the sender,
+        regardless of whether it has initialised it's ESP-NOW system or is
+        actively listening for ESP-NOW traffic (see the Espressif ESP-NOW docs).
+        """
+
+    @overload
+    def send(
+        self,
+        msg: str | bytes,
     ) -> bool:
         """
         Send the data contained in ``msg`` to the peer with given network ``mac``
@@ -410,11 +460,13 @@ class ESPNow(ESPNowBase, Iterator):
             wait forever. The timeout can also be provided as arg to
             `recv()`/`irecv()`/`recvinto()`.
 
-            *rate*: (ESP32 only, IDF>=4.3.0 only) Set the transmission speed for
+            *rate*: (ESP32 only) Set the transmission speed for
             ESPNow packets. Must be set to a number from the allowed numeric values
             in `enum wifi_phy_rate_t
-            <https://docs.espressif.com/projects/esp-idf/en/v4.4.1/esp32/
-            api-reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_.
+            <https://docs.espressif.com/projects/esp-idf/en/v5.2.3/esp32/
+            api-reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_. This
+            parameter is actually *write-only* due to ESP-IDF not providing any
+            means for querying the radio interface's rate parameter.
 
         Returns:
 
@@ -503,9 +555,9 @@ class ESPNow(ESPNowBase, Iterator):
 
     def __init__(self, *argv, **kwargs) -> None: ...
     #
-    @overload
+    @overload  # force merge
     def __iter__(self) -> ESPNow: ...
-    @overload
+    @overload  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
 
 class ESPNowBase:

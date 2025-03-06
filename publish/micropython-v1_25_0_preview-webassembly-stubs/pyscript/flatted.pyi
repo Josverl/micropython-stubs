@@ -1,0 +1,13 @@
+"""
+Pyscript 2025.2.3 type-stub.
+see: https://docs.pyscript.net/2025.2.3/api/
+"""
+
+class _Known:
+    def __init__(self) -> None: ...
+
+class _String:
+    def __init__(self, value) -> None: ...
+
+def parse(value, *args, **kwargs): ...
+def stringify(value, *args, **kwargs) -> str: ...
