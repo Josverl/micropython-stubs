@@ -172,9 +172,13 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
         stdlib_source = pytestconfig.inipath.parent / f"publish/micropython-stdlib-stubs"
         if not stubs_source.exists():
             pytest.skip(f"Could not find stubs for {portboard} {version} at {stubs_source}")
-        cmd = f"uv pip install {stdlib_source}[mypy] {stubs_source} --pre --target {tsc_path}"
+        # --no-deps - avoids mixing different versions of stdlib
+        # > For directories, uv caches based on the last-modified time of the pyproject.toml file,
+        #    so that must be updated when stdlib is rebuilt.
+        cmd = f"uv pip install --no-deps {stdlib_source} {stubs_source} --pre --target {tsc_path}"
 
     try:
+        log.debug(f"Installing stubs: {cmd}")
         subprocess.run(cmd, shell=True, check=True, capture_output=True, text=True)
     except subprocess.CalledProcessError as e:
         # skip test if source connot be found

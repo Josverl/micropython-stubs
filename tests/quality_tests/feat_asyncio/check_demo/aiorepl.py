@@ -103,7 +103,7 @@ async def task(g=None, prompt="--> "):
         s = asyncio.StreamReader(sys.stdin)  
         # TODO: fix type stubs asyncio.StreamReader
         # clear = True
-        hist = [] * _HISTORY_LIMIT  
+        hist  = [] * _HISTORY_LIMIT  # stubs-ignore: linter == "mypy"
         hist_i = 0  # Index of most recent entry.
         hist_n = 0  # Number of history entries.
         c = 0  # ord of most recent character.
@@ -177,10 +177,10 @@ async def task(g=None, prompt="--> "):
                             b = "\x08" * len(cmd)  # stubs-ignore
                             # OK on v 1.20.0
                             # "None" is incompatible with protocol "Sized"
-                            sys.stdout.write(b)  
+                            sys.stdout.write(b)   #799 # stubs-ignore: linter == "mypy"
                             sys.stdout.write(" " * len(cmd))
                             # "None" is incompatible with protocol "Sized"
-                            sys.stdout.write(b)  
+                            sys.stdout.write(b)  #799 # stubs-ignore: linter == "mypy"
                             # Go backwards or forwards in the history.
                             if key == "[A":
                                 hist_b = min(hist_n, hist_b + 1)
@@ -188,7 +188,7 @@ async def task(g=None, prompt="--> "):
                                 hist_b = max(0, hist_b - 1)
                             # Update current command.
                             cmd = hist[(hist_i - hist_b) % _HISTORY_LIMIT]
-                            sys.stdout.write(cmd)  
+                            sys.stdout.write(cmd)  #799 # stubs-ignore: linter == "mypy"
                     else:
                         sys.stdout.write("\\x")
                         sys.stdout.write(hex(c))

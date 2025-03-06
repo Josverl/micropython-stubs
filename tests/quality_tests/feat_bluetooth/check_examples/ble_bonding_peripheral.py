@@ -128,7 +128,7 @@ class BLETemperature:
         elif event == _IRQ_GET_SECRET:
             sec_type, index, key = data
             reveal_type(key) # mypy and pylance see this differently; tuple[Any, builtins.bytes] vs Any
-            print("get secret:", sec_type, index, bytes(key) if key else None) 
+            print("get secret:", sec_type, index, bytes(key[0]) if key else None) 
             if key is None:
                 i = 0
                 for (t, _key), value in self._secrets.items():
@@ -138,7 +138,7 @@ class BLETemperature:
                         i += 1
                 return None
             else:
-                key = sec_type, bytes(key) 
+                key = sec_type, bytes(key[0]) 
                 return self._secrets.get(key, None)
 
     def set_temperature(self, temp_deg_c, notify=False, indicate=False):

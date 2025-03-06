@@ -21,7 +21,7 @@ HERE = Path(__file__).parent.absolute()
     "linter",
     ["pyright", "mypy"],
 )
-def test_typecheck_stdlib(
+def test_typecheck_stdlib_only(
     type_stub_cache_path: Path,
     stub_source: str,
     portboard: str,

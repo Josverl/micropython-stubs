@@ -44,6 +44,7 @@ ws.onclose = onclose
 # pyscript.js_import
 
 # TODO: window is not defined in stub 
+# from _pyscript import js_import
 from pyscript import js_import, window
 
 async def foo_4():

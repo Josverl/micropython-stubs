@@ -50,7 +50,7 @@ for mac, msg in e:
         break
 
 # Documented , but not detected by createstubs.py
-print(e.peers_table)  # stubs-ignore: version >= 1.24.1
+print(e.peers_table)  # type: ignore #801
 # TODO: espnow ESPNow.peers_table - deal with undetectable attributes
 # List of peers (MAC addresses) that have been added
 # A reference to the peer device table: a dict of known peer devices and rssi values:

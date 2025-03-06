@@ -91,8 +91,8 @@ def main(use_stream=True):
             except Exception as e:
                 print("Exception serving request:", e)
         else:
-            print(client_s.recv(4096))  # stubs-ignore
-            client_s.send(CONTENT % counter)  # stubs-ignore
+            print(client_s.recv(4096))  
+            client_s.send(CONTENT % counter) 
         client_s.close()
         counter += 1
         print()

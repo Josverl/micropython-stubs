@@ -7,13 +7,11 @@ import asyncio
 import builtins
 import collections
 import io
-import json
+# import json   #800
 import os
 import re
-import socket
-import struct
-import sys
+# import socket  #800
+# import struct  #800
 import types
 import typing
-
 import typing_extensions

@@ -9,6 +9,7 @@
 # applications, we recommend using the higher-level aioble library, which
 # includes an implementation of the secret store. See
 # https://github.com/micropython/micropython-lib/tree/master/micropython/bluetooth/aioble
+# TODO: Share fixes upstream
 
 import bluetooth
 import random
@@ -137,7 +138,7 @@ class BLETemperature:
                         i += 1
                 return None
             else:
-                key = sec_type, bytes(key)  
+                key = sec_type, bytes(key[1])  
                 return self._secrets.get(key, None)
 
     def set_temperature(self, temp_deg_c, notify=False, indicate=False):

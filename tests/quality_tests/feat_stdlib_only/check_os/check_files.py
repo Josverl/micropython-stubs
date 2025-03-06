@@ -3,8 +3,7 @@
 # params : folder , traverse subdirectory , output format, gethash
 # intended to allow simple processing of files
 # jos_verlinde@hotmail.com
-import json
-import logging
+
 import os
 from typing import Any, Dict, List, Optional, Tuple, Union
 
@@ -12,8 +11,6 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 # import ubinascii
 # import uhashlib
 
-logging.basicConfig(level=logging.DEBUG)
-log = logging.getLogger(__name__)
 
 
 def listdir(path=".", sub=False, JSON=True, gethash=False):
@@ -29,7 +26,7 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
             full = "%s%s" % (path, file)
         else:
             full = "%s/%s" % (path, file)
-        log.debug("os.stat({})".format(full))
+        # log.debug("os.stat({})".format(full))
         subdir = []
         try:
             stat = os.stat(full)
@@ -37,7 +34,7 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
                 info["Type"] = "dir"
                 # recurse folder(s)
                 if sub == True:
-                    log.debug("Folder :{}".format(full))
+                    # log.debug("Folder :{}".format(full))
                     subdir = listdir(path=full, sub=True, JSON=False, gethash=gethash)
             else:
                 info["Size"] = stat[6]
@@ -48,7 +45,7 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
                         # h = uhashlib.sha256(f.read())
                         # info["Hash"] = ubinascii.hexlify(h.digest())
         except OSError as e:
-            log.error("error:{} processing file:{}".format(e, full))
+            # log.error("error:{} processing file:{}".format(e, full))
             info["OSError"] = e.args[0]
             info["Type"] = "OSError"
         info["Fullname"] = full
@@ -57,7 +54,3 @@ def listdir(path=".", sub=False, JSON=True, gethash=False):
         if sub == True:
             assert isinstance(subdir, list)
             li = li + subdir
-    if JSON == True:
-        return json.dumps(li)
-    else:
-        return li

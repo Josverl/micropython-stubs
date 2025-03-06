@@ -29,4 +29,4 @@ if port in ["unix", "windows"]:
     def byebye():
         print("so long")
 
-    previous = sys.atexit(byebye)  
+    previous = sys.atexit(byebye)  # type: ignore # stubs-ignore : version < 1.24.0

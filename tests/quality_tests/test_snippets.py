@@ -10,6 +10,8 @@ import pytest
 from mpflash.versions import micropython_versions
 from packaging.version import Version
 from typecheck import copy_config_files, port_and_board, run_typechecker, stub_ignore
+from typing import Dict, List
+import sys
 
 
 def major_minor(versions):
@@ -83,13 +85,13 @@ PORTBOARD_FEATURES = {
 
 SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 
-import sys
+
 
 HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
-
-VERSIONS = sorted(major_minor(micropython_versions()), reverse=True)[:5]
+# only the recent versions
+VERSIONS = sorted(major_minor(micropython_versions(minver="v1.24.0")), reverse=True)[:3]
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
@@ -134,7 +136,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
     metafunc.parametrize(argnames, args_lst, scope="session")
 
 
-from typing import Dict, List
+
 
 
 def filter_issues(issues: List[Dict], version: str, portboard: str = ""):

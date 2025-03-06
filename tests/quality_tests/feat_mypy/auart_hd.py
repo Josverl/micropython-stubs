@@ -14,7 +14,7 @@
 
 import asyncio as asyncio
 from machine import UART
-from primitives.delay_ms import Delay_ms  # type: ignore
+from primitives.delay_ms import Delay_ms  # type: ignore 
 
 
 # Dummy device waits for any incoming line and responds with 4 lines at 1 second
