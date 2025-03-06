@@ -14,11 +14,31 @@ he following three categories of API functionality explain features that are com
 
 """
 
+__all__ = [
+    "PyWorker",
+    "config",
+    "current_target",
+    "display",
+    "document",
+    "fetch",
+    "js_import",
+    "js_modules",
+    "py_import",
+    "storage",
+    "sync",
+    "window",
+    "workers",
+    "HTML", 
+    "Event", 
+    "WebSocket", 
+    "create_named_worker"
+]
+
+
 from polyscript import lazy_py_modules as py_import  # type: ignore
 from pyscript.display import HTML as HTML, display as display
 from pyscript.events import Event as Event, when as when
 from pyscript.fetch import fetch as fetch
-from pyscript.magic_js import js_modules  # type: ignore
 from pyscript.magic_js import (
     RUNNING_IN_WORKER as RUNNING_IN_WORKER,
     PyWorker as PyWorker,
@@ -28,7 +48,9 @@ from pyscript.magic_js import (
     js_import as js_import,
     sync as sync,
     window as window,
+    js_modules as js_modules
 )
+
 from pyscript.storage import Storage as Storage, storage as storage
 from pyscript.websocket import WebSocket as WebSocket
 from pyscript.workers import create_named_worker as create_named_worker, workers as workers

@@ -2,11 +2,12 @@
 Pyscript 2025.2.3 type-stub.
 see: https://docs.pyscript.net/2025.2.3/api/
 """
+from __future__ import annotations
 
 import sys
-from typing import Any
+from typing import Any, Callable, Iterable
 
-from _pyscript import PyWorker, js_import  # type: ignore[import]
+from _pyscript import PyWorker as PyWorker, js_import as js_import
 
 RUNNING_IN_WORKER = ...
 config = ...
