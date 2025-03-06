@@ -18,9 +18,9 @@ Module: 'machine' on micropython-v1.24.1-samd-SEEED_WIO_TERMINAL
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Final, NoReturn, Tuple, Any, Callable, List, Sequence, Union, overload, Optional
-from typing_extensions import Awaitable, TypeAlias, TypeVar
+from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
+from typing import NoReturn, Optional, Union, Tuple, Any, Callable, List, Sequence, overload
 from vfs import AbstractBlockDev
 
 ID_T: TypeAlias = int | str
@@ -2108,7 +2108,7 @@ class UART:
         pins: tuple[PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of two pins.
         """
 
     @overload
@@ -2124,7 +2124,7 @@ class UART:
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of four pins.
         """
 
 class USBDevice:
@@ -2794,3 +2794,50 @@ class SoftI2C(I2C):
     def stop(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
+
+class SDCard:
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray) -> bool:
+        """
+        The first form reads aligned, multiples of blocks.
+        Starting at the block given by the index *block_num*, read blocks from
+        the device into *buf* (an array of bytes).
+        The number of blocks to read is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
+        """
+        The second form allows reading at arbitrary locations within a block,
+        and arbitrary lengths.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, read bytes from the device into *buf* (an array of bytes).
+        The number of bytes to read is given by the length of *buf*.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+        """
+        The first form writes aligned, multiples of blocks, and requires that the
+        blocks that are written to be first erased (if necessary) by this method.
+        Starting at the block given by the index *block_num*, write blocks from
+        *buf* (an array of bytes) to the device.
+        The number of blocks to write is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+        """
+        The second form allows writing at arbitrary locations within a block,
+        and arbitrary lengths.  Only the bytes being written should be changed,
+        and the caller of this method must ensure that the relevant blocks are
+        erased via a prior ``ioctl`` call.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, write bytes from *buf* (an array of bytes) to the device.
+        The number of bytes to write is given by the length of *buf*.
+
+        Note that implementations must never implicitly erase blocks if the offset
+        argument is specified, even if it is zero.
+        """

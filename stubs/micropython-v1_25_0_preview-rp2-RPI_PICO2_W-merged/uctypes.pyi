@@ -17,7 +17,7 @@ Module: 'uctypes' on micropython-v1.25.0-preview-rp2-UNKNOWN_BOARD
 # MCU: {'family': 'micropython', 'version': '1.25.0-preview', 'build': 'preview.236.gbfb1bee6f', 'ver': '1.25.0-preview-preview.236.gbfb1bee6f', 'port': 'rp2', 'board': 'UNKNOWN_BOARD', 'cpu': 'RP2350', 'mpy': 'v6.3', 'arch': 'armv7emsp'}
 # Stubber: v1.24.0
 from __future__ import annotations
-from typing import Any, Generator
+from typing import overload, Any, Generator
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing_extensions import Awaitable, TypeAlias, TypeVar
@@ -118,3 +118,6 @@ class struct:
         Instantiate a "foreign data structure" object based on structure address in
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
+
+    @overload  # force push
+    def __getattr__(self, a): ...

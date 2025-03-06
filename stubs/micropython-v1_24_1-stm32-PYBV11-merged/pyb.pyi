@@ -14,7 +14,7 @@ Module: 'pyb' on micropython-v1.24.1-stm32-PYBV11
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import NoReturn, Any, Dict, List, Callable, overload, Tuple
-from typing_extensions import Awaitable, TypeAlias, TypeVar
+from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
 from _mpy_shed import HID_Tuple, _OldAbstractBlockDev, _OldAbstractReadOnlyBlockDev, AnyReadableBuf, AnyWritableBuf
 from collections.abc import Sequence
 from vfs import AbstractBlockDev
@@ -31,6 +31,7 @@ def hard_reset() -> NoReturn:
     """
     ...
 
+@deprecated("Use `pyb.USB_VCP().isconnected()` instead.")
 def have_cdc() -> bool:
     """
     Return True if USB is connected as a serial device, False otherwise.
@@ -39,6 +40,7 @@ def have_cdc() -> bool:
     """
     ...
 
+@deprecated("Use `pyb.USB_HID.send()`` instead.")
 @overload
 def hid(data: tuple[int, int, int, int], /) -> None:
     """
@@ -48,6 +50,7 @@ def hid(data: tuple[int, int, int, int], /) -> None:
     ``Note:`` This function is deprecated.  Use :meth:`pyb.USB_HID.send()` instead.
     """
 
+@deprecated("Use `pyb.USB_HID.send()`` instead.")
 @overload
 def hid(data: Sequence[int], /) -> None:
     """
@@ -975,18 +978,50 @@ class Flash(AbstractBlockDev):
     application.
     """
 
-    def readblocks(self, blocknum: int, buf: bytes, offset: int = 0, /) -> None:
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray) -> bool:
         """
-        These methods implement the simple and :ref:`extended
-        <block-device-interface>` block protocol defined by
-        :class:`os.AbstractBlockDev`.
+        The first form reads aligned, multiples of blocks.
+        Starting at the block given by the index *block_num*, read blocks from
+        the device into *buf* (an array of bytes).
+        The number of blocks to read is given by the length of *buf*,
+        which will be a multiple of the block size.
         """
 
-    def writeblocks(self, blocknum: int, buf: bytes, offset: int = 0, /) -> None:
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
         """
-        These methods implement the simple and :ref:`extended
-        <block-device-interface>` block protocol defined by
-        :class:`os.AbstractBlockDev`.
+        The second form allows reading at arbitrary locations within a block,
+        and arbitrary lengths.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, read bytes from the device into *buf* (an array of bytes).
+        The number of bytes to read is given by the length of *buf*.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+        """
+        The first form writes aligned, multiples of blocks, and requires that the
+        blocks that are written to be first erased (if necessary) by this method.
+        Starting at the block given by the index *block_num*, write blocks from
+        *buf* (an array of bytes) to the device.
+        The number of blocks to write is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+        """
+        The second form allows writing at arbitrary locations within a block,
+        and arbitrary lengths.  Only the bytes being written should be changed,
+        and the caller of this method must ensure that the relevant blocks are
+        erased via a prior ``ioctl`` call.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, write bytes from *buf* (an array of bytes) to the device.
+        The number of bytes to write is given by the length of *buf*.
+
+        Note that implementations must never implicitly erase blocks if the offset
+        argument is specified, even if it is zero.
         """
 
     def ioctl(self, op: int, arg: int) -> int | None:
@@ -997,6 +1032,7 @@ class Flash(AbstractBlockDev):
         """
         ...
 
+    @deprecated("This constructor is deprecated and will be removed in a future version of MicroPython")
     @overload
     def __init__(self):
         """

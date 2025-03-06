@@ -17,6 +17,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from typing import overload
 
 _ScalarProperty: TypeAlias = int
 _RecursiveProperty: TypeAlias = tuple[int, _property]
@@ -122,6 +123,9 @@ class struct:
         Instantiate a "foreign data structure" object based on structure address in
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
+
+    @overload  # force push
+    def __getattr__(self, a): ...
 
 def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) -> int:
     """

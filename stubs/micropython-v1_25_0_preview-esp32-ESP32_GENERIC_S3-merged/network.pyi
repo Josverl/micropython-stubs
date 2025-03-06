@@ -47,7 +47,7 @@ Module: 'network' on micropython-v1.24.1-esp32-ESP32_GENERIC_S3
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Protocol, Callable, List, overload, Any, Optional, Tuple
+from typing import Protocol, Callable, List, overload, Any, Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 from machine import Pin, SPI
 from abc import abstractmethod

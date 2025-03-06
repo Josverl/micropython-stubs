@@ -1,11 +1,3 @@
-"""
-Control of LCD160CR display.
-
-MicroPython module: https://docs.micropython.org/en/v1.25.0/library/lcd160cr.html
-
-This module provides control of the MicroPython LCD160CR display.
-"""
-
 from __future__ import annotations
 from _typeshed import Incomplete
 from micropython import const as const

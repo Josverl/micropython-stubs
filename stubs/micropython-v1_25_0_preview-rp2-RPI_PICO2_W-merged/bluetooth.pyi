@@ -27,7 +27,7 @@ Module: 'bluetooth' on micropython-v1.25.0-preview-rp2-UNKNOWN_BOARD
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
-from typing import Any, Callable, Optional, Tuple, overload
+from typing import Any, Callable, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _Flag: TypeAlias = int
