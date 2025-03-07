@@ -16,7 +16,7 @@ from typing import List, Optional, Union
 import rich_click as click
 from loguru import logger as log
 from mpflash.versions import clean_version, get_stable_mp_version
-from stubber.codemod.enrich import enrich_folder
+from stubber.codemod.enrich import enrich_folder, enrich_file
 from stubber.modcat import STDLIB_ONLY_MODULES
 from stubber.utils import do_post_processing
 from stubber.utils.config import readconfig
@@ -278,6 +278,21 @@ def change_lines(folder: Path):
                         line = line.replace(old, new)
                         n += 1
                 f.write(line)
+
+def update_typing_pyi(dist_stdlib_path: Path, ):
+    """
+    patch updates into typing.pyi 
+    - allow IO.write(bytes) overload
+    """
+    tsk = enrich_file(
+        dist_stdlib_path / "handcrafted/typing.pyi",
+        dist_stdlib_path / "stdlib/typing.pyi",
+        diff=True,
+        write_back=True,
+        copy_params=True,
+        copy_docstr=True,
+    )
+    next(tsk)
 
 
 def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
@@ -547,6 +562,9 @@ def update(
 
     # update the last changed date-time so uv can detect the update
     Path(dist_stdlib_path / "pyproject.toml").touch()
+
+    # do some patches to typings.pyi
+    update_typing_pyi(dist_stdlib_path)
 
     if build:
         subprocess.check_call(
