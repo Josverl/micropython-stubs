@@ -130,6 +130,7 @@ COMMENT_OUT_LINES = [
 # this is for things such as function or classdefs that extend beyond a single line
 CHANGE_LINES = [
     ("ssl", [("def create_default_context", "def __mpy_has_no_create_default_context")]),
+    ("sys", [("def atexit(", "def __mpy_has_no_atexit(")]),
 ]
 
 
@@ -343,7 +344,10 @@ def merge_docstubs_into_stdlib(
         Boost("io"),
         Boost("array"),
         # evaluating
-        Boost("tls"),
+        # Boost("tls"), # -- MicroPython only - does not exists in stdlib 
+        Boost("json"),
+        Boost("socket"), # not available in all boards ...
+        Boost("struct"),
     ]
 
     for boost in boosts:
