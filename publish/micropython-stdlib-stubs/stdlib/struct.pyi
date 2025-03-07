@@ -54,18 +54,25 @@ The following data types are supported:
 +--------+--------------------+-------------------+---------------+
 | P      | void *             | integer           |               |
 +--------+--------------------+-------------------+---------------+
-
----
-Module: 'struct' on micropython-v1.24.1-esp32-ESP32_GENERIC_S3
 """
 
-# MCU: {'family': 'micropython', 'version': '1.24.1', 'build': '', 'ver': '1.24.1', 'port': 'esp32', 'board': 'ESP32_GENERIC_S3', 'cpu': 'ESP32S3', 'mpy': 'v6.3', 'arch': 'xtensawin'}
-# Stubber: v1.24.0
 from __future__ import annotations
-from _typeshed import Incomplete
+from _typeshed import Incomplete, ReadableBuffer, WriteableBuffer
+from collections.abc import Iterator
+from typing import Any
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from typing import Any, Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+__all__ = ["calcsize", "pack", "pack_into", "unpack", "unpack_from", "iter_unpack", "Struct", "error"]
+
+class error(Exception): ...
+
+def pack(fmt: str | bytes, /, *v: Any) -> bytes:
+    """
+    Pack the values *v1*, *v2*, ... according to the format string *fmt*.
+    The return value is a bytes object encoding the values.
+    """
+    ...
 
 def pack_into(fmt: str | bytes, buffer: AnyWritableBuf, offset: int, /, *v: Any) -> None:
     """
@@ -75,14 +82,14 @@ def pack_into(fmt: str | bytes, buffer: AnyWritableBuf, offset: int, /, *v: Any)
     """
     ...
 
-def unpack(fmt: str | bytes, data: AnyReadableBuf, /) -> Tuple:
+def unpack(fmt: str | bytes, data: AnyReadableBuf, /) -> tuple[Any, ...]:
     """
     Unpack from the *data* according to the format string *fmt*.
     The return value is a tuple of the unpacked values.
     """
     ...
 
-def unpack_from(fmt: str | bytes, data: AnyReadableBuf, offset: int = 0, /) -> Tuple:
+def unpack_from(fmt: str | bytes, data: AnyReadableBuf, offset: int = 0, /) -> tuple[Any, ...]:
     """
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *data*. The return
@@ -90,13 +97,7 @@ def unpack_from(fmt: str | bytes, data: AnyReadableBuf, offset: int = 0, /) -> T
     """
     ...
 
-def pack(fmt: str | bytes, /, *v: Any) -> bytes:
-    """
-    Pack the values *v1*, *v2*, ... according to the format string *fmt*.
-    The return value is a bytes object encoding the values.
-    """
-    ...
-
+def iter_unpack(format: str | bytes, buffer: ReadableBuffer, /) -> Iterator[tuple[Any, ...]]: ...
 def calcsize(
     fmt: str | bytes,
     /,
@@ -105,3 +106,15 @@ def calcsize(
     Return the number of bytes needed to store the given *fmt*.
     """
     ...
+
+class Struct:
+    @property
+    def format(self) -> str: ...
+    @property
+    def size(self) -> int: ...
+    def __init__(self, format: str | bytes) -> None: ...
+    def pack(self, *v: Any) -> bytes: ...
+    def pack_into(self, buffer: WriteableBuffer, offset: int, *v: Any) -> None: ...
+    def unpack(self, buffer: ReadableBuffer, /) -> tuple[Any, ...]: ...
+    def unpack_from(self, buffer: ReadableBuffer, offset: int = 0) -> tuple[Any, ...]: ...
+    def iter_unpack(self, buffer: ReadableBuffer, /) -> Iterator[tuple[Any, ...]]: ...

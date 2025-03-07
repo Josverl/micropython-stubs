@@ -16,6 +16,9 @@ with on in standard HTML (e.g. onclick). The rule of thumb is to simply replace 
 from pyscript import Event, document
 from pyscript import when as when
 from pyscript.ffi import create_proxy
+from _typeshed import Incomplete
+from typing import Any, Generator, List
+from typing_extensions import Self
 
 """Lightweight interface to the DOM and HTML elements."""
 from typing import Any, Generator, List
@@ -234,6 +237,7 @@ class Style:
 
     @property
     def visible(self) -> Incomplete: ...
+    @property
     @visible.setter
     def visible(self, value) -> None: ...
 
@@ -900,6 +904,7 @@ class Page:
         """Return the page title."""
         ...
 
+    @property
     @title.setter
     def title(self, value) -> None:
         """Set the page title."""

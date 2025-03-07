@@ -15,10 +15,10 @@ he following three categories of API functionality explain features that are com
 """
 
 from polyscript import lazy_py_modules as py_import  # type: ignore
-from pyscript.display import HTML, display
-from pyscript.events import Event, when
-from pyscript.fetch import fetch
-from pyscript.magic_js import js_modules  # type: ignore
+from pyscript.display import HTML as HTML, display as display, HTML, display
+from pyscript.events import Event as Event, when as when, Event, when
+from pyscript.fetch import fetch as fetch, fetch
+from pyscript.magic_js import PyWorker as PyWorker, RUNNING_IN_WORKER as RUNNING_IN_WORKER, config as config, current_target as current_target, document as document, js_import as js_import, js_modules as js_modules, sync as sync, window as window, js_modules  # type: ignore
 from pyscript.magic_js import (
     RUNNING_IN_WORKER,
     PyWorker,
@@ -29,9 +29,12 @@ from pyscript.magic_js import (
     sync,
     window,
 )
-from pyscript.storage import Storage, storage
-from pyscript.websocket import WebSocket
-from pyscript.workers import create_named_worker, workers
+from pyscript.storage import Storage as Storage, storage as storage, Storage, storage
+from pyscript.websocket import WebSocket as WebSocket, WebSocket
+from pyscript.workers import create_named_worker as create_named_worker, workers as workers, create_named_worker, workers
+import storage as _storage
+from typing import Any, Callable, Tuple
+from _typeshed import Incomplete
 
 if not RUNNING_IN_WORKER:
     ...

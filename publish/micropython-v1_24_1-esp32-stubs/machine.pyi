@@ -19,8 +19,8 @@ Module: 'machine' on micropython-v1.24.1-esp32-ESP32_GENERIC
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
+from typing import NoReturn, Optional, Union, List, Sequence, Callable, Tuple, Any, overload
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
-from typing import NoReturn, Optional, Union, Tuple, Any, Callable, List, Sequence, overload
 from vfs import AbstractBlockDev
 
 ID_T: TypeAlias = int | str
