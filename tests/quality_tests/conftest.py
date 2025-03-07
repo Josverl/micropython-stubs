@@ -1,6 +1,6 @@
 """Pytest configuration file for snippets tests.
 
-- snip_path
+- snip_path_fx
   returns the path to the feature folder (feat_xxxx) or check folder (check_xxxx)
 
 - type_stub_cache_path
@@ -10,7 +10,7 @@
 - install_stubs
   is the function that does the actual pip install to a folder
 
-- copy_type_stubs
+- copy_type_stubs_fx
   copies the type stubs from the cache to the feature folder
 
 - pytest_runtest_makereport 
@@ -74,7 +74,7 @@ def pytest_runtest_makereport(item, call):
 
 
 @pytest.fixture(scope="session")
-def type_stub_cache_path(
+def type_stub_cache_path_fx(
     portboard: str,
     version: str,
     stub_source: str,
@@ -99,7 +99,7 @@ def type_stub_cache_path(
     cache_key = f"stubber/{stub_source}/{version}/{portboard}"
     flatversion = flat_version(version)
     tsc_path = Path(
-        request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}")
+        request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}") # type: ignore
     )
     # prevent simultaneous updates to the cache
     cache_lock = fasteners.InterProcessLock(tsc_path.parent / f"{tsc_path.name}.lock")
@@ -189,7 +189,7 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
 
 
 @pytest.fixture(scope="function")
-def snip_path(feature: str, pytestconfig) -> Path:
+def snip_path_fx(feature: str, pytestconfig) -> Path:
     """
     Get the path to the feat_ or check_ folder.
 
@@ -209,8 +209,12 @@ def snip_path(feature: str, pytestconfig) -> Path:
 
 
 @pytest.fixture(scope="function")
-def copy_type_stubs(
-    portboard: str, version: str, feature: str, type_stub_cache_path: Path, snip_path: Path
+def copy_type_stubs_fx(
+    portboard: str, 
+    version: str, 
+    feature: str, 
+    type_stub_cache_path_fx: Path, 
+    snip_path_fx: Path,
 ):
     """
     Copies installed/cached type stubs from the cache to the feature folder.
@@ -223,20 +227,20 @@ def copy_type_stubs(
         snip_path: The path to the feature folder.
     """
     cache_lock = fasteners.InterProcessLock(
-        type_stub_cache_path.parent / f"{type_stub_cache_path.name}.lock"
+        type_stub_cache_path_fx.parent / f"{type_stub_cache_path_fx.name}.lock"
     )
-    typecheck_lock = fasteners.InterProcessLock(snip_path / "typecheck_lock.file")
+    typecheck_lock = fasteners.InterProcessLock(snip_path_fx / "typecheck_lock.file")
     with cache_lock:
         with typecheck_lock:
             log.trace(f"- copy_type_stubs: {version}, {portboard} to {feature}")
             # print(f"\n - copy_type_stubs : {version}, {portboard} to {feature}")
-            if not snip_path or not snip_path.exists():
+            if not snip_path_fx or not snip_path_fx.exists():
                 # skip if no feature folder
                 pytest.skip(f"no feature folder for {feature}")
-            typings_path = snip_path / "typings"
+            typings_path = snip_path_fx / "typings"
             if typings_path.exists():
                 shutil.rmtree(typings_path, ignore_errors=True)
-            shutil.copytree(type_stub_cache_path, typings_path)
+            shutil.copytree(type_stub_cache_path_fx, typings_path)
             # print(f" - copied to {typings_path}")
 
 

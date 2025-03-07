@@ -276,18 +276,18 @@ def test_typecheck(
     version: str,
     portboard: str,
     feature: str,
-    snip_path: Path,
-    copy_type_stubs,  # Avoid needing autouse fixture
+    snip_path_fx: Path,
+    copy_type_stubs_fx,  # Avoid needing autouse fixture
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
 ):
-    if not snip_path or not snip_path.exists():
+    if not snip_path_fx or not snip_path_fx.exists():
         FileNotFoundError(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
 
     log.info(f"Typecheck {linter} on {portboard}, {feature} {version} from {stub_source}")
 
     info_msg, errorcount = run_typechecker(
-        snip_path, version, portboard, pytestconfig, linter=linter
+        snip_path_fx, version, portboard, pytestconfig, linter=linter
     )
     assert errorcount == 0, info_msg

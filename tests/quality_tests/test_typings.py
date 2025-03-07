@@ -30,11 +30,11 @@ def is_docker_running():
 
 
 @pytest.fixture(scope="session")
-def copy_mpy_typings(snip_path: Path, ext: str, pytestconfig: pytest.Config):
+def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Config):
     """
     Copy the typings.py(i) and the typings_extension.py(i) files to  snip_path
     """
-    lib_path = snip_path / "lib"
+    lib_path = snip_path_fx / "lib"
     lib_path.mkdir(exist_ok=True)
     for file in lib_path.glob("typing*.p*"):
         file.unlink()
@@ -62,7 +62,7 @@ def copy_mpy_typings(snip_path: Path, ext: str, pytestconfig: pytest.Config):
 )
 @pytest.mark.parametrize("snip_path", [HERE / "feat_typing"], scope="session")
 def test_typing_runtime(
-    copy_mpy_typings,
+    copy_mpy_typings_fx,
     feature: str,
     snip_path: Path,
     check_file,

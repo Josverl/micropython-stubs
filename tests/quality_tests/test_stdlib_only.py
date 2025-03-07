@@ -22,14 +22,14 @@ HERE = Path(__file__).parent.absolute()
     ["pyright", "mypy"],
 )
 def test_typecheck_stdlib_only(
-    type_stub_cache_path: Path,
+    type_stub_cache_path_fx: Path,
     stub_source: str,
     portboard: str,
     feature: str,
     snip_path: Path,
     version: str,
     linter: str,
-    copy_type_stubs,  # Avoid needing autouse fixture
+    copy_type_stubs_fx,  # Avoid needing autouse fixture
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
 ):
