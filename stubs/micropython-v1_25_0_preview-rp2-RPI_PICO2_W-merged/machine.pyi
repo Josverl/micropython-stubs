@@ -19,8 +19,8 @@ Module: 'machine' on micropython-v1.25.0-preview-rp2-UNKNOWN_BOARD
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
+from typing import NoReturn, Optional, Union, List, Sequence, Callable, Tuple, Any, overload
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
-from typing import NoReturn, Optional, Union, Tuple, Any, Callable, List, Sequence, overload
 from vfs import AbstractBlockDev
 
 ID_T: TypeAlias = int | str
@@ -338,7 +338,7 @@ class Pin:
         """
         Set pin to "0" output level.
 
-        Availability: nrf, rp2, stm32 ports.
+        Availability: mimxrt, nrf, renesas-ra, rp2, samd, stm32 ports.
         """
         ...
 
@@ -400,7 +400,7 @@ class Pin:
         """
         Toggle output pin from "0" to "1" or vice-versa.
 
-        Availability: mimxrt, samd, rp2 ports.
+        Availability: cc3200, esp32, esp8266, mimxrt, rp2, samd ports.
         """
         ...
 
@@ -506,7 +506,7 @@ class Pin:
         """
         Set pin to "1" output level.
 
-        Availability: nrf, rp2, stm32 ports.
+        Availability: mimxrt, nrf, renesas-ra, rp2, samd, stm32 ports.
         """
         ...
 
@@ -1905,7 +1905,7 @@ class UART:
 
           - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
             Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
             When no pins are given, then the default set of TX and RX pins is taken, and hardware
             flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
 
@@ -1968,7 +1968,7 @@ class UART:
 
           - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
             Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
             When no pins are given, then the default set of TX and RX pins is taken, and hardware
             flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
 
@@ -2031,7 +2031,7 @@ class UART:
 
           - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
             Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
             When no pins are given, then the default set of TX and RX pins is taken, and hardware
             flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
 

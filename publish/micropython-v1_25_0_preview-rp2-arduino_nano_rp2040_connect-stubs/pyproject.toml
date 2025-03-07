@@ -1,7 +1,7 @@
 [project]
 name = "micropython-rp2-arduino_nano_rp2040_connect-stubs"
 description = "MicroPython stubs"
-version = "1.25.0a308"
+version = "1.25.0a365"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -72,7 +72,6 @@ packages = [
     { include = "gc.pyi" },
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
-    { include = "json.pyi" },
     { include = "logging.pyi" },
     { include = "lsm6dsox.pyi" },
     { include = "machine.pyi" },
@@ -95,7 +94,6 @@ packages = [
     { include = "senml/senml_record.pyi" },
     { include = "senml/senml_unit.pyi" },
     { include = "socket.pyi" },
-    { include = "struct.pyi" },
     { include = "time.pyi" },
     { include = "tls.pyi" },
     { include = "uarray.pyi" },

@@ -13,10 +13,10 @@ Module: 'pyb' on micropython-v1.24.1-stm32-PYBV11
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import NoReturn, Any, Dict, List, Callable, overload, Tuple
-from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
 from _mpy_shed import HID_Tuple, _OldAbstractBlockDev, _OldAbstractReadOnlyBlockDev, AnyReadableBuf, AnyWritableBuf
 from collections.abc import Sequence
+from typing import NoReturn, Dict, List, Any, Tuple, Callable, overload
+from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
 from vfs import AbstractBlockDev
 from array import array
 from abc import ABC, abstractmethod

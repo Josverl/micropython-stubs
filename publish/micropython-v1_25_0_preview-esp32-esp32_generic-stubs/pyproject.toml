@@ -1,7 +1,7 @@
 [project]
 name = "micropython-esp32-esp32_generic-stubs"
 description = "MicroPython stubs"
-version = "1.25.0a308"
+version = "1.25.0a365"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -67,7 +67,6 @@ packages = [
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
     { include = "inisetup.pyi" },
-    { include = "json.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
@@ -81,7 +80,6 @@ packages = [
     { include = "requests/__init__.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },
-    { include = "struct.pyi" },
     { include = "time.pyi" },
     { include = "tls.pyi" },
     { include = "uarray.pyi" },

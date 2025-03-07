@@ -1,3 +1,15 @@
+"""
+Basic "operating system" services.
+
+MicroPython module: https://docs.micropython.org/en/v1.25.0/library/os.html
+
+CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
+
+The ``os`` module contains functions for filesystem access and mounting,
+terminal redirection and duplication, and the ``uname`` and ``urandom``
+functions.
+"""
+
 from __future__ import annotations
 from uos import *
 from . import path as path
@@ -161,20 +173,6 @@ def rename(old_path, new_path) -> None:
 def rename(old_path, new_path) -> None:
     """
     Rename a file.
-    """
-    ...
-
-@overload
-def stat(path) -> Incomplete:
-    """
-    Get the status of a file or directory.
-    """
-    ...
-
-@overload
-def stat(path) -> Incomplete:
-    """
-    Get the status of a file or directory.
     """
     ...
 
