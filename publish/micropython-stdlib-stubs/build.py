@@ -64,12 +64,18 @@ STDLIB_MODULES_TO_KEEP = list(
 STDLIB_MODULES_TO_REMOVE = [
     "os/path.pyi",
     "sys/_monitoring.pyi",
+    #
     "asyncio/subprocess.pyi",
     "asyncio/base_subprocess.pyi",
     "asyncio/taskgroups.pyi",
     "asyncio/taskgroups.pyi",
     "asyncio/windows_events.pyi",
     "asyncio/windows_utils.pyi",
+    #
+    "json/decoder.pyi",
+    "json/encoder.pyi",
+    "json/tool.pyi",
+
 ]
 
 
@@ -345,9 +351,10 @@ def merge_docstubs_into_stdlib(
         Boost("array"),
         # evaluating
         # Boost("tls"), # -- MicroPython only - does not exists in stdlib 
-        Boost("json"),
         Boost("socket"), # not available in all boards ...
+        Boost("json"),
         Boost("struct"),
+        Boost("builtins"),
     ]
 
     for boost in boosts:
