@@ -82,7 +82,7 @@ class AbstractNIC(Protocol):
 
     @overload
     @abstractmethod
-    def active(self, is_active: bool, /) -> None:
+    def active(self, is_active: bool | int, /) -> None:
         """
         Activate ("up") or deactivate ("down") the network interface, if
         a boolean argument is passed. Otherwise, query current state if

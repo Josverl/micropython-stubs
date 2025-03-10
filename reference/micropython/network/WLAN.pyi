@@ -49,7 +49,7 @@ class WLAN:
         """
 
     @overload
-    def active(self, is_active: bool, /) -> None:
+    def active(self, is_active: bool | int, /) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
         argument is passed. Otherwise, query current state if no argument is
