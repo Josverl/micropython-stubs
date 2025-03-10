@@ -17,7 +17,7 @@ Module: 'machine' on micropython-v1.24.1-unix
 # MCU: {'family': 'micropython', 'version': '1.24.1', 'build': '', 'ver': '1.24.1', 'port': 'unix', 'board': '', 'cpu': 'linux [GCC 12.4.0] version', 'mpy': 'v6.3', 'arch': 'x64'}
 # Stubber: v1.24.0
 from __future__ import annotations
-from typing import NoReturn, Optional, Union, Tuple, Callable, List, Sequence, overload, Any, Final, Generator
+from typing import NoReturn, Optional, Union, List, Sequence, Callable, Tuple, overload, Any, Final, Generator
 from _typeshed import Incomplete
 from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
@@ -247,300 +247,136 @@ class Signal(Pin):
 mem32: Incomplete  ## <class 'mem'> = <32-bit memory>
 mem16: Incomplete  ## <class 'mem'> = <16-bit memory>
 
-class I2C:
+class SPI:
     @overload
-    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
+    def __init__(self, id: int, /):
         """
-        Construct and return a new I2C object using the following parameters:
+        Construct an SPI object on the given bus, *id*. Values of *id* depend
+        on a particular port and its hardware. Values 0, 1, etc. are commonly used
+        to select hardware SPI block #0, #1, etc.
 
-           - *id* identifies a particular I2C peripheral.  Allowed values for
-             depend on the particular port/board
-           - *scl* should be a pin object specifying the pin to use for SCL.
-           - *sda* should be a pin object specifying the pin to use for SDA.
-           - *freq* should be an integer which sets the maximum frequency
-             for SCL.
-
-        Note that some ports/boards will have default values of *scl* and *sda*
-        that can be changed in this constructor.  Others will have fixed values
-        of *scl* and *sda* that cannot be changed.
+        With no additional parameters, the SPI object is created but not
+        initialised (it has the settings from the last initialisation of
+        the bus, if any).  If extra arguments are given, the bus is initialised.
+        See ``init`` for parameters of initialisation.
         """
 
     @overload
-    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
-        """
-        Construct and return a new I2C object using the following parameters:
-
-           - *id* identifies a particular I2C peripheral.  Allowed values for
-             depend on the particular port/board
-           - *scl* should be a pin object specifying the pin to use for SCL.
-           - *sda* should be a pin object specifying the pin to use for SDA.
-           - *freq* should be an integer which sets the maximum frequency
-             for SCL.
-
-        Note that some ports/boards will have default values of *scl* and *sda*
-        that can be changed in this constructor.  Others will have fixed values
-        of *scl* and *sda* that cannot be changed.
-        """
-
-    @overload
-    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
-        """
-        Initialise the I2C bus with the given arguments:
-
-           - *scl* is a pin object for the SCL line
-           - *sda* is a pin object for the SDA line
-           - *freq* is the SCL clock rate
-
-         In the case of hardware I2C the actual clock frequency may be lower than the
-         requested frequency. This is dependent on the platform hardware. The actual
-         rate may be determined by printing the I2C object.
-        """
-
-    @overload
-    def init(self, *, freq: int = 400_000) -> None:
-        """
-        Initialise the I2C bus with the given arguments:
-
-           - *scl* is a pin object for the SCL line
-           - *sda* is a pin object for the SDA line
-           - *freq* is the SCL clock rate
-
-         In the case of hardware I2C the actual clock frequency may be lower than the
-         requested frequency. This is dependent on the platform hardware. The actual
-         rate may be determined by printing the I2C object.
-        """
-
-    @overload
-    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
-        """
-        Initialise the I2C bus with the given arguments:
-
-           - *scl* is a pin object for the SCL line
-           - *sda* is a pin object for the SDA line
-           - *freq* is the SCL clock rate
-
-         In the case of hardware I2C the actual clock frequency may be lower than the
-         requested frequency. This is dependent on the platform hardware. The actual
-         rate may be determined by printing the I2C object.
-        """
-
-class Pin:
-    @overload
-    def value(self) -> int:
-        """
-        This method allows to set and get the value of the pin, depending on whether
-        the argument ``x`` is supplied or not.
-
-        If the argument is omitted then this method gets the digital logic level of
-        the pin, returning 0 or 1 corresponding to low and high voltage signals
-        respectively.  The behaviour of this method depends on the mode of the pin:
-
-          - ``Pin.IN`` - The method returns the actual input value currently present
-            on the pin.
-          - ``Pin.OUT`` - The behaviour and return value of the method is undefined.
-          - ``Pin.OPEN_DRAIN`` - If the pin is in state '0' then the behaviour and
-            return value of the method is undefined.  Otherwise, if the pin is in
-            state '1', the method returns the actual input value currently present
-            on the pin.
-
-        If the argument is supplied then this method sets the digital logic level of
-        the pin.  The argument ``x`` can be anything that converts to a boolean.
-        If it converts to ``True``, the pin is set to state '1', otherwise it is set
-        to state '0'.  The behaviour of this method depends on the mode of the pin:
-
-          - ``Pin.IN`` - The value is stored in the output buffer for the pin.  The
-            pin state does not change, it remains in the high-impedance state.  The
-            stored value will become active on the pin as soon as it is changed to
-            ``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode.
-          - ``Pin.OUT`` - The output buffer is set to the given value immediately.
-          - ``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage
-            state.  Otherwise the pin is set to high-impedance state.
-
-        When setting the value this method returns ``None``.
-        """
-
-    @overload
-    def value(self, x: Any, /) -> None:
-        """
-        This method allows to set and get the value of the pin, depending on whether
-        the argument ``x`` is supplied or not.
-
-        If the argument is omitted then this method gets the digital logic level of
-        the pin, returning 0 or 1 corresponding to low and high voltage signals
-        respectively.  The behaviour of this method depends on the mode of the pin:
-
-          - ``Pin.IN`` - The method returns the actual input value currently present
-            on the pin.
-          - ``Pin.OUT`` - The behaviour and return value of the method is undefined.
-          - ``Pin.OPEN_DRAIN`` - If the pin is in state '0' then the behaviour and
-            return value of the method is undefined.  Otherwise, if the pin is in
-            state '1', the method returns the actual input value currently present
-            on the pin.
-
-        If the argument is supplied then this method sets the digital logic level of
-        the pin.  The argument ``x`` can be anything that converts to a boolean.
-        If it converts to ``True``, the pin is set to state '1', otherwise it is set
-        to state '0'.  The behaviour of this method depends on the mode of the pin:
-
-          - ``Pin.IN`` - The value is stored in the output buffer for the pin.  The
-            pin state does not change, it remains in the high-impedance state.  The
-            stored value will become active on the pin as soon as it is changed to
-            ``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode.
-          - ``Pin.OUT`` - The output buffer is set to the given value immediately.
-          - ``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage
-            state.  Otherwise the pin is set to high-impedance state.
-
-        When setting the value this method returns ``None``.
-        """
-
-    @overload
-    def __call__(self) -> int:
-        """
-        Pin objects are callable.  The call method provides a (fast) shortcut to set
-        and get the value of the pin.  It is equivalent to Pin.value([x]).
-        See :meth:`Pin.value` for more details.
-        """
-
-    @overload
-    def __call__(self, x: Any, /) -> None:
-        """
-        Pin objects are callable.  The call method provides a (fast) shortcut to set
-        and get the value of the pin.  It is equivalent to Pin.value([x]).
-        See :meth:`Pin.value` for more details.
-        """
-
-    @overload
-    def mode(self) -> int:
-        """
-        Get or set the pin mode.
-        See the constructor documentation for details of the ``mode`` argument.
-
-        Availability: cc3200, stm32 ports.
-        """
-
-    @overload
-    def mode(self, mode: int, /) -> None:
-        """
-        Get or set the pin mode.
-        See the constructor documentation for details of the ``mode`` argument.
-
-        Availability: cc3200, stm32 ports.
-        """
-
-    @overload
-    def pull(self) -> int:
-        """
-        Get or set the pin pull state.
-        See the constructor documentation for details of the ``pull`` argument.
-
-        Availability: cc3200, stm32 ports.
-        """
-
-    @overload
-    def pull(self, pull: int, /) -> None:
-        """
-        Get or set the pin pull state.
-        See the constructor documentation for details of the ``pull`` argument.
-
-        Availability: cc3200, stm32 ports.
-        """
-
-    @overload
-    def drive(self, drive: int, /) -> None:
-        """
-        Get or set the pin drive strength.
-        See the constructor documentation for details of the ``drive`` argument.
-
-        Availability: cc3200 port.
-        """
-        ...
-
-    @overload
-    def drive(self, /) -> int:
-        """
-        Get or set the pin drive strength.
-        See the constructor documentation for details of the ``drive`` argument.
-
-        Availability: cc3200 port.
-        """
-
-class PWM:
-    @overload
-    def freq(self) -> int:
-        """
-        Get or set the current frequency of the PWM output.
-
-        With no arguments the frequency in Hz is returned.
-
-        With a single *value* argument the frequency is set to that value in Hz.  The
-        method may raise a ``ValueError`` if the frequency is outside the valid range.
-        """
-
-    @overload
-    def freq(
+    def __init__(
         self,
-        value: int,
+        id: int,
         /,
+        baudrate: int = 1_000_000,
+        *,
+        polarity: int = 0,
+        phase: int = 0,
+        bits: int = 8,
+        firstbit: int = MSB,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
+    ):
+        """
+        Construct an SPI object on the given bus, *id*. Values of *id* depend
+        on a particular port and its hardware. Values 0, 1, etc. are commonly used
+        to select hardware SPI block #0, #1, etc.
+
+        With no additional parameters, the SPI object is created but not
+        initialised (it has the settings from the last initialisation of
+        the bus, if any).  If extra arguments are given, the bus is initialised.
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        baudrate: int = 1_000_000,
+        *,
+        polarity: int = 0,
+        phase: int = 0,
+        bits: int = 8,
+        firstbit: int = MSB,
+        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+    ):
+        """
+        Construct an SPI object on the given bus, *id*. Values of *id* depend
+        on a particular port and its hardware. Values 0, 1, etc. are commonly used
+        to select hardware SPI block #0, #1, etc.
+
+        With no additional parameters, the SPI object is created but not
+        initialised (it has the settings from the last initialisation of
+        the bus, if any).  If extra arguments are given, the bus is initialised.
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def init(
+        self,
+        baudrate: int = 1_000_000,
+        *,
+        polarity: int = 0,
+        phase: int = 0,
+        bits: int = 8,
+        firstbit: int = MSB,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
     ) -> None:
         """
-        Get or set the current frequency of the PWM output.
+        Initialise the SPI bus with the given parameters:
 
-        With no arguments the frequency in Hz is returned.
+          - ``baudrate`` is the SCK clock rate.
+          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
+          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
+            respectively.
+          - ``bits`` is the width in bits of each transfer. Only 8 is guaranteed to be supported by all hardware.
+          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
+          - ``sck``, ``mosi``, ``miso`` are pins (machine.Pin) objects to use for bus signals. For most
+            hardware SPI blocks (as selected by ``id`` parameter to the constructor), pins are fixed
+            and cannot be changed. In some cases, hardware blocks allow 2-3 alternative pin sets for
+            a hardware SPI block. Arbitrary pin assignments are possible only for a bitbanging SPI driver
+            (``id`` = -1).
+          - ``pins`` - WiPy port doesn't ``sck``, ``mosi``, ``miso`` arguments, and instead allows to
+            specify them as a tuple of ``pins`` parameter.
 
-        With a single *value* argument the frequency is set to that value in Hz.  The
-        method may raise a ``ValueError`` if the frequency is outside the valid range.
+        In the case of hardware SPI the actual clock frequency may be lower than the
+        requested baudrate. This is dependent on the platform hardware. The actual
+        rate may be determined by printing the SPI object.
         """
 
     @overload
-    def duty_u16(self) -> int:
-        """
-        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
-        value in the range 0 to 65535 inclusive.
-
-        With no arguments the duty cycle is returned.
-
-        With a single *value* argument the duty cycle is set to that value, measured
-        as the ratio ``value / 65535``.
-        """
-
-    @overload
-    def duty_u16(
+    def init(
         self,
-        value: int,
-        /,
+        baudrate: int = 1_000_000,
+        *,
+        polarity: int = 0,
+        phase: int = 0,
+        bits: int = 8,
+        firstbit: int = MSB,
+        pins: tuple[PinLike, PinLike, PinLike] | None = None,
     ) -> None:
         """
-        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
-        value in the range 0 to 65535 inclusive.
+        Initialise the SPI bus with the given parameters:
 
-        With no arguments the duty cycle is returned.
+          - ``baudrate`` is the SCK clock rate.
+          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
+          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
+            respectively.
+          - ``bits`` is the width in bits of each transfer. Only 8 is guaranteed to be supported by all hardware.
+          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
+          - ``sck``, ``mosi``, ``miso`` are pins (machine.Pin) objects to use for bus signals. For most
+            hardware SPI blocks (as selected by ``id`` parameter to the constructor), pins are fixed
+            and cannot be changed. In some cases, hardware blocks allow 2-3 alternative pin sets for
+            a hardware SPI block. Arbitrary pin assignments are possible only for a bitbanging SPI driver
+            (``id`` = -1).
+          - ``pins`` - WiPy port doesn't ``sck``, ``mosi``, ``miso`` arguments, and instead allows to
+            specify them as a tuple of ``pins`` parameter.
 
-        With a single *value* argument the duty cycle is set to that value, measured
-        as the ratio ``value / 65535``.
-        """
-
-    @overload
-    def duty_ns(self) -> int:
-        """
-        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
-
-        With no arguments the pulse width in nanoseconds is returned.
-
-        With a single *value* argument the pulse width is set to that value.
-        """
-
-    @overload
-    def duty_ns(
-        self,
-        value: int,
-        /,
-    ) -> None:
-        """
-        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
-
-        With no arguments the pulse width in nanoseconds is returned.
-
-        With a single *value* argument the pulse width is set to that value.
+        In the case of hardware SPI the actual clock frequency may be lower than the
+        requested baudrate. This is dependent on the platform hardware. The actual
+        rate may be determined by printing the SPI object.
         """
 
 class RTC:
@@ -759,6 +595,302 @@ class RTC:
         milliseconds, repeat can be set to ``True`` to make the alarm periodic.
         """
 
+class PWM:
+    @overload
+    def freq(self) -> int:
+        """
+        Get or set the current frequency of the PWM output.
+
+        With no arguments the frequency in Hz is returned.
+
+        With a single *value* argument the frequency is set to that value in Hz.  The
+        method may raise a ``ValueError`` if the frequency is outside the valid range.
+        """
+
+    @overload
+    def freq(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current frequency of the PWM output.
+
+        With no arguments the frequency in Hz is returned.
+
+        With a single *value* argument the frequency is set to that value in Hz.  The
+        method may raise a ``ValueError`` if the frequency is outside the valid range.
+        """
+
+    @overload
+    def duty_u16(self) -> int:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+
+    @overload
+    def duty_u16(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+
+    @overload
+    def duty_ns(self) -> int:
+        """
+        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
+
+        With no arguments the pulse width in nanoseconds is returned.
+
+        With a single *value* argument the pulse width is set to that value.
+        """
+
+    @overload
+    def duty_ns(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
+
+        With no arguments the pulse width in nanoseconds is returned.
+
+        With a single *value* argument the pulse width is set to that value.
+        """
+
+class I2C:
+    @overload
+    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
+        """
+        Construct and return a new I2C object using the following parameters:
+
+           - *id* identifies a particular I2C peripheral.  Allowed values for
+             depend on the particular port/board
+           - *scl* should be a pin object specifying the pin to use for SCL.
+           - *sda* should be a pin object specifying the pin to use for SDA.
+           - *freq* should be an integer which sets the maximum frequency
+             for SCL.
+
+        Note that some ports/boards will have default values of *scl* and *sda*
+        that can be changed in this constructor.  Others will have fixed values
+        of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
+        """
+        Construct and return a new I2C object using the following parameters:
+
+           - *id* identifies a particular I2C peripheral.  Allowed values for
+             depend on the particular port/board
+           - *scl* should be a pin object specifying the pin to use for SCL.
+           - *sda* should be a pin object specifying the pin to use for SDA.
+           - *freq* should be an integer which sets the maximum frequency
+             for SCL.
+
+        Note that some ports/boards will have default values of *scl* and *sda*
+        that can be changed in this constructor.  Others will have fixed values
+        of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
+
+    @overload
+    def init(self, *, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
+
+    @overload
+    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
+
+class Pin:
+    @overload
+    def value(self) -> int:
+        """
+        This method allows to set and get the value of the pin, depending on whether
+        the argument ``x`` is supplied or not.
+
+        If the argument is omitted then this method gets the digital logic level of
+        the pin, returning 0 or 1 corresponding to low and high voltage signals
+        respectively.  The behaviour of this method depends on the mode of the pin:
+
+          - ``Pin.IN`` - The method returns the actual input value currently present
+            on the pin.
+          - ``Pin.OUT`` - The behaviour and return value of the method is undefined.
+          - ``Pin.OPEN_DRAIN`` - If the pin is in state '0' then the behaviour and
+            return value of the method is undefined.  Otherwise, if the pin is in
+            state '1', the method returns the actual input value currently present
+            on the pin.
+
+        If the argument is supplied then this method sets the digital logic level of
+        the pin.  The argument ``x`` can be anything that converts to a boolean.
+        If it converts to ``True``, the pin is set to state '1', otherwise it is set
+        to state '0'.  The behaviour of this method depends on the mode of the pin:
+
+          - ``Pin.IN`` - The value is stored in the output buffer for the pin.  The
+            pin state does not change, it remains in the high-impedance state.  The
+            stored value will become active on the pin as soon as it is changed to
+            ``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode.
+          - ``Pin.OUT`` - The output buffer is set to the given value immediately.
+          - ``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage
+            state.  Otherwise the pin is set to high-impedance state.
+
+        When setting the value this method returns ``None``.
+        """
+
+    @overload
+    def value(self, x: Any, /) -> None:
+        """
+        This method allows to set and get the value of the pin, depending on whether
+        the argument ``x`` is supplied or not.
+
+        If the argument is omitted then this method gets the digital logic level of
+        the pin, returning 0 or 1 corresponding to low and high voltage signals
+        respectively.  The behaviour of this method depends on the mode of the pin:
+
+          - ``Pin.IN`` - The method returns the actual input value currently present
+            on the pin.
+          - ``Pin.OUT`` - The behaviour and return value of the method is undefined.
+          - ``Pin.OPEN_DRAIN`` - If the pin is in state '0' then the behaviour and
+            return value of the method is undefined.  Otherwise, if the pin is in
+            state '1', the method returns the actual input value currently present
+            on the pin.
+
+        If the argument is supplied then this method sets the digital logic level of
+        the pin.  The argument ``x`` can be anything that converts to a boolean.
+        If it converts to ``True``, the pin is set to state '1', otherwise it is set
+        to state '0'.  The behaviour of this method depends on the mode of the pin:
+
+          - ``Pin.IN`` - The value is stored in the output buffer for the pin.  The
+            pin state does not change, it remains in the high-impedance state.  The
+            stored value will become active on the pin as soon as it is changed to
+            ``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode.
+          - ``Pin.OUT`` - The output buffer is set to the given value immediately.
+          - ``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage
+            state.  Otherwise the pin is set to high-impedance state.
+
+        When setting the value this method returns ``None``.
+        """
+
+    @overload
+    def __call__(self) -> int:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
+
+    @overload
+    def __call__(self, x: Any, /) -> None:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
+
+    @overload
+    def mode(self) -> int:
+        """
+        Get or set the pin mode.
+        See the constructor documentation for details of the ``mode`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def mode(self, mode: int, /) -> None:
+        """
+        Get or set the pin mode.
+        See the constructor documentation for details of the ``mode`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def pull(self) -> int:
+        """
+        Get or set the pin pull state.
+        See the constructor documentation for details of the ``pull`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def pull(self, pull: int, /) -> None:
+        """
+        Get or set the pin pull state.
+        See the constructor documentation for details of the ``pull`` argument.
+
+        Availability: cc3200, stm32 ports.
+        """
+
+    @overload
+    def drive(self, drive: int, /) -> None:
+        """
+        Get or set the pin drive strength.
+        See the constructor documentation for details of the ``drive`` argument.
+
+        Availability: cc3200 port.
+        """
+        ...
+
+    @overload
+    def drive(self, /) -> int:
+        """
+        Get or set the pin drive strength.
+        See the constructor documentation for details of the ``drive`` argument.
+
+        Availability: cc3200 port.
+        """
+
 class SDCard:
     @overload
     def readblocks(self, block_num: int, buf: bytearray) -> bool:
@@ -806,136 +938,298 @@ class SDCard:
         argument is specified, even if it is zero.
         """
 
-class SPI:
+class UART:
     @overload
-    def __init__(self, id: int, /):
+    def __init__(
+        self,
+        id: ID_T,
+        /,
+        baudrate: int = 9600,
+        bits: int = 8,
+        parity: int | None = None,
+        stop: int = 1,
+        *,
+        tx: PinLike | None = None,
+        rx: PinLike | None = None,
+        txbuf: int | None = None,
+        rxbuf: int | None = None,
+        timeout: int | None = None,
+        timeout_char: int | None = None,
+        invert: int | None = None,
+    ):
         """
-        Construct an SPI object on the given bus, *id*. Values of *id* depend
-        on a particular port and its hardware. Values 0, 1, etc. are commonly used
-        to select hardware SPI block #0, #1, etc.
-
-        With no additional parameters, the SPI object is created but not
-        initialised (it has the settings from the last initialisation of
-        the bus, if any).  If extra arguments are given, the bus is initialised.
-        See ``init`` for parameters of initialisation.
+        Construct a UART object of the given id.
         """
 
     @overload
     def __init__(
         self,
-        id: int,
+        id: ID_T,
         /,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
+        baudrate: int = 9600,
         bits: int = 8,
-        firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        parity: int | None = None,
+        stop: int = 1,
+        *,
+        pins: tuple[PinLike, PinLike] | None = None,
     ):
         """
-        Construct an SPI object on the given bus, *id*. Values of *id* depend
-        on a particular port and its hardware. Values 0, 1, etc. are commonly used
-        to select hardware SPI block #0, #1, etc.
-
-        With no additional parameters, the SPI object is created but not
-        initialised (it has the settings from the last initialisation of
-        the bus, if any).  If extra arguments are given, the bus is initialised.
-        See ``init`` for parameters of initialisation.
+        Construct a UART object of the given id from a tuple of two pins.
         """
 
     @overload
     def __init__(
         self,
-        id: int,
+        id: ID_T,
         /,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
+        baudrate: int = 9600,
         bits: int = 8,
-        firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+        parity: int | None = None,
+        stop: int = 1,
+        *,
+        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ):
         """
-        Construct an SPI object on the given bus, *id*. Values of *id* depend
-        on a particular port and its hardware. Values 0, 1, etc. are commonly used
-        to select hardware SPI block #0, #1, etc.
-
-        With no additional parameters, the SPI object is created but not
-        initialised (it has the settings from the last initialisation of
-        the bus, if any).  If extra arguments are given, the bus is initialised.
-        See ``init`` for parameters of initialisation.
+        Construct a UART object of the given id from a tuple of four pins.
         """
 
     @overload
     def init(
         self,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
+        baudrate: int = 9600,
         bits: int = 8,
-        firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        parity: int | None = None,
+        stop: int = 1,
+        /,
+        *,
+        tx: PinLike | None = None,
+        rx: PinLike | None = None,
+        txbuf: int | None = None,
+        rxbuf: int | None = None,
+        timeout: int | None = None,
+        timeout_char: int | None = None,
+        invert: int | None = None,
     ) -> None:
         """
-        Initialise the SPI bus with the given parameters:
+        Initialise the UART bus with the given parameters:
 
-          - ``baudrate`` is the SCK clock rate.
-          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
-          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
-            respectively.
-          - ``bits`` is the width in bits of each transfer. Only 8 is guaranteed to be supported by all hardware.
-          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
-          - ``sck``, ``mosi``, ``miso`` are pins (machine.Pin) objects to use for bus signals. For most
-            hardware SPI blocks (as selected by ``id`` parameter to the constructor), pins are fixed
-            and cannot be changed. In some cases, hardware blocks allow 2-3 alternative pin sets for
-            a hardware SPI block. Arbitrary pin assignments are possible only for a bitbanging SPI driver
-            (``id`` = -1).
-          - ``pins`` - WiPy port doesn't ``sck``, ``mosi``, ``miso`` arguments, and instead allows to
-            specify them as a tuple of ``pins`` parameter.
+          - *baudrate* is the clock rate.
+          - *bits* is the number of bits per character, 7, 8 or 9.
+          - *parity* is the parity, ``None``, 0 (even) or 1 (odd).
+          - *stop* is the number of stop bits, 1 or 2.
 
-        In the case of hardware SPI the actual clock frequency may be lower than the
-        requested baudrate. This is dependent on the platform hardware. The actual
-        rate may be determined by printing the SPI object.
+        Additional keyword-only parameters that may be supported by a port are:
+
+          - *tx* specifies the TX pin to use.
+          - *rx* specifies the RX pin to use.
+          - *rts* specifies the RTS (output) pin to use for hardware receive flow control.
+          - *cts* specifies the CTS (input) pin to use for hardware transmit flow control.
+          - *txbuf* specifies the length in characters of the TX buffer.
+          - *rxbuf* specifies the length in characters of the RX buffer.
+          - *timeout* specifies the time to wait for the first character (in ms).
+          - *timeout_char* specifies the time to wait between characters (in ms).
+          - *invert* specifies which lines to invert.
+
+              - ``0`` will not invert lines (idle state of both lines is logic high).
+              - ``UART.INV_TX`` will invert TX line (idle state of TX line now logic low).
+              - ``UART.INV_RX`` will invert RX line (idle state of RX line now logic low).
+              - ``UART.INV_TX | UART.INV_RX`` will invert both lines (idle state at logic low).
+
+          - *flow* specifies which hardware flow control signals to use. The value
+            is a bitmask.
+
+              - ``0`` will ignore hardware flow control signals.
+              - ``UART.RTS`` will enable receive flow control by using the RTS output pin to
+                signal if the receive FIFO has sufficient space to accept more data.
+              - ``UART.CTS`` will enable transmit flow control by pausing transmission when the
+                CTS input pin signals that the receiver is running low on buffer space.
+              - ``UART.RTS | UART.CTS`` will enable both, for full hardware flow control.
+
+        On the WiPy only the following keyword-only parameter is supported:
+
+          - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
+            Any of the pins can be None if one wants the UART to operate with limited functionality.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
+            When no pins are given, then the default set of TX and RX pins is taken, and hardware
+            flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
+
+        .. note::
+          It is possible to call ``init()`` multiple times on the same object in
+          order to reconfigure  UART on the fly. That allows using single UART
+          peripheral to serve different devices attached to different GPIO pins.
+          Only one device can be served at a time in that case.
+          Also do not call ``deinit()`` as it will prevent calling ``init()``
+          again.
         """
 
     @overload
     def init(
         self,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
+        baudrate: int = 9600,
         bits: int = 8,
-        firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+        parity: int | None = None,
+        stop: int = 1,
+        /,
+        *,
+        pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
         """
-        Initialise the SPI bus with the given parameters:
+        Initialise the UART bus with the given parameters:
 
-          - ``baudrate`` is the SCK clock rate.
-          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
-          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
-            respectively.
-          - ``bits`` is the width in bits of each transfer. Only 8 is guaranteed to be supported by all hardware.
-          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
-          - ``sck``, ``mosi``, ``miso`` are pins (machine.Pin) objects to use for bus signals. For most
-            hardware SPI blocks (as selected by ``id`` parameter to the constructor), pins are fixed
-            and cannot be changed. In some cases, hardware blocks allow 2-3 alternative pin sets for
-            a hardware SPI block. Arbitrary pin assignments are possible only for a bitbanging SPI driver
-            (``id`` = -1).
-          - ``pins`` - WiPy port doesn't ``sck``, ``mosi``, ``miso`` arguments, and instead allows to
-            specify them as a tuple of ``pins`` parameter.
+          - *baudrate* is the clock rate.
+          - *bits* is the number of bits per character, 7, 8 or 9.
+          - *parity* is the parity, ``None``, 0 (even) or 1 (odd).
+          - *stop* is the number of stop bits, 1 or 2.
 
-        In the case of hardware SPI the actual clock frequency may be lower than the
-        requested baudrate. This is dependent on the platform hardware. The actual
-        rate may be determined by printing the SPI object.
+        Additional keyword-only parameters that may be supported by a port are:
+
+          - *tx* specifies the TX pin to use.
+          - *rx* specifies the RX pin to use.
+          - *rts* specifies the RTS (output) pin to use for hardware receive flow control.
+          - *cts* specifies the CTS (input) pin to use for hardware transmit flow control.
+          - *txbuf* specifies the length in characters of the TX buffer.
+          - *rxbuf* specifies the length in characters of the RX buffer.
+          - *timeout* specifies the time to wait for the first character (in ms).
+          - *timeout_char* specifies the time to wait between characters (in ms).
+          - *invert* specifies which lines to invert.
+
+              - ``0`` will not invert lines (idle state of both lines is logic high).
+              - ``UART.INV_TX`` will invert TX line (idle state of TX line now logic low).
+              - ``UART.INV_RX`` will invert RX line (idle state of RX line now logic low).
+              - ``UART.INV_TX | UART.INV_RX`` will invert both lines (idle state at logic low).
+
+          - *flow* specifies which hardware flow control signals to use. The value
+            is a bitmask.
+
+              - ``0`` will ignore hardware flow control signals.
+              - ``UART.RTS`` will enable receive flow control by using the RTS output pin to
+                signal if the receive FIFO has sufficient space to accept more data.
+              - ``UART.CTS`` will enable transmit flow control by pausing transmission when the
+                CTS input pin signals that the receiver is running low on buffer space.
+              - ``UART.RTS | UART.CTS`` will enable both, for full hardware flow control.
+
+        On the WiPy only the following keyword-only parameter is supported:
+
+          - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
+            Any of the pins can be None if one wants the UART to operate with limited functionality.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
+            When no pins are given, then the default set of TX and RX pins is taken, and hardware
+            flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
+
+        .. note::
+          It is possible to call ``init()`` multiple times on the same object in
+          order to reconfigure  UART on the fly. That allows using single UART
+          peripheral to serve different devices attached to different GPIO pins.
+          Only one device can be served at a time in that case.
+          Also do not call ``deinit()`` as it will prevent calling ``init()``
+          again.
+        """
+
+    @overload
+    def init(
+        self,
+        baudrate: int = 9600,
+        bits: int = 8,
+        parity: int | None = None,
+        stop: int = 1,
+        /,
+        *,
+        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
+    ) -> None:
+        """
+        Initialise the UART bus with the given parameters:
+
+          - *baudrate* is the clock rate.
+          - *bits* is the number of bits per character, 7, 8 or 9.
+          - *parity* is the parity, ``None``, 0 (even) or 1 (odd).
+          - *stop* is the number of stop bits, 1 or 2.
+
+        Additional keyword-only parameters that may be supported by a port are:
+
+          - *tx* specifies the TX pin to use.
+          - *rx* specifies the RX pin to use.
+          - *rts* specifies the RTS (output) pin to use for hardware receive flow control.
+          - *cts* specifies the CTS (input) pin to use for hardware transmit flow control.
+          - *txbuf* specifies the length in characters of the TX buffer.
+          - *rxbuf* specifies the length in characters of the RX buffer.
+          - *timeout* specifies the time to wait for the first character (in ms).
+          - *timeout_char* specifies the time to wait between characters (in ms).
+          - *invert* specifies which lines to invert.
+
+              - ``0`` will not invert lines (idle state of both lines is logic high).
+              - ``UART.INV_TX`` will invert TX line (idle state of TX line now logic low).
+              - ``UART.INV_RX`` will invert RX line (idle state of RX line now logic low).
+              - ``UART.INV_TX | UART.INV_RX`` will invert both lines (idle state at logic low).
+
+          - *flow* specifies which hardware flow control signals to use. The value
+            is a bitmask.
+
+              - ``0`` will ignore hardware flow control signals.
+              - ``UART.RTS`` will enable receive flow control by using the RTS output pin to
+                signal if the receive FIFO has sufficient space to accept more data.
+              - ``UART.CTS`` will enable transmit flow control by pausing transmission when the
+                CTS input pin signals that the receiver is running low on buffer space.
+              - ``UART.RTS | UART.CTS`` will enable both, for full hardware flow control.
+
+        On the WiPy only the following keyword-only parameter is supported:
+
+          - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
+            Any of the pins can be None if one wants the UART to operate with limited functionality.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
+            When no pins are given, then the default set of TX and RX pins is taken, and hardware
+            flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
+
+        .. note::
+          It is possible to call ``init()`` multiple times on the same object in
+          order to reconfigure  UART on the fly. That allows using single UART
+          peripheral to serve different devices attached to different GPIO pins.
+          Only one device can be served at a time in that case.
+          Also do not call ``deinit()`` as it will prevent calling ``init()``
+          again.
+        """
+
+    @overload
+    def read(self) -> bytes | None:
+        """
+        Read characters.  If ``nbytes`` is specified then read at most that many bytes,
+        otherwise read as much data as possible. It may return sooner if a timeout
+        is reached. The timeout is configurable in the constructor.
+
+        Return value: a bytes object containing the bytes read in.  Returns ``None``
+        on timeout.
+        """
+
+    @overload
+    def read(self, nbytes: int, /) -> bytes | None:
+        """
+        Read characters.  If ``nbytes`` is specified then read at most that many bytes,
+        otherwise read as much data as possible. It may return sooner if a timeout
+        is reached. The timeout is configurable in the constructor.
+
+        Return value: a bytes object containing the bytes read in.  Returns ``None``
+        on timeout.
+        """
+
+    @overload
+    def readinto(self, buf: AnyWritableBuf, /) -> int | None:
+        """
+        Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
+        that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
+        is reached. The timeout is configurable in the constructor.
+
+        Return value: number of bytes read and stored into ``buf`` or ``None`` on
+        timeout.
+        """
+
+    @overload
+    def readinto(self, buf: AnyWritableBuf, nbytes: int, /) -> int | None:
+        """
+        Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
+        that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
+        is reached. The timeout is configurable in the constructor.
+
+        Return value: number of bytes read and stored into ``buf`` or ``None`` on
+        timeout.
         """
 
 class Timer:
@@ -1065,300 +1359,6 @@ class Timer:
             ``TypeError: 'NoneType' object isn't callable``
         """
         ...
-
-class UART:
-    @overload
-    def __init__(
-        self,
-        id: ID_T,
-        /,
-        baudrate: int = 9600,
-        bits: int = 8,
-        parity: int | None = None,
-        stop: int = 1,
-        *,
-        tx: PinLike | None = None,
-        rx: PinLike | None = None,
-        txbuf: int | None = None,
-        rxbuf: int | None = None,
-        timeout: int | None = None,
-        timeout_char: int | None = None,
-        invert: int | None = None,
-    ):
-        """
-        Construct a UART object of the given id.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: ID_T,
-        /,
-        baudrate: int = 9600,
-        bits: int = 8,
-        parity: int | None = None,
-        stop: int = 1,
-        *,
-        pins: tuple[PinLike, PinLike] | None = None,
-    ):
-        """
-        Construct a UART object of the given id from a tuple of two pins.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: ID_T,
-        /,
-        baudrate: int = 9600,
-        bits: int = 8,
-        parity: int | None = None,
-        stop: int = 1,
-        *,
-        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
-    ):
-        """
-        Construct a UART object of the given id from a tuple of four pins.
-        """
-
-    @overload
-    def init(
-        self,
-        baudrate: int = 9600,
-        bits: int = 8,
-        parity: int | None = None,
-        stop: int = 1,
-        /,
-        *,
-        tx: PinLike | None = None,
-        rx: PinLike | None = None,
-        txbuf: int | None = None,
-        rxbuf: int | None = None,
-        timeout: int | None = None,
-        timeout_char: int | None = None,
-        invert: int | None = None,
-    ) -> None:
-        """
-        Initialise the UART bus with the given parameters:
-
-          - *baudrate* is the clock rate.
-          - *bits* is the number of bits per character, 7, 8 or 9.
-          - *parity* is the parity, ``None``, 0 (even) or 1 (odd).
-          - *stop* is the number of stop bits, 1 or 2.
-
-        Additional keyword-only parameters that may be supported by a port are:
-
-          - *tx* specifies the TX pin to use.
-          - *rx* specifies the RX pin to use.
-          - *rts* specifies the RTS (output) pin to use for hardware receive flow control.
-          - *cts* specifies the CTS (input) pin to use for hardware transmit flow control.
-          - *txbuf* specifies the length in characters of the TX buffer.
-          - *rxbuf* specifies the length in characters of the RX buffer.
-          - *timeout* specifies the time to wait for the first character (in ms).
-          - *timeout_char* specifies the time to wait between characters (in ms).
-          - *invert* specifies which lines to invert.
-
-              - ``0`` will not invert lines (idle state of both lines is logic high).
-              - ``UART.INV_TX`` will invert TX line (idle state of TX line now logic low).
-              - ``UART.INV_RX`` will invert RX line (idle state of RX line now logic low).
-              - ``UART.INV_TX | UART.INV_RX`` will invert both lines (idle state at logic low).
-
-          - *flow* specifies which hardware flow control signals to use. The value
-            is a bitmask.
-
-              - ``0`` will ignore hardware flow control signals.
-              - ``UART.RTS`` will enable receive flow control by using the RTS output pin to
-                signal if the receive FIFO has sufficient space to accept more data.
-              - ``UART.CTS`` will enable transmit flow control by pausing transmission when the
-                CTS input pin signals that the receiver is running low on buffer space.
-              - ``UART.RTS | UART.CTS`` will enable both, for full hardware flow control.
-
-        On the WiPy only the following keyword-only parameter is supported:
-
-          - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
-            Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
-            When no pins are given, then the default set of TX and RX pins is taken, and hardware
-            flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
-
-        .. note::
-          It is possible to call ``init()`` multiple times on the same object in
-          order to reconfigure  UART on the fly. That allows using single UART
-          peripheral to serve different devices attached to different GPIO pins.
-          Only one device can be served at a time in that case.
-          Also do not call ``deinit()`` as it will prevent calling ``init()``
-          again.
-        """
-
-    @overload
-    def init(
-        self,
-        baudrate: int = 9600,
-        bits: int = 8,
-        parity: int | None = None,
-        stop: int = 1,
-        /,
-        *,
-        pins: tuple[PinLike, PinLike] | None = None,
-    ) -> None:
-        """
-        Initialise the UART bus with the given parameters:
-
-          - *baudrate* is the clock rate.
-          - *bits* is the number of bits per character, 7, 8 or 9.
-          - *parity* is the parity, ``None``, 0 (even) or 1 (odd).
-          - *stop* is the number of stop bits, 1 or 2.
-
-        Additional keyword-only parameters that may be supported by a port are:
-
-          - *tx* specifies the TX pin to use.
-          - *rx* specifies the RX pin to use.
-          - *rts* specifies the RTS (output) pin to use for hardware receive flow control.
-          - *cts* specifies the CTS (input) pin to use for hardware transmit flow control.
-          - *txbuf* specifies the length in characters of the TX buffer.
-          - *rxbuf* specifies the length in characters of the RX buffer.
-          - *timeout* specifies the time to wait for the first character (in ms).
-          - *timeout_char* specifies the time to wait between characters (in ms).
-          - *invert* specifies which lines to invert.
-
-              - ``0`` will not invert lines (idle state of both lines is logic high).
-              - ``UART.INV_TX`` will invert TX line (idle state of TX line now logic low).
-              - ``UART.INV_RX`` will invert RX line (idle state of RX line now logic low).
-              - ``UART.INV_TX | UART.INV_RX`` will invert both lines (idle state at logic low).
-
-          - *flow* specifies which hardware flow control signals to use. The value
-            is a bitmask.
-
-              - ``0`` will ignore hardware flow control signals.
-              - ``UART.RTS`` will enable receive flow control by using the RTS output pin to
-                signal if the receive FIFO has sufficient space to accept more data.
-              - ``UART.CTS`` will enable transmit flow control by pausing transmission when the
-                CTS input pin signals that the receiver is running low on buffer space.
-              - ``UART.RTS | UART.CTS`` will enable both, for full hardware flow control.
-
-        On the WiPy only the following keyword-only parameter is supported:
-
-          - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
-            Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
-            When no pins are given, then the default set of TX and RX pins is taken, and hardware
-            flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
-
-        .. note::
-          It is possible to call ``init()`` multiple times on the same object in
-          order to reconfigure  UART on the fly. That allows using single UART
-          peripheral to serve different devices attached to different GPIO pins.
-          Only one device can be served at a time in that case.
-          Also do not call ``deinit()`` as it will prevent calling ``init()``
-          again.
-        """
-
-    @overload
-    def init(
-        self,
-        baudrate: int = 9600,
-        bits: int = 8,
-        parity: int | None = None,
-        stop: int = 1,
-        /,
-        *,
-        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
-    ) -> None:
-        """
-        Initialise the UART bus with the given parameters:
-
-          - *baudrate* is the clock rate.
-          - *bits* is the number of bits per character, 7, 8 or 9.
-          - *parity* is the parity, ``None``, 0 (even) or 1 (odd).
-          - *stop* is the number of stop bits, 1 or 2.
-
-        Additional keyword-only parameters that may be supported by a port are:
-
-          - *tx* specifies the TX pin to use.
-          - *rx* specifies the RX pin to use.
-          - *rts* specifies the RTS (output) pin to use for hardware receive flow control.
-          - *cts* specifies the CTS (input) pin to use for hardware transmit flow control.
-          - *txbuf* specifies the length in characters of the TX buffer.
-          - *rxbuf* specifies the length in characters of the RX buffer.
-          - *timeout* specifies the time to wait for the first character (in ms).
-          - *timeout_char* specifies the time to wait between characters (in ms).
-          - *invert* specifies which lines to invert.
-
-              - ``0`` will not invert lines (idle state of both lines is logic high).
-              - ``UART.INV_TX`` will invert TX line (idle state of TX line now logic low).
-              - ``UART.INV_RX`` will invert RX line (idle state of RX line now logic low).
-              - ``UART.INV_TX | UART.INV_RX`` will invert both lines (idle state at logic low).
-
-          - *flow* specifies which hardware flow control signals to use. The value
-            is a bitmask.
-
-              - ``0`` will ignore hardware flow control signals.
-              - ``UART.RTS`` will enable receive flow control by using the RTS output pin to
-                signal if the receive FIFO has sufficient space to accept more data.
-              - ``UART.CTS`` will enable transmit flow control by pausing transmission when the
-                CTS input pin signals that the receiver is running low on buffer space.
-              - ``UART.RTS | UART.CTS`` will enable both, for full hardware flow control.
-
-        On the WiPy only the following keyword-only parameter is supported:
-
-          - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
-            Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
-            When no pins are given, then the default set of TX and RX pins is taken, and hardware
-            flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
-
-        .. note::
-          It is possible to call ``init()`` multiple times on the same object in
-          order to reconfigure  UART on the fly. That allows using single UART
-          peripheral to serve different devices attached to different GPIO pins.
-          Only one device can be served at a time in that case.
-          Also do not call ``deinit()`` as it will prevent calling ``init()``
-          again.
-        """
-
-    @overload
-    def read(self) -> bytes | None:
-        """
-        Read characters.  If ``nbytes`` is specified then read at most that many bytes,
-        otherwise read as much data as possible. It may return sooner if a timeout
-        is reached. The timeout is configurable in the constructor.
-
-        Return value: a bytes object containing the bytes read in.  Returns ``None``
-        on timeout.
-        """
-
-    @overload
-    def read(self, nbytes: int, /) -> bytes | None:
-        """
-        Read characters.  If ``nbytes`` is specified then read at most that many bytes,
-        otherwise read as much data as possible. It may return sooner if a timeout
-        is reached. The timeout is configurable in the constructor.
-
-        Return value: a bytes object containing the bytes read in.  Returns ``None``
-        on timeout.
-        """
-
-    @overload
-    def readinto(self, buf: AnyWritableBuf, /) -> int | None:
-        """
-        Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
-        that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
-        is reached. The timeout is configurable in the constructor.
-
-        Return value: number of bytes read and stored into ``buf`` or ``None`` on
-        timeout.
-        """
-
-    @overload
-    def readinto(self, buf: AnyWritableBuf, nbytes: int, /) -> int | None:
-        """
-        Read bytes into the ``buf``.  If ``nbytes`` is specified then read at most
-        that many bytes.  Otherwise, read at most ``len(buf)`` bytes. It may return sooner if a timeout
-        is reached. The timeout is configurable in the constructor.
-
-        Return value: number of bytes read and stored into ``buf`` or ``None`` on
-        timeout.
-        """
 
 @overload
 def freq() -> int:

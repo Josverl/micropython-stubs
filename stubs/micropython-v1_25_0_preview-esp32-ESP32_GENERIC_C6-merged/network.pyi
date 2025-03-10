@@ -30,10 +30,7 @@ For example::
     s = socket.socket()
     s.connect(addr)
     s.send(b'GET / HTTP/1.1
-
 Host: micropython.org
-
-
 
 ')
     data = s.recv(1000)
@@ -47,7 +44,7 @@ Module: 'network' on micropython-v1.24.1-esp32-ESP32_GENERIC_C6
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Protocol, Callable, List, overload, Any, Tuple
+from typing import Protocol, Callable, Any, List, Tuple, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 from machine import Pin, SPI
 from abc import abstractmethod
@@ -371,7 +368,18 @@ class WLAN:
             * ``STAT_GOT_IP`` -- connection successful.
 
         When called with one argument *param* should be a string naming the status
-        parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
+        parameter to retrieve, and different parameters are supported depending on the
+        mode the WiFi is in.
+
+        In STA mode, passing ``'rssi'`` returns a signal strength indicator value, whose
+        format varies depending on the port (this is available on all ports that support
+        WiFi network interfaces, except for CC3200).
+
+        In AP mode, passing ``'stations'`` returns a list of connected WiFi stations
+        (this is available on all ports that support WiFi network interfaces, except for
+        CC3200).  The format of the station information entries varies across ports,
+        providing either the raw BSSID of the connected station, the IP address of the
+        connected station, or both.
         """
 
     @overload
@@ -390,7 +398,18 @@ class WLAN:
             * ``STAT_GOT_IP`` -- connection successful.
 
         When called with one argument *param* should be a string naming the status
-        parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
+        parameter to retrieve, and different parameters are supported depending on the
+        mode the WiFi is in.
+
+        In STA mode, passing ``'rssi'`` returns a signal strength indicator value, whose
+        format varies depending on the port (this is available on all ports that support
+        WiFi network interfaces, except for CC3200).
+
+        In AP mode, passing ``'stations'`` returns a list of connected WiFi stations
+        (this is available on all ports that support WiFi network interfaces, except for
+        CC3200).  The format of the station information entries varies across ports,
+        providing either the raw BSSID of the connected station, the IP address of the
+        connected station, or both.
         """
 
     def disconnect(self) -> None:

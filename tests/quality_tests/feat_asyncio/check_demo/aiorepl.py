@@ -177,10 +177,10 @@ async def task(g=None, prompt="--> "):
                             b = "\x08" * len(cmd)  # stubs-ignore
                             # OK on v 1.20.0
                             # "None" is incompatible with protocol "Sized"
-                            sys.stdout.write(b)   #799 # stubs-ignore: linter == "mypy"
+                            sys.stdout.write(b)   
                             sys.stdout.write(" " * len(cmd))
                             # "None" is incompatible with protocol "Sized"
-                            sys.stdout.write(b)  #799 # stubs-ignore: linter == "mypy"
+                            sys.stdout.write(b)  
                             # Go backwards or forwards in the history.
                             if key == "[A":
                                 hist_b = min(hist_n, hist_b + 1)
@@ -188,13 +188,13 @@ async def task(g=None, prompt="--> "):
                                 hist_b = max(0, hist_b - 1)
                             # Update current command.
                             cmd = hist[(hist_i - hist_b) % _HISTORY_LIMIT]
-                            sys.stdout.write(cmd)  #799 # stubs-ignore: linter == "mypy"
+                            sys.stdout.write(cmd)  
                     else:
                         sys.stdout.write("\\x")
                         sys.stdout.write(hex(c))
                         pass
                 else:
-                    sys.stdout.write(b)  # type: ignore # TODO write(bytes) not supported by stubs
+                    sys.stdout.write(b) 
                     assert cmd is not None  # Added to avoid type check errors below
                     cmd += b
     finally:

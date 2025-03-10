@@ -1,12 +1,23 @@
 """
+System error codes.
+
+MicroPython module: https://docs.micropython.org/en/v1.25.0/library/errno.html
+
+CPython module: :mod:`python:errno` https://docs.python.org/3/library/errno.html .
+
+This module provides access to symbolic error codes for `OSError` exception.
+A particular inventory of codes depends on :term:`MicroPython port`.
+
+---
 Module: 'uerrno' on micropython-v1.24.1-esp32-ESP32_GENERIC_C6
 """
 
 # MCU: {'family': 'micropython', 'version': '1.24.1', 'build': '', 'ver': '1.24.1', 'port': 'esp32', 'board': 'ESP32_GENERIC_C6', 'cpu': 'ESP32C6', 'mpy': 'v6.3', 'arch': 'rv32imc'}
 # Stubber: v1.24.0
 from __future__ import annotations
-from typing import Any, Generator
+from typing import Dict, Any, Generator
 from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 ENOBUFS: int = 105
 ENODEV: int = 19

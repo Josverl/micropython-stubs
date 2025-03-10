@@ -53,7 +53,7 @@ Module: 'rp2' on micropython-v1.25.0-preview-rp2-UNKNOWN_BOARD
 from __future__ import annotations
 from _typeshed import Incomplete
 from micropython import const
-from typing import Union, Dict, List, Callable, Literal, overload, Any, Optional
+from typing import Union, Dict, List, overload, Any, Callable, Literal, Optional
 from typing_extensions import Awaitable, TypeAlias, TypeVar, TYPE_CHECKING
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from vfs import AbstractBlockDev

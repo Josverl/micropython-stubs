@@ -422,7 +422,7 @@ if sys.version_info >= (3, 12):
     monitoring = _monitoring
 
 @overload
-def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
+def __mpy_has_no_atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
     Register *func* to be called upon termination.  *func* must be a callable
     that takes no arguments, or ``None`` to disable the call.  The ``atexit``
@@ -438,7 +438,7 @@ def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     ...
 
 @overload
-def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
+def __mpy_has_no_atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
     Register *func* to be called upon termination.  *func* must be a callable
     that takes no arguments, or ``None`` to disable the call.  The ``atexit``

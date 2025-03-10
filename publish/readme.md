@@ -59,7 +59,7 @@ The below installs 2 stub packages
 
 ```bash
 pip install "git+https://github.com/Josverl/micropython-stubs@reference/rp2#subdirectory=publish/micropython-stdlib-stubs" --target typings
-pip install "git+https://github.com/Josverl/micropython-stubs@reference/rp2#subdirectory=publish/micropython-v1_24_1-rp2-rpi_pico_w-stubs" --target typings
+pip install "git+https://github.com/Josverl/micropython-stubs@reference/rp2#subdirectory=publish/micropython-v1_24_1-rp2-rpi_pico_w-stubs" --target typings --no-deps
 ```
 
 *Note:* This is quite a long command, so it is best to copy and paste it into the terminal.

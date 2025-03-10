@@ -14,7 +14,7 @@ HERE = Path(__file__).parent.absolute()
 
 @pytest.mark.parametrize("portboard", ["stdlib"], scope="session")
 @pytest.mark.parametrize("version", ["-"], scope="session")
-@pytest.mark.parametrize("feature", ["stdlib"], scope="session")
+@pytest.mark.parametrize("feature", ["stdlib_only"], scope="session")
 @pytest.mark.parametrize("stub_source", SOURCES, scope="session")
 @pytest.mark.parametrize("snip_path", [HERE / "feat_stdlib_only"], scope="session")
 @pytest.mark.parametrize(
