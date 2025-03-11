@@ -45,37 +45,40 @@ class UART:
         uart.write('abc')   # write the 3 characters
     """
 
-    RTS: Incomplete
+
+    IDLE: int = ...
+
+    RTS: int = 1
     """\
     Flow control options.
     
     Availability: esp32, mimxrt, renesas-ra, rp2, stm32.
     """
-    CTS: Incomplete
+    CTS: int = 2
     """\
     Flow control options.
     
     Availability: esp32, mimxrt, renesas-ra, rp2, stm32.
     """
-    IRQ_RXIDLE: Incomplete
+    IRQ_RXIDLE: int = 4096
     """\
     IRQ trigger sources.
     
     Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
     """
-    IRQ_RX: Incomplete
+    IRQ_RX: int = 1
     """\
     IRQ trigger sources.
     
     Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
     """
-    IRQ_TXIDLE: Incomplete
+    IRQ_TXIDLE: int = ...
     """\
     IRQ trigger sources.
     
     Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
     """
-    IRQ_BREAK: Incomplete
+    IRQ_BREAK: int = 2
     """\
     IRQ trigger sources.
     
@@ -138,11 +141,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         tx: PinLike | None = None,
         rx: PinLike | None = None,
@@ -207,11 +210,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
@@ -271,11 +274,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:

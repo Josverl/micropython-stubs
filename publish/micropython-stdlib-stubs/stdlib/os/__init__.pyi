@@ -60,7 +60,7 @@ from typing import (
 )
 from typing_extensions import Awaitable, TypeVar, Self, TypeAlias, Unpack, deprecated
 
-from . import path as _path
+# from . import path as _path
 from _mpy_shed import uname_result
 
 if sys.version_info >= (3, 9):
