@@ -13,11 +13,12 @@ You should replace the * with the actual name of an event (e.g. py-click or mpy-
 with on in standard HTML (e.g. onclick). The rule of thumb is to simply replace on with py- or mpy- and then reference the name of a Python function.
 """
 
+from typing import Any, Generator, List
+
+from _typeshed import Incomplete
 from pyscript import Event, document
 from pyscript import when as when
 from pyscript.ffi import create_proxy
-from _typeshed import Incomplete
-from typing import Any, Generator, List
 from typing_extensions import Self
 
 """Lightweight interface to the DOM and HTML elements."""
@@ -239,7 +240,7 @@ class Style:
     def visible(self) -> Incomplete: ...
     @property
     @visible.setter
-    def visible(self, value) -> None: ...
+    def visible(self) -> None: ...
 
 class ContainerElement(Element):
     """Base class for elements that can contain other elements."""
@@ -906,8 +907,8 @@ class Page:
 
     @property
     @title.setter
-    def title(self, value) -> None:
-        """Set the page title."""
+    def title(self) -> None:
+        """Return the page title."""
         ...
 
     def append(self, *items) -> None:
@@ -921,10 +922,4 @@ class Page:
         """
         ...
 
-page = ...
-page = ...
-page = ...
-page = ...
-page = ...
-page = ...
 page = ...

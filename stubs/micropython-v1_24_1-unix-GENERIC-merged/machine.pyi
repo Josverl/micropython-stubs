@@ -23,8 +23,20 @@ from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from vfs import AbstractBlockDev
 
+ATTN_0DB: int = ...
 ID_T: TypeAlias = int | str
 PinLike: TypeAlias = Pin | int | str
+IDLE: Incomplete
+SLEEP: Incomplete
+DEEPSLEEP: Incomplete
+PWRON_RESET: Incomplete
+HARD_RESET: Incomplete
+WDT_RESET: Incomplete
+DEEPSLEEP_RESET: Incomplete
+SOFT_RESET: Incomplete
+WLAN_WAKE: Incomplete
+PIN_WAKE: Incomplete
+RTC_WAKE: Incomplete
 
 def idle() -> None:
     """
@@ -948,11 +960,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         tx: PinLike | None = None,
         rx: PinLike | None = None,
@@ -1017,11 +1029,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
@@ -1080,11 +1092,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:

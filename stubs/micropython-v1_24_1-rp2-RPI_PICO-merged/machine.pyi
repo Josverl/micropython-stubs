@@ -19,15 +19,24 @@ Module: 'machine' on micropython-v1.24.1-rp2-RPI_PICO
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
-from typing import NoReturn, Optional, Union, List, Sequence, Callable, Tuple, Any, overload
+from typing import NoReturn, Optional, Union, List, Sequence, Callable, Any, overload
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from vfs import AbstractBlockDev
 
-ID_T: TypeAlias = int | str
-PinLike: TypeAlias = Pin | int | str
-
 WDT_RESET: int = 3
 PWRON_RESET: int = 1
+ATTN_0DB: int = ...
+ID_T: TypeAlias = int | str
+PinLike: TypeAlias = Pin | int | str
+IDLE: Incomplete
+SLEEP: Incomplete
+DEEPSLEEP: Incomplete
+HARD_RESET: Incomplete
+DEEPSLEEP_RESET: Incomplete
+SOFT_RESET: Incomplete
+WLAN_WAKE: Incomplete
+PIN_WAKE: Incomplete
+RTC_WAKE: Incomplete
 
 def dht_readinto(*args, **kwargs) -> Incomplete: ...
 def enable_irq(state: bool = True, /) -> None:
@@ -335,6 +344,14 @@ class Pin:
     ALT_PWM: int = 4
     ALT_PIO1: int = 7
     ALT_PIO0: int = 6
+    ALT_OPEN_DRAIN: Incomplete
+    ANALOG: Incomplete
+    PULL_HOLD: Incomplete
+    DRIVE_0: int
+    DRIVE_1: int
+    DRIVE_2: int
+    IRQ_LOW_LEVEL: Incomplete
+    IRQ_HIGH_LEVEL: Incomplete
     def low(self) -> None:
         """
         Set pin to "0" output level.
@@ -575,7 +592,17 @@ class Pin:
         GP16: Pin  ## = Pin(GPIO16, mode=ALT, pull=PULL_DOWN, alt=31)
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: Any,
+        /,
+        mode: int = -1,
+        pull: int = -1,
+        *,
+        value: Any = None,
+        drive: int | None = None,
+        alt: int | None = None,
+    ) -> None:
         """
         Access the pin peripheral (GPIO pin) associated with the given ``id``.  If
         additional arguments are given in the constructor then they are used to initialise
@@ -856,7 +883,15 @@ class PWM:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        dest: PinLike,
+        /,
+        *,
+        freq: int = ...,
+        duty_u16: int = ...,
+        duty_ns: int = ...,
+    ) -> None:
         """
         Construct and return a new PWM object using the following parameters:
 
@@ -888,6 +923,17 @@ class ADC:
     """
 
     CORE_TEMP: int = 4
+    VREF: int = ...
+    CORE_VREF: int = ...
+    CORE_VBAT: int = ...
+    ATTN_0DB: int = 0
+    ATTN_2_5DB: int = 1
+    ATTN_6DB: int = 2
+    ATTN_11DB: int = 3
+    WIDTH_9BIT: int = 9
+    WIDTH_10BIT: int = 10
+    WIDTH_11BIT: int = 11
+    WIDTH_12BIT: int = 12
     def read_u16(self) -> int:
         """
         Take an analog reading and return an integer in the range 0-65535.
@@ -896,7 +942,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, pin: PinLike, /) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -1284,7 +1330,20 @@ class I2S:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: ID_T,
+        /,
+        *,
+        sck: PinLike,
+        ws: PinLike,
+        sd: PinLike,
+        mode: int,
+        bits: int,
+        format: int,
+        rate: int,
+        ibuf: int,
+    ) -> None:
         """
         Construct an I2S object of the given id:
 
@@ -1337,7 +1396,7 @@ class WDT:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, *, id: int = 0, timeout: int = 5000) -> None:
         """
         Create a WDT object and start it. The timeout must be given in milliseconds.
         Once it is running the timeout cannot be changed and the WDT cannot be stopped either.
@@ -1347,202 +1406,8 @@ class WDT:
         """
 
 class RTC:
-    """
-    The RTC is an independent clock that keeps track of the date
-    and time.
-
-    Example usage::
-
-        rtc = machine.RTC()
-        rtc.datetime((2020, 1, 21, 2, 10, 32, 36, 0))
-        print(rtc.datetime())
-
-
-
-    The documentation for RTC is in a poor state;1
-    """
-
-    def datetime(self, datetimetuple: Any | None = None) -> Tuple:
-        """
-        Get or set the date and time of the RTC.
-
-        With no arguments, this method returns an 8-tuple with the current
-        date and time.  With 1 argument (being an 8-tuple) it sets the date
-        and time.
-
-        The 8-tuple has the following format:
-
-            (year, month, day, weekday, hours, minutes, seconds, subseconds)
-
-        The meaning of the ``subseconds`` field is hardware dependent.
-        """
-        ...
-
-    @overload
-    def __init__(self, id: int = 0):
-        """
-        Create an RTC object. See init for parameters of initialization.
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def init(self) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day[, hour[, minute[, second[, microsecond[, tzinfo]]]]])``
-        """
-
-    @overload
-    def alarm(self, id: int, time: int, /, *, repeat: bool = False) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
+    def datetime(self, *args, **kwargs) -> Incomplete: ...
+    def __init__(self, *argv, **kwargs) -> None: ...
 
 class Timer:
     """
@@ -1742,6 +1607,8 @@ class UART:
     IRQ_BREAK: int = 512
     IRQ_RXIDLE: int = 64
     CTS: int = 1
+    IRQ_RX: Incomplete
+    IDLE: int = ...
     def irq(
         self,
         trigger: int,
@@ -1799,11 +1666,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         tx: PinLike | None = None,
         rx: PinLike | None = None,
@@ -1868,11 +1735,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
@@ -1931,11 +1798,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:
@@ -2159,6 +2026,11 @@ class USBDevice:
               returns the same object reference.
     """
 
+    BUILTIN_NONE: Incomplete
+    BUILTIN_DEFAULT: Incomplete
+    BUILTIN_CDC: Incomplete
+    BUILTIN_MSC: Incomplete
+    BUILTIN_CDC_MSC: int
     def submit_xfer(self, ep, buffer, /) -> bool:
         """
         Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be
@@ -2368,7 +2240,7 @@ class USBDevice:
         )
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self) -> None: ...
 
 class SoftSPI(SPI):
     """
@@ -2385,7 +2257,18 @@ class SoftSPI(SPI):
     def read(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
     def readinto(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(
+        self,
+        baudrate=500000,
+        *,
+        polarity=0,
+        phase=0,
+        bits=8,
+        firstbit=MSB,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
+    ) -> None: ...
 
 class SPI:
     """
@@ -2443,6 +2326,7 @@ class SPI:
 
     LSB: int = 0
     MSB: int = 1
+    CONTROLLER: Incomplete
     def deinit(self) -> None:
         """
         Turn off the SPI bus.
@@ -2817,7 +2701,7 @@ class SoftI2C(I2C):
     def init(self, *args, **kwargs) -> Incomplete: ...
     def stop(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
 
 class SDCard:
     @overload

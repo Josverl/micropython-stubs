@@ -42,6 +42,7 @@ CERT_REQUIRED: Incomplete
 Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
 attribute.
 """
+MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"
 
 class SSLContext:
     """

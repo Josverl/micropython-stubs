@@ -19,24 +19,6 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing import overload
 
-_ScalarProperty: TypeAlias = int
-_RecursiveProperty: TypeAlias = tuple[int, _property]
-_ArrayProperty: TypeAlias = tuple[int, int]
-_ArrayOfAggregateProperty: TypeAlias = tuple[int, int, _property]
-_PointerToAPrimitiveProperty: TypeAlias = tuple[int, int]
-_PointerToAaAggregateProperty: TypeAlias = tuple[int, "_property"]
-_BitfieldProperty: TypeAlias = int
-_property: TypeAlias = (
-    _ScalarProperty
-    | _RecursiveProperty
-    | _ArrayProperty
-    | _ArrayOfAggregateProperty
-    | _PointerToAPrimitiveProperty
-    | _PointerToAaAggregateProperty
-    | _BitfieldProperty
-)
-_descriptor: TypeAlias = tuple[str, _property]
-
 LITTLE_ENDIAN: bytes
 """\
 Layout type for a little-endian packed structure. (Packed means that every
@@ -111,6 +93,23 @@ Type constants for pointers and arrays. Note that there is no explicit
 constant for structures, it's implicit: an aggregate type without ``PTR``
 or ``ARRAY`` flags is a structure.
 """
+_ScalarProperty: TypeAlias = int
+_RecursiveProperty: TypeAlias = tuple[int, _property]
+_ArrayProperty: TypeAlias = tuple[int, int]
+_ArrayOfAggregateProperty: TypeAlias = tuple[int, int, _property]
+_PointerToAPrimitiveProperty: TypeAlias = tuple[int, int]
+_PointerToAaAggregateProperty: TypeAlias = tuple[int, "_property"]
+_BitfieldProperty: TypeAlias = int
+_property: TypeAlias = (
+    _ScalarProperty
+    | _RecursiveProperty
+    | _ArrayProperty
+    | _ArrayOfAggregateProperty
+    | _PointerToAPrimitiveProperty
+    | _PointerToAaAggregateProperty
+    | _BitfieldProperty
+)
+_descriptor: TypeAlias = tuple[str, _property]
 
 class struct:
     """
