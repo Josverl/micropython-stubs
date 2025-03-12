@@ -71,9 +71,6 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
-_Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str
-Socket: TypeAlias = socket
-
 AF_INET: Incomplete
 """Address family types. Availability depends on a particular :term:`MicroPython port`."""
 AF_INET6: Incomplete
@@ -112,6 +109,8 @@ Constants specific to WiPy:
 """
 IPPROTO_SEC: Incomplete
 """Special protocol value to create SSL-compatible socket."""
+_Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str
+Socket: TypeAlias = socket
 
 class socket:
     """

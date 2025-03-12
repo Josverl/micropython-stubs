@@ -73,9 +73,6 @@ from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-_Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str
-Socket: TypeAlias = socket
-
 SOL_SOCKET: Final[int] = 1
 SO_BROADCAST: Final[int] = 6
 SOCK_STREAM: Final[int] = 1
@@ -90,6 +87,11 @@ SOCK_RAW: Final[int] = 3
 SOCK_DGRAM: Final[int] = 2
 MSG_DONTROUTE: Final[int] = 4
 MSG_DONTWAIT: Final[int] = 64
+IPPROTO_UDP: Incomplete
+IPPROTO_TCP: Incomplete
+IPPROTO_SEC: Incomplete
+_Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str
+Socket: TypeAlias = socket
 
 def sockaddr(*args, **kwargs) -> Incomplete: ...
 def inet_pton(af: int, txt_addr: str, /) -> bytes:
@@ -398,7 +400,13 @@ class socket:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        af: int = AF_INET,
+        type: int = SOCK_STREAM,
+        proto: int = IPPROTO_TCP,
+        /,
+    ) -> None:
         """
         Create a new socket using the given address family, socket type and
         protocol number. Note that specifying *proto* in most cases is not

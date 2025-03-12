@@ -8,7 +8,7 @@ from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from machine import IDLE
 from .Pin import Pin
 from _mpy_shed import _IRQ
-from machine.Pin import Pin, PinLike
+from machine.Pin import PinLike
 
 ID_T: TypeAlias = int | str
 
@@ -80,6 +80,7 @@ class UART:
     
     Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
     """
+    IDLE: int = ...
     @overload
     def __init__(
         self,
@@ -137,11 +138,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         tx: PinLike | None = None,
         rx: PinLike | None = None,
@@ -206,11 +207,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
@@ -269,11 +270,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:

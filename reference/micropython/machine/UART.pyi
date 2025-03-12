@@ -3,13 +3,11 @@
 from __future__ import annotations
 
 from typing import Callable, overload
-from typing_extensions import TypeAlias
 
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
-from machine import IDLE
-
-from machine.Pin import Pin, PinLike
+from machine.Pin import PinLike
+from typing_extensions import TypeAlias
 
 ID_T: TypeAlias = int | str
 
@@ -44,8 +42,6 @@ class UART:
         uart.readinto(buf)  # read and store into the given buffer
         uart.write('abc')   # write the 3 characters
     """
-
-
     IDLE: int = ...
 
     RTS: int = 1

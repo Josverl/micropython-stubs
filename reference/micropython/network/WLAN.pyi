@@ -18,11 +18,11 @@ class WLAN:
         # now use sockets as usual
     """
 
-    PM_PERFORMANCE: Incomplete
+    PM_NONE: int
+    PM_POWERSAVE: int
+    PM_PERFORMANCE: int
+
     """\
-    WLAN.PM_POWERSAVE
-    WLAN.PM_NONE
-    
     Allowed values for the ``WLAN.config(pm=...)`` network interface parameter:
     
     * ``PM_PERFORMANCE``: enable WiFi power management to balance power
@@ -31,6 +31,7 @@ class WLAN:
     savings and reduced WiFi performance
     * ``PM_NONE``: disable wifi power management
     """
+
     def __init__(self, interface_id: int, /) -> None:
         """
         Create a WLAN network interface object. Supported interfaces are

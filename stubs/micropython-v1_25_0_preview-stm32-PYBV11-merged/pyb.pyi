@@ -841,7 +841,7 @@ class DAC:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, port: int | Pin, /, bits: int = 8, *, buffering: bool | None = None) -> None:
         """
         Construct a new DAC object.
 
@@ -950,7 +950,13 @@ class ExtInt:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        pin: int | str | Pin,
+        mode: int,
+        pull: int,
+        callback: Callable[[int], None],
+    ) -> None:
         """
         Create an ExtInt object:
 
@@ -1289,7 +1295,17 @@ class I2C:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        bus: int | str,
+        mode: str,
+        /,
+        *,
+        addr: int = 0x12,
+        baudrate: int = 400_000,
+        gencall: bool = False,
+        dma: bool = False,
+    ) -> None:
         """
         Construct an I2C object on the given bus.  ``bus`` can be 1 or 2, 'X' or
         'Y'. With no additional parameters, the I2C object is created but not
@@ -1411,7 +1427,7 @@ class LCD:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, skin_position: str, /) -> None:
         """
         Construct an LCD object in the given skin position.  ``skin_position`` can be 'X' or 'Y', and
         should match the position where the LCD pyskin is plugged in.
@@ -1447,6 +1463,9 @@ class CAN:
     LIST16: int = 1
     ERROR_PASSIVE: int = 3
     ERROR_WARNING: int = 2
+    DUAL: Incomplete
+    RANGE: Incomplete
+    MASK: Incomplete
     def restart(self) -> None:
         """
         Force a software restart of the CAN controller without resetting its
@@ -1927,7 +1946,19 @@ class CAN:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        bus: int | str,
+        mode: int,
+        /,
+        extframe: bool = False,
+        prescaler: int = 100,
+        *,
+        sjw: int = 1,
+        bs1: int = 6,
+        bs2: int = 8,
+        auto_restart: bool = False,
+    ) -> None:
         """
         Construct a CAN object on the given bus.  *bus* can be 1-2, or ``'YA'`` or ``'YB'``.
         With no additional parameters, the CAN object is created but not
@@ -2058,7 +2089,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, pin: int | Pin, /) -> None:
         """
         Create an ADC object associated with the given pin.
         This allows you to then read analog values on that pin.
@@ -2120,7 +2151,7 @@ class Accel:
         ...
 
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self) -> None:
         """
         Create and return an accelerometer object.
         """
@@ -2295,7 +2326,7 @@ class USB_VCP:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, id: int = 0, /) -> None:
         """
         Create a new USB_VCP object.  The *id* argument specifies which USB VCP port to
         use.
@@ -3220,7 +3251,7 @@ class Switch:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self) -> None:
         """
         Create and return a switch object.
         """
@@ -3403,7 +3434,7 @@ class Servo:
             new position.
         """
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, id: int, /) -> None:
         """
         Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
         """
@@ -3737,7 +3768,7 @@ class USB_HID:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self) -> None:
         """
         Create a new USB_HID object.
         """
@@ -3794,7 +3825,7 @@ class LED:
         free for general purpose use.
         """
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, id: int, /) -> None:
         """
         Create an LED object associated with the given LED:
 
@@ -3912,7 +3943,7 @@ class RTC:
         (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
         """
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self) -> None:
         """
         Create an RTC object.
         """
@@ -4299,7 +4330,16 @@ class Pin:
         USB_DM: Pin  ## = Pin(Pin.cpu.A11, mode=Pin.ALT, alt=10)
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: Pin | str | int,
+        /,
+        mode: int = IN,
+        pull: int = PULL_NONE,
+        *,
+        value: Any = None,
+        alt: str | int = -1,
+    ) -> None:
         """
         Create a new Pin object associated with the id.  If additional arguments are given,
         they are used to initialise the pin.  See :meth:`pin.init`.
