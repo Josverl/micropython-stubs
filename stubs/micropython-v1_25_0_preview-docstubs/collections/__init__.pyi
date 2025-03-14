@@ -13,12 +13,13 @@ hold/accumulate various objects.
 # origin module:: repos/micropython/docs/library/collections.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Dict, Generic, overload, Any, Tuple
+from typing import Dict, Generic, Any, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable
 
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
+_T = TypeVar("_T")
 
 class deque:
     """
@@ -40,7 +41,7 @@ class deque:
             - The optional *flags* can be 1 to check for overflow when adding items.
         """
 
-    def append(self, x: Any, /) -> None:
+    def append(self, x: _T, /) -> None:
         """
         Add *x* to the right side of the deque.
         Raises ``IndexError`` if overflow checking is enabled and there is
@@ -48,7 +49,7 @@ class deque:
         """
         ...
 
-    def appendleft(self, x) -> Incomplete:
+    def appendleft(self, x: _T, /) -> Incomplete:
         """
         Add *x* to the left side of the deque.
         Raises ``IndexError`` if overflow checking is enabled and there is
@@ -70,7 +71,7 @@ class deque:
         """
         ...
 
-    def extend(self, iterable) -> Incomplete:
+    def extend(self, iterable: Iterable[_T], /) -> Incomplete:
         """
         Extend the deque by appending all the items from *iterable* to
         the right of the deque.
@@ -104,83 +105,7 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
         b 3
     """
 
-    @overload
-    def __init__(self):
-        """
-        ``dict`` type subclass which remembers and preserves the order of keys
-        added. When ordered dict is iterated over, keys/items are returned in
-        the order they were added::
-
-            from collections import OrderedDict
-
-            # To make benefit of ordered keys, OrderedDict should be initialized
-            # from sequence of (key, value) pairs.
-            d = OrderedDict([("z", 1), ("a", 2)])
-            # More items can be added as usual
-            d["w"] = 5
-            d["b"] = 3
-            for k, v in d.items():
-                print(k, v)
-
-        Output::
-
-            z 1
-            a 2
-            w 5
-            b 3
-        """
-
-    @overload
-    def __init__(self, **kwargs: _VT):
-        """
-        ``dict`` type subclass which remembers and preserves the order of keys
-        added. When ordered dict is iterated over, keys/items are returned in
-        the order they were added::
-
-            from collections import OrderedDict
-
-            # To make benefit of ordered keys, OrderedDict should be initialized
-            # from sequence of (key, value) pairs.
-            d = OrderedDict([("z", 1), ("a", 2)])
-            # More items can be added as usual
-            d["w"] = 5
-            d["b"] = 3
-            for k, v in d.items():
-                print(k, v)
-
-        Output::
-
-            z 1
-            a 2
-            w 5
-            b 3
-        """
-
-    @overload
-    def __init__(self, map: Mapping[_KT, _VT], **kwargs: _VT):
-        """
-        ``dict`` type subclass which remembers and preserves the order of keys
-        added. When ordered dict is iterated over, keys/items are returned in
-        the order they were added::
-
-            from collections import OrderedDict
-
-            # To make benefit of ordered keys, OrderedDict should be initialized
-            # from sequence of (key, value) pairs.
-            d = OrderedDict([("z", 1), ("a", 2)])
-            # More items can be added as usual
-            d["w"] = 5
-            d["b"] = 3
-            for k, v in d.items():
-                print(k, v)
-
-        Output::
-
-            z 1
-            a 2
-            w 5
-            b 3
-        """
+    def __init__(self, *args, **kwargs) -> None: ...
 
 def namedtuple(name: str, fields: str | Iterable[str]) -> type[Tuple[Any, ...]]:
     """

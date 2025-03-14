@@ -20,12 +20,11 @@ from typing import SupportsComplex, SupportsFloat, SupportsIndex, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias
 
-_C: TypeAlias = SupportsFloat | SupportsComplex | SupportsIndex | complex
-
 e: float
 """base of the natural logarithm"""
 pi: float
 """the ratio of a circle's circumference to its diameter"""
+_C: TypeAlias = SupportsFloat | SupportsComplex | SupportsIndex | complex
 
 def cos(z: _C, /) -> float:
     """

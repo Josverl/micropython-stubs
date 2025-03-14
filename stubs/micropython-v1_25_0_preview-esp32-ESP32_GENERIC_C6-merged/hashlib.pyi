@@ -32,8 +32,7 @@ Module: 'hashlib' on micropython-v1.24.1-esp32-ESP32_GENERIC_C6
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _Hash
-from abc import ABC
-from typing import Any, Optional, overload
+from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class sha1(_Hash):
@@ -113,7 +112,7 @@ class md5(_Hash):
 
     def digest(self, *args, **kwargs) -> Incomplete: ...
     def update(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, data: AnyReadableBuf = ..., /) -> None:
         """
         Create an MD5 hasher object and optionally feed ``data`` into it.
         """

@@ -64,13 +64,13 @@ __exec_task = asyncio.create_task(__code())
             reveal_type(intr_task)
             try:
                 try:
-                    return await exec_task  # type: ignore # pyright/mypy doesn't like the await here
+                    return await exec_task  # pyright &mypy doesn't like the await here # stubs-ignore: linter in ["pyright", "mypy"]
                 except asyncio.CancelledError:
                     pass
             finally:
-                intr_task.cancel()
+                intr_task.cancel() # pyright doesn't like the await here # stubs-ignore: linter == "pyright"
                 try:
-                    await intr_task
+                    await intr_task # pyright doesn't like the await here # stubs-ignore: linter == "pyright"
 
                 except asyncio.CancelledError:
                     pass
@@ -100,10 +100,10 @@ async def task(g=None, prompt="--> "):
         g = __import__("__main__").__dict__
     try:
         micropython.kbd_intr(-1)
-        s = asyncio.StreamReader(sys.stdin)  # stubs-ignore: linter=="mypy"
+        s = asyncio.StreamReader(sys.stdin)  
         # TODO: fix type stubs asyncio.StreamReader
         # clear = True
-        hist = [] * _HISTORY_LIMIT  # stubs-ignore: linter=="mypy"
+        hist:list[bytes]  = [] * _HISTORY_LIMIT  
         hist_i = 0  # Index of most recent entry.
         hist_n = 0  # Number of history entries.
         c = 0  # ord of most recent character.
@@ -129,8 +129,8 @@ async def task(g=None, prompt="--> "):
                         sys.stdout.write("\n")
                         if cmd:
                             # Push current command.
-                            hist[1] = cmd  # stubs: ignore
-                            hist[hist_i] = cmd  # stubs: ignore
+                            hist[1] = cmd  
+                            hist[hist_i] = cmd  
                             # Increase history length if possible, and rotate ring forward.
                             hist_n = min(_HISTORY_LIMIT - 1, hist_n + 1)
                             hist_i = (hist_i + 1) % _HISTORY_LIMIT
@@ -170,17 +170,16 @@ async def task(g=None, prompt="--> "):
                         if key in ("[A", "[B"):
                             # Stash the current command.
                             hist[(hist_i - hist_b) % _HISTORY_LIMIT] = (
-                                cmd  # stubs-ignore: linter=="mypy"
+                                cmd  
                             )
                             # Clear current command.
                             assert cmd  # Added to avoid type check errors below
-                            b = "\x08" * len(cmd)  # stubs-ignore
+                            b = "\x08" * len(cmd)  
                             # OK on v 1.20.0
                             # "None" is incompatible with protocol "Sized"
-                            sys.stdout.write(b)  # stubs-ignore: linter=="mypy"
+                            sys.stdout.write(str(b)) 
                             sys.stdout.write(" " * len(cmd))
-                            # "None" is incompatible with protocol "Sized"
-                            sys.stdout.write(b)  # stubs-ignore: linter=="mypy"
+
                             # Go backwards or forwards in the history.
                             if key == "[A":
                                 hist_b = min(hist_n, hist_b + 1)
@@ -188,7 +187,7 @@ async def task(g=None, prompt="--> "):
                                 hist_b = max(0, hist_b - 1)
                             # Update current command.
                             cmd = hist[(hist_i - hist_b) % _HISTORY_LIMIT]
-                            sys.stdout.write(cmd)  # stubs-ignore: linter=="mypy"
+                            sys.stdout.write(cmd)  # type: ignore # TODO write(bytes) not supported by stubs
                     else:
                         sys.stdout.write("\\x")
                         sys.stdout.write(hex(c))

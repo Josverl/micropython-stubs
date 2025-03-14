@@ -797,6 +797,9 @@ class IO(Generic[AnyStr]):
     @overload
     def write(self, s: AnyStr, /) -> int: ...
     @abstractmethod
+    @overload # write(bytes)
+    def write(self, s: bytes, /) -> int: ...
+    @abstractmethod
     @overload
     def writelines(self: IO[bytes], lines: Iterable[ReadableBuffer], /) -> None: ...
     @abstractmethod

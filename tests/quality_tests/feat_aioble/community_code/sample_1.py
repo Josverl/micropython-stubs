@@ -50,7 +50,7 @@ tim.init(freq=20000, callback=timer_isr)
 
 async def timer_task_f(event):
     while True:
-        await asyncio.sleep_ms(4)  # stubs-ignore: linter == "mypy"
+        await asyncio.sleep_ms(4)
         event.set()
 
 

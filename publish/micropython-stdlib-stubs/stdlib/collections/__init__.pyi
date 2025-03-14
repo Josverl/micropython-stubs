@@ -15,7 +15,7 @@ from _collections_abc import dict_items, dict_keys, dict_values
 from _typeshed import Incomplete, SupportsItems, SupportsKeysAndGetItem, SupportsRichComparison, SupportsRichComparisonT
 from typing import Dict, Any, Generic, NoReturn, SupportsIndex, TypeVar, final, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar, Self
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable
 
 if sys.version_info >= (3, 9):
     from types import GenericAlias
@@ -48,14 +48,7 @@ _KT_co = TypeVar("_KT_co", covariant=True)
 _VT_co = TypeVar("_VT_co", covariant=True)
 
 # namedtuple is special-cased in the type checker; the initializer is ignored.
-def namedtuple(
-    typename: str,
-    field_names: str | Iterable[str],
-    *,
-    rename: bool = False,
-    module: str | None = None,
-    defaults: Iterable[Any] | None = None,
-) -> type[tuple[Any, ...]]:
+def namedtuple(name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
     """
     This is factory function to create a new namedtuple type with a specific
     name and set of fields. A namedtuple is a subclass of tuple which allows
@@ -487,84 +480,6 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):  # type: ignore
         def __ror__(self, value: dict[_KT, _VT], /) -> Self: ...  # type: ignore
         @overload
         def __ror__(self, value: dict[_T1, _T2], /) -> OrderedDict[_KT | _T1, _VT | _T2]: ...  # type: ignore[misc]  # type: ignore
-
-    @overload
-    def __init__(self):
-        """
-        ``dict`` type subclass which remembers and preserves the order of keys
-        added. When ordered dict is iterated over, keys/items are returned in
-        the order they were added::
-
-            from collections import OrderedDict
-
-            # To make benefit of ordered keys, OrderedDict should be initialized
-            # from sequence of (key, value) pairs.
-            d = OrderedDict([("z", 1), ("a", 2)])
-            # More items can be added as usual
-            d["w"] = 5
-            d["b"] = 3
-            for k, v in d.items():
-                print(k, v)
-
-        Output::
-
-            z 1
-            a 2
-            w 5
-            b 3
-        """
-
-    @overload
-    def __init__(self, **kwargs: _VT):
-        """
-        ``dict`` type subclass which remembers and preserves the order of keys
-        added. When ordered dict is iterated over, keys/items are returned in
-        the order they were added::
-
-            from collections import OrderedDict
-
-            # To make benefit of ordered keys, OrderedDict should be initialized
-            # from sequence of (key, value) pairs.
-            d = OrderedDict([("z", 1), ("a", 2)])
-            # More items can be added as usual
-            d["w"] = 5
-            d["b"] = 3
-            for k, v in d.items():
-                print(k, v)
-
-        Output::
-
-            z 1
-            a 2
-            w 5
-            b 3
-        """
-
-    @overload
-    def __init__(self, map: Mapping[_KT, _VT], **kwargs: _VT):  # type: ignore
-        """
-        ``dict`` type subclass which remembers and preserves the order of keys
-        added. When ordered dict is iterated over, keys/items are returned in
-        the order they were added::
-
-            from collections import OrderedDict
-
-            # To make benefit of ordered keys, OrderedDict should be initialized
-            # from sequence of (key, value) pairs.
-            d = OrderedDict([("z", 1), ("a", 2)])
-            # More items can be added as usual
-            d["w"] = 5
-            d["b"] = 3
-            for k, v in d.items():
-                print(k, v)
-
-        Output::
-
-            z 1
-            a 2
-            w 5
-            b 3
-        """
 
 class defaultdict(dict[_KT, _VT]):  # type: ignore
     default_factory: Callable[[], _VT] | None

@@ -126,3 +126,106 @@ class ESPNow(ESPNowBase, Iterator):
            ``True`` if data is available to be read, else ``False``.
         """
         ...
+
+    @overload
+    def send(
+        self,
+        mac: _MACAddress,
+        msg: str | bytes,
+        sync: bool = True,
+    ) -> bool:
+        """
+        Send the data contained in ``msg`` to the peer with given network ``mac``
+        address. In the second form, ``mac=None`` and ``sync=True``. The peer must
+        be registered with `ESPNow.add_peer()<ESPNow.add_peer()>` before the
+        message can be sent.
+
+        Arguments:
+
+          - *mac*: byte string exactly ``espnow.ADDR_LEN`` (6 bytes) long or
+            ``None``. If *mac* is ``None`` (ESP32 only) the message will be sent
+            to all registered peers, except any broadcast or multicast MAC
+            addresses.
+
+          - *msg*: string or byte-string up to ``espnow.MAX_DATA_LEN`` (250)
+            bytes long.
+
+          - *sync*:
+
+            - ``True``: (default) send ``msg`` to the peer(s) and wait for a
+              response (or not).
+
+            - ``False`` send ``msg`` and return immediately. Responses from the
+              peers will be discarded.
+
+        Returns:
+
+          ``True`` if ``sync=False`` or if ``sync=True`` and *all* peers respond,
+          else ``False``.
+
+        Raises:
+
+          - ``OSError(num, "ESP_ERR_ESPNOW_NOT_INIT")`` if not initialised.
+          - ``OSError(num, "ESP_ERR_ESPNOW_NOT_FOUND")`` if peer is not registered.
+          - ``OSError(num, "ESP_ERR_ESPNOW_IF")`` the wifi interface is not
+            `active()<network.WLAN.active>`.
+          - ``OSError(num, "ESP_ERR_ESPNOW_NO_MEM")`` internal ESP-NOW buffers are
+            full.
+          - ``ValueError()`` on invalid values for the parameters.
+
+        **Note**: A peer will respond with success if its wifi interface is
+        `active()<network.WLAN.active>` and set to the same channel as the sender,
+        regardless of whether it has initialised it's ESP-NOW system or is
+        actively listening for ESP-NOW traffic (see the Espressif ESP-NOW docs).
+        """
+
+    @overload
+    def send(
+        self,
+        msg: str | bytes,
+    ) -> bool:
+        """
+        Send the data contained in ``msg`` to the peer with given network ``mac``
+        address. In the second form, ``mac=None`` and ``sync=True``. The peer must
+        be registered with `ESPNow.add_peer()<ESPNow.add_peer()>` before the
+        message can be sent.
+
+        Arguments:
+
+          - *mac*: byte string exactly ``espnow.ADDR_LEN`` (6 bytes) long or
+            ``None``. If *mac* is ``None`` (ESP32 only) the message will be sent
+            to all registered peers, except any broadcast or multicast MAC
+            addresses.
+
+          - *msg*: string or byte-string up to ``espnow.MAX_DATA_LEN`` (250)
+            bytes long.
+
+          - *sync*:
+
+            - ``True``: (default) send ``msg`` to the peer(s) and wait for a
+              response (or not).
+
+            - ``False`` send ``msg`` and return immediately. Responses from the
+              peers will be discarded.
+
+        Returns:
+
+          ``True`` if ``sync=False`` or if ``sync=True`` and *all* peers respond,
+          else ``False``.
+
+        Raises:
+
+          - ``OSError(num, "ESP_ERR_ESPNOW_NOT_INIT")`` if not initialised.
+          - ``OSError(num, "ESP_ERR_ESPNOW_NOT_FOUND")`` if peer is not registered.
+          - ``OSError(num, "ESP_ERR_ESPNOW_IF")`` the wifi interface is not
+            `active()<network.WLAN.active>`.
+          - ``OSError(num, "ESP_ERR_ESPNOW_NO_MEM")`` internal ESP-NOW buffers are
+            full.
+          - ``ValueError()`` on invalid values for the parameters.
+
+        **Note**: A peer will respond with success if its wifi interface is
+        `active()<network.WLAN.active>` and set to the same channel as the sender,
+        regardless of whether it has initialised it's ESP-NOW system or is
+        actively listening for ESP-NOW traffic (see the Espressif ESP-NOW docs).
+        """
+        ...

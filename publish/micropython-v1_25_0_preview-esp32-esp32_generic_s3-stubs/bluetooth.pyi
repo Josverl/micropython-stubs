@@ -27,19 +27,18 @@ Module: 'bluetooth' on micropython-v1.24.1-esp32-ESP32_GENERIC_S3
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
-from typing import Any, Callable, Optional, Tuple, overload
+from typing import Any, Callable, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
-
-_Flag: TypeAlias = int
-_Descriptor: TypeAlias = tuple["UUID", _Flag]
-_Characteristic: TypeAlias = tuple["UUID", _Flag] | tuple["UUID", _Flag, tuple[_Descriptor, ...]]
-_Service: TypeAlias = tuple["UUID", tuple[_Characteristic, ...]]
 
 FLAG_NOTIFY: int = 16
 FLAG_READ: int = 2
 FLAG_WRITE: int = 8
 FLAG_INDICATE: int = 32
 FLAG_WRITE_NO_RESPONSE: int = 4
+_Flag: TypeAlias = int
+_Descriptor: TypeAlias = tuple["UUID", _Flag]
+_Characteristic: TypeAlias = tuple["UUID", _Flag] | tuple["UUID", _Flag, tuple[_Descriptor, ...]]
+_Service: TypeAlias = tuple["UUID", tuple[_Characteristic, ...]]
 
 class UUID:
     """
@@ -47,7 +46,7 @@ class UUID:
     ----------
     """
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, value: int | str, /) -> None:
         """
         Creates a UUID instance with the specified **value**.
 
@@ -912,7 +911,7 @@ class BLE:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self) -> None:
         """
         Returns the singleton BLE object.
         """

@@ -30,6 +30,8 @@ class WLAN:
     savings and reduced WiFi performance
     * ``PM_NONE``: disable wifi power management
     """
+    PM_NONE: int
+    PM_POWERSAVE: int
     def __init__(self, interface_id: int, /) -> None:
         """
         Create a WLAN network interface object. Supported interfaces are
@@ -48,7 +50,7 @@ class WLAN:
         """
 
     @overload
-    def active(self, is_active: bool, /) -> None:
+    def active(self, is_active: bool | int, /) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
         argument is passed. Otherwise, query current state if no argument is

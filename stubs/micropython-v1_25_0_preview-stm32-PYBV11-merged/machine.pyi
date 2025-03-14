@@ -18,19 +18,25 @@ Module: 'machine' on micropython-v1.24.1-stm32-PYBV11
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Final, NoReturn, Tuple, Any, Callable, List, Sequence, Union, overload, Optional
-from typing_extensions import Awaitable, TypeAlias, TypeVar
+from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
+from typing import NoReturn, Optional, Union, List, Sequence, Callable, Tuple, Any, overload
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from vfs import AbstractBlockDev
-
-ID_T: TypeAlias = int | str
-PinLike: TypeAlias = Pin | int | str
 
 HARD_RESET: int = 2
 WDT_RESET: int = 3
 SOFT_RESET: int = 0
 DEEPSLEEP_RESET: int = 4
 PWRON_RESET: int = 1
+ATTN_0DB: int = ...
+ID_T: TypeAlias = int | str
+PinLike: TypeAlias = Pin | int | str
+IDLE: Incomplete
+SLEEP: Incomplete
+DEEPSLEEP: Incomplete
+WLAN_WAKE: Incomplete
+PIN_WAKE: Incomplete
+RTC_WAKE: Incomplete
 
 @overload
 def freq() -> int:
@@ -185,6 +191,7 @@ def soft_reset() -> NoReturn:
     """
     ...
 
+@deprecated("use :func:`lightsleep()` instead.")
 def sleep() -> None:
     """
     ``Note:`` This function is deprecated, use :func:`lightsleep()` instead with no arguments.
@@ -339,6 +346,7 @@ class RTC:
     The documentation for RTC is in a poor state;1
     """
 
+    ALARM0: Incomplete
     def info(self, *args, **kwargs) -> Incomplete: ...
     @overload
     def init(self) -> None:
@@ -651,6 +659,12 @@ class Pin:
     AF4_I2C2: int = 4
     AF5_I2S2: int = 5
     AF5_SPI1: int = 5
+    PULL_HOLD: Incomplete
+    DRIVE_0: int
+    DRIVE_1: int
+    DRIVE_2: int
+    IRQ_LOW_LEVEL: Incomplete
+    IRQ_HIGH_LEVEL: Incomplete
 
     @overload
     def mode(self) -> int:
@@ -693,7 +707,7 @@ class Pin:
         """
         Set pin to "0" output level.
 
-        Availability: nrf, rp2, stm32 ports.
+        Availability: mimxrt, nrf, renesas-ra, rp2, samd, stm32 ports.
         """
         ...
 
@@ -858,7 +872,7 @@ class Pin:
         """
         Set pin to "1" output level.
 
-        Availability: nrf, rp2, stm32 ports.
+        Availability: mimxrt, nrf, renesas-ra, rp2, samd, stm32 ports.
         """
         ...
 
@@ -973,7 +987,17 @@ class Pin:
         USB_DM: Pin  ## = Pin(Pin.cpu.A11, mode=Pin.ALT, alt=10)
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: Any,
+        /,
+        mode: int = -1,
+        pull: int = -1,
+        *,
+        value: Any = None,
+        drive: int | None = None,
+        alt: int | None = None,
+    ) -> None:
         """
         Access the pin peripheral (GPIO pin) associated with the given ``id``.  If
         additional arguments are given in the constructor then they are used to initialise
@@ -1128,6 +1152,7 @@ class SPI:
 
     LSB: int = 128
     MSB: int = 0
+    CONTROLLER: Incomplete
     def deinit(self) -> None:
         """
         Turn off the SPI bus.
@@ -1323,6 +1348,14 @@ class ADC:
     CORE_VREF: int = 256
     CORE_VBAT: int = 258
     CORE_TEMP: int = 257
+    ATTN_0DB: int = 0
+    ATTN_2_5DB: int = 1
+    ATTN_6DB: int = 2
+    ATTN_11DB: int = 3
+    WIDTH_9BIT: int = 9
+    WIDTH_10BIT: int = 10
+    WIDTH_11BIT: int = 11
+    WIDTH_12BIT: int = 12
     def read_u16(self) -> int:
         """
         Take an analog reading and return an integer in the range 0-65535.
@@ -1331,7 +1364,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, pin: PinLike, /) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -1492,7 +1525,20 @@ class I2S:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: ID_T,
+        /,
+        *,
+        sck: PinLike,
+        ws: PinLike,
+        sd: PinLike,
+        mode: int,
+        bits: int,
+        format: int,
+        rate: int,
+        ibuf: int,
+    ) -> None:
         """
         Construct an I2S object of the given id:
 
@@ -1772,7 +1818,7 @@ class WDT:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, *, id: int = 0, timeout: int = 5000) -> None:
         """
         Create a WDT object and start it. The timeout must be given in milliseconds.
         Once it is running the timeout cannot be changed and the WDT cannot be stopped either.
@@ -1955,7 +2001,18 @@ class SoftSPI(SPI):
     def read(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
     def readinto(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(
+        self,
+        baudrate=500000,
+        *,
+        polarity=0,
+        phase=0,
+        bits=8,
+        firstbit=MSB,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
+    ) -> None: ...
 
 class UART:
     """
@@ -1993,6 +2050,9 @@ class UART:
     IRQ_RX: int = 32
     IRQ_RXIDLE: int = 16
     RTS: int = 256
+    IRQ_TXIDLE: Incomplete
+    IRQ_BREAK: Incomplete
+    IDLE: int = ...
     def flush(self) -> Incomplete:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
@@ -2033,11 +2093,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         tx: PinLike | None = None,
         rx: PinLike | None = None,
@@ -2086,7 +2146,7 @@ class UART:
 
           - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
             Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
             When no pins are given, then the default set of TX and RX pins is taken, and hardware
             flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
 
@@ -2102,11 +2162,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
@@ -2149,7 +2209,7 @@ class UART:
 
           - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
             Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
             When no pins are given, then the default set of TX and RX pins is taken, and hardware
             flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
 
@@ -2165,11 +2225,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:
@@ -2212,7 +2272,7 @@ class UART:
 
           - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
             Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
             When no pins are given, then the default set of TX and RX pins is taken, and hardware
             flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
 
@@ -2385,7 +2445,7 @@ class UART:
         pins: tuple[PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of two pins.
         """
 
     @overload
@@ -2401,7 +2461,7 @@ class UART:
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of four pins.
         """
 
 mem32: Incomplete  ## <class 'mem'> = <32-bit memory>
@@ -2433,7 +2493,7 @@ class SoftI2C(I2C):
     def init(self, *args, **kwargs) -> Incomplete: ...
     def stop(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
 
 class Signal(Pin):
     """
@@ -2685,4 +2745,51 @@ class PWM:
         With no arguments the pulse width in nanoseconds is returned.
 
         With a single *value* argument the pulse width is set to that value.
+        """
+
+class SDCard:
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray) -> bool:
+        """
+        The first form reads aligned, multiples of blocks.
+        Starting at the block given by the index *block_num*, read blocks from
+        the device into *buf* (an array of bytes).
+        The number of blocks to read is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
+        """
+        The second form allows reading at arbitrary locations within a block,
+        and arbitrary lengths.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, read bytes from the device into *buf* (an array of bytes).
+        The number of bytes to read is given by the length of *buf*.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+        """
+        The first form writes aligned, multiples of blocks, and requires that the
+        blocks that are written to be first erased (if necessary) by this method.
+        Starting at the block given by the index *block_num*, write blocks from
+        *buf* (an array of bytes) to the device.
+        The number of blocks to write is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+        """
+        The second form allows writing at arbitrary locations within a block,
+        and arbitrary lengths.  Only the bytes being written should be changed,
+        and the caller of this method must ensure that the relevant blocks are
+        erased via a prior ``ioctl`` call.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, write bytes from *buf* (an array of bytes) to the device.
+        The number of bytes to write is given by the length of *buf*.
+
+        Note that implementations must never implicitly erase blocks if the offset
+        argument is specified, even if it is zero.
         """

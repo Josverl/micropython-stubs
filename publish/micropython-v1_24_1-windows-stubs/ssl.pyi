@@ -14,9 +14,8 @@ from __future__ import annotations
 from tls import *
 from _typeshed import Incomplete
 from _mpy_shed import StrOrBytesPath
+from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
-
-SSLSocket: TypeAlias = Incomplete
 
 class SSLContext:
     """
@@ -30,6 +29,22 @@ class SSLContext:
     def verify_mode(self): ...
     @verify_mode.setter
     def verify_mode(self, val) -> None: ...
+    @overload  # force merge
+    def load_cert_chain(self, certfile, keyfile) -> None:
+        """
+        Load a private key and the corresponding certificate.  The *certfile* is a string
+        with the file path of the certificate.  The *keyfile* is a string with the file path
+        of the private key.
+
+        Admonition:Difference to CPython
+           :class: attention
+
+           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
+           strings, in which case they are interpreted as the actual certificate/key data.
+        """
+        ...
+
+    @overload  # force merge
     def load_cert_chain(self, certfile, keyfile) -> None:
         """
         Load a private key and the corresponding certificate.  The *certfile* is a string
@@ -107,3 +122,44 @@ def wrap_socket(
     :term:`MicroPython port`, some or all keyword arguments above may be not supported.
     """
     ...
+
+class SSLSocket:
+    # TODO : SSLSocket is undocumented
+    # ref: micropython\extmod\modtls_axtls.c ( read ... close)
+
+    # repos\micropython\extmod\modtls_mbedtls.c
+    @overload  # force merge
+    def read(self, *argv, **kwargs) -> Incomplete: ...
+    @overload  # force merge
+    def readinto(self, *argv, **kwargs) -> Incomplete: ...
+    @overload  # force merge
+    def readline(self, *argv, **kwargs) -> Incomplete: ...
+    @overload  # force merge
+    def write(self, *argv, **kwargs) -> Incomplete: ...
+    @overload  # force merge
+    def setblocking(self, *argv, **kwargs) -> Incomplete: ...
+    @overload  # force merge
+    def close(self, *argv, **kwargs) -> Incomplete: ...
+    # if MICROPY_PY_SSL_FINALISER
+    @overload  # force merge
+    def __del__(self, *argv, **kwargs) -> Incomplete: ...
+    # endif
+    # ifdef MICROPY_UNIX_COVERAGE
+    @overload  # force merge
+    def ioctl(self, *argv, **kwargs) -> Incomplete: ...
+    # endif
+    # ifdef (MBEDTLS_SSL_KEEP_PEER_CERTIFICATE)
+    @overload  # force merge
+    def getpeercert(self, *argv, **kwargs) -> Incomplete: ...
+    # endif
+    @overload  # force merge
+    def cipher(self, *argv, **kwargs) -> Incomplete: ...
+    # ifdef MBEDTLS_SSL_PROTO_DTLS
+    @overload  # force merge
+    def recv(self, *argv, **kwargs) -> Incomplete: ...
+    @overload  # force merge
+    def recv_into(self, *argv, **kwargs) -> Incomplete: ...
+    @overload  # force merge
+    def send(self, *argv, **kwargs) -> Incomplete: ...
+    @overload  # force merge
+    def sendall(self, *argv, **kwargs) -> Incomplete: ...

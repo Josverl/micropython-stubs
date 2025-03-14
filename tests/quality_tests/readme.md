@@ -87,8 +87,11 @@ Many test cases also make use of
 a function which allows us to test whether a type checker's inferred type of an
 expression is what we'd like it be.
 
-Finally, some tests make use of `# type: ignore` comments (in combination with
-mypy's
+Finally, some tests make use of :
+ - `# type: ignore`         both pyright and mypy ignore errors on this line
+ - `# pyright: ignore`      pyright ignores errors on this line
+ 
+  comments (in combination withmypy's
 [`--warn-unused-ignores`](https://mypy.readthedocs.io/en/stable/command_line.html#cmdoption-mypy-warn-unused-ignores)
 setting and pyright's
 [`reportUnnecessaryTypeIgnoreComment`](https://github.com/microsoft/pyright/blob/main/docs/configuration.md#type-check-diagnostics-settings)

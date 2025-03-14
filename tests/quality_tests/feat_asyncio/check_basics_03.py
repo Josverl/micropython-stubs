@@ -6,7 +6,7 @@ import asyncio
 async def bar(n):
     count = 0
     for count in range(n):
-        await asyncio.sleep_ms(200 * n)  # Pause by varying amounts # stubs-ignore: linter=="mypy"
+        await asyncio.sleep_ms(200 * n)  # Pause by varying amounts 
     print('Instance {} stops with count = {}'.format(n, count))
     return count * count
 

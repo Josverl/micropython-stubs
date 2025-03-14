@@ -9,7 +9,7 @@ buffer_2 = io.BytesIO(b"some initial binary data: \x00\x01")
 
 stream = open("file")
 
-buffer_3 = io.BufferedWriter(stream, 8) # stubs-ignore : linter == "mypy"
+buffer_3 = io.BufferedWriter(stream, 8)
 print(buffer_3.write(bytearray(16)))
 
 

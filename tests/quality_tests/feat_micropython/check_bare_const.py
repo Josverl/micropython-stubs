@@ -4,4 +4,5 @@
 # TODO: mypy: cannot add builtins AFAIK
 
 FOO = const(11) #stubs-ignore : linter=="mypy"
+
 # false test outcome : https://github.com/Josverl/micropython-stubber/issues/429

@@ -104,14 +104,6 @@ from _typeshed import Incomplete
 from array import array
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-_T = TypeVar("_T")
-AnyStr_co = TypeVar("AnyStr_co", str, bytes, covariant=True)
-StrOrBytesPath = TypeVar("StrOrBytesPath", str, bytes, PathLike[str], PathLike[bytes])
-_OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int)
-AnyReadableBuf = TypeVar("AnyReadableBuf", bytearray, array, memoryview, bytes)
-AnyWritableBuf = TypeVar("AnyWritableBuf", bytearray, array, memoryview)
-_Self = TypeVar("_Self")
-
 __all__ = [
     "BlockingIOError",
     "open",
@@ -142,6 +134,13 @@ if sys.version_info >= (3, 11):
 # SEEK_SET: Final = 0
 # SEEK_CUR: Final = 1
 # SEEK_END: Final = 2
+_T = TypeVar("_T")
+AnyStr_co = TypeVar("AnyStr_co", str, bytes, covariant=True)
+StrOrBytesPath = TypeVar("StrOrBytesPath", str, bytes, PathLike[str], PathLike[bytes])
+_OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int)
+AnyReadableBuf = TypeVar("AnyReadableBuf", bytearray, array, memoryview, bytes)
+AnyWritableBuf = TypeVar("AnyWritableBuf", bytearray, array, memoryview)
+_Self = TypeVar("_Self")
 
 class UnsupportedOperation(OSError, ValueError): ...
 class IOBase(_IOBase, metaclass=abc.ABCMeta): ...

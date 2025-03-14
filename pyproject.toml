@@ -10,25 +10,7 @@ template-path = "./publish/template"
 #-----------------
 
 
-[tool.ruff]
-# Same as Black.
-line-length = 140
-indent-width = 4
-target-version = 'py38'
 
-[tool.ruff.lint]
-extend-select = [
-    # "E501", # line too long
-    "UP", # pyupgrdae
-]
-ignore = [
-    "F401", # unused import
-    "F403", # import *
-    "F821",
-]
-
-
-exclude = [".git", ".*", "__*", "dist", "test"]
 
 
 #-----------------
@@ -73,3 +55,44 @@ addopts = "--verbose --capture=no"
 # -n --numprocesses=numprocesses - 
 
 markers = ["snippets: test snippets to check the stub quality"]
+
+
+exclude = [".git", ".*", "__*", "dist", "test"]
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+
+# Same as Black.
+line-length = 140
+indent-width = 4
+
+#Stubs should be usable Python 3.9
+target-version = "py39"
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+exclude = [".*", "__*", "dist", "repos"]
+
+# Like Black, indent with spaces, rather than tabs.
+indent-style = "space"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
+
+[tool.ruff.lint]
+exclude = [".*", "__*", "dist", "repos"]
+
+extend-select = [
+    # "E501", # line too long
+    # "UP", # pyupgrade
+]
+ignore = [
+    "F401", # unused import
+    "F403", # import *
+    "F821",
+    "UP035", # pyupgrade `typing.Dict` is deprecated, use `dict` instead
+]

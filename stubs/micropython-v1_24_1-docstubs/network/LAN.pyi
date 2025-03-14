@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Tuple
+from typing import overload, Any, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class LAN:
@@ -29,13 +29,21 @@ class LAN:
     """
 
     def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
-    def active(self, state: Any | None = None) -> Incomplete:
+    @overload
+    def active(self, /) -> bool:
         """
         With a parameter, it sets the interface active if *state* is true, otherwise it
         sets it inactive.
         Without a parameter, it returns the state.
         """
-        ...
+
+    @overload
+    def active(self, is_active: bool | int, /) -> None:
+        """
+        With a parameter, it sets the interface active if *state* is true, otherwise it
+        sets it inactive.
+        Without a parameter, it returns the state.
+        """
 
     def isconnected(self) -> bool:
         """

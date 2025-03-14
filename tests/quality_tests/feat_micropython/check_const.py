@@ -1,4 +1,4 @@
-from micropython import const
+from micropython import const # stubs-ignore: linter == "mypy"
 from typing_extensions import assert_type
 
 case1 = const(11)

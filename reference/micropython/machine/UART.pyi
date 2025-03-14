@@ -3,13 +3,11 @@
 from __future__ import annotations
 
 from typing import Callable, overload
-from typing_extensions import TypeAlias
 
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
-from machine import IDLE
-
-from machine.Pin import Pin, PinLike
+from machine.Pin import PinLike
+from typing_extensions import TypeAlias
 
 ID_T: TypeAlias = int | str
 
@@ -44,38 +42,39 @@ class UART:
         uart.readinto(buf)  # read and store into the given buffer
         uart.write('abc')   # write the 3 characters
     """
+    IDLE: int = ...
 
-    RTS: Incomplete
+    RTS: int = 1
     """\
     Flow control options.
     
     Availability: esp32, mimxrt, renesas-ra, rp2, stm32.
     """
-    CTS: Incomplete
+    CTS: int = 2
     """\
     Flow control options.
     
     Availability: esp32, mimxrt, renesas-ra, rp2, stm32.
     """
-    IRQ_RXIDLE: Incomplete
+    IRQ_RXIDLE: int = 4096
     """\
     IRQ trigger sources.
     
     Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
     """
-    IRQ_RX: Incomplete
+    IRQ_RX: int = 1
     """\
     IRQ trigger sources.
     
     Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
     """
-    IRQ_TXIDLE: Incomplete
+    IRQ_TXIDLE: int = ...
     """\
     IRQ trigger sources.
     
     Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
     """
-    IRQ_BREAK: Incomplete
+    IRQ_BREAK: int = 2
     """\
     IRQ trigger sources.
     
@@ -116,7 +115,7 @@ class UART:
         pins: tuple[PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of two pins.
         """
 
     @overload
@@ -132,17 +131,17 @@ class UART:
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of four pins.
         """
 
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         tx: PinLike | None = None,
         rx: PinLike | None = None,
@@ -207,14 +206,15 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
+        # Tuple two pins for TX and RX
         """
         Initialise the UART bus with the given parameters:
 
@@ -270,14 +270,15 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:
+        # Tuple four pins for TX, RX, RTS and CTS
         """
         Initialise the UART bus with the given parameters:
 

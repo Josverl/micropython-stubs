@@ -10,6 +10,8 @@ import pytest
 from mpflash.versions import micropython_versions
 from packaging.version import Version
 from typecheck import copy_config_files, port_and_board, run_typechecker, stub_ignore
+from typing import Dict, List
+import sys
 
 
 def major_minor(versions):
@@ -83,13 +85,13 @@ PORTBOARD_FEATURES = {
 
 SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 
-import sys
+
 
 HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
-
-VERSIONS = sorted(major_minor(micropython_versions()), reverse=True)[:5]
+# only the recent versions
+VERSIONS = sorted(major_minor(micropython_versions(minver="v1.24.0")), reverse=True)[:3]
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
@@ -134,7 +136,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
     metafunc.parametrize(argnames, args_lst, scope="session")
 
 
-from typing import Dict, List
+
 
 
 def filter_issues(issues: List[Dict], version: str, portboard: str = ""):
@@ -274,18 +276,18 @@ def test_typecheck(
     version: str,
     portboard: str,
     feature: str,
-    snip_path: Path,
-    copy_type_stubs,  # Avoid needing autouse fixture
+    snip_path_fx: Path,
+    copy_type_stubs_fx,  # Avoid needing autouse fixture
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
 ):
-    if not snip_path or not snip_path.exists():
+    if not snip_path_fx or not snip_path_fx.exists():
         FileNotFoundError(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
 
     log.info(f"Typecheck {linter} on {portboard}, {feature} {version} from {stub_source}")
 
     info_msg, errorcount = run_typechecker(
-        snip_path, version, portboard, pytestconfig, linter=linter
+        snip_path_fx, version, portboard, pytestconfig, linter=linter
     )
     assert errorcount == 0, info_msg

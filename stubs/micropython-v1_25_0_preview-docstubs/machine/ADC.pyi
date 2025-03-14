@@ -22,6 +22,19 @@ class ADC:
        val = adc.read_u16()     # read a raw analog value in the range 0-65535
     """
 
+    VREF: int = ...
+    CORE_VREF: int = ...
+    CORE_VBAT: int = ...
+    CORE_TEMP: int = ...
+    ATTN_0DB: int = 0
+    ATTN_2_5DB: int = 1
+    ATTN_6DB: int = 2
+    ATTN_11DB: int = 3
+    WIDTH_9BIT: int = 9
+    WIDTH_10BIT: int = 10
+    WIDTH_11BIT: int = 11
+    WIDTH_12BIT: int = 12
+
     def __init__(self, pin: PinLike, /) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This

@@ -22,7 +22,8 @@ os.rename("newfile.txt", "renamedfile.txt")
 
 x = os.stat("newfile.txt")
 
-y = os.stat(3) # Should raise an error 
+# Should raise an error - so test for the need of the ignore
+y = os.stat(3) # type: ignore # stubs-ignore : version < 1.24.0
 
 # Remove the file
 os.remove("renamedfile.txt")

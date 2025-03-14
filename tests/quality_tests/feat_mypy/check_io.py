@@ -9,7 +9,7 @@ buffer_2 = io.BytesIO(alloc_size)  # stubs-ignore: version<=1.18.0 or linter == 
 
 stream = open("file")
 
-buf = io.BufferedWriter(stream, 8)  # stubs-ignore:  linter == "mypy"
+buf = io.BufferedWriter(stream, 8)  
 print(buf.write(bytearray(16)))
 
 

@@ -1,6 +1,6 @@
 [project]
 name = "micropython-stdlib-stubs"
-version = "1.24.1"
+version = "1.24.1post2"
 description = "Micropython stdlib is a reduced and augmented copy of typeshed's stdlib for use by MicroPython stub packages"
 license = "MIT"
 readme = "README.md"
@@ -38,5 +38,5 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 ignore-vcs = true
-only-include = ["stdlib", "_mpy_shed"]
+only-include = ["stdlib", "_mpy_shed", "stubs"]
 exclude = ["*.be", ".*"]

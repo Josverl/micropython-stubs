@@ -18,19 +18,25 @@ Module: 'machine' on micropython-v1.24.1-samd-SEEED_WIO_TERMINAL
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing_extensions import Awaitable, TypeAlias, TypeVar
+from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
+from typing import NoReturn, Optional, Union, List, Sequence, Callable, Tuple, Any, overload
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
-from typing import NoReturn, Optional, Union, Tuple, Any, Callable, List, Sequence, overload
 from vfs import AbstractBlockDev
-
-ID_T: TypeAlias = int | str
-PinLike: TypeAlias = Pin | int | str
 
 PWRON_RESET: int = 1
 HARD_RESET: int = 16
 SOFT_RESET: int = 64
 WDT_RESET: int = 32
 DEEPSLEEP_RESET: int = 128
+ATTN_0DB: int = ...
+ID_T: TypeAlias = int | str
+PinLike: TypeAlias = Pin | int | str
+IDLE: Incomplete
+SLEEP: Incomplete
+DEEPSLEEP: Incomplete
+WLAN_WAKE: Incomplete
+PIN_WAKE: Incomplete
+RTC_WAKE: Incomplete
 
 def dht_readinto(*args, **kwargs) -> Incomplete: ...
 def enable_irq(state: bool = True, /) -> None:
@@ -331,6 +337,15 @@ class Pin:
     HIGH_POWER: int = 1
     IN: int = 0
     IRQ_FALLING: int = 2
+    ALT: Incomplete
+    ALT_OPEN_DRAIN: Incomplete
+    ANALOG: Incomplete
+    PULL_HOLD: Incomplete
+    DRIVE_0: int
+    DRIVE_1: int
+    DRIVE_2: int
+    IRQ_LOW_LEVEL: Incomplete
+    IRQ_HIGH_LEVEL: Incomplete
     def irq(
         self,
         /,
@@ -699,7 +714,17 @@ class Pin:
         PB03: Pin  ## = Pin(Pin.cpu.PB03, mode=IN, pull=PULL_OFF)
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: Any,
+        /,
+        mode: int = -1,
+        pull: int = -1,
+        *,
+        value: Any = None,
+        drive: int | None = None,
+        alt: int | None = None,
+    ) -> None:
         """
         Access the pin peripheral (GPIO pin) associated with the given ``id``.  If
         additional arguments are given in the constructor then they are used to initialise
@@ -961,7 +986,15 @@ class PWM:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        dest: PinLike,
+        /,
+        *,
+        freq: int = ...,
+        duty_u16: int = ...,
+        duty_ns: int = ...,
+    ) -> None:
         """
         Construct and return a new PWM object using the following parameters:
 
@@ -992,6 +1025,18 @@ class ADC:
        val = adc.read_u16()     # read a raw analog value in the range 0-65535
     """
 
+    VREF: int = ...
+    CORE_VREF: int = ...
+    CORE_VBAT: int = ...
+    CORE_TEMP: int = ...
+    ATTN_0DB: int = 0
+    ATTN_2_5DB: int = 1
+    ATTN_6DB: int = 2
+    ATTN_11DB: int = 3
+    WIDTH_9BIT: int = 9
+    WIDTH_10BIT: int = 10
+    WIDTH_11BIT: int = 11
+    WIDTH_12BIT: int = 12
     def read_u16(self) -> int:
         """
         Take an analog reading and return an integer in the range 0-65535.
@@ -1001,7 +1046,7 @@ class ADC:
         ...
 
     def deinit(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, pin: PinLike, /) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -1268,7 +1313,7 @@ class WDT:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, *, id: int = 0, timeout: int = 5000) -> None:
         """
         Create a WDT object and start it. The timeout must be given in milliseconds.
         Once it is running the timeout cannot be changed and the WDT cannot be stopped either.
@@ -1293,6 +1338,7 @@ class RTC:
     The documentation for RTC is in a poor state;1
     """
 
+    ALARM0: Incomplete
     def datetime(self, datetimetuple: Any | None = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
@@ -1670,6 +1716,10 @@ class UART:
     IRQ_RX: int = 4
     IRQ_TXIDLE: int = 2
     IRQ_RXIDLE: int = 4096
+    RTS: Incomplete
+    CTS: Incomplete
+    IRQ_BREAK: Incomplete
+    IDLE: int = ...
     def irq(
         self,
         trigger: int,
@@ -1717,11 +1767,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         tx: PinLike | None = None,
         rx: PinLike | None = None,
@@ -1786,11 +1836,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
@@ -1849,11 +1899,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:
@@ -2060,7 +2110,7 @@ class UART:
         pins: tuple[PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of two pins.
         """
 
     @overload
@@ -2076,7 +2126,7 @@ class UART:
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of four pins.
         """
 
 class USBDevice:
@@ -2087,6 +2137,11 @@ class USBDevice:
               returns the same object reference.
     """
 
+    BUILTIN_NONE: Incomplete
+    BUILTIN_DEFAULT: Incomplete
+    BUILTIN_CDC: Incomplete
+    BUILTIN_MSC: Incomplete
+    BUILTIN_CDC_MSC: int
     def submit_xfer(self, ep, buffer, /) -> bool:
         """
         Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be
@@ -2296,7 +2351,7 @@ class USBDevice:
         )
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self) -> None: ...
 
 class SoftSPI(SPI):
     """
@@ -2313,7 +2368,18 @@ class SoftSPI(SPI):
     def read(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
     def readinto(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(
+        self,
+        baudrate=500000,
+        *,
+        polarity=0,
+        phase=0,
+        bits=8,
+        firstbit=MSB,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
+    ) -> None: ...
 
 class SPI:
     """
@@ -2371,6 +2437,7 @@ class SPI:
 
     LSB: int = 1
     MSB: int = 0
+    CONTROLLER: Incomplete
     def deinit(self) -> None:
         """
         Turn off the SPI bus.
@@ -2745,4 +2812,51 @@ class SoftI2C(I2C):
     def init(self, *args, **kwargs) -> Incomplete: ...
     def stop(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
+
+class SDCard:
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray) -> bool:
+        """
+        The first form reads aligned, multiples of blocks.
+        Starting at the block given by the index *block_num*, read blocks from
+        the device into *buf* (an array of bytes).
+        The number of blocks to read is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
+        """
+        The second form allows reading at arbitrary locations within a block,
+        and arbitrary lengths.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, read bytes from the device into *buf* (an array of bytes).
+        The number of bytes to read is given by the length of *buf*.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+        """
+        The first form writes aligned, multiples of blocks, and requires that the
+        blocks that are written to be first erased (if necessary) by this method.
+        Starting at the block given by the index *block_num*, write blocks from
+        *buf* (an array of bytes) to the device.
+        The number of blocks to write is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+        """
+        The second form allows writing at arbitrary locations within a block,
+        and arbitrary lengths.  Only the bytes being written should be changed,
+        and the caller of this method must ensure that the relevant blocks are
+        erased via a prior ``ioctl`` call.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, write bytes from *buf* (an array of bytes) to the device.
+        The number of bytes to write is given by the length of *buf*.
+
+        Note that implementations must never implicitly erase blocks if the offset
+        argument is specified, even if it is zero.
+        """

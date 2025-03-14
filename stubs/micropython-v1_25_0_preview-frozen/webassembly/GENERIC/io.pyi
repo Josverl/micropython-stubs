@@ -83,6 +83,9 @@ from array import array
 from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
+SEEK_SET: int
+SEEK_CUR: int
+SEEK_END: int
 _T = TypeVar("_T")
 AnyStr_co = TypeVar("AnyStr_co", str, bytes, covariant=True)
 StrOrBytesPath = TypeVar("StrOrBytesPath", str, bytes, PathLike[str], PathLike[bytes])
@@ -90,10 +93,6 @@ _OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int
 AnyReadableBuf = TypeVar("AnyReadableBuf", bytearray, array, memoryview, bytes)
 AnyWritableBuf = TypeVar("AnyWritableBuf", bytearray, array, memoryview)
 _Self = TypeVar("_Self")
-
-SEEK_SET: int
-SEEK_CUR: int
-SEEK_END: int
 
 class StringIO:
     @overload

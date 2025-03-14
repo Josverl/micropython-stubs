@@ -63,7 +63,7 @@ def main(use_stream=True):
         print("Client address:", client_addr)
         print("Client socket:", client_s)
         # CPython uses key keyfile/certfile arguments, but MicroPython uses key/cert
-        client_s = ssl.wrap_socket(  # stubs-ignore : linter == "mypy" and version < 1.24.0
+        client_s = ssl.wrap_socket(   
             client_s,
             server_side=True,
             key=key,  # stubs: ignore : version < 1.24.0
@@ -91,8 +91,8 @@ def main(use_stream=True):
             except Exception as e:
                 print("Exception serving request:", e)
         else:
-            print(client_s.recv(4096))  # stubs-ignore
-            client_s.send(CONTENT % counter)  # stubs-ignore
+            print(client_s.recv(4096))  
+            client_s.send(CONTENT % counter) 
         client_s.close()
         counter += 1
         print()

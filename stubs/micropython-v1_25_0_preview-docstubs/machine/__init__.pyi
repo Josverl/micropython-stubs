@@ -16,7 +16,7 @@ damage.
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import overload, Any, NoReturn, Optional
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
 from machine.Pin import Pin
 from machine.Signal import Signal
 from machine.ADC import ADC
@@ -168,6 +168,7 @@ def idle() -> None:
     """
     ...
 
+@deprecated("use :func:`lightsleep()` instead.")
 def sleep() -> None:
     """
     ``Note:`` This function is deprecated, use :func:`lightsleep()` instead with no arguments.

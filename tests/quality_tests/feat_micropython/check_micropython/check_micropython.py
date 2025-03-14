@@ -28,7 +28,7 @@ x = micropython.opt_level()
 micropython.opt_level(x)
 
 
-micropython.alloc_emergency_exception_buf(512)  # stubs-ignore: port == "webassembly"
+micropython.alloc_emergency_exception_buf(512)  # stubs-ignore: port in ["webassembly", "unix", "windows"]
 
 micropython.mem_info()
 micropython.qstr_info()

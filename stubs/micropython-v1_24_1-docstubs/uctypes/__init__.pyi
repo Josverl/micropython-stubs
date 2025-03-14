@@ -17,24 +17,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-
-_ScalarProperty: TypeAlias = int
-_RecursiveProperty: TypeAlias = tuple[int, _property]
-_ArrayProperty: TypeAlias = tuple[int, int]
-_ArrayOfAggregateProperty: TypeAlias = tuple[int, int, _property]
-_PointerToAPrimitiveProperty: TypeAlias = tuple[int, int]
-_PointerToAaAggregateProperty: TypeAlias = tuple[int, "_property"]
-_BitfieldProperty: TypeAlias = int
-_property: TypeAlias = (
-    _ScalarProperty
-    | _RecursiveProperty
-    | _ArrayProperty
-    | _ArrayOfAggregateProperty
-    | _PointerToAPrimitiveProperty
-    | _PointerToAaAggregateProperty
-    | _BitfieldProperty
-)
-_descriptor: TypeAlias = tuple[str, _property]
+from typing import overload
 
 LITTLE_ENDIAN: bytes
 """\
@@ -110,6 +93,23 @@ Type constants for pointers and arrays. Note that there is no explicit
 constant for structures, it's implicit: an aggregate type without ``PTR``
 or ``ARRAY`` flags is a structure.
 """
+_ScalarProperty: TypeAlias = int
+_RecursiveProperty: TypeAlias = tuple[int, _property]
+_ArrayProperty: TypeAlias = tuple[int, int]
+_ArrayOfAggregateProperty: TypeAlias = tuple[int, int, _property]
+_PointerToAPrimitiveProperty: TypeAlias = tuple[int, int]
+_PointerToAaAggregateProperty: TypeAlias = tuple[int, "_property"]
+_BitfieldProperty: TypeAlias = int
+_property: TypeAlias = (
+    _ScalarProperty
+    | _RecursiveProperty
+    | _ArrayProperty
+    | _ArrayOfAggregateProperty
+    | _PointerToAPrimitiveProperty
+    | _PointerToAaAggregateProperty
+    | _BitfieldProperty
+)
+_descriptor: TypeAlias = tuple[str, _property]
 
 class struct:
     """
@@ -122,6 +122,9 @@ class struct:
         Instantiate a "foreign data structure" object based on structure address in
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
+
+    @overload  # force push
+    def __getattr__(self, a): ...
 
 def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) -> int:
     """

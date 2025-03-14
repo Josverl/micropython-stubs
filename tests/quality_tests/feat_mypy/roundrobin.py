@@ -18,7 +18,7 @@ period = 5
 async def foo(n):
     global count
     while True:
-        await asyncio.sleep_ms(0)  # stubs-ignore: linter=="mypy"
+        await asyncio.sleep_ms(0)  
         count += 1
         print("Foo", n)
 

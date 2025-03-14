@@ -70,11 +70,8 @@ Module: 'socket' on micropython-v1.25.0-preview-rp2-UNKNOWN_BOARD
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from typing import Any, IO, Literal, Optional, Tuple, overload
+from typing import Literal, Tuple, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
-
-_Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str
-Socket: TypeAlias = socket
 
 SOCK_STREAM: int = 1
 SOCK_DGRAM: int = 2
@@ -89,6 +86,10 @@ AF_INET: int = 2
 IP_ADD_MEMBERSHIP: int = 1024
 IPPROTO_IP: int = 0
 IPPROTO_TCP: int = 6
+IPPROTO_UDP: Incomplete
+IPPROTO_SEC: Incomplete
+_Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str
+Socket: TypeAlias = socket
 
 def reset(*args, **kwargs) -> Incomplete: ...
 def print_pcbs(*args, **kwargs) -> Incomplete: ...
@@ -392,7 +393,13 @@ class socket:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        af: int = AF_INET,
+        type: int = SOCK_STREAM,
+        proto: int = IPPROTO_TCP,
+        /,
+    ) -> None:
         """
         Create a new socket using the given address family, socket type and
         protocol number. Note that specifying *proto* in most cases is not

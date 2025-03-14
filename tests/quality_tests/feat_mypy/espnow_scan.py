@@ -1,7 +1,7 @@
 import sys
 import time
 import network
-import espnow
+import espnow # stubs-ignore : port not in ["esp32"]
 
 MAX_CHANNEL = 14  # Maximum wifi channel to scan (2.4MHz band)
 NUM_PINGS = 10  # The default number of pings to send on each channel
@@ -17,7 +17,7 @@ def set_channel(channel):
         raise OSError("can not set channel when connected to wifi network.")
     if ap.isconnected():
         raise OSError("can not set channel when clients are connected to AP_IF.")
-    if sta.active() and sys.platform != "esp8266":  # stubs-ignore : linter == "mypy"
+    if sta.active() and sys.platform != "esp8266":  
         try:
             sta.config(channel=channel)  # On ESP32 use STA interface
         except RuntimeError as err:
@@ -27,7 +27,7 @@ def set_channel(channel):
         return sta.config("channel")
     else:
         # On ESP8266, use the AP interface to set the channel of the STA interface
-        ap_save = ap.active()  # stubs-ignore : linter == "mypy"
+        ap_save = ap.active()  
         ap.active(True)
         ap.config(channel=channel)
         ap.active(ap_save)
@@ -64,7 +64,7 @@ def scan(peer, num_pings=NUM_PINGS, verbose=False):
     Returns:
         int: The channel number of the peer (or 0 if not found)
     """
-    if not sta.active() and not ap.active():  # stubs-ignore : linter == "mypy"
+    if not sta.active() and not ap.active():  
         sta.active(True)  # One of the WLAN interfaces must be active
     enow = espnow.ESPNow()
     enow.active(True)

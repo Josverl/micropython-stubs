@@ -39,6 +39,7 @@
 
 import sys
 import time
+
 import network
 
 
@@ -59,7 +60,7 @@ try:
 except AttributeError:
     default_pm_mode = None
 try:
-    default_protocol = network.MODE_11B | network.MODE_11G | network.MODE_11N
+    default_protocol = network.MODE_11B | network.MODE_11G | network.MODE_11N # stubs-ignore : port not in ["esp32"]
 except AttributeError:
     default_protocol = None
 
@@ -71,12 +72,12 @@ def channel(channel=0):
         raise OSError("can not set channel when connected to wifi network.")
     if _ap.isconnected():
         raise OSError("can not set channel when clients are connected to AP.")
-    if _sta.active() and not is_esp8266:  # stubs-ignore : linter == "mypy" and version < 1.24.0
+    if _sta.active() and not is_esp8266: 
         _sta.config(channel=channel)  # On ESP32 use STA interface
         return _sta.config("channel")
     else:
         # On ESP8266, use the AP interface to set the channel
-        ap_save = _ap.active()  # stubs-ignore : linter == "mypy" and version < 1.24.0
+        ap_save = _ap.active()
         _ap.active(True)
         _ap.config(channel=channel)
         _ap.active(ap_save)
@@ -138,7 +139,7 @@ def status():
 
     for name, w in (("STA", _sta), ("AP", _ap)):
         active = (
-            "on," if w.active() else "off,"  # stubs-ignore : linter == "mypy" and version < 1.24.0
+            "on," if w.active() else "off,"   
         )
         mac = w.config("mac")
         hex = hexlify(mac, ":").decode()
@@ -151,23 +152,23 @@ def status():
     pm_mode = None
     try:
         pm_mode = _sta.config("pm")
-        names = {
+        pm_names = {
             _sta.PM_NONE: "PM_NONE",
             _sta.PM_PERFORMANCE: "PM_PERFORMANCE",
             _sta.PM_POWERSAVE: "PM_POWERSAVE",
         }
-        print(", pm={:d} ({})".format(pm_mode, names[pm_mode]), end="")
+        print(", pm={:d} ({})".format(pm_mode, pm_names[pm_mode]), end="")
     except (AttributeError, ValueError):
         print(", pm={}".format(pm_mode), end="")
     try:
-        names = ("MODE_11B", "MODE_11G", "MODE_11N", "MODE_LR")
+        mode_names = ("MODE_11B", "MODE_11G", "MODE_11N", "MODE_LR")
         protocol = _sta.config("protocol")
         try:
             p = "|".join(
                 (
-                    x  # stubs-ignore : linter == "mypy"
-                    for x in names
-                    if protocol & getattr(network, x)  # stubs-ignore : linter == "mypy"
+                    x  
+                    for x in mode_names
+                    if protocol & getattr(network, x)  
                 )
             )
         except AttributeError:
@@ -178,3 +179,4 @@ def status():
     print()
     if _sta.isconnected():
         print("     ifconfig:", _sta.ifconfig())
+

@@ -18,7 +18,6 @@ Module: '_thread' on micropython-v1.25.0-preview-rp2-UNKNOWN_BOARD
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, NoReturn, Optional, Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def get_ident(*args, **kwargs) -> Incomplete: ...

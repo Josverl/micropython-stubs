@@ -15,13 +15,14 @@ Module: 'ucollections' on micropython-v1.24.1-esp32-ESP32_GENERIC_C6
 # MCU: {'family': 'micropython', 'version': '1.24.1', 'build': '', 'ver': '1.24.1', 'port': 'esp32', 'board': 'ESP32_GENERIC_C6', 'cpu': 'ESP32C6', 'mpy': 'v6.3', 'arch': 'rv32imc'}
 # Stubber: v1.24.0
 from __future__ import annotations
-from typing import Dict, Generic, Optional, Tuple, overload, Any, Generator
+from typing import Dict, Generic, Tuple, Any, Generator
 from _typeshed import Incomplete
-from collections.abc import Iterable, Mapping
+from collections.abc import Iterable
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
+_T = TypeVar("_T")
 
 def namedtuple(name: str, fields: str | Iterable[str]) -> type[Tuple[Any, ...]]:
     """
@@ -80,83 +81,7 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
     def items(self, *args, **kwargs) -> Incomplete: ...
     @classmethod
     def fromkeys(cls, *args, **kwargs) -> Incomplete: ...
-    @overload
-    def __init__(self):
-        """
-        ``dict`` type subclass which remembers and preserves the order of keys
-        added. When ordered dict is iterated over, keys/items are returned in
-        the order they were added::
-
-            from collections import OrderedDict
-
-            # To make benefit of ordered keys, OrderedDict should be initialized
-            # from sequence of (key, value) pairs.
-            d = OrderedDict([("z", 1), ("a", 2)])
-            # More items can be added as usual
-            d["w"] = 5
-            d["b"] = 3
-            for k, v in d.items():
-                print(k, v)
-
-        Output::
-
-            z 1
-            a 2
-            w 5
-            b 3
-        """
-
-    @overload
-    def __init__(self, **kwargs: _VT):
-        """
-        ``dict`` type subclass which remembers and preserves the order of keys
-        added. When ordered dict is iterated over, keys/items are returned in
-        the order they were added::
-
-            from collections import OrderedDict
-
-            # To make benefit of ordered keys, OrderedDict should be initialized
-            # from sequence of (key, value) pairs.
-            d = OrderedDict([("z", 1), ("a", 2)])
-            # More items can be added as usual
-            d["w"] = 5
-            d["b"] = 3
-            for k, v in d.items():
-                print(k, v)
-
-        Output::
-
-            z 1
-            a 2
-            w 5
-            b 3
-        """
-
-    @overload
-    def __init__(self, map: Mapping[_KT, _VT], **kwargs: _VT):
-        """
-        ``dict`` type subclass which remembers and preserves the order of keys
-        added. When ordered dict is iterated over, keys/items are returned in
-        the order they were added::
-
-            from collections import OrderedDict
-
-            # To make benefit of ordered keys, OrderedDict should be initialized
-            # from sequence of (key, value) pairs.
-            d = OrderedDict([("z", 1), ("a", 2)])
-            # More items can be added as usual
-            d["w"] = 5
-            d["b"] = 3
-            for k, v in d.items():
-                print(k, v)
-
-        Output::
-
-            z 1
-            a 2
-            w 5
-            b 3
-        """
+    def __init__(self, *args, **kwargs) -> None: ...
 
 class deque:
     """
@@ -170,7 +95,7 @@ class deque:
         """
         ...
 
-    def appendleft(self, x) -> Incomplete:
+    def appendleft(self, x: _T, /) -> Incomplete:
         """
         Add *x* to the left side of the deque.
         Raises ``IndexError`` if overflow checking is enabled and there is
@@ -185,7 +110,7 @@ class deque:
         """
         ...
 
-    def extend(self, iterable) -> Incomplete:
+    def extend(self, iterable: Iterable[_T], /) -> Incomplete:
         """
         Extend the deque by appending all the items from *iterable* to
         the right of the deque.
@@ -194,7 +119,7 @@ class deque:
         """
         ...
 
-    def append(self, x: Any, /) -> None:
+    def append(self, x: _T, /) -> None:
         """
         Add *x* to the right side of the deque.
         Raises ``IndexError`` if overflow checking is enabled and there is
@@ -202,7 +127,7 @@ class deque:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, iterable: tuple[Any], maxlen: int, flags: int = 0, /) -> None:
         """
         Deques (double-ended queues) are a list-like container that support O(1)
         appends and pops from either side of the deque.  New deques are created

@@ -1,5 +1,3 @@
-# TODO: rp2.PIO - The functions defined in the asm_pio decorator are not recognized by pyright.
-# ignore for now : other issues to solve first
 """
 Sample from micropython discussions
 
@@ -101,8 +99,8 @@ sm_tx = StateMachine(
 sm_tx.active(1)
 
 
-fifo_tx = deque((), 64)  # stubs-ignore : linter == "mypy"
-fifo_rx = deque((), 64)  # stubs-ignore : linter == "mypy"
+fifo_rx = deque((), 64)  
+fifo_tx = deque((), 64)  
 
 
 def core1_task(
@@ -117,6 +115,7 @@ def core1_task(
             if sm_tx.tx_fifo() < 8:  # Prevent trying to push into full FIFO to avoid blocking
                 # Pop a character out of in-memory FIFO, convert it to binary and push it into PIO's FIFO
                 sm_tx.put(ord(fifo_tx.popleft()))
+
 
 
 sm_rx.active(1)

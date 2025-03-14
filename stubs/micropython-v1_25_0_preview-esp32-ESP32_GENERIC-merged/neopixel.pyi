@@ -63,7 +63,7 @@ class NeoPixel(_NeoPixelBase):
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, pin: Pin, n: int, /, *, bpp: int = 3, timing: int = 1) -> None:
         """
         Construct an NeoPixel object.  The parameters are:
 

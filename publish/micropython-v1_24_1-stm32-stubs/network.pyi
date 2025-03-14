@@ -30,10 +30,7 @@ For example::
     s = socket.socket()
     s.connect(addr)
     s.send(b'GET / HTTP/1.1
-
 Host: micropython.org
-
-
 
 ')
     data = s.recv(1000)
@@ -47,7 +44,7 @@ Module: 'network' on micropython-v1.24.1-stm32-PYBV11
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Protocol, Callable, List, overload, Any, Tuple
+from typing import Protocol, Callable, Any, List, Tuple, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 from machine import Pin, SPI
 from abc import abstractmethod
@@ -69,7 +66,7 @@ class WLAN:
         """
 
     @overload
-    def active(self, is_active: bool, /) -> None:
+    def active(self, is_active: bool | int, /) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
         argument is passed. Otherwise, query current state if no argument is
@@ -206,6 +203,23 @@ class WLAN:
         =============  ===========
         """
 
+class LAN:
+    @overload
+    def active(self, /) -> bool:
+        """
+        With a parameter, it sets the interface active if *state* is true, otherwise it
+        sets it inactive.
+        Without a parameter, it returns the state.
+        """
+
+    @overload
+    def active(self, is_active: bool | int, /) -> None:
+        """
+        With a parameter, it sets the interface active if *state* is true, otherwise it
+        sets it inactive.
+        Without a parameter, it returns the state.
+        """
+
 class WLANWiPy:
     @overload
     def __init__(self, id: int = 0, /):
@@ -331,7 +345,7 @@ class AbstractNIC:
 
     @overload
     @abstractmethod
-    def active(self, is_active: bool, /) -> None:
+    def active(self, is_active: bool | int, /) -> None:
         """
         Activate ("up") or deactivate ("down") the network interface, if
         a boolean argument is passed. Otherwise, query current state if

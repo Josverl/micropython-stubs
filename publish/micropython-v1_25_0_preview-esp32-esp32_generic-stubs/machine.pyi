@@ -18,13 +18,10 @@ Module: 'machine' on micropython-v1.24.1-esp32-ESP32_GENERIC
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Final, NoReturn, Tuple, Any, Callable, List, Sequence, Union, overload, Optional
-from typing_extensions import Awaitable, TypeAlias, TypeVar
+from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
+from typing import NoReturn, Optional, Union, List, Sequence, Callable, Tuple, Any, overload
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from vfs import AbstractBlockDev
-
-ID_T: TypeAlias = int | str
-PinLike: TypeAlias = Pin | int | str
 
 ULP_WAKE: int = 6
 SLEEP: int = 2
@@ -39,6 +36,12 @@ EXT0_WAKE: int = 2
 DEEPSLEEP_RESET: int = 4
 DEEPSLEEP: int = 4
 EXT1_WAKE: int = 3
+ATTN_0DB: int = ...
+ID_T: TypeAlias = int | str
+PinLike: TypeAlias = Pin | int | str
+IDLE: Incomplete
+WLAN_WAKE: Incomplete
+RTC_WAKE: Incomplete
 
 @overload
 def deepsleep() -> NoReturn:
@@ -280,6 +283,7 @@ def reset_cause() -> int:
     """
     ...
 
+@deprecated("use :func:`lightsleep()` instead.")
 def sleep() -> None:
     """
     ``Note:`` This function is deprecated, use :func:`lightsleep()` instead with no arguments.
@@ -439,7 +443,15 @@ class PWM:
         """
 
     def duty(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        dest: PinLike,
+        /,
+        *,
+        freq: int = ...,
+        duty_u16: int = ...,
+        duty_ns: int = ...,
+    ) -> None:
         """
         Construct and return a new PWM object using the following parameters:
 
@@ -497,6 +509,8 @@ class UART:
     IRQ_RX: int = 1
     INV_CTS: int = 8
     CTS: int = 2
+    IRQ_TXIDLE: Incomplete
+    IDLE: int = ...
     def irq(
         self,
         trigger: int,
@@ -554,11 +568,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         tx: PinLike | None = None,
         rx: PinLike | None = None,
@@ -607,7 +621,7 @@ class UART:
 
           - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
             Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
             When no pins are given, then the default set of TX and RX pins is taken, and hardware
             flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
 
@@ -623,11 +637,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
@@ -670,7 +684,7 @@ class UART:
 
           - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
             Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
             When no pins are given, then the default set of TX and RX pins is taken, and hardware
             flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
 
@@ -686,11 +700,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:
@@ -733,7 +747,7 @@ class UART:
 
           - *pins* is a 4 or 2 item list indicating the TX, RX, RTS and CTS pins (in that order).
             Any of the pins can be None if one wants the UART to operate with limited functionality.
-            If the RTS pin is given the the RX pin must be given as well. The same applies to CTS.
+            If the RTS pin is given the RX pin must be given as well. The same applies to CTS.
             When no pins are given, then the default set of TX and RX pins is taken, and hardware
             flow control will be disabled. If *pins* is ``None``, no pin assignment will be made.
 
@@ -887,7 +901,7 @@ class UART:
         pins: tuple[PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of two pins.
         """
 
     @overload
@@ -903,7 +917,7 @@ class UART:
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ):
         """
-        Construct a UART object of the given id.
+        Construct a UART object of the given id from a tuple of four pins.
         """
 
 mem32: Incomplete  ## <class 'mem'> = <32-bit memory>
@@ -947,7 +961,7 @@ class ADCBlock:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, id, *, bits) -> None: ...
 
 class ADC:
     """
@@ -971,6 +985,10 @@ class ADC:
     ATTN_0DB: int = 0
     ATTN_2_5DB: int = 1
     ATTN_11DB: int = 3
+    VREF: int = ...
+    CORE_VREF: int = ...
+    CORE_VBAT: int = ...
+    CORE_TEMP: int = ...
     def read_u16(self) -> int:
         """
         Take an analog reading and return an integer in the range 0-65535.
@@ -1008,7 +1026,7 @@ class ADC:
         ...
 
     def atten(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, pin: PinLike, /) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -1169,7 +1187,20 @@ class I2S:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: ID_T,
+        /,
+        *,
+        sck: PinLike,
+        ws: PinLike,
+        sd: PinLike,
+        mode: int,
+        bits: int,
+        format: int,
+        rate: int,
+        ibuf: int,
+    ) -> None:
         """
         Construct an I2S object of the given id:
 
@@ -1603,7 +1634,18 @@ class SoftSPI(SPI):
     def read(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
     def readinto(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(
+        self,
+        baudrate=500000,
+        *,
+        polarity=0,
+        phase=0,
+        bits=8,
+        firstbit=MSB,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
+    ) -> None: ...
 
 class Pin:
     """
@@ -1656,6 +1698,12 @@ class Pin:
     IN: int = 1
     DRIVE_2: int = 2
     DRIVE_3: int = 3
+    ALT: Incomplete
+    ALT_OPEN_DRAIN: Incomplete
+    ANALOG: Incomplete
+    PULL_HOLD: Incomplete
+    IRQ_LOW_LEVEL: Incomplete
+    IRQ_HIGH_LEVEL: Incomplete
     def irq(
         self,
         /,
@@ -1811,7 +1859,17 @@ class Pin:
     class board:
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: Any,
+        /,
+        mode: int = -1,
+        pull: int = -1,
+        *,
+        value: Any = None,
+        drive: int | None = None,
+        alt: int | None = None,
+    ) -> None:
         """
         Access the pin peripheral (GPIO pin) associated with the given ``id``.  If
         additional arguments are given in the constructor then they are used to initialise
@@ -1975,7 +2033,7 @@ class WDT:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, *, id: int = 0, timeout: int = 5000) -> None:
         """
         Create a WDT object and start it. The timeout must be given in milliseconds.
         Once it is running the timeout cannot be changed and the WDT cannot be stopped either.
@@ -2078,11 +2136,67 @@ class SDCard(AbstractBlockDev):
     """
 
     def ioctl(self, *args, **kwargs) -> Incomplete: ...
-    def readblocks(self, *args, **kwargs) -> Incomplete: ...
-    def writeblocks(self, *args, **kwargs) -> Incomplete: ...
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray) -> bool:
+        """
+        The first form reads aligned, multiples of blocks.
+        Starting at the block given by the index *block_num*, read blocks from
+        the device into *buf* (an array of bytes).
+        The number of blocks to read is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
+        """
+        The second form allows reading at arbitrary locations within a block,
+        and arbitrary lengths.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, read bytes from the device into *buf* (an array of bytes).
+        The number of bytes to read is given by the length of *buf*.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+        """
+        The first form writes aligned, multiples of blocks, and requires that the
+        blocks that are written to be first erased (if necessary) by this method.
+        Starting at the block given by the index *block_num*, write blocks from
+        *buf* (an array of bytes) to the device.
+        The number of blocks to write is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+        """
+        The second form allows writing at arbitrary locations within a block,
+        and arbitrary lengths.  Only the bytes being written should be changed,
+        and the caller of this method must ensure that the relevant blocks are
+        erased via a prior ``ioctl`` call.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, write bytes from *buf* (an array of bytes) to the device.
+        The number of bytes to write is given by the length of *buf*.
+
+        Note that implementations must never implicitly erase blocks if the offset
+        argument is specified, even if it is zero.
+        """
+
     def info(self, *args, **kwargs) -> Incomplete: ...
     def deinit(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        slot: int = 1,
+        width: int = 1,
+        cd: PinLike | None = None,
+        wp: PinLike | None = None,
+        sck: PinLike | None = None,
+        miso: PinLike | None = None,
+        mosi: PinLike | None = None,
+        cs: PinLike | None = None,
+        freq: int = 20000000,
+        /,
+    ) -> None:
         """
         This class provides access to SD or MMC storage cards using either
         a dedicated SD/MMC interface hardware or through an SPI channel.
@@ -2128,6 +2242,8 @@ class RTC:
 
     The documentation for RTC is in a poor state;1
     """
+
+    ALARM0: Incomplete
 
     @overload
     def init(self) -> None:
@@ -2403,7 +2519,7 @@ class SoftI2C(I2C):
     def init(self, *args, **kwargs) -> Incomplete: ...
     def stop(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
 
 class SPI:
     """
@@ -2461,6 +2577,7 @@ class SPI:
 
     LSB: int = 1
     MSB: int = 0
+    CONTROLLER: Incomplete
     def deinit(self) -> None:
         """
         Turn off the SPI bus.

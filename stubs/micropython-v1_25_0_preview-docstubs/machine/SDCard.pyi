@@ -1,11 +1,15 @@
 """ """
 
 from __future__ import annotations
+
+from typing import overload
+
 from _typeshed import Incomplete
-from typing_extensions import TypeVar, TypeAlias, Awaitable
-from .Pin import Pin
 from machine.Pin import Pin, PinLike
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 from vfs import AbstractBlockDev
+
+from .Pin import Pin
 
 class SDCard(AbstractBlockDev):
     """

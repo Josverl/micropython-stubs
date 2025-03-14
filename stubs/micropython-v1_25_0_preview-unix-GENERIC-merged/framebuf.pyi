@@ -86,7 +86,7 @@ class FrameBuffer:
 
     def text(self, s: str, x: int, y: int, c: int = 1, /) -> None:
         """
-        Write text to the FrameBuffer using the the coordinates as the upper-left
+        Write text to the FrameBuffer using the coordinates as the upper-left
         corner of the text. The color of the text can be defined by the optional
         argument but is otherwise a default value of 1. All characters have
         dimensions of 8x8 pixels and there is currently no way to change the font.
@@ -182,7 +182,15 @@ class FrameBuffer:
         ...
 
     def fill_rect(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        buffer: AnyWritableBuf,
+        width: int,
+        height: int,
+        format: int,
+        stride: int = ...,
+        /,
+    ) -> None:
         """
         Construct a FrameBuffer object.  The parameters are:
 

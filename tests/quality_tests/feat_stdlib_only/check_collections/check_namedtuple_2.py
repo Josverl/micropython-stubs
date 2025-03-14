@@ -1,19 +1,15 @@
 # ref: https://github.com/Josverl/micropython-stubs/issues/731
  
-import json
 from collections import namedtuple
-from typing import Union
+from typing import Union, Dict
 
 WifiConfig = namedtuple('WifiConfig', ('ssid', 'password'))
 # reveal_type(WifiConfig) 
 
 def read_wifi_config() -> Union[WifiConfig, None]:
   try:
-    with open("WIFI_FILE", 'r') as f:
-      data = json.load(f)
-      f.close()
-    if not isinstance(data, dict):
-        return None
+    data:Dict[str,str] = {}
+
     return WifiConfig(
         ssid=data['ssid'],
         password=data.get('password'),

@@ -48,6 +48,8 @@ if TYPE_CHECKING:
     from rp2 import PIOASMEmit
 
     # constants defined for PIO assembly
+    # TODO: Make Final - or make const always return Final
+
     gpio = const(0)
     # "pin": see below, translated to 1
     # "irq": see below function, translated to 2

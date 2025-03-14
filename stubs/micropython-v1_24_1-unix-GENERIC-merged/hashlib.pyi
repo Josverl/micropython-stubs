@@ -112,7 +112,7 @@ class md5(_Hash):
 
     def digest(self, *args, **kwargs) -> Incomplete: ...
     def update(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, data: AnyReadableBuf = ..., /) -> None:
         """
         Create an MD5 hasher object and optionally feed ``data`` into it.
         """

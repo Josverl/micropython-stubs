@@ -13,6 +13,7 @@ from __future__ import annotations
 from array import array
 from collections.abc import Sequence
 from typing import NoReturn, overload
+from typing_extensions import deprecated
 
 from _mpy_shed import (
     _OldAbstractBlockDev,
@@ -419,7 +420,7 @@ def standby() -> None:
     See :meth:`rtc.wakeup` to configure a real-time-clock wakeup event.
     """
     ...
-
+@deprecated("Use `pyb.USB_VCP().isconnected()` instead.")
 def have_cdc() -> bool:
     """
     Return True if USB is connected as a serial device, False otherwise.
@@ -428,6 +429,7 @@ def have_cdc() -> bool:
     """
     ...
 
+@deprecated("Use `pyb.USB_HID.send()`` instead.")
 @overload
 def hid(data: tuple[int, int, int, int], /) -> None:
     """
@@ -437,6 +439,7 @@ def hid(data: tuple[int, int, int, int], /) -> None:
     ``Note:`` This function is deprecated.  Use :meth:`pyb.USB_HID.send()` instead.
     """
 
+@deprecated("Use `pyb.USB_HID.send()`` instead.")
 @overload
 def hid(data: Sequence[int], /) -> None:
     """

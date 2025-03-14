@@ -12,14 +12,14 @@ from __future__ import annotations
 
 from typing import Callable, Dict, List, NoReturn, Tuple, overload
 
-from _mpy_shed import IOBase_mp
+from _mpy_shed import IOBase_mp, _mp_implementation
 from _typeshed import Incomplete
 
 argv: List
 """A mutable list of arguments the current program was started with."""
 byteorder: Incomplete
 """The byte order of the system (``"little"`` or ``"big"``)."""
-implementation: Incomplete
+implementation: _mp_implementation
 """\
 Object with information about the current Python implementation. For
 MicroPython, it has following attributes:
@@ -97,7 +97,7 @@ ps2: str
 Mutable attributes holding strings, which are used for the REPL prompt.  The defaults
 give the standard Python prompt of ``>>>`` and ``...``.
 """
-stderr: Incomplete
+stderr: Incomplete 
 """Standard error `stream`."""
 stdin: Incomplete
 """Standard input `stream`."""

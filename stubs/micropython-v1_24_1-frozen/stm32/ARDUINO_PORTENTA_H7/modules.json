@@ -12,7 +12,7 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.24.0",
+        "version": "1.24.2",
         "stubtype": "frozen"
     },
     "modules": [

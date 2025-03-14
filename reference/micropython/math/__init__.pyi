@@ -25,6 +25,10 @@ e: float
 pi: float
 """the ratio of a circle's circumference to its diameter"""
 
+inf: float = ...
+nan: float = ...
+tau: float = ...
+
 def acos(x: SupportsFloat, /) -> float:
     """
     Return the inverse cosine of ``x``.

@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 from _typeshed import Incomplete
-from typing_extensions import TypeAlias
-
 from machine.Pin import Pin, PinLike
+from typing_extensions import TypeAlias
 
 ATTN_0DB: int = ...
 
@@ -22,6 +21,21 @@ class ADC:
        adc = machine.ADC(pin)   # create an ADC object acting on a pin
        val = adc.read_u16()     # read a raw analog value in the range 0-65535
     """
+    # origin stm32
+    VREF: int = ...
+    CORE_VREF: int = ...
+    CORE_VBAT: int = ...
+    CORE_TEMP: int = ...
+
+    # origin esp32 & esp32
+    ATTN_0DB: int = 0
+    ATTN_2_5DB: int = 1
+    ATTN_6DB: int = 2
+    ATTN_11DB: int = 3
+    WIDTH_9BIT: int = 9
+    WIDTH_10BIT: int = 10
+    WIDTH_11BIT: int = 11
+    WIDTH_12BIT: int = 12 # esp32
 
     def __init__(self, pin: PinLike, /) -> None:
         """

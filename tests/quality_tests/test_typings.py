@@ -30,11 +30,11 @@ def is_docker_running():
 
 
 @pytest.fixture(scope="session")
-def copy_mpy_typings(snip_path: Path, ext: str, pytestconfig: pytest.Config):
+def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Config):
     """
     Copy the typings.py(i) and the typings_extension.py(i) files to  snip_path
     """
-    lib_path = snip_path / "lib"
+    lib_path = snip_path_fx / "lib"
     lib_path.mkdir(exist_ok=True)
     for file in lib_path.glob("typing*.p*"):
         file.unlink()
@@ -60,11 +60,11 @@ def copy_mpy_typings(snip_path: Path, ext: str, pytestconfig: pytest.Config):
 @pytest.mark.parametrize(
     "check_file", set([f.name for f in (HERE / "feat_typing").glob("check_*.py")]), scope="session"
 )
-@pytest.mark.parametrize("snip_path", [HERE / "feat_typing"], scope="session")
+@pytest.mark.parametrize("snip_path_fx", [HERE / "feat_typing"], scope="session")
 def test_typing_runtime(
-    copy_mpy_typings,
+    copy_mpy_typings_fx,
     feature: str,
-    snip_path: Path,
+    snip_path_fx: Path, # Not a fixture - overriden by parameterize 
     check_file,
     version: str,
     mp_version: str,
@@ -75,14 +75,14 @@ def test_typing_runtime(
     if not is_docker_running():
         pytest.skip("Docker is not running")
 
-    if not snip_path or not snip_path.exists():
+    if not snip_path_fx or not snip_path_fx.exists():
         FileNotFoundError(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
     # log.info(f"Typechecker {linter} : {portboard}, {feature} from {stub_source}")
     # user = "foo"
     # cmd = f"docker run -u 1000 -e HOME=/{user} -v {snip_path}:/code -v {snip_path}/lib:/foo/.micropython/lib --rm micropython/unix:{mp_version} micropython {check_file}"
-    cmd = f"docker run -u 1000 -v {snip_path}:/code -v {snip_path}/lib:/usr/lib/micropython --rm micropython/unix:{mp_version} micropython /code/{check_file}"
+    cmd = f"docker run -u 1000 -v {snip_path_fx}:/code -v {snip_path_fx}/lib:/usr/lib/micropython --rm micropython/unix:{mp_version} micropython /code/{check_file}"
     log.info(f"Running {cmd}")
-    result = subprocess.run(cmd, shell=True, cwd=snip_path, text=True, capture_output=True)
+    result = subprocess.run(cmd, shell=True, cwd=snip_path_fx, text=True, capture_output=True)
     error = [line for line in result.stdout.split("\n") if "Traceback" not in line]
     assert result.returncode == 0, error

@@ -13,10 +13,10 @@ Module: 'pyb' on micropython-v1.24.1-stm32-PYBV11
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import NoReturn, Dict, List, Any, Callable, Optional, overload, Tuple
-from typing_extensions import Awaitable, TypeAlias, TypeVar
 from _mpy_shed import HID_Tuple, _OldAbstractBlockDev, _OldAbstractReadOnlyBlockDev, AnyReadableBuf, AnyWritableBuf
 from collections.abc import Sequence
+from typing import NoReturn, Dict, List, Any, Tuple, Callable, overload
+from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
 from vfs import AbstractBlockDev
 from array import array
 from abc import ABC, abstractmethod
@@ -31,6 +31,7 @@ def hard_reset() -> NoReturn:
     """
     ...
 
+@deprecated("Use `pyb.USB_VCP().isconnected()` instead.")
 def have_cdc() -> bool:
     """
     Return True if USB is connected as a serial device, False otherwise.
@@ -39,6 +40,7 @@ def have_cdc() -> bool:
     """
     ...
 
+@deprecated("Use `pyb.USB_HID.send()`` instead.")
 @overload
 def hid(data: tuple[int, int, int, int], /) -> None:
     """
@@ -48,6 +50,7 @@ def hid(data: tuple[int, int, int, int], /) -> None:
     ``Note:`` This function is deprecated.  Use :meth:`pyb.USB_HID.send()` instead.
     """
 
+@deprecated("Use `pyb.USB_HID.send()`` instead.")
 @overload
 def hid(data: Sequence[int], /) -> None:
     """
@@ -838,7 +841,7 @@ class DAC:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, port: int | Pin, /, bits: int = 8, *, buffering: bool | None = None) -> None:
         """
         Construct a new DAC object.
 
@@ -947,7 +950,13 @@ class ExtInt:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        pin: int | str | Pin,
+        mode: int,
+        pull: int,
+        callback: Callable[[int], None],
+    ) -> None:
         """
         Create an ExtInt object:
 
@@ -976,18 +985,50 @@ class Flash(AbstractBlockDev):
     application.
     """
 
-    def readblocks(self, blocknum: int, buf: bytes, offset: int = 0, /) -> None:
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray) -> bool:
         """
-        These methods implement the simple and :ref:`extended
-        <block-device-interface>` block protocol defined by
-        :class:`os.AbstractBlockDev`.
+        The first form reads aligned, multiples of blocks.
+        Starting at the block given by the index *block_num*, read blocks from
+        the device into *buf* (an array of bytes).
+        The number of blocks to read is given by the length of *buf*,
+        which will be a multiple of the block size.
         """
 
-    def writeblocks(self, blocknum: int, buf: bytes, offset: int = 0, /) -> None:
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
         """
-        These methods implement the simple and :ref:`extended
-        <block-device-interface>` block protocol defined by
-        :class:`os.AbstractBlockDev`.
+        The second form allows reading at arbitrary locations within a block,
+        and arbitrary lengths.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, read bytes from the device into *buf* (an array of bytes).
+        The number of bytes to read is given by the length of *buf*.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+        """
+        The first form writes aligned, multiples of blocks, and requires that the
+        blocks that are written to be first erased (if necessary) by this method.
+        Starting at the block given by the index *block_num*, write blocks from
+        *buf* (an array of bytes) to the device.
+        The number of blocks to write is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+        """
+        The second form allows writing at arbitrary locations within a block,
+        and arbitrary lengths.  Only the bytes being written should be changed,
+        and the caller of this method must ensure that the relevant blocks are
+        erased via a prior ``ioctl`` call.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, write bytes from *buf* (an array of bytes) to the device.
+        The number of bytes to write is given by the length of *buf*.
+
+        Note that implementations must never implicitly erase blocks if the offset
+        argument is specified, even if it is zero.
         """
 
     def ioctl(self, op: int, arg: int) -> int | None:
@@ -998,6 +1039,7 @@ class Flash(AbstractBlockDev):
         """
         ...
 
+    @deprecated("This constructor is deprecated and will be removed in a future version of MicroPython")
     @overload
     def __init__(self):
         """
@@ -1253,7 +1295,17 @@ class I2C:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        bus: int | str,
+        mode: str,
+        /,
+        *,
+        addr: int = 0x12,
+        baudrate: int = 400_000,
+        gencall: bool = False,
+        dma: bool = False,
+    ) -> None:
         """
         Construct an I2C object on the given bus.  ``bus`` can be 1 or 2, 'X' or
         'Y'. With no additional parameters, the I2C object is created but not
@@ -1375,7 +1427,7 @@ class LCD:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, skin_position: str, /) -> None:
         """
         Construct an LCD object in the given skin position.  ``skin_position`` can be 'X' or 'Y', and
         should match the position where the LCD pyskin is plugged in.
@@ -1411,6 +1463,9 @@ class CAN:
     LIST16: int = 1
     ERROR_PASSIVE: int = 3
     ERROR_WARNING: int = 2
+    DUAL: Incomplete
+    RANGE: Incomplete
+    MASK: Incomplete
     def restart(self) -> None:
         """
         Force a software restart of the CAN controller without resetting its
@@ -1891,7 +1946,19 @@ class CAN:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        bus: int | str,
+        mode: int,
+        /,
+        extframe: bool = False,
+        prescaler: int = 100,
+        *,
+        sjw: int = 1,
+        bs1: int = 6,
+        bs2: int = 8,
+        auto_restart: bool = False,
+    ) -> None:
         """
         Construct a CAN object on the given bus.  *bus* can be 1-2, or ``'YA'`` or ``'YB'``.
         With no additional parameters, the CAN object is created but not
@@ -2022,7 +2089,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, pin: int | Pin, /) -> None:
         """
         Create an ADC object associated with the given pin.
         This allows you to then read analog values on that pin.
@@ -2084,7 +2151,7 @@ class Accel:
         ...
 
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self) -> None:
         """
         Create and return an accelerometer object.
         """
@@ -2259,7 +2326,7 @@ class USB_VCP:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, id: int = 0, /) -> None:
         """
         Create a new USB_VCP object.  The *id* argument specifies which USB VCP port to
         use.
@@ -3184,7 +3251,7 @@ class Switch:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self) -> None:
         """
         Create and return a switch object.
         """
@@ -3367,7 +3434,7 @@ class Servo:
             new position.
         """
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, id: int, /) -> None:
         """
         Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
         """
@@ -3701,7 +3768,7 @@ class USB_HID:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self) -> None:
         """
         Create a new USB_HID object.
         """
@@ -3758,7 +3825,7 @@ class LED:
         free for general purpose use.
         """
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, id: int, /) -> None:
         """
         Create an LED object associated with the given LED:
 
@@ -3876,7 +3943,7 @@ class RTC:
         (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
         """
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self) -> None:
         """
         Create an RTC object.
         """
@@ -4263,7 +4330,16 @@ class Pin:
         USB_DM: Pin  ## = Pin(Pin.cpu.A11, mode=Pin.ALT, alt=10)
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: Pin | str | int,
+        /,
+        mode: int = IN,
+        pull: int = PULL_NONE,
+        *,
+        value: Any = None,
+        alt: str | int = -1,
+    ) -> None:
         """
         Create a new Pin object associated with the id.  If additional arguments are given,
         they are used to initialise the pin.  See :meth:`pin.init`.

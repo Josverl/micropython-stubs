@@ -8,11 +8,11 @@
         "firmware": "micropython-v1_25_0_preview",
         "nodename": "micropython",
         "version": "v1.25.0-preview",
-        "release": "v1.25.0-preview-217-gb4f53a0e5",
+        "release": "v1.25.0-preview-365-g3823aeb0f",
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.24.0",
+        "version": "1.24.3",
         "stubtype": "documentation"
     },
     "modules": [
@@ -105,10 +105,6 @@
             "module": "__init__"
         },
         {
-            "file": "machine/__init__.pyi",
-            "module": "__init__"
-        },
-        {
             "file": "machine/ADC.pyi",
             "module": "ADC"
         },
@@ -129,12 +125,12 @@
             "module": "I2S"
         },
         {
-            "file": "machine/Pin.pyi",
-            "module": "Pin"
-        },
-        {
             "file": "machine/PWM.pyi",
             "module": "PWM"
+        },
+        {
+            "file": "machine/Pin.pyi",
+            "module": "Pin"
         },
         {
             "file": "machine/RTC.pyi",
@@ -149,12 +145,12 @@
             "module": "SDCard"
         },
         {
-            "file": "machine/Signal.pyi",
-            "module": "Signal"
-        },
-        {
             "file": "machine/SPI.pyi",
             "module": "SPI"
+        },
+        {
+            "file": "machine/Signal.pyi",
+            "module": "Signal"
         },
         {
             "file": "machine/Timer.pyi",
@@ -177,6 +173,14 @@
             "module": "WDT"
         },
         {
+            "file": "machine/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "marshal/__init__.pyi",
+            "module": "__init__"
+        },
+        {
             "file": "math/__init__.pyi",
             "module": "__init__"
         },
@@ -186,10 +190,6 @@
         },
         {
             "file": "neopixel/__init__.pyi",
-            "module": "__init__"
-        },
-        {
-            "file": "network/__init__.pyi",
             "module": "__init__"
         },
         {
@@ -213,6 +213,10 @@
             "module": "WLANWiPy"
         },
         {
+            "file": "network/__init__.pyi",
+            "module": "__init__"
+        },
+        {
             "file": "openamp/__init__.pyi",
             "module": "__init__"
         },
@@ -225,16 +229,12 @@
             "module": "__init__"
         },
         {
-            "file": "pyb/__init__.pyi",
-            "module": "__init__"
+            "file": "pyb/ADC.pyi",
+            "module": "ADC"
         },
         {
             "file": "pyb/Accel.pyi",
             "module": "Accel"
-        },
-        {
-            "file": "pyb/ADC.pyi",
-            "module": "ADC"
         },
         {
             "file": "pyb/CAN.pyi",
@@ -273,12 +273,12 @@
             "module": "RTC"
         },
         {
-            "file": "pyb/Servo.pyi",
-            "module": "Servo"
-        },
-        {
             "file": "pyb/SPI.pyi",
             "module": "SPI"
+        },
+        {
+            "file": "pyb/Servo.pyi",
+            "module": "Servo"
         },
         {
             "file": "pyb/Switch.pyi",
@@ -301,11 +301,11 @@
             "module": "USB_VCP"
         },
         {
-            "file": "random/__init__.pyi",
+            "file": "pyb/__init__.pyi",
             "module": "__init__"
         },
         {
-            "file": "rp2/__init__.pyi",
+            "file": "random/__init__.pyi",
             "module": "__init__"
         },
         {
@@ -323,6 +323,10 @@
         {
             "file": "rp2/StateMachine.pyi",
             "module": "StateMachine"
+        },
+        {
+            "file": "rp2/__init__.pyi",
+            "module": "__init__"
         },
         {
             "file": "select/__init__.pyi",
@@ -365,8 +369,16 @@
             "module": "ubinascii"
         },
         {
+            "file": "ubluetooth.pyi",
+            "module": "ubluetooth"
+        },
+        {
             "file": "uctypes/__init__.pyi",
             "module": "__init__"
+        },
+        {
+            "file": "uerrno.pyi",
+            "module": "uerrno"
         },
         {
             "file": "uio.pyi",
@@ -385,6 +397,10 @@
             "module": "uos"
         },
         {
+            "file": "uplatform.pyi",
+            "module": "uplatform"
+        },
+        {
             "file": "uselect.pyi",
             "module": "uselect"
         },
@@ -399,6 +415,10 @@
         {
             "file": "ustruct.pyi",
             "module": "ustruct"
+        },
+        {
+            "file": "usys.pyi",
+            "module": "usys"
         },
         {
             "file": "utime.pyi",
@@ -421,16 +441,16 @@
             "module": "__init__"
         },
         {
-            "file": "zephyr/__init__.pyi",
-            "module": "__init__"
-        },
-        {
             "file": "zephyr/DiskAccess.pyi",
             "module": "DiskAccess"
         },
         {
             "file": "zephyr/FlashArea.pyi",
             "module": "FlashArea"
+        },
+        {
+            "file": "zephyr/__init__.pyi",
+            "module": "__init__"
         },
         {
             "file": "zephyr/zsensor.pyi",

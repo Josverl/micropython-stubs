@@ -37,4 +37,3 @@ Included stubs:
 origin | Family | Port | Board | Version
 -------|--------|------|-------|--------
 Documentation | micropython | - | - | v1.25.0-preview 
-Core | micropython | unix | - | v1.25.0-preview 

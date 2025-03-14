@@ -41,7 +41,7 @@ Module: 'time' on micropython-v1.24.1-rp2-ARDUINO_NANO_RP2040_CONNECT
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import _TimeTuple
-from typing import Any, Optional, Tuple
+from typing import Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _TicksMs: TypeAlias = int

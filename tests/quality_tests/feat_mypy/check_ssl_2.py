@@ -28,7 +28,7 @@ def create_ssl_context(cert, key, **kwargs):
     """
     if hasattr(ssl, "SSLContext"):
         ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER, **kwargs)
-        ctx.load_cert_chain(cert, key)  # stubs-ignore : linter == "mypy" and version < 1.24.0
+        ctx.load_cert_chain(cert, key) 
         return ctx
 
     if isinstance(cert, str):
@@ -47,10 +47,10 @@ def create_ssl_context(cert, key, **kwargs):
             client, addr = self.sock.accept()
             # TODO: add kwargs to ssl.wrap_socket stub definition
             return (
-                ssl.wrap_socket(  # stubs-ignore : linter == "mypy" and version < 1.24.0
+                ssl.wrap_socket(   
                     client,
-                    cert=cert,  # stubs-ignore : linter == "mypy" and version < 1.24.0
-                    key=key,  # stubs-ignore : linter == "mypy" and version < 1.24.0
+                    cert=cert,   
+                    key=key,   
                     **self.kwargs,
                 ),
                 addr,

@@ -16,7 +16,7 @@ from io import TextIOWrapper
 from types import FrameType, ModuleType, TracebackType
 from typing import Callable, overload, Any, Final, Literal, NoReturn, Protocol, TextIO, TypeVar, final
 from typing_extensions import Awaitable, TypeVar, TypeAlias
-from _mpy_shed import IOBase_mp
+from _mpy_shed import IOBase_mp, _mp_implementation
 
 _T = TypeVar("_T")
 
@@ -194,7 +194,7 @@ class _hash_info(structseq[Any | int], tuple[int, int, int, int, int, str, int, 
     @property
     def cutoff(self) -> int: ...  # undocumented
 
-implementation: _implementation
+implementation: _mp_implementation
 
 class _implementation:
     name: str
@@ -422,7 +422,7 @@ if sys.version_info >= (3, 12):
     monitoring = _monitoring
 
 @overload
-def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
+def __mpy_has_no_atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
     Register *func* to be called upon termination.  *func* must be a callable
     that takes no arguments, or ``None`` to disable the call.  The ``atexit``
@@ -438,7 +438,7 @@ def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     ...
 
 @overload
-def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
+def __mpy_has_no_atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
     Register *func* to be called upon termination.  *func* must be a callable
     that takes no arguments, or ``None`` to disable the call.  The ``atexit``

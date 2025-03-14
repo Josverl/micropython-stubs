@@ -21,7 +21,7 @@ print(sys.implementation)
 
 # Micropython Extensions
 exc = Exception("Foo")
-sys.print_exception(exc)  # stubs-ignore:  linter == "mypy"
+sys.print_exception(exc)  
 
 port = sys.platform
 if port in ["unix", "windows"]:
@@ -29,4 +29,4 @@ if port in ["unix", "windows"]:
     def byebye():
         print("so long")
 
-    previous = sys.atexit(byebye)  # stubs-ignore:  linter == "mypy" or version < 1.24.0
+    previous = sys.atexit(byebye)  # type: ignore # stubs-ignore : version < 1.24.0

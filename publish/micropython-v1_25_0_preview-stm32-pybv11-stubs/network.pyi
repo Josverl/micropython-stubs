@@ -30,10 +30,7 @@ For example::
     s = socket.socket()
     s.connect(addr)
     s.send(b'GET / HTTP/1.1
-
 Host: micropython.org
-
-
 
 ')
     data = s.recv(1000)
@@ -47,7 +44,7 @@ Module: 'network' on micropython-v1.24.1-stm32-PYBV11
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Protocol, Callable, List, overload, Any, Optional, Tuple
+from typing import Protocol, Callable, Any, List, Tuple, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 from machine import Pin, SPI
 from abc import abstractmethod
@@ -69,7 +66,7 @@ class WLAN:
         """
 
     @overload
-    def active(self, is_active: bool, /) -> None:
+    def active(self, is_active: bool | int, /) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
         argument is passed. Otherwise, query current state if no argument is
@@ -92,7 +89,18 @@ class WLAN:
             * ``STAT_GOT_IP`` -- connection successful.
 
         When called with one argument *param* should be a string naming the status
-        parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
+        parameter to retrieve, and different parameters are supported depending on the
+        mode the WiFi is in.
+
+        In STA mode, passing ``'rssi'`` returns a signal strength indicator value, whose
+        format varies depending on the port (this is available on all ports that support
+        WiFi network interfaces, except for CC3200).
+
+        In AP mode, passing ``'stations'`` returns a list of connected WiFi stations
+        (this is available on all ports that support WiFi network interfaces, except for
+        CC3200).  The format of the station information entries varies across ports,
+        providing either the raw BSSID of the connected station, the IP address of the
+        connected station, or both.
         """
 
     @overload
@@ -111,7 +119,18 @@ class WLAN:
             * ``STAT_GOT_IP`` -- connection successful.
 
         When called with one argument *param* should be a string naming the status
-        parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
+        parameter to retrieve, and different parameters are supported depending on the
+        mode the WiFi is in.
+
+        In STA mode, passing ``'rssi'`` returns a signal strength indicator value, whose
+        format varies depending on the port (this is available on all ports that support
+        WiFi network interfaces, except for CC3200).
+
+        In AP mode, passing ``'stations'`` returns a list of connected WiFi stations
+        (this is available on all ports that support WiFi network interfaces, except for
+        CC3200).  The format of the station information entries varies across ports,
+        providing either the raw BSSID of the connected station, the IP address of the
+        connected station, or both.
         """
 
     @overload
@@ -204,6 +223,23 @@ class WLAN:
         txpower        Maximum transmit power in dBm (integer or float)
         pm             WiFi Power Management setting (see below for allowed values)
         =============  ===========
+        """
+
+class LAN:
+    @overload
+    def active(self, /) -> bool:
+        """
+        With a parameter, it sets the interface active if *state* is true, otherwise it
+        sets it inactive.
+        Without a parameter, it returns the state.
+        """
+
+    @overload
+    def active(self, is_active: bool | int, /) -> None:
+        """
+        With a parameter, it sets the interface active if *state* is true, otherwise it
+        sets it inactive.
+        Without a parameter, it returns the state.
         """
 
 class WLANWiPy:
@@ -331,7 +367,7 @@ class AbstractNIC:
 
     @overload
     @abstractmethod
-    def active(self, is_active: bool, /) -> None:
+    def active(self, is_active: bool | int, /) -> None:
         """
         Activate ("up") or deactivate ("down") the network interface, if
         a boolean argument is passed. Otherwise, query current state if

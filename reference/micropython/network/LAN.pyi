@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Tuple
+from typing import Any, Tuple, overload
 
 from _typeshed import Incomplete
 
@@ -30,13 +30,22 @@ class LAN:
     """
 
     def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
-    def active(self, state: Any | None = None) -> Incomplete:
+
+    @overload
+    def active(self, /) -> bool:
         """
-        With a parameter, it sets the interface active if *state* is true, otherwise it
-        sets it inactive.
-        Without a parameter, it returns the state.
+        Activate ("up") or deactivate ("down") network interface, if boolean
+        argument is passed. Otherwise, query current state if no argument is
+        provided. Most other methods require active interface.
         """
-        ...
+
+    @overload
+    def active(self, is_active: bool | int, /) -> None:
+        """
+        Activate ("up") or deactivate ("down") network interface, if boolean
+        argument is passed. Otherwise, query current state if no argument is
+        provided. Most other methods require active interface.
+        """
 
     def isconnected(self) -> bool:
         """

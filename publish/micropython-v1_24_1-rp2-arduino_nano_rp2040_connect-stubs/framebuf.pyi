@@ -180,7 +180,15 @@ class FrameBuffer:
         ...
 
     def fill_rect(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        buffer: AnyWritableBuf,
+        width: int,
+        height: int,
+        format: int,
+        stride: int = ...,
+        /,
+    ) -> None:
         """
         Construct a FrameBuffer object.  The parameters are:
 

@@ -18,7 +18,6 @@ from __future__ import annotations
 from typing import Any, Final, NoReturn, Optional, overload
 
 from _typeshed import Incomplete
-
 from machine.ADC import ADC
 from machine.ADCBlock import ADCBlock
 from machine.I2C import I2C
@@ -34,6 +33,7 @@ from machine.Timer import Timer
 from machine.UART import UART
 from machine.USBDevice import USBDevice
 from machine.WDT import WDT
+from typing_extensions import deprecated
 
 mem8: bytearray
 """Read/write 8 bits of memory."""
@@ -49,27 +49,27 @@ memory being accessed.
 
 Example use (registers are specific to an stm32 microcontroller):
 """
-IDLE: Final[int]
+IDLE: Final[int] = ...
 """IRQ wake values."""
-SLEEP: Final[int]
+SLEEP: Final[int] = ...
 """IRQ wake values."""
-DEEPSLEEP: Final[int]
+DEEPSLEEP: Final[int] = ...
 """IRQ wake values."""
-PWRON_RESET: Final[int]
+PWRON_RESET: Final[int] = ...
 """Reset causes."""
-HARD_RESET: Final[int]
+HARD_RESET: Final[int] = ...
 """Reset causes."""
-WDT_RESET: Final[int]
+WDT_RESET: Final[int] = ...
 """Reset causes."""
-DEEPSLEEP_RESET: Final[int]
+DEEPSLEEP_RESET: Final[int] = ...
 """Reset causes."""
-SOFT_RESET: Final[int]
+SOFT_RESET: Final[int] = ...
 """Reset causes."""
-WLAN_WAKE: Final[int]
+WLAN_WAKE: Final[int] = ...
 """Wake-up reasons."""
-PIN_WAKE: Final[int]
+PIN_WAKE: Final[int] = ...
 """Wake-up reasons."""
-RTC_WAKE: Final[int]
+RTC_WAKE: Final[int] = ...
 """Wake-up reasons."""
 
 def reset() -> NoReturn:
@@ -177,6 +177,7 @@ def idle() -> None:
     """
     ...
 
+@deprecated("use :func:`lightsleep()` instead.")
 def sleep() -> None:
     """
     ``Note:`` This function is deprecated, use :func:`lightsleep()` instead with no arguments.
