@@ -137,7 +137,10 @@ COMMENT_OUT_LINES = [
 # this is for things such as function or classdefs that extend beyond a single line
 CHANGE_LINES = [
     ("ssl", [("def create_default_context", "def __mpy_has_no_create_default_context")]),
-    ("sys", [("def atexit(", "def __mpy_has_no_atexit(")]),
+    ("sys", [
+        ("def atexit(", "def __mpy_has_no_atexit("),
+        ("implementation: _implementation", "implementation: _mp_implementation"),
+        ]),
 ]
 
 
