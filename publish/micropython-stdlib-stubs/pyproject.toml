@@ -27,8 +27,9 @@ homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
 documentation = "https://micropython-stubs.readthedocs.io/"
 repository = "https://github.com/josverl/micropython-stubs"
 
-[[tool.uv.index]]
+[[tool.uv.index]]   # https://docs.astral.sh/uv/reference/settings/#index
 name = "testpypi"
+explicit = true
 url = "https://test.pypi.org/simple/"
 publish-url = "https://test.pypi.org/legacy/"
 
