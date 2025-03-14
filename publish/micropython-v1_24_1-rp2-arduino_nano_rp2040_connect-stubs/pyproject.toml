@@ -94,6 +94,7 @@ packages = [
     { include = "senml/senml_record.pyi" },
     { include = "senml/senml_unit.pyi" },
     { include = "socket.pyi" },
+    { include = "ssl.pyi" },
     { include = "time.pyi" },
     { include = "tls.pyi" },
     { include = "uarray.pyi" },

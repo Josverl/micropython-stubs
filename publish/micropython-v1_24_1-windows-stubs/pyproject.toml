@@ -54,6 +54,7 @@ packages = [
     { include = "math.pyi" },
     { include = "micropython.pyi" },
     { include = "random.pyi" },
+    { include = "ssl.pyi" },
     { include = "time.pyi" },
     { include = "uarray.pyi" },
     { include = "uasyncio.pyi" },
