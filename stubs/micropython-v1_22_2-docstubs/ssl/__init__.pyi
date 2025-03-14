@@ -19,7 +19,6 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias
 from _mpy_shed import StrOrBytesPath
 
-SSLSocket: TypeAlias = Incomplete
 SSLError: Incomplete
 """This exception does NOT exist. Instead its base class, OSError, is used."""
 PROTOCOL_TLS_CLIENT: Incomplete
