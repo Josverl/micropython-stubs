@@ -237,7 +237,6 @@ class Style:
 
     @property
     def visible(self) -> Incomplete: ...
-    @property
     @visible.setter
     def visible(self, value) -> None: ...
 
@@ -904,7 +903,6 @@ class Page:
         """Return the page title."""
         ...
 
-    @property
     @title.setter
     def title(self, value) -> None:
         """Set the page title."""

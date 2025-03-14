@@ -149,7 +149,7 @@ class NVS:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, namespace: str, /) -> None:
         """
         Create an object providing access to a namespace (which is automatically created if not
         present).
@@ -343,7 +343,16 @@ class RMT:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        channel: int,
+        /,
+        *,
+        pin: Pin | None = None,
+        clock_div: int = 8,
+        idle_level: bool = False,
+        tx_carrier: Tuple[int, int, bool] | None = None,
+    ) -> None:
         """
         This class provides access to one of the eight RMT channels. *channel* is
         required and identifies which RMT channel (0-7) will be configured. *pin*,
@@ -486,7 +495,7 @@ class Partition(AbstractBlockDev):
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, id: str, block_size=4096, /) -> None:
         """
         Create an object representing a partition.
 

@@ -502,7 +502,20 @@ class PIOASMEmit:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(
+        self,
+        *,
+        out_init: int | List | None = ...,
+        set_init: int | List | None = ...,
+        sideset_init: int | List | None = ...,
+        in_shiftdir: int = ...,
+        out_shiftdir: int = ...,
+        autopush: bool = ...,
+        autopull: bool = ...,
+        push_thresh: int = ...,
+        pull_thresh: int = ...,
+        fifo_join: int = ...,
+    ) -> None: ...
     @overload
     def __getitem__(self, key): ...
     @overload
@@ -670,7 +683,21 @@ class StateMachine:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(
+        self,
+        program: int,
+        freq: int = 1,
+        *,
+        in_base: Pin | None = None,
+        out_base: Pin | None = None,
+        set_base: Pin | None = None,
+        jmp_pin: Pin | None = None,
+        sideset_base: Pin | None = None,
+        in_shiftdir: int | None = None,
+        out_shiftdir: int | None = None,
+        push_thresh: int | None = None,
+        pull_thresh: int | None = None,
+    ) -> None: ...
 
 class PIO:
     """
@@ -740,7 +767,7 @@ class PIO:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, id) -> None: ...
 
 class DMA:
     """
@@ -873,7 +900,14 @@ class DMA:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(
+        self,
+        read: int | AnyReadableBuf | None = None,
+        write: int | AnyWritableBuf | None = None,
+        count: int = -1,
+        ctrl: int = -1,
+        trigger: bool = False,
+    ) -> None: ...
 
 class Flash(AbstractBlockDev):
     """
@@ -937,4 +971,4 @@ class Flash(AbstractBlockDev):
         :class:`vfs.AbstractBlockDev`.
         """
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self) -> None: ...

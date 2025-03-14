@@ -12,7 +12,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Callable, NoReturn, overload, Dict, List, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-from _mpy_shed import IOBase_mp
+from _mpy_shed import IOBase_mp, _mp_implementation
 
 argv: List
 """A mutable list of arguments the current program was started with."""

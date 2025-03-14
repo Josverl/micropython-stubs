@@ -17,6 +17,15 @@ from _mpy_shed import StrOrBytesPath
 from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
+PROTOCOL_TLS_CLIENT: Incomplete
+PROTOCOL_TLS_SERVER: Incomplete
+PROTOCOL_DTLS_CLIENT: Incomplete
+PROTOCOL_DTLS_SERVER: Incomplete
+CERT_NONE: Incomplete
+CERT_OPTIONAL: Incomplete
+CERT_REQUIRED: Incomplete
+MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"
+
 class SSLContext:
     """
     Create a new SSLContext instance.  The *protocol* argument must be one of the ``PROTOCOL_*``

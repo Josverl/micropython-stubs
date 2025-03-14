@@ -12,7 +12,7 @@
         "sysname": "micropython"
     },
     "stubber": {
-        "version": "1.24.2",
+        "version": "1.24.3",
         "stubtype": "documentation"
     },
     "modules": [
@@ -365,8 +365,16 @@
             "module": "ubinascii"
         },
         {
+            "file": "ubluetooth.pyi",
+            "module": "ubluetooth"
+        },
+        {
             "file": "uctypes/__init__.pyi",
             "module": "__init__"
+        },
+        {
+            "file": "uerrno.pyi",
+            "module": "uerrno"
         },
         {
             "file": "uio.pyi",
@@ -385,6 +393,10 @@
             "module": "uos"
         },
         {
+            "file": "uplatform.pyi",
+            "module": "uplatform"
+        },
+        {
             "file": "uselect.pyi",
             "module": "uselect"
         },
@@ -399,6 +411,10 @@
         {
             "file": "ustruct.pyi",
             "module": "ustruct"
+        },
+        {
+            "file": "usys.pyi",
+            "module": "usys"
         },
         {
             "file": "utime.pyi",

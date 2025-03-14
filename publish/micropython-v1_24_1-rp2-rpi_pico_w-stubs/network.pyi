@@ -261,7 +261,7 @@ class WLAN:
         """
 
     @overload
-    def active(self, is_active: bool, /) -> None:
+    def active(self, is_active: bool | int, /) -> None:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
         argument is passed. Otherwise, query current state if no argument is
@@ -291,13 +291,30 @@ class WLAN:
         ...
 
     def deinit(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, interface_id: int, /) -> None:
         """
         Create a WLAN network interface object. Supported interfaces are
         ``network.STA_IF`` (station aka client, connects to upstream WiFi access
         points) and ``network.AP_IF`` (access point, allows other WiFi clients to
         connect). Availability of the methods below depends on interface type.
         For example, only STA interface may `WLAN.connect()` to an access point.
+        """
+
+class LAN:
+    @overload
+    def active(self, /) -> bool:
+        """
+        With a parameter, it sets the interface active if *state* is true, otherwise it
+        sets it inactive.
+        Without a parameter, it returns the state.
+        """
+
+    @overload
+    def active(self, is_active: bool | int, /) -> None:
+        """
+        With a parameter, it sets the interface active if *state* is true, otherwise it
+        sets it inactive.
+        Without a parameter, it returns the state.
         """
 
 class WLANWiPy:
@@ -425,7 +442,7 @@ class AbstractNIC:
 
     @overload
     @abstractmethod
-    def active(self, is_active: bool, /) -> None:
+    def active(self, is_active: bool | int, /) -> None:
         """
         Activate ("up") or deactivate ("down") the network interface, if
         a boolean argument is passed. Otherwise, query current state if

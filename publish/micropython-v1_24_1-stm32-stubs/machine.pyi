@@ -23,14 +23,20 @@ from typing import NoReturn, Optional, Union, List, Sequence, Callable, Tuple, A
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from vfs import AbstractBlockDev
 
-ID_T: TypeAlias = int | str
-PinLike: TypeAlias = Pin | int | str
-
 HARD_RESET: int = 2
 WDT_RESET: int = 3
 SOFT_RESET: int = 0
 DEEPSLEEP_RESET: int = 4
 PWRON_RESET: int = 1
+ATTN_0DB: int = ...
+ID_T: TypeAlias = int | str
+PinLike: TypeAlias = Pin | int | str
+IDLE: Incomplete
+SLEEP: Incomplete
+DEEPSLEEP: Incomplete
+WLAN_WAKE: Incomplete
+PIN_WAKE: Incomplete
+RTC_WAKE: Incomplete
 
 @overload
 def freq() -> int:
@@ -341,6 +347,7 @@ class RTC:
     The documentation for RTC is in a poor state;1
     """
 
+    ALARM0: Incomplete
     def info(self, *args, **kwargs) -> Incomplete: ...
     @overload
     def init(self) -> None:
@@ -604,6 +611,12 @@ class Pin:
     AF4_I2C2: int = 4
     AF5_I2S2: int = 5
     AF5_SPI1: int = 5
+    PULL_HOLD: Incomplete
+    DRIVE_0: int
+    DRIVE_1: int
+    DRIVE_2: int
+    IRQ_LOW_LEVEL: Incomplete
+    IRQ_HIGH_LEVEL: Incomplete
 
     @overload
     def mode(self) -> int:
@@ -926,7 +939,17 @@ class Pin:
         USB_DM: Pin  ## = Pin(Pin.cpu.A11, mode=Pin.ALT, alt=10)
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: Any,
+        /,
+        mode: int = -1,
+        pull: int = -1,
+        *,
+        value: Any = None,
+        drive: int | None = None,
+        alt: int | None = None,
+    ) -> None:
         """
         Access the pin peripheral (GPIO pin) associated with the given ``id``.  If
         additional arguments are given in the constructor then they are used to initialise
@@ -1081,6 +1104,7 @@ class SPI:
 
     LSB: int = 128
     MSB: int = 0
+    CONTROLLER: Incomplete
     def deinit(self) -> None:
         """
         Turn off the SPI bus.
@@ -1276,6 +1300,14 @@ class ADC:
     CORE_VREF: int = 256
     CORE_VBAT: int = 258
     CORE_TEMP: int = 257
+    ATTN_0DB: int = 0
+    ATTN_2_5DB: int = 1
+    ATTN_6DB: int = 2
+    ATTN_11DB: int = 3
+    WIDTH_9BIT: int = 9
+    WIDTH_10BIT: int = 10
+    WIDTH_11BIT: int = 11
+    WIDTH_12BIT: int = 12
     def read_u16(self) -> int:
         """
         Take an analog reading and return an integer in the range 0-65535.
@@ -1284,7 +1316,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, pin: PinLike, /) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -1445,7 +1477,20 @@ class I2S:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: ID_T,
+        /,
+        *,
+        sck: PinLike,
+        ws: PinLike,
+        sd: PinLike,
+        mode: int,
+        bits: int,
+        format: int,
+        rate: int,
+        ibuf: int,
+    ) -> None:
         """
         Construct an I2S object of the given id:
 
@@ -1725,7 +1770,7 @@ class WDT:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, *, id: int = 0, timeout: int = 5000) -> None:
         """
         Create a WDT object and start it. The timeout must be given in milliseconds.
         Once it is running the timeout cannot be changed and the WDT cannot be stopped either.
@@ -1908,7 +1953,18 @@ class SoftSPI(SPI):
     def read(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
     def readinto(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(
+        self,
+        baudrate=500000,
+        *,
+        polarity=0,
+        phase=0,
+        bits=8,
+        firstbit=MSB,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
+    ) -> None: ...
 
 class UART:
     """
@@ -1946,6 +2002,9 @@ class UART:
     IRQ_RX: int = 32
     IRQ_RXIDLE: int = 16
     RTS: int = 256
+    IRQ_TXIDLE: Incomplete
+    IRQ_BREAK: Incomplete
+    IDLE: int = ...
     def flush(self) -> Incomplete:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
@@ -1986,11 +2045,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         tx: PinLike | None = None,
         rx: PinLike | None = None,
@@ -2055,11 +2114,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
@@ -2118,11 +2177,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:
@@ -2386,7 +2445,7 @@ class SoftI2C(I2C):
     def init(self, *args, **kwargs) -> Incomplete: ...
     def stop(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
 
 class Signal(Pin):
     """

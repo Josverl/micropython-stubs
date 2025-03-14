@@ -73,9 +73,6 @@ from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing import Literal, Tuple, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-_Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str
-Socket: TypeAlias = socket
-
 SO_KEEPALIVE: int = 8
 SO_BROADCAST: int = 32
 SOL_SOCKET: int = 4095
@@ -87,6 +84,11 @@ AF_INET: int = 2
 SOCK_STREAM: int = 1
 SOCK_DGRAM: int = 2
 SOCK_RAW: int = 3
+IPPROTO_UDP: Incomplete
+IPPROTO_TCP: Incomplete
+IPPROTO_SEC: Incomplete
+_Address: TypeAlias = tuple[str, int] | tuple[str, int, int, int] | str
+Socket: TypeAlias = socket
 
 def getaddrinfo(
     host: str,
@@ -386,7 +388,13 @@ class socket:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        af: int = AF_INET,
+        type: int = SOCK_STREAM,
+        proto: int = IPPROTO_TCP,
+        /,
+    ) -> None:
         """
         Create a new socket using the given address family, socket type and
         protocol number. Note that specifying *proto* in most cases is not

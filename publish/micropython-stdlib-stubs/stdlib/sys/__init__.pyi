@@ -16,7 +16,7 @@ from io import TextIOWrapper
 from types import FrameType, ModuleType, TracebackType
 from typing import Callable, overload, Any, Final, Literal, NoReturn, Protocol, TextIO, TypeVar, final
 from typing_extensions import Awaitable, TypeVar, TypeAlias
-from _mpy_shed import IOBase_mp
+from _mpy_shed import IOBase_mp, _mp_implementation
 
 _T = TypeVar("_T")
 
@@ -194,7 +194,7 @@ class _hash_info(structseq[Any | int], tuple[int, int, int, int, int, str, int, 
     @property
     def cutoff(self) -> int: ...  # undocumented
 
-implementation: _implementation
+implementation: _mp_implementation
 
 class _implementation:
     name: str

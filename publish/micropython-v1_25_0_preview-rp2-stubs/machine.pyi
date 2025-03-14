@@ -23,11 +23,20 @@ from typing import NoReturn, Optional, Union, List, Sequence, Callable, Tuple, A
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from vfs import AbstractBlockDev
 
-ID_T: TypeAlias = int | str
-PinLike: TypeAlias = Pin | int | str
-
 WDT_RESET: int = 3
 PWRON_RESET: int = 1
+ATTN_0DB: int = ...
+ID_T: TypeAlias = int | str
+PinLike: TypeAlias = Pin | int | str
+IDLE: Incomplete
+SLEEP: Incomplete
+DEEPSLEEP: Incomplete
+HARD_RESET: Incomplete
+DEEPSLEEP_RESET: Incomplete
+SOFT_RESET: Incomplete
+WLAN_WAKE: Incomplete
+PIN_WAKE: Incomplete
+RTC_WAKE: Incomplete
 
 def dht_readinto(*args, **kwargs) -> Incomplete: ...
 def enable_irq(state: bool = True, /) -> None:
@@ -334,6 +343,14 @@ class Pin:
     ALT_PWM: int = 4
     ALT_PIO1: int = 7
     ALT_PIO0: int = 6
+    ALT_OPEN_DRAIN: Incomplete
+    ANALOG: Incomplete
+    PULL_HOLD: Incomplete
+    DRIVE_0: int
+    DRIVE_1: int
+    DRIVE_2: int
+    IRQ_LOW_LEVEL: Incomplete
+    IRQ_HIGH_LEVEL: Incomplete
     def low(self) -> None:
         """
         Set pin to "0" output level.
@@ -574,7 +591,17 @@ class Pin:
         GP16: Pin  ## = Pin(GPIO16, mode=ALT, pull=PULL_DOWN, alt=31)
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: Any,
+        /,
+        mode: int = -1,
+        pull: int = -1,
+        *,
+        value: Any = None,
+        drive: int | None = None,
+        alt: int | None = None,
+    ) -> None:
         """
         Access the pin peripheral (GPIO pin) associated with the given ``id``.  If
         additional arguments are given in the constructor then they are used to initialise
@@ -855,7 +882,15 @@ class PWM:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        dest: PinLike,
+        /,
+        *,
+        freq: int = ...,
+        duty_u16: int = ...,
+        duty_ns: int = ...,
+    ) -> None:
         """
         Construct and return a new PWM object using the following parameters:
 
@@ -887,6 +922,17 @@ class ADC:
     """
 
     CORE_TEMP: int = 4
+    VREF: int = ...
+    CORE_VREF: int = ...
+    CORE_VBAT: int = ...
+    ATTN_0DB: int = 0
+    ATTN_2_5DB: int = 1
+    ATTN_6DB: int = 2
+    ATTN_11DB: int = 3
+    WIDTH_9BIT: int = 9
+    WIDTH_10BIT: int = 10
+    WIDTH_11BIT: int = 11
+    WIDTH_12BIT: int = 12
     def read_u16(self) -> int:
         """
         Take an analog reading and return an integer in the range 0-65535.
@@ -895,7 +941,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, pin: PinLike, /) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -1283,7 +1329,20 @@ class I2S:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(
+        self,
+        id: ID_T,
+        /,
+        *,
+        sck: PinLike,
+        ws: PinLike,
+        sd: PinLike,
+        mode: int,
+        bits: int,
+        format: int,
+        rate: int,
+        ibuf: int,
+    ) -> None:
         """
         Construct an I2S object of the given id:
 
@@ -1336,7 +1395,7 @@ class WDT:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, *, id: int = 0, timeout: int = 5000) -> None:
         """
         Create a WDT object and start it. The timeout must be given in milliseconds.
         Once it is running the timeout cannot be changed and the WDT cannot be stopped either.
@@ -1361,6 +1420,7 @@ class RTC:
     The documentation for RTC is in a poor state;1
     """
 
+    ALARM0: Incomplete
     def datetime(self, datetimetuple: Any | None = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
@@ -1790,6 +1850,8 @@ class UART:
     IRQ_BREAK: int = 512
     IRQ_RXIDLE: int = 64
     CTS: int = 1
+    IRQ_RX: Incomplete
+    IDLE: int = ...
     def irq(
         self,
         trigger: int,
@@ -1847,11 +1909,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         tx: PinLike | None = None,
         rx: PinLike | None = None,
@@ -1916,11 +1978,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike] | None = None,
     ) -> None:
@@ -1979,11 +2041,11 @@ class UART:
     @overload
     def init(
         self,
+        /,
         baudrate: int = 9600,
         bits: int = 8,
         parity: int | None = None,
         stop: int = 1,
-        /,
         *,
         pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
     ) -> None:
@@ -2207,6 +2269,11 @@ class USBDevice:
               returns the same object reference.
     """
 
+    BUILTIN_NONE: Incomplete
+    BUILTIN_DEFAULT: Incomplete
+    BUILTIN_CDC: Incomplete
+    BUILTIN_MSC: Incomplete
+    BUILTIN_CDC_MSC: int
     def submit_xfer(self, ep, buffer, /) -> bool:
         """
         Submit a USB transfer on endpoint number ``ep``. ``buffer`` must be
@@ -2416,7 +2483,7 @@ class USBDevice:
         )
         def __init__(self, *argv, **kwargs) -> None: ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self) -> None: ...
 
 class SoftSPI(SPI):
     """
@@ -2433,7 +2500,18 @@ class SoftSPI(SPI):
     def read(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
     def readinto(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(
+        self,
+        baudrate=500000,
+        *,
+        polarity=0,
+        phase=0,
+        bits=8,
+        firstbit=MSB,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
+    ) -> None: ...
 
 class SPI:
     """
@@ -2491,6 +2569,7 @@ class SPI:
 
     LSB: int = 0
     MSB: int = 1
+    CONTROLLER: Incomplete
     def deinit(self) -> None:
         """
         Turn off the SPI bus.
@@ -2865,7 +2944,7 @@ class SoftI2C(I2C):
     def init(self, *args, **kwargs) -> Incomplete: ...
     def stop(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
 
 class SDCard:
     @overload

@@ -658,3 +658,4 @@ if sys.version_info < (3, 9):
 # SOCK_STREAM: int
 # SOL_SOCKET: int
 # SO_TYPE: int
+MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"

@@ -72,6 +72,7 @@ packages = [
     { include = "uarray.pyi" },
     { include = "uasyncio.pyi" },
     { include = "ubinascii.pyi" },
+    { include = "ubluetooth.pyi" },
     { include = "ucollections.pyi" },
     { include = "ucryptolib.pyi" },
     { include = "uctypes.pyi" },

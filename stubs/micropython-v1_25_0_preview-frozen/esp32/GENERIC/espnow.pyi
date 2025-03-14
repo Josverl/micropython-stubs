@@ -10,6 +10,11 @@ from _typeshed import Incomplete
 from typing import Iterator, List, Tuple, Union, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
+MAX_DATA_LEN: Incomplete = 250
+KEY_LEN: Incomplete = 16
+ADDR_LEN: Incomplete = 6
+MAX_TOTAL_PEER_NUM: Incomplete = 20
+MAX_ENCRYPT_PEER_NUM: Incomplete = 6
 _MACAddress: TypeAlias = bytes
 _PeerInfo: TypeAlias = Tuple[_MACAddress, bytes, int, int, bool]
 

@@ -13,7 +13,7 @@ class HTML:
 
     def __init__(self, html) -> None: ...
 
-def display(*values, target=..., append=...) -> None:
+def display(*values, target=None, append: bool = True) -> None:
     """
     A function used to display content. The function is intelligent enough to introspect the object[s] it is passed and work out how to correctly
     display the object[s] in the web page based on the following mime types::

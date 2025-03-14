@@ -81,7 +81,7 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
     def items(self, *args, **kwargs) -> Incomplete: ...
     @classmethod
     def fromkeys(cls, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self, *args, **kwargs) -> None: ...
 
 class deque:
     """
@@ -127,7 +127,7 @@ class deque:
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
+    def __init__(self, iterable: tuple[Any], maxlen: int, flags: int = 0, /) -> None:
         """
         Deques (double-ended queues) are a list-like container that support O(1)
         appends and pops from either side of the deque.  New deques are created

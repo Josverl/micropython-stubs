@@ -15,14 +15,13 @@ from _espnow import ESPNowBase
 from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, Union, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-_MACAddress: TypeAlias = bytes
-_PeerInfo: TypeAlias = Tuple[_MACAddress, bytes, int, int, bool]
-
 KEY_LEN: int = 16
 MAX_DATA_LEN: int = 250
 MAX_ENCRYPT_PEER_NUM: int = 6
 MAX_TOTAL_PEER_NUM: int = 20
 ADDR_LEN: int = 6
+_MACAddress: TypeAlias = bytes
+_PeerInfo: TypeAlias = Tuple[_MACAddress, bytes, int, int, bool]
 
 class ESPNow(ESPNowBase, Iterator):
     """
@@ -553,7 +552,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(self) -> None: ...
     #
     @overload  # force merge
     def __iter__(self) -> ESPNow: ...
