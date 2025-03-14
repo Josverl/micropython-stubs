@@ -4,48 +4,43 @@
 Mypy is an optional static type checker for Python that aims to combine the benefits of dynamic (or "duck") typing and static typing. Mypy combines the expressive power and convenience of Python with a powerful type system and compile-time type checking.
 
 
-
 ## MyPy and stub-only packages installed in a `typings` folder
 
 MyPy can be configured to use stubs located in a folder, usually a folder named `typings`
 for details see: https://mypy.readthedocs.io/en/stable/stubs.html
 
-Although the documentation also states that stub-only packages [cannot be located though a provided path](https://mypy.readthedocs.io/en/stable/installed_packages.html#installed-packages) this seems to work on initial testing, with a few workarounds needed.
-(possibly the MyPy detection or definition of a stub-only package does not flag the MicroPython-stub packages as stub-only packages)
+As of version *v1.24.1.post2*, the stubs have been adjusted to be compatible with MyPy and can be installed in a `typings` folder.
 
-Therefore after installing the stubs into a `typings` folder, MyPy can be configured to use the stubs by setting the `MYPYPATH` environment variable to the path of the `typings` folder.
+there are severan configuration options required to make this work, I prefer to add them all in a pyproject.toml file, but they can likely also be added in a `mypy.ini` file or though command line options or environment settings.
 
-Linux/MacOS:
+*`pyproject.toml` for use with a `typings` folder:*
+```toml
+[tool.mypy]
+platform = "linux"
+mypy_path = "typings"
+custom_typeshed_dir = "typings" # allow mypy to use micropython-stdlib
+files = "src/*.py"
+exclude = [
+    "typings[\\/].*", # TOML basic string 
+]
 
-```bash
-export MYPYPATH=./typings
+follow_imports = "silent"
+follow_imports_for_stubs = true
+no_site_packages = true
+check_untyped_defs = true
 ```
-
-Windows:
-
-```pwsh
-$env:MYPYPATH="./typings"
-```
-
-### Workarounds for some MyPy warnings and errors
-
-```
-mypy: "typings\sys.pyi" shadows library module "sys"
-note: A user-defined top-level module with name "sys" is not supported
-```
-
-Partial workaround:
-
-```bash
-del typings/os.pyi
-del typings/sys.pyi
-```
-
-
 
 ### MyPy and stub-only packages installed in a virtual environment
 
-MyPy should automatically detect and use all MicroPython packages installed in a virtual environment as they follow the PEP-561 standard for stub-only packages.
-However MyPy fails to detect the stubs installed in a `venv` :-(
+If MyPy is installed in a virtual environment, it can detect and use MicroPython packages installed in that environment.
+I found that I still need to specify the paths to get mypy to work in this configuration
 
-This will need to be investigated in more detail, and possibly the packaging format needs to be adjusted.
+*`pyproject.toml` with stub installed in a virtual environment `.venv`:*
+```
+[tool.mypy]
+platform = "linux"
+mypy_path = ".venv/Lib/site-packages"
+custom_typeshed_dir = ".venv/Lib/site-packages" # allow mypy to use micropython-stdlib
+files = "src/*.py"
+follow_imports = "silent"
+```
