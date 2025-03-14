@@ -102,7 +102,7 @@
     "python.analysis.diagnosticMode": "openFilesOnly",
     "python.languageServer": "Pylance",
     "[python]": {
-        "editor.defaultFormatter": "ms-python.black-formatter"
+        "editor.defaultFormatter": "charliermarsh.ruff"
     },
     "python.formatting.provider": "none",
     "python.analysis.supportRestructuredText": true,

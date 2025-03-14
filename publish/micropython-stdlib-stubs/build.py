@@ -1,6 +1,6 @@
 """
-Update the micropython-stlib-stubs 
-- based on typeshed 
+Update the micropython-stlib-stubs
+- based on typeshed
 - merged with (some) micropython documentation.`
 
 """
@@ -16,7 +16,7 @@ from typing import List, Optional, Union
 import rich_click as click
 from loguru import logger as log
 from mpflash.versions import clean_version, get_stable_mp_version
-from stubber.codemod.enrich import enrich_folder, enrich_file
+from stubber.codemod.enrich import enrich_file, enrich_folder
 from stubber.modcat import STDLIB_ONLY_MODULES
 from stubber.utils import do_post_processing
 from stubber.utils.config import readconfig
@@ -75,7 +75,6 @@ STDLIB_MODULES_TO_REMOVE = [
     "json/decoder.pyi",
     "json/encoder.pyi",
     "json/tool.pyi",
-
 ]
 
 
@@ -137,10 +136,16 @@ COMMENT_OUT_LINES = [
 # this is for things such as function or classdefs that extend beyond a single line
 CHANGE_LINES = [
     ("ssl", [("def create_default_context", "def __mpy_has_no_create_default_context")]),
-    ("sys", [
-        ("def atexit(", "def __mpy_has_no_atexit("),
-        ("implementation: _implementation", "implementation: _mp_implementation"),
-        ]),
+    (
+        "sys",
+        [
+            ("def atexit(", "def __mpy_has_no_atexit("),
+            (
+                "implementation: _implementation",
+                "implementation: _mp_implementation",
+            ),  # TODO : simplify by merging attribute types.
+        ],
+    ),
 ]
 
 
@@ -283,9 +288,12 @@ def change_lines(folder: Path):
                         n += 1
                 f.write(line)
 
-def update_typing_pyi(dist_stdlib_path: Path, ):
+
+def update_typing_pyi(
+    dist_stdlib_path: Path,
+):
     """
-    patch updates into typing.pyi 
+    patch updates into typing.pyi
     - allow IO.write(bytes) overload
     """
     tsk = enrich_file(
@@ -369,8 +377,8 @@ def merge_docstubs_into_stdlib(
         Boost("io"),
         Boost("array"),
         # evaluating
-        # Boost("tls"), # -- MicroPython only - does not exists in stdlib 
-        Boost("socket"), # not available in all boards ...
+        # Boost("tls"), # -- MicroPython only - does not exists in stdlib
+        Boost("socket"),  # not available in all boards ...
         Boost("json"),
         Boost("struct"),
         Boost("builtins"),
@@ -533,7 +541,7 @@ def update(
         # TODO
         # clone typeshed if needed and switch to the correct hash
         print("in the repos folder run:")
-        print("git clone https://github.com/python/typeshed.git\n" "cd typeshed\n" "git checkout <commit-hash>")
+        print("git clone https://github.com/python/typeshed.git\ncd typeshed\ngit checkout <commit-hash>")
         log.warning("Not implemented yet")
 
     if typeshed:
@@ -579,5 +587,4 @@ def update(
 
 
 if __name__ == "__main__":
-
     update()
