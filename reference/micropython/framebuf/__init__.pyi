@@ -212,7 +212,7 @@ class FrameBuffer:
         x: int,
         y: int,
         key: int = -1,
-        pallet: FrameBuffer | None = None,
+        palette: Optional[bytes] = None,
         /,
     ) -> None:
         """
