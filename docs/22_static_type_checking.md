@@ -26,11 +26,40 @@ When MicroPython code is compiled to .mpy or frozen into a firmware, the microco
    - Collaboration: When working in teams, type hints enhance collaboration and reduce misunderstandings.
    - Critical Code Paths: Use static type checking for critical parts of your application to prevent subtle bugs.
 
+## Alternative Method: Static Type Checking without a Typing Module
 
+In some cases, you may want to perform static type checking without using a typing module. This can be achieved using the `TYPE_CHECKING` constant and conditional imports. This method allows you to include type hints and imports only when performing static type checking, without affecting the runtime behavior of your code.
 
-Also see:
- 1. Programming Concepts: Static vs Dynamic Type Checking. https://thecodeboss.dev/2015/11/programming-concepts-static-vs-dynamic-type-checking/.
- 2. Python Type Checking (Guide) – Real Python. https://realpython.com/python-type-checking/.
- 3. How to Make Python Statically Typed — The Essential Guide. https://betterdatascience.com/python-statically-typed/.
- 4. Advantages of Dynamic and Static type checking. https://stackoverflow.com/questions/14368499/advantages-of-dynamic-and-static-type-checking.
- 
+### Example
+
+```python
+from machine import I2C
+
+TYPE_CHECKING = False
+if TYPE_CHECKING:
+    from enum import IntEnum
+    from typing import Optional
+else:
+    IntEnum = object
+    Optional = object
+
+class AW210xxRegisters(IntEnum):
+    """
+    Enum for all registers on a AW210xx. Any _BASE registers represent the
+    0th register with that name, the number of additional registers
+    is dependent on model
+    """
+    # Example register definitions
+    REG1 = 0x00
+    REG2 = 0x01
+
+def get_register_name(register: int) -> Optional[str]:
+    if register == AW210xxRegisters.REG1:
+        return "Register 1"
+    elif register == AW210xxRegisters.REG2:
+        return "Register 2"
+    else:
+        return None
+```
+
+In this example, the `TYPE_CHECKING` constant is set to `False` by default. When performing static type checking, you can set `TYPE_CHECKING` to `True` to include the type hints and imports. This allows you to use type hints and perform static type checking without requiring the `typing` module at runtime.
