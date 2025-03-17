@@ -1,3 +1,5 @@
+__version__ = "1.24.1.post2"
+
 def cast(type, val):
     return val
 

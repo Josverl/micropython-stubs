@@ -136,6 +136,16 @@ For example, typing.TypeGuard is new in Python 3.10, but typing_extensions allow
 
 As MicroPython has no native typing implementation, the `typing_extensions.py` module provides identicalfunctionality  to the `typing.py` module.
 
+## Cross Compiling
+
+In order to create the smallest possible `.mpy` versions of the typing modules use 
+
+```sh
+cd mip
+mpy-cross typing.py -O3
+mpy-cross typing_extensions.py -O3
+```
+
 ### Origin 
 The typing modules are the result of the collaboration of the MicroPython community around a PR to the micropython-lib repository.
 
