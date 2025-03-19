@@ -129,7 +129,13 @@ TYPE_IGNORES = [
 # comment out some lines to hide the existance of CPython apis that do not exists in MicroPython
 COMMENT_OUT_LINES = [
     ("asyncio", ["from .subprocess import *"]),
-    ("os", ["from . import path as _path"]),
+    (
+        "os",
+        [
+            "from . import path as _path",
+            "def _exit(status: int) -> NoReturn: ...",
+        ],
+    ),
 ]
 
 # change some lines to hide the existance of CPython apis that do not exists in MicroPython
