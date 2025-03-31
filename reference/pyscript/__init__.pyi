@@ -1,7 +1,7 @@
 """
 PyScript makes available convenience objects, functions and attributes.
 
-These APIs will work with both Pyodide and Micropython in exactly the same way.
+These APIs will work with both Pyodide and MicroPython in exactly the same way.
 
 PyScript can run in two contexts: the main browser thread, or on a web worker. T
 he following three categories of API functionality explain features that are common for:
