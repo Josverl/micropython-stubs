@@ -51,7 +51,8 @@ Thanks to everyone that has submitted stubs or other relevant pieces of code and
 
 <!-- 
 To add via the cli run the following command:
-npx all-contributors-cli add user things
+npx all-contributors-cli add user thing,thing
+npx all-contributors-cli generate
 
  - bug
  - tool
@@ -97,7 +98,7 @@ npx all-contributors-cli add user things
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/samskiter"><img src="https://avatars.githubusercontent.com/u/1271643?v=4?s=100" width="100px;" alt="Sam Duke"/><br /><sub><b>Sam Duke</b></sub></a><br /><a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3Asamskiter" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://jimmo.id.au/"><img src="https://avatars.githubusercontent.com/u/5102768?v=4?s=100" width="100px;" alt="Jim Mussared"/><br /><sub><b>Jim Mussared</b></sub></a><br /><a href="#stubs-jimmo" title="MicroPython stubs">📝</a> <a href="#platform-jimmo" title="Packaging/porting to new platform">📦</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/stinos"><img src="https://avatars.githubusercontent.com/u/1902997?v=4?s=100" width="100px;" alt="stinos"/><br /><sub><b>stinos</b></sub></a><br /><a href="#stubs-stinos" title="MicroPython stubs">📝</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.gitlab.com/alelec"><img src="https://avatars.githubusercontent.com/u/3318786?v=4?s=100" width="100px;" alt="Andrew Leech"/><br /><sub><b>Andrew Leech</b></sub></a><br /><a href="#stubs-andrewleech" title="MicroPython stubs">📝</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://www.gitlab.com/alelec"><img src="https://avatars.githubusercontent.com/u/3318786?v=4?s=100" width="100px;" alt="Andrew Leech"/><br /><sub><b>Andrew Leech</b></sub></a><br /><a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3Aandrewleech" title="Bug reports">🐛</a> <a href="#test-andrewleech" title="Test">✔</a> <a href="#stubs-andrewleech" title="MicroPython stubs">📝</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/maxi07"><img src="https://avatars.githubusercontent.com/u/7480270?v=4?s=100" width="100px;" alt="Maxi"/><br /><sub><b>Maxi</b></sub></a><br /><a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3Amaxi07" title="Bug reports">🐛</a></td>
     </tr>
     <tr>
