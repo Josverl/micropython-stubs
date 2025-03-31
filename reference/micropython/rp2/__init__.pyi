@@ -27,7 +27,7 @@ from rp2.PIO import PIO
 from rp2.PIOASMEmit import PIOASMEmit
 from machine import Pin
 
-_PIO_ASM_Program: TypeAlias = Callable
+_PIO_ASM_Program: TypeAlias = PIOASMEmit
 
 class PIOASMError(Exception):
     """
@@ -47,7 +47,7 @@ def asm_pio(
     push_thresh=32,
     pull_thresh=32,
     fifo_join=PIO.JOIN_NONE,
-) -> Callable[..., PIOASMEmit]:
+) -> Callable[..., _PIO_ASM_Program]:
     """
     Assemble a PIO program.
 

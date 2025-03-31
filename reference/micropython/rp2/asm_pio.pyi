@@ -45,7 +45,7 @@ from micropython import const  # type: ignore
 if TYPE_CHECKING:
     # defined functions are all methods of the (frozen) class PIOASMEmit:
     # but also have a self method
-    from rp2 import PIOASMEmit
+    from rp2 import PIOASMEmit, _PIO_ASM_Program
 
     # constants defined for PIO assembly
     # TODO: Make Final - or make const always return Final
@@ -110,7 +110,7 @@ if TYPE_CHECKING:
 
     ####################################################################################
 
-    def delay(delay: int) -> PIOASMEmit:
+    def delay(delay: int) -> _PIO_ASM_Program:
         """rp2.PIO delay modifier.
 
         The delay method allows setting a delay for the current instruction,
@@ -118,7 +118,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def side(value: int) -> PIOASMEmit:
+    def side(value: int) -> _PIO_ASM_Program:
         """rp2.PIO WRAP modifier.
         This is a modifier which can be applied to any instruction, and is used to control side-set pin values.
         value: the value (bits) to output on the side-set pins
@@ -167,7 +167,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def word(instr, label: Incomplete | None = ...) -> PIOASMEmit:
+    def word(instr, label: Incomplete | None = ...) -> _PIO_ASM_Program:
         """rp2.PIO instruction.
 
         Stores a raw 16-bit value as an instruction in the program. This directive is
@@ -175,7 +175,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def nop() -> PIOASMEmit:
+    def nop() -> _PIO_ASM_Program:
         """rp2.PIO NOP instruction.
 
         Assembles to mov y, y. "No operation", has no particular side effect, but a useful vehicle for a side-set
@@ -183,7 +183,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def jmp(condition, label: Incomplete | None = ...) -> PIOASMEmit:
+    def jmp(condition, label: Incomplete | None = ...) -> _PIO_ASM_Program:
         """rp2.PIO JMP instruction.
 
         Set program counter to Address if Condition is true, otherwise no operation.
@@ -218,7 +218,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def wait(polarity: int, src: int, index: int, /) -> PIOASMEmit:
+    def wait(polarity: int, src: int, index: int, /) -> _PIO_ASM_Program:
         """rp2.PIO WAIT instruction.
 
         Stall until some condition is met.
@@ -253,7 +253,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def in_(src, data) -> PIOASMEmit:
+    def in_(src, data) -> _PIO_ASM_Program:
         """rp2.PIO IN instruction.
 
         Shift Bit count bits from Source into the Input Shift Register (ISR).
@@ -286,7 +286,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def out(destination: int, bit_count: int) -> PIOASMEmit:
+    def out(destination: int, bit_count: int) -> _PIO_ASM_Program:
         """rp2.PIO OUT instruction.
 
         Shift Bit count bits out of the Output Shift Register (OSR), and write those bits to Destination.
@@ -324,7 +324,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def push(value: int = ..., value2: int = ...) -> PIOASMEmit:
+    def push(value: int = ..., value2: int = ...) -> _PIO_ASM_Program:
         """rp2.PIO PUSH instruction..
 
         Push the contents of the ISR into the RX FIFO, as a single 32-bit word. Clear ISR to all-zeroes.
@@ -343,7 +343,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def pull(block: int = block, timeout: int = 0) -> PIOASMEmit:
+    def pull(block: int = block, timeout: int = 0) -> _PIO_ASM_Program:
         """rp2.PIO PULL instruction..
 
         Load a 32-bit word from the TX FIFO into the OSR.
@@ -369,7 +369,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def mov(dest, src, operation: Optional[int] = None) -> PIOASMEmit:
+    def mov(dest, src, operation: Optional[int] = None) -> _PIO_ASM_Program:
         """rp2.PIO MOV instruction..
 
         Copy data from Source to Destination.
@@ -415,7 +415,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def irq(mod, index: Incomplete | None = ...) -> PIOASMEmit:
+    def irq(mod, index: Incomplete | None = ...) -> _PIO_ASM_Program:
         """rp2.PIO instruction.
 
         Set or clear the IRQ flag selected by Index argument.
@@ -435,7 +435,7 @@ if TYPE_CHECKING:
         If Wait is set, Delay cycles do not begin until after the wait period elapses."""
         ...
 
-    def set(destination, data) -> PIOASMEmit:
+    def set(destination, data) -> _PIO_ASM_Program:
         """rp2.PIO SET instruction..
 
         Write immediate value Data to Destination.
