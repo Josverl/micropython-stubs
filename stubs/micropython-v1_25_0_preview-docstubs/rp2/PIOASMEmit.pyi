@@ -117,7 +117,7 @@ class PIOASMEmit:
         """
         ...
 
-    def word(self, instr, label: Incomplete | None = ...) -> PIOASMEmit:
+    def word(self, instr, label: Incomplete | None = ...) -> _PIO_ASM_Program:
         """rp2.PIO instruction.
 
         Stores a raw 16-bit value as an instruction in the program. This directive is
@@ -125,7 +125,7 @@ class PIOASMEmit:
         """
         ...
 
-    def nop(self) -> PIOASMEmit:
+    def nop(self) -> _PIO_ASM_Program:
         """rp2.PIO NOP instruction.
 
         Assembles to mov y, y. "No operation", has no particular side effect, but a useful vehicle for a side-set
@@ -133,7 +133,7 @@ class PIOASMEmit:
         """
         ...
 
-    def jmp(self, condition, label: Incomplete | None = ...) -> PIOASMEmit:
+    def jmp(self, condition, label: Incomplete | None = ...) -> _PIO_ASM_Program:
         """rp2.PIO JMP instruction.
 
         Set program counter to Address if Condition is true, otherwise no operation.
@@ -168,7 +168,7 @@ class PIOASMEmit:
         """
         ...
 
-    def wait(self, polarity: int, src: int, index: int, /) -> PIOASMEmit:
+    def wait(self, polarity: int, src: int, index: int, /) -> _PIO_ASM_Program:
         """rp2.PIO WAIT instruction.
 
         Stall until some condition is met.
@@ -203,7 +203,7 @@ class PIOASMEmit:
         """
         ...
 
-    def in_(self, src: int, data) -> PIOASMEmit:
+    def in_(self, src: int, data) -> _PIO_ASM_Program:
         """rp2.PIO IN instruction.
 
         Shift Bit count bits from Source into the Input Shift Register (ISR).
@@ -236,7 +236,7 @@ class PIOASMEmit:
         """
         ...
 
-    def out(self, destination: int, bit_count: int) -> PIOASMEmit:
+    def out(self, destination: int, bit_count: int) -> _PIO_ASM_Program:
         """rp2.PIO OUT instruction.
 
         Shift Bit count bits out of the Output Shift Register (OSR), and write those bits to Destination.
@@ -274,7 +274,7 @@ class PIOASMEmit:
         """
         ...
 
-    def push(self, value: int = ..., value2: int = ...) -> PIOASMEmit:
+    def push(self, value: int = ..., value2: int = ...) -> _PIO_ASM_Program:
         """rp2.PIO PUSH instruction.
 
         Push the contents of the ISR into the RX FIFO, as a single 32-bit word. Clear ISR to all-zeroes.
@@ -293,7 +293,7 @@ class PIOASMEmit:
         """
         ...
 
-    def pull(self, block: int = block, timeout: int = 0) -> PIOASMEmit:
+    def pull(self, block: int = block, timeout: int = 0) -> _PIO_ASM_Program:
         """rp2.PIO PULL instruction.
 
         Load a 32-bit word from the TX FIFO into the OSR.
@@ -319,7 +319,7 @@ class PIOASMEmit:
         """
         ...
 
-    def mov(self, dest, src, operation: int | None = None) -> PIOASMEmit:
+    def mov(self, dest, src, operation: int | None = None) -> _PIO_ASM_Program:
         """rp2.PIO MOV instruction.
 
         Copy data from Source to Destination.
@@ -365,7 +365,7 @@ class PIOASMEmit:
         """
         ...
 
-    def irq(self, mod, index: Incomplete | None = ...) -> PIOASMEmit:
+    def irq(self, mod, index: Incomplete | None = ...) -> _PIO_ASM_Program:
         """rp2.PIO instruction.
 
         Set or clear the IRQ flag selected by Index argument.
@@ -384,7 +384,7 @@ class PIOASMEmit:
         which are running the same program. Bit 2 (the third LSB) is unaffected by this addition.
         If Wait is set, Delay cycles do not begin until after the wait period elapses."""
 
-    def set(self, destination: int, data) -> PIOASMEmit:
+    def set(self, destination: int, data) -> _PIO_ASM_Program:
         """rp2.PIO SET instruction.
 
         Write immediate value Data to Destination.
