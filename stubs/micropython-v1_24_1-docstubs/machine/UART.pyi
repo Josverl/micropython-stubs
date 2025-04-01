@@ -455,10 +455,9 @@ class UART:
 
     def irq(
         self,
-        trigger: int,
-        priority: int = 1,
         handler: Callable[[UART], None] | None = None,
-        wake: int = IDLE,
+        trigger: int = 0,
+        hard: bool = False,
         /,
     ) -> _IRQ:
         """
