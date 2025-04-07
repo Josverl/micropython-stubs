@@ -6,7 +6,7 @@ from typing import Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
 from machine import Pin
-from rp2 import bootsel_button
+from rp2 import bootsel_button, _PIO_ASM_Program
 from rp2.DMA import DMA
 from rp2.Flash import Flash
 from rp2.PIO import PIO
@@ -24,9 +24,10 @@ class StateMachine:
 
     def __init__(
         self,
-        program: int,
-        freq: int = 1,
+        id: int,
+        program: _PIO_ASM_Program,
         *,
+        freq: int = 1,
         in_base: Pin | None = None,
         out_base: Pin | None = None,
         set_base: Pin | None = None,
@@ -39,9 +40,9 @@ class StateMachine:
     ) -> None: ...
     def init(
         self,
-        program: int,
-        freq: int = 1,
+        program: _PIO_ASM_Program,
         *,
+        freq: int = 1,
         in_base: Pin | None = None,
         out_base: Pin | None = None,
         set_base: Pin | None = None,
