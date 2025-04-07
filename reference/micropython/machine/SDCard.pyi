@@ -105,6 +105,7 @@ class SDCard(AbstractBlockDev):
         self,
         slot: int = 1,
         width: int = 1,
+        *,
         cd: PinLike | None = None,
         wp: PinLike | None = None,
         sck: PinLike | None = None,
@@ -112,7 +113,6 @@ class SDCard(AbstractBlockDev):
         mosi: PinLike | None = None,
         cs: PinLike | None = None,
         freq: int = 20000000,
-        /,
     ) -> None:
         """
         This class provides access to SD or MMC storage cards using either
