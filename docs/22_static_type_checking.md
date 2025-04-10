@@ -14,7 +14,6 @@ When MicroPython code is compiled to .mpy or frozen into a firmware, the microco
    - Refactoring: Static type checking helps identify type-related issues during refactoring, making code changes safer and more predictable.
    - API Documentation: Type hints serve as documentation for function signatures, making it easier to understand how to use them¹.
 
-
 ### Disadvantages:
    - Verbose Syntax: Adding type hints can make code more verbose, especially for complex data structures.
    - Learning Curve: Developers need to learn type hinting syntax and conventions.
@@ -63,3 +62,35 @@ def get_register_name(register: int) -> Optional[str]:
 ```
 
 In this example, the `TYPE_CHECKING` constant is set to `False` by default. When performing static type checking, you can set `TYPE_CHECKING` to `True` to include the type hints and imports. This allows you to use type hints and perform static type checking without requiring the `typing` module at runtime.
+
+
+## Positional and keyword parameter types 
+
+Based on [PEP-570](https://peps.python.org/pep-0570/)
+
+
+While MicroPython does not support the full range of Python's function parameter types at runtime ,
+it does make sense to support some of them in static type checking.
+
+In type stubs the following function signature is used to indicate the types of parameters:
+
+```python
+
+def name(positional_only_parameters, /, positional_or_keyword_parameters,
+         *, keyword_only_parameters):
+    ...
+
+```
+
+The following would apply:
+
+- All parameters left of the `/` are treated as positional-only.
+- If `/` is not specified in the function definition, that function does not accept any positional-only arguments.
+- The logic around optional values for positional-only parameters remains the same as for positional-or-keyword parameters.
+- Once a positional-only parameter is specified with a default, the following positional-only and positional-or-keyword parameters need to have defaults as well.
+- Positional-only parameters which do not have default values are required positional-only parameters.
+
+As guidance:
+
+Use positional-only if names do not matter or have no meaning, and there are only a few arguments which will always be passed in the same order.
+Use keyword-only when names have meaning and the function definition is more understandable by being explicit with names.
