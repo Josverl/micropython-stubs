@@ -32,7 +32,7 @@ class WLAN:
     * ``PM_NONE``: disable wifi power management
     """
 
-    def __init__(self, interface_id: int, /) -> None:
+    def __init__(self, interface_id: int = ..., /) -> None:
         """
         Create a WLAN network interface object. Supported interfaces are
         ``network.STA_IF`` (station aka client, connects to upstream WiFi access
