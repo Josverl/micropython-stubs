@@ -135,6 +135,13 @@
             ""
         ],
         [
+            "micropython-esp8266-stubs",
+            "1.24.1",
+            "esp8266",
+            "GENERIC",
+            ""
+        ],
+        [
             "micropython-rp2-arduino_nano_rp2040_connect-stubs",
             "1.24.1",
             "rp2",

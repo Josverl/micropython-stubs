@@ -1,7 +1,7 @@
 [project]
 name = "micropython-esp32-esp32_generic-stubs"
 description = "MicroPython stubs"
-version = "1.25.0.post1"
+version = "1.25.0.post2"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -66,6 +66,7 @@ packages = [
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
     { include = "inisetup.pyi" },
+    { include = "logging.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },

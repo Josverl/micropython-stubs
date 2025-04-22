@@ -7,13 +7,13 @@ This module provides a general frame buffer which can be used to create
 bitmap images, which can then be sent to a display.
 
 ---
-Module: 'framebuf' on micropython-v1.25.0-esp8266-ESP8266_GENERIC
+Module: 'framebuf' on micropython-v1.25.0-esp8266-ESP8266_GENERIC-FLASH_2M_ROMFS
 """
 
-# MCU: {'version': '1.25.0', 'mpy': 'v6.3', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensa', 'ver': '1.25.0', 'cpu': 'ESP8266'}
-# Stubber: v1.24.0
+# MCU: {'variant': 'FLASH_2M_ROMFS', 'build': '', 'arch': 'xtensa', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'board_id': 'ESP8266_GENERIC-FLASH_2M_ROMFS', 'mpy': 'v6.3', 'ver': '1.25.0', 'family': 'micropython', 'cpu': 'ESP8266', 'version': '1.25.0'}
+# Stubber: v1.25.0
 from __future__ import annotations
-from typing import Optional, overload, Any, Final, Generator
+from typing import Any, Optional, overload, Final
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing_extensions import Awaitable, TypeAlias, TypeVar
@@ -68,7 +68,6 @@ class FrameBuffer:
         methods draw horizontal and vertical lines respectively up to
         a given length.
         """
-        ...
 
     @overload
     def pixel(self, x: int, y: int, /) -> int:
@@ -173,7 +172,6 @@ class FrameBuffer:
         methods draw horizontal and vertical lines respectively up to
         a given length.
         """
-        ...
 
     def fill(self, c: int, /) -> None:
         """
@@ -215,4 +213,3 @@ class FrameBuffer:
         optionally *stride*.  Invalid *buffer* size or dimensions may lead to
         unexpected errors.
         """
-        ...

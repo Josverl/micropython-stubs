@@ -65707,7 +65707,7 @@
         "board": "GENERIC",
         "package": "micropython-stm32-stubs",
         "pkg_version": "1.23.0.post2",
-        "hash": "81a08d09"
+        "hash": "0e4afd27"
     },
     {
         "family": "micropython",
@@ -69088,6 +69088,1346 @@
         "package": "micropython-esp32-stubs",
         "pkg_version": "1.24.1.post2",
         "hash": "65f44338"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "__builtins__",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "9a980d53"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "_boot",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "1271cf25"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "_espnow",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "a9846ff0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "_onewire",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "e2df0f6a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "apa102",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "004f05e7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "binascii",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "55a1c22a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "btree",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "d3895624"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "cryptolib",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "a6b507c4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "deflate",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "f387fa56"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "dht",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ds18x20",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "1e975b02"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "errno",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "33c2aa7c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "esp",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "0bbdb273"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "espnow",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "1ce16e12"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "flashbdev",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "2a7e07d9"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "framebuf",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "bde0a5d1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "gc",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "68b72238"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "hashlib",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "15ef0925"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "heapq",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "34e93be7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "inisetup",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "87992788"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "lwip",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "09029e5b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "machine",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "05f30f6c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "math",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "ba295fc8"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "micropython",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "cf34a6e4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "mip/__init__",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "d6c3acd0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "neopixel",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "47c066b3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "network",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "35e1f4d7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ntptime",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "844fb93b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "onewire",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "dfade60d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "platform",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "327ff716"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "port_diag",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "2d6a98a2"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "random",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "0bb6844b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "requests/__init__",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "cb6dcb05"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "select",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "3f242499"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "socket",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "0ba4f56b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ssd1306",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "a4353b3e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "time",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "1aee23f4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "tls",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "d10cfb5b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uarray",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "9dd9ae12"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uasyncio",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "de8833ad"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ubinascii",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "21fe62f5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ubluetooth",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "892d3526"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ucollections",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "efa801b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ucryptolib",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "d8613e47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uctypes",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "9b50d5a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uerrno",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "a148a304"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uhashlib",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "92571a8a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uheapq",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "3a962684"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uio",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "80e62824"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ujson",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "3848d7c9"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "umachine",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "85def592"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "umqtt/robust",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "c69d260c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "umqtt/simple",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "dcd00c5b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uos",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "9c7de2aa"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uplatform",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "e44f6cb0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "urandom",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "9b247d70"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ure",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "c928d449"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "urequests",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "2750f232"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uselect",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "52ce6d12"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "usocket",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "96e2f5f9"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ussl",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "95919527"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ustruct",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "e9c54b57"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "usys",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "57d964e1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "utime",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "b17ff60b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uzlib",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "2d6fc00b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "webrepl",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "3412aeed"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "webrepl_setup",
+        "port": "esp8266",
+        "board": "esp8266_generic",
+        "package": "micropython-esp8266-esp8266_generic-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "a653b8ff"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "__builtins__",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "9a980d53"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "_boot",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "1271cf25"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "_espnow",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "a9846ff0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "_onewire",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "e2df0f6a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "apa102",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "004f05e7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "binascii",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "55a1c22a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "btree",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "d3895624"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "cryptolib",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "a6b507c4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "deflate",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "f387fa56"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "dht",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "3a8370d6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ds18x20",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "1e975b02"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "errno",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "33c2aa7c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "esp",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "0bbdb273"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "espnow",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "1ce16e12"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "flashbdev",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "2a7e07d9"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "framebuf",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "bde0a5d1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "gc",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "68b72238"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "hashlib",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "15ef0925"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "heapq",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "34e93be7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "inisetup",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "87992788"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "lwip",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "09029e5b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "machine",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "05f30f6c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "math",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "ba295fc8"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "micropython",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "cf34a6e4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "mip/__init__",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "d6c3acd0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "neopixel",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "47c066b3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "network",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "35e1f4d7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ntptime",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "844fb93b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "onewire",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "dfade60d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "platform",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "327ff716"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "port_diag",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "2d6a98a2"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "random",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "0bb6844b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "requests/__init__",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "cb6dcb05"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "select",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "3f242499"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "socket",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "0ba4f56b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ssd1306",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "a4353b3e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "time",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "1aee23f4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "tls",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "d10cfb5b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uarray",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "9dd9ae12"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uasyncio",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "de8833ad"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ubinascii",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "21fe62f5"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ubluetooth",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "892d3526"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ucollections",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "efa801b7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ucryptolib",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "d8613e47"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uctypes",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "9b50d5a4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uerrno",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "a148a304"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uhashlib",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "92571a8a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uheapq",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "3a962684"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uio",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "80e62824"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ujson",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "3848d7c9"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "umachine",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "85def592"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "umqtt/robust",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "c69d260c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "umqtt/simple",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "dcd00c5b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uos",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "9c7de2aa"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uplatform",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "e44f6cb0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "urandom",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "9b247d70"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ure",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "c928d449"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "urequests",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "2750f232"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uselect",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "52ce6d12"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "usocket",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "96e2f5f9"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ussl",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "95919527"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "ustruct",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "e9c54b57"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "usys",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "57d964e1"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "utime",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "b17ff60b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "uzlib",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "2d6fc00b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "webrepl",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "3412aeed"
+    },
+    {
+        "family": "micropython",
+        "version": "1.24.1",
+        "mod_name": "webrepl_setup",
+        "port": "esp8266",
+        "board": "GENERIC",
+        "package": "micropython-esp8266-stubs",
+        "pkg_version": "1.24.1.post1",
+        "hash": "a653b8ff"
     },
     {
         "family": "micropython",
@@ -75836,7 +77176,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9a980d53"
     },
     {
@@ -75846,7 +77186,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "cccd5b92"
     },
     {
@@ -75856,7 +77196,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d80ccd0c"
     },
     {
@@ -75866,7 +77206,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "7e50d368"
     },
     {
@@ -75876,7 +77216,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "124bf960"
     },
     {
@@ -75886,7 +77226,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "08f897cf"
     },
     {
@@ -75896,7 +77236,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "0f055db1"
     },
     {
@@ -75906,7 +77246,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2ba8bc22"
     },
     {
@@ -75916,7 +77256,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d3895624"
     },
     {
@@ -75926,7 +77266,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d0d6aaea"
     },
     {
@@ -75936,7 +77276,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "a6b507c4"
     },
     {
@@ -75946,7 +77286,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "f387fa56"
     },
     {
@@ -75956,7 +77296,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9ecd5606"
     },
     {
@@ -75966,7 +77306,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4f4377b6"
     },
     {
@@ -75976,7 +77316,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "917b3354"
     },
     {
@@ -75986,7 +77326,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "c9c9316f"
     },
     {
@@ -75996,7 +77336,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "e06d0374"
     },
     {
@@ -76006,7 +77346,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "ff469854"
     },
     {
@@ -76016,7 +77356,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "28e87424"
     },
     {
@@ -76026,7 +77366,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d145ce30"
     },
     {
@@ -76036,7 +77376,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "68b72238"
     },
     {
@@ -76046,7 +77386,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "12dd7bd0"
     },
     {
@@ -76056,7 +77396,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "34e93be7"
     },
     {
@@ -76066,8 +77406,18 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "fd665d5e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.25.0",
+        "mod_name": "logging",
+        "port": "esp32",
+        "board": "esp32_generic",
+        "package": "micropython-esp32-esp32_generic-stubs",
+        "pkg_version": "1.25.0.post2",
+        "hash": "ff14acfd"
     },
     {
         "family": "micropython",
@@ -76076,7 +77426,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "a1044381"
     },
     {
@@ -76086,7 +77436,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "8ad93bfb"
     },
     {
@@ -76096,7 +77446,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "cf34a6e4"
     },
     {
@@ -76106,7 +77456,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "7f63257b"
     },
     {
@@ -76116,7 +77466,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "3baf5f00"
     },
     {
@@ -76126,7 +77476,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "1b5d81f5"
     },
     {
@@ -76136,7 +77486,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "0db9bcda"
     },
     {
@@ -76146,7 +77496,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "be6a9bc4"
     },
     {
@@ -76156,7 +77506,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "327ff716"
     },
     {
@@ -76166,7 +77516,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2abc00ed"
     },
     {
@@ -76176,7 +77526,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "f9dc2919"
     },
     {
@@ -76186,7 +77536,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "3f242499"
     },
     {
@@ -76196,7 +77546,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "f7844189"
     },
     {
@@ -76206,7 +77556,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "1aee23f4"
     },
     {
@@ -76216,7 +77566,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "fc03594c"
     },
     {
@@ -76226,7 +77576,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9dd9ae12"
     },
     {
@@ -76236,7 +77586,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "de8833ad"
     },
     {
@@ -76246,7 +77596,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "21fe62f5"
     },
     {
@@ -76256,7 +77606,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "892d3526"
     },
     {
@@ -76266,7 +77616,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "efa801b7"
     },
     {
@@ -76276,7 +77626,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "33b0fc3d"
     },
     {
@@ -76286,7 +77636,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9b50d5a4"
     },
     {
@@ -76296,7 +77646,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "a148a304"
     },
     {
@@ -76306,7 +77656,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "975f078d"
     },
     {
@@ -76316,7 +77666,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4b28790c"
     },
     {
@@ -76326,7 +77676,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "80e62824"
     },
     {
@@ -76336,7 +77686,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "3848d7c9"
     },
     {
@@ -76346,7 +77696,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "85def592"
     },
     {
@@ -76356,7 +77706,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "14707d83"
     },
     {
@@ -76366,7 +77716,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2122b7f9"
     },
     {
@@ -76376,7 +77726,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9c7de2aa"
     },
     {
@@ -76386,7 +77736,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "e44f6cb0"
     },
     {
@@ -76396,7 +77746,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "e5f8bcb0"
     },
     {
@@ -76406,7 +77756,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "081d68f4"
     },
     {
@@ -76416,7 +77766,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "a51a351d"
     },
     {
@@ -76426,7 +77776,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "52ce6d12"
     },
     {
@@ -76436,7 +77786,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "96e2f5f9"
     },
     {
@@ -76446,7 +77796,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "95919527"
     },
     {
@@ -76456,7 +77806,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "e9c54b57"
     },
     {
@@ -76466,7 +77816,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "57d964e1"
     },
     {
@@ -76476,7 +77826,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "b17ff60b"
     },
     {
@@ -76486,7 +77836,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4ec31855"
     },
     {
@@ -76496,7 +77846,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2d6fc00b"
     },
     {
@@ -76506,7 +77856,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4f2eb85e"
     },
     {
@@ -76516,7 +77866,7 @@
         "port": "esp32",
         "board": "esp32_generic",
         "package": "micropython-esp32-esp32_generic-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "65f44338"
     },
     {
@@ -76526,7 +77876,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9a980d53"
     },
     {
@@ -76536,7 +77886,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "cccd5b92"
     },
     {
@@ -76546,7 +77896,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d80ccd0c"
     },
     {
@@ -76556,7 +77906,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "7e50d368"
     },
     {
@@ -76566,7 +77916,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "124bf960"
     },
     {
@@ -76576,7 +77926,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "08f897cf"
     },
     {
@@ -76586,7 +77936,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "0f055db1"
     },
     {
@@ -76596,7 +77946,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2ba8bc22"
     },
     {
@@ -76606,7 +77956,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d3895624"
     },
     {
@@ -76616,7 +77966,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d0d6aaea"
     },
     {
@@ -76626,7 +77976,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "a6b507c4"
     },
     {
@@ -76636,7 +77986,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "f387fa56"
     },
     {
@@ -76646,7 +77996,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9ecd5606"
     },
     {
@@ -76656,7 +78006,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4f4377b6"
     },
     {
@@ -76666,7 +78016,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "917b3354"
     },
     {
@@ -76676,7 +78026,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "c9c9316f"
     },
     {
@@ -76686,7 +78036,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "7671409d"
     },
     {
@@ -76696,7 +78046,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "ff469854"
     },
     {
@@ -76706,7 +78056,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "28e87424"
     },
     {
@@ -76716,7 +78066,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d145ce30"
     },
     {
@@ -76726,7 +78076,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "68b72238"
     },
     {
@@ -76736,7 +78086,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "12dd7bd0"
     },
     {
@@ -76746,7 +78096,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "34e93be7"
     },
     {
@@ -76756,7 +78106,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "fd665d5e"
     },
     {
@@ -76766,7 +78116,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "14f0150d"
     },
     {
@@ -76776,7 +78126,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "8ad93bfb"
     },
     {
@@ -76786,7 +78136,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "cf34a6e4"
     },
     {
@@ -76796,7 +78146,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "7f63257b"
     },
     {
@@ -76806,7 +78156,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "3baf5f00"
     },
     {
@@ -76816,7 +78166,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "1b5d81f5"
     },
     {
@@ -76826,7 +78176,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "0db9bcda"
     },
     {
@@ -76836,7 +78186,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "be6a9bc4"
     },
     {
@@ -76846,7 +78196,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "327ff716"
     },
     {
@@ -76856,7 +78206,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2abc00ed"
     },
     {
@@ -76866,7 +78216,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "f9dc2919"
     },
     {
@@ -76876,7 +78226,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "3f242499"
     },
     {
@@ -76886,7 +78236,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "f7844189"
     },
     {
@@ -76896,7 +78246,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "1aee23f4"
     },
     {
@@ -76906,7 +78256,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "fc03594c"
     },
     {
@@ -76916,7 +78266,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9dd9ae12"
     },
     {
@@ -76926,7 +78276,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "de8833ad"
     },
     {
@@ -76936,7 +78286,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "21fe62f5"
     },
     {
@@ -76946,7 +78296,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "892d3526"
     },
     {
@@ -76956,7 +78306,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "efa801b7"
     },
     {
@@ -76966,7 +78316,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "33b0fc3d"
     },
     {
@@ -76976,7 +78326,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9b50d5a4"
     },
     {
@@ -76986,7 +78336,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "a148a304"
     },
     {
@@ -76996,7 +78346,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "975f078d"
     },
     {
@@ -77006,7 +78356,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4b28790c"
     },
     {
@@ -77016,7 +78366,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "80e62824"
     },
     {
@@ -77026,7 +78376,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "3848d7c9"
     },
     {
@@ -77036,7 +78386,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "85def592"
     },
     {
@@ -77046,7 +78396,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "14707d83"
     },
     {
@@ -77056,7 +78406,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2122b7f9"
     },
     {
@@ -77066,7 +78416,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9c7de2aa"
     },
     {
@@ -77076,7 +78426,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "e44f6cb0"
     },
     {
@@ -77086,7 +78436,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "e5f8bcb0"
     },
     {
@@ -77096,7 +78446,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "081d68f4"
     },
     {
@@ -77106,7 +78456,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "a51a351d"
     },
     {
@@ -77116,7 +78466,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "52ce6d12"
     },
     {
@@ -77126,7 +78476,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "96e2f5f9"
     },
     {
@@ -77136,7 +78486,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "95919527"
     },
     {
@@ -77146,7 +78496,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "e9c54b57"
     },
     {
@@ -77156,7 +78506,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "57d964e1"
     },
     {
@@ -77166,7 +78516,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "b17ff60b"
     },
     {
@@ -77176,7 +78526,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4ec31855"
     },
     {
@@ -77186,7 +78536,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2d6fc00b"
     },
     {
@@ -77196,7 +78546,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4f2eb85e"
     },
     {
@@ -77206,7 +78556,7 @@
         "port": "esp32",
         "board": "esp32_generic_c6",
         "package": "micropython-esp32-esp32_generic_c6-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "65f44338"
     },
     {
@@ -77216,7 +78566,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9a980d53"
     },
     {
@@ -77226,7 +78576,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "cccd5b92"
     },
     {
@@ -77236,7 +78586,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d80ccd0c"
     },
     {
@@ -77246,7 +78596,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "7e50d368"
     },
     {
@@ -77256,7 +78606,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "124bf960"
     },
     {
@@ -77266,7 +78616,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "08f897cf"
     },
     {
@@ -77276,7 +78626,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "0f055db1"
     },
     {
@@ -77286,7 +78636,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d3895624"
     },
     {
@@ -77296,7 +78646,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d0d6aaea"
     },
     {
@@ -77306,7 +78656,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "a6b507c4"
     },
     {
@@ -77316,7 +78666,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "f387fa56"
     },
     {
@@ -77326,7 +78676,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9ecd5606"
     },
     {
@@ -77336,7 +78686,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4f4377b6"
     },
     {
@@ -77346,7 +78696,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "917b3354"
     },
     {
@@ -77356,7 +78706,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "c9c9316f"
     },
     {
@@ -77366,7 +78716,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "92308977"
     },
     {
@@ -77376,7 +78726,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "ff469854"
     },
     {
@@ -77386,7 +78736,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "28e87424"
     },
     {
@@ -77396,7 +78746,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "d145ce30"
     },
     {
@@ -77406,7 +78756,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "68b72238"
     },
     {
@@ -77416,7 +78766,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "12dd7bd0"
     },
     {
@@ -77426,7 +78776,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "34e93be7"
     },
     {
@@ -77436,7 +78786,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "fd665d5e"
     },
     {
@@ -77446,7 +78796,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "76f8a0e9"
     },
     {
@@ -77456,7 +78806,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "8ad93bfb"
     },
     {
@@ -77466,7 +78816,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "cf34a6e4"
     },
     {
@@ -77476,7 +78826,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "7f63257b"
     },
     {
@@ -77486,7 +78836,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "3baf5f00"
     },
     {
@@ -77496,7 +78846,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "1b5d81f5"
     },
     {
@@ -77506,7 +78856,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "0db9bcda"
     },
     {
@@ -77516,7 +78866,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "be6a9bc4"
     },
     {
@@ -77526,7 +78876,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "327ff716"
     },
     {
@@ -77536,7 +78886,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2abc00ed"
     },
     {
@@ -77546,7 +78896,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "f9dc2919"
     },
     {
@@ -77556,7 +78906,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "3f242499"
     },
     {
@@ -77566,7 +78916,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "f7844189"
     },
     {
@@ -77576,7 +78926,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "1aee23f4"
     },
     {
@@ -77586,7 +78936,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "fc03594c"
     },
     {
@@ -77596,7 +78946,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9dd9ae12"
     },
     {
@@ -77606,7 +78956,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "de8833ad"
     },
     {
@@ -77616,7 +78966,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "21fe62f5"
     },
     {
@@ -77626,7 +78976,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "892d3526"
     },
     {
@@ -77636,7 +78986,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "efa801b7"
     },
     {
@@ -77646,7 +78996,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "33b0fc3d"
     },
     {
@@ -77656,7 +79006,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9b50d5a4"
     },
     {
@@ -77666,7 +79016,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "a148a304"
     },
     {
@@ -77676,7 +79026,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "975f078d"
     },
     {
@@ -77686,7 +79036,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4b28790c"
     },
     {
@@ -77696,7 +79046,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "80e62824"
     },
     {
@@ -77706,7 +79056,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "3848d7c9"
     },
     {
@@ -77716,7 +79066,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "85def592"
     },
     {
@@ -77726,7 +79076,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "14707d83"
     },
     {
@@ -77736,7 +79086,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2122b7f9"
     },
     {
@@ -77746,7 +79096,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "9c7de2aa"
     },
     {
@@ -77756,7 +79106,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "e44f6cb0"
     },
     {
@@ -77766,7 +79116,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "e5f8bcb0"
     },
     {
@@ -77776,7 +79126,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "081d68f4"
     },
     {
@@ -77786,7 +79136,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "a51a351d"
     },
     {
@@ -77796,7 +79146,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "52ce6d12"
     },
     {
@@ -77806,7 +79156,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "96e2f5f9"
     },
     {
@@ -77816,7 +79166,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "95919527"
     },
     {
@@ -77826,7 +79176,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "e9c54b57"
     },
     {
@@ -77836,7 +79186,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "57d964e1"
     },
     {
@@ -77846,7 +79196,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "b17ff60b"
     },
     {
@@ -77856,7 +79206,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4ec31855"
     },
     {
@@ -77866,7 +79216,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "2d6fc00b"
     },
     {
@@ -77876,7 +79226,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "4f2eb85e"
     },
     {
@@ -77886,7 +79236,7 @@
         "port": "esp32",
         "board": "esp32_generic_s2",
         "package": "micropython-esp32-esp32_generic_s2-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post2",
         "hash": "65f44338"
     },
     {
@@ -77896,7 +79246,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "9a980d53"
     },
     {
@@ -77906,7 +79256,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "cccd5b92"
     },
     {
@@ -77916,7 +79266,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "d80ccd0c"
     },
     {
@@ -77926,7 +79276,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "7e50d368"
     },
     {
@@ -77936,7 +79286,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "124bf960"
     },
     {
@@ -77946,7 +79296,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "08f897cf"
     },
     {
@@ -77956,7 +79306,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "0f055db1"
     },
     {
@@ -77966,7 +79316,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "2ba8bc22"
     },
     {
@@ -77976,7 +79326,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "d3895624"
     },
     {
@@ -77986,7 +79336,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "d0d6aaea"
     },
     {
@@ -77996,7 +79346,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "a6b507c4"
     },
     {
@@ -78006,7 +79356,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "f387fa56"
     },
     {
@@ -78016,7 +79366,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "9ecd5606"
     },
     {
@@ -78026,7 +79376,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "4f4377b6"
     },
     {
@@ -78036,7 +79386,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "917b3354"
     },
     {
@@ -78046,7 +79396,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "c9c9316f"
     },
     {
@@ -78056,7 +79406,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "e06d0374"
     },
     {
@@ -78066,7 +79416,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "ff469854"
     },
     {
@@ -78076,7 +79426,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "28e87424"
     },
     {
@@ -78086,7 +79436,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "d145ce30"
     },
     {
@@ -78096,7 +79446,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "68b72238"
     },
     {
@@ -78106,7 +79456,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "12dd7bd0"
     },
     {
@@ -78116,7 +79466,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "34e93be7"
     },
     {
@@ -78126,8 +79476,18 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "fd665d5e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.25.0",
+        "mod_name": "logging",
+        "port": "esp32",
+        "board": "GENERIC",
+        "package": "micropython-esp32-stubs",
+        "pkg_version": "1.25.0.post3",
+        "hash": "ff14acfd"
     },
     {
         "family": "micropython",
@@ -78136,7 +79496,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "a1044381"
     },
     {
@@ -78146,7 +79506,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "8ad93bfb"
     },
     {
@@ -78156,7 +79516,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "cf34a6e4"
     },
     {
@@ -78166,7 +79526,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "7f63257b"
     },
     {
@@ -78176,7 +79536,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "3baf5f00"
     },
     {
@@ -78186,7 +79546,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "1b5d81f5"
     },
     {
@@ -78196,7 +79556,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "0db9bcda"
     },
     {
@@ -78206,7 +79566,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "be6a9bc4"
     },
     {
@@ -78216,7 +79576,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "327ff716"
     },
     {
@@ -78226,7 +79586,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "2abc00ed"
     },
     {
@@ -78236,7 +79596,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "f9dc2919"
     },
     {
@@ -78246,7 +79606,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "3f242499"
     },
     {
@@ -78256,7 +79616,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "f7844189"
     },
     {
@@ -78266,7 +79626,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "1aee23f4"
     },
     {
@@ -78276,7 +79636,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "fc03594c"
     },
     {
@@ -78286,7 +79646,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "9dd9ae12"
     },
     {
@@ -78296,7 +79656,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "de8833ad"
     },
     {
@@ -78306,7 +79666,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "21fe62f5"
     },
     {
@@ -78316,7 +79676,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "892d3526"
     },
     {
@@ -78326,7 +79686,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "efa801b7"
     },
     {
@@ -78336,7 +79696,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "33b0fc3d"
     },
     {
@@ -78346,7 +79706,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "9b50d5a4"
     },
     {
@@ -78356,7 +79716,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "a148a304"
     },
     {
@@ -78366,7 +79726,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "975f078d"
     },
     {
@@ -78376,7 +79736,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "4b28790c"
     },
     {
@@ -78386,7 +79746,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "80e62824"
     },
     {
@@ -78396,7 +79756,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "3848d7c9"
     },
     {
@@ -78406,7 +79766,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "85def592"
     },
     {
@@ -78416,7 +79776,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "14707d83"
     },
     {
@@ -78426,7 +79786,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "2122b7f9"
     },
     {
@@ -78436,7 +79796,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "9c7de2aa"
     },
     {
@@ -78446,7 +79806,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "e44f6cb0"
     },
     {
@@ -78456,7 +79816,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "e5f8bcb0"
     },
     {
@@ -78466,7 +79826,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "081d68f4"
     },
     {
@@ -78476,7 +79836,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "a51a351d"
     },
     {
@@ -78486,7 +79846,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "52ce6d12"
     },
     {
@@ -78496,7 +79856,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "96e2f5f9"
     },
     {
@@ -78506,7 +79866,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "95919527"
     },
     {
@@ -78516,7 +79876,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "e9c54b57"
     },
     {
@@ -78526,7 +79886,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "57d964e1"
     },
     {
@@ -78536,7 +79896,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "b17ff60b"
     },
     {
@@ -78546,7 +79906,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "4ec31855"
     },
     {
@@ -78556,7 +79916,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "2d6fc00b"
     },
     {
@@ -78566,7 +79926,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "4f2eb85e"
     },
     {
@@ -78576,7 +79936,7 @@
         "port": "esp32",
         "board": "GENERIC",
         "package": "micropython-esp32-stubs",
-        "pkg_version": "1.25.0.post1",
+        "pkg_version": "1.25.0.post3",
         "hash": "65f44338"
     },
     {
@@ -78597,7 +79957,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "413383d5"
+        "hash": "a9846ff0"
     },
     {
         "family": "micropython",
@@ -78607,7 +79967,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "46e39e67"
+        "hash": "e2df0f6a"
     },
     {
         "family": "micropython",
@@ -78617,7 +79977,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "2ba65fb0"
+        "hash": "92aaef17"
     },
     {
         "family": "micropython",
@@ -78627,7 +79987,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "ad12a4da"
+        "hash": "ebaf0071"
     },
     {
         "family": "micropython",
@@ -78637,7 +79997,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "e8cda351"
+        "hash": "d3895624"
     },
     {
         "family": "micropython",
@@ -78647,7 +80007,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "6d121947"
+        "hash": "a6b507c4"
     },
     {
         "family": "micropython",
@@ -78657,7 +80017,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "3187c858"
+        "hash": "f387fa56"
     },
     {
         "family": "micropython",
@@ -78667,7 +80027,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "7deb2008"
+        "hash": "6f371d79"
     },
     {
         "family": "micropython",
@@ -78677,7 +80037,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "9cebdf6a"
+        "hash": "75d793f2"
     },
     {
         "family": "micropython",
@@ -78687,7 +80047,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "3c1e92af"
+        "hash": "33c2aa7c"
     },
     {
         "family": "micropython",
@@ -78697,7 +80057,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "d54cfd6c"
+        "hash": "0bbdb273"
     },
     {
         "family": "micropython",
@@ -78707,7 +80067,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "2e78a217"
+        "hash": "9266b0fb"
     },
     {
         "family": "micropython",
@@ -78717,7 +80077,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "6194b4da"
+        "hash": "c0c50d06"
     },
     {
         "family": "micropython",
@@ -78727,7 +80087,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "cd2bb9f7"
+        "hash": "d145ce30"
     },
     {
         "family": "micropython",
@@ -78737,7 +80097,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "46ffca02"
+        "hash": "68b72238"
     },
     {
         "family": "micropython",
@@ -78747,7 +80107,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "df9bbaba"
+        "hash": "15ef0925"
     },
     {
         "family": "micropython",
@@ -78757,7 +80117,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "141efb49"
+        "hash": "34e93be7"
     },
     {
         "family": "micropython",
@@ -78767,7 +80127,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "f7ed69e3"
+        "hash": "cc486b25"
     },
     {
         "family": "micropython",
@@ -78777,7 +80137,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "7ec7cdf4"
+        "hash": "09029e5b"
     },
     {
         "family": "micropython",
@@ -78787,7 +80147,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "195f1610"
+        "hash": "6280ecad"
     },
     {
         "family": "micropython",
@@ -78797,7 +80157,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "6bee17e3"
+        "hash": "ba295fc8"
     },
     {
         "family": "micropython",
@@ -78807,7 +80167,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "0ffa125f"
+        "hash": "cf34a6e4"
     },
     {
         "family": "micropython",
@@ -78817,7 +80177,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "2f0f0557"
+        "hash": "abe105d1"
     },
     {
         "family": "micropython",
@@ -78827,7 +80187,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "a93c7cc5"
+        "hash": "3baf5f00"
     },
     {
         "family": "micropython",
@@ -78837,7 +80197,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "48d066d7"
+        "hash": "3ea45191"
     },
     {
         "family": "micropython",
@@ -78847,7 +80207,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "f40421f5"
+        "hash": "4a13ff5f"
     },
     {
         "family": "micropython",
@@ -78857,7 +80217,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "d26b2246"
+        "hash": "549df479"
     },
     {
         "family": "micropython",
@@ -78867,7 +80227,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "0e45b2d2"
+        "hash": "327ff716"
     },
     {
         "family": "micropython",
@@ -78877,7 +80237,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "ad425816"
+        "hash": "0bb6844b"
     },
     {
         "family": "micropython",
@@ -78887,7 +80247,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "a51a351d"
+        "hash": "4b475a83"
     },
     {
         "family": "micropython",
@@ -78897,7 +80257,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "3489ff9a"
+        "hash": "3f242499"
     },
     {
         "family": "micropython",
@@ -78907,7 +80267,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "198e8d71"
+        "hash": "0ba4f56b"
     },
     {
         "family": "micropython",
@@ -78917,7 +80277,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "fa601957"
+        "hash": "a4353b3e"
     },
     {
         "family": "micropython",
@@ -78927,7 +80287,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "5555edd7"
+        "hash": "1aee23f4"
     },
     {
         "family": "micropython",
@@ -78937,7 +80297,7 @@
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
-        "hash": "f7a7c546"
+        "hash": "d10cfb5b"
     },
     {
         "family": "micropython",
@@ -78982,62 +80342,12 @@
     {
         "family": "micropython",
         "version": "1.25.0",
-        "mod_name": "ucollections",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "efa801b7"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ucryptolib",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "33b0fc3d"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uctypes",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "66bc28f7"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
         "mod_name": "uerrno",
         "port": "esp8266",
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
         "hash": "a148a304"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uhashlib",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "e737aa8e"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uheapq",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "4b28790c"
     },
     {
         "family": "micropython",
@@ -79072,26 +80382,6 @@
     {
         "family": "micropython",
         "version": "1.25.0",
-        "mod_name": "umqtt/robust",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "698f53a8"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "umqtt/simple",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "0d7045b2"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
         "mod_name": "uos",
         "port": "esp8266",
         "board": "esp8266_generic",
@@ -79108,36 +80398,6 @@
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
         "hash": "e44f6cb0"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "urandom",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "d5b9a678"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ure",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "081d68f4"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "urequests",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "a51a351d"
     },
     {
         "family": "micropython",
@@ -79202,702 +80462,12 @@
     {
         "family": "micropython",
         "version": "1.25.0",
-        "mod_name": "uwebsocket",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "4ec31855"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
         "mod_name": "uzlib",
         "port": "esp8266",
         "board": "esp8266_generic",
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.25.0.post1",
         "hash": "2d6fc00b"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "vfs",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "c51510a3"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "websocket",
-        "port": "esp8266",
-        "board": "esp8266_generic",
-        "package": "micropython-esp8266-esp8266_generic-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "4ec31855"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "__builtins__",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "9a980d53"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "_espnow",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "413383d5"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "_onewire",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "46e39e67"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "apa102",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "2ba65fb0"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "binascii",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "ad12a4da"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "btree",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "e8cda351"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "cryptolib",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "6d121947"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "deflate",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "3187c858"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "dht",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "7deb2008"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ds18x20",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "9cebdf6a"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "errno",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "3c1e92af"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "esp",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "d54cfd6c"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "espnow",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "2e78a217"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "flashbdev",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "6194b4da"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "framebuf",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "cd2bb9f7"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "gc",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "46ffca02"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "hashlib",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "df9bbaba"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "heapq",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "141efb49"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "inisetup",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "f7ed69e3"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "lwip",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "7ec7cdf4"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "machine",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "195f1610"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "math",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "6bee17e3"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "micropython",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "0ffa125f"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "mip/__init__",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "2f0f0557"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "neopixel",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "a93c7cc5"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "network",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "48d066d7"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ntptime",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "f40421f5"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "onewire",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "d26b2246"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "platform",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "0e45b2d2"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "random",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "ad425816"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "requests/__init__",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "a51a351d"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "select",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "3489ff9a"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "socket",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "198e8d71"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ssd1306",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "fa601957"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "time",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "5555edd7"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "tls",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "f7a7c546"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uarray",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "9dd9ae12"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uasyncio",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "de8833ad"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ubinascii",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "21fe62f5"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ubluetooth",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "892d3526"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ucollections",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "efa801b7"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ucryptolib",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "33b0fc3d"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uctypes",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "66bc28f7"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uerrno",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "a148a304"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uhashlib",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "e737aa8e"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uheapq",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "4b28790c"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uio",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "80e62824"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ujson",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "3848d7c9"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "umachine",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "85def592"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "umqtt/robust",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "698f53a8"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "umqtt/simple",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "0d7045b2"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uos",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "9c7de2aa"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uplatform",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "e44f6cb0"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "urandom",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "d5b9a678"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ure",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "081d68f4"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "urequests",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "a51a351d"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uselect",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "52ce6d12"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "usocket",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "96e2f5f9"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ussl",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "95919527"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "ustruct",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "e9c54b57"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "usys",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "57d964e1"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "utime",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "b17ff60b"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uwebsocket",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "4ec31855"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "uzlib",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "2d6fc00b"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "vfs",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "c51510a3"
-    },
-    {
-        "family": "micropython",
-        "version": "1.25.0",
-        "mod_name": "websocket",
-        "port": "esp8266",
-        "board": "GENERIC",
-        "package": "micropython-esp8266-stubs",
-        "pkg_version": "1.25.0.post1",
-        "hash": "4ec31855"
     },
     {
         "family": "micropython",

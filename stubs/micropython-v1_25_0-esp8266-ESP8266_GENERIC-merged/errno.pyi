@@ -9,13 +9,13 @@ This module provides access to symbolic error codes for `OSError` exception.
 A particular inventory of codes depends on :term:`MicroPython port`.
 
 ---
-Module: 'errno' on micropython-v1.25.0-esp8266-ESP8266_GENERIC
+Module: 'errno' on micropython-v1.25.0-esp8266-ESP8266_GENERIC-FLASH_2M_ROMFS
 """
 
-# MCU: {'version': '1.25.0', 'mpy': 'v6.3', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensa', 'ver': '1.25.0', 'cpu': 'ESP8266'}
-# Stubber: v1.24.0
+# MCU: {'variant': 'FLASH_2M_ROMFS', 'build': '', 'arch': 'xtensa', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'board_id': 'ESP8266_GENERIC-FLASH_2M_ROMFS', 'mpy': 'v6.3', 'ver': '1.25.0', 'family': 'micropython', 'cpu': 'ESP8266', 'version': '1.25.0'}
+# Stubber: v1.25.0
 from __future__ import annotations
-from typing import Dict, Any, Final, Generator
+from typing import Dict, Final
 from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 

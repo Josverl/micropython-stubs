@@ -1,20 +1,13 @@
 """
-Module: 'array' on micropython-v1.25.0-esp8266-ESP8266_GENERIC
+Module: 'array' on micropython-v1.25.0-esp8266-ESP8266_GENERIC-FLASH_2M_ROMFS
 """
-# MCU: {'version': '1.25.0', 'mpy': 'v6.3', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensa', 'ver': '1.25.0', 'cpu': 'ESP8266'}
-# Stubber: v1.24.0
+
+# MCU: {'variant': 'FLASH_2M_ROMFS', 'build': '', 'arch': 'xtensa', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'board_id': 'ESP8266_GENERIC-FLASH_2M_ROMFS', 'mpy': 'v6.3', 'ver': '1.25.0', 'family': 'micropython', 'cpu': 'ESP8266', 'version': '1.25.0'}
+# Stubber: v1.25.0
 from __future__ import annotations
-from typing import Any, Final, Generator
 from _typeshed import Incomplete
 
-
-class array():
-    def extend(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def append(self, *args, **kwargs) -> Incomplete:
-        ...
-
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
+class array:
+    def extend(self, *args, **kwargs) -> Incomplete: ...
+    def append(self, *args, **kwargs) -> Incomplete: ...
+    def __init__(self, *argv, **kwargs) -> None: ...

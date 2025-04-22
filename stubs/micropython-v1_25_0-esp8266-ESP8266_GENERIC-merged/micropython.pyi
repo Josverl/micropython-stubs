@@ -4,14 +4,14 @@ Access and control MicroPython internals.
 MicroPython module: https://docs.micropython.org/en/v1.25.0/library/micropython.html
 
 ---
-Module: 'micropython' on micropython-v1.25.0-esp8266-ESP8266_GENERIC
+Module: 'micropython' on micropython-v1.25.0-esp8266-ESP8266_GENERIC-FLASH_2M_ROMFS
 """
 
-# MCU: {'version': '1.25.0', 'mpy': 'v6.3', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensa', 'ver': '1.25.0', 'cpu': 'ESP8266'}
-# Stubber: v1.24.0
+# MCU: {'variant': 'FLASH_2M_ROMFS', 'build': '', 'arch': 'xtensa', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'board_id': 'ESP8266_GENERIC-FLASH_2M_ROMFS', 'mpy': 'v6.3', 'ver': '1.25.0', 'family': 'micropython', 'cpu': 'ESP8266', 'version': '1.25.0'}
+# Stubber: v1.25.0
 from __future__ import annotations
-from typing import Callable, Optional, Tuple, overload, Any, Final, Generator
 from _typeshed import Incomplete
+from typing import Any, Callable, Optional, Tuple, overload
 from typing_extensions import Awaitable, ParamSpec, TypeAlias, TypeVar
 
 _T = TypeVar("_T")
@@ -190,7 +190,6 @@ def heap_unlock() -> int:
     Note: `heap_locked()` is not enabled on most ports by default,
     requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
     """
-    ...
 
 def const(expr: Const_T, /) -> Const_T:
     """
@@ -234,7 +233,6 @@ def heap_lock() -> int:
     Note: `heap_locked()` is not enabled on most ports by default,
     requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
     """
-    ...
 
 def alloc_emergency_exception_buf(size: int, /) -> None:
     """
