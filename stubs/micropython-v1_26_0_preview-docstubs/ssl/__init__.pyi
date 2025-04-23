@@ -70,6 +70,21 @@ class SSLContext:
         """
         ...
 
+    @overload  # force merge
+    def load_cert_chain(self, certfile, keyfile) -> None:
+        """
+        Load a private key and the corresponding certificate.  The *certfile* is a string
+        with the file path of the certificate.  The *keyfile* is a string with the file path
+        of the private key.
+
+        Admonition:Difference to CPython
+           :class: attention
+
+           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
+           strings, in which case they are interpreted as the actual certificate/key data.
+        """
+        ...
+
     def load_verify_locations(self, cafile=None, cadata: bytes | None = None) -> None:
         """
         Load the CA certificate chain that will validate the peer's certificate.
