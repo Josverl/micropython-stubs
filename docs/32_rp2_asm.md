@@ -20,7 +20,7 @@ if TYPE_CHECKING:
 
 This block of code does the following:
 
- - Tries to import TYPE_CHECKING from typing_extensions. when the code runs , this will fail , and sets TYPE_CHECKING to False. 
+ - Set TYPE_CHECKING to False. [A bit of a shortcut - discussion in typing community](https://discuss.python.org/t/specify-type-checking-false-without-typing-import/76766)
  - If TYPE_CHECKING is True, that means that a type-checker is assessing the code , and it imports all the necessary types from rp2.asm_pio.
    This ensures that type checkers can understand the PIO instructions, even though they do not follow standard Python syntax. 
    This is useful for catching errors in your PIO code before running it on your RP2 board.
