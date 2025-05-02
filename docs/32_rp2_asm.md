@@ -7,15 +7,12 @@ The @rp2.asm_pio decorator allows you to define custom PIO programs in MicroPyth
 
 PIO instructions do not follow standard Python syntax, so most type checkers cannot parse them by default. This assembly-like approach is specific to the PIO hardware and relies on features not recognized by typical Python tools.
 
-To enable type checking for PIO code, you can the following block  before the first `@rp2.asm_pio` function.  
+To enable type checking for PIO code, you can the following block before the first `@rp2.asm_pio` function.  
 
 ```py 
 # -----------------------------------------------
 # add type hints for the rp2.asm_pio PIO Instructions
-try: 
-    from typing_extensions import TYPE_CHECKING # type: ignore
-except ImportError:
-    TYPE_CHECKING = False
+TYPE_CHECKING = False
 if TYPE_CHECKING:
     from rp2.asm_pio import *
 # -----------------------------------------------
