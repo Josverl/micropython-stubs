@@ -5,10 +5,6 @@ from _typeshed import Incomplete
 from typing import Callable, Literal, Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
-from rp2 import bootsel_button
-from rp2.DMA import DMA
-from rp2.Flash import Flash
-from rp2.PIOASMEmit import PIOASMEmit
 from rp2.StateMachine import StateMachine
 
 _PIO_ASM_Program: TypeAlias = Incomplete
