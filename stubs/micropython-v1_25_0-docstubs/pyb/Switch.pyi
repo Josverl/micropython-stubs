@@ -37,14 +37,6 @@ class Switch:
         """
         ...
 
-    @overload
-    def __call__(self) -> bool:
-        """
-        Call switch object directly to get its state: ``True`` if pressed down,
-        ``False`` otherwise.
-        """
-        ...
-
     def value(self) -> bool:
         """
         Get the switch state.  Returns ``True`` if pressed down, otherwise ``False``.
