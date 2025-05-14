@@ -566,7 +566,7 @@ def update(
         )
 
     # tidy up the stubs
-    do_post_processing([dist_stdlib_path / "stdlib"], stubgen=False, black=True, autoflake=True)
+    do_post_processing([dist_stdlib_path / "stdlib"], stubgen=False, format=True, autoflake=True)
 
     # remove typerchecker noise from typeshed ,
     # so that the actual issues caused by micropython stubs are more visible
