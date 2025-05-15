@@ -6,11 +6,7 @@ from typing import Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
 from machine import Pin
-from rp2 import bootsel_button, _PIO_ASM_Program
-from rp2.DMA import DMA
-from rp2.Flash import Flash
-from rp2.PIO import PIO
-from rp2.PIOASMEmit import PIOASMEmit
+from rp2 import _PIO_ASM_Program
 
 class StateMachine:
     """
