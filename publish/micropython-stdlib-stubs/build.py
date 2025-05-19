@@ -296,14 +296,15 @@ def change_lines(folder: Path):
 
 
 def update_typing_pyi(
+    rootpath: Path,
     dist_stdlib_path: Path,
-):
+    ):
     """
     patch updates into typing.pyi
     - allow IO.write(bytes) overload
     """
     tsk = enrich_file(
-        dist_stdlib_path / "handcrafted/typing.pyi",
+        rootpath / "reference/stdlib/typing.pyi",
         dist_stdlib_path / "stdlib/typing.pyi",
         diff=True,
         write_back=True,
@@ -453,26 +454,27 @@ def update_public_interface(boost: Boost, module_path: Path):
         log.error(f"Failed to update __all__ in {module_path}: {e}")
 
 
-def update_mpy_shed(rootpath: Path, dist_stdlib_path: Path):
+def update_mpy_shed(reference_path: Path, dist_stdlib_path: Path):
     """
     Update the _mpy_shed from the reference stubs.
     """
     log.info("Update _mpy_shed from the reference stubs")
     shutil.rmtree(dist_stdlib_path / "_mpy_shed", ignore_errors=True)
     shutil.copytree(
-        rootpath / "reference/_mpy_shed",
+        reference_path / "_mpy_shed",
         dist_stdlib_path / "_mpy_shed",
         dirs_exist_ok=True,
     )
 
 
-def update_asyncio_manual(dist_stdlib_path: Path):
+def update_asyncio_manual(reference_path: Path, dist_stdlib_path: Path):
     """
     Update the asyncio stubs from the manual updated copy.
     """
-    log.info("Update asyncio stubs from handcrafted copy")
-    src_asyncio = dist_stdlib_path / "handcrafted/asyncio"
+    log.info("Update asyncio stubs from reference/handcrafted copy")
+    src_asyncio = reference_path / "stdlib/asyncio"
     dst_asyncio = dist_stdlib_path / "stdlib/asyncio"
+    assert src_asyncio.exists(), f"src_asyncio {src_asyncio} does not exist"
     shutil.rmtree(dst_asyncio, ignore_errors=True)
     shutil.copytree(src_asyncio, dst_asyncio, dirs_exist_ok=True)
 
@@ -535,6 +537,7 @@ def update(
     docstubs_path = rootpath / f"stubs/micropython-{flat_version}-docstubs"
     boardstub_path = rootpath / f"stubs/micropython-{flat_version}-esp32-ESP32_GENERIC"
     typeshed_path = rootpath / "repos/typeshed"
+    reference_path = rootpath / "reference"
 
     # check that the paths exist
     assert rootpath.exists(), f"rootpath {rootpath} does not exist"
@@ -554,9 +557,9 @@ def update(
         update_stdlib_from_typeshed(dist_stdlib_path, typeshed_path)
 
     ## always update the _mpy_shed
-    update_mpy_shed(rootpath, dist_stdlib_path)
+    update_mpy_shed(reference_path, dist_stdlib_path)
     ## always update the asyncio stubs
-    update_asyncio_manual(dist_stdlib_path)
+    update_asyncio_manual(reference_path, dist_stdlib_path)
 
     if merge:
         merge_docstubs_into_stdlib(
@@ -582,7 +585,7 @@ def update(
     Path(dist_stdlib_path / "pyproject.toml").touch()
 
     # do some patches to typings.pyi
-    update_typing_pyi(dist_stdlib_path)
+    update_typing_pyi(rootpath, dist_stdlib_path)
 
     if build:
         subprocess.check_call(
