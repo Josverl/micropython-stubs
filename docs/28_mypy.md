@@ -11,24 +11,12 @@ for details see: https://mypy.readthedocs.io/en/stable/stubs.html
 
 As of version *v1.24.1.post2*, the stubs have been adjusted to be compatible with MyPy and can be installed in a `typings` folder.
 
-there are severan configuration options required to make this work, I prefer to add them all in a pyproject.toml file, but they can likely also be added in a `mypy.ini` file or though command line options or environment settings.
+There are several configuration options required to make this work, I prefer to add them all in a pyproject.toml file, but they can likely also be added in a `mypy.ini` file or though command line options or environment settings.
 
-*`pyproject.toml` for use with a `typings` folder:*
-```toml
-[tool.mypy]
-platform = "linux"
-mypy_path = "typings"
-custom_typeshed_dir = "typings" # allow mypy to use micropython-stdlib
-files = "src/*.py"
-exclude = [
-    "typings[\\/].*", # TOML basic string 
-]
+### mypy configuration using pyproject.toml
 
-follow_imports = "silent"
-follow_imports_for_stubs = true
-no_site_packages = true
-check_untyped_defs = true
-```
+Using pyproject.toml for configuration is the preferred way, as it can also be used for the configuration of other tools in the Python ecosystem, such as for configuration of multiple tools and the installation of the stubs.
+See <project:#pyproject-config> for an example.
 
 ### MyPy and stub-only packages installed in a virtual environment
 

@@ -20,6 +20,7 @@ definitions.md
 28_mypy.md
 26_pylint.md
 microbit_v2 type checking.md
+pyproject.md
 ```
 
 ```{toctree}

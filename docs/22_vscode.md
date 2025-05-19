@@ -16,16 +16,19 @@ Most settings can be entered though the VSCode UX, a few need to directly entere
 In this document I show the .json file configuration, but the same settings can (often) be entered in the UX.  
 
 In addition Pyright can be configured using a `pyrightconfig.json` or `pyproject.toml` file in the root of the workspace folders.
-using pyproject.toml is the preferred way, as it can also be used for the configuration of other tool in the Python ecosystem.
-
 Most, if not all, settings described below can be set via either method or combination of methods. You may need to look for the tool specific documentation to find the preferences in case of overlapping configurations though.
+
+## Pyright configuration using pyproject.toml
+
+Using pyproject.toml for configuration is the preferred way, as it can also be used for the configuration of other tools in the Python ecosystem, such as for configuration of multiple tools and the installation of the stubs.
+See <project:#pyproject-config> for a sample.
 
 ## Install the stubs from PyPi.
 
 You should install the micropython type-stubs locally into a `typings` folder or into the `.venv` folder of your project.
 Both locations will work, but some paths need to be adjusted to your chosen install location.  
 
-For details see [Install Stubs](install-stubs)`
+For details see <project:#install-stubs>
 
 ## vscode Configuration for Pylance.
 
@@ -134,25 +137,6 @@ File: `.vscode/settings.json`
 
 One of the simplest ways to configure the VSCode Python add-ins is to create a pyproject.toml file and add the relevant configuration to that.
 
-File: `./pyproject.toml`
-```toml
-[tool.pyright]
-include = ["src"]
-ignore = ["**/typings"]
-exclude = [
-    ".*",
-    "__*",
-    "**/typings",
-]
-
-typeCheckingMode = "basic"
-stubPath = "typings"
-typeshedPath = "typings"
-pythonPlatform = "Linux"
-
-reportMissingModuleSource = "none"
-reportUnnecessaryTypeIgnoreComment = "error"
-```
 
 The use of a pyproject.toml file has the advantage that the same configuration can be used by the pyright command line tool, for instance as part of a CI/CD pipeline.
 

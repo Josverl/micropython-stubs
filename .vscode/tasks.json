@@ -25,7 +25,10 @@
             },
             "command": "${workspaceFolder}/.venv/Scripts/Activate.ps1;&./make.bat html",
             "problemMatcher": [],
-            "group": "build"
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
             "label": "Sphinx: clean build documentation",
@@ -52,16 +55,13 @@
             "command": "act",
             "args": [
                 "--job",
-                "publish-stubs",
+                "publish-stubs"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
             },
             "problemMatcher": [],
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
+            "group": "build"
         }
     ]
 }

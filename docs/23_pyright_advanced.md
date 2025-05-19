@@ -24,6 +24,10 @@ Pyright allows you to configure the behavior of the language server on a per fol
 The configuration can be stored in a variety of ways, but the easiest is to use a `pyrightconfig.json` or `pyproject.toml` file in the root of each of the workspace folders.
 [Sample configuration files](https://github.com/microsoft/pyright/blob/main/docs/configuration.md#sample-config-file)
 
+See <project:#pyproject-config> for a sample.
+
+
+
 <!-- 
 ## example project structure and configuration.
 
