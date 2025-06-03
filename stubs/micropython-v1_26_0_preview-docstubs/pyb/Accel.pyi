@@ -7,20 +7,10 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class Accel:
     """
-    Accel is an object that controls the accelerometer.  Example usage::
-
-        accel = pyb.Accel()
-        for i in range(10):
-            print(accel.x(), accel.y(), accel.z())
-
-    Raw values are between -32 and 31.
+    Create and return an accelerometer object.
     """
 
-    def __init__(self) -> None:
-        """
-        Create and return an accelerometer object.
-        """
-
+    def __init__(self) -> None: ...
     def filtered_xyz(self) -> Tuple:
         """
         Get a 3-tuple of filtered x, y and z values.
@@ -32,25 +22,25 @@ class Accel:
         """
         ...
 
-    def tilt(self) -> int:
+    def tilt(self) -> Incomplete:
         """
         Get the tilt register.
         """
         ...
 
-    def x(self) -> int:
+    def x(self) -> Incomplete:
         """
         Get the x-axis value.
         """
         ...
 
-    def y(self) -> int:
+    def y(self) -> Incomplete:
         """
         Get the y-axis value.
         """
         ...
 
-    def z(self) -> int:
+    def z(self) -> Incomplete:
         """
         Get the z-axis value.
         """

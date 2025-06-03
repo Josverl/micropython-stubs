@@ -13,8 +13,6 @@ from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from zephyr.DiskAccess import DiskAccess
 from zephyr.FlashArea import FlashArea
-from DiskAccess import *
-from FlashArea import *
 
 def is_preempt_thread() -> Incomplete:
     """
@@ -33,8 +31,7 @@ def current_tid() -> Incomplete:
 
 def thread_analyze() -> Incomplete:
     """
-    Runs the Zephyr debug thread analyzer on the current thread on the given cpu
-    and prints stack size statistics in the format:
+    Runs the Zephyr debug thread analyzer on the current thread and prints stack size statistics in the format:
 
      "``thread_name``-20s: STACK: unused ``available_stack_space`` usage ``stack_space_used``
      / ``stack_size`` (``percent_stack_space_used`` %); CPU: ``cpu_utilization`` %"
@@ -44,9 +41,6 @@ def thread_analyze() -> Incomplete:
     This function can only be accessed if ``CONFIG_THREAD_ANALYZER`` is configured for the port in ``zephyr/prj.conf``.
     For more information, see documentation for Zephyr `thread analyzer
     <https://docs.zephyrproject.org/latest/guides/debug_tools/thread-analyzer.html#thread-analyzer>`_.
-
-    Note that the ``cpu`` argument is only used in Zephyr v4.0.0 and
-    newer and ignored otherwise.
     """
     ...
 

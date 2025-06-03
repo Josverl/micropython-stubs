@@ -1,7 +1,7 @@
 [project]
 name = "micropython-rp2-rpi_pico2_w-stubs"
 description = "MicroPython stubs"
-version = "1.25.0.post3"
+version = "1.25.0.post4"
 readme = "README.md"
 license = "MIT"
 authors = [

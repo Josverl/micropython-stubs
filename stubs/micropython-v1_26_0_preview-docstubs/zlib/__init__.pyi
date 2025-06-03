@@ -36,7 +36,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
-def decompress(data: bytes, wbits: int = 0, bufsize: int = 0, /) -> bytes:
+def decompress(data, wbits=15, /) -> Incomplete:
     """
     Decompresses *data* into a bytes object.
 

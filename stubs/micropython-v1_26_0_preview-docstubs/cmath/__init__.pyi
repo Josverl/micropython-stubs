@@ -16,7 +16,7 @@ required for this module.
 # origin module:: repos/micropython/docs/library/cmath.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import SupportsComplex, SupportsFloat, SupportsIndex, Tuple
+from typing import Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias
 
@@ -24,57 +24,56 @@ e: float
 """base of the natural logarithm"""
 pi: float
 """the ratio of a circle's circumference to its diameter"""
-_C: TypeAlias = SupportsFloat | SupportsComplex | SupportsIndex | complex
 
-def cos(z: _C, /) -> float:
+def cos(z) -> float:
     """
     Return the cosine of ``z``.
     """
     ...
 
-def exp(z: _C, /) -> float:
+def exp(z) -> float:
     """
     Return the exponential of ``z``.
     """
     ...
 
-def log(z: _C, /) -> float:
+def log(z) -> float:
     """
     Return the natural logarithm of ``z``.  The branch cut is along the negative real axis.
     """
     ...
 
-def log10(z: _C, /) -> float:
+def log10(z) -> float:
     """
     Return the base-10 logarithm of ``z``.  The branch cut is along the negative real axis.
     """
     ...
 
-def phase(z: _C, /) -> float:
+def phase(z) -> float:
     """
     Returns the phase of the number ``z``, in the range (-pi, +pi].
     """
     ...
 
-def polar(z: _C, /) -> Tuple:
+def polar(z) -> Tuple:
     """
     Returns, as a tuple, the polar form of ``z``.
     """
     ...
 
-def rect(r: float, phi: float, /) -> float:
+def rect(r, phi) -> float:
     """
     Returns the complex number with modulus ``r`` and phase ``phi``.
     """
     ...
 
-def sin(z: _C, /) -> float:
+def sin(z) -> float:
     """
     Return the sine of ``z``.
     """
     ...
 
-def sqrt(z: _C, /) -> complex:
+def sqrt(z) -> Incomplete:
     """
     Return the square-root of ``z``.
     """

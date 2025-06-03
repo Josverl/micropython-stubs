@@ -17,18 +17,11 @@ for example code.
 # origin module:: repos/micropython/docs/library/rp2.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing_extensions import TYPE_CHECKING, TypeVar, TypeAlias, Awaitable
+from typing_extensions import TypeVar, TypeAlias, Awaitable
 from rp2.DMA import DMA
 from rp2.Flash import Flash
 from rp2.PIO import PIO
 from rp2.StateMachine import StateMachine
-from typing import Callable, Union, List, overload
-from micropython import const
-from rp2 import PIOASMEmit, _PIO_ASM_Program
-from machine import Pin
-from rp2.PIOASMEmit import PIOASMEmit
-
-_PIO_ASM_Program: TypeAlias = PIOASMEmit
 
 class PIOASMError(Exception):
     """
@@ -38,17 +31,18 @@ class PIOASMError(Exception):
 
 def asm_pio(
     *,
-    out_init: Union[Pin, List[Pin], int, List[int], None] = None,
-    set_init: Union[Pin, List[Pin], int, List[int], None] = None,
-    sideset_init: Union[Pin, List[Pin], int, List[int], None] = None,
-    in_shiftdir=0,
-    out_shiftdir=0,
+    out_init=None,
+    set_init=None,
+    sideset_init=None,
+    side_pindir=False,
+    in_shiftdir=PIO.SHIFT_LEFT,
+    out_shiftdir=PIO.SHIFT_LEFT,
     autopush=False,
     autopull=False,
     push_thresh=32,
     pull_thresh=32,
     fifo_join=PIO.JOIN_NONE,
-) -> Callable[..., _PIO_ASM_Program]:
+) -> Incomplete:
     """
     Assemble a PIO program.
 
@@ -87,7 +81,7 @@ def asm_pio(
     """
     ...
 
-def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> int:
+def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> Incomplete:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
     instead.
@@ -109,9 +103,3 @@ def bootsel_button() -> int:
     prevent them from trying to execute code from flash.
     """
     ...
-
-class PIOASMEmit:
-    @overload
-    def __getitem__(self, key): ...
-    @overload
-    def __getitem__(self, key: int): ...

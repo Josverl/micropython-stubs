@@ -17,7 +17,6 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from typing import overload
 
 LITTLE_ENDIAN: bytes
 """\
@@ -93,40 +92,16 @@ Type constants for pointers and arrays. Note that there is no explicit
 constant for structures, it's implicit: an aggregate type without ``PTR``
 or ``ARRAY`` flags is a structure.
 """
-_ScalarProperty: TypeAlias = int
-_RecursiveProperty: TypeAlias = tuple[int, _property]
-_ArrayProperty: TypeAlias = tuple[int, int]
-_ArrayOfAggregateProperty: TypeAlias = tuple[int, int, _property]
-_PointerToAPrimitiveProperty: TypeAlias = tuple[int, int]
-_PointerToAaAggregateProperty: TypeAlias = tuple[int, "_property"]
-_BitfieldProperty: TypeAlias = int
-_property: TypeAlias = (
-    _ScalarProperty
-    | _RecursiveProperty
-    | _ArrayProperty
-    | _ArrayOfAggregateProperty
-    | _PointerToAPrimitiveProperty
-    | _PointerToAaAggregateProperty
-    | _BitfieldProperty
-)
-_descriptor: TypeAlias = tuple[str, _property]
 
 class struct:
     """
-    Module contents
-    ---------------
+    Instantiate a "foreign data structure" object based on structure address in
+    memory, descriptor (encoded as a dictionary), and layout type (see below).
     """
 
-    def __init__(self, addr: int, descriptor: _descriptor, layout_type: int = NATIVE, /) -> None:
-        """
-        Instantiate a "foreign data structure" object based on structure address in
-        memory, descriptor (encoded as a dictionary), and layout type (see below).
-        """
+    def __init__(self, addr, descriptor, layout_type=NATIVE, /) -> None: ...
 
-    @overload  # force push
-    def __getattr__(self, a): ...
-
-def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) -> int:
+def sizeof(struct, layout_type=NATIVE, /) -> int:
     """
     Return size of data structure in bytes. The *struct* argument can be
     either a structure class or a specific instantiated structure object
@@ -134,7 +109,7 @@ def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) ->
     """
     ...
 
-def addressof(obj: AnyReadableBuf, /) -> int:
+def addressof(obj) -> int:
     """
     Return address of an object. Argument should be bytes, bytearray or
     other object supporting buffer protocol (and address of this buffer
@@ -142,7 +117,7 @@ def addressof(obj: AnyReadableBuf, /) -> int:
     """
     ...
 
-def bytes_at(addr: int, size: int, /) -> bytes:
+def bytes_at(addr, size) -> bytes:
     """
     Capture memory at the given address and size as bytes object. As bytes
     object is immutable, memory is actually duplicated and copied into
@@ -151,7 +126,7 @@ def bytes_at(addr: int, size: int, /) -> bytes:
     """
     ...
 
-def bytearray_at(addr: int, size: int, /) -> bytearray:
+def bytearray_at(addr, size) -> bytearray:
     """
     Capture memory at the given address and size as bytearray object.
     Unlike bytes_at() function above, memory is captured by reference,

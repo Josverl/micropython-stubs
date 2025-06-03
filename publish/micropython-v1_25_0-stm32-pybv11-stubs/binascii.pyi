@@ -34,7 +34,7 @@ def crc32(data, value: Optional[Any] = None) -> Incomplete:
     ...
 
 def a2b_hex(*args, **kwargs) -> Incomplete: ...
-def b2a_base64(data: bytes, /) -> bytes:
+def b2a_base64(data, *, newline=True) -> bytes:
     """
     Encode binary data in base64 format, as in `RFC 3548
     <https://tools.ietf.org/html/rfc3548.html>`_. Returns the encoded data
@@ -42,7 +42,7 @@ def b2a_base64(data: bytes, /) -> bytes:
     """
     ...
 
-def a2b_base64(data: str | bytes, /) -> bytes:
+def a2b_base64(data) -> bytes:
     """
     Decode base64-encoded data, ignoring invalid characters in the input.
     Conforms to `RFC 2045 s.6.8 <https://tools.ietf.org/html/rfc2045#section-6.8>`_.
@@ -51,7 +51,7 @@ def a2b_base64(data: str | bytes, /) -> bytes:
     ...
 
 def b2a_hex(*args, **kwargs) -> Incomplete: ...
-def hexlify(data: bytes, sep: str | bytes = ..., /) -> bytes:
+def hexlify(data, sep: Optional[Any] = None) -> bytes:
     """
     Convert the bytes in the *data* object to a hexadecimal representation.
     Returns a bytes object.
@@ -61,7 +61,7 @@ def hexlify(data: bytes, sep: str | bytes = ..., /) -> bytes:
     """
     ...
 
-def unhexlify(data: str | bytes, /) -> bytes:
+def unhexlify(data) -> bytes:
     """
     Convert hexadecimal data to binary representation. Returns bytes string.
     (i.e. inverse of hexlify)

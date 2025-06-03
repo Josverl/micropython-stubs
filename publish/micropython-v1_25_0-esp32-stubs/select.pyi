@@ -15,7 +15,7 @@ Module: 'select' on micropython-v1.25.0-esp32-ESP32_GENERIC-SPIRAM
 # MCU: {'variant': 'SPIRAM', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC-SPIRAM', 'mpy': 'v6.3', 'ver': '1.25.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.25.0'}
 # Stubber: v1.25.0
 from __future__ import annotations
-from typing import Any, Iterable, Iterator, List, Optional, Tuple, Final
+from typing import Any, Iterator, List, Optional, Tuple, Final
 from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
@@ -24,13 +24,7 @@ POLLIN: Final[int] = 1
 POLLHUP: Final[int] = 16
 POLLERR: Final[int] = 8
 
-def select(
-    rlist: Iterable[Any],
-    wlist: Iterable[Any],
-    xlist: Iterable[Any],
-    timeout: int = -1,
-    /,
-) -> None:
+def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
     """
     Wait for activity on a set of objects.
 

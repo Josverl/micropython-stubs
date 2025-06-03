@@ -9,36 +9,19 @@ from .Timer import Timer
 
 class ADC:
     """
-    Usage::
-
-        import pyb
-
-        adc = pyb.ADC(pin)                  # create an analog object from a pin
-        val = adc.read()                    # read an analog value
-
-        adc = pyb.ADCAll(resolution)        # create an ADCAll object
-        adc = pyb.ADCAll(resolution, mask)  # create an ADCAll object for selected analog channels
-        val = adc.read_channel(channel)     # read the given channel
-        val = adc.read_core_temp()          # read MCU temperature
-        val = adc.read_core_vbat()          # read MCU VBAT
-        val = adc.read_core_vref()          # read MCU VREF
-        val = adc.read_vref()               # read MCU supply voltage
+    Create an ADC object associated with the given pin.
+    This allows you to then read analog values on that pin.
     """
 
-    def __init__(self, pin: int | Pin, /) -> None:
-        """
-        Create an ADC object associated with the given pin.
-        This allows you to then read analog values on that pin.
-        """
-
-    def read(self) -> int:
+    def __init__(self, pin) -> None: ...
+    def read(self) -> Incomplete:
         """
         Read the value on the analog pin and return it.  The returned value
         will be between 0 and 4095.
         """
         ...
 
-    def read_timed(self, buf: AnyWritableBuf, timer: Timer | int, /) -> None:
+    def read_timed(self, buf, timer) -> Incomplete:
         """
         Read analog values into ``buf`` at a rate set by the ``timer`` object.
 
@@ -76,8 +59,7 @@ class ADC:
         """
         ...
 
-    @staticmethod
-    def read_timed_multi(adcs: tuple[ADC, ...], bufs: tuple[AnyWritableBuf, ...], timer: Timer, /) -> bool:
+    def read_timed_multi(self, adcs, bufs, timer) -> bool:
         """
         This is a static method. It can be used to extract relative timing or
         phase data from multiple ADC's.

@@ -21,7 +21,7 @@ Module: 'math' on micropython-v1.25.0-rp2-RPI_PICO2_W
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import SupportsFloat, Tuple
+from typing import Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 inf: float = inf
@@ -30,62 +30,62 @@ pi: float = 3.141593
 e: float = 2.718282
 tau: float = 6.283185
 
-def ldexp(x: SupportsFloat, exp: int, /) -> float:
+def ldexp(x, exp) -> Incomplete:
     """
     Return ``x * (2**exp)``.
     """
     ...
 
-def lgamma(x: SupportsFloat, /) -> float:
+def lgamma(x) -> float:
     """
     Return the natural logarithm of the gamma function of ``x``.
     """
     ...
 
-def trunc(x: SupportsFloat, /) -> int:
+def trunc(x) -> int:
     """
     Return an integer, being ``x`` rounded towards 0.
     """
     ...
 
 def isclose(*args, **kwargs) -> Incomplete: ...
-def gamma(x: SupportsFloat, /) -> float:
+def gamma(x) -> Incomplete:
     """
     Return the gamma function of ``x``.
     """
     ...
 
-def isnan(x: SupportsFloat, /) -> bool:
+def isnan(x) -> bool:
     """
     Return ``True`` if ``x`` is not-a-number
     """
     ...
 
-def isfinite(x: SupportsFloat, /) -> bool:
+def isfinite(x) -> bool:
     """
     Return ``True`` if ``x`` is finite.
     """
     ...
 
-def isinf(x: SupportsFloat, /) -> bool:
+def isinf(x) -> bool:
     """
     Return ``True`` if ``x`` is infinite.
     """
     ...
 
-def sqrt(x: SupportsFloat, /) -> float:
+def sqrt(x) -> Incomplete:
     """
     Return the square root of ``x``.
     """
     ...
 
-def sinh(x: SupportsFloat, /) -> float:
+def sinh(x) -> float:
     """
     Return the hyperbolic sine of ``x``.
     """
     ...
 
-def log(x: SupportsFloat, /) -> float:
+def log(x, base) -> float:
     """
     With one argument, return the natural logarithm of *x*.
 
@@ -93,80 +93,80 @@ def log(x: SupportsFloat, /) -> float:
     """
     ...
 
-def tan(x: SupportsFloat, /) -> float:
+def tan(x) -> float:
     """
     Return the tangent of ``x``.
     """
     ...
 
-def tanh(x: SupportsFloat, /) -> float:
+def tanh(x) -> float:
     """
     Return the hyperbolic tangent of ``x``.
     """
     ...
 
-def log2(x: SupportsFloat, /) -> float:
+def log2(x) -> float:
     """
     Return the base-2 logarithm of ``x``.
     """
     ...
 
-def log10(x: SupportsFloat, /) -> float:
+def log10(x) -> float:
     """
     Return the base-10 logarithm of ``x``.
     """
     ...
 
-def sin(x: SupportsFloat, /) -> float:
+def sin(x) -> float:
     """
     Return the sine of ``x``.
     """
     ...
 
-def modf(x: SupportsFloat, /) -> Tuple:
+def modf(x) -> Tuple:
     """
     Return a tuple of two floats, being the fractional and integral parts of
     ``x``.  Both return values have the same sign as ``x``.
     """
     ...
 
-def radians(x: SupportsFloat, /) -> float:
+def radians(x) -> Incomplete:
     """
     Return degrees ``x`` converted to radians.
     """
     ...
 
-def atanh(x: SupportsFloat, /) -> float:
+def atanh(x) -> float:
     """
     Return the inverse hyperbolic tangent of ``x``.
     """
     ...
 
-def atan2(y: SupportsFloat, x: SupportsFloat, /) -> float:
+def atan2(y, x) -> float:
     """
     Return the principal value of the inverse tangent of ``y/x``.
     """
     ...
 
-def atan(x: SupportsFloat, /) -> float:
+def atan(x) -> float:
     """
     Return the inverse tangent of ``x``.
     """
     ...
 
-def ceil(x: SupportsFloat, /) -> int:
+def ceil(x) -> int:
     """
     Return an integer, being ``x`` rounded towards positive infinity.
     """
     ...
 
-def copysign(x: SupportsFloat, y: SupportsFloat, /) -> float:
+def copysign(x, y) -> Incomplete:
     """
     Return ``x`` with the sign of ``y``.
     """
     ...
 
-def frexp(x: SupportsFloat, /) -> tuple[float, int]:
+def frexp(x) -> Incomplete:
     """
     Decomposes a floating-point number into its mantissa and exponent.
     The returned value is the tuple ``(m, e)`` such that ``x == m * 2**e``
@@ -175,92 +175,92 @@ def frexp(x: SupportsFloat, /) -> tuple[float, int]:
     """
     ...
 
-def acos(x: SupportsFloat, /) -> float:
+def acos(x) -> float:
     """
     Return the inverse cosine of ``x``.
     """
     ...
 
-def pow(x: SupportsFloat, y: SupportsFloat, /) -> float:
+def pow(x, y) -> Incomplete:
     """
     Returns ``x`` to the power of ``y``.
     """
     ...
 
-def asinh(x: SupportsFloat, /) -> float:
+def asinh(x) -> float:
     """
     Return the inverse hyperbolic sine of ``x``.
     """
     ...
 
-def acosh(x: SupportsFloat, /) -> float:
+def acosh(x) -> float:
     """
     Return the inverse hyperbolic cosine of ``x``.
     """
     ...
 
-def asin(x: SupportsFloat, /) -> float:
+def asin(x) -> float:
     """
     Return the inverse sine of ``x``.
     """
     ...
 
 def factorial(*args, **kwargs) -> Incomplete: ...
-def fabs(x: SupportsFloat, /) -> float:
+def fabs(x) -> Incomplete:
     """
     Return the absolute value of ``x``.
     """
     ...
 
-def expm1(x: SupportsFloat, /) -> float:
+def expm1(x) -> Incomplete:
     """
     Return ``exp(x) - 1``.
     """
     ...
 
-def floor(x: SupportsFloat, /) -> int:
+def floor(x) -> int:
     """
     Return an integer, being ``x`` rounded towards negative infinity.
     """
     ...
 
-def fmod(x: SupportsFloat, y: SupportsFloat, /) -> float:
+def fmod(x, y) -> Incomplete:
     """
     Return the remainder of ``x/y``.
     """
     ...
 
-def cos(x: SupportsFloat, /) -> float:
+def cos(x) -> float:
     """
     Return the cosine of ``x``.
     """
     ...
 
-def degrees(x: SupportsFloat, /) -> float:
+def degrees(x) -> Incomplete:
     """
     Return radians ``x`` converted to degrees.
     """
     ...
 
-def cosh(x: SupportsFloat, /) -> float:
+def cosh(x) -> float:
     """
     Return the hyperbolic cosine of ``x``.
     """
     ...
 
-def exp(x: SupportsFloat, /) -> float:
+def exp(x) -> float:
     """
     Return the exponential of ``x``.
     """
     ...
 
-def erf(x: SupportsFloat, /) -> float:
+def erf(x) -> Incomplete:
     """
     Return the error function of ``x``.
     """
     ...
 
-def erfc(x: SupportsFloat, /) -> float:
+def erfc(x) -> Incomplete:
     """
     Return the complementary error function of ``x``.
     """

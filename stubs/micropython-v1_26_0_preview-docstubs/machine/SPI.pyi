@@ -2,64 +2,21 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload
+from typing import Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin
-from machine.Pin import Pin, PinLike
 
 class SPI:
     """
-    SPI is a synchronous serial protocol that is driven by a controller. At the
-    physical level, a bus consists of 3 lines: SCK, MOSI, MISO. Multiple devices
-    can share the same bus. Each device should have a separate, 4th signal,
-    CS (Chip Select), to select a particular device on a bus with which
-    communication takes place. Management of a CS signal should happen in
-    user code (via machine.Pin class).
+    Construct an SPI object on the given bus, *id*. Values of *id* depend
+    on a particular port and its hardware. Values 0, 1, etc. are commonly used
+    to select hardware SPI block #0, #1, etc.
 
-    Both hardware and software SPI implementations exist via the
-    :ref:`machine.SPI <machine.SPI>` and `machine.SoftSPI` classes.  Hardware SPI uses underlying
-    hardware support of the system to perform the reads/writes and is usually
-    efficient and fast but may have restrictions on which pins can be used.
-    Software SPI is implemented by bit-banging and can be used on any pin but
-    is not as efficient.  These classes have the same methods available and
-    differ primarily in the way they are constructed.
-
-    Example usage::
-
-        from machine import SPI, Pin
-
-        spi = SPI(0, baudrate=400000)           # Create SPI peripheral 0 at frequency of 400kHz.
-                                                # Depending on the use case, extra parameters may be required
-                                                # to select the bus characteristics and/or pins to use.
-        cs = Pin(4, mode=Pin.OUT, value=1)      # Create chip-select on pin 4.
-
-        try:
-            cs(0)                               # Select peripheral.
-            spi.write(b"12345678")              # Write 8 bytes, and don't care about received data.
-        finally:
-            cs(1)                               # Deselect peripheral.
-
-        try:
-            cs(0)                               # Select peripheral.
-            rxdata = spi.read(8, 0x42)          # Read 8 bytes while writing 0x42 for each byte.
-        finally:
-            cs(1)                               # Deselect peripheral.
-
-        rxdata = bytearray(8)
-        try:
-            cs(0)                               # Select peripheral.
-            spi.readinto(rxdata, 0x42)          # Read 8 bytes inplace while writing 0x42 for each byte.
-        finally:
-            cs(1)                               # Deselect peripheral.
-
-        txdata = b"12345678"
-        rxdata = bytearray(len(txdata))
-        try:
-            cs(0)                               # Select peripheral.
-            spi.write_readinto(txdata, rxdata)  # Simultaneously write and read bytes.
-        finally:
-            cs(1)                               # Deselect peripheral.
+    With no additional parameters, the SPI object is created but not
+    initialised (it has the settings from the last initialisation of
+    the bus, if any).  If extra arguments are given, the bus is initialised.
+    See ``init`` for parameters of initialisation.
     """
 
     CONTROLLER: Incomplete
@@ -68,81 +25,9 @@ class SPI:
     """set the first bit to be the most significant bit"""
     LSB: Incomplete
     """set the first bit to be the least significant bit"""
-    @overload
-    def __init__(self, id: int, /):
-        """
-        Construct an SPI object on the given bus, *id*. Values of *id* depend
-        on a particular port and its hardware. Values 0, 1, etc. are commonly used
-        to select hardware SPI block #0, #1, etc.
-
-        With no additional parameters, the SPI object is created but not
-        initialised (it has the settings from the last initialisation of
-        the bus, if any).  If extra arguments are given, the bus is initialised.
-        See ``init`` for parameters of initialisation.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: int,
-        /,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
-        bits: int = 8,
-        firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
-    ):
-        """
-        Construct an SPI object on the given bus, *id*. Values of *id* depend
-        on a particular port and its hardware. Values 0, 1, etc. are commonly used
-        to select hardware SPI block #0, #1, etc.
-
-        With no additional parameters, the SPI object is created but not
-        initialised (it has the settings from the last initialisation of
-        the bus, if any).  If extra arguments are given, the bus is initialised.
-        See ``init`` for parameters of initialisation.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: int,
-        /,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
-        bits: int = 8,
-        firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
-    ):
-        """
-        Construct an SPI object on the given bus, *id*. Values of *id* depend
-        on a particular port and its hardware. Values 0, 1, etc. are commonly used
-        to select hardware SPI block #0, #1, etc.
-
-        With no additional parameters, the SPI object is created but not
-        initialised (it has the settings from the last initialisation of
-        the bus, if any).  If extra arguments are given, the bus is initialised.
-        See ``init`` for parameters of initialisation.
-        """
-
-    @overload
+    def __init__(self, id, *args, **kwargs) -> None: ...
     def init(
-        self,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
-        bits: int = 8,
-        firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        self, baudrate=1000000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None, pins: Optional[Tuple]
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -165,39 +50,7 @@ class SPI:
         requested baudrate. This is dependent on the platform hardware. The actual
         rate may be determined by printing the SPI object.
         """
-
-    @overload
-    def init(
-        self,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
-        bits: int = 8,
-        firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
-    ) -> None:
-        """
-        Initialise the SPI bus with the given parameters:
-
-          - ``baudrate`` is the SCK clock rate.
-          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
-          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
-            respectively.
-          - ``bits`` is the width in bits of each transfer. Only 8 is guaranteed to be supported by all hardware.
-          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
-          - ``sck``, ``mosi``, ``miso`` are pins (machine.Pin) objects to use for bus signals. For most
-            hardware SPI blocks (as selected by ``id`` parameter to the constructor), pins are fixed
-            and cannot be changed. In some cases, hardware blocks allow 2-3 alternative pin sets for
-            a hardware SPI block. Arbitrary pin assignments are possible only for a bitbanging SPI driver
-            (``id`` = -1).
-          - ``pins`` - WiPy port doesn't ``sck``, ``mosi``, ``miso`` arguments, and instead allows to
-            specify them as a tuple of ``pins`` parameter.
-
-        In the case of hardware SPI the actual clock frequency may be lower than the
-        requested baudrate. This is dependent on the platform hardware. The actual
-        rate may be determined by printing the SPI object.
-        """
+        ...
 
     def deinit(self) -> None:
         """
@@ -205,7 +58,7 @@ class SPI:
         """
         ...
 
-    def read(self, nbytes: int, write: int = 0x00, /) -> bytes:
+    def read(self, nbytes, write=0x00) -> bytes:
         """
         Read a number of bytes specified by ``nbytes`` while continuously writing
         the single byte given by ``write``.
@@ -213,7 +66,7 @@ class SPI:
         """
         ...
 
-    def readinto(self, buf: AnyWritableBuf, write: int = 0x00, /) -> int:
+    def readinto(self, buf, write=0x00) -> int:
         """
         Read into the buffer specified by ``buf`` while continuously writing the
         single byte given by ``write``.
@@ -223,7 +76,7 @@ class SPI:
         """
         ...
 
-    def write(self, buf: AnyReadableBuf, /) -> int:
+    def write(self, buf) -> int:
         """
         Write the bytes contained in ``buf``.
         Returns ``None``.
@@ -232,7 +85,7 @@ class SPI:
         """
         ...
 
-    def write_readinto(self, write_buf: AnyReadableBuf, read_buf: AnyWritableBuf, /) -> int:
+    def write_readinto(self, write_buf, read_buf) -> int:
         """
         Write the bytes from ``write_buf`` while reading into ``read_buf``.  The
         buffers can be the same or different, but both buffers must have the
@@ -254,15 +107,4 @@ class SoftSPI(SPI):
     """set the first bit to be the most significant bit"""
     LSB: Incomplete
     """set the first bit to be the least significant bit"""
-    def __init__(
-        self,
-        baudrate=500000,
-        *,
-        polarity=0,
-        phase=0,
-        bits=8,
-        firstbit=MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
-    ) -> None: ...
+    def __init__(self, baudrate=500000, *, polarity=0, phase=0, bits=8, firstbit=MSB, sck=None, mosi=None, miso=None) -> None: ...

@@ -2,31 +2,20 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, overload, Any, List, Tuple
+from typing import Any, List, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class WLANWiPy:
     """
+       Create a WLAN object, and optionally configure it. See `init()` for params of configuration.
+
     .. note::
 
-        This class is a non-standard WLAN implementation for the WiPy.
-        It is available simply as ``network.WLAN`` on the WiPy but is named in the
-        documentation below as ``network.WLANWiPy`` to distinguish it from the
-        more general :ref:`network.WLAN <network.WLAN>` class.
-
-    This class provides a driver for the WiFi network processor in the WiPy. Example usage::
-
-        import network
-        import time
-        # setup as a station
-        wlan = network.WLAN(mode=WLAN.STA)
-        wlan.connect('your-ssid', auth=(WLAN.WPA2, 'your-key'))
-        while not wlan.isconnected():
-            time.sleep_ms(50)
-        print(wlan.ifconfig())
-
-        # now use socket as usual
-        ...
+       The ``WLAN`` constructor is special in the sense that if no arguments besides the id are given,
+       it will return the already existing ``WLAN`` instance without re-configuring it. This is
+       because ``WLAN`` is a system feature of the WiPy. If the already existing instance is not
+       initialized it will do the same as the other constructors an will initialize it with default
+       values.
     """
 
     STA: Incomplete
@@ -39,54 +28,8 @@ class WLANWiPy:
     INT_ANT: Incomplete
     EXT_ANT: Incomplete
     """selects the antenna type"""
-    @overload
-    def __init__(self, id: int = 0, /):
-        """
-        Create a WLAN object, and optionally configure it. See `init()` for params of configuration.
-
-        .. note::
-
-        The ``WLAN`` constructor is special in the sense that if no arguments besides the id are given,
-        it will return the already existing ``WLAN`` instance without re-configuring it. This is
-        because ``WLAN`` is a system feature of the WiPy. If the already existing instance is not
-        initialized it will do the same as the other constructors an will initialize it with default
-        values.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: int,
-        /,
-        *,
-        mode: int,
-        ssid: str,
-        auth: tuple[str, str],
-        channel: int,
-        antenna: int,
-    ):
-        """
-        Create a WLAN object, and optionally configure it. See `init()` for params of configuration.
-
-        .. note::
-
-        The ``WLAN`` constructor is special in the sense that if no arguments besides the id are given,
-        it will return the already existing ``WLAN`` instance without re-configuring it. This is
-        because ``WLAN`` is a system feature of the WiPy. If the already existing instance is not
-        initialized it will do the same as the other constructors an will initialize it with default
-        values.
-        """
-
-    def init(
-        self,
-        mode: int,
-        /,
-        *,
-        ssid: str,
-        auth: tuple[str, str],
-        channel: int,
-        antenna: int,
-    ) -> bool:
+    def __init__(self, id=0, *args, **kwargs) -> None: ...
+    def init(self, mode, *, ssid, auth, channel, antenna) -> Incomplete:
         """
         Set or get the WiFi network processor configuration.
 
@@ -114,15 +57,7 @@ class WLANWiPy:
         """
         ...
 
-    def connect(
-        self,
-        ssid: str,
-        /,
-        *,
-        auth: tuple[str, str] | None = None,
-        bssid: bytes | None = None,
-        timeout: int | None = None,
-    ) -> None:
+    def connect(self, ssid, *, auth=None, bssid=None, timeout=None) -> None:
         """
         Connect to a WiFi access point using the given SSID, and other security
         parameters.
@@ -163,79 +98,43 @@ class WLANWiPy:
         """
         ...
 
-    @overload
-    def mode(self) -> int:
+    def mode(self, mode: Optional[Any] = None) -> Incomplete:
         """
         Get or set the WLAN mode.
         """
+        ...
 
-    @overload
-    def mode(self, mode: int, /) -> None:
-        """
-        Get or set the WLAN mode.
-        """
-
-    @overload
-    def ssid(self) -> str:
+    def ssid(self, ssid: Optional[Any] = None) -> Incomplete:
         """
         Get or set the SSID when in AP mode.
         """
+        ...
 
-    @overload
-    def ssid(self, ssid: str, /) -> None:
-        """
-        Get or set the SSID when in AP mode.
-        """
-
-    @overload
-    def auth(self) -> int:
+    def auth(self, auth: Optional[Any] = None) -> Incomplete:
         """
         Get or set the authentication type when in AP mode.
         """
+        ...
 
-    @overload
-    def auth(self, auth: int, /) -> None:
-        """
-        Get or set the authentication type when in AP mode.
-        """
-
-    @overload
-    def channel(self) -> int:
+    def channel(self, channel: Optional[Any] = None) -> Incomplete:
         """
         Get or set the channel (only applicable in AP mode).
         """
+        ...
 
-    @overload
-    def channel(self, channel: int, /) -> None:
-        """
-        Get or set the channel (only applicable in AP mode).
-        """
-
-    @overload
-    def antenna(self) -> int:
+    def antenna(self, antenna: Optional[Any] = None) -> Incomplete:
         """
         Get or set the antenna type (external or internal).
         """
+        ...
 
-    @overload
-    def antenna(self, antenna: int, /) -> None:
-        """
-        Get or set the antenna type (external or internal).
-        """
-
-    @overload
-    def mac(self) -> bytes:
+    def mac(self, mac_addr: Optional[Any] = None) -> bytes:
         """
         Get or set a 6-byte long bytes object with the MAC address.
         """
+        ...
 
-    @overload
-    def mac(self, mac: bytes, /) -> None:
-        """
-        Get or set a 6-byte long bytes object with the MAC address.
-        """
-
-    def irq(self, *, handler: Callable[[], None], wake: int) -> Any:
+    def irq(self, *, handler, wake) -> Incomplete:
         """
         Create a callback to be triggered when a WLAN event occurs during ``machine.SLEEP``
         mode. Events are triggered by socket activity or by WLAN connection/disconnection.

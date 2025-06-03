@@ -15,7 +15,7 @@ Module: 'select' on micropython-v1.25.0-esp8266-ESP8266_GENERIC-FLASH_2M_ROMFS
 # MCU: {'variant': 'FLASH_2M_ROMFS', 'build': '', 'arch': 'xtensa', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'board_id': 'ESP8266_GENERIC-FLASH_2M_ROMFS', 'mpy': 'v6.3', 'ver': '1.25.0', 'family': 'micropython', 'cpu': 'ESP8266', 'version': '1.25.0'}
 # Stubber: v1.25.0
 from __future__ import annotations
-from typing import Any, Iterable, Iterator, List, Optional, Tuple, Final
+from typing import Any, Iterator, List, Optional, Tuple, Final
 from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
@@ -24,13 +24,7 @@ POLLIN: Final[int] = 1
 POLLHUP: Final[int] = 16
 POLLERR: Final[int] = 8
 
-def select(
-    rlist: Iterable[Any],
-    wlist: Iterable[Any],
-    xlist: Iterable[Any],
-    timeout: int = -1,
-    /,
-) -> None:
+def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
     """
     Wait for activity on a set of objects.
 

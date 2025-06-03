@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class TimerWiPy:
@@ -44,15 +44,7 @@ class TimerWiPy:
         """
         ...
 
-    def channel(
-        self,
-        channel,
-        *,
-        freq: int,
-        period: int,
-        polarity: Incomplete,
-        duty_cycle: int = 0,
-    ) -> Incomplete:
+    def channel(self, channel, *, freq, period, polarity=POSITIVE, duty_cycle=0) -> Incomplete:
         """
         If only a channel identifier passed, then a previously initialized channel
         object is returned (or ``None`` if there is no previous channel).
@@ -121,19 +113,19 @@ class timerchannel:
         """
         ...
 
-    def freq(self, value: Any | None = None) -> Incomplete:
+    def freq(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the timer channel frequency (in Hz).
         """
         ...
 
-    def period(self, value: Any | None = None) -> Incomplete:
+    def period(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the timer channel period (in microseconds).
         """
         ...
 
-    def duty_cycle(self, value: Any | None = None) -> Incomplete:
+    def duty_cycle(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get or set the duty cycle of the PWM signal. It's a percentage (0.00-100.00). Since the WiPy
         doesn't support floating point numbers the duty cycle must be specified in the range 0-10000,

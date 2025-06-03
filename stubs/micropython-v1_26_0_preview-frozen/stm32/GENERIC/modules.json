@@ -1,0 +1,28 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "stm32",
+        "platform": "stm32",
+        "machine": "GENERIC",
+        "firmware": "micropython-stm32-v1_26_0_preview",
+        "nodename": "micropython",
+        "version": "v1.26.0-preview",
+        "release": "v1.26.0-preview",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.25.0",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        }
+    ]
+}

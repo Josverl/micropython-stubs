@@ -21,25 +21,25 @@ Module: 'math' on micropython-v1.25.0-esp8266-ESP8266_GENERIC-FLASH_2M_ROMFS
 # Stubber: v1.25.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import SupportsFloat, Tuple
+from typing import Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 pi: float = 3.14159
 e: float = 2.71828
 
-def isnan(x: SupportsFloat, /) -> bool:
+def isnan(x) -> bool:
     """
     Return ``True`` if ``x`` is not-a-number
     """
     ...
 
-def ldexp(x: SupportsFloat, exp: int, /) -> float:
+def ldexp(x, exp) -> Incomplete:
     """
     Return ``x * (2**exp)``.
     """
     ...
 
-def frexp(x: SupportsFloat, /) -> tuple[float, int]:
+def frexp(x) -> Incomplete:
     """
     Decomposes a floating-point number into its mantissa and exponent.
     The returned value is the tuple ``(m, e)`` such that ``x == m * 2**e``
@@ -48,31 +48,31 @@ def frexp(x: SupportsFloat, /) -> tuple[float, int]:
     """
     ...
 
-def isinf(x: SupportsFloat, /) -> bool:
+def isinf(x) -> bool:
     """
     Return ``True`` if ``x`` is infinite.
     """
     ...
 
-def isfinite(x: SupportsFloat, /) -> bool:
+def isfinite(x) -> bool:
     """
     Return ``True`` if ``x`` is finite.
     """
     ...
 
-def trunc(x: SupportsFloat, /) -> int:
+def trunc(x) -> int:
     """
     Return an integer, being ``x`` rounded towards 0.
     """
     ...
 
-def sqrt(x: SupportsFloat, /) -> float:
+def sqrt(x) -> Incomplete:
     """
     Return the square root of ``x``.
     """
     ...
 
-def log(x: SupportsFloat, /) -> float:
+def log(x, base) -> float:
     """
     With one argument, return the natural logarithm of *x*.
 
@@ -80,104 +80,104 @@ def log(x: SupportsFloat, /) -> float:
     """
     ...
 
-def tan(x: SupportsFloat, /) -> float:
+def tan(x) -> float:
     """
     Return the tangent of ``x``.
     """
     ...
 
-def modf(x: SupportsFloat, /) -> Tuple:
+def modf(x) -> Tuple:
     """
     Return a tuple of two floats, being the fractional and integral parts of
     ``x``.  Both return values have the same sign as ``x``.
     """
     ...
 
-def sin(x: SupportsFloat, /) -> float:
+def sin(x) -> float:
     """
     Return the sine of ``x``.
     """
     ...
 
-def radians(x: SupportsFloat, /) -> float:
+def radians(x) -> Incomplete:
     """
     Return degrees ``x`` converted to radians.
     """
     ...
 
-def atan(x: SupportsFloat, /) -> float:
+def atan(x) -> float:
     """
     Return the inverse tangent of ``x``.
     """
     ...
 
-def ceil(x: SupportsFloat, /) -> int:
+def ceil(x) -> int:
     """
     Return an integer, being ``x`` rounded towards positive infinity.
     """
     ...
 
-def atan2(y: SupportsFloat, x: SupportsFloat, /) -> float:
+def atan2(y, x) -> float:
     """
     Return the principal value of the inverse tangent of ``y/x``.
     """
     ...
 
-def pow(x: SupportsFloat, y: SupportsFloat, /) -> float:
+def pow(x, y) -> Incomplete:
     """
     Returns ``x`` to the power of ``y``.
     """
     ...
 
-def asin(x: SupportsFloat, /) -> float:
+def asin(x) -> float:
     """
     Return the inverse sine of ``x``.
     """
     ...
 
-def acos(x: SupportsFloat, /) -> float:
+def acos(x) -> float:
     """
     Return the inverse cosine of ``x``.
     """
     ...
 
-def fmod(x: SupportsFloat, y: SupportsFloat, /) -> float:
+def fmod(x, y) -> Incomplete:
     """
     Return the remainder of ``x/y``.
     """
     ...
 
-def fabs(x: SupportsFloat, /) -> float:
+def fabs(x) -> Incomplete:
     """
     Return the absolute value of ``x``.
     """
     ...
 
-def copysign(x: SupportsFloat, y: SupportsFloat, /) -> float:
+def copysign(x, y) -> Incomplete:
     """
     Return ``x`` with the sign of ``y``.
     """
     ...
 
-def floor(x: SupportsFloat, /) -> int:
+def floor(x) -> int:
     """
     Return an integer, being ``x`` rounded towards negative infinity.
     """
     ...
 
-def cos(x: SupportsFloat, /) -> float:
+def cos(x) -> float:
     """
     Return the cosine of ``x``.
     """
     ...
 
-def exp(x: SupportsFloat, /) -> float:
+def exp(x) -> float:
     """
     Return the exponential of ``x``.
     """
     ...
 
-def degrees(x: SupportsFloat, /) -> float:
+def degrees(x) -> Incomplete:
     """
     Return radians ``x`` converted to degrees.
     """

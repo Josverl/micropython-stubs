@@ -58,7 +58,7 @@ def rfcore_status() -> int:
     """
     ...
 
-def rfcore_fw_version(id: int, /) -> Tuple:
+def rfcore_fw_version(id) -> Tuple:
     """
     Get the version of the firmware running on the second CPU.  Pass in 0 for
     *id* to get the FUS version, and 1 to get the WS version.
@@ -67,7 +67,7 @@ def rfcore_fw_version(id: int, /) -> Tuple:
     """
     ...
 
-def rfcore_sys_hci(ogf: int, ocf: int, data: int, timeout_ms: int = 0, /) -> bytes:
+def rfcore_sys_hci(ogf, ocf, data, timeout_ms=0) -> bytes:
     """
     Execute a HCI command on the SYS channel.  The execution is synchronous.
 

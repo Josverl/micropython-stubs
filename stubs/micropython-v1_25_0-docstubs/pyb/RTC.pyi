@@ -2,28 +2,16 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, overload, Tuple
+from typing import Any, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class RTC:
     """
-    The RTC is an independent clock that keeps track of the date
-    and time.
-
-    Example usage::
-
-        rtc = pyb.RTC()
-        rtc.datetime((2014, 5, 1, 4, 13, 0, 0, 0))
-        print(rtc.datetime())
+    Create an RTC object.
     """
 
-    def __init__(self) -> None:
-        """
-        Create an RTC object.
-        """
-
-    @overload
-    def datetime(self, datetimetuple: tuple[int, int, int, int, int, int, int, int], /) -> None:
+    def __init__(self) -> None: ...
+    def datetime(self, datetimetuple: Optional[Any] = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
 
@@ -41,26 +29,7 @@ class RTC:
         """
         ...
 
-    @overload
-    def datetime(self, /) -> Tuple:
-        """
-        Get or set the date and time of the RTC.
-
-        With no arguments, this method returns an 8-tuple with the current
-        date and time.  With 1 argument (being an 8-tuple) it sets the date
-        and time (and ``subseconds`` is reset to 255).
-
-        The 8-tuple has the following format:
-
-            (year, month, day, weekday, hours, minutes, seconds, subseconds)
-
-        ``weekday`` is 1-7 for Monday through Sunday.
-
-        ``subseconds`` counts down from 255 to 0
-        """
-        ...
-
-    def wakeup(self, timeout: int, callback: Callable[[RTC], None] | None = None, /) -> None:
+    def wakeup(self, timeout, callback=None) -> None:
         """
         Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
         milliseconds.  This trigger can wake the pyboard from both the sleep
@@ -73,7 +42,7 @@ class RTC:
         """
         ...
 
-    def info(self) -> int:
+    def info(self) -> Incomplete:
         """
         Get information about the startup time and reset source.
 
@@ -84,8 +53,7 @@ class RTC:
         """
         ...
 
-    @overload
-    def calibration(self) -> int:
+    def calibration(self, cal) -> int:
         """
         Get or set RTC calibration.
 
@@ -101,21 +69,4 @@ class RTC:
         usable calibration range is:
         (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
         """
-
-    @overload
-    def calibration(self, cal: int, /) -> None:
-        """
-        Get or set RTC calibration.
-
-        With no arguments, ``calibration()`` returns the current calibration
-        value, which is an integer in the range [-511 : 512].  With one
-        argument it sets the RTC calibration.
-
-        The RTC Smooth Calibration mechanism adjusts the RTC clock rate by
-        adding or subtracting the given number of ticks from the 32768 Hz
-        clock over a 32 second period (corresponding to 2^20 clock ticks.)
-        Each tick added will speed up the clock by 1 part in 2^20, or 0.954
-        ppm; likewise the RTC clock it slowed by negative values. The
-        usable calibration range is:
-        (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
-        """
+        ...

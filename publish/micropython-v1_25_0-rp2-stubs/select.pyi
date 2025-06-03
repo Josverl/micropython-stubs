@@ -15,7 +15,7 @@ Module: 'select' on micropython-v1.25.0-rp2-RPI_PICO
 # MCU: {'build': '', 'ver': '1.25.0', 'version': '1.25.0', 'port': 'rp2', 'board': 'RPI_PICO', 'mpy': 'v6.3', 'family': 'micropython', 'cpu': 'RP2040', 'arch': 'armv6m'}
 # Stubber: v1.24.0
 from __future__ import annotations
-from typing import Any, Iterable, Iterator, List, Optional, Tuple, Final
+from typing import Any, Iterator, List, Optional, Tuple, Final
 from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
@@ -24,13 +24,7 @@ POLLIN: Final[int] = 1
 POLLHUP: Final[int] = 16
 POLLERR: Final[int] = 8
 
-def select(
-    rlist: Iterable[Any],
-    wlist: Iterable[Any],
-    xlist: Iterable[Any],
-    timeout: int = -1,
-    /,
-) -> None:
+def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
     """
     Wait for activity on a set of objects.
 

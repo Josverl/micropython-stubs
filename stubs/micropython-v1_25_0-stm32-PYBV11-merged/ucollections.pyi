@@ -15,16 +15,14 @@ Module: 'ucollections' on micropython-v1.25.0-stm32-PYBV11
 # MCU: {'version': '1.25.0', 'mpy': 'v6.3', 'port': 'stm32', 'board': 'PYBV11', 'family': 'micropython', 'build': '', 'arch': 'armv7emsp', 'ver': '1.25.0', 'cpu': 'STM32F405RG'}
 # Stubber: v1.24.0
 from __future__ import annotations
-from typing import Dict, Generic, Tuple, Any, Final, Generator
+from typing import Optional, Tuple, Any, Final, Generator
 from _typeshed import Incomplete
-from collections.abc import Iterable
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
-_T = TypeVar("_T")
 
-def namedtuple(name: str, fields: str | Iterable[str]) -> type[Tuple[Any, ...]]:
+def namedtuple(name, fields) -> type[Tuple[Any, ...]]:
     """
     This is factory function to create a new namedtuple type with a specific
     name and set of fields. A namedtuple is a subclass of tuple which allows
@@ -44,7 +42,7 @@ def namedtuple(name: str, fields: str | Iterable[str]) -> type[Tuple[Any, ...]]:
     """
     ...
 
-class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
+class OrderedDict(stdlib_OrderedDict):
     """
     ``dict`` type subclass which remembers and preserves the order of keys
     added. When ordered dict is iterated over, keys/items are returned in
@@ -83,9 +81,24 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
     def fromkeys(cls, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *args, **kwargs) -> None: ...
 
-class deque:
+class deque(stdlib_deque):
     """
-    Minimal implementation of a deque that implements a FIFO buffer.
+    Deques (double-ended queues) are a list-like container that support O(1)
+    appends and pops from either side of the deque.  New deques are created
+    using the following arguments:
+
+        - *iterable* is an iterable used to populate the deque when it is
+          created.  It can be an empty tuple or list to create a deque that
+          is initially empty.
+
+        - *maxlen* must be specified and the deque will be bounded to this
+          maximum length.  Once the deque is full, any new items added will
+          discard items from the opposite end.
+
+        - The optional *flags* can be 1 to check for overflow when adding items.
+
+    Deque objects support `bool`, `len`, iteration and subscript load and store.
+    They also have the following methods:
     """
 
     def pop(self) -> Incomplete:
@@ -95,7 +108,7 @@ class deque:
         """
         ...
 
-    def appendleft(self, x: _T, /) -> Incomplete:
+    def appendleft(self, x) -> Incomplete:
         """
         Add *x* to the left side of the deque.
         Raises ``IndexError`` if overflow checking is enabled and there is
@@ -103,14 +116,14 @@ class deque:
         """
         ...
 
-    def popleft(self) -> Any:
+    def popleft(self) -> Incomplete:
         """
         Remove and return an item from the left side of the deque.
         Raises ``IndexError`` if no items are present.
         """
         ...
 
-    def extend(self, iterable: Iterable[_T], /) -> Incomplete:
+    def extend(self, iterable) -> Incomplete:
         """
         Extend the deque by appending all the items from *iterable* to
         the right of the deque.
@@ -119,7 +132,7 @@ class deque:
         """
         ...
 
-    def append(self, x: _T, /) -> None:
+    def append(self, x) -> Incomplete:
         """
         Add *x* to the right side of the deque.
         Raises ``IndexError`` if overflow checking is enabled and there is
@@ -127,17 +140,4 @@ class deque:
         """
         ...
 
-    def __init__(self, iterable: tuple[Any], maxlen: int, flags: int = 0, /) -> None:
-        """
-        Deques (double-ended queues) are a list-like container that support O(1)
-        appends and pops from either side of the deque.  New deques are created
-        using the following arguments:
-
-            - *iterable* must be the empty tuple, and the new deque is created empty.
-
-            - *maxlen* must be specified and the deque will be bounded to this
-              maximum length.  Once the deque is full, any new items added will
-              discard items from the opposite end.
-
-            - The optional *flags* can be 1 to check for overflow when adding items.
-        """
+    def __init__(self, iterable, maxlen, flags: Optional[Any] = None) -> None: ...

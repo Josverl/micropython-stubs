@@ -42,4 +42,3 @@ EHOSTUNREACH: Final[int] = 113
 ECONNABORTED: Final[int] = 103
 ECONNRESET: Final[int] = 104
 ECONNREFUSED: Final[int] = 111
-ENOTSUP: Final[int] = ...

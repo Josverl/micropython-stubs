@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any
+from typing import Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class USBDevice:
@@ -50,16 +50,7 @@ class USBDevice:
     configuration descriptor.
     """
     def __init__(self) -> None: ...
-    def config(
-        self,
-        desc_dev,
-        desc_cfg,
-        desc_strs=None,
-        open_itf_cb=None,
-        reset_cb=None,
-        control_xfer_cb=None,
-        xfer_cb=None,
-    ) -> None:
+    def config(self, desc_dev, desc_cfg, desc_strs=None, open_itf_cb=None, reset_cb=None, control_xfer_cb=None, xfer_cb=None) -> None:
         """
         Configures the ``USBDevice`` singleton object with the USB runtime device
         state and callback functions:
@@ -158,7 +149,7 @@ class USBDevice:
         """
         ...
 
-    def active(self, value: Any | None = None, /) -> bool:
+    def active(self, value: Optional[Any] = None, /) -> bool:
         """
         Returns the current active state of this runtime USB device as a
         boolean. The runtime USB device is "active" when it is available to
@@ -210,7 +201,7 @@ class USBDevice:
         """
         ...
 
-    def stall(self, ep, stall: bool | None = None, /) -> bool:
+    def stall(self, ep, stall: Optional[Any] = None, /) -> Incomplete:
         """
         Calling this function gets or sets the STALL state of a device endpoint.
 

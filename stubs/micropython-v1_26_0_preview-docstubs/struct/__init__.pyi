@@ -60,27 +60,24 @@ The following data types are supported:
 # origin module:: repos/micropython/docs/library/struct.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Tuple
+from typing import Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
-def calcsize(
-    fmt: str | bytes,
-    /,
-) -> int:
+def calcsize(fmt) -> int:
     """
     Return the number of bytes needed to store the given *fmt*.
     """
     ...
 
-def pack(fmt: str | bytes, /, *v: Any) -> bytes:
+def pack(fmt, v1, *args, **kwargs) -> bytes:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*.
     The return value is a bytes object encoding the values.
     """
     ...
 
-def pack_into(fmt: str | bytes, buffer: AnyWritableBuf, offset: int, /, *v: Any) -> None:
+def pack_into(fmt, buffer, offset, v1, *args, **kwargs) -> Incomplete:
     """
     Pack the values *v1*, *v2*, ... according to the format string *fmt*
     into a *buffer* starting at *offset*. *offset* may be negative to count
@@ -88,14 +85,14 @@ def pack_into(fmt: str | bytes, buffer: AnyWritableBuf, offset: int, /, *v: Any)
     """
     ...
 
-def unpack(fmt: str | bytes, data: AnyReadableBuf, /) -> Tuple:
+def unpack(fmt, data) -> Tuple:
     """
     Unpack from the *data* according to the format string *fmt*.
     The return value is a tuple of the unpacked values.
     """
     ...
 
-def unpack_from(fmt: str | bytes, data: AnyReadableBuf, offset: int = 0, /) -> Tuple:
+def unpack_from(fmt, data, offset=0, /) -> Tuple:
     """
     Unpack from the *data* starting at *offset* according to the format string
     *fmt*. *offset* may be negative to count from the end of *data*. The return

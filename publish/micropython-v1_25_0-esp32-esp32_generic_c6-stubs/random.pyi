@@ -34,14 +34,10 @@ Module: 'random' on micropython-v1.25.0-esp32-ESP32_GENERIC_C6
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import Subscriptable
-from typing import overload
+from typing import Any, Optional
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-_T = TypeVar("_T")
-
-@overload
-def randrange(stop: int, /) -> int:
+def randrange(start, stop, step: Optional[Any] = None) -> int:
     """
     The first form returns a random integer from the range [0, *stop*).
     The second form returns a random integer from the range [*start*, *stop*).
@@ -49,26 +45,7 @@ def randrange(stop: int, /) -> int:
     steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
     return odd numbers between 1 and 9 inclusive.
     """
-
-@overload
-def randrange(start: int, stop: int, /) -> int:
-    """
-    The first form returns a random integer from the range [0, *stop*).
-    The second form returns a random integer from the range [*start*, *stop*).
-    The third form returns a random integer from the range [*start*, *stop*) in
-    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
-    return odd numbers between 1 and 9 inclusive.
-    """
-
-@overload
-def randrange(start: int, stop: int, step: int, /) -> int:
-    """
-    The first form returns a random integer from the range [0, *stop*).
-    The second form returns a random integer from the range [*start*, *stop*).
-    The third form returns a random integer from the range [*start*, *stop*) in
-    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
-    return odd numbers between 1 and 9 inclusive.
-    """
+    ...
 
 def random() -> int:
     """
@@ -76,7 +53,7 @@ def random() -> int:
     """
     ...
 
-def seed(n: int | None = None, /) -> None:
+def seed(n=None, /) -> None:
     """
     Initialise the random number generator module with the seed *n* which should
     be an integer.  When no argument (or ``None``) is passed in it will (if
@@ -88,27 +65,27 @@ def seed(n: int | None = None, /) -> None:
     """
     ...
 
-def uniform(a: float, b: float) -> int:
+def uniform(a, b) -> int:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
     and *b* <= N <= *a* for *b* < *a*.
     """
     ...
 
-def choice(sequence: Subscriptable, /) -> None:
+def choice(sequence) -> Incomplete:
     """
     Chooses and returns one item at random from *sequence* (tuple, list or
     any object that supports the subscript operation).
     """
     ...
 
-def randint(a: int, b: int, /) -> int:
+def randint(a, b) -> int:
     """
     Return a random integer in the range [*a*, *b*].
     """
     ...
 
-def getrandbits(n: int, /) -> int:
+def getrandbits(n) -> int:
     """
     Return an integer with *n* random bits (0 <= n <= 32).
     """

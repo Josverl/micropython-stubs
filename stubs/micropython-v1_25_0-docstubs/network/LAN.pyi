@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, Tuple
+from typing import Any, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class LAN:
@@ -18,7 +18,7 @@ class LAN:
       - *phy_addr* specifies the address of the PHY interface. As with *phy_type*, the hardwired value has
         to be used for most boards and that value is the default.
       - *ref_clk_mode* specifies, whether the data clock is provided by the Ethernet controller or
-        the PYH interface.
+        the PHY interface.
         The default value is the one that matches the board. If set to ``LAN.OUT`` or ``Pin.OUT``
         or ``True``, the clock is driven by the Ethernet controller, if set to ``LAN.IN``
         or ``Pin.IN`` or ``False``, the clock is driven by the PHY interface.
@@ -26,24 +26,19 @@ class LAN:
     For example, with the Seeed Arch Mix board you can  use::
 
       nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=1, ref_clk_mode=Pin.IN)
+
+    ``Note:`` On esp32 port the constructor requires different arguments. See
+              :ref:`esp32 port reference <esp32_network_lan>`.
     """
 
     def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
-    @overload
-    def active(self, /) -> bool:
+    def active(self, state: Optional[Any] = None) -> Incomplete:
         """
         With a parameter, it sets the interface active if *state* is true, otherwise it
         sets it inactive.
         Without a parameter, it returns the state.
         """
-
-    @overload
-    def active(self, is_active: bool | int, /) -> None:
-        """
-        With a parameter, it sets the interface active if *state* is true, otherwise it
-        sets it inactive.
-        Without a parameter, it returns the state.
-        """
+        ...
 
     def isconnected(self) -> bool:
         """
@@ -58,7 +53,7 @@ class LAN:
         """
         ...
 
-    def ifconfig(self, configtuple: Any | None = None) -> Tuple:
+    def ifconfig(self, configtuple: Optional[Any] = None) -> Tuple:
         """
         Get/set IP address, subnet mask, gateway and DNS.
 

@@ -19,63 +19,61 @@ Module: 'cmath' on micropython-v1.25.0-stm32-PYBV11
 # Stubber: v1.24.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import SupportsComplex, SupportsFloat, SupportsIndex, Tuple
+from typing import Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
-
-_C: TypeAlias = SupportsFloat | SupportsComplex | SupportsIndex | complex
 
 e: float = 2.718282
 pi: float = 3.141593
 
-def polar(z: _C, /) -> Tuple:
+def polar(z) -> Tuple:
     """
     Returns, as a tuple, the polar form of ``z``.
     """
     ...
 
-def sqrt(z: _C, /) -> complex:
+def sqrt(z) -> Incomplete:
     """
     Return the square-root of ``z``.
     """
     ...
 
-def rect(r: float, phi: float, /) -> float:
+def rect(r, phi) -> float:
     """
     Returns the complex number with modulus ``r`` and phase ``phi``.
     """
     ...
 
-def sin(z: _C, /) -> float:
+def sin(z) -> float:
     """
     Return the sine of ``z``.
     """
     ...
 
-def exp(z: _C, /) -> float:
+def exp(z) -> float:
     """
     Return the exponential of ``z``.
     """
     ...
 
-def cos(z: _C, /) -> float:
+def cos(z) -> float:
     """
     Return the cosine of ``z``.
     """
     ...
 
-def phase(z: _C, /) -> float:
+def phase(z) -> float:
     """
     Returns the phase of the number ``z``, in the range (-pi, +pi].
     """
     ...
 
-def log(z: _C, /) -> float:
+def log(z) -> float:
     """
     Return the natural logarithm of ``z``.  The branch cut is along the negative real axis.
     """
     ...
 
-def log10(z: _C, /) -> float:
+def log10(z) -> float:
     """
     Return the base-10 logarithm of ``z``.  The branch cut is along the negative real axis.
     """

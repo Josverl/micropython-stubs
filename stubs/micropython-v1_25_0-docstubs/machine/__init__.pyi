@@ -15,8 +15,8 @@ damage.
 # origin module:: repos/micropython/docs/library/machine.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, NoReturn, Optional
-from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
+from typing import Any, NoReturn, Optional
+from typing_extensions import TypeVar, TypeAlias, Awaitable
 from machine.Pin import Pin
 from machine.Signal import Signal
 from machine.ADC import ADC
@@ -100,7 +100,7 @@ def bootloader(value: Optional[Any] = None) -> None:
     """
     ...
 
-def disable_irq() -> bool:
+def disable_irq() -> Incomplete:
     """
     Disable interrupt requests.
     Returns the previous IRQ state which should be considered an opaque value.
@@ -109,7 +109,7 @@ def disable_irq() -> bool:
     """
     ...
 
-def enable_irq(state: bool = True, /) -> None:
+def enable_irq(state) -> Incomplete:
     """
     Re-enable interrupt requests.
     The *state* parameter should be the value that was returned from the most
@@ -117,43 +117,15 @@ def enable_irq(state: bool = True, /) -> None:
     """
     ...
 
-@overload
-def freq() -> int:
+def freq(hz: Optional[Any] = None) -> Incomplete:
     """
     Returns the CPU frequency in hertz.
 
     On some ports this can also be used to set the CPU frequency by passing in *hz*.
     """
+    ...
 
-@overload
-def freq(hz: int, /) -> None:
-    """
-    Returns the CPU frequency in hertz.
-
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-@overload
-def freq(self) -> int:
-    """
-    Returns the CPU frequency in hertz.
-
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-@overload
-def freq(
-    self,
-    value: int,
-    /,
-) -> None:
-    """
-    Returns the CPU frequency in hertz.
-
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-def idle() -> None:
+def idle() -> Incomplete:
     """
     Gates the clock to the CPU, useful to reduce power consumption at any time
     during short or long periods. Peripherals continue working and execution
@@ -168,15 +140,13 @@ def idle() -> None:
     """
     ...
 
-@deprecated("use :func:`lightsleep()` instead.")
-def sleep() -> None:
+def sleep() -> Incomplete:
     """
     ``Note:`` This function is deprecated, use :func:`lightsleep()` instead with no arguments.
     """
     ...
 
-@overload
-def lightsleep() -> None:
+def lightsleep(time_ms: Optional[Any] = None) -> Incomplete:
     """
     Stops execution in an attempt to enter a low power state.
 
@@ -199,9 +169,9 @@ def lightsleep() -> None:
       return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
       from other resets.
     """
+    ...
 
-@overload
-def lightsleep(time_ms: int, /) -> None:
+def deepsleep(time_ms: Optional[Any] = None) -> NoReturn:
     """
     Stops execution in an attempt to enter a low power state.
 
@@ -224,58 +194,9 @@ def lightsleep(time_ms: int, /) -> None:
       return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
       from other resets.
     """
+    ...
 
-@overload
-def deepsleep() -> NoReturn:
-    """
-    Stops execution in an attempt to enter a low power state.
-
-    If *time_ms* is specified then this will be the maximum time in milliseconds that
-    the sleep will last for.  Otherwise the sleep can last indefinitely.
-
-    With or without a timeout, execution may resume at any time if there are events
-    that require processing.  Such events, or wake sources, should be configured before
-    sleeping, like `Pin` change or `RTC` timeout.
-
-    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
-    highly dependent on the underlying hardware, but the general properties are:
-
-    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
-      from the point where the sleep was requested, with all subsystems operational.
-
-    * A deepsleep may not retain RAM or any other state of the system (for example
-      peripherals or network interfaces).  Upon wake execution is resumed from the main
-      script, similar to a hard or power-on reset. The `reset_cause()` function will
-      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
-      from other resets.
-    """
-
-@overload
-def deepsleep(time_ms: int, /) -> NoReturn:
-    """
-    Stops execution in an attempt to enter a low power state.
-
-    If *time_ms* is specified then this will be the maximum time in milliseconds that
-    the sleep will last for.  Otherwise the sleep can last indefinitely.
-
-    With or without a timeout, execution may resume at any time if there are events
-    that require processing.  Such events, or wake sources, should be configured before
-    sleeping, like `Pin` change or `RTC` timeout.
-
-    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
-    highly dependent on the underlying hardware, but the general properties are:
-
-    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
-      from the point where the sleep was requested, with all subsystems operational.
-
-    * A deepsleep may not retain RAM or any other state of the system (for example
-      peripherals or network interfaces).  Upon wake execution is resumed from the main
-      script, similar to a hard or power-on reset. The `reset_cause()` function will
-      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
-      from other resets.
-    """
-
-def wake_reason() -> int:
+def wake_reason() -> Incomplete:
     """
     Get the wake reason. See :ref:`constants <machine_constants>` for the possible return values.
 
@@ -292,7 +213,7 @@ def unique_id() -> bytes:
     """
     ...
 
-def time_pulse_us(pin: Pin, pulse_level: int, timeout_us: int = 1_000_000, /) -> int:
+def time_pulse_us(pin, pulse_level, timeout_us=1000000, /) -> int:
     """
     Time a pulse on the given *pin*, and return the duration of the pulse in
     microseconds.  The *pulse_level* argument should be 0 to time a low pulse

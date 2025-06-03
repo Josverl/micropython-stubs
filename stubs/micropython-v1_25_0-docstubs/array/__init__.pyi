@@ -14,71 +14,37 @@ floating-point support).
 # origin module:: repos/micropython/docs/library/array.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Generic, overload, Any
+from typing import Any, List, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-from collections.abc import MutableSequence, Sequence
 
 _T = TypeVar("_T", int, float, str)
 
-class array(MutableSequence[_T], Generic[_T]):
+class array(List):
     """
-    |see_cpython_module| :mod:`python:array`.
+    Create array with elements of given type. Initial contents of the
+    array are given by *iterable*. If it is not provided, an empty
+    array is created.
 
-    Supported format codes: ``b``, ``B``, ``h``, ``H``, ``i``, ``I``, ``l``,
-    ``L``, ``q``, ``Q``, ``f``, ``d`` (the latter 2 depending on the
-    floating-point support).
-
-     +-----------+--------------------+-------------------+-----------------------+
-     | Type code | C Type             | Python Type       | Minimum size in bytes |
-     +===========+====================+===================+=======================+
-     | ``'b'``   | signed char        | int               | 1                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'B'``   | unsigned char      | int               | 1                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'h'``   | signed short       | int               | 2                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'H'``   | unsigned short     | int               | 2                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'i'``   | signed int         | int               | 2                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'I'``   | unsigned int       | int               | 2                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'l'``   | signed long        | int               | 4                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'L'``   | unsigned long      | int               | 4                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'q'``   | signed long long   | int               | 8                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'Q'``   | unsigned long long | int               | 8                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'f'``   | float              | float             | 4                     |
-     +-----------+--------------------+-------------------+-----------------------+
-     | ``'d'``   | double             | float             | 8                     |
-     +-----------+--------------------+-------------------+-----------------------+
+    In addition to the methods below, array objects also implement the buffer
+    protocol. This means the contents of the entire array can be accessed as raw
+    bytes via a `memoryview` or other interfaces which use this protocol.
     """
 
-    def __init__(self, typecode: str, iterable: Sequence[Any] = ..., /) -> None:
-        """
-        Create array with elements of given type. Initial contents of the
-        array are given by *iterable*. If it is not provided, an empty
-        array is created.
-        """
-
-    def append(self, val: Any, /) -> None:
+    def __init__(self, typecode, iterable: Optional[Any] = None) -> None: ...
+    def append(self, val) -> Incomplete:
         """
         Append new element *val* to the end of array, growing it.
         """
         ...
 
-    def extend(self, iterable: Sequence[Any], /) -> None:
+    def extend(self, iterable) -> Incomplete:
         """
         Append new elements as contained in *iterable* to the end of
         array, growing it.
         """
         ...
 
-    @overload
-    def __getitem__(self, index: int) -> _T:
+    def __getitem__(self, index) -> List[int]:
         """
         Indexed read of the array, called as ``a[index]`` (where ``a`` is an ``array``).
         Returns a value if *index* is an ``int`` and an ``array`` if *index* is a slice.
@@ -88,21 +54,9 @@ class array(MutableSequence[_T], Generic[_T]):
         **Note:** ``__getitem__`` cannot be called directly (``a.__getitem__(index)`` fails) and
         is not present in ``__dict__``, however ``a[index]`` does work.
         """
+        ...
 
-    @overload
-    def __getitem__(self, sl: slice) -> array[_T]:
-        """
-        Indexed read of the array, called as ``a[index]`` (where ``a`` is an ``array``).
-        Returns a value if *index* is an ``int`` and an ``array`` if *index* is a slice.
-        Negative indices count from the end and ``IndexError`` is thrown if the index is
-        out of range.
-
-        **Note:** ``__getitem__`` cannot be called directly (``a.__getitem__(index)`` fails) and
-        is not present in ``__dict__``, however ``a[index]`` does work.
-        """
-
-    @overload
-    def __setitem__(self, index: int, value: _T) -> None:
+    def __setitem__(self, index, value) -> Incomplete:
         """
         Indexed write into the array, called as ``a[index] = value`` (where ``a`` is an ``array``).
         ``value`` is a single value if *index* is an ``int`` and an ``array`` if *index* is a slice.
@@ -111,17 +65,7 @@ class array(MutableSequence[_T], Generic[_T]):
         **Note:** ``__setitem__`` cannot be called directly (``a.__setitem__(index, value)`` fails) and
         is not present in ``__dict__``, however ``a[index] = value`` does work.
         """
-
-    @overload
-    def __setitem__(self, sl: slice, values: array[_T]) -> None:
-        """
-        Indexed write into the array, called as ``a[index] = value`` (where ``a`` is an ``array``).
-        ``value`` is a single value if *index* is an ``int`` and an ``array`` if *index* is a slice.
-        Negative indices count from the end and ``IndexError`` is thrown if the index is out of range.
-
-        **Note:** ``__setitem__`` cannot be called directly (``a.__setitem__(index, value)`` fails) and
-        is not present in ``__dict__``, however ``a[index] = value`` does work.
-        """
+        ...
 
     def __len__(self) -> int:
         """
@@ -132,7 +76,7 @@ class array(MutableSequence[_T], Generic[_T]):
         """
         ...
 
-    def __add__(self, other: array[_T]) -> array[_T]:
+    def __add__(self, other) -> Incomplete:
         """
         Return a new ``array`` that is the concatenation of the array with *other*, called as
         ``a + other`` (where ``a`` and *other* are both ``arrays``).
@@ -142,7 +86,7 @@ class array(MutableSequence[_T], Generic[_T]):
         """
         ...
 
-    def __iadd__(self, other: array[_T]) -> None:
+    def __iadd__(self, other) -> Incomplete:
         """
         Concatenates the array with *other* in-place, called as ``a += other`` (where ``a`` and *other*
         are both ``arrays``).  Equivalent to ``extend(other)``.

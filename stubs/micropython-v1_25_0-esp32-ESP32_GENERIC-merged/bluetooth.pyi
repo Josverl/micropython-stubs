@@ -25,7 +25,7 @@ Module: 'bluetooth' on micropython-v1.25.0-esp32-ESP32_GENERIC-SPIRAM
 # MCU: {'variant': 'SPIRAM', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC-SPIRAM', 'mpy': 'v6.3', 'ver': '1.25.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.25.0'}
 # Stubber: v1.25.0
 from __future__ import annotations
-from typing import Any, Callable, overload, Final
+from typing import Any, Optional, Tuple, Final
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from typing_extensions import Awaitable, TypeAlias, TypeVar
@@ -35,41 +35,25 @@ FLAG_READ: Final[int] = 2
 FLAG_WRITE: Final[int] = 8
 FLAG_INDICATE: Final[int] = 32
 FLAG_WRITE_NO_RESPONSE: Final[int] = 4
-_Flag: TypeAlias = int
-_Descriptor: TypeAlias = tuple["UUID", _Flag]
-_Characteristic: TypeAlias = tuple["UUID", _Flag] | tuple["UUID", _Flag, tuple[_Descriptor, ...]]
-_Service: TypeAlias = tuple["UUID", tuple[_Characteristic, ...]]
 
 class UUID:
     """
-    class UUID
-    ----------
+    Creates a UUID instance with the specified **value**.
+
+    The **value** can be either:
+
+    - A 16-bit integer. e.g. ``0x2908``.
+    - A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``.
     """
 
-    def __init__(self, value: int | str, /) -> None:
-        """
-        Creates a UUID instance with the specified **value**.
-
-        The **value** can be either:
-
-        - A 16-bit integer. e.g. ``0x2908``.
-        - A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``.
-        """
+    def __init__(self, value, /) -> None: ...
 
 class BLE:
     """
-    class BLE
-    ---------
+    Returns the singleton BLE object.
     """
 
-    def gattc_write(
-        self,
-        conn_handle: memoryview,
-        value_handle: memoryview,
-        data: bytes,
-        mode: int = 0,
-        /,
-    ) -> None:
+    def gattc_write(self, conn_handle, value_handle, data, mode=0, /) -> None:
         """
         Issue a remote write to a connected server for the specified
         characteristic or descriptor handle.
@@ -89,7 +73,7 @@ class BLE:
         """
         ...
 
-    def gatts_indicate(self, conn_handle: memoryview, value_handle: memoryview, /) -> None:
+    def gatts_indicate(self, conn_handle, value_handle, data=None, /) -> None:
         """
         Sends a indication request to a connected client.
 
@@ -107,7 +91,7 @@ class BLE:
         """
         ...
 
-    def gattc_discover_services(self, conn_handle: memoryview, uuid: UUID | None = None, /) -> None:
+    def gattc_discover_services(self, conn_handle, uuid=None, /) -> Incomplete:
         """
         Query a connected server for its services.
 
@@ -118,7 +102,7 @@ class BLE:
         """
         ...
 
-    def gattc_read(self, conn_handle: memoryview, value_handle: memoryview, /) -> None:
+    def gattc_read(self, conn_handle, value_handle, /) -> None:
         """
         Issue a remote read to a connected server for the specified
         characteristic or descriptor handle.
@@ -128,7 +112,7 @@ class BLE:
         """
         ...
 
-    def gattc_exchange_mtu(self, conn_handle: memoryview, /) -> None:
+    def gattc_exchange_mtu(self, conn_handle, /) -> Incomplete:
         """
         Initiate MTU exchange with a connected server, using the preferred MTU
         set using ``BLE.config(mtu=value)``.
@@ -142,7 +126,7 @@ class BLE:
         """
         ...
 
-    def gatts_set_buffer(self, conn_handle: memoryview, len: int, append: bool = False, /) -> None:
+    def gatts_set_buffer(self, value_handle, len, append=False, /) -> None:
         """
         Sets the internal buffer size for a value in bytes. This will limit the
         largest possible write that can be received. The default is 20.
@@ -155,7 +139,7 @@ class BLE:
         """
         ...
 
-    def gatts_write(self, value_handle: memoryview, data: bytes, send_update: bool = False, /) -> None:
+    def gatts_write(self, value_handle, data, send_update=False, /) -> None:
         """
         Writes the local value for this handle, which can be read by a client.
 
@@ -165,7 +149,7 @@ class BLE:
         """
         ...
 
-    def gatts_notify(self, value_handle: memoryview, data: bytes, /) -> None:
+    def gatts_notify(self, conn_handle, value_handle, data=None, /) -> None:
         """
         Sends a notification request to a connected client.
 
@@ -180,7 +164,7 @@ class BLE:
         """
         ...
 
-    def gatts_register_services(self, services_definition: tuple[_Service, ...], /) -> tuple[tuple[memoryview, ...], ...]:
+    def gatts_register_services(self, services_definition, /) -> Incomplete:
         """
         Configures the server with the specified services, replacing any
         existing services.
@@ -243,14 +227,14 @@ class BLE:
         """
         ...
 
-    def gatts_read(self, value_handle: memoryview, /) -> bytes:
+    def gatts_read(self, value_handle, /) -> Incomplete:
         """
         Reads the local value for this handle (which has either been written by
         :meth:`gatts_write <BLE.gatts_write>` or by a remote client).
         """
         ...
 
-    def irq(self, handler: Callable[[int, tuple[memoryview, ...]], Any], /) -> _IRQ:
+    def irq(self, handler, /) -> _IRQ:
         """
             Registers a callback for events from the BLE stack. The *handler* takes two
             arguments, ``event`` (which will be one of the codes below) and ``data``
@@ -444,15 +428,7 @@ class BLE:
         """
         ...
 
-    def gap_advertise(
-        self,
-        interval_us: int,
-        adv_data: AnyReadableBuf | None = None,
-        /,
-        *,
-        resp_data: AnyReadableBuf | None = None,
-        connectable: bool = True,
-    ) -> None:
+    def gap_advertise(self, interval_us, adv_data=None, *, resp_data=None, connectable=True) -> Incomplete:
         """
         Starts advertising at the specified interval (in **micro** seconds). This
         interval will be rounded down to the nearest 625us. To stop advertising, set
@@ -469,15 +445,7 @@ class BLE:
         """
         ...
 
-    def gap_connect(
-        self,
-        addr_type: int,
-        addr: bytes,
-        scan_duration_ms: int = 2000,
-        min_conn_interval_us: int | None = None,
-        max_conn_interval_us: int | None = None,
-        /,
-    ) -> None:
+    def gap_connect(self, addr_type, addr, scan_duration_ms=2000, min_conn_interval_us=None, max_conn_interval_us=None, /) -> None:
         """
         Connect to a peripheral.
 
@@ -501,7 +469,7 @@ class BLE:
         """
         ...
 
-    def gattc_discover_descriptors(self, conn_handle: memoryview, start_handle: int, end_handle: int, /) -> None:
+    def gattc_discover_descriptors(self, conn_handle, start_handle, end_handle, /) -> Incomplete:
         """
         Query a connected server for descriptors in the specified range.
 
@@ -510,8 +478,7 @@ class BLE:
         """
         ...
 
-    @overload
-    def config(self, param: str, /) -> Any:
+    def config(self, param, /) -> Tuple:
         """
         Get or set configuration values of the BLE interface.  To get a value the
         parameter name should be quoted as a string, and just one parameter is
@@ -573,243 +540,18 @@ class BLE:
         - ``'le_secure'``: Sets whether "LE Secure" pairing is required. Default is
           false (i.e. allow "Legacy Pairing").
         """
+        ...
 
-    @overload
-    def config(self, **kwargs) -> None:
-        """
-        Get or set configuration values of the BLE interface.  To get a value the
-        parameter name should be quoted as a string, and just one parameter is
-        queried at a time.  To set values use the keyword syntax, and one or more
-        parameter can be set at a time.
-
-        Currently supported values are:
-
-        - ``'mac'``: The current address in use, depending on the current address mode.
-          This returns a tuple of ``(addr_type, addr)``.
-
-          See :meth:`gatts_write <BLE.gatts_write>` for details about address type.
-
-          This may only be queried while the interface is currently active.
-
-        - ``'addr_mode'``: Sets the address mode. Values can be:
-
-            * 0x00 - PUBLIC - Use the controller's public address.
-            * 0x01 - RANDOM - Use a generated static address.
-            * 0x02 - RPA - Use resolvable private addresses.
-            * 0x03 - NRPA - Use non-resolvable private addresses.
-
-          By default the interface mode will use a PUBLIC address if available, otherwise
-          it will use a RANDOM address.
-
-        - ``'gap_name'``: Get/set the GAP device name used by service 0x1800,
-          characteristic 0x2a00.  This can be set at any time and changed multiple
-          times.
-
-        - ``'rxbuf'``: Get/set the size in bytes of the internal buffer used to store
-          incoming events.  This buffer is global to the entire BLE driver and so
-          handles incoming data for all events, including all characteristics.
-          Increasing this allows better handling of bursty incoming data (for
-          example scan results) and the ability to receive larger characteristic values.
-
-        - ``'mtu'``: Get/set the MTU that will be used during a ATT MTU exchange. The
-          resulting MTU will be the minimum of this and the remote device's MTU.
-          ATT MTU exchange will not happen automatically (unless the remote device initiates
-          it), and must be manually initiated with
-          :meth:`gattc_exchange_mtu<BLE.gattc_exchange_mtu>`.
-          Use the ``_IRQ_MTU_EXCHANGED`` event to discover the MTU for a given connection.
-
-        - ``'bond'``: Sets whether bonding will be enabled during pairing. When
-          enabled, pairing requests will set the "bond" flag and the keys will be stored
-          by both devices.
-
-        - ``'mitm'``: Sets whether MITM-protection is required for pairing.
-
-        - ``'io'``: Sets the I/O capabilities of this device.
-
-          Available options are::
-
-            _IO_CAPABILITY_DISPLAY_ONLY = const(0)
-            _IO_CAPABILITY_DISPLAY_YESNO = const(1)
-            _IO_CAPABILITY_KEYBOARD_ONLY = const(2)
-            _IO_CAPABILITY_NO_INPUT_OUTPUT = const(3)
-            _IO_CAPABILITY_KEYBOARD_DISPLAY = const(4)
-
-        - ``'le_secure'``: Sets whether "LE Secure" pairing is required. Default is
-          false (i.e. allow "Legacy Pairing").
-        """
-
-    @overload
-    def config(self, param: str, /) -> Any:
-        """
-        Get or set configuration values of the BLE interface.  To get a value the
-        parameter name should be quoted as a string, and just one parameter is
-        queried at a time.  To set values use the keyword syntax, and one or more
-        parameter can be set at a time.
-
-        Currently supported values are:
-
-        - ``'mac'``: The current address in use, depending on the current address mode.
-          This returns a tuple of ``(addr_type, addr)``.
-
-          See :meth:`gatts_write <BLE.gatts_write>` for details about address type.
-
-          This may only be queried while the interface is currently active.
-
-        - ``'addr_mode'``: Sets the address mode. Values can be:
-
-            * 0x00 - PUBLIC - Use the controller's public address.
-            * 0x01 - RANDOM - Use a generated static address.
-            * 0x02 - RPA - Use resolvable private addresses.
-            * 0x03 - NRPA - Use non-resolvable private addresses.
-
-          By default the interface mode will use a PUBLIC address if available, otherwise
-          it will use a RANDOM address.
-
-        - ``'gap_name'``: Get/set the GAP device name used by service 0x1800,
-          characteristic 0x2a00.  This can be set at any time and changed multiple
-          times.
-
-        - ``'rxbuf'``: Get/set the size in bytes of the internal buffer used to store
-          incoming events.  This buffer is global to the entire BLE driver and so
-          handles incoming data for all events, including all characteristics.
-          Increasing this allows better handling of bursty incoming data (for
-          example scan results) and the ability to receive larger characteristic values.
-
-        - ``'mtu'``: Get/set the MTU that will be used during a ATT MTU exchange. The
-          resulting MTU will be the minimum of this and the remote device's MTU.
-          ATT MTU exchange will not happen automatically (unless the remote device initiates
-          it), and must be manually initiated with
-          :meth:`gattc_exchange_mtu<BLE.gattc_exchange_mtu>`.
-          Use the ``_IRQ_MTU_EXCHANGED`` event to discover the MTU for a given connection.
-
-        - ``'bond'``: Sets whether bonding will be enabled during pairing. When
-          enabled, pairing requests will set the "bond" flag and the keys will be stored
-          by both devices.
-
-        - ``'mitm'``: Sets whether MITM-protection is required for pairing.
-
-        - ``'io'``: Sets the I/O capabilities of this device.
-
-          Available options are::
-
-            _IO_CAPABILITY_DISPLAY_ONLY = const(0)
-            _IO_CAPABILITY_DISPLAY_YESNO = const(1)
-            _IO_CAPABILITY_KEYBOARD_ONLY = const(2)
-            _IO_CAPABILITY_NO_INPUT_OUTPUT = const(3)
-            _IO_CAPABILITY_KEYBOARD_DISPLAY = const(4)
-
-        - ``'le_secure'``: Sets whether "LE Secure" pairing is required. Default is
-          false (i.e. allow "Legacy Pairing").
-        """
-
-    @overload
-    def config(self, **kwargs) -> None:
-        """
-        Get or set configuration values of the BLE interface.  To get a value the
-        parameter name should be quoted as a string, and just one parameter is
-        queried at a time.  To set values use the keyword syntax, and one or more
-        parameter can be set at a time.
-
-        Currently supported values are:
-
-        - ``'mac'``: The current address in use, depending on the current address mode.
-          This returns a tuple of ``(addr_type, addr)``.
-
-          See :meth:`gatts_write <BLE.gatts_write>` for details about address type.
-
-          This may only be queried while the interface is currently active.
-
-        - ``'addr_mode'``: Sets the address mode. Values can be:
-
-            * 0x00 - PUBLIC - Use the controller's public address.
-            * 0x01 - RANDOM - Use a generated static address.
-            * 0x02 - RPA - Use resolvable private addresses.
-            * 0x03 - NRPA - Use non-resolvable private addresses.
-
-          By default the interface mode will use a PUBLIC address if available, otherwise
-          it will use a RANDOM address.
-
-        - ``'gap_name'``: Get/set the GAP device name used by service 0x1800,
-          characteristic 0x2a00.  This can be set at any time and changed multiple
-          times.
-
-        - ``'rxbuf'``: Get/set the size in bytes of the internal buffer used to store
-          incoming events.  This buffer is global to the entire BLE driver and so
-          handles incoming data for all events, including all characteristics.
-          Increasing this allows better handling of bursty incoming data (for
-          example scan results) and the ability to receive larger characteristic values.
-
-        - ``'mtu'``: Get/set the MTU that will be used during a ATT MTU exchange. The
-          resulting MTU will be the minimum of this and the remote device's MTU.
-          ATT MTU exchange will not happen automatically (unless the remote device initiates
-          it), and must be manually initiated with
-          :meth:`gattc_exchange_mtu<BLE.gattc_exchange_mtu>`.
-          Use the ``_IRQ_MTU_EXCHANGED`` event to discover the MTU for a given connection.
-
-        - ``'bond'``: Sets whether bonding will be enabled during pairing. When
-          enabled, pairing requests will set the "bond" flag and the keys will be stored
-          by both devices.
-
-        - ``'mitm'``: Sets whether MITM-protection is required for pairing.
-
-        - ``'io'``: Sets the I/O capabilities of this device.
-
-          Available options are::
-
-            _IO_CAPABILITY_DISPLAY_ONLY = const(0)
-            _IO_CAPABILITY_DISPLAY_YESNO = const(1)
-            _IO_CAPABILITY_KEYBOARD_ONLY = const(2)
-            _IO_CAPABILITY_NO_INPUT_OUTPUT = const(3)
-            _IO_CAPABILITY_KEYBOARD_DISPLAY = const(4)
-
-        - ``'le_secure'``: Sets whether "LE Secure" pairing is required. Default is
-          false (i.e. allow "Legacy Pairing").
-        """
-
-    @overload
-    def active(self) -> bool:
+    def active(self, active: Optional[Any] = None, /) -> Incomplete:
         """
         Optionally changes the active state of the BLE radio, and returns the
         current state.
 
         The radio must be made active before using any other methods on this class.
         """
+        ...
 
-    @overload
-    def active(self, active: bool, /) -> None:
-        """
-        Optionally changes the active state of the BLE radio, and returns the
-        current state.
-
-        The radio must be made active before using any other methods on this class.
-        """
-
-    @overload
-    def active(self) -> bool:
-        """
-        Optionally changes the active state of the BLE radio, and returns the
-        current state.
-
-        The radio must be made active before using any other methods on this class.
-        """
-
-    @overload
-    def active(self, active: bool, /) -> None:
-        """
-        Optionally changes the active state of the BLE radio, and returns the
-        current state.
-
-        The radio must be made active before using any other methods on this class.
-        """
-
-    def gap_scan(
-        self,
-        duration_ms: int,
-        interval_us: int = 1280000,
-        window_us: int = 11250,
-        active: bool = False,
-        /,
-    ) -> None:
+    def gap_scan(self, duration_ms, interval_us=1280000, window_us=11250, active=False, /) -> Incomplete:
         """
         Run a scan operation lasting for the specified duration (in **milli** seconds).
 
@@ -845,14 +587,7 @@ class BLE:
         """
         ...
 
-    def gattc_discover_characteristics(
-        self,
-        conn_handle: memoryview,
-        start_handle: int,
-        end_handle: int,
-        uuid: UUID | None = None,
-        /,
-    ) -> None:
+    def gattc_discover_characteristics(self, conn_handle, start_handle, end_handle, uuid=None, /) -> Incomplete:
         """
         Query a connected server for characteristics in the specified range.
 
@@ -867,7 +602,7 @@ class BLE:
         """
         ...
 
-    def gap_disconnect(self, conn_handle: memoryview, /) -> bool:
+    def gap_disconnect(self, conn_handle, /) -> bool:
         """
         Disconnect the specified connection handle. This can either be a
         central that has connected to this device (if acting as a peripheral)
@@ -882,7 +617,7 @@ class BLE:
         """
         ...
 
-    def gap_passkey(self, conn_handle: memoryview, action: int, passkey: int, /) -> None:
+    def gap_passkey(self, conn_handle, action, passkey, /) -> Incomplete:
         """
         Respond to a ``_IRQ_PASSKEY_ACTION`` event for the specified *conn_handle*
         and *action*.
@@ -900,7 +635,7 @@ class BLE:
         """
         ...
 
-    def gap_pair(self, conn_handle: memoryview, /) -> None:
+    def gap_pair(self, conn_handle, /) -> Incomplete:
         """
         Initiate pairing with the remote device.
 
@@ -911,7 +646,4 @@ class BLE:
         """
         ...
 
-    def __init__(self) -> None:
-        """
-        Returns the singleton BLE object.
-        """
+    def __init__(self) -> None: ...
