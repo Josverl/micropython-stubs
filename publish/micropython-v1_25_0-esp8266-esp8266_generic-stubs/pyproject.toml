@@ -1,7 +1,7 @@
 [project]
 name = "micropython-esp8266-esp8266_generic-stubs"
 description = "MicroPython stubs"
-version = "1.25.0.post1"
+version = "1.25.0.post2"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -43,6 +43,7 @@ include = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
+    { include = "_boot.pyi" },
     { include = "_espnow.pyi" },
     { include = "_onewire.pyi" },
     { include = "apa102.pyi" },
@@ -71,6 +72,7 @@ packages = [
     { include = "ntptime.pyi" },
     { include = "onewire.pyi" },
     { include = "platform.pyi" },
+    { include = "port_diag.pyi" },
     { include = "random.pyi" },
     { include = "requests/__init__.pyi" },
     { include = "select.pyi" },
@@ -88,6 +90,7 @@ packages = [
     { include = "umachine.pyi" },
     { include = "uos.pyi" },
     { include = "uplatform.pyi" },
+    { include = "urequests.pyi" },
     { include = "uselect.pyi" },
     { include = "usocket.pyi" },
     { include = "ussl.pyi" },
@@ -95,6 +98,8 @@ packages = [
     { include = "usys.pyi" },
     { include = "utime.pyi" },
     { include = "uzlib.pyi" },
+    { include = "webrepl.pyi" },
+    { include = "webrepl_setup.pyi" },
 ]
 
 [build-system]

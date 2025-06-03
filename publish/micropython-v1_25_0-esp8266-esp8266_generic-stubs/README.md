@@ -30,6 +30,7 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_25_0-esp8266-ESP8266_GENERIC-merged`
+* Frozen stubs from `stubs/micropython-v1_25_0-frozen/esp8266/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 
