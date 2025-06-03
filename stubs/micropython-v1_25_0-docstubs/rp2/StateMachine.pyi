@@ -4,6 +4,13 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from _mpy_shed import _IRQ
+from machine import Pin
+from rp2 import bootsel_button, _PIO_ASM_Program
+from rp2.DMA import DMA
+from rp2.Flash import Flash
+from rp2.PIO import PIO
+from rp2.PIOASMEmit import PIOASMEmit
 
 class StateMachine:
     """
@@ -15,21 +22,36 @@ class StateMachine:
     `StateMachine.init`.
     """
 
-    def __init__(self, id, program, *args, **kwargs) -> None: ...
+    def __init__(
+        self,
+        id: int,
+        program: _PIO_ASM_Program,
+        *,
+        freq: int = 1,
+        in_base: Pin | None = None,
+        out_base: Pin | None = None,
+        set_base: Pin | None = None,
+        jmp_pin: Pin | None = None,
+        sideset_base: Pin | None = None,
+        in_shiftdir: int | None = None,
+        out_shiftdir: int | None = None,
+        push_thresh: int | None = None,
+        pull_thresh: int | None = None,
+    ) -> None: ...
     def init(
         self,
-        program,
-        freq=-1,
+        program: _PIO_ASM_Program,
         *,
-        in_base=None,
-        out_base=None,
-        set_base=None,
-        jmp_pin=None,
-        sideset_base=None,
-        in_shiftdir=None,
-        out_shiftdir=None,
-        push_thresh=None,
-        pull_thresh=None,
+        freq: int = 1,
+        in_base: Pin | None = None,
+        out_base: Pin | None = None,
+        set_base: Pin | None = None,
+        jmp_pin: Pin | None = None,
+        sideset_base: Pin | None = None,
+        in_shiftdir: int | None = None,
+        out_shiftdir: int | None = None,
+        push_thresh: int | None = None,
+        pull_thresh: int | None = None,
     ) -> None:
         """
         Configure the state machine instance to run the given *program*.
@@ -64,7 +86,7 @@ class StateMachine:
         """
         ...
 
-    def active(self, value: Optional[Any] = None) -> Incomplete:
+    def active(self, value: Optional[Any] = None) -> bool:
         """
         Gets or sets whether the state machine is currently running.
 
@@ -75,7 +97,7 @@ class StateMachine:
         """
         ...
 
-    def restart(self) -> Incomplete:
+    def restart(self) -> None:
         """
         Restarts the state machine and jumps to the beginning of the program.
 
@@ -90,7 +112,7 @@ class StateMachine:
         """
         ...
 
-    def exec(self, instr) -> Incomplete:
+    def exec(self, instr) -> None:
         """
         Execute a single PIO instruction.
 
@@ -118,7 +140,7 @@ class StateMachine:
         """
         ...
 
-    def put(self, value, shift=0) -> Incomplete:
+    def put(self, value, shift=0):
         """
         Push words onto the state machine's TX FIFO.
 
@@ -154,7 +176,7 @@ class StateMachine:
         """
         ...
 
-    def irq(self, handler=None, trigger=0 | 1, hard=False) -> Incomplete:
+    def irq(self, handler=None, trigger=0 | 1, hard=False) -> _IRQ:
         """
         Returns the IRQ object for the given StateMachine.
 

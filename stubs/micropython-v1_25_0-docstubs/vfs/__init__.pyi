@@ -22,8 +22,10 @@ represented by VFS classes.
 # origin module:: repos/micropython/docs/library/vfs.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import List, Optional, Tuple
+from typing import overload, List, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from _mpy_shed import _BlockDeviceProtocol
+from abc import ABC, abstractmethod
 
 class VfsFat:
     """
@@ -32,9 +34,9 @@ class VfsFat:
     Objects created by this constructor can be mounted using :func:`mount`.
     """
 
-    def __init__(self, block_dev) -> None: ...
+    def __init__(self, block_dev: AbstractBlockDev) -> None: ...
     @staticmethod
-    def mkfs(block_dev) -> None:
+    def mkfs(block_dev: AbstractBlockDev) -> None:
         """
         Build a FAT filesystem on *block_dev*.
         """
@@ -50,9 +52,9 @@ class VfsLfs1:
     See :ref:`filesystem` for more information.
     """
 
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32) -> None: ...
+    def __init__(self, block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32) -> None: ...
     @staticmethod
-    def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
+    def mkfs(block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32) -> None:
         """
             Build a Lfs1 filesystem on *block_dev*.
 
@@ -79,9 +81,9 @@ class VfsLfs2:
     See :ref:`filesystem` for more information.
     """
 
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
+    def __init__(self, block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
     @staticmethod
-    def mkfs(block_dev, readsize=32, progsize=32, lookahead=32) -> None:
+    def mkfs(block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32) -> None:
         """
             Build a Lfs2 filesystem on *block_dev*.
 
@@ -98,16 +100,22 @@ class VfsPosix:
     the host filesystem is used.
     """
 
-    def __init__(self, root=None) -> None: ...
+    def __init__(self, root: str | None = None) -> None: ...
 
-class AbstractBlockDev:
+class AbstractBlockDev(ABC, _BlockDeviceProtocol):
     """
     Construct a block device object.  The parameters to the constructor are
     dependent on the specific block device.
     """
 
     def __init__(self, *args, **kwargs) -> None: ...
-    def readblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+    #
+    @abstractmethod
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray) -> bool: ...
+    @abstractmethod
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -123,7 +131,32 @@ class AbstractBlockDev:
         """
         ...
 
-    def writeblocks(self, block_num, buf, offset: Optional[int] = 0) -> Incomplete:
+    @abstractmethod
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+        """
+        The first form writes aligned, multiples of blocks, and requires that the
+        blocks that are written to be first erased (if necessary) by this method.
+        Starting at the block given by the index *block_num*, write blocks from
+        *buf* (an array of bytes) to the device.
+        The number of blocks to write is given by the length of *buf*,
+        which will be a multiple of the block size.
+
+        The second form allows writing at arbitrary locations within a block,
+        and arbitrary lengths.  Only the bytes being written should be changed,
+        and the caller of this method must ensure that the relevant blocks are
+        erased via a prior ``ioctl`` call.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, write bytes from *buf* (an array of bytes) to the device.
+        The number of bytes to write is given by the length of *buf*.
+
+        Note that implementations must never implicitly erase blocks if the offset
+        argument is specified, even if it is zero.
+        """
+
+    @abstractmethod
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
         """
         The first form writes aligned, multiples of blocks, and requires that the
         blocks that are written to be first erased (if necessary) by this method.
@@ -145,7 +178,13 @@ class AbstractBlockDev:
         """
         ...
 
-    def ioctl(self, op, arg) -> int:
+    @abstractmethod
+    @overload
+    def ioctl(self, op: int, arg) -> int | None: ...
+    #
+    @abstractmethod
+    @overload
+    def ioctl(self, op: int) -> int | None:
         """
          Control the block device and query its parameters.  The operation to
          perform is given by *op* which is one of the following integers:
@@ -178,7 +217,7 @@ class AbstractBlockDev:
         """
         ...
 
-def mount() -> List[Tuple]:
+def mount(fsobj, mount_point: str, *, readonly: bool = False) -> List[Tuple]:
     """
     :noindex:
 
@@ -189,7 +228,7 @@ def mount() -> List[Tuple]:
     """
     ...
 
-def umount(mount_point) -> Incomplete:
+def umount(mount_point: Incomplete) -> Incomplete:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
     or a previously-mounted filesystem object.  During the unmount process the

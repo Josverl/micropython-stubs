@@ -3,6 +3,50 @@
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from micropython import const
+
+WM8960_I2C_ADDR = const(0x1A)
+MODULE_ADC = const(0)
+MODULE_DAC = const(1)
+MODULE_VREF = const(2)
+MODULE_HEADPHONE = const(3)
+MODULE_MIC_BIAS = const(4)
+MODULE_MIC = const(5)
+MODULE_LINE_IN = const(6)
+MODULE_LINE_OUT = const(7)
+MODULE_SPEAKER = const(8)
+MODULE_OMIX = const(9)
+MODULE_MONO_OUT = const(10)
+ROUTE_BYPASS = const(0)
+ROUTE_PLAYBACK = const(1)
+ROUTE_PLAYBACK_RECORD = const(2)
+ROUTE_RECORD = const(5)
+INPUT_CLOSED = const(0)
+INPUT_MIC1 = const(1)
+INPUT_MIC2 = const(2)
+INPUT_MIC3 = const(3)
+INPUT_LINE2 = const(4)
+INPUT_LINE3 = const(5)
+SYNC_ADC = const(0)
+SYNC_DAC = const(1)
+BUS_I2S = const(2)
+BUS_LEFT_JUSTIFIED = const(1)
+BUS_RIGHT_JUSTIFIED = const(0)
+BUS_PCMA = const(3)
+BUS_PCMB = const(3 | (1 << 4))
+SWAP_NONE = const(0)
+SWAP_INPUT = const(1)
+SWAP_OUTPUT = const(2)
+MUTE_FAST = const(0)
+MUTE_SLOW = const(1)
+ALC_OFF = const(0)
+ALC_RIGHT = const(1)
+ALC_LEFT = const(2)
+ALC_STEREO = const(3)
+ALC_MODE = const(0)
+ALC_LIMITER = const(1)
+SYSCLK_MCLK = const(0)
+SYSCLK_PLL = const(1)
 
 class WM8960:
     """
@@ -67,19 +111,19 @@ class WM8960:
         protocol=BUS_I2S,
         i2c_address=WM8960_I2C_ADDR,
     ) -> None: ...
-    def set_left_input(self, input_source) -> Incomplete:
+    def set_left_input(self, input_source) -> None:
         """
         Specify the source for the left input.  The input source names are listed above.
         """
         ...
 
-    def set_right_input(self, input_source) -> Incomplete:
+    def set_right_input(self, input_source) -> None:
         """
         Specify the source for the right input.  The input source names are listed above.
         """
         ...
 
-    def volume(self, module, volume_l=None, volume_r=None) -> Incomplete:
+    def volume(self, module, volume_l=None, volume_r=None) -> None:
         """
         Sets or gets the volume of a certain module.
 
@@ -95,7 +139,7 @@ class WM8960:
         """
         ...
 
-    def mute(self, module, mute, soft=True, ramp=MUTE_FAST) -> Incomplete:
+    def mute(self, module, mute, soft=True, ramp=MUTE_FAST) -> None:
         """
         Mute or unmute the output. If *mute* is True, the output is muted, if ``False``
         it is unmuted.
@@ -141,7 +185,7 @@ class WM8960:
         """
         ...
 
-    def mono(self, active) -> Incomplete:
+    def mono(self, active) -> None:
         """
         If *active* is ``True``, a Mono mix is sent to the left and right output
         channel.  This is different from enabling the ``MODULE_MONO_MIX``, which
@@ -149,7 +193,7 @@ class WM8960:
         """
         ...
 
-    def alc_mode(self, channel, mode=ALC_MODE) -> Incomplete:
+    def alc_mode(self, channel, mode: int = ALC_MODE) -> None:
         """
         Enables or disables ALC mode.  Parameters are:
 
@@ -167,7 +211,7 @@ class WM8960:
         """
         ...
 
-    def alc_gain(self, target=-12, max_gain=30, min_gain=-17.25, noise_gate=-78) -> Incomplete:
+    def alc_gain(self, target=-12, max_gain=30, min_gain=-17.25, noise_gate=-78) -> None:
         """
         Set the target level, highest and lowest gain levels and the noise gate as dB level.
         Permitted ranges are:
@@ -195,7 +239,7 @@ class WM8960:
         """
         ...
 
-    def deemphasis(self, active) -> Incomplete:
+    def deemphasis(self, active) -> None:
         """
         Enables or disables a deemphasis filter for playback, with *active* being
         ``False`` or ``True``.  This filter is applied only for sample rates of
