@@ -31,7 +31,7 @@ jobs:
           poetry config --list
       - run: |
           pip install wheel
-          pip install -U micropython-stubber
+          pip install -U micropython-stubber --pre
       - run: |
           echo Running in folder $(pwd)
           stubber --version
