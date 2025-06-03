@@ -1,21 +1,14 @@
-"""
-Module: 'flashbdev' on micropython-v1.25.0-esp8266-ESP8266_GENERIC-FLASH_2M_ROMFS
-"""
-
-# MCU: {'variant': 'FLASH_2M_ROMFS', 'build': '', 'arch': 'xtensa', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'board_id': 'ESP8266_GENERIC-FLASH_2M_ROMFS', 'mpy': 'v6.3', 'ver': '1.25.0', 'family': 'micropython', 'cpu': 'ESP8266', 'version': '1.25.0'}
-# Stubber: v1.25.0
-from __future__ import annotations
-from typing import Final
 from _typeshed import Incomplete
 
-start_sec: int = 256
-size: int = 4194304
-
 class FlashBdev:
-    SEC_SIZE: Final[int] = 4096
-    def writeblocks(self, *args, **kwargs) -> Incomplete: ...
-    def ioctl(self, *args, **kwargs) -> Incomplete: ...
-    def readblocks(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    SEC_SIZE: int
+    start_sec: Incomplete
+    blocks: Incomplete
+    def __init__(self, start_sec, blocks) -> None: ...
+    def readblocks(self, n, buf, off: int = 0) -> None: ...
+    def writeblocks(self, n, buf, off: Incomplete | None = None) -> None: ...
+    def ioctl(self, op, arg): ...
 
-bdev: Incomplete  ## <class 'FlashBdev'> = <FlashBdev object at ...>
+size: Incomplete
+bdev: Incomplete
+start_sec: Incomplete

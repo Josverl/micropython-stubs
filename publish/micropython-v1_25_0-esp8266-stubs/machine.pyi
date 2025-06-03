@@ -11,13 +11,13 @@ malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 
 ---
-Module: 'machine' on micropython-v1.25.0-esp8266-ESP8266_GENERIC
+Module: 'machine' on micropython-v1.25.0-esp8266-ESP8266_GENERIC-FLASH_2M_ROMFS
 """
 
-# MCU: {'version': '1.25.0', 'mpy': 'v6.3', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensa', 'ver': '1.25.0', 'cpu': 'ESP8266'}
-# Stubber: v1.24.0
+# MCU: {'variant': 'FLASH_2M_ROMFS', 'build': '', 'arch': 'xtensa', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'board_id': 'ESP8266_GENERIC-FLASH_2M_ROMFS', 'mpy': 'v6.3', 'ver': '1.25.0', 'family': 'micropython', 'cpu': 'ESP8266', 'version': '1.25.0'}
+# Stubber: v1.25.0
 from __future__ import annotations
-from typing import NoReturn, Optional, Union, Tuple, Callable, List, Sequence, overload, Any, Final, Generator
+from typing import NoReturn, Optional, Union, Tuple, Any, Callable, List, Sequence, overload, Final
 from _typeshed import Incomplete
 from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
@@ -861,7 +861,6 @@ class Pin:
         alternate-function mode is re-initialised with ``Pin.IN``, ``Pin.OUT``, or
         ``Pin.OPEN_DRAIN``, the alternate function will be removed from the pin.
         """
-        ...
 
     @overload
     def __call__(self) -> int:
@@ -982,7 +981,6 @@ class ADC:
 
         WiPy has a custom implementation of ADC, see ADCWiPy for details.
         """
-        ...
 
 class PWM:
     """
@@ -1151,7 +1149,6 @@ class PWM:
         underlying PWM generator (this is hardware specific).
         Only one of *duty_u16* and *duty_ns* should be specified at a time.
         """
-        ...
 
 class I2C:
     """
@@ -1412,7 +1409,6 @@ class WDT:
         Notes: On the esp32 the minimum timeout is 1 second. On the esp8266 a timeout
         cannot be specified, it is determined by the underlying system.
         """
-        ...
 
 class Timer:
     """

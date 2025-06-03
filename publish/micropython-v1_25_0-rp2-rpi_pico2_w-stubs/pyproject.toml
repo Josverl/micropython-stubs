@@ -1,7 +1,7 @@
 [project]
 name = "micropython-rp2-rpi_pico2_w-stubs"
 description = "MicroPython stubs"
-version = "1.25.0.post1"
+version = "1.25.0.post3"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -43,6 +43,7 @@ include = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
+    { include = "_boot.pyi" },
     { include = "_boot_fat.pyi" },
     { include = "_onewire.pyi" },
     { include = "_thread.pyi" },
@@ -112,6 +113,8 @@ packages = [
     { include = "uwebsocket.pyi" },
     { include = "uzlib.pyi" },
     { include = "vfs.pyi" },
+    { include = "webrepl.pyi" },
+    { include = "webrepl_setup.pyi" },
     { include = "websocket.pyi" },
 ]
 

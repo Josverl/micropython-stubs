@@ -1,7 +1,7 @@
 [project]
 name = "micropython-samd-seeed_wio_terminal-stubs"
 description = "MicroPython stubs"
-version = "1.25.0.post1"
+version = "1.25.0.post3"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -43,6 +43,7 @@ include = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
+    { include = "_boot.pyi" },
     { include = "_onewire.pyi" },
     { include = "binascii.pyi" },
     { include = "deflate.pyi" },

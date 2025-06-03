@@ -9,23 +9,16 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
    ports. On STM32 / Pyboard and others, you can either install the
    ``neopixel`` package using :term:`mip`, or you can download the module
    directly from :term:`micropython-lib` and copy it to the filesystem.
-
----
-Module: 'neopixel' on micropython-v1.25.0-esp8266-ESP8266_GENERIC
 """
 
-# MCU: {'version': '1.25.0', 'mpy': 'v6.3', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'family': 'micropython', 'build': '', 'arch': 'xtensa', 'ver': '1.25.0', 'cpu': 'ESP8266'}
-# Stubber: v1.24.0
 from __future__ import annotations
-from typing import Tuple, Any, Final, Generator
 from _typeshed import Incomplete
 from _mpy_shed import _NeoPixelBase
 from machine import Pin
+from typing import Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _Color: TypeAlias = tuple[int, int, int] | tuple[int, int, int, int]
-
-def bitstream(*args, **kwargs) -> Incomplete: ...
 
 class NeoPixel(_NeoPixelBase):
     """
@@ -49,21 +42,13 @@ class NeoPixel(_NeoPixelBase):
         n.write()
     """
 
-    ORDER: tuple = ()
-    def write(self) -> None:
-        """
-        Writes the current pixel data to the strip.
-        """
-        ...
-
-    def fill(self, pixel: _Color, /) -> None:
-        """
-        Sets the value of all pixels to the specified *pixel* value (i.e. an
-        RGB/RGBW tuple).
-        """
-        ...
-
-    def __init__(self, pin: Pin, n: int, /, *, bpp: int = 3, timing: int = 1) -> None:
+    ORDER: Incomplete
+    pin: Incomplete
+    n: Incomplete
+    bpp: Incomplete
+    buf: Incomplete
+    timing: Incomplete
+    def __init__(self, pin, n, bpp: int = 3, timing: int = 1) -> None:
         """
         Construct an NeoPixel object.  The parameters are:
 
@@ -71,5 +56,35 @@ class NeoPixel(_NeoPixelBase):
             - *n* is the number of LEDs in the strip.
             - *bpp* is 3 for RGB LEDs, and 4 for RGBW LEDs.
             - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
+        """
+
+    def __len__(self) -> int:
+        """
+        Returns the number of LEDs in the strip.
+        """
+        ...
+
+    def __setitem__(self, i, v) -> None:
+        """
+        Set the pixel at *index* to the value, which is an RGB/RGBW tuple.
+        """
+        ...
+
+    def __getitem__(self, i) -> Tuple:
+        """
+        Returns the pixel at *index* as an RGB/RGBW tuple.
+        """
+        ...
+
+    def fill(self, v) -> None:
+        """
+        Sets the value of all pixels to the specified *pixel* value (i.e. an
+        RGB/RGBW tuple).
+        """
+        ...
+
+    def write(self) -> None:
+        """
+        Writes the current pixel data to the strip.
         """
         ...

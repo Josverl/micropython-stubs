@@ -30,6 +30,7 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_25_0-samd-SEEED_WIO_TERMINAL-merged`
+* Frozen stubs from `stubs/micropython-v1_25_0-frozen/samd/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 

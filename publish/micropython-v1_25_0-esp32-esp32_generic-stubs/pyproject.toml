@@ -1,7 +1,7 @@
 [project]
 name = "micropython-esp32-esp32_generic-stubs"
 description = "MicroPython stubs"
-version = "1.25.0.post2"
+version = "1.25.0.post4"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -43,6 +43,7 @@ include = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
+    { include = "_boot.pyi" },
     { include = "_espnow.pyi" },
     { include = "_onewire.pyi" },
     { include = "_thread.pyi" },
@@ -95,10 +96,12 @@ packages = [
     { include = "uio.pyi" },
     { include = "ujson.pyi" },
     { include = "umachine.pyi" },
+    { include = "umqtt/__init__.pyi" },
     { include = "umqtt/robust.pyi" },
     { include = "umqtt/simple.pyi" },
     { include = "uos.pyi" },
     { include = "uplatform.pyi" },
+    { include = "upysh.pyi" },
     { include = "urandom.pyi" },
     { include = "ure.pyi" },
     { include = "urequests.pyi" },
@@ -111,6 +114,8 @@ packages = [
     { include = "uwebsocket.pyi" },
     { include = "uzlib.pyi" },
     { include = "vfs.pyi" },
+    { include = "webrepl.pyi" },
+    { include = "webrepl_setup.pyi" },
     { include = "websocket.pyi" },
 ]
 
