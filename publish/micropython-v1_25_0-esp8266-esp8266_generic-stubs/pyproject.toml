@@ -1,7 +1,7 @@
 [project]
 name = "micropython-esp8266-esp8266_generic-stubs"
 description = "MicroPython stubs"
-version = "1.25.0.post2"
+version = "1.25.0.post3"
 readme = "README.md"
 license = "MIT"
 authors = [

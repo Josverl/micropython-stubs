@@ -1,7 +1,7 @@
 [project]
 name = "micropython-esp32-esp32_generic_s2-stubs"
 description = "MicroPython stubs"
-version = "1.25.0.post2"
+version = "1.25.0.post3"
 readme = "README.md"
 license = "MIT"
 authors = [
