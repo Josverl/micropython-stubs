@@ -28,31 +28,86 @@ be implemented:
 # origin module:: repos/micropython/docs/library/hashlib.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
+from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from _mpy_shed import _Hash
 
-class sha256:
+class sha256(_Hash):
     """
-    Create an SHA256 hasher object and optionally feed ``data`` into it.
-    """
-
-    def __init__(self, data: Optional[Any] = None) -> None: ...
-
-class sha1:
-    """
-    Create an SHA1 hasher object and optionally feed ``data`` into it.
+    The current generation, modern hashing algorithm (of SHA2 series).
+    It is suitable for cryptographically-secure purposes. Included in the
+    MicroPython core and any board is recommended to provide this, unless
+    it has particular code size constraints.
     """
 
-    def __init__(self, data: Optional[Any] = None) -> None: ...
+    @overload
+    def __init__(self):
+        """
+        Create an SHA256 hasher object and optionally feed ``data`` into it.
+        """
 
-class md5:
+    @overload
+    def __init__(self, data: AnyReadableBuf):
+        """
+        Create an SHA256 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self):
+        """
+        Create an SHA256 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self, data: AnyReadableBuf):
+        """
+        Create an SHA256 hasher object and optionally feed ``data`` into it.
+        """
+
+class sha1(_Hash):
     """
-    Create an MD5 hasher object and optionally feed ``data`` into it.
+    A previous generation algorithm. Not recommended for new usages,
+    but SHA1 is a part of number of Internet standards and existing
+    applications, so boards targeting network connectivity and
+    interoperability will try to provide this.
     """
 
-    def __init__(self, data: Optional[Any] = None) -> None: ...
+    @overload
+    def __init__(self):
+        """
+        Create an SHA1 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self, data: AnyReadableBuf):
+        """
+        Create an SHA1 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self):
+        """
+        Create an SHA1 hasher object and optionally feed ``data`` into it.
+        """
+
+    @overload
+    def __init__(self, data: AnyReadableBuf):
+        """
+        Create an SHA1 hasher object and optionally feed ``data`` into it.
+        """
+
+class md5(_Hash):
+    """
+    A legacy algorithm, not considered cryptographically secure. Only
+    selected boards, targeting interoperability with legacy applications,
+    will offer this.
+    """
+
+    def __init__(self, data: AnyReadableBuf = ..., /) -> None:
+        """
+        Create an MD5 hasher object and optionally feed ``data`` into it.
+        """
 
 class hash:
     """ """

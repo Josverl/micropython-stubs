@@ -2,17 +2,31 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
+from typing import Any
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-from _mpy_shed import _IRQ
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 
 class DMA:
     """
     Claim one of the DMA controller channels for exclusive use.
     """
 
-    def __init__(self) -> None: ...
-    def config(self, read=None, write=None, count=None, ctrl=None, trigger=False) -> None:
+    def __init__(
+        self,
+        read: int | AnyReadableBuf | None = None,
+        write: int | AnyWritableBuf | None = None,
+        count: int = -1,
+        ctrl: int = -1,
+        trigger: bool = False,
+    ) -> None: ...
+    def config(
+        self,
+        read: int | AnyReadableBuf | None = None,
+        write: int | AnyWritableBuf | None = None,
+        count: int = -1,
+        ctrl: int = -1,
+        trigger: bool = False,
+    ) -> None:
         """
         Configure the DMA registers for the channel and optionally start the transfer.
         Parameters are:
@@ -46,7 +60,7 @@ class DMA:
         """
         ...
 
-    def pack_ctrl(self, default=None, *kwargs) -> int:
+    def pack_ctrl(self, default=None, **kwargs) -> int:
         """
         Pack the values provided in the keyword arguments into the named fields of a new control
         register value. Any field that is not provided will be set to a default value. The
@@ -120,7 +134,7 @@ class DMA:
         """
         ...
 
-    def active(self, value: Optional[Any] = None) -> bool:
+    def active(self, value: Any | None = None) -> bool:
         """
         Gets or sets whether the DMA channel is currently running.
 

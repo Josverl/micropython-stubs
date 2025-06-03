@@ -17,16 +17,17 @@ that the first item of the list is always the smallest.
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from typing import Any
 
 _T = TypeVar("_T")
 
-def heappush(heap, item) -> Incomplete:
+def heappush(heap: list[_T], item: _T, /) -> None:
     """
     Push the ``item`` onto the ``heap``.
     """
     ...
 
-def heappop(heap) -> Incomplete:
+def heappop(heap: list[_T], /) -> _T:
     """
     Pop the first item from the ``heap``, and return it.  Raise ``IndexError`` if
     ``heap`` is empty.
@@ -35,7 +36,7 @@ def heappop(heap) -> Incomplete:
     """
     ...
 
-def heapify(x) -> Incomplete:
+def heapify(x: list[Any], /) -> None:
     """
     Convert the list ``x`` into a heap.  This is an in-place operation.
     """

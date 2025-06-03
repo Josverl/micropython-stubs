@@ -13,7 +13,7 @@ This module provides functions to efficiently wait for events on multiple
 # origin module:: repos/micropython/docs/library/select.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Iterator, List, Optional, Tuple
+from typing import Iterable, Any, Iterator, List, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class poll:
@@ -99,7 +99,13 @@ class poll:
         """
         ...
 
-def select(rlist, wlist, xlist, timeout: Optional[Any] = None) -> None:
+def select(
+    rlist: Iterable[Any],
+    wlist: Iterable[Any],
+    xlist: Iterable[Any],
+    timeout: int = -1,
+    /,
+) -> None:
     """
     Wait for activity on a set of objects.
 

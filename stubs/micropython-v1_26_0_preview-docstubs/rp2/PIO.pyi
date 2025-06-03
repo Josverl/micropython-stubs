@@ -2,9 +2,13 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
+from typing import Callable, Literal, Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
+from rp2.StateMachine import StateMachine
+
+_PIO_ASM_Program: TypeAlias = Incomplete
+_IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 
 class PIO:
     """
@@ -72,7 +76,7 @@ class PIO:
         """
         ...
 
-    def add_program(self, program) -> None:
+    def add_program(self, program: _PIO_ASM_Program) -> None:
         """
         Add the *program* to the instruction memory of this PIO instance.
 
@@ -82,7 +86,7 @@ class PIO:
         """
         ...
 
-    def remove_program(self, program: Optional[Any] = None) -> None:
+    def remove_program(self, program: Optional[_PIO_ASM_Program] = None) -> None:
         """
         Remove *program* from the instruction memory of this PIO instance.
 
@@ -92,7 +96,7 @@ class PIO:
         """
         ...
 
-    def state_machine(self, id, program, *args, **kwargs) -> StateMachine:
+    def state_machine(self, id: int, program: _PIO_ASM_Program, *args, **kwargs) -> StateMachine:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
         four state machines, numbered 0 to 3.
@@ -104,7 +108,12 @@ class PIO:
         """
         ...
 
-    def irq(self, handler=None, trigger=IRQ_SM0 | IRQ_SM1 | IRQ_SM2 | IRQ_SM3, hard=False) -> _IRQ:
+    def irq(
+        self,
+        handler: Optional[Callable[[PIO], None]] = None,
+        trigger: _IRQ_TRIGGERS | None = None,
+        hard: bool = False,
+    ) -> _IRQ:
         """
         Returns the IRQ object for this PIO instance.
 

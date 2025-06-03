@@ -3,22 +3,123 @@
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from typing import Callable, overload
 
 class Timer:
     """
-    Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
-    virtual timer (if supported by a board).
-    ``id`` shall not be passed as a keyword argument.
+    Hardware timers deal with timing of periods and events. Timers are perhaps
+    the most flexible and heterogeneous kind of hardware in MCUs and SoCs,
+    differently greatly from a model to a model. MicroPython's Timer class
+    defines a baseline operation of executing a callback with a given period
+    (or once after some delay), and allow specific boards to define more
+    non-standard behaviour (which thus won't be portable to other boards).
 
-    See ``init`` for parameters of initialisation.
+    See discussion of :ref:`important constraints <machine_callbacks>` on
+    Timer callbacks.
+
+    .. note::
+
+        Memory can't be allocated inside irq handlers (an interrupt) and so
+        exceptions raised within a handler don't give much information.  See
+        :func:`micropython.alloc_emergency_exception_buf` for how to get around this
+        limitation.
+
+    If you are using a WiPy board please refer to :ref:`machine.TimerWiPy <machine.TimerWiPy>`
+    instead of this class.
     """
 
     ONE_SHOT: Incomplete
     """Timer operating mode."""
     PERIODIC: Incomplete
     """Timer operating mode."""
-    def __init__(self, id=-1, *args, **kwargs) -> None: ...
-    def init(self, *, mode=PERIODIC, freq=-1, period=-1, callback=None) -> None:
+    @overload
+    def __init__(self, id: int, /):
+        """
+        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
+        virtual timer (if supported by a board).
+        ``id`` shall not be passed as a keyword argument.
+
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        *,
+        mode: int = PERIODIC,
+        period: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+    ):
+        """
+        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
+        virtual timer (if supported by a board).
+        ``id`` shall not be passed as a keyword argument.
+
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        *,
+        mode: int = PERIODIC,
+        freq: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+    ):
+        """
+        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
+        virtual timer (if supported by a board).
+        ``id`` shall not be passed as a keyword argument.
+
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        *,
+        mode: int = PERIODIC,
+        tick_hz: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+    ):
+        """
+        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
+        virtual timer (if supported by a board).
+        ``id`` shall not be passed as a keyword argument.
+
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def init(
+        self,
+        *,
+        mode: int = PERIODIC,
+        period: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+    ) -> None: ...
+    @overload
+    def init(
+        self,
+        *,
+        mode: int = PERIODIC,
+        freq: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+    ) -> None: ...
+    @overload
+    def init(
+        self,
+        *,
+        mode: int = PERIODIC,
+        tick_hz: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+    ) -> None:
         """
         Initialise the timer. Example::
 

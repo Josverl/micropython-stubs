@@ -2,29 +2,50 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from .Pin import Pin
+from machine.Pin import Pin, PinLike
 
 ATTN_0DB: int = ...
 
 class ADC:
     """
-    Access the ADC associated with a source identified by *id*.  This
-    *id* may be an integer (usually specifying a channel number), a
-    :ref:`Pin <machine.Pin>` object, or other value supported by the
-    underlying machine.
+    The ADC class provides an interface to analog-to-digital convertors, and
+    represents a single endpoint that can sample a continuous voltage and
+    convert it to a discretised value.
 
-    If additional keyword-arguments are given then they will configure
-    various aspects of the ADC.  If not given, these settings will take
-    previous or default values.  The settings are:
+    Example usage::
 
-      - *sample_ns* is the sampling time in nanoseconds.
+       import machine
 
-      - *atten* specifies the input attenuation.
+       adc = machine.ADC(pin)   # create an ADC object acting on a pin
+       val = adc.read_u16()     # read a raw analog value in the range 0-65535
     """
 
-    def __init__(self, id, *, sample_ns: Optional[int] = 0, atten: Optional[int] = ATTN_0DB) -> None: ...
+    VREF: int = ...
+    CORE_VREF: int = ...
+    CORE_VBAT: int = ...
+    CORE_TEMP: int = ...
+    ATTN_0DB: int = 0
+    ATTN_2_5DB: int = 1
+    ATTN_6DB: int = 2
+    ATTN_11DB: int = 3
+    WIDTH_9BIT: int = 9
+    WIDTH_10BIT: int = 10
+    WIDTH_11BIT: int = 11
+    WIDTH_12BIT: int = 12
+
+    def __init__(self, pin: PinLike, /) -> None:
+        """
+        Access the ADC associated with a source identified by *id*.  This
+        *id* may be an integer (usually specifying a channel number), a
+        :ref:`Pin <machine.Pin>` object, or other value supported by the
+        underlying machine.
+        .. note::
+
+        WiPy has a custom implementation of ADC, see ADCWiPy for details.
+        """
+
     def init(self, *, sample_ns, atten) -> Incomplete:
         """
         Apply the given settings to the ADC.  Only those arguments that are
