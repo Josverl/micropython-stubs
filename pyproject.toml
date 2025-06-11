@@ -1,3 +1,60 @@
+[project]
+name = "micropython-stubs"
+authors = [{ name = "Jos Verlinde", email = "jos_verlinde@hotmail.com"}]
+
+description = "The MicroPython stubs project"
+version = "0.1.0"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: MicroPython",
+  "License :: OSI Approved :: MIT License"
+]
+readme = "readme.md"
+license = "MIT"
+
+
+[project.optional-dependencies]
+# uv pip install -r pyproject.toml --extra stubber --prerelease=allow
+stubber = [
+  "micropython-stubber==v1.25.1rc6",
+  "mpflash"
+]
+
+test = [
+"micropython-stubber",
+"rich-click",
+# for quality reporting
+"pytest",
+"pyright>=1.1.341",
+"mypy",
+"fasteners",
+"python-dotenv",
+"pydocstyle",
+"loguru",
+"mypy_gitlab_code_quality",
+]
+
+stats = [
+"ipykernel",
+"google-cloud-bigquery>=3.12.0",
+"pandas",
+"matplotlib",
+# interactive matplotlib figures in jupyter
+"ipywidgets ",
+"ipympl",
+]
+
+docs =[
+"Sphinx>= 4",
+"myst-parser >= 0.15",
+"sphinxcontrib-mermaid",
+"sphinx_rtd_theme",
+"sphinx-autoapi>= 1.8",
+"Jinja2>= 3.0",
+"pandas>= 2.2.2",
+
+]
+
 [tool.micropython-stubber]
 # New config
 "mpy-stubs-path" = "."

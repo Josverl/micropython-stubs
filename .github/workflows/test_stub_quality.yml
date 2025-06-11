@@ -24,14 +24,17 @@ jobs:
         with:
           python-version: "3.11" # Replace with the Python version you're using
 
-      #----------------------------------------------
-      # install project
-      #----------------------------------------------
-      - name: Install dependencies for group test
-        run: | 
-          python -m venv .venv
-          source .venv/bin/activate
-          pip install -r requirements-test.txt
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
+          activate-environment: true
+
+      - name: Install Python dependencies (doc only)
+        working-directory: ${{github.workspace}}
+        run: |
+          uv tool install poetry
+          uv pip install -U -r pyproject.toml --extra stubber --extra test
 
 
       #----------------------------------------------
@@ -40,7 +43,6 @@ jobs:
       #----------------------------------------------
       - name: stubber clone
         run: | 
-          source .venv/bin/activate
           stubber clone
 
 
@@ -53,11 +55,9 @@ jobs:
       - name: Test the snippets 
         continue-on-error: true
         run: |
-          source .venv/bin/activate
           pytest -m 'snippets' --cache-clear --junitxml=./results/results.xml
 
 
       - name: compare and update
         run: |
-          source .venv/bin/activate
           python .github/workflows/compare_score.py

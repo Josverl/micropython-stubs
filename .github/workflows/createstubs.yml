@@ -53,16 +53,23 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
-        run: |
-          pipx install poetry
-          pip install -U -r requirements.txt
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
+          activate-environment: true
 
-      - name: Patch mpremote/mip.py
-        continue-on-error: true
-        run: | 
-          MODULE_LOCATION=$(pip show -f mpremote | grep Location | cut -d' ' -f2)
-          patch --forward $MODULE_LOCATION/mpremote/mip.py ./mpremote_mip.patch || true          
+      - name: Install Python dependencies (doc only)
+        working-directory: ${{github.workspace}}
+        run: |
+          uv tool install poetry
+          uv pip install -U -r pyproject.toml --extra stubber
+
+      # - name: Patch mpremote/mip.py
+      #   continue-on-error: true
+      #   run: | 
+      #     MODULE_LOCATION=$(pip show -f mpremote | grep Location | cut -d' ' -f2)
+      #     patch --forward $MODULE_LOCATION/mpremote/mip.py ./mpremote_mip.patch || true          
         
 
       - name: Get ${{ matrix.version }} firmwares for flashing

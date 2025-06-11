@@ -43,11 +43,16 @@ jobs:
         #   python-version: 3.9
         #   cache: "pip"
 
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
+          activate-environment: true
+
       - name: Install Python dependencies (doc only)
         working-directory: ${{github.workspace}}
         run: |
-          pip install --upgrade wheel
-          pip install -r docs/requirements.txt
+          uv pip install -U -r pyproject.toml --extra docs
 
       ######################################
       # This is where the actual work starts

@@ -36,10 +36,16 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install dependencies
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
+          activate-environment: true
+
+      - name: Install Python dependencies (doc only)
+        working-directory: ${{github.workspace}}
         run: |
-          # pipx install poetry
-          pip install -U -r requirements.txt
+          uv pip install -U -r pyproject.toml --extra stubber
 
       - name: Patch mpremote/mip.py
         continue-on-error: true
