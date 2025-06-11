@@ -38,7 +38,7 @@ For example::
 # origin module:: repos/micropython/docs/library/network.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, List, Tuple
+from typing import overload, Any, List, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing import Protocol
 from network.WLAN import WLAN
@@ -301,3 +301,76 @@ class AbstractNIC(Protocol):
          print(ap.config('ssid'))
          print(ap.config('channel'))
         """
+
+def country(code: Optional[Any] = None) -> Incomplete:
+    """
+    Get or set the two-letter ISO 3166-1 Alpha-2 country code to be used for
+    radio compliance.
+
+    If the *code* parameter is provided, the country will be set to this value.
+    If the function is called without parameters, it returns the current
+    country.
+
+    The default code ``"XX"`` represents the "worldwide" region.
+    """
+    ...
+
+def hostname(name: Optional[Any] = None) -> Incomplete:
+    """
+    Get or set the hostname that will identify this device on the network. It will
+    be used by all interfaces.
+
+    This hostname is used for:
+     * Sending to the DHCP server in the client request. (If using DHCP)
+     * Broadcasting via mDNS. (If enabled)
+
+    If the *name* parameter is provided, the hostname will be set to this value.
+    If the function is called without parameters, it returns the current
+    hostname.
+
+    A change in hostname is typically only applied during connection. For DHCP
+    this is because the hostname is part of the DHCP client request, and the
+    implementation of mDNS in most ports only initialises the hostname once
+    during connection. For this reason, you must set the hostname before
+    activating/connecting your network interfaces.
+
+    The length of the hostname is limited to 32 characters.
+    :term:`MicroPython ports <MicroPython port>` may choose to set a lower
+    limit for memory reasons. If the given name does not fit, a `ValueError`
+    is raised.
+
+    The default hostname is typically the name of the board.
+    """
+    ...
+
+def ipconfig(param: Optional[str] = None, *args, **kwargs) -> str:
+    """
+    Get or set global IP-configuration parameters.
+    Supported parameters are the following (availability of a particular
+    parameter depends on the port and the specific network interface):
+
+    * ``dns`` Get/set DNS server. This method can support both, IPv4 and
+      IPv6 addresses.
+    * ``prefer`` (``4/6``) Specify which address type to return, if a domain
+      name has both A and AAAA records. Note, that this does not clear the
+      local DNS cache, so that any previously obtained addresses might not
+      change.
+    """
+    ...
+
+def phy_mode(mode: Optional[Any] = None) -> Incomplete:
+    """
+    Get or set the PHY mode.
+
+    If the *mode* parameter is provided, the PHY mode will be set to this value.
+    If the function is called without parameters, it returns the current PHY
+    mode.
+
+    The possible modes are defined as constants:
+        * ``MODE_11B`` -- IEEE 802.11b,
+        * ``MODE_11G`` -- IEEE 802.11g,
+        * ``MODE_11N`` -- IEEE 802.11n.
+
+    Availability: ESP8266.
+    """
+    ...
