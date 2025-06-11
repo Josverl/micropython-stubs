@@ -22,11 +22,13 @@ represented by VFS classes.
 # origin module:: repos/micropython/docs/library/vfs.rst
 from __future__ import annotations
 
-from typing import Optional, overload
+from typing import List, Optional, overload
 
 from _typeshed import Incomplete
 
 from _mpy_shed import _BlockDeviceProtocol
+
+from abc import ABC, abstractmethod
 
 class VfsFat:
     """
@@ -107,9 +109,7 @@ class VfsPosix:
 
     def __init__(self, root: str | None = None) -> None: ...
 
-# Attempt to allow the use / definition of the same class defined in two places ( for version overlap)
-# vfs module is not available  < v1.24.0
-from abc import ABC, abstractmethod
+
 
 class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround for Abstract Device not present in board-stubs
     """
@@ -207,8 +207,8 @@ class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround 
         for failure, with the value returned being an ``OSError`` errno code.
         """
         ...
-
-def mount(fsobj, mount_point: str, *, readonly: bool = False) -> Incomplete:
+@overload
+def mount(fsobj, mount_point: str, *, readonly: bool = False) -> None:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
     *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
@@ -225,6 +225,16 @@ def mount(fsobj, mount_point: str, *, readonly: bool = False) -> Incomplete:
     Will raise ``OSError(EPERM)`` if *mount_point* is already mounted.
     """
     ...
+
+@overload
+def mount(fsobj, mount_point: str, *, readonly: bool = False) -> List[tuple[Incomplete, str]]:
+    """
+    With no arguments to mount(), return a list of tuples representing all active mountpoints.
+
+    The returned list has the form [(fsobj, mount_point), …].
+    """
+    ...
+    
 
 def umount(mount_point: Incomplete) -> Incomplete:
     """
