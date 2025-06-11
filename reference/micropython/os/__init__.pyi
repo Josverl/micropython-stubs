@@ -15,37 +15,11 @@ functions.
 from __future__ import annotations
 
 from typing import IO, Any, Iterator, Optional, Tuple, overload
+from typing_extensions import deprecated
 
 from _mpy_shed import uname_result
 from _typeshed import Incomplete
 
-class VfsFat:
-    """
-    See `vfs.VfsFat`.
-    """
-
-    def __init__(self, block_dev) -> None: ...
-
-class VfsLfs1:
-    """
-    See `vfs.VfsLfs1`.
-    """
-
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32) -> None: ...
-
-class VfsLfs2:
-    """
-    See `vfs.VfsLfs2`.
-    """
-
-    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
-
-class VfsPosix:
-    """
-    See `vfs.VfsPosix`.
-    """
-
-    def __init__(self, root=None) -> None: ...
 
 def uname() -> uname_result:
     """
@@ -214,7 +188,11 @@ def dupterm_notify(obj_in: Any, /) -> None:
     """
     ...
 
+# Deprecated functions and classes 
+# The following functions and classes have been moved to the vfs module. 
+
 @overload
+@deprecated(   "The `mount` function is deprecated, use `vfs.mount` instead.")
 def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     See `vfs.mount`.
@@ -222,8 +200,41 @@ def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     ...
 
 @overload
+@deprecated(   "The `umount` function is deprecated, use `vfs.umount` instead.")
 def umount(mount_point) -> Incomplete:
     """
     See `vfs.umount`.
     """
     ...
+
+@deprecated("The `VfsFat` class is deprecated, use `vfs.VfsFat` instead.")
+class VfsFat:
+    """
+    See `vfs.VfsFat`.
+    """
+
+    def __init__(self, block_dev) -> None: ...
+
+@deprecated("The `VfsLfs1` class is deprecated, use `vfs.VfsLfs1` instead.")
+class VfsLfs1:
+    """
+    See `vfs.VfsLfs1`.
+    """
+
+    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32) -> None: ...
+
+@deprecated("The `VfsLfs2` class is deprecated, use `vfs.VfsLfs2` instead.")
+class VfsLfs2:
+    """
+    See `vfs.VfsLfs2`.
+    """
+
+    def __init__(self, block_dev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
+
+@deprecated("The `VfsPosix` class is deprecated, use `vfs.VfsPosix` instead.")
+class VfsPosix:
+    """
+    See `vfs.VfsPosix`.
+    """
+
+    def __init__(self, root=None) -> None: ...
