@@ -36,6 +36,7 @@ behave not as expected.
 from __future__ import annotations
 from utime import *
 from _typeshed import Incomplete
+from _mpy_shed import _TimeTuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _TS_YEAR: int

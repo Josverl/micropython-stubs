@@ -67,7 +67,7 @@ def compress(data, wbits=...) -> Incomplete:
     """
     ...
 
-def decompress(data, wbits=...) -> Incomplete:
+def decompress(data, wbits=...) -> bytes:
     """
     Decompresses *data* into a bytes object.
 

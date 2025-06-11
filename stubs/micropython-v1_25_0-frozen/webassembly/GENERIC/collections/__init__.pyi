@@ -17,5 +17,6 @@ from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
+_T = TypeVar("_T")
 
 class MutableMapping: ...

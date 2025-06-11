@@ -10,8 +10,8 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from micropython import const as const
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from pyb import SPI
-from typing import Tuple
+from pyb import I2C, Pin, SPI
+from typing import Tuple, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 PORTRAIT: int
@@ -25,38 +25,21 @@ _uart_baud_table: Incomplete
 
 class LCD160CR:
     """
-    Construct an LCD160CR object.  The parameters are:
+    The LCD160CR class provides an interface to the display.  Create an
+    instance of this class and use its methods to draw to the LCD and get
+    the status of the touch panel.
 
-        - *connect* is a string specifying the physical connection of the LCD
-          display to the board; valid values are "X", "Y", "XY", "YX".
-          Use "X" when the display is connected to a pyboard in the X-skin
-          position, and "Y" when connected in the Y-skin position.  "XY"
-          and "YX" are used when the display is connected to the right or
-          left side of the pyboard, respectively.
-        - *pwr* is a Pin object connected to the LCD's power/enabled pin.
-        - *i2c* is an I2C object connected to the LCD's I2C interface.
-        - *spi* is an SPI object connected to the LCD's SPI interface.
-        - *i2c_addr* is the I2C address of the display.
+    For example::
 
-    One must specify either a valid *connect* or all of *pwr*, *i2c* and *spi*.
-    If a valid *connect* is given then any of *pwr*, *i2c* or *spi* which are
-    not passed as parameters (i.e. they are ``None``) will be created based on the
-    value of *connect*.  This allows to override the default interface to the
-    display if needed.
+        import lcd160cr
 
-    The default values are:
-
-        - "X" is for the X-skin and uses:
-          ``pwr=Pin("X4")``, ``i2c=I2C("X")``, ``spi=SPI("X")``
-        - "Y" is for the Y-skin and uses:
-          ``pwr=Pin("Y4")``, ``i2c=I2C("Y")``, ``spi=SPI("Y")``
-        - "XY" is for the right-side and uses:
-          ``pwr=Pin("X4")``, ``i2c=I2C("Y")``, ``spi=SPI("X")``
-        - "YX" is for the left-side and uses:
-          ``pwr=Pin("Y4")``, ``i2c=I2C("X")``, ``spi=SPI("Y")``
-
-    See `this image <http://micropython.org/resources/LCD160CRv10-positions.jpg>`_
-    for how the display can be connected to the pyboard.
+        lcd = lcd160cr.LCD160CR('X')
+        lcd.set_orient(lcd160cr.PORTRAIT)
+        lcd.set_pos(0, 0)
+        lcd.set_text_color(lcd.rgb(255, 0, 0), lcd.rgb(0, 0, 0))
+        lcd.set_font(1)
+        lcd.write('Hello MicroPython!')
+        print('touch:', lcd.get_touch())
     """
 
     pwr: Incomplete
@@ -68,15 +51,80 @@ class LCD160CR:
     buf: Incomplete
     buf1: Incomplete
     array4: Incomplete
-    def __init__(
-        self,
-        connect: Incomplete | None = None,
-        *,
-        pwr: Incomplete | None = None,
-        i2c: Incomplete | None = None,
-        spi: Incomplete | None = None,
-        i2c_addr: int = 98,
-    ) -> None: ...
+    @overload
+    def __init__(self, connect: str, /):
+        """
+        Construct an LCD160CR object.  The parameters are:
+
+            - *connect* is a string specifying the physical connection of the LCD
+              display to the board; valid values are "X", "Y", "XY", "YX".
+              Use "X" when the display is connected to a pyboard in the X-skin
+              position, and "Y" when connected in the Y-skin position.  "XY"
+              and "YX" are used when the display is connected to the right or
+              left side of the pyboard, respectively.
+            - *pwr* is a Pin object connected to the LCD's power/enabled pin.
+            - *i2c* is an I2C object connected to the LCD's I2C interface.
+            - *spi* is an SPI object connected to the LCD's SPI interface.
+            - *i2c_addr* is the I2C address of the display.
+
+        One must specify either a valid *connect* or all of *pwr*, *i2c* and *spi*.
+        If a valid *connect* is given then any of *pwr*, *i2c* or *spi* which are
+        not passed as parameters (i.e. they are ``None``) will be created based on the
+        value of *connect*.  This allows to override the default interface to the
+        display if needed.
+
+        The default values are:
+
+            - "X" is for the X-skin and uses:
+              ``pwr=Pin("X4")``, ``i2c=I2C("X")``, ``spi=SPI("X")``
+            - "Y" is for the Y-skin and uses:
+              ``pwr=Pin("Y4")``, ``i2c=I2C("Y")``, ``spi=SPI("Y")``
+            - "XY" is for the right-side and uses:
+              ``pwr=Pin("X4")``, ``i2c=I2C("Y")``, ``spi=SPI("X")``
+            - "YX" is for the left-side and uses:
+              ``pwr=Pin("Y4")``, ``i2c=I2C("X")``, ``spi=SPI("Y")``
+
+        See `this image <http://micropython.org/resources/LCD160CRv10-positions.jpg>`_
+        for how the display can be connected to the pyboard.
+        """
+
+    @overload
+    def __init__(self, *, pwr: Pin, i2c: I2C, spi: SPI, i2c_addr: int = 98):
+        """
+        Construct an LCD160CR object.  The parameters are:
+
+            - *connect* is a string specifying the physical connection of the LCD
+              display to the board; valid values are "X", "Y", "XY", "YX".
+              Use "X" when the display is connected to a pyboard in the X-skin
+              position, and "Y" when connected in the Y-skin position.  "XY"
+              and "YX" are used when the display is connected to the right or
+              left side of the pyboard, respectively.
+            - *pwr* is a Pin object connected to the LCD's power/enabled pin.
+            - *i2c* is an I2C object connected to the LCD's I2C interface.
+            - *spi* is an SPI object connected to the LCD's SPI interface.
+            - *i2c_addr* is the I2C address of the display.
+
+        One must specify either a valid *connect* or all of *pwr*, *i2c* and *spi*.
+        If a valid *connect* is given then any of *pwr*, *i2c* or *spi* which are
+        not passed as parameters (i.e. they are ``None``) will be created based on the
+        value of *connect*.  This allows to override the default interface to the
+        display if needed.
+
+        The default values are:
+
+            - "X" is for the X-skin and uses:
+              ``pwr=Pin("X4")``, ``i2c=I2C("X")``, ``spi=SPI("X")``
+            - "Y" is for the Y-skin and uses:
+              ``pwr=Pin("Y4")``, ``i2c=I2C("Y")``, ``spi=SPI("Y")``
+            - "XY" is for the right-side and uses:
+              ``pwr=Pin("X4")``, ``i2c=I2C("Y")``, ``spi=SPI("X")``
+            - "YX" is for the left-side and uses:
+              ``pwr=Pin("Y4")``, ``i2c=I2C("X")``, ``spi=SPI("Y")``
+
+        See `this image <http://micropython.org/resources/LCD160CRv10-positions.jpg>`_
+        for how the display can be connected to the pyboard.
+        """
+
     def _send(self, cmd) -> None: ...
     def _fcmd2(self, fmt, a0, a1: int = 0, a2: int = 0) -> None: ...
     def _fcmd2b(self, fmt, a0, a1, a2, a3, a4: int = 0) -> None: ...
@@ -94,7 +142,7 @@ class LCD160CR:
         ...
 
     @staticmethod
-    def clip_line(c, w, h) -> Incomplete:
+    def clip_line(c, w, h) -> int:
         """
         Clip the given line data.  This is for internal use.
         """
@@ -155,7 +203,7 @@ class LCD160CR:
         """
         ...
 
-    def get_pixel(self, x, y) -> Incomplete:
+    def get_pixel(self, x, y) -> int:
         """
         Get the 16-bit value of the specified pixel.
         """
@@ -247,8 +295,22 @@ class LCD160CR:
         """
         ...
 
-    def rect(self, x, y, w, h, cmd: int = 114) -> None: ...
-    def rect_outline(self, x, y, w, h) -> None: ...
+    def rect(self, x, y, w, h, cmd: int = 114) -> None:
+        """
+        Draw a rectangle at the given location and size using the pen line
+        color for the outline, and the pen fill color for the interior.
+        The `rect` method draws the outline and interior, while the other methods
+        just draw one or the other.
+        """
+
+    def rect_outline(self, x, y, w, h) -> None:
+        """
+        Draw a rectangle at the given location and size using the pen line
+        color for the outline, and the pen fill color for the interior.
+        The `rect` method draws the outline and interior, while the other methods
+        just draw one or the other.
+        """
+
     def rect_interior(self, x, y, w, h) -> None:
         """
         Draw a rectangle at the given location and size using the pen line
@@ -264,10 +326,34 @@ class LCD160CR:
         """
         ...
 
-    def dot_no_clip(self, x, y) -> None: ...
-    def rect_no_clip(self, x, y, w, h) -> None: ...
-    def rect_outline_no_clip(self, x, y, w, h) -> None: ...
-    def rect_interior_no_clip(self, x, y, w, h) -> None: ...
+    def dot_no_clip(self, x, y) -> None:
+        """
+        These methods are as above but don't do any clipping on the input
+        coordinates.  They are faster than the clipping versions and can be
+        used when you know that the coordinates are within the display.
+        """
+
+    def rect_no_clip(self, x, y, w, h) -> None:
+        """
+        These methods are as above but don't do any clipping on the input
+        coordinates.  They are faster than the clipping versions and can be
+        used when you know that the coordinates are within the display.
+        """
+
+    def rect_outline_no_clip(self, x, y, w, h) -> None:
+        """
+        These methods are as above but don't do any clipping on the input
+        coordinates.  They are faster than the clipping versions and can be
+        used when you know that the coordinates are within the display.
+        """
+
+    def rect_interior_no_clip(self, x, y, w, h) -> None:
+        """
+        These methods are as above but don't do any clipping on the input
+        coordinates.  They are faster than the clipping versions and can be
+        used when you know that the coordinates are within the display.
+        """
+
     def line_no_clip(self, x1, y1, x2, y2) -> None:
         """
         These methods are as above but don't do any clipping on the input
@@ -398,7 +484,14 @@ class LCD160CR:
         """
         ...
 
-    def jpeg_start(self, l) -> None: ...
+    def jpeg_start(self, l) -> None:
+        """
+        Display a JPEG with the data split across multiple buffers.  There must be
+        a single call to `jpeg_start` to begin with, specifying the total number of
+        bytes in the JPEG.  Then this number of bytes must be transferred to the
+        display using one or more calls to the `jpeg_data` command.
+        """
+
     def jpeg_data(self, buf) -> None:
         """
         Display a JPEG with the data split across multiple buffers.  There must be

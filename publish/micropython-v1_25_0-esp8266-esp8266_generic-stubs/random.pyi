@@ -34,10 +34,13 @@ Module: 'random' on micropython-v1.25.0-esp8266-ESP8266_GENERIC-FLASH_2M_ROMFS
 # Stubber: v1.25.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
+from _mpy_shed import Subscriptable
+from typing import overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-def seed(n=None, /) -> None:
+_T = TypeVar("_T")
+
+def seed(n: int | None = None, /) -> None:
     """
     Initialise the random number generator module with the seed *n* which should
     be an integer.  When no argument (or ``None``) is passed in it will (if
@@ -49,8 +52,38 @@ def seed(n=None, /) -> None:
     """
     ...
 
-def getrandbits(n) -> int:
+def getrandbits(n: int, /) -> int:
     """
     Return an integer with *n* random bits (0 <= n <= 32).
     """
     ...
+
+@overload
+def randrange(stop: int, /) -> int:
+    """
+    The first form returns a random integer from the range [0, *stop*).
+    The second form returns a random integer from the range [*start*, *stop*).
+    The third form returns a random integer from the range [*start*, *stop*) in
+    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
+    return odd numbers between 1 and 9 inclusive.
+    """
+
+@overload
+def randrange(start: int, stop: int, /) -> int:
+    """
+    The first form returns a random integer from the range [0, *stop*).
+    The second form returns a random integer from the range [*start*, *stop*).
+    The third form returns a random integer from the range [*start*, *stop*) in
+    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
+    return odd numbers between 1 and 9 inclusive.
+    """
+
+@overload
+def randrange(start: int, stop: int, step: int, /) -> int:
+    """
+    The first form returns a random integer from the range [0, *stop*).
+    The second form returns a random integer from the range [*start*, *stop*).
+    The third form returns a random integer from the range [*start*, *stop*) in
+    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
+    return odd numbers between 1 and 9 inclusive.
+    """
