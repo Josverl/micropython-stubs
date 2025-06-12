@@ -699,7 +699,7 @@
 |micropython |v1.24.1 |board   |webassembly|generic|78|v1.24.0|[stubs/micropython-v1_24_1-webassembly-GENERIC](https://github.com/Josverl/micropython-stubs/tree/HEAD/stubs/micropython-v1_24_1-webassembly-GENERIC)
 |micropython |v1.24.1 |frozen  |windows|GENERIC|1|1.24.2|[stubs/micropython-v1_24_1-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/HEAD/stubs/micropython-v1_24_1-frozen/windows/GENERIC)
 |micropython |v1.24.1 |board   |windows|generic|37|v1.24.0|[stubs/micropython-v1_24_1-windows-GENERIC](https://github.com/Josverl/micropython-stubs/tree/HEAD/stubs/micropython-v1_24_1-windows-GENERIC)
-|micropython |v1.25   |documentation|-|micropython|111|1.24.3|[stubs/micropython-v1_25_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/HEAD/stubs/micropython-v1_25_0-docstubs)
+|micropython |v1.25   |documentation|-|micropython|111|1.25.0|[stubs/micropython-v1_25_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/HEAD/stubs/micropython-v1_25_0-docstubs)
 |micropython |v1.25   |board   |esp32|generic|90|v1.25.0|[stubs/micropython-v1_25_0-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/HEAD/stubs/micropython-v1_25_0-esp32-ESP32_GENERIC)
 |micropython |v1.25   |board   |esp32|generic|89|v1.24.0|[stubs/micropython-v1_25_0-esp32-ESP32_GENERIC_C6](https://github.com/Josverl/micropython-stubs/tree/HEAD/stubs/micropython-v1_25_0-esp32-ESP32_GENERIC_C6)
 |micropython |v1.25   |board   |esp32|generic|87|v1.24.0|[stubs/micropython-v1_25_0-esp32-ESP32_GENERIC_S2](https://github.com/Josverl/micropython-stubs/tree/HEAD/stubs/micropython-v1_25_0-esp32-ESP32_GENERIC_S2)
