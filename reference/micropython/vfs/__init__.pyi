@@ -22,7 +22,7 @@ represented by VFS classes.
 # origin module:: repos/micropython/docs/library/vfs.rst
 from __future__ import annotations
 
-from typing import List, Optional, overload
+from typing import List, overload
 
 from _typeshed import Incomplete
 
@@ -207,6 +207,7 @@ class AbstractBlockDev(ABC, _BlockDeviceProtocol):  # type: ignore - Workaround 
         for failure, with the value returned being an ``OSError`` errno code.
         """
         ...
+
 @overload
 def mount(fsobj, mount_point: str, *, readonly: bool = False) -> None:
     """
@@ -227,7 +228,7 @@ def mount(fsobj, mount_point: str, *, readonly: bool = False) -> None:
     ...
 
 @overload
-def mount(fsobj, mount_point: str, *, readonly: bool = False) -> List[tuple[Incomplete, str]]:
+def mount() -> List[tuple[Incomplete, str]]:
     """
     With no arguments to mount(), return a list of tuples representing all active mountpoints.
 
