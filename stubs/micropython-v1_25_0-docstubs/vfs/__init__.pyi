@@ -230,7 +230,7 @@ def mount(fsobj, mount_point: str, *, readonly: bool = False) -> None:
     ...
 
 @overload
-def mount(fsobj, mount_point: str, *, readonly: bool = False) -> List[tuple[Incomplete, str]]:
+def mount() -> List[tuple[Incomplete, str]]:
     """
     :noindex:
 

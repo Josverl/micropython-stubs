@@ -14,7 +14,7 @@ functions.
 # origin module:: repos/micropython/docs/library/os.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, IO, Any, Iterator, Optional, Tuple
+from typing import Union, overload, IO, Any, Iterator, Optional, Tuple
 from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
 from _mpy_shed import uname_result
 
@@ -87,7 +87,7 @@ def getcwd() -> Incomplete:
     ...
 
 @overload
-def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
+def ilistdir(dir: Union[str, bytes]) -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]:
     """
     This function returns an iterator which then yields tuples corresponding to
     the entries in the directory that it is listing.  With no argument it lists the
@@ -108,6 +108,8 @@ def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     """
     ...
 
+@overload
+def ilistdir() -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]: ...
 @overload
 def listdir(dir: Optional[Any] = None) -> Incomplete:
     """

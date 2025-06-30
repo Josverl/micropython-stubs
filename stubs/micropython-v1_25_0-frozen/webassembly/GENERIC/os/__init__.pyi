@@ -15,7 +15,7 @@ from uos import *
 from . import path as path
 from _mpy_shed import uname_result
 from _typeshed import Incomplete
-from typing import Any, IO, Iterator, Optional, Tuple, overload
+from typing import Any, IO, Iterator, Optional, Tuple, Union, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 
 @overload
@@ -41,7 +41,7 @@ def getcwd() -> Incomplete:
     ...
 
 @overload
-def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
+def ilistdir(dir: Union[str, bytes]) -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]:
     """
     This function returns an iterator which then yields tuples corresponding to
     the entries in the directory that it is listing.  With no argument it lists the
@@ -62,6 +62,8 @@ def ilistdir(dir: Optional[Any] = None) -> Iterator[Tuple]:
     """
     ...
 
+@overload
+def ilistdir() -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]: ...
 @overload
 def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
