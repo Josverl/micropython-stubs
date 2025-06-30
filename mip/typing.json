@@ -1,0 +1,19 @@
+{
+  "readme": "https://github.com/Josverl/micropython-stubs/blob/main/mip/readme.md",
+  "license": "MIT",
+  "authors": [{ "name": "Jos Verlinde", "email": "jos_verlinde@hotmail.com"}],    
+  "urls": [
+    [
+      "typing.py",
+      "github:josverl/micropython-stubs/mip/typing.py"
+    ],
+    [
+      "typing_extensions.py",
+      "github:josverl/micropython-stubs/mip/typing.py"
+    ]
+  ],
+  "deps": [
+    ["__future__", "latest"]
+  ],
+"version": "1.25.1"
+}

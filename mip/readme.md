@@ -22,17 +22,21 @@ A solution is to add a minimalistic `typing.py` file to the project, and when yo
 To have the least amount of runtime overhead on your MCU, you should use the cross compiled version of the modules to your MCU.
 
 ```bash
-mpremote mip install github:josverl/micropython-stubs/mip/typing.mpy
-# and where needed also:
-mpremote mip install github:josverl/micropython-stubs/mip/typing_extensions.mpy
-
-#will output something like:
-Install github:josverl/micropython-stubs/mip/typing.mpy
-Downloading github:josverl/micropython-stubs/mip/typing.mpy to /lib
+mpremote mip install github:josverl/micropython-stubs/mip/typing.json
+# or for the cross-compiled version: 
+mpremote mip install github:josverl/micropython-stubs/mip/typing_mpy.json
+```
+This will will output something like:
+``` 
+Install github:josverl/micropython-stubs/mip/typing_mpy.json
+Installing github:josverl/micropython-stubs/mip/typing_mpy.json to /lib
 Installing: /lib/typing.mpy
+Installing: /lib/typing_extensions.mpy
+Installing __future__ (latest) from https://micropython.org/pi/v2 to /lib
+Installing: /lib/__future__.mpy
 Done
 ```
-*Note:* The .mpy modules are cross compiled for MicroPython v1.23.0 ; mpy-cross emitting mpy v6.3
+*Note:* The .mpy modules are cross compiled for MicroPython v1.25.0 ; mpy-cross emitting mpy v6.3
 _Note that by default mip will install the modules in the `/lib` folder of the MCU._
 
 ## Add to your project source
