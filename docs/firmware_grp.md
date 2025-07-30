@@ -786,6 +786,7 @@
 |micropython |v1.25   |frozen  |webassembly|GENERIC|30|1.25.0|[stubs/micropython-v1_25_0-frozen/webassembly/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-frozen/webassembly/GENERIC)
 |micropython |v1.25   |frozen  |windows|GENERIC|1|1.25.0|[stubs/micropython-v1_25_0-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-frozen/windows/GENERIC)
 |micropython |v1.26-La|documentation|-|micropython|111|1.24.3|[stubs/micropython-v1_26_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0_preview-docstubs)
+|micropython |v1.26-La|board   |esp32|generic|89|v1.25.0|[stubs/micropython-v1_26_0_preview-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0_preview-esp32-ESP32_GENERIC_S3)
 |micropython |v1.26-La|frozen  |esp32|ARDUINO_NANO_ESP32|40|1.25.0|[stubs/micropython-v1_26_0_preview-frozen/esp32/ARDUINO_NANO_ESP32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0_preview-frozen/esp32/ARDUINO_NANO_ESP32)
 |micropython |v1.26-La|frozen  |esp32|GENERIC|21|1.25.0|[stubs/micropython-v1_26_0_preview-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0_preview-frozen/esp32/GENERIC)
 |micropython |v1.26-La|frozen  |esp32|LILYGO_TTGO_LORA32|24|1.25.0|[stubs/micropython-v1_26_0_preview-frozen/esp32/LILYGO_TTGO_LORA32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0_preview-frozen/esp32/LILYGO_TTGO_LORA32)
@@ -917,4 +918,4 @@
 
 ## Metrics
 
-Total stub modules:  22043
+Total stub modules:  22132
