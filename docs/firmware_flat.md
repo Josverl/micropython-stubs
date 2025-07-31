@@ -122,6 +122,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.25| rp2| generic| 91| v1.24.0|[stubs/micropython-v1_25_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-rp2-RPI_PICO_W)
 |board| micropython| v1.25| samd| generic| 59| v1.24.0|[stubs/micropython-v1_25_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-samd-SEEED_WIO_TERMINAL)
 |board| micropython| v1.25| stm32| generic| 65| v1.24.0|[stubs/micropython-v1_25_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-stm32-PYBV11)
+|board| micropython| v1.26-Latest| esp32| generic| 89| v1.25.0|[stubs/micropython-v1_26_0_preview-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0_preview-esp32-ESP32_GENERIC_S3)
 |board| micropython| v1.9.3-Latest| -| ESP module with ESP8266| 57| 1.1.2|[stubs/micropython-v1_9_3-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_3-esp8266)
 |board| micropython| v1.9.4| -| ev3| 80| 1.3.2|[stubs/ev3_pybricks_v1_0_0](https://github.com/Josverl/micropython-stubs/tree/main/stubs/ev3_pybricks_v1_0_0)
 |board| micropython| v1.9.4-Latest| -| ESP module with ESP8266| 43| 1.1.2|[stubs/micropython-v1_9_4-esp8266](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_9_4-esp8266)
@@ -881,4 +882,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  22043
+Total modules  22132
