@@ -155,29 +155,6 @@ def sync() -> None:
     """
     ...
 
-@overload
-def dupterm(stream_object, index=0, /) -> IO:
-    """
-    Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
-    object. The *stream_object* argument must be a native stream object, or derive
-    from ``io.IOBase`` and implement the ``readinto()`` and
-    ``write()`` methods.  The stream should be in non-blocking mode and
-    ``readinto()`` should return ``None`` if there is no data available for reading.
-
-    After calling this function all terminal output is repeated on this stream,
-    and any input that is available on the stream is passed on to the terminal input.
-
-    The *index* parameter should be a non-negative integer and specifies which
-    duplication slot is set.  A given port may implement more than one slot (slot 0
-    will always be available) and in that case terminal input and output is
-    duplicated on all the slots that are set.
-
-    If ``None`` is passed as the *stream_object* then duplication is cancelled on
-    the slot given by *index*.
-
-    The function returns the previous stream-like object in the given slot.
-    """
-    ...
 
 @overload  # force merge
 def dupterm_notify(obj_in: Any, /) -> None:
@@ -194,8 +171,8 @@ def dupterm_notify(obj_in: Any, /) -> None:
     REPL, enabling expected interruption behavior for user code.
 
     Args:
-        obj_in: The stream-like object previously set by `os.dupterm()`, or None.
-
+        obj_in: Is ignored by dupterm_notify, but is required to allow calling 
+        dupterm_notify from an interrupt handler such as UART.irq()
     Note:
         - If input is available (including control characters like Ctrl+C),
           call this function to ensure responsive REPL behavior.
@@ -206,11 +183,14 @@ def dupterm_notify(obj_in: Any, /) -> None:
           non-standard REPL connections, where automatic notification is not guaranteed.
 
     Example:
-        # In a custom UART REPL implementation:
-        if uart.any():
-            os.dupterm_notify(uart)
+        from machine import UART
+        import os
+        uart = UART(0)
+        uart.irq(os.dupterm_notify, machine.UART.IRQ_RX)  # or UART.IRQ_RXIDLE
+        os.dupterm(uart, 0)
     """
     ...
+
 
 # Deprecated functions and classes 
 # The following functions and classes have been moved to the vfs module. 
