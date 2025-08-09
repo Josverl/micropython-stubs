@@ -16,6 +16,7 @@ damage.
 from __future__ import annotations
 
 from typing import Any, Final, NoReturn, Optional, overload
+from typing_extensions import TypeAlias
 
 from _typeshed import Incomplete
 from machine.ADC import ADC
@@ -34,6 +35,10 @@ from machine.UART import UART
 from machine.USBDevice import USBDevice
 from machine.WDT import WDT
 from typing_extensions import deprecated
+
+
+
+_IRQ_STATE: TypeAlias = int
 
 mem8: bytearray
 """Read/write 8 bits of memory."""
@@ -103,7 +108,8 @@ def bootloader(value: Optional[Any] = None) -> None:
     """
     ...
 
-def disable_irq() -> bool:
+
+def disable_irq() -> _IRQ_STATE:
     """
     Disable interrupt requests.
     Returns the previous IRQ state which should be considered an opaque value.
@@ -112,7 +118,7 @@ def disable_irq() -> bool:
     """
     ...
 
-def enable_irq(state: bool = True, /) -> None:
+def enable_irq(state: _IRQ_STATE , /) -> None:
     """
     Re-enable interrupt requests.
     The *state* parameter should be the value that was returned from the most
