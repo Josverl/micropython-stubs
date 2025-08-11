@@ -1,0 +1,24 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "zephyr",
+        "platform": "zephyr",
+        "machine": "GENERIC",
+        "firmware": "micropython-zephyr-v1_26_0",
+        "nodename": "micropython",
+        "version": "v1.26.0",
+        "release": "v1.26.0",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.26.0",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "upysh.py",
+            "module": "upysh"
+        }
+    ]
+}
