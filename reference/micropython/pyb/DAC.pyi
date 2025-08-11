@@ -69,7 +69,7 @@ class DAC:
 
         ``bits`` is an integer specifying the resolution, and can be 8 or 12.
         The maximum value for the write and write_timed methods will be
-        2\*\*``bits``-1.
+        2**``bits``-1.
 
         The *buffering* parameter selects the behaviour of the DAC op-amp output
         buffer, whose purpose is to reduce the output impedance.  It can be
