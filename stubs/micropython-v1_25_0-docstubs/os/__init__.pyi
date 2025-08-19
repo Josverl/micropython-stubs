@@ -182,7 +182,6 @@ def sync() -> None:
     """
     ...
 
-@overload
 def dupterm(stream_object, index=0, /) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
@@ -228,12 +227,34 @@ def umount(mount_point) -> Incomplete:
 @overload  # force merge
 def dupterm_notify(obj_in: Any, /) -> None:
     # https://github.com/orgs/micropython/discussions/16680
+    # https://github.com/micropython/micropython/issues/17799
     """
-    Notify the REPL that input is available on the stream-like object that was
-    previously set by `dupterm`.  This is used by the stream-like object to
-    notify the REPL that there is input available for reading.
+    Notify the MicroPython REPL that input is available on a stream-like object
+    previously registered via `os.dupterm()`.
 
-    The *obj_in* argument must be the stream-like object that was previously set
-    by `dupterm` or None .
+    This function should be called by custom stream implementations (e.g., UART,
+    Bluetooth, or other non-USB REPL streams) to inform the REPL that input is
+    ready to be read. Proper use ensures that special characters such as
+    Ctrl+C (used to trigger KeyboardInterrupt) are processed promptly by the
+    REPL, enabling expected interruption behavior for user code.
+
+    Args:
+        obj_in: Is ignored by dupterm_notify, but is required to allow calling
+        dupterm_notify from an interrupt handler such as UART.irq()
+    Note:
+        - If input is available (including control characters like Ctrl+C),
+          call this function to ensure responsive REPL behavior.
+        - If omitted, input from the custom stream may not be detected or
+          processed until the next REPL poll, potentially delaying KeyboardInterrupts
+          or other control signals.
+        - This is especially important for UART, Bluetooth, or other
+          non-standard REPL connections, where automatic notification is not guaranteed.
+
+    Example:
+        from machine import UART
+        import os
+        uart = UART(0)
+        uart.irq(os.dupterm_notify, machine.UART.IRQ_RX)  # or UART.IRQ_RXIDLE
+        os.dupterm(uart, 0)
     """
     ...
