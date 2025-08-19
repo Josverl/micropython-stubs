@@ -32,6 +32,7 @@ test = [
 "pydocstyle",
 "loguru",
 "mypy_gitlab_code_quality",
+"requests",
 ]
 
 stats = [
