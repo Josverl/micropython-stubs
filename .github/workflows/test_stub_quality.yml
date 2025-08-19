@@ -16,24 +16,24 @@ jobs:
       - uses: actions/checkout@v4
       #----------------------------------------------
 
-      - name: Install poetry # poetry is not in the default image
-        run: pipx install poetry
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11" # Replace with the Python version you're using
-
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v6
         with:
           # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
           activate-environment: true
 
+      - name: Install poetry # poetry is not in the default image
+        run: uv tool install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11" # Replace with the Python version you're using
+
+
       - name: Install Python dependencies (doc only)
         working-directory: ${{github.workspace}}
         run: |
-          uv tool install poetry
           uv pip install -U -r pyproject.toml --extra stubber --extra test
 
 

@@ -113,9 +113,6 @@ addopts = "--verbose --capture=no"
 
 markers = ["snippets: test snippets to check the stub quality"]
 
-
-exclude = [".git", ".*", "__*", "dist", "test"]
-
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 
