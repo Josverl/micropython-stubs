@@ -22,7 +22,7 @@ represented by VFS classes.
 # origin module:: repos/micropython/docs/library/vfs.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload
+from typing import List, overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _BlockDeviceProtocol
 from abc import ABC, abstractmethod
@@ -217,7 +217,27 @@ class AbstractBlockDev(ABC, _BlockDeviceProtocol):
         """
         ...
 
-def mount(fsobj, mount_point: str, *, readonly: bool = False) -> Incomplete:
+@overload
+def mount(fsobj, mount_point: str, *, readonly: bool = False) -> None:
+    """
+    Mount the filesystem object *fsobj* at the location in the VFS given by the
+    *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
+    method, or a block device.  If it's a block device then the filesystem type
+    is automatically detected (an exception is raised if no filesystem was
+    recognised).  *mount_point* may be ``'/'`` to mount *fsobj* at the root,
+    or ``'/<name>'`` to mount it at a subdirectory under the root.
+
+    If *readonly* is ``True`` then the filesystem is mounted read-only.
+
+    During the mount process the method ``mount()`` is called on the filesystem
+    object.
+
+    Will raise ``OSError(EPERM)`` if *mount_point* is already mounted.
+    """
+    ...
+
+@overload
+def mount() -> List[tuple[Incomplete, str]]:
     """
     Mount the filesystem object *fsobj* at the location in the VFS given by the
     *mount_point* string.  *fsobj* can be a a VFS object that has a ``mount()``
