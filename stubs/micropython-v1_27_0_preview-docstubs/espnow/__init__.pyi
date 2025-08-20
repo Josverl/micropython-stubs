@@ -59,7 +59,7 @@ class ESPNow(ESPNowBase, Iterator):
     **Note**: RSSI and timestamp values in the device table are updated only
     when the message is read by the application.
     """
-    def __init__(self) -> None: ...
+    def __init__(self, buffer_size: int = 526, phy_rate: int = 0) -> None: ...
     def active(self, flag: Optional[Any] = None) -> Incomplete:
         """
         Initialise or de-initialise the ESP-NOW communication protocol depending on
