@@ -13,7 +13,7 @@ HERE = Path(__file__).parent.absolute()
 
 # running test for all issues , so need to test with boards that have as much functionality as possible
 @pytest.mark.parametrize("portboard", ["esp32","rp2-rpi_pico_w"], scope="session")
-@pytest.mark.parametrize("version", ["v1.24.1","v1.25.0-preview"], scope="session")
+@pytest.mark.parametrize("version", ["v1.24.1", "v1.25.0", "v1.26.0"], scope="session")
 @pytest.mark.parametrize("feature", ["stdlib"], scope="session")
 @pytest.mark.parametrize("stub_source", SOURCES, scope="session")
 @pytest.mark.parametrize("snip_path", [HERE / "feat_mypy"], scope="session")

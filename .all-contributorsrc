@@ -98,7 +98,6 @@
         "example"
       ]
     },
-    
     {
       "login": "pfalcon",
       "name": "Paul Sokolovsky",
@@ -109,15 +108,15 @@
       ]
     },
     {
-        "login": "cpwood",
-        "name": "Chris Wood",
-        "avatar_url": "https://avatars.githubusercontent.com/u/13966104?v=4",
-        "profile": "https://github.com/cpwood",
-        "contributions": [
-          "stubs",
-          "tool"
-        ]
-      },
+      "login": "cpwood",
+      "name": "Chris Wood",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13966104?v=4",
+      "profile": "https://github.com/cpwood",
+      "contributions": [
+        "stubs",
+        "tool"
+      ]
+    },
     {
       "login": "dastultz",
       "name": "Daryl Stultz",
@@ -128,18 +127,18 @@
       ]
     },
     {
-        "login": "BradenM",
-        "name": "Braden Mars",
-        "avatar_url": "https://avatars1.githubusercontent.com/u/5913808?v=4",
-        "profile": "https://github.com/BradenM",
-        "contributions": [
-          "stubs",
-          "test",
-          "tool",
-          "platform"
-        ]
-      },
-      {
+      "login": "BradenM",
+      "name": "Braden Mars",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5913808?v=4",
+      "profile": "https://github.com/BradenM",
+      "contributions": [
+        "stubs",
+        "test",
+        "tool",
+        "platform"
+      ]
+    },
+    {
       "login": "askpatrickw",
       "name": "Patrick",
       "avatar_url": "https://avatars0.githubusercontent.com/u/4002194?v=4",
@@ -168,7 +167,6 @@
         "doc"
       ]
     },
-
     {
       "login": "thingslu",
       "name": "thingslu",
@@ -383,6 +381,15 @@
       "contributions": [
         "test",
         "bug"
+      ]
+    },
+    {
+      "login": "markusand",
+      "name": "Marc Vilella",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12972543?v=4",
+      "profile": "https://github.com/markusand",
+      "contributions": [
+        "stubs"
       ]
     }
   ],

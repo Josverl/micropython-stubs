@@ -1,8 +1,8 @@
+import functools
 import logging
 import shutil
 import subprocess
 from pathlib import Path
-import functools
 
 import pytest
 from test_snippets import SOURCES, run_typechecker
@@ -48,10 +48,9 @@ def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Confi
 @pytest.mark.parametrize(
     "mp_version",
     [
-        # "v1.20.0",
-        # "v1.23.0",
         "v1.24.1",
-        # "latest",
+        "v1.25.0",
+        # "v1.26.0",
     ],
     scope="session",
 )
@@ -64,14 +63,13 @@ def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Confi
 def test_typing_runtime(
     copy_mpy_typings_fx,
     feature: str,
-    snip_path_fx: Path, # Not a fixture - overriden by parameterize 
+    snip_path_fx: Path,  # Not a fixture - overriden by parameterize
     check_file,
     version: str,
     mp_version: str,
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
 ):
-
     if not is_docker_running():
         pytest.skip("Docker is not running")
 
@@ -85,4 +83,5 @@ def test_typing_runtime(
     log.info(f"Running {cmd}")
     result = subprocess.run(cmd, shell=True, cwd=snip_path_fx, text=True, capture_output=True)
     error = [line for line in result.stdout.split("\n") if "Traceback" not in line]
+    error += [line for line in result.stderr.split("\n") if "Traceback" not in line]
     assert result.returncode == 0, error

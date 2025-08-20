@@ -153,6 +153,7 @@ MutableSet = _Subscriptable
 NamedTuple = _Subscriptable
 Optional = _Subscriptable
 OrderedDict = _Subscriptable
+Self = _Subscriptable
 Sequence = _Subscriptable
 Set = _Subscriptable
 Tuple = _Subscriptable

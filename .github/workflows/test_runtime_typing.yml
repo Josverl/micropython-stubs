@@ -1,0 +1,42 @@
+name: test_runtime_typing
+on: 
+  pull_request:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'mip/**/*.py'
+
+
+env:
+  # Setting an environment variable with the value of a configuration variable
+  SNIPPET_SCORE: ${{ vars.SNIPPET_SCORE }}
+  GH_TOKEN_VARS: ${{ secrets.GH_TOKEN_VARS }}
+  # fix:  DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs
+  JUPYTER_PLATFORM_DIRS: "1"
+
+
+jobs:
+  test_typings_docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      #----------------------------------------------
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
+          activate-environment: true
+
+      - name: Install Python dependencies
+        working-directory: ${{github.workspace}}
+        run: |
+          uv pip install -U -r pyproject.toml --extra test
+
+
+      - name: Test the snippets 
+        continue-on-error: true
+        run: |
+          pytest tests/quality_tests/test_typings.py 
+
+

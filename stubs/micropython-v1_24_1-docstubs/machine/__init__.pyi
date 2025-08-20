@@ -69,6 +69,7 @@ PIN_WAKE: Incomplete
 """Wake-up reasons."""
 RTC_WAKE: Incomplete
 """Wake-up reasons."""
+_IRQ_STATE: TypeAlias = int
 
 def reset() -> NoReturn:
     """
@@ -101,7 +102,7 @@ def bootloader(value: Optional[Any] = None) -> None:
     """
     ...
 
-def disable_irq() -> bool:
+def disable_irq() -> _IRQ_STATE:
     """
     Disable interrupt requests.
     Returns the previous IRQ state which should be considered an opaque value.
@@ -110,7 +111,7 @@ def disable_irq() -> bool:
     """
     ...
 
-def enable_irq(state: bool = True, /) -> None:
+def enable_irq(state: _IRQ_STATE, /) -> None:
     """
     Re-enable interrupt requests.
     The *state* parameter should be the value that was returned from the most
