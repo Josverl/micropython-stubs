@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 
+from _mpy_shed import mp_available
 from _typeshed import Incomplete
 from machine.Pin import Pin, PinLike
-from typing_extensions import TypeAlias
-
-ATTN_0DB: int = ...
+from typing_extensions import TypeAlias, deprecated
 
 class ADC:
     """
@@ -37,7 +36,7 @@ class ADC:
     WIDTH_11BIT: int = 11
     WIDTH_12BIT: int = 12 # esp32
 
-    def __init__(self, pin: PinLike, /) -> None:
+    def __init__(self, pin: PinLike, *, atten = ATTN_0DB) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -46,9 +45,11 @@ class ADC:
         .. note::
 
         WiPy has a custom implementation of ADC, see ADCWiPy for details.
+
+        on ESP32 :  `atten` specifies the attenuation level for the ADC input.
         """
 
-    def init(self, *, sample_ns, atten) -> Incomplete:
+    def init(self, *, sample_ns, atten=ATTN_0DB) -> Incomplete:
         """
         Apply the given settings to the ADC.  Only those arguments that are
         specified will be changed.  See the ADC constructor above for what the
@@ -81,3 +82,54 @@ class ADC:
         is calibrated, and how calibration is done.
         """
         ...
+
+    # ESP32 specific
+    @mp_available("esp32")
+    @deprecated("Use ADC.block().init(bits=bits) instead.")
+    def width(self, bits: int) -> None:
+        """
+        Equivalent to ADC.block().init(bits=bits).
+        The only chip that can switch resolution to a lower one is the normal esp32. The C2 & S3 are stuck at 12 bits, while the S2 is at 13 bits.
+
+        For compatibility, the ADC object also provides constants matching the supported ADC resolutions, per chip:
+
+        ESP32:
+            ADC.WIDTH_9BIT = 9
+            ADC.WIDTH_10BIT = 10
+            ADC.WIDTH_11BIT = 11
+            ADC.WIDTH_12BIT = 12
+
+        ESP32 C3 & S3:
+            ADC.WIDTH_12BIT = 12
+
+        ESP32 S2:
+            ADC.WIDTH_13BIT = 13
+
+        Available : ESP32
+        """
+        ...
+
+    @mp_available("esp32")
+    @deprecated("Use read_u16() instead.")
+    def read(self) -> int:
+        """
+        Take an analog reading and return an integer in the range 0-4095.
+        The return value represents the raw reading taken by the ADC, scaled
+        such that the minimum value is 0 and the maximum value is 4095.
+
+        This method is deprecated, use `read_u16()` instead.
+
+        Available : ESP32
+        """
+        ...
+
+    @mp_available("esp32")
+    @deprecated("Use ADC.init(atten=atten) instead.")
+    def atten(self, atten: int) -> None:
+        """
+        Set the attenuation level for the ADC input.
+
+        Available : ESP32
+        """
+        ...
+    
