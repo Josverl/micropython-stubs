@@ -47,7 +47,7 @@ from .time_mp import _TimeTuple as _TimeTuple
 from .pathlike import PathLike as PathLike
 
 from .mp_implementation import _mp_implementation as _mp_implementation
-
+from .mp_available import mp_available as mp_available
 # ------------------
 # copied from _typeshed  os.pyi as os.pyi cannot import from a module with the same name
 GenericAlias = type(list[int])
