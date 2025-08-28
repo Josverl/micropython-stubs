@@ -5,6 +5,11 @@ from _typeshed import Incomplete
 from typing import Any
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
+from rp2 import bootsel_button
+from rp2.Flash import Flash
+from rp2.PIO import PIO
+from rp2.PIOASMEmit import PIOASMEmit
+from rp2.StateMachine import StateMachine
 
 class DMA:
     """

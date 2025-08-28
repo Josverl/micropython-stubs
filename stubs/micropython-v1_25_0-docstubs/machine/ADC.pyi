@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
 from .Pin import Pin
+from _mpy_shed import mp_available
 from machine.Pin import Pin, PinLike
 
 ATTN_0DB: int = ...
@@ -35,7 +36,7 @@ class ADC:
     WIDTH_11BIT: int = 11
     WIDTH_12BIT: int = 12
 
-    def __init__(self, pin: PinLike, /) -> None:
+    def __init__(self, pin: PinLike, *, atten=ATTN_0DB) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -44,9 +45,11 @@ class ADC:
         .. note::
 
         WiPy has a custom implementation of ADC, see ADCWiPy for details.
+
+        on ESP32 :  `atten` specifies the attenuation level for the ADC input.
         """
 
-    def init(self, *, sample_ns, atten) -> Incomplete:
+    def init(self, *, sample_ns, atten=ATTN_0DB) -> Incomplete:
         """
         Apply the given settings to the ADC.  Only those arguments that are
         specified will be changed.  See the ADC constructor above for what the
