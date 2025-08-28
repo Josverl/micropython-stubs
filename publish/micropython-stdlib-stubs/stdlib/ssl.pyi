@@ -566,21 +566,6 @@ class SSLContext:
         """
         ...
 
-    @overload  # force merge
-    def load_cert_chain(self, certfile, keyfile) -> None:
-        """
-        Load a private key and the corresponding certificate.  The *certfile* is a string
-        with the file path of the certificate.  The *keyfile* is a string with the file path
-        of the private key.
-
-        Admonition:Difference to CPython
-           :class: attention
-
-           MicroPython extension: *certfile* and *keyfile* can be bytes objects instead of
-           strings, in which case they are interpreted as the actual certificate/key data.
-        """
-        ...
-
 class SSLObject:
     context: SSLContext
     @property
