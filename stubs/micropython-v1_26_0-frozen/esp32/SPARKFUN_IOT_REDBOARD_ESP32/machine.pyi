@@ -14,9 +14,9 @@ damage.
 from __future__ import annotations
 from _typeshed import Incomplete
 from micropython import const as const
-from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
-from typing import NoReturn, Callable, overload, Any
-from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf, mp_available
+from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
+from typing import NoReturn, Callable, Any, overload
 from vfs import AbstractBlockDev
 
 _path: Incomplete
@@ -86,6 +86,33 @@ class Encoder:
     def phases(self): ...
 
 def __getattr__(attr): ...
+
+class ADCBlock:
+    @overload
+    def connect(self, channel: int, **kwargs) -> ADC: ...
+    @overload
+    def connect(self, source: PinLike, **kwargs) -> ADC: ...
+    @overload
+    def connect(self, channel: int, source: PinLike, **kwargs) -> ADC:
+        """
+        Connect up a channel on the ADC peripheral so it is ready for sampling,
+        and return an :ref:`ADC <machine.ADC>` object that represents that connection.
+
+        The *channel* argument must be an integer, and *source* must be an object
+        (for example a :ref:`Pin <machine.Pin>`) which can be connected up for sampling.
+
+        If only *channel* is given then it is configured for sampling.
+
+        If only *source* is given then that object is connected to a default
+        channel ready for sampling.
+
+        If both *channel* and *source* are given then they are connected together
+        and made ready for sampling.
+
+        Any additional keyword arguments are used to configure the returned ADC object,
+        via its :meth:`init <machine.ADC.init>` method.
+        """
+        ...
 
 class I2C:
     @overload

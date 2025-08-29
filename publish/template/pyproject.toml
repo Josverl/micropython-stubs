@@ -22,7 +22,7 @@ classifiers = [
     "Topic :: Software Development :: Testing",
     "Natural Language :: English",
 ]
-# dependencies are updated from the template during build
+# dependencies are updated during build
 dependencies = ["micropython-stdlib-stubs  >=1.24.0"]
 
 [project.urls]

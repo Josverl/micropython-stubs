@@ -31,7 +31,7 @@ class ESPNow(ESPNowBase, Iterator):
     _data: Incomplete
     _none_tuple: Incomplete
     _poll: Incomplete
-    def __init__(self) -> None: ...
+    def __init__(self, buffer_size: int = 526, phy_rate: int = 0) -> None: ...
     def irecv(self, timeout_ms=None) -> Tuple[_MACAddress | bytearray | None, bytearray | None]:
         """
         Works like `ESPNow.recv()` but will reuse internal bytearrays to store the

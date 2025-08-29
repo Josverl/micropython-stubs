@@ -17,10 +17,10 @@ Module: 'machine' on micropython-v1.26.0-samd-SEEED_WIO_TERMINAL
 # MCU: {'variant': '', 'build': '', 'arch': 'armv7emsp', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'board_id': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'version': '1.26.0'}
 # Stubber: v1.25.1
 from __future__ import annotations
-from typing import NoReturn, Union, Tuple, Callable, List, Sequence, overload, Any, Optional, Final
+from typing import NoReturn, Union, Tuple, Callable, List, Sequence, Any, Optional, overload, Final
 from _typeshed import Incomplete
-from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
-from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf, mp_available
+from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 from vfs import AbstractBlockDev
 
 HARD_RESET: Final[int] = 16
@@ -622,7 +622,7 @@ class ADC:
         ...
 
     def deinit(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, pin: PinLike, /) -> None:
+    def __init__(self, pin: PinLike, *, atten=ATTN_0DB) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -631,6 +631,8 @@ class ADC:
         .. note::
 
         WiPy has a custom implementation of ADC, see ADCWiPy for details.
+
+        on ESP32 :  `atten` specifies the attenuation level for the ADC input.
         """
 
 class DAC:
@@ -2956,6 +2958,33 @@ class Signal(Pin):
 
           - ``invert`` - if True, the signal will be inverted (active low).
         """
+
+class ADCBlock:
+    @overload
+    def connect(self, channel: int, **kwargs) -> ADC: ...
+    @overload
+    def connect(self, source: PinLike, **kwargs) -> ADC: ...
+    @overload
+    def connect(self, channel: int, source: PinLike, **kwargs) -> ADC:
+        """
+        Connect up a channel on the ADC peripheral so it is ready for sampling,
+        and return an :ref:`ADC <machine.ADC>` object that represents that connection.
+
+        The *channel* argument must be an integer, and *source* must be an object
+        (for example a :ref:`Pin <machine.Pin>`) which can be connected up for sampling.
+
+        If only *channel* is given then it is configured for sampling.
+
+        If only *source* is given then that object is connected to a default
+        channel ready for sampling.
+
+        If both *channel* and *source* are given then they are connected together
+        and made ready for sampling.
+
+        Any additional keyword arguments are used to configure the returned ADC object,
+        via its :meth:`init <machine.ADC.init>` method.
+        """
+        ...
 
 class SDCard:
     @overload

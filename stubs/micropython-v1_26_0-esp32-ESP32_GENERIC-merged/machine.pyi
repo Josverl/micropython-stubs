@@ -17,10 +17,10 @@ Module: 'machine' on micropython-v1.26.0-esp32-ESP32_GENERIC-SPIRAM
 # MCU: {'variant': 'SPIRAM', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC-SPIRAM', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.26.0'}
 # Stubber: v1.25.1
 from __future__ import annotations
-from typing import NoReturn, Union, Tuple, Callable, List, Sequence, overload, Any, Optional, Final
+from typing import NoReturn, Union, Tuple, Callable, List, Sequence, Any, Optional, overload, Final
 from _typeshed import Incomplete
-from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
-from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf, mp_available
+from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 from vfs import AbstractBlockDev
 
 HARD_RESET: Final[int] = 2
@@ -1723,7 +1723,7 @@ class ADC:
     CORE_VBAT: int = ...
     CORE_TEMP: int = ...
     def width(self, *args, **kwargs) -> Incomplete: ...
-    def init(self, *, sample_ns, atten) -> Incomplete:
+    def init(self, *, sample_ns, atten=ATTN_0DB) -> Incomplete:
         """
         Apply the given settings to the ADC.  Only those arguments that are
         specified will be changed.  See the ADC constructor above for what the
@@ -1760,7 +1760,7 @@ class ADC:
         """
         ...
 
-    def __init__(self, pin: PinLike, /) -> None:
+    def __init__(self, pin: PinLike, *, atten=ATTN_0DB) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -1769,6 +1769,8 @@ class ADC:
         .. note::
 
         WiPy has a custom implementation of ADC, see ADCWiPy for details.
+
+        on ESP32 :  `atten` specifies the attenuation level for the ADC input.
         """
 
 class ADCBlock:
@@ -1781,14 +1783,19 @@ class ADCBlock:
     resolution is used.
     """
 
-    def init(self, *, bits) -> None:
+    def init(self, *, bits: int) -> None:
         """
         Configure the ADC peripheral.  *bits* will set the resolution of the
         conversion process.
         """
         ...
 
-    def connect(self, channel, source, *args, **kwargs) -> Incomplete:
+    @overload
+    def connect(self, channel: int, **kwargs) -> ADC: ...
+    @overload
+    def connect(self, source: PinLike, **kwargs) -> ADC: ...
+    @overload
+    def connect(self, channel: int, source: PinLike, **kwargs) -> ADC:
         """
         Connect up a channel on the ADC peripheral so it is ready for sampling,
         and return an :ref:`ADC <machine.ADC>` object that represents that connection.
@@ -1809,7 +1816,7 @@ class ADCBlock:
         """
         ...
 
-    def __init__(self, id, *, bits) -> None: ...
+    def __init__(self, id: int, *, bits: int) -> None: ...
 
 class DAC:
     def write(self, *args, **kwargs) -> Incomplete: ...

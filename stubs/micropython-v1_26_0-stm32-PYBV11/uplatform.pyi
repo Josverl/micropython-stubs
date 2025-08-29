@@ -1,0 +1,13 @@
+"""
+Module: 'uplatform' on micropython-v1.26.0-stm32-PYBV11-NETWORK
+"""
+
+# MCU: {'variant': 'NETWORK', 'build': '', 'arch': 'armv7emsp', 'port': 'stm32', 'board': 'PYBV11', 'board_id': 'PYBV11-NETWORK', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'STM32F405RG', 'version': '1.26.0'}
+# Stubber: v1.26.0
+from __future__ import annotations
+from typing import Any, Final, Generator
+from _typeshed import Incomplete
+
+def platform(*args, **kwargs) -> Incomplete: ...
+def python_compiler(*args, **kwargs) -> Incomplete: ...
+def libc_ver(*args, **kwargs) -> Incomplete: ...
