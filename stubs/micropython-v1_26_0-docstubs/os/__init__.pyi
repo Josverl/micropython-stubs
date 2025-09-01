@@ -182,6 +182,7 @@ def sync() -> None:
     """
     ...
 
+@mp_available()  # force merge
 def dupterm(stream_object, index=0, /) -> IO:
     """
     Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like

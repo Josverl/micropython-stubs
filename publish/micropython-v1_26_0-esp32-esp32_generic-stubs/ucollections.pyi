@@ -9,7 +9,7 @@ This module implements advanced collection and container types to
 hold/accumulate various objects.
 
 ---
-Module: 'ucollections' on micropython-v1.26.0-esp32-ESP32_GENERIC-SPIRAM
+Module: 'ucollections' on micropython-v1.26.0-esp32-ESP32_GENERIC
 """
 # import module from stdlib/module
 from collections import *

@@ -4,15 +4,16 @@ ESP-NOW :doc:`asyncio` support.
 MicroPython module: https://docs.micropython.org/en/v1.26.0/library/aioespnow.html
 
 ---
-Module: 'espnow' on micropython-v1.26.0-esp32-ESP32_GENERIC-SPIRAM
+Module: 'espnow' on micropython-v1.26.0-esp32-ESP32_GENERIC
 """
 
-# MCU: {'variant': 'SPIRAM', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC-SPIRAM', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.26.0'}
-# Stubber: v1.25.1
+# MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.26.0'}
+# Stubber: v1.26.0
 from __future__ import annotations
 from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, Union, overload, Final
 from _typeshed import Incomplete
 from _espnow import ESPNowBase
+from _mpy_shed import mp_available
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 KEY_LEN: Final[int] = 16
@@ -554,9 +555,9 @@ class ESPNow(ESPNowBase, Iterator):
 
     def __init__(self, buffer_size: int = 526, phy_rate: int = 0) -> None: ...
     #
-    @overload  # force merge
+    @mp_available()  # force merge
     def __iter__(self) -> ESPNow: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
 
 class ESPNowBase:

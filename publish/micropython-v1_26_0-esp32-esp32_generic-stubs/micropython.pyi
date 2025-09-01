@@ -4,13 +4,14 @@ Access and control MicroPython internals.
 MicroPython module: https://docs.micropython.org/en/v1.26.0/library/micropython.html
 
 ---
-Module: 'micropython' on micropython-v1.26.0-esp32-ESP32_GENERIC-SPIRAM
+Module: 'micropython' on micropython-v1.26.0-esp32-ESP32_GENERIC
 """
 
-# MCU: {'variant': 'SPIRAM', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC-SPIRAM', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.26.0'}
-# Stubber: v1.25.1
+# MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.26.0'}
+# Stubber: v1.26.0
 from __future__ import annotations
 from _typeshed import Incomplete
+from _mpy_shed import mp_available
 from typing import Any, Callable, Optional, Tuple, overload
 from typing_extensions import Awaitable, ParamSpec, TypeAlias, TypeVar
 
@@ -304,7 +305,7 @@ class RingIO:
     def __init__(self, size) -> None: ...
 
 # decorators
-@overload  # force merge
+@mp_available()  # force merge
 def viper(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     The Viper code emitter is not fully compliant. It supports special Viper native data types in pursuit of performance.
@@ -315,7 +316,7 @@ def viper(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     ...
 
-@overload  # force merge
+@mp_available()  # force merge
 def native(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     This causes the MicroPython compiler to emit native CPU opcodes rather than bytecode.
@@ -324,7 +325,7 @@ def native(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     ...
 
-@overload  # force merge
+@mp_available(macro="MICROPY_EMIT_INLINE_THUMB")  # force merge
 def asm_thumb(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     This decorator is used to mark a function as containing inline assembler code.
@@ -335,7 +336,7 @@ def asm_thumb(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     ...
 
-@overload  # force merge
+@mp_available(port="esp8266")  # force merge
 def asm_xtensa(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     This decorator is used to mark a function as containing inline assembler code for the esp8266.

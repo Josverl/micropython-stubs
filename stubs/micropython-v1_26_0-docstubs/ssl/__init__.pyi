@@ -93,7 +93,7 @@ class SSLContext:
 
     def wrap_socket(
         self,
-        sock: socket,
+        sock: socket.socket,
         *,
         server_side: bool = False,
         do_handshake_on_connect: bool = True,

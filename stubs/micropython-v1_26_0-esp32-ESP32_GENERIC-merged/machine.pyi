@@ -11,11 +11,11 @@ malfunction, lockups, crashes of your board, and in extreme cases, hardware
 damage.
 
 ---
-Module: 'machine' on micropython-v1.26.0-esp32-ESP32_GENERIC-SPIRAM
+Module: 'machine' on micropython-v1.26.0-esp32-ESP32_GENERIC
 """
 
-# MCU: {'variant': 'SPIRAM', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC-SPIRAM', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.26.0'}
-# Stubber: v1.25.1
+# MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.26.0'}
+# Stubber: v1.26.0
 from __future__ import annotations
 from typing import NoReturn, Union, Tuple, Callable, List, Sequence, Any, Optional, overload, Final
 from _typeshed import Incomplete
@@ -1722,7 +1722,32 @@ class ADC:
     CORE_VREF: int = ...
     CORE_VBAT: int = ...
     CORE_TEMP: int = ...
-    def width(self, *args, **kwargs) -> Incomplete: ...
+    # ESP32 specific
+    @mp_available(port="esp32")
+    @deprecated("Use ADC.block().init(bits=bits) instead.")
+    def width(self, bits: int) -> None:
+        """
+        Equivalent to ADC.block().init(bits=bits).
+        The only chip that can switch resolution to a lower one is the normal esp32. The C2 & S3 are stuck at 12 bits, while the S2 is at 13 bits.
+
+        For compatibility, the ADC object also provides constants matching the supported ADC resolutions, per chip:
+
+        ESP32:
+            ADC.WIDTH_9BIT = 9
+            ADC.WIDTH_10BIT = 10
+            ADC.WIDTH_11BIT = 11
+            ADC.WIDTH_12BIT = 12
+
+        ESP32 C3 & S3:
+            ADC.WIDTH_12BIT = 12
+
+        ESP32 S2:
+            ADC.WIDTH_13BIT = 13
+
+        Available : ESP32
+        """
+        ...
+
     def init(self, *, sample_ns, atten=ATTN_0DB) -> Incomplete:
         """
         Apply the given settings to the ADC.  Only those arguments that are
@@ -1748,8 +1773,30 @@ class ADC:
         ...
 
     def deinit(self, *args, **kwargs) -> Incomplete: ...
-    def read(self, *args, **kwargs) -> Incomplete: ...
-    def atten(self, *args, **kwargs) -> Incomplete: ...
+    @mp_available(port="esp32")
+    @deprecated("Use read_u16() instead.")
+    def read(self) -> int:
+        """
+        Take an analog reading and return an integer in the range 0-4095.
+        The return value represents the raw reading taken by the ADC, scaled
+        such that the minimum value is 0 and the maximum value is 4095.
+
+        This method is deprecated, use `read_u16()` instead.
+
+        Available : ESP32
+        """
+        ...
+
+    @mp_available(port="esp32")
+    @deprecated("Use ADC.init(atten=atten) instead.")
+    def atten(self, atten: int) -> None:
+        """
+        Set the attenuation level for the ADC input.
+
+        Available : ESP32
+        """
+        ...
+
     def block(self) -> Incomplete:
         """
         Return the :ref:`ADCBlock <machine.ADCBlock>` instance associated with

@@ -1,9 +1,9 @@
 """
-Module: 'asyncio.event' on micropython-v1.26.0-esp32-ESP32_GENERIC-SPIRAM
+Module: 'asyncio.event' on micropython-v1.26.0-esp32-ESP32_GENERIC
 """
 
-# MCU: {'variant': 'SPIRAM', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC-SPIRAM', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.26.0'}
-# Stubber: v1.25.1
+# MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.26.0'}
+# Stubber: v1.26.0
 from __future__ import annotations
 from typing import Generator
 from _typeshed import Incomplete

@@ -13,6 +13,7 @@ from __future__ import annotations
 from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, Union, overload, Final
 from _typeshed import Incomplete
 from _espnow import ESPNowBase
+from _mpy_shed import mp_available
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 KEY_LEN: Final[int] = 16
@@ -554,9 +555,9 @@ class ESPNow(ESPNowBase, Iterator):
 
     def __init__(self, buffer_size: int = 526, phy_rate: int = 0) -> None: ...
     #
-    @overload  # force merge
+    @mp_available()  # force merge
     def __iter__(self) -> ESPNow: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
 
 class ESPNowBase:
