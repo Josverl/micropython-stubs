@@ -2,6 +2,13 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/packages-v1.0.0.json",
     "packages": [
         [
+            "micropython-stdlib-stubs",
+            "1.26.0",
+            "",
+            "",
+            ""
+        ],
+        [
             "micropython-esp32-esp32_generic-stubs",
             "1.25.0",
             "esp32",

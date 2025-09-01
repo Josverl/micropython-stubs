@@ -39,6 +39,246 @@ def dumps(obj: Any, separators: Tuple[str, str]) -> str:
     ...
 
 @overload
+def dumps(obj: Any) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any, separators: Tuple[str, str]) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any, separators: Tuple[str, str]) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any, separators: Tuple[str, str]) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any, separators: Tuple[str, str]) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any, separators: Tuple[str, str]) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dumps(obj: Any, separators: Tuple[str, str]) -> str:
+    """
+    Return *obj* represented as a JSON string.
+
+    The arguments have the same meaning as in `dump`.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, separators: Tuple[str, str], /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, separators: Tuple[str, str], /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, separators: Tuple[str, str], /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, separators: Tuple[str, str], /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, separators: Tuple[str, str], /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
+def dump(obj: Any, stream: IOBase_mp | Incomplete, separators: Tuple[str, str], /) -> None:
+    """
+    Serialise *obj* to a JSON string, writing it to the given *stream*.
+
+    If specified, separators should be an ``(item_separator, key_separator)``
+    tuple. The default is ``(', ', ': ')``. To get the most compact JSON
+    representation, you should specify ``(',', ':')`` to eliminate whitespace.
+    """
+    ...
+
+@overload
 def dump(obj: Any, stream: IOBase_mp | Incomplete, /) -> None:
     """
     Serialise *obj* to a JSON string, writing it to the given *stream*.

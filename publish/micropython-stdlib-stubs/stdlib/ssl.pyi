@@ -519,7 +519,7 @@ class SSLContext:
     def set_ecdh_curve(self, name: str, /) -> None: ...
     def wrap_socket(
         self,
-        sock: socket,
+        sock: socket.socket,
         *,
         server_side: bool = False,
         do_handshake_on_connect: bool = True,
