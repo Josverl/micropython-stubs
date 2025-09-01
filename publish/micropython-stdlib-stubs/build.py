@@ -486,7 +486,8 @@ def update_asyncio_manual(reference_path: Path, dist_stdlib_path: Path):
 
 
 @click.command()
-@click.option("--clone", "-c", help="Clone the typeshed repo.", default=False, show_default=True)
+# Boolean flags: use dual-form (--flag/--no-flag) so users can explicitly enable/disable
+@click.option("--clone/--no-clone", "-c", help="Clone the typeshed repo.", default=False, show_default=True)
 @click.option(
     "--version",
     "-v",
@@ -496,28 +497,28 @@ def update_asyncio_manual(reference_path: Path, dist_stdlib_path: Path):
     show_default=True,
 )
 @click.option(
-    "--typeshed",
+    "--typeshed/--no-typeshed",
     "-t",
-    is_flag=True,
     help="Update stdlib from the typeshed repo.",
-    default=True,
+    default=False,
     show_default=True,
 )
 @click.option(
-    "--merge",
+    "--merge/--no-merge",
     "-m",
-    is_flag=True,
     help="Merge the docstubs into the stdlib.",
     default=True,
     show_default=True,
 )
-@click.option("--build", "-b", is_flag=True, help="Build the wheel file.", default=True, show_default=True)
+@click.option("--publish/--no-publish", help="Publish the stdlib-stubs module.", default=False, show_default=True)
+@click.option("--build/--no-build", "-b", help="Build the stdlib-stubs module.", default=True, show_default=True)
 def update(
     version: Optional[str] = None,
     clone: bool = False,
     typeshed: bool = False,
     merge: bool = True,
     build: bool = True,
+    publish: bool = False,
 ):
     """
     Update the micropython-stdlib-stubs package and create a wheel file.
@@ -590,15 +591,45 @@ def update(
     # update the last changed date-time so uv can detect the update
     Path(dist_stdlib_path / "pyproject.toml").touch()
 
-    # do some patches to typings.pyi
+    # do some patches to typing.pyi
     update_typing_pyi(rootpath, dist_stdlib_path)
 
-    if build:
-        subprocess.check_call(
-            # ["uv", "build", "--wheel"],
-            ["uv", "build", "--index-strategy", "unsafe-best-match", "--wheel"],
-            cwd=dist_stdlib_path,
-        )
+    if build or publish:
+        try:
+            subprocess.check_call(
+                # ["uv", "build", "--wheel"],
+                ["uv", "build", "--index-strategy", "unsafe-best-match", "--wheel"],
+                cwd=dist_stdlib_path,
+            )
+        except subprocess.CalledProcessError as e:
+            # Show a concise error without a Python traceback, preferring captured output
+            msg = _extract_error_lines(getattr(e, "stderr", "") or getattr(e, "output", "") or str(e))
+            if msg:
+                raise click.ClickException(msg) from None
+            raise click.ClickException(f"Build failed with exit code {e.returncode}.") from None
+
+        if publish:
+            import keyring
+            print(f"Publishing stdlib-stubs module... {version}")
+            # Run publish capturing stderr so we can show only the error message on failure
+            publish_cmd = [
+                "uv",
+                "publish",
+                "-u",
+                "__token__",
+                "-p",
+                keyring.get_password("stubber", "uv_pipy_token"),
+            ]
+            result = subprocess.run(
+                publish_cmd,
+                cwd=dist_stdlib_path,
+                text=True,
+                capture_output=True,
+            )
+            if result.returncode != 0:
+                # Prefer stderr, fallback to stdout if empty; extract concise error lines
+                err = (result.stderr or result.stdout or "Publish failed").strip()
+                raise click.ClickException(err)
 
 
 if __name__ == "__main__":
