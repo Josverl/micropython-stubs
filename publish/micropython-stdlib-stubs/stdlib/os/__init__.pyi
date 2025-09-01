@@ -1,7 +1,7 @@
 """
 Basic "operating system" services.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/os.html
+MicroPython module: https://docs.micropython.org/en/v1.26.0/library/os.html
 
 CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
 
@@ -62,7 +62,7 @@ from typing import (
 from typing_extensions import Awaitable, TypeVar, Self, TypeAlias, Unpack, deprecated
 
 # from . import path as _path
-from _mpy_shed import uname_result
+from _mpy_shed import mp_available, uname_result
 
 if sys.version_info >= (3, 9):
     from types import GenericAlias
@@ -443,7 +443,7 @@ def listdir(path: StrPath | None = None) -> list[str]: ...
 def listdir(path: BytesPath) -> list[bytes]: ...
 @overload
 def listdir(path: int) -> list[str]: ...
-@overload
+@mp_available()  # force merge
 def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
     With no argument, list the current directory.  Otherwise list the given directory.
@@ -780,7 +780,7 @@ def write(fd: int, data: ReadableBuffer, /) -> int: ...
 def access(
     path: FileDescriptorOrPath, mode: int, *, dir_fd: int | None = None, effective_ids: bool = False, follow_symlinks: bool = True
 ) -> bool: ...
-@overload
+@mp_available()  # force merge
 def chdir(path) -> Incomplete:
     """
     Change current directory.
@@ -790,7 +790,7 @@ def chdir(path) -> Incomplete:
 if sys.platform != "win32":
     def fchdir(fd: FileDescriptorLike) -> None: ...
 
-@overload
+@mp_available()  # force merge
 def getcwd() -> Incomplete:
     """
     Get the current directory.
@@ -818,7 +818,7 @@ def link(
     follow_symlinks: bool = True,
 ) -> None: ...
 def lstat(path: StrOrBytesPath, *, dir_fd: int | None = None) -> stat_result: ...
-@overload
+@mp_available()  # force merge
 def mkdir(path) -> Incomplete:
     """
     Create a new directory.
@@ -838,7 +838,7 @@ if sys.platform != "win32":
     def pathconf(path: FileDescriptorOrPath, name: str | int) -> int: ...  # Unix only
 
 def readlink(path: GenericPath[AnyStr], *, dir_fd: int | None = None) -> AnyStr: ...
-@overload
+@mp_available()  # force merge
 def remove(path) -> None:
     """
     Remove a file.
@@ -846,7 +846,7 @@ def remove(path) -> None:
     ...
 
 def removedirs(name: StrOrBytesPath) -> None: ...
-@overload
+@mp_available()  # force merge
 def rename(old_path, new_path) -> None:
     """
     Rename a file.
@@ -855,7 +855,7 @@ def rename(old_path, new_path) -> None:
 
 def renames(old: StrOrBytesPath, new: StrOrBytesPath) -> None: ...
 def replace(src: StrOrBytesPath, dst: StrOrBytesPath, *, src_dir_fd: int | None = None, dst_dir_fd: int | None = None) -> None: ...
-@overload
+@mp_available()  # force merge
 def rmdir(path) -> None:
     """
     Remove a directory.
@@ -881,7 +881,7 @@ def stat(path: str | bytes) -> stat_result:
 
 if sys.platform != "win32":
 
-    @overload
+    @mp_available()  # force merge
     def statvfs(path) -> Tuple:
         """
         Get the status of a filesystem.
@@ -909,7 +909,7 @@ def symlink(src: StrOrBytesPath, dst: StrOrBytesPath, target_is_directory: bool 
 
 if sys.platform != "win32":
 
-    @overload
+    @mp_available()  # force merge
     def sync() -> None:
         """
         Sync all filesystems.
@@ -1185,7 +1185,7 @@ if sys.platform != "win32":
 if sys.platform == "linux":
     def getrandom(size: int, flags: int = 0) -> bytes: ...
 
-@overload
+@mp_available()  # force merge
 def urandom(n: int) -> bytes:
     """
     Return a bytes object with *n* random bytes. Whenever possible, it is
@@ -1336,7 +1336,7 @@ def ilistdir() -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]
 # Deprecated functions and classes
 # The following functions and classes have been moved to the vfs module.
 
-@overload
+@mp_available()  # force merge
 @deprecated("The `mount` function is deprecated, use `vfs.mount` instead.")
 def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
@@ -1344,7 +1344,7 @@ def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     ...
 
-@overload
+@mp_available()  # force merge
 @deprecated("The `umount` function is deprecated, use `vfs.umount` instead.")
 def umount(mount_point) -> Incomplete:
     """
@@ -1352,7 +1352,7 @@ def umount(mount_point) -> Incomplete:
     """
     ...
 
-@overload  # force merge
+@mp_available()  # force merge
 def dupterm_notify(obj_in: Any, /) -> None:
     # https://github.com/orgs/micropython/discussions/16680
     # https://github.com/micropython/micropython/issues/17799

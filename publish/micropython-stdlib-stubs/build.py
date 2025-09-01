@@ -141,7 +141,13 @@ COMMENT_OUT_LINES = [
 # change some lines to hide the existance of CPython apis that do not exists in MicroPython
 # this is for things such as function or classdefs that extend beyond a single line
 CHANGE_LINES = [
-    ("ssl", [("def create_default_context", "def __mpy_has_no_create_default_context")]),
+    (
+        "ssl", 
+        [
+            ("def create_default_context", "def __mpy_has_no_create_default_context"),
+            ("if sys.version_info < (3, 12):","if True:")  # force def wrap_socket to be seen.
+        ],
+    ),
     (
         "sys",
         [

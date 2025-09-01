@@ -1,7 +1,7 @@
 """
 System specific functions.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/sys.html
+MicroPython module: https://docs.micropython.org/en/v1.26.0/library/sys.html
 
 CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 """
@@ -265,8 +265,11 @@ if sys.version_info >= (3, 11):
 def exit(retval: object = 0, /) -> NoReturn:
     """
     Terminate current program with a given exit code. Underlyingly, this
-    function raise as `SystemExit` exception. If an argument is given, its
+    function raises a `SystemExit` exception. If an argument is given, its
     value given as an argument to `SystemExit`.
+
+    On embedded ports (i.e. all ports but Windows and Unix), an unhandled
+    `SystemExit` currently causes a :ref:`soft_reset` of MicroPython.
     """
     ...
 

@@ -1,7 +1,7 @@
 """
 JSON encoding and decoding.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/json.html
+MicroPython module: https://docs.micropython.org/en/v1.26.0/library/json.html
 
 CPython module: :mod:`python:json` https://docs.python.org/3/library/json.html .
 

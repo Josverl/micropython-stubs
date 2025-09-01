@@ -1,7 +1,7 @@
 """
 Pack and unpack primitive data types.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/struct.html
+MicroPython module: https://docs.micropython.org/en/v1.26.0/library/struct.html
 
 CPython module: :mod:`python:struct` https://docs.python.org/3/library/struct.html .
 

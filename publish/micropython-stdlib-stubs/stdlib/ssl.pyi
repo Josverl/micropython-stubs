@@ -1,7 +1,7 @@
 """
 TLS/SSL wrapper for socket objects.
 
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/ssl.html
+MicroPython module: https://docs.micropython.org/en/v1.26.0/library/ssl.html
 
 CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 
@@ -42,13 +42,13 @@ from _typeshed import Incomplete, ReadableBuffer, StrOrBytesPath, WriteableBuffe
 from collections.abc import Callable, Iterable
 from typing import Any, Literal, NamedTuple, TypedDict, overload
 from typing_extensions import Awaitable, TypeVar, Never, Self, TypeAlias
-from _mpy_shed import StrOrBytesPath
+from _mpy_shed import StrOrBytesPath, mp_available
 from tls import *
 
 if sys.version_info >= (3, 13):
     from _ssl import HAS_PSK as HAS_PSK
 
-if sys.version_info < (3, 12):
+if True:
     from _ssl import RAND_pseudo_bytes as RAND_pseudo_bytes
 
 if sys.version_info < (3, 10):
@@ -94,7 +94,13 @@ class SSLCertVerificationError(SSLError, ValueError):
 
 # CertificateError = SSLCertVerificationError
 
-if sys.version_info < (3, 12):
+if True:
+
+    # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+    # End duplicated section
+    # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+    @mp_available()  # force merge
     def wrap_socket(
         sock: socket.socket,
         *,
@@ -163,7 +169,7 @@ else:
 
 _create_default_https_context: Callable[..., SSLContext]
 
-if sys.version_info < (3, 12):
+if True:
     def match_hostname(cert: _PeerCertRetDictType, hostname: str) -> None: ...
 
 def cert_time_to_seconds(cert_time: str) -> int: ...
@@ -367,15 +373,15 @@ class SSLSocket:
     def connect(self, addr: socket._Address) -> None: ...
     def connect_ex(self, addr: socket._Address) -> int: ...
     # ifdef MBEDTLS_SSL_PROTO_DTLS
-    @overload  # force merge
+    @mp_available(macro="MBEDTLS_SSL_PROTO_DTLS")  # force merge
     def recv(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available(macro="MBEDTLS_SSL_PROTO_DTLS")  # force merge
     def recv_into(self, *argv, **kwargs) -> Incomplete: ...
     def recvfrom(self, buflen: int = 1024, flags: int = 0) -> tuple[bytes, socket._RetAddress]: ...
     def recvfrom_into(self, buffer: WriteableBuffer, nbytes: int | None = None, flags: int = 0) -> tuple[int, socket._RetAddress]: ...
-    @overload  # force merge
+    @mp_available(macro="MBEDTLS_SSL_PROTO_DTLS")  # force merge
     def send(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available(macro="MBEDTLS_SSL_PROTO_DTLS")  # force merge
     def sendall(self, *argv, **kwargs) -> Incomplete: ...
     @overload
     def sendto(self, data: ReadableBuffer, flags_or_addr: socket._Address, addr: None = None) -> int: ...
@@ -386,9 +392,9 @@ class SSLSocket:
     # ref: micropython\extmod\modtls_axtls.c ( read ... close)
 
     # repos\micropython\extmod\modtls_mbedtls.c
-    @overload  # force merge
+    @mp_available()  # force merge
     def read(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def write(self, *argv, **kwargs) -> Incomplete: ...
     def do_handshake(self, block: bool = False) -> None: ...  # block is undocumented
     @overload
@@ -399,10 +405,10 @@ class SSLSocket:
     def getpeercert(self, binary_form: bool) -> _PeerCertRetType: ...
     # endif
     # ifdef (MBEDTLS_SSL_KEEP_PEER_CERTIFICATE)
-    @overload  # force merge
+    @mp_available(macro="MBEDTLS_SSL_KEEP_PEER_CERTIFICATE")  # force merge
     def getpeercert(self, *argv, **kwargs) -> Incomplete: ...
     # endif
-    @overload  # force merge
+    @mp_available()  # force merge
     def cipher(self, *argv, **kwargs) -> Incomplete: ...
     def shared_ciphers(self) -> list[tuple[str, str, int]] | None: ...
     def compression(self) -> str | None: ...
@@ -422,20 +428,20 @@ class SSLSocket:
         def get_verified_chain(self) -> list[bytes]: ...
         def get_unverified_chain(self) -> list[bytes]: ...
 
-    @overload  # force merge
+    @mp_available()  # force merge
     def readinto(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def readline(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def setblocking(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def close(self, *argv, **kwargs) -> Incomplete: ...
     # if MICROPY_PY_SSL_FINALISER
-    @overload  # force merge
+    @mp_available(macro="MICROPY_PY_SSL_FINALISER")  # force merge
     def __del__(self, *argv, **kwargs) -> Incomplete: ...
     # endif
     # ifdef MICROPY_UNIX_COVERAGE
-    @overload  # force merge
+    @mp_available(macro="MICROPY_UNIX_COVERAGE")  # force merge
     def ioctl(self, *argv, **kwargs) -> Incomplete: ...
 
 class TLSVersion(enum.IntEnum):
@@ -540,6 +546,9 @@ class SSLContext:
         - *server_hostname* is for use as a client, and sets the hostname to check against the received
           server certificate.  It also sets the name for Server Name Indication (SNI), allowing the server
           to present the proper certificate.
+
+        - *client_id* is a MicroPython-specific extension argument used only when implementing a DTLS
+          Server. See :ref:`dtls` for details.
         """
         ...
 
@@ -551,7 +560,7 @@ class SSLContext:
         server_hostname: str | bytes | None = None,
         session: SSLSession | None = None,
     ) -> SSLObject: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def load_cert_chain(self, certfile, keyfile) -> None:
         """
         Load a private key and the corresponding certificate.  The *certfile* is a string
@@ -629,4 +638,6 @@ if sys.version_info < (3, 9):
 # SOCK_STREAM: int
 # SOL_SOCKET: int
 # SO_TYPE: int
+PROTOCOL_DTLS_CLIENT: Incomplete
+PROTOCOL_DTLS_SERVER: Incomplete
 MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"
