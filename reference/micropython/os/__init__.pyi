@@ -9,13 +9,11 @@ The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
-
-# source version: v1.24.0
 # origin module:: repos/micropython/docs/library/os.rst
 from __future__ import annotations
 
 from _mpy_shed import mp_available
-from typing import Any, Iterator, Optional, Tuple, Union, overload
+from typing import Any, Iterator, Optional, Tuple, Union, overload, IO
 from typing_extensions import deprecated
 
 from _mpy_shed import uname_result
@@ -156,6 +154,9 @@ def sync() -> None:
     """
     ...
 
+@mp_available()  # force merge
+def dupterm(stream_object, index=0, /) -> IO:
+    ...
 
 @mp_available()  # force merge
 def dupterm_notify(obj_in: Any, /) -> None:

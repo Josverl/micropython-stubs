@@ -44,7 +44,7 @@ pwm0.duty_ns(250_000)  # set pulse width in nanoseconds from 0 to 1_000_000_000/
 
 pwm0.deinit()  # turn off PWM on the pin
 
-pwm2 = PWM(Pin(2), freq=20000, duty=512)  # create and configure in one go
+pwm2 = PWM(Pin(2), freq=20000, duty_ns=512)  # create and configure in one go
 print(pwm2)  # view PWM settings
 
 

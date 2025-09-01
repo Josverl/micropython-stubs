@@ -3,15 +3,15 @@ import logging
 import platform
 import re
 import subprocess
+import sys
 from pathlib import Path
+from typing import Dict, List
 
 import fasteners
 import pytest
 from mpflash.versions import micropython_versions
 from packaging.version import Version
-from typecheck import copy_config_files, port_and_board, run_typechecker, stub_ignore
-from typing import Dict, List
-import sys
+from typecheck import copy_config_files, port_and_board, run_typechecker
 
 
 def major_minor(versions):
@@ -76,7 +76,12 @@ PORTBOARD_FEATURES = {
         "aioble:skip version<1.21.0",
     ],
     "rp2-rpi_pico2:skip version<1.24.0": RP2_CORE,
-    "rp2-rpi_pico2_w:skip version=<1.24.0": RP2_CORE,
+    "rp2-rpi_pico2_w:skip version=<1.24.0": RP2_CORE
+    + [
+        "networking",
+        "bluetooth:skip version",
+        "aioble:skip version",
+    ],    
     # "rp2-pimoroni_picolipo_16mb": CORE,
     "webassembly:skip version<1.23.0": CORE,
     "windows": CORE,
