@@ -31,7 +31,7 @@
             "request": "launch",
             "program": "${file}",
             "args": [
-                "-l"
+                "--publish", "--version", "1.26.0"
             ],
             "console": "integratedTerminal",
             "cwd": "${workspaceFolder}",
