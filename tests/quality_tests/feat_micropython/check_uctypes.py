@@ -3,11 +3,12 @@ Sample from micropython documentaton
 ref: https://docs.micropython.org/en/latest/library/uctypes.html
 """
 
+import uctypes
+
 # make it work
 f = open("elf_file.bin")
 # --------------------------------
 
-import uctypes
 
 #------------------------------------------------------------------------------------
 # Example 1: Subset of ELF file header

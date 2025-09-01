@@ -17,9 +17,9 @@ Module: 'uctypes' on micropython-v1.26.0-rp2-RPI_PICO
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.26.0', 'arch': 'armv6m', 'version': '1.26.0', 'port': 'rp2', 'board': 'RPI_PICO', 'family': 'micropython', 'board_id': 'RPI_PICO', 'variant': '', 'cpu': 'RP2040'}
 # Stubber: v1.26.0
 from __future__ import annotations
-from typing import overload, Any, Final, Generator
+from typing import Dict, Tuple, Any, Final, Generator
 from _typeshed import Incomplete
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, mp_available
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 VOID: Final[int] = 0
@@ -54,23 +54,8 @@ FLOAT64: Final[int] = -134217728
 BF_POS: Final[int] = 17
 BIG_ENDIAN: Final[int] = 1
 FLOAT32: Final[int] = -268435456
-_ScalarProperty: TypeAlias = int
-_RecursiveProperty: TypeAlias = tuple[int, _property]
-_ArrayProperty: TypeAlias = tuple[int, int]
-_ArrayOfAggregateProperty: TypeAlias = tuple[int, int, _property]
-_PointerToAPrimitiveProperty: TypeAlias = tuple[int, int]
-_PointerToAaAggregateProperty: TypeAlias = tuple[int, "_property"]
-_BitfieldProperty: TypeAlias = int
-_property: TypeAlias = (
-    _ScalarProperty
-    | _RecursiveProperty
-    | _ArrayProperty
-    | _ArrayOfAggregateProperty
-    | _PointerToAPrimitiveProperty
-    | _PointerToAaAggregateProperty
-    | _BitfieldProperty
-)
-_descriptor: TypeAlias = tuple[str, _property]
+_property: TypeAlias = Incomplete
+_descriptor: TypeAlias = Tuple | Dict
 
 def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) -> int:
     """
@@ -112,11 +97,11 @@ class struct:
     ---------------
     """
 
-    def __init__(self, addr: int, descriptor: _descriptor, layout_type: int = NATIVE, /) -> None:
+    def __init__(self, addr: int | struct, descriptor: _descriptor, layout_type: int = NATIVE, /) -> None:
         """
         Instantiate a "foreign data structure" object based on structure address in
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
 
-    @overload  # force push
+    @mp_available()  # force push
     def __getattr__(self, a): ...

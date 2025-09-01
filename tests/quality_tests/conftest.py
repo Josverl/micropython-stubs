@@ -73,60 +73,60 @@ def pytest_runtest_makereport(item, call):
         return report
 
 
-@pytest.fixture(scope="session")
-def type_stub_cache_path_fx(
-    portboard: str,
-    version: str,
-    stub_source: str,
-    pytestconfig: pytest.Config,
-    request: pytest.FixtureRequest,
-) -> Path:
-    """
-    Installs a copy of the type stubs for the given portboard and version. Returns the path to the cache folder.
+# @pytest.fixture(scope="session")
+# def type_stub_cache_path_fx(
+#     portboard: str,
+#     version: str,
+#     stub_source: str,
+#     pytestconfig: pytest.Config,
+#     request: pytest.FixtureRequest,
+# ) -> Path:
+#     """
+#     Installs a copy of the type stubs for the given portboard and version. Returns the path to the cache folder.
 
-    Args:
-        portboard: The portboard.
-        version: The version.
-        stub_source: The stub source.
-        pytestconfig: The pytest Config object.
-        request: The pytest FixtureRequest object.
+#     Args:
+#         portboard: The portboard.
+#         version: The version.
+#         stub_source: The stub source.
+#         pytestconfig: The pytest Config object.
+#         request: The pytest FixtureRequest object.
 
-    Returns:
-        Path: The path to the cache folder.
-    """
+#     Returns:
+#         Path: The path to the cache folder.
+#     """
 
-    log.debug(f"setup install type_stubs to cache: {stub_source}, {version}, {portboard}")
-    cache_key = f"stubber/{stub_source}/{version}/{portboard}"
-    flatversion = flat_version(version)
-    tsc_path = Path(
-        request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}") # type: ignore
-    )
-    # prevent simultaneous updates to the cache
-    cache_lock = fasteners.InterProcessLock(tsc_path.parent / f"{tsc_path.name}.lock")
-    # check if stubs are already installed to the cache
-    with cache_lock:
-        if (tsc_path / "micropython.pyi").exists():
-            # check if stubs are in the cache
-            timestamp = request.config.cache.get(cache_key, None)
-            # if timestamp is not older than 24 hours, use cache
+#     log.debug(f"setup install type_stubs to cache: {stub_source}, {version}, {portboard}")
+#     cache_key = f"stubber/{stub_source}/{version}/{portboard}"
+#     flatversion = flat_version(version)
+#     tsc_path = Path(
+#         request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}") # type: ignore
+#     )
+#     # prevent simultaneous updates to the cache
+#     cache_lock = fasteners.InterProcessLock(tsc_path.parent / f"{tsc_path.name}.lock")
+#     # check if stubs are already installed to the cache
+#     with cache_lock:
+#         if (tsc_path / "micropython.pyi").exists():
+#             # check if stubs are in the cache
+#             timestamp = request.config.cache.get(cache_key, None)
+#             # if timestamp is not older than 24 hours, use cache
 
-            if timestamp and timestamp > (time.time() - MAX_CACHE_AGE):
-                log.debug(f"Using cached type stubs for {portboard} {version}")
-                return tsc_path
+#             if timestamp and timestamp > (time.time() - MAX_CACHE_AGE):
+#                 log.debug(f"Using cached type stubs for {portboard} {version}")
+#                 return tsc_path
 
-        ok = install_stubs(portboard, version, stub_source, pytestconfig, tsc_path)
-        if not ok:
-            pytest.skip(f"Could not install stubs for {portboard} {version}")
-        # add the timestamp to the cache
-        request.config.cache.set(cache_key, time.time())
+#         ok = install_stubs(portboard, version, stub_source, pytestconfig, tsc_path)
+#         if not ok:
+#             pytest.skip(f"Could not install stubs for {portboard} {version}")
+#         # add the timestamp to the cache
+#         request.config.cache.set(cache_key, time.time())
 
-    return tsc_path
+#     return tsc_path
 
 
 def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path) -> bool:
     """
     Cleans up prior install to avoid stale files.
-    Uses pip to install type stubs for the given portboard and version.
+    Uses uv pip to install type stubs for the given portboard and version.
 
     Args:
         portboard: The portboard.
@@ -213,8 +213,10 @@ def copy_type_stubs_fx(
     portboard: str, 
     version: str, 
     feature: str, 
-    type_stub_cache_path_fx: Path, 
+    # type_stub_cache_path_fx: Path,
     snip_path_fx: Path,
+    stub_source: str,
+    pytestconfig: pytest.Config
 ):
     """
     Copies installed/cached type stubs from the cache to the feature folder.
@@ -226,22 +228,24 @@ def copy_type_stubs_fx(
         type_stub_cache_path: The path to the cache folder.
         snip_path: The path to the feature folder.
     """
-    cache_lock = fasteners.InterProcessLock(
-        type_stub_cache_path_fx.parent / f"{type_stub_cache_path_fx.name}.lock"
-    )
+    # cache_lock = fasteners.InterProcessLock(
+    #     type_stub_cache_path_fx.parent / f"{type_stub_cache_path_fx.name}.lock"
+    # )
+    # with cache_lock:
     typecheck_lock = fasteners.InterProcessLock(snip_path_fx / "typecheck_lock.file")
-    with cache_lock:
-        with typecheck_lock:
-            log.trace(f"- copy_type_stubs: {version}, {portboard} to {feature}")
-            # print(f"\n - copy_type_stubs : {version}, {portboard} to {feature}")
-            if not snip_path_fx or not snip_path_fx.exists():
-                # skip if no feature folder
-                pytest.skip(f"no feature folder for {feature}")
-            typings_path = snip_path_fx / "typings"
-            if typings_path.exists():
-                shutil.rmtree(typings_path, ignore_errors=True)
-            shutil.copytree(type_stub_cache_path_fx, typings_path)
-            # print(f" - copied to {typings_path}")
+    with typecheck_lock:
+        log.trace(f"- copy_type_stubs: {version}, {portboard} to {feature}")
+        # print(f"\n - copy_type_stubs : {version}, {portboard} to {feature}")
+        if not snip_path_fx or not snip_path_fx.exists():
+            # skip if no feature folder
+            pytest.skip(f"no feature folder for {feature}")
+        typings_path = snip_path_fx / "typings"
+        if typings_path.exists():
+            shutil.rmtree(typings_path, ignore_errors=True)
+
+        ok = install_stubs(portboard, version, stub_source, pytestconfig, typings_path)
+        if not ok:
+            pytest.skip(f"Could not install stubs for {portboard} {version}")
 
 
 def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config):

@@ -81,4 +81,4 @@ def start():
     uart = BLEUART(ble, name="mpy-repl")
     stream = BLEUARTStream(uart)
 
-    os.dupterm(stream)
+    os.dupterm(stream) # stubs-ignore: not port.startswith("esp")

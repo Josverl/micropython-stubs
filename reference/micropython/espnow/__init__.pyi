@@ -10,6 +10,7 @@ MicroPython module: https://docs.micropython.org/en/v1.24.0/library/espnow.html
 # origin module:: repos/micropython/docs/library/espnow.rst
 from __future__ import annotations
 
+from _mpy_shed import mp_available
 from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, overload
 
 from _espnow import ESPNowBase  # type: ignore
@@ -63,9 +64,9 @@ class ESPNow(ESPNowBase, Iterator):
     """
     def __init__(self, buffer_size: int = 526, phy_rate: int = 0) -> None: ...
     #
-    @overload  # force merge
+    @mp_available()  # force merge
     def __iter__(self) -> ESPNow: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
     #
     def active(self, flag: Optional[Any] = None) -> Incomplete:

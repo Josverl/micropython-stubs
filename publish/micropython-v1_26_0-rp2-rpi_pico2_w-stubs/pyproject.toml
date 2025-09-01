@@ -1,7 +1,3 @@
-dependencies = [
-    "micropython-stdlib-stubs  ~=1.26",
-]
-
 [project]
 name = "micropython-rp2-rpi_pico2_w-stubs"
 description = "MicroPython stubs"

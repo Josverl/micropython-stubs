@@ -87,6 +87,57 @@ class Encoder:
 
 def __getattr__(attr): ...
 
+class ADC:
+    # ESP32 specific
+    @mp_available(port="esp32")
+    @deprecated("Use ADC.block().init(bits=bits) instead.")
+    def width(self, bits: int) -> None:
+        """
+        Equivalent to ADC.block().init(bits=bits).
+        The only chip that can switch resolution to a lower one is the normal esp32. The C2 & S3 are stuck at 12 bits, while the S2 is at 13 bits.
+
+        For compatibility, the ADC object also provides constants matching the supported ADC resolutions, per chip:
+
+        ESP32:
+            ADC.WIDTH_9BIT = 9
+            ADC.WIDTH_10BIT = 10
+            ADC.WIDTH_11BIT = 11
+            ADC.WIDTH_12BIT = 12
+
+        ESP32 C3 & S3:
+            ADC.WIDTH_12BIT = 12
+
+        ESP32 S2:
+            ADC.WIDTH_13BIT = 13
+
+        Available : ESP32
+        """
+        ...
+
+    @mp_available(port="esp32")
+    @deprecated("Use read_u16() instead.")
+    def read(self) -> int:
+        """
+        Take an analog reading and return an integer in the range 0-4095.
+        The return value represents the raw reading taken by the ADC, scaled
+        such that the minimum value is 0 and the maximum value is 4095.
+
+        This method is deprecated, use `read_u16()` instead.
+
+        Available : ESP32
+        """
+        ...
+
+    @mp_available(port="esp32")
+    @deprecated("Use ADC.init(atten=atten) instead.")
+    def atten(self, atten: int) -> None:
+        """
+        Set the attenuation level for the ADC input.
+
+        Available : ESP32
+        """
+        ...
+
 class ADCBlock:
     @overload
     def connect(self, channel: int, **kwargs) -> ADC: ...

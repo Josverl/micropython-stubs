@@ -15,29 +15,34 @@ sub-fields.
 # origin module:: repos/micropython/docs/library/uctypes.rst
 from __future__ import annotations
 
-from typing import overload
+from typing import Tuple, Dict
 
-from _mpy_shed import AnyReadableBuf
+from _mpy_shed import AnyReadableBuf, mp_available
 from _typeshed import Incomplete
 from typing_extensions import TypeAlias
 
-_ScalarProperty: TypeAlias = int
-_RecursiveProperty: TypeAlias = tuple[int, _property]
-_ArrayProperty: TypeAlias = tuple[int, int]
-_ArrayOfAggregateProperty: TypeAlias = tuple[int, int, _property]
-_PointerToAPrimitiveProperty: TypeAlias = tuple[int, int]
-_PointerToAaAggregateProperty: TypeAlias = tuple[int, "_property"]
-_BitfieldProperty: TypeAlias = int
-_property: TypeAlias = (
-    _ScalarProperty
-    | _RecursiveProperty
-    | _ArrayProperty
-    | _ArrayOfAggregateProperty
-    | _PointerToAPrimitiveProperty
-    | _PointerToAaAggregateProperty
-    | _BitfieldProperty
-)
-_descriptor: TypeAlias = tuple[str, _property]
+# TODO : uctypes properties and descriptors
+# _ScalarProperty: TypeAlias = int
+# _RecursiveProperty: TypeAlias = tuple[int, _property]
+# _ArrayProperty: TypeAlias = tuple[int, int]
+# _ArrayOfAggregateProperty: TypeAlias = tuple[int, int, _property]
+# _PointerToAPrimitiveProperty: TypeAlias = tuple[int, int]
+# _PointerToAaAggregateProperty: TypeAlias = tuple[int, "_property"]
+# _BitfieldProperty: TypeAlias = int
+# _property: TypeAlias = (
+#     _ScalarProperty
+#     | _RecursiveProperty
+#     | _ArrayProperty
+#     | _ArrayOfAggregateProperty
+#     | _PointerToAPrimitiveProperty
+#     | _PointerToAaAggregateProperty
+#     | _BitfieldProperty
+# )
+
+_property: TypeAlias = Incomplete
+
+# _descriptor: TypeAlias = tuple[str, _property]
+_descriptor: TypeAlias = Tuple | Dict
 
 LITTLE_ENDIAN: bytes
 """\
@@ -52,7 +57,7 @@ NATIVE: Incomplete
 Layout type for a native structure - with data endianness and alignment
 conforming to the ABI of the system on which MicroPython runs.
 """
-UINT8: int
+UINT8:TypeAlias = int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
@@ -92,11 +97,11 @@ INT64: int
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-FLOAT32: Incomplete
+FLOAT32: float
 """Floating-point types for structure descriptors."""
-FLOAT64: Incomplete
+FLOAT64: float
 """Floating-point types for structure descriptors."""
-VOID: Incomplete
+VOID: UINT8
 """\
 ``VOID`` is an alias for ``UINT8``, and is provided to conveniently define
 C's void pointers: ``(uctypes.PTR, uctypes.VOID)``.
@@ -120,12 +125,12 @@ class struct:
     ---------------
     """
 
-    def __init__(self, addr: int, descriptor: _descriptor, layout_type: int = NATIVE, /) -> None:
+    def __init__(self, addr: int | struct, descriptor: _descriptor, layout_type: int = NATIVE, /) -> None:
         """
         Instantiate a "foreign data structure" object based on structure address in
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
-    @overload # force push 
+    @mp_available()  # force push
     def __getattr__(self, a): ...
 
 def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) -> int:

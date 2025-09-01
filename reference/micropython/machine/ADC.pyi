@@ -84,7 +84,7 @@ class ADC:
         ...
 
     # ESP32 specific
-    @mp_available("esp32")
+    @mp_available(port="esp32")
     @deprecated("Use ADC.block().init(bits=bits) instead.")
     def width(self, bits: int) -> None:
         """
@@ -109,7 +109,7 @@ class ADC:
         """
         ...
 
-    @mp_available("esp32")
+    @mp_available(port="esp32")
     @deprecated("Use read_u16() instead.")
     def read(self) -> int:
         """
@@ -123,7 +123,7 @@ class ADC:
         """
         ...
 
-    @mp_available("esp32")
+    @mp_available(port="esp32")
     @deprecated("Use ADC.init(atten=atten) instead.")
     def atten(self, atten: int) -> None:
         """

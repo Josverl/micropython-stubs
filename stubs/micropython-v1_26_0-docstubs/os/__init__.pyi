@@ -16,7 +16,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Union, overload, IO, Any, Iterator, Optional, Tuple
 from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
-from _mpy_shed import uname_result
+from _mpy_shed import mp_available, uname_result
 
 @deprecated("The `VfsFat` class is deprecated, use `vfs.VfsFat` instead.")
 class VfsFat:
@@ -64,7 +64,7 @@ def uname() -> uname_result:
     """
     ...
 
-@overload
+@mp_available()  # force merge
 def urandom(n: int) -> bytes:
     """
     Return a bytes object with *n* random bytes. Whenever possible, it is
@@ -72,14 +72,14 @@ def urandom(n: int) -> bytes:
     """
     ...
 
-@overload
+@mp_available()  # force merge
 def chdir(path) -> Incomplete:
     """
     Change current directory.
     """
     ...
 
-@overload
+@mp_available()  # force merge
 def getcwd() -> Incomplete:
     """
     Get the current directory.
@@ -110,35 +110,35 @@ def ilistdir(dir: Union[str, bytes]) -> Iterator[Union[Tuple[str, int, int], Tup
 
 @overload
 def ilistdir() -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]: ...
-@overload
+@mp_available()  # force merge
 def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
     With no argument, list the current directory.  Otherwise list the given directory.
     """
     ...
 
-@overload
+@mp_available()  # force merge
 def mkdir(path) -> Incomplete:
     """
     Create a new directory.
     """
     ...
 
-@overload
+@mp_available()  # force merge
 def remove(path) -> None:
     """
     Remove a file.
     """
     ...
 
-@overload
+@mp_available()  # force merge
 def rmdir(path) -> None:
     """
     Remove a directory.
     """
     ...
 
-@overload
+@mp_available()  # force merge
 def rename(old_path, new_path) -> None:
     """
     Rename a file.
@@ -151,7 +151,7 @@ def stat(path: str | bytes) -> Tuple:
     """
     ...
 
-@overload
+@mp_available()  # force merge
 def statvfs(path) -> Tuple:
     """
     Get the status of a filesystem.
@@ -175,7 +175,7 @@ def statvfs(path) -> Tuple:
     """
     ...
 
-@overload
+@mp_available()  # force merge
 def sync() -> None:
     """
     Sync all filesystems.
@@ -208,7 +208,7 @@ def dupterm(stream_object, index=0, /) -> IO:
 # Deprecated functions and classes
 # The following functions and classes have been moved to the vfs module.
 
-@overload
+@mp_available()  # force merge
 @deprecated("The `mount` function is deprecated, use `vfs.mount` instead.")
 def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
@@ -216,7 +216,7 @@ def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     ...
 
-@overload
+@mp_available()  # force merge
 @deprecated("The `umount` function is deprecated, use `vfs.umount` instead.")
 def umount(mount_point) -> Incomplete:
     """
@@ -224,7 +224,7 @@ def umount(mount_point) -> Incomplete:
     """
     ...
 
-@overload  # force merge
+@mp_available()  # force merge
 def dupterm_notify(obj_in: Any, /) -> None:
     # https://github.com/orgs/micropython/discussions/16680
     # https://github.com/micropython/micropython/issues/17799

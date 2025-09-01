@@ -22,7 +22,6 @@ HERE = Path(__file__).parent.absolute()
     ["pyright", "mypy"],
 )
 def test_typecheck_stdlib_only(
-    type_stub_cache_path_fx: Path,
     stub_source: str,
     portboard: str,
     feature: str,

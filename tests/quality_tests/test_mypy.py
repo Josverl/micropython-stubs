@@ -22,7 +22,6 @@ HERE = Path(__file__).parent.absolute()
     ["mypy"],
 )
 def test_mypy(
-    type_stub_cache_path_fx: Path,
     stub_source: str,
     portboard: str,
     feature: str,

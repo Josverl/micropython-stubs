@@ -7,6 +7,7 @@ MicroPython module: https://docs.micropython.org/en/v1.26.0/library/aioespnow.ht
 from __future__ import annotations
 from _espnow import *
 from _typeshed import Incomplete
+from _mpy_shed import mp_available
 from typing import Iterator, List, Tuple, Union, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
@@ -103,9 +104,9 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
     #
-    @overload  # force merge
+    @mp_available()  # force merge
     def __iter__(self) -> ESPNow: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
     def any(self) -> bool:
         """

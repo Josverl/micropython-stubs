@@ -10,6 +10,7 @@ MicroPython module: https://docs.micropython.org/en/v1.24.0/library/micropython.
 
 from __future__ import annotations
 
+from _mpy_shed import mp_available
 from typing import Any, Callable, Optional, Tuple, TypeVar, overload
 
 from _typeshed import Incomplete
@@ -327,7 +328,7 @@ def heap_locked() -> bool:
     ...
 
 # decorators
-@overload  # force merge
+@mp_available()  # force merge
 def viper(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     The Viper code emitter is not fully compliant. It supports special Viper native data types in pursuit of performance.
@@ -338,7 +339,7 @@ def viper(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     ...
 
-@overload  # force merge
+@mp_available()  # force merge
 def native(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     This causes the MicroPython compiler to emit native CPU opcodes rather than bytecode.
@@ -347,7 +348,7 @@ def native(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     ...
 
-@overload  # force merge
+@mp_available(macro="MICROPY_EMIT_INLINE_THUMB")  # force merge
 def asm_thumb(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     This decorator is used to mark a function as containing inline assembler code.
@@ -358,7 +359,7 @@ def asm_thumb(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     ...
 
-@overload  # force merge
+@mp_available(port="esp8266")   # force merge
 def asm_xtensa(_func: Callable[_Param, _Ret], /) -> Callable[_Param, _Ret]:
     """
     This decorator is used to mark a function as containing inline assembler code for the esp8266.

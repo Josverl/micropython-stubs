@@ -3,14 +3,14 @@
 # Tested with the Adafruit Bluefruit app on Android.
 # Set the EoL characters to \r\n.
 
-import bluetooth
 import io
 import os
-import micropython
-from micropython import const
-import machine
 
+import bluetooth
+import machine
+import micropython
 from ble_uart_peripheral import BLEUART
+from micropython import const
 
 _MP_STREAM_POLL = const(3)
 _MP_STREAM_POLL_RD = const(0x0001)
@@ -43,7 +43,7 @@ class BLEUARTStream(io.IOBase):
     def _on_rx(self):
         # Needed for ESP32.
         if hasattr(os, "dupterm_notify"):
-            os.dupterm_notify(None)
+            os.dupterm_notify(None)  # stubs-ignore: not port.startswith("esp")
 
     def read(self, sz=None):
         return self._uart.read(sz)
@@ -81,4 +81,4 @@ def start():
     uart = BLEUART(ble, name="mpy-repl")
     stream = BLEUARTStream(uart)
 
-    os.dupterm(stream)
+    os.dupterm(stream)  # stubs-ignore: not port.startswith("esp")

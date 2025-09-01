@@ -14,6 +14,7 @@ facilities for network sockets, both client-side and server-side.
 
 from __future__ import annotations
 
+from _mpy_shed import mp_available
 import socket
 from ssl import SSLSocket
 from typing import overload
@@ -87,7 +88,7 @@ class SSLContext:
           to present the proper certificate.
         """
         ...
-    @overload # force merge
+    @mp_available()  # force merge
     def load_cert_chain(self, certfile, keyfile) -> None:
         """
         Load a private key and the corresponding certificate.  The *certfile* is a string
