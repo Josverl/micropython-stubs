@@ -13,6 +13,7 @@ from _typeshed import TypeAlias, Incomplete
 from typing import Callable, overload, Any, Dict, Iterator, List, Optional, Tuple, Union
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _espnow import ESPNowBase  # type: ignore
+from _mpy_shed import mp_available
 
 MAX_DATA_LEN: Incomplete = 250
 KEY_LEN: Incomplete = 16
@@ -570,9 +571,9 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
     #
-    @overload  # force merge
+    @mp_available()  # force merge
     def __iter__(self) -> ESPNow: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
 
 class AIOESPNow(ESPNow):

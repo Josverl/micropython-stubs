@@ -14,10 +14,10 @@ facilities for network sockets, both client-side and server-side.
 # origin module:: repos/micropython/docs/library/ssl.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, List
+from typing import List
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias
-from _mpy_shed import StrOrBytesPath
+from _mpy_shed import mp_available, StrOrBytesPath
 import socket
 from tls import *
 
@@ -51,7 +51,7 @@ class SSLContext:
     """
 
     def __init__(self, *args) -> None: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def load_cert_chain(self, certfile, keyfile) -> None:
         """
         Load a private key and the corresponding certificate.  The *certfile* is a string
@@ -89,7 +89,7 @@ class SSLContext:
 
     def wrap_socket(
         self,
-        sock: socket,
+        sock: socket.socket,
         *,
         server_side: bool = False,
         do_handshake_on_connect: bool = True,
@@ -119,6 +119,11 @@ class SSLContext:
         """
         ...
 
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# End duplicated section
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+@mp_available()  # force merge
 def wrap_socket(
     sock: socket.socket,
     *,
@@ -154,38 +159,38 @@ class SSLSocket:
     # ref: micropython\extmod\modtls_axtls.c ( read ... close)
 
     # repos\micropython\extmod\modtls_mbedtls.c
-    @overload  # force merge
+    @mp_available()  # force merge
     def read(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def readinto(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def readline(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def write(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def setblocking(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available()  # force merge
     def close(self, *argv, **kwargs) -> Incomplete: ...
     # if MICROPY_PY_SSL_FINALISER
-    @overload  # force merge
+    @mp_available(macro="MICROPY_PY_SSL_FINALISER")  # force merge
     def __del__(self, *argv, **kwargs) -> Incomplete: ...
     # endif
     # ifdef MICROPY_UNIX_COVERAGE
-    @overload  # force merge
+    @mp_available(macro="MICROPY_UNIX_COVERAGE")  # force merge
     def ioctl(self, *argv, **kwargs) -> Incomplete: ...
     # endif
     # ifdef (MBEDTLS_SSL_KEEP_PEER_CERTIFICATE)
-    @overload  # force merge
+    @mp_available(macro="MBEDTLS_SSL_KEEP_PEER_CERTIFICATE")  # force merge
     def getpeercert(self, *argv, **kwargs) -> Incomplete: ...
     # endif
-    @overload  # force merge
+    @mp_available()  # force merge
     def cipher(self, *argv, **kwargs) -> Incomplete: ...
     # ifdef MBEDTLS_SSL_PROTO_DTLS
-    @overload  # force merge
+    @mp_available(macro="MBEDTLS_SSL_PROTO_DTLS")  # force merge
     def recv(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available(macro="MBEDTLS_SSL_PROTO_DTLS")  # force merge
     def recv_into(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available(macro="MBEDTLS_SSL_PROTO_DTLS")  # force merge
     def send(self, *argv, **kwargs) -> Incomplete: ...
-    @overload  # force merge
+    @mp_available(macro="MBEDTLS_SSL_PROTO_DTLS")  # force merge
     def sendall(self, *argv, **kwargs) -> Incomplete: ...
