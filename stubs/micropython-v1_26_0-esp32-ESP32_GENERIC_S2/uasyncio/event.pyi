@@ -1,0 +1,43 @@
+"""
+Module: 'uasyncio.event' on micropython-v1.26.0-esp32-ESP32_GENERIC_S2
+"""
+# MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC_S2', 'board_id': 'ESP32_GENERIC_S2', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32S2', 'version': '1.26.0'}
+# Stubber: v1.26.1
+from __future__ import annotations
+from typing import Generator
+from _typeshed import Incomplete
+
+
+class ThreadSafeFlag():
+    def set(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def ioctl(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def clear(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def wait(*args, **kwargs) -> Generator:  ## = <generator>
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class Event():
+    def set(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def is_set(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def clear(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def wait(*args, **kwargs) -> Generator:  ## = <generator>
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+

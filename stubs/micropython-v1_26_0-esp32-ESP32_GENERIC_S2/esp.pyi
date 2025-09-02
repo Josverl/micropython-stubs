@@ -1,0 +1,39 @@
+"""
+Module: 'esp' on micropython-v1.26.0-esp32-ESP32_GENERIC_S2
+"""
+# MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC_S2', 'board_id': 'ESP32_GENERIC_S2', 'mpy': 'v6.3', 'ver': '1.26.0', 'family': 'micropython', 'cpu': 'ESP32S2', 'version': '1.26.0'}
+# Stubber: v1.26.1
+from __future__ import annotations
+from typing import Final
+from _typeshed import Incomplete
+
+LOG_NONE: Final[int] = 0
+LOG_WARNING: Final[int] = 2
+LOG_VERBOSE: Final[int] = 5
+LOG_DEBUG: Final[int] = 4
+LOG_INFO: Final[int] = 3
+LOG_ERROR: Final[int] = 1
+def osdebug(*args, **kwargs) -> Incomplete:
+    ...
+
+def flash_write(*args, **kwargs) -> Incomplete:
+    ...
+
+def gpio_matrix_in(*args, **kwargs) -> Incomplete:
+    ...
+
+def gpio_matrix_out(*args, **kwargs) -> Incomplete:
+    ...
+
+def flash_user_start(*args, **kwargs) -> Incomplete:
+    ...
+
+def flash_erase(*args, **kwargs) -> Incomplete:
+    ...
+
+def flash_read(*args, **kwargs) -> Incomplete:
+    ...
+
+def flash_size(*args, **kwargs) -> Incomplete:
+    ...
+

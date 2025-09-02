@@ -16,6 +16,13 @@
             ""
         ],
         [
+            "micropython-esp32-esp32_generic_s2-stubs",
+            "1.26.0",
+            "esp32",
+            "ESP32_GENERIC_S2",
+            ""
+        ],
+        [
             "micropython-esp32-esp32_generic_s3-stubs",
             "1.26.0",
             "esp32",
