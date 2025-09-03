@@ -789,6 +789,7 @@
 |micropython |v1.26   |frozen  |alif|GENERIC|11|1.26.0|[stubs/micropython-v1_26_0-frozen/alif/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-frozen/alif/GENERIC)
 |micropython |v1.26   |board   |esp32|generic|89|v1.26.0|[stubs/micropython-v1_26_0-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-esp32-ESP32_GENERIC)
 |micropython |v1.26   |board   |esp32|generic|89|v1.26.0|[stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_C6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_C6)
+|micropython |v1.26   |board   |esp32|generic|87|v1.26.1|[stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_S2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_S2)
 |micropython |v1.26   |board   |esp32|generic|90|v1.26.0|[stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_S3)
 |micropython |v1.26   |frozen  |esp32|ARDUINO_NANO_ESP32|41|1.26.0|[stubs/micropython-v1_26_0-frozen/esp32/ARDUINO_NANO_ESP32](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-frozen/esp32/ARDUINO_NANO_ESP32)
 |micropython |v1.26   |frozen  |esp32|GENERIC|22|1.26.0|[stubs/micropython-v1_26_0-frozen/esp32/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-frozen/esp32/GENERIC)
@@ -933,4 +934,4 @@
 
 ## Metrics
 
-Total stub modules:  23088
+Total stub modules:  23175

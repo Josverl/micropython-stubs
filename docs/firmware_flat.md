@@ -124,6 +124,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.25| stm32| generic| 65| v1.24.0|[stubs/micropython-v1_25_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-stm32-PYBV11)
 |board| micropython| v1.26| esp32| generic| 89| v1.26.0|[stubs/micropython-v1_26_0-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-esp32-ESP32_GENERIC)
 |board| micropython| v1.26| esp32| generic| 89| v1.26.0|[stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_C6](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_C6)
+|board| micropython| v1.26| esp32| generic| 87| v1.26.1|[stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_S2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_S2)
 |board| micropython| v1.26| esp32| generic| 90| v1.26.0|[stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_S3](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-esp32-ESP32_GENERIC_S3)
 |board| micropython| v1.26| esp8266| generic| 86| v1.26.0|[stubs/micropython-v1_26_0-esp8266-ESP8266_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-esp8266-ESP8266_GENERIC)
 |board| micropython| v1.26| rp2| generic| 66| v1.25.1|[stubs/micropython-v1_26_0-rp2-PIMORONI_PICOLIPO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-rp2-PIMORONI_PICOLIPO)
@@ -897,4 +898,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  23088
+Total modules  23175
