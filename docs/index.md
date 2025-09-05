@@ -20,6 +20,7 @@ definitions.md
 28_mypy.md
 29_ruff.md
 26_pylint.md
+29_windows_development.md
 microbit_v2 type checking.md
 pyproject.md
 ```
