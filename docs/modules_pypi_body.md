@@ -1,4 +1,31 @@
 
+### MicroPython v1.25.0
+
+| Port | Board | Package | pip install |
+|------|-------|---------| ------------|
+| esp32 | ESP32_GENERIC | micropython-esp32-esp32_generic-stubs | `pip install -U micropython-esp32-esp32_generic-stubs==1.25.0.*`
+| esp32 | ESP32_GENERIC_C6 | micropython-esp32-esp32_generic_c6-stubs | `pip install -U micropython-esp32-esp32_generic_c6-stubs==1.25.0.*`
+| esp32 | ESP32_GENERIC_S2 | micropython-esp32-esp32_generic_s2-stubs | `pip install -U micropython-esp32-esp32_generic_s2-stubs==1.25.0.*`
+| esp32 | ESP32_GENERIC_S3 | micropython-esp32-esp32_generic_s3-stubs | `pip install -U micropython-esp32-esp32_generic_s3-stubs==1.25.0.*`
+| esp32 | GENERIC | micropython-esp32-stubs | `pip install -U micropython-esp32-stubs==1.25.0.*`
+| esp8266 | ESP8266_GENERIC | micropython-esp8266-esp8266_generic-stubs | `pip install -U micropython-esp8266-esp8266_generic-stubs==1.25.0.*`
+| esp8266 | GENERIC | micropython-esp8266-stubs | `pip install -U micropython-esp8266-stubs==1.25.0.*`
+| rp2 | ARDUINO_NANO_RP2040_CONNECT | micropython-rp2-arduino_nano_rp2040_connect-stubs | `pip install -U micropython-rp2-arduino_nano_rp2040_connect-stubs==1.25.0.*`
+| rp2 | GENERIC | micropython-rp2-stubs | `pip install -U micropython-rp2-stubs==1.25.0.*`
+| rp2 | RPI_PICO | micropython-rp2-rpi_pico-stubs | `pip install -U micropython-rp2-rpi_pico-stubs==1.25.0.*`
+| rp2 | RPI_PICO2 | micropython-rp2-rpi_pico2-stubs | `pip install -U micropython-rp2-rpi_pico2-stubs==1.25.0.*`
+| rp2 | RPI_PICO2_W | micropython-rp2-rpi_pico2_w-stubs | `pip install -U micropython-rp2-rpi_pico2_w-stubs==1.25.0.*`
+| rp2 | RPI_PICO_W | micropython-rp2-rpi_pico_w-stubs | `pip install -U micropython-rp2-rpi_pico_w-stubs==1.25.0.*`
+| samd | GENERIC | micropython-samd-stubs | `pip install -U micropython-samd-stubs==1.25.0.*`
+| samd | SEEED_WIO_TERMINAL | micropython-samd-seeed_wio_terminal-stubs | `pip install -U micropython-samd-seeed_wio_terminal-stubs==1.25.0.*`
+| stm32 | GENERIC | micropython-stm32-stubs | `pip install -U micropython-stm32-stubs==1.25.0.*`
+| stm32 | PYBV11 | micropython-stm32-pybv11-stubs | `pip install -U micropython-stm32-pybv11-stubs==1.25.0.*`
+| unix | GENERIC | micropython-unix-stubs | `pip install -U micropython-unix-stubs==1.25.0.*`
+| webassembly | GENERIC | micropython-webassembly-stubs | `pip install -U micropython-webassembly-stubs==1.25.0.*`
+| windows | GENERIC | micropython-windows-stubs | `pip install -U micropython-windows-stubs==1.25.0.*`
+
+
+
 ### MicroPython v1.24.1
 
 | Port | Board | Package | pip install |
