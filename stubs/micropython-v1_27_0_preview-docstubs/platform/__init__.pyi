@@ -46,3 +46,13 @@ def libc_ver() -> Tuple:
     of this libc.
     """
     ...
+
+def processor() -> str:
+    """
+    Returns a string with a detailed name of the processor, if one is available.
+    If no name for the processor is known, it will return an empty string
+    instead.
+
+    This is currently available only on RISC-V targets (both 32 and 64 bits).
+    """
+    ...
