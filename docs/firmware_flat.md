@@ -151,6 +151,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |documentation| micropython| v1.24.1| -| micropython| 110| 1.26.1|[stubs/micropython-v1_24_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_24_1-docstubs)
 |documentation| micropython| v1.25| -| micropython| 111| 1.26.1|[stubs/micropython-v1_25_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_25_0-docstubs)
 |documentation| micropython| v1.26| -| micropython| 114| 1.26.1|[stubs/micropython-v1_26_0-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_0-docstubs)
+|documentation| micropython| v1.26.1| -| micropython| 114| 1.26.1|[stubs/micropython-v1_26_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-docstubs)
 |documentation| micropython| v1.27-Latest| -| micropython| 114| 1.26.1|[stubs/micropython-v1_27_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0_preview-docstubs)
 |documentation| micropython| vpreview| -| micropython| 106| 1.24.0|[stubs/micropython-preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-preview-docstubs)
 |frozen| loboris| v3.2.24| esp32| loboris| 17| 1.5.5a2|[stubs/loboris-v3_2_24-frozen](https://github.com/Josverl/micropython-stubs/tree/main/stubs/loboris-v3_2_24-frozen)
@@ -898,4 +899,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  23175
+Total modules  23289
