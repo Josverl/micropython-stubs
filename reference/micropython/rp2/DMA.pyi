@@ -4,7 +4,7 @@ Module: 'rp2.DMA'
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Callable, Optional
 
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 
@@ -13,13 +13,13 @@ class DMA:
     Claim one of the DMA controller channels for exclusive use.
     """
 
-    def irq(self, handler=None, hard=False) -> _IRQ:
+    def irq(self, handler: Optional[Callable] = None, hard: bool = False) -> _IRQ:
         """
         Returns the IRQ object for this DMA channel and optionally configures it.
         """
         ...
 
-    def unpack_ctrl(self, value) -> dict:
+    def unpack_ctrl(self, value:int) -> dict:
         """
         Unpack a value for a DMA channel control register into a dictionary with key/value pairs
         for each of the fields in the control register.  *value* is the ``ctrl`` register value
@@ -34,7 +34,16 @@ class DMA:
         """
         ...
 
-    def pack_ctrl(self, default=None, **kwargs) -> int:
+    def pack_ctrl(self, *, 
+                  enable: bool = True,
+                  high_pri: bool = False, 
+                  size: int = 2,
+                  inc_read: bool = True,
+                  inc_write: bool = True,
+                  # RP2350-only fields:
+                  inc_read_rev: Optional[bool] = None,   # RP2350 only
+                  inc_write_rev: Optional[bool] = None,  # RP2350 only
+                  **kwargs) -> int:
         """
         Pack the values provided in the keyword arguments into the named fields of a new control
         register value. Any field that is not provided will be set to a default value. The
@@ -100,6 +109,7 @@ class DMA:
         """
         ...
 
+    # TODO: Check if this is correct, are therese params indeed allowwed
     def __init__(
         self,
         read: int | AnyReadableBuf | None = None,
@@ -108,6 +118,8 @@ class DMA:
         ctrl: int = -1,
         trigger: bool = False,
     ) -> None: ...
+
+
     def config(
         self,
         read: int | AnyReadableBuf | None = None,

@@ -4,12 +4,11 @@ Module: 'rp2.StateMachine'
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Callable, Optional, Union, overload
 
 from _mpy_shed import _IRQ
-from _typeshed import Incomplete
-from machine import Pin  # type: ignore
-from rp2 import _PIO_ASM_Program  # type: ignore
+from machine import Pin
+from rp2 import _PIO_ASM_Program
 
 class StateMachine:
     """
@@ -36,7 +35,9 @@ class StateMachine:
         out_shiftdir: int | None = None,
         push_thresh: int | None = None,
         pull_thresh: int | None = None,
+        **kwargs,
     ) -> None: ...
+
     def init(
         self,
         program: _PIO_ASM_Program,
@@ -51,6 +52,7 @@ class StateMachine:
         out_shiftdir: int | None = None,
         push_thresh: int | None = None,
         pull_thresh: int | None = None,
+        **kwargs,
     ) -> None:
         """
         Configure the state machine instance to run the given *program*.
@@ -85,7 +87,7 @@ class StateMachine:
         """
         ...
 
-    def irq(self, handler=None, trigger=0 | 1, hard=False) -> _IRQ:
+    def irq(self, handler: Optional[Callable] = None, trigger: int = 0 | 1, hard: bool = False) -> _IRQ:
         """
         Returns the IRQ object for the given StateMachine.
 
@@ -93,7 +95,7 @@ class StateMachine:
         """
         ...
 
-    def put(self, value, shift=0):
+    def put(self, value: Union[int, bytes, bytearray], shift:int=0):
         """
         Push words onto the state machine's TX FIFO.
 
@@ -144,7 +146,7 @@ class StateMachine:
         """
         ...
 
-    def exec(self, instr) -> None:
+    def exec(self, instr:Union[int, str]) -> None:
         """
         Execute a single PIO instruction.
 
@@ -160,7 +162,7 @@ class StateMachine:
         """
         ...
 
-    def get(self, buf=None, shift=0) -> Incomplete:
+    def get(self, buf: Optional[bytearray]=None, shift:int=0) -> Union[int, None]:
         """
         Pull a word from the state machine's RX FIFO.
 
@@ -172,7 +174,10 @@ class StateMachine:
         """
         ...
 
-    def active(self, value: Optional[Any] = None) -> bool:
+    @overload
+    def active(self, value: None) -> bool: ...
+    @overload
+    def active(self, value: Union[bool, int]) -> None:
         """
         Gets or sets whether the state machine is currently running.
 

@@ -7,11 +7,10 @@ from __future__ import annotations
 from typing import Callable, Final, Literal, Optional
 
 from _mpy_shed import _IRQ
-from _typeshed import Incomplete
 from rp2.StateMachine import StateMachine
 from typing_extensions import TypeAlias
 
-_PIO_ASM_Program: TypeAlias = Incomplete  # ? Callable
+_PIO_ASM_Program: TypeAlias = Callable
 _IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 
 class PIO:
@@ -63,7 +62,15 @@ class PIO:
     to `asm_pio` or `StateMachine.init`.
     """
 
-    def __init__(self, id) -> None: ...
+    # IRQ constants 
+    # TODO: Add to MP Docs (https://docs.micropython.org/en/latest/library/rp2.html#rp2.PIO)
+    IRQ_SM0: int = 0x100
+    IRQ_SM1: int = 0x200
+    IRQ_SM2: int = 0x400
+    IRQ_SM3: int = 0x800
+
+
+    def __init__(self, id:int) -> None: ...
     def add_program(self, program: _PIO_ASM_Program) -> None:
         """
         Add the *program* to the instruction memory of this PIO instance.
@@ -84,7 +91,7 @@ class PIO:
         """
         ...
 
-    def state_machine(self, id: int, program: _PIO_ASM_Program, *args, **kwargs) -> StateMachine:
+    def state_machine(self, id: int, program: _PIO_ASM_Program, **kwargs) -> StateMachine:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
         four state machines, numbered 0 to 3.
