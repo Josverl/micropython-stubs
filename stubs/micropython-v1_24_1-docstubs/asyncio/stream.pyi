@@ -6,10 +6,15 @@ Stream functions
 
 from __future__ import annotations
 
+import socket
+import ssl
 from collections.abc import Generator
-from typing import Any, Coroutine
+from typing import Any, Coroutine, Dict, Union
 
 from _typeshed import Incomplete
+from typing_extensions import TypeAlias
+
+_TSocket: TypeAlias = Union[socket.socket, ssl.SSLSocket]
 
 class Stream:
     """
@@ -18,10 +23,199 @@ class Stream:
     this class.
     """
 
-    s: Incomplete
-    e: Incomplete
+    s: _TSocket
+    e: Dict[str, Any]
     out_buf: bytes
-    def __init__(self, s, e={}) -> None:
+    def __init__(self, s: _TSocket, e: Dict[str, Any] = {}) -> None:
+        """
+        This represents a TCP stream connection.  To minimise code this class implements
+        both a reader and a writer, and both ``StreamReader`` and ``StreamWriter`` alias to
+        this class.
+        """
+
+    def get_extra_info(self, v) -> str:
+        """
+        Get extra information about the stream, given by *v*.  The valid values for *v* are:
+        ``peername``.
+        """
+        ...
+
+    def close(self) -> None:
+        """
+        Close the stream.
+        """
+        ...
+
+    async def wait_closed(self) -> None:
+        """
+        Wait for the stream to close.
+
+        This is a coroutine.
+        """
+        ...
+
+    def read(self, n: int = -1) -> Generator[Incomplete, None, Incomplete]:
+        """
+        Read up to *n* bytes and return them.  If *n* is not provided or -1 then read all
+        bytes until EOF.  The returned value will be an empty bytes object if EOF is
+        encountered before any bytes are read.
+
+        This is a coroutine.
+        """
+        ...
+
+    def readinto(self, buf) -> Generator[Incomplete, None, Incomplete]:
+        """
+        Read up to n bytes into *buf* with n being equal to the length of *buf*.
+
+        Return the number of bytes read into *buf*.
+
+        This is a coroutine, and a MicroPython extension.
+        """
+        ...
+
+    def readexactly(self, n) -> Generator[Incomplete, None, Incomplete]:
+        """
+        Read exactly *n* bytes and return them as a bytes object.
+
+        Raises an ``EOFError`` exception if the stream ends before reading *n* bytes.
+
+        This is a coroutine.
+        """
+        ...
+
+    def readline(self) -> Generator[Incomplete, None, Incomplete]:
+        """
+        Read a line and return it.
+
+        This is a coroutine.
+        """
+        ...
+
+    def write(self, buf) -> None:
+        """
+        Accumulated *buf* to the output buffer.  The data is only flushed when
+        `Stream.drain` is called.  It is recommended to call `Stream.drain` immediately
+        after calling this function.
+        """
+        ...
+
+    def drain(self) -> Generator[Incomplete, Incomplete, Incomplete]:
+        """
+        Drain (write) all buffered output data out to the stream.
+
+        This is a coroutine.
+        """
+        ...
+
+# TODO: avoid needing to make a copy - stubber should be able to handle this
+# # Stream can be used for both reading and writing to save code size
+# StreamReader = Stream
+# StreamWriter = Stream
+
+class StreamWriter(Stream):
+    """
+    This represents a TCP stream connection.  To minimise code this class implements
+    both a reader and a writer, and both ``StreamReader`` and ``StreamWriter`` alias to
+    this class.
+    """
+
+    s: _TSocket
+    e: Dict[str, Any]
+    out_buf: bytes
+    def __init__(self, s: _TSocket, e: Dict[str, Any] = {}) -> None:
+        """
+        This represents a TCP stream connection.  To minimise code this class implements
+        both a reader and a writer, and both ``StreamReader`` and ``StreamWriter`` alias to
+        this class.
+        """
+
+    def get_extra_info(self, v) -> str:
+        """
+        Get extra information about the stream, given by *v*.  The valid values for *v* are:
+        ``peername``.
+        """
+        ...
+
+    def close(self) -> None:
+        """
+        Close the stream.
+        """
+        ...
+
+    async def wait_closed(self) -> None:
+        """
+        Wait for the stream to close.
+
+        This is a coroutine.
+        """
+        ...
+
+    def read(self, n: int = -1) -> Generator[Incomplete, None, Incomplete]:
+        """
+        Read up to *n* bytes and return them.  If *n* is not provided or -1 then read all
+        bytes until EOF.  The returned value will be an empty bytes object if EOF is
+        encountered before any bytes are read.
+
+        This is a coroutine.
+        """
+        ...
+
+    def readinto(self, buf) -> Generator[Incomplete, None, Incomplete]:
+        """
+        Read up to n bytes into *buf* with n being equal to the length of *buf*.
+
+        Return the number of bytes read into *buf*.
+
+        This is a coroutine, and a MicroPython extension.
+        """
+        ...
+
+    def readexactly(self, n) -> Generator[Incomplete, None, Incomplete]:
+        """
+        Read exactly *n* bytes and return them as a bytes object.
+
+        Raises an ``EOFError`` exception if the stream ends before reading *n* bytes.
+
+        This is a coroutine.
+        """
+        ...
+
+    def readline(self) -> Generator[Incomplete, None, Incomplete]:
+        """
+        Read a line and return it.
+
+        This is a coroutine.
+        """
+        ...
+
+    def write(self, buf) -> None:
+        """
+        Accumulated *buf* to the output buffer.  The data is only flushed when
+        `Stream.drain` is called.  It is recommended to call `Stream.drain` immediately
+        after calling this function.
+        """
+        ...
+
+    def drain(self) -> Generator[Incomplete, Incomplete, Incomplete]:
+        """
+        Drain (write) all buffered output data out to the stream.
+
+        This is a coroutine.
+        """
+        ...
+
+class StreamReader(Stream):
+    """
+    This represents a TCP stream connection.  To minimise code this class implements
+    both a reader and a writer, and both ``StreamReader`` and ``StreamWriter`` alias to
+    this class.
+    """
+
+    s: _TSocket
+    e: Dict[str, Any]
+    out_buf: bytes
+    def __init__(self, s: _TSocket, e: Dict[str, Any] = {}) -> None:
         """
         This represents a TCP stream connection.  To minimise code this class implements
         both a reader and a writer, and both ``StreamReader`` and ``StreamWriter`` alias to
@@ -160,64 +354,3 @@ async def start_server(cb, host, port, backlog: int = 5, ssl: Incomplete | None 
     ...
 
 async def stream_awrite(self, buf, off: int = 0, sz: int = -1) -> None: ...
-
-class StreamReader:
-    """
-    Represents a reader object that provides APIs to read data from the IO stream. As an asynchronous iterable, the object supports the `async for` statement.
-    It is not recommended to instantiate `StreamReader` objects directly; use open_connection() and start_server() instead.
-    """
-
-    # TODO: not documented in the micropython reference, but available runtime
-    # readexactly: Generator  ## = <generator>
-    # readinto: Generator  ## = <generator>
-    # read: Generator  ## = <generator>
-    # readline: Generator  ## = <generator>
-    async def readexactly(self, *args, **kwargs) -> Incomplete: ...
-    async def readinto(self, *args, **kwargs) -> Incomplete: ...
-    async def read(self, *args, **kwargs) -> Incomplete: ...
-    async def readline(self, *args, **kwargs) -> Incomplete: ...
-    # awrite: Generator  ## = <generator>
-    # awritestr: Generator  ## = <generator>
-    async def awrite(self, *args, **kwargs) -> Incomplete: ...
-    async def awritestr(self, *args, **kwargs) -> Incomplete: ...
-    # drain: Generator  ## = <generator>
-    # aclose: Generator  ## = <generator>
-    # wait_closed: Generator  ## = <generator>
-    async def drain(self, *args, **kwargs) -> Incomplete: ...
-    async def aclose(self, *args, **kwargs) -> Incomplete: ...
-    async def wait_closed(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-    def write(self, *args, **kwargs) -> Incomplete: ...
-    def get_extra_info(self, *args, **kwargs) -> Incomplete: ...
-    def close(self, *args, **kwargs) -> Incomplete: ...
-
-class StreamWriter:
-    """
-    Represents a writer object that provides APIs to write data to the IO stream.
-    It is not recommended to instantiate `StreamWriter` objects directly; use open_connection() and start_server() instead.
-    """
-
-    # TODO: not documented in the micropython reference, but available runtime
-
-    # awritestr: Generator  ## = <generator>
-    async def awritestr(self, *args, **kwargs) -> Incomplete: ...
-    # wait_closed: Generator  ## = <generator>
-    async def wait_closed(self, *args, **kwargs) -> Incomplete: ...
-    # drain: Generator  ## = <generator>
-    async def drain(self, *args, **kwargs) -> Incomplete: ...
-    # readexactly: Generator  ## = <generator>
-    async def readexactly(self, *args, **kwargs) -> Incomplete: ...
-    # readinto: Generator  ## = <generator>
-    async def readinto(self, *args, **kwargs) -> Incomplete: ...
-    # read: Generator  ## = <generator>
-    async def read(self, *args, **kwargs) -> Incomplete: ...
-    # awrite: Generator  ## = <generator>
-    async def awrite(self, *args, **kwargs) -> Incomplete: ...
-    # readline: Generator  ## = <generator>
-    async def readline(self, *args, **kwargs) -> Incomplete: ...
-    # aclose: Generator  ## = <generator>
-    async def aclose(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
-    def write(self, *args, **kwargs) -> Incomplete: ...
-    def get_extra_info(self, *args, **kwargs) -> Incomplete: ...
-    def close(self, *args, **kwargs) -> Incomplete: ...

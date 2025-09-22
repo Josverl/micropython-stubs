@@ -53,7 +53,6 @@ class PIOASMEmit:
     @overload
     def __getitem__(self, key: int): ...
     #
-
     def start_pass(self, pass_) -> None:
         """The start_pass method is used to start a pass over the instructions,
         setting up the necessary state for the pass. It handles wrapping instructions
@@ -101,7 +100,6 @@ class PIOASMEmit:
         """
         ...
     # all below functions are PIO instructions used in the fluent notation
-
     def label(self, label: str) -> None:
         """rp2.PIO instruction.
 
