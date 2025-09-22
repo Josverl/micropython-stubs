@@ -108,7 +108,8 @@ norecursedirs = [
 ]
 junit_family = "xunit1"
 
-addopts = "--verbose --capture=no"
+addopts = "--verbose --capture=no -p no:doctest"
+
 #  -m 'not snippets'
 # --numprocesses=auto 
 # -m MARKEXPR           Only run tests matching given mark expression. For example: -m 'mark1 and not mark2'.
