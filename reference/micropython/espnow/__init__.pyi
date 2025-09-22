@@ -11,19 +11,20 @@ MicroPython module: https://docs.micropython.org/en/v1.24.0/library/espnow.html
 from __future__ import annotations
 
 from _mpy_shed import mp_available
-from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, overload
+from typing import Any, Callable, Dict, Final, Iterator, List, Optional, Tuple, overload
 
-from _espnow import ESPNowBase  # type: ignore
+from _espnow import ESPNowBase  
 from _typeshed import Incomplete, TypeAlias
 
-_MACAddress: TypeAlias = bytes  # # MAC address (a 6-byte byte-string)
+_MACAddress: TypeAlias = bytes  # MAC address (a 6-byte byte-string)
 _PeerInfo: TypeAlias = Tuple[_MACAddress, bytes, int, int, bool]  # # peer info tuple
 
-MAX_DATA_LEN: Incomplete = 250
-KEY_LEN: Incomplete = 16
-ADDR_LEN: Incomplete = 6
-MAX_TOTAL_PEER_NUM: Incomplete = 20
-MAX_ENCRYPT_PEER_NUM: Incomplete = 6
+# Module constants (duplicated from _espnow.pyi)
+MAX_DATA_LEN: Final[int] = 250
+KEY_LEN: Final[int] = 16
+ADDR_LEN: Final[int] = 6
+MAX_TOTAL_PEER_NUM: Final[int] = 20
+MAX_ENCRYPT_PEER_NUM: Final[int] = 6
 
 class ESPNow(ESPNowBase, Iterator):
     """
@@ -99,7 +100,14 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def config(self, param) -> str:
+    @overload
+    def config(self, rxbuf: int) -> None: ...
+    @overload
+    def config(self, timeout_ms: int) -> None: ...
+    @overload
+    def config(self, rate: int) -> None: ...
+    @overload
+    def config(self, param:str) -> int:
         """
         Set or get configuration values of the ESPNow interface. To set values, use
         the keyword syntax, and one or more parameters can be set at a time. To get
