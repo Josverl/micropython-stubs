@@ -1,0 +1,39 @@
+name: "enhanced-diff"
+description: "Enhanced diff check that determines commits based on non-JSON file changes"
+
+inputs:
+  verbose:
+    description: "Show detailed output"
+    required: false
+    default: "false"
+
+outputs:
+  changed:
+    description: "true if commit should proceed (non-JSON files changed), false otherwise"
+    value: ${{ steps.diff.outputs.changed }}
+  count:
+    description: "total number of changed files"
+    value: ${{ steps.diff.outputs.count }}
+  json_count:
+    description: "number of JSON files changed"
+    value: ${{ steps.diff.outputs.json_count }}
+  non_json_count:
+    description: "number of non-JSON files changed (determines if commit proceeds)"
+    value: ${{ steps.diff.outputs.non_json_count }}
+
+runs:
+  using: composite
+  steps:
+    # don't care about CR/LF differences between Windows and Linux
+    - name: git config
+      shell: bash
+      run: git config core.autocrlf true
+
+    - name: Run enhanced diff check
+      shell: bash
+      working-directory: ${{ github.workspace }}
+      id: diff
+      env:
+        VERBOSE: ${{ inputs.verbose }}
+      run: |
+        python .github/actions/enhanced-diff/check_changes.py

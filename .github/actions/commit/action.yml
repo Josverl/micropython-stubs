@@ -10,14 +10,18 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Check for relevant changes
-      uses: ./.github/actions/stub-diff
+    - name: Check for relevant changes (enhanced diff)
+      uses: ./.github/actions/enhanced-diff
       id: diff
+      with:
+        verbose: "true"
 
     - name: show outputs
       run: |
         echo "changed: ${{steps.diff.outputs.changed}}"
-        echo "count: ${{steps.diff.outputs.count}}"
+        echo "total count: ${{steps.diff.outputs.count}}"
+        echo "non-json count: ${{steps.diff.outputs.non_json_count}}"
+        echo "json count: ${{steps.diff.outputs.json_count}}"
       shell: bash
 
 

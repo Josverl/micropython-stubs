@@ -106,4 +106,5 @@
     },
     "python.formatting.provider": "none",
     "python.analysis.supportRestructuredText": true,
+    "iis.configDir": "",
 }
