@@ -20,6 +20,7 @@ class ADC:
        adc = machine.ADC(pin)   # create an ADC object acting on a pin
        val = adc.read_u16()     # read a raw analog value in the range 0-65535
     """
+
     # origin stm32
     VREF: int = ...
     CORE_VREF: int = ...
@@ -34,9 +35,9 @@ class ADC:
     WIDTH_9BIT: int = 9
     WIDTH_10BIT: int = 10
     WIDTH_11BIT: int = 11
-    WIDTH_12BIT: int = 12 # esp32
+    WIDTH_12BIT: int = 12  # esp32
 
-    def __init__(self, pin: PinLike, *, atten = ATTN_0DB) -> None:
+    def __init__(self, pin: PinLike, *, atten=ATTN_0DB) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -132,4 +133,3 @@ class ADC:
         Available : ESP32
         """
         ...
-    

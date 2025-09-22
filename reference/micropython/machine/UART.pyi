@@ -42,6 +42,7 @@ class UART:
         uart.readinto(buf)  # read and store into the given buffer
         uart.write('abc')   # write the 3 characters
     """
+
     IDLE: int = ...
 
     RTS: int = 1

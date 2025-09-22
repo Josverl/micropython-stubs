@@ -84,11 +84,9 @@ class Flash(AbstractBlockDev):
         argument is specified, even if it is zero.
         """
 
-
     def ioctl(self, op: int, arg: int) -> int | None:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
         :class:`vfs.AbstractBlockDev`.
         """
-

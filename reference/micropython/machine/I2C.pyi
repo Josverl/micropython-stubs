@@ -223,9 +223,7 @@ class I2C:
         """
         ...
 
-    def readfrom_mem_into(
-        self, addr: int, memaddr: int, buf: AnyWritableBuf, /, *, addrsize: int = 8
-    ) -> None:
+    def readfrom_mem_into(self, addr: int, memaddr: int, buf: AnyWritableBuf, /, *, addrsize: int = 8) -> None:
         """
         Read into *buf* from the peripheral specified by *addr* starting from the
         memory address specified by *memaddr*.  The number of bytes read is the
@@ -237,9 +235,7 @@ class I2C:
         """
         ...
 
-    def writeto_mem(
-        self, addr: int, memaddr: int, buf: AnyReadableBuf, /, *, addrsize: int = 8
-    ) -> None:
+    def writeto_mem(self, addr: int, memaddr: int, buf: AnyReadableBuf, /, *, addrsize: int = 8) -> None:
         """
         Write *buf* to the peripheral specified by *addr* starting from the
         memory address specified by *memaddr*.

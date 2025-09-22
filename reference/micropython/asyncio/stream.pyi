@@ -26,7 +26,7 @@ class Stream:
     s: _TSocket
     e: Dict[str, Any]
     out_buf: bytes
-    def __init__(self, s:_TSocket, e:Dict[str, Any]={}) -> None:
+    def __init__(self, s: _TSocket, e: Dict[str, Any] = {}) -> None:
         """
         This represents a TCP stream connection.  To minimise code this class implements
         both a reader and a writer, and both ``StreamReader`` and ``StreamWriter`` alias to
@@ -108,12 +108,10 @@ class Stream:
         """
         ...
 
-
 # TODO: avoid needing to make a copy - stubber should be able to handle this
 # # Stream can be used for both reading and writing to save code size
 # StreamReader = Stream
 # StreamWriter = Stream
-
 
 class StreamWriter(Stream):
     """
@@ -125,7 +123,7 @@ class StreamWriter(Stream):
     s: _TSocket
     e: Dict[str, Any]
     out_buf: bytes
-    def __init__(self, s:_TSocket, e:Dict[str, Any]={}) -> None:
+    def __init__(self, s: _TSocket, e: Dict[str, Any] = {}) -> None:
         """
         This represents a TCP stream connection.  To minimise code this class implements
         both a reader and a writer, and both ``StreamReader`` and ``StreamWriter`` alias to
@@ -213,11 +211,11 @@ class StreamReader(Stream):
     both a reader and a writer, and both ``StreamReader`` and ``StreamWriter`` alias to
     this class.
     """
-    
+
     s: _TSocket
     e: Dict[str, Any]
     out_buf: bytes
-    def __init__(self, s:_TSocket, e:Dict[str, Any]={}) -> None:
+    def __init__(self, s: _TSocket, e: Dict[str, Any] = {}) -> None:
         """
         This represents a TCP stream connection.  To minimise code this class implements
         both a reader and a writer, and both ``StreamReader`` and ``StreamWriter`` alias to
@@ -299,7 +297,6 @@ class StreamReader(Stream):
         """
         ...
 
-
 def open_connection(
     host, port, ssl: Incomplete | None = None, server_hostname: Incomplete | None = None
 ) -> Generator[Incomplete, None, Incomplete]:
@@ -342,9 +339,7 @@ class Server:
 
     async def _serve(self, s, cb, ssl) -> Generator[Incomplete]: ...
 
-async def start_server(
-    cb, host, port, backlog: int = 5, ssl: Incomplete | None = None
-) -> Coroutine[Server, Any, Any]:
+async def start_server(cb, host, port, backlog: int = 5, ssl: Incomplete | None = None) -> Coroutine[Server, Any, Any]:
     """
     Start a TCP server on the given *host* and *port*.  The *callback* will be
     called with incoming, accepted connections, and be passed 2 arguments: reader

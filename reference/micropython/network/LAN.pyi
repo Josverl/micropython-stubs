@@ -30,7 +30,6 @@ class LAN:
     """
 
     def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
-
     @overload
     def active(self, /) -> bool:
         """

@@ -23,7 +23,7 @@ class StateMachine:
 
     def __init__(
         self,
-        id :int,
+        id: int,
         program: _PIO_ASM_Program,
         *,
         freq: int = 1,
@@ -37,7 +37,6 @@ class StateMachine:
         push_thresh: int | None = None,
         pull_thresh: int | None = None,
     ) -> None: ...
-
     def init(
         self,
         program: _PIO_ASM_Program,

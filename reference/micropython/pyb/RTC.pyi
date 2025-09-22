@@ -39,7 +39,7 @@ class RTC:
         """
         ...
     @overload
-    def datetime(self,  /) -> Tuple:
+    def datetime(self, /) -> Tuple:
         """
         Get or set the date and time of the RTC.
 
