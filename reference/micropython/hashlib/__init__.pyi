@@ -28,11 +28,10 @@ be implemented:
 # origin module:: repos/micropython/docs/library/hashlib.rst
 from __future__ import annotations
 
-from abc import ABC
-from typing import overload
+from typing import overload, NoReturn
+from typing_extensions import deprecated
 
-from _mpy_shed import AnyReadableBuf
-from _typeshed import Incomplete
+from _mpy_shed import AnyReadableBuf, _Hash
 
 class sha256(_Hash):
     """
@@ -113,7 +112,7 @@ class md5(_Hash):
 class hash:
     """ """
 
-    def update(self, data) -> Incomplete:
+    def update(self, data) -> None:
         """
         Feed more binary data into hash.
         """
@@ -126,7 +125,8 @@ class hash:
         """
         ...
 
-    def hexdigest(self) -> Incomplete:
+    @deprecated("This method is NOT implemented. Use ``binascii.hexlify(hash.digest())`` to achieve a similar effect.")
+    def hexdigest(self) -> NoReturn:
         """
         This method is NOT implemented. Use ``binascii.hexlify(hash.digest())``
         to achieve a similar effect.
