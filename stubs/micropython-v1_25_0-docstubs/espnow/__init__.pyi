@@ -10,8 +10,8 @@ MicroPython module: https://docs.micropython.org/en/v1.25.0/library/aioespnow.ht
 # origin module:: repos/micropython/docs/library/espnow.rst
 from __future__ import annotations
 from _typeshed import TypeAlias, Incomplete
-from typing import Callable, overload, Any, Dict, Iterator, List, Optional, Tuple, Union
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+from typing import overload, Callable, Any, Dict, Iterator, List, Optional, Tuple, Union
+from typing_extensions import Buffer, TypeVar, TypeAlias, Awaitable
 from _espnow import ESPNowBase  # type: ignore
 from _mpy_shed import mp_available
 
@@ -91,7 +91,14 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def config(self, param) -> str:
+    @overload
+    def config(self, rxbuf: int) -> None: ...
+    @overload
+    def config(self, timeout_ms: int) -> None: ...
+    @overload
+    def config(self, rate: int) -> None: ...
+    @overload
+    def config(self, param: str) -> int:
         """
         Set or get configuration values of the ESPNow interface. To set values, use
         the keyword syntax, and one or more parameters can be set at a time. To get

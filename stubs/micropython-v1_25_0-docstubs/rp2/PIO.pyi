@@ -7,7 +7,7 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
 from rp2.StateMachine import StateMachine
 
-_PIO_ASM_Program: TypeAlias = Incomplete
+_PIO_ASM_Program: TypeAlias = Callable
 _IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 
 class PIO:
@@ -62,7 +62,7 @@ class PIO:
     """These constants are used for the *trigger* argument to `PIO.irq`."""
     IRQ_SM3: Incomplete
     """These constants are used for the *trigger* argument to `PIO.irq`."""
-    def __init__(self, id) -> None: ...
+    def __init__(self, id: int) -> None: ...
     def gpio_base(self, base: Optional[Any] = None) -> Incomplete:
         """
         Query and optionally set the current GPIO base for this PIO instance.
@@ -96,7 +96,7 @@ class PIO:
         """
         ...
 
-    def state_machine(self, id: int, program: _PIO_ASM_Program, *args, **kwargs) -> StateMachine:
+    def state_machine(self, id: int, program: _PIO_ASM_Program, **kwargs) -> StateMachine:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
         four state machines, numbered 0 to 3.
