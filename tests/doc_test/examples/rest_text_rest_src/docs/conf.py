@@ -1,5 +1,2 @@
-project = 'My Project'
-extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.intersphinx'
-]
+project = "My Project"
+extensions = ["sphinx.ext.autodoc", "sphinx.ext.intersphinx"]
