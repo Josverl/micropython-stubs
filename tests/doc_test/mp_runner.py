@@ -14,6 +14,7 @@ def run_micropython_code(source: str) -> str:
             result = subprocess.run(cmd, capture_output=True, text=True, check=True)
             return result.stdout
     except subprocess.CalledProcessError as e:
+        print(f"source: {'-'*40}\n{source}\n{'-'*40}")
         raise Exception(f"mpremote exited with code {e.returncode}, stderr: {e.stderr}, stdout: {e.stdout}")
     finally:
         # housekeeping

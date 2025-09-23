@@ -7,12 +7,12 @@ from doctest import DocTestParser as StdDocTestParser
 from pathlib import Path
 
 import pytest
+from mp_runner import reset_micropython_mcu, run_micropython_code
 from sybil import Example, Region, Sybil
+from sybil.evaluators.doctest import DocTestEvaluator
 from sybil.evaluators.python import pad
 from sybil.parsers.rest import CaptureParser, CodeBlockParser, DocTestDirectiveParser
 from sybil.typing import Evaluator
-
-from mp_runner import run_micropython_code, reset_micropython_mcu
 
 
 class MicroPythonEvaluator:
@@ -31,7 +31,7 @@ class MicroPythonEvaluator:
         run_micropython_code(source)
 
 
-class MicroPythonDocTestEvaluator:
+class MicroPythonDocTestEvaluator(DocTestEvaluator):
     """
     Evaluator for doctests that runs them on the MCU using mpremote
     """
@@ -40,10 +40,22 @@ class MicroPythonDocTestEvaluator:
         """Run doctest examples on the MCU"""
         from doctest import Example as DocTestExample
 
-        # Get the list of doctest examples
+        # Get the doctest examples - could be a single example or a list
         examples = example.parsed
+        
+        # Handle both single example and list of examples
+        if isinstance(examples, DocTestExample):
+            examples_list = [examples]
+        elif isinstance(examples, list):
+            examples_list = examples
+        else:
+            # Fallback - try to iterate
+            try:
+                examples_list = list(examples)
+            except TypeError:
+                examples_list = [examples]
 
-        for doctest_example in examples:
+        for doctest_example in examples_list:
             if isinstance(doctest_example, DocTestExample):
                 # Extract clean Python source code from the doctest example
                 clean_source = self._clean_doctest_source(doctest_example.source)
