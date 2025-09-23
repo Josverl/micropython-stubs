@@ -26,36 +26,72 @@ class MicroPythonDocTestStringParser(DocTestStringParser):
         
         lines = text.split("\n")
         
-        # Find all code block regions to avoid conflicts
-        code_block_regions = []
+        # Find all code block regions AND skip regions to avoid conflicts
+        exclusion_regions = []
         in_code_block = False
         code_block_start = None
+        in_skip_region = False
+        skip_region_start = None
 
         for line_idx, line in enumerate(lines):
             stripped = line.strip()
+            
+            # Handle code blocks
             if stripped.startswith(".. code-block::"):
                 in_code_block = True
                 code_block_start = line_idx
             elif in_code_block and line and not line.startswith(" ") and not line.startswith("\t"):
                 # End of code block (when we hit non-indented content)
                 if code_block_start is not None:
-                    code_block_regions.append((code_block_start, line_idx))
+                    exclusion_regions.append((code_block_start, line_idx))
                 in_code_block = False
                 code_block_start = None
+            
+            # Handle skip regions (start/end pairs)
+            elif stripped.startswith(".. skip:") and "start" in stripped:
+                # Begin skip region
+                in_skip_region = True
+                skip_region_start = line_idx
+            elif stripped.startswith(".. skip:") and "end" in stripped:
+                # End skip region
+                if in_skip_region and skip_region_start is not None:
+                    exclusion_regions.append((skip_region_start, line_idx + 1))  # Include the end line
+                in_skip_region = False
+                skip_region_start = None
+            
+            # Handle other skip directives (like .. skip: next) that are single-directive exclusions
+            elif stripped.startswith(".. skip:") and not in_skip_region:
+                # Single skip directive - exclude until next non-indented content
+                single_skip_start = line_idx
+                # Look ahead to find the end of this single skip directive
+                j = line_idx + 1
+                while j < len(lines):
+                    next_line = lines[j]
+                    if next_line and not next_line.startswith(" ") and not next_line.startswith("\t"):
+                        exclusion_regions.append((single_skip_start, j))
+                        break
+                    j += 1
+                else:
+                    # Skip goes to end of file
+                    exclusion_regions.append((single_skip_start, len(lines)))
 
         # Handle case where code block goes to end of file
         if in_code_block and code_block_start is not None:
-            code_block_regions.append((code_block_start, len(lines)))
+            exclusion_regions.append((code_block_start, len(lines)))
+        
+        # Handle case where skip region goes to end of file without proper end
+        if in_skip_region and skip_region_start is not None:
+            exclusion_regions.append((skip_region_start, len(lines)))
 
-        # Now parse for doctest content, avoiding code blocks
+        # Now parse for doctest content, avoiding exclusion regions
         i = 0
         while i < len(lines):
             line = lines[i]
             stripped = line.strip()
 
-            # Check if we're inside a code block region
-            inside_code_block = any(start <= i < end for start, end in code_block_regions)
-            if inside_code_block:
+            # Check if we're inside an exclusion region
+            inside_exclusion = any(start <= i < end for start, end in exclusion_regions)
+            if inside_exclusion:
                 i += 1
                 continue
 
@@ -73,9 +109,9 @@ class MicroPythonDocTestStringParser(DocTestStringParser):
                 while i < len(lines):
                     current_line = lines[i]
                     
-                    # Check if we're entering a code block region
-                    inside_code_block = any(start <= i < end for start, end in code_block_regions)
-                    if inside_code_block:
+                    # Check if we're entering an exclusion region
+                    inside_exclusion = any(start <= i < end for start, end in exclusion_regions)
+                    if inside_exclusion:
                         break
                     
                     # If line is indented (part of the directive content)
@@ -111,9 +147,9 @@ class MicroPythonDocTestStringParser(DocTestStringParser):
 
             # Handle inline doctests (outside of directives)
             elif stripped.startswith(">>> "):
-                # FIRST check if we're inside a code block before processing
-                inside_code_block = any(start <= i < end for start, end in code_block_regions)
-                if inside_code_block:
+                # FIRST check if we're inside an exclusion region before processing
+                inside_exclusion = any(start <= i < end for start, end in exclusion_regions)
+                if inside_exclusion:
                     i += 1
                     continue
                     
@@ -125,9 +161,9 @@ class MicroPythonDocTestStringParser(DocTestStringParser):
                     current_line = lines[i]
                     stripped = current_line.strip()
 
-                    # Check if we're entering a code block region
-                    inside_code_block = any(start <= i < end for start, end in code_block_regions)
-                    if inside_code_block:
+                    # Check if we're entering an exclusion region
+                    inside_exclusion = any(start <= i < end for start, end in exclusion_regions)
+                    if inside_exclusion:
                         break
 
                     if stripped.startswith(">>> ") or stripped.startswith("... "):
