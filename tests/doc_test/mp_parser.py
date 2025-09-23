@@ -1,65 +1,122 @@
 import __future__
 
 import re
-
 from doctest import DocTestParser as StdDocTestParser
 
+from mp_evaluator import MicroPythonDocTestEvaluator, MicroPythonEvaluator
+from mp_runner import reset_micropython_mcu, run_micropython_code
 from sybil import Example, Region
+from sybil.parsers.abstract.doctest import DocTestStringParser
+from sybil.parsers.rest import DocTestParser
 from sybil.typing import Evaluator
 
-from mp_runner import run_micropython_code, reset_micropython_mcu
-from mp_evaluator import MicroPythonEvaluator, MicroPythonDocTestEvaluator
 
-
-class MicroPythonDocTestParser:
+class MicroPythonDocTestStringParser(DocTestStringParser):
     """
-    Custom doctest parser that runs doctests on MicroPython MCU
+    Custom doctest string parser that avoids conflicts with code blocks
+    and runs doctests on MicroPython MCU
     """
 
-    def __init__(self):
-        self.evaluator = MicroPythonDocTestEvaluator()
+    def __call__(self, string: str, name: str):
+        """Override the callable interface to use our custom parse method"""
+        return self.parse(string, name)
 
-    def __call__(self, document):
-        """Parse document and yield regions for doctest examples"""
-
-        # Use standard doctest parser
-        parser = StdDocTestParser()
-
-        lines = document.text.split("\n")
-        i = 0
-
-        # Find all doctest directive regions to avoid conflicts
-        doctest_directive_regions = []
-        in_doctest_directive = False
-        directive_start = None
+    def parse(self, text: str, path: str):
+        """Parse text and yield regions, handling both inline doctests and doctest directives"""
+        
+        lines = text.split("\n")
+        
+        # Find all code block regions to avoid conflicts
+        code_block_regions = []
+        in_code_block = False
+        code_block_start = None
 
         for line_idx, line in enumerate(lines):
             stripped = line.strip()
-            if stripped == ".. doctest::":
-                in_doctest_directive = True
-                directive_start = line_idx
-            elif in_doctest_directive and line and not line.startswith(" ") and not line.startswith("\t"):
-                # End of doctest directive block
-                if directive_start is not None:
-                    doctest_directive_regions.append((directive_start, line_idx))
-                in_doctest_directive = False
-                directive_start = None
+            if stripped.startswith(".. code-block::"):
+                in_code_block = True
+                code_block_start = line_idx
+            elif in_code_block and line and not line.startswith(" ") and not line.startswith("\t"):
+                # End of code block (when we hit non-indented content)
+                if code_block_start is not None:
+                    code_block_regions.append((code_block_start, line_idx))
+                in_code_block = False
+                code_block_start = None
 
-        # Handle case where doctest directive goes to end of file
-        if in_doctest_directive and directive_start is not None:
-            doctest_directive_regions.append((directive_start, len(lines)))
+        # Handle case where code block goes to end of file
+        if in_code_block and code_block_start is not None:
+            code_block_regions.append((code_block_start, len(lines)))
 
+        # Now parse for doctest content, avoiding code blocks
+        i = 0
         while i < len(lines):
             line = lines[i]
+            stripped = line.strip()
 
-            # Check if we're inside a doctest directive
-            inside_directive = any(start <= i < end for start, end in doctest_directive_regions)
-            if inside_directive:
+            # Check if we're inside a code block region
+            inside_code_block = any(start <= i < end for start, end in code_block_regions)
+            if inside_code_block:
                 i += 1
                 continue
 
-            # Look for the start of a doctest block (>>> line)
-            if line.strip().startswith(">>> "):
+            # Handle doctest directives
+            if stripped == ".. doctest::":
+                start_line = i
+                i += 1  # Skip the directive line
+                
+                # Skip any options/arguments lines
+                while i < len(lines) and (not lines[i].strip() or lines[i].startswith(" :") or lines[i].startswith("\t:")):
+                    i += 1
+                
+                # Collect indented doctest content
+                doctest_lines = []
+                while i < len(lines):
+                    current_line = lines[i]
+                    
+                    # Check if we're entering a code block region
+                    inside_code_block = any(start <= i < end for start, end in code_block_regions)
+                    if inside_code_block:
+                        break
+                    
+                    # If line is indented (part of the directive content)
+                    if current_line.startswith(" ") or current_line.startswith("\t") or not current_line.strip():
+                        if current_line.strip().startswith(">>> ") or current_line.strip().startswith("... ") or not current_line.strip():
+                            doctest_lines.append(current_line)
+                        elif doctest_lines:  # Expected output after doctest commands
+                            doctest_lines.append(current_line)
+                        i += 1
+                    else:
+                        # End of indented block
+                        break
+
+                # Process the doctest directive content
+                if doctest_lines:
+                    # Remove common indentation
+                    import textwrap
+                    doctest_text = textwrap.dedent("\n".join(doctest_lines)).strip()
+                    
+                    if doctest_text:
+                        # Use standard doctest parser to extract examples
+                        std_parser = StdDocTestParser()
+                        examples = std_parser.get_examples(doctest_text, path)
+                        
+                        if examples:
+                            # Calculate character positions for the entire directive region
+                            start_pos = sum(len(lines[j]) + 1 for j in range(start_line))  # +1 for newline
+                            end_line = start_line + len([lines[start_line]]) + len(doctest_lines)
+                            end_pos = sum(len(lines[j]) + 1 for j in range(min(end_line, len(lines))))
+                            
+                            # Create one region for all examples in this directive
+                            yield Region(start=start_pos, end=end_pos, parsed=examples, evaluator=self.evaluator)
+
+            # Handle inline doctests (outside of directives)
+            elif stripped.startswith(">>> "):
+                # FIRST check if we're inside a code block before processing
+                inside_code_block = any(start <= i < end for start, end in code_block_regions)
+                if inside_code_block:
+                    i += 1
+                    continue
+                    
                 start_line = i
                 doctest_lines = []
 
@@ -68,9 +125,9 @@ class MicroPythonDocTestParser:
                     current_line = lines[i]
                     stripped = current_line.strip()
 
-                    # Check if we're entering a doctest directive region
-                    inside_directive = any(start <= i < end for start, end in doctest_directive_regions)
-                    if inside_directive:
+                    # Check if we're entering a code block region
+                    inside_code_block = any(start <= i < end for start, end in code_block_regions)
+                    if inside_code_block:
                         break
 
                     if stripped.startswith(">>> ") or stripped.startswith("... "):
@@ -102,18 +159,32 @@ class MicroPythonDocTestParser:
                         # Hit another construct, stop
                         break
 
-                # Process the collected doctest block
-                doctest_text = "\n".join(doctest_lines)
-                examples = parser.get_examples(doctest_text)
+                # Process the collected inline doctest block
+                if doctest_lines:
+                    doctest_text = "\n".join(doctest_lines)
+                    # Use standard doctest parser to extract examples
+                    std_parser = StdDocTestParser()
+                    examples = std_parser.get_examples(doctest_text, path)
 
-                if examples:
-                    # Calculate character positions
-                    start_pos = sum(len(lines[j]) + 1 for j in range(start_line))  # +1 for newline
-                    end_pos = start_pos + len(doctest_text)
+                    if examples:
+                        # Calculate character positions
+                        start_pos = sum(len(lines[j]) + 1 for j in range(start_line))  # +1 for newline
+                        end_pos = start_pos + len(doctest_text)
 
-                    yield Region(start=start_pos, end=end_pos, parsed=examples, evaluator=self.evaluator)
+                        # Create one region for all examples in this doctest block
+                        yield Region(start=start_pos, end=end_pos, parsed=examples, evaluator=self.evaluator)
             else:
                 i += 1
+
+
+class MicroPythonDocTestParser(DocTestParser):
+    """
+    MicroPython-aware doctest parser that subclasses Sybil's DocTestParser
+    """
+
+    def __init__(self, optionflags: int = 0):
+        # Don't call super().__init__ because we want to use our custom string parser
+        self.string_parser = MicroPythonDocTestStringParser(evaluator=MicroPythonDocTestEvaluator())
 
 
 class MicroPythonSkipper:
