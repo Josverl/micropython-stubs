@@ -62,6 +62,12 @@ class PIO:
     """These constants are used for the *trigger* argument to `PIO.irq`."""
     IRQ_SM3: Incomplete
     """These constants are used for the *trigger* argument to `PIO.irq`."""
+    STATUS_TXLEVEL: Incomplete
+    """Status value for TX FIFO level threshold."""
+    STATUS_RXLEVEL: Incomplete
+    """Status value for RX FIFO level threshold."""
+    STATUS_IRQ: Incomplete
+    """Status value for IRQ flags."""
     def __init__(self, id: int) -> None: ...
     def gpio_base(self, base: Optional[Any] = None) -> Incomplete:
         """
