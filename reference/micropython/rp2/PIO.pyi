@@ -69,6 +69,14 @@ class PIO:
     IRQ_SM2: int = 0x400
     IRQ_SM3: int = 0x800
 
+    # STATUS constants for execctrl argument to asm_pio
+    STATUS_TXLEVEL: int = 0
+    """Status value for TX FIFO level threshold."""
+    STATUS_RXLEVEL: int = 32
+    """Status value for RX FIFO level threshold."""
+    STATUS_IRQ: int = 64
+    """Status value for IRQ flags."""
+
 
     def __init__(self, id:int) -> None: ...
     def add_program(self, program: _PIO_ASM_Program) -> None:
