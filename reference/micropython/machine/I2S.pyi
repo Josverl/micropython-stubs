@@ -2,13 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Callable
-from typing_extensions import TypeAlias
+from typing import Any, Callable
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
-
 from machine.Pin import Pin, PinLike
+from typing_extensions import TypeAlias
 
 ID_T: TypeAlias = int | str
 
@@ -184,7 +183,7 @@ class I2S:
 
     def irq(
         self,
-        handler: Callable[[], None],
+        handler: Callable[[Any], None],
         /,
     ) -> None:
         """
