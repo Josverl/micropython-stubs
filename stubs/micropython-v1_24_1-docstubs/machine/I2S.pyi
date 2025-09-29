@@ -6,7 +6,7 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin
 from machine.Pin import Pin, PinLike
-from typing import Callable
+from typing import Any, Callable
 
 ID_T: TypeAlias = int | str
 
@@ -182,7 +182,7 @@ class I2S:
 
     def irq(
         self,
-        handler: Callable[[], None],
+        handler: Callable[[Any], None],
         /,
     ) -> None:
         """
