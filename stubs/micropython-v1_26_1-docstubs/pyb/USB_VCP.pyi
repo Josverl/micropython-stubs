@@ -24,7 +24,6 @@ class USB_VCP:
         Create a new USB_VCP object.  The *id* argument specifies which USB VCP port to
         use.
         """
-
     def init(self, *, flow: int = -1) -> None:
         """
         Configure the USB VCP port.  If the *flow* argument is not -1 then the value sets
@@ -32,7 +31,6 @@ class USB_VCP:
         RTS is used to control read behaviour and CTS, to control write behaviour.
         """
         ...
-
     def setinterrupt(self, chr: int, /) -> None:
         """
         Set the character which interrupts running Python code.  This is set
@@ -43,19 +41,16 @@ class USB_VCP:
         want to send raw bytes over the USB VCP port.
         """
         ...
-
     def isconnected(self) -> bool:
         """
         Return ``True`` if USB is connected as a serial device, else ``False``.
         """
         ...
-
     def any(self) -> bool:
         """
         Return ``True`` if any characters waiting, else ``False``.
         """
         ...
-
     def close(self) -> None:
         """
         This method does nothing.  It exists so the USB_VCP object can act as
@@ -108,7 +103,6 @@ class USB_VCP:
         Returns the number of bytes read and stored into ``buf`` or ``None``
         if no pending data available.
         """
-
     def readline(self) -> bytes:
         """
         Read a whole line from the serial device.
@@ -117,7 +111,6 @@ class USB_VCP:
         newline character or ``None`` if no pending data available.
         """
         ...
-
     def readlines(self) -> List:
         """
         Read as much data as possible from the serial device, breaking it into
@@ -127,7 +120,6 @@ class USB_VCP:
         Each line will include the newline character.
         """
         ...
-
     def write(self, buf: AnyReadableBuf, /) -> int:
         """
         Write the bytes from ``buf`` to the serial device.
@@ -161,7 +153,6 @@ class USB_VCP:
         Return value: if ``data`` is an integer then a new buffer of the bytes received,
         otherwise the number of bytes read into ``data`` is returned.
         """
-
     def send(self, buf: AnyWritableBuf | bytes | int, /, *, timeout: int = 5000) -> int:
         """
         Send data over the USB VCP:
@@ -172,7 +163,6 @@ class USB_VCP:
         Return value: number of bytes sent.
         """
         ...
-
     def irq(self, handler=None, trigger=IRQ_RX, hard=False) -> None:
         """
         Register *handler* to be called whenever an event specified by *trigger*

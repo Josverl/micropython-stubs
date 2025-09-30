@@ -16,7 +16,6 @@ class FlashArea:
     ``scratch_partition``. Because MCUBoot is not enabled by default for MicroPython, these fixed partitions can be accessed by
     ID integer values 1, 2, 3, and 4, respectively.
     """
-
     def __init__(self, id, block_size) -> None: ...
     @overload
     def readblocks(self, block_num: int, buf: bytearray) -> bool:
@@ -63,7 +62,6 @@ class FlashArea:
         Note that implementations must never implicitly erase blocks if the offset
         argument is specified, even if it is zero.
         """
-
     def ioctl(self, op: int, arg: int) -> int | None:
         """
         These methods implement the simple and extended

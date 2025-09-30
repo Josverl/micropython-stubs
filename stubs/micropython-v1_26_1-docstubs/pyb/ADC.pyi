@@ -24,20 +24,17 @@ class ADC:
         val = adc.read_core_vref()          # read MCU VREF
         val = adc.read_vref()               # read MCU supply voltage
     """
-
     def __init__(self, pin: int | Pin, /) -> None:
         """
         Create an ADC object associated with the given pin.
         This allows you to then read analog values on that pin.
         """
-
     def read(self) -> int:
         """
         Read the value on the analog pin and return it.  The returned value
         will be between 0 and 4095.
         """
         ...
-
     def read_timed(self, buf: AnyWritableBuf, timer: Timer | int, /) -> None:
         """
         Read analog values into ``buf`` at a rate set by the ``timer`` object.
@@ -75,7 +72,6 @@ class ADC:
         it does not return to the calling program until the buffer is full.
         """
         ...
-
     @staticmethod
     def read_timed_multi(adcs: tuple[ADC, ...], bufs: tuple[AnyWritableBuf, ...], timer: Timer, /) -> bool:
         """

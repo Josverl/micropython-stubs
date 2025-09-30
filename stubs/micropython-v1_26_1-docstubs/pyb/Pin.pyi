@@ -151,7 +151,6 @@ class Pin:
         """
         Get or set the pin mapper function.
         """
-
     def init(
         self,
         mode: int = IN,
@@ -214,13 +213,11 @@ class Pin:
             anything that converts to a boolean.  If it converts to ``True``, the pin
             is set high, otherwise it is set low.
         """
-
     def __str__(self) -> str:
         """
         Return a string describing the pin object.
         """
         ...
-
     def af(self) -> int:
         """
         Returns the currently configured alternate-function of the pin. The
@@ -228,19 +225,16 @@ class Pin:
         argument to the init function.
         """
         ...
-
     def af_list(self) -> List:
         """
         Returns an array of alternate functions available for this pin.
         """
         ...
-
     def gpio(self) -> int:
         """
         Returns the base address of the GPIO block associated with this pin.
         """
         ...
-
     def mode(self) -> int:
         """
         Returns the currently configured mode of the pin. The integer returned
@@ -248,31 +242,26 @@ class Pin:
         function.
         """
         ...
-
     def name(self) -> str:
         """
         Get the pin name.
         """
         ...
-
     def names(self) -> str:
         """
         Returns the cpu and board names for this pin.
         """
         ...
-
     def pin(self) -> int:
         """
         Get the pin number.
         """
         ...
-
     def port(self) -> int:
         """
         Get the pin port.
         """
         ...
-
     def pull(self) -> int:
         """
         Returns the currently configured pull of the pin. The integer returned
@@ -299,25 +288,21 @@ class Pin:
 
 class pinaf:
     """ """
-
     def __str__(self) -> str:
         """
         Return a string describing the alternate function.
         """
         ...
-
     def index(self) -> int:
         """
         Return the alternate function index.
         """
         ...
-
     def name(self) -> str:
         """
         Return the name of the alternate function.
         """
         ...
-
     def reg(self) -> Incomplete:
         """
         Return the base register associated with the peripheral assigned to this

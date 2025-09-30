@@ -100,7 +100,6 @@ class SDCard(AbstractBlockDev):
     *Note:* The current cc3200 SD card implementation names the this class
     :class:`machine.SD` rather than :class:`machine.SDCard` .
     """
-
     @overload
     def readblocks(self, block_num: int, buf: bytearray) -> bool:
         """

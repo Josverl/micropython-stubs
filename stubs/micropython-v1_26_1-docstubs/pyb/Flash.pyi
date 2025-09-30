@@ -16,7 +16,6 @@ class Flash(AbstractBlockDev):
     configuration <filesystem>` or implement a low-level storage system for your
     application.
     """
-
     @deprecated("This constructor is deprecated and will be removed in a future version of MicroPython")
     @overload
     def __init__(self):
@@ -83,7 +82,6 @@ class Flash(AbstractBlockDev):
         Note that implementations must never implicitly erase blocks if the offset
         argument is specified, even if it is zero.
         """
-
     def ioctl(self, op: int, arg: int) -> int | None:
         """
         These methods implement the simple and :ref:`extended

@@ -93,13 +93,11 @@ class I2C:
         Calling the constructor with 'X' or 'Y' enables portability between Pyboard
         types.
         """
-
     def deinit(self) -> None:
         """
         Turn off the I2C bus.
         """
         ...
-
     def init(
         self,
         bus: int | str,
@@ -127,7 +125,6 @@ class I2C:
          by printing the I2C object.
         """
         ...
-
     def is_ready(self, addr: int, /) -> bool:
         """
         Check if an I2C device responds to the given address.  Only valid when in controller mode.
@@ -181,7 +178,6 @@ class I2C:
         Returns the read data.
         This is only valid in controller mode.
         """
-
     def mem_write(
         self,
         data: int | AnyWritableBuf,
@@ -247,7 +243,6 @@ class I2C:
         Return value: if ``recv`` is an integer then a new buffer of the bytes received,
         otherwise the same buffer that was passed in to ``recv``.
         """
-
     def send(
         self,
         addr: int = 0x00,
@@ -265,7 +260,6 @@ class I2C:
         Return value: ``None``.
         """
         ...
-
     def scan(self) -> List:
         """
         Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.

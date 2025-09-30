@@ -11,7 +11,6 @@ class DiskAccess:
     For accessing an SD card on the mimxrt1050_evk, ``disk_name`` would be ``SDHC``. See board documentation and
     devicetree for usable disk names for your board (ex. RT boards use style USDHC#).
     """
-
     def __init__(self, disk_name) -> None: ...
     @overload
     def readblocks(self, block_num: int, buf: bytearray) -> bool:
@@ -58,7 +57,6 @@ class DiskAccess:
         Note that implementations must never implicitly erase blocks if the offset
         argument is specified, even if it is zero.
         """
-
     def ioctl(self, op: int, arg: int) -> int | None:
         """
         These methods implement the simple and extended

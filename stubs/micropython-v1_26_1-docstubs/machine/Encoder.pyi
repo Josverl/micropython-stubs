@@ -16,7 +16,6 @@ class Encoder:
 
     On ESP32, the *id* corresponds to a :ref:`PCNT unit <esp32.PCNT>`.
     """
-
     def __init__(self, id, *args, **kwargs) -> None: ...
     def init(self, phase_a, phase_b, *args, **kwargs) -> Incomplete:
         """
@@ -44,14 +43,12 @@ class Encoder:
           either 1, 2, or 4 phases and the default is 1 phase. *(Supported on ESP32)*
         """
         ...
-
     def deinit(self) -> None:
         """
         Stops the Encoder, disabling any interrupts and releasing hardware resources.
         A Soft Reset should deinitialize all Encoder objects.
         """
         ...
-
     def value(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get, and optionally set, the encoder value as a signed integer.

@@ -48,14 +48,12 @@ class Counter:
           or equal to this value. The default is 0 (no filter). *(Supported on ESP32)*
         """
         ...
-
     def deinit(self) -> None:
         """
         Stops the Counter, disabling any interrupts and releasing hardware resources.
         A Soft Reset should deinitialize all Counter objects.
         """
         ...
-
     def value(self, value: Optional[Any] = None) -> Incomplete:
         """
         Get, and optionally set, the counter value as a signed integer.

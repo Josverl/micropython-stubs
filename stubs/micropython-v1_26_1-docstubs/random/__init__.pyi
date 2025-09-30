@@ -36,77 +36,71 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import Subscriptable
 
 _T = TypeVar("_T")
-
 def getrandbits(n: int, /) -> int:
     """
-    Return an integer with *n* random bits (0 <= n <= 32).
+        Return an integer with *n* random bits (0 <= n <= 32).
     """
     ...
-
 def randint(a: int, b: int, /) -> int:
     """
-    Return a random integer in the range [*a*, *b*].
+        Return a random integer in the range [*a*, *b*].
     """
     ...
 
 @overload
 def randrange(stop: int, /) -> int:
     """
-    The first form returns a random integer from the range [0, *stop*).
-    The second form returns a random integer from the range [*start*, *stop*).
-    The third form returns a random integer from the range [*start*, *stop*) in
-    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
-    return odd numbers between 1 and 9 inclusive.
+        The first form returns a random integer from the range [0, *stop*).
+        The second form returns a random integer from the range [*start*, *stop*).
+        The third form returns a random integer from the range [*start*, *stop*) in
+        steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
+        return odd numbers between 1 and 9 inclusive.
     """
 
 @overload
 def randrange(start: int, stop: int, /) -> int:
     """
-    The first form returns a random integer from the range [0, *stop*).
-    The second form returns a random integer from the range [*start*, *stop*).
-    The third form returns a random integer from the range [*start*, *stop*) in
-    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
-    return odd numbers between 1 and 9 inclusive.
+        The first form returns a random integer from the range [0, *stop*).
+        The second form returns a random integer from the range [*start*, *stop*).
+        The third form returns a random integer from the range [*start*, *stop*) in
+        steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
+        return odd numbers between 1 and 9 inclusive.
     """
 
 @overload
 def randrange(start: int, stop: int, step: int, /) -> int:
     """
-    The first form returns a random integer from the range [0, *stop*).
-    The second form returns a random integer from the range [*start*, *stop*).
-    The third form returns a random integer from the range [*start*, *stop*) in
-    steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
-    return odd numbers between 1 and 9 inclusive.
+        The first form returns a random integer from the range [0, *stop*).
+        The second form returns a random integer from the range [*start*, *stop*).
+        The third form returns a random integer from the range [*start*, *stop*) in
+        steps of *step*.  For instance, calling ``randrange(1, 10, 2)`` will
+        return odd numbers between 1 and 9 inclusive.
     """
-
 def random() -> int:
     """
-    Return a random floating point number in the range [0.0, 1.0).
+        Return a random floating point number in the range [0.0, 1.0).
     """
     ...
-
 def uniform(a: float, b: float) -> int:
     """
-    Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
-    and *b* <= N <= *a* for *b* < *a*.
+        Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
+        and *b* <= N <= *a* for *b* < *a*.
     """
     ...
-
 def seed(n: int | None = None, /) -> None:
     """
-    Initialise the random number generator module with the seed *n* which should
-    be an integer.  When no argument (or ``None``) is passed in it will (if
-    supported by the port) initialise the PRNG with a true random number
-    (usually a hardware generated random number).
-
-    The ``None`` case only works if ``MICROPY_PY_RANDOM_SEED_INIT_FUNC`` is
-    enabled by the port, otherwise it raises ``ValueError``.
+        Initialise the random number generator module with the seed *n* which should
+        be an integer.  When no argument (or ``None``) is passed in it will (if
+        supported by the port) initialise the PRNG with a true random number
+        (usually a hardware generated random number).
+    
+        The ``None`` case only works if ``MICROPY_PY_RANDOM_SEED_INIT_FUNC`` is
+        enabled by the port, otherwise it raises ``ValueError``.
     """
     ...
-
 def choice(sequence: Subscriptable, /) -> None:
     """
-    Chooses and returns one item at random from *sequence* (tuple, list or
-    any object that supports the subscript operation).
+        Chooses and returns one item at random from *sequence* (tuple, list or
+        any object that supports the subscript operation).
     """
     ...

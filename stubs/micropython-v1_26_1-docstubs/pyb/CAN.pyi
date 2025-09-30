@@ -81,7 +81,6 @@ class CAN:
           - ``CAN(1)`` is on ``YA``: ``(RX, TX) = (Y3, Y4) = (PB8, PB9)``
           - ``CAN(2)`` is on ``YB``: ``(RX, TX) = (Y5, Y6) = (PB12, PB13)``
         """
-
     def init(
         self,
         mode: int,
@@ -158,13 +157,11 @@ class CAN:
          See page 680 of the STM32F405 datasheet for more details.
         """
         ...
-
     def deinit(self) -> None:
         """
         Turn off the CAN bus.
         """
         ...
-
     def restart(self) -> None:
         """
         Force a software restart of the CAN controller without resetting its
@@ -177,7 +174,6 @@ class CAN:
         go into the error active state.
         """
         ...
-
     def state(self) -> int:
         """
         Return the state of the controller.  The return value can be one of:
@@ -364,7 +360,6 @@ class CAN:
         - *extframe* If True the frame will have an extended identifier (29 bits),
           otherwise a standard identifier (11 bits) is used.
         """
-
     def clearfilter(self, bank: int, /) -> None:
         """
         Clear and disables a filter bank:
@@ -374,7 +369,6 @@ class CAN:
           otherwise the clear a standard identifier (configured with extframe=False).
         """
         ...
-
     def any(self, fifo: int, /) -> bool:
         """
         Return ``True`` if any message waiting on the FIFO, else ``False``.
@@ -488,7 +482,6 @@ class CAN:
              # No heap memory is allocated in the following call
              can.recv(0, lst)
         """
-
     def send(
         self,
         data: int | AnyWritableBuf,
@@ -525,7 +518,6 @@ class CAN:
         Return value: ``None``.
         """
         ...
-
     def rxcallback(self, fifo: int, fun: Callable[[CAN], None], /) -> None:
         """
         Register a function to be called when a message is accepted into a empty fifo:

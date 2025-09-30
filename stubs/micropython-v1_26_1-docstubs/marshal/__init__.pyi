@@ -17,19 +17,17 @@ versioned as the mpy file version, see :ref:`mpy_files`).
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-
 def dumps(value, /) -> Incomplete:
     """
-    Convert the given *value* to binary format and return a corresponding ``bytes``
-    object.
-
-    Currently, code objects are the only supported values that can be converted.
+       Convert the given *value* to binary format and return a corresponding ``bytes``
+       object.
+    
+       Currently, code objects are the only supported values that can be converted.
     """
     ...
-
 def loads(data, /) -> Incomplete:
     """
-    Convert the given bytes-like *data* to its corresponding Python object, and
-    return it.
+       Convert the given bytes-like *data* to its corresponding Python object, and
+       return it.
     """
     ...
