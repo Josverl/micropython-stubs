@@ -35,7 +35,6 @@ class ADC:
     WIDTH_10BIT: int = 10
     WIDTH_11BIT: int = 11
     WIDTH_12BIT: int = 12
-
     def __init__(self, pin: PinLike, *, atten=ATTN_0DB) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
@@ -48,7 +47,6 @@ class ADC:
 
         on ESP32 :  `atten` specifies the attenuation level for the ADC input.
         """
-
     def init(self, *, sample_ns, atten=ATTN_0DB) -> Incomplete:
         """
         Apply the given settings to the ADC.  Only those arguments that are
@@ -56,7 +54,6 @@ class ADC:
         arguments are.
         """
         ...
-
     def block(self) -> Incomplete:
         """
         Return the :ref:`ADCBlock <machine.ADCBlock>` instance associated with
@@ -66,7 +63,6 @@ class ADC:
         :ref:`ADCBlock <machine.ADCBlock>` class.
         """
         ...
-
     def read_u16(self) -> int:
         """
         Take an analog reading and return an integer in the range 0-65535.
@@ -74,7 +70,6 @@ class ADC:
         such that the minimum value is 0 and the maximum value is 65535.
         """
         ...
-
     def read_uv(self) -> int:
         """
         Take an analog reading and return an integer value with units of
@@ -82,6 +77,7 @@ class ADC:
         is calibrated, and how calibration is done.
         """
         ...
+
     # ESP32 specific
     @mp_available(port="esp32")
     @deprecated("Use ADC.block().init(bits=bits) instead.")

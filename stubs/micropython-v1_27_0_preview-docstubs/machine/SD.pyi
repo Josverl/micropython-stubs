@@ -30,7 +30,6 @@ class SD:
         os.mount(sd, '/sd')
         # do normal file operations
     """
-
     def __init__(
         self,
         id: int = 0,
@@ -40,7 +39,6 @@ class SD:
         """
         Create a SD card object. See ``init()`` for parameters if initialization.
         """
-
     def init(
         self,
         id: int = 0,
@@ -52,7 +50,6 @@ class SD:
         ``(clk_pin, cmd_pin, dat0_pin)``.
         """
         ...
-
     def deinit(self) -> None:
         """
         Disable the SD card.

@@ -11,7 +11,6 @@ class ADCWiPy:
     For more info check the `pinout and alternate functions
     table. <https://raw.githubusercontent.com/wipy/wipy/master/docs/PinOUT.png>`_
     """
-
     def __init__(self, id=0, *, bits=12) -> None: ...
     def channel(self, id, *, pin) -> Incomplete:
         """
@@ -25,19 +24,16 @@ class ADCWiPy:
            apin = adc.channel(id=1, pin='GP3')
         """
         ...
-
     def init(self) -> None:
         """
         Enable the ADC block.
         """
         ...
-
     def deinit(self) -> None:
         """
         Disable the ADC block.
         """
         ...
-
     def adcchannel(self) -> Incomplete:
         """
         Fast method to read the channel value.
@@ -46,19 +42,16 @@ class ADCWiPy:
 
 class adcchannel:
     """ """
-
     def value(self) -> Incomplete:
         """
         Read the channel value.
         """
         ...
-
     def init(self) -> Incomplete:
         """
         Re-init (and effectively enable) the ADC channel.
         """
         ...
-
     def deinit(self) -> None:
         """
         Disable the ADC channel.

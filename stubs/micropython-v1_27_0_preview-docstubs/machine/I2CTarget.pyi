@@ -46,14 +46,12 @@ class I2CTarget:
         longer respond to requests on the I2C bus, and no other methods can be called.
         """
         ...
-
     def readinto(self, buf) -> int:
         """
         Read into the given buffer any pending bytes written by the I2C controller.
         Returns the number of bytes read.
         """
         ...
-
     def write(self, buf) -> int:
         """
         Write out the bytes from the given buffer, to be passed to the I2C controller
@@ -61,7 +59,6 @@ class I2CTarget:
         only accept one byte at a time to this method.
         """
         ...
-
     def irq(self, handler=None, trigger=IRQ_END_READ | IRQ_END_WRITE, hard=False) -> Incomplete:
         """
         Configure an IRQ *handler* to be called when an event occurs.  The possible events are

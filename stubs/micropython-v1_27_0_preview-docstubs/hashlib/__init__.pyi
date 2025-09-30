@@ -32,7 +32,6 @@ from typing import NoReturn, overload
 from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from _mpy_shed import _Hash
-
 class sha256(_Hash):
     """
     The current generation, modern hashing algorithm (of SHA2 series).
@@ -64,7 +63,6 @@ class sha256(_Hash):
         """
         Create an SHA256 hasher object and optionally feed ``data`` into it.
         """
-
 class sha1(_Hash):
     """
     A previous generation algorithm. Not recommended for new usages,
@@ -96,39 +94,34 @@ class sha1(_Hash):
         """
         Create an SHA1 hasher object and optionally feed ``data`` into it.
         """
-
 class md5(_Hash):
     """
     A legacy algorithm, not considered cryptographically secure. Only
     selected boards, targeting interoperability with legacy applications,
     will offer this.
     """
-
     def __init__(self, data: AnyReadableBuf = ..., /) -> None:
         """
         Create an MD5 hasher object and optionally feed ``data`` into it.
         """
-
-class hash:
+        ...
+class hash():
     """ """
-
     def update(self, data) -> None:
         """
-        Feed more binary data into hash.
+           Feed more binary data into hash.
         """
         ...
-
     def digest(self) -> bytes:
         """
-        Return hash for all data passed through hash, as a bytes object. After this
-        method is called, more data cannot be fed into the hash any longer.
+           Return hash for all data passed through hash, as a bytes object. After this
+           method is called, more data cannot be fed into the hash any longer.
         """
         ...
-
     @deprecated("This method is NOT implemented. Use ``binascii.hexlify(hash.digest())`` to achieve a similar effect.")
     def hexdigest(self) -> NoReturn:
         """
-        This method is NOT implemented. Use ``binascii.hexlify(hash.digest())``
-        to achieve a similar effect.
+           This method is NOT implemented. Use ``binascii.hexlify(hash.digest())``
+           to achieve a similar effect.
         """
         ...

@@ -138,7 +138,6 @@ class UART:
         *Note:* Pyboard D has ``UART(1)`` on ``YA``, unlike Pyboard and Pyboard Lite that both
         have ``UART(1)`` on ``XB`` and ``UART(6)`` on ``YA``.
         """
-
     def init(
         self,
         baudrate: int,
@@ -176,13 +175,11 @@ class UART:
         only 7 and 8 bits are supported.
         """
         ...
-
     def deinit(self) -> None:
         """
         Turn off the UART bus.
         """
         ...
-
     def any(self) -> int:
         """
         Returns the number of bytes waiting (may be 0).
@@ -222,7 +219,6 @@ class UART:
         Return value: a bytes object containing the bytes read in.  Returns ``None``
         on timeout.
         """
-
     def readchar(self) -> int:
         """
         Receive a single character on the bus.
@@ -250,7 +246,6 @@ class UART:
         Return value: number of bytes read and stored into ``buf`` or ``None`` on
         timeout.
         """
-
     def readline(self) -> None:
         """
         Read a line, ending in a newline character. If such a line exists, return is
@@ -260,7 +255,6 @@ class UART:
         Return value: the line read or ``None`` on timeout if no data is available.
         """
         ...
-
     def write(self, buf: AnyWritableBuf, /) -> int:
         """
         Write the buffer of bytes to the bus.  If characters are 7 or 8 bits wide
@@ -272,14 +266,12 @@ class UART:
         were written returns ``None``.
         """
         ...
-
     def writechar(self, char: int, /) -> None:
         """
         Write a single character on the bus.  ``char`` is an integer to write.
         Return value: ``None``. See note below if CTS flow control is used.
         """
         ...
-
     def sendbreak(self) -> None:
         """
         Send a break condition on the bus.  This drives the bus low for a duration

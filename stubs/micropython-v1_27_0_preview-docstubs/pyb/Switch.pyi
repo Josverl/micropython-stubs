@@ -23,7 +23,6 @@ class Switch:
 
          pyb.Switch().callback(lambda: pyb.LED(1).toggle())
     """
-
     def __init__(self) -> None:
         """
         Create and return a switch object.
@@ -36,13 +35,11 @@ class Switch:
         ``False`` otherwise.
         """
         ...
-
     def value(self) -> bool:
         """
         Get the switch state.  Returns ``True`` if pressed down, otherwise ``False``.
         """
         ...
-
     def callback(self, fun: Callable[[], None] | None) -> None:
         """
         Register the given function to be called when the switch is pressed down.

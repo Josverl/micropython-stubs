@@ -20,24 +20,21 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing import Any
 
 _T = TypeVar("_T")
-
 def heappush(heap: list[_T], item: _T, /) -> None:
     """
-    Push the ``item`` onto the ``heap``.
+       Push the ``item`` onto the ``heap``.
     """
     ...
-
 def heappop(heap: list[_T], /) -> _T:
     """
-    Pop the first item from the ``heap``, and return it.  Raise ``IndexError`` if
-    ``heap`` is empty.
-
-    The returned item will be the smallest item in the ``heap``.
+       Pop the first item from the ``heap``, and return it.  Raise ``IndexError`` if
+       ``heap`` is empty.
+    
+       The returned item will be the smallest item in the ``heap``.
     """
     ...
-
 def heapify(x: list[Any], /) -> None:
     """
-    Convert the list ``x`` into a heap.  This is an in-place operation.
+       Convert the list ``x`` into a heap.  This is an in-place operation.
     """
     ...

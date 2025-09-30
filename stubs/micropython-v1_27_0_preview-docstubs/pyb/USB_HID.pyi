@@ -15,7 +15,6 @@ class USB_HID:
 
     Before you can use this class, you need to use :meth:`pyb.usb_mode()` to set the USB mode to include the HID interface.
     """
-
     def __init__(self) -> None:
         """
         Create a new USB_HID object.
@@ -46,7 +45,6 @@ class USB_HID:
         Return value: if ``data`` is an integer then a new buffer of the bytes received,
         otherwise the number of bytes read into ``data`` is returned.
         """
-
     def send(self, data: Sequence[int]) -> None:
         """
         Send data over the USB HID interface:

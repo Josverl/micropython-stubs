@@ -58,7 +58,6 @@ class PWM:
 
       will generate PWM with the same 50% duty cycle.
     """
-
     def __init__(
         self,
         dest: PinLike,
@@ -83,14 +82,12 @@ class PWM:
         underlying PWM generator (this is hardware specific).
         Only one of *duty_u16* and *duty_ns* should be specified at a time.
         """
-
     def init(self, *, freq: int = ..., duty_u16: int = ..., duty_ns: int = ...) -> None:
         """
         Modify settings for the PWM object.  See the above constructor for details
         about the parameters.
         """
         ...
-
     def deinit(self) -> None:
         """
         Disable the PWM output.

@@ -122,7 +122,6 @@ class I2C:
          requested frequency. This is dependent on the platform hardware. The actual
          rate may be determined by printing the I2C object.
         """
-
     def deinit(self) -> None:
         """
         Turn off the I2C bus.
@@ -130,7 +129,6 @@ class I2C:
         Availability: WiPy.
         """
         ...
-
     def scan(self) -> List:
         """
         Scan all I2C addresses between 0x08 and 0x77 inclusive and return a list of
@@ -138,19 +136,16 @@ class I2C:
         its address (including a write bit) is sent on the bus.
         """
         ...
-
     def start(self) -> None:
         """
         Generate a START condition on the bus (SDA transitions to low while SCL is high).
         """
         ...
-
     def stop(self) -> None:
         """
         Generate a STOP condition on the bus (SDA transitions to high while SCL is high).
         """
         ...
-
     def readinto(self, buf: AnyWritableBuf, nack: bool = True, /) -> None:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
@@ -160,7 +155,6 @@ class I2C:
         case the peripheral assumes more bytes are going to be read in a later call).
         """
         ...
-
     def write(self, buf: AnyReadableBuf, /) -> int:
         """
         Write the bytes from *buf* to the bus.  Checks that an ACK is received
@@ -168,7 +162,6 @@ class I2C:
         received.  The function returns the number of ACKs that were received.
         """
         ...
-
     def readfrom(self, addr: int, nbytes: int, stop: bool = True, /) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr*.
@@ -176,7 +169,6 @@ class I2C:
         Returns a `bytes` object with the data read.
         """
         ...
-
     def readfrom_into(self, addr: int, buf: AnyWritableBuf, stop: bool = True, /) -> None:
         """
         Read into *buf* from the peripheral specified by *addr*.
@@ -186,7 +178,6 @@ class I2C:
         The method returns ``None``.
         """
         ...
-
     def writeto(self, addr: int, buf: AnyReadableBuf, stop: bool = True, /) -> int:
         """
         Write the bytes from *buf* to the peripheral specified by *addr*.  If a
@@ -196,7 +187,6 @@ class I2C:
         The function returns the number of ACKs that were received.
         """
         ...
-
     def writevto(self, addr: int, vector: Sequence[AnyReadableBuf], stop: bool = True, /) -> int:
         """
         Write the bytes contained in *vector* to the peripheral specified by *addr*.
@@ -212,7 +202,6 @@ class I2C:
         returns the number of ACKs that were received.
         """
         ...
-
     def readfrom_mem(self, addr: int, memaddr: int, nbytes: int, /, *, addrsize: int = 8) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr* starting from the memory
@@ -221,7 +210,6 @@ class I2C:
         Returns a `bytes` object with the data read.
         """
         ...
-
     def readfrom_mem_into(self, addr: int, memaddr: int, buf: AnyWritableBuf, /, *, addrsize: int = 8) -> None:
         """
         Read into *buf* from the peripheral specified by *addr* starting from the
@@ -233,7 +221,6 @@ class I2C:
         The method returns ``None``.
         """
         ...
-
     def writeto_mem(self, addr: int, memaddr: int, buf: AnyReadableBuf, /, *, addrsize: int = 8) -> None:
         """
         Write *buf* to the peripheral specified by *addr* starting from the
@@ -257,5 +244,4 @@ class SoftI2C(I2C):
          stretching (SCL held low by another device on the bus), after
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
-
     def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...

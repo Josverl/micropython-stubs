@@ -266,7 +266,6 @@ class Timer:
 
          You must either specify freq or both of period and prescaler.
         """
-
     def deinit(self) -> None:
         """
         Deinitialises the timer.
@@ -277,7 +276,6 @@ class Timer:
         Stops the timer, and disables the timer peripheral.
         """
         ...
-
     def callback(self, fun: Callable[[Timer], None] | None, /) -> None:
         """
         Set the function to be called when the timer triggers.
@@ -900,7 +898,6 @@ class Timer:
         """
         Get or set the prescaler for the timer.
         """
-
     def source_freq(self) -> int:
         """
         Get the frequency of the source of the timer.
@@ -915,7 +912,6 @@ class timerchannel(ABC):
 
     TimerChannel objects are created using the Timer.channel() method.
     """
-
     @abstractmethod
     def callback(self, fun: Callable[[Timer], None] | None, /) -> None:
         """

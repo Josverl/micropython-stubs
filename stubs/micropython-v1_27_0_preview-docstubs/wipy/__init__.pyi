@@ -17,13 +17,13 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 @overload
 def heartbeat(enable: bool, /) -> None:
     """
-    Get or set the state (enabled or disabled) of the heartbeat LED. Accepts and
-    returns boolean values (``True`` or ``False``).
+       Get or set the state (enabled or disabled) of the heartbeat LED. Accepts and
+       returns boolean values (``True`` or ``False``).
     """
 
 @overload
 def heartbeat() -> bool:
     """
-    Get or set the state (enabled or disabled) of the heartbeat LED. Accepts and
-    returns boolean values (``True`` or ``False``).
+       Get or set the state (enabled or disabled) of the heartbeat LED. Accepts and
+       returns boolean values (``True`` or ``False``).
     """

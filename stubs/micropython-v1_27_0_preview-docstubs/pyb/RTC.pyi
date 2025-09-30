@@ -16,12 +16,10 @@ class RTC:
         rtc.datetime((2014, 5, 1, 4, 13, 0, 0, 0))
         print(rtc.datetime())
     """
-
     def __init__(self) -> None:
         """
         Create an RTC object.
         """
-
     @overload
     def datetime(self, datetimetuple: tuple[int, int, int, int, int, int, int, int], /) -> None:
         """
@@ -40,7 +38,6 @@ class RTC:
         ``subseconds`` counts down from 255 to 0
         """
         ...
-
     @overload
     def datetime(self, /) -> Tuple:
         """
@@ -59,7 +56,6 @@ class RTC:
         ``subseconds`` counts down from 255 to 0
         """
         ...
-
     def wakeup(self, timeout: int, callback: Callable[[RTC], None] | None = None, /) -> None:
         """
         Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
@@ -72,7 +68,6 @@ class RTC:
         wakeup timer.  ``callback`` must take exactly one argument.
         """
         ...
-
     def info(self) -> int:
         """
         Get information about the startup time and reset source.
