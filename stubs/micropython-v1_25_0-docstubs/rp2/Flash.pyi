@@ -10,7 +10,6 @@ class Flash(AbstractBlockDev):
     """
     Gets the singleton object for accessing the SPI flash memory.
     """
-
     def __init__(self) -> None: ...
     @overload
     def readblocks(self, block_num: int, buf: bytearray) -> bool:

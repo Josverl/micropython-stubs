@@ -9,7 +9,6 @@ class LED:
     """
     The LED object controls an individual LED (Light Emitting Diode).
     """
-
     def __init__(self, id: int, /) -> None:
         """
         Create an LED object associated with the given LED:
@@ -44,19 +43,16 @@ class LED:
         relevant LED is set to a value between 1 and 254.  Otherwise the timers are
         free for general purpose use.
         """
-
     def off(self) -> None:
         """
         Turn the LED off.
         """
         ...
-
     def on(self) -> None:
         """
         Turn the LED on, to maximum intensity.
         """
         ...
-
     def toggle(self) -> None:
         """
         Toggle the LED between on (maximum intensity) and off.  If the LED is at

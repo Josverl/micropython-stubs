@@ -95,52 +95,46 @@ or ``ARRAY`` flags is a structure.
 """
 _property: TypeAlias = Incomplete
 _descriptor: TypeAlias = Tuple | Dict
-
-class struct:
+class struct():
     """
     Module contents
     ---------------
     """
-
     def __init__(self, addr: int | struct, descriptor: _descriptor, layout_type: int = NATIVE, /) -> None:
         """
         Instantiate a "foreign data structure" object based on structure address in
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
-
+        ...
     @mp_available()  # force push
     def __getattr__(self, a): ...
-
 def sizeof(struct: struct | _descriptor | dict, layout_type: int = NATIVE, /) -> int:
     """
-    Return size of data structure in bytes. The *struct* argument can be
-    either a structure class or a specific instantiated structure object
-    (or its aggregate field).
+       Return size of data structure in bytes. The *struct* argument can be
+       either a structure class or a specific instantiated structure object
+       (or its aggregate field).
     """
     ...
-
 def addressof(obj: AnyReadableBuf, /) -> int:
     """
-    Return address of an object. Argument should be bytes, bytearray or
-    other object supporting buffer protocol (and address of this buffer
-    is what actually returned).
+       Return address of an object. Argument should be bytes, bytearray or
+       other object supporting buffer protocol (and address of this buffer
+       is what actually returned).
     """
     ...
-
 def bytes_at(addr: int, size: int, /) -> bytes:
     """
-    Capture memory at the given address and size as bytes object. As bytes
-    object is immutable, memory is actually duplicated and copied into
-    bytes object, so if memory contents change later, created object
-    retains original value.
+       Capture memory at the given address and size as bytes object. As bytes
+       object is immutable, memory is actually duplicated and copied into
+       bytes object, so if memory contents change later, created object
+       retains original value.
     """
     ...
-
 def bytearray_at(addr: int, size: int, /) -> bytearray:
     """
-    Capture memory at the given address and size as bytearray object.
-    Unlike bytes_at() function above, memory is captured by reference,
-    so it can be both written too, and you will access current value
-    at the given memory address.
+       Capture memory at the given address and size as bytearray object.
+       Unlike bytes_at() function above, memory is captured by reference,
+       so it can be both written too, and you will access current value
+       at the given memory address.
     """
     ...

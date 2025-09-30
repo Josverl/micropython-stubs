@@ -30,7 +30,6 @@ class Servo:
        use Timer(5) for Servo control, or your own purposes, but not both at the
        same time.
     """
-
     def __init__(self, id: int, /) -> None:
         """
         Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
@@ -109,7 +108,6 @@ class Servo:
           - ``time`` is the number of milliseconds to take to get to the specified
             speed.  If omitted, then the servo accelerates as quickly as possible.
         """
-
     def pulse_width(self, value: Any | None = None) -> Incomplete:
         """
         If no arguments are given, this function returns the current raw pulse-width

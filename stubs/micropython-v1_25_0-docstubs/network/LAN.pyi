@@ -27,7 +27,6 @@ class LAN:
 
       nic = LAN(0, phy_type=LAN.PHY_LAN8720, phy_addr=1, ref_clk_mode=Pin.IN)
     """
-
     def __init__(self, id, *, phy_type=0, phy_addr=0, ref_clk_mode=0) -> None: ...
     @overload
     def active(self, /) -> bool:
@@ -44,20 +43,17 @@ class LAN:
         sets it inactive.
         Without a parameter, it returns the state.
         """
-
     def isconnected(self) -> bool:
         """
         Returns ``True`` if the physical Ethernet link is connected and up.
         Returns ``False`` otherwise.
         """
         ...
-
     def status(self) -> Incomplete:
         """
         Returns the LAN status.
         """
         ...
-
     def ifconfig(self, configtuple: Any | None = None) -> Tuple:
         """
         Get/set IP address, subnet mask, gateway and DNS.
@@ -69,7 +65,6 @@ class LAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-
     def config(self, config_parameters) -> Incomplete:
         """
         Sets or gets parameters of the LAN interface. The only parameter that can be

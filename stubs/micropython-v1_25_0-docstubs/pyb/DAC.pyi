@@ -83,7 +83,6 @@ class DAC:
         to be less than 1.5MΩ.  Using the buffer incurs a penalty in accuracy,
         especially near the extremes of range.
         """
-
     def init(self, bits: int = 8, *, buffering: bool | None = None) -> None:
         """
         Reinitialise the DAC.  *bits* can be 8 or 12.  *buffering* can be
@@ -91,20 +90,17 @@ class DAC:
         of this parameter.
         """
         ...
-
     def deinit(self) -> None:
         """
         De-initialise the DAC making its pin available for other uses.
         """
         ...
-
     def noise(self, freq: int, /) -> None:
         """
         Generate a pseudo-random noise signal.  A new random sample is written
         to the DAC output at the given frequency.
         """
         ...
-
     def triangle(self, freq: int, /) -> None:
         """
         Generate a triangle wave.  The value on the DAC output changes at the given
@@ -112,7 +108,6 @@ class DAC:
         the frequency of the repeating triangle wave itself is 8192 times smaller.
         """
         ...
-
     def write(self, value: int, /) -> None:
         """
         Direct access to the DAC output.  The minimum value is 0.  The maximum
@@ -120,7 +115,6 @@ class DAC:
         object or by using the ``init`` method.
         """
         ...
-
     def write_timed(self, data: AnyWritableBuf, freq: int | Timer, /, *, mode: int = NORMAL) -> None:
         """
         Initiates a burst of RAM to DAC using a DMA transfer.

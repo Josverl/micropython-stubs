@@ -116,7 +116,6 @@ class SPI:
         At the moment, the NSS pin is not used by the SPI driver and is free
         for other use.
         """
-
     def deinit(self) -> None:
         """
         Turn off the SPI bus.
@@ -200,7 +199,6 @@ class SPI:
         Printing the SPI object will show you the computed baudrate and the chosen
         prescaler.
         """
-
     def recv(self, recv: int | AnyWritableBuf, /, *, timeout: int = 5000) -> bytes:
         """
         Receive data on the bus:
@@ -213,7 +211,6 @@ class SPI:
         otherwise the same buffer that was passed in to ``recv``.
         """
         ...
-
     def send(self, send: int | AnyWritableBuf | bytes, /, *, timeout: int = 5000) -> None:
         """
         Send data on the bus:
@@ -224,7 +221,6 @@ class SPI:
         Return value: ``None``.
         """
         ...
-
     def send_recv(
         self,
         send: int | AnyWritableBuf,

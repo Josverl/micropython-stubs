@@ -33,8 +33,7 @@ file format.
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-
-class GzipFile:
+class GzipFile():
     """
     This class can be used to wrap a *fileobj* which is any
     :term:`stream-like <stream>` object such as a file, socket, or stream
@@ -56,23 +55,20 @@ class GzipFile:
     supported. **fileobj** and **mode** must always be specified as keyword
     arguments.
     """
-
-    def __init__(self, *, fileobj, mode) -> None: ...
-
+    def __init__(self, *, fileobj, mode) -> None:
+        ...
 def open(filename, mode, /) -> Incomplete:
     """
-    Wrapper around built-in :func:`open` returning a GzipFile instance.
+       Wrapper around built-in :func:`open` returning a GzipFile instance.
     """
     ...
-
 def decompress(data, /) -> Incomplete:
     """
-    Decompresses *data* into a bytes object.
+       Decompresses *data* into a bytes object.
     """
     ...
-
 def compress(data, /) -> Incomplete:
     """
-    Compresses *data* into a bytes object.
+       Compresses *data* into a bytes object.
     """
     ...

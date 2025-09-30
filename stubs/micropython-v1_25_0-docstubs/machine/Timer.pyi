@@ -158,7 +158,6 @@ class Timer:
             ``TypeError: 'NoneType' object isn't callable``
         """
         ...
-
     def deinit(self) -> None:
         """
         Deinitialises the timer. Stops the timer, and disables the timer peripheral.

@@ -81,33 +81,28 @@ class ExtInt:
             callback function must accept exactly 1 argument, which is the line that
             triggered the interrupt.
         """
-
     @staticmethod
     def regs() -> None:
         """
         Dump the values of the EXTI registers.
         """
         ...
-
     def disable(self) -> None:
         """
         Disable the interrupt associated with the ExtInt object.
         This could be useful for debouncing.
         """
         ...
-
     def enable(self) -> None:
         """
         Enable a disabled interrupt.
         """
         ...
-
     def line(self) -> int:
         """
         Return the line number that the pin is mapped to.
         """
         ...
-
     def swint(self) -> None:
         """
         Trigger the callback from software.

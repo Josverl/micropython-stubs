@@ -77,7 +77,6 @@ class RTC:
 
         The documentation for RTC is in a poor state; better to experiment and use `dir`!
         """
-
     def datetime(self, datetimetuple: Any | None = None) -> Tuple:
         """
         Get or set the date and time of the RTC.
@@ -198,7 +197,6 @@ class RTC:
         the stm32 and renesas-ra ports just (re-)starts the RTC and does not
         accept arguments.
         """
-
     def now(self) -> Tuple:
         """
         Get get the current datetime tuple.
@@ -206,7 +204,6 @@ class RTC:
         Availability: WiPy.
         """
         ...
-
     def deinit(self) -> None:
         """
         Resets the RTC to the time of January 1, 2015 and starts running it again.
@@ -268,13 +265,11 @@ class RTC:
         current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
         milliseconds, repeat can be set to ``True`` to make the alarm periodic.
         """
-
     def alarm_left(self, alarm_id: int = 0, /) -> int:
         """
         Get the number of milliseconds left before the alarm expires.
         """
         ...
-
     def alarm_cancel(self, alarm_id: int = 0, /) -> None:
         """
         Cancel a running alarm.
@@ -283,7 +278,6 @@ class RTC:
         scheduled to be removed in MicroPython 2.0.
         """
         ...
-
     def irq(
         self,
         /,
@@ -301,7 +295,6 @@ class RTC:
              up the system.
         """
         ...
-
     def memory(self, data: Any | None = None) -> bytes:
         """
         ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any

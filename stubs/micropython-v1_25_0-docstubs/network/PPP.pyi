@@ -40,26 +40,22 @@ class PPP:
         The connection proceeds asynchronously, in the background.
         """
         ...
-
     def disconnect(self) -> Incomplete:
         """
         Terminate the connection.  This must be called to cleanly close the PPP connection.
         """
         ...
-
     def isconnected(self) -> bool:
         """
         Returns ``True`` if the PPP link is connected and up.
         Returns ``False`` otherwise.
         """
         ...
-
     def status(self) -> Incomplete:
         """
         Returns the PPP status.
         """
         ...
-
     def config(self, config_parameters) -> Incomplete:
         """
         Sets or gets parameters of the PPP interface. The only parameter that can be
@@ -69,19 +65,16 @@ class PPP:
            PPP.config(stream=stream)
         """
         ...
-
     def ipconfig(self, param) -> Incomplete:
         """
         See `AbstractNIC.ipconfig`.
         """
         ...
-
     def ifconfig(self, configtuple: Any | None = None) -> Incomplete:
         """
         See `AbstractNIC.ifconfig`.
         """
         ...
-
     def poll(self) -> Incomplete:
         """
         Poll the underlying stream for data, and pass it up the PPP stack.

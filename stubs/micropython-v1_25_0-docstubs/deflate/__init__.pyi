@@ -24,7 +24,6 @@ This module allows compression and decompression of binary data with the
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-
 AUTO: Incomplete
 """Supported values for the *format* parameter."""
 RAW: Incomplete
@@ -33,8 +32,7 @@ ZLIB: Incomplete
 """Supported values for the *format* parameter."""
 GZIP: Incomplete
 """Supported values for the *format* parameter."""
-
-class DeflateIO:
+class DeflateIO():
     """
     This class can be used to wrap a *stream* which is any
     :term:`stream-like <stream>` object such as a file, socket, or stream
@@ -77,5 +75,5 @@ class DeflateIO:
     a socket can be wrapped, which allows for compression/decompression in both
     directions.
     """
-
-    def __init__(self, stream, format=AUTO, wbits=0, close=False, /) -> None: ...
+    def __init__(self, stream, format=AUTO, wbits=0, close=False, /) -> None:
+        ...
