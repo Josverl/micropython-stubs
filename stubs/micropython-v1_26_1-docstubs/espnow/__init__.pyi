@@ -10,7 +10,7 @@ MicroPython module: https://docs.micropython.org/en/v1.26.0/library/aioespnow.ht
 # origin module:: repos/micropython/docs/library/espnow.rst
 from __future__ import annotations
 from _typeshed import TypeAlias, Incomplete
-from typing import overload, Callable, Any, Dict, Iterator, List, Optional, Tuple, Union
+from typing import Callable, overload, Any, Dict, Iterator, List, Optional, Tuple, Union
 from typing_extensions import Buffer, TypeVar, TypeAlias, Awaitable
 from _espnow import ESPNowBase  # type: ignore
 from _mpy_shed import mp_available

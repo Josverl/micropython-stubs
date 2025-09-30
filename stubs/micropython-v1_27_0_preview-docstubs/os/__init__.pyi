@@ -206,6 +206,25 @@ def dupterm(stream_object, index=0, /) -> IO:
     """
     ...
 
+@mp_available()  # force merge
+def dupterm_notify(obj_in: Any, /) -> None:
+    """
+    Notify the MicroPython REPL that input is available on a stream-like object
+    previously registered via `os.dupterm()`.
+
+    This function should be called by custom stream implementations (e.g., UART,
+    Bluetooth, or other non-USB REPL streams) to inform the REPL that input is
+    ready to be read. Proper use ensures that special characters such as
+    Ctrl+C (used to trigger KeyboardInterrupt) are processed promptly by the
+    REPL, enabling expected interruption behavior for user code.
+
+    The *obj_in* parameter is ignored by `os.dupterm_notify()`, but is required to allow calling
+    dupterm_notify from an interrupt handler such as `UART.irq()`.
+
+    Example:
+    """
+    ...
+
 # Deprecated functions and classes
 # The following functions and classes have been moved to the vfs module.
 
@@ -222,40 +241,5 @@ def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
 def umount(mount_point) -> Incomplete:
     """
     See `vfs.umount`.
-    """
-    ...
-
-@mp_available()  # force merge
-def dupterm_notify(obj_in: Any, /) -> None:
-    # https://github.com/orgs/micropython/discussions/16680
-    # https://github.com/micropython/micropython/issues/17799
-    """
-    Notify the MicroPython REPL that input is available on a stream-like object
-    previously registered via `os.dupterm()`.
-
-    This function should be called by custom stream implementations (e.g., UART,
-    Bluetooth, or other non-USB REPL streams) to inform the REPL that input is
-    ready to be read. Proper use ensures that special characters such as
-    Ctrl+C (used to trigger KeyboardInterrupt) are processed promptly by the
-    REPL, enabling expected interruption behavior for user code.
-
-    Args:
-        obj_in: Is ignored by dupterm_notify, but is required to allow calling
-        dupterm_notify from an interrupt handler such as UART.irq()
-    Note:
-        - If input is available (including control characters like Ctrl+C),
-          call this function to ensure responsive REPL behavior.
-        - If omitted, input from the custom stream may not be detected or
-          processed until the next REPL poll, potentially delaying KeyboardInterrupts
-          or other control signals.
-        - This is especially important for UART, Bluetooth, or other
-          non-standard REPL connections, where automatic notification is not guaranteed.
-
-    Example:
-        from machine import UART
-        import os
-        uart = UART(0)
-        uart.irq(os.dupterm_notify, machine.UART.IRQ_RX)  # or UART.IRQ_RXIDLE
-        os.dupterm(uart, 0)
     """
     ...
