@@ -24,8 +24,8 @@ from rp2.PIO import PIO
 from rp2.StateMachine import StateMachine
 from rp2 import PIOASMEmit, _PIO_ASM_Program, bootsel_button
 from rp2.PIOASMEmit import PIOASMEmit
+from typing import Callable, List, Union, Optional, overload
 from machine import Pin
-from typing import Callable, List, Union, overload
 from micropython import const
 
 _PIO_ASM_Program: TypeAlias = PIOASMEmit
@@ -41,6 +41,7 @@ def asm_pio(
     out_init: Union[Pin, List[Pin], int, List[int], None] = None,
     set_init: Union[Pin, List[Pin], int, List[int], None] = None,
     sideset_init: Union[Pin, List[Pin], int, List[int], None] = None,
+    side_pindir: Optional[bool] = None,
     in_shiftdir=0,
     out_shiftdir=0,
     autopush=False,
@@ -48,6 +49,7 @@ def asm_pio(
     push_thresh=32,
     pull_thresh=32,
     fifo_join=PIO.JOIN_NONE,
+    execctrl=0,
 ) -> Callable[..., _PIO_ASM_Program]:
     """
     Assemble a PIO program.
@@ -84,6 +86,9 @@ def asm_pio(
     - *fifo_join* configures whether the 4-word TX and RX FIFOs should be
       combined into a single 8-word FIFO for one direction only. The options
       are `PIO.JOIN_NONE`, `PIO.JOIN_RX` and `PIO.JOIN_TX`.
+    - *execctrl* configures additional execution control options. Can be used
+      with constants like `PIO.STATUS_TXLEVEL` + n to trigger status checks
+      based on FIFO thresholds.
     """
     ...
 
