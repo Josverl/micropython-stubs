@@ -130,7 +130,6 @@ class I2S:
         Increasing the size of the internal buffer has the potential to increase the time that user applications can perform non-I2S operations
         before underflow (e.g. ``write`` method) or overflow (e.g. ``readinto`` method).
         """
-
     def init(
         self,
         *,
@@ -147,13 +146,11 @@ class I2S:
         see Constructor for argument descriptions
         """
         ...
-
     def deinit(self) -> None:
         """
         Deinitialize the I2S bus
         """
         ...
-
     def readinto(
         self,
         buf: AnyWritableBuf,
@@ -166,7 +163,6 @@ class I2S:
         Returns number of bytes read
         """
         ...
-
     def write(
         self,
         buf: AnyReadableBuf,
@@ -179,7 +175,6 @@ class I2S:
         Returns number of bytes written
         """
         ...
-
     def irq(
         self,
         handler: Callable[[Any], None],
@@ -191,7 +186,6 @@ class I2S:
         ``handler`` is called in the context of the MicroPython scheduler.
         """
         ...
-
     @staticmethod
     def shift(
         buf: AnyWritableBuf,

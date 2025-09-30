@@ -32,7 +32,6 @@ class WIZNET5K:
 
     It is possible to use other SPI buses and other pins for nSS and nRESET.
     """
-
     def __init__(self, spi: SPI, pin_cs: Pin, pin_rst: Pin, /) -> None:
         """
         Create a WIZNET5K driver object, initialise the WIZnet5x00 module using the given
@@ -50,7 +49,6 @@ class WIZNET5K:
 
           nic = network.WIZNET5K(SPI(1), Pin.board.X5, Pin.board.X4)
         """
-
     def regs(self) -> Any:
         """
         Dump the WIZnet5x00 registers.  Useful for debugging.

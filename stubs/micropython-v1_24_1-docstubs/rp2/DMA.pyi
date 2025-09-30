@@ -10,7 +10,6 @@ class DMA:
     """
     Claim one of the DMA controller channels for exclusive use.
     """
-
     def __init__(
         self,
         read: int | AnyReadableBuf | None = None,
@@ -46,20 +45,17 @@ class DMA:
         - *trigger*: Optionally commence the transfer immediately.
         """
         ...
-
     def irq(self, handler: Optional[Callable] = None, hard: bool = False) -> _IRQ:
         """
         Returns the IRQ object for this DMA channel and optionally configures it.
         """
         ...
-
     def close(self) -> None:
         """
         Release the claim on the underlying DMA channel and free the interrupt
         handler. The :class:`DMA` object can not be used after this operation.
         """
         ...
-
     def pack_ctrl(
         self,
         *,
@@ -130,7 +126,6 @@ class DMA:
         datasheet for details of all of these fields.
         """
         ...
-
     def unpack_ctrl(self, value: int) -> dict:
         """
         Unpack a value for a DMA channel control register into a dictionary with key/value pairs
@@ -145,7 +140,6 @@ class DMA:
         directly as the keyword arguments for packing.
         """
         ...
-
     def active(self, value: Any | None = None) -> bool:
         """
         Gets or sets whether the DMA channel is currently running.

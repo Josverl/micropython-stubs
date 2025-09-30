@@ -107,7 +107,6 @@ if TYPE_CHECKING:
     # program must load. Most commonly this is used for programs that must load
     # at offset 0, because they use data based JMPs with the (absolute) jmp target
     # being stored in only a few bits. This directive is invalid outside of a program
-
     ####################################################################################
     def delay(delay: int) -> _PIO_ASM_Program:
         """rp2.PIO delay modifier.

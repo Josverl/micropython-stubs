@@ -76,7 +76,6 @@ class WLANWiPy:
         initialized it will do the same as the other constructors an will initialize it with default
         values.
         """
-
     def init(
         self,
         mode: int,
@@ -113,7 +112,6 @@ class WLANWiPy:
            wlan.init(mode=WLAN.STA)
         """
         ...
-
     def connect(
         self,
         ssid: str,
@@ -136,27 +134,23 @@ class WLANWiPy:
            - *timeout* is the maximum time in milliseconds to wait for the connection to succeed.
         """
         ...
-
     def scan(self) -> List[Tuple]:
         """
         Performs a network scan and returns a list of named tuples with (ssid, bssid, sec, channel, rssi).
         Note that channel is always ``None`` since this info is not provided by the WiPy.
         """
         ...
-
     def disconnect(self) -> None:
         """
         Disconnect from the WiFi access point.
         """
         ...
-
     def isconnected(self) -> bool:
         """
         In case of STA mode, returns ``True`` if connected to a WiFi access point and has a valid IP address.
         In AP mode returns ``True`` when a station is connected, ``False`` otherwise.
         """
         ...
-
     def ipconfig(self, param) -> Incomplete:
         """
         See :meth:`AbstractNIC.ipconfig <AbstractNIC.ipconfig>`. Supported parameters are: ``dhcp4``, ``addr4``, ``gw4``.
@@ -234,7 +228,6 @@ class WLANWiPy:
         """
         Get or set a 6-byte long bytes object with the MAC address.
         """
-
     def irq(self, *, handler: Callable[[], None], wake: int) -> Any:
         """
         Create a callback to be triggered when a WLAN event occurs during ``machine.SLEEP``

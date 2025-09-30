@@ -167,13 +167,11 @@ class Signal(Pin):
         to logical 0. For inverted/active-low signal, active status corresponds
         to logical 0, while inactive - to logical 1.
         """
-
     def on(self) -> None:
         """
         Activate signal.
         """
         ...
-
     def off(self) -> None:
         """
         Deactivate signal.

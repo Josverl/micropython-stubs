@@ -56,7 +56,6 @@ class WLAN:
         argument is passed. Otherwise, query current state if no argument is
         provided. Most other methods require active interface.
         """
-
     def connect(
         self,
         ssid: str | None = None,
@@ -72,13 +71,11 @@ class WLAN:
         in this case).
         """
         ...
-
     def disconnect(self) -> None:
         """
         Disconnect from the currently connected wireless network.
         """
         ...
-
     def scan(self) -> List[Tuple]:
         """
         Scan for the available wireless networks.
@@ -145,7 +142,6 @@ class WLAN:
         When called with one argument *param* should be a string naming the status
         parameter to retrieve.  Supported parameters in WiFI STA mode are: ``'rssi'``.
         """
-
     def isconnected(self) -> bool:
         """
         In case of STA mode, returns ``True`` if connected to a WiFi access

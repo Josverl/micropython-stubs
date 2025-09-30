@@ -36,7 +36,7 @@ from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing import Callable, Optional
 
-class Endpoint:
+class Endpoint():
     """
     Construct a new RPMsg Endpoint. An endpoint is a bidirectional communication
     channel between two cores.
@@ -53,42 +53,38 @@ class Endpoint:
            source address. If the endpoint is registered locally, before the announcement, the
            destination address will be assigned by the library when the endpoint is bound.
     """
-
-    def __init__(
-        self,
+    def __init__(self,
         name,
         callback: Callable,
         src: Optional[Incomplete] = None,
         dest: Optional[Incomplete] = None,
-    ) -> None: ...
+    ) -> None:
+        ...
     def deinit(self) -> Incomplete:
         """
-        Destroy the endpoint and release all of its resources.
+           Destroy the endpoint and release all of its resources.
         """
         ...
-
     def is_ready(self) -> bool:
         """
-        Returns True if the endpoint is ready to send (i.e., has both a source and destination addresses)
+           Returns True if the endpoint is ready to send (i.e., has both a source and destination addresses)
         """
         ...
-
     def send(self, src=-1, dest=-1, timeout=-1) -> None:
         """
-        Send a message to the remote processor over this endpoint.
-
-        Arguments are:
-
-             - *src* is the source endpoint address of the message. If none is provided, the
-               source address the endpoint is bound to is used.
-             - *dest* is the destination endpoint address of the message. If none is provided,
-               the destination address the endpoint is bound to is used.
-             - *timeout* specifies the time in milliseconds to wait for a free buffer. By default
-               the function is blocking.
+           Send a message to the remote processor over this endpoint.
+        
+           Arguments are:
+        
+                - *src* is the source endpoint address of the message. If none is provided, the
+                  source address the endpoint is bound to is used.
+                - *dest* is the destination endpoint address of the message. If none is provided,
+                  the destination address the endpoint is bound to is used.
+                - *timeout* specifies the time in milliseconds to wait for a free buffer. By default
+                  the function is blocking.
         """
         ...
-
-class RemoteProc:
+class RemoteProc():
     """
     The RemoteProc object provides processor Life Cycle Management (LCM) support, such as
     loading firmware, starting and stopping a remote core.
@@ -97,41 +93,38 @@ class RemoteProc:
     loaded from file to its target memory, or an entry point address, in which case the
     firmware must be loaded already at the given address.
     """
-
-    def __init__(self, entry) -> None: ...
+    def __init__(self, entry) -> None:
+        ...
     def start(self) -> Incomplete:
         """
-        Starts the remote processor.
+           Starts the remote processor.
         """
         ...
-
     def stop(self) -> None:
         """
-        Stops the remote processor. The exact behavior is platform-dependent. On the STM32H7 for
-        example it's not possible to stop and then restart the Cortex-M4 core, so a complete
-        system reset is performed on a call to this function.
+           Stops the remote processor. The exact behavior is platform-dependent. On the STM32H7 for
+           example it's not possible to stop and then restart the Cortex-M4 core, so a complete
+           system reset is performed on a call to this function.
         """
         ...
-
     def shutdown(self) -> Incomplete:
         """
-        Shutdown stops the remote processor and releases all of its resources. The exact behavior
-        is platform-dependent, however typically it disables power and clocks to the remote core.
-        This function is also used as the finaliser (i.e., called when ``RemoteProc`` object is
-        collected). Note that on the STM32H7, it's not possible to stop and then restart the
-        Cortex-M4 core, so a complete system reset is performed on a call to this function.
+           Shutdown stops the remote processor and releases all of its resources. The exact behavior
+           is platform-dependent, however typically it disables power and clocks to the remote core.
+           This function is also used as the finaliser (i.e., called when ``RemoteProc`` object is
+           collected). Note that on the STM32H7, it's not possible to stop and then restart the
+           Cortex-M4 core, so a complete system reset is performed on a call to this function.
         """
         ...
-
 def new_service_callback(ns_callback: Callable) -> None:
     """
-    Set the new service callback.
-
-    The *ns_callback* argument is a function that will be called when the remote processor
-    announces new services. At that point the host processor can choose to create the
-    announced endpoint, if this particular service is supported, or ignore it if it's
-    not. If this function is not set, the host processor should first register the
-    endpoint locally, and it will be automatically bound when the remote announces
-    the service.
+        Set the new service callback.
+    
+        The *ns_callback* argument is a function that will be called when the remote processor
+        announces new services. At that point the host processor can choose to create the
+        announced endpoint, if this particular service is supported, or ignore it if it's
+        not. If this function is not set, the host processor should first register the
+        endpoint locally, and it will be automatically bound when the remote announces
+        the service.
     """
     ...

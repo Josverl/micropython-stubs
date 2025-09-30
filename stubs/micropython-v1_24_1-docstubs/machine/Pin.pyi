@@ -171,7 +171,6 @@ class Pin:
         alternate-function mode is re-initialised with ``Pin.IN``, ``Pin.OUT``, or
         ``Pin.OPEN_DRAIN``, the alternate function will be removed from the pin.
         """
-
     def init(
         self,
         mode: int = -1,
@@ -273,19 +272,16 @@ class Pin:
         and get the value of the pin.  It is equivalent to Pin.value([x]).
         See :meth:`Pin.value` for more details.
         """
-
     def on(self) -> None:
         """
         Set pin to "1" output level.
         """
         ...
-
     def off(self) -> None:
         """
         Set pin to "0" output level.
         """
         ...
-
     def irq(
         self,
         /,
@@ -339,7 +335,6 @@ class Pin:
         The following methods are not part of the core Pin API and only implemented on certain ports.
         """
         ...
-
     def low(self) -> None:
         """
         Set pin to "0" output level.
@@ -347,7 +342,6 @@ class Pin:
         Availability: nrf, rp2, stm32 ports.
         """
         ...
-
     def high(self) -> None:
         """
         Set pin to "1" output level.
@@ -410,7 +404,6 @@ class Pin:
 
         Availability: cc3200 port.
         """
-
     def toggle(self) -> Incomplete:
         """
         Toggle output pin from "0" to "1" or vice-versa.

@@ -19,7 +19,6 @@ class WDT:
 
     Availability of this class: pyboard, WiPy, esp8266, esp32.
     """
-
     def __init__(self, *, id: int = 0, timeout: int = 5000) -> None:
         """
         Create a WDT object and start it. The timeout must be given in milliseconds.
@@ -28,7 +27,6 @@ class WDT:
         Notes: On the esp32 the minimum timeout is 1 second. On the esp8266 a timeout
         cannot be specified, it is determined by the underlying system.
         """
-
     def feed(self) -> None:
         """
         Feed the WDT to prevent it from resetting the system. The application

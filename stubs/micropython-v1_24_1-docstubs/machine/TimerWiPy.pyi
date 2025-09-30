@@ -37,13 +37,11 @@ class TimerWiPy:
             for ``ONE_SHOT`` AND ``PERIODIC`` modes.
         """
         ...
-
     def deinit(self) -> None:
         """
         Deinitialises the timer. Stops the timer, and disables the timer peripheral.
         """
         ...
-
     def channel(
         self,
         channel,
@@ -95,7 +93,6 @@ class TimerWiPy:
 
 class timerchannel:
     """ """
-
     def irq(self, *, trigger, priority=1, handler=None) -> Callable[..., Incomplete]:
         """
         The behaviour of this callback is heavily dependent on the operating
@@ -120,19 +117,16 @@ class timerchannel:
         Returns a callback object.
         """
         ...
-
     def freq(self, value: Any | None = None) -> Incomplete:
         """
         Get or set the timer channel frequency (in Hz).
         """
         ...
-
     def period(self, value: Any | None = None) -> Incomplete:
         """
         Get or set the timer channel period (in microseconds).
         """
         ...
-
     def duty_cycle(self, value: Any | None = None) -> Incomplete:
         """
         Get or set the duty cycle of the PWM signal. It's a percentage (0.00-100.00). Since the WiPy

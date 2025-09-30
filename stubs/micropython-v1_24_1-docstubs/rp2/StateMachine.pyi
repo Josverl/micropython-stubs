@@ -17,7 +17,6 @@ class StateMachine:
     Optionally initialize it with the given program *program*: see
     `StateMachine.init`.
     """
-
     def __init__(
         self,
         id: int,
@@ -97,7 +96,6 @@ class StateMachine:
         False
         """
         ...
-
     def restart(self) -> None:
         """
         Restarts the state machine and jumps to the beginning of the program.
@@ -112,7 +110,6 @@ class StateMachine:
          - a stalled instruction run using `StateMachine.exec()`
         """
         ...
-
     def exec(self, instr: Union[int, str]) -> None:
         """
         Execute a single PIO instruction.
@@ -128,7 +125,6 @@ class StateMachine:
         >>> sm.exec(rp2.asm_pio_encode("out(y, 8)", 0))
         """
         ...
-
     def get(self, buf: Optional[bytearray] = None, shift: int = 0) -> Union[int, None]:
         """
         Pull a word from the state machine's RX FIFO.
@@ -140,7 +136,6 @@ class StateMachine:
         return value is ``word >> shift``.
         """
         ...
-
     def put(self, value: Union[int, bytes, bytearray], shift: int = 0):
         """
         Push words onto the state machine's TX FIFO.
@@ -156,7 +151,6 @@ class StateMachine:
         receives ``word << shift``.
         """
         ...
-
     def rx_fifo(self) -> int:
         """
         Returns the number of words in the state machine's RX FIFO. A value of 0
@@ -166,7 +160,6 @@ class StateMachine:
         `StateMachine.get()`.
         """
         ...
-
     def tx_fifo(self) -> int:
         """
         Returns the number of words in the state machine's TX FIFO. A value of 0
@@ -176,7 +169,6 @@ class StateMachine:
         `StateMachine.put()`.
         """
         ...
-
     def irq(self, handler: Optional[Callable] = None, trigger: int = 0 | 1, hard: bool = False) -> _IRQ:
         """
         Returns the IRQ object for the given StateMachine.

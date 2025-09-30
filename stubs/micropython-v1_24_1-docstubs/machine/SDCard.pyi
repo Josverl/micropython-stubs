@@ -100,7 +100,6 @@ class SDCard(AbstractBlockDev):
     *Note:* The current cc3200 SD card implementation names the this class
     :class:`machine.SD` rather than :class:`machine.SDCard` .
     """
-
     def __init__(
         self,
         slot: int = 1,
@@ -143,7 +142,6 @@ class SDCard(AbstractBlockDev):
 
          - *freq* selects the SD/MMC interface frequency in Hz (only supported on the ESP32).
         """
-
     @overload
     def readblocks(self, block_num: int, buf: bytearray) -> bool:
         """
