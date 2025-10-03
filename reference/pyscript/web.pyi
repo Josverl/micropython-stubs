@@ -12,16 +12,18 @@ These attributes, expressed as py-* or mpy-* attributes of an HTML element, refe
 You should replace the * with the actual name of an event (e.g. py-click or mpy-click). This is similar to how all event handlers on elements start 
 with on in standard HTML (e.g. onclick). The rule of thumb is to simply replace on with py- or mpy- and then reference the name of a Python function.
 """
+from __future__ import annotations
 
-from pyscript import Event, document
-from pyscript import when as when
-from pyscript.ffi import create_proxy
-
-"""Lightweight interface to the DOM and HTML elements."""
 from typing import Any, Generator, List
 
 from _typeshed import Incomplete
+from pyscript import Event, document
+from pyscript import when as when
+from pyscript.ffi import create_proxy
 from typing_extensions import Self
+
+ELEMENT_CLASSES :ElementCollection = ...
+page :Page = ...
 
 def wrap_dom_element(dom_element):
     """Wrap an existing DOM element in an instance of a subclass of `Element`.
@@ -884,7 +886,6 @@ class wbr(Element):
 
     ...
 
-ELEMENT_CLASSES = ...
 
 class Page:
     """Represents the whole page."""
@@ -920,10 +921,4 @@ class Page:
         """
         ...
 
-page = ...
-page = ...
-page = ...
-page = ...
-page = ...
-page = ...
-page = ...
+

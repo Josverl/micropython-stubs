@@ -10,6 +10,8 @@ from typing import Any, Callable
 
 from _pyscript import PyWorker as PyWorker
 from _pyscript import js_import as js_import
+from libcst import Not
+from typing_extensions import Incomplete
 
 RUNNING_IN_WORKER: bool
 """True if code is running in a web worker, False if in main thread."""
@@ -17,10 +19,10 @@ RUNNING_IN_WORKER: bool
 config: dict[str, Any]
 """PyScript configuration object containing runtime settings."""
 
-if "MicroPython" in sys.version:
-    ...
-else:
-    ...
+# generate N modules in the system that will proxy the real value
+# for name in globalThis.Reflect.ownKeys(js_modules):
+#     sys.modules[f"pyscript.js_modules.{name}"] = JSModule(name)
+# sys.modules["pyscript.js_modules"] = js_modules
 
 class JSModule:
     """
@@ -41,78 +43,47 @@ class JSModule:
 
     def __getattr__(self, field: str) -> Any | None: ...
 
-if RUNNING_IN_WORKER:
-    PyWorker: None
-    """Not available in worker context (None)."""
+PyWorker: None
+"""Not available in worker context (None)."""
 
-    window: None
-    """Not available in worker context (None)."""
+window: Incomplete | None
+"""
+The browser's window object.
 
-    document: None
-    """Not available in worker context (None)."""
+Provides access to the global window object and all its properties
+and methods when running in the main thread.
 
-    js_import: None
-    """Not available in worker context (None)."""
+Not available in worker context (None).
+"""
 
-    sync: Callable[[Any], Any]
+document: Incomplete | None
+"""
+The browser's document object.
+
+Provides access to the DOM (Document Object Model) for manipulating
+HTML elements when running in the main thread.
+
+Not available in worker context (None)."""
+
+
+
+sync: Callable[[Any], Any]
+"""
+A function used to pass serializable data from workers to the main thread.
+
+Convert async operations to synchronous calls when running in a worker.
+
+ref: https://docs.pyscript.net/latest/api/#pyscriptsync
+"""
+
+def current_target() -> Any:
     """
-    Synchronize with main thread (worker context).
+    Get the current execution target in worker context.
 
-    Convert async operations to synchronous calls when running in a worker.
+    Returns:
+        The worker's global scope object
+
+    rRef: https://docs.pyscript.net/2025.8.1/api/#pyscriptcurrent_target
     """
+    ...
 
-    def current_target() -> Any:
-        """
-        Get the current execution target in worker context.
-
-        Returns:
-            The worker's global scope object
-        """
-        ...
-
-else:
-    window: Any
-    """
-    The browser's window object.
-
-    Provides access to the global window object and all its properties
-    and methods when running in the main thread.
-    """
-
-    document: Any
-    """
-    The browser's document object.
-
-    Provides access to the DOM (Document Object Model) for manipulating
-    HTML elements when running in the main thread.
-    """
-
-    sync: Callable[[Any], Any]
-    """
-    Synchronize async operations (main thread context).
-
-    Convert async operations to synchronous calls when running in main thread.
-    """
-
-    def current_target() -> Any:
-        """
-        Get the current execution target in main thread context.
-
-        Returns:
-            The current script element or execution context
-        """
-        ...
-    """
-    Synchronize async operations (main thread context).
-
-    Convert async operations to synchronous calls when running in main thread.
-    """
-
-    def current_target() -> Any:
-        """
-        Get the current execution target in main thread context.
-
-        Returns:
-            The current script element or execution context
-        """
-        ...
