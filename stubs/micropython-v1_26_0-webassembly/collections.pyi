@@ -1,0 +1,81 @@
+"""
+Module: 'collections' on micropython-v1.26.0-preview-webassembly-pyscript
+"""
+# MCU: {'family': 'micropython', 'version': '1.26.0-preview', 'build': '293', 'ver': '1.26.0-preview-293', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
+# Stubber: v1.26.2
+from __future__ import annotations
+from typing import Any, Final, Generator
+from _typeshed import Incomplete
+
+def namedtuple(*args, **kwargs) -> Incomplete:
+    ...
+
+
+class MutableMapping():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class defaultdict():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class deque():
+    def pop(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def appendleft(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def popleft(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def extend(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def append(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class OrderedDict():
+    def popitem(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def pop(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def values(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def setdefault(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def update(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def copy(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def clear(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def keys(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def get(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def items(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    @classmethod
+    def fromkeys(cls, *args, **kwargs) -> Incomplete:
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
