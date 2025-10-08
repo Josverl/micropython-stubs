@@ -1,5 +1,3 @@
-# TODO: rp2.PIO - The functions defined in the asm_pio decorator are not recognized by pyright.
-# ignore for now : other issues to solve first
 from typing import Callable, no_type_check
 
 
