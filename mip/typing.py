@@ -1,4 +1,4 @@
-__version__ = "1.24.1.post2"
+__version__ = "1.26.1"
 
 def cast(type, val):
     return val
