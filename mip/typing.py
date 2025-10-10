@@ -118,10 +118,13 @@ class Protocol:
 
 
 AnyStr = str
-Text = str
-Pattern = str
-Match = str
 TypedDict = dict
+
+# Deprecated
+# Text = str
+# Pattern = str
+# Match = str
+
 
 AbstractSet = _Subscriptable
 AsyncContextManager = _Subscriptable
