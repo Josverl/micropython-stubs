@@ -2,6 +2,9 @@
 Pyscript 2025.2.3 type-stub.
 see: https://docs.pyscript.net/2025.2.3/api/
 """
+# Copyright (c) 2020-2025 Jos Verlinde
+# MIT Licensed
+
 
 _MIME_METHODS = ...
 _MIME_RENDERERS = ...

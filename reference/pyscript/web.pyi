@@ -12,6 +12,11 @@ These attributes, expressed as py-* or mpy-* attributes of an HTML element, refe
 You should replace the * with the actual name of an event (e.g. py-click or mpy-click). This is similar to how all event handlers on elements start 
 with on in standard HTML (e.g. onclick). The rule of thumb is to simply replace on with py- or mpy- and then reference the name of a Python function.
 """
+
+# Copyright (c) 2020-2025 Jos Verlinde
+# MIT Licensed
+
+
 from __future__ import annotations
 
 from typing import Any, Generator, List

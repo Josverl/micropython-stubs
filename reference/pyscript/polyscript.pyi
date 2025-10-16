@@ -3,6 +3,10 @@ Basic typing for polyscript
 
 https://pyscript.github.io/polyscript/#the-polyscript-module
 """ 
+# Copyright (c) 2020-2025 Jos Verlinde
+# MIT Licensed
+
+
 # https://github.com/pyscript/polyscript
 
 
@@ -19,6 +23,7 @@ from typing import Tuple
 
 # avoid name collisions
 import storage as _storage
+
 storage = _storage.storage
 
 

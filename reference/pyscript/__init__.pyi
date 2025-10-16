@@ -13,6 +13,8 @@ he following three categories of API functionality explain features that are com
  or a worker context.
 
 """
+# Copyright (c) 2020-2025 Jos Verlinde
+# MIT Licensed
 
 __all__ = [
     "PyWorker",

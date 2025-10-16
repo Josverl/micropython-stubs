@@ -1,3 +1,7 @@
+# Copyright (c) 2020-2025 Jos Verlinde
+# MIT Licensed
+
+
 from typing import Any, Callable
 from _typeshed import  Incomplete
 

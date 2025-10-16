@@ -5,6 +5,8 @@ see: https://docs.pyscript.net/2025.2.3/api/
 This module provides filesystem operations for PyScript applications,
 allowing mounting, syncing, and unmounting of virtual filesystems.
 """
+# Copyright (c) 2020-2025 Jos Verlinde
+# MIT Licensed
 
 from typing import Any, Dict, Literal
 
