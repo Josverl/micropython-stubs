@@ -11,7 +11,7 @@ bitmap images, which can then be sent to a display.
 # origin module:: repos/micropython/docs/library/framebuf.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, Optional
+from typing import Union, overload, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 MONO_VLSB: bytes
@@ -145,7 +145,7 @@ class FrameBuffer():
             a given length.
         """
         ...
-    def rect(self, x: int, y: int, w: int, h: int, c: int, /) -> None:
+    def rect(self, x: int, y: int, w: int, h: int, c: int, f: Union[bool, int] = False, /) -> None:
         """
             Draw a rectangle at the given location, size and color.
         
@@ -153,7 +153,7 @@ class FrameBuffer():
             Otherwise just a one pixel outline is drawn.
         """
         ...
-    def ellipse(self, x, y, xr, yr, c, f, m: Optional[Any] = None) -> None:
+    def ellipse(self, x, y, xr, yr, c, f: Union[bool, int] = False, m: Optional[int] = None) -> None:
         """
             Draw an ellipse at the given location. Radii *xr* and *yr* define the
             geometry; equal values cause a circle to be drawn. The *c* parameter
@@ -168,7 +168,7 @@ class FrameBuffer():
             are numbered counterclockwise with Q1 being top right.
         """
         ...
-    def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Incomplete:
+    def poly(self, x, y, coords, c, f: Union[bool, int] = False, /) -> Incomplete:
         """
             Given a list of coordinates, draw an arbitrary (convex or concave) closed
             polygon at the given x, y location using the given color.
