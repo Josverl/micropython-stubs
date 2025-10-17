@@ -1022,6 +1022,32 @@ async function getBoardModules(board) {
     }
 }
 
+function getClassBases(classId) {
+    if (!db) return [];
+    
+    try {
+        const stmt = db.prepare(`
+            SELECT ucb.base_name
+            FROM unique_class_bases ucb
+            WHERE ucb.class_id = ?
+            ORDER BY ucb.base_name
+        `);
+        stmt.bind([classId]);
+        
+        const bases = [];
+        while (stmt.step()) {
+            const row = stmt.getAsObject();
+            bases.push(row.base_name);
+        }
+        stmt.free();
+        
+        return bases;
+    } catch (error) {
+        console.error('Error querying base classes:', error);
+        return [];
+    }
+}
+
 function getModuleClasses(moduleId, board) {
     if (!db) return [];
     
@@ -1041,6 +1067,7 @@ function getModuleClasses(moduleId, board) {
                 id: row.id,
                 name: row.name,
                 docstring: row.docstring,
+                base_classes: getClassBases(row.id),
                 methods: getClassMethods(moduleId, row.id, board),
                 attributes: getClassAttributes(row.id)
             });
@@ -1296,12 +1323,15 @@ function renderModuleTree(modules, options = {}) {
                 module.classes.forEach(cls => {
                     const hasMethodsToShow = cls.methods.length > 0 || cls.attributes.length > 0;
                     const classId = `${modulePrefix}-class-${module.name}-${cls.name}`;
+                    const baseClassesStr = (cls.base_classes && cls.base_classes.length > 0) 
+                        ? `(${cls.base_classes.join(', ')})` 
+                        : '';
                     
                     html += `
                     <div class="tree-item">
                         <div class="tree-node" onclick="toggleClass('${classId}', event)">
                             <span class="tree-icon">${Icons.create('class')}</span>
-                            <span style="color: #495057; font-weight: 600;">class ${cls.name}</span>
+                            <span style="color: #495057; font-weight: 600;">class ${cls.name}${baseClassesStr ? ` <span style="color: #888; font-size: 0.9em; font-weight: normal;">${baseClassesStr}</span>` : ''}</span>
                             <span style="color: #6c757d; font-size: 0.85em; margin-left: auto; background: #f8f9fa; padding: 2px 6px; border-radius: 8px;">
                                 ${formatClassSummary(cls.methods.length, cls.attributes.length)}
                             </span>
@@ -1525,6 +1555,300 @@ async function compareBoards() {
     }
 }
 
+// ===== DIFFERENCE FILTERING HELPERS =====
+
+/**
+ * Compare two class objects and return true if they have differences in methods or attributes
+ */
+function compareClassContents(class1, class2) {
+    const methods1 = new Set(class1.methods.map(m => m.name));
+    const methods2 = new Set(class2.methods.map(m => m.name));
+    
+    const attrs1 = new Set(class1.attributes.map(a => a.name));
+    const attrs2 = new Set(class1.attributes.map(a => a.name));
+    
+    // Check if method or attribute sets differ
+    if (methods1.size !== methods2.size || attrs1.size !== attrs2.size) {
+        return true;
+    }
+    
+    for (const method of methods1) {
+        if (!methods2.has(method)) return true;
+    }
+    
+    for (const attr of attrs1) {
+        if (!attrs2.has(attr)) return true;
+    }
+    
+    return false;
+}
+
+/**
+ * Filter a class to show only differences compared to another class
+ */
+function filterClassToShowDifferences(class1, class2) {
+    const methods2Names = new Set(class2.methods.map(m => m.name));
+    const attrs2Names = new Set(class2.attributes.map(a => a.name));
+    
+    const filtered = JSON.parse(JSON.stringify(class1)); // Deep copy
+    
+    // Keep only methods that are different (not in class2 or different)
+    filtered.methods = filtered.methods.filter(m => !methods2Names.has(m.name));
+    
+    // Keep only attributes that are different
+    filtered.attributes = filtered.attributes.filter(a => !attrs2Names.has(a.name));
+    
+    return filtered;
+}
+
+/**
+ * Compare two module objects and return true if they have differences in content
+ */
+function compareModuleContents(module1, module2) {
+    // Compare classes
+    const classes1Names = new Set(module1.classes.map(c => c.name));
+    const classes2Names = new Set(module2.classes.map(c => c.name));
+    
+    if (classes1Names.size !== classes2Names.size) return true;
+    
+    for (const className of classes1Names) {
+        if (!classes2Names.has(className)) return true;
+        
+        const class1 = module1.classes.find(c => c.name === className);
+        const class2 = module2.classes.find(c => c.name === className);
+        
+        if (compareClassContents(class1, class2)) return true;
+    }
+    
+    // Compare functions
+    const funcs1Names = new Set(module1.functions.map(f => f.name));
+    const funcs2Names = new Set(module2.functions.map(f => f.name));
+    
+    if (funcs1Names.size !== funcs2Names.size) return true;
+    
+    for (const func of funcs1Names) {
+        if (!funcs2Names.has(func)) return true;
+    }
+    
+    // Compare constants
+    const consts1Names = new Set(module1.constants.map(c => c.name));
+    const consts2Names = new Set(module2.constants.map(c => c.name));
+    
+    if (consts1Names.size !== consts2Names.size) return true;
+    
+    for (const const_ of consts1Names) {
+        if (!consts2Names.has(const_)) return true;
+    }
+    
+    return false;
+}
+
+/**
+ * Filter a module to show only differences compared to another module
+ */
+function filterModuleToShowDifferences(module, otherModule) {
+    const filtered = JSON.parse(JSON.stringify(module)); // Deep copy
+    
+    const otherClassesMap = new Map(otherModule.classes.map(c => [c.name, c]));
+    const otherFuncsSet = new Set(otherModule.functions.map(f => f.name));
+    const otherConstsSet = new Set(otherModule.constants.map(c => c.name));
+    
+    // Filter classes: keep only those that don't exist in other or have different content
+    filtered.classes = filtered.classes
+        .map(cls => {
+            const otherClass = otherClassesMap.get(cls.name);
+            if (!otherClass) {
+                // Class only in this module, keep as is
+                return cls;
+            }
+            // Class in both, filter to show only differences
+            return filterClassToShowDifferences(cls, otherClass);
+        })
+        .filter(cls => cls.methods.length > 0 || cls.attributes.length > 0); // Remove empty classes
+    
+    // Filter functions: keep only those not in other module
+    filtered.functions = filtered.functions.filter(f => !otherFuncsSet.has(f.name));
+    
+    // Filter constants: keep only those not in other module
+    filtered.constants = filtered.constants.filter(c => !otherConstsSet.has(c.name));
+    
+    return filtered;
+}
+
+/**
+ * Calculate statistics for differences at all three levels
+ * Level 1: Modules, Level 2: Classes/Functions/Constants, Level 3: Methods/Attributes
+ */
+function calculateComparisonStats(modules1, modules2) {
+    const moduleNames1 = new Set(modules1.map(m => m.name));
+    const moduleNames2 = new Set(modules2.map(m => m.name));
+    
+    const commonNames = [...moduleNames1].filter(m => moduleNames2.has(m));
+    const uniqueNames1 = [...moduleNames1].filter(m => !moduleNames2.has(m));
+    const uniqueNames2 = [...moduleNames2].filter(m => !moduleNames1.has(m));
+    
+    // Level 1: Module differences
+    const level1 = {
+        total1: modules1.length,
+        total2: modules2.length,
+        unique1: uniqueNames1.length,
+        unique2: uniqueNames2.length,
+        common: commonNames.length
+    };
+    
+    // Level 2: Direct children differences (classes, functions, constants)
+    let level2 = {
+        classes1Unique: 0,
+        classes2Unique: 0,
+        functions1Unique: 0,
+        functions2Unique: 0,
+        constants1Unique: 0,
+        constants2Unique: 0,
+        classesDifferent: 0, // Classes that exist on both but have different content
+        functionsDifferent: 0,
+        constantsDifferent: 0
+    };
+    
+    // Level 3: Class members differences (methods, attributes)
+    let level3 = {
+        methods1Unique: 0,
+        methods2Unique: 0,
+        attributes1Unique: 0,
+        attributes2Unique: 0,
+        methodsDifferent: 0,
+        attributesDifferent: 0
+    };
+    
+    // For unique modules, count their content
+    for (const moduleName of uniqueNames1) {
+        const mod = modules1.find(m => m.name === moduleName);
+        level2.classes1Unique += mod.classes.length;
+        level2.functions1Unique += mod.functions.length;
+        level2.constants1Unique += mod.constants.length;
+        
+        for (const cls of mod.classes) {
+            level3.methods1Unique += cls.methods.length;
+            level3.attributes1Unique += cls.attributes.length;
+        }
+    }
+    
+    for (const moduleName of uniqueNames2) {
+        const mod = modules2.find(m => m.name === moduleName);
+        level2.classes2Unique += mod.classes.length;
+        level2.functions2Unique += mod.functions.length;
+        level2.constants2Unique += mod.constants.length;
+        
+        for (const cls of mod.classes) {
+            level3.methods2Unique += cls.methods.length;
+            level3.attributes2Unique += cls.attributes.length;
+        }
+    }
+    
+    // For common modules, compare their content
+    for (const moduleName of commonNames) {
+        const mod1 = modules1.find(m => m.name === moduleName);
+        const mod2 = modules2.find(m => m.name === moduleName);
+        
+        // Compare classes
+        const classes1Names = new Set(mod1.classes.map(c => c.name));
+        const classes2Names = new Set(mod2.classes.map(c => c.name));
+        
+        for (const className of classes1Names) {
+            if (!classes2Names.has(className)) {
+                level2.classes1Unique++;
+                const cls = mod1.classes.find(c => c.name === className);
+                level3.methods1Unique += cls.methods.length;
+                level3.attributes1Unique += cls.attributes.length;
+            }
+        }
+        
+        for (const className of classes2Names) {
+            if (!classes1Names.has(className)) {
+                level2.classes2Unique++;
+                const cls = mod2.classes.find(c => c.name === className);
+                level3.methods2Unique += cls.methods.length;
+                level3.attributes2Unique += cls.attributes.length;
+            }
+        }
+        
+        // For classes in both, compare members
+        for (const className of classes1Names) {
+            if (classes2Names.has(className)) {
+                const cls1 = mod1.classes.find(c => c.name === className);
+                const cls2 = mod2.classes.find(c => c.name === className);
+                
+                if (compareClassContents(cls1, cls2)) {
+                    level3.methodsDifferent++;
+                    
+                    const methods1Names = new Set(cls1.methods.map(m => m.name));
+                    const methods2Names = new Set(cls2.methods.map(m => m.name));
+                    
+                    for (const methodName of methods1Names) {
+                        if (!methods2Names.has(methodName)) {
+                            level3.methods1Unique++;
+                        }
+                    }
+                    
+                    for (const methodName of methods2Names) {
+                        if (!methods1Names.has(methodName)) {
+                            level3.methods2Unique++;
+                        }
+                    }
+                    
+                    const attrs1Names = new Set(cls1.attributes.map(a => a.name));
+                    const attrs2Names = new Set(cls2.attributes.map(a => a.name));
+                    
+                    for (const attrName of attrs1Names) {
+                        if (!attrs2Names.has(attrName)) {
+                            level3.attributes1Unique++;
+                        }
+                    }
+                    
+                    for (const attrName of attrs2Names) {
+                        if (!attrs1Names.has(attrName)) {
+                            level3.attributes2Unique++;
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Compare functions
+        const funcs1Names = new Set(mod1.functions.map(f => f.name));
+        const funcs2Names = new Set(mod2.functions.map(f => f.name));
+        
+        for (const funcName of funcs1Names) {
+            if (!funcs2Names.has(funcName)) {
+                level2.functions1Unique++;
+            }
+        }
+        
+        for (const funcName of funcs2Names) {
+            if (!funcs1Names.has(funcName)) {
+                level2.functions2Unique++;
+            }
+        }
+        
+        // Compare constants
+        const consts1Names = new Set(mod1.constants.map(c => c.name));
+        const consts2Names = new Set(mod2.constants.map(c => c.name));
+        
+        for (const constName of consts1Names) {
+            if (!consts2Names.has(constName)) {
+                level2.constants1Unique++;
+            }
+        }
+        
+        for (const constName of consts2Names) {
+            if (!consts1Names.has(constName)) {
+                level2.constants2Unique++;
+            }
+        }
+    }
+    
+    return { level1, level2, level3 };
+}
+
 function updateComparison() {
     if (!comparisonData) return;
     
@@ -1554,21 +1878,70 @@ function updateComparison() {
     
     console.log(`Common: ${commonNames.length}, Unique to 1: ${uniqueNames1.length}, Unique to 2: ${uniqueNames2.length}`);
     
-    // Update stats
+    // Calculate comprehensive statistics at all three levels
+    const stats = calculateComparisonStats(modules1, modules2);
+    const { level1, level2, level3 } = stats;
+    
+    // Update stats with comprehensive table
     document.getElementById('compare-stats').style.display = 'block';
     document.getElementById('compare-stats').innerHTML = `
-        <div class="stats-compact">
-            <div class="stat-card-compact stat-card-full">
-                <span class="stat-label-inline">Common Modules:</span>
-                <span class="stat-value-inline">${commonNames.length}</span>
-            </div>
-            <div class="stat-card-compact stat-card-half">
-                <span class="stat-label-inline">${formatBoardName(board1.port, board1.board)}:</span>
-                <span class="stat-value-inline">${uniqueNames1.length}</span>
-            </div>
-            <div class="stat-card-compact stat-card-half">
-                <span class="stat-label-inline">${formatBoardName(board2.port, board2.board)}:</span>
-                <span class="stat-value-inline">${uniqueNames2.length}</span>
+        <div style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="margin: 0 0 15px 0; color: #2c3e50; font-size: 1.1em;">Comparison Summary (All Levels)</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+                <thead>
+                    <tr style="background: #f0f0f0; border-bottom: 2px solid #667eea;">
+                        <th style="padding: 10px; text-align: left; font-weight: 600;">Comparison Level</th>
+                        <th style="padding: 10px; text-align: center; font-weight: 600;">${formatBoardName(board1.port, board1.board)}</th>
+                        <th style="padding: 10px; text-align: center; font-weight: 600;">Common</th>
+                        <th style="padding: 10px; text-align: center; font-weight: 600;">${formatBoardName(board2.port, board2.board)}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Level 1: Modules -->
+                    <tr style="border-bottom: 2px solid #e0e0e0; background: #f9f9f9;">
+                        <td style="padding: 10px; font-weight: 600; color: #667eea;">Level 1: Modules</td>
+                        <td style="padding: 10px; text-align: center; color: #FF8C00;"><strong>${level1.unique1}</strong> unique</td>
+                        <td style="padding: 10px; text-align: center;"><strong>${level1.common}</strong></td>
+                        <td style="padding: 10px; text-align: center; color: #008B8B;"><strong>${level1.unique2}</strong> unique</td>
+                    </tr>
+                    
+                    <!-- Level 2: Direct Children -->
+                    <tr style="border-bottom: 1px solid #e0e0e0; background: #f9f9f9;">
+                        <td style="padding: 10px; font-weight: 600; color: #667eea;">Level 2: Classes</td>
+                        <td style="padding: 10px; text-align: center; color: #FF8C00;"><strong>${level2.classes1Unique}</strong></td>
+                        <td style="padding: 10px; text-align: center;"><strong>${level2.classesDifferent}</strong> differ</td>
+                        <td style="padding: 10px; text-align: center; color: #008B8B;"><strong>${level2.classes2Unique}</strong></td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #e0e0e0; color: #666; font-size: 0.85em;">
+                        <td style="padding: 8px 10px;">Level 2: Functions</td>
+                        <td style="padding: 8px 10px; text-align: center; color: #FF8C00;"><strong>${level2.functions1Unique}</strong></td>
+                        <td style="padding: 8px 10px; text-align: center;">—</td>
+                        <td style="padding: 8px 10px; text-align: center; color: #008B8B;"><strong>${level2.functions2Unique}</strong></td>
+                    </tr>
+                    <tr style="border-bottom: 2px solid #e0e0e0; color: #666; font-size: 0.85em;">
+                        <td style="padding: 8px 10px;">Level 2: Constants</td>
+                        <td style="padding: 8px 10px; text-align: center; color: #FF8C00;"><strong>${level2.constants1Unique}</strong></td>
+                        <td style="padding: 8px 10px; text-align: center;">—</td>
+                        <td style="padding: 8px 10px; text-align: center; color: #008B8B;"><strong>${level2.constants2Unique}</strong></td>
+                    </tr>
+                    
+                    <!-- Level 3: Class Members -->
+                    <tr style="border-bottom: 1px solid #e0e0e0; background: #f9f9f9;">
+                        <td style="padding: 10px; font-weight: 600; color: #667eea;">Level 3: Methods</td>
+                        <td style="padding: 10px; text-align: center; color: #FF8C00;"><strong>${level3.methods1Unique}</strong></td>
+                        <td style="padding: 10px; text-align: center;"><strong>${level3.methodsDifferent}</strong> differ</td>
+                        <td style="padding: 10px; text-align: center; color: #008B8B;"><strong>${level3.methods2Unique}</strong></td>
+                    </tr>
+                    <tr style="border-bottom: 2px solid #e0e0e0; color: #666; font-size: 0.85em;">
+                        <td style="padding: 8px 10px;">Level 3: Attributes</td>
+                        <td style="padding: 8px 10px; text-align: center; color: #FF8C00;"><strong>${level3.attributes1Unique}</strong></td>
+                        <td style="padding: 8px 10px; text-align: center;">—</td>
+                        <td style="padding: 8px 10px; text-align: center; color: #008B8B;"><strong>${level3.attributes2Unique}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 10px; font-size: 0.8em; color: #666;">
+                <strong style="color: #FF8C00;">Dark Orange:</strong> ${formatBoardName(board1.port, board1.board)} | <strong>Center:</strong> Common | <strong style="color: #008B8B;">Dark Cyan:</strong> ${formatBoardName(board2.port, board2.board)}
             </div>
         </div>
     `;
@@ -1581,10 +1954,33 @@ function updateComparison() {
                 <div class="module-tree">
     `;
     
-    // Board 1 modules with tree-view
-    const board1ModulesToShow = hideCommon ? 
-        modules1.filter(m => uniqueNames1.includes(m.name)) : 
-        modules1.sort((a, b) => a.name.localeCompare(b.name));
+    // Determine which modules to show for Board 1
+    let board1ModulesToShow;
+    if (hideCommon) {
+        // When showing only differences: show unique modules AND common modules with differences
+        board1ModulesToShow = [];
+        
+        // Add unique modules to board 1
+        const uniqueModules1 = modules1.filter(m => uniqueNames1.includes(m.name));
+        board1ModulesToShow.push(...uniqueModules1);
+        
+        // Add common modules but filtered to show only differences
+        for (const moduleName of commonNames) {
+            const mod1 = modules1.find(m => m.name === moduleName);
+            const mod2 = modules2.find(m => m.name === moduleName);
+            
+            if (compareModuleContents(mod1, mod2)) {
+                // Has differences, add filtered version
+                const filtered = filterModuleToShowDifferences(mod1, mod2);
+                if (filtered.classes.length > 0 || filtered.functions.length > 0 || filtered.constants.length > 0) {
+                    board1ModulesToShow.push(filtered);
+                }
+            }
+        }
+    } else {
+        // Show all modules sorted
+        board1ModulesToShow = modules1.sort((a, b) => a.name.localeCompare(b.name));
+    }
     
     html += renderModuleTree(board1ModulesToShow, {
         modulePrefix: 'board1',
@@ -1599,8 +1995,8 @@ function updateComparison() {
         showDetails: showDetails
     });
     
-    if (hideCommon && uniqueNames1.length === 0) {
-        html += '<p style="color: #666; padding: 20px;">No unique modules</p>';
+    if (hideCommon && board1ModulesToShow.length === 0) {
+        html += '<p style="color: #666; padding: 20px;">No differences</p>';
     }
     
     html += `
@@ -1611,10 +2007,33 @@ function updateComparison() {
                 <div class="module-tree">
     `;
     
-    // Board 2 modules with tree-view
-    const board2ModulesToShow = hideCommon ? 
-        modules2.filter(m => uniqueNames2.includes(m.name)) : 
-        modules2.sort((a, b) => a.name.localeCompare(b.name));
+    // Determine which modules to show for Board 2
+    let board2ModulesToShow;
+    if (hideCommon) {
+        // When showing only differences: show unique modules AND common modules with differences
+        board2ModulesToShow = [];
+        
+        // Add unique modules to board 2
+        const uniqueModules2 = modules2.filter(m => uniqueNames2.includes(m.name));
+        board2ModulesToShow.push(...uniqueModules2);
+        
+        // Add common modules but filtered to show only differences
+        for (const moduleName of commonNames) {
+            const mod2 = modules2.find(m => m.name === moduleName);
+            const mod1 = modules1.find(m => m.name === moduleName);
+            
+            if (compareModuleContents(mod1, mod2)) {
+                // Has differences, add filtered version
+                const filtered = filterModuleToShowDifferences(mod2, mod1);
+                if (filtered.classes.length > 0 || filtered.functions.length > 0 || filtered.constants.length > 0) {
+                    board2ModulesToShow.push(filtered);
+                }
+            }
+        }
+    } else {
+        // Show all modules sorted
+        board2ModulesToShow = modules2.sort((a, b) => a.name.localeCompare(b.name));
+    }
     
     html += renderModuleTree(board2ModulesToShow, {
         modulePrefix: 'board2',
@@ -1629,8 +2048,8 @@ function updateComparison() {
         showDetails: showDetails
     });
     
-    if (hideCommon && uniqueNames2.length === 0) {
-        html += '<p style="color: #666; padding: 20px;">No unique modules</p>';
+    if (hideCommon && board2ModulesToShow.length === 0) {
+        html += '<p style="color: #666; padding: 20px;">No differences</p>';
     }
     
     html += `
@@ -1639,7 +2058,7 @@ function updateComparison() {
         </div>
     `;
     
-    // Show common modules if not hidden
+    // Show common modules section only if not in "show differences" mode
     if (!hideCommon && commonNames.length > 0) {
         html += `
             <div class="detail-view">
