@@ -563,11 +563,11 @@ function displayModuleTree(modules) {
         const hasChildren = module.classes.length > 0 || module.functions.length > 0;
         html += `
             <div class="tree-item">
-                <div class="tree-node" onclick="toggleModule('module-${module.name}', event)">
+                <div class="tree-node" onclick="toggleModule('module-${module.name}', event)" data-module="${module.name}">
                     <span class="tree-icon">${hasChildren ? Icons.create('folder') : Icons.create('module')}</span>
-                    <strong>${module.name}</strong>
-                    <span style="color: #666; font-size: 0.9em;">
-                        (${module.classes.length} classes, ${module.functions.length} functions)
+                    <strong style="color: #2c3e50; font-size: 1.1em;">${module.name}</strong>
+                    <span style="color: #6c757d; font-size: 0.9em; margin-left: auto; background: #e9ecef; padding: 4px 8px; border-radius: 12px;">
+                        ${module.classes.length} classes, ${module.functions.length} functions
                     </span>
                 </div>
                 <div id="module-${module.name}" class="tree-children hidden">
@@ -580,8 +580,10 @@ function displayModuleTree(modules) {
                     <div class="tree-item">
                         <div class="tree-node" onclick="showClassDetails('${module.name}', '${cls.name}', event)">
                             <span class="tree-icon">${Icons.create('class')}</span>
-                            <span style="color: #667eea; font-weight: 600;">class ${cls.name}</span>
-                            <span style="color: #666; font-size: 0.9em;">(${cls.methods.length} methods)</span>
+                            <span style="color: #495057; font-weight: 600;">class ${cls.name}</span>
+                            <span style="color: #6c757d; font-size: 0.85em; margin-left: auto; background: #f8f9fa; padding: 2px 6px; border-radius: 8px;">
+                                ${cls.methods.length} methods
+                            </span>
                         </div>
                     </div>
                 `;
@@ -596,7 +598,7 @@ function displayModuleTree(modules) {
                     <div class="tree-item">
                         <div class="tree-node">
                             <span class="tree-icon">${Icons.create('function')}</span>
-                            <span>${asyncMarker}${func.name}()</span>
+                            <span style="color: #495057;">${asyncMarker}${func.name}()</span>
                         </div>
                     </div>
                 `;
