@@ -516,10 +516,20 @@
             background: #d4edda;
             border-left-color: #28a745;
         }
+
+        .unique-to-board1.tree-node:hover {
+            background: #c3e6cb;
+            border-color: #1e7e34;
+        }
         
         .unique-to-board2 {
             background: #f8d7da;
             border-left-color: #dc3545;
+        }
+
+        .unique-to-board2.tree-node:hover {
+            background: #f5c6cb;
+            border-color: #bd2130;
         }
         
         .different {
@@ -731,10 +741,6 @@
                             <label class="checkbox-label">
                                 <input type="checkbox" id="hide-common" onchange="updateComparison()">
                                 <span>Hide common modules (show only differences)</span>
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="detailed-compare" onchange="updateComparison()">
-                                <span>Show class/method level differences</span>
                             </label>
                         </div>
                         <div class="control-row">

@@ -218,11 +218,6 @@ async function restoreFromURL() {
                 document.getElementById('hide-common').checked = true;
             }
             
-            // Apply detailed mode if specified
-            if (params.get('detailed') === 'true') {
-                document.getElementById('detailed-compare').checked = true;
-            }
-            
             // Trigger comparison
             await compareBoards();
         }
@@ -890,9 +885,7 @@ function updateComparisonURL() {
     // Include current comparison options if both boards are selected
     if (board1 && board2) {
         const hideCommon = document.getElementById('hide-common').checked;
-        const showDetails = document.getElementById('detailed-compare').checked;
         if (hideCommon) params.diff = 'true';
-        if (showDetails) params.detailed = 'true';
     }
     
     updateURL(params);
@@ -1006,9 +999,9 @@ async function getBoardModules(board) {
         while (stmt.step()) {
             const row = stmt.getAsObject();
             
-            // Get classes for this module
-            const classes = getModuleClasses(row.id);
-            const functions = getModuleFunctions(row.id);
+            // Get classes for this module, passing the board context
+            const classes = getModuleClasses(row.id, board);
+            const functions = getModuleFunctions(row.id, board);
             const constants = getModuleConstants(row.id);
             
             modules.push({
@@ -1029,7 +1022,7 @@ async function getBoardModules(board) {
     }
 }
 
-function getModuleClasses(moduleId) {
+function getModuleClasses(moduleId, board) {
     if (!db) return [];
     
     try {
@@ -1048,7 +1041,7 @@ function getModuleClasses(moduleId) {
                 id: row.id,
                 name: row.name,
                 docstring: row.docstring,
-                methods: getClassMethods(moduleId, row.id),
+                methods: getClassMethods(moduleId, row.id, board),
                 attributes: getClassAttributes(row.id)
             });
         }
@@ -1061,8 +1054,8 @@ function getModuleClasses(moduleId) {
     }
 }
 
-function getModuleFunctions(moduleId) {
-    if (!db || !currentBoard) return []; // DANGER DANGER
+function getModuleFunctions(moduleId, board) {
+    if (!db || !board) return [];
     
     try {
         const stmt = db.prepare(`
@@ -1074,7 +1067,7 @@ function getModuleFunctions(moduleId) {
               AND b.version = ? AND b.port = ? AND b.board = ?
             ORDER BY um.name
         `);
-        stmt.bind([moduleId, currentBoard.version, currentBoard.port, currentBoard.board]);
+        stmt.bind([moduleId, board.version, board.port, board.board]);
         
         const functions = [];
         while (stmt.step()) {
@@ -1118,8 +1111,8 @@ function getMethodParameters(methodId) {
     }
 }
 
-function getClassMethods(moduleId, classId) {
-    if (!db || !currentBoard) return [];
+function getClassMethods(moduleId, classId, board) {
+    if (!db || !board) return [];
     
     try {
         const stmt = db.prepare(`
@@ -1131,7 +1124,7 @@ function getClassMethods(moduleId, classId) {
               AND b.version = ? AND b.port = ? AND b.board = ?
             ORDER BY um.name
         `);
-        stmt.bind([moduleId, classId, currentBoard.version, currentBoard.port, currentBoard.board]);
+        stmt.bind([moduleId, classId, board.version, board.port, board.board]);
         
         const methods = [];
         while (stmt.step()) {
@@ -1222,132 +1215,12 @@ function displayModuleTree(modules) {
                 <div class="module-tree">
     `;
     
-    modules.forEach(module => {
-        const hasChildren = module.classes.length > 0 || module.functions.length > 0 || module.constants.length > 0;
-        const isDeprecated = module.name.startsWith('u') && module.name.length > 1 && !hasChildren;
-        const deprecationStyle = isDeprecated ? 'color: #88474eff; font-style: italic;' : 'color: #6c757d;';
-        const summaryBg = isDeprecated ? '#ffe6e6' : '#e9ecef';
-        
-        html += `
-            <div class="tree-item">
-                <div class="tree-node" onclick="toggleModule('module-${module.name}', event)" data-module="${module.name}">
-                    <span class="tree-icon">${Icons.create('module')}</span>
-                    <strong style="color: #2c3e50; font-size: 1.1em;">${module.name}</strong>
-                    <span style="${deprecationStyle} font-size: 0.9em; margin-left: auto; background: ${summaryBg}; padding: 4px 8px; border-radius: 12px;">
-                        ${formatModuleSummary(module.classes.length, module.functions.length, module.constants.length, module.name)}
-                    </span>
-                </div>
-                <div id="module-${module.name}" class="tree-children hidden">
-        `;
-        
-        // Add classes
-        if (module.classes.length > 0) {
-            module.classes.forEach(cls => {
-                const hasMethodsToShow = cls.methods.length > 0 || cls.attributes.length > 0;
-                const classId = `class-${module.name}-${cls.name}`;
-                html += `
-                    <div class="tree-item">
-                        <div class="tree-node" onclick="toggleClass('${classId}', event)">
-                            <span class="tree-icon">${Icons.create('class')}</span>
-                            <span style="color: #495057; font-weight: 600;">class ${cls.name}</span>
-                            <span style="color: #6c757d; font-size: 0.85em; margin-left: auto; background: #f8f9fa; padding: 2px 6px; border-radius: 8px;">
-                                ${formatClassSummary(cls.methods.length, cls.attributes.length)}
-                            </span>
-                        </div>
-                        ${hasMethodsToShow ? `
-                        <div id="${classId}" class="tree-children hidden">
-                            ${cls.methods.map(method => {
-                                const decorators = [];
-                                if (method.is_property) decorators.push('@property');
-                                if (method.is_classmethod) decorators.push('@classmethod');
-                                if (method.is_staticmethod) decorators.push('@staticmethod');
-                                
-                                const asyncMarker = method.is_async ? 'async ' : '';
-                                const signature = formatMethodSignature(method);
-                                
-                                return `
-                                    <div class="tree-item">
-                                        <div class="tree-node">
-                                            <span class="tree-icon">${method.is_property ? Icons.create('property') : Icons.create('method')}</span>
-                                            <span style="color: #495057;">
-                                                ${decorators.length > 0 ? `<span style="color: #888; font-size: 0.85em;">${decorators.join(' ')} </span>` : ''}
-                                                <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
-                                                    ${asyncMarker}${signature}
-                                                </code>
-                                            </span>
-                                        </div>
-                                    </div>
-                                `;
-                            }).join('')}
-                            ${cls.attributes.map(attr => {
-                                const typeHint = attr.type_hint ? `: ${attr.type_hint}` : '';
-                                const value = attr.value ? ` = ${attr.value}` : '';
-                                
-                                return `
-                                    <div class="tree-item">
-                                        <div class="tree-node">
-                                            <span class="tree-icon">${Icons.create('variable')}</span>
-                                            <span style="color: #495057;">
-                                                <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
-                                                    ${attr.name}${typeHint}${value}
-                                                </code>
-                                            </span>
-                                        </div>
-                                    </div>
-                                `;
-                            }).join('')}
-                        </div>
-                        ` : ''}
-                    </div>
-                `;
-            });
-        }
-        
-        // Add functions
-        if (module.functions.length > 0) {
-            module.functions.forEach(func => {
-                const asyncMarker = func.is_async ? 'async ' : '';
-                const signature = formatMethodSignature(func);
-                html += `
-                    <div class="tree-item">
-                        <div class="tree-node">
-                            <span class="tree-icon">${Icons.create('function')}</span>
-                            <span style="color: #495057;">
-                                <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
-                                    ${asyncMarker}${signature}
-                                </code>
-                            </span>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-        
-        // Add module constants
-        if (module.constants.length > 0) {
-            module.constants.forEach(constant => {
-                const typeHint = constant.type_hint ? `: ${constant.type_hint}` : '';
-                const value = constant.value ? ` = ${constant.value}` : '';
-                
-                html += `
-                    <div class="tree-item">
-                        <div class="tree-node">
-                            <span class="tree-icon">${Icons.create('constant')}</span>
-                            <span style="color: #495057;">
-                                <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
-                                    ${constant.name}${typeHint}${value}
-                                </code>
-                            </span>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-        
-        html += `
-                </div>
-            </div>
-        `;
+    // Use the reusable renderModuleTree function
+    html += renderModuleTree(modules, {
+        modulePrefix: 'explorer',
+        getBadgeClass: () => '',
+        getModuleBadge: () => '',
+        showDetails: true
     });
     
     html += `
@@ -1373,6 +1246,159 @@ function toggleClass(classId, event) {
     if (element) {
         element.classList.toggle('hidden');
     }
+}
+
+/**
+ * Reusable tree-view renderer for modules with expand/collapse functionality
+ * @param {Array} modules - Array of module objects
+ * @param {Object} options - Configuration options
+ *   @param {string} options.modulePrefix - Prefix for unique IDs (e.g., 'board1', 'common')
+ *   @param {Function} options.getBadgeClass - Function to determine badge class for module
+ *   @param {Function} options.getModuleBadge - Function to determine badge text for module
+ *   @param {boolean} options.showDetails - Whether to show detailed tree view (classes, methods)
+ * @returns {string} - HTML string for the module tree
+ */
+function renderModuleTree(modules, options = {}) {
+    const {
+        modulePrefix = 'tree',
+        getBadgeClass = () => '',
+        getModuleBadge = () => '',
+        showDetails = true
+    } = options;
+
+    let html = '';
+
+    modules.forEach(module => {
+        const hasChildren = module.classes.length > 0 || module.functions.length > 0 || module.constants.length > 0;
+        const isDeprecated = module.name.startsWith('u') && module.name.length > 1 && !hasChildren;
+        const deprecationStyle = isDeprecated ? 'color: #88474eff; font-style: italic;' : 'color: #6c757d;';
+        const summaryBg = isDeprecated ? '#ffe6e6' : '#e9ecef';
+        const badgeClass = getBadgeClass(module);
+        const moduleBadge = getModuleBadge(module);
+        const moduleTreeId = `${modulePrefix}-module-${module.name}`;
+        const badgeClassStr = badgeClass ? ` ${badgeClass}` : '';
+
+        html += `
+            <div class="tree-item">
+                <div class="tree-node${badgeClassStr}" onclick="toggleModule('${moduleTreeId}', event)" data-module="${module.name}">
+                    <span class="tree-icon">${Icons.create('module')}</span>
+                    <strong style="color: #2c3e50; font-size: 1.1em;">${module.name}${moduleBadge}</strong>
+                    <span style="${deprecationStyle} font-size: 0.9em; margin-left: auto; background: ${summaryBg}; padding: 4px 8px; border-radius: 12px;">
+                        ${formatModuleSummary(module.classes.length, module.functions.length, module.constants.length, module.name)}
+                    </span>
+                </div>
+                <div id="${moduleTreeId}" class="tree-children hidden">
+        `;
+
+        if (showDetails) {
+            // Add classes
+            if (module.classes.length > 0) {
+                module.classes.forEach(cls => {
+                    const hasMethodsToShow = cls.methods.length > 0 || cls.attributes.length > 0;
+                    const classId = `${modulePrefix}-class-${module.name}-${cls.name}`;
+                    
+                    html += `
+                    <div class="tree-item">
+                        <div class="tree-node" onclick="toggleClass('${classId}', event)">
+                            <span class="tree-icon">${Icons.create('class')}</span>
+                            <span style="color: #495057; font-weight: 600;">class ${cls.name}</span>
+                            <span style="color: #6c757d; font-size: 0.85em; margin-left: auto; background: #f8f9fa; padding: 2px 6px; border-radius: 8px;">
+                                ${formatClassSummary(cls.methods.length, cls.attributes.length)}
+                            </span>
+                        </div>
+                    `;
+                    
+                    if (hasMethodsToShow) {
+                        html += `<div id="${classId}" class="tree-children hidden">`;
+                        
+                        // Add methods
+                        cls.methods.forEach(method => {
+                            const decorators = [];
+                            if (method.is_property) decorators.push('@property');
+                            if (method.is_classmethod) decorators.push('@classmethod');
+                            if (method.is_staticmethod) decorators.push('@staticmethod');
+                            
+                            const asyncMarker = method.is_async ? 'async ' : '';
+                            const signature = formatMethodSignature(method);
+                            
+                            html += `
+                        <div class="tree-item"><div class="tree-node">
+                            <span class="tree-icon">${method.is_property ? Icons.create('property') : Icons.create('method')}</span>
+                            <span style="color: #495057;">
+                                ${decorators.length > 0 ? `<span style="color: #888; font-size: 0.85em;">${decorators.join(' ')} </span>` : ''}
+                                <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
+                                    ${asyncMarker}${signature}
+                                </code>
+                            </span>
+                        </div></div>
+                            `;
+                        });
+                        
+                        // Add attributes
+                        cls.attributes.forEach(attr => {
+                            const typeHint = attr.type_hint ? `: ${attr.type_hint}` : '';
+                            const value = attr.value ? ` = ${attr.value}` : '';
+                            
+                            html += `
+                        <div class="tree-item"><div class="tree-node">
+                            <span class="tree-icon">${Icons.create('variable')}</span>
+                            <span style="color: #495057;">
+                                <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
+                                    ${attr.name}${typeHint}${value}
+                                </code>
+                            </span>
+                        </div></div>
+                            `;
+                        });
+                        
+                        html += `</div>`;
+                    }
+                    html += `</div>`;
+                });
+            }
+
+            // Add functions
+            if (module.functions.length > 0) {
+                module.functions.forEach(func => {
+                    const asyncMarker = func.is_async ? 'async ' : '';
+                    const signature = formatMethodSignature(func);
+                    html += `
+                    <div class="tree-item"><div class="tree-node">
+                        <span class="tree-icon">${Icons.create('function')}</span>
+                        <span style="color: #495057;">
+                            <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
+                                ${asyncMarker}${signature}
+                            </code>
+                        </span>
+                    </div></div>
+                    `;
+                });
+            }
+
+            // Add constants
+            if (module.constants.length > 0) {
+                module.constants.forEach(constant => {
+                    html += `
+                    <div class="tree-item"><div class="tree-node">
+                        <span class="tree-icon">${Icons.create('constant')}</span>
+                        <span style="color: #495057;">
+                            <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
+                                ${constant.name}${constant.value ? ` = ${constant.value}` : ''}
+                            </code>
+                        </span>
+                    </div></div>
+                    `;
+                });
+            }
+        }
+
+        html += `
+                </div>
+            </div>
+        `;
+    });
+
+    return html;
 }
 
 async function showClassDetails(moduleName, className, event) {
@@ -1477,15 +1503,13 @@ async function compareBoards() {
         
         // Update URL for shareable links
         const hideCommon = document.getElementById('hide-common').checked;
-        const showDetails = document.getElementById('detailed-compare').checked;
         updateURL({
             view: 'compare',
             board1: getBoardKey(board1.port, board1.board),
             version1: board1.version,
             board2: getBoardKey(board2.port, board2.board),
             version2: board2.version,
-            diff: hideCommon ? 'true' : null,
-            detailed: showDetails ? 'true' : null
+            diff: hideCommon ? 'true' : null
         });
     } catch (error) {
         console.error('Error during comparison:', error);
@@ -1508,7 +1532,7 @@ function updateComparison() {
     
     const { board1, board2, modules1, modules2 } = comparisonData;
     const hideCommon = document.getElementById('hide-common').checked;
-    const showDetails = document.getElementById('detailed-compare').checked; // Fixed ID
+    const showDetails = true; // Always show class/method level details
     
     // Update URL when comparison options change
     updateURL({
@@ -1517,8 +1541,7 @@ function updateComparison() {
         version1: board1.version,
         board2: getBoardKey(board2.port, board2.board),
         version2: board2.version,
-        diff: hideCommon ? 'true' : null,
-        detailed: showDetails ? 'true' : null
+        diff: hideCommon ? 'true' : null
     });
     
     // Get module names for comparison
@@ -1550,56 +1573,30 @@ function updateComparison() {
         </div>
     `;
     
-    // Build comparison HTML
+    // Build comparison HTML using the tree-view renderer
     let html = `
         <div class="comparison-grid">
             <div class="board-section">
                 <div class="board-header">${formatBoardName(board1.port, board1.board)} (${board1.version})</div>
-                <div class="module-list">
-                    <h3>Modules (${moduleNames1.size})</h3>
+                <div class="module-tree">
     `;
     
-    // Board 1 modules
+    // Board 1 modules with tree-view
     const board1ModulesToShow = hideCommon ? 
         modules1.filter(m => uniqueNames1.includes(m.name)) : 
         modules1.sort((a, b) => a.name.localeCompare(b.name));
     
-    board1ModulesToShow.forEach(module => {
-        const isUnique = uniqueNames1.includes(module.name);
-        const cssClass = isUnique ? 'module-item unique-to-board1' : 'module-item';
-        const badge = isUnique ? ' [UNIQUE]' : '';
-        
-        html += `
-            <div class="${cssClass}">
-                <div class="module-name">${module.name}${badge}</div>
-        `;
-        
-        // Show detailed information if enabled
-        if (showDetails) {
-            const classCount = module.classes.length;
-            const funcCount = module.functions.length;
-            const constCount = module.constants ? module.constants.length : 0;
-            
-            html += `
-                <div class="module-details">
-                    ${classCount > 0 ? `<div>Classes: ${classCount}</div>` : ''}
-                    ${funcCount > 0 ? `<div>Functions: ${funcCount}</div>` : ''}
-                    ${constCount > 0 ? `<div>Constants: ${constCount}</div>` : ''}
-                </div>
-            `;
-            
-            // Show classes
-            if (classCount > 0) {
-                html += '<div class="class-list">';
-                module.classes.forEach(cls => {
-                    const methodText = cls.methods.length > 0 ? ` (${cls.methods.length} methods)` : '';
-                    html += `<div class="class-item">${cls.name}${methodText}</div>`;
-                });
-                html += '</div>';
-            }
-        }
-        
-        html += '</div>';
+    html += renderModuleTree(board1ModulesToShow, {
+        modulePrefix: 'board1',
+        getBadgeClass: (module) => {
+            const isUnique = uniqueNames1.includes(module.name);
+            return isUnique ? 'unique-to-board1' : '';
+        },
+        getModuleBadge: (module) => {
+            const isUnique = uniqueNames1.includes(module.name);
+            return isUnique ? ' [UNIQUE]' : '';
+        },
+        showDetails: showDetails
     });
     
     if (hideCommon && uniqueNames1.length === 0) {
@@ -1611,51 +1608,25 @@ function updateComparison() {
             </div>
             <div class="board-section">
                 <div class="board-header">${formatBoardName(board2.port, board2.board)} (${board2.version})</div>
-                <div class="module-list">
-                    <h3>Modules (${moduleNames2.size})</h3>
+                <div class="module-tree">
     `;
     
-    // Board 2 modules
+    // Board 2 modules with tree-view
     const board2ModulesToShow = hideCommon ? 
         modules2.filter(m => uniqueNames2.includes(m.name)) : 
         modules2.sort((a, b) => a.name.localeCompare(b.name));
     
-    board2ModulesToShow.forEach(module => {
-        const isUnique = uniqueNames2.includes(module.name);
-        const cssClass = isUnique ? 'module-item unique-to-board2' : 'module-item';
-        const badge = isUnique ? ' [UNIQUE]' : '';
-        
-        html += `
-            <div class="${cssClass}">
-                <div class="module-name">${module.name}${badge}</div>
-        `;
-        
-        // Show detailed information if enabled
-        if (showDetails) {
-            const classCount = module.classes.length;
-            const funcCount = module.functions.length;
-            const constCount = module.constants ? module.constants.length : 0;
-            
-            html += `
-                <div class="module-details">
-                    ${classCount > 0 ? `<div>Classes: ${classCount}</div>` : ''}
-                    ${funcCount > 0 ? `<div>Functions: ${funcCount}</div>` : ''}
-                    ${constCount > 0 ? `<div>Constants: ${constCount}</div>` : ''}
-                </div>
-            `;
-            
-            // Show classes
-            if (classCount > 0) {
-                html += '<div class="class-list">';
-                module.classes.forEach(cls => {
-                    const methodText = cls.methods.length > 0 ? ` (${cls.methods.length} methods)` : '';
-                    html += `<div class="class-item">${cls.name}${methodText}</div>`;
-                });
-                html += '</div>';
-            }
-        }
-        
-        html += '</div>';
+    html += renderModuleTree(board2ModulesToShow, {
+        modulePrefix: 'board2',
+        getBadgeClass: (module) => {
+            const isUnique = uniqueNames2.includes(module.name);
+            return isUnique ? 'unique-to-board2' : '';
+        },
+        getModuleBadge: (module) => {
+            const isUnique = uniqueNames2.includes(module.name);
+            return isUnique ? ' [UNIQUE]' : '';
+        },
+        showDetails: showDetails
     });
     
     if (hideCommon && uniqueNames2.length === 0) {
@@ -1673,11 +1644,17 @@ function updateComparison() {
         html += `
             <div class="detail-view">
                 <div class="detail-header">Common Modules (${commonNames.length})</div>
-                <div style="columns: 3; column-gap: 20px;">
+                <div class="module-tree">
         `;
         
-        commonNames.sort().forEach(name => {
-            html += `<div style='break-inside: avoid; padding: 5px;'>${Icons.create('module')} ${name}</div>`;
+        // Get common modules data
+        const commonModules = modules1.filter(m => commonNames.includes(m.name));
+        
+        html += renderModuleTree(commonModules, {
+            modulePrefix: 'common',
+            getBadgeClass: () => '',
+            getModuleBadge: () => '',
+            showDetails: showDetails
         });
         
         html += `

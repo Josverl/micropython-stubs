@@ -17,7 +17,7 @@
     // },
     "tasks": [
         {
-            "label": "serve: board explorer",
+            "label": "http.server: board explorer",
             "detail": "Start the board_explorer server on port 8080",
             "type": "shell",
             "options": {
