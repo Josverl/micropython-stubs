@@ -12,6 +12,7 @@ python-dotenv
 pydocstyle
 loguru
 mypy_gitlab_code_quality
+requests
 
 # for speedy install 
 uv>=0.8.6
