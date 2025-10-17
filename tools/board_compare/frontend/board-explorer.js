@@ -40,6 +40,28 @@ let boardData = { boards: [] };
 let currentBoard = null;
 let db = null;
 
+// Utility function to format board display names
+function formatBoardName(port, board) {
+    if (!board || board === '') {
+        // If there's only a port (like "esp32-"), remove the trailing dash
+        return port.replace(/-$/, '');
+    }
+    
+    // If there's a board name, check if it starts with the port prefix
+    if (board.startsWith(port + '_')) {
+        // Remove the port prefix (e.g., "esp32_" from "esp32_generic_c6")
+        return board.substring(port.length + 1);
+    }
+    
+    // If board doesn't start with port prefix, return as is
+    return board;
+}
+
+// Utility function to get full board key for URL/comparison purposes
+function getBoardKey(port, board) {
+    return `${port}-${board}`;
+}
+
 // Initialize when page loads
 async function init() {
     try {
@@ -254,7 +276,8 @@ function populateBoardSelects() {
         
         // Add board options
         boardData.boards.forEach((board, idx) => {
-            const name = `${board.port}-${board.board} (${board.version})`;
+            const displayName = formatBoardName(board.port, board.board);
+            const name = `${displayName} (${board.version})`;
             const option = document.createElement('option');
             option.value = idx;
             option.textContent = name;
@@ -308,7 +331,7 @@ async function loadBoardDetails() {
     document.getElementById('explorer-content').innerHTML = `
         <div class="loading">
             <div class="spinner"></div>
-            <p>Loading <strong>${currentBoard.port}-${currentBoard.board}</strong> details...</p>
+            <p>Loading <strong>${formatBoardName(currentBoard.port, currentBoard.board)}</strong> details...</p>
             <div class="progress-step">Initializing...</div>
         </div>
     `;
@@ -321,7 +344,7 @@ async function loadBoardDetails() {
         document.getElementById('explorer-content').innerHTML = `
             <div class="loading">
                 <div class="spinner"></div>
-                <p>Fetching modules for <strong>${currentBoard.port}-${currentBoard.board}</strong>...</p>
+                <p>Fetching modules for <strong>${formatBoardName(currentBoard.port, currentBoard.board)}</strong>...</p>
                 <div class="progress-step">Step 1 of 3</div>
             </div>
         `;
@@ -362,7 +385,7 @@ async function loadBoardDetails() {
         // Update URL for shareable links
         updateURL({
             view: 'explorer',
-            board: `${currentBoard.port}-${currentBoard.board}`
+            board: getBoardKey(currentBoard.port, currentBoard.board)
         });
     } catch (error) {
         console.error('Error loading board details:', error);
@@ -530,7 +553,7 @@ function getModuleConstants(moduleId) {
 function displayModuleTree(modules) {
     let html = `
         <div class="detail-view">
-            <div class="detail-header">${currentBoard.port}-${currentBoard.board} (${currentBoard.version})</div>
+            <div class="detail-header">${formatBoardName(currentBoard.port, currentBoard.board)} (${currentBoard.version})</div>
             <div class="detail-section">
                 <h3>${Icons.create('module')} Modules (${modules.length})</h3>
                 <div class="module-tree">
@@ -708,7 +731,7 @@ async function compareBoards() {
         document.getElementById('compare-results').innerHTML = `
             <div class="loading">
                 <div class="spinner"></div>
-                <p>Fetching modules for <strong>${board1.port}-${board1.board}</strong>...</p>
+                <p>Fetching modules for <strong>${formatBoardName(board1.port, board1.board)}</strong>...</p>
                 <div class="progress-step">Step 1 of 3</div>
             </div>
         `;
@@ -723,7 +746,7 @@ async function compareBoards() {
         document.getElementById('compare-results').innerHTML = `
             <div class="loading">
                 <div class="spinner"></div>
-                <p>Fetching modules for <strong>${board2.port}-${board2.board}</strong>...</p>
+                <p>Fetching modules for <strong>${formatBoardName(board2.port, board2.board)}</strong>...</p>
                 <div class="progress-step">Step 2 of 3</div>
             </div>
         `;
@@ -756,8 +779,8 @@ async function compareBoards() {
         const showDetails = document.getElementById('detailed-compare').checked;
         updateURL({
             view: 'compare',
-            board1: `${board1.port}-${board1.board}`,
-            board2: `${board2.port}-${board2.board}`,
+            board1: getBoardKey(board1.port, board1.board),
+            board2: getBoardKey(board2.port, board2.board),
             diff: hideCommon ? 'true' : 'false',
             detailed: showDetails ? 'true' : 'false'
         });
@@ -804,11 +827,11 @@ function updateComparison() {
             </div>
             <div class="stat-card">
                 <div class="stat-value">${uniqueNames1.length}</div>
-                <div class="stat-label">Unique to ${board1.port}-${board1.board}</div>
+                <div class="stat-label">Unique to ${formatBoardName(board1.port, board1.board)}</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value">${uniqueNames2.length}</div>
-                <div class="stat-label">Unique to ${board2.port}-${board2.board}</div>
+                <div class="stat-label">Unique to ${formatBoardName(board2.port, board2.board)}</div>
             </div>
         </div>
     `;
@@ -817,7 +840,7 @@ function updateComparison() {
     let html = `
         <div class="comparison-grid">
             <div class="board-section">
-                <div class="board-header">${board1.port}-${board1.board} (${board1.version})</div>
+                <div class="board-header">${formatBoardName(board1.port, board1.board)} (${board1.version})</div>
                 <div class="module-list">
                     <h3>Modules (${moduleNames1.size})</h3>
     `;
@@ -872,7 +895,7 @@ function updateComparison() {
                 </div>
             </div>
             <div class="board-section">
-                <div class="board-header">${board2.port}-${board2.board} (${board2.version})</div>
+                <div class="board-header">${formatBoardName(board2.port, board2.board)} (${board2.version})</div>
                 <div class="module-list">
                     <h3>Modules (${moduleNames2.size})</h3>
     `;
@@ -988,7 +1011,7 @@ async function searchAPIs() {
     
     // Search through all boards using database
     for (const board of boardData.boards) {
-        const boardName = `${board.port}-${board.board}`;
+        const boardName = formatBoardName(board.port, board.board);
         
         try {
             // Search modules
