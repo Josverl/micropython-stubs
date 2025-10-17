@@ -3,14 +3,15 @@
 Unit tests for the database builder component.
 """
 
-import pytest
-import tempfile
 import json
 import sqlite3
+import tempfile
 from pathlib import Path
 
-from build_database import DatabaseBuilder
-from models import Module, Class, Method, Parameter
+import pytest
+
+from .build_database import DatabaseBuilder
+from .models import Class, Method, Module, Parameter
 
 
 class TestDatabaseBuilder:

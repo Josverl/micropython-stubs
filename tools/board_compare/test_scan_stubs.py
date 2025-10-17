@@ -3,13 +3,14 @@
 Unit tests for the stub scanner component.
 """
 
-import pytest
 import tempfile
 from pathlib import Path
 from textwrap import dedent
 
-from scan_stubs import StubScanner
-from models import Module, Class, Method, Parameter
+import pytest
+
+from .models import Class, Method, Module, Parameter
+from .scan_stubs import StubScanner
 
 
 class TestStubScanner:
@@ -214,13 +215,15 @@ class TestStubScanner:
         CONST1 = 42
         """
         self.create_stub_file(temp_stub_dir, "test.pyi", content)
-        
+
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules[0].constants) >= 3
-        assert "VERSION" in modules[0].constants
-        assert "MAX_SIZE" in modules[0].constants
+        # Check by name attribute since constants are now Constant objects
+        constant_names = [c.name for c in modules[0].constants]
+        assert "VERSION" in constant_names
+        assert "MAX_SIZE" in constant_names
     
     def test_scan_class_attributes(self, temp_stub_dir):
         """Test scanning class attributes."""
@@ -231,14 +234,16 @@ class TestStubScanner:
             var: int
         """
         self.create_stub_file(temp_stub_dir, "test.pyi", content)
-        
+
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         cls = modules[0].classes[0]
         assert len(cls.attributes) >= 3
-        assert "CONST1" in cls.attributes
-    
+        # Check by name attribute since attributes are now Attribute objects
+        attribute_names = [a.name for a in cls.attributes]
+        assert "CONST1" in attribute_names
+
     def test_scan_overloaded_function(self, temp_stub_dir):
         """Test scanning overloaded function."""
         content = """

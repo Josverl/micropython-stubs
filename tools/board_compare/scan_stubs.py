@@ -11,7 +11,8 @@ from pathlib import Path
 from typing import Dict, List, Optional, Union
 
 import libcst as cst
-from models import Attribute, Class, Constant, Method, Module, Parameter
+
+from .models import Attribute, Class, Constant, Method, Module, Parameter
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

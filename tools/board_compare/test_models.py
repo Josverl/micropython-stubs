@@ -3,10 +3,11 @@
 Unit tests for Pydantic models in the board comparison tool.
 """
 
-import pytest
 from typing import List
 
-from models import Board, Module, Class, Method, Parameter
+import pytest
+
+from .models import Board, Class, Method, Module, Parameter
 
 
 class TestParameter:
@@ -146,12 +147,19 @@ class TestClass:
     
     def test_create_class_with_attributes(self):
         """Test creating a class with attributes."""
+        from .models import Attribute
+        attrs = [
+            Attribute(name="CONST1", value="1", type_hint="int"),
+            Attribute(name="CONST2", value='"test"', type_hint="str"),
+            Attribute(name="class_var", value=None, type_hint="int")
+        ]
         cls = Class(
             name="TestClass",
-            attributes=["CONST1", "CONST2", "class_var"]
+            attributes=attrs,
+            docstring=None
         )
         assert len(cls.attributes) == 3
-        assert "CONST1" in cls.attributes
+        assert cls.attributes[0].name == "CONST1"
     
     def test_class_with_docstring(self):
         """Test class with docstring."""
@@ -198,22 +206,30 @@ class TestModule:
     
     def test_create_module_with_constants(self):
         """Test creating a module with constants."""
+        from .models import Constant
+        constants = [
+            Constant(name="CONST1", value="42", type_hint=None),
+            Constant(name="CONST2", value="True", type_hint=None),
+            Constant(name="VERSION", value='"1.0.0"', type_hint="str")
+        ]
         module = Module(
             name="test_module",
-            constants=["CONST1", "CONST2", "VERSION"]
+            constants=constants,
+            docstring=None
         )
         assert len(module.constants) == 3
-        assert "VERSION" in module.constants
+        assert module.constants[0].name == "CONST1"
     
     def test_complex_module(self):
         """Test creating a complex module with all components."""
+        from .models import Constant
         # Create methods for a class
         class_methods = [
-            Method(name="__init__", parameters=[Parameter(name="self")]),
+            Method(name="__init__", parameters=[Parameter(name="self", type_hint=None, default_value=None, is_optional=False, is_variadic=False)], return_type=None, is_async=False, is_classmethod=False, is_staticmethod=False, is_property=False, docstring=None, overloads=0),
             Method(name="process", parameters=[
-                Parameter(name="self"),
-                Parameter(name="data", type_hint="bytes")
-            ])
+                Parameter(name="self", type_hint=None, default_value=None, is_optional=False, is_variadic=False),
+                Parameter(name="data", type_hint="bytes", default_value=None, is_optional=False, is_variadic=False)
+            ], return_type=None, is_async=False, is_classmethod=False, is_staticmethod=False, is_property=False, docstring=None, overloads=0)
         ]
         
         # Create a class
@@ -226,8 +242,14 @@ class TestModule:
         # Create module-level functions
         module_functions = [
             Method(name="helper", parameters=[
-                Parameter(name="x", type_hint="int")
-            ], return_type="str")
+                Parameter(name="x", type_hint="int", default_value=None, is_optional=False, is_variadic=False)
+            ], return_type="str", is_async=False, is_classmethod=False, is_staticmethod=False, is_property=False, docstring=None, overloads=0)
+        ]
+        
+        # Create constants
+        constants = [
+            Constant(name="VERSION", value="1.0.0", type_hint=None, is_hidden=False),
+            Constant(name="MAX_SIZE", value="1000", type_hint=None, is_hidden=False)
         ]
         
         # Create module
@@ -235,7 +257,7 @@ class TestModule:
             name="processing",
             classes=[test_class],
             functions=module_functions,
-            constants=["VERSION", "MAX_SIZE"],
+            constants=constants,
             docstring="Data processing module."
         )
         

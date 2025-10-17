@@ -13,8 +13,8 @@ import sqlite3
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from models import Board, Class, Method, Module, Parameter
-from scan_stubs import scan_board_stubs
+from .models import Board, Class, Method, Module, Parameter
+from .scan_stubs import scan_board_stubs
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

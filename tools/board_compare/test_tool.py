@@ -10,9 +10,10 @@ from pathlib import Path
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from models import Module, Class, Method, Parameter
-from scan_stubs import StubScanner
-from build_database import DatabaseBuilder
+from .build_database import DatabaseBuilder
+from .models import Class, Method, Module, Parameter
+from .scan_stubs import StubScanner
+
 
 def test_models():
     """Test Pydantic models."""
@@ -80,8 +81,8 @@ def test_database_builder():
     """Test database builder."""
     print("\nTesting database builder...")
     
-    import tempfile
     import os
+    import tempfile
     
     # Create temporary database
     with tempfile.NamedTemporaryFile(suffix=".db", delete=False) as f:
