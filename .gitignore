@@ -64,3 +64,6 @@ tools/board_compare/*.db
 tools/board_compare/*.db-journal
 # Allow frontend database for GitHub Pages
 !tools/board_compare/frontend/board_comparison.db
+
+# no screenshots
+.playwright-mcp/*.png

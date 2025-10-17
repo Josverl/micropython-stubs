@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MicroPython Board Explorer & Comparison</title>
     
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <style>
         * {
             margin: 0;
@@ -482,12 +485,31 @@
             50% { opacity: 1; }
             100% { opacity: 0.8; }
         }
+        
+        /* Font Awesome Icon Styling */
+        .fa-icon {
+            margin-right: 8px;
+            color: inherit;
+            width: 16px;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .tree-icon .fa-icon {
+            margin-right: 6px;
+            width: 14px;
+        }
+        
+        .header-icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <nav>
-            <h1>🔬 MicroPython Board Explorer</h1>
+            <h1><i class="fas fa-microscope header-icon" aria-label="Explorer" title="Explorer"></i> MicroPython Board Explorer</h1>
             <div class="nav-tabs">
                 <button class="nav-tab active" onclick="switchPage('explorer', this)">Board Explorer</button>
                 <button class="nav-tab" onclick="switchPage('compare', this)">Compare Boards</button>
@@ -541,7 +563,7 @@
                     </label>
                 </div>
                 <button onclick="compareBoards()">Compare Boards</button>
-                <button class="share-btn" title="Copy shareable link">🔗 Share</button>
+                <button class="share-btn" title="Copy shareable link"><i class="fas fa-share fa-icon" aria-label="Share" title="Share"></i> Share</button>
             </div>
             
             <div id="compare-stats" style="display: none;"></div>
@@ -558,7 +580,7 @@
                     </div>
                 </div>
                 <button onclick="searchAPIs()">Search</button>
-                <button class="share-btn" title="Copy shareable link">🔗 Share</button>
+                <button class="share-btn" title="Copy shareable link"><i class="fas fa-share fa-icon" aria-label="Share" title="Share"></i> Share</button>
             </div>
             
             <div id="search-results"></div>

@@ -3,6 +3,38 @@
  * Enhanced frontend with multiple views and detailed comparisons
  */
 
+// Icon utilities for consistent visual representation using Font Awesome
+const Icons = {
+    // Core concept icons with Font Awesome classes
+    package: { faClass: 'fas fa-box-archive', alt: 'Package' },
+    module: { faClass: 'fas fa-cube', alt: 'Module' },
+    board: { faClass: 'fas fa-microchip', alt: 'Board' },
+    class: { faClass: 'fas fa-object-group', alt: 'Class' },
+    function: { faClass: 'fas fa-bolt', alt: 'Function' },
+    method: { faClass: 'fas fa-bolt', alt: 'Method' },
+    constant: { faClass: 'fas fa-circle', alt: 'Constant' },
+    variable: { faClass: 'fas fa-circle-dot', alt: 'Variable' },
+    property: { faClass: 'fas fa-ellipsis', alt: 'Property' },
+    
+    // Action icons
+    search: { faClass: 'fas fa-search', alt: 'Search' },
+    explorer: { faClass: 'fas fa-microscope', alt: 'Explorer' },
+    compare: { faClass: 'fas fa-balance-scale', alt: 'Compare' },
+    share: { faClass: 'fas fa-share', alt: 'Share' },
+    retry: { faClass: 'fas fa-redo', alt: 'Retry' },
+    
+    // File/folder icons
+    folder: { faClass: 'fas fa-folder', alt: 'Folder' },
+    file: { faClass: 'fas fa-file', alt: 'File' },
+    
+    // Utility function to create Font Awesome icon span with accessibility
+    create: function(iconKey, extraClasses = '') {
+        const icon = this[iconKey];
+        if (!icon) return '';
+        return `<i class="${icon.faClass} fa-icon ${extraClasses}" aria-label="${icon.alt}" title="${icon.alt}"></i>`;
+    }
+};
+
 // Global state
 let boardData = { boards: [] };
 let currentBoard = null;
@@ -339,7 +371,7 @@ async function loadBoardDetails() {
                 <h3 style="color: #dc3545;">⚠️ Loading Error</h3>
                 <p style="color: #666; margin: 15px 0;">${error.message}</p>
                 <button onclick="loadBoardDetails()" style="margin-top: 15px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
-                    🔄 Try Again
+                    ${Icons.create('retry')} Try Again
                 </button>
             </div>
         `;
@@ -500,7 +532,7 @@ function displayModuleTree(modules) {
         <div class="detail-view">
             <div class="detail-header">${currentBoard.port}-${currentBoard.board} (${currentBoard.version})</div>
             <div class="detail-section">
-                <h3>📦 Modules (${modules.length})</h3>
+                <h3>${Icons.create('module')} Modules (${modules.length})</h3>
                 <div class="module-tree">
     `;
     
@@ -509,7 +541,7 @@ function displayModuleTree(modules) {
         html += `
             <div class="tree-item">
                 <div class="tree-node" onclick="toggleModule('module-${module.name}', event)">
-                    <span class="tree-icon">${hasChildren ? '📁' : '📄'}</span>
+                    <span class="tree-icon">${hasChildren ? Icons.create('folder') : Icons.create('module')}</span>
                     <strong>${module.name}</strong>
                     <span style="color: #666; font-size: 0.9em;">
                         (${module.classes.length} classes, ${module.functions.length} functions)
@@ -524,7 +556,7 @@ function displayModuleTree(modules) {
                 html += `
                     <div class="tree-item">
                         <div class="tree-node" onclick="showClassDetails('${module.name}', '${cls.name}', event)">
-                            <span class="tree-icon">🔷</span>
+                            <span class="tree-icon">${Icons.create('class')}</span>
                             <span style="color: #667eea; font-weight: 600;">class ${cls.name}</span>
                             <span style="color: #666; font-size: 0.9em;">(${cls.methods.length} methods)</span>
                         </div>
@@ -540,7 +572,7 @@ function displayModuleTree(modules) {
                 html += `
                     <div class="tree-item">
                         <div class="tree-node">
-                            <span class="tree-icon">⚡</span>
+                            <span class="tree-icon">${Icons.create('function')}</span>
                             <span>${asyncMarker}${func.name}()</span>
                         </div>
                     </div>
@@ -736,7 +768,7 @@ async function compareBoards() {
                 <h3 style="color: #dc3545;">⚠️ Comparison Error</h3>
                 <p style="color: #666; margin: 15px 0;">${error.message}</p>
                 <button onclick="compareBoards()" style="margin-top: 15px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
-                    🔄 Try Again
+                    ${Icons.create('retry')} Try Again
                 </button>
             </div>
         `;
@@ -906,7 +938,7 @@ function updateComparison() {
         `;
         
         commonNames.sort().forEach(name => {
-            html += `<div style='break-inside: avoid; padding: 5px;'>📦 ${name}</div>`;
+            html += `<div style='break-inside: avoid; padding: 5px;'>${Icons.create('module')} ${name}</div>`;
         });
         
         html += `
@@ -1077,7 +1109,7 @@ function displaySearchResults(query, results) {
     
     if (moduleResults.length > 0) {
         html += `<div class="search-result-item">
-            <div class="search-result-header">📦 Modules</div>
+            <div class="search-result-header">${Icons.create('module')} Modules</div>
             <p style="color: #666; margin-bottom: 10px;">Boards with matching modules:</p>
         `;
         moduleResults.forEach(result => {
@@ -1091,7 +1123,7 @@ function displaySearchResults(query, results) {
     
     if (classResults.length > 0) {
         html += `<div class="search-result-item">
-            <div class="search-result-header">🔷 Classes</div>
+            <div class="search-result-header">${Icons.create('class')} Classes</div>
             <p style="color: #666; margin-bottom: 10px;">Boards with matching classes:</p>
         `;
         classResults.forEach(result => {
@@ -1105,7 +1137,7 @@ function displaySearchResults(query, results) {
     
     if (methodResults.length > 0) {
         html += `<div class="search-result-item">
-            <div class="search-result-header">⚡ Methods/Functions</div>
+            <div class="search-result-header">${Icons.create('function')} Methods/Functions</div>
             <p style="color: #666; margin-bottom: 10px;">Boards with matching methods:</p>
         `;
         methodResults.forEach(result => {
