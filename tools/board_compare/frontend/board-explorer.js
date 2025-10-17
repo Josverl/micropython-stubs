@@ -62,13 +62,23 @@ function getBoardKey(port, board) {
 }
 
 // Utility function to format module summary counts (suppressing zero counts)
-function formatModuleSummary(classCount, funcCount, constCount) {
+function formatModuleSummary(classCount, funcCount, constCount, moduleName = '') {
     const parts = [];
     if (classCount > 0) parts.push(`${classCount} classes`);
     if (funcCount > 0) parts.push(`${funcCount} functions`);
     if (constCount > 0) parts.push(`${constCount} constants`);
     
-    return parts.length > 0 ? parts.join(', ') : 'empty module';
+    if (parts.length > 0) {
+        return parts.join(', ');
+    }
+    
+    // Check if it's a deprecated u-module
+    if (moduleName.startsWith('u') && moduleName.length > 1) {
+        const baseModuleName = moduleName.substring(1); // Remove 'u' prefix
+        return `deprecated - use ${baseModuleName} instead`;
+    }
+    
+    return 'empty module';
 }
 
 // Utility function to format class summary counts (suppressing zero counts)
@@ -739,13 +749,17 @@ function displayModuleTree(modules) {
     
     modules.forEach(module => {
         const hasChildren = module.classes.length > 0 || module.functions.length > 0 || module.constants.length > 0;
+        const isDeprecated = module.name.startsWith('u') && module.name.length > 1 && !hasChildren;
+        const deprecationStyle = isDeprecated ? 'color: #88474eff; font-style: italic;' : 'color: #6c757d;';
+        const summaryBg = isDeprecated ? '#ffe6e6' : '#e9ecef';
+        
         html += `
             <div class="tree-item">
                 <div class="tree-node" onclick="toggleModule('module-${module.name}', event)" data-module="${module.name}">
-                    <span class="tree-icon">${hasChildren ? Icons.create('folder') : Icons.create('module')}</span>
+                    <span class="tree-icon">${Icons.create('module')}</span>
                     <strong style="color: #2c3e50; font-size: 1.1em;">${module.name}</strong>
-                    <span style="color: #6c757d; font-size: 0.9em; margin-left: auto; background: #e9ecef; padding: 4px 8px; border-radius: 12px;">
-                        ${formatModuleSummary(module.classes.length, module.functions.length, module.constants.length)}
+                    <span style="${deprecationStyle} font-size: 0.9em; margin-left: auto; background: ${summaryBg}; padding: 4px 8px; border-radius: 12px;">
+                        ${formatModuleSummary(module.classes.length, module.functions.length, module.constants.length, module.name)}
                     </span>
                 </div>
                 <div id="module-${module.name}" class="tree-children hidden">
@@ -759,7 +773,7 @@ function displayModuleTree(modules) {
                 html += `
                     <div class="tree-item">
                         <div class="tree-node" onclick="toggleClass('${classId}', event)">
-                            <span class="tree-icon">${hasMethodsToShow ? Icons.create('folder') : Icons.create('class')}</span>
+                            <span class="tree-icon">${Icons.create('class')}</span>
                             <span style="color: #495057; font-weight: 600;">class ${cls.name}</span>
                             <span style="color: #6c757d; font-size: 0.85em; margin-left: auto; background: #f8f9fa; padding: 2px 6px; border-radius: 8px;">
                                 ${formatClassSummary(cls.methods.length, cls.attributes.length)}
