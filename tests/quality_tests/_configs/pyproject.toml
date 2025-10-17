@@ -47,10 +47,19 @@ line-length = 140
 target-version = "py39"
 
 [tool.ruff.lint]
+extend-select = [
+    "PYI", # flake8-pyi - stub file specific checks
+]
 ignore = [
     "F401", # unused import
     "F403", # import *
     "F821", # undefined name (can occur in stubs)
     "E402", # module level import not at top of file - common in test snippets
+    "PYI021", # Docstrings should not be included in stubs (but we want them for MicroPython)
+    "PYI044", # `from __future__ import annotations` - used in generated stubs
+    "PYI048", # Function body must contain exactly one statement - docstrings count
+    "PYI011", # Only simple default values allowed for typed arguments - we want actual defaults
+    "PYI014", # Only simple default values allowed for arguments - we want actual defaults
+    "PYI029", # __str__ and __repr__ are useful in MicroPython stubs
 ]
 # ###################################################################
