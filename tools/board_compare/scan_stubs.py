@@ -2,12 +2,13 @@
 Stub scanner tool to extract API information from MicroPython .pyi stub files.
 
 This tool uses libcst to parse stub files and extract information about modules,
-classes, methods, functions, and parameters.
+classes, methods, functions, and parameters. libcst is used to maintain compatibility
+with the micropython-stubber project and to preserve formatting/comments for future enhancements.
 """
 
-import ast
+import libcst as cst
 from pathlib import Path
-from typing import List, Optional, Dict
+from typing import List, Optional, Dict, Union
 import logging
 
 from models import Module, Class, Method, Parameter
@@ -52,7 +53,7 @@ class StubScanner:
 
     def scan_module(self, pyi_file: Path) -> Optional[Module]:
         """
-        Scan a single .pyi file and extract module information.
+        Scan a single .pyi file and extract module information using libcst.
 
         Args:
             pyi_file: Path to the .pyi file
@@ -64,8 +65,8 @@ class StubScanner:
             with open(pyi_file, "r", encoding="utf-8") as f:
                 content = f.read()
 
-            # Parse using ast (more reliable than libcst for stub files)
-            tree = ast.parse(content, filename=str(pyi_file))
+            # Parse using libcst
+            tree = cst.parse_module(content)
 
             # Extract module name from file path
             module_name = pyi_file.stem
@@ -78,38 +79,36 @@ class StubScanner:
                     module_name = str(rel_path.with_suffix("")).replace("/", ".")
 
             # Extract docstring
-            docstring = ast.get_docstring(tree)
+            docstring = self._get_docstring(tree)
 
             # Extract classes and functions
             classes = []
             functions = []
             constants = []
 
-            for node in ast.walk(tree):
-                if isinstance(node, ast.ClassDef):
-                    # Only process top-level classes
-                    if self._is_top_level(node, tree):
-                        class_obj = self._extract_class(node)
-                        if class_obj:
-                            classes.append(class_obj)
+            for stmt in tree.body:
+                if isinstance(stmt, cst.ClassDef):
+                    class_obj = self._extract_class(stmt)
+                    if class_obj:
+                        classes.append(class_obj)
 
-                elif isinstance(node, ast.FunctionDef) or isinstance(node, ast.AsyncFunctionDef):
-                    # Only process top-level functions
-                    if self._is_top_level(node, tree):
-                        func = self._extract_function(node)
-                        if func:
-                            functions.append(func)
+                elif isinstance(stmt, cst.FunctionDef):
+                    func = self._extract_function(stmt)
+                    if func:
+                        functions.append(func)
 
-                elif isinstance(node, ast.AnnAssign) and self._is_top_level(node, tree):
+                elif isinstance(stmt, cst.AnnAssign):
                     # Extract annotated constants
-                    if isinstance(node.target, ast.Name):
-                        constants.append(node.target.id)
+                    if isinstance(stmt.target, cst.Name):
+                        constants.append(stmt.target.value)
 
-                elif isinstance(node, ast.Assign) and self._is_top_level(node, tree):
-                    # Extract simple assignments (constants)
-                    for target in node.targets:
-                        if isinstance(target, ast.Name):
-                            constants.append(target.id)
+                elif isinstance(stmt, cst.SimpleStatementLine):
+                    # Check for simple assignments (constants)
+                    for item in stmt.body:
+                        if isinstance(item, cst.Assign):
+                            for target in item.targets:
+                                if isinstance(target.target, cst.Name):
+                                    constants.append(target.target.value)
 
             return Module(
                 name=module_name,
@@ -123,122 +122,133 @@ class StubScanner:
             logger.error(f"Failed to parse {pyi_file}: {e}")
             return None
 
-    def _is_top_level(self, node: ast.AST, tree: ast.Module) -> bool:
-        """Check if a node is at the top level of the module."""
-        return node in tree.body
+    def _get_docstring(self, node: Union[cst.Module, cst.ClassDef, cst.FunctionDef]) -> Optional[str]:
+        """Extract docstring from a libcst node."""
+        try:
+            if isinstance(node, cst.Module):
+                body = node.body
+            else:
+                body = node.body.body if isinstance(node.body, cst.IndentedBlock) else []
+            
+            if body and isinstance(body[0], cst.SimpleStatementLine):
+                first_stmt = body[0].body[0]
+                if isinstance(first_stmt, cst.Expr) and isinstance(first_stmt.value, cst.SimpleString):
+                    # Remove quotes and handle escape sequences
+                    docstring = first_stmt.value.value
+                    if docstring.startswith('"""') or docstring.startswith("'''"):
+                        return docstring[3:-3]
+                    elif docstring.startswith('"') or docstring.startswith("'"):
+                        return docstring[1:-1]
+            return None
+        except Exception:
+            return None
 
-    def _extract_class(self, node: ast.ClassDef) -> Optional[Class]:
-        """Extract class information from an AST ClassDef node."""
+    def _extract_class(self, node: cst.ClassDef) -> Optional[Class]:
+        """Extract class information from a libcst ClassDef node."""
         try:
             # Extract base classes
             base_classes = []
-            for base in node.bases:
-                if isinstance(base, ast.Name):
-                    base_classes.append(base.id)
-                elif isinstance(base, ast.Attribute):
-                    base_classes.append(self._get_full_name(base))
+            if node.bases:
+                for arg in node.bases:
+                    if isinstance(arg, cst.Arg):
+                        base_classes.append(self._get_expression_str(arg.value))
 
             # Extract methods and attributes
             methods = []
             attributes = []
 
-            for item in node.body:
-                if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef)):
-                    method = self._extract_function(item)
-                    if method:
-                        methods.append(method)
+            if isinstance(node.body, cst.IndentedBlock):
+                for item in node.body.body:
+                    if isinstance(item, cst.FunctionDef):
+                        method = self._extract_function(item)
+                        if method:
+                            methods.append(method)
 
-                elif isinstance(item, ast.AnnAssign):
-                    if isinstance(item.target, ast.Name):
-                        attributes.append(item.target.id)
+                    elif isinstance(item, cst.SimpleStatementLine):
+                        for stmt in item.body:
+                            if isinstance(stmt, cst.AnnAssign) and isinstance(stmt.target, cst.Name):
+                                attributes.append(stmt.target.value)
+                            elif isinstance(stmt, cst.Assign):
+                                for target in stmt.targets:
+                                    if isinstance(target.target, cst.Name):
+                                        attributes.append(target.target.value)
 
-                elif isinstance(item, ast.Assign):
-                    for target in item.targets:
-                        if isinstance(target, ast.Name):
-                            attributes.append(target.id)
-
-            docstring = ast.get_docstring(node)
+            docstring = self._get_docstring(node)
 
             return Class(
-                name=node.name,
+                name=node.name.value,
                 base_classes=base_classes,
                 methods=methods,
                 attributes=attributes,
                 docstring=docstring,
             )
         except Exception as e:
-            logger.error(f"Error extracting class {node.name}: {e}")
+            logger.error(f"Error extracting class {node.name.value if hasattr(node, 'name') else 'unknown'}: {e}")
             return None
 
-    def _extract_function(self, node: ast.FunctionDef | ast.AsyncFunctionDef) -> Optional[Method]:
-        """Extract function/method information from an AST FunctionDef node."""
+    def _extract_function(self, node: cst.FunctionDef) -> Optional[Method]:
+        """Extract function/method information from a libcst FunctionDef node."""
         try:
             # Extract parameters
             parameters = []
-            args = node.args
+            params = node.params
 
             # Process regular arguments
-            for i, arg in enumerate(args.args):
-                param = self._extract_parameter(arg, args.defaults, i, len(args.args))
-                parameters.append(param)
+            for param in params.params:
+                parameters.append(self._extract_parameter_from_param(param))
 
             # Process *args
-            if args.vararg:
+            if params.star_arg and isinstance(params.star_arg, cst.Param):
                 parameters.append(
                     Parameter(
-                        name=args.vararg.arg,
-                        type_hint=self._get_annotation(args.vararg),
+                        name=params.star_arg.name.value,
+                        type_hint=self._get_annotation_str(params.star_arg.annotation) if params.star_arg.annotation else None,
                         is_variadic=True,
                     )
                 )
 
             # Process keyword-only arguments
-            for i, arg in enumerate(args.kwonlyargs):
-                default = args.kw_defaults[i] if i < len(args.kw_defaults) else None
-                param = Parameter(
-                    name=arg.arg,
-                    type_hint=self._get_annotation(arg),
-                    default_value=self._get_default_value(default) if default else None,
-                    is_optional=default is not None,
-                )
-                parameters.append(param)
+            for param in params.kwonly_params:
+                parameters.append(self._extract_parameter_from_param(param))
 
             # Process **kwargs
-            if args.kwarg:
+            if params.star_kwarg:
                 parameters.append(
                     Parameter(
-                        name=args.kwarg.arg,
-                        type_hint=self._get_annotation(args.kwarg),
+                        name=params.star_kwarg.name.value,
+                        type_hint=self._get_annotation_str(params.star_kwarg.annotation) if params.star_kwarg.annotation else None,
                         is_variadic=True,
                     )
                 )
 
             # Extract return type
-            return_type = self._get_annotation(node.returns) if node.returns else None
+            return_type = self._get_annotation_str(node.returns) if node.returns else None
 
             # Check for decorators
-            is_classmethod = any(
-                (isinstance(d, ast.Name) and d.id == "classmethod") for d in node.decorator_list
-            )
-            is_staticmethod = any(
-                (isinstance(d, ast.Name) and d.id == "staticmethod") for d in node.decorator_list
-            )
-            is_property = any(
-                (isinstance(d, ast.Name) and d.id == "property") for d in node.decorator_list
-            )
+            is_async = node.asynchronous is not None
+            is_classmethod = False
+            is_staticmethod = False
+            is_property = False
+            is_overload = False
 
-            # Check if overloaded
-            is_overload = any(
-                (isinstance(d, ast.Name) and d.id == "overload") for d in node.decorator_list
-            )
+            for decorator in node.decorators:
+                dec_name = self._get_decorator_name(decorator)
+                if dec_name == "classmethod":
+                    is_classmethod = True
+                elif dec_name == "staticmethod":
+                    is_staticmethod = True
+                elif dec_name == "property":
+                    is_property = True
+                elif dec_name == "overload":
+                    is_overload = True
 
-            docstring = ast.get_docstring(node)
+            docstring = self._get_docstring(node)
 
             return Method(
-                name=node.name,
+                name=node.name.value,
                 parameters=parameters,
                 return_type=return_type,
-                is_async=isinstance(node, ast.AsyncFunctionDef),
+                is_async=is_async,
                 is_classmethod=is_classmethod,
                 is_staticmethod=is_staticmethod,
                 is_property=is_property,
@@ -246,64 +256,55 @@ class StubScanner:
                 overloads=1 if is_overload else 0,
             )
         except Exception as e:
-            logger.error(f"Error extracting function {node.name}: {e}")
+            logger.error(f"Error extracting function {node.name.value if hasattr(node, 'name') else 'unknown'}: {e}")
             return None
 
-    def _extract_parameter(
-        self, arg: ast.arg, defaults: List, index: int, total_args: int
-    ) -> Parameter:
-        """Extract parameter information."""
-        # Calculate if this parameter has a default value
-        num_defaults = len(defaults)
-        default_offset = total_args - num_defaults
-        has_default = index >= default_offset
+    def _extract_parameter_from_param(self, param: cst.Param) -> Parameter:
+        """Extract parameter information from a libcst Param node."""
         default_value = None
+        is_optional = False
 
-        if has_default:
-            default_idx = index - default_offset
-            if default_idx < len(defaults):
-                default_value = self._get_default_value(defaults[default_idx])
+        if param.default:
+            default_value = self._get_expression_str(param.default)
+            is_optional = True
 
         return Parameter(
-            name=arg.arg,
-            type_hint=self._get_annotation(arg),
+            name=param.name.value,
+            type_hint=self._get_annotation_str(param.annotation) if param.annotation else None,
             default_value=default_value,
-            is_optional=has_default,
+            is_optional=is_optional,
         )
 
-    def _get_annotation(self, node) -> Optional[str]:
-        """Get type annotation as a string."""
-        if not hasattr(node, "annotation") or node.annotation is None:
+    def _get_annotation_str(self, annotation: Union[cst.Annotation, None]) -> Optional[str]:
+        """Get type annotation as a string from libcst annotation."""
+        if annotation is None:
             return None
 
         try:
-            return ast.unparse(node.annotation)
+            if isinstance(annotation, cst.Annotation):
+                return annotation.annotation.visit(cst.Module([]).code_for_node)
+            return None
         except Exception:
             return None
 
-    def _get_default_value(self, node) -> Optional[str]:
-        """Get default value as a string."""
-        if node is None:
-            return None
-
+    def _get_expression_str(self, expr: cst.BaseExpression) -> str:
+        """Get expression as a string."""
         try:
-            return ast.unparse(node)
+            # Create a temporary module to get the code
+            return cst.Module([]).code_for_node(expr)
         except Exception:
             return "..."
 
-    def _get_full_name(self, node: ast.Attribute) -> str:
-        """Get full name from an Attribute node."""
-        parts = []
-        current = node
-
-        while isinstance(current, ast.Attribute):
-            parts.insert(0, current.attr)
-            current = current.value
-
-        if isinstance(current, ast.Name):
-            parts.insert(0, current.id)
-
-        return ".".join(parts)
+    def _get_decorator_name(self, decorator: cst.Decorator) -> Optional[str]:
+        """Get decorator name from a Decorator node."""
+        try:
+            if isinstance(decorator.decorator, cst.Name):
+                return decorator.decorator.value
+            elif isinstance(decorator.decorator, cst.Attribute):
+                return self._get_expression_str(decorator.decorator)
+            return None
+        except Exception:
+            return None
 
 
 def scan_board_stubs(stub_path: Path, version: str, port: str, board: str) -> Dict:

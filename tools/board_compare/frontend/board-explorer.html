@@ -140,6 +140,26 @@
             transform: none;
         }
         
+        .share-btn {
+            display: none;
+            padding: 8px 16px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 10px;
+        }
+        
+        .share-btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+        
         .checkbox-label {
             display: flex;
             align-items: center;
@@ -491,6 +511,7 @@
                     </label>
                 </div>
                 <button onclick="compareBoards()">Compare Boards</button>
+                <button class="share-btn" title="Copy shareable link">🔗 Share</button>
             </div>
             
             <div id="compare-stats" style="display: none;"></div>
@@ -507,6 +528,7 @@
                     </div>
                 </div>
                 <button onclick="searchAPIs()">Search</button>
+                <button class="share-btn" title="Copy shareable link">🔗 Share</button>
             </div>
             
             <div id="search-results"></div>

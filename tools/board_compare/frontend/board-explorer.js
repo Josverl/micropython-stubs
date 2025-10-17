@@ -19,10 +19,126 @@ async function init() {
         
         // Populate all board selects
         populateBoardSelects();
+        
+        // Check for URL parameters and restore state
+        await restoreFromURL();
     } catch (error) {
         console.error('Error loading data:', error);
         showError('Failed to load board data: ' + error.message);
     }
+}
+
+// Restore state from URL parameters (shareable links)
+async function restoreFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    
+    // Switch to requested view
+    const view = params.get('view');
+    if (view === 'compare') {
+        showView('compare');
+    } else if (view === 'search') {
+        showView('search');
+    } else if (view === 'explorer') {
+        showView('explorer');
+    }
+    
+    // Restore comparison state
+    if (params.has('board1') && params.has('board2')) {
+        const board1Key = params.get('board1');
+        const board2Key = params.get('board2');
+        
+        // Find board indices
+        const board1Idx = boardData.boards.findIndex(b => `${b.port}-${b.board}` === board1Key);
+        const board2Idx = boardData.boards.findIndex(b => `${b.port}-${b.board}` === board2Key);
+        
+        if (board1Idx >= 0 && board2Idx >= 0) {
+            // Set board selections
+            document.getElementById('board1').value = board1Idx.toString();
+            document.getElementById('board2').value = board2Idx.toString();
+        
+            // Apply diff mode if specified
+            if (params.get('diff') === 'true') {
+                document.getElementById('hide-common').checked = true;
+            }
+            
+            // Apply detailed mode if specified
+            if (params.get('detailed') === 'true') {
+                document.getElementById('show-details').checked = true;
+            }
+            
+            // Trigger comparison
+            await compareBoards();
+        }
+    }
+    
+    // Restore explorer state
+    if (params.has('board') && view === 'explorer') {
+        const boardKey = params.get('board');
+        const boardIdx = boardData.boards.findIndex(b => `${b.port}-${b.board}` === boardKey);
+        
+        if (boardIdx >= 0) {
+            document.getElementById('explorer-board').value = boardIdx.toString();
+            await loadBoardDetails();
+        
+            // Optionally expand specific module
+            if (params.has('module')) {
+                const moduleName = params.get('module');
+                // Wait a bit for rendering
+                setTimeout(() => {
+                    const moduleElement = document.querySelector(`[data-module="${moduleName}"]`);
+                    if (moduleElement) {
+                        moduleElement.click();
+                        moduleElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }, 500);
+            }
+        }
+    }
+    
+    // Restore search state
+    if (params.has('search') && view === 'search') {
+        const query = params.get('search');
+        document.getElementById('search-input').value = query;
+        await searchAPIs();
+    }
+}
+
+// Update URL with current state (for shareable links)
+function updateURL(params) {
+    const url = new URL(window.location);
+    
+    // Clear existing params
+    url.search = '';
+    
+    // Add new params
+    for (const [key, value] of Object.entries(params)) {
+        if (value !== null && value !== undefined && value !== '') {
+            url.searchParams.set(key, value);
+        }
+    }
+    
+    // Update URL without reload
+    window.history.pushState({}, '', url);
+    
+    // Update share button if exists
+    updateShareButton(url.toString());
+}
+
+// Update share button with current URL
+function updateShareButton(url) {
+    const shareButtons = document.querySelectorAll('.share-btn');
+    shareButtons.forEach(btn => {
+        btn.onclick = () => {
+            navigator.clipboard.writeText(url).then(() => {
+                const originalText = btn.textContent;
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        };
+        btn.style.display = 'inline-block';
+    });
 }
 
 // Load SQLite database using SQL.js
@@ -136,6 +252,12 @@ async function loadBoardDetails() {
     
     // Display module tree
     displayModuleTree(modules);
+    
+    // Update URL for shareable links
+    updateURL({
+        view: 'explorer',
+        board: `${currentBoard.port}-${currentBoard.board}`
+    });
 }
 
 async function getBoardModules(board) {
@@ -451,6 +573,17 @@ async function compareBoards() {
     
     comparisonData = { board1, board2, modules1, modules2 };
     updateComparison();
+    
+    // Update URL for shareable links
+    const hideCommon = document.getElementById('hide-common').checked;
+    const showDetails = document.getElementById('show-details').checked;
+    updateURL({
+        view: 'compare',
+        board1: `${board1.port}-${board1.board}`,
+        board2: `${board2.port}-${board2.board}`,
+        diff: hideCommon ? 'true' : 'false',
+        detailed: showDetails ? 'true' : 'false'
+    });
 }
 
 function updateComparison() {
@@ -740,6 +873,12 @@ async function searchAPIs() {
     }
     
     displaySearchResults(query, results);
+    
+    // Update URL for shareable links
+    updateURL({
+        view: 'search',
+        search: query
+    });
 }
 
 function displaySearchResults(query, results) {
