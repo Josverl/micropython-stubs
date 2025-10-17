@@ -582,13 +582,13 @@
                 <div class="control-row">
                     <div class="control-group">
                         <label for="board1">Board 1:</label>
-                        <select id="board1">
+                        <select id="board1" onchange="updateComparisonURL()">
                             <option value="">Select a board...</option>
                         </select>
                     </div>
                     <div class="control-group">
                         <label for="board2">Board 2:</label>
-                        <select id="board2">
+                        <select id="board2" onchange="updateComparisonURL()">
                             <option value="">Select a board...</option>
                         </select>
                     </div>
@@ -599,7 +599,7 @@
                         <span>Hide common modules (show only differences)</span>
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" id="detailed-compare">
+                        <input type="checkbox" id="detailed-compare" onchange="updateComparison()">
                         <span>Show class/method level differences</span>
                     </label>
                 </div>

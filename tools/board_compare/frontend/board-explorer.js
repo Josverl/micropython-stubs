@@ -355,6 +355,43 @@ function switchPage(pageName, eventTarget = null) {
         page.classList.remove('active');
     });
     document.getElementById(`${pageName}-page`).classList.add('active');
+    
+    // Update URL to reflect current page
+    updateURL({ view: pageName });
+}
+
+// Update URL when comparison board selections change
+function updateComparisonURL() {
+    const board1Idx = document.getElementById('board1').value;
+    const board2Idx = document.getElementById('board2').value;
+    
+    // Only update URL if we're on the compare page
+    const currentPage = document.querySelector('.page.active');
+    if (!currentPage || currentPage.id !== 'compare-page') {
+        return;
+    }
+    
+    const params = { view: 'compare' };
+    
+    if (board1Idx) {
+        const board1 = boardData.boards[parseInt(board1Idx)];
+        params.board1 = getBoardKey(board1.port, board1.board);
+    }
+    
+    if (board2Idx) {
+        const board2 = boardData.boards[parseInt(board2Idx)];
+        params.board2 = getBoardKey(board2.port, board2.board);
+    }
+    
+    // Include current comparison options if both boards are selected
+    if (board1Idx && board2Idx) {
+        const hideCommon = document.getElementById('hide-common').checked;
+        const showDetails = document.getElementById('detailed-compare').checked;
+        if (hideCommon) params.diff = 'true';
+        if (showDetails) params.detailed = 'true';
+    }
+    
+    updateURL(params);
 }
 
 // ===== BOARD EXPLORER =====
@@ -853,8 +890,8 @@ async function compareBoards() {
             view: 'compare',
             board1: getBoardKey(board1.port, board1.board),
             board2: getBoardKey(board2.port, board2.board),
-            diff: hideCommon ? 'true' : 'false',
-            detailed: showDetails ? 'true' : 'false'
+            diff: hideCommon ? 'true' : null,
+            detailed: showDetails ? 'true' : null
         });
     } catch (error) {
         console.error('Error during comparison:', error);
@@ -878,6 +915,15 @@ function updateComparison() {
     const { board1, board2, modules1, modules2 } = comparisonData;
     const hideCommon = document.getElementById('hide-common').checked;
     const showDetails = document.getElementById('detailed-compare').checked; // Fixed ID
+    
+    // Update URL when comparison options change
+    updateURL({
+        view: 'compare',
+        board1: getBoardKey(board1.port, board1.board),
+        board2: getBoardKey(board2.port, board2.board),
+        diff: hideCommon ? 'true' : null,
+        detailed: showDetails ? 'true' : null
+    });
     
     // Get module names for comparison
     const moduleNames1 = new Set(modules1.map(m => m.name));
