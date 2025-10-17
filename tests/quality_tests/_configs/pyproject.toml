@@ -41,3 +41,16 @@ warn_unused_ignores = true  # allows to verify the absense of methods/classes in
 # show_error_context = true
 
 # ###################################################################
+# ruff options:
+[tool.ruff]
+line-length = 140
+target-version = "py39"
+
+[tool.ruff.lint]
+ignore = [
+    "F401", # unused import
+    "F403", # import *
+    "F821", # undefined name (can occur in stubs)
+    "E402", # module level import not at top of file - common in test snippets
+]
+# ###################################################################

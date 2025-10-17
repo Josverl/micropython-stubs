@@ -150,5 +150,6 @@ ignore = [
     "F401", # unused import
     "F403", # import *
     "F821",
+    "E402", # module level import not at top of file - common in test snippets
     "UP035", # pyupgrade `typing.Dict` is deprecated, use `dict` instead
 ]
