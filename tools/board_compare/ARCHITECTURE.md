@@ -148,6 +148,80 @@ GROUP BY uc.id;
 
 This fix ensures complete API information is available for all boards and versions, resolving the systematic method storage failure that affected the entire database.
 
+**Critical Fix Applied (October 2025):** Positional-Only Parameter Parsing Bug Resolution
+
+**Issue Identified:**
+The libcst parameter extraction in `scan_stubs.py` was missing support for positional-only parameters (defined with `/` syntax in Python 3.8+). Functions using this syntax had their parameters completely ignored during parsing.
+
+**Root Cause:**
+```python
+# In _extract_function() - MISSING posonly_params processing
+def _extract_function(self, node: cst.FunctionDef) -> Optional[Method]:
+    parameters = []
+    params = node.params
+    
+    # Process regular arguments - ONLY these were processed
+    for param in params.params:
+        parameters.append(self._extract_parameter_from_param(param))
+    
+    # Missing: params.posonly_params processing
+    # This caused functions like hexlify(data: bytes, sep: str = ..., /) -> bytes
+    # to show as hexlify() -> bytes with zero parameters
+```
+
+**Examples of Affected Functions:**
+```python
+# From binascii.pyi - these showed with zero parameters
+def hexlify(data: bytes, sep: str | bytes = ..., /) -> bytes: ...
+def unhexlify(data: str | bytes, /) -> bytes: ...
+def b2a_base64(data: bytes, /) -> bytes: ...
+def a2b_base64(data: str | bytes, /) -> bytes: ...
+```
+
+**Solution Implemented:**
+Added support for positional-only parameters in `_extract_function()`:
+
+```python
+def _extract_function(self, node: cst.FunctionDef) -> Optional[Method]:
+    parameters = []
+    params = node.params
+
+    # Process positional-only arguments (before the '/' marker) - NEW
+    for param in params.posonly_params:
+        parameters.append(self._extract_parameter_from_param(param))
+
+    # Process regular arguments
+    for param in params.params:
+        parameters.append(self._extract_parameter_from_param(param))
+    
+    # ... rest of parameter processing (star_arg, kwonly_params, star_kwarg)
+```
+
+**Impact of Fix:**
+- **Before Fix**: Functions with `/` syntax showed zero parameters (e.g., `hexlify() -> bytes`)
+- **After Fix**: Complete parameter information displayed (e.g., `hexlify(data: bytes, sep: str | bytes = ...) -> bytes`)
+- **Scope**: Affected hundreds of functions across all MicroPython modules using modern Python syntax
+- **User Experience**: Frontend now shows complete, accurate function signatures
+
+**Verification Results:**
+```sql
+-- Before fix: binascii functions had 0 parameters except crc32
+SELECT m.name, COUNT(p.id) as param_count 
+FROM unique_methods m 
+LEFT JOIN unique_parameters p ON m.id = p.method_id 
+WHERE m.name IN ('hexlify', 'unhexlify', 'a2b_base64', 'b2a_base64')
+GROUP BY m.name;
+-- Result: All showed 0 parameters
+
+-- After fix: All functions show correct parameter counts
+-- hexlify: 2 parameters (data, sep)
+-- unhexlify: 1 parameter (data)  
+-- a2b_base64: 1 parameter (data)
+-- b2a_base64: 1 parameter (data)
+```
+
+This fix ensures accurate parameter information for all functions using modern Python positional-only parameter syntax, significantly improving the completeness and accuracy of the API documentation.
+
 **Schema Highlights:**
 ```sql
 -- Boards uniquely identified by (version, port, board)
