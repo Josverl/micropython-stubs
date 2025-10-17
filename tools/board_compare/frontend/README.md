@@ -1,23 +1,25 @@
-# MicroPython Board Comparison Tool - GitHub Pages Setup
+# MicroPython Board Comparison Tool - Frontend
 
 This directory contains the static web viewer for comparing MicroPython boards.
 
-## Deployment to GitHub Pages
+## ⚠️ Important: Database-Only Frontend
 
-To deploy this tool to GitHub Pages:
-
-1. Ensure the `board_comparison.json` file is generated and present in this directory
-2. Copy the contents of this `frontend` directory to the `docs` folder in the repository root
-3. Enable GitHub Pages in repository settings to serve from the `docs` folder
-4. The tool will be available at: `https://josverl.github.io/micropython-stubs/`
+**The frontend now requires the SQLite database** (`board_comparison.db`) for all functionality. The simplified JSON file is no longer used, ensuring you see complete module, class, and method details.
 
 ## Files
 
-- `index.html` - PyScript version (requires modern browser with WebAssembly support)
-- `index-vanilla.html` - Vanilla JavaScript version (works in all browsers, recommended)
+- **`board-explorer.html`** - Enhanced multi-view explorer (recommended)
+  - Board Explorer: Browse single board's complete API tree
+  - Compare Boards: Side-by-side comparison with class/method details
+  - Search APIs: Find modules, classes, methods across all boards
+  - **Requires**: `board_comparison.db` (4.8MB), SQL.js library
+
+- `index-vanilla.html` - Simple vanilla JavaScript version (module-level only)
+- `index.html` - PyScript version (Python in browser)
 - `app.py` - PyScript application code
 - `pyscript.json` - PyScript configuration
-- `board_comparison.json` - Generated board data (updated by GitHub Actions)
+- **`board_comparison.db`** - SQLite database with complete API data (4.8MB) **[REQUIRED]**
+- `board_comparison.json` - Simplified board list (24KB, used only for fallback)
 
 ## Local Testing
 
@@ -28,10 +30,33 @@ To test locally:
 python -m http.server 8000
 
 # Open in browser
-# http://localhost:8000/index-vanilla.html  (recommended)
+# http://localhost:8000/board-explorer.html  (recommended - full features)
 # or
-# http://localhost:8000/index.html  (PyScript version)
+# http://localhost:8000/index-vanilla.html  (simple module comparison)
 ```
+
+**Note**: The `board-explorer.html` requires SQL.js library from a CDN to query the SQLite database in the browser. If CDN access is blocked, you may need to:
+1. Download SQL.js locally (`sql-wasm.js` and `sql-wasm.wasm`)
+2. Update the script tag in `board-explorer.html` to point to local files
+
+## Deployment to GitHub Pages
+
+To deploy this tool to GitHub Pages:
+
+1. **Build the database** (required):
+   ```bash
+   cd ../..  # Go to tools/board_compare
+   python build_database.py --version v1_26_0 \
+     --db frontend/board_comparison.db \
+     --json frontend/board_comparison.json
+   ```
+
+2. Copy the contents of this `frontend` directory to the `docs` folder in the repository root
+3. **Ensure both files are included**:
+   - `board_comparison.db` (4.8MB) - Required for board-explorer.html
+   - `board_comparison.json` (24KB) - Used by simpler viewers
+4. Enable GitHub Pages in repository settings to serve from the `docs` folder
+5. The tool will be available at: `https://josverl.github.io/micropython-stubs/`
 
 ## Updating the Data
 
@@ -41,5 +66,31 @@ You can also manually update it by running:
 
 ```bash
 cd ../..  # Go to tools/board_compare
-python build_database.py --version v1_26_0 --db board_comparison.db --json frontend/board_comparison.json
+python build_database.py --version v1_26_0 \
+  --db frontend/board_comparison.db \
+  --json frontend/board_comparison.json
 ```
+
+**Note**: Both the database and JSON files should be committed to the repository for GitHub Pages deployment.
+
+## Features by Frontend Version
+
+### board-explorer.html (Recommended)
+- ✅ Complete API details (modules, classes, methods, parameters)
+- ✅ Single board exploration with expandable tree
+- ✅ Side-by-side comparison with class/method details
+- ✅ Cross-board API search
+- ✅ Diff mode (show only differences)
+- ⚠️ Requires: SQLite database + SQL.js library
+
+### index-vanilla.html (Simple)
+- ✅ Module-level comparison
+- ✅ Fast and lightweight
+- ✅ No external dependencies
+- ❌ No class/method details
+
+### index.html (PyScript)
+- ✅ Python-in-browser experience
+- ✅ Module-level comparison
+- ⚠️ Requires: WebAssembly-capable browser
+- ❌ No class/method details

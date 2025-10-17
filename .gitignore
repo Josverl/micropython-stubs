@@ -59,6 +59,8 @@ publish/micropython-stdlib-stubs_100b1
 **/*_lock.file
 tests/doc_test/micropython/
 
-# board comparison database files (generated)
+# board comparison database files (generated, except frontend database)
 tools/board_compare/*.db
 tools/board_compare/*.db-journal
+# Allow frontend database for GitHub Pages
+!tools/board_compare/frontend/board_comparison.db

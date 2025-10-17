@@ -11,15 +11,14 @@ let db = null;
 // Initialize when page loads
 async function init() {
     try {
-        // Load simplified board data
-        const response = await fetch('board_comparison.json');
-        boardData = await response.json();
+        // Load SQL.js and database - required for all functionality
+        await loadDatabase();
+        
+        // Load board list from database
+        await loadBoardList();
         
         // Populate all board selects
         populateBoardSelects();
-        
-        // Try to load SQL.js and database for detailed queries
-        await loadDatabase();
     } catch (error) {
         console.error('Error loading data:', error);
         showError('Failed to load board data: ' + error.message);
@@ -29,20 +28,54 @@ async function init() {
 // Load SQLite database using SQL.js
 async function loadDatabase() {
     try {
-        // Load SQL.js library
+        // Load SQL.js library from cdnjs (more reliable than sql.js.org)
         const SQL = await initSqlJs({
-            locateFile: file => `https://sql.js.org/dist/${file}`
+            locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
         });
         
         // Load the database file
         const response = await fetch('board_comparison.db');
+        if (!response.ok) {
+            throw new Error(`Failed to load database: ${response.statusText}`);
+        }
         const buffer = await response.arrayBuffer();
         db = new SQL.Database(new Uint8Array(buffer));
         
         console.log('Database loaded successfully');
     } catch (error) {
-        console.warn('Could not load database:', error);
-        // Continue without database - basic comparison will still work
+        console.error('Could not load database:', error);
+        throw new Error('Database is required for this tool. Please ensure board_comparison.db is available.');
+    }
+}
+
+// Load board list from database
+async function loadBoardList() {
+    if (!db) {
+        throw new Error('Database not loaded');
+    }
+    
+    try {
+        const stmt = db.prepare(`
+            SELECT DISTINCT version, port, board
+            FROM boards
+            ORDER BY version DESC, port, board
+        `);
+        
+        boardData.boards = [];
+        while (stmt.step()) {
+            const row = stmt.getAsObject();
+            boardData.boards.push({
+                version: row.version,
+                port: row.port,
+                board: row.board
+            });
+        }
+        stmt.free();
+        
+        console.log(`Loaded ${boardData.boards.length} boards from database`);
+    } catch (error) {
+        console.error('Error loading board list:', error);
+        throw error;
     }
 }
 
@@ -107,8 +140,7 @@ async function loadBoardDetails() {
 
 async function getBoardModules(board) {
     if (!db) {
-        // Fallback to simple module list
-        return board.modules.map(name => ({ name, classes: [], functions: [] }));
+        throw new Error('Database not available');
     }
     
     try {
@@ -146,7 +178,7 @@ async function getBoardModules(board) {
         return modules;
     } catch (error) {
         console.error('Error querying modules:', error);
-        return board.modules.map(name => ({ name, classes: [], functions: [] }));
+        throw error;
     }
 }
 
@@ -398,7 +430,7 @@ async function showClassDetails(moduleName, className, event) {
 
 let comparisonData = null;
 
-function compareBoards() {
+async function compareBoards() {
     const board1Idx = document.getElementById('board1').value;
     const board2Idx = document.getElementById('board2').value;
     
@@ -410,37 +442,46 @@ function compareBoards() {
     const board1 = boardData.boards[parseInt(board1Idx)];
     const board2 = boardData.boards[parseInt(board2Idx)];
     
-    comparisonData = { board1, board2 };
+    // Show loading
+    document.getElementById('compare-results').innerHTML = '<div class="loading"><div class="spinner"></div><p>Comparing boards...</p></div>';
+    
+    // Get detailed module information from database
+    const modules1 = await getBoardModules(board1);
+    const modules2 = await getBoardModules(board2);
+    
+    comparisonData = { board1, board2, modules1, modules2 };
     updateComparison();
 }
 
 function updateComparison() {
     if (!comparisonData) return;
     
-    const { board1, board2 } = comparisonData;
+    const { board1, board2, modules1, modules2 } = comparisonData;
     const hideCommon = document.getElementById('hide-common').checked;
+    const showDetails = document.getElementById('show-details').checked;
     
-    const modules1 = new Set(board1.modules);
-    const modules2 = new Set(board2.modules);
+    // Get module names for comparison
+    const moduleNames1 = new Set(modules1.map(m => m.name));
+    const moduleNames2 = new Set(modules2.map(m => m.name));
     
-    const common = [...modules1].filter(m => modules2.has(m));
-    const unique1 = [...modules1].filter(m => !modules2.has(m));
-    const unique2 = [...modules2].filter(m => !modules1.has(m));
+    const commonNames = [...moduleNames1].filter(m => moduleNames2.has(m));
+    const uniqueNames1 = [...moduleNames1].filter(m => !moduleNames2.has(m));
+    const uniqueNames2 = [...moduleNames2].filter(m => !moduleNames1.has(m));
     
     // Update stats
     document.getElementById('compare-stats').style.display = 'block';
     document.getElementById('compare-stats').innerHTML = `
         <div class="stats">
             <div class="stat-card">
-                <div class="stat-value">${common.length}</div>
+                <div class="stat-value">${commonNames.length}</div>
                 <div class="stat-label">Common Modules</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">${unique1.length}</div>
+                <div class="stat-value">${uniqueNames1.length}</div>
                 <div class="stat-label">Unique to ${board1.port}-${board1.board}</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">${unique2.length}</div>
+                <div class="stat-value">${uniqueNames2.length}</div>
                 <div class="stat-label">Unique to ${board2.port}-${board2.board}</div>
             </div>
         </div>
@@ -452,22 +493,52 @@ function updateComparison() {
             <div class="board-section">
                 <div class="board-header">${board1.port}-${board1.board} (v${board1.version})</div>
                 <div class="module-list">
-                    <h3>Modules (${modules1.size})</h3>
+                    <h3>Modules (${moduleNames1.size})</h3>
     `;
     
     // Board 1 modules
-    const board1Modules = hideCommon ? unique1 : [...modules1].sort();
-    board1Modules.forEach(name => {
-        const cssClass = unique1.includes(name) ? 'module-item unique-to-board1' : 'module-item';
-        const badge = unique1.includes(name) ? ' [UNIQUE]' : '';
+    const board1ModulesToShow = hideCommon ? 
+        modules1.filter(m => uniqueNames1.includes(m.name)) : 
+        modules1.sort((a, b) => a.name.localeCompare(b.name));
+    
+    board1ModulesToShow.forEach(module => {
+        const isUnique = uniqueNames1.includes(module.name);
+        const cssClass = isUnique ? 'module-item unique-to-board1' : 'module-item';
+        const badge = isUnique ? ' [UNIQUE]' : '';
+        
         html += `
             <div class="${cssClass}">
-                <div class="module-name">${name}${badge}</div>
-            </div>
+                <div class="module-name">${module.name}${badge}</div>
         `;
+        
+        // Show detailed information if enabled
+        if (showDetails) {
+            const classCount = module.classes.length;
+            const funcCount = module.functions.length;
+            const constCount = module.constants ? module.constants.length : 0;
+            
+            html += `
+                <div class="module-details">
+                    ${classCount > 0 ? `<div>Classes: ${classCount}</div>` : ''}
+                    ${funcCount > 0 ? `<div>Functions: ${funcCount}</div>` : ''}
+                    ${constCount > 0 ? `<div>Constants: ${constCount}</div>` : ''}
+                </div>
+            `;
+            
+            // Show classes
+            if (classCount > 0) {
+                html += '<div class="class-list">';
+                module.classes.forEach(cls => {
+                    html += `<div class="class-item">${cls.name} (${cls.methods.length} methods)</div>`;
+                });
+                html += '</div>';
+            }
+        }
+        
+        html += '</div>';
     });
     
-    if (hideCommon && unique1.length === 0) {
+    if (hideCommon && uniqueNames1.length === 0) {
         html += '<p style="color: #666; padding: 20px;">No unique modules</p>';
     }
     
@@ -477,22 +548,52 @@ function updateComparison() {
             <div class="board-section">
                 <div class="board-header">${board2.port}-${board2.board} (v${board2.version})</div>
                 <div class="module-list">
-                    <h3>Modules (${modules2.size})</h3>
+                    <h3>Modules (${moduleNames2.size})</h3>
     `;
     
     // Board 2 modules
-    const board2Modules = hideCommon ? unique2 : [...modules2].sort();
-    board2Modules.forEach(name => {
-        const cssClass = unique2.includes(name) ? 'module-item unique-to-board2' : 'module-item';
-        const badge = unique2.includes(name) ? ' [UNIQUE]' : '';
+    const board2ModulesToShow = hideCommon ? 
+        modules2.filter(m => uniqueNames2.includes(m.name)) : 
+        modules2.sort((a, b) => a.name.localeCompare(b.name));
+    
+    board2ModulesToShow.forEach(module => {
+        const isUnique = uniqueNames2.includes(module.name);
+        const cssClass = isUnique ? 'module-item unique-to-board2' : 'module-item';
+        const badge = isUnique ? ' [UNIQUE]' : '';
+        
         html += `
             <div class="${cssClass}">
-                <div class="module-name">${name}${badge}</div>
-            </div>
+                <div class="module-name">${module.name}${badge}</div>
         `;
+        
+        // Show detailed information if enabled
+        if (showDetails) {
+            const classCount = module.classes.length;
+            const funcCount = module.functions.length;
+            const constCount = module.constants ? module.constants.length : 0;
+            
+            html += `
+                <div class="module-details">
+                    ${classCount > 0 ? `<div>Classes: ${classCount}</div>` : ''}
+                    ${funcCount > 0 ? `<div>Functions: ${funcCount}</div>` : ''}
+                    ${constCount > 0 ? `<div>Constants: ${constCount}</div>` : ''}
+                </div>
+            `;
+            
+            // Show classes
+            if (classCount > 0) {
+                html += '<div class="class-list">';
+                module.classes.forEach(cls => {
+                    html += `<div class="class-item">${cls.name} (${cls.methods.length} methods)</div>`;
+                });
+                html += '</div>';
+            }
+        }
+        
+        html += '</div>';
     });
     
-    if (hideCommon && unique2.length === 0) {
+    if (hideCommon && uniqueNames2.length === 0) {
         html += '<p style="color: #666; padding: 20px;">No unique modules</p>';
     }
     
@@ -503,14 +604,14 @@ function updateComparison() {
     `;
     
     // Show common modules if not hidden
-    if (!hideCommon && common.length > 0) {
+    if (!hideCommon && commonNames.length > 0) {
         html += `
             <div class="detail-view">
-                <div class="detail-header">Common Modules (${common.length})</div>
+                <div class="detail-header">Common Modules (${commonNames.length})</div>
                 <div style="columns: 3; column-gap: 20px;">
         `;
         
-        common.sort().forEach(name => {
+        commonNames.sort().forEach(name => {
             html += `<div style='break-inside: avoid; padding: 5px;'>📦 ${name}</div>`;
         });
         
@@ -539,86 +640,102 @@ async function searchAPIs() {
         return;
     }
     
+    if (!db) {
+        alert('Database not available for searching');
+        return;
+    }
+    
     document.getElementById('search-results').innerHTML = '<div class="loading"><div class="spinner"></div><p>Searching...</p></div>';
     
     const results = [];
     
-    // Search through all boards
+    // Search through all boards using database
     for (const board of boardData.boards) {
         const boardName = `${board.port}-${board.board}`;
         
-        // Check modules
-        const matchingModules = board.modules.filter(m => m.toLowerCase().includes(query));
-        
-        if (matchingModules.length > 0) {
-            results.push({
-                board: boardName,
-                type: 'module',
-                matches: matchingModules
-            });
-        }
-        
-        // If database is available, search classes and methods
-        if (db) {
-            try {
-                // Search classes
-                const classStmt = db.prepare(`
-                    SELECT DISTINCT m.name as module_name, c.name as class_name
-                    FROM classes c
-                    JOIN modules m ON c.module_id = m.id
-                    JOIN board_modules bm ON m.id = bm.module_id
-                    JOIN boards b ON bm.board_id = b.id
-                    WHERE b.port = ? AND b.board = ? AND LOWER(c.name) LIKE ?
-                `);
-                classStmt.bind([board.port, board.board, `%${query}%`]);
-                
-                const classes = [];
-                while (classStmt.step()) {
-                    const row = classStmt.getAsObject();
-                    classes.push(`${row.module_name}.${row.class_name}`);
-                }
-                classStmt.free();
-                
-                if (classes.length > 0) {
-                    results.push({
-                        board: boardName,
-                        type: 'class',
-                        matches: classes
-                    });
-                }
-                
-                // Search methods
-                const methodStmt = db.prepare(`
-                    SELECT DISTINCT m.name as module_name, c.name as class_name, mt.name as method_name
-                    FROM methods mt
-                    JOIN modules m ON mt.module_id = m.id
-                    LEFT JOIN classes c ON mt.class_id = c.id
-                    JOIN board_modules bm ON m.id = bm.module_id
-                    JOIN boards b ON bm.board_id = b.id
-                    WHERE b.port = ? AND b.board = ? AND LOWER(mt.name) LIKE ?
-                `);
-                methodStmt.bind([board.port, board.board, `%${query}%`]);
-                
-                const methods = [];
-                while (methodStmt.step()) {
-                    const row = methodStmt.getAsObject();
-                    const methodPath = row.class_name 
-                        ? `${row.module_name}.${row.class_name}.${row.method_name}`
-                        : `${row.module_name}.${row.method_name}`;
-                    methods.push(methodPath);
-                }
-                methodStmt.free();
-                
-                if (methods.length > 0) {
-                    results.push({
-                        board: boardName,
-                        type: 'method',
-                        matches: methods.slice(0, 10) // Limit to 10
-                    });
-                }
-            } catch (error) {
-                console.error('Error searching database:', error);
+        try {
+            // Search modules
+            const moduleStmt = db.prepare(`
+                SELECT DISTINCT m.name as module_name
+                FROM modules m
+                JOIN board_modules bm ON m.id = bm.module_id
+                JOIN boards b ON bm.board_id = b.id
+                WHERE b.port = ? AND b.board = ? AND LOWER(m.name) LIKE ?
+            `);
+            moduleStmt.bind([board.port, board.board, `%${query}%`]);
+            
+            const modules = [];
+            while (moduleStmt.step()) {
+                const row = moduleStmt.getAsObject();
+                modules.push(row.module_name);
             }
+            moduleStmt.free();
+            
+            if (modules.length > 0) {
+                results.push({
+                    board: boardName,
+                    type: 'module',
+                    matches: modules
+                });
+            }
+            
+            // Search classes
+            const classStmt = db.prepare(`
+                SELECT DISTINCT m.name as module_name, c.name as class_name
+                FROM classes c
+                JOIN modules m ON c.module_id = m.id
+                JOIN board_modules bm ON m.id = bm.module_id
+                JOIN boards b ON bm.board_id = b.id
+                WHERE b.port = ? AND b.board = ? AND LOWER(c.name) LIKE ?
+            `);
+            classStmt.bind([board.port, board.board, `%${query}%`]);
+            
+            const classes = [];
+            while (classStmt.step()) {
+                const row = classStmt.getAsObject();
+                classes.push(`${row.module_name}.${row.class_name}`);
+            }
+            classStmt.free();
+            
+            if (classes.length > 0) {
+                results.push({
+                    board: boardName,
+                    type: 'class',
+                    matches: classes
+                });
+            }
+            
+            // Search methods
+            const methodStmt = db.prepare(`
+                SELECT DISTINCT m.name as module_name, c.name as class_name, mt.name as method_name
+                FROM methods mt
+                JOIN modules m ON mt.module_id = m.id
+                LEFT JOIN classes c ON mt.class_id = c.id
+                JOIN board_modules bm ON m.id = bm.module_id
+                JOIN boards b ON bm.board_id = b.id
+                WHERE b.port = ? AND b.board = ? AND LOWER(mt.name) LIKE ?
+            `);
+            methodStmt.bind([board.port, board.board, `%${query}%`]);
+            
+            const methods = [];
+            while (methodStmt.step()) {
+                const row = methodStmt.getAsObject();
+                const methodPath = row.class_name 
+                    ? `${row.module_name}.${row.class_name}.${row.method_name}`
+                    : `${row.module_name}.${row.method_name}`;
+                methods.push(methodPath);
+            }
+            methodStmt.free();
+            
+            if (methods.length > 0) {
+                results.push({
+                    board: boardName,
+                    type: 'method',
+                    matches: methods.slice(0, 10) // Limit to 10
+                });
+            }
+        } catch (error) {
+            console.error('Error searching database:', error);
         }
     }
     
