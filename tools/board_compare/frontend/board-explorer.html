@@ -101,6 +101,116 @@
             flex-direction: column;
             min-width: 0; /* Allow shrinking */
         }
+
+        .compare-control-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .control-fields {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .control-fields .control-row {
+            margin-bottom: 0;
+        }
+
+        .control-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 0;
+        }
+
+        .control-actions button {
+            flex: 0 0 auto;
+        }
+
+        .stats-panel {
+            flex: 0 0 auto;
+            align-self: flex-start;
+        }
+
+        .stats-panel .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 0;
+        }
+
+        /* Compact stats for compare view */
+        .stats-compact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-card-compact {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-card-full {
+            flex: 1 1 100%;
+        }
+
+        .stat-card-half {
+            flex: 1 1 calc(50% - 4px);
+        }
+
+        .stat-label-inline {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .stat-value-inline {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-left: auto;
+        }
+
+        @media (min-width: 960px) {
+            .compare-control-layout {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .stats-panel {
+                min-width: 240px;
+                margin-left: 20px;
+            }
+
+            .stats-panel .stats-compact {
+                gap: 6px;
+            }
+
+            .stat-card-compact {
+                padding: 8px 10px;
+                font-size: 0.95em;
+            }
+        }
+
+        .control-row.control-row-actions {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-row.control-row-actions .checkbox-label {
+            flex: 1 1 auto;
+        }
         
         label {
             font-weight: 600;
@@ -420,8 +530,8 @@
         /* Stats */
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
             margin-bottom: 30px;
         }
         
@@ -587,49 +697,56 @@
         <!-- Compare Boards Page -->
         <div id="compare-page" class="page">
             <div class="controls">
-                <div class="control-row">
-                    <div class="control-group">
-                        <label for="board1-version">Board 1 Version:</label>
-                        <select id="board1-version" onchange="updateBoardOptions('board1-version', 'board1'); updateComparisonURL()">
-                            <option value="">All versions</option>
-                        </select>
+                <div class="compare-control-layout">
+                    <div class="control-fields">
+                        <div class="control-row">
+                            <div class="control-group">
+                                <label for="board1-version">Board 1 Version:</label>
+                                <select id="board1-version" onchange="updateBoardOptions('board1-version', 'board1'); updateComparisonURL()">
+                                    <option value="">All versions</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="board1">Board 1:</label>
+                                <select id="board1" onchange="updateVersionOptions('board1-version', 'board1'); updateComparisonURL()">
+                                    <option value="">Select a board...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <div class="control-group">
+                                <label for="board2-version">Board 2 Version:</label>
+                                <select id="board2-version" onchange="updateBoardOptions('board2-version', 'board2'); updateComparisonURL()">
+                                    <option value="">All versions</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="board2">Board 2:</label>
+                                <select id="board2" onchange="updateVersionOptions('board2-version', 'board2'); updateComparisonURL()">
+                                    <option value="">Select a board...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-row control-row-actions">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="hide-common" onchange="updateComparison()">
+                                <span>Hide common modules (show only differences)</span>
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="detailed-compare" onchange="updateComparison()">
+                                <span>Show class/method level differences</span>
+                            </label>
+                        </div>
+                        <div class="control-row">
+                            <div class="control-actions">
+                                <button onclick="compareBoards()">Compare Boards</button>
+                                <button class="share-btn" title="Copy shareable link"><i class="fas fa-share fa-icon" aria-label="Share" title="Share"></i> Share</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="control-group">
-                        <label for="board1">Board 1:</label>
-                        <select id="board1" onchange="updateVersionOptions('board1-version', 'board1'); updateComparisonURL()">
-                            <option value="">Select a board...</option>
-                        </select>
-                    </div>
+                    <div id="compare-stats" class="stats-panel" style="display: none;"></div>
                 </div>
-                <div class="control-row">
-                    <div class="control-group">
-                        <label for="board2-version">Board 2 Version:</label>
-                        <select id="board2-version" onchange="updateBoardOptions('board2-version', 'board2'); updateComparisonURL()">
-                            <option value="">All versions</option>
-                        </select>
-                    </div>
-                    <div class="control-group">
-                        <label for="board2">Board 2:</label>
-                        <select id="board2" onchange="updateVersionOptions('board2-version', 'board2'); updateComparisonURL()">
-                            <option value="">Select a board...</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="control-row">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="hide-common" onchange="updateComparison()">
-                        <span>Hide common modules (show only differences)</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="detailed-compare" onchange="updateComparison()">
-                        <span>Show class/method level differences</span>
-                    </label>
-                </div>
-                <button onclick="compareBoards()">Compare Boards</button>
-                <button class="share-btn" title="Copy shareable link"><i class="fas fa-share fa-icon" aria-label="Share" title="Share"></i> Share</button>
             </div>
-            
-            <div id="compare-stats" style="display: none;"></div>
             <div id="compare-results"></div>
         </div>
         

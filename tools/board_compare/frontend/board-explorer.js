@@ -1534,18 +1534,18 @@ function updateComparison() {
     // Update stats
     document.getElementById('compare-stats').style.display = 'block';
     document.getElementById('compare-stats').innerHTML = `
-        <div class="stats">
-            <div class="stat-card">
-                <div class="stat-value">${commonNames.length}</div>
-                <div class="stat-label">Common Modules</div>
+        <div class="stats-compact">
+            <div class="stat-card-compact stat-card-full">
+                <span class="stat-label-inline">Common Modules:</span>
+                <span class="stat-value-inline">${commonNames.length}</span>
             </div>
-            <div class="stat-card">
-                <div class="stat-value">${uniqueNames1.length}</div>
-                <div class="stat-label">Unique to ${formatBoardName(board1.port, board1.board)}</div>
+            <div class="stat-card-compact stat-card-half">
+                <span class="stat-label-inline">${formatBoardName(board1.port, board1.board)}:</span>
+                <span class="stat-value-inline">${uniqueNames1.length}</span>
             </div>
-            <div class="stat-card">
-                <div class="stat-value">${uniqueNames2.length}</div>
-                <div class="stat-label">Unique to ${formatBoardName(board2.port, board2.board)}</div>
+            <div class="stat-card-compact stat-card-half">
+                <span class="stat-label-inline">${formatBoardName(board2.port, board2.board)}:</span>
+                <span class="stat-value-inline">${uniqueNames2.length}</span>
             </div>
         </div>
     `;
