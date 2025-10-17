@@ -434,16 +434,26 @@
         /* Loading State */
         .loading {
             text-align: center;
-            padding: 40px;
+            padding: 50px 40px;
             color: #666;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .loading p {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
         }
         
         .spinner {
-            border: 4px solid #f3f3f3;
+            border: 4px solid #e9ecef;
             border-top: 4px solid #667eea;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
             margin: 20px auto;
         }
@@ -452,6 +462,26 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* Progress indicator */
+        .progress-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
     </style>
 </head>
 <body>
@@ -459,9 +489,9 @@
         <nav>
             <h1>🔬 MicroPython Board Explorer</h1>
             <div class="nav-tabs">
-                <button class="nav-tab active" onclick="switchPage('explorer')">Board Explorer</button>
-                <button class="nav-tab" onclick="switchPage('compare')">Compare Boards</button>
-                <button class="nav-tab" onclick="switchPage('search')">Search APIs</button>
+                <button class="nav-tab active" onclick="switchPage('explorer', this)">Board Explorer</button>
+                <button class="nav-tab" onclick="switchPage('compare', this)">Compare Boards</button>
+                <button class="nav-tab" onclick="switchPage('search', this)">Search APIs</button>
             </div>
         </nav>
         
@@ -535,8 +565,7 @@
         </div>
     </div>
     
-    <!-- SQL.js library for SQLite database queries in browser -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <!-- SQL.js library will be loaded dynamically by JavaScript -->
     <script src="board-explorer.js"></script>
 </body>
 </html>

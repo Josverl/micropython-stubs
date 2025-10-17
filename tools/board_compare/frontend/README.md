@@ -1,4 +1,4 @@
-# MicroPython Board Comparison Tool - Frontend
+# MicroPython Board Explorer & Comparison
 
 This directory contains the static web viewer for comparing MicroPython boards.
 
@@ -20,6 +20,14 @@ This directory contains the static web viewer for comparing MicroPython boards.
 - `pyscript.json` - PyScript configuration
 - **`board_comparison.db`** - SQLite database with complete API data (4.8MB) **[REQUIRED]**
 - `board_comparison.json` - Simplified board list (24KB, used only for fallback)
+
+## MCP Server Integration
+
+The SQLite database can also be accessed via MCP (Model Context Protocol) server for programmatic queries. A store configuration is available at:
+
+- `.vscode/stores/board-comparison.store.json` - MCP server configuration for the SQLite database
+
+This allows AI assistants and other tools to directly query the board comparison database for detailed API information.
 
 ## Local Testing
 
@@ -46,7 +54,7 @@ To deploy this tool to GitHub Pages:
 1. **Build the database** (required):
    ```bash
    cd ../..  # Go to tools/board_compare
-   python build_database.py --version v1_26_0 \
+   python build_database.py --version v1.26.0 \
      --db frontend/board_comparison.db \
      --json frontend/board_comparison.json
    ```
@@ -66,12 +74,23 @@ You can also manually update it by running:
 
 ```bash
 cd ../..  # Go to tools/board_compare
-python build_database.py --version v1_26_0 \
-  --db frontend/board_comparison.db \
-  --json frontend/board_comparison.json
+python build_database.py --version v1.26.0 --db frontend/board_comparison.db --json frontend/board_comparison.json
 ```
 
 **Note**: Both the database and JSON files should be committed to the repository for GitHub Pages deployment.
+
+## Database Schema
+
+The SQLite database contains the following main tables:
+
+- **`boards`** - MicroPython board information (version, port, board name)
+- **`modules`** - Module definitions with docstrings
+- **`classes`** - Class definitions within modules
+- **`methods`** - Functions and methods with signatures and metadata
+- **`parameters`** - Method parameters with type hints and defaults
+- **`board_modules`** - Relationship between boards and their available modules
+
+This rich schema enables detailed API comparisons and searches across the entire MicroPython ecosystem.
 
 ## Features by Frontend Version
 

@@ -107,4 +107,5 @@
     "python.formatting.provider": "none",
     "python.analysis.supportRestructuredText": true,
     "iis.configDir": "",
+    "esbonio.server.enabled": false,
 }

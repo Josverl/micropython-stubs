@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "boards": [
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "esp32",
       "board": "",
       "modules": [
@@ -53,8 +53,8 @@
         "uio",
         "ujson",
         "umachine",
-        "umqtt.robust",
-        "umqtt.simple",
+        "umqtt\\robust",
+        "umqtt\\simple",
         "uos",
         "uplatform",
         "upysh",
@@ -77,7 +77,7 @@
       "module_count": 67
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "esp32",
       "board": "esp32_generic",
       "modules": [
@@ -128,8 +128,8 @@
         "uio",
         "ujson",
         "umachine",
-        "umqtt.robust",
-        "umqtt.simple",
+        "umqtt\\robust",
+        "umqtt\\simple",
         "uos",
         "uplatform",
         "upysh",
@@ -152,7 +152,7 @@
       "module_count": 67
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "esp32",
       "board": "esp32_generic_c6",
       "modules": [
@@ -203,8 +203,8 @@
         "uio",
         "ujson",
         "umachine",
-        "umqtt.robust",
-        "umqtt.simple",
+        "umqtt\\robust",
+        "umqtt\\simple",
         "uos",
         "uplatform",
         "upysh",
@@ -227,7 +227,7 @@
       "module_count": 67
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "esp32",
       "board": "esp32_generic_s2",
       "modules": [
@@ -277,8 +277,8 @@
         "uio",
         "ujson",
         "umachine",
-        "umqtt.robust",
-        "umqtt.simple",
+        "umqtt\\robust",
+        "umqtt\\simple",
         "uos",
         "uplatform",
         "upysh",
@@ -301,7 +301,7 @@
       "module_count": 66
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "esp32",
       "board": "esp32_generic_s3",
       "modules": [
@@ -353,8 +353,8 @@
         "uio",
         "ujson",
         "umachine",
-        "umqtt.robust",
-        "umqtt.simple",
+        "umqtt\\robust",
+        "umqtt\\simple",
         "uos",
         "uplatform",
         "upysh",
@@ -377,7 +377,7 @@
       "module_count": 68
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "esp8266",
       "board": "",
       "modules": [
@@ -427,7 +427,7 @@
         "uio",
         "ujson",
         "umachine",
-        "umqtt.robust",
+        "umqtt\\robust",
         "uos",
         "uplatform",
         "urequests",
@@ -444,7 +444,7 @@
       "module_count": 59
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "esp8266",
       "board": "esp8266_generic",
       "modules": [
@@ -494,7 +494,7 @@
         "uio",
         "ujson",
         "umachine",
-        "umqtt.robust",
+        "umqtt\\robust",
         "uos",
         "uplatform",
         "urequests",
@@ -511,7 +511,7 @@
       "module_count": 59
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "rp2",
       "board": "",
       "modules": [
@@ -534,7 +534,7 @@
         "onewire",
         "platform",
         "random",
-        "rp2.asm_pio",
+        "rp2\\asm_pio",
         "select",
         "time",
         "uarray",
@@ -566,7 +566,7 @@
       "module_count": 47
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "rp2",
       "board": "pimoroni_picolipo",
       "modules": [
@@ -589,7 +589,7 @@
         "onewire",
         "platform",
         "random",
-        "rp2.asm_pio",
+        "rp2\\asm_pio",
         "select",
         "time",
         "uarray",
@@ -621,7 +621,7 @@
       "module_count": 47
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "rp2",
       "board": "rpi_pico",
       "modules": [
@@ -644,7 +644,7 @@
         "onewire",
         "platform",
         "random",
-        "rp2.asm_pio",
+        "rp2\\asm_pio",
         "select",
         "time",
         "uarray",
@@ -676,7 +676,7 @@
       "module_count": 47
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "rp2",
       "board": "rpi_pico2",
       "modules": [
@@ -699,7 +699,7 @@
         "onewire",
         "platform",
         "random",
-        "rp2.asm_pio",
+        "rp2\\asm_pio",
         "select",
         "time",
         "uarray",
@@ -731,19 +731,19 @@
       "module_count": 47
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "rp2",
       "board": "rpi_pico2_w",
       "modules": [
         "__builtins__",
-        "aioble.central",
-        "aioble.client",
-        "aioble.core",
-        "aioble.device",
-        "aioble.l2cap",
-        "aioble.peripheral",
-        "aioble.security",
-        "aioble.server",
+        "aioble\\central",
+        "aioble\\client",
+        "aioble\\core",
+        "aioble\\device",
+        "aioble\\l2cap",
+        "aioble\\peripheral",
+        "aioble\\security",
+        "aioble\\server",
         "binascii",
         "bluetooth",
         "cmath",
@@ -766,7 +766,7 @@
         "onewire",
         "platform",
         "random",
-        "rp2.asm_pio",
+        "rp2\\asm_pio",
         "select",
         "socket",
         "time",
@@ -805,19 +805,19 @@
       "module_count": 66
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "rp2",
       "board": "rpi_pico_w",
       "modules": [
         "__builtins__",
-        "aioble.central",
-        "aioble.client",
-        "aioble.core",
-        "aioble.device",
-        "aioble.l2cap",
-        "aioble.peripheral",
-        "aioble.security",
-        "aioble.server",
+        "aioble\\central",
+        "aioble\\client",
+        "aioble\\core",
+        "aioble\\device",
+        "aioble\\l2cap",
+        "aioble\\peripheral",
+        "aioble\\security",
+        "aioble\\server",
         "binascii",
         "bluetooth",
         "cmath",
@@ -840,7 +840,7 @@
         "onewire",
         "platform",
         "random",
-        "rp2.asm_pio",
+        "rp2\\asm_pio",
         "select",
         "socket",
         "time",
@@ -879,7 +879,7 @@
       "module_count": 66
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "samd",
       "board": "",
       "modules": [
@@ -930,7 +930,7 @@
       "module_count": 43
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "samd",
       "board": "seeed_wio_terminal",
       "modules": [
@@ -981,7 +981,7 @@
       "module_count": 43
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "stm32",
       "board": "",
       "modules": [
@@ -1036,7 +1036,7 @@
       "module_count": 47
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "stm32",
       "board": "pybv11",
       "modules": [
@@ -1091,7 +1091,7 @@
       "module_count": 47
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "unix",
       "board": "",
       "modules": [
@@ -1149,29 +1149,29 @@
       "module_count": 50
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "webassembly",
       "board": "",
       "modules": [
-        "GENERIC.base64",
-        "GENERIC.binascii",
-        "GENERIC.copy",
-        "GENERIC.datetime",
-        "GENERIC.fnmatch",
-        "GENERIC.functools",
-        "GENERIC.gzip",
-        "GENERIC.hmac",
-        "GENERIC.inspect",
-        "GENERIC.itertools",
-        "GENERIC.locale",
-        "GENERIC.logging",
-        "GENERIC.operator",
-        "GENERIC.pathlib",
-        "GENERIC.stat",
-        "GENERIC.string",
-        "GENERIC.tarfile.write",
-        "GENERIC.uu",
-        "GENERIC.zlib",
+        "GENERIC\\base64",
+        "GENERIC\\binascii",
+        "GENERIC\\copy",
+        "GENERIC\\datetime",
+        "GENERIC\\fnmatch",
+        "GENERIC\\functools",
+        "GENERIC\\gzip",
+        "GENERIC\\hmac",
+        "GENERIC\\inspect",
+        "GENERIC\\itertools",
+        "GENERIC\\locale",
+        "GENERIC\\logging",
+        "GENERIC\\operator",
+        "GENERIC\\pathlib",
+        "GENERIC\\stat",
+        "GENERIC\\string",
+        "GENERIC\\tarfile\\write",
+        "GENERIC\\uu",
+        "GENERIC\\zlib",
         "__builtins__",
         "base64",
         "binascii",
@@ -1200,12 +1200,12 @@
         "operator",
         "pathlib",
         "platform",
-        "pyscript.fs",
+        "pyscript\\fs",
         "random",
         "select",
         "stat",
         "string",
-        "tarfile.write",
+        "tarfile\\write",
         "time",
         "uarray",
         "uasyncio",
@@ -1237,7 +1237,7 @@
       "module_count": 80
     },
     {
-      "version": "v1_26_0",
+      "version": "v1.26.0",
       "port": "windows",
       "board": "",
       "modules": [

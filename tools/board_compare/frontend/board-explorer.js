@@ -35,11 +35,11 @@ async function restoreFromURL() {
     // Switch to requested view
     const view = params.get('view');
     if (view === 'compare') {
-        showView('compare');
+        switchPage('compare');
     } else if (view === 'search') {
-        showView('search');
+        switchPage('search');
     } else if (view === 'explorer') {
-        showView('explorer');
+        switchPage('explorer');
     }
     
     // Restore comparison state
@@ -63,7 +63,7 @@ async function restoreFromURL() {
             
             // Apply detailed mode if specified
             if (params.get('detailed') === 'true') {
-                document.getElementById('show-details').checked = true;
+                document.getElementById('detailed-compare').checked = true;
             }
             
             // Trigger comparison
@@ -72,7 +72,7 @@ async function restoreFromURL() {
     }
     
     // Restore explorer state
-    if (params.has('board') && view === 'explorer') {
+    if (params.has('board') && (view === 'explorer' || !view)) {
         const boardKey = params.get('board');
         const boardIdx = boardData.boards.findIndex(b => `${b.port}-${b.board}` === boardKey);
         
@@ -96,7 +96,7 @@ async function restoreFromURL() {
     }
     
     // Restore search state
-    if (params.has('search') && view === 'search') {
+    if (params.has('search') && (view === 'search' || !view)) {
         const query = params.get('search');
         document.getElementById('search-input').value = query;
         await searchAPIs();
@@ -144,10 +144,19 @@ function updateShareButton(url) {
 // Load SQLite database using SQL.js
 async function loadDatabase() {
     try {
-        // Load SQL.js library from cdnjs (more reliable than sql.js.org)
-        const SQL = await initSqlJs({
-            locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
-        });
+        console.log('Loading SQL.js library...');
+        
+        // Try to use initSqlJs if already loaded, otherwise load it
+        let SQL;
+        if (typeof window.initSqlJs === 'function') {
+            SQL = await window.initSqlJs({
+                locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
+            });
+        } else {
+            throw new Error('SQL.js not loaded');
+        }
+        
+        console.log('SQL.js loaded, fetching database...');
         
         // Load the database file
         const response = await fetch('board_comparison.db');
@@ -158,9 +167,15 @@ async function loadDatabase() {
         db = new SQL.Database(new Uint8Array(buffer));
         
         console.log('Database loaded successfully');
+        
+        // Test database connection
+        const testStmt = db.prepare("SELECT name FROM sqlite_master WHERE type='table' LIMIT 1");
+        testStmt.step();
+        testStmt.free();
+        
     } catch (error) {
         console.error('Could not load database:', error);
-        throw new Error('Database is required for this tool. Please ensure board_comparison.db is available.');
+        throw new Error('Database is required for this tool. Please ensure board_comparison.db is available and SQL.js can be loaded.');
     }
 }
 
@@ -207,7 +222,7 @@ function populateBoardSelects() {
         
         // Add board options
         boardData.boards.forEach((board, idx) => {
-            const name = `${board.port}-${board.board} (v${board.version})`;
+            const name = `${board.port}-${board.board} (${board.version})`;
             const option = document.createElement('option');
             option.value = idx;
             option.textContent = name;
@@ -217,12 +232,25 @@ function populateBoardSelects() {
 }
 
 // Page Navigation
-function switchPage(pageName) {
+function switchPage(pageName, eventTarget = null) {
     // Update nav tabs
     document.querySelectorAll('.nav-tab').forEach(tab => {
         tab.classList.remove('active');
     });
-    event.target.classList.add('active');
+    
+    // Find and activate the correct tab
+    if (eventTarget) {
+        eventTarget.classList.add('active');
+    } else {
+        // Find the tab by matching the page name
+        const tabs = document.querySelectorAll('.nav-tab');
+        tabs.forEach(tab => {
+            const onclick = tab.getAttribute('onclick');
+            if (onclick && onclick.includes(`'${pageName}'`)) {
+                tab.classList.add('active');
+            }
+        });
+    }
     
     // Update pages
     document.querySelectorAll('.page').forEach(page => {
@@ -244,20 +272,78 @@ async function loadBoardDetails() {
     
     currentBoard = boardData.boards[parseInt(boardIdx)];
     
-    // Show loading
-    document.getElementById('explorer-content').innerHTML = '<div class="loading"><div class="spinner"></div><p>Loading board details...</p></div>';
+    // Show initial loading with progress
+    document.getElementById('explorer-content').innerHTML = `
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading <strong>${currentBoard.port}-${currentBoard.board}</strong> details...</p>
+            <div class="progress-step">Initializing...</div>
+        </div>
+    `;
     
-    // Get detailed module information from database
-    const modules = await getBoardModules(currentBoard);
-    
-    // Display module tree
-    displayModuleTree(modules);
-    
-    // Update URL for shareable links
-    updateURL({
-        view: 'explorer',
-        board: `${currentBoard.port}-${currentBoard.board}`
-    });
+    try {
+        // Small delay to show initial message
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+        // Update progress for fetching modules
+        document.getElementById('explorer-content').innerHTML = `
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Fetching modules for <strong>${currentBoard.port}-${currentBoard.board}</strong>...</p>
+                <div class="progress-step">Step 1 of 3</div>
+            </div>
+        `;
+        
+        // Get detailed module information from database
+        const modules = await getBoardModules(currentBoard);
+        
+        // Small delay to show progress
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        // Update progress for processing classes and methods
+        document.getElementById('explorer-content').innerHTML = `
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Processing classes and methods...</p>
+                <div class="progress-step">Step 2 of 3</div>
+            </div>
+        `;
+        
+        // Small delay to show processing step
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        // Update progress for building interface
+        document.getElementById('explorer-content').innerHTML = `
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Building module tree interface...</p>
+                <div class="progress-step">Step 3 of 3</div>
+            </div>
+        `;
+        
+        // Small delay to show final step
+        await new Promise(resolve => setTimeout(resolve, 150));
+        
+        // Display module tree
+        displayModuleTree(modules);
+        
+        // Update URL for shareable links
+        updateURL({
+            view: 'explorer',
+            board: `${currentBoard.port}-${currentBoard.board}`
+        });
+    } catch (error) {
+        console.error('Error loading board details:', error);
+        document.getElementById('explorer-content').innerHTML = `
+            <div class="detail-view">
+                <h3 style="color: #dc3545;">⚠️ Loading Error</h3>
+                <p style="color: #666; margin: 15px 0;">${error.message}</p>
+                <button onclick="loadBoardDetails()" style="margin-top: 15px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                    🔄 Try Again
+                </button>
+            </div>
+        `;
+    }
 }
 
 async function getBoardModules(board) {
@@ -268,12 +354,12 @@ async function getBoardModules(board) {
     try {
         // Query database for detailed module info
         const stmt = db.prepare(`
-            SELECT m.id, m.name, m.docstring 
-            FROM modules m
-            JOIN board_modules bm ON m.id = bm.module_id
-            JOIN boards b ON bm.board_id = b.id
+            SELECT um.id, um.name, um.docstring 
+            FROM unique_modules um
+            JOIN board_module_support bms ON um.id = bms.module_id
+            JOIN boards b ON bms.board_id = b.id
             WHERE b.version = ? AND b.port = ? AND b.board = ?
-            ORDER BY m.name
+            ORDER BY um.name
         `);
         stmt.bind([board.version, board.port, board.board]);
         
@@ -309,10 +395,10 @@ function getModuleClasses(moduleId) {
     
     try {
         const stmt = db.prepare(`
-            SELECT id, name, docstring
-            FROM classes
-            WHERE module_id = ?
-            ORDER BY name
+            SELECT uc.id, uc.name, uc.docstring
+            FROM unique_classes uc
+            WHERE uc.module_id = ?
+            ORDER BY uc.name
         `);
         stmt.bind([moduleId]);
         
@@ -340,10 +426,10 @@ function getModuleFunctions(moduleId) {
     
     try {
         const stmt = db.prepare(`
-            SELECT name, return_type, is_async
-            FROM methods
-            WHERE module_id = ? AND class_id IS NULL
-            ORDER BY name
+            SELECT um.name, um.return_type, um.is_async
+            FROM unique_methods um
+            WHERE um.module_id = ? AND um.class_id IS NULL
+            ORDER BY um.name
         `);
         stmt.bind([moduleId]);
         
@@ -366,10 +452,10 @@ function getClassMethods(moduleId, classId) {
     
     try {
         const stmt = db.prepare(`
-            SELECT name, return_type, is_async, is_property, is_classmethod, is_staticmethod
-            FROM methods
-            WHERE module_id = ? AND class_id = ?
-            ORDER BY name
+            SELECT um.name, um.return_type, um.is_async, um.is_property, um.is_classmethod, um.is_staticmethod
+            FROM unique_methods um
+            WHERE um.module_id = ? AND um.class_id = ?
+            ORDER BY um.name
         `);
         stmt.bind([moduleId, classId]);
         
@@ -392,7 +478,7 @@ function getModuleConstants(moduleId) {
     
     try {
         const stmt = db.prepare(`
-            SELECT name FROM module_constants WHERE module_id = ? ORDER BY name
+            SELECT umc.name FROM unique_module_constants umc WHERE umc.module_id = ? ORDER BY umc.name
         `);
         stmt.bind([moduleId]);
         
@@ -412,7 +498,7 @@ function getModuleConstants(moduleId) {
 function displayModuleTree(modules) {
     let html = `
         <div class="detail-view">
-            <div class="detail-header">${currentBoard.port}-${currentBoard.board} (v${currentBoard.version})</div>
+            <div class="detail-header">${currentBoard.port}-${currentBoard.board} (${currentBoard.version})</div>
             <div class="detail-section">
                 <h3>📦 Modules (${modules.length})</h3>
                 <div class="module-tree">
@@ -561,37 +647,110 @@ async function compareBoards() {
         return;
     }
     
+    if (!db) {
+        alert('Database not available for comparison');
+        return;
+    }
+    
+    console.log('Starting board comparison...');
+    
     const board1 = boardData.boards[parseInt(board1Idx)];
     const board2 = boardData.boards[parseInt(board2Idx)];
     
-    // Show loading
-    document.getElementById('compare-results').innerHTML = '<div class="loading"><div class="spinner"></div><p>Comparing boards...</p></div>';
+    console.log('Comparing:', board1, 'vs', board2);
     
-    // Get detailed module information from database
-    const modules1 = await getBoardModules(board1);
-    const modules2 = await getBoardModules(board2);
+    // Show initial loading with delay
+    document.getElementById('compare-results').innerHTML = `
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Preparing comparison...</p>
+            <div class="progress-step">Initializing...</div>
+        </div>
+    `;
     
-    comparisonData = { board1, board2, modules1, modules2 };
-    updateComparison();
-    
-    // Update URL for shareable links
-    const hideCommon = document.getElementById('hide-common').checked;
-    const showDetails = document.getElementById('show-details').checked;
-    updateURL({
-        view: 'compare',
-        board1: `${board1.port}-${board1.board}`,
-        board2: `${board2.port}-${board2.board}`,
-        diff: hideCommon ? 'true' : 'false',
-        detailed: showDetails ? 'true' : 'false'
-    });
+    try {
+        // Small delay to show initial message
+        await new Promise(resolve => setTimeout(resolve, 500));
+        
+        // Update progress for board 1
+        document.getElementById('compare-results').innerHTML = `
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Fetching modules for <strong>${board1.port}-${board1.board}</strong>...</p>
+                <div class="progress-step">Step 1 of 3</div>
+            </div>
+        `;
+        
+        console.log('Fetching modules for board 1...');
+        const modules1 = await getBoardModules(board1);
+        
+        // Small delay to show progress
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+        // Update progress for board 2
+        document.getElementById('compare-results').innerHTML = `
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Fetching modules for <strong>${board2.port}-${board2.board}</strong>...</p>
+                <div class="progress-step">Step 2 of 3</div>
+            </div>
+        `;
+        
+        console.log('Fetching modules for board 2...');
+        const modules2 = await getBoardModules(board2);
+        
+        // Small delay to show progress
+        await new Promise(resolve => setTimeout(resolve, 300));
+        
+        // Update progress for comparison
+        document.getElementById('compare-results').innerHTML = `
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Analyzing differences...</p>
+                <div class="progress-step">Step 3 of 3</div>
+            </div>
+        `;
+        
+        // Small delay to show final step
+        await new Promise(resolve => setTimeout(resolve, 200));
+        
+        console.log(`Board 1 has ${modules1.length} modules, Board 2 has ${modules2.length} modules`);
+        
+        comparisonData = { board1, board2, modules1, modules2 };
+        updateComparison();
+        
+        // Update URL for shareable links
+        const hideCommon = document.getElementById('hide-common').checked;
+        const showDetails = document.getElementById('detailed-compare').checked;
+        updateURL({
+            view: 'compare',
+            board1: `${board1.port}-${board1.board}`,
+            board2: `${board2.port}-${board2.board}`,
+            diff: hideCommon ? 'true' : 'false',
+            detailed: showDetails ? 'true' : 'false'
+        });
+    } catch (error) {
+        console.error('Error during comparison:', error);
+        document.getElementById('compare-results').innerHTML = `
+            <div class="detail-view">
+                <h3 style="color: #dc3545;">⚠️ Comparison Error</h3>
+                <p style="color: #666; margin: 15px 0;">${error.message}</p>
+                <button onclick="compareBoards()" style="margin-top: 15px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                    🔄 Try Again
+                </button>
+            </div>
+        `;
+    }
 }
 
 function updateComparison() {
     if (!comparisonData) return;
     
+    console.log('Updating comparison display...');
+    
     const { board1, board2, modules1, modules2 } = comparisonData;
     const hideCommon = document.getElementById('hide-common').checked;
-    const showDetails = document.getElementById('show-details').checked;
+    const showDetails = document.getElementById('detailed-compare').checked; // Fixed ID
     
     // Get module names for comparison
     const moduleNames1 = new Set(modules1.map(m => m.name));
@@ -600,6 +759,8 @@ function updateComparison() {
     const commonNames = [...moduleNames1].filter(m => moduleNames2.has(m));
     const uniqueNames1 = [...moduleNames1].filter(m => !moduleNames2.has(m));
     const uniqueNames2 = [...moduleNames2].filter(m => !moduleNames1.has(m));
+    
+    console.log(`Common: ${commonNames.length}, Unique to 1: ${uniqueNames1.length}, Unique to 2: ${uniqueNames2.length}`);
     
     // Update stats
     document.getElementById('compare-stats').style.display = 'block';
@@ -624,7 +785,7 @@ function updateComparison() {
     let html = `
         <div class="comparison-grid">
             <div class="board-section">
-                <div class="board-header">${board1.port}-${board1.board} (v${board1.version})</div>
+                <div class="board-header">${board1.port}-${board1.board} (${board1.version})</div>
                 <div class="module-list">
                     <h3>Modules (${moduleNames1.size})</h3>
     `;
@@ -679,7 +840,7 @@ function updateComparison() {
                 </div>
             </div>
             <div class="board-section">
-                <div class="board-header">${board2.port}-${board2.board} (v${board2.version})</div>
+                <div class="board-header">${board2.port}-${board2.board} (${board2.version})</div>
                 <div class="module-list">
                     <h3>Modules (${moduleNames2.size})</h3>
     `;
@@ -755,6 +916,7 @@ function updateComparison() {
     }
     
     document.getElementById('compare-results').innerHTML = html;
+    console.log('Comparison display updated');
 }
 
 // ===== SEARCH APIs =====
@@ -778,9 +940,19 @@ async function searchAPIs() {
         return;
     }
     
-    document.getElementById('search-results').innerHTML = '<div class="loading"><div class="spinner"></div><p>Searching...</p></div>';
+    // Enhanced loading indicator for search
+    document.getElementById('search-results').innerHTML = `
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Searching for "<strong>${query}</strong>"...</p>
+            <div class="progress-step">Searching across all boards...</div>
+        </div>
+    `;
     
     const results = [];
+    
+    // Small delay to show search message
+    await new Promise(resolve => setTimeout(resolve, 200));
     
     // Search through all boards using database
     for (const board of boardData.boards) {
@@ -789,11 +961,11 @@ async function searchAPIs() {
         try {
             // Search modules
             const moduleStmt = db.prepare(`
-                SELECT DISTINCT m.name as module_name
-                FROM modules m
-                JOIN board_modules bm ON m.id = bm.module_id
-                JOIN boards b ON bm.board_id = b.id
-                WHERE b.port = ? AND b.board = ? AND LOWER(m.name) LIKE ?
+                SELECT DISTINCT um.name as module_name
+                FROM unique_modules um
+                JOIN board_module_support bms ON um.id = bms.module_id
+                JOIN boards b ON bms.board_id = b.id
+                WHERE b.port = ? AND b.board = ? AND LOWER(um.name) LIKE ?
             `);
             moduleStmt.bind([board.port, board.board, `%${query}%`]);
             
@@ -814,12 +986,12 @@ async function searchAPIs() {
             
             // Search classes
             const classStmt = db.prepare(`
-                SELECT DISTINCT m.name as module_name, c.name as class_name
-                FROM classes c
-                JOIN modules m ON c.module_id = m.id
-                JOIN board_modules bm ON m.id = bm.module_id
-                JOIN boards b ON bm.board_id = b.id
-                WHERE b.port = ? AND b.board = ? AND LOWER(c.name) LIKE ?
+                SELECT DISTINCT um.name as module_name, uc.name as class_name
+                FROM unique_classes uc
+                JOIN unique_modules um ON uc.module_id = um.id
+                JOIN board_module_support bms ON um.id = bms.module_id
+                JOIN boards b ON bms.board_id = b.id
+                WHERE b.port = ? AND b.board = ? AND LOWER(uc.name) LIKE ?
             `);
             classStmt.bind([board.port, board.board, `%${query}%`]);
             
@@ -840,13 +1012,13 @@ async function searchAPIs() {
             
             // Search methods
             const methodStmt = db.prepare(`
-                SELECT DISTINCT m.name as module_name, c.name as class_name, mt.name as method_name
-                FROM methods mt
-                JOIN modules m ON mt.module_id = m.id
-                LEFT JOIN classes c ON mt.class_id = c.id
-                JOIN board_modules bm ON m.id = bm.module_id
-                JOIN boards b ON bm.board_id = b.id
-                WHERE b.port = ? AND b.board = ? AND LOWER(mt.name) LIKE ?
+                SELECT DISTINCT um.name as module_name, uc.name as class_name, umt.name as method_name
+                FROM unique_methods umt
+                JOIN unique_modules um ON umt.module_id = um.id
+                LEFT JOIN unique_classes uc ON umt.class_id = uc.id
+                JOIN board_method_support bms ON umt.id = bms.method_id
+                JOIN boards b ON bms.board_id = b.id
+                WHERE b.port = ? AND b.board = ? AND LOWER(umt.name) LIKE ?
             `);
             methodStmt.bind([board.port, board.board, `%${query}%`]);
             
@@ -959,13 +1131,33 @@ function showError(message) {
     `;
 }
 
-// Load SQL.js library
+// Load SQL.js library with better error handling
 function loadSqlJs() {
     return new Promise((resolve, reject) => {
+        // Check if already loaded
+        if (typeof window.initSqlJs === 'function') {
+            resolve(window.initSqlJs);
+            return;
+        }
+        
         const script = document.createElement('script');
-        script.src = 'https://sql.js.org/dist/sql-wasm.js';
-        script.onload = () => resolve(window.initSqlJs);
-        script.onerror = reject;
+        script.onload = () => {
+            // Wait a bit for the library to initialize
+            setTimeout(() => {
+                if (typeof window.initSqlJs === 'function') {
+                    resolve(window.initSqlJs);
+                } else {
+                    reject(new Error('SQL.js library did not initialize properly'));
+                }
+            }, 100);
+        };
+        script.onerror = (error) => {
+            console.error('Failed to load SQL.js from CDN:', error);
+            reject(new Error('Failed to load SQL.js library'));
+        };
+        
+        // Try primary CDN first
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js';
         document.head.appendChild(script);
     });
 }
@@ -973,19 +1165,31 @@ function loadSqlJs() {
 // Initialize on page load
 (async function() {
     try {
+        console.log('Starting initialization...');
+        
         // Load SQL.js first
         window.initSqlJs = await loadSqlJs();
+        console.log('SQL.js loaded successfully');
+        
         // Then initialize the app
         await init();
     } catch (error) {
         console.error('Initialization error:', error);
-        // Continue without database
+        
+        // Try fallback without database
         try {
+            console.log('Attempting fallback to JSON data...');
             const response = await fetch('board_comparison.json');
-            boardData = await response.json();
-            populateBoardSelects();
+            if (response.ok) {
+                boardData = await response.json();
+                populateBoardSelects();
+                console.log('Loaded fallback JSON data');
+            } else {
+                throw new Error('No fallback data available');
+            }
         } catch (e) {
-            showError('Failed to load board data: ' + e.message);
+            console.error('Fallback failed:', e);
+            showError('Failed to load board data. Please ensure the database file is available and accessible.');
         }
     }
 })();
