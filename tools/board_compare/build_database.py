@@ -56,6 +56,55 @@ class DatabaseBuilder:
             param_signature
         )
 
+    def _is_typing_related(self, name: str, type_hint: str = None, value: str = None) -> bool:
+        """
+        Determine if a constant/attribute is typing-related and should be hidden.
+        
+        Args:
+            name: The name of the constant/attribute
+            type_hint: The type hint (if any)
+            value: The value (if any)
+            
+        Returns:
+            True if this is a typing-related constant that should be hidden
+        """
+        # Check for typing-specific type hints
+        if type_hint:
+            typing_indicators = [
+                'TypeAlias', 'TypeVar', 'ParamSpec', 'Generic', 'Protocol',
+                'ClassVar', 'Type[', 'Union[', 'Optional[', 'Literal[',
+                'Callable[', 'Any', 'NoReturn', 'Never'
+            ]
+            if any(indicator in type_hint for indicator in typing_indicators):
+                return True
+        
+        # Check for typing-specific value patterns
+        if value:
+            typing_value_patterns = [
+                'TypeVar(', 'ParamSpec(', 'TypeAlias', 'Generic[',
+                'Protocol[', 'Union[', 'Optional[', 'Literal[',
+                'Callable[', 'Type[', 'ClassVar[', 'Final['
+            ]
+            if any(pattern in value for pattern in typing_value_patterns):
+                return True
+        
+        # Check for common typing variable naming patterns
+        # Variables starting with _ and containing type-related keywords
+        if name.startswith('_') and any(keyword in name.lower() for keyword in [
+            'type', 'var', 'param', 'spec', 'alias', 'generic', 'protocol'
+        ]):
+            return True
+            
+        # Common typing variable prefixes/suffixes
+        typing_name_patterns = [
+            '_T', '_F', '_P', '_R', '_Ret', '_Param', '_Args', '_Kwargs',
+            'Const_T', '_TypeVar', '_ParamSpec', '_TypeAlias'
+        ]
+        if name in typing_name_patterns or any(name.endswith(pattern) for pattern in ['_T', '_F', '_P', '_R']):
+            return True
+            
+        return False
+
     def create_schema(self):
         """Create the normalized database schema."""
         cursor = self.conn.cursor()
@@ -149,6 +198,7 @@ class DatabaseBuilder:
                 name TEXT NOT NULL,
                 type_hint TEXT,
                 value TEXT,
+                is_hidden INTEGER DEFAULT 0,
                 signature_hash TEXT NOT NULL UNIQUE,
                 FOREIGN KEY (class_id) REFERENCES unique_classes(id)
             )
@@ -229,6 +279,7 @@ class DatabaseBuilder:
                 name TEXT NOT NULL,
                 value TEXT,
                 type_hint TEXT,
+                is_hidden INTEGER DEFAULT 0,
                 signature_hash TEXT NOT NULL UNIQUE,
                 FOREIGN KEY (module_id) REFERENCES unique_modules(id)
             )
@@ -387,20 +438,33 @@ class DatabaseBuilder:
         for func_data in module_data.get("functions", []):
             self._add_method(board_id, module_id, None, func_data)
 
-    def _add_module_constant(self, board_id: int, module_id: int, const_name: str):
+    def _add_module_constant(self, board_id: int, module_id: int, constant: Dict):
         """Add a module constant to the normalized database."""
         cursor = self.conn.cursor()
 
+        # Extract constant information
+        if isinstance(constant, dict):
+            const_name = constant.get("name")
+            const_value = constant.get("value")
+            const_type_hint = constant.get("type_hint")
+            const_is_hidden = constant.get("is_hidden", False)
+        else:
+            # Backward compatibility for string constants
+            const_name = str(constant)
+            const_value = None
+            const_type_hint = None
+            const_is_hidden = self._is_typing_related(const_name, None, None)
+
         # Generate constant signature hash
-        const_hash = self._generate_signature_hash(module_id, const_name)
+        const_hash = self._generate_signature_hash(module_id, const_name, const_type_hint, const_value)
 
         # Insert or get unique constant
         cursor.execute(
             """
-            INSERT OR IGNORE INTO unique_module_constants (module_id, name, signature_hash)
-            VALUES (?, ?, ?)
+            INSERT OR IGNORE INTO unique_module_constants (module_id, name, value, type_hint, is_hidden, signature_hash)
+            VALUES (?, ?, ?, ?, ?, ?)
         """,
-            (module_id, const_name, const_hash),
+            (module_id, const_name, const_value, const_type_hint, int(const_is_hidden), const_hash),
         )
 
         cursor.execute("SELECT id FROM unique_module_constants WHERE signature_hash = ?", (const_hash,))
@@ -475,20 +539,33 @@ class DatabaseBuilder:
             (class_id, base_name, base_hash),
         )
 
-    def _add_class_attribute(self, board_id: int, class_id: int, attr_name: str):
+    def _add_class_attribute(self, board_id: int, class_id: int, attribute: Dict):
         """Add a class attribute to the normalized database."""
         cursor = self.conn.cursor()
 
+        # Extract attribute information
+        if isinstance(attribute, dict):
+            attr_name = attribute.get("name")
+            attr_value = attribute.get("value")
+            attr_type_hint = attribute.get("type_hint")
+            attr_is_hidden = attribute.get("is_hidden", False)
+        else:
+            # Backward compatibility for string attributes
+            attr_name = str(attribute)
+            attr_value = None
+            attr_type_hint = None
+            attr_is_hidden = self._is_typing_related(attr_name, None, None)
+
         # Generate attribute signature hash
-        attr_hash = self._generate_signature_hash(class_id, attr_name)
+        attr_hash = self._generate_signature_hash(class_id, attr_name, attr_type_hint, attr_value)
 
         # Insert or get unique attribute
         cursor.execute(
             """
-            INSERT OR IGNORE INTO unique_class_attributes (class_id, name, signature_hash)
-            VALUES (?, ?, ?)
+            INSERT OR IGNORE INTO unique_class_attributes (class_id, name, value, type_hint, is_hidden, signature_hash)
+            VALUES (?, ?, ?, ?, ?, ?)
         """,
-            (class_id, attr_name, attr_hash),
+            (class_id, attr_name, attr_value, attr_type_hint, int(attr_is_hidden), attr_hash),
         )
 
         cursor.execute("SELECT id FROM unique_class_attributes WHERE signature_hash = ?", (attr_hash,))

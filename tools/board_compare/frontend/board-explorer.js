@@ -544,7 +544,8 @@ function getModuleClasses(moduleId) {
                 id: row.id,
                 name: row.name,
                 docstring: row.docstring,
-                methods: getClassMethods(moduleId, row.id)
+                methods: getClassMethods(moduleId, row.id),
+                attributes: getClassAttributes(row.id)
             });
         }
         stmt.free();
@@ -643,19 +644,61 @@ function getModuleConstants(moduleId) {
     
     try {
         const stmt = db.prepare(`
-            SELECT umc.name FROM unique_module_constants umc WHERE umc.module_id = ? ORDER BY umc.name
+            SELECT umc.id, umc.name, umc.value, umc.type_hint, umc.is_hidden
+            FROM unique_module_constants umc 
+            WHERE umc.module_id = ? AND (umc.is_hidden = 0 OR umc.is_hidden IS NULL)
+            ORDER BY umc.name
         `);
         stmt.bind([moduleId]);
         
         const constants = [];
         while (stmt.step()) {
-            constants.push(stmt.getAsObject().name);
+            const row = stmt.getAsObject();
+            constants.push({
+                id: row.id,
+                name: row.name,
+                value: row.value,
+                type_hint: row.type_hint,
+                is_hidden: row.is_hidden
+            });
         }
         stmt.free();
         
         return constants;
     } catch (error) {
         console.error('Error querying constants:', error);
+        return [];
+    }
+}
+
+function getClassAttributes(classId) {
+    if (!db) return [];
+    
+    try {
+        const stmt = db.prepare(`
+            SELECT uca.id, uca.name, uca.value, uca.type_hint, uca.is_hidden
+            FROM unique_class_attributes uca 
+            WHERE uca.class_id = ? AND (uca.is_hidden = 0 OR uca.is_hidden IS NULL)
+            ORDER BY uca.name
+        `);
+        stmt.bind([classId]);
+        
+        const attributes = [];
+        while (stmt.step()) {
+            const row = stmt.getAsObject();
+            attributes.push({
+                id: row.id,
+                name: row.name,
+                value: row.value,
+                type_hint: row.type_hint,
+                is_hidden: row.is_hidden
+            });
+        }
+        stmt.free();
+        
+        return attributes;
+    } catch (error) {
+        console.error('Error querying class attributes:', error);
         return [];
     }
 }
@@ -670,14 +713,14 @@ function displayModuleTree(modules) {
     `;
     
     modules.forEach(module => {
-        const hasChildren = module.classes.length > 0 || module.functions.length > 0;
+        const hasChildren = module.classes.length > 0 || module.functions.length > 0 || module.constants.length > 0;
         html += `
             <div class="tree-item">
                 <div class="tree-node" onclick="toggleModule('module-${module.name}', event)" data-module="${module.name}">
                     <span class="tree-icon">${hasChildren ? Icons.create('folder') : Icons.create('module')}</span>
                     <strong style="color: #2c3e50; font-size: 1.1em;">${module.name}</strong>
                     <span style="color: #6c757d; font-size: 0.9em; margin-left: auto; background: #e9ecef; padding: 4px 8px; border-radius: 12px;">
-                        ${module.classes.length} classes, ${module.functions.length} functions
+                        ${module.classes.length} classes, ${module.functions.length} functions, ${module.constants.length} constants
                     </span>
                 </div>
                 <div id="module-${module.name}" class="tree-children hidden">
@@ -686,7 +729,7 @@ function displayModuleTree(modules) {
         // Add classes
         if (module.classes.length > 0) {
             module.classes.forEach(cls => {
-                const hasMethodsToShow = cls.methods.length > 0;
+                const hasMethodsToShow = cls.methods.length > 0 || cls.attributes.length > 0;
                 const classId = `class-${module.name}-${cls.name}`;
                 html += `
                     <div class="tree-item">
@@ -694,7 +737,7 @@ function displayModuleTree(modules) {
                             <span class="tree-icon">${hasMethodsToShow ? Icons.create('folder') : Icons.create('class')}</span>
                             <span style="color: #495057; font-weight: 600;">class ${cls.name}</span>
                             <span style="color: #6c757d; font-size: 0.85em; margin-left: auto; background: #f8f9fa; padding: 2px 6px; border-radius: 8px;">
-                                ${cls.methods.length} methods
+                                ${cls.methods.length} methods, ${cls.attributes.length} attributes
                             </span>
                         </div>
                         ${hasMethodsToShow ? `
@@ -722,6 +765,23 @@ function displayModuleTree(modules) {
                                     </div>
                                 `;
                             }).join('')}
+                            ${cls.attributes.map(attr => {
+                                const typeHint = attr.type_hint ? `: ${attr.type_hint}` : '';
+                                const value = attr.value ? ` = ${attr.value}` : '';
+                                
+                                return `
+                                    <div class="tree-item">
+                                        <div class="tree-node">
+                                            <span class="tree-icon">${Icons.create('variable')}</span>
+                                            <span style="color: #495057;">
+                                                <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
+                                                    ${attr.name}${typeHint}${value}
+                                                </code>
+                                            </span>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
                         </div>
                         ` : ''}
                     </div>
@@ -741,6 +801,27 @@ function displayModuleTree(modules) {
                             <span style="color: #495057;">
                                 <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
                                     ${asyncMarker}${signature}
+                                </code>
+                            </span>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        
+        // Add module constants
+        if (module.constants.length > 0) {
+            module.constants.forEach(constant => {
+                const typeHint = constant.type_hint ? `: ${constant.type_hint}` : '';
+                const value = constant.value ? ` = ${constant.value}` : '';
+                
+                html += `
+                    <div class="tree-item">
+                        <div class="tree-node">
+                            <span class="tree-icon">${Icons.create('constant')}</span>
+                            <span style="color: #495057;">
+                                <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
+                                    ${constant.name}${typeHint}${value}
                                 </code>
                             </span>
                         </div>

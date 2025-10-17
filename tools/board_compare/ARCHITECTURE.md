@@ -107,11 +107,12 @@ board_modules (board_id, module_id)
 classes (id, module_id, name, docstring)
   UNIQUE(module_id, name)
 
--- Methods/functions
-methods (id, module_id, class_id, name, return_type, ...)
+-- Methods/functions with complete signature information
+methods (id, module_id, class_id, name, return_type, is_async, is_property, ...)
 
--- Parameters
-parameters (id, method_id, name, type_hint, position, ...)
+-- Detailed parameter information for complete method signatures
+parameters (id, method_id, name, type_hint, position, default_value, is_optional, is_variadic)
+  FOREIGN KEY (method_id) REFERENCES methods(id)
 ```
 
 **Multi-Version Design:**
@@ -204,15 +205,239 @@ Parameter → Method → Class → Module → Board
 - **Accessible**: Combined with text labels ([UNIQUE])
 - **Standard convention**: Similar to git diff output
 
-### 8. Expandable Tree View
+### 8. Expandable Tree View with Inline Class Expansion
 
-**Decision:** Hierarchical tree structure for board explorer
+**Decision:** Hierarchical tree structure with inline class method expansion
 
 **Rationale:**
-- **Natural hierarchy**: Modules → Classes → Methods
-- **Progressive disclosure**: Show details on-demand
-- **Performance**: Don't render everything upfront
-- **Familiar UX**: Similar to file explorers
+- **Natural hierarchy**: Modules → Classes → Methods with proper nesting
+- **Progressive disclosure**: Show details on-demand without separate cards
+- **Inline expansion**: Class methods expand within the tree structure itself
+- **Performance**: Don't render everything upfront, lazy-load method details
+- **Familiar UX**: Similar to file explorers and IDEs
+- **Enhanced method signatures**: Display complete parameter information with type hints
+
+**Implementation Features:**
+- **Click-to-expand**: Modules and classes expand inline when clicked
+- **Visual hierarchy**: Proper indentation and folder/file icons
+- **Method signatures**: Complete parameter lists with type hints and default values
+- **Decorator support**: Display `@property`, `@classmethod`, `@staticmethod`
+- **Async indication**: Clear marking of async methods
+- **Return types**: Show return type annotations when available
+
+### 9. Enhanced Method Signatures with Parameter Information
+
+Building on the expandable tree view foundation, the board explorer now provides comprehensive method signature information extracted from the database to give developers complete API documentation.
+
+### Technical Implementation
+
+**Database Integration for Parameters:**
+- Leverages `unique_parameters` table which joins methods and parameters data
+- Provides complete parameter information including types, defaults, and variadic markers
+- Enables professional API documentation display
+
+**Parameter Information Fields:**
+```javascript
+// Sample parameter data structure from database
+{
+  method_id: 123,
+  parameter_name: "msg",
+  type_hint: "bytes | str | None",
+  default_value: "None",
+  is_optional: 1,
+  is_variadic: 0,
+  position: 2
+}
+```
+
+**Signature Enhancement Process:**
+1. `getMethodParameters(methodId)` - Fetches parameter data from database
+2. `formatMethodSignature(method, parameters)` - Formats complete signature
+3. Professional code-styled display with `<code>` tags for syntax highlighting
+
+### User Experience Benefits
+
+**Complete API Information:**
+- Methods show full signatures instead of just names
+- Parameter types, defaults, and optional markers clearly visible
+- Async method identification with `async` keyword
+- Professional code formatting for readability
+
+**Example Signature Display:**
+```javascript
+// Before: method_name()
+// After: async asend(self, mac, msg = None, sync = None)
+```
+
+**Progressive Enhancement:**
+- Works seamlessly with inline tree expansion
+- Maintains tree navigation performance
+- Provides contextual API documentation on-demand
+
+### Technical Architecture
+
+**Database Queries:**
+- `getMethodParameters()` function executes optimized parameter queries
+- Caches method IDs during tree expansion for efficient parameter lookup
+- Handles edge cases for methods without parameters gracefully
+
+**Rendering Pipeline:**
+- Enhanced `getClassMethods()` and `getModuleFunctions()` include method IDs
+- `formatMethodSignature()` combines method metadata with parameter details
+- Consistent formatting across classes, modules, and standalone functions
+
+**Performance Considerations:**
+- Parameter queries only executed when tree nodes are expanded
+- Efficient database indexing on method_id for fast parameter lookup
+- Minimal DOM manipulation for smooth user experience
+
+## 11. URL State Management and Shareable Links
+
+**Decision:** Comprehensive URL query string management for navigation state persistence
+
+**Rationale:**
+- **User expectations**: URLs should reflect current application state
+- **Shareable content**: Users can share specific comparisons, searches, or board explorations
+- **Browser integration**: Back/forward buttons work properly with application state
+- **Bookmarkable states**: Users can bookmark specific tool configurations
+- **No refresh surprises**: Page refreshes preserve current context and selections
+
+**Implementation Features:**
+
+### URL Parameter Schema
+```javascript
+// Page navigation
+?view=explorer|compare|search
+
+// Board explorer state
+?view=explorer&board=esp32-
+
+// Comparison state
+?view=compare&board1=esp32-&board2=rp2-rpi_pico&diff=true&detailed=true
+
+// Search state  
+?view=search&search=neopixel
+
+// Module expansion (future)
+?view=explorer&board=esp32-&module=machine
+```
+
+### Automatic URL Updates
+- **Page switching**: URL updates immediately when switching between Explorer/Compare/Search
+- **Board selection**: Board dropdowns update URL in real-time as selections change
+- **Comparison options**: Checkbox changes (hide common, show details) update URL instantly
+- **Search queries**: Search terms added to URL when searches are performed
+
+### State Restoration on Load
+```javascript
+async function restoreFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    
+    // Switch to requested view
+    const view = params.get('view');
+    if (view) switchPage(view);
+    
+    // Restore board selections and trigger comparison
+    if (params.has('board1') && params.has('board2')) {
+        // Set selections and apply comparison options
+        document.getElementById('board1').value = findBoardIndex(params.get('board1'));
+        document.getElementById('board2').value = findBoardIndex(params.get('board2'));
+        document.getElementById('hide-common').checked = params.get('diff') === 'true';
+        document.getElementById('detailed-compare').checked = params.get('detailed') === 'true';
+        await compareBoards(); // Auto-execute comparison
+    }
+    
+    // Restore search and auto-execute
+    if (params.has('search')) {
+        document.getElementById('search-input').value = params.get('search');
+        await searchAPIs();
+    }
+}
+```
+
+### User Experience Benefits
+- **No context loss**: Refreshing preserves all selections and current view
+- **Intuitive navigation**: Browser back/forward buttons work as expected
+- **Easy sharing**: Copy URL to share specific board comparisons or search results
+- **Bookmarking**: Bookmark frequently used comparisons or board explorations
+- **Deep linking**: Link directly to specific tool states from documentation or issues
+
+### Technical Implementation
+- **Immediate updates**: URL changes occur instantly on user interactions, not just on button clicks
+- **Clean URLs**: Null/empty parameters are omitted for cleaner URLs
+- **History management**: Uses `window.history.pushState()` for proper browser history
+- **Backward compatibility**: Works with existing bookmark patterns and external links
+
+### Example URLs
+```
+# Board exploration
+https://site.com/board-explorer.html?view=explorer&board=esp32-
+
+# Complex comparison with options
+https://site.com/board-explorer.html?view=compare&board1=esp32-&board2=rp2-rpi_pico&diff=true&detailed=true
+
+# Search results
+https://site.com/board-explorer.html?view=search&search=neopixel
+
+# Default view (explorer)
+https://site.com/board-explorer.html
+```
+
+This enhancement transforms the tool from a traditional single-page application into a proper web application with URL-driven state management, significantly improving user experience and enabling content sharing workflows.
+
+## 12. Future Enhancements
+
+**Decision:** Complete method signatures with parameters, type hints, and return types
+
+**Rationale:**
+- **Professional IDE experience**: Display signatures like modern code editors
+- **Parameter information**: Show all parameters with names, types, and defaults
+- **Developer productivity**: Developers can see exact usage without external docs
+- **Type safety**: Display type hints for better code quality
+- **Complete API reference**: Self-contained documentation within the explorer
+
+**Implementation Details:**
+- **Database integration**: Leverages `unique_parameters` table via MCP data store
+- **Smart formatting**: Handles optional parameters, variadic args, and type hints
+- **Visual styling**: Monospace font with code styling for readability
+- **Parameter parsing**: Extracts position, type hints, default values, and variadic flags
+
+**Enhanced Signature Examples:**
+```javascript
+// Before: Basic display
+method_name()
+
+// After: Complete signatures
+async asend(self, mac, msg = None, sync = None)
+__init__(self, pin: int)
+config(self, **kwargs) -> dict
+```
+
+### 10. Font Awesome Icon System
+
+**Decision:** Consistent Font Awesome icon system with accessibility
+
+**Rationale:**
+- **Visual consistency**: Standardized icons across all interface elements
+- **Accessibility**: Proper ARIA labels and alt text for screen readers
+- **Professional appearance**: High-quality, recognizable icons
+- **Semantic meaning**: Icons reinforce the semantic structure of the API
+- **Scalability**: Vector icons work at any size
+
+**Icon Mapping:**
+- **📦 Modules/Packages**: `fas fa-cube` - Represents modular components
+- **🏗️ Classes**: `fas fa-object-group` - Represents object-oriented structures  
+- **⚡ Methods/Functions**: `fas fa-bolt` - Represents executable actions
+- **🔗 Properties**: `fas fa-ellipsis` - Represents accessible attributes
+- **📁 Expandable containers**: `fas fa-folder` - Indicates collapsible sections
+- **🔍 Search**: `fas fa-search` - Search functionality
+- **💻 Boards**: `fas fa-microchip` - Hardware/board representations
+
+**Accessibility Features:**
+- ARIA labels for screen reader compatibility
+- Consistent alt text descriptions
+- Title attributes for tooltips
+- Semantic HTML structure
 
 ## Data Flow
 
@@ -549,47 +774,34 @@ Repository
 
 ### Planned Improvements
 
-#### 1. Shareable Comparison Links (High Priority)
+#### 1. Enhanced Module Deep-Linking (High Priority)
 
-**Feature:** URL parameters for direct deep-linking to comparisons
+**Feature:** URL parameters for direct module and class expansion
 
 **Implementation:**
 ```javascript
-// URL format:
-// ?board1=esp32-esp32_generic&board2=rp2-rpi_pico&view=compare&diff=true
+// Extended URL format:
+// ?view=explorer&board=esp32-&module=machine&class=Pin
 
-// On page load:
-const params = new URLSearchParams(window.location.search);
-if (params.has('board1') && params.has('board2')) {
-    loadComparison(params.get('board1'), params.get('board2'));
-    if (params.get('diff') === 'true') {
-        hideCommonModules(true);
-    }
-}
-
-// On comparison:
-function updateURL(board1, board2, diffMode) {
-    const url = new URL(window.location);
-    url.searchParams.set('board1', board1);
-    url.searchParams.set('board2', board2);
-    url.searchParams.set('view', 'compare');
-    url.searchParams.set('diff', diffMode);
-    window.history.pushState({}, '', url);
+// Module auto-expansion on load (partially implemented)
+if (params.has('module')) {
+    const moduleName = params.get('module');
+    setTimeout(() => {
+        const moduleElement = document.querySelector(`[data-module="${moduleName}"]`);
+        if (moduleElement) {
+            moduleElement.click();
+            moduleElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, 500);
 }
 ```
 
 **Benefits:**
-- Share specific comparisons via URL
-- Bookmark favorite comparisons
-- Link from documentation or issues
-- Enable back/forward browser navigation
+- Link directly to specific modules (e.g., `machine`, `network`)
+- Share API documentation links for specific classes
+- Enable contextual help linking from tutorials
 
-**Examples:**
-- `?board1=esp32-esp32_generic&board2=rp2-rpi_pico&view=compare&diff=true`
-- `?search=neopixel&view=search`
-- `?board=esp32-esp32_generic&view=explorer&module=machine`
-
-#### 2. Visual Diff for Method Signatures
+#### 2. Visual Diff for Method Signatures (Medium Priority)
 
 **Feature:** Side-by-side parameter comparison with highlighting
 
@@ -597,13 +809,13 @@ function updateURL(board1, board2, diffMode) {
 - Show added/removed parameters
 - Compare default values
 
-#### 3. Export Comparison Reports
+#### 3. Export Comparison Reports (Medium Priority)
 
 **Formats:**
 - PDF export with formatting
 - CSV export for spreadsheet analysis
 - Markdown export for documentation
-- Shareable comparison links (see #1)
+- JSON export for automated processing
 
 #### 4. Advanced Filtering
 
@@ -644,6 +856,8 @@ function updateURL(board1, board2, diffMode) {
 4. **SQL.js integration**: Powerful queries without backend, true static site
 5. **Color-coded diff**: Intuitive visual comparison with green/red highlighting
 6. **Multi-version schema**: Forward-thinking design supports multiple versions
+7. **URL state management**: Comprehensive query string support enables shareable links and proper browser navigation
+8. **Progressive enhancement**: URL features work seamlessly with existing functionality without breaking changes
 
 ### What Could Be Improved
 

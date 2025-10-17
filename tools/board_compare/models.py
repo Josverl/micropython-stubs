@@ -6,7 +6,8 @@ about MicroPython modules, classes, methods, and their parameters across
 different boards and versions.
 """
 
-from typing import Optional, List
+from typing import List, Optional
+
 from pydantic import BaseModel, Field
 
 
@@ -34,13 +35,31 @@ class Method(BaseModel):
     overloads: int = Field(0, description="Number of overloaded versions")
 
 
+class Constant(BaseModel):
+    """Represents a module or class constant/variable."""
+
+    name: str = Field(..., description="Constant name")
+    value: Optional[str] = Field(None, description="Constant value if available")
+    type_hint: Optional[str] = Field(None, description="Type annotation if available")
+    is_hidden: bool = Field(False, description="Whether this constant should be hidden (e.g., typing-related)")
+
+
+class Attribute(BaseModel):
+    """Represents a class attribute/variable."""
+
+    name: str = Field(..., description="Attribute name")
+    value: Optional[str] = Field(None, description="Attribute value if available")
+    type_hint: Optional[str] = Field(None, description="Type annotation if available")
+    is_hidden: bool = Field(False, description="Whether this attribute should be hidden (e.g., typing-related)")
+
+
 class Class(BaseModel):
     """Represents a class definition."""
 
     name: str = Field(..., description="Class name")
     base_classes: List[str] = Field(default_factory=list, description="Base class names")
     methods: List[Method] = Field(default_factory=list, description="Class methods")
-    attributes: List[str] = Field(default_factory=list, description="Class attributes/constants")
+    attributes: List[Attribute] = Field(default_factory=list, description="Class attributes/constants")
     docstring: Optional[str] = Field(None, description="Class docstring")
 
 
@@ -50,7 +69,7 @@ class Module(BaseModel):
     name: str = Field(..., description="Module name")
     classes: List[Class] = Field(default_factory=list, description="Classes defined in module")
     functions: List[Method] = Field(default_factory=list, description="Module-level functions")
-    constants: List[str] = Field(default_factory=list, description="Module-level constants")
+    constants: List[Constant] = Field(default_factory=list, description="Module-level constants")
     docstring: Optional[str] = Field(None, description="Module docstring")
 
 

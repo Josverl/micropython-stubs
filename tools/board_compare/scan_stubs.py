@@ -6,12 +6,12 @@ classes, methods, functions, and parameters. libcst is used to maintain compatib
 with the micropython-stubber project and to preserve formatting/comments for future enhancements.
 """
 
-import libcst as cst
-from pathlib import Path
-from typing import List, Optional, Dict, Union
 import logging
+from pathlib import Path
+from typing import Dict, List, Optional, Union
 
-from models import Module, Class, Method, Parameter
+import libcst as cst
+from models import Attribute, Class, Constant, Method, Module, Parameter
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -100,7 +100,17 @@ class StubScanner:
                 elif isinstance(stmt, cst.AnnAssign):
                     # Extract annotated constants
                     if isinstance(stmt.target, cst.Name):
-                        constants.append(stmt.target.value)
+                        const_name = stmt.target.value
+                        type_hint = self._get_annotation_str(stmt.annotation) if stmt.annotation else None
+                        value = self._get_value_str(stmt.value) if stmt.value else None
+                        
+                        constant = Constant(
+                            name=const_name,
+                            type_hint=type_hint,
+                            value=value,
+                            is_hidden=self._is_typing_related(const_name, type_hint, value)
+                        )
+                        constants.append(constant)
 
                 elif isinstance(stmt, cst.SimpleStatementLine):
                     # Check for simple assignments (constants)
@@ -108,7 +118,16 @@ class StubScanner:
                         if isinstance(item, cst.Assign):
                             for target in item.targets:
                                 if isinstance(target.target, cst.Name):
-                                    constants.append(target.target.value)
+                                    const_name = target.target.value
+                                    value = self._get_value_str(item.value) if item.value else None
+                                    
+                                    constant = Constant(
+                                        name=const_name,
+                                        value=value,
+                                        type_hint=None,
+                                        is_hidden=self._is_typing_related(const_name, None, value)
+                                    )
+                                    constants.append(constant)
 
             return Module(
                 name=module_name,
@@ -167,11 +186,30 @@ class StubScanner:
                     elif isinstance(item, cst.SimpleStatementLine):
                         for stmt in item.body:
                             if isinstance(stmt, cst.AnnAssign) and isinstance(stmt.target, cst.Name):
-                                attributes.append(stmt.target.value)
+                                attr_name = stmt.target.value
+                                type_hint = self._get_annotation_str(stmt.annotation) if stmt.annotation else None
+                                value = self._get_value_str(stmt.value) if stmt.value else None
+                                
+                                attribute = Attribute(
+                                    name=attr_name,
+                                    type_hint=type_hint,
+                                    value=value,
+                                    is_hidden=self._is_typing_related(attr_name, type_hint, value)
+                                )
+                                attributes.append(attribute)
                             elif isinstance(stmt, cst.Assign):
                                 for target in stmt.targets:
                                     if isinstance(target.target, cst.Name):
-                                        attributes.append(target.target.value)
+                                        attr_name = target.target.value
+                                        value = self._get_value_str(stmt.value) if stmt.value else None
+                                        
+                                        attribute = Attribute(
+                                            name=attr_name,
+                                            value=value,
+                                            type_hint=None,
+                                            is_hidden=self._is_typing_related(attr_name, None, value)
+                                        )
+                                        attributes.append(attribute)
 
             docstring = self._get_docstring(node)
 
@@ -274,6 +312,64 @@ class StubScanner:
             default_value=default_value,
             is_optional=is_optional,
         )
+
+    def _get_value_str(self, value: Union[cst.BaseExpression, None]) -> Optional[str]:
+        """Get value as a string from libcst expression."""
+        if value is None:
+            return None
+        try:
+            return cst.Module([]).code_for_node(value)
+        except Exception:
+            return None
+
+    def _is_typing_related(self, name: str, type_hint: Optional[str] = None, value: Optional[str] = None) -> bool:
+        """
+        Determine if a constant/attribute is typing-related and should be hidden.
+        
+        Args:
+            name: The name of the constant/attribute
+            type_hint: The type hint (if any)
+            value: The value (if any)
+            
+        Returns:
+            True if this is a typing-related constant that should be hidden
+        """
+        # Check for typing-specific type hints
+        if type_hint:
+            typing_indicators = [
+                'TypeAlias', 'TypeVar', 'ParamSpec', 'Generic', 'Protocol',
+                'ClassVar', 'Type[', 'Union[', 'Optional[', 'Literal[',
+                'Callable[', 'Any', 'NoReturn', 'Never'
+            ]
+            if any(indicator in type_hint for indicator in typing_indicators):
+                return True
+        
+        # Check for typing-specific value patterns
+        if value:
+            typing_value_patterns = [
+                'TypeVar(', 'ParamSpec(', 'TypeAlias', 'Generic[',
+                'Protocol[', 'Union[', 'Optional[', 'Literal[',
+                'Callable[', 'Type[', 'ClassVar[', 'Final['
+            ]
+            if any(pattern in value for pattern in typing_value_patterns):
+                return True
+        
+        # Check for common typing variable naming patterns
+        # Variables starting with _ and containing type-related keywords
+        if name.startswith('_') and any(keyword in name.lower() for keyword in [
+            'type', 'var', 'param', 'spec', 'alias', 'generic', 'protocol'
+        ]):
+            return True
+            
+        # Common typing variable prefixes/suffixes
+        typing_name_patterns = [
+            '_T', '_F', '_P', '_R', '_Ret', '_Param', '_Args', '_Kwargs',
+            'Const_T', '_TypeVar', '_ParamSpec', '_TypeAlias'
+        ]
+        if name in typing_name_patterns or any(name.endswith(pattern) for pattern in ['_T', '_F', '_P', '_R']):
+            return True
+            
+        return False
 
     def _get_annotation_str(self, annotation: Union[cst.Annotation, None]) -> Optional[str]:
         """Get type annotation as a string from libcst annotation."""
