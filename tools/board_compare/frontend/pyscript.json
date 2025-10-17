@@ -1,0 +1,8 @@
+{
+  "packages": [],
+  "fetch": [
+    {
+      "files": ["board_comparison.json"]
+    }
+  ]
+}

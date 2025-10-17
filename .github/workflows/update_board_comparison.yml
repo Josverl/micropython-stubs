@@ -1,0 +1,48 @@
+name: Update Board Comparison Database
+
+on:
+  schedule:
+    # Run every Sunday at 2 AM UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'MicroPython version to process (e.g., v1_26_0)'
+        required: false
+        default: 'v1_26_0'
+
+jobs:
+  update-database:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          pip install pydantic
+      
+      - name: Build database
+        run: |
+          cd tools/board_compare
+          VERSION=${{ github.event.inputs.version || 'v1_26_0' }}
+          python build_database.py \
+            --version $VERSION \
+            --db board_comparison.db \
+            --json frontend/board_comparison.json
+      
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add tools/board_compare/board_comparison.db
+          git add tools/board_compare/frontend/board_comparison.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update board comparison database [automated]" && git push)
