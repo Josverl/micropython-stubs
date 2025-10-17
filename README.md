@@ -33,6 +33,24 @@ Curious about which versions, ports, and boards are covered? Check out the [onli
 
 For a comprehensive overview of all stubs, dive into the documentation on [the documentation on read the docs](https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html).
 
+## Board Comparison Tool
+
+Compare MicroPython APIs across different boards and versions! The board comparison tool allows you to:
+
+- **Compare modules** available on different boards (ESP32, RP2, STM32, etc.)
+- **Identify unique APIs** specific to certain boards
+- **Explore common modules** shared across platforms
+- **View detailed information** about classes, methods, and parameters (stored in SQLite database)
+
+The tool consists of:
+- A Python-based stub scanner that extracts API information from `.pyi` files
+- A SQLite database with normalized board/module/class/method data
+- A web-based viewer for easy comparison (available in PyScript and vanilla JavaScript versions)
+
+👉 **Try it out:** See `tools/board_compare/README.md` for usage instructions
+
+The database is automatically updated weekly via GitHub Actions.
+
 ## Sponsoring
 
 In order to build accurate stubs I need access to a board to flash it with a specific version of MicroPython and run part of the stubbing software (createsubs.py) on the board.

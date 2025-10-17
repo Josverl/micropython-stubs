@@ -58,3 +58,7 @@ publish/micropython-stdlib-stubs_100b1
 # no test lock files
 **/*_lock.file
 tests/doc_test/micropython/
+
+# board comparison database files (generated)
+tools/board_compare/*.db
+tools/board_compare/*.db-journal
