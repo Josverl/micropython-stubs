@@ -6,6 +6,7 @@ rich-click
 pytest
 pyright==1.1.341
 mypy
+ruff
 fasteners 
 python-dotenv
 pydocstyle

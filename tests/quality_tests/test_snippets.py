@@ -273,7 +273,7 @@ def run_pyright(snip_path, version, portboard, pytestconfig):
 
 @pytest.mark.parametrize(
     "linter",
-    ["pyright", "mypy"],
+    ["pyright", "mypy", "ruff"],
 )
 def test_typecheck(
     linter: str,
