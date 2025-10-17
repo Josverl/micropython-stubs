@@ -1086,7 +1086,7 @@ function getModuleFunctions(moduleId, board) {
     
     try {
         const stmt = db.prepare(`
-            SELECT um.id, um.name, um.return_type, um.is_async, um.docstring
+            SELECT um.id, um.name, um.return_type, um.is_async, um.decorators, um.docstring
             FROM unique_methods um
             JOIN board_method_support bms ON um.id = bms.method_id
             JOIN boards b ON bms.board_id = b.id
@@ -1101,6 +1101,8 @@ function getModuleFunctions(moduleId, board) {
             const row = stmt.getAsObject();
             // Get parameters for this function
             row.parameters = getMethodParameters(row.id);
+            // Parse decorators JSON
+            row.decorators_list = row.decorators ? JSON.parse(row.decorators) : [];
             functions.push(row);
         }
         stmt.free();
@@ -1143,7 +1145,7 @@ function getClassMethods(moduleId, classId, board) {
     
     try {
         const stmt = db.prepare(`
-            SELECT um.id, um.name, um.return_type, um.is_async, um.is_property, um.is_classmethod, um.is_staticmethod, um.docstring
+            SELECT um.id, um.name, um.return_type, um.is_async, um.is_property, um.is_classmethod, um.is_staticmethod, um.decorators, um.docstring
             FROM unique_methods um
             JOIN board_method_support bms ON um.id = bms.method_id
             JOIN boards b ON bms.board_id = b.id
@@ -1158,6 +1160,8 @@ function getClassMethods(moduleId, classId, board) {
             const row = stmt.getAsObject();
             // Get parameters for this method
             row.parameters = getMethodParameters(row.id);
+            // Parse decorators JSON
+            row.decorators_list = row.decorators ? JSON.parse(row.decorators) : [];
             methods.push(row);
         }
         stmt.free();
@@ -1343,11 +1347,17 @@ function renderModuleTree(modules, options = {}) {
                         
                         // Add methods
                         cls.methods.forEach(method => {
-                            const decorators = [];
-                            if (method.is_property) decorators.push('@property');
-                            if (method.is_classmethod) decorators.push('@classmethod');
-                            if (method.is_staticmethod) decorators.push('@staticmethod');
+                            // Get decorators from decorators_list if available, otherwise build from flags
+                            let decorators = method.decorators_list || [];
+                            if (decorators.length === 0) {
+                                // Fallback to building from boolean flags for backward compatibility
+                                if (method.is_property) decorators.push('property');
+                                if (method.is_classmethod) decorators.push('classmethod');
+                                if (method.is_staticmethod) decorators.push('staticmethod');
+                            }
                             
+                            // Format decorators with @ symbol
+                            const decoratorStrs = decorators.map(d => `@${d}`);
                             const asyncMarker = method.is_async ? 'async ' : '';
                             const signature = formatMethodSignature(method);
                             
@@ -1355,7 +1365,7 @@ function renderModuleTree(modules, options = {}) {
                         <div class="tree-item"><div class="tree-node">
                             <span class="tree-icon">${method.is_property ? Icons.create('property') : Icons.create('method')}</span>
                             <span style="color: #495057;">
-                                ${decorators.length > 0 ? `<span style="color: #888; font-size: 0.85em;">${decorators.join(' ')} </span>` : ''}
+                                ${decoratorStrs.length > 0 ? `<span style="color: #888; font-size: 0.85em;">${decoratorStrs.join(' ')} </span>` : ''}
                                 <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
                                     ${asyncMarker}${signature}
                                 </code>
@@ -1390,12 +1400,16 @@ function renderModuleTree(modules, options = {}) {
             // Add functions
             if (module.functions.length > 0) {
                 module.functions.forEach(func => {
+                    // Get decorators from decorators_list if available
+                    const decorators = func.decorators_list || [];
+                    const decoratorStrs = decorators.map(d => `@${d}`);
                     const asyncMarker = func.is_async ? 'async ' : '';
                     const signature = formatMethodSignature(func);
                     html += `
                     <div class="tree-item"><div class="tree-node">
                         <span class="tree-icon">${Icons.create('function')}</span>
                         <span style="color: #495057;">
+                            ${decoratorStrs.length > 0 ? `<span style="color: #888; font-size: 0.85em;">${decoratorStrs.join(' ')} </span>` : ''}
                             <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
                                 ${asyncMarker}${signature}
                             </code>

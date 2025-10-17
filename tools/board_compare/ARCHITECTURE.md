@@ -1149,6 +1149,103 @@ Added feature to display base class inheritance directly in the tree view.
 
 **Performance:** Negligible impact - queries only when module expanded
 
+### October 18, 2025: Decorator Support (@overload, @property, @classmethod, @staticmethod, custom decorators)
+
+Added comprehensive decorator display to the tree view, capturing all decorators including `@overload` and custom decorators.
+
+**Implementation:**
+
+**Database Layer:**
+- Added `decorators TEXT` column to `unique_methods` table (stores JSON array of decorator names)
+- Example: `["overload", "property", "classmethod"]`
+
+**Parser Layer (scan_stubs.py):**
+- Modified `_extract_function()` to capture **all** decorator names into a `decorators` list
+- Maintains backward compatibility with boolean flags (`is_classmethod`, `is_staticmethod`, `is_property`)
+- Decorator extraction via `_get_decorator_name()` handles:
+  - Simple decorators: `@property`, `@classmethod`, `@staticmethod`, `@overload`
+  - Module decorators: `@typing.overload`, `@abc.abstractmethod`
+  - Custom decorators: Any user-defined decorator
+
+**Models (models.py):**
+- Added `decorators: List[str]` field to `Method` model
+- Stores complete list of all decorator names for each method/function
+
+**Database Builder (build_database.py):**
+- Updated `_add_method()` to serialize decorator list to JSON before storing
+- JSON format allows easy parsing on frontend: `json.dumps(decorators)`
+
+**Frontend (board-explorer.js):**
+- Updated `getClassMethods()` to SELECT `decorators` column and parse JSON
+- Updated `getModuleFunctions()` to SELECT `decorators` column and parse JSON
+- Added `decorators_list` field to method/function objects after JSON parsing
+- Fallback logic: If `decorators_list` empty, uses boolean flags for backward compatibility
+
+**Tree View Rendering:**
+- Enhanced `renderModuleTree()` to display all decorators inline
+- Format: `@decorator1 @decorator2 function_name(...)`
+- Visual styling:
+  - Decorators displayed in gray (#888) subdued text
+  - Font size 0.85em (slightly smaller than code)
+  - Applied to both class methods and module functions
+- Handles all decorator types:
+  - **@overload** - Clearly identifies overloaded functions for better API understanding
+  - **@property** - Distinguishes property accessors from regular methods
+  - **@classmethod** / **@staticmethod** - Indicates special method types
+  - **Custom decorators** - Any decorator from imported modules
+
+**Practical Examples in Tree View:**
+```
+@overload
+async parse(source: str, mode: Literal["exec"]) -> Module
+
+@overload
+async parse(source: str, mode: str) -> AST
+
+@property
+def size(self) -> int
+
+@classmethod
+def fromhex(cls, hex_string: str) -> bytes
+
+@staticmethod
+def validate(data: Any) -> bool
+
+@abc.abstractmethod
+def process(self) -> None
+```
+
+**Coverage:**
+- Supports arbitrary decorator count (though most methods have 0-3)
+- Works with decorators on functions, class methods, and module functions
+- Preserves decorator order from source files
+- Example usage: Identifying all `@overload` definitions in builtins module
+
+**Files Modified:**
+- `models.py` - Added `decorators: List[str]` field
+- `scan_stubs.py` - Modified decorator extraction logic
+- `build_database.py` - Updated schema and method insertion
+- `frontend/board-explorer.js` - Query updates and rendering logic
+
+**Database Schema Change:**
+```sql
+-- New column added to unique_methods table
+ALTER TABLE unique_methods ADD COLUMN decorators TEXT;
+-- Stores JSON array: ["overload", "property"] or null for no decorators
+```
+
+**Performance Impact:**
+- Minimal - decorator list stored as single JSON string per method
+- No additional queries required - decorators fetched with method data
+- Backward compatible - existing databases work without modification (NULL decorators)
+
+**User Experience Benefits:**
+- **@overload visibility** - Developers can immediately see when functions have multiple overloads
+- **Method classification** - Decorators clearly indicate method types (@property, @classmethod, @staticmethod)
+- **API documentation** - Complete method metadata in one view
+- **Custom decorator support** - Extensible for any decorators used in stubs
+
+
 ## Conclusion
 
 The Board Comparison Tool architecture balances several competing concerns:

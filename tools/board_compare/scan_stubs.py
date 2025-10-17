@@ -283,23 +283,27 @@ class StubScanner:
             # Extract return type
             return_type = self._get_annotation_str(node.returns) if node.returns else None
 
-            # Check for decorators
+            # Check for decorators - capture all decorator names
             is_async = node.asynchronous is not None
             is_classmethod = False
             is_staticmethod = False
             is_property = False
             is_overload = False
+            decorators = []
 
             for decorator in node.decorators:
                 dec_name = self._get_decorator_name(decorator)
-                if dec_name == "classmethod":
-                    is_classmethod = True
-                elif dec_name == "staticmethod":
-                    is_staticmethod = True
-                elif dec_name == "property":
-                    is_property = True
-                elif dec_name == "overload":
-                    is_overload = True
+                if dec_name:
+                    decorators.append(dec_name)
+                    # Also set the boolean flags for backward compatibility
+                    if dec_name == "classmethod":
+                        is_classmethod = True
+                    elif dec_name == "staticmethod":
+                        is_staticmethod = True
+                    elif dec_name == "property":
+                        is_property = True
+                    elif dec_name == "overload":
+                        is_overload = True
 
             docstring = self._get_docstring(node)
 
@@ -311,6 +315,7 @@ class StubScanner:
                 is_classmethod=is_classmethod,
                 is_staticmethod=is_staticmethod,
                 is_property=is_property,
+                decorators=decorators,
                 docstring=docstring,
                 overloads=1 if is_overload else 0,
             )

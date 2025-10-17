@@ -251,6 +251,7 @@ class DatabaseBuilder:
                 is_staticmethod INTEGER DEFAULT 0,
                 is_property INTEGER DEFAULT 0,
                 overloads INTEGER DEFAULT 0,
+                decorators TEXT,
                 docstring TEXT,
                 signature_hash TEXT NOT NULL UNIQUE,
                 FOREIGN KEY (module_id) REFERENCES unique_modules(id),
@@ -607,14 +608,17 @@ class DatabaseBuilder:
         parameters = method_data.get("parameters", [])
         method_hash = self._get_method_signature_hash_with_context(method_data, parameters, module_id, class_id)
 
+        # Convert decorators list to JSON string
+        decorators_json = json.dumps(method_data.get("decorators", [])) if method_data.get("decorators") else None
+
         # Insert or get unique method
         cursor.execute(
             """
             INSERT OR IGNORE INTO unique_methods (
                 module_id, class_id, name, return_type, is_async,
                 is_classmethod, is_staticmethod, is_property, overloads, 
-                docstring, signature_hash
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                decorators, docstring, signature_hash
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
             (
                 module_id,
@@ -626,6 +630,7 @@ class DatabaseBuilder:
                 method_data.get("is_staticmethod", False),
                 method_data.get("is_property", False),
                 method_data.get("overloads", 0),
+                decorators_json,
                 method_data.get("docstring"),
                 method_hash,
             ),
