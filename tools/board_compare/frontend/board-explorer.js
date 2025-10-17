@@ -47,19 +47,62 @@ function formatBoardName(port, board) {
         return port.replace(/-$/, '');
     }
     
-    // If there's a board name, check if it starts with the port prefix
-    if (board.startsWith(port + '_')) {
-        // Remove the port prefix (e.g., "esp32_" from "esp32_generic_c6")
-        return board.substring(port.length + 1);
+    // Remove "esp-" prefix if present (but keep other prefixes like "port_")
+    if (board.startsWith('esp-')) {
+        return board.substring(4); // Remove "esp-" (4 characters)
     }
     
-    // If board doesn't start with port prefix, return as is
+    // Otherwise return the board name as is
     return board;
 }
 
 // Utility function to get full board key for URL/comparison purposes
 function getBoardKey(port, board) {
     return `${port}-${board}`;
+}
+
+// Utility function to format method/function signatures
+function formatMethodSignature(method) {
+    let signature = method.name;
+    
+    // Build parameter list from parameter data
+    let params = '';
+    if (method.parameters && method.parameters.length > 0) {
+        const paramStrings = method.parameters.map(param => {
+            let paramStr = param.name;
+            
+            // Add type hint if available
+            if (param.type_hint && param.type_hint !== 'None' && param.type_hint !== '') {
+                paramStr += `: ${param.type_hint}`;
+            }
+            
+            // Add default value if available
+            if (param.default_value && param.default_value !== 'None') {
+                paramStr += ` = ${param.default_value}`;
+            } else if (param.is_optional) {
+                paramStr += ' = None';
+            }
+            
+            // Handle variadic parameters
+            if (param.is_variadic) {
+                paramStr = param.name === 'kwargs' ? '**' + paramStr : '*' + paramStr;
+            }
+            
+            return paramStr;
+        });
+        
+        params = paramStrings.join(', ');
+    }
+    
+    // Build the signature
+    signature += `(${params})`;
+    
+    // Add return type if available and meaningful
+    if (method.return_type && method.return_type !== 'None' && method.return_type !== '' && method.return_type !== 'Any') {
+        signature += ` -> ${method.return_type}`;
+    }
+    
+    return signature;
 }
 
 // Initialize when page loads
@@ -481,7 +524,7 @@ function getModuleFunctions(moduleId) {
     
     try {
         const stmt = db.prepare(`
-            SELECT um.name, um.return_type, um.is_async
+            SELECT um.id, um.name, um.return_type, um.is_async, um.docstring
             FROM unique_methods um
             WHERE um.module_id = ? AND um.class_id IS NULL
             ORDER BY um.name
@@ -491,6 +534,8 @@ function getModuleFunctions(moduleId) {
         const functions = [];
         while (stmt.step()) {
             const row = stmt.getAsObject();
+            // Get parameters for this function
+            row.parameters = getMethodParameters(row.id);
             functions.push(row);
         }
         stmt.free();
@@ -502,12 +547,38 @@ function getModuleFunctions(moduleId) {
     }
 }
 
+function getMethodParameters(methodId) {
+    if (!db) return [];
+    
+    try {
+        const stmt = db.prepare(`
+            SELECT up.name, up.position, up.type_hint, up.default_value, up.is_optional, up.is_variadic
+            FROM unique_parameters up
+            WHERE up.method_id = ?
+            ORDER BY up.position
+        `);
+        stmt.bind([methodId]);
+        
+        const parameters = [];
+        while (stmt.step()) {
+            const row = stmt.getAsObject();
+            parameters.push(row);
+        }
+        stmt.free();
+        
+        return parameters;
+    } catch (error) {
+        console.error('Error querying parameters:', error);
+        return [];
+    }
+}
+
 function getClassMethods(moduleId, classId) {
     if (!db) return [];
     
     try {
         const stmt = db.prepare(`
-            SELECT um.name, um.return_type, um.is_async, um.is_property, um.is_classmethod, um.is_staticmethod
+            SELECT um.id, um.name, um.return_type, um.is_async, um.is_property, um.is_classmethod, um.is_staticmethod, um.docstring
             FROM unique_methods um
             WHERE um.module_id = ? AND um.class_id = ?
             ORDER BY um.name
@@ -517,6 +588,8 @@ function getClassMethods(moduleId, classId) {
         const methods = [];
         while (stmt.step()) {
             const row = stmt.getAsObject();
+            // Get parameters for this method
+            row.parameters = getMethodParameters(row.id);
             methods.push(row);
         }
         stmt.free();
@@ -576,15 +649,44 @@ function displayModuleTree(modules) {
         // Add classes
         if (module.classes.length > 0) {
             module.classes.forEach(cls => {
+                const hasMethodsToShow = cls.methods.length > 0;
+                const classId = `class-${module.name}-${cls.name}`;
                 html += `
                     <div class="tree-item">
-                        <div class="tree-node" onclick="showClassDetails('${module.name}', '${cls.name}', event)">
-                            <span class="tree-icon">${Icons.create('class')}</span>
+                        <div class="tree-node" onclick="toggleClass('${classId}', event)">
+                            <span class="tree-icon">${hasMethodsToShow ? Icons.create('folder') : Icons.create('class')}</span>
                             <span style="color: #495057; font-weight: 600;">class ${cls.name}</span>
                             <span style="color: #6c757d; font-size: 0.85em; margin-left: auto; background: #f8f9fa; padding: 2px 6px; border-radius: 8px;">
                                 ${cls.methods.length} methods
                             </span>
                         </div>
+                        ${hasMethodsToShow ? `
+                        <div id="${classId}" class="tree-children hidden">
+                            ${cls.methods.map(method => {
+                                const decorators = [];
+                                if (method.is_property) decorators.push('@property');
+                                if (method.is_classmethod) decorators.push('@classmethod');
+                                if (method.is_staticmethod) decorators.push('@staticmethod');
+                                
+                                const asyncMarker = method.is_async ? 'async ' : '';
+                                const signature = formatMethodSignature(method);
+                                
+                                return `
+                                    <div class="tree-item">
+                                        <div class="tree-node">
+                                            <span class="tree-icon">${method.is_property ? Icons.create('property') : Icons.create('method')}</span>
+                                            <span style="color: #495057;">
+                                                ${decorators.length > 0 ? `<span style="color: #888; font-size: 0.85em;">${decorators.join(' ')} </span>` : ''}
+                                                <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
+                                                    ${asyncMarker}${signature}
+                                                </code>
+                                            </span>
+                                        </div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                        ` : ''}
                     </div>
                 `;
             });
@@ -594,11 +696,16 @@ function displayModuleTree(modules) {
         if (module.functions.length > 0) {
             module.functions.forEach(func => {
                 const asyncMarker = func.is_async ? 'async ' : '';
+                const signature = formatMethodSignature(func);
                 html += `
                     <div class="tree-item">
                         <div class="tree-node">
                             <span class="tree-icon">${Icons.create('function')}</span>
-                            <span style="color: #495057;">${asyncMarker}${func.name}()</span>
+                            <span style="color: #495057;">
+                                <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
+                                    ${asyncMarker}${signature}
+                                </code>
+                            </span>
                         </div>
                     </div>
                 `;
@@ -628,7 +735,17 @@ function toggleModule(moduleId, event) {
     }
 }
 
+function toggleClass(classId, event) {
+    event.stopPropagation();
+    const element = document.getElementById(classId);
+    if (element) {
+        element.classList.toggle('hidden');
+    }
+}
+
 async function showClassDetails(moduleName, className, event) {
+    // This function is now primarily for compatibility
+    // The main tree view uses inline expansion via toggleClass
     event.stopPropagation();
     
     // Find the module and class
@@ -639,56 +756,9 @@ async function showClassDetails(moduleName, className, event) {
     const cls = module.classes.find(c => c.name === className);
     if (!cls) return;
     
-    // Create detail view
-    let html = `
-        <div class="detail-view" style="margin-top: 20px;">
-            <div class="detail-header">${moduleName}.${className}</div>
-    `;
-    
-    if (cls.docstring) {
-        html += `
-            <div class="detail-section">
-                <h3>Description</h3>
-                <p style="white-space: pre-wrap; color: #666; line-height: 1.6;">${cls.docstring}</p>
-            </div>
-        `;
-    }
-    
-    if (cls.methods.length > 0) {
-        html += `
-            <div class="detail-section">
-                <h3>Methods (${cls.methods.length})</h3>
-                <div class="method-list">
-        `;
-        
-        cls.methods.forEach(method => {
-            const decorators = [];
-            if (method.is_property) decorators.push('@property');
-            if (method.is_classmethod) decorators.push('@classmethod');
-            if (method.is_staticmethod) decorators.push('@staticmethod');
-            
-            const asyncMarker = method.is_async ? 'async ' : '';
-            const returnType = method.return_type ? ` -> ${method.return_type}` : '';
-            
-            html += `
-                <div class="method-item">
-                    ${decorators.length > 0 ? `<div style="color: #888; font-size: 0.85em;">${decorators.join(' ')}</div>` : ''}
-                    <span class="method-name">${asyncMarker}${method.name}()</span>
-                    ${returnType ? `<span class="method-return">${returnType}</span>` : ''}
-                </div>
-            `;
-        });
-        
-        html += `
-                </div>
-            </div>
-        `;
-    }
-    
-    html += '</div>';
-    
-    // Append to content
-    document.getElementById('explorer-content').insertAdjacentHTML('beforeend', html);
+    // For compatibility, we could still show a popup or detailed view
+    // But for now, we'll just log the class info
+    console.log(`Class details: ${moduleName}.${className}`, cls);
 }
 
 // ===== BOARD COMPARISON =====
