@@ -186,8 +186,13 @@ async function restoreFromURL() {
         });
         
         if (board1) {
-            document.getElementById('board1-version').value = board1.version;
-            document.getElementById('board1').value = formatBoardName(board1.port, board1.board);
+            setSelectValue('board1-version', board1.version);
+            updateBoardOptions('board1-version', 'board1');
+            setSelectValue('board1', formatBoardName(board1.port, board1.board));
+            updateVersionOptions('board1-version', 'board1');
+        } else if (version1) {
+            setSelectValue('board1-version', version1);
+            updateBoardOptions('board1-version', 'board1');
         }
         
         // Find and set board 2
@@ -198,8 +203,13 @@ async function restoreFromURL() {
         });
         
         if (board2) {
-            document.getElementById('board2-version').value = board2.version;
-            document.getElementById('board2').value = formatBoardName(board2.port, board2.board);
+            setSelectValue('board2-version', board2.version);
+            updateBoardOptions('board2-version', 'board2');
+            setSelectValue('board2', formatBoardName(board2.port, board2.board));
+            updateVersionOptions('board2-version', 'board2');
+        } else if (version2) {
+            setSelectValue('board2-version', version2);
+            updateBoardOptions('board2-version', 'board2');
         }
         
         if (board1 && board2) {
@@ -230,8 +240,10 @@ async function restoreFromURL() {
         });
         
         if (board) {
-            document.getElementById('explorer-version').value = board.version;
-            document.getElementById('explorer-board').value = formatBoardName(board.port, board.board);
+            setSelectValue('explorer-version', board.version);
+            updateBoardOptions('explorer-version', 'explorer-board');
+            setSelectValue('explorer-board', formatBoardName(board.port, board.board));
+            updateVersionOptions('explorer-version', 'explorer-board');
             await loadBoardDetails();
         
             // Optionally expand specific module
@@ -246,6 +258,9 @@ async function restoreFromURL() {
                     }
                 }, 500);
             }
+        } else if (version) {
+            setSelectValue('explorer-version', version);
+            updateBoardOptions('explorer-version', 'explorer-board');
         }
     }
     
@@ -494,6 +509,44 @@ function updateVersionOptions(versionSelectId, boardSelectId) {
     });
 }
 
+// Helper to refresh the visible combobox input for a hidden select
+function refreshComboboxDisplay(select) {
+    if (!select) return;
+    select.dispatchEvent(new CustomEvent('combobox:refresh', { bubbles: false }));
+    let wrapper = select.previousElementSibling;
+    if (!wrapper || !wrapper.classList || !wrapper.classList.contains('combobox-wrapper')) {
+        wrapper = select.parentElement ? select.parentElement.querySelector('.combobox-wrapper') : null;
+    }
+    if (!wrapper) return;
+
+    const input = wrapper.querySelector('.combobox-input');
+    if (!input) return;
+
+    const matchingOption = Array.from(select.options).find(opt => opt.value === select.value);
+    if (matchingOption && matchingOption.value !== '') {
+        input.value = matchingOption.textContent || matchingOption.text || matchingOption.value;
+        input.style.color = '#000';
+    } else {
+        input.value = '';
+        input.style.color = '#666';
+    }
+}
+
+// Helper to set a select value and optionally trigger change handlers
+function setSelectValue(selectId, value, triggerChange = false) {
+    const select = document.getElementById(selectId);
+    if (!select) return;
+
+    const normalizedValue = value ?? '';
+    select.value = normalizedValue;
+    refreshComboboxDisplay(select);
+
+    if (triggerChange) {
+        const changeEvent = new Event('change', { bubbles: true });
+        select.dispatchEvent(changeEvent);
+    }
+}
+
 // Function to filter dropdown options based on search input
 function filterDropdownOptions(selectElement, searchValue) {
     const options = Array.from(selectElement.options);
@@ -603,6 +656,7 @@ function makeDropdownSearchable(selectId) {
     
     // Update display value
     function updateDisplayValue() {
+        selectedValue = select.value;
         const selectedOption = originalOptions.find(opt => opt.value === selectedValue);
         if (selectedOption && selectedOption.value !== '') {
             searchInput.value = selectedOption.text;
@@ -616,6 +670,7 @@ function makeDropdownSearchable(selectId) {
     // Populate dropdown with filtered options
     function populateDropdown(options = filteredOptions) {
         dropdown.innerHTML = '';
+        const currentValue = select.value;
         
         if (options.length === 0) {
             const noResults = document.createElement('div');
@@ -635,15 +690,15 @@ function makeDropdownSearchable(selectId) {
                 padding: 8px;
                 cursor: pointer;
                 border-bottom: 1px solid #f0f0f0;
-                ${option.value === selectedValue ? 'background: #e3f2fd; color: #1976d2;' : ''}
+                ${option.value === currentValue ? 'background: #e3f2fd; color: #1976d2;' : ''}
             `;
             
             item.addEventListener('mouseenter', () => {
-                item.style.background = option.value === selectedValue ? '#e3f2fd' : '#f5f5f5';
+                item.style.background = option.value === currentValue ? '#e3f2fd' : '#f5f5f5';
             });
             
             item.addEventListener('mouseleave', () => {
-                item.style.background = option.value === selectedValue ? '#e3f2fd' : 'white';
+                item.style.background = option.value === currentValue ? '#e3f2fd' : 'white';
             });
             
             item.addEventListener('click', () => {
@@ -720,6 +775,17 @@ function makeDropdownSearchable(selectId) {
         }
     });
     
+    const syncFromSelect = () => {
+        updateDisplayValue();
+        if (isOpen) {
+            populateDropdown();
+        }
+    };
+
+    // Update display when the hidden select changes programmatically
+    select.addEventListener('change', syncFromSelect);
+    select.addEventListener('combobox:refresh', syncFromSelect);
+
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
         if (!wrapper.contains(e.target)) {

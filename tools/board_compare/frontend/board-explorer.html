@@ -89,15 +89,17 @@
         }
         
         .control-row {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
             margin-bottom: 15px;
+            align-items: end;
         }
         
         .control-group {
             display: flex;
             flex-direction: column;
+            min-width: 0; /* Allow shrinking */
         }
         
         label {
