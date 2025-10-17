@@ -146,6 +146,9 @@ async function init() {
         // Populate all board selects
         populateBoardSelects();
         
+        // Initialize searchable dropdowns
+        initializeSearchableDropdowns();
+        
         // Check for URL parameters and restore state
         await restoreFromURL();
     } catch (error) {
@@ -172,16 +175,34 @@ async function restoreFromURL() {
     if (params.has('board1') && params.has('board2')) {
         const board1Key = params.get('board1');
         const board2Key = params.get('board2');
+        const version1 = params.get('version1') || '';
+        const version2 = params.get('version2') || '';
         
-        // Find board indices
-        const board1Idx = boardData.boards.findIndex(b => `${b.port}-${b.board}` === board1Key);
-        const board2Idx = boardData.boards.findIndex(b => `${b.port}-${b.board}` === board2Key);
+        // Find and set board 1
+        const board1 = boardData.boards.find(b => {
+            const key = getBoardKey(b.port, b.board);
+            const versionMatch = !version1 || b.version === version1;
+            return key === board1Key && versionMatch;
+        });
         
-        if (board1Idx >= 0 && board2Idx >= 0) {
-            // Set board selections
-            document.getElementById('board1').value = board1Idx.toString();
-            document.getElementById('board2').value = board2Idx.toString();
+        if (board1) {
+            document.getElementById('board1-version').value = board1.version;
+            document.getElementById('board1').value = formatBoardName(board1.port, board1.board);
+        }
         
+        // Find and set board 2
+        const board2 = boardData.boards.find(b => {
+            const key = getBoardKey(b.port, b.board);
+            const versionMatch = !version2 || b.version === version2;
+            return key === board2Key && versionMatch;
+        });
+        
+        if (board2) {
+            document.getElementById('board2-version').value = board2.version;
+            document.getElementById('board2').value = formatBoardName(board2.port, board2.board);
+        }
+        
+        if (board1 && board2) {
             // Apply diff mode if specified
             if (params.get('diff') === 'true') {
                 document.getElementById('hide-common').checked = true;
@@ -200,10 +221,17 @@ async function restoreFromURL() {
     // Restore explorer state
     if (params.has('board') && (view === 'explorer' || !view)) {
         const boardKey = params.get('board');
-        const boardIdx = boardData.boards.findIndex(b => `${b.port}-${b.board}` === boardKey);
+        const version = params.get('version') || '';
         
-        if (boardIdx >= 0) {
-            document.getElementById('explorer-board').value = boardIdx.toString();
+        const board = boardData.boards.find(b => {
+            const key = getBoardKey(b.port, b.board);
+            const versionMatch = !version || b.version === version;
+            return key === boardKey && versionMatch;
+        });
+        
+        if (board) {
+            document.getElementById('explorer-version').value = board.version;
+            document.getElementById('explorer-board').value = formatBoardName(board.port, board.board);
             await loadBoardDetails();
         
             // Optionally expand specific module
@@ -337,24 +365,405 @@ async function loadBoardList() {
 }
 
 function populateBoardSelects() {
-    const selects = ['explorer-board', 'board1', 'board2'];
+    // Get unique versions and board names
+    const versions = [...new Set(boardData.boards.map(b => b.version))].sort().reverse();
+    const boardNames = [...new Set(boardData.boards.map(b => formatBoardName(b.port, b.board)))].sort();
     
-    selects.forEach(selectId => {
+    // Populate version selects
+    const versionSelects = ['explorer-version', 'board1-version', 'board2-version'];
+    versionSelects.forEach(selectId => {
         const select = document.getElementById(selectId);
         if (!select) return;
         
-        // Clear and add default option
-        select.innerHTML = '<option value="">Select a board...</option>';
-        
-        // Add board options
-        boardData.boards.forEach((board, idx) => {
-            const displayName = formatBoardName(board.port, board.board);
-            const name = `${displayName} (${board.version})`;
+        select.innerHTML = '<option value="">All versions</option>';
+        versions.forEach(version => {
             const option = document.createElement('option');
-            option.value = idx;
-            option.textContent = name;
+            option.value = version;
+            option.textContent = version;
             select.appendChild(option);
         });
+    });
+    
+    // Populate board name selects
+    const boardSelects = ['explorer-board', 'board1', 'board2'];
+    boardSelects.forEach(selectId => {
+        const select = document.getElementById(selectId);
+        if (!select) return;
+        
+        select.innerHTML = '<option value="">Select a board...</option>';
+        boardNames.forEach(boardName => {
+            const option = document.createElement('option');
+            option.value = boardName;
+            option.textContent = boardName;
+            select.appendChild(option);
+        });
+    });
+}
+
+// Function to get filtered boards based on version and name selections
+function getFilteredBoards(versionSelectId, boardSelectId) {
+    const selectedVersion = document.getElementById(versionSelectId)?.value || '';
+    const selectedBoard = document.getElementById(boardSelectId)?.value || '';
+    
+    return boardData.boards.filter(board => {
+        const boardName = formatBoardName(board.port, board.board);
+        const versionMatch = !selectedVersion || board.version === selectedVersion;
+        const boardMatch = !selectedBoard || boardName === selectedBoard;
+        return versionMatch && boardMatch;
+    });
+}
+
+// Function to get the selected board from version and board dropdowns
+function getSelectedBoard(versionSelectId, boardSelectId) {
+    const filteredBoards = getFilteredBoards(versionSelectId, boardSelectId);
+    
+    // If both version and board are selected, return the matching board
+    const selectedVersion = document.getElementById(versionSelectId)?.value;
+    const selectedBoard = document.getElementById(boardSelectId)?.value;
+    
+    if (selectedVersion && selectedBoard) {
+        return filteredBoards.find(board => {
+            const boardName = formatBoardName(board.port, board.board);
+            return board.version === selectedVersion && boardName === selectedBoard;
+        });
+    }
+    
+    // If only one board matches the filters, return it
+    if (filteredBoards.length === 1) {
+        return filteredBoards[0];
+    }
+    
+    return null;
+}
+
+// Function to update board dropdown based on version selection
+function updateBoardOptions(versionSelectId, boardSelectId) {
+    const versionSelect = document.getElementById(versionSelectId);
+    const boardSelect = document.getElementById(boardSelectId);
+    if (!versionSelect || !boardSelect) return;
+    
+    const selectedVersion = versionSelect.value;
+    const currentBoardSelection = boardSelect.value;
+    
+    // Get boards for selected version
+    const availableBoards = selectedVersion 
+        ? boardData.boards.filter(b => b.version === selectedVersion)
+        : boardData.boards;
+    
+    const boardNames = [...new Set(availableBoards.map(b => formatBoardName(b.port, b.board)))].sort();
+    
+    // Update board dropdown
+    boardSelect.innerHTML = '<option value="">Select a board...</option>';
+    boardNames.forEach(boardName => {
+        const option = document.createElement('option');
+        option.value = boardName;
+        option.textContent = boardName;
+        if (boardName === currentBoardSelection) {
+            option.selected = true;
+        }
+        boardSelect.appendChild(option);
+    });
+}
+
+// Function to update version dropdown based on board selection
+function updateVersionOptions(versionSelectId, boardSelectId) {
+    const versionSelect = document.getElementById(versionSelectId);
+    const boardSelect = document.getElementById(boardSelectId);
+    if (!versionSelect || !boardSelect) return;
+    
+    const selectedBoard = boardSelect.value;
+    const currentVersionSelection = versionSelect.value;
+    
+    // Get versions for selected board
+    const availableVersions = selectedBoard 
+        ? [...new Set(boardData.boards
+            .filter(b => formatBoardName(b.port, b.board) === selectedBoard)
+            .map(b => b.version))].sort().reverse()
+        : [...new Set(boardData.boards.map(b => b.version))].sort().reverse();
+    
+    // Update version dropdown
+    versionSelect.innerHTML = '<option value="">All versions</option>';
+    availableVersions.forEach(version => {
+        const option = document.createElement('option');
+        option.value = version;
+        option.textContent = version;
+        if (version === currentVersionSelection) {
+            option.selected = true;
+        }
+        versionSelect.appendChild(option);
+    });
+}
+
+// Function to filter dropdown options based on search input
+function filterDropdownOptions(selectElement, searchValue) {
+    const options = Array.from(selectElement.options);
+    const filteredOptions = options.filter(option => {
+        if (option.value === '') return true; // Keep default option
+        return option.textContent.toLowerCase().includes(searchValue.toLowerCase());
+    });
+    
+    // Clear and repopulate
+    selectElement.innerHTML = '';
+    filteredOptions.forEach(option => {
+        selectElement.appendChild(option.cloneNode(true));
+    });
+    
+    return filteredOptions.length > 1; // More than just the default option
+}
+
+// Function to make dropdowns searchable combobox
+function makeDropdownSearchable(selectId) {
+    const select = document.getElementById(selectId);
+    if (!select) return;
+    
+    // Store original options
+    const originalOptions = Array.from(select.options).map(opt => ({ 
+        value: opt.value, 
+        text: opt.textContent,
+        selected: opt.selected
+    }));
+    
+    // Create wrapper container
+    const wrapper = document.createElement('div');
+    wrapper.className = 'combobox-wrapper';
+    
+    // Determine if this is a version select by checking the label or select ID
+    const isVersionSelect = selectId.includes('version') || 
+                           select.previousElementSibling.textContent.toLowerCase().includes('version');
+    
+    wrapper.style.cssText = `
+        position: relative;
+        width: ${isVersionSelect ? '160px' : '100%'};
+    `;
+    
+    // Create search input that replaces the select
+    const searchInput = document.createElement('input');
+    searchInput.type = 'text';
+    
+    // Use shorter placeholder for version fields to prevent cutoff
+    const labelText = select.previousElementSibling.textContent.toLowerCase();
+    const placeholder = isVersionSelect ? 'Version...' : `Type to search ${labelText}...`;
+    searchInput.placeholder = placeholder;
+    searchInput.className = 'combobox-input';
+    
+    searchInput.style.cssText = `
+        width: ${isVersionSelect ? '160px' : '100%'};
+        padding: 8px 30px 8px 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+        background: white;
+        cursor: text;
+        box-sizing: border-box;
+    `;
+    
+    // Create dropdown arrow
+    const arrow = document.createElement('div');
+    arrow.innerHTML = '▼';
+    arrow.className = 'combobox-arrow';
+    arrow.style.cssText = `
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #666;
+        font-size: 12px;
+    `;
+    
+    // Create dropdown list
+    const dropdown = document.createElement('div');
+    dropdown.className = 'combobox-dropdown';
+    dropdown.style.cssText = `
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 4px 4px;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+        display: none;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    `;
+    
+    // Replace select with wrapper
+    select.parentNode.insertBefore(wrapper, select);
+    wrapper.appendChild(searchInput);
+    wrapper.appendChild(arrow);
+    wrapper.appendChild(dropdown);
+    select.style.display = 'none'; // Hide original select but keep for form submission
+    
+    let isOpen = false;
+    let selectedValue = select.value;
+    let filteredOptions = [...originalOptions];
+    
+    // Update display value
+    function updateDisplayValue() {
+        const selectedOption = originalOptions.find(opt => opt.value === selectedValue);
+        if (selectedOption && selectedOption.value !== '') {
+            searchInput.value = selectedOption.text;
+            searchInput.style.color = '#000';
+        } else {
+            searchInput.value = '';
+            searchInput.style.color = '#666';
+        }
+    }
+    
+    // Populate dropdown with filtered options
+    function populateDropdown(options = filteredOptions) {
+        dropdown.innerHTML = '';
+        
+        if (options.length === 0) {
+            const noResults = document.createElement('div');
+            noResults.textContent = 'No matches found';
+            noResults.style.cssText = 'padding: 8px; color: #666; font-style: italic;';
+            dropdown.appendChild(noResults);
+            return;
+        }
+        
+        options.forEach(option => {
+            if (option.value === '') return; // Skip default option
+            
+            const item = document.createElement('div');
+            item.textContent = option.text;
+            item.dataset.value = option.value;
+            item.style.cssText = `
+                padding: 8px;
+                cursor: pointer;
+                border-bottom: 1px solid #f0f0f0;
+                ${option.value === selectedValue ? 'background: #e3f2fd; color: #1976d2;' : ''}
+            `;
+            
+            item.addEventListener('mouseenter', () => {
+                item.style.background = option.value === selectedValue ? '#e3f2fd' : '#f5f5f5';
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                item.style.background = option.value === selectedValue ? '#e3f2fd' : 'white';
+            });
+            
+            item.addEventListener('click', () => {
+                selectedValue = option.value;
+                select.value = selectedValue;
+                
+                // Trigger change event on original select
+                const changeEvent = new Event('change', { bubbles: true });
+                select.dispatchEvent(changeEvent);
+                
+                updateDisplayValue();
+                closeDropdown();
+            });
+            
+            dropdown.appendChild(item);
+        });
+    }
+    
+    // Open dropdown
+    function openDropdown() {
+        if (isOpen) return;
+        isOpen = true;
+        dropdown.style.display = 'block';
+        populateDropdown();
+        searchInput.style.borderRadius = '4px 4px 0 0';
+    }
+    
+    // Close dropdown
+    function closeDropdown() {
+        if (!isOpen) return;
+        isOpen = false;
+        dropdown.style.display = 'none';
+        searchInput.style.borderRadius = '4px';
+        updateDisplayValue();
+    }
+    
+    // Filter options based on search
+    function filterOptions(searchTerm) {
+        if (!searchTerm.trim()) {
+            filteredOptions = [...originalOptions];
+        } else {
+            filteredOptions = originalOptions.filter(option => {
+                if (option.value === '') return false; // Exclude default option from search results
+                return option.text.toLowerCase().includes(searchTerm.toLowerCase());
+            });
+        }
+        populateDropdown();
+    }
+    
+    // Event listeners
+    searchInput.addEventListener('focus', () => {
+        openDropdown();
+    });
+    
+    searchInput.addEventListener('input', (e) => {
+        if (!isOpen) openDropdown();
+        filterOptions(e.target.value);
+    });
+    
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeDropdown();
+        } else if (e.key === 'Enter') {
+            e.preventDefault();
+            // If there's exactly one filtered option, select it
+            const visibleOptions = filteredOptions.filter(opt => opt.value !== '');
+            if (visibleOptions.length === 1) {
+                selectedValue = visibleOptions[0].value;
+                select.value = selectedValue;
+                const changeEvent = new Event('change', { bubbles: true });
+                select.dispatchEvent(changeEvent);
+                closeDropdown();
+            }
+        }
+    });
+    
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!wrapper.contains(e.target)) {
+            closeDropdown();
+        }
+    });
+    
+    // Initialize display
+    updateDisplayValue();
+    
+    // Update when original select changes programmatically
+    const observer = new MutationObserver(() => {
+        const newOptions = Array.from(select.options).map(opt => ({ 
+            value: opt.value, 
+            text: opt.textContent,
+            selected: opt.selected
+        }));
+        
+        // Check if options changed
+        if (JSON.stringify(newOptions) !== JSON.stringify(originalOptions)) {
+            originalOptions.length = 0;
+            originalOptions.push(...newOptions);
+            filteredOptions = [...originalOptions];
+            selectedValue = select.value;
+            updateDisplayValue();
+            if (isOpen) {
+                populateDropdown();
+            }
+        }
+    });
+    
+    observer.observe(select, { childList: true, subtree: true });
+}
+
+// Function to initialize searchable dropdowns after population
+function initializeSearchableDropdowns() {
+    const dropdownIds = [
+        'explorer-version', 'explorer-board',
+        'board1-version', 'board1', 
+        'board2-version', 'board2'
+    ];
+    
+    dropdownIds.forEach(id => {
+        makeDropdownSearchable(id);
     });
 }
 
@@ -391,8 +800,8 @@ function switchPage(pageName, eventTarget = null) {
 
 // Update URL when comparison board selections change
 function updateComparisonURL() {
-    const board1Idx = document.getElementById('board1').value;
-    const board2Idx = document.getElementById('board2').value;
+    const board1 = getSelectedBoard('board1-version', 'board1');
+    const board2 = getSelectedBoard('board2-version', 'board2');
     
     // Only update URL if we're on the compare page
     const currentPage = document.querySelector('.page.active');
@@ -402,18 +811,18 @@ function updateComparisonURL() {
     
     const params = { view: 'compare' };
     
-    if (board1Idx) {
-        const board1 = boardData.boards[parseInt(board1Idx)];
+    if (board1) {
         params.board1 = getBoardKey(board1.port, board1.board);
+        params.version1 = board1.version;
     }
     
-    if (board2Idx) {
-        const board2 = boardData.boards[parseInt(board2Idx)];
+    if (board2) {
         params.board2 = getBoardKey(board2.port, board2.board);
+        params.version2 = board2.version;
     }
     
     // Include current comparison options if both boards are selected
-    if (board1Idx && board2Idx) {
+    if (board1 && board2) {
         const hideCommon = document.getElementById('hide-common').checked;
         const showDetails = document.getElementById('detailed-compare').checked;
         if (hideCommon) params.diff = 'true';
@@ -426,15 +835,14 @@ function updateComparisonURL() {
 // ===== BOARD EXPLORER =====
 
 async function loadBoardDetails() {
-    const select = document.getElementById('explorer-board');
-    const boardIdx = select.value;
+    const selectedBoard = getSelectedBoard('explorer-version', 'explorer-board');
     
-    if (!boardIdx) {
-        document.getElementById('explorer-content').innerHTML = '<div class="loading"><p>Select a board to explore its modules and APIs</p></div>';
+    if (!selectedBoard) {
+        document.getElementById('explorer-content').innerHTML = '<div class="loading"><p>Select both version and board to explore modules and APIs</p></div>';
         return;
     }
     
-    currentBoard = boardData.boards[parseInt(boardIdx)];
+    currentBoard = selectedBoard;
     
     // Show initial loading with progress
     document.getElementById('explorer-content').innerHTML = `
@@ -494,7 +902,8 @@ async function loadBoardDetails() {
         // Update URL for shareable links
         updateURL({
             view: 'explorer',
-            board: getBoardKey(currentBoard.port, currentBoard.board)
+            board: getBoardKey(currentBoard.port, currentBoard.board),
+            version: currentBoard.version
         });
     } catch (error) {
         console.error('Error loading board details:', error);
@@ -923,11 +1332,11 @@ async function showClassDetails(moduleName, className, event) {
 let comparisonData = null;
 
 async function compareBoards() {
-    const board1Idx = document.getElementById('board1').value;
-    const board2Idx = document.getElementById('board2').value;
+    const board1 = getSelectedBoard('board1-version', 'board1');
+    const board2 = getSelectedBoard('board2-version', 'board2');
     
-    if (!board1Idx || !board2Idx) {
-        alert('Please select both boards to compare');
+    if (!board1 || !board2) {
+        alert('Please select both version and board for both boards to compare');
         return;
     }
     
@@ -937,9 +1346,6 @@ async function compareBoards() {
     }
     
     console.log('Starting board comparison...');
-    
-    const board1 = boardData.boards[parseInt(board1Idx)];
-    const board2 = boardData.boards[parseInt(board2Idx)];
     
     console.log('Comparing:', board1, 'vs', board2);
     
@@ -1009,7 +1415,9 @@ async function compareBoards() {
         updateURL({
             view: 'compare',
             board1: getBoardKey(board1.port, board1.board),
+            version1: board1.version,
             board2: getBoardKey(board2.port, board2.board),
+            version2: board2.version,
             diff: hideCommon ? 'true' : null,
             detailed: showDetails ? 'true' : null
         });
@@ -1040,7 +1448,9 @@ function updateComparison() {
     updateURL({
         view: 'compare',
         board1: getBoardKey(board1.port, board1.board),
+        version1: board1.version,
         board2: getBoardKey(board2.port, board2.board),
+        version2: board2.version,
         diff: hideCommon ? 'true' : null,
         detailed: showDetails ? 'true' : null
     });

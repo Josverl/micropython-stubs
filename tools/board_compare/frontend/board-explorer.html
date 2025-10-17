@@ -563,8 +563,14 @@
             <div class="controls">
                 <div class="control-row">
                     <div class="control-group">
-                        <label for="explorer-board">Select Board:</label>
-                        <select id="explorer-board" onchange="loadBoardDetails()">
+                        <label for="explorer-version">Version:</label>
+                        <select id="explorer-version" onchange="updateBoardOptions('explorer-version', 'explorer-board'); loadBoardDetails()">
+                            <option value="">All versions</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="explorer-board">Board:</label>
+                        <select id="explorer-board" onchange="updateVersionOptions('explorer-version', 'explorer-board'); loadBoardDetails()">
                             <option value="">Select a board...</option>
                         </select>
                     </div>
@@ -572,7 +578,7 @@
             </div>
             
             <div id="explorer-content" class="loading">
-                <p>Select a board to explore its modules and APIs</p>
+                <p>Select both version and board to explore modules and APIs</p>
             </div>
         </div>
         
@@ -581,14 +587,28 @@
             <div class="controls">
                 <div class="control-row">
                     <div class="control-group">
+                        <label for="board1-version">Board 1 Version:</label>
+                        <select id="board1-version" onchange="updateBoardOptions('board1-version', 'board1'); updateComparisonURL()">
+                            <option value="">All versions</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
                         <label for="board1">Board 1:</label>
-                        <select id="board1" onchange="updateComparisonURL()">
+                        <select id="board1" onchange="updateVersionOptions('board1-version', 'board1'); updateComparisonURL()">
                             <option value="">Select a board...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="board2-version">Board 2 Version:</label>
+                        <select id="board2-version" onchange="updateBoardOptions('board2-version', 'board2'); updateComparisonURL()">
+                            <option value="">All versions</option>
                         </select>
                     </div>
                     <div class="control-group">
                         <label for="board2">Board 2:</label>
-                        <select id="board2" onchange="updateComparisonURL()">
+                        <select id="board2" onchange="updateVersionOptions('board2-version', 'board2'); updateComparisonURL()">
                             <option value="">Select a board...</option>
                         </select>
                     </div>
