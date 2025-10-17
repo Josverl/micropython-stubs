@@ -128,6 +128,19 @@ class StubScanner:
                                         is_hidden=self._is_typing_related(const_name, None, value)
                                     )
                                     constants.append(constant)
+                        elif isinstance(item, cst.AnnAssign):
+                            if isinstance(item.target, cst.Name):
+                                const_name = item.target.value
+                                type_hint = self._get_annotation_str(item.annotation) if item.annotation else None
+                                value = self._get_value_str(item.value) if item.value else None
+                                
+                                constant = Constant(
+                                    name=const_name,
+                                    type_hint=type_hint,
+                                    value=value,
+                                    is_hidden=self._is_typing_related(const_name, type_hint, value)
+                                )
+                                constants.append(constant)
 
             return Module(
                 name=module_name,
@@ -231,6 +244,10 @@ class StubScanner:
             parameters = []
             params = node.params
 
+            # Process positional-only arguments (before the '/' marker)
+            for param in params.posonly_params:
+                parameters.append(self._extract_parameter_from_param(param))
+
             # Process regular arguments
             for param in params.params:
                 parameters.append(self._extract_parameter_from_param(param))
@@ -241,6 +258,8 @@ class StubScanner:
                     Parameter(
                         name=params.star_arg.name.value,
                         type_hint=self._get_annotation_str(params.star_arg.annotation) if params.star_arg.annotation else None,
+                        default_value=None,
+                        is_optional=False,
                         is_variadic=True,
                     )
                 )
@@ -255,6 +274,8 @@ class StubScanner:
                     Parameter(
                         name=params.star_kwarg.name.value,
                         type_hint=self._get_annotation_str(params.star_kwarg.annotation) if params.star_kwarg.annotation else None,
+                        default_value=None,
+                        is_optional=False,
                         is_variadic=True,
                     )
                 )
@@ -311,6 +332,7 @@ class StubScanner:
             type_hint=self._get_annotation_str(param.annotation) if param.annotation else None,
             default_value=default_value,
             is_optional=is_optional,
+            is_variadic=False,  # Regular parameters are not variadic
         )
 
     def _get_value_str(self, value: Union[cst.BaseExpression, None]) -> Optional[str]:
@@ -349,7 +371,7 @@ class StubScanner:
             typing_value_patterns = [
                 'TypeVar(', 'ParamSpec(', 'TypeAlias', 'Generic[',
                 'Protocol[', 'Union[', 'Optional[', 'Literal[',
-                'Callable[', 'Type[', 'ClassVar[', 'Final['
+                'Callable[', 'Type[', 'ClassVar['
             ]
             if any(pattern in value for pattern in typing_value_patterns):
                 return True
@@ -378,7 +400,7 @@ class StubScanner:
 
         try:
             if isinstance(annotation, cst.Annotation):
-                return annotation.annotation.visit(cst.Module([]).code_for_node)
+                return cst.Module([]).code_for_node(annotation.annotation)
             return None
         except Exception:
             return None

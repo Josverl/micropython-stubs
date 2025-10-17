@@ -558,16 +558,19 @@ function getModuleClasses(moduleId) {
 }
 
 function getModuleFunctions(moduleId) {
-    if (!db) return [];
+    if (!db || !currentBoard) return []; // DANGER DANGER
     
     try {
         const stmt = db.prepare(`
             SELECT um.id, um.name, um.return_type, um.is_async, um.docstring
             FROM unique_methods um
+            JOIN board_method_support bms ON um.id = bms.method_id
+            JOIN boards b ON bms.board_id = b.id
             WHERE um.module_id = ? AND um.class_id IS NULL
+              AND b.version = ? AND b.port = ? AND b.board = ?
             ORDER BY um.name
         `);
-        stmt.bind([moduleId]);
+        stmt.bind([moduleId, currentBoard.version, currentBoard.port, currentBoard.board]);
         
         const functions = [];
         while (stmt.step()) {
@@ -612,16 +615,19 @@ function getMethodParameters(methodId) {
 }
 
 function getClassMethods(moduleId, classId) {
-    if (!db) return [];
+    if (!db || !currentBoard) return [];
     
     try {
         const stmt = db.prepare(`
             SELECT um.id, um.name, um.return_type, um.is_async, um.is_property, um.is_classmethod, um.is_staticmethod, um.docstring
             FROM unique_methods um
-            WHERE um.module_id = ? AND um.class_id = ?
+            JOIN board_method_support bms ON um.id = bms.method_id
+            JOIN boards b ON bms.board_id = b.id
+            WHERE um.module_id = ? AND um.class_id = ? 
+              AND b.version = ? AND b.port = ? AND b.board = ?
             ORDER BY um.name
         `);
-        stmt.bind([moduleId, classId]);
+        stmt.bind([moduleId, classId, currentBoard.version, currentBoard.port, currentBoard.board]);
         
         const methods = [];
         while (stmt.step()) {

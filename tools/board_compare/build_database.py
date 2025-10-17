@@ -56,7 +56,26 @@ class DatabaseBuilder:
             param_signature
         )
 
-    def _is_typing_related(self, name: str, type_hint: str = None, value: str = None) -> bool:
+    def _get_method_signature_hash_with_context(self, method_data: Dict, parameters: List[Dict], module_id: int, class_id: Optional[int]) -> str:
+        """Generate a unique signature hash for a method including its parameters and context."""
+        param_signature = "|".join([
+            f"{p['name']}:{p.get('type_hint', '')}:{p.get('default_value', '')}:{p.get('is_optional', False)}:{p.get('is_variadic', False)}"
+            for p in parameters
+        ])
+        
+        return self._generate_signature_hash(
+            module_id,  # Include module context
+            class_id,   # Include class context
+            method_data["name"],
+            method_data.get("return_type"),
+            method_data.get("is_async", False),
+            method_data.get("is_classmethod", False),
+            method_data.get("is_staticmethod", False),
+            method_data.get("is_property", False),
+            param_signature
+        )
+
+    def _is_typing_related(self, name: str, type_hint: Optional[str] = None, value: Optional[str] = None) -> bool:
         """
         Determine if a constant/attribute is typing-related and should be hidden.
         
@@ -584,9 +603,9 @@ class DatabaseBuilder:
         """Add a method/function to the normalized database."""
         cursor = self.conn.cursor()
 
-        # Generate method signature hash including parameters
+        # Generate method signature hash including parameters and context (module_id, class_id)
         parameters = method_data.get("parameters", [])
-        method_hash = self._get_method_signature_hash(method_data, parameters)
+        method_hash = self._get_method_signature_hash_with_context(method_data, parameters, module_id, class_id)
 
         # Insert or get unique method
         cursor.execute(
