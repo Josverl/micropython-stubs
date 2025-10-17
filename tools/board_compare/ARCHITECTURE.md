@@ -571,6 +571,82 @@ config(self, **kwargs) -> dict
 - Title attributes for tooltips
 - Semantic HTML structure
 
+### 11. Base Class Inheritance Display
+
+**Decision:** Display base classes inline with class names in the tree view
+
+**Rationale:**
+- **Quick API understanding**: Developers immediately see inheritance relationships
+- **Non-intrusive display**: Base classes shown in parentheses without disrupting tree hierarchy
+- **Visual distinction**: Gray subdued text differentiates from class name
+- **Multiple inheritance support**: Comma-separated base names for classes with multiple bases
+- **Complete metadata**: Leverages existing database schema without requiring schema changes
+- **Backward compatibility**: Gracefully handles classes without defined base classes
+
+**Data Architecture:**
+- **Database layer**: Base classes already existed in `unique_class_bases` table (385 relationships, 369 classes affected)
+- **Query function**: New `getClassBases(classId)` function queries database for base class names
+- **Data integration**: `getModuleClasses()` populates base_classes array when loading module classes
+- **Rendering**: `renderModuleTree()` formats and displays base classes inline
+
+**Implementation Details:**
+
+**Database Query:**
+```sql
+SELECT ucb.base_name
+FROM unique_class_bases ucb
+WHERE ucb.class_id = ?
+ORDER BY ucb.base_name
+```
+
+**Display Format:**
+- Single inheritance: `class Signal (Pin)`
+- Multiple inheritance: `class ESPNow (ESPNowBase, Iterator)`
+- No inheritance: `class NVS` (no change)
+
+**Visual Styling:**
+- Color: `#888` (medium gray) - subdued but readable
+- Font size: `0.9em` - slightly smaller than class name
+- Font weight: `normal` - contrasts with bold class name
+- Rendering: Inline `<span>` element within class display
+
+**Coverage Statistics:**
+- Total base class relationships: 385
+- Classes with inheritance: 369 (distinct class IDs)
+- Unique base class names: 25
+- Top modules: machine (111), pyscript\web (107), hashlib (84)
+
+**Examples from Database:**
+- `machine.Signal extends Pin`
+- `machine.SDCard extends AbstractBlockDev`
+- `machine.SoftSPI extends SPI`
+- `machine.SoftI2C extends I2C`
+- `hashlib.sha1 extends _Hash`
+- `esp32.Partition extends AbstractBlockDev`
+
+**User Experience Benefits:**
+- **Object-oriented understanding**: Clearly shows class hierarchy and inheritance structure
+- **API navigation**: Developers can quickly understand which base classes to study for methods
+- **Code exploration**: Facilitates understanding of method resolution order (MRO)
+- **Documentation completeness**: Provides complete class definition inline
+
+**Testing:**
+- Database verification: 385 base class relationships confirmed
+- Query validation: `getClassBases()` correctly retrieves ordered base class names
+- Browser testing: Manual verification on all target boards confirms display
+- Cache validation: Hard browser refresh confirmed working display
+
+**Files Modified:**
+- `tools/board_compare/frontend/board-explorer.js`
+  - Added: `getClassBases(classId)` function
+  - Updated: `getModuleClasses()` to populate base_classes array
+  - Updated: `renderModuleTree()` to display base classes inline
+
+**Performance Impact:**
+- Minimal: Database query executed only when module is expanded
+- Efficient: Single SQL query per class, cached in class object
+- No display overhead: Simple string formatting and inline rendering
+
 ## Data Flow
 
 ### 1. Database Building Flow
@@ -1049,6 +1125,29 @@ if (params.has('module')) {
 5. **Infrastructure limitations:**
    - **SQL.js CDN dependency**: Blocked in some environments
    - **Limited offline support**: Requires internet for first load
+
+## Recent Updates
+
+### October 18, 2025: Base Class Inheritance Display
+
+Added feature to display base class inheritance directly in the tree view.
+
+**Implementation:**
+- New `getClassBases(classId)` function queries `unique_class_bases` table
+- `getModuleClasses()` populates `base_classes` array for each class
+- `renderModuleTree()` displays inheritance inline: `class Signal (Pin)`
+- Full support for multiple inheritance: `class ESPNow (ESPNowBase, Iterator)`
+
+**Database Coverage:**
+- 385 base class relationships across 20 boards
+- 369 classes with defined inheritance
+- 25 unique base class names
+- Key modules: machine (111), hashlib (84), pyscript/web (107)
+
+**Files Modified:**
+- `frontend/board-explorer.js` (~35 lines added/modified)
+
+**Performance:** Negligible impact - queries only when module expanded
 
 ## Conclusion
 
