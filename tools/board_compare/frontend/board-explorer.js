@@ -61,6 +61,25 @@ function getBoardKey(port, board) {
     return `${port}-${board}`;
 }
 
+// Utility function to format module summary counts (suppressing zero counts)
+function formatModuleSummary(classCount, funcCount, constCount) {
+    const parts = [];
+    if (classCount > 0) parts.push(`${classCount} classes`);
+    if (funcCount > 0) parts.push(`${funcCount} functions`);
+    if (constCount > 0) parts.push(`${constCount} constants`);
+    
+    return parts.length > 0 ? parts.join(', ') : 'empty module';
+}
+
+// Utility function to format class summary counts (suppressing zero counts)
+function formatClassSummary(methodCount, attributeCount) {
+    const parts = [];
+    if (methodCount > 0) parts.push(`${methodCount} methods`);
+    if (attributeCount > 0) parts.push(`${attributeCount} attributes`);
+    
+    return parts.length > 0 ? parts.join(', ') : 'empty class';
+}
+
 // Utility function to format method/function signatures
 function formatMethodSignature(method) {
     let signature = method.name;
@@ -726,7 +745,7 @@ function displayModuleTree(modules) {
                     <span class="tree-icon">${hasChildren ? Icons.create('folder') : Icons.create('module')}</span>
                     <strong style="color: #2c3e50; font-size: 1.1em;">${module.name}</strong>
                     <span style="color: #6c757d; font-size: 0.9em; margin-left: auto; background: #e9ecef; padding: 4px 8px; border-radius: 12px;">
-                        ${module.classes.length} classes, ${module.functions.length} functions, ${module.constants.length} constants
+                        ${formatModuleSummary(module.classes.length, module.functions.length, module.constants.length)}
                     </span>
                 </div>
                 <div id="module-${module.name}" class="tree-children hidden">
@@ -743,7 +762,7 @@ function displayModuleTree(modules) {
                             <span class="tree-icon">${hasMethodsToShow ? Icons.create('folder') : Icons.create('class')}</span>
                             <span style="color: #495057; font-weight: 600;">class ${cls.name}</span>
                             <span style="color: #6c757d; font-size: 0.85em; margin-left: auto; background: #f8f9fa; padding: 2px 6px; border-radius: 8px;">
-                                ${cls.methods.length} methods, ${cls.attributes.length} attributes
+                                ${formatClassSummary(cls.methods.length, cls.attributes.length)}
                             </span>
                         </div>
                         ${hasMethodsToShow ? `
@@ -1083,7 +1102,8 @@ function updateComparison() {
             if (classCount > 0) {
                 html += '<div class="class-list">';
                 module.classes.forEach(cls => {
-                    html += `<div class="class-item">${cls.name} (${cls.methods.length} methods)</div>`;
+                    const methodText = cls.methods.length > 0 ? ` (${cls.methods.length} methods)` : '';
+                    html += `<div class="class-item">${cls.name}${methodText}</div>`;
                 });
                 html += '</div>';
             }
@@ -1138,7 +1158,8 @@ function updateComparison() {
             if (classCount > 0) {
                 html += '<div class="class-list">';
                 module.classes.forEach(cls => {
-                    html += `<div class="class-item">${cls.name} (${cls.methods.length} methods)</div>`;
+                    const methodText = cls.methods.length > 0 ? ` (${cls.methods.length} methods)` : '';
+                    html += `<div class="class-item">${cls.name}${methodText}</div>`;
                 });
                 html += '</div>';
             }
