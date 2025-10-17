@@ -21,9 +21,9 @@
             "detail": "Start the board_explorer server on port 8080",
             "type": "shell",
             "options": {
-                "cwd": "${workspaceFolder}/tools/board_compare/frontend"
+                "cwd": "${workspaceFolder}/tools/board_compare"
             },
-            "command": "uv run -m http.server 8080",
+            "command": "uv run python run_local.py",
         },
         {
             "label": "Sphinx: build documentation",
