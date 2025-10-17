@@ -446,6 +446,118 @@ class DatabaseBuilder:
         )
         return [dict(row) for row in cursor.fetchall()]
 
+    def export_detailed_to_json(self, output_path: Path):
+        """
+        Export detailed database to JSON file for advanced frontend features.
+        Includes modules, classes, methods, and parameters.
+        """
+        cursor = self.conn.cursor()
+
+        # Get all boards
+        cursor.execute("SELECT * FROM boards ORDER BY version, port, board")
+        boards = []
+
+        for board_row in cursor.fetchall():
+            board_dict = dict(board_row)
+            board_id = board_dict["id"]
+
+            # Get modules for this board with full details
+            cursor.execute(
+                """
+                SELECT m.* FROM modules m
+                JOIN board_modules bm ON m.id = bm.module_id
+                WHERE bm.board_id = ?
+                ORDER BY m.name
+            """,
+                (board_id,),
+            )
+
+            modules = []
+            for module_row in cursor.fetchall():
+                module_dict = dict(module_row)
+                module_id = module_dict["id"]
+                
+                # Get classes
+                cursor.execute("SELECT * FROM classes WHERE module_id = ?", (module_id,))
+                classes = []
+                for class_row in cursor.fetchall():
+                    class_dict = dict(class_row)
+                    class_id = class_dict["id"]
+                    
+                    # Get class methods
+                    cursor.execute(
+                        "SELECT * FROM methods WHERE module_id = ? AND class_id = ?",
+                        (module_id, class_id)
+                    )
+                    methods = []
+                    for method_row in cursor.fetchall():
+                        method_dict = dict(method_row)
+                        method_id = method_dict["id"]
+                        
+                        # Get parameters
+                        cursor.execute(
+                            "SELECT name, type_hint, default_value, is_optional, is_variadic FROM parameters WHERE method_id = ? ORDER BY position",
+                            (method_id,)
+                        )
+                        params = [dict(row) for row in cursor.fetchall()]
+                        method_dict["parameters"] = params
+                        
+                        # Remove internal IDs
+                        method_dict.pop("id", None)
+                        method_dict.pop("module_id", None)
+                        method_dict.pop("class_id", None)
+                        methods.append(method_dict)
+                    
+                    class_dict["methods"] = methods
+                    class_dict.pop("id", None)
+                    class_dict.pop("module_id", None)
+                    classes.append(class_dict)
+                
+                # Get module-level functions
+                cursor.execute(
+                    "SELECT * FROM methods WHERE module_id = ? AND class_id IS NULL",
+                    (module_id,)
+                )
+                functions = []
+                for func_row in cursor.fetchall():
+                    func_dict = dict(func_row)
+                    func_id = func_dict["id"]
+                    
+                    # Get parameters
+                    cursor.execute(
+                        "SELECT name, type_hint, default_value, is_optional, is_variadic FROM parameters WHERE method_id = ? ORDER BY position",
+                        (func_id,)
+                    )
+                    params = [dict(row) for row in cursor.fetchall()]
+                    func_dict["parameters"] = params
+                    
+                    # Remove internal IDs
+                    func_dict.pop("id", None)
+                    func_dict.pop("module_id", None)
+                    func_dict.pop("class_id", None)
+                    functions.append(func_dict)
+                
+                # Get constants
+                cursor.execute(
+                    "SELECT name FROM module_constants WHERE module_id = ?",
+                    (module_id,)
+                )
+                constants = [row[0] for row in cursor.fetchall()]
+                
+                module_dict["classes"] = classes
+                module_dict["functions"] = functions
+                module_dict["constants"] = constants
+                module_dict.pop("id", None)
+                modules.append(module_dict)
+
+            board_dict["modules"] = modules
+            board_dict.pop("id", None)
+            boards.append(board_dict)
+
+        # Write to JSON
+        with open(output_path, "w") as f:
+            json.dump({"version": "1.0.0", "boards": boards}, f, indent=2)
+
     def get_board_modules_detailed(self, version: str, port: str, board: str) -> Dict:
         """
         Get detailed module information for a specific board (for API endpoint).
@@ -513,7 +625,7 @@ class DatabaseBuilder:
 
 
 def build_database_for_version(
-    publish_dir: Path, version: str, db_path: Path, json_path: Optional[Path] = None
+    publish_dir: Path, version: str, db_path: Path, json_path: Optional[Path] = None, detailed_json_path: Optional[Path] = None
 ):
     """
     Build a database for all boards of a specific MicroPython version.
@@ -522,7 +634,8 @@ def build_database_for_version(
         publish_dir: Path to the publish directory
         version: MicroPython version (e.g., 'v1_26_0')
         db_path: Path to output SQLite database
-        json_path: Optional path to output JSON file
+        json_path: Optional path to output simplified JSON file
+        detailed_json_path: Optional path to output detailed JSON file with full data
     """
     builder = DatabaseBuilder(db_path)
     builder.connect()
@@ -555,8 +668,12 @@ def build_database_for_version(
                 logger.error(f"  Error processing {stub_dir}: {e}")
 
     if json_path:
-        logger.info(f"Exporting to JSON: {json_path}")
+        logger.info(f"Exporting simplified JSON to: {json_path}")
         builder.export_to_json(json_path)
+    
+    if detailed_json_path:
+        logger.info(f"Exporting detailed JSON to: {detailed_json_path}")
+        builder.export_detailed_to_json(detailed_json_path)
 
     builder.close()
     logger.info(f"Database created at {db_path}")
@@ -586,9 +703,12 @@ if __name__ == "__main__":
         help="Output database path",
     )
     parser.add_argument(
-        "--json", type=Path, help="Optional JSON output path for frontend"
+        "--json", type=Path, help="Optional JSON output path for frontend (simplified)"
+    )
+    parser.add_argument(
+        "--detailed-json", type=Path, help="Optional detailed JSON output path with full module/class/method info"
     )
 
     args = parser.parse_args()
 
-    build_database_for_version(args.publish_dir, args.version, args.db, args.json)
+    build_database_for_version(args.publish_dir, args.version, args.db, args.json, args.detailed_json)

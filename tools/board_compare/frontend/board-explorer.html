@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroPython Board Explorer & Comparison</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        nav h1 {
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-tab {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .nav-tab.active {
+            background: white;
+            color: #667eea;
+        }
+        
+        /* Page Content */
+        .page {
+            display: none;
+            padding: 30px;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Controls */
+        .controls {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .control-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        select, input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        /* Module Tree */
+        .module-tree {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .tree-item {
+            margin-left: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .tree-node {
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tree-node:hover {
+            background: #f8f9fa;
+        }
+        
+        .tree-node.selected {
+            background: #e3f2fd;
+            border-left: 4px solid #667eea;
+        }
+        
+        .tree-icon {
+            font-size: 0.9em;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .tree-children {
+            margin-left: 15px;
+            border-left: 1px dotted #ddd;
+            padding-left: 10px;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Detail View */
+        .detail-view {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .detail-header {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .detail-section {
+            margin-bottom: 25px;
+        }
+        
+        .detail-section h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .method-list, .class-list {
+            margin-top: 10px;
+        }
+        
+        .method-item, .class-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .method-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .method-params {
+            color: #666;
+            margin-left: 5px;
+        }
+        
+        .method-return {
+            color: #28a745;
+            margin-left: 5px;
+        }
+        
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .board-section {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .board-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .module-list {
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .module-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .module-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .module-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .module-details {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .unique-to-board1 {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .unique-to-board2 {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+        
+        .different {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+        
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 2px solid #e9ecef;
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        /* Search Results */
+        .search-results {
+            margin-top: 20px;
+        }
+        
+        .search-result-item {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .search-result-header {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .board-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <h1>🔬 MicroPython Board Explorer</h1>
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="switchPage('explorer')">Board Explorer</button>
+                <button class="nav-tab" onclick="switchPage('compare')">Compare Boards</button>
+                <button class="nav-tab" onclick="switchPage('search')">Search APIs</button>
+            </div>
+        </nav>
+        
+        <!-- Board Explorer Page -->
+        <div id="explorer-page" class="page active">
+            <div class="controls">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="explorer-board">Select Board:</label>
+                        <select id="explorer-board" onchange="loadBoardDetails()">
+                            <option value="">Select a board...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="explorer-content" class="loading">
+                <p>Select a board to explore its modules and APIs</p>
+            </div>
+        </div>
+        
+        <!-- Compare Boards Page -->
+        <div id="compare-page" class="page">
+            <div class="controls">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="board1">Board 1:</label>
+                        <select id="board1">
+                            <option value="">Select a board...</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="board2">Board 2:</label>
+                        <select id="board2">
+                            <option value="">Select a board...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="hide-common" onchange="updateComparison()">
+                        <span>Hide common modules (show only differences)</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="detailed-compare">
+                        <span>Show class/method level differences</span>
+                    </label>
+                </div>
+                <button onclick="compareBoards()">Compare Boards</button>
+            </div>
+            
+            <div id="compare-stats" style="display: none;"></div>
+            <div id="compare-results"></div>
+        </div>
+        
+        <!-- Search APIs Page -->
+        <div id="search-page" class="page">
+            <div class="controls">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="search-input">Search for Module, Class, or Method:</label>
+                        <input type="text" id="search-input" placeholder="e.g., Neopixel, I2S, machine.Pin, etc." onkeypress="handleSearchEnter(event)">
+                    </div>
+                </div>
+                <button onclick="searchAPIs()">Search</button>
+            </div>
+            
+            <div id="search-results"></div>
+        </div>
+    </div>
+    
+    <script src="board-explorer.js"></script>
+</body>
+</html>
