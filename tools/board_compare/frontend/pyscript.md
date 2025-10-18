@@ -136,7 +136,140 @@ response = await fetch("data.json")
 data = await response.json()
 ```
 
+### Solution 2: Database Integration via SQL.js
+**Implemented**: October 18, 2025
+
+Integrated SQLite database access using SQL.js WASM library:
+- SQL.js loaded via PyScript configuration
+- Database file fetched as ArrayBuffer
+- JavaScript bridge (js module) to access SQL.js from Python
+- Query execution using prepare/step/getAsObject pattern
+- Fallback to JSON if database fails to load
+
+**Code Pattern**:
+```python
+from pyscript import fetch, ffi
+import js
+
+# Initialize SQL.js
+SQL = await js.initSqlJs(ffi.to_js({
+    "locateFile": lambda file: f"https://cdn.../sql.js/1.8.0/{file}"
+}))
+
+# Load database
+response = await fetch("board_comparison.db")
+buffer = await response.arrayBuffer()
+db_array = js.Uint8Array.new(buffer)
+db = SQL.Database.new(db_array)
+
+# Execute queries
+stmt = db.prepare("SELECT * FROM boards WHERE version = ?")
+stmt.bind([version])
+
+results = []
+while stmt.step():
+    row = stmt.getAsObject()
+    results.append({"id": row["id"], "name": row["name"]})
+
+stmt.free()
+```
+
+**Key Learnings**:
+1. Converting Python objects to JavaScript using `ffi.to_js()`
+2. Handling JavaScript Uint8Array and ArrayBuffer types
+3. Managing statement lifecycle (prepare/step/free)
+4. Accessing JavaScript objects from Python via `js` module
+
+**Code Pattern**:
+```python
+from pyscript import document, window, fetch
+import json
+
+# DOM manipulation
+elem = document.getElementById("my-id")
+elem.innerText = "Updated text"
+elem.classList.add("active")
+
+# Event handling
+button.onclick = lambda e: my_function()
+
+# Async data loading
+response = await fetch("data.json")
+data = await response.json()
+```
+
+### Solution 2: Database Integration via SQL.js
+**Implemented**: October 18, 2025
+
+Integrated SQLite database access using SQL.js WASM library:
+- SQL.js loaded via PyScript js_modules configuration
+- Database file fetched as ArrayBuffer
+- JavaScript bridge (js module) to access SQL.js from Python
+- Query execution using prepare/step/getAsObject pattern
+- Fallback to JSON if database fails to load
+
+**Code Pattern**:
+```python
+from pyscript import fetch, ffi
+import js
+
+# Initialize SQL.js
+SQL = await js.initSqlJs(ffi.to_js({
+    "locateFile": lambda file: f"https://cdn.../sql.js/1.8.0/{file}"
+}))
+
+# Load database
+response = await fetch("board_comparison.db")
+buffer = await response.arrayBuffer()
+db_array = js.Uint8Array.new(buffer)
+db = SQL.Database.new(db_array)
+
+# Execute queries
+stmt = db.prepare("SELECT * FROM boards WHERE version = ?")
+stmt.bind([version])
+
+results = []
+while stmt.step():
+    row = stmt.getAsObject()
+    results.append({
+        "id": row["id"],
+        "name": row["name"]
+    })
+
+stmt.free()
+```
+
+**Key Challenges**:
+1. Converting Python objects to JavaScript using `ffi.to_js()`
+2. Handling JavaScript Uint8Array and ArrayBuffer types
+3. Managing statement lifecycle (prepare/step/free)
+
 ## Testing Notes
+
+### Test 1: Initial Browser Test (October 18, 2025)
+**Environment**: Local HTTP server on port 8000
+**Browser**: Playwright/Chromium
+**URL**: http://127.0.0.1:8000/board-explorer-mpy.html
+
+**Result**: Page structure loads but external CDN resources blocked
+- Font Awesome CSS: BLOCKED (ERR_BLOCKED_BY_CLIENT)
+- PyScript core.css: BLOCKED (ERR_BLOCKED_BY_CLIENT)
+- PyScript core.js: BLOCKED (ERR_BLOCKED_BY_CLIENT)
+
+**Impact**: PyScript cannot initialize, MicroPython code not executing
+**Status**: "Initializing PyScript..." never updates
+
+**Screenshot**: Page shows basic structure with navigation and dropdowns
+- Navigation header visible with tabs
+- Status indicator shows "Initializing PyScript..."
+- Version and Board dropdowns present but empty
+- Clean styling from inline CSS
+
+**Next Steps**:
+1. CDN resources may be blocked in sandboxed environment
+2. Need to test in different environment or use alternative approach
+3. Consider inline Font Awesome icons or use Unicode symbols
+4. Investigate PyScript loading in restricted environments
 
 ## Final Status
 

@@ -243,7 +243,12 @@
             "packages": [],
             "fetch": [
                 {"files": ["board_comparison.json"]}
-            ]
+            ],
+            "js_modules": {
+                "main": {
+                    "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js": "SQL"
+                }
+            }
         }
     </script>
 </head>
@@ -348,14 +353,16 @@
     
     <!-- Main Python script -->
     <script type="mpy">
-        from pyscript import document, window, fetch
+        from pyscript import document, window, fetch, ffi
         import json
+        import js
         
         # Global state
         app_state = {
             "boards": [],
             "current_board": None,
-            "db": None
+            "db": None,
+            "SQL": None
         }
         
         def update_status(message, status_type="info"):
@@ -373,6 +380,82 @@
                 status_elem.classList.add("success")
             elif status_type == "error":
                 status_elem.classList.add("error")
+        
+        async def load_database():
+            """Load SQLite database using SQL.js."""
+            try:
+                update_status("Loading SQL.js library...", "info")
+                
+                # Initialize SQL.js
+                SQL = await js.initSqlJs(ffi.to_js({
+                    "locateFile": lambda file: f"https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/{file}"
+                }))
+                app_state["SQL"] = SQL
+                
+                update_status("Fetching database file (6.7MB)...", "info")
+                
+                # Fetch database file
+                response = await fetch("board_comparison.db")
+                buffer = await response.arrayBuffer()
+                
+                update_status("Loading database into memory...", "info")
+                
+                # Create database instance
+                db_array = js.Uint8Array.new(buffer)
+                app_state["db"] = SQL.Database.new(db_array)
+                
+                update_status("Database loaded successfully!", "success")
+                
+                # Test database connection
+                stmt = app_state["db"].prepare("SELECT COUNT(*) as count FROM boards")
+                stmt.step()
+                row = stmt.getAsObject()
+                stmt.free()
+                
+                board_count = row["count"]
+                update_status(f"Database ready! Found {board_count} boards.", "success")
+                
+                return True
+                
+            except Exception as e:
+                update_status(f"Error loading database: {str(e)}", "error")
+                print(f"Database error: {e}")
+                return False
+        
+        async def load_board_list_from_db():
+            """Load board list from database."""
+            if not app_state["db"]:
+                return False
+            
+            try:
+                update_status("Loading board list from database...", "info")
+                
+                stmt = app_state["db"].prepare("""
+                    SELECT DISTINCT version, port, board
+                    FROM boards
+                    ORDER BY version DESC, port, board
+                """)
+                
+                boards = []
+                while stmt.step():
+                    row = stmt.getAsObject()
+                    boards.append({
+                        "version": row["version"],
+                        "port": row["port"],
+                        "board": row["board"]
+                    })
+                
+                stmt.free()
+                
+                app_state["boards"] = boards
+                update_status(f"Loaded {len(boards)} boards from database", "success")
+                
+                return True
+                
+            except Exception as e:
+                update_status(f"Error loading board list: {str(e)}", "error")
+                print(f"Board list error: {e}")
+                return False
         
         def switch_page(page_id):
             """Switch between different pages."""
@@ -471,6 +554,15 @@
             
             # Search button
             document.getElementById("search-btn").onclick = lambda e: search_apis()
+            
+            # Board selection change handlers
+            def make_board_change_handler():
+                async def handler(e):
+                    await load_board_details()
+                return handler
+            
+            document.getElementById("explorer-version").onchange = make_board_change_handler()
+            document.getElementById("explorer-board").onchange = make_board_change_handler()
         
         def compare_boards():
             """Compare two selected boards."""
@@ -498,6 +590,103 @@
             </div>
             """
         
+        async def load_board_details():
+            """Load board details when a board is selected."""
+            version_select = document.getElementById("explorer-version")
+            board_select = document.getElementById("explorer-board")
+            
+            selected_version = version_select.value
+            selected_board = board_select.value
+            
+            content = document.getElementById("explorer-content")
+            
+            if not selected_version or not selected_board:
+                content.innerHTML = '<div class="loading"><p>Select both version and board to explore modules and APIs</p></div>'
+                return
+            
+            # Show loading
+            content.innerHTML = '''
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading board details...</p>
+                <div class="progress-step">Fetching modules...</div>
+            </div>
+            '''
+            
+            if not app_state["db"]:
+                # Fallback to JSON - show module names only
+                content.innerHTML = f'''
+                <div class="detail-view">
+                    <div class="detail-header">{selected_board} ({selected_version})</div>
+                    <p style="color: #666; margin: 15px 0;">
+                        Database not loaded. Showing simplified view with module names only.
+                    </p>
+                    <p style="color: #666;">
+                        Full API details (classes, methods, parameters) require database support.
+                    </p>
+                </div>
+                '''
+                return
+            
+            try:
+                # Query database for modules
+                stmt = app_state["db"].prepare("""
+                    SELECT um.id, um.name, um.docstring 
+                    FROM unique_modules um
+                    JOIN board_module_support bms ON um.id = bms.module_id
+                    JOIN boards b ON bms.board_id = b.id
+                    WHERE b.version = ? AND b.board = ?
+                    ORDER BY um.name
+                """)
+                
+                # Note: We need to map selected_board back to port/board split
+                # For simplicity in this phase, just show a basic result
+                stmt.bind([selected_version, selected_board])
+                
+                modules = []
+                while stmt.step():
+                    row = stmt.getAsObject()
+                    modules.append({
+                        "id": row["id"],
+                        "name": row["name"],
+                        "docstring": row["docstring"]
+                    })
+                
+                stmt.free()
+                
+                # Display modules
+                html = f'''
+                <div class="detail-view">
+                    <div class="detail-header">{selected_board} ({selected_version})</div>
+                    <div style="margin: 20px 0;">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">Modules ({len(modules)})</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
+                '''
+                
+                for module in modules:
+                    html += f'''
+                        <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; border-left: 4px solid #667eea;">
+                            <div style="font-weight: 600; color: #333;">{module["name"]}</div>
+                        </div>
+                    '''
+                
+                html += '''
+                        </div>
+                    </div>
+                </div>
+                '''
+                
+                content.innerHTML = html
+                
+            except Exception as e:
+                content.innerHTML = f'''
+                <div class="detail-view">
+                    <h3 style="color: #dc3545;">Error Loading Board</h3>
+                    <p style="color: #666; margin: 15px 0;">{str(e)}</p>
+                </div>
+                '''
+                print(f"Error loading board details: {e}")
+        
         # Main initialization
         async def main():
             """Main entry point for the application."""
@@ -506,10 +695,19 @@
             # Set up event handlers
             setup_event_handlers()
             
-            # Load data
-            await load_json_data()
+            # Try to load database first
+            db_loaded = await load_database()
             
-            update_status("Application ready! Using simplified JSON data.", "success")
+            if db_loaded:
+                # Load board list from database
+                await load_board_list_from_db()
+                populate_board_selects()
+                update_status("Application ready! Using database.", "success")
+            else:
+                # Fallback to JSON data
+                update_status("Falling back to JSON data...", "info")
+                await load_json_data()
+                update_status("Application ready! Using simplified JSON data.", "success")
         
         # Start the application
         import asyncio
