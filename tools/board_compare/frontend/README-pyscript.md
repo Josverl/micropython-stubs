@@ -14,13 +14,13 @@ This is a PyScript (MicroPython WebAssembly) version of the MicroPython Board Ex
 
 ## Features
 
-### Current Implementation (v1.0 - Phase 3)
+### Current Implementation (v1.1 - Updated)
 
 ✅ **Database Integration**
-- SQLite database access via SQL.js WASM
+- SQLite database access via SQL.js WASM (database-only, no JSON fallback)
 - 6.7MB database loaded on demand
-- Fallback to JSON if database unavailable
 - Efficient query execution with prepare/bind/step pattern
+- Required for all functionality
 
 ✅ **Board Explorer**
 - Board selection by version and name
@@ -77,17 +77,18 @@ This is a PyScript (MicroPython WebAssembly) version of the MicroPython Board Ex
 {
     "packages": [],
     "fetch": [
-        {"files": ["board_comparison.json"]},
         {"files": ["board_utils.py"]}
     ],
     "js_modules": {
         "main": {
-            "https://.../sql-wasm.js": "SQL"
+            "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js": "SQL"
         }
     }
 }
 </script>
 ```
+
+Note: The application now requires the SQLite database exclusively. JSON fallback has been removed for code simplification.
 
 ### Database Loading
 

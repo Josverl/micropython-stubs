@@ -242,7 +242,6 @@
         {
             "packages": [],
             "fetch": [
-                {"files": ["board_comparison.json"]},
                 {"files": ["board_utils.py"]}
             ],
             "js_modules": {
@@ -486,25 +485,7 @@
             page.classList.add("active")
             tab.classList.add("active")
         
-        async def load_json_data():
-            """Load board comparison data from JSON file."""
-            try:
-                update_status("Loading board data from JSON...", "info")
-                
-                response = await fetch("board_comparison.json")
-                data = await response.json()
-                
-                app_state["boards"] = data.get("boards", [])
-                
-                update_status(f"Loaded {len(app_state['boards'])} boards from JSON", "success")
-                
-                # Populate board dropdowns
-                populate_board_selects()
-                
-            except Exception as e:
-                update_status(f"Error loading JSON data: {str(e)}", "error")
-                print(f"Error: {e}")
-        
+
         def populate_board_selects():
             """Populate all board selection dropdowns."""
             if not app_state["boards"]:
@@ -578,7 +559,7 @@
                 <div class="detail-header">Board Comparison</div>
                 <p style="color: #666;">Comparison functionality coming soon...</p>
                 <p style="color: #666; margin-top: 10px;">
-                    Currently using simplified JSON data. Full comparison requires database support.
+                    This feature is under development.
                 </p>
             </div>
             """
@@ -591,7 +572,7 @@
                 <div class="detail-header">Search Results</div>
                 <p style="color: #666;">Search functionality coming soon...</p>
                 <p style="color: #666; margin-top: 10px;">
-                    Currently using simplified JSON data. Full search requires database support.
+                    This feature is under development.
                 </p>
             </div>
             """
@@ -620,15 +601,15 @@
             '''
             
             if not app_state["db"]:
-                # Fallback to JSON - show module names only
+                # Database is required
                 content.innerHTML = f'''
                 <div class="detail-view">
                     <div class="detail-header">{selected_board_name} ({selected_version})</div>
-                    <p style="color: #666; margin: 15px 0;">
-                        Database not loaded. Showing simplified view with module names only.
+                    <p style="color: #dc3545; margin: 15px 0;">
+                        <strong>Error:</strong> Database not loaded.
                     </p>
                     <p style="color: #666;">
-                        Full API details (classes, methods, parameters) require database support.
+                        Please refresh the page to retry loading the database.
                     </p>
                 </div>
                 '''
@@ -773,7 +754,7 @@
             # Set up event handlers
             setup_event_handlers()
             
-            # Try to load database first
+            # Load database
             db_loaded = await load_database()
             
             if db_loaded:
@@ -782,10 +763,8 @@
                 populate_board_selects()
                 update_status("Application ready! Using database.", "success")
             else:
-                # Fallback to JSON data
-                update_status("Falling back to JSON data...", "info")
-                await load_json_data()
-                update_status("Application ready! Using simplified JSON data.", "success")
+                # Database is required
+                update_status("Failed to load database. Cannot continue.", "error")
         
         # Start the application
         import asyncio

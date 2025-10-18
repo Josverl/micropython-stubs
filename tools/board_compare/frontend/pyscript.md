@@ -92,6 +92,12 @@ Migration of board-explorer.html from JavaScript to PyScript using MicroPython W
 
 ### Workarounds Implemented
 
+**Database-Only Approach** (Updated October 18, 2025):
+- Removed JSON fallback code for simplicity
+- Application requires SQLite database to function
+- Cleaner error handling without fallback complexity
+- Firewall updated to allow CDN access for PyScript and SQL.js
+
 ## Challenges Encountered
 
 ### Challenge 1: Initial Setup
