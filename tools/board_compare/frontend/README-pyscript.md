@@ -14,7 +14,7 @@ This is a PyScript (MicroPython WebAssembly) version of the MicroPython Board Ex
 
 ## Features
 
-### Current Implementation (v1.1 - Updated)
+### Current Implementation (v1.2 - Expandable Tree)
 
 ✅ **Database Integration**
 - SQLite database access via SQL.js WASM (database-only, no JSON fallback)
@@ -22,11 +22,15 @@ This is a PyScript (MicroPython WebAssembly) version of the MicroPython Board Ex
 - Efficient query execution with prepare/bind/step pattern
 - Required for all functionality
 
-✅ **Board Explorer**
+✅ **Board Explorer with Expandable Tree**
 - Board selection by version and name
-- Module list display with counts (classes, functions, constants)
-- Database-driven queries for accurate data
-- Status indicators for loading states
+- **Expandable module tree** - Click to explore classes and methods
+- **Full class details** - Methods with complete signatures
+- **Method signatures** - Parameters, type hints, defaults, decorators
+- **Base class inheritance** - Display class hierarchy
+- **Decorator support** - @property, @classmethod, @overload, etc.
+- Color-coded icons for modules, classes, functions
+- Tree indentation with visual hierarchy
 
 ✅ **User Interface**
 - Three-tab navigation (Explorer, Compare, Search)
@@ -255,10 +259,10 @@ Browser Render
 
 See pyscript.md for detailed migration log and planned features.
 
-### Short Term (v1.1)
-- Expandable module tree
-- Class and method details
-- Basic comparison view
+### Short Term (v1.3)
+- Board comparison view with diff
+- API search across boards
+- URL state management
 
 ### Medium Term (v1.2)
 - Full comparison with diff

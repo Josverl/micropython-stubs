@@ -465,4 +465,52 @@ The PyScript migration demonstrates successful integration of:
 
 ---
 
-*Migration completed through Phase 3 on October 18, 2025*
+### Solution 4: Expandable Module Tree Implementation
+**Implemented**: October 18, 2025
+
+Added full expandable tree functionality with class and method details:
+
+**Database Query Functions** (7 new):
+- `get_class_bases(class_id)` - Retrieves base class names for inheritance display
+- `get_method_parameters(method_id)` - Fetches complete parameter information
+- `get_class_methods(module_id, class_id, board_context)` - Queries all methods for a class
+- `get_module_classes(module_id, board_context)` - Gets classes with full method details
+- `get_module_functions(module_id, board_context)` - Gets module-level functions
+- `get_module_constants(module_id)` - Gets module constants
+
+**Tree Rendering Functions** (3 new):
+- `render_module_tree(module)` - Generates expandable module HTML
+- `render_class_tree(cls, module_name)` - Generates expandable class HTML
+- `format_function_signature(func)` - Formats signatures with parameters
+
+**Features**:
+- Click-to-expand/collapse for modules and classes
+- Full method signatures: `async connect(self, ssid: str, password: str = None) -> bool`
+- Decorator display: `@property`, `@classmethod`, `@staticmethod`, `@overload`
+- Base class inheritance: `class Signal (Pin)`
+- Parameter type hints and defaults
+- Variadic markers (*args, **kwargs)
+- Color-coded icons (blue modules, light blue classes, orange functions)
+
+**CSS Enhancements**:
+- `.tree-node` - Clickable nodes with hover effects
+- `.tree-children` - Indented children with border lines
+- `.hidden` - Toggle class for expand/collapse
+- `.fa-icon` - Font Awesome icon styling
+
+**JavaScript Helpers**:
+```javascript
+function toggleModule(moduleId, event) {
+    event.stopPropagation();
+    document.getElementById(moduleId).classList.toggle('hidden');
+}
+
+function toggleClass(classId, event) {
+    event.stopPropagation();
+    document.getElementById(classId).classList.toggle('hidden');
+}
+```
+
+**Code Changes**: +451 lines, -57 lines (394 net additions)
+
+*Migration completed through Phase 3 (with expandable tree) on October 18, 2025*
