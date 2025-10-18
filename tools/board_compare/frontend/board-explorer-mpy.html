@@ -242,7 +242,8 @@
         {
             "packages": [],
             "fetch": [
-                {"files": ["board_comparison.json"]}
+                {"files": ["board_comparison.json"]},
+                {"files": ["board_utils.py"]}
             ],
             "js_modules": {
                 "main": {
@@ -351,11 +352,22 @@
     <!-- PyScript -->
     <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
     
+    <!-- JavaScript for tree toggling -->
+    <script>
+        function toggleModule(moduleId) {
+            const elem = document.getElementById(moduleId);
+            if (elem) {
+                elem.style.display = elem.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+    </script>
+    
     <!-- Main Python script -->
     <script type="mpy">
         from pyscript import document, window, fetch, ffi
         import json
         import js
+        import board_utils
         
         # Global state
         app_state = {
@@ -515,7 +527,7 @@
             
             # Get unique board names (formatted)
             board_names = list(set(
-                format_board_name(board.get("port", ""), board.get("board", ""))
+                board_utils.format_board_name(board.get("port", ""), board.get("board", ""))
                 for board in app_state["boards"]
             ))
             board_names.sort()
@@ -533,13 +545,7 @@
         
         def format_board_name(port, board):
             """Format board display name."""
-            if not board or board == "":
-                return port.rstrip("-")
-            
-            if board.startswith("esp-"):
-                return board[4:]  # Remove "esp-" prefix
-            
-            return board
+            return board_utils.format_board_name(port, board)
         
         # Set up event handlers
         def setup_event_handlers():
@@ -596,11 +602,11 @@
             board_select = document.getElementById("explorer-board")
             
             selected_version = version_select.value
-            selected_board = board_select.value
+            selected_board_name = board_select.value
             
             content = document.getElementById("explorer-content")
             
-            if not selected_version or not selected_board:
+            if not selected_version or not selected_board_name:
                 content.innerHTML = '<div class="loading"><p>Select both version and board to explore modules and APIs</p></div>'
                 return
             
@@ -617,7 +623,7 @@
                 # Fallback to JSON - show module names only
                 content.innerHTML = f'''
                 <div class="detail-view">
-                    <div class="detail-header">{selected_board} ({selected_version})</div>
+                    <div class="detail-header">{selected_board_name} ({selected_version})</div>
                     <p style="color: #666; margin: 15px 0;">
                         Database not loaded. Showing simplified view with module names only.
                     </p>
@@ -629,45 +635,114 @@
                 return
             
             try:
-                # Query database for modules
+                # Find the actual port/board from the board list
+                board_info = board_utils.find_board_in_list(
+                    app_state["boards"], 
+                    selected_version, 
+                    selected_board_name
+                )
+                
+                if not board_info:
+                    content.innerHTML = f'''
+                    <div class="detail-view">
+                        <h3 style="color: #dc3545;">Board Not Found</h3>
+                        <p style="color: #666;">Could not find board: {selected_board_name} ({selected_version})</p>
+                    </div>
+                    '''
+                    return
+                
+                port, board = board_info
+                
+                # Query database for modules with basic counts
                 stmt = app_state["db"].prepare("""
                     SELECT um.id, um.name, um.docstring 
                     FROM unique_modules um
                     JOIN board_module_support bms ON um.id = bms.module_id
                     JOIN boards b ON bms.board_id = b.id
-                    WHERE b.version = ? AND b.board = ?
+                    WHERE b.version = ? AND b.port = ? AND b.board = ?
                     ORDER BY um.name
                 """)
                 
-                # Note: We need to map selected_board back to port/board split
-                # For simplicity in this phase, just show a basic result
-                stmt.bind([selected_version, selected_board])
+                stmt.bind([selected_version, port, board])
                 
                 modules = []
                 while stmt.step():
                     row = stmt.getAsObject()
+                    
+                    # Get class count
+                    class_stmt = app_state["db"].prepare("""
+                        SELECT COUNT(*) as count FROM unique_classes 
+                        WHERE module_id = ?
+                    """)
+                    class_stmt.bind([row["id"]])
+                    class_stmt.step()
+                    class_count = class_stmt.getAsObject()["count"]
+                    class_stmt.free()
+                    
+                    # Get function count (module-level only, no class_id)
+                    func_stmt = app_state["db"].prepare("""
+                        SELECT COUNT(*) as count FROM unique_methods 
+                        WHERE module_id = ? AND class_id IS NULL
+                    """)
+                    func_stmt.bind([row["id"]])
+                    func_stmt.step()
+                    func_count = func_stmt.getAsObject()["count"]
+                    func_stmt.free()
+                    
+                    # Get constant count
+                    const_stmt = app_state["db"].prepare("""
+                        SELECT COUNT(*) as count FROM unique_module_constants 
+                        WHERE module_id = ?
+                    """)
+                    const_stmt.bind([row["id"]])
+                    const_stmt.step()
+                    const_count = const_stmt.getAsObject()["count"]
+                    const_stmt.free()
+                    
                     modules.append({
                         "id": row["id"],
                         "name": row["name"],
-                        "docstring": row["docstring"]
+                        "docstring": row["docstring"],
+                        "classes": [],  # Would need to query for full data
+                        "functions": [],
+                        "constants": [],
+                        "class_count": class_count,
+                        "function_count": func_count,
+                        "constant_count": const_count
                     })
                 
                 stmt.free()
                 
-                # Display modules
+                # Build HTML using simplified tree (just module names and counts for now)
                 html = f'''
                 <div class="detail-view">
-                    <div class="detail-header">{selected_board} ({selected_version})</div>
+                    <div class="detail-header">{selected_board_name} ({selected_version})</div>
                     <div style="margin: 20px 0;">
-                        <h3 style="color: #667eea; margin-bottom: 15px;">Modules ({len(modules)})</h3>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">
+                            <i class="fas fa-cube"></i> Modules ({len(modules)})
+                        </h3>
+                        <div class="module-tree" style="background: white; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px;">
                 '''
                 
+                # Use simplified module display
                 for module in modules:
+                    summary = board_utils.format_module_summary(
+                        module["class_count"],
+                        module["function_count"],
+                        module["constant_count"],
+                        module["name"]
+                    )
+                    
                     html += f'''
-                        <div style="background: #f8f9fa; padding: 12px; border-radius: 6px; border-left: 4px solid #667eea;">
-                            <div style="font-weight: 600; color: #333;">{module["name"]}</div>
+                    <div class="tree-item" style="margin-bottom: 6px;">
+                        <div class="tree-node" style="padding: 12px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; display: flex; align-items: center;">
+                            <i class="fas fa-cube" style="margin-right: 8px; color: #667eea;"></i>
+                            <strong style="font-size: 1.1em; color: #2c3e50;">{module["name"]}</strong>
+                            <span style="margin-left: auto; color: #6c757d; font-size: 0.9em; background: #e9ecef; padding: 4px 8px; border-radius: 12px;">
+                                {summary}
+                            </span>
                         </div>
+                    </div>
                     '''
                 
                 html += '''
@@ -681,11 +756,14 @@
             except Exception as e:
                 content.innerHTML = f'''
                 <div class="detail-view">
-                    <h3 style="color: #dc3545;">Error Loading Board</h3>
+                    <h3 style="color: #dc3545;">⚠️ Error Loading Board</h3>
                     <p style="color: #666; margin: 15px 0;">{str(e)}</p>
+                    <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 0.85em;">{type(e).__name__}: {str(e)}</pre>
                 </div>
                 '''
                 print(f"Error loading board details: {e}")
+                import sys
+                sys.print_exception(e)
         
         # Main initialization
         async def main():

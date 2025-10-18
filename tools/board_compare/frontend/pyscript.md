@@ -174,11 +174,46 @@ while stmt.step():
 stmt.free()
 ```
 
-**Key Learnings**:
-1. Converting Python objects to JavaScript using `ffi.to_js()`
-2. Handling JavaScript Uint8Array and ArrayBuffer types
-3. Managing statement lifecycle (prepare/step/free)
-4. Accessing JavaScript objects from Python via `js` module
+### Solution 3: Modular Python Utilities
+**Implemented**: October 18, 2025
+
+Created separate Python module (board_utils.py) for reusable functions:
+- Board name formatting and matching
+- Module summary generation
+- Method signature formatting
+- HTML tree generation utilities
+- Icon creation helpers
+
+**Benefits**:
+- Code reuse across different views
+- Easier testing and maintenance
+- Cleaner separation of concerns
+- Can be imported in PyScript via fetch configuration
+
+**Module Structure**:
+```python
+# board_utils.py
+def format_board_name(port, board):
+    """Format board names consistently"""
+    
+def find_board_in_list(boards, version, board_name):
+    """Match formatted name back to port/board"""
+    
+def format_module_summary(class_count, func_count, const_count):
+    """Generate human-readable summaries"""
+    
+def build_module_tree_html(modules, show_details=True):
+    """Generate HTML for module trees"""
+```
+
+**PyScript Configuration**:
+```json
+{
+    "fetch": [
+        {"files": ["board_utils.py"]}
+    ]
+}
+```
 
 **Code Pattern**:
 ```python
