@@ -270,15 +270,7 @@
     <!-- PyScript configuration -->
     <script type="mpy-config">
         {
-            "packages": [],
-            "fetch": [
-                {"files": ["board_utils.py"]}
-            ],
-            "js_modules": {
-                "main": {
-                    "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js": "SQL"
-                }
-            }
+            "packages": []
         }
     </script>
 </head>
@@ -378,6 +370,9 @@
         </div>
     </div>
     
+    <!-- SQL.js for database -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    
     <!-- PyScript -->
     <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
     
@@ -405,14 +400,43 @@
         from pyscript import document, window, fetch, ffi
         import json
         import js
-        import board_utils
+        
+        # Create a namespace for board_utils
+        class BoardUtils:
+            pass
+        
+        board_utils = BoardUtils()
+        
+        # Dynamically load board_utils module
+        async def load_board_utils():
+            """Load board_utils.py dynamically"""
+            try:
+                response = await fetch("board_utils.py")
+                if response.ok:
+                    content = await response.text()
+                    # Create a local namespace for the module
+                    module_globals = {}
+                    exec(content, module_globals)
+                    
+                    # Copy all functions to the board_utils object
+                    for name, obj in module_globals.items():
+                        if not name.startswith("_"):
+                            setattr(board_utils, name, obj)
+                    
+                    return True
+                else:
+                    return False
+            except Exception as e:
+                print(f"Failed to load board_utils: {e}")
+                return False
         
         # Global state
         app_state = {
             "boards": [],
             "current_board": None,
             "db": None,
-            "SQL": None
+            "SQL": None,
+            "board_utils_loaded": False
         }
         
         def update_status(message, status_type="info"):
@@ -436,9 +460,14 @@
             try:
                 update_status("Loading SQL.js library...", "info")
                 
+                # Check if SQL is available in window
+                if not hasattr(window, 'initSqlJs'):
+                    update_status("Error: SQL.js library not loaded. Trying fallback...", "error")
+                    return False
+                
                 # Initialize SQL.js
-                SQL = await js.initSqlJs(ffi.to_js({
-                    "locateFile": lambda file: f"https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/{file}"
+                SQL = await window.initSqlJs(ffi.to_js({
+                    "locateFile": lambda file, *args: f"https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/{file}"
                 }))
                 app_state["SQL"] = SQL
                 
@@ -1143,6 +1172,15 @@
         # Main initialization
         async def main():
             """Main entry point for the application."""
+            update_status("Loading board utilities...", "info")
+            
+            # Load board_utils module dynamically
+            utils_loaded = await load_board_utils()
+            if not utils_loaded:
+                update_status("Error: Failed to load board utilities. Some features may not work.", "error")
+            else:
+                app_state["board_utils_loaded"] = True
+            
             update_status("PyScript loaded successfully", "success")
             
             # Set up event handlers
