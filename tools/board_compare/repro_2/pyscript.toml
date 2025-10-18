@@ -1,0 +1,49 @@
+name = "Local SQLite with PyScript"
+
+# Install packages to be used in this project
+packages = [
+    "github:josverl/micropython-stubs/mip/typing.json",
+    # "github:josverl/micropython-stubs/mip/typing.py",
+    ]
+
+# Bundle your project into a zip file which can be downloaded or used
+# as a module in your Anaconda Toolbox Excel Add-in
+# export = true
+
+# Fetch arbitrary content from URLs onto the virtual filesystem, just map a valid
+# URL to a destination in the filesystem path
+# [files]
+# "https://example.com/data.csv" = "./data.csv"
+
+# Import JavaScript modules in your project (load them in the main thread of the browser)
+# [js_modules.main]
+# Try a different approach - use a known ESM-compatible CDN
+# Import JavaScript modules in your project (load them in the main thread of the browser)
+# SQL.js and other modules are loaded via the HTML py-config section
+
+# "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet-src.esm.js" = "leaflet"
+# "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" = "leaflet" # CSS
+#
+# You can also import them in the worker thread of the browser
+# [js_modules.worker]
+# "https://module" = "mymodule"
+
+# Pin the Python interpreter to a specific value - for example making sure that
+# pyscript uses a specific version of pyodide or micropython
+# interpreter = "0.23.4"
+
+# Set the interaction between the main thread and worker limited to one way
+# calls from the main thread
+# sync_main_only = true
+
+# The plugin options allow you to either augment or exclude, the list of
+# plugins imported out of the box from core during bootstrap
+# plugins = ["custom_plugin", "!error"]
+
+# Make PyScript to try to automagically handle code where one would require
+# to use create_proxy (this is Pyodide specific)
+# experimental_create_proxy = "auto"
+
+## Please use the official documentation for further explanation and examples
+# of how to use these features if they are unfamiliar to you.
+# https://docs.pyscript.net/2025.7.3/user-guide/configuration

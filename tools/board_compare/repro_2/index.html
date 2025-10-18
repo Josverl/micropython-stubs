@@ -1,0 +1,32 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Local SQLite with PyScript</title>
+
+    <py-config>
+        [js_modules.main]
+        "https://cdn.jsdelivr.net/npm/fireworks-js@2.10.7/+esm" = "Fireworks"
+
+        [js_modules.worker]
+        "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/+esm" = "Mathjax"
+    </py-config>
+
+    <!-- Recommended meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- PyScript CSS -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.7.3/core.css">
+    <!-- SQL.js UMD module (the working version) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js"></script>
+    
+    <!-- This script tag bootstraps PyScript -->
+    <script type="module" src="https://pyscript.net/releases/2025.7.3/core.js"></script>
+</head>
+<body>
+    <script type="mpy" src="./main.py" config="./pyscript.toml" terminal></script>
+</body>
+</html>
+
