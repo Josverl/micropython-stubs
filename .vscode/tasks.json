@@ -17,6 +17,15 @@
     // },
     "tasks": [
         {
+            "label": "http.server: board explorer",
+            "detail": "Start the board_explorer server on port 8080",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/tools/board_compare"
+            },
+            "command": "uv run python run_local.py",
+        },
+        {
             "label": "Sphinx: build documentation",
             "detail": "make html",
             "type": "shell",

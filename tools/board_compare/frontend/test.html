@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+</head>
+<body>
+    <h1>Testing Icons object</h1>
+    <pre id="output"></pre>
+    <script>
+        const Icons = {
+            package: { faClass: 'fas fa-box-archive', alt: 'Package' },
+            module: { faClass: 'fas fa-cube', alt: 'Module' },
+            board: { faClass: 'fas fa-microchip', alt: 'Board' },
+            'class': { faClass: 'fas fa-object-group', alt: 'Class' },
+            'function': { faClass: 'fas fa-bolt', alt: 'Function' },
+            method: { faClass: 'fas fa-bolt', alt: 'Method' },
+            create: function(iconKey) {
+                const icon = this[iconKey];
+                return icon ? icon.alt : 'not found';
+            }
+        };
+        document.getElementById('output').textContent = 'Icons.create("class") = ' + Icons.create('class');
+    </script>
+</body>
+</html>
