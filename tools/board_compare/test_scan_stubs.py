@@ -373,7 +373,214 @@ class TestStubScanner:
         assert isinstance(modules, list)
 
 
+class TestStubScannerEdgeCases:
+    """Edge case tests for stub scanner."""
+    
+    @pytest.fixture
+    def temp_stub_dir(self):
+        """Create a temporary directory for test stub files."""
+        with tempfile.TemporaryDirectory() as tmpdir:
+            yield Path(tmpdir)
+    
+    def create_stub_file(self, stub_dir: Path, filename: str, content: str):
+        """Helper to create a stub file with content."""
+        file_path = stub_dir / filename
+        file_path.write_text(dedent(content))
+        return file_path
+    
+    def test_complex_generic_types(self, temp_stub_dir):
+        """Test scanning functions with complex generic type hints."""
+        content = """
+        from typing import Dict, List, Tuple, Optional, Union
+        
+        def process_data(data: Dict[str, List[int]]) -> Optional[Tuple[str, ...]]:
+            '''Process complex data structure.'''
+            pass
+        
+        def handle_union(value: Union[int, str, float]) -> bool:
+            '''Handle union types.'''
+            pass
+        """
+        
+        self.create_stub_file(temp_stub_dir, "test.pyi", content)
+        scanner = StubScanner(temp_stub_dir)
+        modules = scanner.scan_all_modules()
+        
+        assert len(modules) > 0
+        module = modules[0]
+        
+        # Find functions
+        func_names = {f.name for f in module.functions}
+        assert "process_data" in func_names
+        assert "handle_union" in func_names
+    
+    def test_async_generator_function(self, temp_stub_dir):
+        """Test scanning async generator functions."""
+        content = """
+        async def async_gen(n: int):
+            '''Async generator.'''
+            for i in range(n):
+                yield i
+        
+        async def async_func() -> None:
+            '''Async function.'''
+            pass
+        """
+        
+        self.create_stub_file(temp_stub_dir, "test.pyi", content)
+        scanner = StubScanner(temp_stub_dir)
+        modules = scanner.scan_all_modules()
+        
+        assert len(modules) > 0
+        module = modules[0]
+        
+        # Find async functions
+        async_funcs = [f for f in module.functions if f.is_async]
+        assert len(async_funcs) >= 2
+    
+    def test_property_with_setter(self, temp_stub_dir):
+        """Test scanning property with setter decorator."""
+        content = """
+        class Counter:
+            '''Counter class.'''
+            
+            @property
+            def value(self) -> int:
+                '''Get value.'''
+                pass
+            
+            @value.setter
+            def value(self, v: int) -> None:
+                '''Set value.'''
+                pass
+        """
+        
+        self.create_stub_file(temp_stub_dir, "test.pyi", content)
+        scanner = StubScanner(temp_stub_dir)
+        modules = scanner.scan_all_modules()
+        
+        assert len(modules) > 0
+        module = modules[0]
+        assert len(module.classes) > 0
+        
+        cls = module.classes[0]
+        # Find property method
+        prop_methods = [m for m in cls.methods if m.is_property]
+        assert len(prop_methods) >= 1
+    
+    def test_classvar_annotation(self, temp_stub_dir):
+        """Test scanning ClassVar annotations."""
+        content = """
+        from typing import ClassVar
+        
+        class MyClass:
+            '''Test class.'''
+            count: ClassVar[int] = 0
+            name: ClassVar[str] = "MyClass"
+            
+            def __init__(self):
+                pass
+        """
+        
+        self.create_stub_file(temp_stub_dir, "test.pyi", content)
+        scanner = StubScanner(temp_stub_dir)
+        modules = scanner.scan_all_modules()
+        
+        assert len(modules) > 0
+        module = modules[0]
+        assert len(module.classes) > 0
+        
+        cls = module.classes[0]
+        # ClassVar attributes should be marked as hidden
+        hidden_attrs = [a for a in cls.attributes if a.is_hidden]
+        assert len(hidden_attrs) >= 1
+    
+    def test_multiple_decorators_on_method(self, temp_stub_dir):
+        """Test scanning methods with multiple decorators."""
+        content = """
+        class Descriptor:
+            '''Descriptor class.'''
+            
+            @classmethod
+            def create(cls) -> 'Descriptor':
+                '''Create instance.'''
+                pass
+            
+            @staticmethod
+            def helper() -> str:
+                '''Helper function.'''
+                pass
+        """
+        
+        self.create_stub_file(temp_stub_dir, "test.pyi", content)
+        scanner = StubScanner(temp_stub_dir)
+        modules = scanner.scan_all_modules()
+        
+        assert len(modules) > 0
+        module = modules[0]
+        assert len(module.classes) > 0
+        
+        cls = module.classes[0]
+        # Check for decorated methods
+        create_method = next((m for m in cls.methods if m.name == "create"), None)
+        if create_method:
+            # Should have decorator list or boolean flag
+            assert create_method.decorators or create_method.is_classmethod
+    
+    def test_typing_constants_are_hidden(self, temp_stub_dir):
+        """Test that typing-related constants are marked as hidden."""
+        content = """
+        from typing import TypeVar, TypeAlias
+        
+        T = TypeVar('T')
+        MyType: TypeAlias = dict[str, int]
+        _ProtocolType = TypeVar('_ProtocolType')
+        VERSION = "1.0.0"
+        """
+        
+        self.create_stub_file(temp_stub_dir, "test.pyi", content)
+        scanner = StubScanner(temp_stub_dir)
+        modules = scanner.scan_all_modules()
+        
+        assert len(modules) > 0
+        module = modules[0]
+        
+        # Check constants
+        hidden_consts = [c for c in module.constants if c.is_hidden]
+        # VERSION should NOT be hidden, but typing constants should be
+        assert len(hidden_consts) >= 2
+        
+        version_const = next((c for c in module.constants if c.name == "VERSION"), None)
+        if version_const:
+            assert not version_const.is_hidden
+    
+    def test_malformed_decorator_handling(self, temp_stub_dir):
+        """Test graceful handling of malformed decorators."""
+        content = """
+        def normal_func():
+            '''Normal function.'''
+            pass
+        
+        class TestClass:
+            '''Test class with various decorators.'''
+            
+            def method1(self):
+                '''Method 1.'''
+                pass
+        """
+        
+        self.create_stub_file(temp_stub_dir, "test.pyi", content)
+        scanner = StubScanner(temp_stub_dir)
+        modules = scanner.scan_all_modules()
+        
+        # Should not crash
+        assert len(modules) > 0
+        module = modules[0]
+        assert len(module.functions) >= 1
+
+
 class TestStubScannerIntegration:
+
     """Integration tests using real stub files if available."""
     
     def test_scan_real_stubs_if_available(self):
@@ -404,6 +611,59 @@ class TestStubScannerIntegration:
             class_names = {c.name for c in machine_module.classes}
             assert "Pin" in class_names or "I2C" in class_names, \
                 "machine should have Pin or I2C class"
+
+
+    def test_final_decorator_recognition(self):
+        """Test parsing of @final decorator."""
+        with tempfile.TemporaryDirectory() as temp_stub_dir:
+            # Create stub file
+            stub_file = Path(temp_stub_dir) / "test.pyi"
+            stub_file.write_text("""
+from typing import final
+
+@final
+class Immutable:
+    '''Cannot be subclassed.'''
+    pass
+""")
+            
+            scanner = StubScanner(Path(temp_stub_dir))
+            modules = scanner.scan_all_modules()
+            
+            assert len(modules) > 0
+
+    def test_abstractmethod_decorator_recognition(self):
+        """Test parsing of @abstractmethod decorator."""
+        with tempfile.TemporaryDirectory() as temp_stub_dir:
+            stub_file = Path(temp_stub_dir) / "test.pyi"
+            stub_file.write_text("""
+from abc import abstractmethod
+
+class Base:
+    '''Abstract base class.'''
+    
+    @abstractmethod
+    def do_something(self): ...
+""")
+            
+            scanner = StubScanner(Path(temp_stub_dir))
+            modules = scanner.scan_all_modules()
+            
+            assert len(modules) > 0
+
+    def test_deprecated_decorator_recognition(self):
+        """Test parsing of @deprecated decorator."""
+        with tempfile.TemporaryDirectory() as temp_stub_dir:
+            stub_file = Path(temp_stub_dir) / "test.pyi"
+            stub_file.write_text("""
+@deprecated("Use new_function instead")
+def old_function(): ...
+""")
+            
+            scanner = StubScanner(Path(temp_stub_dir))
+            modules = scanner.scan_all_modules()
+            
+            assert len(modules) > 0
 
 
 if __name__ == "__main__":

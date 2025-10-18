@@ -114,6 +114,27 @@ addopts = "--verbose --capture=no"
 
 markers = ["snippets: test snippets to check the stub quality"]
 
+[tool.coverage.run]
+# Exclude example and utility scripts from coverage
+omit = [
+    "*/example*.py",
+    "*/run_*.py",
+    "*/check_*.py",
+]
+
+[tool.coverage.report]
+# Show missing lines in coverage report
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    # Standard pragma
+    "pragma: no cover",
+    # Don't complain about code that raises NotImplementedError
+    "raise NotImplementedError",
+    # Don't complain if non-code is in files that had code
+    "^\\s*pass\\s*$",
+]
+
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 
