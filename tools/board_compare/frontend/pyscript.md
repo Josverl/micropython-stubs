@@ -717,15 +717,15 @@ await js.Promise.new(lambda resolve, reject: js.setTimeout(resolve, 200))
 
 ### Files Delivered
 
-1. **board-explorer-mpy.html** (~1700 lines) - Complete PyScript application
-2. **board_utils.py** (~400 lines) - Shared Python utilities with comparison helpers
+1. **board-explorer-mpy.html** (1805 lines, 75KB) - Complete PyScript application
+2. **board_utils.py** (326 lines, 12KB) - Shared Python utilities with comparison helpers
 3. **pyscript.md** (updated) - Complete migration log and documentation
 4. **README-pyscript.md** (updated) - User documentation
 
 ### Migration Status Summary
 
-**Original JavaScript** (board-explorer.js): 2376 lines
-**PyScript Version**: 1700 lines HTML + 400 lines Python = 2100 lines total
+**Original JavaScript** (board-explorer.js): 2376 lines, 88KB
+**PyScript Version**: 1805 lines HTML + 326 lines Python = 2131 lines total, 87KB
 
 **Feature Coverage**: 100% complete ✅
 - ✅ Board Explorer with expandable tree

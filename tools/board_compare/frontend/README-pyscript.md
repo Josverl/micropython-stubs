@@ -208,7 +208,8 @@ Browser Render
 |---------|-----------|----------|
 | Runtime | Native JS | MicroPython WASM |
 | Database | SQL.js | SQL.js (via JS bridge) |
-| Size | 22KB HTML + 90KB JS | 18KB HTML + 8KB Python |
+| Size | 88KB JS file | 75KB HTML + 12KB Python |
+| Lines of Code | 2376 lines | 1805 lines HTML + 326 lines Python |
 | Load Time | ~1s | ~2-3s (PyScript init) |
 | Memory | ~10MB | ~15MB (WASM overhead) |
 | Maintainability | Medium | High (Python) |
