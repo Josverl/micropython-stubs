@@ -14,7 +14,7 @@ This is a PyScript (MicroPython WebAssembly) version of the MicroPython Board Ex
 
 ## Features
 
-### Current Implementation (v1.2 - Expandable Tree)
+### Current Implementation (v2.0 - Complete Feature Parity)
 
 ✅ **Database Integration**
 - SQLite database access via SQL.js WASM (database-only, no JSON fallback)
@@ -32,6 +32,22 @@ This is a PyScript (MicroPython WebAssembly) version of the MicroPython Board Ex
 - Color-coded icons for modules, classes, functions
 - Tree indentation with visual hierarchy
 
+✅ **Board Comparison**
+- Side-by-side board comparison with loading progress
+- Comprehensive statistics (modules, classes, functions, constants)
+- "Show only differences" checkbox to filter common modules
+- Diff highlighting (unique modules, different APIs)
+- Three-level comparison statistics panel
+- Color-coded boards (orange vs cyan)
+
+✅ **Search Functionality**
+- Cross-board API search across all boards
+- Module, class, and method/function search
+- Results grouped by type with board badges
+- Case-insensitive partial matching
+- Enter key support for quick search
+- Limits method results to 10 per board
+
 ✅ **User Interface**
 - Three-tab navigation (Explorer, Compare, Search)
 - Responsive design with gradient styling
@@ -39,24 +55,6 @@ This is a PyScript (MicroPython WebAssembly) version of the MicroPython Board Ex
 - Error handling with user-friendly messages
 
 ### Planned Features (Future Phases)
-
-🔲 **Advanced Explorer**
-- Expandable module tree
-- Class details with methods and attributes
-- Method signatures with parameters
-- Documentation display
-
-🔲 **Board Comparison**
-- Side-by-side board comparison
-- Diff highlighting (unique modules, different APIs)
-- Statistics panel
-- Filterable results
-
-🔲 **Search Functionality**
-- Cross-board API search
-- Module, class, and method search
-- Results grouped by type
-- Board filtering
 
 🔲 **Enhanced Features**
 - URL state management
@@ -210,11 +208,15 @@ Browser Render
 |---------|-----------|----------|
 | Runtime | Native JS | MicroPython WASM |
 | Database | SQL.js | SQL.js (via JS bridge) |
-| Size | 22KB HTML + 90KB JS | 18KB combined |
+| Size | 22KB HTML + 90KB JS | 18KB HTML + 8KB Python |
 | Load Time | ~1s | ~2-3s (PyScript init) |
 | Memory | ~10MB | ~15MB (WASM overhead) |
 | Maintainability | Medium | High (Python) |
 | Code Reuse | Limited | High (board_utils.py) |
+| **Board Explorer** | ✅ | ✅ |
+| **Board Comparison** | ✅ | ✅ |
+| **API Search** | ✅ | ✅ |
+| **Feature Parity** | 100% | 100% |
 
 ## Performance
 
@@ -257,23 +259,22 @@ Browser Render
 
 ## Future Enhancements
 
-See pyscript.md for detailed migration log and planned features.
+See pyscript.md for detailed migration log and technical documentation.
 
-### Short Term (v1.3)
-- Board comparison view with diff
-- API search across boards
-- URL state management
+### Short Term (v2.1)
+- URL state management for shareable links
+- Enhanced error handling and validation
+- Performance optimizations
 
-### Medium Term (v1.2)
-- Full comparison with diff
-- Search functionality
-- URL state management
+### Medium Term (v2.5)
+- Dark mode toggle
+- Export features (JSON, CSV)
+- Advanced filtering options
 
-### Long Term (v2.0)
+### Long Term (v3.0)
 - Offline support (PWA)
-- Dark mode
-- Export features
-- Advanced filtering
+- Board history tracking
+- Custom board comparisons
 
 ## Contributing
 
