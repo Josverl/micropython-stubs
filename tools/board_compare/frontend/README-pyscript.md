@@ -18,6 +18,7 @@ This is a PyScript (MicroPython WebAssembly) version of the MicroPython Board Ex
 
 ✅ **Database Integration**
 - SQLite database access via SQL.js WASM (database-only, no JSON fallback)
+- SQLite class loaded from sql_wasm micropython module that uses SQL.js wasm 
 - 6.7MB database loaded on demand
 - Efficient query execution with prepare/bind/step pattern
 - Required for all functionality
@@ -68,7 +69,7 @@ This is a PyScript (MicroPython WebAssembly) version of the MicroPython Board Ex
 
 - **PyScript**: 2025.8.1
 - **Python Runtime**: MicroPython v1.26.0-preview.386
-- **Database**: SQLite via sql.js 1.8.0 WASM
+- **Database**: SQLite via MicroPython via sql.js 1.8.0 WASM
 - **Styling**: CSS (inline, based on original design)
 - **Icons**: Font Awesome 6.4.0
 
@@ -77,19 +78,8 @@ This is a PyScript (MicroPython WebAssembly) version of the MicroPython Board Ex
 ### PyScript Setup
 
 ```html
-<script type="mpy-config">
-{
-    "packages": [],
-    "fetch": [
-        {"files": ["board_utils.py"]}
-    ],
-    "js_modules": {
-        "main": {
-            "https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js": "SQL"
-        }
-    }
-}
-</script>
+    <!-- SQL-wasm.js UMD module -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js"></script>
 ```
 
 Note: The application now requires the SQLite database exclusively. JSON fallback has been removed for code simplification.
@@ -99,21 +89,20 @@ Note: The application now requires the SQLite database exclusively. JSON fallbac
 ```python
 from pyscript import fetch, ffi
 import js
+from sqlite_wasm import SQLDatabase, SQLExecResult, SQLExecResults, SQLite
 
 # Initialize SQL.js
-SQL = await js.initSqlJs(ffi.to_js({
-    "locateFile": lambda file: f"https://.../{file}"
-}))
+SQL = await SQLite.initialize(version="1.13.0", cdn="cdnjs")
+
 
 # Load database
-response = await fetch("board_comparison.db")
-buffer = await response.arrayBuffer()
-db_array = js.Uint8Array.new(buffer)
-db = SQL.Database.new(db_array)
+db  = await SQL.open_database("board_comparison.db")
+app_state["db"] = db
 
 # Execute queries
 stmt = db.prepare("SELECT * FROM boards WHERE version = ?")
-stmt.bind([version])
+# Bind parameters need to be converted to JS types
+stmt.bind(ffi.to_js([version]))
 
 results = []
 while stmt.step():
@@ -145,18 +134,38 @@ button.onclick = lambda e: my_function()
 
 ## Development
 
+- code is in MicroPython - this has some limitations compared to CPython
+- Uses PyScript's `pyscript` module for DOM and async operations
+
+
 ### Local Testing
 
 1. Start a local HTTP server:
-```bash
-cd tools/board_compare/frontend
-python3 -m http.server 8000
+There is a VSCode task defined to run a simple HTTP server in the `tools/board_compare/frontend` directory.
+
+```json
+        {
+            "label": "http.server: board explorer",
+            "detail": "Start the board_explorer server on port 8080",
+            "type": "shell",
+            "options": {
+                "cwd": "${workspaceFolder}/tools/board_compare"
+            },
+            "command": "uv run python run_local.py",
+            "problemMatcher": []
+        },
 ```
 
 2. Open in browser:
 ```
 http://localhost:8000/board-explorer-mpy.html
 ```
+# Agent testing
+
+- use the playwright MCP server to run the tests in a browser 
+
+
+
 
 ### Requirements
 

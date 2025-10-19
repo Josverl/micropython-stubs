@@ -1,6 +1,7 @@
 import asyncio
 from typing import Any, cast
 
+from pyscript import ffi
 from sqlite_wasm import SQLDatabase, SQLExecResult, SQLExecResults, SQLite
 
 # API : https://sql.js.org/documentation/Database.html
@@ -67,7 +68,7 @@ def print_query_results(title: str, result: SQLExecResults) -> None:
         print("  " + " | ".join(f"{val:<15}" for val in formatted_row))
 
 
-async def example_create_db(SQL):
+async def example_create_db(SQL) -> SQLDatabase:
     # Test creating a database
     db = None
     try:
@@ -91,13 +92,13 @@ async def example_create_db(SQL):
         result = cast(SQLExecResults, result)
         for row in result[0]["values"]:
             print(f"  - Row: id={row[0]}, name={row[1]}")
+        return db
+    
     except Exception as db_error:
         print(f"- ❌ Database error: {db_error}")
         print(f"- ❌ Database error type: {type(db_error).__name__}")
-        return
-    finally:
-        if db:
-            db.close()
+        raise db_error
+
 
 
 async def get_table_row_counts(db: SQLDatabase) -> SQLExecResults:
@@ -280,6 +281,8 @@ async def load_and_query_database(SQL):
         print(f"- ❌ Error type: {type(query_error).__name__}")
 
 
+
+
 async def main():
     print("Hello, Structured World!")
 
@@ -292,8 +295,31 @@ async def main():
             print("- ✅ SQLite-wasm initialized successfully")
 
             # Run example to create a database and perform simple operations
-            await example_create_db(SQL)
-            await load_and_query_database(SQL)
+            db = await example_create_db(SQL)
+
+
+            print( "\n- Testing binding queries...")
+            stmt = db.prepare("SELECT * FROM test WHERE name LIKE ?")
+            # Bindings to queries need to be converted to JS array
+            stmt.bind(ffi.to_js([r"%row%",]))
+            while stmt.step():
+                row = stmt.getAsObject()
+                print("What is a row?")
+                print(f"{row=}")
+                print(f"{type(row)=}")
+                print(f"{repr(row)=}")
+                print(f"{row.__class__=}")
+                print(f"{dir(row)=}")
+                # probably a dictionary-like object
+                print(f"Found: {row['name']}")  # Should print results
+                # or a named tuple maybe?
+                print(f"Found: {row.name}")  # Should print results - 
+
+
+            db.close()
+
+        # other db
+        # await load_and_query_database(SQL)
 
     except Exception as e:
         print(f"- ❌ Error initializing SQLite-wasm: {e}")

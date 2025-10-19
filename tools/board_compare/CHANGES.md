@@ -85,7 +85,7 @@ The frontend now requires:
 2. **SQL.js Library** (loaded from CDN)
    - JavaScript SQLite engine
    - Runs database queries in browser
-   - Loaded from: `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js`
+   - Loaded from: `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js`
 
 ### Deployment Notes
 

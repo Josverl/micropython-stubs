@@ -159,7 +159,7 @@ import js
 
 # Initialize SQL.js
 SQL = await js.initSqlJs(ffi.to_js({
-    "locateFile": lambda file: f"https://cdn.../sql.js/1.8.0/{file}"
+    "locateFile": lambda file: f"https://cdn.../sql.js/1.13.0/{file}"
 }))
 
 # Load database
@@ -256,7 +256,7 @@ import js
 
 # Initialize SQL.js
 SQL = await js.initSqlJs(ffi.to_js({
-    "locateFile": lambda file: f"https://cdn.../sql.js/1.8.0/{file}"
+    "locateFile": lambda file: f"https://cdn.../sql.js/1.13.0/{file}"
 }))
 
 # Load database

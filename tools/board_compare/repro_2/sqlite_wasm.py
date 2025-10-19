@@ -15,12 +15,12 @@ or use as an async context manager
         # Automatic cleanup when exiting context
 
 """
-
 from typing import Any, Dict, List, Optional, Protocol, Self, Sequence, TypedDict
 
 import js
 from pyscript import fetch, ffi, window
 
+__version__ = "0.1.0"
 
 # classess to define types for SQLite-wasm interactions
 class SQLExecResult(TypedDict):

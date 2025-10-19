@@ -672,52 +672,52 @@ class DatabaseBuilder:
                     ),
                 )
 
-    def export_to_json(self, output_path: Path, include_docstrings: bool = False):
-        """
-        Export the database to a JSON file for the frontend.
+    # def export_to_json(self, output_path: Path, include_docstrings: bool = False):
+    #     """
+    #     Export the database to a JSON file for the frontend.
         
-        Args:
-            output_path: Path to output JSON file
-            include_docstrings: Whether to include docstrings (default: False to reduce size)
-        """
-        cursor = self.conn.cursor()
+    #     Args:
+    #         output_path: Path to output JSON file
+    #         include_docstrings: Whether to include docstrings (default: False to reduce size)
+    #     """
+    #     cursor = self.conn.cursor()
 
-        # Get all boards
-        cursor.execute("SELECT * FROM boards ORDER BY version, port, board")
-        boards = []
+    #     # Get all boards
+    #     cursor.execute("SELECT * FROM boards ORDER BY version, port, board")
+    #     boards = []
 
-        for board_row in cursor.fetchall():
-            board_dict = dict(board_row)
-            board_id = board_dict["id"]
+    #     for board_row in cursor.fetchall():
+    #         board_dict = dict(board_row)
+    #         board_id = board_dict["id"]
 
-            # Get modules for this board using the new schema
-            cursor.execute(
-                """
-                SELECT um.name FROM unique_modules um
-                JOIN board_module_support bms ON um.id = bms.module_id
-                WHERE bms.board_id = ?
-                ORDER BY um.name
-            """,
-                (board_id,),
-            )
+    #         # Get modules for this board using the new schema
+    #         cursor.execute(
+    #             """
+    #             SELECT um.name FROM unique_modules um
+    #             JOIN board_module_support bms ON um.id = bms.module_id
+    #             WHERE bms.board_id = ?
+    #             ORDER BY um.name
+    #         """,
+    #             (board_id,),
+    #         )
 
-            modules = []
-            for module_row in cursor.fetchall():
-                module_name = module_row[0]
-                modules.append(module_name)
+    #         modules = []
+    #         for module_row in cursor.fetchall():
+    #             module_name = module_row[0]
+    #             modules.append(module_name)
 
-            # Simplify board dict for frontend
-            boards.append({
-                "version": board_dict["version"],
-                "port": board_dict["port"],
-                "board": board_dict["board"],
-                "modules": modules,
-                "module_count": len(modules),
-            })
+    #         # Simplify board dict for frontend
+    #         boards.append({
+    #             "version": board_dict["version"],
+    #             "port": board_dict["port"],
+    #             "board": board_dict["board"],
+    #             "modules": modules,
+    #             "module_count": len(modules),
+    #         })
 
-        # Write to JSON
-        with open(output_path, "w") as f:
-            json.dump({"version": "1.0.0", "boards": boards}, f, indent=2)
+    #     # Write to JSON
+    #     with open(output_path, "w") as f:
+    #         json.dump({"version": "1.0.0", "boards": boards}, f, indent=2)
 
     def _get_classes_for_module(self, module_id: int) -> List[Dict]:
         """Get all classes for a module."""
@@ -762,117 +762,117 @@ class DatabaseBuilder:
         )
         return [dict(row) for row in cursor.fetchall()]
 
-    def export_detailed_to_json(self, output_path: Path):
-        """
-        Export detailed database to JSON file for advanced frontend features.
-        Includes modules, classes, methods, and parameters.
-        """
-        cursor = self.conn.cursor()
+    # def export_detailed_to_json(self, output_path: Path):
+    #     """
+    #     Export detailed database to JSON file for advanced frontend features.
+    #     Includes modules, classes, methods, and parameters.
+    #     """
+    #     cursor = self.conn.cursor()
 
-        # Get all boards
-        cursor.execute("SELECT * FROM boards ORDER BY version, port, board")
-        boards = []
+    #     # Get all boards
+    #     cursor.execute("SELECT * FROM boards ORDER BY version, port, board")
+    #     boards = []
 
-        for board_row in cursor.fetchall():
-            board_dict = dict(board_row)
-            board_id = board_dict["id"]
+    #     for board_row in cursor.fetchall():
+    #         board_dict = dict(board_row)
+    #         board_id = board_dict["id"]
 
-            # Get modules for this board with full details
-            cursor.execute(
-                """
-                SELECT m.* FROM modules m
-                JOIN board_modules bm ON m.id = bm.module_id
-                WHERE bm.board_id = ?
-                ORDER BY m.name
-            """,
-                (board_id,),
-            )
+    #         # Get modules for this board with full details
+    #         cursor.execute(
+    #             """
+    #             SELECT m.* FROM modules m
+    #             JOIN board_modules bm ON m.id = bm.module_id
+    #             WHERE bm.board_id = ?
+    #             ORDER BY m.name
+    #         """,
+    #             (board_id,),
+    #         )
 
-            modules = []
-            for module_row in cursor.fetchall():
-                module_dict = dict(module_row)
-                module_id = module_dict["id"]
+    #         modules = []
+    #         for module_row in cursor.fetchall():
+    #             module_dict = dict(module_row)
+    #             module_id = module_dict["id"]
                 
-                # Get classes
-                cursor.execute("SELECT * FROM classes WHERE module_id = ?", (module_id,))
-                classes = []
-                for class_row in cursor.fetchall():
-                    class_dict = dict(class_row)
-                    class_id = class_dict["id"]
+    #             # Get classes
+    #             cursor.execute("SELECT * FROM classes WHERE module_id = ?", (module_id,))
+    #             classes = []
+    #             for class_row in cursor.fetchall():
+    #                 class_dict = dict(class_row)
+    #                 class_id = class_dict["id"]
                     
-                    # Get class methods
-                    cursor.execute(
-                        "SELECT * FROM methods WHERE module_id = ? AND class_id = ?",
-                        (module_id, class_id)
-                    )
-                    methods = []
-                    for method_row in cursor.fetchall():
-                        method_dict = dict(method_row)
-                        method_id = method_dict["id"]
+    #                 # Get class methods
+    #                 cursor.execute(
+    #                     "SELECT * FROM methods WHERE module_id = ? AND class_id = ?",
+    #                     (module_id, class_id)
+    #                 )
+    #                 methods = []
+    #                 for method_row in cursor.fetchall():
+    #                     method_dict = dict(method_row)
+    #                     method_id = method_dict["id"]
                         
-                        # Get parameters
-                        cursor.execute(
-                            "SELECT name, type_hint, default_value, is_optional, is_variadic FROM parameters WHERE method_id = ? ORDER BY position",
-                            (method_id,)
-                        )
-                        params = [dict(row) for row in cursor.fetchall()]
-                        method_dict["parameters"] = params
+    #                     # Get parameters
+    #                     cursor.execute(
+    #                         "SELECT name, type_hint, default_value, is_optional, is_variadic FROM parameters WHERE method_id = ? ORDER BY position",
+    #                         (method_id,)
+    #                     )
+    #                     params = [dict(row) for row in cursor.fetchall()]
+    #                     method_dict["parameters"] = params
                         
-                        # Remove internal IDs
-                        method_dict.pop("id", None)
-                        method_dict.pop("module_id", None)
-                        method_dict.pop("class_id", None)
-                        methods.append(method_dict)
+    #                     # Remove internal IDs
+    #                     method_dict.pop("id", None)
+    #                     method_dict.pop("module_id", None)
+    #                     method_dict.pop("class_id", None)
+    #                     methods.append(method_dict)
                     
-                    class_dict["methods"] = methods
-                    class_dict.pop("id", None)
-                    class_dict.pop("module_id", None)
-                    classes.append(class_dict)
+    #                 class_dict["methods"] = methods
+    #                 class_dict.pop("id", None)
+    #                 class_dict.pop("module_id", None)
+    #                 classes.append(class_dict)
                 
-                # Get module-level functions
-                cursor.execute(
-                    "SELECT * FROM methods WHERE module_id = ? AND class_id IS NULL",
-                    (module_id,)
-                )
-                functions = []
-                for func_row in cursor.fetchall():
-                    func_dict = dict(func_row)
-                    func_id = func_dict["id"]
+    #             # Get module-level functions
+    #             cursor.execute(
+    #                 "SELECT * FROM methods WHERE module_id = ? AND class_id IS NULL",
+    #                 (module_id,)
+    #             )
+    #             functions = []
+    #             for func_row in cursor.fetchall():
+    #                 func_dict = dict(func_row)
+    #                 func_id = func_dict["id"]
                     
-                    # Get parameters
-                    cursor.execute(
-                        "SELECT name, type_hint, default_value, is_optional, is_variadic FROM parameters WHERE method_id = ? ORDER BY position",
-                        (func_id,)
-                    )
-                    params = [dict(row) for row in cursor.fetchall()]
-                    func_dict["parameters"] = params
+    #                 # Get parameters
+    #                 cursor.execute(
+    #                     "SELECT name, type_hint, default_value, is_optional, is_variadic FROM parameters WHERE method_id = ? ORDER BY position",
+    #                     (func_id,)
+    #                 )
+    #                 params = [dict(row) for row in cursor.fetchall()]
+    #                 func_dict["parameters"] = params
                     
-                    # Remove internal IDs
-                    func_dict.pop("id", None)
-                    func_dict.pop("module_id", None)
-                    func_dict.pop("class_id", None)
-                    functions.append(func_dict)
+    #                 # Remove internal IDs
+    #                 func_dict.pop("id", None)
+    #                 func_dict.pop("module_id", None)
+    #                 func_dict.pop("class_id", None)
+    #                 functions.append(func_dict)
                 
-                # Get constants
-                cursor.execute(
-                    "SELECT name FROM module_constants WHERE module_id = ?",
-                    (module_id,)
-                )
-                constants = [row[0] for row in cursor.fetchall()]
+    #             # Get constants
+    #             cursor.execute(
+    #                 "SELECT name FROM module_constants WHERE module_id = ?",
+    #                 (module_id,)
+    #             )
+    #             constants = [row[0] for row in cursor.fetchall()]
                 
-                module_dict["classes"] = classes
-                module_dict["functions"] = functions
-                module_dict["constants"] = constants
-                module_dict.pop("id", None)
-                modules.append(module_dict)
+    #             module_dict["classes"] = classes
+    #             module_dict["functions"] = functions
+    #             module_dict["constants"] = constants
+    #             module_dict.pop("id", None)
+    #             modules.append(module_dict)
 
-            board_dict["modules"] = modules
-            board_dict.pop("id", None)
-            boards.append(board_dict)
+    #         board_dict["modules"] = modules
+    #         board_dict.pop("id", None)
+    #         boards.append(board_dict)
 
-        # Write to JSON
-        with open(output_path, "w") as f:
-            json.dump({"version": "1.0.0", "boards": boards}, f, indent=2)
+    #     # Write to JSON
+    #     with open(output_path, "w") as f:
+    #         json.dump({"version": "1.0.0", "boards": boards}, f, indent=2)
 
     def get_board_modules_detailed(self, version: str, port: str, board: str) -> Dict:
         """
@@ -1242,13 +1242,13 @@ def build_database_for_version(
             except Exception as e:
                 logger.error(f"  Error processing {stub_dir}: {e}")
 
-    if json_path:
-        logger.info(f"Exporting simplified JSON to: {json_path}")
-        builder.export_to_json(json_path)
+    # if json_path:
+    #     logger.info(f"Exporting simplified JSON to: {json_path}")
+    #     builder.export_to_json(json_path)
     
-    if detailed_json_path:
-        logger.info(f"Exporting detailed JSON to: {detailed_json_path}")
-        builder.export_detailed_to_json(detailed_json_path)
+    # if detailed_json_path:
+    #     logger.info(f"Exporting detailed JSON to: {detailed_json_path}")
+    #     builder.export_detailed_to_json(detailed_json_path)
 
     builder.close()
     logger.info(f"Database created at {db_path}")
