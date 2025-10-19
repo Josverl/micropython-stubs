@@ -618,6 +618,12 @@
             # Search button
             document.getElementById("search-btn").onclick = lambda e: search_apis()
             
+            # Search input - trigger search on Enter key
+            def search_on_enter(event):
+                if event.key == "Enter":
+                    search_apis()
+            document.getElementById("search-input").onkeypress = search_on_enter
+            
             # Board selection change handlers
             def make_board_change_handler():
                 async def handler(e):
@@ -1014,16 +1020,229 @@
         
         def search_apis():
             """Search for APIs across boards."""
+            # Run the async search
+            import asyncio
+            asyncio.create_task(_search_apis_async())
+        
+        async def _search_apis_async():
+            """Async implementation of API search."""
+            query = document.getElementById("search-input").value.strip().lower()
+            
+            if not query:
+                results = document.getElementById("search-results")
+                results.innerHTML = """
+                <div class="detail-view">
+                    <p style="color: #dc3545;">Please enter a search term</p>
+                </div>
+                """
+                return
+            
+            if not app_state["db"]:
+                results = document.getElementById("search-results")
+                results.innerHTML = """
+                <div class="detail-view">
+                    <p style="color: #dc3545;">Database not available for searching</p>
+                </div>
+                """
+                return
+            
+            # Show loading indicator
             results = document.getElementById("search-results")
-            results.innerHTML = """
-            <div class="detail-view">
-                <div class="detail-header">Search Results</div>
-                <p style="color: #666;">Search functionality coming soon...</p>
-                <p style="color: #666; margin-top: 10px;">
-                    This feature is under development.
-                </p>
+            results.innerHTML = f"""
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Searching for "<strong>{query}</strong>"...</p>
+                <div class="progress-step">Searching across all boards...</div>
             </div>
             """
+            
+            search_results = []
+            
+            # Small delay to show search message
+            await js.Promise.new(lambda resolve, reject: js.setTimeout(resolve, 200))
+            
+            # Search through all boards using database
+            for board in app_state["boards"]:
+                board_name = board_utils.format_board_name(board["port"], board["board"])
+                
+                try:
+                    # Search modules
+                    module_stmt = app_state["db"].prepare("""
+                        SELECT DISTINCT um.name as module_name
+                        FROM unique_modules um
+                        JOIN board_module_support bms ON um.id = bms.module_id
+                        JOIN boards b ON bms.board_id = b.id
+                        WHERE b.port = ? AND b.board = ? AND LOWER(um.name) LIKE ?
+                    """)
+                    module_stmt.bind([board["port"], board["board"], f"%{query}%"])
+                    
+                    modules = []
+                    while module_stmt.step():
+                        row = module_stmt.getAsObject()
+                        modules.append(row["module_name"])
+                    module_stmt.free()
+                    
+                    if len(modules) > 0:
+                        search_results.append({
+                            "board": board_name,
+                            "version": board["version"],
+                            "type": "module",
+                            "matches": modules
+                        })
+                    
+                    # Search classes
+                    class_stmt = app_state["db"].prepare("""
+                        SELECT DISTINCT um.name as module_name, uc.name as class_name
+                        FROM unique_classes uc
+                        JOIN unique_modules um ON uc.module_id = um.id
+                        JOIN board_module_support bms ON um.id = bms.module_id
+                        JOIN boards b ON bms.board_id = b.id
+                        WHERE b.port = ? AND b.board = ? AND LOWER(uc.name) LIKE ?
+                    """)
+                    class_stmt.bind([board["port"], board["board"], f"%{query}%"])
+                    
+                    classes = []
+                    while class_stmt.step():
+                        row = class_stmt.getAsObject()
+                        classes.append(f"{row['module_name']}.{row['class_name']}")
+                    class_stmt.free()
+                    
+                    if len(classes) > 0:
+                        search_results.append({
+                            "board": board_name,
+                            "version": board["version"],
+                            "type": "class",
+                            "matches": classes
+                        })
+                    
+                    # Search methods
+                    method_stmt = app_state["db"].prepare("""
+                        SELECT DISTINCT um.name as module_name, uc.name as class_name, umt.name as method_name
+                        FROM unique_methods umt
+                        JOIN unique_modules um ON umt.module_id = um.id
+                        LEFT JOIN unique_classes uc ON umt.class_id = uc.id
+                        JOIN board_method_support bms ON umt.id = bms.method_id
+                        JOIN boards b ON bms.board_id = b.id
+                        WHERE b.port = ? AND b.board = ? AND LOWER(umt.name) LIKE ?
+                    """)
+                    method_stmt.bind([board["port"], board["board"], f"%{query}%"])
+                    
+                    methods = []
+                    while method_stmt.step():
+                        row = method_stmt.getAsObject()
+                        if row["class_name"]:
+                            method_path = f"{row['module_name']}.{row['class_name']}.{row['method_name']}"
+                        else:
+                            method_path = f"{row['module_name']}.{row['method_name']}"
+                        methods.append(method_path)
+                    method_stmt.free()
+                    
+                    if len(methods) > 0:
+                        # Limit to 10 methods per board
+                        search_results.append({
+                            "board": board_name,
+                            "version": board["version"],
+                            "type": "method",
+                            "matches": methods[:10]
+                        })
+                        
+                except Exception as e:
+                    print(f"Error searching database for board {board_name}: {e}")
+            
+            # Display results
+            display_search_results(query, search_results)
+        
+        def display_search_results(query, results):
+            """Display search results in the UI."""
+            results_elem = document.getElementById("search-results")
+            
+            if len(results) == 0:
+                results_elem.innerHTML = f"""
+                <div class="detail-view">
+                    <p style="color: #666;">No results found for "{query}"</p>
+                </div>
+                """
+                return
+            
+            # Count unique boards
+            unique_boards = set((r["board"], r["version"]) for r in results)
+            
+            html = f"""
+            <div class="detail-view">
+                <div class="detail-header">Search Results for "{query}"</div>
+                <p style="color: #666; margin-bottom: 20px;">Found in {len(unique_boards)} board(s)</p>
+            </div>
+            """
+            
+            # Group by type
+            module_results = [r for r in results if r["type"] == "module"]
+            class_results = [r for r in results if r["type"] == "class"]
+            method_results = [r for r in results if r["type"] == "method"]
+            
+            # Display modules
+            if len(module_results) > 0:
+                html += """
+                <div class="search-result-item" style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div class="search-result-header" style="font-weight: 600; font-size: 1.1em; margin-bottom: 15px; color: #667eea;">
+                        <i class="fas fa-cube" style="margin-right: 8px;"></i> Modules
+                    </div>
+                    <p style="color: #666; margin-bottom: 10px;">Boards with matching modules:</p>
+                """
+                for result in module_results:
+                    matches_str = ", ".join(result["matches"])
+                    html += f"""
+                    <div style="margin-bottom: 10px;">
+                        <span class="board-badge" style="background: #667eea; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.85em; margin-right: 8px;">
+                            {result["board"]}
+                        </span>
+                        {matches_str}
+                    </div>
+                    """
+                html += "</div>"
+            
+            # Display classes
+            if len(class_results) > 0:
+                html += """
+                <div class="search-result-item" style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div class="search-result-header" style="font-weight: 600; font-size: 1.1em; margin-bottom: 15px; color: #667eea;">
+                        <i class="fas fa-object-group" style="margin-right: 8px;"></i> Classes
+                    </div>
+                    <p style="color: #666; margin-bottom: 10px;">Boards with matching classes:</p>
+                """
+                for result in class_results:
+                    matches_str = ", ".join(result["matches"])
+                    html += f"""
+                    <div style="margin-bottom: 10px;">
+                        <span class="board-badge" style="background: #667eea; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.85em; margin-right: 8px;">
+                            {result["board"]}
+                        </span>
+                        {matches_str}
+                    </div>
+                    """
+                html += "</div>"
+            
+            # Display methods
+            if len(method_results) > 0:
+                html += """
+                <div class="search-result-item" style="background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div class="search-result-header" style="font-weight: 600; font-size: 1.1em; margin-bottom: 15px; color: #667eea;">
+                        <i class="fas fa-bolt" style="margin-right: 8px;"></i> Methods/Functions
+                    </div>
+                    <p style="color: #666; margin-bottom: 10px;">Boards with matching methods:</p>
+                """
+                for result in method_results:
+                    matches_str = ", ".join(result["matches"])
+                    html += f"""
+                    <div style="margin-bottom: 10px;">
+                        <span class="board-badge" style="background: #667eea; color: white; padding: 4px 8px; border-radius: 12px; font-size: 0.85em; margin-right: 8px;">
+                            {result["board"]}
+                        </span>
+                        {matches_str}
+                    </div>
+                    """
+                html += "</div>"
+            
+            results_elem.innerHTML = html
         
         def get_class_bases(class_id):
             """Get base classes for a class."""
