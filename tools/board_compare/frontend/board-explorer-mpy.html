@@ -349,8 +349,13 @@
                 </div>
                 <div class="control-row">
                     <button id="compare-btn">Compare Boards</button>
+                    <label style="margin-left: 20px; display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox" id="hide-common" style="width: 20px; height: 20px;">
+                        <span>Show only differences</span>
+                    </label>
                 </div>
             </div>
+            <div id="compare-stats" style="display: none; margin-bottom: 20px;"></div>
             <div id="compare-results"></div>
         </div>
         
@@ -607,6 +612,9 @@
             # Compare button
             document.getElementById("compare-btn").onclick = lambda e: compare_boards()
             
+            # Hide common checkbox
+            document.getElementById("hide-common").onchange = lambda e: update_comparison()
+            
             # Search button
             document.getElementById("search-btn").onclick = lambda e: search_apis()
             
@@ -621,16 +629,388 @@
         
         def compare_boards():
             """Compare two selected boards."""
+            # Run the async comparison
+            import asyncio
+            asyncio.create_task(_compare_boards_async())
+        
+        async def _compare_boards_async():
+            """Async implementation of board comparison."""
+            # Get selected boards
+            board1_version = document.getElementById("board1-version").value
+            board1_name = document.getElementById("board1").value
+            board2_version = document.getElementById("board2-version").value
+            board2_name = document.getElementById("board2").value
+            
+            if not board1_version or not board1_name or not board2_version or not board2_name:
+                results = document.getElementById("compare-results")
+                results.innerHTML = """
+                <div class="detail-view">
+                    <p style="color: #dc3545;">Please select both version and board for both boards to compare</p>
+                </div>
+                """
+                return
+            
+            if not app_state["db"]:
+                results = document.getElementById("compare-results")
+                results.innerHTML = """
+                <div class="detail-view">
+                    <p style="color: #dc3545;">Database not available for comparison</p>
+                </div>
+                """
+                return
+            
+            # Find actual board port/board pairs
+            board1_info = None
+            board2_info = None
+            
+            for board in app_state["boards"]:
+                formatted = board_utils.format_board_name(board["port"], board["board"])
+                if board["version"] == board1_version and formatted == board1_name:
+                    board1_info = board
+                if board["version"] == board2_version and formatted == board2_name:
+                    board2_info = board
+            
+            if not board1_info or not board2_info:
+                results = document.getElementById("compare-results")
+                results.innerHTML = """
+                <div class="detail-view">
+                    <p style="color: #dc3545;">Could not find selected boards</p>
+                </div>
+                """
+                return
+            
+            # Show loading with progress
             results = document.getElementById("compare-results")
             results.innerHTML = """
-            <div class="detail-view">
-                <div class="detail-header">Board Comparison</div>
-                <p style="color: #666;">Comparison functionality coming soon...</p>
-                <p style="color: #666; margin-top: 10px;">
-                    This feature is under development.
-                </p>
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Preparing comparison...</p>
+                <div class="progress-step">Initializing...</div>
             </div>
             """
+            
+            try:
+                # Small delay to show initial message
+                await js.Promise.new(lambda resolve, reject: js.setTimeout(resolve, 500))
+                
+                # Update progress for board 1
+                results.innerHTML = f"""
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Fetching modules for <strong>{board1_name}</strong>...</p>
+                    <div class="progress-step">Step 1 of 3</div>
+                </div>
+                """
+                
+                print(f"Fetching modules for board 1: {board1_info}")
+                modules1 = await get_board_modules(board1_info)
+                
+                # Small delay
+                await js.Promise.new(lambda resolve, reject: js.setTimeout(resolve, 300))
+                
+                # Update progress for board 2
+                results.innerHTML = f"""
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Fetching modules for <strong>{board2_name}</strong>...</p>
+                    <div class="progress-step">Step 2 of 3</div>
+                </div>
+                """
+                
+                print(f"Fetching modules for board 2: {board2_info}")
+                modules2 = await get_board_modules(board2_info)
+                
+                # Small delay
+                await js.Promise.new(lambda resolve, reject: js.setTimeout(resolve, 300))
+                
+                # Update progress for comparison
+                results.innerHTML = """
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Analyzing differences...</p>
+                    <div class="progress-step">Step 3 of 3</div>
+                </div>
+                """
+                
+                # Small delay
+                await js.Promise.new(lambda resolve, reject: js.setTimeout(resolve, 200))
+                
+                print(f"Board 1 has {len(modules1)} modules, Board 2 has {len(modules2)} modules")
+                
+                # Store comparison data and update display
+                app_state["comparison_data"] = {
+                    "board1": board1_info,
+                    "board2": board2_info,
+                    "modules1": modules1,
+                    "modules2": modules2
+                }
+                
+                update_comparison()
+                
+            except Exception as e:
+                print(f"Error during comparison: {e}")
+                results.innerHTML = f"""
+                <div class="detail-view">
+                    <h3 style="color: #dc3545;">⚠️ Comparison Error</h3>
+                    <p style="color: #666; margin: 15px 0;">{str(e)}</p>
+                    <button id="retry-compare" style="margin-top: 15px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">
+                        Try Again
+                    </button>
+                </div>
+                """
+                document.getElementById("retry-compare").onclick = lambda e: compare_boards()
+        
+        async def get_board_modules(board):
+            """Get detailed module information for a board."""
+            if not app_state["db"]:
+                raise Exception("Database not available")
+            
+            try:
+                stmt = app_state["db"].prepare("""
+                    SELECT um.id, um.name, um.docstring 
+                    FROM unique_modules um
+                    JOIN board_module_support bms ON um.id = bms.module_id
+                    JOIN boards b ON bms.board_id = b.id
+                    WHERE b.version = ? AND b.port = ? AND b.board = ?
+                    ORDER BY um.name
+                """)
+                stmt.bind([board["version"], board["port"], board["board"]])
+                
+                modules = []
+                while stmt.step():
+                    row = stmt.getAsObject()
+                    module_id = row["id"]
+                    
+                    # Get module details
+                    board_context = {
+                        "version": board["version"],
+                        "port": board["port"],
+                        "board": board["board"]
+                    }
+                    
+                    classes = get_module_classes(module_id, board_context)
+                    functions = get_module_functions(module_id, board_context)
+                    constants = get_module_constants(module_id)
+                    
+                    modules.append({
+                        "id": module_id,
+                        "name": row["name"],
+                        "docstring": row["docstring"],
+                        "classes": classes,
+                        "functions": functions,
+                        "constants": constants,
+                        "attributes": []  # Add empty attributes for compatibility
+                    })
+                
+                stmt.free()
+                return modules
+            except Exception as e:
+                print(f"Error querying modules: {e}")
+                raise e
+        
+        def update_comparison():
+            """Update the comparison display."""
+            if not app_state.get("comparison_data"):
+                return
+            
+            comp_data = app_state["comparison_data"]
+            board1 = comp_data["board1"]
+            board2 = comp_data["board2"]
+            modules1 = comp_data["modules1"]
+            modules2 = comp_data["modules2"]
+            
+            hide_common = document.getElementById("hide-common").checked
+            
+            # Get module names for comparison
+            module_names1 = set(m["name"] for m in modules1)
+            module_names2 = set(m["name"] for m in modules2)
+            
+            common_names = [m for m in module_names1 if m in module_names2]
+            unique_names1 = [m for m in module_names1 if m not in module_names2]
+            unique_names2 = [m for m in module_names2 if m not in module_names1]
+            
+            print(f"Common: {len(common_names)}, Unique to 1: {len(unique_names1)}, Unique to 2: {len(unique_names2)}")
+            
+            # Calculate statistics
+            stats = calculate_comparison_stats(modules1, modules2)
+            level1 = stats["level1"]
+            level2 = stats["level2"]
+            level3 = stats["level3"]
+            
+            board1_name = board_utils.format_board_name(board1["port"], board1["board"])
+            board2_name = board_utils.format_board_name(board2["port"], board2["board"])
+            
+            # Update stats display
+            stats_elem = document.getElementById("compare-stats")
+            stats_elem.style.display = "block"
+            stats_elem.innerHTML = f"""
+            <div style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h3 style="margin: 0 0 15px 0; color: #2c3e50; font-size: 1.1em;">Comparison Summary</h3>
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+                    <thead>
+                        <tr style="background: #f0f0f0; border-bottom: 2px solid #667eea;">
+                            <th style="padding: 10px; text-align: left; font-weight: 600;">Level</th>
+                            <th style="padding: 10px; text-align: center; font-weight: 600;">{board1_name}</th>
+                            <th style="padding: 10px; text-align: center; font-weight: 600;">Common</th>
+                            <th style="padding: 10px; text-align: center; font-weight: 600;">{board2_name}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 2px solid #e0e0e0; background: #f9f9f9;">
+                            <td style="padding: 10px; font-weight: 600;">Modules</td>
+                            <td style="padding: 10px; text-align: center; color: #FF8C00;"><strong>{level1["unique1"]}</strong> unique</td>
+                            <td style="padding: 10px; text-align: center;"><strong>{level1["common"]}</strong></td>
+                            <td style="padding: 10px; text-align: center; color: #008B8B;"><strong>{level1["unique2"]}</strong> unique</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0; background: #f9f9f9;">
+                            <td style="padding: 10px; font-weight: 600;">Classes</td>
+                            <td style="padding: 10px; text-align: center; color: #FF8C00;"><strong>{level2["classes1Unique"]}</strong></td>
+                            <td style="padding: 10px; text-align: center;"><strong>{level2["classesDifferent"]}</strong> differ</td>
+                            <td style="padding: 10px; text-align: center; color: #008B8B;"><strong>{level2["classes2Unique"]}</strong></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0; color: #666;">
+                            <td style="padding: 8px 10px;">Functions</td>
+                            <td style="padding: 8px 10px; text-align: center; color: #FF8C00;"><strong>{level2["functions1Unique"]}</strong></td>
+                            <td style="padding: 8px 10px; text-align: center;">—</td>
+                            <td style="padding: 8px 10px; text-align: center; color: #008B8B;"><strong>{level2["functions2Unique"]}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            """
+            
+            # Build comparison HTML
+            board1_modules_html = render_comparison_modules(modules1, modules2, hide_common, True)
+            board2_modules_html = render_comparison_modules(modules2, modules1, hide_common, False)
+            
+            results = document.getElementById("compare-results")
+            results.innerHTML = f"""
+            <div class="comparison-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="board-section">
+                    <div class="board-header" style="background: #FF8C00; color: white; padding: 15px; border-radius: 8px; font-weight: 600; margin-bottom: 15px;">
+                        {board1_name} ({board1["version"]})
+                    </div>
+                    <div class="module-tree">
+                        {board1_modules_html}
+                    </div>
+                </div>
+                <div class="board-section">
+                    <div class="board-header" style="background: #008B8B; color: white; padding: 15px; border-radius: 8px; font-weight: 600; margin-bottom: 15px;">
+                        {board2_name} ({board2["version"]})
+                    </div>
+                    <div class="module-tree">
+                        {board2_modules_html}
+                    </div>
+                </div>
+            </div>
+            """
+        
+        def calculate_comparison_stats(modules1, modules2):
+            """Calculate comprehensive comparison statistics."""
+            # Level 1: Modules
+            module_names1 = set(m["name"] for m in modules1)
+            module_names2 = set(m["name"] for m in modules2)
+            
+            level1 = {
+                "unique1": len(module_names1 - module_names2),
+                "common": len(module_names1 & module_names2),
+                "unique2": len(module_names2 - module_names1)
+            }
+            
+            # Level 2: Classes, Functions, Constants (only in common modules)
+            common_names = module_names1 & module_names2
+            
+            classes1_unique = 0
+            classes2_unique = 0
+            classes_different = 0
+            functions1_unique = 0
+            functions2_unique = 0
+            constants1_unique = 0
+            constants2_unique = 0
+            
+            for mod_name in common_names:
+                mod1 = next(m for m in modules1 if m["name"] == mod_name)
+                mod2 = next(m for m in modules2 if m["name"] == mod_name)
+                
+                class_names1 = set(c["name"] for c in mod1.get("classes", []))
+                class_names2 = set(c["name"] for c in mod2.get("classes", []))
+                classes1_unique += len(class_names1 - class_names2)
+                classes2_unique += len(class_names2 - class_names1)
+                
+                # Check for classes with differences
+                for class_name in (class_names1 & class_names2):
+                    cls1 = next(c for c in mod1["classes"] if c["name"] == class_name)
+                    cls2 = next(c for c in mod2["classes"] if c["name"] == class_name)
+                    if board_utils.compare_class_contents(cls1, cls2):
+                        classes_different += 1
+                
+                func_names1 = set(f["name"] for f in mod1.get("functions", []))
+                func_names2 = set(f["name"] for f in mod2.get("functions", []))
+                functions1_unique += len(func_names1 - func_names2)
+                functions2_unique += len(func_names2 - func_names1)
+                
+                const_names1 = set(c["name"] for c in mod1.get("constants", []))
+                const_names2 = set(c["name"] for c in mod2.get("constants", []))
+                constants1_unique += len(const_names1 - const_names2)
+                constants2_unique += len(const_names2 - const_names1)
+            
+            level2 = {
+                "classes1Unique": classes1_unique,
+                "classes2Unique": classes2_unique,
+                "classesDifferent": classes_different,
+                "functions1Unique": functions1_unique,
+                "functions2Unique": functions2_unique,
+                "constants1Unique": constants1_unique,
+                "constants2Unique": constants2_unique
+            }
+            
+            # Level 3: Methods and Attributes (simplified for now)
+            level3 = {
+                "methods1Unique": 0,
+                "methods2Unique": 0,
+                "methodsDifferent": 0,
+                "attributes1Unique": 0,
+                "attributes2Unique": 0
+            }
+            
+            return {
+                "level1": level1,
+                "level2": level2,
+                "level3": level3
+            }
+        
+        def render_comparison_modules(modules, other_modules, hide_common, is_board1):
+            """Render modules for comparison view."""
+            other_module_names = set(m["name"] for m in other_modules)
+            
+            # Determine which modules to show
+            if hide_common:
+                # Show only unique modules and common modules with differences
+                modules_to_show = []
+                
+                for module in modules:
+                    if module["name"] not in other_module_names:
+                        # Unique module
+                        modules_to_show.append(module)
+                    else:
+                        # Common module - check if it has differences
+                        other_mod = next(m for m in other_modules if m["name"] == module["name"])
+                        if board_utils.compare_module_contents(module, other_mod):
+                            # Has differences - filter to show only diffs
+                            filtered = board_utils.filter_module_to_show_differences(module, other_mod)
+                            if (len(filtered.get("classes", [])) > 0 or 
+                                len(filtered.get("functions", [])) > 0 or 
+                                len(filtered.get("constants", [])) > 0):
+                                modules_to_show.append(filtered)
+            else:
+                # Show all modules
+                modules_to_show = sorted(modules, key=lambda m: m["name"])
+            
+            if len(modules_to_show) == 0:
+                return "<p style='color: #666; padding: 20px;'>No modules to display</p>"
+            
+            # Use board_utils to build the tree
+            return board_utils.build_module_tree_html(modules_to_show, show_details=True)
         
         def search_apis():
             """Search for APIs across boards."""

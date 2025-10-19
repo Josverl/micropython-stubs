@@ -192,3 +192,135 @@ def build_module_tree_html(modules, show_details=True):
         html += '</div>'
     
     return html
+
+
+# ===== COMPARISON HELPER FUNCTIONS =====
+
+def compare_class_contents(class1, class2):
+    """
+    Compare two class objects and return True if they have differences in methods or attributes.
+    """
+    methods1 = set(m["name"] for m in class1.get("methods", []))
+    methods2 = set(m["name"] for m in class2.get("methods", []))
+    
+    attrs1 = set(a["name"] for a in class1.get("attributes", []))
+    attrs2 = set(a["name"] for a in class2.get("attributes", []))
+    
+    # Check if method or attribute sets differ
+    if len(methods1) != len(methods2) or len(attrs1) != len(attrs2):
+        return True
+    
+    for method in methods1:
+        if method not in methods2:
+            return True
+    
+    for attr in attrs1:
+        if attr not in attrs2:
+            return True
+    
+    return False
+
+
+def filter_class_to_show_differences(class1, class2):
+    """
+    Filter a class to show only differences compared to another class.
+    Returns a copy with only methods/attributes not in class2.
+    """
+    import json
+    methods2_names = set(m["name"] for m in class2.get("methods", []))
+    attrs2_names = set(a["name"] for a in class2.get("attributes", []))
+    
+    # Deep copy
+    filtered = json.loads(json.dumps(class1))
+    
+    # Keep only methods that are different (not in class2)
+    filtered["methods"] = [m for m in filtered.get("methods", []) if m["name"] not in methods2_names]
+    
+    # Keep only attributes that are different
+    filtered["attributes"] = [a for a in filtered.get("attributes", []) if a["name"] not in attrs2_names]
+    
+    return filtered
+
+
+def compare_module_contents(module1, module2):
+    """
+    Compare two module objects and return True if they have differences in content.
+    """
+    # Compare classes
+    classes1_names = set(c["name"] for c in module1.get("classes", []))
+    classes2_names = set(c["name"] for c in module2.get("classes", []))
+    
+    if len(classes1_names) != len(classes2_names):
+        return True
+    
+    for class_name in classes1_names:
+        if class_name not in classes2_names:
+            return True
+        
+        class1 = next(c for c in module1["classes"] if c["name"] == class_name)
+        class2 = next(c for c in module2["classes"] if c["name"] == class_name)
+        
+        if compare_class_contents(class1, class2):
+            return True
+    
+    # Compare functions
+    funcs1_names = set(f["name"] for f in module1.get("functions", []))
+    funcs2_names = set(f["name"] for f in module2.get("functions", []))
+    
+    if len(funcs1_names) != len(funcs2_names):
+        return True
+    
+    for func in funcs1_names:
+        if func not in funcs2_names:
+            return True
+    
+    # Compare constants
+    consts1_names = set(c["name"] for c in module1.get("constants", []))
+    consts2_names = set(c["name"] for c in module2.get("constants", []))
+    
+    if len(consts1_names) != len(consts2_names):
+        return True
+    
+    for const in consts1_names:
+        if const not in consts2_names:
+            return True
+    
+    return False
+
+
+def filter_module_to_show_differences(module, other_module):
+    """
+    Filter a module to show only differences compared to another module.
+    Returns a copy with only classes/functions/constants that differ.
+    """
+    import json
+    
+    # Deep copy
+    filtered = json.loads(json.dumps(module))
+    
+    other_classes_map = {c["name"]: c for c in other_module.get("classes", [])}
+    other_funcs_set = set(f["name"] for f in other_module.get("functions", []))
+    other_consts_set = set(c["name"] for c in other_module.get("constants", []))
+    
+    # Filter classes: keep only those that don't exist in other or have different content
+    new_classes = []
+    for cls in filtered.get("classes", []):
+        if cls["name"] not in other_classes_map:
+            # Class only in this module, keep as is
+            new_classes.append(cls)
+        else:
+            # Class in both, filter to show only differences
+            diff_cls = filter_class_to_show_differences(cls, other_classes_map[cls["name"]])
+            # Only keep if there are actual differences
+            if diff_cls.get("methods") or diff_cls.get("attributes"):
+                new_classes.append(diff_cls)
+    
+    filtered["classes"] = new_classes
+    
+    # Filter functions: keep only those not in other
+    filtered["functions"] = [f for f in filtered.get("functions", []) if f["name"] not in other_funcs_set]
+    
+    # Filter constants: keep only those not in other
+    filtered["constants"] = [c for c in filtered.get("constants", []) if c["name"] not in other_consts_set]
+    
+    return filtered
