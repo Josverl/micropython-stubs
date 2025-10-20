@@ -7,11 +7,8 @@
     <title>MicroPython Board Explorer & Comparison (PyScript)</title>
     <!-- SQL-wasm.js UMD module -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js"></script>
-    
+
     <!-- Font Awesome Icons -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -174,7 +171,7 @@
             overflow-y: auto;
             z-index: 1000;
             display: none;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .combobox-dropdown div {
@@ -258,7 +255,7 @@
             border-radius: 8px;
             padding: 20px;
             min-width: 300px;
-            max-width: 400px;
+            max-width: 800px;
         }
 
         /* Comparison results layout */
@@ -385,7 +382,9 @@
         }
 
         /* Class and function styling within modules */
-        .class-item, .function-item, .constant-item {
+        .class-item,
+        .function-item,
+        .constant-item {
             margin: 4px 0;
             padding: 6px 10px;
             background: #f8f9fa;
@@ -635,7 +634,8 @@
             gap: 4px;
         }
 
-        .board-tag, .version-tag {
+        .board-tag,
+        .version-tag {
             padding: 4px 8px;
             border-radius: 12px;
             font-size: 0.85em;
@@ -735,7 +735,7 @@
                                 <select id="board1">
                                     <option value="">Select a board...</option>
                                 </select>
-            </div>
+                            </div>
                         </div>
                         <div class="control-row">
                             <div class="control-group">
@@ -770,7 +770,7 @@
                     <div id="compare-stats" class="stats-panel" style="display: none;"></div>
                 </div>
             </div>
-            
+
             <!-- Results display with grid layout -->
             <div id="compare-results"></div>
         </div>
@@ -788,6 +788,271 @@
             </div>
 
             <div id="search-results"></div>
+        </div>
+    </div>
+
+    <!-- HTML Templates for dynamic content -->
+    <div id="templates" style="display: none;">
+        <!-- Comparison Statistics Template -->
+        <div id="stats-template">
+            <div
+                style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;">
+                <h3 style="margin: 0 0 15px 0; color: #2c3e50; font-size: 1.1em;">Comparison Summary</h3>
+                <table
+                    style="width: 100%; max-width: 100%; border-collapse: collapse; font-size: 0.9em; table-layout: fixed;">
+                    <thead>
+                        <tr style="background: #f0f0f0; border-bottom: 2px solid #667eea;">
+                            <th
+                                style="padding: 10px; text-align: left; font-weight: 600; width: 30%; overflow: hidden; text-overflow: ellipsis;">
+                                Comparison Level</th>
+                            <th style="padding: 10px; text-align: center; font-weight: 600; width: 25%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                                data-board1-name></th>
+                            <th
+                                style="padding: 10px; text-align: center; font-weight: 600; width: 20%; overflow: hidden; text-overflow: ellipsis;">
+                                Common</th>
+                            <th style="padding: 10px; text-align: center; font-weight: 600; width: 25%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                                data-board2-name></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 2px solid #e0e0e0; background: #f9f9f9;">
+                            <td
+                                style="padding: 10px; font-weight: 600; color: #667eea; overflow: hidden; text-overflow: ellipsis;">
+                                Level 1: Modules</td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                <strong data-level1-unique1></strong> unique</td>
+                            <td style="padding: 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level1-common></strong></td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                <strong data-level1-unique2></strong> unique</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0; background: #f9f9f9;">
+                            <td
+                                style="padding: 10px; font-weight: 600; color: #667eea; overflow: hidden; text-overflow: ellipsis;">
+                                Level 2: Classes</td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-classes1-unique></strong></td>
+                            <td style="padding: 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-classes-different></strong> differ</td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-classes2-unique></strong></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0; color: #666; font-size: 0.85em;">
+                            <td style="padding: 8px 10px; overflow: hidden; text-overflow: ellipsis;">Level 2: Functions
+                            </td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-functions1-unique></strong></td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                —</td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-functions2-unique></strong></td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid #e0e0e0; color: #666; font-size: 0.85em;">
+                            <td style="padding: 8px 10px; overflow: hidden; text-overflow: ellipsis;">Level 2: Constants
+                            </td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-constants1-unique></strong></td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                —</td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-constants2-unique></strong></td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0; background: #f9f9f9;">
+                            <td
+                                style="padding: 10px; font-weight: 600; color: #667eea; overflow: hidden; text-overflow: ellipsis;">
+                                Level 3: Methods</td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level3-methods1-unique></strong></td>
+                            <td style="padding: 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level3-methods-different></strong> differ</td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level3-methods2-unique></strong></td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid #e0e0e0; color: #666; font-size: 0.85em;">
+                            <td style="padding: 8px 10px; overflow: hidden; text-overflow: ellipsis;">Level 3:
+                                Attributes</td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level3-attributes1-unique></strong></td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                —</td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level3-attributes2-unique></strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- <div style="margin-top: 10px; font-size: 0.8em; color: #666;">
+                    <strong style="color: #FF8C00;"><span data-board1-name-footer></span></strong> | <strong>Center:</strong> Common | <strong style="color: #008B8B;"><span data-board2-name-footer></span></strong>
+                </div> -->
+            </div>
+        </div>
+
+        <!-- Comparison Results Grid Template -->
+        <div id="comparison-grid-template">
+            <div class="comparison-results-grid">
+                <div class="board-column">
+                    <h3 data-board1-header></h3>
+                    <div class="module-tree" data-board1-modules></div>
+                </div>
+                <div class="board-column">
+                    <h3 data-board2-header></h3>
+                    <div class="module-tree" data-board2-modules></div>
+                </div>
+                <div class="common-modules-section" data-common-section style="display: none;">
+                    <h3 data-common-header></h3>
+                    <div class="module-tree" data-common-modules></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Template -->
+        <div id="loading-template">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p data-loading-message></p>
+                <div class="progress-step" data-progress-step></div>
+            </div>
+        </div>
+
+        <!-- Error Template -->
+        <div id="error-template">
+            <div class="detail-view">
+                <div class="detail-header" data-error-title></div>
+                <p style="color: #dc3545;" data-error-message></p>
+                <button onclick="pyscript.run_code('await compare_boards()')" style="margin-top: 15px; padding: 10px 20px; background: #667eea; 
+                               color: white; border: none; border-radius: 6px; cursor: pointer; 
+                               font-weight: 600;" data-retry-button style="display: none;">
+                    🔄 Try Again
+                </button>
+            </div>
+        </div>
+
+        <!-- Simple Message Template -->
+        <div id="message-template">
+            <div class="detail-view">
+                <div class="detail-header" data-message-title></div>
+                <p style="color: #666;" data-message-text></p>
+            </div>
+        </div>
+
+        <!-- Module Item Template -->
+        <div id="module-item-template">
+            <div class="module-item">
+                <div class="module-header" data-module-header-class data-module-click data-module-data>
+                    <span class="module-icon"><i class="fas fa-cube"></i></span>
+                    <span class="module-name" data-module-name></span>
+                    <span class="module-badge" data-module-badge style="display: none;">[UNIQUE]</span>
+                    <span class="module-details" data-module-details></span>
+                </div>
+                <div class="module-children hidden" data-module-id data-module-children></div>
+            </div>
+        </div>
+
+        <!-- Class Item Template -->
+        <div id="class-item-template">
+            <div class="class-item">
+                <div class="tree-node" data-class-click>
+                    <span class="tree-icon"><i class="fas fa-object-group fa-icon"></i></span>
+                    <span style="color: #495057; font-weight: 600;" data-class-signature></span>
+                    <span style="color: #888; font-size: 0.9em; font-weight: normal;" data-base-classes></span>
+                    <span style="color: #6c757d; font-size: 0.85em; margin-left: auto;" data-class-summary></span>
+                </div>
+                <div class="module-children hidden" data-class-id data-class-children></div>
+            </div>
+        </div>
+
+        <!-- Function Item Template -->
+        <div id="function-item-template">
+            <div class="function-item">
+                <span class="tree-icon"><i class="fas fa-bolt fa-icon" data-function-icon></i></span>
+                <span style="color: #495057;">
+                    <span style="color: #888; font-size: 0.85em;" data-decorators></span>
+                    <code
+                        style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;"
+                        data-signature></code>
+                </span>
+            </div>
+        </div>
+
+        <!-- Constant Item Template -->
+        <div id="constant-item-template">
+            <div class="constant-item">
+                <span class="tree-icon"><i class="fas fa-circle fa-icon"></i></span>
+                <span style="color: #495057;">
+                    <code
+                        style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;"
+                        data-constant-signature></code>
+                </span>
+            </div>
+        </div>
+
+        <!-- Search Results Template -->
+        <div id="search-results-template">
+            <div class="detail-view">
+                <div class="detail-header">Search Results</div>
+                <p style="margin-bottom: 20px;" data-search-summary></p>
+                <div data-search-categories></div>
+            </div>
+        </div>
+
+        <!-- Search Category Template -->
+        <div id="search-category-template">
+            <div class="search-category">
+                <h3 class="search-category-title">
+                    <i class="fas" data-category-icon></i>
+                    <span data-category-title></span>
+                </h3>
+                <div class="search-results-list" data-category-results></div>
+            </div>
+        </div>
+
+        <!-- Search Result Item Template -->
+        <div id="search-result-item-template">
+            <div class="search-result-item" style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="color: #667eea; font-weight: 600;" data-result-name></span>
+                    <span style="color: #888; font-size: 0.9em;" data-result-context></span>
+                    <span style="margin-left: auto; color: #666; font-size: 0.8em;" data-result-location></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Search Results Template -->
+        <div id="no-search-results-template">
+            <div class="detail-view">
+                <div class="detail-header">Search Results</div>
+                <p style="color: #666;">No results found for "<strong data-search-term></strong>"</p>
+                <p style="color: #666; margin-top: 10px;">
+                    Try a different search term or check spelling.
+                </p>
+            </div>
+        </div>
+
+        <!-- Board Details Template -->
+        <div id="board-details-template">
+            <div class="detail-view">
+                <div class="detail-header" data-board-title></div>
+                <div data-board-content></div>
+            </div>
+        </div>
+
+        <!-- Module Tree Container Template -->
+        <div id="module-tree-container-template">
+            <div class="module-tree" data-module-list></div>
         </div>
     </div>
 
