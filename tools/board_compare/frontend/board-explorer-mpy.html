@@ -194,9 +194,10 @@
 
         /* Compare control layout styles */
         .compare-control-layout {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr auto;
             gap: 20px;
+            align-items: start;
         }
 
         .control-fields {
@@ -256,7 +257,153 @@
             border: 2px solid #e9ecef;
             border-radius: 8px;
             padding: 20px;
-            margin-top: 20px;
+            min-width: 300px;
+            max-width: 400px;
+        }
+
+        /* Comparison results layout */
+        .comparison-results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .board-column {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .board-column h3 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 6px 6px 0 0;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .common-modules-section {
+            grid-column: 1 / -1;
+            margin-top: 30px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .common-modules-section h3 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 6px 6px 0 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        /* Module styling to match explorer */
+        .module-item {
+            margin-bottom: 2px;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            transition: all 0.2s;
+            margin-bottom: 2px;
+        }
+
+        .module-header:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .module-header.unique {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-color: #ffecb5;
+        }
+
+        .module-header.deprecated {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-color: #f5c6cb;
+            color: #88474eff !important;
+        }
+
+        .module-header.deprecated .module-name {
+            color: #88474eff !important;
+        }
+
+        .module-icon {
+            color: #667eea;
+            margin-right: 8px;
+            font-size: 14px;
+            width: 16px;
+            text-align: center;
+        }
+
+        .module-name {
+            font-weight: 600;
+            color: #333;
+            margin-right: 8px;
+        }
+
+        .module-badge {
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .module-details {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .module-children {
+            margin-left: 24px;
+            border-left: 3px solid #667eea;
+            padding-left: 16px;
+            margin-top: 8px;
+        }
+
+        .module-children.hidden {
+            display: none;
+        }
+
+        /* Class and function styling within modules */
+        .class-item, .function-item, .constant-item {
+            margin: 4px 0;
+            padding: 6px 10px;
+            background: #f8f9fa;
+            border-left: 3px solid #28a745;
+            border-radius: 0 4px 4px 0;
+            font-size: 13px;
+        }
+
+        .class-item {
+            border-left-color: #17a2b8;
+        }
+
+        .function-item {
+            border-left-color: #ffc107;
+        }
+
+        .constant-item {
+            border-left-color: #6f42c1;
         }
 
         button {
@@ -481,7 +628,7 @@
                                 <select id="board1">
                                     <option value="">Select a board...</option>
                                 </select>
-                            </div>
+            </div>
                         </div>
                         <div class="control-row">
                             <div class="control-group">
@@ -512,14 +659,12 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Comparison Summary in top-right corner -->
                     <div id="compare-stats" class="stats-panel" style="display: none;"></div>
                 </div>
             </div>
             
-            <!-- Statistics display -->
-            <div id="compare-stats" style="display: none; margin-bottom: 20px;"></div>
-            
-            <!-- Results display -->
+            <!-- Results display with grid layout -->
             <div id="compare-results"></div>
         </div>
 

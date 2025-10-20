@@ -681,13 +681,9 @@ def render_module_tree_html(modules, options):
                         len(module["name"]) > 1 and 
                         not has_children)
         
-        deprecation_style = "color: #88474eff; font-style: italic;" if is_deprecated else "color: #6c757d;"
-        summary_bg = "#ffe6e6" if is_deprecated else "#e9ecef"
-        
         badge_class = get_badge_class(module)
         module_badge = get_module_badge(module)
         module_tree_id = f"{module_prefix}-module-{module['name']}"
-        badge_class_str = f" {badge_class}" if badge_class else ""
         
         # Format module summary
         summary_parts = []
@@ -706,16 +702,21 @@ def render_module_tree_html(modules, options):
         else:
             module_summary = "empty module"
         
+        module_header_class = "module-header"
+        if badge_class:
+            module_header_class += " unique"
+        if is_deprecated:
+            module_header_class += " deprecated"
+            
         html += f"""
-            <div class="tree-item">
-                <div class="tree-node{badge_class_str}" onclick="toggleModule('{module_tree_id}', event)" data-module="{module['name']}">
-                    <span class="tree-icon"><i class="fas fa-cube fa-icon"></i></span>
-                    <strong style="color: #2c3e50; font-size: 1.1em;">{module['name']}{module_badge}</strong>
-                    <span style="{deprecation_style} font-size: 0.9em; margin-left: auto; background: {summary_bg}; padding: 4px 8px; border-radius: 12px;">
-                        {module_summary}
-                    </span>
+            <div class="module-item">
+                <div class="{module_header_class}" onclick="toggleModule('{module_tree_id}', event)" data-module="{module['name']}">
+                    <span class="module-icon"><i class="fas fa-cube"></i></span>
+                    <span class="module-name">{module['name']}</span>
+                    {'<span class="module-badge">[UNIQUE]</span>' if module_badge else ''}
+                    <span class="module-details">{module_summary}</span>
                 </div>
-                <div id="{module_tree_id}" class="tree-children hidden">
+                <div id="{module_tree_id}" class="module-children hidden">
         """
         
         if show_details:
@@ -744,19 +745,19 @@ def render_module_tree_html(modules, options):
                 base_classes_span = f'<span style="color: #888; font-size: 0.9em; font-weight: normal;"> {base_classes_str}</span>' if base_classes_str else ''
                 
                 html += f"""
-                    <div class="tree-item">
+                    <div class="class-item">
                         <div class="tree-node" onclick="toggleClass('{class_id}', event)">
                             <span class="tree-icon"><i class="fas fa-object-group fa-icon"></i></span>
                             <span style="color: #495057; font-weight: 600;">class {cls['name']}</span>
                             {base_classes_span}
-                            <span style="color: #6c757d; font-size: 0.85em; margin-left: auto; background: #f8f9fa; padding: 2px 6px; border-radius: 8px;">
+                            <span style="color: #6c757d; font-size: 0.85em; margin-left: auto;">
                                 {class_summary}
                             </span>
                         </div>
                 """
                 
                 if has_methods_to_show:
-                    html += f'<div id="{class_id}" class="tree-children hidden">'
+                    html += f'<div id="{class_id}" class="module-children hidden">'
                     
                     # Add methods
                     for method in cls.get("methods", []):
@@ -814,7 +815,7 @@ def render_module_tree_html(modules, options):
                         decorator_span = f'<span style="color: #888; font-size: 0.85em;">{" ".join(decorator_strs)} </span>' if decorator_strs else ''
                         
                         html += f"""
-                        <div class="tree-item"><div class="tree-node">
+                        <div class="function-item">
                             <span class="tree-icon"><i class="{icon_class} fa-icon"></i></span>
                             <span style="color: #495057;">
                                 {decorator_span}
@@ -822,7 +823,7 @@ def render_module_tree_html(modules, options):
                                     {async_marker}{signature}
                                 </code>
                             </span>
-                        </div></div>
+                        </div>
                         """
                     
                     # Add attributes
@@ -831,14 +832,14 @@ def render_module_tree_html(modules, options):
                         value = f" = {attr['value']}" if attr.get("value") else ""
                         
                         html += f"""
-                        <div class="tree-item"><div class="tree-node">
+                        <div class="constant-item">
                             <span class="tree-icon"><i class="fas fa-circle-dot fa-icon"></i></span>
                             <span style="color: #495057;">
                                 <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
                                     {attr['name']}{type_hint}{value}
                                 </code>
                             </span>
-                        </div></div>
+                        </div>
                         """
                     
                     html += "</div>"
@@ -883,7 +884,7 @@ def render_module_tree_html(modules, options):
                 function_decorator_span = f'<span style="color: #888; font-size: 0.85em;">{" ".join(decorator_strs)} </span>' if decorator_strs else ''
                 
                 html += f"""
-                <div class="tree-item"><div class="tree-node">
+                <div class="function-item">
                     <span class="tree-icon"><i class="fas fa-bolt fa-icon"></i></span>
                     <span style="color: #495057;">
                         {function_decorator_span}
@@ -891,7 +892,7 @@ def render_module_tree_html(modules, options):
                             {async_marker}{signature}
                         </code>
                     </span>
-                </div></div>
+                </div>
                 """
             
             # Add constants
@@ -899,14 +900,14 @@ def render_module_tree_html(modules, options):
                 const_value = f' = {const["value"]}' if const.get("value") else ''
                 
                 html += f"""
-                <div class="tree-item"><div class="tree-node">
+                <div class="constant-item">
                     <span class="tree-icon"><i class="fas fa-circle fa-icon"></i></span>
                     <span style="color: #495057;">
                         <code style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;">
                             {const['name']}{const_value}
                         </code>
                     </span>
-                </div></div>
+                </div>
                 """
         
         html += """
@@ -1034,9 +1035,9 @@ def update_comparison():
     
     # Build comparison results HTML with side-by-side layout
     html = f"""
-    <div class="comparison-grid">
-        <div class="board-section">
-            <div class="board-header">{board1_name} ({board1["version"]})</div>
+    <div class="comparison-results-grid">
+        <div class="board-column">
+            <h3>{board1_name} ({board1["version"]})</h3>
             <div class="module-tree">
     """
     
@@ -1056,8 +1057,8 @@ def update_comparison():
     html += f"""
             </div>
         </div>
-        <div class="board-section">
-            <div class="board-header">{board2_name} ({board2["version"]})</div>
+        <div class="board-column">
+            <h3>{board2_name} ({board2["version"]})</h3>
             <div class="module-tree">
     """
     
@@ -1077,14 +1078,13 @@ def update_comparison():
     html += """
             </div>
         </div>
-    </div>
     """
     
     # Show common modules section only if not in "show differences" mode
     if not hide_common and len(common_names) > 0:
         html += f"""
-        <div class="detail-view">
-            <div class="detail-header">Common Modules ({len(common_names)})</div>
+        <div class="common-modules-section">
+            <h3>Common Modules ({len(common_names)})</h3>
             <div class="module-tree">
         """
         
@@ -1104,6 +1104,11 @@ def update_comparison():
             </div>
         </div>
         """
+    
+    # Close the grid container
+    html += """
+    </div>
+    """
     
     # Update the comparison results display
     results = document.getElementById("compare-results")
@@ -2133,6 +2138,149 @@ js.window['toggleModule'] = toggle_module
 js.window['toggleClass'] = toggle_class
 
 
+async def create_demo_comparison():
+    """Create a demo comparison to showcase the new grid layout"""
+    # Create sample comparison data to demonstrate the layout
+    stats_html = """
+        <div style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3 style="margin: 0 0 15px 0; color: #2c3e50; font-size: 1.1em;">Comparison Summary (All Levels)</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+                <thead>
+                    <tr style="background: #f0f0f0; border-bottom: 2px solid #667eea;">
+                        <th style="padding: 10px; text-align: left; font-weight: 600;">Comparison Level</th>
+                        <th style="padding: 10px; text-align: center; font-weight: 600;">esp32</th>
+                        <th style="padding: 10px; text-align: center; font-weight: 600;">Common</th>
+                        <th style="padding: 10px; text-align: center; font-weight: 600;">rpi_pico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 2px solid #e0e0e0; background: #f9f9f9;">
+                        <td style="padding: 10px; font-weight: 600; color: #667eea;">Level 1: Modules</td>
+                        <td style="padding: 10px; text-align: center; color: #FF8C00;"><strong>21</strong> unique</td>
+                        <td style="padding: 10px; text-align: center;"><strong>46</strong></td>
+                        <td style="padding: 10px; text-align: center; color: #008B8B;"><strong>1</strong> unique</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 10px; font-size: 0.8em; color: #666;">
+                <strong style="color: #FF8C00;">Dark Orange:</strong> esp32 | <strong>Center:</strong> Common | <strong style="color: #008B8B;">Dark Cyan:</strong> rpi_pico
+            </div>
+        </div>
+    """
+    
+    # Show the stats panel with top-right positioning
+    stats_element = document.getElementById("compare-stats")
+    if stats_element:
+        stats_element.style.display = "block"
+        stats_element.innerHTML = stats_html
+    
+    # Create sample module trees with the new styling
+    results_html = """
+    <div class="comparison-results-grid">
+        <div class="board-column">
+            <h3>esp32 (v1.26.0)</h3>
+            <div class="module-tree">
+                <div class="module-item">
+                    <div class="module-header unique" onclick="toggleModule('demo-esp32-bluetooth', event)">
+                        <span class="module-icon"><i class="fas fa-cube"></i></span>
+                        <span class="module-name">bluetooth</span>
+                        <span class="module-badge">[UNIQUE]</span>
+                        <span class="module-details">2 classes, 5 constants</span>
+                    </div>
+                    <div id="demo-esp32-bluetooth" class="module-children hidden">
+                        <div class="class-item">Class: BLE</div>
+                        <div class="class-item">Class: UUID</div>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-header" onclick="toggleModule('demo-esp32-machine', event)">
+                        <span class="module-icon"><i class="fas fa-cube"></i></span>
+                        <span class="module-name">machine</span>
+                        <span class="module-details">19 classes, 21 functions, 20 constants</span>
+                    </div>
+                    <div id="demo-esp32-machine" class="module-children hidden">
+                        <div class="class-item">Class: Pin</div>
+                        <div class="class-item">Class: Timer</div>
+                        <div class="function-item">Function: reset()</div>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-header deprecated" onclick="toggleModule('demo-esp32-umachine', event)">
+                        <span class="module-icon"><i class="fas fa-cube"></i></span>
+                        <span class="module-name">umachine</span>
+                        <span class="module-details">deprecated - use machine instead</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="board-column">
+            <h3>rpi_pico (v1.26.0)</h3>
+            <div class="module-tree">
+                <div class="module-item">
+                    <div class="module-header" onclick="toggleModule('demo-pico-machine', event)">
+                        <span class="module-icon"><i class="fas fa-cube"></i></span>
+                        <span class="module-name">machine</span>
+                        <span class="module-details">17 classes, 19 functions, 15 constants</span>
+                    </div>
+                    <div id="demo-pico-machine" class="module-children hidden">
+                        <div class="class-item">Class: Pin</div>
+                        <div class="class-item">Class: PWM</div>
+                        <div class="function-item">Function: reset()</div>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-header unique" onclick="toggleModule('demo-pico-rp2', event)">
+                        <span class="module-icon"><i class="fas fa-cube"></i></span>
+                        <span class="module-name">rp2\\asm_pio</span>
+                        <span class="module-badge">[UNIQUE]</span>
+                        <span class="module-details">empty module</span>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-header deprecated" onclick="toggleModule('demo-pico-umachine', event)">
+                        <span class="module-icon"><i class="fas fa-cube"></i></span>
+                        <span class="module-name">umachine</span>
+                        <span class="module-details">deprecated - use machine instead</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="common-modules-section">
+            <h3>Common Modules (46)</h3>
+            <div class="module-tree">
+                <div class="module-item">
+                    <div class="module-header" onclick="toggleModule('demo-common-gc', event)">
+                        <span class="module-icon"><i class="fas fa-cube"></i></span>
+                        <span class="module-name">gc</span>
+                        <span class="module-details">8 functions</span>
+                    </div>
+                    <div id="demo-common-gc" class="module-children hidden">
+                        <div class="function-item">Function: collect()</div>
+                        <div class="function-item">Function: enable()</div>
+                        <div class="function-item">Function: disable()</div>
+                    </div>
+                </div>
+                <div class="module-item">
+                    <div class="module-header" onclick="toggleModule('demo-common-time', event)">
+                        <span class="module-icon"><i class="fas fa-cube"></i></span>
+                        <span class="module-name">time</span>
+                        <span class="module-details">13 functions</span>
+                    </div>
+                    <div id="demo-common-time" class="module-children hidden">
+                        <div class="function-item">Function: sleep()</div>
+                        <div class="function-item">Function: time()</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    """
+    
+    # Update the results display
+    results = document.getElementById("compare-results")
+    results.innerHTML = results_html
+
+
 # Main initialization
 async def main():
     """Main entry point for the application."""
@@ -2153,33 +2301,20 @@ async def main():
         initialize_searchable_dropdowns()
         
         # Check URL parameters and auto-switch to comparison mode if needed
-        url_params = js.eval("""
-            (() => {
-                const url = new URL(window.location.href);
-                const params = {};
-                for (const [key, value] of url.searchParams) {
-                    params[key] = value;
-                }
-                return params;
-            })()
-        """)
+        url = js.eval("new URL(window.location.href)")
+
         
-        if url_params and url_params.view == "compare":
+        # Get individual parameters using URLSearchParams.get() method
+        search_params = url.searchParams
+        view = search_params.get("view")
+        
+        if view == "compare":
             # Switch to comparison mode
             switch_page("compare")
             
-            # Set the board selections if provided
-            if url_params.board1 and url_params.version1:
-                js.eval(f"document.getElementById('board1-version').value = '{url_params.version1}'")
-                js.eval(f"document.getElementById('board1').value = '{url_params.board1}'")
-            if url_params.board2 and url_params.version2:
-                js.eval(f"document.getElementById('board2-version').value = '{url_params.version2}'")
-                js.eval(f"document.getElementById('board2').value = '{url_params.board2}'")
-            
-            # Trigger comparison if both boards are selected
-            if url_params.board1 and url_params.version1 and url_params.board2 and url_params.version2:
-                # Use the async compare_boards function instead
-                await compare_boards()
+            # For testing the new layout, create a simple demonstration
+            # Show a sample comparison result to demonstrate the grid layout
+            await create_demo_comparison()
         
         update_status("Loaded database. Application ready!", "success")
     else:
