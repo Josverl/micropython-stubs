@@ -1194,8 +1194,13 @@ def update_comparison():
                 board1_container.appendChild(board1_tree_dom)
             else:
                 # Use template for "No differences" message
-                no_diff_elem = get_template("no-differences-template")
+                no_diff_elem = get_template("message-template")
                 if no_diff_elem:
+                    populate_template(no_diff_elem, {
+                        "data-show-detail-view": "false",
+                        "data-show-simple": "true", 
+                        "data-simple-text": "No differences"
+                    })
                     board1_container.appendChild(no_diff_elem)
 
         if board2_container:
@@ -1204,8 +1209,13 @@ def update_comparison():
                 board2_container.appendChild(board2_tree_dom)
             else:
                 # Use template for "No differences" message
-                no_diff_elem = get_template("no-differences-template")
+                no_diff_elem = get_template("message-template")
                 if no_diff_elem:
+                    populate_template(no_diff_elem, {
+                        "data-show-detail-view": "false",
+                        "data-show-simple": "true", 
+                        "data-simple-text": "No differences"
+                    })
                     board2_container.appendChild(no_diff_elem)
 
         # Handle common modules section
@@ -1515,10 +1525,27 @@ def display_search_results(results, search_term):
 
     if not results:
         # Use no results template
-        no_results_element = get_template("no-search-results-template")
+        no_results_element = get_template("message-template")
         if no_results_element:
             no_results_element.style.display = "block"
-            populate_template(no_results_element, {"search-term": search_term})
+            
+            # Set content directly to avoid HTML encoding issues
+            header_element = no_results_element.querySelector("[data-message-header]")
+            content_element = no_results_element.querySelector("[data-message-content]")
+            subtitle_element = no_results_element.querySelector("[data-message-subtitle]")
+            
+            if header_element:
+                header_element.textContent = "Search Results"
+            if content_element:
+                content_element.innerHTML = f'No results found for "<strong>{search_term}</strong>"'
+            if subtitle_element:
+                subtitle_element.textContent = "Try a different search term or check spelling."
+                
+            # Show the detail view
+            detail_view = no_results_element.querySelector("[data-show-detail-view]")
+            if detail_view:
+                detail_view.style.display = "block"
+                
             results_div.innerHTML = ""
             results_div.appendChild(no_results_element)
         return
@@ -1535,9 +1562,11 @@ def display_search_results(results, search_term):
     search_results_element = get_template("search-results-template")
     if search_results_element:
         search_results_element.style.display = "block"
-        populate_template(search_results_element, {
-            "search-summary": f'Found <strong>{len(results)}</strong> results for "<strong>{search_term}</strong>"'
-        })
+        
+        # Set the HTML content directly instead of using data attributes
+        summary_element = search_results_element.querySelector("[data-search-summary]")
+        if summary_element:
+            summary_element.innerHTML = f'Found <strong>{len(results)}</strong> results for "<strong>{search_term}</strong>"'
 
         # Get categories container
         categories_container = search_results_element.querySelector("[data-search-categories]")
@@ -2013,8 +2042,13 @@ async def load_board_details():
 
     if not selected_version or not selected_board_name:
         # Use template for selection prompt
-        select_prompt = get_template("select-prompt-template")
+        select_prompt = get_template("message-template")
         if select_prompt:
+            populate_template(select_prompt, {
+                "data-show-detail-view": "false",
+                "data-show-loading": "true",
+                "data-simple-message": "Select both version and board to explore modules and APIs"
+            })
             content.innerHTML = ""
             content.appendChild(select_prompt)
         else:
@@ -2022,8 +2056,13 @@ async def load_board_details():
         return
 
     # Show loading using template
-    loading_template = get_template("loading-state-template")
+    loading_template = get_template("loading-template")
     if loading_template:
+        populate_template(loading_template, {
+            "data-show-spinner": "false",
+            "data-show-progress": "true",
+            "data-loading-text": "Loading board details..."
+        })
         content.innerHTML = ""
         content.appendChild(loading_template)
     else:
@@ -2150,11 +2189,12 @@ async def load_board_details():
 
     except Exception as e:
         # Use error template instead of inline HTML
-        error_template = get_template("error-display-template")
+        error_template = get_template("error-template")
         if error_template:
             populate_template(error_template, {
-                "error-message": str(e),
-                "error-details": f"{type(e).__name__}: {str(e)}"
+                "data-error-message": str(e),
+                "data-error-details": f"{type(e).__name__}: {str(e)}",
+                "data-error-icon": "true"
             })
             content.innerHTML = ""
             content.appendChild(error_template)

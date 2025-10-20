@@ -391,7 +391,58 @@
             border-left: 3px solid #28a745;
             border-radius: 0 4px 4px 0;
             font-size: 13px;
-            /* text-align: left; */
+            text-align: left;
+        }
+
+        /* Common style patterns for template consolidation */
+        .code-block {
+            background: #f8f9fa;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .item-container {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 5px;
+        }
+
+        .icon-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .error-text {
+            color: #dc3545;
+        }
+
+        .muted-text {
+            color: #666;
+        }
+
+        .primary-text {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .clickable-item {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .clickable-item:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
         }
 
         .class-item {
@@ -922,30 +973,26 @@
         <!-- Loading Template -->
         <div id="loading-template">
             <div class="loading">
-                <div class="spinner"></div>
+                <div class="spinner" data-show-spinner style="display: none;"></div>
                 <p data-loading-message></p>
-                <div class="progress-step" data-progress-step></div>
+                <div class="progress-step" data-progress-step style="display: none;"></div>
             </div>
         </div>
 
         <!-- Error Template -->
         <div id="error-template">
             <div class="detail-view">
-                <div class="detail-header" data-error-title></div>
-                <p style="color: #dc3545;" data-error-message></p>
+                <div class="detail-header">
+                    <span data-error-icon style="display: none;">⚠️</span>
+                    <span data-error-title>Error</span>
+                </div>
+                <p class="error-text" data-error-message></p>
+                <pre class="code-block" data-error-details style="display: none; background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 0.85em;"></pre>
                 <button onclick="pyscript.run_code('await compare_boards()')" style="margin-top: 15px; padding: 10px 20px; background: #667eea; 
                                color: white; border: none; border-radius: 6px; cursor: pointer; 
                                font-weight: 600;" data-retry-button style="display: none;">
                     🔄 Try Again
                 </button>
-            </div>
-        </div>
-
-        <!-- Simple Message Template -->
-        <div id="message-template">
-            <div class="detail-view">
-                <div class="detail-header" data-message-title></div>
-                <p style="color: #666;" data-message-text></p>
             </div>
         </div>
 
@@ -1020,26 +1067,18 @@
             </div>
         </div>
 
-        <!-- Search Result Item Template -->
-        <div id="search-result-item-template">
-            <div class="search-result-item" style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="color: #667eea; font-weight: 600;" data-result-name></span>
-                    <span style="color: #888; font-size: 0.9em;" data-result-context></span>
-                    <span style="margin-left: auto; color: #666; font-size: 0.8em;" data-result-location></span>
-                </div>
-            </div>
-        </div>
-
         <!-- No Search Results Template -->
-        <div id="no-search-results-template">
-            <div class="detail-view">
-                <div class="detail-header">Search Results</div>
-                <p style="color: #666;">No results found for "<strong data-search-term></strong>"</p>
-                <p style="color: #666; margin-top: 10px;">
-                    Try a different search term or check spelling.
-                </p>
+        <!-- Unified Message Template -->
+        <div id="message-template">
+            <div class="detail-view" data-show-detail-view="true">
+                <div class="detail-header" data-message-header></div>
+                <p class="muted-text" data-message-content></p>
+                <p class="muted-text" data-message-subtitle></p>
             </div>
+            <div class="loading" data-show-loading="false">
+                <p data-simple-message></p>
+            </div>
+            <p class="muted-text" style="padding: 20px;" data-show-simple="false" data-simple-text></p>
         </div>
 
         <!-- Board Details Template -->
@@ -1067,15 +1106,6 @@
             </div>
         </div>
 
-        <!-- Error Display Template -->
-        <div id="error-display-template">
-            <div class="detail-view">
-                <h3 style="color: #dc3545;">⚠️ Error Loading Board</h3>
-                <p style="color: #666; margin: 15px 0;" data-error-message></p>
-                <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 0.85em;" data-error-details></pre>
-            </div>
-        </div>
-
         <!-- Search Result Item Template -->
         <div id="search-result-item-template">
             <div class="search-result-item" style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px; cursor: pointer;">
@@ -1093,26 +1123,6 @@
             </div>
         </div>
 
-        <!-- No Differences Message Template -->
-        <div id="no-differences-template">
-            <p style="color: #666; padding: 20px;">No differences</p>
-        </div>
-
-        <!-- Select Prompt Template -->
-        <div id="select-prompt-template">
-            <div class="loading">
-                <p>Select both version and board to explore modules and APIs</p>
-            </div>
-        </div>
-
-        <!-- Loading State Template -->
-        <div id="loading-state-template">
-            <div class="loading">
-                <div class="spinner"></div>
-                <p>Loading board details...</p>
-                <div class="progress-step">Fetching modules...</div>
-            </div>
-        </div>
     </div>
 
     <!-- SQL.js for database -->
