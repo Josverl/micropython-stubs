@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Loading Optimization Test</title>
+    <!-- SQL-wasm.js UMD module -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js"></script>
+    <!-- PyScript CSS -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .controls {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+        }
+        button:hover { background: #0056b3; }
+        .results {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .timing {
+            background: #d4edda;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+    </style>
+
+    <!-- PyScript configuration -->
+    <link rel="mpy-config" href="./test-pyscript.toml" />
+</head>
+<body>
+    <div class="container">
+        <h1>Database Loading Optimization Test</h1>
+        
+        <div class="controls">
+            <h3>Test Options:</h3>
+            <button onclick="testOption(0)">Option 0: Current Method</button>
+            <button onclick="testOption(1)">Option 1: JS Direct</button>
+            <button onclick="testOption(3)">Option 3: Web Worker</button>
+            <button onclick="testOption(4)">Option 4: IndexedDB Cache</button>
+            <button onclick="clearResults()">Clear Results</button>
+        </div>
+
+        <div class="results" id="results">
+Ready to test database loading options...
+
+Options:
+- Option 0: Current method (Python file I/O)
+- Option 1: Direct JavaScript fetch + SQL.js 
+- Option 4: JavaScript with IndexedDB caching
+
+Click a button above to start testing.
+        </div>
+    </div>
+
+    <!-- Database optimization JavaScript -->
+    <script>
+        // Same optimization code as in main HTML
+        window.dbOptimizer = {
+            performanceNow() {
+                return performance.now();
+            },
+
+            async loadDatabaseFromUrl(url) {
+                console.log(`${new Date().toLocaleTimeString()} [JS] Starting direct fetch from '${url}'...`);
+                const startTime = performance.now();
+                
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    }
+                    
+                    const fetchTime = performance.now();
+                    console.log(`${new Date().toLocaleTimeString()} [JS] Fetch completed in ${(fetchTime - startTime).toFixed(2)}ms`);
+                    
+                    const arrayBuffer = await response.arrayBuffer();
+                    const arrayTime = performance.now();
+                    console.log(`${new Date().toLocaleTimeString()} [JS] ArrayBuffer created in ${(arrayTime - fetchTime).toFixed(2)}ms`);
+                    
+                    const uint8Array = new Uint8Array(arrayBuffer);
+                    const arrayCreateTime = performance.now();
+                    console.log(`${new Date().toLocaleTimeString()} [JS] Uint8Array created in ${(arrayCreateTime - arrayTime).toFixed(2)}ms`);
+                    
+                    const SQL = await initSqlJs({
+                        locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/${file}`
+                    });
+                    
+                    const initTime = performance.now();
+                    console.log(`${new Date().toLocaleTimeString()} [JS] SQL.js initialized in ${(initTime - arrayCreateTime).toFixed(2)}ms`);
+                    
+                    const database = new SQL.Database(uint8Array);
+                    const totalTime = performance.now();
+                    
+                    console.log(`${new Date().toLocaleTimeString()} [JS] Database created in ${(totalTime - initTime).toFixed(2)}ms`);
+                    console.log(`${new Date().toLocaleTimeString()} [JS] Total time: ${(totalTime - startTime).toFixed(2)}ms`);
+                    
+                    return {
+                        database: database,
+                        timing: {
+                            total: totalTime - startTime,
+                            fetch: fetchTime - startTime,
+                            arrayBuffer: arrayTime - fetchTime,
+                            uint8Array: arrayCreateTime - arrayTime,
+                            sqlInit: initTime - arrayCreateTime,
+                            dbCreate: totalTime - initTime
+                        }
+                    };
+                } catch (error) {
+                    console.error(`${new Date().toLocaleTimeString()} [JS] Database load failed:`, error);
+                    throw error;
+                }
+            },
+
+            async loadDatabaseWithCache(url, cacheKey = 'test_board_comparison_db') {
+                console.log(`${new Date().toLocaleTimeString()} [JS] Loading database with cache key '${cacheKey}'...`);
+                const startTime = performance.now();
+                
+                try {
+                    const cachedData = await this.getFromIndexedDB(cacheKey);
+                    
+                    if (cachedData) {
+                        console.log(`${new Date().toLocaleTimeString()} [JS] Found cached database`);
+                        const SQL = await initSqlJs({
+                            locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/${file}`
+                        });
+                        const database = new SQL.Database(new Uint8Array(cachedData));
+                        const totalTime = performance.now();
+                        
+                        console.log(`${new Date().toLocaleTimeString()} [JS] Loaded from cache in ${(totalTime - startTime).toFixed(2)}ms`);
+                        return {
+                            database: database,
+                            timing: { total: totalTime - startTime, source: 'cache' }
+                        };
+                    }
+                    
+                    console.log(`${new Date().toLocaleTimeString()} [JS] No cache found, loading from network...`);
+                    const result = await this.loadDatabaseFromUrl(url);
+                    
+                    const dbData = result.database.export();
+                    await this.saveToIndexedDB(cacheKey, dbData);
+                    console.log(`${new Date().toLocaleTimeString()} [JS] Database cached for future use`);
+                    
+                    result.timing.source = 'network';
+                    return result;
+                    
+                } catch (error) {
+                    console.error(`${new Date().toLocaleTimeString()} [JS] Cached database load failed:`, error);
+                    throw error;
+                }
+            },
+
+            getFromIndexedDB(key) {
+                return new Promise((resolve, reject) => {
+                    const request = indexedDB.open('SQLiteCacheTest', 1);
+                    
+                    request.onerror = () => resolve(null);
+                    request.onupgradeneeded = (event) => {
+                        const db = event.target.result;
+                        if (!db.objectStoreNames.contains('databases')) {
+                            db.createObjectStore('databases');
+                        }
+                    };
+                    
+                    request.onsuccess = (event) => {
+                        const db = event.target.result;
+                        const transaction = db.transaction(['databases'], 'readonly');
+                        const store = transaction.objectStore('databases');
+                        const getRequest = store.get(key);
+                        
+                        getRequest.onerror = () => resolve(null);
+                        getRequest.onsuccess = () => resolve(getRequest.result);
+                    };
+                });
+            },
+
+            saveToIndexedDB(key, data) {
+                return new Promise((resolve, reject) => {
+                    const request = indexedDB.open('SQLiteCacheTest', 1);
+                    
+                    request.onerror = () => reject(request.error);
+                    request.onupgradeneeded = (event) => {
+                        const db = event.target.result;
+                        if (!db.objectStoreNames.contains('databases')) {
+                            db.createObjectStore('databases');
+                        }
+                    };
+                    
+                    request.onsuccess = (event) => {
+                        const db = event.target.result;
+                        const transaction = db.transaction(['databases'], 'readwrite');
+                        const store = transaction.objectStore('databases');
+                        const putRequest = store.put(data, key);
+                        
+                        putRequest.onerror = () => reject(putRequest.error);
+                        putRequest.onsuccess = () => resolve();
+                    };
+                });
+            },
+
+            // Option 3: Web Worker implementation
+            async loadDatabaseWithWorker(url) {
+                console.log(`${new Date().toLocaleTimeString()} [JS] Loading database via Web Worker...`);
+                const startTime = performance.now();
+                
+                return new Promise((resolve, reject) => {
+                    // Create worker
+                    const worker = new Worker('./sql-worker.js');
+                    let messageId = 0;
+                    const pendingRequests = new Map();
+                    
+                    // Handle worker messages
+                    worker.onmessage = (event) => {
+                        const { id, success, error, timing, results } = event.data;
+                        const request = pendingRequests.get(id);
+                        
+                        if (request) {
+                            pendingRequests.delete(id);
+                            if (success) {
+                                request.resolve({ timing, results, worker });
+                            } else {
+                                request.reject(new Error(error));
+                            }
+                        }
+                    };
+                    
+                    worker.onerror = (error) => {
+                        reject(new Error(`Worker error: ${error.message}`));
+                    };
+                    
+                    // Send load database message
+                    const id = ++messageId;
+                    pendingRequests.set(id, { resolve, reject });
+                    
+                    worker.postMessage({
+                        action: 'loadDatabase',
+                        data: { url },
+                        id: id
+                    });
+                    
+                    // Timeout after 30 seconds
+                    setTimeout(() => {
+                        if (pendingRequests.has(id)) {
+                            pendingRequests.delete(id);
+                            worker.terminate();
+                            reject(new Error('Worker timeout'));
+                        }
+                    }, 30000);
+                });
+            }
+        };
+
+        function clearResults() {
+            document.getElementById('results').textContent = 'Results cleared. Ready for new tests...';
+        }
+
+        function appendResult(message) {
+            const results = document.getElementById('results');
+            results.textContent += '\n' + message;
+            results.scrollTop = results.scrollHeight;
+        }
+
+        function testOption(optionNum) {
+            appendResult(`\n=== Testing Option ${optionNum} ===`);
+            
+            if (optionNum === 0) {
+                appendResult('Option 0: Current method will be tested via Python...');
+                if (window.testPythonOption) {
+                    window.testPythonOption(0);
+                } else {
+                    appendResult('❌ Python function not available');
+                }
+            } else {
+                testJavaScriptOption(optionNum);
+            }
+        }
+
+        async function testJavaScriptOption(optionNum) {
+            const dbUrl = './board_comparison.db';
+            
+            try {
+                appendResult(`Starting test with database: ${dbUrl}`);
+                
+                let result;
+                if (optionNum === 1) {
+                    appendResult('Using direct JavaScript fetch...');
+                    result = await window.dbOptimizer.loadDatabaseFromUrl(dbUrl);
+                } else if (optionNum === 3) {
+                    appendResult('Using Web Worker...');
+                    result = await window.dbOptimizer.loadDatabaseWithWorker(dbUrl);
+                } else if (optionNum === 4) {
+                    appendResult('Using IndexedDB caching...');
+                    result = await window.dbOptimizer.loadDatabaseWithCache(dbUrl);
+                }
+                
+                if (result) {
+                    appendResult(`\n✅ SUCCESS!`);
+                    appendResult(`Total time: ${result.timing.total.toFixed(2)}ms`);
+                    
+                    if (result.timing.source) {
+                        appendResult(`Source: ${result.timing.source}`);
+                    } else if (result.timing.init !== undefined) {
+                        // Web Worker timing
+                        appendResult(`Worker init: ${result.timing.init.toFixed(2)}ms`);
+                        appendResult(`Fetch: ${result.timing.fetch.toFixed(2)}ms`);
+                        appendResult(`Buffer: ${result.timing.buffer.toFixed(2)}ms`);
+                        appendResult(`Database: ${result.timing.database.toFixed(2)}ms`);
+                    } else {
+                        // Direct JS timing
+                        appendResult(`Fetch: ${result.timing.fetch.toFixed(2)}ms`);
+                        appendResult(`ArrayBuffer: ${result.timing.arrayBuffer.toFixed(2)}ms`);
+                        appendResult(`Uint8Array: ${result.timing.uint8Array.toFixed(2)}ms`);
+                        appendResult(`SQL.js init: ${result.timing.sqlInit.toFixed(2)}ms`);
+                        appendResult(`Database create: ${result.timing.dbCreate.toFixed(2)}ms`);
+                    }
+                    
+                    // Test MicroPython compatibility query: SELECT count(*) FROM boards;
+                    const expectedBoardCount = 38;
+                    
+                    if (optionNum === 3 && result.worker) {
+                        // Web worker query test
+                        appendResult('Testing MicroPython query via worker: SELECT count(*) FROM boards;');
+                        const queryResult = await new Promise((resolve, reject) => {
+                            let messageId = Date.now();
+                            const timeout = setTimeout(() => reject(new Error('Query timeout')), 5000);
+                            
+                            const messageHandler = (event) => {
+                                if (event.data.id === messageId) {
+                                    result.worker.removeEventListener('message', messageHandler);
+                                    clearTimeout(timeout);
+                                    if (event.data.success) {
+                                        resolve(event.data.results);
+                                    } else {
+                                        reject(new Error(event.data.error));
+                                    }
+                                }
+                            };
+                            
+                            result.worker.addEventListener('message', messageHandler);
+                            result.worker.postMessage({
+                                action: 'executeQuery',
+                                data: { sql: 'SELECT count(*) FROM boards' },
+                                id: messageId
+                            });
+                        });
+                        
+                        if (queryResult.length > 0 && queryResult[0].values.length > 0) {
+                            const actualCount = queryResult[0].values[0][0];
+                            appendResult(`Query result: ${actualCount} boards found`);
+                            
+                            if (actualCount === expectedBoardCount) {
+                                appendResult(`✅ VALIDATION PASSED: Expected ${expectedBoardCount}, got ${actualCount}`);
+                            } else {
+                                appendResult(`❌ VALIDATION FAILED: Expected ${expectedBoardCount}, got ${actualCount}`);
+                            }
+                        } else {
+                            appendResult('❌ VALIDATION FAILED: No query results returned');
+                        }
+                        
+                        // Close worker database
+                        result.worker.postMessage({ action: 'closeDatabase', data: {}, id: Date.now() });
+                        result.worker.terminate();
+                        appendResult('Worker terminated successfully.\n');
+                        
+                    } else if (result.database) {
+                        // Direct database query
+                        appendResult('Testing MicroPython query: SELECT count(*) FROM boards;');
+                        const testQuery = result.database.exec("SELECT count(*) FROM boards");
+                        
+                        if (testQuery.length > 0 && testQuery[0].values.length > 0) {
+                            const actualCount = testQuery[0].values[0][0];
+                            appendResult(`Query result: ${actualCount} boards found`);
+                            
+                            if (actualCount === expectedBoardCount) {
+                                appendResult(`✅ VALIDATION PASSED: Expected ${expectedBoardCount}, got ${actualCount}`);
+                            } else {
+                                appendResult(`❌ VALIDATION FAILED: Expected ${expectedBoardCount}, got ${actualCount}`);
+                            }
+                        } else {
+                            appendResult('❌ VALIDATION FAILED: No query results returned');
+                        }
+                        
+                        result.database.close();
+                        appendResult('Database closed successfully.\n');
+                    }
+                }
+                
+            } catch (error) {
+                appendResult(`\n❌ FAILED: ${error.message}`);
+                appendResult(`Stack: ${error.stack}`);
+            }
+        }
+    </script>
+
+    <!-- PyScript -->
+    <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+
+    <!-- Python test code -->
+    <script type="mpy">
+from pyscript import window
+
+async def test_python_option(option_num):
+    """Test database loading with Python/PyScript"""
+    try:
+        window.appendResult(f"Testing Python option {option_num}...")
+        
+        # Import here to avoid load-time errors
+        from sqlite_wasm import SQLite, set_load_option
+        
+        # Set the option
+        set_load_option(option_num)
+        
+        # Initialize SQLite wrapper
+        sql_wrapper = await SQLite.initialize()
+        
+        # Try to load database
+        db = await sql_wrapper.open_database("board_comparison.db")
+        
+        window.appendResult("✅ Python option succeeded!")
+        
+        # Test MicroPython compatibility query: SELECT count(*) FROM boards;
+        expected_board_count = 38
+        window.appendResult("Testing MicroPython query: SELECT count(*) FROM boards;")
+        
+        result = db.exec("SELECT count(*) FROM boards")
+        if result and len(result) > 0 and len(result[0]["values"]) > 0:
+            actual_count = result[0]["values"][0][0]  
+            window.appendResult(f"Query result: {actual_count} boards found")
+            
+            if actual_count == expected_board_count:
+                window.appendResult(f"✅ VALIDATION PASSED: Expected {expected_board_count}, got {actual_count}")
+            else:
+                window.appendResult(f"❌ VALIDATION FAILED: Expected {expected_board_count}, got {actual_count}")
+        else:
+            window.appendResult("❌ VALIDATION FAILED: No query results returned")
+        
+        db.close()
+        window.appendResult("Database closed successfully.\n")
+        
+    except Exception as e:
+        window.appendResult(f"❌ Python option failed: {str(e)}")
+        # Also log the full traceback
+        import sys
+        import io
+        from traceback import print_exc
+        
+        string_buffer = io.StringIO()
+        print_exc(file=string_buffer)
+        traceback_str = string_buffer.getvalue()
+        window.appendResult(f"Full traceback: {traceback_str}")
+
+# Make function available to JavaScript
+window.testPythonOption = test_python_option
+    </script>
+</body>
+</html>
