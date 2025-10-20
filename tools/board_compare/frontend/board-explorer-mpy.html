@@ -1054,6 +1054,65 @@
         <div id="module-tree-container-template">
             <div class="module-tree" data-module-list></div>
         </div>
+
+        <!-- Board Content Template -->
+        <div id="board-content-template">
+            <div style="margin: 20px 0;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">
+                    <i class="fas fa-cube"></i> <span data-modules-title></span>
+                </h3>
+                <div style="background: white; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px;">
+                    <div data-modules-tree></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Display Template -->
+        <div id="error-display-template">
+            <div class="detail-view">
+                <h3 style="color: #dc3545;">⚠️ Error Loading Board</h3>
+                <p style="color: #666; margin: 15px 0;" data-error-message></p>
+                <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 0.85em;" data-error-details></pre>
+            </div>
+        </div>
+
+        <!-- Search Result Item Template -->
+        <div id="search-result-item-template">
+            <div class="search-result-item" style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px; cursor: pointer;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="color: #667eea; font-weight: 600;">
+                        <i class="fas" data-entity-icon></i>
+                        <span data-entity-name></span>
+                    </span>
+                    <span style="color: #888; font-size: 0.9em;" data-context-path></span>
+                    <span style="margin-left: auto; color: #666; font-size: 0.8em;">
+                        <span class="board-tag" data-board-name></span>
+                        <span class="version-tag" data-version></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Differences Message Template -->
+        <div id="no-differences-template">
+            <p style="color: #666; padding: 20px;">No differences</p>
+        </div>
+
+        <!-- Select Prompt Template -->
+        <div id="select-prompt-template">
+            <div class="loading">
+                <p>Select both version and board to explore modules and APIs</p>
+            </div>
+        </div>
+
+        <!-- Loading State Template -->
+        <div id="loading-state-template">
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Loading board details...</p>
+                <div class="progress-step">Fetching modules...</div>
+            </div>
+        </div>
     </div>
 
     <!-- SQL.js for database -->

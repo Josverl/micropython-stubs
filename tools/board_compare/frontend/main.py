@@ -144,10 +144,10 @@ def create_module_item(module, options):
     is_deprecated = module["name"].startswith("u") and len(module["name"]) != "uctypes"
     # FIXME: Why does in not work ?
     # is_deprecated =str(module['name']) in U_MODULES
-    if is_deprecated:
-        print(f"{module['name']=}")
-        window.console.log(ffi.to_js(module["name"]))
-        window.console.log(ffi.to_js(module))
+    # if is_deprecated:
+    #     print(f"{module['name']=}")
+    #     window.console.log(ffi.to_js(module["name"]))
+    #     window.console.log(ffi.to_js(module))
 
     badge_class = get_badge_class(module)
     module_badge = get_module_badge(module)
@@ -1193,22 +1193,20 @@ def update_comparison():
             if len(board1_modules_to_show) > 0:
                 board1_container.appendChild(board1_tree_dom)
             else:
-                # Show "No differences" message
-                no_diff_elem = document.createElement("p")
-                no_diff_elem.style.cssText = "color: #666; padding: 20px;"
-                no_diff_elem.textContent = "No differences"
-                board1_container.appendChild(no_diff_elem)
+                # Use template for "No differences" message
+                no_diff_elem = get_template("no-differences-template")
+                if no_diff_elem:
+                    board1_container.appendChild(no_diff_elem)
 
         if board2_container:
             board2_container.innerHTML = ""  # Clear existing content
             if len(board2_modules_to_show) > 0:
                 board2_container.appendChild(board2_tree_dom)
             else:
-                # Show "No differences" message
-                no_diff_elem = document.createElement("p")
-                no_diff_elem.style.cssText = "color: #666; padding: 20px;"
-                no_diff_elem.textContent = "No differences"
-                board2_container.appendChild(no_diff_elem)
+                # Use template for "No differences" message
+                no_diff_elem = get_template("no-differences-template")
+                if no_diff_elem:
+                    board2_container.appendChild(no_diff_elem)
 
         # Handle common modules section
         common_section = comparison_grid.querySelector("[data-common-section]")
@@ -1589,37 +1587,33 @@ def create_search_result_item(result, entity_type):
     board_name = format_board_name(result["port"], result["board"])
     context_path = get_context_path(result)
     
-    # Create result item element manually since we need onclick handler
-    result_element = document.createElement("div")
-    result_element.className = "search-result-item"
-    result_element.style.cssText = "padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px; cursor: pointer;"
-    
-    # Set click handler
-    module_id = result["module_id"]
-    class_id = result.get("class_id", "")
-    entity_name = result["entity_name"]
-    
-    def click_handler(e):
-        # Call openSearchResult if it exists
-        if hasattr(window, "openSearchResult"):
-            window.openSearchResult(module_id, class_id, entity_name, entity_type)
-    
-    result_element.onclick = click_handler
-    
-    # Create inner content
-    result_element.innerHTML = f"""
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <span style="color: #667eea; font-weight: 600;">
-                <i class="fas {get_entity_icon(entity_type)}"></i>
-                {entity_name}
-            </span>
-            <span style="color: #888; font-size: 0.9em;">{context_path}</span>
-            <span style="margin-left: auto; color: #666; font-size: 0.8em;">
-                <span class="board-tag">{board_name}</span>
-                <span class="version-tag">{result['version']}</span>
-            </span>
-        </div>
-    """
+    # Use search result template
+    result_element = get_template("search-result-item-template")
+    if result_element:
+        # Populate template data
+        populate_template(result_element, {
+            "entity-name": result["entity_name"],
+            "context-path": context_path,
+            "board-name": board_name,
+            "version": result['version']
+        })
+        
+        # Set entity icon
+        icon_elem = result_element.querySelector("[data-entity-icon]")
+        if icon_elem:
+            icon_elem.className = f"fas {get_entity_icon(entity_type)}"
+        
+        # Set click handler
+        module_id = result["module_id"]
+        class_id = result.get("class_id", "")
+        entity_name = result["entity_name"]
+        
+        def click_handler(e):
+            # Call openSearchResult if it exists
+            if hasattr(window, "openSearchResult"):
+                window.openSearchResult(module_id, class_id, entity_name, entity_type)
+        
+        result_element.onclick = click_handler
     
     return result_element
 
@@ -2007,171 +2001,6 @@ def get_board_modules(board_info):
         return []
 
 
-def render_module_tree(module):
-    """Render an expandable module tree."""
-    classes = module.get("classes", [])
-    functions = module.get("functions", [])
-    constants = module.get("constants", [])
-
-    class_count = len(classes)
-    func_count = len(functions)
-    const_count = len(constants)
-
-    # Format summary
-    summary = board_utils.format_module_summary(class_count, func_count, const_count, module["name"])
-
-    module_id = f"module-{module['name']}"
-
-    html = f"""
-    <div class="tree-item" style="margin-bottom: 6px;">
-        <div class="tree-node" onclick="toggleModule('{module_id}', event)" 
-                style="padding: 12px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #667eea; display: flex; align-items: center;">
-            <i class="fas fa-cube fa-icon" style="color: #667eea;"></i>
-            <strong style="font-size: 1.1em; color: #2c3e50;">{module["name"]}</strong>
-            <span style="margin-left: auto; color: #6c757d; font-size: 0.9em; background: #e9ecef; padding: 4px 8px; border-radius: 12px;">
-                {summary}
-            </span>
-        </div>
-    """
-
-    # Add children if module has content
-    if class_count > 0 or func_count > 0 or const_count > 0:
-        html += f'<div id="{module_id}" class="tree-children hidden">'
-
-        # Render classes
-        for cls in classes:
-            html += render_class_tree(cls, module["name"])
-
-        # Render module-level functions
-        for func in functions:
-            sig = format_function_signature(func)
-            decorators_html = ""
-            if func.get("decorators_list"):
-                for dec in func["decorators_list"]:
-                    decorators_html += f'<span style="color: #888; font-size: 0.85em;">@{dec}</span> '
-
-            html += f"""
-            <div class="tree-item">
-                <div class="tree-node" style="padding: 8px; background: #fff; border-radius: 6px; margin-bottom: 4px;">
-                    <i class="fas fa-bolt fa-icon" style="color: #f39c12;"></i>
-                    {decorators_html}
-                    <code style="font-family: 'Courier New', monospace; font-size: 0.9em;">{sig}</code>
-                </div>
-            </div>
-            """
-
-        # Render constants
-        for const in constants:
-            value_str = f" = {const['value']}" if const.get("value") else ""
-            html += f"""
-            <div class="tree-item">
-                <div class="tree-node" style="padding: 8px; background: #fff; border-radius: 6px; margin-bottom: 4px;">
-                    <i class="fas fa-circle fa-icon" style="color: #95a5a6; font-size: 0.6em;"></i>
-                    <code style="font-family: 'Courier New', monospace; font-size: 0.9em;">{const["name"]}{value_str}</code>
-                </div>
-            </div>
-            """
-
-        html += "</div>"
-
-    html += "</div>"
-    return html
-
-
-def render_class_tree(cls, module_name):
-    """Render an expandable class tree."""
-    methods = cls.get("methods", [])
-    base_classes = cls.get("base_classes", [])
-
-    base_str = ""
-    if base_classes:
-        base_str = f" <span style='color: #888; font-weight: normal;'>({', '.join(base_classes)})</span>"
-
-    class_id = f"class-{module_name}-{cls['name']}"
-
-    html = f"""
-    <div class="tree-item">
-        <div class="tree-node" onclick="toggleClass('{class_id}', event)"
-                style="padding: 10px; background: #fff; border-radius: 6px; margin-bottom: 4px; border-left: 4px solid #e3f2fd; display: flex; align-items: center;">
-            <i class="fas fa-object-group fa-icon" style="color: #3498db;"></i>
-            <span style="font-weight: 600;">class {cls["name"]}{base_str}</span>
-            <span style="margin-left: auto; color: #6c757d; font-size: 0.85em;">{len(methods)} methods</span>
-        </div>
-    """
-
-    # Add methods if class has any
-    if len(methods) > 0:
-        html += f'<div id="{class_id}" class="tree-children hidden">'
-
-        for method in methods:
-            sig = format_function_signature(method)
-
-            # Build decorator display
-            decorators_html = ""
-            if method.get("decorators_list"):
-                for dec in method["decorators_list"]:
-                    decorators_html += f'<span style="color: #888; font-size: 0.85em;">@{dec}</span> '
-            elif method.get("is_property"):
-                decorators_html = '<span style="color: #888; font-size: 0.85em;">@property</span> '
-            elif method.get("is_classmethod"):
-                decorators_html = '<span style="color: #888; font-size: 0.85em;">@classmethod</span> '
-            elif method.get("is_staticmethod"):
-                decorators_html = '<span style="color: #888; font-size: 0.85em;">@staticmethod</span> '
-
-            html += f"""
-            <div class="tree-item">
-                <div class="tree-node" style="padding: 8px; background: #fafafa; border-radius: 6px; margin-bottom: 2px;">
-                    <i class="fas fa-bolt fa-icon" style="color: #9b59b6; font-size: 0.8em;"></i>
-                    {decorators_html}
-                    <code style="font-family: 'Courier New', monospace; font-size: 0.85em;">{sig}</code>
-                </div>
-            </div>
-            """
-
-        html += "</div>"
-
-    html += "</div>"
-    return html
-
-
-def format_function_signature(func):
-    """Format a function/method signature with parameters."""
-    # Build async prefix
-    async_prefix = "async " if func.get("is_async") else ""
-
-    # Build parameter list
-    params = []
-    for param in func.get("parameters", []):
-        param_str = param["name"]
-
-        # Add type hint
-        if param.get("type_hint") and param["type_hint"] not in ("None", ""):
-            param_str += f": {param['type_hint']}"
-
-        # Add default value
-        if param.get("default_value") and param["default_value"] not in ("None", ""):
-            param_str += f" = {param['default_value']}"
-        elif param.get("is_optional"):
-            param_str += " = None"
-
-        # Handle variadic
-        if param.get("is_variadic"):
-            if param["name"] == "kwargs":
-                param_str = "**" + param_str
-            else:
-                param_str = "*" + param_str
-
-        params.append(param_str)
-
-    signature = f"{async_prefix}{func['name']}({', '.join(params)})"
-
-    # Add return type
-    if func.get("return_type") and func["return_type"] not in ("None", "", "Any"):
-        signature += f" -> {func['return_type']}"
-
-    return signature
-
-
 async def load_board_details():
     """Load board details when a board is selected."""
     version_select = document.getElementById("explorer-version")
@@ -2183,17 +2012,29 @@ async def load_board_details():
     content = document.getElementById("explorer-content")
 
     if not selected_version or not selected_board_name:
-        content.innerHTML = '<div class="loading"><p>Select both version and board to explore modules and APIs</p></div>'
+        # Use template for selection prompt
+        select_prompt = get_template("select-prompt-template")
+        if select_prompt:
+            content.innerHTML = ""
+            content.appendChild(select_prompt)
+        else:
+            content.innerHTML = '<div class="loading"><p>Select both version and board to explore modules and APIs</p></div>'
         return
 
-    # Show loading
-    content.innerHTML = """
-    <div class="loading">
-        <div class="spinner"></div>
-        <p>Loading board details...</p>
-        <div class="progress-step">Fetching modules...</div>
-    </div>
-    """
+    # Show loading using template
+    loading_template = get_template("loading-state-template")
+    if loading_template:
+        content.innerHTML = ""
+        content.appendChild(loading_template)
+    else:
+        # Fallback loading HTML
+        content.innerHTML = """
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Loading board details...</p>
+            <div class="progress-step">Fetching modules...</div>
+        </div>
+        """
 
     if not app_state["db"]:
         # Database is required
@@ -2267,37 +2108,65 @@ async def load_board_details():
 
         stmt.free()
 
-        # Build expandable module tree
-        html = f"""
-        <div class="detail-view">
-            <div class="detail-header">{selected_board_name} ({selected_version})</div>
-            <div style="margin: 20px 0;">
-                <h3 style="color: #667eea; margin-bottom: 15px;">
-                    <i class="fas fa-cube"></i> Modules ({len(modules)})
-                </h3>
-                <div class="module-tree" style="background: white; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px;">
-        """
-
-        # Render expandable module tree
-        for module in modules:
-            html += render_module_tree(module)
-
-        html += """
-                </div>
-            </div>
-        </div>
-        """
-
-        content.innerHTML = html
+        # Use template-based board details
+        board_details = get_template("board-details-template")
+        if board_details:
+            # Populate header information
+            populate_template(board_details, {
+                "board-title": f"{selected_board_name} ({selected_version})"
+            })
+            
+            # Create module tree using DOM-based rendering
+            options = {
+                "module_prefix": "explorer",
+                "get_badge_class": lambda m: "",
+                "get_module_badge": lambda m: "",
+                "show_details": True
+            }
+            
+            module_tree_dom = render_module_tree_dom(modules, options)
+            
+            # Use board content template
+            board_content_template = get_template("board-content-template")
+            if board_content_template:
+                # Populate template data
+                populate_template(board_content_template, {
+                    "modules-title": f"Modules ({len(modules)})"
+                })
+                
+                # Add module tree to template
+                modules_tree_container = board_content_template.querySelector("[data-modules-tree]")
+                if modules_tree_container and module_tree_dom:
+                    modules_tree_container.appendChild(module_tree_dom)
+                
+                # Add content to board details
+                board_content = board_details.querySelector("[data-board-content]")
+                if board_content:
+                    board_content.appendChild(board_content_template)
+            
+            # Clear and update content
+            content.innerHTML = ""
+            content.appendChild(board_details)
 
     except Exception as e:
-        content.innerHTML = f"""
-        <div class="detail-view">
-            <h3 style="color: #dc3545;">⚠️ Error Loading Board</h3>
-            <p style="color: #666; margin: 15px 0;">{str(e)}</p>
-            <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 0.85em;">{type(e).__name__}: {str(e)}</pre>
-        </div>
-        """
+        # Use error template instead of inline HTML
+        error_template = get_template("error-display-template")
+        if error_template:
+            populate_template(error_template, {
+                "error-message": str(e),
+                "error-details": f"{type(e).__name__}: {str(e)}"
+            })
+            content.innerHTML = ""
+            content.appendChild(error_template)
+        else:
+            # Fallback if template not found
+            content.innerHTML = f"""
+            <div class="detail-view">
+                <h3 style="color: #dc3545;">⚠️ Error Loading Board</h3>
+                <p style="color: #666; margin: 15px 0;">{str(e)}</p>
+                <pre style="background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 0.85em;">{type(e).__name__}: {str(e)}</pre>
+            </div>
+            """
         print(f"Error loading board details: {e}")
         import sys
 
