@@ -323,7 +323,7 @@ async def load_database():
         update_status("Loading database...", "info")
         await asyncio.sleep(0.1)  # Allow UI update
         window.console.log("Opening database 'board_comparison.db'...")
-        app_state["db"] = await SQL.open_database("board_comparison.db")
+        app_state["db"] = await SQL.open_database_url("board_comparison.db")
         await asyncio.sleep(0.1)  # Allow UI update
         update_status("Database loaded successfully!", "success")
 
