@@ -14,6 +14,31 @@ app_state = {
     "current_board": None,
 }
 
+U_MODULES = [
+    "array",
+    "asyncio",
+    "binascii",
+    "bluetooth",
+    "cryptolib",
+    "errno",
+    "hashlib",
+    "heapq",
+    "io",
+    "json",
+    "machine",
+    "os",
+    "platform",
+    "random",
+    "re",
+    "select",
+    "ssl",
+    "struct",
+    "socket",
+    "sys",
+    "time",
+    "websocket",
+    "zlib",
+]
 
 # Template utilities
 def get_template(template_id):
@@ -48,6 +73,9 @@ def populate_template(element, data):
                     target.style.display = "none"
                 elif value == "show":
                     target.style.display = "block"
+            elif key.endswith("-icon") and value:
+                # Handle icon classes - set className instead of text content
+                target.className = value
             else:
                 # Set text content
                 if hasattr(target, "textContent"):
@@ -112,9 +140,15 @@ def create_module_item(module, options):
     functions = module.get("functions", [])
     constants = module.get("constants", [])
     
-    has_children = len(classes) > 0 or len(functions) > 0 or len(constants) > 0
-    is_deprecated = module["name"].startswith("u") and len(module["name"]) > 1 and not has_children
-    
+    # has_children = len(classes) > 0 or len(functions) > 0 or len(constants) > 0
+    is_deprecated = module["name"].startswith("u") and len(module["name"]) != "uctypes"
+    # FIXME: Why does in not work ?
+    # is_deprecated =str(module['name']) in U_MODULES
+    if is_deprecated:
+        print(f"{module['name']=}")
+        window.console.log(ffi.to_js(module["name"]))
+        window.console.log(ffi.to_js(module))
+
     badge_class = get_badge_class(module)
     module_badge = get_module_badge(module)
     module_tree_id = f"{module_prefix}-module-{module['name']}"
