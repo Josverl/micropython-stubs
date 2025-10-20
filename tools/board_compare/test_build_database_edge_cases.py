@@ -17,16 +17,16 @@ def memory_db():
     """Create in-memory database for testing."""
     conn = sqlite3.connect(":memory:")
     conn.row_factory = sqlite3.Row
-    
+
     with tempfile.NamedTemporaryFile(suffix=".db", delete=True) as f:
         temp_path = Path(f.name)
-    
+
     builder = DatabaseBuilder(temp_path)
     builder.conn = conn
     builder.create_schema()
-    
+
     yield builder
-    
+
     conn.close()
 
 
@@ -58,15 +58,15 @@ class TestBuildDatabaseEdgeCases:
                                 }
                             ],
                             "constants": [],
-                            "base_classes": []
+                            "base_classes": [],
                         }
                     ],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = memory_db.add_board(board_data)
         assert board_id > 0
 
@@ -95,7 +95,7 @@ class TestBuildDatabaseEdgeCases:
                                     "type_hint": "int",
                                     "default_value": "10",
                                     "is_optional": True,
-                                }
+                                },
                             ],
                             "return_type": "str",
                             "is_async": False,
@@ -105,18 +105,16 @@ class TestBuildDatabaseEdgeCases:
                             "decorators": None,
                         }
                     ],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = memory_db.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = memory_db.conn.cursor()
-        cursor.execute(
-            "SELECT COUNT(*) as count FROM unique_parameters WHERE name = 'width'"
-        )
+        cursor.execute("SELECT COUNT(*) as count FROM unique_parameters WHERE name = 'width'")
         result = cursor.fetchone()
         assert result["count"] >= 1
 
@@ -132,42 +130,20 @@ class TestBuildDatabaseEdgeCases:
                     "classes": [],
                     "functions": [],
                     "constants": [
-                        {
-                            "name": "INT_CONSTANT",
-                            "value": "42",
-                            "type_hint": "int",
-                            "is_hidden": False
-                        },
-                        {
-                            "name": "STR_CONSTANT",
-                            "value": "'hello'",
-                            "type_hint": "str",
-                            "is_hidden": False
-                        },
-                        {
-                            "name": "BOOL_CONSTANT",
-                            "value": "True",
-                            "type_hint": "bool",
-                            "is_hidden": False
-                        },
-                        {
-                            "name": "FLOAT_CONSTANT",
-                            "value": "3.14",
-                            "type_hint": "float",
-                            "is_hidden": False
-                        },
-                    ]
+                        {"name": "INT_CONSTANT", "value": "42", "type_hint": "int", "is_hidden": False},
+                        {"name": "STR_CONSTANT", "value": "'hello'", "type_hint": "str", "is_hidden": False},
+                        {"name": "BOOL_CONSTANT", "value": "True", "type_hint": "bool", "is_hidden": False},
+                        {"name": "FLOAT_CONSTANT", "value": "3.14", "type_hint": "float", "is_hidden": False},
+                    ],
                 }
-            ]
+            ],
         }
-        
+
         board_id = memory_db.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = memory_db.conn.cursor()
-        cursor.execute(
-            "SELECT COUNT(*) as count FROM unique_module_constants"
-        )
+        cursor.execute("SELECT COUNT(*) as count FROM unique_module_constants")
         result = cursor.fetchone()
         assert result["count"] >= 4
 
@@ -180,20 +156,13 @@ class TestBuildDatabaseEdgeCases:
             "modules": [
                 {
                     "name": "inheritance_lib",
-                    "classes": [
-                        {
-                            "name": "MyClass",
-                            "base_classes": ["Base", "Mixin", "object"],
-                            "methods": [],
-                            "constants": []
-                        }
-                    ],
+                    "classes": [{"name": "MyClass", "base_classes": ["Base", "Mixin", "object"], "methods": [], "constants": []}],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = memory_db.add_board(board_data)
         assert board_id > 0
 
@@ -229,32 +198,28 @@ class TestBuildDatabaseEdgeCases:
                                     "is_staticmethod": False,
                                     "is_property": False,
                                     "decorators": None,
-                                }
+                                },
                             ],
                             "constants": [],
-                            "base_classes": []
+                            "base_classes": [],
                         }
                     ],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = memory_db.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = memory_db.conn.cursor()
-        cursor.execute(
-            "SELECT is_async FROM unique_methods WHERE name = 'connect'"
-        )
+        cursor.execute("SELECT is_async FROM unique_methods WHERE name = 'connect'")
         result = cursor.fetchone()
         assert result is not None
         assert result["is_async"] == 1
-        
-        cursor.execute(
-            "SELECT is_async FROM unique_methods WHERE name = 'get_status'"
-        )
+
+        cursor.execute("SELECT is_async FROM unique_methods WHERE name = 'get_status'")
         result = cursor.fetchone()
         assert result is not None
         assert result["is_async"] == 0
@@ -270,17 +235,10 @@ class TestBuildDatabaseEdgeCases:
                     "name": "typing_constants",
                     "classes": [],
                     "functions": [],
-                    "constants": [
-                        {
-                            "name": "T",
-                            "value": "TypeVar('T')",
-                            "type_hint": None,
-                            "is_hidden": True
-                        }
-                    ]
+                    "constants": [{"name": "T", "value": "TypeVar('T')", "type_hint": None, "is_hidden": True}],
                 }
-            ]
+            ],
         }
-        
+
         board_id = memory_db.add_board(board_data)
         assert board_id > 0

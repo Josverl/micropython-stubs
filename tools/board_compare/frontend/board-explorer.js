@@ -314,7 +314,7 @@ async function loadDatabase() {
         let SQL;
         if (typeof window.initSqlJs === 'function') {
             SQL = await window.initSqlJs({
-                locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
+                locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/${file}`
             });
         } else {
             throw new Error('SQL.js not loaded');
@@ -2338,7 +2338,7 @@ function loadSqlJs() {
         };
         
         // Try primary CDN first
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js';
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js';
         document.head.appendChild(script);
     });
 }

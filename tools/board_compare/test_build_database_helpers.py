@@ -17,7 +17,7 @@ def builder():
     """Create a DatabaseBuilder instance."""
     with tempfile.NamedTemporaryFile(suffix=".db", delete=True) as f:
         temp_path = Path(f.name)
-    
+
     builder = DatabaseBuilder(temp_path)
     return builder
 
@@ -49,7 +49,7 @@ class TestDatabaseBuilderHelpers:
         """Test signature hash generation is deterministic."""
         hash1 = builder._generate_signature_hash("module", "MyClass", "docstring")
         hash2 = builder._generate_signature_hash("module", "MyClass", "docstring")
-        
+
         # Same inputs should produce same hash
         assert hash1 == hash2
         # Hash should be short (first 16 chars of SHA256)
@@ -59,7 +59,7 @@ class TestDatabaseBuilderHelpers:
         """Test that different inputs produce different hashes."""
         hash1 = builder._generate_signature_hash("module", "Class1", "doc")
         hash2 = builder._generate_signature_hash("module", "Class2", "doc")
-        
+
         # Different inputs should produce different hashes
         assert hash1 != hash2
 
@@ -67,15 +67,15 @@ class TestDatabaseBuilderHelpers:
         """Test that connection property works."""
         # Initially no connection
         assert builder.conn is None
-        
+
         # Create connection
         conn = sqlite3.connect(":memory:")
         builder.conn = conn
-        
+
         # Connection should be set
         assert builder.conn is not None
         assert builder.conn == conn
-        
+
         conn.close()
 
     def test_database_path_property(self, builder):
@@ -88,24 +88,22 @@ class TestDatabaseBuilderHelpers:
         conn = sqlite3.connect(":memory:")
         builder.conn = conn
         builder.create_schema()
-        
+
         cursor = conn.cursor()
-        
+
         # Get list of all tables
-        cursor.execute(
-            "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
-        )
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")
         tables = {row[0] for row in cursor.fetchall()}
-        
+
         # Verify key tables exist
         expected = {
-            'boards',
-            'unique_modules',
-            'unique_classes',
-            'unique_methods',
-            'unique_parameters',
+            "boards",
+            "unique_modules",
+            "unique_classes",
+            "unique_methods",
+            "unique_parameters",
         }
-        
+
         assert expected.issubset(tables)
         conn.close()
 
@@ -130,13 +128,13 @@ class TestDatabaseBuilderHelpers:
         """Test that closing connection works."""
         conn = sqlite3.connect(":memory:")
         builder.conn = conn
-        
+
         # Connection should be open
         assert builder.conn is not None
-        
+
         # Close it
         builder.close()
-        
+
         # After close, conn might be None or closed
         # Verify it's properly handled
 
@@ -146,7 +144,7 @@ class TestDatabaseBuilderHelpers:
         conn.row_factory = sqlite3.Row
         builder.conn = conn
         builder.create_schema()
-        
+
         # Add a board and verify row factory works
         cursor = conn.cursor()
         cursor.execute(
@@ -154,16 +152,16 @@ class TestDatabaseBuilderHelpers:
             INSERT INTO boards (version, port, board)
             VALUES (?, ?, ?)
             """,
-            ("v1.0", "esp32", "generic")
+            ("v1.0", "esp32", "generic"),
         )
-        
+
         cursor.execute("SELECT * FROM boards LIMIT 1")
         row = cursor.fetchone()
-        
+
         # With row factory, can access by name
         assert row["version"] == "v1.0"
         assert row["port"] == "esp32"
-        
+
         conn.close()
 
     def test_is_typing_related_with_value_pattern(self, builder):

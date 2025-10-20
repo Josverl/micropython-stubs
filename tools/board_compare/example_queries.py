@@ -19,31 +19,31 @@ from build_database import DatabaseBuilder
 
 def example_queries():
     """Show example database queries."""
-    
+
     # Connect to the database
     db_path = Path(__file__).parent / "board_comparison.db"
-    
+
     if not db_path.exists():
         print(f"Database not found at {db_path}")
         print("Please run: python build_database.py --version v1_26_0")
         return
-    
+
     builder = DatabaseBuilder(db_path)
     builder.connect()
-    
+
     cursor = builder.conn.cursor()
-    
+
     print("=" * 70)
     print("Example Queries - MicroPython Board Comparison Database")
     print("=" * 70)
-    
+
     # Query 1: List all boards
     print("\n1. All boards in database:")
     print("-" * 70)
     cursor.execute("SELECT version, port, board FROM boards ORDER BY port, board")
     for row in cursor.fetchall():
         print(f"   {row[1]:15} {row[2]:30} (v{row[0]})")
-    
+
     # Query 2: Find modules available on ESP32 but not RP2
     print("\n2. Modules unique to ESP32 (not on RP2):")
     print("-" * 70)
@@ -65,7 +65,7 @@ def example_queries():
     """)
     for row in cursor.fetchall():
         print(f"   - {row[0]}")
-    
+
     # Query 3: Find common modules across all boards
     print("\n3. Modules available on ALL boards:")
     print("-" * 70)
@@ -84,7 +84,7 @@ def example_queries():
             print(f"   - {row[0]}")
     else:
         print("   (No modules are available on all boards)")
-    
+
     # Query 4: Count classes in machine module by board
     print("\n4. Number of classes in 'machine' module by board:")
     print("-" * 70)
@@ -101,7 +101,7 @@ def example_queries():
     """)
     for row in cursor.fetchall():
         print(f"   {row[0]:15} {row[1]:30} {row[2]:3} classes")
-    
+
     # Query 5: Find methods with most parameters
     print("\n5. Methods with most parameters:")
     print("-" * 70)
@@ -119,27 +119,27 @@ def example_queries():
     for row in cursor.fetchall():
         class_name = row[1] if row[1] else "(module-level)"
         print(f"   {row[0]}.{class_name}.{row[2]:30} ({row[3]} parameters)")
-    
+
     # Query 6: Statistics
     print("\n6. Database Statistics:")
     print("-" * 70)
     cursor.execute("SELECT COUNT(*) FROM boards")
     print(f"   Total boards:     {cursor.fetchone()[0]}")
-    
+
     cursor.execute("SELECT COUNT(*) FROM modules")
     print(f"   Unique modules:   {cursor.fetchone()[0]}")
-    
+
     cursor.execute("SELECT COUNT(*) FROM classes")
     print(f"   Total classes:    {cursor.fetchone()[0]}")
-    
+
     cursor.execute("SELECT COUNT(*) FROM methods")
     print(f"   Total methods:    {cursor.fetchone()[0]}")
-    
+
     cursor.execute("SELECT COUNT(*) FROM parameters")
     print(f"   Total parameters: {cursor.fetchone()[0]}")
-    
+
     print("\n" + "=" * 70)
-    
+
     builder.close()
 
 

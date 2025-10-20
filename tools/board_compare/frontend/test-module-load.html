@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyScript Module Load Test</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css">
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        pre {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        .info { color: blue; }
+    </style>
+    
+    <script type="mpy-config">
+    {
+        "packages": [],
+        "fetch": [
+            {"files": ["board_utils.py"]}
+        ]
+    }
+    </script>
+</head>
+<body>
+    <h1>PyScript Module Load Test</h1>
+    <pre id="output">Loading...</pre>
+    
+    <script type="mpy">
+        from pyscript import document
+        
+        output = document.getElementById("output")
+        
+        try:
+            output.innerText += "\n✓ PyScript initialized\n"
+            
+            # Test 1: Import standard library
+            try:
+                import json
+                output.innerText += "\n<span class='success'>✓ json imported</span>"
+            except Exception as e:
+                output.innerText += f"\n<span class='error'>✗ json import failed: {e}</span>"
+            
+            # Test 2: Import board_utils
+            try:
+                import board_utils
+                output.innerText += "\n<span class='success'>✓ board_utils imported</span>"
+                
+                # Test 3: Call a function
+                result = board_utils.format_board_name("esp32", "generic")
+                output.innerText += f"\n<span class='success'>✓ format_board_name() works: '{result}'</span>"
+                
+            except Exception as e:
+                output.innerText += f"\n<span class='error'>✗ board_utils import failed: {e}</span>"
+                import traceback
+                output.innerText += f"\n{traceback.format_exc()}"
+            
+            output.innerText += "\n\n✓ Test completed"
+            
+        except Exception as e:
+            output.innerText += f"\n<span class='error'>✗ Error: {e}</span>"
+            import traceback
+            output.innerText += f"\n{traceback.format_exc()}"
+    </script>
+    
+    <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+</body>
+</html>

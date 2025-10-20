@@ -21,18 +21,19 @@ def in_memory_builder():
     """Create a DatabaseBuilder with an in-memory SQLite database."""
     conn = sqlite3.connect(":memory:")
     conn.row_factory = sqlite3.Row
-    
+
     # Create builder with a dummy path (the connection will override it)
     import tempfile
+
     with tempfile.NamedTemporaryFile(suffix=".db", delete=True) as f:
         temp_path = Path(f.name)
-    
+
     builder = DatabaseBuilder(temp_path)
     builder.conn = conn  # Override with in-memory connection
     builder.create_schema()
-    
+
     yield builder
-    
+
     if builder.conn:
         builder.conn.close()
 
@@ -42,22 +43,17 @@ class TestDatabaseBuilderIntegration:
 
     def test_add_simple_board(self, in_memory_builder):
         """Test adding a simple board with no modules."""
-        board_data = {
-            "version": "v1.26.0",
-            "port": "esp32",
-            "board": "generic",
-            "modules": []
-        }
-        
+        board_data = {"version": "v1.26.0", "port": "esp32", "board": "generic", "modules": []}
+
         board_id = in_memory_builder.add_board(board_data)
-        
+
         assert board_id > 0
-        
+
         # Verify board was added
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT * FROM boards WHERE id = ?", (board_id,))
         board = cursor.fetchone()
-        
+
         assert board is not None
         assert board["version"] == "v1.26.0"
         assert board["port"] == "esp32"
@@ -69,19 +65,12 @@ class TestDatabaseBuilderIntegration:
             "version": "v1.26.0",
             "port": "esp32",
             "board": "generic",
-            "modules": [
-                {
-                    "name": "sys",
-                    "classes": [],
-                    "functions": [],
-                    "constants": []
-                }
-            ]
+            "modules": [{"name": "sys", "classes": [], "functions": [], "constants": []}],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         # Verify module was added
         cursor = in_memory_builder.conn.cursor()
         cursor.execute(
@@ -89,7 +78,7 @@ class TestDatabaseBuilderIntegration:
             SELECT COUNT(*) as count FROM board_module_support
             WHERE board_id = ?
             """,
-            (board_id,)
+            (board_id,),
         )
         result = cursor.fetchone()
         assert result["count"] == 1
@@ -103,24 +92,16 @@ class TestDatabaseBuilderIntegration:
             "modules": [
                 {
                     "name": "machine",
-                    "classes": [
-                        {
-                            "name": "Pin",
-                            "docstring": "GPIO pin control",
-                            "methods": [],
-                            "constants": [],
-                            "base_classes": []
-                        }
-                    ],
+                    "classes": [{"name": "Pin", "docstring": "GPIO pin control", "methods": [], "constants": [], "base_classes": []}],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         # Verify class was added
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT COUNT(*) as count FROM unique_classes WHERE name = 'Pin'")
@@ -149,22 +130,22 @@ class TestDatabaseBuilderIntegration:
                                     "is_classmethod": False,
                                     "is_staticmethod": False,
                                     "is_property": False,
-                                    "decorators": None
+                                    "decorators": None,
                                 }
                             ],
                             "constants": [],
-                            "base_classes": []
+                            "base_classes": [],
                         }
                     ],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         # Verify method was added
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT COUNT(*) as count FROM unique_methods WHERE name = '__init__'")
@@ -182,21 +163,14 @@ class TestDatabaseBuilderIntegration:
                     "name": "sys",
                     "classes": [],
                     "functions": [],
-                    "constants": [
-                        {
-                            "name": "VERSION",
-                            "value": "3.11",
-                            "type_hint": "str",
-                            "is_hidden": False
-                        }
-                    ]
+                    "constants": [{"name": "VERSION", "value": "3.11", "type_hint": "str", "is_hidden": False}],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         # Verify constant was added
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT COUNT(*) as count FROM unique_module_constants WHERE name = 'VERSION'")
@@ -209,22 +183,22 @@ class TestDatabaseBuilderIntegration:
             "version": "v1.26.0",
             "port": "esp32",
             "board": "generic",
-            "modules": [{"name": "sys", "classes": [], "functions": [], "constants": []}]
+            "modules": [{"name": "sys", "classes": [], "functions": [], "constants": []}],
         }
-        
+
         board2 = {
             "version": "v1.26.0",
             "port": "rp2",
             "board": "pico",
-            "modules": [{"name": "sys", "classes": [], "functions": [], "constants": []}]
+            "modules": [{"name": "sys", "classes": [], "functions": [], "constants": []}],
         }
-        
+
         bid1 = in_memory_builder.add_board(board1)
         bid2 = in_memory_builder.add_board(board2)
-        
+
         assert bid1 > 0
         assert bid2 > 0
-        
+
         # Verify only one unique module entry
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT COUNT(*) as count FROM unique_modules WHERE name = 'sys'")
@@ -246,18 +220,18 @@ class TestDatabaseBuilderIntegration:
                             "attributes": [{"name": "IN", "type_hint": "int"}],
                             "methods": [],
                             "constants": [],
-                            "base_classes": []
+                            "base_classes": [],
                         }
                     ],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         # Verify class exists
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT COUNT(*) as count FROM unique_classes WHERE name = 'Pin'")
@@ -270,39 +244,31 @@ class TestDatabaseBuilderIntegration:
             "version": "v1.26.0",
             "port": "esp32",
             "board": "generic",
-            "modules": [
-                {
-                    "name": "sys",
-                    "classes": [],
-                    "functions": [],
-                    "constants": [],
-                    "docstring": None
-                }
-            ]
+            "modules": [{"name": "sys", "classes": [], "functions": [], "constants": [], "docstring": None}],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         # Export to JSON
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+        with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
             json_path = Path(f.name)
-        
+
         try:
             in_memory_builder.export_to_json(json_path)
-            
+
             # Verify JSON file was created
             assert json_path.exists(), "JSON file should be created"
-            
+
             # Verify JSON is valid
-            with open(json_path, 'r') as f:
+            with open(json_path, "r") as f:
                 data = json.load(f)
-            
+
             assert "version" in data
             assert "boards" in data
             assert isinstance(data["boards"], list)
             assert len(data["boards"]) >= 1
-            
+
         finally:
             if json_path.exists():
                 json_path.unlink()
@@ -328,14 +294,14 @@ class TestDatabaseBuilderIntegration:
                                     "parameters": [
                                         {"name": "self"},
                                         {"name": "id", "type_hint": "int"},
-                                        {"name": "mode", "type_hint": "int", "is_optional": True}
+                                        {"name": "mode", "type_hint": "int", "is_optional": True},
                                     ],
                                     "return_type": "None",
                                     "is_async": False,
                                     "is_classmethod": False,
                                     "is_staticmethod": False,
                                     "is_property": False,
-                                    "decorators": None
+                                    "decorators": None,
                                 },
                                 {
                                     "name": "value",
@@ -345,17 +311,10 @@ class TestDatabaseBuilderIntegration:
                                     "is_classmethod": False,
                                     "is_staticmethod": False,
                                     "is_property": True,
-                                    "decorators": ["property"]
-                                }
+                                    "decorators": ["property"],
+                                },
                             ],
-                            "constants": [
-                                {
-                                    "name": "IN",
-                                    "value": "1",
-                                    "type_hint": "int",
-                                    "is_hidden": False
-                                }
-                            ]
+                            "constants": [{"name": "IN", "value": "1", "type_hint": "int", "is_hidden": False}],
                         }
                     ],
                     "functions": [
@@ -367,57 +326,51 @@ class TestDatabaseBuilderIntegration:
                             "is_classmethod": False,
                             "is_staticmethod": False,
                             "is_property": False,
-                            "decorators": None
+                            "decorators": None,
                         }
                     ],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT COUNT(*) as count FROM unique_classes WHERE name = 'Pin'")
         assert cursor.fetchone()["count"] == 1
-        
+
         cursor.execute("SELECT COUNT(*) as count FROM unique_methods WHERE name = '__init__'")
         assert cursor.fetchone()["count"] >= 1
 
     def test_invalid_board_data_handling(self, in_memory_builder):
         """Test that invalid board data raises appropriate errors."""
         # Missing version
-        board_data = {
-            "port": "esp32",
-            "board": "generic",
-            "modules": []
-        }
-        
+        board_data = {"port": "esp32", "board": "generic", "modules": []}
+
         with pytest.raises(KeyError):
             in_memory_builder.add_board(board_data)
 
     def test_database_schema_has_all_tables(self, in_memory_builder):
         """Test that all expected database tables are created."""
         cursor = in_memory_builder.conn.cursor()
-        
+
         # Get list of all tables
-        cursor.execute(
-            "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
-        )
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name")
         tables = {row[0] for row in cursor.fetchall()}
-        
+
         # Verify key tables exist
         expected_tables = {
-            'boards',
-            'unique_modules',
-            'unique_classes',
-            'unique_methods',
-            'unique_parameters',
-            'unique_module_constants',
-            'board_module_support',
+            "boards",
+            "unique_modules",
+            "unique_classes",
+            "unique_methods",
+            "unique_parameters",
+            "unique_module_constants",
+            "board_module_support",
         }
-        
+
         assert expected_tables.issubset(tables), f"Missing tables: {expected_tables - tables}"
 
     def test_method_parameters_properly_linked(self, in_memory_builder):
@@ -433,25 +386,23 @@ class TestDatabaseBuilderIntegration:
                     "functions": [
                         {
                             "name": "urandom",
-                            "parameters": [
-                                {"name": "n", "type_hint": "int", "is_optional": False}
-                            ],
+                            "parameters": [{"name": "n", "type_hint": "int", "is_optional": False}],
                             "return_type": "bytes",
                             "is_async": False,
                             "is_classmethod": False,
                             "is_staticmethod": False,
                             "is_property": False,
-                            "decorators": None
+                            "decorators": None,
                         }
                     ],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
         cursor.execute(
             """
@@ -462,7 +413,7 @@ class TestDatabaseBuilderIntegration:
         )
         params = cursor.fetchall()
         assert len(params) >= 1
-        assert any(p[0] == 'n' for p in params)
+        assert any(p[0] == "n" for p in params)
 
     def test_base_classes_are_tracked(self, in_memory_builder):
         """Test that base class relationships are tracked."""
@@ -479,18 +430,18 @@ class TestDatabaseBuilderIntegration:
                             "docstring": "Analog to digital converter",
                             "base_classes": ["object"],
                             "methods": [],
-                            "constants": []
+                            "constants": [],
                         }
                     ],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT COUNT(*) as count FROM unique_classes WHERE name = 'ADC'")
         result = cursor.fetchone()
@@ -515,21 +466,19 @@ class TestDatabaseBuilderIntegration:
                             "is_classmethod": False,
                             "is_staticmethod": False,
                             "is_property": False,
-                            "decorators": None
+                            "decorators": None,
                         }
                     ],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
-        cursor.execute(
-            "SELECT COUNT(*) as count FROM unique_methods WHERE name = 'exit' AND class_id IS NULL"
-        )
+        cursor.execute("SELECT COUNT(*) as count FROM unique_methods WHERE name = 'exit' AND class_id IS NULL")
         result = cursor.fetchone()
         assert result["count"] >= 1
 
@@ -546,25 +495,23 @@ class TestDatabaseBuilderIntegration:
                     "functions": [
                         {
                             "name": "getcwd",
-                            "parameters": [
-                                {"name": "default", "type_hint": "str", "is_optional": True, "default_value": "None"}
-                            ],
+                            "parameters": [{"name": "default", "type_hint": "str", "is_optional": True, "default_value": "None"}],
                             "return_type": "str",
                             "is_async": False,
                             "is_classmethod": False,
                             "is_staticmethod": False,
                             "is_property": False,
-                            "decorators": None
+                            "decorators": None,
                         }
                     ],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
         cursor.execute(
             """
@@ -597,23 +544,23 @@ class TestDatabaseBuilderIntegration:
                                     "is_classmethod": False,
                                     "is_staticmethod": False,
                                     "is_property": False,
-                                    "decorators": None
+                                    "decorators": None,
                                 }
                             ],
                             "base_classes": [],
-                            "attributes": []
+                            "attributes": [],
                         }
                     ],
                     "functions": [],
                     "constants": [],
-                    "docstring": None
+                    "docstring": None,
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         # Check async method
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT is_async FROM unique_methods WHERE name = 'fetch'")
@@ -642,22 +589,22 @@ class TestDatabaseBuilderIntegration:
                                     "is_classmethod": False,
                                     "is_staticmethod": True,
                                     "is_property": False,
-                                    "decorators": ["staticmethod"]
+                                    "decorators": ["staticmethod"],
                                 }
                             ],
                             "constants": [],
-                            "base_classes": []
+                            "base_classes": [],
                         }
                     ],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT is_staticmethod FROM unique_methods WHERE name = 'sqrt'")
         result = cursor.fetchone()
@@ -685,22 +632,22 @@ class TestDatabaseBuilderIntegration:
                                     "is_classmethod": True,
                                     "is_staticmethod": False,
                                     "is_property": False,
-                                    "decorators": ["classmethod"]
+                                    "decorators": ["classmethod"],
                                 }
                             ],
                             "constants": [],
-                            "base_classes": []
+                            "base_classes": [],
                         }
                     ],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT is_classmethod FROM unique_methods WHERE name = 'fromkeys'")
         result = cursor.fetchone()
@@ -728,22 +675,22 @@ class TestDatabaseBuilderIntegration:
                                     "is_classmethod": False,
                                     "is_staticmethod": False,
                                     "is_property": True,
-                                    "decorators": ["property"]
+                                    "decorators": ["property"],
                                 }
                             ],
                             "constants": [],
-                            "base_classes": []
+                            "base_classes": [],
                         }
                     ],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
         cursor.execute("SELECT is_property FROM unique_methods WHERE name = 'age'")
         result = cursor.fetchone()
@@ -763,29 +710,25 @@ class TestDatabaseBuilderIntegration:
                     "functions": [
                         {
                             "name": "print",
-                            "parameters": [
-                                {"name": "value", "is_variadic": True}
-                            ],
+                            "parameters": [{"name": "value", "is_variadic": True}],
                             "return_type": "None",
                             "is_async": False,
                             "is_classmethod": False,
                             "is_staticmethod": False,
                             "is_property": False,
-                            "decorators": None
+                            "decorators": None,
                         }
                     ],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
-        cursor.execute(
-            "SELECT is_variadic FROM unique_parameters WHERE name = 'value'"
-        )
+        cursor.execute("SELECT is_variadic FROM unique_parameters WHERE name = 'value'")
         result = cursor.fetchone()
         if result:
             assert result["is_variadic"] == 1
@@ -810,21 +753,19 @@ class TestDatabaseBuilderIntegration:
                             "is_staticmethod": False,
                             "is_property": False,
                             "docstring": "Serialize obj to a JSON formatted str.",
-                            "decorators": None
+                            "decorators": None,
                         }
                     ],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
-        cursor.execute(
-            "SELECT docstring FROM unique_methods WHERE name = 'dumps'"
-        )
+        cursor.execute("SELECT docstring FROM unique_methods WHERE name = 'dumps'")
         result = cursor.fetchone()
         assert result is not None
 
@@ -839,17 +780,14 @@ class TestDatabaseBuilderIntegration:
                 {"name": "os", "classes": [], "functions": [], "constants": []},
                 {"name": "json", "classes": [], "functions": [], "constants": []},
                 {"name": "time", "classes": [], "functions": [], "constants": []},
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         cursor = in_memory_builder.conn.cursor()
-        cursor.execute(
-            "SELECT COUNT(*) as count FROM board_module_support WHERE board_id = ?",
-            (board_id,)
-        )
+        cursor.execute("SELECT COUNT(*) as count FROM board_module_support WHERE board_id = ?", (board_id,))
         result = cursor.fetchone()
         assert result["count"] == 4
 
@@ -876,33 +814,29 @@ class TestDatabaseBuilderIntegration:
                                     "is_staticmethod": False,
                                     "is_property": False,
                                     "docstring": "Connect to a remote socket",
-                                    "decorators": None
+                                    "decorators": None,
                                 }
                             ],
                             "constants": [],
-                            "base_classes": []
+                            "base_classes": [],
                         }
                     ],
                     "functions": [],
-                    "constants": []
+                    "constants": [],
                 }
-            ]
+            ],
         }
-        
+
         board_id = in_memory_builder.add_board(board_data)
         assert board_id > 0
-        
+
         # Verify class docstring
         cursor = in_memory_builder.conn.cursor()
-        cursor.execute(
-            "SELECT docstring FROM unique_classes WHERE name = 'socket'"
-        )
+        cursor.execute("SELECT docstring FROM unique_classes WHERE name = 'socket'")
         result = cursor.fetchone()
         assert result is not None
-        
+
         # Verify method docstring
-        cursor.execute(
-            "SELECT docstring FROM unique_methods WHERE name = 'connect'"
-        )
+        cursor.execute("SELECT docstring FROM unique_methods WHERE name = 'connect'")
         result = cursor.fetchone()
         assert result is not None

@@ -68,9 +68,6 @@ template-path = "./publish/template"
 #-----------------
 
 
-
-
-
 #-----------------
 [tool.black]
 # use same config as -stubber
@@ -171,4 +168,30 @@ ignore = [
     "F403", # import *
     "F821",
     "UP035", # pyupgrade `typing.Dict` is deprecated, use `dict` instead
+]
+
+
+# ###################################################################
+# pyright options for MicroPython
+# ###################################################################
+[tool.pyright]
+# places to check
+include = ["tools/board_compare/frontend"]
+extraPaths = ["tools/board_compare/frontend/lib"]
+# how to check
+typeCheckingMode = "standard"
+pythonPlatform = "Linux"
+reportMissingModuleSource = "none"
+reportOptionalMemberAccess = "information"
+reportOptionalCall = "information"
+# what to use 
+stubPath = "typings"
+# use stdlib override based on typeshed
+typeshedPath = "typings"
+# things not to check
+ignore = ["**/typings"]
+exclude = [
+    ".*", 
+    "__*", 
+    "**/typings"
 ]

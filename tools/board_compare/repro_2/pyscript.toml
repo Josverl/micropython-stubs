@@ -1,0 +1,40 @@
+name = "MicroPython PyScript accessing local SQLite DB via sqlite_wasm and JS modules"
+
+packages = [
+    "github:josverl/micropython-stubs/mip/typing.json",
+    ]
+
+# Fetch arbitrary content from URLs onto the virtual filesystem, just map a valid
+# URL to a destination in the filesystem path
+# modules and database file are stored in the project folder
+[files]
+"sqlite_wasm.py" = ""
+"demodata.sqlite.db" = ""
+# "https://example.com/data.csv" = "./data.csv"
+
+# Import JavaScript modules in your project (load them in the main thread of the browser)
+# Sqlite-wasm is not an ESM module :-( 
+# [js_modules.main]
+# "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet-src.esm.js" = "leaflet"
+# "https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" = "leaflet" # CSS
+#
+# You can also import them in the worker thread of the browser
+# [js_modules.worker]
+# "https://module" = "mymodule"
+
+# Pin the Python interpreter to a specific value - for example making sure that
+# pyscript uses a specific version of pyodide or micropython
+# interpreter = "0.23.4"
+
+# Set the interaction between the main thread and worker limited to one way
+# calls from the main thread
+# sync_main_only = true
+
+# The plugin options allow you to either augment or exclude, the list of
+# plugins imported out of the box from core during bootstrap
+# plugins = ["custom_plugin", "!error"]
+
+# Make PyScript to try to automagically handle code where one would require
+# to use create_proxy (this is Pyodide specific)
+# experimental_create_proxy = "auto"
+

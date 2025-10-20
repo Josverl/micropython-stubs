@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroPython Board Explorer & Comparison (PyScript)</title>
+    <!-- SQL-wasm.js UMD module -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js"></script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- PyScript CSS -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav h1 {
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-tab.active {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Page Content */
+        .page {
+            display: none;
+            padding: 30px;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Controls */
+        .controls {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .control-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: end;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        select,
+        input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+        }
+
+        select:focus,
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        /* Combobox styles for searchable dropdowns */
+        .combobox-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .combobox-input {
+            width: 100%;
+            padding: 8px 30px 8px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            background: white;
+            cursor: text;
+            box-sizing: border-box;
+        }
+
+        .combobox-arrow {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .combobox-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 4px 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .combobox-dropdown div {
+            padding: 8px;
+            cursor: pointer;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .combobox-dropdown div:hover {
+            background: #f5f5f5;
+        }
+
+        .combobox-dropdown div.selected {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        /* Compare control layout styles */
+        .compare-control-layout {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .control-fields {
+            flex: 1;
+        }
+
+        .control-row-actions {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-row-actions .checkbox-label {
+            flex: 1 1 auto;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .control-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .share-btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .share-icon {
+            font-size: 16px;
+        }
+
+        .stats-panel {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            min-width: 300px;
+            max-width: 800px;
+        }
+
+        /* Comparison results layout */
+        .comparison-results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .board-column {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .board-column h3 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 6px 6px 0 0;
+            font-size: 1.2em;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .common-modules-section {
+            grid-column: 1 / -1;
+            margin-top: 30px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .common-modules-section h3 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 6px 6px 0 0;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        /* Module styling to match explorer */
+        .module-item {
+            margin-bottom: 2px;
+        }
+
+        .module-header {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            transition: all 0.2s;
+            margin-bottom: 2px;
+        }
+
+        .module-header:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .module-header.unique {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-color: #ffecb5;
+        }
+
+        .module-header.deprecated {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-color: #f5c6cb;
+            color: #88474eff !important;
+        }
+
+        .module-header.deprecated .module-name {
+            color: #88474eff !important;
+        }
+
+        .module-icon {
+            color: #667eea;
+            margin-right: 8px;
+            font-size: 14px;
+            width: 16px;
+            text-align: center;
+        }
+
+        .module-name {
+            font-weight: 600;
+            color: #333;
+            margin-right: 8px;
+        }
+
+        .module-badge {
+            background: #667eea;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .module-details {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .module-children {
+            margin-left: 24px;
+            border-left: 3px solid #667eea;
+            padding-left: 16px;
+            margin-top: 8px;
+        }
+
+        .module-children.hidden {
+            display: none;
+        }
+
+        /* Class and function styling within modules */
+        .class-item,
+        .function-item,
+        .constant-item {
+            margin: 4px 0;
+            padding: 6px 10px;
+            background: #f8f9fa;
+            border-left: 3px solid #28a745;
+            border-radius: 0 4px 4px 0;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        /* Common style patterns for template consolidation */
+        .code-block {
+            background: #f8f9fa;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .item-container {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 5px;
+        }
+
+        .icon-text {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tag {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .error-text {
+            color: #dc3545;
+        }
+
+        .muted-text {
+            color: #666;
+        }
+
+        .primary-text {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .clickable-item {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .clickable-item:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+        }
+
+        .class-item {
+            border-left-color: #17a2b8;
+        }
+
+        .function-item {
+            border-left-color: #ffc107;
+        }
+
+        .constant-item {
+            border-left-color: #6f42c1;
+        }
+
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 50px 40px;
+            color: #666;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .loading p {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .spinner {
+            border: 4px solid #e9ecef;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .progress-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Detail View */
+        .detail-view {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .detail-header {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        /* Tree View Styles */
+        .tree-item {
+            margin-bottom: 4px;
+        }
+
+        .tree-node {
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.2s;
+            text-align: left;
+
+        }
+
+        .tree-node:hover {
+            background: #f0f0f0 !important;
+        }
+
+        .tree-children {
+            margin-left: 24px;
+            border-left: 3px solid #667eea;
+            padding-left: 20px;
+            margin-top: 8px;
+        }
+
+        .tree-children.hidden {
+            display: none;
+        }
+
+        .fa-icon {
+            margin-right: 8px;
+        }
+
+        /* Status indicator for PyScript */
+        .status-indicator {
+            padding: 10px 20px;
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .status-indicator.success {
+            background: #e8f5e9;
+            border-left-color: #4caf50;
+        }
+
+        .status-indicator.error {
+            background: #ffebee;
+            border-left-color: #f44336;
+        }
+
+        /* Search Results Styles */
+        .search-category {
+            margin-bottom: 30px;
+        }
+
+        .search-category-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+            padding: 10px 0;
+            border-bottom: 2px solid #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .search-result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .search-result-item:hover {
+            background: #e3f2fd;
+            border-color: #667eea;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .search-result-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .search-result-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1em;
+        }
+
+        .search-result-name strong {
+            color: #333;
+        }
+
+        .search-result-context {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .search-result-board {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .board-tag,
+        .version-tag {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .board-tag {
+            background: #667eea;
+            color: white;
+        }
+
+        .version-tag {
+            background: #28a745;
+            color: white;
+        }
+
+        /* Responsive design for search results */
+        @media (max-width: 768px) {
+            .search-result-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .search-result-board {
+                align-items: flex-start;
+                flex-direction: row;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <h1><i class="fas fa-microscope" style="margin-right: 10px;"></i> MicroPython Board Explorer (PyScript)</h1>
+            <div class="nav-tabs">
+                <button class="nav-tab active" id="tab-explorer">Board Explorer</button>
+                <button class="nav-tab" id="tab-compare">Compare Boards</button>
+                <button class="nav-tab" id="tab-search">Search APIs</button>
+            </div>
+        </nav>
+
+        <!-- Status Indicator -->
+        <div style="padding: 20px;">
+            <div id="status" class="status-indicator">
+                <strong>Status:</strong> <span id="status-text">Initializing PyScript...</span>
+            </div>
+        </div>
+
+        <!-- Board Explorer Page -->
+        <div id="explorer-page" class="page active">
+            <div class="controls">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="explorer-version">Version:</label>
+                        <select id="explorer-version">
+                            <option value="">All versions</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="explorer-board">Board:</label>
+                        <select id="explorer-board">
+                            <option value="">Select a board...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-row">
+                    <div class="control-actions">
+                        <button class="share-btn" id="explorer-share-btn" title="Copy shareable link">
+                            <span class="share-icon">🔗</span> Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="explorer-content" class="loading">
+                <p>Select both version and board to explore modules and APIs</p>
+            </div>
+        </div>
+
+        <!-- Compare Boards Page -->
+        <div id="compare-page" class="page">
+            <div class="controls">
+                <div class="compare-control-layout">
+                    <div class="control-fields">
+                        <div class="control-row">
+                            <div class="control-group">
+                                <label for="board1-version">Board 1 Version:</label>
+                                <select id="board1-version">
+                                    <option value="">All versions</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="board1">Board 1:</label>
+                                <select id="board1">
+                                    <option value="">Select a board...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <div class="control-group">
+                                <label for="board2-version">Board 2 Version:</label>
+                                <select id="board2-version">
+                                    <option value="">All versions</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="board2">Board 2:</label>
+                                <select id="board2">
+                                    <option value="">Select a board...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-row control-row-actions">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="hide-common">
+                                <span>Show only differences (all levels)</span>
+                            </label>
+                        </div>
+                        <div class="control-row">
+                            <div class="control-actions">
+                                <button id="compare-boards-btn">Compare Boards</button>
+                                <button class="share-btn" id="share-btn" title="Copy shareable link">
+                                    <span class="share-icon">🔗</span> Share
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Comparison Summary in top-right corner -->
+                    <div id="compare-stats" class="stats-panel" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Results display with grid layout -->
+            <div id="compare-results"></div>
+        </div>
+
+        <!-- Search APIs Page -->
+        <div id="search-page" class="page">
+            <div class="controls">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="search-input">Search for Module, Class, or Method:</label>
+                        <input type="text" id="search-input" placeholder="e.g., Neopixel, I2S, machine.Pin, etc.">
+                    </div>
+                </div>
+                <div class="control-row">
+                    <div class="control-actions">
+                        <button id="search-btn">Search</button>
+                        <button class="share-btn" id="search-share-btn" title="Copy shareable link">
+                            <span class="share-icon">🔗</span> Share
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="search-results"></div>
+        </div>
+    </div>
+
+    <!-- HTML Templates for dynamic content -->
+    <div id="templates" style="display: none;">
+        <!-- Comparison Statistics Template -->
+        <div id="stats-template">
+            <div
+                style="padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow-x: auto;">
+                <h3 style="margin: 0 0 15px 0; color: #2c3e50; font-size: 1.1em;">Comparison Summary</h3>
+                <table
+                    style="width: 100%; max-width: 100%; border-collapse: collapse; font-size: 0.9em; table-layout: fixed;">
+                    <thead>
+                        <tr style="background: #f0f0f0; border-bottom: 2px solid #667eea;">
+                            <th
+                                style="padding: 10px; text-align: left; font-weight: 600; width: 30%; overflow: hidden; text-overflow: ellipsis;">
+                                Comparison Level</th>
+                            <th style="padding: 10px; text-align: center; font-weight: 600; width: 25%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                                data-board1-name></th>
+                            <th
+                                style="padding: 10px; text-align: center; font-weight: 600; width: 20%; overflow: hidden; text-overflow: ellipsis;">
+                                Common</th>
+                            <th style="padding: 10px; text-align: center; font-weight: 600; width: 25%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                                data-board2-name></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 2px solid #e0e0e0; background: #f9f9f9;">
+                            <td
+                                style="padding: 10px; font-weight: 600; color: #667eea; overflow: hidden; text-overflow: ellipsis;">
+                                Level 1: Modules</td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                <strong data-level1-unique1></strong> unique
+                            </td>
+                            <td style="padding: 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level1-common></strong>
+                            </td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                <strong data-level1-unique2></strong> unique
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0; background: #f9f9f9;">
+                            <td
+                                style="padding: 10px; font-weight: 600; color: #667eea; overflow: hidden; text-overflow: ellipsis;">
+                                Level 2: Classes</td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-classes1-unique></strong>
+                            </td>
+                            <td style="padding: 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-classes-different></strong> differ
+                            </td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-classes2-unique></strong>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0; color: #666; font-size: 0.85em;">
+                            <td style="padding: 8px 10px; overflow: hidden; text-overflow: ellipsis;">Level 2: Functions
+                            </td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-functions1-unique></strong>
+                            </td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                —</td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-functions2-unique></strong>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid #e0e0e0; color: #666; font-size: 0.85em;">
+                            <td style="padding: 8px 10px; overflow: hidden; text-overflow: ellipsis;">Level 2: Constants
+                            </td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-constants1-unique></strong>
+                            </td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                —</td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level2-constants2-unique></strong>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e0e0e0; background: #f9f9f9;">
+                            <td
+                                style="padding: 10px; font-weight: 600; color: #667eea; overflow: hidden; text-overflow: ellipsis;">
+                                Level 3: Methods</td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level3-methods1-unique></strong>
+                            </td>
+                            <td style="padding: 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level3-methods-different></strong> differ
+                            </td>
+                            <td
+                                style="padding: 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level3-methods2-unique></strong>
+                            </td>
+                        </tr>
+                        <tr style="border-bottom: 2px solid #e0e0e0; color: #666; font-size: 0.85em;">
+                            <td style="padding: 8px 10px; overflow: hidden; text-overflow: ellipsis;">Level 3:
+                                Attributes</td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #FF8C00; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level3-attributes1-unique></strong>
+                            </td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; overflow: hidden; text-overflow: ellipsis;">
+                                —</td>
+                            <td
+                                style="padding: 8px 10px; text-align: center; color: #008B8B; overflow: hidden; text-overflow: ellipsis;">
+                                <strong data-level3-attributes2-unique></strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Comparison Results Grid Template -->
+        <div id="comparison-grid-template">
+            <div class="comparison-results-grid">
+                <div class="board-column">
+                    <h3 data-board1-header></h3>
+                    <div class="module-tree" data-board1-modules></div>
+                </div>
+                <div class="board-column">
+                    <h3 data-board2-header></h3>
+                    <div class="module-tree" data-board2-modules></div>
+                </div>
+                <div class="common-modules-section" data-common-section style="display: none;">
+                    <h3 data-common-header></h3>
+                    <div class="module-tree" data-common-modules></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Template -->
+        <div id="loading-template">
+            <div class="loading">
+                <div class="spinner" data-show-spinner style="display: none;"></div>
+                <p data-loading-message></p>
+                <div class="progress-step" data-progress-step style="display: none;"></div>
+            </div>
+        </div>
+
+        <!-- Error Template -->
+        <div id="error-template">
+            <div class="detail-view">
+                <div class="detail-header">
+                    <span data-error-icon style="display: none;">⚠️</span>
+                    <span data-error-title>Error</span>
+                </div>
+                <p class="error-text" data-error-message></p>
+                <pre class="code-block" data-error-details
+                    style="display: none; background: #f8f9fa; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 0.85em;"></pre>
+                <button onclick="pyscript.run_code('await compare_boards()')" style="margin-top: 15px; padding: 10px 20px; background: #667eea; 
+                               color: white; border: none; border-radius: 6px; cursor: pointer; 
+                               font-weight: 600;" data-retry-button style="display: none;">
+                    🔄 Try Again
+                </button>
+            </div>
+        </div>
+
+        <!-- Icon Template -->
+        <div id="icon-template">
+            <i class="fas" data-icon-class style="margin-right: 8px;"></i>
+        </div>
+
+        <!-- Unified Tree Item Template -->
+        <div id="tree-item-template">
+            <div class="tree-item" data-item-type>
+                <div class="tree-node" data-node-click data-node-style>
+                    <span class="tree-icon" data-icon-container></span>
+                    <span class="item-main" data-main-content></span>
+                    <span class="item-extra" data-extra-content style="display: none;"></span>
+                    <span class="item-badge" data-badge-content style="display: none;"></span>
+                    <span class="item-summary" data-summary-content></span>
+                </div>
+                <div class="tree-children hidden" data-children-id data-children-container></div>
+            </div>
+        </div>
+
+        <!-- Module Item Template (specialized version of tree-item) -->
+        <div id="module-item-template">
+            <div class="module-item">
+                <div class="module-header" data-module-header-class data-module-click data-module-data>
+                    <span class="module-icon"><i class="fas fa-cube"></i></span>
+                    <span class="module-name" data-module-name></span>
+                    <span class="module-badge" data-module-badge style="display: none;">[UNIQUE]</span>
+                    <span class="module-details" data-module-details></span>
+                </div>
+                <div class="module-children hidden" data-module-id data-module-children></div>
+            </div>
+        </div>
+
+        <!-- Class Item Template (specialized version of tree-item) -->
+        <div id="class-item-template">
+            <div class="class-item">
+                <div class="tree-node" data-class-click>
+                    <span class="tree-icon"><i class="fas fa-object-group fa-icon"></i></span>
+                    <span style="color: #495057; font-weight: 600;" data-class-signature></span>
+                    <span style="color: #888; font-size: 0.9em; font-weight: normal;" data-base-classes></span>
+                    <span style="color: #6c757d; font-size: 0.85em; margin-left: auto;" data-class-summary></span>
+                </div>
+                <div class="module-children hidden" data-class-id data-class-children></div>
+            </div>
+        </div>
+
+        <!-- Function/Method Item Template -->
+        <div id="function-item-template">
+            <div class="function-item">
+                <span class="tree-icon"><i class="fas fa-bolt fa-icon" data-function-icon></i></span>
+                <span style="color: #495057;">
+                    <span style="color: #888; font-size: 0.85em;" data-decorators></span>
+                    <code class="code-block" data-signature></code>
+                </span>
+            </div>
+        </div>
+
+        <!-- Constant Item Template -->
+        <div id="constant-item-template">
+            <div class="constant-item">
+                <span class="tree-icon"><i class="fas fa-circle fa-icon"></i></span>
+                <span style="color: #495057;">
+                    <code class="code-block" data-constant-signature></code>
+                </span>
+            </div>
+        </div>
+
+        <!-- Search Results Template -->
+        <div id="search-results-template">
+            <div class="detail-view">
+                <div class="detail-header">Search Results</div>
+                <p style="margin-bottom: 20px;" data-search-summary></p>
+                <div data-search-categories></div>
+            </div>
+        </div>
+
+        <!-- Search Category Template -->
+        <div id="search-category-template">
+            <div class="search-category">
+                <h3 class="search-category-title">
+                    <i class="fas" data-category-icon></i>
+                    <span data-category-title></span>
+                </h3>
+                <div class="search-results-list" data-category-results></div>
+            </div>
+        </div>
+
+        <!-- Unified Message/Content Template -->
+        <div id="message-template">
+            <div class="detail-view" data-show-detail-view="true">
+                <div class="detail-header" data-message-header></div>
+                <p class="muted-text" data-message-content></p>
+                <p class="muted-text" data-message-subtitle></p>
+                <div data-message-body></div>
+            </div>
+            <div class="loading" data-show-loading="false">
+                <p data-simple-message></p>
+            </div>
+            <p class="muted-text" style="padding: 20px;" data-show-simple="false" data-simple-text></p>
+        </div>
+
+        <!-- Board Details Template -->
+        <div id="board-details-template">
+            <div class="detail-view">
+                <div class="detail-header" data-board-title></div>
+                <div data-board-content></div>
+            </div>
+        </div>
+
+        <!-- Module Tree Container Template -->
+        <div id="module-tree-container-template">
+            <div class="module-tree" data-module-list></div>
+        </div>
+
+        <!-- Board Content Template -->
+        <div id="board-content-template">
+            <div style="margin: 20px 0;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">
+                    <i class="fas fa-cube"></i> <span data-modules-title></span>
+                </h3>
+                <div style="background: white; border: 2px solid #e9ecef; border-radius: 8px; padding: 20px;">
+                    <div data-modules-tree></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Result Item Template -->
+        <div id="search-result-item-template">
+            <div class="search-result-item"
+                style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px; cursor: pointer;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="color: #667eea; font-weight: 600;">
+                        <i class="fas" data-entity-icon></i>
+                        <span data-entity-name></span>
+                    </span>
+                    <span style="color: #888; font-size: 0.9em;" data-context-path></span>
+                    <span style="margin-left: auto; color: #666; font-size: 0.8em;">
+                        <span class="board-tag" data-board-name></span>
+                        <span class="version-tag" data-version></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SQL.js for database -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js"></script>
+
+    <!-- PyScript -->
+    <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
+    
+    <!-- SQLite Database Optimization Functions -->
+    <script src="db-optimizer.js"></script>
+
+    <!-- JavaScript for tree toggling -->
+    <script>
+        function toggleModule(moduleId, event) {
+            if (event) event.stopPropagation();
+            const elem = document.getElementById(moduleId);
+            if (elem) {
+                elem.classList.toggle('hidden');
+            }
+        }
+
+        function toggleClass(classId, event) {
+            if (event) event.stopPropagation();
+            const elem = document.getElementById(classId);
+            if (elem) {
+                elem.classList.toggle('hidden');
+            }
+        }
+
+    </script>
+
+    <!-- Main Python script -->
+    <script type="mpy" src="./main.py" config="./pyscript.toml"></script>
+</body>
+
+</html>

@@ -24,6 +24,7 @@
                 "cwd": "${workspaceFolder}/tools/board_compare"
             },
             "command": "uv run python run_local.py",
+            "problemMatcher": []
         },
         {
             "label": "Sphinx: build documentation",
