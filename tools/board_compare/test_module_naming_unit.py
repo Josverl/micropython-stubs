@@ -9,10 +9,10 @@ Tests ensure that:
 """
 
 import os
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
-import shutil
 
 # Import the scanner
 try:

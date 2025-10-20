@@ -8,9 +8,9 @@ Issues to reproduce:
 """
 
 import os
+import shutil
 import tempfile
 from pathlib import Path
-import shutil
 
 # Import the scanner
 try:
