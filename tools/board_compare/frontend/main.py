@@ -40,6 +40,7 @@ U_MODULES = [
     "zlib",
 ]
 
+
 # Template utilities
 def get_template(template_id):
     """Get a clone of a template element."""
@@ -135,11 +136,11 @@ def create_module_item(module, options):
     module_prefix = options.get("module_prefix", "tree")
     get_badge_class = options.get("get_badge_class", lambda m: "")
     get_module_badge = options.get("get_module_badge", lambda m: "")
-    
+
     classes = module.get("classes", [])
     functions = module.get("functions", [])
     constants = module.get("constants", [])
-    
+
     # has_children = len(classes) > 0 or len(functions) > 0 or len(constants) > 0
     is_deprecated = module["name"].startswith("u") and len(module["name"]) != "uctypes"
     # FIXME: Why does in not work ?
@@ -152,7 +153,7 @@ def create_module_item(module, options):
     badge_class = get_badge_class(module)
     module_badge = get_module_badge(module)
     module_tree_id = f"{module_prefix}-module-{module['name']}"
-    
+
     # Format module summary
     summary_parts = []
     if len(classes) > 0:
@@ -161,7 +162,7 @@ def create_module_item(module, options):
         summary_parts.append(f"{len(functions)} functions")
     if len(constants) > 0:
         summary_parts.append(f"{len(constants)} constants")
-    
+
     if summary_parts:
         module_summary = ", ".join(summary_parts)
     elif is_deprecated:
@@ -169,67 +170,73 @@ def create_module_item(module, options):
         module_summary = f"deprecated - use {base_module_name} instead"
     else:
         module_summary = "empty module"
-    
+
     module_header_class = "module-header"
     if badge_class:
         module_header_class += " unique"
     if is_deprecated:
         module_header_class += " deprecated"
-    
+
     # Get template and populate
     module_element = get_template("module-item-template")
     if module_element:
-        populate_template(module_element, {
-            "module-header-class": module_header_class,
-            "module-click": f"toggleModule('{module_tree_id}', event)",
-            "module-data": module["name"],
-            "module-name": module["name"],
-            "module-badge-style": "inline" if module_badge else "hide",
-            "module-details": module_summary,
-            "module-id": module_tree_id
-        })
-        
+        populate_template(
+            module_element,
+            {
+                "module-header-class": module_header_class,
+                "module-click": f"toggleModule('{module_tree_id}', event)",
+                "module-data": module["name"],
+                "module-name": module["name"],
+                "module-badge-style": "inline" if module_badge else "hide",
+                "module-details": module_summary,
+                "module-id": module_tree_id,
+            },
+        )
+
         # Show/hide badge
         badge_elem = module_element.querySelector("[data-module-badge]")
         if badge_elem:
             badge_elem.style.display = "inline" if module_badge else "none"
-    
+
     return module_element
 
 
 def create_class_item(cls, module_name, module_prefix):
     """Create a class item using template."""
     class_id = f"{module_prefix}-class-{module_name}-{cls['name']}"
-    
+
     base_classes_str = ""
     if cls.get("base_classes") and len(cls["base_classes"]) > 0:
         base_classes_str = f"({', '.join(cls['base_classes'])})"
-    
+
     # Format class summary
     method_count = len(cls.get("methods", []))
     attr_count = len(cls.get("attributes", []))
-    
+
     class_summary_parts = []
     if method_count > 0:
         class_summary_parts.append(f"{method_count} methods")
     if attr_count > 0:
         class_summary_parts.append(f"{attr_count} attributes")
-    
+
     class_summary = ", ".join(class_summary_parts) if class_summary_parts else "empty class"
-    
-    base_classes_span = f' {base_classes_str}' if base_classes_str else ""
-    
+
+    base_classes_span = f" {base_classes_str}" if base_classes_str else ""
+
     # Get template and populate
     class_element = get_template("class-item-template")
     if class_element:
-        populate_template(class_element, {
-            "class-click": f"toggleClass('{class_id}', event)",
-            "class-signature": f"class {cls['name']}",
-            "base-classes": base_classes_span,
-            "class-summary": class_summary,
-            "class-id": class_id
-        })
-    
+        populate_template(
+            class_element,
+            {
+                "class-click": f"toggleClass('{class_id}', event)",
+                "class-signature": f"class {cls['name']}",
+                "base-classes": base_classes_span,
+                "class-summary": class_summary,
+                "class-id": class_id,
+            },
+        )
+
     return class_element
 
 
@@ -237,62 +244,64 @@ def create_function_item(func):
     """Create a function item using template."""
     # Format function signature
     signature = func["name"]
-    
+
     params = ""
     if func.get("parameters"):
         param_strs = []
         for param in func["parameters"]:
             param_str = param["name"]
-            
+
             if param.get("type_hint") and param["type_hint"] not in ["None", ""]:
                 param_str += f": {param['type_hint']}"
-            
+
             if param.get("default_value") and param["default_value"] != "None":
                 param_str += f" = {param['default_value']}"
             elif param.get("is_optional"):
                 param_str += " = None"
-            
+
             if param.get("is_variadic"):
                 param_str = ("**" if param["name"] == "kwargs" else "*") + param_str
-            
+
             param_strs.append(param_str)
-        
+
         params = ", ".join(param_strs)
-    
+
     signature += f"({params})"
-    
+
     if func.get("return_type") and func["return_type"] not in ["None", "", "Any"]:
         signature += f" -> {func['return_type']}"
-    
+
     decorators_list = func.get("decorators_list", [])
     decorator_strs = [f"@{d}" for d in decorators_list]
     async_marker = "async " if func.get("is_async") else ""
-    
-    function_decorator_span = f'{" ".join(decorator_strs)} ' if decorator_strs else ""
-    
+
+    function_decorator_span = f"{' '.join(decorator_strs)} " if decorator_strs else ""
+
     # Get template and populate
     function_element = get_template("function-item-template")
     if function_element:
-        populate_template(function_element, {
-            "function-icon": "fas fa-ellipsis" if func.get("is_property") else "fas fa-bolt",
-            "decorators": function_decorator_span,
-            "signature": f"{async_marker}{signature}"
-        })
-    
+        icon_type = "property" if func.get("is_property") else "function"
+        populate_template(
+            function_element,
+            {
+                "function-icon": board_utils.get_icon_class(icon_type),
+                "decorators": function_decorator_span,
+                "signature": f"{async_marker}{signature}",
+            },
+        )
+
     return function_element
 
 
 def create_constant_item(const):
     """Create a constant item using template."""
     const_value = f" = {const['value']}" if const.get("value") else ""
-    
+
     # Get template and populate
     constant_element = get_template("constant-item-template")
     if constant_element:
-        populate_template(constant_element, {
-            "constant-signature": f"{const['name']}{const_value}"
-        })
-    
+        populate_template(constant_element, {"constant-signature": f"{const['name']}{const_value}"})
+
     return constant_element
 
 
@@ -502,6 +511,7 @@ def setup_event_handlers():
         async def handler(e):
             await load_board_details()
             update_explorer_url()
+
         return handler
 
     explorer_version = document.getElementById("explorer-version")
@@ -565,11 +575,11 @@ def setup_event_handlers():
     share_btn = document.getElementById("share-btn")
     if share_btn:
         share_btn.onclick = lambda e: share_comparison()
-    
+
     explorer_share_btn = document.getElementById("explorer-share-btn")
     if explorer_share_btn:
         explorer_share_btn.onclick = lambda e: share_explorer()
-    
+
     search_share_btn = document.getElementById("search-share-btn")
     if search_share_btn:
         search_share_btn.onclick = lambda e: share_search()
@@ -868,20 +878,24 @@ async def compare_boards():
 
     try:
         # Small delay to show initial message
-        await asyncio.sleep(0.5)
-
+        await asyncio.sleep(0.2)
+        print(f"Comparing boards: {board1_name} ({board1_version}) vs {board2_name} ({board2_version})")
         # Find board info
         board1_info = board_utils.find_board_in_list(app_state["boards"], board1_version, board1_name)
         board2_info = board_utils.find_board_in_list(app_state["boards"], board2_version, board2_name)
 
         if not board1_info or not board2_info:
-            show_error("compare-results", "Board Comparison Error", "One or more selected boards could not be found.")
+            if not board1_info:
+                msg = f"Board 1: '{board1_name}' version '{board1_version}' not found."
+            else:
+                msg = f"Board 2: '{board2_name}' version '{board2_version}' not found."
+            print(msg)
+            show_error("compare-results", "Board Comparison Error", msg)
             return
 
         # Convert to comparison format
         board1 = {"version": board1_version, "port": board1_info[0], "board": board1_info[1]}
         board2 = {"version": board2_version, "port": board2_info[0], "board": board2_info[1]}
-
         # Update progress for board 1
         show_loading("compare-results", f"Fetching modules for {board1_name}...", "Step 1 of 3")
 
@@ -947,34 +961,34 @@ def render_module_tree_dom(modules, options):
                     class_element = create_class_item(cls, module["name"], options.get("module_prefix", "tree"))
                     if class_element:
                         # Add methods and attributes to class
-                        class_children = class_element.querySelector("[data-class-children]") 
+                        class_children = class_element.querySelector("[data-class-children]")
                         if class_children:
                             # Add methods
                             for method in cls.get("methods", []):
                                 method_element = create_method_item(method)
                                 if method_element:
                                     class_children.appendChild(method_element)
-                            
-                            # Add attributes  
+
+                            # Add attributes
                             for attr in cls.get("attributes", []):
                                 attr_element = create_attribute_item(attr)
                                 if attr_element:
                                     class_children.appendChild(attr_element)
-                        
+
                         children_container.appendChild(class_element)
-                
+
                 # Add functions
                 for func in module.get("functions", []):
                     func_element = create_function_item(func)
                     if func_element:
                         children_container.appendChild(func_element)
-                
+
                 # Add constants
                 for const in module.get("constants", []):
                     const_element = create_constant_item(const)
                     if const_element:
                         children_container.appendChild(const_element)
-        
+
         if module_element:
             container.appendChild(module_element)
 
@@ -985,38 +999,38 @@ def create_method_item(method):
     """Create a method item using template."""
     # Format method signature
     signature = method["name"]
-    
+
     # Build parameter list
     params = ""
     if method.get("parameters"):
         param_strs = []
         for param in method["parameters"]:
             param_str = param["name"]
-            
+
             # Add type hint if available
             if param.get("type_hint") and param["type_hint"] not in ["None", ""]:
                 param_str += f": {param['type_hint']}"
-            
+
             # Add default value if available
             if param.get("default_value") and param["default_value"] != "None":
                 param_str += f" = {param['default_value']}"
             elif param.get("is_optional"):
                 param_str += " = None"
-            
+
             # Handle variadic parameters
             if param.get("is_variadic"):
                 param_str = ("**" if param["name"] == "kwargs" else "*") + param_str
-            
+
             param_strs.append(param_str)
-        
+
         params = ", ".join(param_strs)
-    
+
     signature += f"({params})"
-    
+
     # Add return type if available
     if method.get("return_type") and method["return_type"] not in ["None", "", "Any"]:
         signature += f" -> {method['return_type']}"
-    
+
     # Format decorators
     decorators_list = method.get("decorators_list", [])
     if not decorators_list:
@@ -1027,23 +1041,26 @@ def create_method_item(method):
             decorators_list.append("classmethod")
         if method.get("is_staticmethod"):
             decorators_list.append("staticmethod")
-    
+
     decorator_strs = [f"@{d}" for d in decorators_list]
     async_marker = "async " if method.get("is_async") else ""
-    
-    icon_class = "fas fa-ellipsis" if method.get("is_property") else "fas fa-bolt"
-    
-    decorator_span = f'{" ".join(decorator_strs)} ' if decorator_strs else ""
-    
+
+    icon_type = "property" if method.get("is_property") else "method"
+
+    decorator_span = f"{' '.join(decorator_strs)} " if decorator_strs else ""
+
     # Get template and populate
     method_element = get_template("function-item-template")
     if method_element:
-        populate_template(method_element, {
-            "function-icon": icon_class,
-            "decorators": decorator_span,
-            "signature": f"{async_marker}{signature}"
-        })
-    
+        populate_template(
+            method_element,
+            {
+                "function-icon": board_utils.get_icon_class(icon_type),
+                "decorators": decorator_span,
+                "signature": f"{async_marker}{signature}",
+            },
+        )
+
     return method_element
 
 
@@ -1051,19 +1068,17 @@ def create_attribute_item(attr):
     """Create an attribute item using template."""
     type_hint = f": {attr['type_hint']}" if attr.get("type_hint") else ""
     value = f" = {attr['value']}" if attr.get("value") else ""
-    
+
     # Get template and populate
     attr_element = get_template("constant-item-template")
     if attr_element:
-        populate_template(attr_element, {
-            "constant-signature": f"{attr['name']}{type_hint}{value}"
-        })
-        
+        populate_template(attr_element, {"constant-signature": f"{attr['name']}{type_hint}{value}"})
+
         # Update icon for attributes (use circle-dot instead of circle)
         icon_elem = attr_element.querySelector(".fa-icon")
         if icon_elem:
-            icon_elem.className = "fas fa-circle-dot fa-icon"
-    
+            icon_elem.className = f"{board_utils.get_icon_class('variable')} fa-icon"
+
     return attr_element
 
 
@@ -1210,11 +1225,9 @@ def update_comparison():
                 # Use template for "No differences" message
                 no_diff_elem = get_template("message-template")
                 if no_diff_elem:
-                    populate_template(no_diff_elem, {
-                        "data-show-detail-view": "false",
-                        "data-show-simple": "true", 
-                        "data-simple-text": "No differences"
-                    })
+                    populate_template(
+                        no_diff_elem, {"data-show-detail-view": "false", "data-show-simple": "true", "data-simple-text": "No differences"}
+                    )
                     board1_container.appendChild(no_diff_elem)
 
         if board2_container:
@@ -1225,11 +1238,9 @@ def update_comparison():
                 # Use template for "No differences" message
                 no_diff_elem = get_template("message-template")
                 if no_diff_elem:
-                    populate_template(no_diff_elem, {
-                        "data-show-detail-view": "false",
-                        "data-show-simple": "true", 
-                        "data-simple-text": "No differences"
-                    })
+                    populate_template(
+                        no_diff_elem, {"data-show-detail-view": "false", "data-show-simple": "true", "data-simple-text": "No differences"}
+                    )
                     board2_container.appendChild(no_diff_elem)
 
         # Handle common modules section
@@ -1542,27 +1553,27 @@ def display_search_results(results, search_term):
         no_results_element = get_template("message-template")
         if no_results_element:
             no_results_element.style.display = "block"
-            
+
             # Set content directly to avoid HTML encoding issues
             header_element = no_results_element.querySelector("[data-message-header]")
             content_element = no_results_element.querySelector("[data-message-content]")
             subtitle_element = no_results_element.querySelector("[data-message-subtitle]")
-            
+
             if header_element:
                 header_element.textContent = "Search Results"
             if content_element:
                 content_element.innerHTML = f'No results found for "<strong>{search_term}</strong>"'
             if subtitle_element:
                 subtitle_element.textContent = "Try a different search term or check spelling."
-                
+
             # Show the detail view
             detail_view = no_results_element.querySelector("[data-show-detail-view]")
             if detail_view:
                 detail_view.style.display = "block"
-                
+
             results_div.innerHTML = ""
             results_div.appendChild(no_results_element)
-            
+
             # Update URL with search term (no results)
             update_search_url(search_term)
         return
@@ -1579,7 +1590,7 @@ def display_search_results(results, search_term):
     search_results_element = get_template("search-results-template")
     if search_results_element:
         search_results_element.style.display = "block"
-        
+
         # Set the HTML content directly instead of using data attributes
         summary_element = search_results_element.querySelector("[data-search-summary]")
         if summary_element:
@@ -1592,7 +1603,7 @@ def display_search_results(results, search_term):
             entity_order = ["module", "class", "function", "method", "constant", "attribute", "parameter"]
             type_labels = {
                 "module": "Modules",
-                "class": "Classes", 
+                "class": "Classes",
                 "function": "Functions",
                 "method": "Methods",
                 "constant": "Constants",
@@ -1603,14 +1614,17 @@ def display_search_results(results, search_term):
             for entity_type in entity_order:
                 if entity_type in grouped_results:
                     type_results = grouped_results[entity_type]
-                    
+
                     # Create category section
                     category_element = get_template("search-category-template")
                     if category_element:
-                        populate_template(category_element, {
-                            "category-icon": get_entity_icon(entity_type),
-                            "category-title": f"{type_labels[entity_type]} ({len(type_results)})"
-                        })
+                        populate_template(
+                            category_element,
+                            {
+                                "category-icon": get_entity_icon(entity_type),
+                                "category-title": f"{type_labels[entity_type]} ({len(type_results)})",
+                            },
+                        )
 
                         # Get results container for this category
                         category_results = category_element.querySelector("[data-category-results]")
@@ -1626,7 +1640,7 @@ def display_search_results(results, search_term):
         # Update the search results display
         results_div.innerHTML = ""
         results_div.appendChild(search_results_element)
-        
+
         # Update URL with search results
         update_search_url(search_term)
 
@@ -1635,35 +1649,33 @@ def create_search_result_item(result, entity_type):
     """Create a search result item using template."""
     board_name = format_board_name(result["port"], result["board"])
     context_path = get_context_path(result)
-    
+
     # Use search result template
     result_element = get_template("search-result-item-template")
     if result_element:
         # Populate template data
-        populate_template(result_element, {
-            "entity-name": result["entity_name"],
-            "context-path": context_path,
-            "board-name": board_name,
-            "version": result['version']
-        })
-        
+        populate_template(
+            result_element,
+            {"entity-name": result["entity_name"], "context-path": context_path, "board-name": board_name, "version": result["version"]},
+        )
+
         # Set entity icon
         icon_elem = result_element.querySelector("[data-entity-icon]")
         if icon_elem:
             icon_elem.className = f"fas {get_entity_icon(entity_type)}"
-        
+
         # Set click handler
         module_id = result["module_id"]
         class_id = result.get("class_id", "")
         entity_name = result["entity_name"]
-        
+
         def click_handler(e):
             # Call openSearchResult if it exists
             if hasattr(window, "openSearchResult"):
                 window.openSearchResult(module_id, class_id, entity_name, entity_type)
-        
+
         result_element.onclick = click_handler
-    
+
     return result_element
 
 
@@ -2064,11 +2076,14 @@ async def load_board_details():
         # Use template for selection prompt
         select_prompt = get_template("message-template")
         if select_prompt:
-            populate_template(select_prompt, {
-                "data-show-detail-view": "false",
-                "data-show-loading": "true",
-                "data-simple-message": "Select both version and board to explore modules and APIs"
-            })
+            populate_template(
+                select_prompt,
+                {
+                    "data-show-detail-view": "false",
+                    "data-show-loading": "true",
+                    "data-simple-message": "Select both version and board to explore modules and APIs",
+                },
+            )
             content.innerHTML = ""
             content.appendChild(select_prompt)
         else:
@@ -2078,11 +2093,9 @@ async def load_board_details():
     # Show loading using template
     loading_template = get_template("loading-template")
     if loading_template:
-        populate_template(loading_template, {
-            "data-show-spinner": "false",
-            "data-show-progress": "true",
-            "data-loading-text": "Loading board details..."
-        })
+        populate_template(
+            loading_template, {"data-show-spinner": "false", "data-show-progress": "true", "data-loading-text": "Loading board details..."}
+        )
         content.innerHTML = ""
         content.appendChild(loading_template)
     else:
@@ -2171,38 +2184,29 @@ async def load_board_details():
         board_details = get_template("board-details-template")
         if board_details:
             # Populate header information
-            populate_template(board_details, {
-                "board-title": f"{selected_board_name} ({selected_version})"
-            })
-            
+            populate_template(board_details, {"board-title": f"{selected_board_name} ({selected_version})"})
+
             # Create module tree using DOM-based rendering
-            options = {
-                "module_prefix": "explorer",
-                "get_badge_class": lambda m: "",
-                "get_module_badge": lambda m: "",
-                "show_details": True
-            }
-            
+            options = {"module_prefix": "explorer", "get_badge_class": lambda m: "", "get_module_badge": lambda m: "", "show_details": True}
+
             module_tree_dom = render_module_tree_dom(modules, options)
-            
+
             # Use board content template
             board_content_template = get_template("board-content-template")
             if board_content_template:
                 # Populate template data
-                populate_template(board_content_template, {
-                    "modules-title": f"Modules ({len(modules)})"
-                })
-                
+                populate_template(board_content_template, {"modules-title": f"Modules ({len(modules)})"})
+
                 # Add module tree to template
                 modules_tree_container = board_content_template.querySelector("[data-modules-tree]")
                 if modules_tree_container and module_tree_dom:
                     modules_tree_container.appendChild(module_tree_dom)
-                
+
                 # Add content to board details
                 board_content = board_details.querySelector("[data-board-content]")
                 if board_content:
                     board_content.appendChild(board_content_template)
-            
+
             # Clear and update content
             content.innerHTML = ""
             content.appendChild(board_details)
@@ -2211,11 +2215,10 @@ async def load_board_details():
         # Use error template instead of inline HTML
         error_template = get_template("error-template")
         if error_template:
-            populate_template(error_template, {
-                "data-error-message": str(e),
-                "data-error-details": f"{type(e).__name__}: {str(e)}",
-                "data-error-icon": "true"
-            })
+            populate_template(
+                error_template,
+                {"data-error-message": str(e), "data-error-details": f"{type(e).__name__}: {str(e)}", "data-error-icon": "true"},
+            )
             content.innerHTML = ""
             content.appendChild(error_template)
         else:
@@ -2472,7 +2475,7 @@ def update_explorer_url():
 
         # Build URL parameters
         params = ["view=explorer"]
-        
+
         if version:
             params.append(f"version={version}")
         if board:
@@ -2496,7 +2499,7 @@ def update_search_url(query=""):
     try:
         # Build URL parameters
         params = ["view=search"]
-        
+
         if query:
             # URL encode the query using JavaScript (escape quotes safely)
             safe_query = query.replace("'", "\\'").replace('"', '\\"')
@@ -2555,7 +2558,7 @@ def update_comparison_url():
 
 def share_current_view():
     """Universal share function - copies current URL to clipboard (MicroPython compatible)"""
-    
+
     try:
         current_url = str(js.window.location.href)
 
@@ -2690,7 +2693,7 @@ async def populate_search_from_url(search_params):
                 # Decode the query parameter
                 decoded_query = js.eval(f"decodeURIComponent('{query}')")
                 search_input.value = decoded_query
-                
+
                 # Trigger search
                 await search_apis()
 

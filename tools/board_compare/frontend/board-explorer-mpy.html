@@ -1016,7 +1016,26 @@
             </div>
         </div>
 
-        <!-- Module Item Template -->
+        <!-- Icon Template -->
+        <div id="icon-template">
+            <i class="fas" data-icon-class style="margin-right: 8px;"></i>
+        </div>
+
+        <!-- Unified Tree Item Template -->
+        <div id="tree-item-template">
+            <div class="tree-item" data-item-type>
+                <div class="tree-node" data-node-click data-node-style>
+                    <span class="tree-icon" data-icon-container></span>
+                    <span class="item-main" data-main-content></span>
+                    <span class="item-extra" data-extra-content style="display: none;"></span>
+                    <span class="item-badge" data-badge-content style="display: none;"></span>
+                    <span class="item-summary" data-summary-content></span>
+                </div>
+                <div class="tree-children hidden" data-children-id data-children-container></div>
+            </div>
+        </div>
+
+        <!-- Module Item Template (specialized version of tree-item) -->
         <div id="module-item-template">
             <div class="module-item">
                 <div class="module-header" data-module-header-class data-module-click data-module-data>
@@ -1029,7 +1048,7 @@
             </div>
         </div>
 
-        <!-- Class Item Template -->
+        <!-- Class Item Template (specialized version of tree-item) -->
         <div id="class-item-template">
             <div class="class-item">
                 <div class="tree-node" data-class-click>
@@ -1042,15 +1061,13 @@
             </div>
         </div>
 
-        <!-- Function Item Template -->
+        <!-- Function/Method Item Template -->
         <div id="function-item-template">
             <div class="function-item">
                 <span class="tree-icon"><i class="fas fa-bolt fa-icon" data-function-icon></i></span>
                 <span style="color: #495057;">
                     <span style="color: #888; font-size: 0.85em;" data-decorators></span>
-                    <code
-                        style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;"
-                        data-signature></code>
+                    <code class="code-block" data-signature></code>
                 </span>
             </div>
         </div>
@@ -1060,9 +1077,7 @@
             <div class="constant-item">
                 <span class="tree-icon"><i class="fas fa-circle fa-icon"></i></span>
                 <span style="color: #495057;">
-                    <code
-                        style="background: #f8f9fa; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; font-size: 0.9em;"
-                        data-constant-signature></code>
+                    <code class="code-block" data-constant-signature></code>
                 </span>
             </div>
         </div>
@@ -1087,13 +1102,13 @@
             </div>
         </div>
 
-        <!-- No Search Results Template -->
-        <!-- Unified Message Template -->
+        <!-- Unified Message/Content Template -->
         <div id="message-template">
             <div class="detail-view" data-show-detail-view="true">
                 <div class="detail-header" data-message-header></div>
                 <p class="muted-text" data-message-content></p>
                 <p class="muted-text" data-message-subtitle></p>
+                <div data-message-body></div>
             </div>
             <div class="loading" data-show-loading="false">
                 <p data-simple-message></p>
