@@ -559,6 +559,110 @@
             background: #ffebee;
             border-left-color: #f44336;
         }
+
+        /* Search Results Styles */
+        .search-category {
+            margin-bottom: 30px;
+        }
+
+        .search-category-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+            padding: 10px 0;
+            border-bottom: 2px solid #667eea;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .search-result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .search-result-item:hover {
+            background: #e3f2fd;
+            border-color: #667eea;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+        }
+
+        .search-result-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .search-result-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1em;
+        }
+
+        .search-result-name strong {
+            color: #333;
+        }
+
+        .search-result-context {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .search-result-board {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .board-tag, .version-tag {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .board-tag {
+            background: #667eea;
+            color: white;
+        }
+
+        .version-tag {
+            background: #28a745;
+            color: white;
+        }
+
+        /* Responsive design for search results */
+        @media (max-width: 768px) {
+            .search-result-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .search-result-board {
+                align-items: flex-start;
+                flex-direction: row;
+                gap: 8px;
+            }
+        }
     </style>
 
     <!-- PyScript configuration -->

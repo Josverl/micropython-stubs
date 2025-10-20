@@ -180,10 +180,33 @@ def setup_event_handlers():
     if compare_btn:
         compare_btn.onclick = make_compare_handler()
 
-    # Search button
+    # Search button - async handler
+    def make_search_handler():
+        async def handler(e):
+            await search_apis()
+        return handler
+    
     search_btn = document.getElementById("search-btn")
     if search_btn:
-        search_btn.onclick = lambda e: search_apis()
+        search_btn.onclick = make_search_handler()
+
+    # Search input - Enter key handler (using JavaScript interop)
+    search_input = document.getElementById("search-input")
+    if search_input:
+        # Use JavaScript to handle the keydown event properly
+        js.eval("""
+        document.getElementById('search-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                window.micropython_search_enter();
+            }
+        });
+        """)
+        
+        # Define the search function for JavaScript to call
+        def search_enter():
+            asyncio.create_task(search_apis())
+        
+        js.window['micropython_search_enter'] = search_enter
 
     # Board selection change handlers
     def make_board_change_handler():
@@ -1117,18 +1140,415 @@ def update_comparison():
     print("Comparison display updated")
 
 
-def search_apis():
+async def search_apis():
     """Search for APIs across boards."""
+    search_input = document.getElementById("search-input")
     results = document.getElementById("search-results")
+    
+    search_term = search_input.value.strip()
+    
+    if not search_term:
+        results.innerHTML = """
+        <div class="detail-view">
+            <div class="detail-header">Search Results</div>
+            <p style="color: #666;">Enter a search term to find modules, classes, methods, functions, or constants.</p>
+        </div>
+        """
+        return
+    
+    if not app_state["db"]:
+        results.innerHTML = """
+        <div class="detail-view">
+            <div class="detail-header">Search Error</div>
+            <p style="color: #d32f2f;">Database not loaded. Please wait for the application to initialize.</p>
+        </div>
+        """
+        return
+
+    # Show loading
     results.innerHTML = """
+    <div class="loading">
+        <div class="spinner"></div>
+        <p>Searching for "<strong>{}</strong>"...</p>
+        <div class="progress-step">Scanning database...</div>
+    </div>
+    """.format(search_term)
+    
+    try:
+        # Allow UI update
+        await asyncio.sleep(0.1)
+        
+        search_results = await perform_search(search_term)
+        display_search_results(search_results, search_term)
+        
+    except Exception as e:
+        results.innerHTML = f"""
+        <div class="detail-view">
+            <div class="detail-header">Search Error</div>
+            <p style="color: #d32f2f;">Error performing search: {str(e)}</p>
+        </div>
+        """
+
+
+async def perform_search(search_term):
+    """Perform comprehensive search across all database entities."""
+    if not app_state["db"]:
+        print("Database not available for search")
+        return []
+    
+    # Use LIKE with wildcards for flexible matching
+    search_pattern = f"%{search_term}%"
+    results = []
+    
+    print(f"Starting search for: '{search_term}' with pattern: '{search_pattern}'")
+    
+    # First check if we have any data at all
+    try:
+        count_stmt = app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules")
+        count_stmt.step()
+        module_count = count_stmt.getAsObject()["count"]
+        count_stmt.free()
+        print(f"Total modules in database: {module_count}")
+        
+        # Show some sample module names for debugging
+        sample_stmt = app_state["db"].prepare("SELECT name FROM unique_modules LIMIT 10")
+        sample_names = []
+        while sample_stmt.step():
+            name = sample_stmt.getAsObject()["name"]
+            sample_names.append(name)
+            # Print each name individually to see exact content
+            print(f"Raw module name: '{name}' (len: {len(name)}, chars: {[ord(c) for c in name[:20]]})")
+        sample_stmt.free()
+        print(f"Sample module names: {sample_names}")
+        
+        # Test exact match for first module
+        if sample_names:
+            first_module = sample_names[0]
+            print(f"Testing with first module: '{first_module}' (type: {type(first_module)}, len: {len(first_module)})")
+            
+            # Test different query approaches
+            test_stmt = app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules WHERE name = ?")
+            test_stmt.bind([first_module])
+            test_stmt.step()
+            exact_count = test_stmt.getAsObject()["count"]
+            test_stmt.free()
+            print(f"Exact match count for '{first_module}': {exact_count}")
+            
+            # Try a simple SELECT to see what we get
+            debug_stmt = app_state["db"].prepare("SELECT name FROM unique_modules WHERE name = ? LIMIT 1")
+            debug_stmt.bind([first_module])
+            if debug_stmt.step():
+                found_name = debug_stmt.getAsObject()["name"]
+                print(f"Found exact name: '{found_name}' (type: {type(found_name)})")
+                print(f"Comparison: '{first_module}' == '{found_name}': {first_module == found_name}")
+            else:
+                print("No exact match found in debug query")
+            debug_stmt.free()
+            
+            # Test LIKE query for search term
+            test_like_stmt = app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules WHERE name LIKE ?")
+            test_like_stmt.bind([search_pattern])
+            test_like_stmt.step()
+            like_search_count = test_like_stmt.getAsObject()["count"]
+            test_like_stmt.free()
+            print(f"LIKE match count for search pattern '{search_pattern}': {like_search_count}")
+    except Exception as e:
+        print(f"Error counting modules: {e}")
+    
+    try:
+        # Search modules - try a simpler approach first
+        print("Searching modules...")
+        
+        # First try without any LIKE pattern - just get all modules and filter in Python
+        all_modules_stmt = app_state["db"].prepare("""
+            SELECT DISTINCT 
+                um.name as entity_name,
+                'module' as entity_type,
+                b.version, b.port, b.board,
+                um.id as module_id,
+                NULL as class_id,
+                NULL as parent_name
+            FROM unique_modules um
+            JOIN board_module_support bms ON um.id = bms.module_id
+            JOIN boards b ON bms.board_id = b.id  
+            ORDER BY b.version DESC, b.port, b.board, um.name
+        """)
+        
+        all_modules = []
+        while all_modules_stmt.step():
+            result_obj = all_modules_stmt.getAsObject()
+            # Convert to regular Python dict to avoid JS proxy issues
+            result = {
+                'entity_name': result_obj['entity_name'],
+                'entity_type': result_obj['entity_type'], 
+                'version': result_obj['version'],
+                'port': result_obj['port'],
+                'board': result_obj['board'],
+                'module_id': result_obj['module_id'],
+                'class_id': result_obj['class_id'],
+                'parent_name': result_obj['parent_name']
+            }
+            all_modules.append(result)
+        all_modules_stmt.free()
+        
+        print(f"Retrieved {len(all_modules)} total module entries")
+        
+        # Filter in Python for case-insensitive search
+        search_term_lower = search_term.lower()
+        module_matches = []
+        for module in all_modules:
+            if search_term_lower in module['entity_name'].lower():
+                module_matches.append(module)
+                # Debug: Print first few matches
+                if len(module_matches) <= 3:
+                    print(f"Match {len(module_matches)}: {module['entity_name']} (ID: {module['module_id']}, port: {module['port']}, board: {module['board']})")
+        
+        print(f"Found {len(module_matches)} modules matching '{search_term}' after Python filtering")
+        results.extend(module_matches)
+        
+        # Search classes
+        stmt = app_state["db"].prepare("""
+            SELECT DISTINCT
+                uc.name as entity_name,
+                'class' as entity_type,
+                b.version, b.port, b.board,
+                um.id as module_id,
+                uc.id as class_id,
+                um.name as parent_name
+            FROM unique_classes uc
+            JOIN unique_modules um ON uc.module_id = um.id
+            JOIN board_class_support bcs ON uc.id = bcs.class_id
+            JOIN boards b ON bcs.board_id = b.id
+            WHERE uc.name LIKE ? COLLATE NOCASE
+            ORDER BY b.version DESC, b.port, b.board, um.name, uc.name
+        """)
+        
+        stmt.bind([search_pattern])
+        while stmt.step():
+            results.append(dict(stmt.getAsObject()))
+        stmt.free()
+        
+        # Search methods
+        stmt = app_state["db"].prepare("""
+            SELECT DISTINCT
+                umet.name as entity_name,
+                'method' as entity_type,
+                b.version, b.port, b.board,
+                um.id as module_id,
+                uc.id as class_id,
+                uc.name as parent_name
+            FROM unique_methods umet
+            JOIN unique_classes uc ON umet.class_id = uc.id
+            JOIN unique_modules um ON uc.module_id = um.id
+            JOIN board_method_support bmets ON umet.id = bmets.method_id
+            JOIN boards b ON bmets.board_id = b.id
+            WHERE umet.name LIKE ? COLLATE NOCASE
+            ORDER BY b.version DESC, b.port, b.board, um.name, uc.name, umet.name
+        """)
+        
+        stmt.bind([search_pattern])
+        while stmt.step():
+            results.append(dict(stmt.getAsObject()))
+        stmt.free()
+        
+        # Search module constants
+        stmt = app_state["db"].prepare("""
+            SELECT DISTINCT
+                umc.name as entity_name,
+                'constant' as entity_type,
+                b.version, b.port, b.board,
+                um.id as module_id,
+                NULL as class_id,
+                um.name as parent_name
+            FROM unique_module_constants umc
+            JOIN unique_modules um ON umc.module_id = um.id
+            JOIN board_module_constant_support bmcs ON umc.id = bmcs.constant_id
+            JOIN boards b ON bmcs.board_id = b.id
+            WHERE umc.name LIKE ? COLLATE NOCASE
+            ORDER BY b.version DESC, b.port, b.board, um.name, umc.name
+        """)
+        
+        stmt.bind([search_pattern])
+        while stmt.step():
+            results.append(dict(stmt.getAsObject()))
+        stmt.free()
+        
+        # Search class attributes
+        stmt = app_state["db"].prepare("""
+            SELECT DISTINCT
+                uca.name as entity_name,
+                'attribute' as entity_type,
+                b.version, b.port, b.board,
+                um.id as module_id,
+                uc.id as class_id,
+                uc.name as parent_name
+            FROM unique_class_attributes uca
+            JOIN unique_classes uc ON uca.class_id = uc.id
+            JOIN unique_modules um ON uc.module_id = um.id
+            JOIN board_class_attribute_support bcas ON uca.id = bcas.attribute_id
+            JOIN boards b ON bcas.board_id = b.id
+            WHERE uca.name LIKE ? COLLATE NOCASE
+            ORDER BY b.version DESC, b.port, b.board, um.name, uc.name, uca.name
+        """)
+        
+        stmt.bind([search_pattern])
+        while stmt.step():
+            results.append(dict(stmt.getAsObject()))
+        stmt.free()
+        
+        # Search parameters  
+        stmt = app_state["db"].prepare("""
+            SELECT DISTINCT
+                up.name as entity_name,
+                'parameter' as entity_type,
+                b.version, b.port, b.board,
+                um.id as module_id,
+                uc.id as class_id,
+                umet.name as parent_name
+            FROM unique_parameters up
+            JOIN unique_methods umet ON up.method_id = umet.id
+            JOIN unique_classes uc ON umet.class_id = uc.id
+            JOIN unique_modules um ON uc.module_id = um.id
+            JOIN board_method_support bmets ON umet.id = bmets.method_id
+            JOIN boards b ON bmets.board_id = b.id
+            WHERE up.name LIKE ? COLLATE NOCASE
+            ORDER BY b.version DESC, b.port, b.board, um.name, uc.name, umet.name, up.name
+        """)
+        
+        stmt.bind([search_pattern])
+        while stmt.step():
+            results.append(dict(stmt.getAsObject()))
+        stmt.free()
+        
+    except Exception as e:
+        print(f"Search error: {e}")
+        return []
+    
+    return results
+
+
+def display_search_results(results, search_term):
+    """Display search results in a formatted list."""
+    results_div = document.getElementById("search-results")
+    
+    if not results:
+        results_div.innerHTML = f"""
+        <div class="detail-view">
+            <div class="detail-header">Search Results</div>
+            <p style="color: #666;">No results found for "<strong>{search_term}</strong>"</p>
+            <p style="color: #666; margin-top: 10px;">
+                Try a different search term or check spelling.
+            </p>
+        </div>
+        """
+        return
+    
+    # Group results by entity type for better organization
+    grouped_results = {}
+    for result in results:
+        entity_type = result["entity_type"]
+        if entity_type not in grouped_results:
+            grouped_results[entity_type] = []
+        grouped_results[entity_type].append(result)
+    
+    # Build HTML
+    html = f"""
     <div class="detail-view">
         <div class="detail-header">Search Results</div>
-        <p style="color: #666;">Search functionality coming soon...</p>
-        <p style="color: #666; margin-top: 10px;">
-            This feature is under development.
-        </p>
-    </div>
+        <p style="margin-bottom: 20px;">Found <strong>{len(results)}</strong> results for "<strong>{search_term}</strong>"</p>
     """
+    
+    # Sort entity types for consistent display
+    entity_order = ['module', 'class', 'function', 'method', 'constant', 'attribute', 'parameter']
+    type_labels = {
+        'module': 'Modules',
+        'class': 'Classes', 
+        'function': 'Functions',
+        'method': 'Methods',
+        'constant': 'Constants',
+        'attribute': 'Attributes',
+        'parameter': 'Parameters'
+    }
+    
+    for entity_type in entity_order:
+        if entity_type in grouped_results:
+            type_results = grouped_results[entity_type]
+            html += f"""
+            <div class="search-category">
+                <h3 class="search-category-title">
+                    <i class="fas {get_entity_icon(entity_type)}"></i>
+                    {type_labels[entity_type]} ({len(type_results)})
+                </h3>
+                <div class="search-results-list">
+            """
+            
+            for result in type_results:
+                board_name = format_board_name(result["port"], result["board"])
+                context_path = get_context_path(result)
+                
+                html += f"""
+                <div class="search-result-item" onclick="openSearchResult('{result["module_id"]}', '{result.get("class_id", "")}', '{result["entity_name"]}', '{entity_type}')">
+                    <div class="search-result-main">
+                        <div class="search-result-name">
+                            <i class="fas {get_entity_icon(entity_type)}"></i>
+                            <strong>{result["entity_name"]}</strong>
+                        </div>
+                        <div class="search-result-context">{context_path}</div>
+                    </div>
+                    <div class="search-result-board">
+                        <span class="board-tag">{board_name}</span>
+                        <span class="version-tag">{result["version"]}</span>
+                    </div>
+                </div>
+                """
+            
+            html += """
+                </div>
+            </div>
+            """
+    
+    html += "</div>"
+    results_div.innerHTML = html
+
+
+def get_entity_icon(entity_type):
+    """Get appropriate Font Awesome icon for entity type."""
+    icons = {
+        'module': 'fa-cube',
+        'class': 'fa-object-group', 
+        'function': 'fa-code',
+        'method': 'fa-cog',
+        'constant': 'fa-hashtag',
+        'attribute': 'fa-tag',
+        'parameter': 'fa-list'
+    }
+    return icons.get(entity_type, 'fa-question')
+
+
+def get_context_path(result):
+    """Get the context path for a search result."""
+    module_name = result.get("parent_name", "")
+    
+    if result["entity_type"] == "module":
+        return "Module"
+    elif result["entity_type"] == "class":
+        return f"in {module_name}"
+    elif result["entity_type"] == "function":
+        return f"in {module_name}"
+    elif result["entity_type"] == "method":
+        return f"in {module_name}.{result['parent_name']}"
+    elif result["entity_type"] == "constant":
+        return f"in {module_name}"
+    elif result["entity_type"] == "attribute":
+        return f"in {module_name}.{result['parent_name']}"
+    elif result["entity_type"] == "parameter":
+        parent = result.get("parent_name", "")
+        if result.get("class_id"):
+            return f"in {module_name}.{parent}()"
+        else:
+            return f"in {module_name}.{parent}()"
+    
+    return ""
 
 
 def get_class_bases(class_id):
@@ -2131,11 +2551,151 @@ def toggle_class(class_id, event):
             element.classList.add("hidden")
 
 
-# Register share functions with JavaScript
+async def open_search_result(module_id, class_id, entity_name, entity_type):
+    """Open a module viewer with the search result highlighted."""
+    print(f"Opening search result: {entity_name} ({entity_type}) in module {module_id}")
+    print(f"Debug search result data: module_id={module_id} (type: {type(module_id)})")
+    
+    # Switch to explorer tab first
+    switch_page("explorer")
+    
+    # Get board info for this module
+    if not app_state["db"]:
+        print("Database not available")
+        return
+    
+    try:
+        # Get board information for this module using the normalized schema
+        # First get the module name from unique_modules
+        print(f"Looking for module with ID: {module_id} (type: {type(module_id)})")
+        
+        # Ensure module_id is an integer
+        module_id_int = int(module_id)
+        print(f"Converted to int: {module_id_int}")
+        
+        module_stmt = app_state["db"].prepare("SELECT name FROM unique_modules WHERE id = ?")
+        module_stmt.bind(ffi.to_js([module_id_int]))
+        
+        if not module_stmt.step():
+            print("Module not found")
+            # Debug: Let's see what IDs actually exist
+            debug_stmt = app_state["db"].prepare("SELECT id, name FROM unique_modules LIMIT 10")
+            print("Sample module IDs in database:")
+            while debug_stmt.step():
+                row = debug_stmt.getAsObject()
+                print(f"  ID: {row['id']}, Name: {row['name']}")
+            debug_stmt.free()
+            module_stmt.free()
+            return
+            
+        module_name = module_stmt.getAsObject()["name"]
+        module_stmt.free()
+        print(f"Found module: {module_name}")
+        print(f"Found module: {module_name}")
+        
+        # Now get board information through the junction table
+        stmt = app_state["db"].prepare("""
+            SELECT DISTINCT b.version, b.port, b.board
+            FROM unique_modules um
+            JOIN board_module_support bms ON um.id = bms.module_id
+            JOIN boards b ON bms.board_id = b.id
+            WHERE um.id = ?
+            LIMIT 1
+        """)
+        stmt.bind(ffi.to_js([module_id_int]))
+        
+        if not stmt.step():
+            print("Board not found for module")
+            stmt.free()
+            return
+            
+        board_info = stmt.getAsObject()
+        stmt.free()
+        
+        # Set the explorer dropdowns to match this board
+        version_select = document.getElementById("explorer-version")
+        board_select = document.getElementById("explorer-board")
+        
+        # Set version
+        version_select.value = board_info["version"]
+        
+        # Set board (need to format the board name)
+        board_name = format_board_name(board_info["port"], board_info["board"])
+        board_select.value = board_name
+        
+        # Load the board details which will show all modules
+        await load_board_details()
+        
+        # After loading, try to highlight the specific element
+        await asyncio.sleep(0.5)  # Give time for content to load
+        await highlight_search_target(module_id, class_id, entity_name, entity_type)
+        
+    except Exception as e:
+        print(f"Error opening search result: {e}")
+
+
+async def highlight_search_target(module_id, class_id, entity_name, entity_type):
+    """Highlight the specific search target in the loaded content."""
+    try:
+        # Get module name first using normalized schema
+        module_id_int = int(module_id) if module_id else None
+        if module_id_int:
+            stmt = app_state["db"].prepare("SELECT name FROM unique_modules WHERE id = ?")
+            stmt.bind(ffi.to_js([module_id_int]))
+            if not stmt.step():
+                stmt.free()
+                return
+            module_name = stmt.getAsObject()["name"]
+            stmt.free()
+        
+        # Find and expand the target module
+        module_element_id = f"module-{module_name}"
+        module_element = document.getElementById(module_element_id)
+        
+        if module_element:
+            # Expand the module if it's collapsed
+            if "hidden" in module_element.classList:
+                module_element.classList.remove("hidden")
+            
+            # If targeting a class or its members, expand the class too
+            if class_id and (entity_type in ["class", "method", "attribute"]):
+                stmt = app_state["db"].prepare("SELECT name FROM classes WHERE id = ?")
+                stmt.bind([class_id])
+                if stmt.step():
+                    class_name = stmt.getAsObject()["name"]
+                    class_element_id = f"class-{module_name}-{class_name}"
+                    class_element = document.getElementById(class_element_id)
+                    if class_element and "hidden" in class_element.classList:
+                        class_element.classList.remove("hidden")
+                stmt.free()
+            
+            # Scroll to the module
+            module_element.scrollIntoView({"behavior": "smooth", "block": "center"})
+            
+            # Add temporary highlight effect
+            module_element.style.backgroundColor = "#fff3cd"
+            module_element.style.border = "2px solid #ffc107"
+            
+            # Remove highlight after 3 seconds
+            def remove_highlight():
+                module_element.style.backgroundColor = ""
+                module_element.style.border = ""
+            
+            # Use JavaScript setTimeout for the delay
+            js.window.setTimeout(remove_highlight, 3000)
+            
+        print(f"Highlighted {entity_name} in module {module_name}")
+        
+    except Exception as e:
+        print(f"Error highlighting search target: {e}")
+
+
+# Register functions with JavaScript
 js.window['micropython_share_success'] = share_success
 js.window['micropython_share_fallback'] = share_fallback
 js.window['toggleModule'] = toggle_module
 js.window['toggleClass'] = toggle_class
+js.window['openSearchResult'] = open_search_result
 
 
 # Main initialization
