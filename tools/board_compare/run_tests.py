@@ -14,11 +14,8 @@ def run_simple_tests():
     print("=" * 70)
     print("Running Simple Test Suite (test_tool.py)")
     print("=" * 70)
-    
-    result = subprocess.run(
-        [sys.executable, "test_tool.py"],
-        cwd=Path(__file__).parent
-    )
+
+    result = subprocess.run([sys.executable, "test_tool.py"], cwd=Path(__file__).parent)
     return result.returncode
 
 
@@ -27,12 +24,9 @@ def run_pytest_tests():
     print("\n" + "=" * 70)
     print("Running Pytest Test Suite")
     print("=" * 70)
-    
+
     try:
-        result = subprocess.run(
-            [sys.executable, "-m", "pytest", "-v"],
-            cwd=Path(__file__).parent
-        )
+        result = subprocess.run([sys.executable, "-m", "pytest", "-v"], cwd=Path(__file__).parent)
         return result.returncode
     except Exception as e:
         print(f"Error running pytest: {e}")
@@ -45,13 +39,13 @@ def main():
     print("\n" + "🔬" * 35)
     print("Board Comparison Tool - Complete Test Suite")
     print("🔬" * 35 + "\n")
-    
+
     # Run simple tests first
     simple_result = run_simple_tests()
-    
+
     # Run pytest tests
     pytest_result = run_pytest_tests()
-    
+
     # Summary
     print("\n" + "=" * 70)
     print("Test Summary")
@@ -59,7 +53,7 @@ def main():
     print(f"Simple tests: {'✓ PASSED' if simple_result == 0 else '✗ FAILED'}")
     print(f"Pytest tests: {'✓ PASSED' if pytest_result == 0 else '✗ FAILED'}")
     print("=" * 70)
-    
+
     # Exit with error if any tests failed
     return max(simple_result, pytest_result)
 

@@ -15,12 +15,14 @@ or use as an async context manager
         # Automatic cleanup when exiting context
 
 """
+
 from typing import Any, Dict, List, Optional, Protocol, Self, Sequence, TypedDict
 
 import js
 from pyscript import fetch, ffi, window
 
 __version__ = "0.1.0"
+
 
 # classess to define types for SQLite-wasm interactions
 class SQLExecResult(TypedDict):
@@ -31,7 +33,8 @@ class SQLExecResult(TypedDict):
 
 
 class SQLExecResults(List[SQLExecResult]):
-    """List of SQLite-wasm exec result objects with length property"""   
+    """List of SQLite-wasm exec result objects with length property"""
+
     @property
     def length(self) -> int: ...
 
@@ -53,6 +56,7 @@ class SQLStatement(Protocol):
     def getAsObject(self) -> dict[str, Any]: ...
     def bind(self, params: list[Any]) -> None: ...
     def free(self) -> None: ...
+
 
 # Wrapper to make SQLite-wasm object accessible with dot notation and handle initialization
 class SQLite:
@@ -113,7 +117,7 @@ class SQLite:
         if self._sql and hasattr(self._sql, "close"):
             # Note: SQL.js doesn't actually have a close method on the main object
             # But individual databases do, so this is here for completeness
-            pass 
+            pass
         return False  # Don't suppress exceptions
 
     def __getattr__(self, name):

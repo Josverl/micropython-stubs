@@ -15,11 +15,7 @@ CREATE TABLE IF NOT EXISTS users (
 """)
 
 # Insert sample users
-cursor.executemany("INSERT INTO users (name) VALUES (?)", [
-    ("Alice",),
-    ("Bob",),
-    ("Charlie",)
-])
+cursor.executemany("INSERT INTO users (name) VALUES (?)", [("Alice",), ("Bob",), ("Charlie",)])
 
 
 # Create the 'orders' table
@@ -50,24 +46,19 @@ CREATE TABLE IF NOT EXISTS user_profiles (
 """)
 
 # Insert sample orders
-cursor.executemany("INSERT INTO orders (user_id, product_name, quantity, price) VALUES (?, ?, ?, ?)", [
-    (1, "Laptop", 1, 999.99),
-    (1, "Mouse", 2, 25.50),
-    (2, "Keyboard", 1, 75.00),
-    (3, "Monitor", 1, 299.99),
-    (2, "Headphones", 1, 150.00)
-])
+cursor.executemany(
+    "INSERT INTO orders (user_id, product_name, quantity, price) VALUES (?, ?, ?, ?)",
+    [(1, "Laptop", 1, 999.99), (1, "Mouse", 2, 25.50), (2, "Keyboard", 1, 75.00), (3, "Monitor", 1, 299.99), (2, "Headphones", 1, 150.00)],
+)
 
 # Insert sample user profiles
-cursor.executemany("INSERT INTO user_profiles (user_id, email, age, city) VALUES (?, ?, ?, ?)", [
-    (1, "alice@email.com", 28, "New York"),
-    (2, "bob@email.com", 34, "Los Angeles"),
-    (3, "charlie@email.com", 22, "Chicago")
-])
+cursor.executemany(
+    "INSERT INTO user_profiles (user_id, email, age, city) VALUES (?, ?, ?, ?)",
+    [(1, "alice@email.com", 28, "New York"), (2, "bob@email.com", 34, "Los Angeles"), (3, "charlie@email.com", 22, "Chicago")],
+)
 
 # Commit and close
 conn.commit()
 conn.close()
 
 print("Database 'data.sqlite' created with table 'users' and 3 entries.")
-

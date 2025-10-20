@@ -47,87 +47,123 @@ class DatabaseBuilder:
 
     def _get_method_signature_hash(self, method_data: Dict, parameters: List[Dict]) -> str:
         """Generate a unique signature hash for a method including its parameters."""
-        param_signature = "|".join([
-            f"{p['name']}:{p.get('type_hint', '')}:{p.get('default_value', '')}:{p.get('is_optional', False)}:{p.get('is_variadic', False)}"
-            for p in parameters
-        ])
-        
-        return self._generate_signature_hash(
-            method_data["name"],
-            method_data.get("return_type"),
-            method_data.get("is_async", False),
-            method_data.get("is_classmethod", False),
-            method_data.get("is_staticmethod", False),
-            method_data.get("is_property", False),
-            param_signature
+        param_signature = "|".join(
+            [
+                f"{p['name']}:{p.get('type_hint', '')}:{p.get('default_value', '')}:{p.get('is_optional', False)}:{p.get('is_variadic', False)}"
+                for p in parameters
+            ]
         )
 
-    def _get_method_signature_hash_with_context(self, method_data: Dict, parameters: List[Dict], module_id: int, class_id: Optional[int]) -> str:
-        """Generate a unique signature hash for a method including its parameters and context."""
-        param_signature = "|".join([
-            f"{p['name']}:{p.get('type_hint', '')}:{p.get('default_value', '')}:{p.get('is_optional', False)}:{p.get('is_variadic', False)}"
-            for p in parameters
-        ])
-        
         return self._generate_signature_hash(
-            module_id,  # Include module context
-            class_id,   # Include class context
             method_data["name"],
             method_data.get("return_type"),
             method_data.get("is_async", False),
             method_data.get("is_classmethod", False),
             method_data.get("is_staticmethod", False),
             method_data.get("is_property", False),
-            param_signature
+            param_signature,
+        )
+
+    def _get_method_signature_hash_with_context(
+        self, method_data: Dict, parameters: List[Dict], module_id: int, class_id: Optional[int]
+    ) -> str:
+        """Generate a unique signature hash for a method including its parameters and context."""
+        param_signature = "|".join(
+            [
+                f"{p['name']}:{p.get('type_hint', '')}:{p.get('default_value', '')}:{p.get('is_optional', False)}:{p.get('is_variadic', False)}"
+                for p in parameters
+            ]
+        )
+
+        return self._generate_signature_hash(
+            module_id,  # Include module context
+            class_id,  # Include class context
+            method_data["name"],
+            method_data.get("return_type"),
+            method_data.get("is_async", False),
+            method_data.get("is_classmethod", False),
+            method_data.get("is_staticmethod", False),
+            method_data.get("is_property", False),
+            param_signature,
         )
 
     def _is_typing_related(self, name: str, type_hint: Optional[str] = None, value: Optional[str] = None) -> bool:
         """
         Determine if a constant/attribute is typing-related and should be hidden.
-        
+
         Args:
             name: The name of the constant/attribute
             type_hint: The type hint (if any)
             value: The value (if any)
-            
+
         Returns:
             True if this is a typing-related constant that should be hidden
         """
         # Check for typing-specific type hints
         if type_hint:
             typing_indicators = [
-                'TypeAlias', 'TypeVar', 'ParamSpec', 'Generic', 'Protocol',
-                'ClassVar', 'Type[', 'Union[', 'Optional[', 'Literal[',
-                'Callable[', 'Any', 'NoReturn', 'Never'
+                "TypeAlias",
+                "TypeVar",
+                "ParamSpec",
+                "Generic",
+                "Protocol",
+                "ClassVar",
+                "Type[",
+                "Union[",
+                "Optional[",
+                "Literal[",
+                "Callable[",
+                "Any",
+                "NoReturn",
+                "Never",
             ]
             if any(indicator in type_hint for indicator in typing_indicators):
                 return True
-        
+
         # Check for typing-specific value patterns
         if value:
             typing_value_patterns = [
-                'TypeVar(', 'ParamSpec(', 'TypeAlias', 'Generic[',
-                'Protocol[', 'Union[', 'Optional[', 'Literal[',
-                'Callable[', 'Type[', 'ClassVar[', 'Final['
+                "TypeVar(",
+                "ParamSpec(",
+                "TypeAlias",
+                "Generic[",
+                "Protocol[",
+                "Union[",
+                "Optional[",
+                "Literal[",
+                "Callable[",
+                "Type[",
+                "ClassVar[",
+                "Final[",
             ]
             if any(pattern in value for pattern in typing_value_patterns):
                 return True
-        
+
         # Check for common typing variable naming patterns
         # Variables starting with _ and containing type-related keywords
-        if name.startswith('_') and any(keyword in name.lower() for keyword in [
-            'type', 'var', 'param', 'spec', 'alias', 'generic', 'protocol'
-        ]):
+        if name.startswith("_") and any(
+            keyword in name.lower() for keyword in ["type", "var", "param", "spec", "alias", "generic", "protocol"]
+        ):
             return True
-            
+
         # Common typing variable prefixes/suffixes
         typing_name_patterns = [
-            '_T', '_F', '_P', '_R', '_Ret', '_Param', '_Args', '_Kwargs',
-            'Const_T', '_TypeVar', '_ParamSpec', '_TypeAlias'
+            "_T",
+            "_F",
+            "_P",
+            "_R",
+            "_Ret",
+            "_Param",
+            "_Args",
+            "_Kwargs",
+            "Const_T",
+            "_TypeVar",
+            "_ParamSpec",
+            "_TypeAlias",
         ]
-        if name in typing_name_patterns or any(name.endswith(pattern) for pattern in ['_T', '_F', '_P', '_R']):
+        if name in typing_name_patterns or any(name.endswith(pattern) for pattern in ["_T", "_F", "_P", "_R"]):
             return True
-            
+
         return False
 
     def create_schema(self):
@@ -426,10 +462,7 @@ class DatabaseBuilder:
         cursor = self.conn.cursor()
 
         # Generate module signature hash
-        module_hash = self._generate_signature_hash(
-            module_data["name"],
-            module_data.get("docstring", "")
-        )
+        module_hash = self._generate_signature_hash(module_data["name"], module_data.get("docstring", ""))
 
         # Insert or get unique module
         cursor.execute(
@@ -510,11 +543,7 @@ class DatabaseBuilder:
         cursor = self.conn.cursor()
 
         # Generate class signature hash
-        class_hash = self._generate_signature_hash(
-            module_id,
-            class_data["name"],
-            class_data.get("docstring", "")
-        )
+        class_hash = self._generate_signature_hash(module_id, class_data["name"], class_data.get("docstring", ""))
 
         # Insert or get unique class
         cursor.execute(
@@ -657,7 +686,7 @@ class DatabaseBuilder:
         # Add parameters (only if this is the first time we see this method)
         cursor.execute("SELECT COUNT(*) FROM unique_parameters WHERE method_id = ?", (method_id,))
         param_count = cursor.fetchone()[0]
-        
+
         if param_count == 0:  # Only add parameters if not already added
             for i, param_data in enumerate(parameters):
                 cursor.execute(
@@ -681,7 +710,7 @@ class DatabaseBuilder:
     # def export_to_json(self, output_path: Path, include_docstrings: bool = False):
     #     """
     #     Export the database to a JSON file for the frontend.
-        
+
     #     Args:
     #         output_path: Path to output JSON file
     #         include_docstrings: Whether to include docstrings (default: False to reduce size)
@@ -743,9 +772,7 @@ class DatabaseBuilder:
         cursor = self.conn.cursor()
 
         if class_id is None:
-            cursor.execute(
-                "SELECT * FROM methods WHERE module_id = ? AND class_id IS NULL", (module_id,)
-            )
+            cursor.execute("SELECT * FROM methods WHERE module_id = ? AND class_id IS NULL", (module_id,))
         else:
             cursor.execute(
                 "SELECT * FROM methods WHERE module_id = ? AND class_id = ?",
@@ -763,9 +790,7 @@ class DatabaseBuilder:
     def _get_parameters_for_method(self, method_id: int) -> List[Dict]:
         """Get all parameters for a method."""
         cursor = self.conn.cursor()
-        cursor.execute(
-            "SELECT * FROM parameters WHERE method_id = ? ORDER BY position", (method_id,)
-        )
+        cursor.execute("SELECT * FROM parameters WHERE method_id = ? ORDER BY position", (method_id,))
         return [dict(row) for row in cursor.fetchall()]
 
     # def export_detailed_to_json(self, output_path: Path):
@@ -798,14 +823,14 @@ class DatabaseBuilder:
     #         for module_row in cursor.fetchall():
     #             module_dict = dict(module_row)
     #             module_id = module_dict["id"]
-                
+
     #             # Get classes
     #             cursor.execute("SELECT * FROM classes WHERE module_id = ?", (module_id,))
     #             classes = []
     #             for class_row in cursor.fetchall():
     #                 class_dict = dict(class_row)
     #                 class_id = class_dict["id"]
-                    
+
     #                 # Get class methods
     #                 cursor.execute(
     #                     "SELECT * FROM methods WHERE module_id = ? AND class_id = ?",
@@ -815,7 +840,7 @@ class DatabaseBuilder:
     #                 for method_row in cursor.fetchall():
     #                     method_dict = dict(method_row)
     #                     method_id = method_dict["id"]
-                        
+
     #                     # Get parameters
     #                     cursor.execute(
     #                         "SELECT name, type_hint, default_value, is_optional, is_variadic FROM parameters WHERE method_id = ? ORDER BY position",
@@ -823,18 +848,18 @@ class DatabaseBuilder:
     #                     )
     #                     params = [dict(row) for row in cursor.fetchall()]
     #                     method_dict["parameters"] = params
-                        
+
     #                     # Remove internal IDs
     #                     method_dict.pop("id", None)
     #                     method_dict.pop("module_id", None)
     #                     method_dict.pop("class_id", None)
     #                     methods.append(method_dict)
-                    
+
     #                 class_dict["methods"] = methods
     #                 class_dict.pop("id", None)
     #                 class_dict.pop("module_id", None)
     #                 classes.append(class_dict)
-                
+
     #             # Get module-level functions
     #             cursor.execute(
     #                 "SELECT * FROM methods WHERE module_id = ? AND class_id IS NULL",
@@ -844,7 +869,7 @@ class DatabaseBuilder:
     #             for func_row in cursor.fetchall():
     #                 func_dict = dict(func_row)
     #                 func_id = func_dict["id"]
-                    
+
     #                 # Get parameters
     #                 cursor.execute(
     #                     "SELECT name, type_hint, default_value, is_optional, is_variadic FROM parameters WHERE method_id = ? ORDER BY position",
@@ -852,20 +877,20 @@ class DatabaseBuilder:
     #                 )
     #                 params = [dict(row) for row in cursor.fetchall()]
     #                 func_dict["parameters"] = params
-                    
+
     #                 # Remove internal IDs
     #                 func_dict.pop("id", None)
     #                 func_dict.pop("module_id", None)
     #                 func_dict.pop("class_id", None)
     #                 functions.append(func_dict)
-                
+
     #             # Get constants
     #             cursor.execute(
     #                 "SELECT name FROM module_constants WHERE module_id = ?",
     #                 (module_id,)
     #             )
     #             constants = [row[0] for row in cursor.fetchall()]
-                
+
     #             module_dict["classes"] = classes
     #             module_dict["functions"] = functions
     #             module_dict["constants"] = constants
@@ -883,28 +908,25 @@ class DatabaseBuilder:
     def get_board_modules_detailed(self, version: str, port: str, board: str) -> Dict:
         """
         Get detailed module information for a specific board (for API endpoint).
-        
+
         Args:
             version: MicroPython version
             port: Port name
             board: Board name
-            
+
         Returns:
             Dictionary with detailed module information
         """
         cursor = self.conn.cursor()
-        
+
         # Get board
-        cursor.execute(
-            "SELECT id FROM boards WHERE version = ? AND port = ? AND board = ?",
-            (version, port, board)
-        )
+        cursor.execute("SELECT id FROM boards WHERE version = ? AND port = ? AND board = ?", (version, port, board))
         result = cursor.fetchone()
         if not result:
             return None
-            
+
         board_id = result[0]
-        
+
         # Get modules for this board with details
         cursor.execute(
             """
@@ -920,23 +942,22 @@ class DatabaseBuilder:
         for module_row in cursor.fetchall():
             module_dict = dict(module_row)
             module_id = module_dict["id"]
-            
+
             # Get class count
             cursor.execute("SELECT COUNT(*) FROM classes WHERE module_id = ?", (module_id,))
             class_count = cursor.fetchone()[0]
-            
+
             # Get function count
-            cursor.execute(
-                "SELECT COUNT(*) FROM methods WHERE module_id = ? AND class_id IS NULL",
-                (module_id,)
-            )
+            cursor.execute("SELECT COUNT(*) FROM methods WHERE module_id = ? AND class_id IS NULL", (module_id,))
             function_count = cursor.fetchone()[0]
-            
-            modules.append({
-                "name": module_dict["name"],
-                "class_count": class_count,
-                "function_count": function_count,
-            })
+
+            modules.append(
+                {
+                    "name": module_dict["name"],
+                    "class_count": class_count,
+                    "function_count": function_count,
+                }
+            )
 
         return {
             "version": version,
@@ -948,49 +969,49 @@ class DatabaseBuilder:
     def clean_version(self, version: str):
         """
         Remove all records for a specific version from the database.
-        
+
         Args:
             version: Version to clean (e.g., 'v1.26.0')
         """
         cursor = self.conn.cursor()
-        
+
         logger.info(f"Cleaning database for version: {version}")
-        
+
         # Get all board IDs for this version
         cursor.execute("SELECT id FROM boards WHERE version = ?", (version,))
         board_ids = [row[0] for row in cursor.fetchall()]
-        
+
         if not board_ids:
             logger.info(f"No boards found for version {version}")
             return
-        
+
         logger.info(f"Found {len(board_ids)} boards for version {version}")
-        
+
         # Convert board IDs to comma-separated string for SQL IN clause
-        board_ids_str = ','.join('?' * len(board_ids))
-        
+        board_ids_str = ",".join("?" * len(board_ids))
+
         # Delete all board support relationships
         cursor.execute(f"DELETE FROM board_module_support WHERE board_id IN ({board_ids_str})", board_ids)
         cursor.execute(f"DELETE FROM board_class_support WHERE board_id IN ({board_ids_str})", board_ids)
         cursor.execute(f"DELETE FROM board_method_support WHERE board_id IN ({board_ids_str})", board_ids)
         cursor.execute(f"DELETE FROM board_class_attribute_support WHERE board_id IN ({board_ids_str})", board_ids)
         cursor.execute(f"DELETE FROM board_module_constant_support WHERE board_id IN ({board_ids_str})", board_ids)
-        
+
         # Delete boards
         cursor.execute(f"DELETE FROM boards WHERE id IN ({board_ids_str})", board_ids)
         deleted_boards = cursor.rowcount
         logger.info(f"Deleted {deleted_boards} boards for version {version}")
-        
+
         # Clean up orphaned records
         self._cleanup_orphaned_records()
-        
+
         self.conn.commit()
         logger.info(f"Cleanup completed for version {version}")
 
     def _cleanup_orphaned_records(self):
         """Clean up orphaned records that are no longer referenced by any board."""
         cursor = self.conn.cursor()
-        
+
         # Find and delete orphaned modules
         cursor.execute("""
             DELETE FROM unique_modules 
@@ -999,7 +1020,7 @@ class DatabaseBuilder:
         deleted_modules = cursor.rowcount
         if deleted_modules > 0:
             logger.info(f"Deleted {deleted_modules} orphaned modules")
-        
+
         # Find and delete orphaned classes
         cursor.execute("""
             DELETE FROM unique_classes 
@@ -1008,7 +1029,7 @@ class DatabaseBuilder:
         deleted_classes = cursor.rowcount
         if deleted_classes > 0:
             logger.info(f"Deleted {deleted_classes} orphaned classes")
-        
+
         # Find and delete orphaned methods
         cursor.execute("""
             DELETE FROM unique_methods 
@@ -1017,7 +1038,7 @@ class DatabaseBuilder:
         deleted_methods = cursor.rowcount
         if deleted_methods > 0:
             logger.info(f"Deleted {deleted_methods} orphaned methods")
-        
+
         # Delete parameters for orphaned methods
         cursor.execute("""
             DELETE FROM unique_parameters 
@@ -1026,7 +1047,7 @@ class DatabaseBuilder:
         deleted_params = cursor.rowcount
         if deleted_params > 0:
             logger.info(f"Deleted {deleted_params} orphaned parameters")
-        
+
         # Delete orphaned class attributes
         cursor.execute("""
             DELETE FROM unique_class_attributes 
@@ -1035,7 +1056,7 @@ class DatabaseBuilder:
         deleted_attrs = cursor.rowcount
         if deleted_attrs > 0:
             logger.info(f"Deleted {deleted_attrs} orphaned class attributes")
-        
+
         # Delete orphaned module constants
         cursor.execute("""
             DELETE FROM unique_module_constants 
@@ -1044,7 +1065,7 @@ class DatabaseBuilder:
         deleted_constants = cursor.rowcount
         if deleted_constants > 0:
             logger.info(f"Deleted {deleted_constants} orphaned module constants")
-        
+
         # Delete orphaned class bases (these should be cleaned up based on class existence)
         cursor.execute("""
             DELETE FROM unique_class_bases 
@@ -1059,10 +1080,10 @@ class DatabaseBuilder:
         cursor = self.conn.cursor()
         cursor.execute("SELECT DISTINCT version FROM boards ORDER BY version")
         versions = [row[0] for row in cursor.fetchall()]
-        
+
         if versions:
             logger.info(f"Versions currently in database: {versions}")
-            
+
             # Show board counts per version
             for version in versions:
                 cursor.execute("SELECT COUNT(*) FROM boards WHERE version = ?", (version,))
@@ -1070,91 +1091,117 @@ class DatabaseBuilder:
                 logger.info(f"  {version}: {count} boards")
         else:
             logger.info("No versions found in database")
-        
+
         return versions
 
     def reset_database(self):
         """Completely reset the database by dropping and recreating all tables."""
         cursor = self.conn.cursor()
-        
+
         logger.info("Resetting entire database...")
-        
+
         # Drop view first
         cursor.execute("DROP VIEW IF EXISTS methods_with_board_support")
-        
+
         # Drop all tables in reverse order of dependencies
         tables = [
-            'unique_parameters', 'board_method_support', 'board_class_attribute_support',
-            'board_module_constant_support', 'board_class_support', 'board_module_support',
-            'unique_methods', 'unique_class_attributes', 'unique_class_bases', 
-            'unique_module_constants', 'unique_classes', 'unique_modules', 'boards'
+            "unique_parameters",
+            "board_method_support",
+            "board_class_attribute_support",
+            "board_module_constant_support",
+            "board_class_support",
+            "board_module_support",
+            "unique_methods",
+            "unique_class_attributes",
+            "unique_class_bases",
+            "unique_module_constants",
+            "unique_classes",
+            "unique_modules",
+            "boards",
         ]
-        
+
         for table in tables:
             cursor.execute(f"DROP TABLE IF EXISTS {table}")
             logger.info(f"Dropped table: {table}")
-        
+
         # Drop indexes
         indexes = [
-            'idx_boards_version', 'idx_unique_modules_signature', 'idx_unique_modules_name',
-            'idx_unique_classes_signature', 'idx_unique_classes_module',
-            'idx_unique_methods_signature', 'idx_unique_methods_module', 
-            'idx_unique_methods_class', 'idx_unique_methods_name',
-            'idx_board_method_support_method', 'idx_board_method_support_board'
+            "idx_boards_version",
+            "idx_unique_modules_signature",
+            "idx_unique_modules_name",
+            "idx_unique_classes_signature",
+            "idx_unique_classes_module",
+            "idx_unique_methods_signature",
+            "idx_unique_methods_module",
+            "idx_unique_methods_class",
+            "idx_unique_methods_name",
+            "idx_board_method_support_method",
+            "idx_board_method_support_board",
         ]
-        
+
         for index in indexes:
             cursor.execute(f"DROP INDEX IF EXISTS {index}")
-        
+
         self.conn.commit()
         logger.info("Database reset complete")
-        
+
         # Recreate schema
         self.create_schema()
         logger.info("Database schema recreated")
 
+
 def normalize_version_for_directory(version: str) -> str:
     """
     Normalize version format for directory matching.
-    
+
     Args:
         version: Version in format like 'v1.26.0', '1.26.0', or 'v1_26_0'
-        
+
     Returns:
         Version in directory format like 'v1_26_0'
     """
     # Remove 'v' prefix if present
-    if version.startswith('v'):
+    if version.startswith("v"):
         version = version[1:]
-    
+
     # Replace dots with underscores
-    version = version.replace('.', '_')
-    
+    version = version.replace(".", "_")
+
     # Add 'v' prefix back
-    return f'v{version}'
+    return f"v{version}"
+
 
 def normalize_version_for_display(version: str) -> str:
     """
     Normalize version format for display and database storage.
-    
+
     Args:
         version: Version in format like 'v1_26_0', 'v1.26.0', or '1.26.0'
-        
+
     Returns:
         Version in display format like 'v1.26.0'
     """
     # Remove 'v' prefix if present
-    if version.startswith('v'):
+    if version.startswith("v"):
         version = version[1:]
-    
+
     # Replace underscores with dots
-    version = version.replace('_', '.')
-    
+    version = version.replace("_", ".")
+
     # Add 'v' prefix back
-    return f'v{version}'
+    return f"v{version}"
+
 
 def build_database_for_version(
-    publish_dir: Path, version: str, db_path: Path, json_path: Optional[Path] = None, detailed_json_path: Optional[Path] = None, no_clean: bool = False, clean_only: bool = False, reset_db: bool = False, list_versions: bool = False
+    publish_dir: Path,
+    version: str,
+    db_path: Path,
+    json_path: Optional[Path] = None,
+    detailed_json_path: Optional[Path] = None,
+    no_clean: bool = False,
+    clean_only: bool = False,
+    reset_db: bool = False,
+    list_versions: bool = False,
 ):
     """
     Build a database for all boards of a specific MicroPython version.
@@ -1192,7 +1239,7 @@ def build_database_for_version(
     # Normalize version for directory pattern matching
     directory_version = normalize_version_for_directory(version)
     display_version = normalize_version_for_display(version)
-    
+
     logger.info(f"Input version: {version}")
     logger.info(f"Directory pattern version: {directory_version}")
     logger.info(f"Display/storage version: {display_version}")
@@ -1205,7 +1252,7 @@ def build_database_for_version(
     if should_clean:
         logger.info(f"Cleaning existing data for version '{display_version}' (use --no-clean to skip)")
         builder.clean_version(display_version)
-        
+
         # Show what's left after cleaning
         logger.info("After cleaning:")
         builder.list_versions()
@@ -1235,23 +1282,21 @@ def build_database_for_version(
         if len(parts) >= 4:
             port = parts[2]
             board = "-".join(parts[3:-1])  # Everything between port and "stubs"
-            
+
             # Use the normalized display version for database storage
             logger.info(f"Processing {port}/{board} (version: {display_version})...")
 
             try:
                 board_data = scan_board_stubs(stub_dir, display_version, port, board)
                 builder.add_board(board_data)
-                logger.info(
-                    f"  Added {len(board_data['modules'])} modules for {port}/{board}"
-                )
+                logger.info(f"  Added {len(board_data['modules'])} modules for {port}/{board}")
             except Exception as e:
                 logger.error(f"  Error processing {stub_dir}: {e}")
 
     # if json_path:
     #     logger.info(f"Exporting simplified JSON to: {json_path}")
     #     builder.export_to_json(json_path)
-    
+
     # if detailed_json_path:
     #     logger.info(f"Exporting detailed JSON to: {detailed_json_path}")
     #     builder.export_detailed_to_json(detailed_json_path)
@@ -1266,7 +1311,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
         description="Build MicroPython board comparison database",
-        epilog="Version can be specified as v1.26.0, 1.26.0, or v1_26_0. By default, existing data for the version is cleaned before building."
+        epilog="Version can be specified as v1.26.0, 1.26.0, or v1_26_0. By default, existing data for the version is cleaned before building.",
     )
     parser.add_argument(
         "--publish-dir",
@@ -1286,33 +1331,25 @@ if __name__ == "__main__":
         default=Path(__file__).parent / "frontend" / "board_comparison.db",
         help="Output database path",
     )
+    parser.add_argument("--json", type=Path, help="Optional JSON output path for frontend (simplified)")
+    parser.add_argument("--detailed-json", type=Path, help="Optional detailed JSON output path with full module/class/method info")
     parser.add_argument(
-        "--json", type=Path, help="Optional JSON output path for frontend (simplified)"
+        "--no-clean", action="store_true", help="Skip cleaning existing records for this version (WARNING: may create duplicates)"
     )
-    parser.add_argument(
-        "--detailed-json", type=Path, help="Optional detailed JSON output path with full module/class/method info"
-    )
-    parser.add_argument(
-        "--no-clean",
-        action="store_true",
-        help="Skip cleaning existing records for this version (WARNING: may create duplicates)"
-    )
-    parser.add_argument(
-        "--clean-only",
-        action="store_true",
-        help="Only clean the database for this version (don't process any stubs)"
-    )
-    parser.add_argument(
-        "--reset-db",
-        action="store_true",
-        help="Completely reset the database (removes ALL data for ALL versions)"
-    )
-    parser.add_argument(
-        "--list-versions",
-        action="store_true",
-        help="List all versions currently in the database"
-    )
+    parser.add_argument("--clean-only", action="store_true", help="Only clean the database for this version (don't process any stubs)")
+    parser.add_argument("--reset-db", action="store_true", help="Completely reset the database (removes ALL data for ALL versions)")
+    parser.add_argument("--list-versions", action="store_true", help="List all versions currently in the database")
 
     args = parser.parse_args()
 
-    build_database_for_version(args.publish_dir, args.version, args.db, args.json, args.detailed_json, args.no_clean, args.clean_only, args.reset_db, args.list_versions)
+    build_database_for_version(
+        args.publish_dir,
+        args.version,
+        args.db,
+        args.json,
+        args.detailed_json,
+        args.no_clean,
+        args.clean_only,
+        args.reset_db,
+        args.list_versions,
+    )

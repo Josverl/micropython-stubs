@@ -31,7 +31,9 @@ class Method(BaseModel):
     is_classmethod: bool = Field(False, description="Whether this is a classmethod")
     is_staticmethod: bool = Field(False, description="Whether this is a staticmethod")
     is_property: bool = Field(False, description="Whether this is a property")
-    decorators: List[str] = Field(default_factory=list, description="List of all decorator names (e.g., ['property', 'classmethod', 'overload'])")
+    decorators: List[str] = Field(
+        default_factory=list, description="List of all decorator names (e.g., ['property', 'classmethod', 'overload'])"
+    )
     docstring: Optional[str] = Field(None, description="Method docstring")
     overloads: int = Field(0, description="Number of overloaded versions")
 

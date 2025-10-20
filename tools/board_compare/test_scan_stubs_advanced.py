@@ -33,7 +33,7 @@ class TestScanStubsErrorHandling:
         # Create one good and one bad file
         self.create_stub_file(temp_stub_dir, "good.pyi", "def func() -> None: ...")
         self.create_stub_file(temp_stub_dir, "bad.pyi", "def bad_syntax( ...")
-        
+
         scanner = StubScanner(temp_stub_dir)
         # Should handle exception and continue scanning
         modules = scanner.scan_all_modules()
@@ -50,7 +50,7 @@ class MyClass:
         self.create_stub_file(temp_stub_dir, "incomplete.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) >= 1
 
     def test_function_without_body(self, temp_stub_dir):
@@ -82,7 +82,7 @@ class MyClass:
         stub_file = self.create_stub_file(temp_stub_dir, "decorators.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
         cls = module.classes[0]
@@ -99,7 +99,7 @@ class Outer:
         stub_file = self.create_stub_file(temp_stub_dir, "nested_attrs.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
 
@@ -121,7 +121,7 @@ class Descriptor:
         stub_file = self.create_stub_file(temp_stub_dir, "complex_decorators.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
 
     def test_constant_assignment_without_annotation(self, temp_stub_dir):
@@ -135,7 +135,7 @@ MAX_RETRIES = 3
         stub_file = self.create_stub_file(temp_stub_dir, "simple_constants.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.constants) >= 4
 
@@ -151,7 +151,7 @@ class DataProcessor:
         stub_file = self.create_stub_file(temp_stub_dir, "builtin_types.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
 
@@ -164,7 +164,7 @@ def another_stub() -> ...: ...
         stub_file = self.create_stub_file(temp_stub_dir, "ellipsis_returns.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
 
     def test_module_docstring_extraction(self, temp_stub_dir):
@@ -180,7 +180,7 @@ def func() -> None: ...
         stub_file = self.create_stub_file(temp_stub_dir, "with_docstring.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert module.docstring is not None
 
@@ -201,7 +201,7 @@ class MyGeneric(Generic[T, K]):
         stub_file = self.create_stub_file(temp_stub_dir, "base_classes.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) >= 2
 
@@ -218,7 +218,7 @@ class Config:
         stub_file = self.create_stub_file(temp_stub_dir, "complex_attrs.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
 
@@ -226,7 +226,7 @@ class Config:
         """Test scanning a non-existent file."""
         nonexistent = temp_stub_dir / "nonexistent.pyi"
         scanner = StubScanner(temp_stub_dir)
-        
+
         # Should raise an exception or return None
         try:
             result = scanner.scan_module(nonexistent)

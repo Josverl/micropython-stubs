@@ -42,9 +42,9 @@ def print_query_results(title: str, result: SQLExecResults) -> None:
 
     # Convert JavaScript arrays to Python lists
     if hasattr(columns, "length"):  # JS Array
-        columns = [columns[i] for i in range(int(columns.length))] # type: ignore   
+        columns = [columns[i] for i in range(int(columns.length))]  # type: ignore
     if hasattr(values, "length"):  # JS Array
-        values = [values[i] for i in range(int(values.length))] # type: ignore
+        values = [values[i] for i in range(int(values.length))]  # type: ignore
 
     # Print column headers
     header_line = "  " + " | ".join(f"{col:<15}" for col in columns)
@@ -55,7 +55,7 @@ def print_query_results(title: str, result: SQLExecResults) -> None:
     for row in values:
         # Convert row to Python list if it's a JS array
         if hasattr(row, "length"):  # JS Array
-            row = [row[i] for i in range(int(row.length))] # type: ignore
+            row = [row[i] for i in range(int(row.length))]  # type: ignore
 
         formatted_row = []
         for value in row:
@@ -93,12 +93,11 @@ async def example_create_db(SQL) -> SQLDatabase:
         for row in result[0]["values"]:
             print(f"  - Row: id={row[0]}, name={row[1]}")
         return db
-    
+
     except Exception as db_error:
         print(f"- ❌ Database error: {db_error}")
         print(f"- ❌ Database error type: {type(db_error).__name__}")
         raise db_error
-
 
 
 async def get_table_row_counts(db: SQLDatabase) -> SQLExecResults:
@@ -116,7 +115,7 @@ async def get_table_row_counts(db: SQLDatabase) -> SQLExecResults:
     tables_result = db.exec(tables_query)
 
     if not tables_result[0]["values"]:
-        return [{"columns": ["message"], "values": [["No user tables found"]]}] # type: ignore
+        return [{"columns": ["message"], "values": [["No user tables found"]]}]  # type: ignore
 
     # Step 2: Build dynamic UNION query
     table_names = [row[0] for row in tables_result[0]["values"]]
@@ -132,7 +131,7 @@ async def get_table_row_counts(db: SQLDatabase) -> SQLExecResults:
 
     # Step 3: Execute the combined query
     result = db.exec(combined_query)
-    return result # type: ignore - could also cast to SQLExecResults
+    return result  # type: ignore - could also cast to SQLExecResults
 
 
 async def load_and_query_database(SQL):
@@ -281,14 +280,12 @@ async def load_and_query_database(SQL):
         print(f"- ❌ Error type: {type(query_error).__name__}")
 
 
-
-
 async def main():
     print("Hello, Structured World!")
 
     try:
         print("- Initializing SQLite-wasm ...")
-        # Initialize SQLite-wasm using a context manager 
+        # Initialize SQLite-wasm using a context manager
         # - but this can also be done via factory method as below
         # SQL = await SQLite.initialize(version="1.13.0", cdn="cdnjs")
         async with SQLite() as SQL:
@@ -297,11 +294,16 @@ async def main():
             # Run example to create a database and perform simple operations
             db = await example_create_db(SQL)
 
-
-            print( "\n- Testing binding queries...")
+            print("\n- Testing binding queries...")
             stmt = db.prepare("SELECT * FROM test WHERE name LIKE ?")
             # Bindings to queries need to be converted to JS array
-            stmt.bind(ffi.to_js([r"%row%",]))
+            stmt.bind(
+                ffi.to_js(
+                    [
+                        r"%row%",
+                    ]
+                )
+            )
             while stmt.step():
                 row = stmt.getAsObject()
                 print("What is a row?")
@@ -313,8 +315,7 @@ async def main():
                 # probably a dictionary-like object
                 print(f"Found: {row['name']}")  # Should print results
                 # or a named tuple maybe?
-                print(f"Found: {row.name}")  # Should print results - 
-
+                print(f"Found: {row.name}")  # Should print results -
 
             db.close()
 
@@ -327,5 +328,7 @@ async def main():
         return
 
     print("\n🎉 All done!")
+
+
 # Start the application
 asyncio.create_task(main())

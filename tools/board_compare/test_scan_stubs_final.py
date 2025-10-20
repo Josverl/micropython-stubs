@@ -39,7 +39,7 @@ class MyClass:
         self.create_stub_file(temp_stub_dir, "classmethod.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) > 0
         cls = modules[0].classes[0]
         method = cls.methods[0]
@@ -56,7 +56,7 @@ class Math:
         self.create_stub_file(temp_stub_dir, "staticmethod.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) > 0
         cls = modules[0].classes[0]
         method = cls.methods[0]
@@ -73,15 +73,15 @@ class AsyncClass:
         self.create_stub_file(temp_stub_dir, "async.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) > 0
         module = modules[0]
-        
+
         # Check async function
         assert len(module.functions) > 0
         async_func = module.functions[0]
         assert async_func.is_async is True
-        
+
         # Check async method
         cls = module.classes[0]
         async_method = cls.methods[0]
@@ -97,7 +97,7 @@ class Config:
         self.create_stub_file(temp_stub_dir, "property.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) > 0
         cls = modules[0].classes[0]
         prop = cls.methods[0]
@@ -111,14 +111,14 @@ def func(a: int, b: str, c: float = 1.0, *args, **kwargs) -> None: ...
         self.create_stub_file(temp_stub_dir, "params.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) > 0
         func = modules[0].functions[0]
         params = func.parameters
-        
+
         # Should have all parameters
         assert len(params) >= 5
-        
+
         # Check order
         assert params[0].name == "a"
         assert params[1].name == "b"
@@ -141,7 +141,7 @@ def process(x):
         self.create_stub_file(temp_stub_dir, "overload.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) > 0
         # Should capture overloaded functions
         assert len(modules[0].functions) >= 3
@@ -157,7 +157,7 @@ class DataClass:
         self.create_stub_file(temp_stub_dir, "dataclass.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) > 0
         cls = modules[0].classes[0]
         assert len(cls.attributes) >= 3
@@ -180,7 +180,7 @@ def complex_func(
         self.create_stub_file(temp_stub_dir, "many_params.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) > 0
         func = modules[0].functions[0]
         assert len(func.parameters) == 8
@@ -195,7 +195,7 @@ class Derived(Base1, Base2): ...
         self.create_stub_file(temp_stub_dir, "inheritance.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) > 0
         # Should have all classes
         assert len(modules[0].classes) >= 3
@@ -215,7 +215,7 @@ EXPR_CONST = 1 + 2
         self.create_stub_file(temp_stub_dir, "constants.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         assert len(modules) > 0
         # Should extract all constants
         constants = modules[0].constants

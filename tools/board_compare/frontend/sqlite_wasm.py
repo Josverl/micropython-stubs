@@ -190,7 +190,6 @@ class SQLite:
         window.console.log(f"{_timestamp()} Starting database open with IndexedDB caching")
         start_time = _performance_now()
 
-
         return await self._open_database_cached(url, start_time)
 
     async def _open_database_cached(self, file_path: str, start_time: float) -> SQLDatabase:
@@ -232,8 +231,6 @@ class SQLite:
             for i in range(len(data)):
                 db_array[i] = data[i]
             return self._sql["Database"].new(db_array)
-
-
 
     # async def load_database_data_url(self, url: str) -> bytes:
     #     """Load raw database data from a URL without creating multiple database instance

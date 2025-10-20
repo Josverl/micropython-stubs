@@ -32,7 +32,7 @@ class TestScanStubsErrorPaths:
         """Test scanning a module with syntax errors returns None."""
         stub_file = self.create_stub_file(temp_stub_dir, "bad.pyi", "def foo( invalid syntax")
         scanner = StubScanner(temp_stub_dir)
-        
+
         # Should handle syntax error gracefully
         result = scanner.scan_module(stub_file)
         # libcst will raise an exception, which gets logged but module is skipped
@@ -44,7 +44,7 @@ class TestScanStubsErrorPaths:
         # Create a readable stub file
         self.create_stub_file(temp_stub_dir, "readable.pyi", "def func() -> None: ...")
         scanner = StubScanner(temp_stub_dir)
-        
+
         # Should still find and scan readable files
         modules = scanner.scan_all_modules()
         assert len(modules) >= 1
@@ -53,10 +53,10 @@ class TestScanStubsErrorPaths:
         """Test that private modules are excluded from scanning."""
         self.create_stub_file(temp_stub_dir, "_private.pyi", "def private_func() -> None: ...")
         self.create_stub_file(temp_stub_dir, "public.pyi", "def public_func() -> None: ...")
-        
+
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         # Should only find public module
         module_names = [m.name for m in modules]
         assert "public" in module_names
@@ -65,10 +65,10 @@ class TestScanStubsErrorPaths:
     def test_scan_builtin_module_included(self, temp_stub_dir):
         """Test that __builtins__ module is included despite underscore prefix."""
         self.create_stub_file(temp_stub_dir, "__builtins__.pyi", "class object: ...")
-        
+
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         module_names = [m.name for m in modules]
         assert "__builtins__" in module_names
 
@@ -76,10 +76,10 @@ class TestScanStubsErrorPaths:
         """Test scanning package with __init__.pyi files."""
         self.create_stub_file(temp_stub_dir, "mypackage/__init__.pyi", "def package_func() -> None: ...")
         self.create_stub_file(temp_stub_dir, "mypackage/submodule.pyi", "def sub_func() -> None: ...")
-        
+
         scanner = StubScanner(temp_stub_dir)
         modules = scanner.scan_all_modules()
-        
+
         module_names = [m.name for m in modules]
         # Should have mypackage and mypackage.submodule (or variants)
         assert any("mypackage" in name for name in module_names)
@@ -113,7 +113,7 @@ class MyClass:
         stub_file = self.create_stub_file(temp_stub_dir, "test.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
         cls = module.classes[0]
@@ -131,7 +131,7 @@ class MyClass:
         stub_file = self.create_stub_file(temp_stub_dir, "test.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
 
@@ -147,7 +147,7 @@ class MyClass:
         stub_file = self.create_stub_file(temp_stub_dir, "test.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
         cls = module.classes[0]
@@ -171,7 +171,7 @@ class MyClass:
         stub_file = self.create_stub_file(temp_stub_dir, "test.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         # Should handle complex decorator syntax gracefully
         assert module is not None
 
@@ -202,7 +202,7 @@ def func() -> Union[List[int], Optional[str]]: ...
         stub_file = self.create_stub_file(temp_stub_dir, "test.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.functions) > 0
         func = module.functions[0]
@@ -216,7 +216,7 @@ def func(param: int = ...) -> None: ...
         stub_file = self.create_stub_file(temp_stub_dir, "test.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.functions) > 0
         func = module.functions[0]
@@ -232,7 +232,7 @@ def func(x: int | None = None) -> None: ...
         stub_file = self.create_stub_file(temp_stub_dir, "test.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.functions) > 0
         func = module.functions[0]
@@ -265,7 +265,7 @@ DEBUG: bool = False
         stub_file = self.create_stub_file(temp_stub_dir, "test.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.constants) >= 3
         const_names = [c.name for c in module.constants]
@@ -283,7 +283,7 @@ class Config:
         stub_file = self.create_stub_file(temp_stub_dir, "test.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
 
@@ -299,7 +299,7 @@ _PrivateType: TypeVar = TypeVar('T')
         stub_file = self.create_stub_file(temp_stub_dir, "test.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         # Check that typing-related items are marked as hidden
         for const in module.constants:
@@ -327,9 +327,9 @@ class TestScanBoardStubs:
     def test_scan_board_stubs_basic(self, temp_stub_dir):
         """Test scan_board_stubs returns proper structure."""
         self.create_stub_file(temp_stub_dir, "sys.pyi", "def exit(code: int = 0) -> None: ...")
-        
+
         result = scan_board_stubs(temp_stub_dir, "v1.20.0", "esp32", "generic")
-        
+
         assert result["version"] == "v1.20.0"
         assert result["port"] == "esp32"
         assert result["board"] == "generic"
@@ -347,9 +347,9 @@ MCU: {'mpy': 'v1.20.0', 'arch': 'xtensxa'}
 def exit(code: int = 0) -> None: ...
 '''
         self.create_stub_file(temp_stub_dir, "sys.pyi", content)
-        
+
         result = scan_board_stubs(temp_stub_dir, "v1.20.0", "esp32", "generic")
-        
+
         # Should extract MCU info
         assert "mpy_version" in result
         assert "arch" in result
@@ -357,7 +357,7 @@ def exit(code: int = 0) -> None: ...
     def test_scan_board_stubs_empty_directory(self, temp_stub_dir):
         """Test scan_board_stubs with empty directory."""
         result = scan_board_stubs(temp_stub_dir, "v1.20.0", "esp32", "generic")
-        
+
         assert result["version"] == "v1.20.0"
         assert result["modules"] == []
 
@@ -383,7 +383,7 @@ class TestEdgeCasesAndBoundaries:
         stub_file = self.create_stub_file(temp_stub_dir, "empty.pyi", "")
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert module.name == "empty"
         assert len(module.classes) == 0
@@ -399,7 +399,7 @@ from pathlib import Path
         stub_file = self.create_stub_file(temp_stub_dir, "imports_only.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
 
     def test_deeply_nested_classes(self, temp_stub_dir):
@@ -413,7 +413,7 @@ class Outer:
         stub_file = self.create_stub_file(temp_stub_dir, "nested.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
 
@@ -430,7 +430,7 @@ def func() -> None:
         stub_file = self.create_stub_file(temp_stub_dir, "unicode.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.functions) > 0
 
@@ -450,7 +450,7 @@ class __DunderClass__:
         stub_file = self.create_stub_file(temp_stub_dir, "special.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.functions) >= 3
         assert len(module.classes) >= 2
@@ -464,7 +464,7 @@ def func_with_types(*args: str, **kwargs: int) -> None: ...
         stub_file = self.create_stub_file(temp_stub_dir, "variadic.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.functions) >= 2
 
@@ -477,7 +477,7 @@ class MyClass:
         stub_file = self.create_stub_file(temp_stub_dir, "positional_only.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
 
@@ -494,6 +494,6 @@ class GenericClass(Generic[T]):
         stub_file = self.create_stub_file(temp_stub_dir, "generic.pyi", content)
         scanner = StubScanner(temp_stub_dir)
         module = scanner.scan_module(stub_file)
-        
+
         assert module is not None
         assert len(module.classes) > 0
