@@ -1343,7 +1343,7 @@ async def perform_search(search_term):
 
             # Test different query approaches
             test_stmt = app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules WHERE name = ?")
-            test_stmt.bind([first_module])
+            test_stmt.bind(ffi.to_js([first_module]))
             test_stmt.step()
             exact_count = test_stmt.getAsObject()["count"]
             test_stmt.free()
@@ -1351,7 +1351,7 @@ async def perform_search(search_term):
 
             # Try a simple SELECT to see what we get
             debug_stmt = app_state["db"].prepare("SELECT name FROM unique_modules WHERE name = ? LIMIT 1")
-            debug_stmt.bind([first_module])
+            debug_stmt.bind(ffi.to_js([first_module]))
             if debug_stmt.step():
                 found_name = debug_stmt.getAsObject()["name"]
                 print(f"Found exact name: '{found_name}' (type: {type(found_name)})")
@@ -1362,7 +1362,7 @@ async def perform_search(search_term):
 
             # Test LIKE query for search term
             test_like_stmt = app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules WHERE name LIKE ?")
-            test_like_stmt.bind([search_pattern])
+            test_like_stmt.bind(ffi.to_js([search_pattern]))
             test_like_stmt.step()
             like_search_count = test_like_stmt.getAsObject()["count"]
             test_like_stmt.free()
@@ -1422,8 +1422,10 @@ async def perform_search(search_term):
 
         print(f"Found {len(module_matches)} modules matching '{search_term}' after Python filtering")
         results.extend(module_matches)
+        print(f"Added {len(module_matches)} module results. Total results so far: {len(results)}")
 
         # Search classes
+        print(f"Starting class search for pattern: {search_pattern}")
         stmt = app_state["db"].prepare("""
             SELECT DISTINCT
                 uc.name as entity_name,
@@ -1440,12 +1442,31 @@ async def perform_search(search_term):
             ORDER BY b.version DESC, b.port, b.board, um.name, uc.name
         """)
 
-        stmt.bind([search_pattern])
+        stmt.bind(ffi.to_js([search_pattern]))
+        class_count = 0
         while stmt.step():
-            results.append(dict(stmt.getAsObject()))
+            class_count += 1
+            result_obj = stmt.getAsObject()
+            # Convert to regular Python dict to avoid JS proxy issues
+            result = {
+                "entity_name": result_obj["entity_name"],
+                "entity_type": result_obj["entity_type"],
+                "version": result_obj["version"],
+                "port": result_obj["port"],
+                "board": result_obj["board"],
+                "module_id": result_obj["module_id"],
+                "class_id": result_obj["class_id"],
+                "parent_name": result_obj["parent_name"],
+            }
+            results.append(result)
+            # Debug: Print first few matches
+            if class_count <= 3:
+                print(f"Class match {class_count}: {result['entity_name']} in {result['parent_name']} (ID: {result['class_id']})")
         stmt.free()
+        print(f"Found {class_count} classes matching '{search_term}'")
 
         # Search methods
+        print(f"Starting method search for pattern: {search_pattern}")
         stmt = app_state["db"].prepare("""
             SELECT DISTINCT
                 umet.name as entity_name,
@@ -1463,10 +1484,25 @@ async def perform_search(search_term):
             ORDER BY b.version DESC, b.port, b.board, um.name, uc.name, umet.name
         """)
 
-        stmt.bind([search_pattern])
+        stmt.bind(ffi.to_js([search_pattern]))
+        method_count = 0
         while stmt.step():
-            results.append(dict(stmt.getAsObject()))
+            method_count += 1
+            result_obj = stmt.getAsObject()
+            # Convert to regular Python dict to avoid JS proxy issues
+            result = {
+                "entity_name": result_obj["entity_name"],
+                "entity_type": result_obj["entity_type"],
+                "version": result_obj["version"],
+                "port": result_obj["port"],
+                "board": result_obj["board"],
+                "module_id": result_obj["module_id"],
+                "class_id": result_obj["class_id"],
+                "parent_name": result_obj["parent_name"],
+            }
+            results.append(result)
         stmt.free()
+        print(f"Found {method_count} methods matching '{search_term}'")
 
         # Search module constants
         stmt = app_state["db"].prepare("""
@@ -1485,9 +1521,21 @@ async def perform_search(search_term):
             ORDER BY b.version DESC, b.port, b.board, um.name, umc.name
         """)
 
-        stmt.bind([search_pattern])
+        stmt.bind(ffi.to_js([search_pattern]))
         while stmt.step():
-            results.append(dict(stmt.getAsObject()))
+            result_obj = stmt.getAsObject()
+            # Convert to regular Python dict to avoid JS proxy issues
+            result = {
+                "entity_name": result_obj["entity_name"],
+                "entity_type": result_obj["entity_type"],
+                "version": result_obj["version"],
+                "port": result_obj["port"],
+                "board": result_obj["board"],
+                "module_id": result_obj["module_id"],
+                "class_id": result_obj["class_id"],
+                "parent_name": result_obj["parent_name"],
+            }
+            results.append(result)
         stmt.free()
 
         # Search class attributes
@@ -1508,9 +1556,21 @@ async def perform_search(search_term):
             ORDER BY b.version DESC, b.port, b.board, um.name, uc.name, uca.name
         """)
 
-        stmt.bind([search_pattern])
+        stmt.bind(ffi.to_js([search_pattern]))
         while stmt.step():
-            results.append(dict(stmt.getAsObject()))
+            result_obj = stmt.getAsObject()
+            # Convert to regular Python dict to avoid JS proxy issues
+            result = {
+                "entity_name": result_obj["entity_name"],
+                "entity_type": result_obj["entity_type"],
+                "version": result_obj["version"],
+                "port": result_obj["port"],
+                "board": result_obj["board"],
+                "module_id": result_obj["module_id"],
+                "class_id": result_obj["class_id"],
+                "parent_name": result_obj["parent_name"],
+            }
+            results.append(result)
         stmt.free()
 
         # Search parameters
@@ -1532,15 +1592,30 @@ async def perform_search(search_term):
             ORDER BY b.version DESC, b.port, b.board, um.name, uc.name, umet.name, up.name
         """)
 
-        stmt.bind([search_pattern])
+        stmt.bind(ffi.to_js([search_pattern]))
         while stmt.step():
-            results.append(dict(stmt.getAsObject()))
+            result_obj = stmt.getAsObject()
+            # Convert to regular Python dict to avoid JS proxy issues
+            result = {
+                "entity_name": result_obj["entity_name"],
+                "entity_type": result_obj["entity_type"],
+                "version": result_obj["version"],
+                "port": result_obj["port"],
+                "board": result_obj["board"],
+                "module_id": result_obj["module_id"],
+                "class_id": result_obj["class_id"],
+                "parent_name": result_obj["parent_name"],
+            }
+            results.append(result)
         stmt.free()
 
     except Exception as e:
         print(f"Search error: {e}")
+        import traceback
+        traceback.print_exc()
         return []
 
+    print(f"Search completed successfully. Total results: {len(results)}")
     return results
 
 
