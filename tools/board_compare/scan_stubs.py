@@ -12,7 +12,12 @@ from typing import Dict, List, Optional, Union
 
 import libcst as cst
 
-from .models import Attribute, Class, Constant, Method, Module, Parameter
+# Handle both standalone execution and module import
+try:
+    from .models import Attribute, Class, Constant, Method, Module, Parameter
+except ImportError:
+    # Running as standalone script
+    from models import Attribute, Class, Constant, Method, Module, Parameter
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -39,8 +44,8 @@ class StubScanner:
         """
         modules = []
         for pyi_file in self.stub_dir.glob("**/*.pyi"):
-            if pyi_file.name.startswith("_") and pyi_file.name != "__builtins__.pyi":
-                # Skip private modules except __builtins__
+            if pyi_file.name.startswith("_") and pyi_file.name not in ["__builtins__.pyi", "__init__.pyi"]:
+                # Skip private modules except __builtins__ and __init__
                 continue
 
             try:
@@ -70,14 +75,17 @@ class StubScanner:
             tree = cst.parse_module(content)
 
             # Extract module name from file path
-            module_name = pyi_file.stem
-            if pyi_file.parent.name not in ["", "."]:
-                # Handle package modules like requests/__init__.pyi
-                rel_path = pyi_file.relative_to(self.stub_dir)
-                if rel_path.name == "__init__.pyi":
-                    module_name = str(rel_path.parent).replace("/", ".")
-                else:
-                    module_name = str(rel_path.with_suffix("")).replace("/", ".")
+            rel_path = pyi_file.relative_to(self.stub_dir)
+            
+            if rel_path.name == "__init__.pyi":
+                # For __init__.pyi files, use the parent directory name as the module name
+                module_name = str(rel_path.parent).replace("\\", ".").replace("/", ".")
+                # Handle root __init__.pyi case (shouldn't happen but be safe)
+                if module_name == ".":
+                    module_name = pyi_file.stem
+            else:
+                # For regular .pyi files, use the full relative path
+                module_name = str(rel_path.with_suffix("")).replace("\\", ".").replace("/", ".")
 
             # Extract docstring
             docstring = self._get_docstring(tree)

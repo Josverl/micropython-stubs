@@ -13,8 +13,14 @@ import sqlite3
 from pathlib import Path
 from typing import Dict, List, Optional
 
-from .models import Board, Class, Method, Module, Parameter
-from .scan_stubs import scan_board_stubs
+# Handle both standalone execution and module import
+try:
+    from .models import Board, Class, Method, Module, Parameter
+    from .scan_stubs import scan_board_stubs
+except ImportError:
+    # Running as standalone script
+    from models import Board, Class, Method, Module, Parameter
+    from scan_stubs import scan_board_stubs
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -1277,7 +1283,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--db",
         type=Path,
-        default=Path(__file__).parent / "board_comparison.db",
+        default=Path(__file__).parent / "frontend" / "board_comparison.db",
         help="Output database path",
     )
     parser.add_argument(
