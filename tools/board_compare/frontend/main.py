@@ -498,13 +498,19 @@ def setup_event_handlers():
 
         return handler
 
+    def make_explorer_change_handler():
+        async def handler(e):
+            await load_board_details()
+            update_explorer_url()
+        return handler
+
     explorer_version = document.getElementById("explorer-version")
     if explorer_version:
-        explorer_version.onchange = make_board_change_handler()
+        explorer_version.onchange = make_explorer_change_handler()
 
     explorer_board = document.getElementById("explorer-board")
     if explorer_board:
-        explorer_board.onchange = make_board_change_handler()
+        explorer_board.onchange = make_explorer_change_handler()
 
     # Comparison page event handlers
     def make_comparison_change_handler(version_id, board_id):
@@ -555,10 +561,18 @@ def setup_event_handlers():
 
         compare_boards_btn.onclick = make_async_compare_handler()
 
-    # Share button
+    # Share buttons
     share_btn = document.getElementById("share-btn")
     if share_btn:
         share_btn.onclick = lambda e: share_comparison()
+    
+    explorer_share_btn = document.getElementById("explorer-share-btn")
+    if explorer_share_btn:
+        explorer_share_btn.onclick = lambda e: share_explorer()
+    
+    search_share_btn = document.getElementById("search-share-btn")
+    if search_share_btn:
+        search_share_btn.onclick = lambda e: share_search()
 
 
 # Global comparison state
@@ -1548,6 +1562,9 @@ def display_search_results(results, search_term):
                 
             results_div.innerHTML = ""
             results_div.appendChild(no_results_element)
+            
+            # Update URL with search term (no results)
+            update_search_url(search_term)
         return
 
     # Group results by entity type for better organization
@@ -1609,6 +1626,9 @@ def display_search_results(results, search_term):
         # Update the search results display
         results_div.innerHTML = ""
         results_div.appendChild(search_results_element)
+        
+        # Update URL with search results
+        update_search_url(search_term)
 
 
 def create_search_result_item(result, entity_type):
@@ -2444,6 +2464,58 @@ def update_version_options(version_id, board_id):
     pass
 
 
+def update_explorer_url():
+    """Update URL with current explorer parameters"""
+    try:
+        version = str(js.document.getElementById("explorer-version").value)
+        board = str(js.document.getElementById("explorer-board").value)
+
+        # Build URL parameters
+        params = ["view=explorer"]
+        
+        if version:
+            params.append(f"version={version}")
+        if board:
+            params.append(f"board={board}")
+
+        # Update URL without page reload
+        params_str = "&".join(params)
+        js.eval(f"""
+        (function() {{
+            const newUrl = window.location.pathname + '?{params_str}';
+            window.history.replaceState({{}}, '', newUrl);
+        }})();
+        """)
+
+    except Exception as e:
+        print(f"Error updating explorer URL: {e}")
+
+
+def update_search_url(query=""):
+    """Update URL with current search parameters"""
+    try:
+        # Build URL parameters
+        params = ["view=search"]
+        
+        if query:
+            # URL encode the query using JavaScript (escape quotes safely)
+            safe_query = query.replace("'", "\\'").replace('"', '\\"')
+            encoded_query = js.eval(f"encodeURIComponent('{safe_query}')")
+            params.append(f"query={encoded_query}")
+
+        # Update URL without page reload
+        params_str = "&".join(params)
+        js.eval(f"""
+        (function() {{
+            const newUrl = window.location.pathname + '?{params_str}';
+            window.history.replaceState({{}}, '', newUrl);
+        }})();
+        """)
+
+    except Exception as e:
+        print(f"Error updating search URL: {e}")
+
+
 def update_comparison_url():
     """Update URL with current comparison parameters (MicroPython compatible)"""
 
@@ -2458,9 +2530,9 @@ def update_comparison_url():
         params = ["view=compare"]
 
         if board1:
-            params.append(f"board1={board1}")
+            params.append(f"board={board1}")
         if board1_version:
-            params.append(f"version1={board1_version}")
+            params.append(f"version={board1_version}")
         if board2:
             params.append(f"board2={board2}")
         if board2_version:
@@ -2481,9 +2553,9 @@ def update_comparison_url():
         print(f"Error updating comparison URL: {e}")
 
 
-def share_comparison():
-    """Share current comparison by copying URL to clipboard (MicroPython compatible)"""
-
+def share_current_view():
+    """Universal share function - copies current URL to clipboard (MicroPython compatible)"""
+    
     try:
         current_url = str(js.window.location.href)
 
@@ -2504,8 +2576,126 @@ def share_comparison():
         """)
 
     except Exception as e:
-        print(f"Error sharing comparison: {e}")
+        print(f"Error sharing current view: {e}")
         update_status("Failed to copy link to clipboard", "error")
+
+
+def share_comparison():
+    """Share current comparison by copying URL to clipboard (MicroPython compatible)"""
+    # Update the comparison URL first, then share
+    update_comparison_url()
+    share_current_view()
+
+
+def share_explorer():
+    """Share current explorer state by copying URL to clipboard"""
+    # Update the explorer URL first, then share
+    update_explorer_url()
+    share_current_view()
+
+
+def share_search():
+    """Share current search state by copying URL to clipboard"""
+    # Get current search term and update URL
+    search_input = js.document.getElementById("search-input")
+    if search_input:
+        query = str(search_input.value)
+        update_search_url(query)
+    share_current_view()
+
+
+async def populate_explorer_from_url(search_params):
+    """Populate explorer fields from URL parameters"""
+    try:
+        version = search_params.get("version")
+        board = search_params.get("board")
+
+        if version:
+            version_select = document.getElementById("explorer-version")
+            if version_select:
+                version_select.value = version
+
+        if board:
+            board_select = document.getElementById("explorer-board")
+            if board_select:
+                board_select.value = board
+
+        # Trigger board details load if both are set
+        if version and board:
+            await load_board_details()
+
+    except Exception as e:
+        print(f"Error populating explorer from URL: {e}")
+
+
+async def populate_comparison_from_url(search_params):
+    """Populate comparison fields from URL parameters"""
+    try:
+        board1 = search_params.get("board")  # Changed from board1 to board
+        version1 = search_params.get("version")  # Changed from version1 to version
+        board2 = search_params.get("board2")
+        version2 = search_params.get("version2")
+        diff = search_params.get("diff")
+
+        # Use the searchable dropdown select functions to set values
+        if version1:
+            try:
+                # Call the global JavaScript function for board1-version dropdown
+                js.window.micropython_dropdown_board1_version_select(version1)
+            except Exception as e:
+                print(f"Error setting version1: {e}")
+
+        if board1:
+            try:
+                # Call the global JavaScript function for board1 dropdown
+                js.window.micropython_dropdown_board1_select(board1)
+            except Exception as e:
+                print(f"Error setting board1: {e}")
+
+        if version2:
+            try:
+                # Call the global JavaScript function for board2-version dropdown
+                js.window.micropython_dropdown_board2_version_select(version2)
+            except Exception as e:
+                print(f"Error setting version2: {e}")
+
+        if board2:
+            try:
+                # Call the global JavaScript function for board2 dropdown
+                js.window.micropython_dropdown_board2_select(board2)
+            except Exception as e:
+                print(f"Error setting board2: {e}")
+
+        if diff == "true":
+            diff_checkbox = document.getElementById("hide-common")
+            if diff_checkbox:
+                diff_checkbox.checked = True
+
+        # Trigger comparison if both boards are set
+        if board1 and board2:
+            await compare_boards()
+
+    except Exception as e:
+        print(f"Error populating comparison from URL: {e}")
+
+
+async def populate_search_from_url(search_params):
+    """Populate search fields from URL parameters"""
+    try:
+        query = search_params.get("query")
+
+        if query:
+            search_input = document.getElementById("search-input")
+            if search_input:
+                # Decode the query parameter
+                decoded_query = js.eval(f"decodeURIComponent('{query}')")
+                search_input.value = decoded_query
+                
+                # Trigger search
+                await search_apis()
+
+    except Exception as e:
+        print(f"Error populating search from URL: {e}")
 
 
 def share_success():
@@ -2735,16 +2925,26 @@ async def main():
         # Initialize searchable dropdowns after populating selects
         initialize_searchable_dropdowns()
 
-        # Check URL parameters and auto-switch to comparison mode if needed
+        # Check URL parameters and auto-switch to appropriate mode
         url = js.eval("new URL(window.location.href)")
 
         # Get individual parameters using URLSearchParams.get() method
         search_params = url.searchParams
         view = search_params.get("view")
 
+        # Handle different views and populate their parameters
         if view == "compare":
-            # Switch to comparison mode
+            # Switch to comparison mode and populate parameters
             switch_page("compare")
+            await populate_comparison_from_url(search_params)
+        elif view == "explorer":
+            # Switch to explorer mode and populate parameters
+            switch_page("explorer")
+            await populate_explorer_from_url(search_params)
+        elif view == "search":
+            # Switch to search mode and populate parameters
+            switch_page("search")
+            await populate_search_from_url(search_params)
 
         update_status("Loaded database. Application ready!", "success")
     else:
