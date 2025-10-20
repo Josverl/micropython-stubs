@@ -10,7 +10,9 @@ packages = [
 [files]
 "sqlite_wasm.py" = ""
 "board_utils.py" = ""
-"board_comparison.db" = ""
+
+# database is loaded from URL 
+# "board_comparison.db" = ""
 
 
 # "https://example.com/data.csv" = "./data.csv"
