@@ -152,7 +152,9 @@ def create_module_item(module, options):
 
     badge_class = get_badge_class(module)
     module_badge = get_module_badge(module)
-    module_tree_id = f"{module_prefix}-module-{module['name']}"
+    # Use module ID to ensure uniqueness when same module names exist across different boards
+    module_id = module.get('id', 'unknown')
+    module_tree_id = f"{module_prefix}-module-{module['name']}-{module_id}"
 
     # Format module summary
     summary_parts = []
@@ -201,9 +203,13 @@ def create_module_item(module, options):
     return module_element
 
 
-def create_class_item(cls, module_name, module_prefix):
+def create_class_item(cls, module_name, module_prefix, module_id=None):
     """Create a class item using template."""
-    class_id = f"{module_prefix}-class-{module_name}-{cls['name']}"
+    # Use module_id to ensure uniqueness when same module names exist across different boards
+    if module_id:
+        class_id = f"{module_prefix}-class-{module_name}-{cls['name']}-{module_id}"
+    else:
+        class_id = f"{module_prefix}-class-{module_name}-{cls['name']}"
 
     base_classes_str = ""
     if cls.get("base_classes") and len(cls["base_classes"]) > 0:
@@ -499,6 +505,21 @@ def setup_event_handlers():
             asyncio.create_task(search_apis())
 
         js.window["micropython_search_enter"] = search_enter
+
+    # Result limit control
+    result_limit_select = document.getElementById("result-limit-select")
+    if result_limit_select:
+        # Set default limit
+        window.searchResultLimit = 25
+        
+        def handle_limit_change(e):
+            window.searchResultLimit = int(e.target.value)
+            # Re-run search if there are current results
+            search_input = document.getElementById("search-input")
+            if search_input and search_input.value.strip():
+                asyncio.create_task(search_apis())
+        
+        result_limit_select.onchange = handle_limit_change
 
     # Board selection change handlers
     def make_board_change_handler():
@@ -958,7 +979,7 @@ def render_module_tree_dom(modules, options):
             if children_container:
                 # Add classes
                 for cls in module.get("classes", []):
-                    class_element = create_class_item(cls, module["name"], options.get("module_prefix", "tree"))
+                    class_element = create_class_item(cls, module["name"], options.get("module_prefix", "tree"), module.get("id"))
                     if class_element:
                         # Add methods and attributes to class
                         class_children = class_element.querySelector("[data-class-children]")
@@ -1619,119 +1640,411 @@ async def perform_search(search_term):
     return results
 
 
+def enhance_results_with_children(results):
+    """Enhance search results by adding children of found modules and classes."""
+    print("enhance_results_with_children: Starting...")
+    
+    if not app_state["db"]:
+        print("enhance_results_with_children: No database available")
+        return results
+    
+    enhanced_results = list(results)  # Start with original results
+    found_modules = set()
+    found_classes = set()
+    
+    print(f"enhance_results_with_children: Processing {len(results)} original results")
+    
+    # Identify found modules and classes
+    for result in results:
+        if result["entity_type"] == "module":
+            found_modules.add(result["module_id"])
+        elif result["entity_type"] == "class" and result.get("class_id"):
+            found_classes.add(result["class_id"])
+    
+    print(f"enhance_results_with_children: Found {len(found_modules)} modules, {len(found_classes)} classes")
+    
+    # For now, just return the original results to test if this function is being called
+    print(f"enhance_results_with_children: Returning {len(enhanced_results)} results")
+    return enhanced_results
+
+
+def group_results_hierarchically(results):
+    """Group search results hierarchically showing parent-child relationships.
+    
+    When a class is found, include its methods and attributes.
+    When a module is found, include its classes and constants.
+    Hide peer entities (siblings at the same level).
+    """
+    # For now, just return results as-is without complex hierarchical grouping
+    # This avoids the issue where classes get marked as children and show tree indicators
+    # TODO: Implement proper hierarchical expansion later
+    return results
+
+
+def convert_search_results_to_tree_format(results):
+    """Convert search results into the module tree format used by existing tree system."""
+    print(f"DEBUG: Converting {len(results)} search results to tree format")
+    
+    # Debug: Log sample results to understand data structure
+    for i, result in enumerate(results[:5]):  # Log first 5 results
+        print(f"DEBUG: Result {i}: {result['entity_type']} '{result['entity_name']}' in module {result.get('parent_name', 'N/A')} (module_id: {result.get('module_id')}, class_id: {result.get('class_id')})")
+    
+    modules = {}
+    
+    # Filter out __init__ modules and other irrelevant results
+    filtered_results = []
+    for result in results:
+        module_name = result.get("parent_name") if result["entity_type"] != "module" else result["entity_name"]
+        # Skip __init__ modules as they're typically empty structural modules
+        if module_name and module_name.strip() and module_name != "__init__":
+            filtered_results.append(result)
+    
+    # Deduplicate search results - same method/attribute in same class should only appear once
+    seen_items = set()
+    deduplicated_results = []
+    for result in filtered_results:
+        # Create unique key based on entity type, name, and class context
+        key = (
+            result["entity_type"],
+            result["entity_name"], 
+            result.get("module_id"),
+            result.get("class_id", "")  # Use empty string for module-level items
+        )
+        if key not in seen_items:
+            seen_items.add(key)
+            deduplicated_results.append(result)
+        else:
+            print(f"DEBUG: Filtering duplicate {result['entity_type']} '{result['entity_name']}' in class {result.get('class_id')}")
+    
+    print(f"DEBUG: After deduplication: {len(deduplicated_results)} results (removed {len(filtered_results) - len(deduplicated_results)} duplicates)")
+    results = deduplicated_results
+    
+    # First pass: collect all module names by module_id and identify found classes/methods
+    module_names = {}
+    found_classes = {}  # class_id -> {methods: set(), attributes: set()}
+    board_contexts = {}
+    
+    for result in results:
+        entity_type = result["entity_type"]
+        module_id = result.get("module_id")
+        class_id = result.get("class_id")
+        entity_name = result["entity_name"]
+        
+        if entity_type == "module":
+            module_names[module_id] = result["entity_name"]
+        elif entity_type != "module" and result.get("parent_name"):
+            # For non-module entities, parent_name is the module name
+            module_names[module_id] = result["parent_name"]
+        
+        if entity_type == "class" and class_id:
+            if class_id not in found_classes:
+                found_classes[class_id] = {"methods": set(), "attributes": set()}
+            # Store board context for fetching basic class info
+            board_contexts[class_id] = {
+                "version": result["version"],
+                "port": result["port"], 
+                "board": result["board"],
+                "module_id": module_id
+            }
+        elif entity_type == "method" and class_id:
+            if class_id not in found_classes:
+                found_classes[class_id] = {"methods": set(), "attributes": set()}
+            found_classes[class_id]["methods"].add(entity_name)
+            # Store board context
+            board_contexts[class_id] = {
+                "version": result["version"],
+                "port": result["port"], 
+                "board": result["board"],
+                "module_id": module_id
+            }
+        elif entity_type == "attribute" and class_id:
+            if class_id not in found_classes:
+                found_classes[class_id] = {"methods": set(), "attributes": set()}
+            found_classes[class_id]["attributes"].add(entity_name)
+            # Store board context
+            board_contexts[class_id] = {
+                "version": result["version"],
+                "port": result["port"], 
+                "board": result["board"],
+                "module_id": module_id
+            }
+    
+    # Second pass: build module tree with only search-relevant content
+    for result in results:
+        entity_type = result["entity_type"]
+        module_id = result.get("module_id")
+        class_id = result.get("class_id")
+        entity_name = result["entity_name"]
+        
+        # Get module info  
+        if module_id:
+            if module_id not in modules:
+                # Create module entry if it doesn't exist
+                module_name = module_names.get(module_id, "unknown")
+                modules[module_id] = {
+                    "name": module_name,
+                    "id": module_id,
+                    "classes": {},
+                    "constants": [],
+                    "functions": []  # Keep for compatibility even though we don't use it
+                }
+            
+            module = modules[module_id]
+            
+            # For ANY result that has a class_id, ensure the class exists first
+            if class_id and class_id not in module["classes"]:
+                # Get basic class info and create empty containers for methods/attributes
+                basic_class = get_basic_class_info_for_search(class_id, board_contexts[class_id])
+                if basic_class:
+                    basic_class["methods"] = []
+                    basic_class["attributes"] = []
+                    module["classes"][class_id] = basic_class
+                    print(f"DEBUG: Created class {basic_class['name']} (id: {class_id}) in module {module['name']}")
+                else:
+                    # Fallback to basic class info if fetch fails
+                    module["classes"][class_id] = {
+                        "name": "UnknownClass",
+                        "id": class_id,
+                        "methods": [],
+                        "attributes": [],
+                        "base_classes": []
+                    }
+                    print(f"DEBUG: Created fallback class (id: {class_id}) in module {module['name']}")
+            
+            # Now add the specific search result to the appropriate container
+            if entity_type == "method" and class_id:
+                # Add method to its class
+                method_item = {
+                    "name": entity_name,
+                    "signature": f"{entity_name}()"  # Simple signature for search results
+                }
+                module["classes"][class_id]["methods"].append(method_item)
+                print(f"DEBUG: Added method {entity_name} to class {class_id} in module {module['name']}")
+                
+            elif entity_type == "attribute" and class_id:
+                # Add attribute to its class
+                attr_item = {
+                    "name": entity_name
+                }
+                module["classes"][class_id]["attributes"].append(attr_item)
+                print(f"DEBUG: Added attribute {entity_name} to class {class_id} in module {module['name']}")
+                
+            elif entity_type == "class" and class_id:
+                # Class was directly found in search - it should already be created above
+                print(f"DEBUG: Class {entity_name} was directly found in search (already created)")
+            
+            elif entity_type == "constant" and not class_id:
+                # Add module-level constant
+                module["constants"].append({
+                    "name": entity_name,
+                    "value": "?",  # We don't have the value in search results
+                    "type": "?"
+                })
+                print(f"DEBUG: Added constant {entity_name} to module {module['name']}")
+    
+    # Convert to list format expected by tree renderer
+    tree_modules = []
+    for module in modules.values():
+        # Convert classes dict to list
+        module["classes"] = list(module["classes"].values())
+        tree_modules.append(module)
+    
+    print(f"DEBUG: Created {len(tree_modules)} modules for tree display")
+    return tree_modules
+
+
+def get_basic_class_info_for_search(class_id, board_context):
+    """Get basic class info (name, base classes) without all methods - for search results."""
+    print(f"DEBUG: Fetching basic class info for {class_id}")
+    
+    if not app_state["db"]:
+        return None
+    
+    try:
+        # Get basic class info
+        stmt = app_state["db"].prepare("""
+            SELECT uc.id, uc.name, uc.docstring
+            FROM unique_classes uc
+            WHERE uc.id = ?
+        """)
+        stmt.bind(ffi.to_js([class_id]))
+        
+        if not stmt.step():
+            stmt.free()
+            return None
+            
+        row = stmt.getAsObject()
+        class_name = row["name"]
+        class_docstring = row["docstring"]
+        stmt.free()
+        
+        # Get base classes
+        base_classes = get_class_bases(class_id)
+        
+        result = {
+            "id": class_id,
+            "name": class_name,
+            "docstring": class_docstring,
+            "base_classes": base_classes,
+            "methods": [],  # Will be populated by caller with search results
+            "attributes": [],  # Will be populated by caller with search results
+        }
+        
+        print(f"DEBUG: Returning basic class info for {class_name}")
+        return result
+        
+    except Exception as e:
+        print(f"ERROR: Getting basic class {class_id}: {e}")
+        return None
+
+
+def get_complete_class_for_search(class_id, board_context):
+    """Get complete class definition for search results."""
+    print(f"DEBUG: Fetching complete class {class_id} for board {board_context['port']}/{board_context['board']}")
+    
+    if not app_state["db"]:
+        return None
+    
+    try:
+        # Get basic class info
+        stmt = app_state["db"].prepare("""
+            SELECT uc.id, uc.name, uc.docstring
+            FROM unique_classes uc
+            WHERE uc.id = ?
+        """)
+        stmt.bind(ffi.to_js([class_id]))
+        
+        if not stmt.step():
+            stmt.free()
+            return None
+            
+        row = stmt.getAsObject()
+        class_name = row["name"]
+        class_docstring = row["docstring"]
+        stmt.free()
+        
+        # Get base classes
+        base_classes = get_class_bases(class_id)
+        
+        # Get methods using existing function
+        methods = get_class_methods(board_context["module_id"], class_id, board_context)
+        print(f"DEBUG: Fetched {len(methods)} methods for class {class_name}")
+        
+        # Get attributes using existing function  
+        attributes = get_class_attributes(class_id)
+        print(f"DEBUG: Fetched {len(attributes)} attributes for class {class_name}")
+        
+        result = {
+            "id": class_id,
+            "name": class_name,
+            "docstring": class_docstring,
+            "base_classes": base_classes,
+            "methods": methods,
+            "attributes": attributes,
+        }
+        
+        print(f"DEBUG: Returning class {class_name} with {len(methods)} methods, {len(attributes)} attributes")
+        return result
+        
+    except Exception as e:
+        print(f"Error getting complete class {class_id}: {e}")
+        return None
+
+
 def display_search_results(results, search_term):
-    """Display search results using templates."""
+    """Display search results using the same DRY tree structure as module explorer."""
     results_div = document.getElementById("search-results")
 
     if not results:
-        # Use no results template
-        no_results_element = get_template("message-template")
-        if no_results_element:
-            no_results_element.style.display = "block"
-
-            # Set content directly to avoid HTML encoding issues
-            header_element = no_results_element.querySelector("[data-message-header]")
-            content_element = no_results_element.querySelector("[data-message-content]")
-            subtitle_element = no_results_element.querySelector("[data-message-subtitle]")
-
-            if header_element:
-                header_element.textContent = "Search Results"
-            if content_element:
-                content_element.innerHTML = f'No results found for "<strong>{search_term}</strong>"'
-            if subtitle_element:
-                subtitle_element.textContent = "Try a different search term or check spelling."
-
-            # Show the detail view
-            detail_view = no_results_element.querySelector("[data-show-detail-view]")
-            if detail_view:
-                detail_view.style.display = "block"
-
-            results_div.innerHTML = ""
-            results_div.appendChild(no_results_element)
-
-            # Update URL with search term (no results)
-            update_search_url(search_term)
+        show_message("search-results", "Search Results", f'No results found for "<strong>{search_term}</strong>"')
+        update_search_url(search_term)
         return
 
-    # Group results by entity type for better organization
-    grouped_results = {}
-    for result in results:
-        entity_type = result["entity_type"]
-        if entity_type not in grouped_results:
-            grouped_results[entity_type] = []
-        grouped_results[entity_type].append(result)
+    # Convert search results to tree format (modules with their classes/constants as children)
+    tree_modules = convert_search_results_to_tree_format(results)
+    
+    # Use the existing tree rendering system
+    options = {
+        "module_prefix": "search",
+        "show_details": True,
+        "get_badge_class": lambda m: "",
+        "get_module_badge": lambda m: "",
+    }
+    
+    # Render using existing tree system
+    tree_dom = render_module_tree_dom(tree_modules, options)
+    
+    # Create search results header
+    search_header = document.createElement("div")
+    search_header.className = "search-results-header"
+    search_header.style.marginBottom = "20px"
+    search_header.style.padding = "15px"
+    search_header.style.backgroundColor = "#f8f9fa"
+    search_header.style.borderRadius = "8px"
+    search_header.style.border = "1px solid #dee2e6"
+    
+    # Create title
+    title = document.createElement("h2")
+    title.style.margin = "0 0 10px 0"
+    title.style.color = "#333"
+    title.innerHTML = f'Search Results for "<strong>{search_term}</strong>"'
+    
+    # Create summary 
+    summary = document.createElement("p")
+    summary.style.margin = "0"
+    summary.style.color = "#666"
+    summary.innerHTML = f'Found <strong>{len(results)}</strong> items across <strong>{len(tree_modules)}</strong> modules - expand modules to see details'
+    
+    search_header.appendChild(title)
+    search_header.appendChild(summary)
+    
+    # Update the search results display
+    results_div.innerHTML = ""
+    results_div.appendChild(search_header)
+    results_div.appendChild(tree_dom)
 
-    # Use search results template
-    search_results_element = get_template("search-results-template")
-    if search_results_element:
-        search_results_element.style.display = "block"
-
-        # Set the HTML content directly instead of using data attributes
-        summary_element = search_results_element.querySelector("[data-search-summary]")
-        if summary_element:
-            summary_element.innerHTML = f'Found <strong>{len(results)}</strong> results for "<strong>{search_term}</strong>"'
-
-        # Get categories container
-        categories_container = search_results_element.querySelector("[data-search-categories]")
-        if categories_container:
-            # Sort entity types for consistent display
-            entity_order = ["module", "class", "function", "method", "constant", "attribute", "parameter"]
-            type_labels = {
-                "module": "Modules",
-                "class": "Classes",
-                "function": "Functions",
-                "method": "Methods",
-                "constant": "Constants",
-                "attribute": "Attributes",
-                "parameter": "Parameters",
-            }
-
-            for entity_type in entity_order:
-                if entity_type in grouped_results:
-                    type_results = grouped_results[entity_type]
-
-                    # Create category section
-                    category_element = get_template("search-category-template")
-                    if category_element:
-                        populate_template(
-                            category_element,
-                            {
-                                "category-icon": get_entity_icon(entity_type),
-                                "category-title": f"{type_labels[entity_type]} ({len(type_results)})",
-                            },
-                        )
-
-                        # Get results container for this category
-                        category_results = category_element.querySelector("[data-category-results]")
-                        if category_results:
-                            for result in type_results:
-                                # Create individual result item
-                                result_element = create_search_result_item(result, entity_type)
-                                if result_element:
-                                    category_results.appendChild(result_element)
-
-                        categories_container.appendChild(category_element)
-
-        # Update the search results display
-        results_div.innerHTML = ""
-        results_div.appendChild(search_results_element)
-
-        # Update URL with search results
-        update_search_url(search_term)
+    # Update URL with search results
+    update_search_url(search_term)
 
 
 def create_search_result_item(result, entity_type):
-    """Create a search result item using template."""
+    """Create a search result item using template with hierarchical indentation."""
     board_name = format_board_name(result["port"], result["board"])
     context_path = get_context_path(result)
 
     # Use search result template
     result_element = get_template("search-result-item-template")
     if result_element:
+        # Apply hierarchical styling
+        if result.get("is_grandchild"):
+            result_element.style.marginLeft = "40px"
+            result_element.style.borderLeft = "2px solid #e9ecef"
+            result_element.style.paddingLeft = "10px"
+            result_element.classList.add("hierarchy-grandchild")
+        elif result.get("is_child"):
+            result_element.style.marginLeft = "20px"
+            result_element.style.borderLeft = "2px solid #dee2e6"
+            result_element.style.paddingLeft = "10px"
+            result_element.classList.add("hierarchy-child")
+        else:
+            result_element.classList.add("hierarchy-parent")
+
+        # Add hierarchy indicator icon
+        entity_name = result["entity_name"]
+        
+        # Only add tree indicators for entities that are truly leaf nodes
+        # Classes and modules should remain expandable, so don't add └─ 
+        if result.get("is_grandchild"):
+            # Grandchildren (methods, attributes, parameters) are leaf nodes
+            entity_name = f"└─ {entity_name}"
+        elif result.get("is_child") and result["entity_type"] in ["method", "attribute", "parameter", "constant"]:
+            # Direct children that are leaf nodes
+            entity_name = f"└─ {entity_name}"
+        
         # Populate template data
         populate_template(
             result_element,
-            {"entity-name": result["entity_name"], "context-path": context_path, "board-name": board_name, "version": result["version"]},
+            {"entity-name": entity_name, "context-path": context_path, "board-name": board_name, "version": result["version"]},
         )
 
         # Set entity icon
@@ -1739,17 +2052,28 @@ def create_search_result_item(result, entity_type):
         if icon_elem:
             icon_elem.className = f"fas {get_entity_icon(entity_type)}"
 
-        # Set click handler
+        # Set up expansion capability and click handler
         module_id = result["module_id"]
         class_id = result.get("class_id", "")
-        entity_name = result["entity_name"]
-
+        entity_name_clean = result["entity_name"]  # Use original name for click handler
+        
+        # Check if this item can have children and set up expansion
+        can_expand = setup_search_result_expansion(result_element, result, entity_type, module_id, class_id)
+        
+        # Set click handler - if item can expand, handle expansion; otherwise navigate
         def click_handler(e):
-            # Call openSearchResult if it exists
-            if hasattr(window, "openSearchResult"):
-                window.openSearchResult(module_id, class_id, entity_name, entity_type)
+            if can_expand:
+                toggle_search_result_expansion(result_element, result, entity_type, module_id, class_id, e)
+            else:
+                # Call openSearchResult for leaf items or navigation
+                if hasattr(window, "openSearchResult"):
+                    window.openSearchResult(module_id, class_id, entity_name_clean, entity_type)
 
-        result_element.onclick = click_handler
+        header = result_element.querySelector("[data-search-result-header]")
+        if header:
+            header.onclick = click_handler
+        else:
+            result_element.onclick = click_handler
 
     return result_element
 
@@ -1758,14 +2082,235 @@ def get_entity_icon(entity_type):
     """Get appropriate Font Awesome icon for entity type."""
     icons = {
         "module": "fa-cube",
-        "class": "fa-object-group",
-        "function": "fa-code",
-        "method": "fa-cog",
-        "constant": "fa-hashtag",
+        "class": "fa-object-group", 
+        "function": "fa-bolt",
+        "method": "fa-bolt",
+        "constant": "fa-circle",
         "attribute": "fa-tag",
         "parameter": "fa-list",
     }
     return icons.get(entity_type, "fa-question")
+
+
+def setup_search_result_expansion(result_element, result, entity_type, module_id, class_id):
+    """Set up expansion capability for search result items. Returns True if item can expand."""
+    # Only modules and classes can potentially expand
+    if entity_type not in ["module", "class"]:
+        return False
+    
+    # Check if this item actually has children
+    has_children = check_search_result_has_children(entity_type, module_id, class_id)
+    
+    if has_children:
+        # Show expansion icon
+        expansion_icon = result_element.querySelector("[data-expansion-icon]")
+        if expansion_icon:
+            expansion_icon.style.display = "inline"
+        
+        # Add expandable class
+        result_element.classList.add("expandable")
+        
+        # Store data for expansion
+        result_element.setAttribute("data-entity-type", entity_type)
+        result_element.setAttribute("data-module-id", str(module_id))
+        if class_id:
+            result_element.setAttribute("data-class-id", str(class_id))
+    
+    return has_children
+
+
+def check_search_result_has_children(entity_type, module_id, class_id):
+    """Check if a search result item has children using existing database queries."""
+    if not app_state["db"]:
+        return False
+    
+    try:
+        if entity_type == "module":
+            # Check if module has classes or functions
+            stmt = app_state["db"].prepare("""
+                SELECT COUNT(*) as count FROM (
+                    SELECT 1 FROM unique_classes WHERE module_id = ? 
+                    UNION ALL 
+                    SELECT 1 FROM unique_module_constants WHERE module_id = ?
+                ) LIMIT 1
+            """)
+            stmt.bind(ffi.to_js([int(module_id), int(module_id)]))
+            
+        elif entity_type == "class":
+            # Check if class has methods or attributes  
+            stmt = app_state["db"].prepare("""
+                SELECT COUNT(*) as count FROM (
+                    SELECT 1 FROM unique_methods WHERE class_id = ?
+                    UNION ALL
+                    SELECT 1 FROM unique_class_attributes WHERE class_id = ?
+                ) LIMIT 1
+            """)
+            stmt.bind(ffi.to_js([int(class_id), int(class_id)]))
+        else:
+            return False
+            
+        if stmt.step():
+            count = stmt.getAsObject()["count"]
+            stmt.free()
+            return count > 0
+        
+        stmt.free()
+        return False
+        
+    except Exception as e:
+        print(f"Error checking children for {entity_type}: {e}")
+        return False
+
+
+def toggle_search_result_expansion(result_element, result, entity_type, module_id, class_id, event):
+    """Toggle expansion of a search result item."""
+    event.stopPropagation()
+    
+    children_container = result_element.querySelector("[data-search-result-children]")
+    expansion_icon = result_element.querySelector("[data-expansion-icon]")
+    
+    if not children_container:
+        return
+    
+    # Toggle expansion state
+    is_expanded = not children_container.classList.contains("hidden")
+    
+    if is_expanded:
+        # Collapse
+        children_container.classList.add("hidden")
+        if expansion_icon:
+            expansion_icon.style.transform = "rotate(0deg)"
+    else:
+        # Expand - load children if not already loaded
+        if children_container.children.length == 0:
+            load_search_result_children(children_container, entity_type, module_id, class_id, result)
+        
+        children_container.classList.remove("hidden")
+        if expansion_icon:
+            expansion_icon.style.transform = "rotate(90deg)"
+
+
+def load_search_result_children(container, entity_type, module_id, class_id, parent_result):
+    """Load and display children of a search result item, reusing existing database queries."""
+    if not app_state["db"]:
+        return
+    
+    try:
+        children = []
+        
+        if entity_type == "module":
+            # Get classes for this module
+            classes = get_search_result_classes(module_id, parent_result)
+            children.extend(classes)
+            
+            # Get constants for this module
+            constants = get_search_result_constants(module_id, parent_result)
+            children.extend(constants)
+            
+        elif entity_type == "class":
+            # Get methods for this class
+            methods = get_search_result_methods(class_id, parent_result)
+            children.extend(methods)
+            
+            # Get attributes for this class
+            attributes = get_search_result_attributes(class_id, parent_result)
+            children.extend(attributes)
+        
+        # Display children
+        for child in children:
+            child_element = create_search_result_item(child, child["entity_type"])
+            container.appendChild(child_element)
+            
+    except Exception as e:
+        print(f"Error loading children for {entity_type}: {e}")
+
+
+# Helper functions for search result children (DRY - reuse database patterns)
+def get_search_result_classes(module_id, parent_result):
+    """Get classes for a module in search result format."""
+    classes = []
+    stmt = app_state["db"].prepare("SELECT id, name FROM unique_classes WHERE module_id = ?")
+    stmt.bind(ffi.to_js([int(module_id)]))
+    
+    while stmt.step():
+        class_data = stmt.getAsObject()
+        # Create new dict without spread operator for PyScript compatibility
+        class_result = dict(parent_result)  # Copy parent data
+        class_result.update({
+            "entity_type": "class",
+            "entity_name": class_data["name"],
+            "class_id": class_data["id"],
+        })
+        classes.append(class_result)
+    
+    stmt.free()
+    return classes
+
+
+def get_search_result_constants(module_id, parent_result):
+    """Get constants for a module in search result format."""
+    constants = []
+    stmt = app_state["db"].prepare("SELECT id, name FROM unique_module_constants WHERE module_id = ?")
+    stmt.bind(ffi.to_js([int(module_id)]))
+    
+    while stmt.step():
+        const_data = stmt.getAsObject()
+        # Create new dict without spread operator for PyScript compatibility
+        const_result = dict(parent_result)  # Copy parent data
+        const_result.update({
+            "entity_type": "constant",
+            "entity_name": const_data["name"], 
+            "constant_id": const_data["id"],
+        })
+        constants.append(const_result)
+    
+    stmt.free()
+    return constants
+
+
+def get_search_result_methods(class_id, parent_result):
+    """Get methods for a class in search result format."""
+    methods = []
+    stmt = app_state["db"].prepare("SELECT id, name FROM unique_methods WHERE class_id = ?")
+    stmt.bind(ffi.to_js([int(class_id)]))
+    
+    while stmt.step():
+        method_data = stmt.getAsObject()
+        # Create new dict without spread operator for PyScript compatibility
+        method_result = dict(parent_result)  # Copy parent data
+        method_result.update({
+            "entity_type": "method",
+            "entity_name": method_data["name"],
+            "method_id": method_data["id"],
+        })
+        methods.append(method_result)
+    
+    stmt.free()  
+    return methods
+
+
+def get_search_result_attributes(class_id, parent_result):
+    """Get attributes for a class in search result format."""
+    attributes = []
+    stmt = app_state["db"].prepare("SELECT id, name FROM unique_class_attributes WHERE class_id = ?")
+    stmt.bind(ffi.to_js([int(class_id)]))
+    
+    while stmt.step():
+        attr_data = stmt.getAsObject()
+        # Create new dict without spread operator for PyScript compatibility
+        attr_result = dict(parent_result)  # Copy parent data
+        attr_result.update({
+            "entity_type": "attribute",
+            "entity_name": attr_data["name"],
+            "attribute_id": attr_data["id"],
+        })
+        attributes.append(attr_result)
+    
+    stmt.free()
+    return attributes
+
+
+
 
 
 def get_context_path(result):
@@ -2945,7 +3490,7 @@ async def highlight_search_target(module_id, class_id, entity_name, entity_type)
 
             # If targeting a class or its members, expand the class too
             if class_id and (entity_type in ["class", "method", "attribute"]):
-                stmt = app_state["db"].prepare("SELECT name FROM classes WHERE id = ?")
+                stmt = app_state["db"].prepare("SELECT name FROM unique_classes WHERE id = ?")
                 stmt.bind([class_id])
                 if stmt.step():
                     class_name = stmt.getAsObject()["name"]

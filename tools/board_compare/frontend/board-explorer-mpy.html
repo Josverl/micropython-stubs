@@ -703,6 +703,28 @@
             color: white;
         }
 
+        /* Hierarchical display styles */
+        .hierarchy-child {
+            background-color: #f1f3f4 !important;
+            border-left: 3px solid #667eea;
+        }
+
+        .hierarchy-grandchild {
+            background-color: #e8f4f8 !important;
+            border-left: 3px solid #28a745;
+        }
+
+        .hierarchy-child:hover,
+        .hierarchy-grandchild:hover {
+            background-color: #e3f2fd !important;
+        }
+
+        .hierarchy-child .search-result-name,
+        .hierarchy-grandchild .search-result-name {
+            font-size: 1.0em;
+            color: #495057;
+        }
+
         /* Responsive design for search results */
         @media (max-width: 768px) {
             .search-result-item {
@@ -833,6 +855,15 @@
                     <div class="control-group">
                         <label for="search-input">Search for Module, Class, or Method:</label>
                         <input type="text" id="search-input" placeholder="e.g., Neopixel, I2S, machine.Pin, etc.">
+                        <label for="result-limit-select">Max Results:</label>
+                        <select id="result-limit-select" style="width: 80px;">
+                            <option value="10">10</option>
+                            <option value="20" selected>20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
                     </div>
                 </div>
                 <div class="control-row">
@@ -1143,19 +1174,23 @@
 
         <!-- Search Result Item Template -->
         <div id="search-result-item-template">
-            <div class="search-result-item"
-                style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px; cursor: pointer;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="color: #667eea; font-weight: 600;">
-                        <i class="fas" data-entity-icon></i>
-                        <span data-entity-name></span>
-                    </span>
-                    <span style="color: #888; font-size: 0.9em;" data-context-path></span>
-                    <span style="margin-left: auto; color: #666; font-size: 0.8em;">
-                        <span class="board-tag" data-board-name></span>
-                        <span class="version-tag" data-version></span>
-                    </span>
+            <div class="search-result-item" data-search-result-item>
+                <div class="search-result-header" data-search-result-header
+                    style="padding: 10px; border-bottom: 1px solid #eee; margin-bottom: 5px; cursor: pointer;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="color: #667eea; font-weight: 600;">
+                            <i class="fas fa-chevron-right expansion-icon" data-expansion-icon style="display: none; font-size: 0.8em; margin-right: 5px; transition: transform 0.2s;"></i>
+                            <i class="fas" data-entity-icon></i>
+                            <span data-entity-name></span>
+                        </span>
+                        <span style="color: #888; font-size: 0.9em;" data-context-path></span>
+                        <span style="margin-left: auto; color: #666; font-size: 0.8em;">
+                            <span class="board-tag" data-board-name></span>
+                            <span class="version-tag" data-version></span>
+                        </span>
+                    </div>
                 </div>
+                <div class="search-result-children hidden" data-search-result-children style="margin-left: 20px;"></div>
             </div>
         </div>
 
