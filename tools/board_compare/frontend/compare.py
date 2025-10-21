@@ -8,7 +8,7 @@ import json
 # Import modules
 import database
 import ui
-from pyscript import document, window
+from pyscript import document, ffi, window
 
 # Global comparison data (moved from main.py)
 comparison_data = {
@@ -641,19 +641,17 @@ def update_comparison_url():
 
     if params:
         new_url = f"{url}?{'&'.join(params)}"
-        # Use ffi.to_js to avoid PyProxy serialization issues with History API
-        from pyscript import ffi
         window.history.replaceState(ffi.to_js({}), ffi.to_js(""), ffi.to_js(new_url))
 
 
 async def populate_comparison_from_url(search_params):
     """Populate the comparison page from URL parameters."""
-    if "view" in search_params and search_params["view"][0] == "compare":
-        board1_version = search_params.get("board1_version", [""])[0]
-        board1 = search_params.get("board1", [""])[0]
-        board2_version = search_params.get("board2_version", [""])[0]
-        board2 = search_params.get("board2", [""])[0]
-        hide_common = "hide_common" in search_params
+    try:
+        board1_version = search_params.get("board1_version")
+        board1 = search_params.get("board1")
+        board2_version = search_params.get("board2_version")
+        board2 = search_params.get("board2")
+        hide_common = search_params.get("hide_common") == "true"
 
         # Set the dropdowns
         board1_version_select = document.getElementById("board1-version")
@@ -680,16 +678,26 @@ async def populate_comparison_from_url(search_params):
         if board1_version and board1 and board2_version and board2:
             await compare_boards()
 
+    except Exception as e:
+        print(f"Error populating comparison from URL: {e}")
+
 
 def share_comparison():
     """Share the current comparison view."""
+    print("=== Share Comparison Called ===")
+    
     board1_version = document.getElementById("board1-version").value
     board1_name = document.getElementById("board1").value
     board2_version = document.getElementById("board2-version").value
     board2_name = document.getElementById("board2").value
     hide_common = document.getElementById("hide-common").checked
 
+    print(f"Board 1: Version '{board1_version}', Name '{board1_name}'")
+    print(f"Board 2: Version '{board2_version}', Name '{board2_name}'")
+    print(f"Hide common: {hide_common}")
+
     if not all([board1_version, board1_name, board2_version, board2_name]):
+        print("Missing selections, showing error")
         ui.show_error("Please select all comparison options to share")
         return
 
@@ -706,12 +714,33 @@ def share_comparison():
         params.append("hide_common=true")
 
     share_url = f"{base_url}?{'&'.join(params)}"
+    print(f"Share URL: {share_url}")
+    
+    print("Attempting to copy to clipboard...")
 
     # Copy to clipboard using ffi.to_js to avoid PyProxy issues
     from pyscript import ffi
+    
+    def success_callback():
+        print("Clipboard write successful, updating status...")
+        # Update status directly via DOM
+        status_element = document.getElementById("status")
+        if status_element:
+            status_element.innerHTML = "<strong>Status:</strong> Share URL copied to clipboard!"
+            print("Status updated successfully")
+        else:
+            print("Status element not found")
+    
+    def error_callback():
+        print("Clipboard write failed")
+        # Update status directly via DOM  
+        status_element = document.getElementById("status")
+        if status_element:
+            status_element.innerHTML = "<strong>Status:</strong> Failed to copy URL to clipboard"
+    
     window.navigator.clipboard.writeText(ffi.to_js(share_url)).then(
-        ffi.create_proxy(lambda: ui.show_message("Share URL copied to clipboard!")),
-        ffi.create_proxy(lambda: ui.show_error("Failed to copy URL to clipboard"))
+        ffi.create_proxy(success_callback),
+        ffi.create_proxy(error_callback)
     )
 
 

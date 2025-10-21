@@ -2,87 +2,113 @@
 # Extracted from main.py as part of Sprint 3 refactoring
 
 import asyncio
-import json
 
 # Import modules
 import database
 import ui
-from pyscript import document, window
+from pyscript import document, ffi, window
 
 
 async def load_board_details():
-    """Load the details for the selected board."""
+    """Load board details when a board is selected."""
     version_select = document.getElementById("explorer-version")
     board_select = document.getElementById("explorer-board")
-    
+
     selected_version = version_select.value if version_select else ""
-    selected_board = board_select.value if board_select else ""
-    
-    if not selected_board:
+    selected_board_name = board_select.value if board_select else ""
+
+    content = document.getElementById("explorer-content")
+
+    if not selected_version or not selected_board_name:
+        # Show selection prompt using message template
+        ui.show_message("explorer-content", "", "Select both version and board to explore modules and APIs")
         return
-    
-    ui.show_loading("Loading board details...")
-    
+
+    # Show loading using template
+    ui.show_loading("explorer-content", "Loading board details...", "Fetching modules...")
+
+    if not database.app_state["db"]:
+        # Database is required - use error template
+        ui.show_error("explorer-content", f"{selected_board_name} ({selected_version})", 
+                     "Database not loaded. Please refresh the page to retry loading the database.")
+        return
+
     try:
-        # Find the board in the database
-        matching_boards = []
+        # Find the actual port/board from the board list  
+        board_info = None
         for board in database.app_state["boards"]:
             board_name = database.format_board_name(board.get("port", ""), board.get("board", ""))
-            if board_name == selected_board:
-                if not selected_version or board.get("version", "") == selected_version:
-                    matching_boards.append(board)
-        
-        if not matching_boards:
-            ui.show_error("Board not found in database")
+            if board_name == selected_board_name and (not selected_version or board.get("version", "") == selected_version):
+                board_info = board
+                break
+
+        if not board_info:
+            ui.show_error("explorer-content", "Board Not Found", 
+                         f"Could not find board: {selected_board_name} ({selected_version})")
             return
-        
-        # Use the first matching board (or most recent if multiple)
-        board = matching_boards[0] if len(matching_boards) == 1 else max(matching_boards, key=lambda b: b.get("version", ""))
-        
+
         # Store current board
-        database.app_state["current_board"] = board
-        
-        # Get board display name for use throughout function
-        board_display_name = database.format_board_name(board.get("port", ""), board.get("board", ""))
-        
-        # Update board info display
-        info_elem = document.getElementById("board-info")
-        if info_elem:
-            version_info = f" (v{board['version']})" if board.get("version") else ""
-            info_elem.innerHTML = f"<h3>{board_display_name}{version_info}</h3>"
-        
+        database.app_state["current_board"] = board_info
+
         # Load modules for this board
-        modules = database.get_board_modules(board["id"])
-        
+        modules = database.get_board_modules(board_info)
+
         if not modules:
-            ui.show_error("No modules found for this board")
+            ui.show_error("explorer-content", f"{selected_board_name} ({selected_version})", 
+                         "No modules found for this board")
             return
+
+        # Create board details display
+        board_display_name = database.format_board_name(board_info.get("port", ""), board_info.get("board", ""))
+        version_info = f" (v{board_info['version']})" if board_info.get("version") else ""
         
-        # Update modules count
-        modules_heading = document.getElementById("modules-heading")
-        if modules_heading:
-            modules_heading.innerHTML = f'<span class="icon">📁</span> Modules ({len(modules)})'
-        
-        # Render the module tree using UI function
-        render_options = {
-            'expand_deprecated': True,
-            'show_only_differences': False
+        # Create module tree using DOM-based rendering
+        options = {
+            "module_prefix": "explorer", 
+            "get_badge_class": lambda m: "", 
+            "get_module_badge": lambda m: "", 
+            "show_details": True
         }
+
+        module_tree_dom = ui.render_module_tree_dom(modules, options)
+
+        # Create board details using templates
+        board_details_element = ui.get_template("board-details-template")
+        board_content_element = ui.get_template("board-content-template")
         
-        modules_container = document.getElementById("modules")
-        if modules_container:
-            # Use the ui function to render the tree into the container
-            tree_html = ui.render_module_tree_dom(modules, render_options)
-            modules_container.innerHTML = tree_html
-        
-        ui.show_message(f"Loaded {len(modules)} modules for {board_display_name}")
-        
+        if board_details_element and board_content_element:
+            # Populate board details template
+            ui.populate_template(board_details_element, {
+                "board-title": f"{board_display_name}{version_info}"
+            })
+            
+            # Populate board content template
+            ui.populate_template(board_content_element, {
+                "modules-title": f"Modules ({len(modules)})"
+            })
+            
+            # Get the board content container and modules tree container
+            board_content_container = board_details_element.querySelector("[data-board-content]")
+            modules_tree_container = board_content_element.querySelector("[data-modules-tree]")
+            
+            if board_content_container and modules_tree_container:
+                # Add the module tree DOM to the modules container
+                if module_tree_dom:
+                    modules_tree_container.appendChild(module_tree_dom)
+                
+                # Add the board content to the board details
+                board_content_container.appendChild(board_content_element)
+                
+                # Replace the explorer content with the new template-based structure
+                content.innerHTML = ""
+                content.appendChild(board_details_element)
+
         # Update URL to reflect current state
         update_explorer_url()
-        
+
     except Exception as e:
-        ui.show_error(f"Error loading board details: {str(e)}")
-        print(f"Error in load_board_details: {e}")
+        ui.show_error("explorer-content", "⚠️ Error Loading Board", f"{str(e)}")
+        print(f"Error loading board details: {e}")
 
 
 def update_explorer_url():
@@ -107,39 +133,47 @@ def update_explorer_url():
     
     if params:
         new_url = f"{url}?{'&'.join(params)}"
-        window.history.replaceState({}, "", new_url)
+        window.history.replaceState(ffi.to_js({}), ffi.to_js(""), ffi.to_js(new_url))
 
 
 async def populate_explorer_from_url(search_params):
     """Populate the explorer page from URL parameters."""
-    if "view" in search_params and search_params["view"][0] == "explorer":
-        version = search_params.get("version", [""])[0]
-        board = search_params.get("board", [""])[0]
-        
-        # Set the version dropdown
-        version_select = document.getElementById("explorer-version")
-        if version_select and version:
-            version_select.value = version
-        
-        # Set the board dropdown  
-        board_select = document.getElementById("explorer-board")
-        if board_select and board:
-            board_select.value = board
-            
-        # Load the board details if we have a board selected
+    try:
+        version = search_params.get("version")
+        board = search_params.get("board")
+
+        if version:
+            version_select = document.getElementById("explorer-version")
+            if version_select:
+                version_select.value = version
+
         if board:
+            board_select = document.getElementById("explorer-board")
+            if board_select:
+                board_select.value = board
+
+        # Trigger board details load if both are set
+        if version and board:
             await load_board_details()
+
+    except Exception as e:
+        print(f"Error populating explorer from URL: {e}")
 
 
 def share_explorer():
     """Share the current explorer view."""
+    print("=== Share Explorer Called ===")
+    
     version_select = document.getElementById("explorer-version")
     board_select = document.getElementById("explorer-board")
     
     version = version_select.value if version_select else ""
     board = board_select.value if board_select else ""
     
+    print(f"Version: '{version}', Board: '{board}'")
+    
     if not board:
+        print("No board selected, showing error")
         ui.show_error("Please select a board to share")
         return
     
@@ -153,27 +187,59 @@ def share_explorer():
         params.append(f"board={window.encodeURIComponent(board)}")
     
     share_url = f"{base_url}?{'&'.join(params)}"
+    print(f"Share URL: {share_url}")
     
     # Copy to clipboard
-    window.navigator.clipboard.writeText(share_url).then(
-        lambda: ui.show_message("Share URL copied to clipboard!"),
-        lambda: ui.show_error("Failed to copy URL to clipboard")
-    )
+    try:
+        print("Attempting to copy to clipboard...")
+        window.navigator.clipboard.writeText(share_url)
+        print("Clipboard write successful, updating status...")
+        
+        # Update status directly by manipulating DOM elements
+        status_text = document.getElementById("status-text")
+        status_elem = document.getElementById("status")
+        if status_text and status_elem:
+            status_text.innerText = "Share URL copied to clipboard!"
+            status_elem.classList.remove("error")
+            status_elem.classList.add("success")
+        
+        print("Status updated successfully")
+    except Exception as e:
+        print(f"Error copying to clipboard: {e}")
+        
+        # Update status directly by manipulating DOM elements
+        status_text = document.getElementById("status-text")
+        status_elem = document.getElementById("status")
+        if status_text and status_elem:
+            status_text.innerText = "Failed to copy URL to clipboard"
+            status_elem.classList.remove("success")
+            status_elem.classList.add("error")
 
 
 def setup_explorer_event_handlers():
     """Set up event handlers specific to the explorer page."""
+    print("Setting up explorer event handlers...")
+    
     # Version dropdown change handler
     version_select = document.getElementById("explorer-version")
     if version_select:
+        print(f"Found version select: {version_select}")
         version_select.onchange = lambda e: asyncio.create_task(load_board_details())
+    else:
+        print("Version select not found!")
     
     # Board dropdown change handler  
     board_select = document.getElementById("explorer-board")
     if board_select:
+        print(f"Found board select: {board_select}")
         board_select.onchange = lambda e: asyncio.create_task(load_board_details())
+    else:
+        print("Board select not found!")
     
     # Share button
-    share_explorer_btn = document.getElementById("share-explorer")
+    share_explorer_btn = document.getElementById("explorer-share-btn")
     if share_explorer_btn:
+        print(f"Found share button: {share_explorer_btn}")
         share_explorer_btn.onclick = lambda e: share_explorer()
+    else:
+        print("Share button not found!")

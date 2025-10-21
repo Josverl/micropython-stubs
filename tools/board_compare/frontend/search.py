@@ -1022,29 +1022,38 @@ def update_search_url(query=""):
 
     if params:
         new_url = f"{url}?{'&'.join(params)}"
-        window.history.replaceState({}, "", new_url)
+        window.history.replaceState(ffi.to_js({}), ffi.to_js(""), ffi.to_js(new_url))
 
 
 async def populate_search_from_url(search_params):
     """Populate the search page from URL parameters."""
-    if "view" in search_params and search_params["view"][0] == "search":
-        query = search_params.get("query", [""])[0]
+    try:
+        query = search_params.get("query")
 
-        # Set the search input
-        search_input = document.getElementById("search-input")
-        if search_input and query:
-            search_input.value = query
-            
-            # Perform the search
-            await search_apis()
+        if query:
+            search_input = document.getElementById("search-input")
+            if search_input:
+                # Decode the query parameter
+                search_input.value = window.decodeURIComponent(query)
+                
+                # Perform the search
+                await search_apis()
+
+    except Exception as e:
+        print(f"Error populating search from URL: {e}")
 
 
 def share_search():
     """Share the current search view."""
+    print("=== Share Search Called ===")
+    
     search_input = document.getElementById("search-input")
     query = search_input.value.strip() if search_input else ""
+    
+    print(f"Search query: '{query}'")
 
     if not query:
+        print("No query entered, showing error")
         ui.show_error("Please enter a search term to share")
         return
 
@@ -1055,11 +1064,33 @@ def share_search():
     params.append(f"query={window.encodeURIComponent(query)}")
 
     share_url = f"{base_url}?{'&'.join(params)}"
+    print(f"Share URL: {share_url}")
+    
+    print("Attempting to copy to clipboard...")
 
-    # Copy to clipboard
-    window.navigator.clipboard.writeText(share_url).then(
-        lambda: ui.show_message("Share URL copied to clipboard!"),
-        lambda: ui.show_error("Failed to copy URL to clipboard")
+    # Copy to clipboard using ffi.to_js to avoid PyProxy issues
+    from pyscript import ffi
+    
+    def success_callback():
+        print("Clipboard write successful, updating status...")
+        # Update status directly via DOM
+        status_element = document.getElementById("status")
+        if status_element:
+            status_element.innerHTML = "<strong>Status:</strong> Share URL copied to clipboard!"
+            print("Status updated successfully")
+        else:
+            print("Status element not found")
+    
+    def error_callback():
+        print("Clipboard write failed")
+        # Update status directly via DOM  
+        status_element = document.getElementById("status")
+        if status_element:
+            status_element.innerHTML = "<strong>Status:</strong> Failed to copy URL to clipboard"
+    
+    window.navigator.clipboard.writeText(ffi.to_js(share_url)).then(
+        ffi.create_proxy(success_callback),
+        ffi.create_proxy(error_callback)
     )
 
 
@@ -1124,7 +1155,7 @@ def setup_search_event_handlers():
         search_input.onkeypress = lambda e: asyncio.create_task(search_apis()) if e.key == "Enter" else None
 
     # Share button
-    share_search_btn = document.getElementById("share-search")
+    share_search_btn = document.getElementById("search-share-btn")
     if share_search_btn:
         share_search_btn.onclick = lambda e: share_search()
 

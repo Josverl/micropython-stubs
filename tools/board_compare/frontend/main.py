@@ -2,15 +2,15 @@
 # Refactored in Sprint 3 to coordinate page modules
 
 import asyncio
-import js
+
+import compare
 
 # Import all modules
 import database
-import ui
 import explorer
-import compare
+import js
 import search
-
+import ui
 from pyscript import document
 
 
@@ -209,9 +209,11 @@ def setup_event_handlers():
         tab_search.onclick = lambda e: switch_page("search")
 
     # Set up page-specific event handlers
+    print("Setting up page-specific event handlers...")
     explorer.setup_explorer_event_handlers()
     compare.setup_compare_event_handlers()
     search.setup_search_event_handlers()
+    print("Event handlers setup complete")
 
 
 async def main():
