@@ -1,5 +1,0 @@
-# PyScript configuration for database optimization testing
-
-[files]
-"sqlite_wasm.py" = ""
-"board_comparison.db" = ""
