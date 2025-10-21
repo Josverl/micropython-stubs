@@ -12,6 +12,9 @@ packages = [
 "sqlite_wasm.py" = ""
 "database.py" = ""
 "ui.py" = ""
+"explorer.py" = ""
+"compare.py" = ""
+"search.py" = ""
 
 # database is loaded from URL 
 # "board_comparison.db" = ""
