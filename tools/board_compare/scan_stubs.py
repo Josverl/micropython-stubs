@@ -8,9 +8,18 @@ with the micropython-stubber project and to preserve formatting/comments for fut
 
 import logging
 from pathlib import Path
-from typing import Dict, List, Optional, Union
+from typing import Dict, List, Optional, Tuple, Union
 
 import libcst as cst
+
+# TOML parsing - use tomllib for Python 3.11+ or tomli fallback
+try:
+    import tomllib
+except ImportError:
+    try:
+        import tomli as tomllib
+    except ImportError:
+        tomllib = None
 
 # Handle both standalone execution and module import
 try:
@@ -21,6 +30,43 @@ except ImportError:
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+
+def extract_package_info_from_pyproject(stub_path: Path) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Extract package name and version from pyproject.toml in the stub directory.
+
+    Args:
+        stub_path: Path to the stub directory containing pyproject.toml
+
+    Returns:
+        Tuple of (package_name, package_version) or (None, None) if not found
+    """
+    stub_path = Path(stub_path)
+    pyproject_path = Path(str(stub_path) + "/pyproject.toml")
+    
+    if not pyproject_path.exists():
+        logger.debug(f"No pyproject.toml found at {pyproject_path}")
+        return None, None
+    
+    if tomllib is None:
+        logger.warning("TOML parsing not available. Install tomli package for Python < 3.11")
+        return None, None
+    
+    try:
+        with open(str(pyproject_path), "rb") as f:
+            data = tomllib.load(f)
+        
+        project = data.get("project", {})
+        package_name = project.get("name")
+        package_version = project.get("version")
+        
+        logger.debug(f"Extracted from {pyproject_path}: name={package_name}, version={package_version}")
+        return package_name, package_version
+        
+    except Exception as e:
+        logger.warning(f"Failed to parse {pyproject_path}: {e}")
+        return None, None
 
 
 class StubScanner:
@@ -504,6 +550,9 @@ def scan_board_stubs(stub_path: Path, version: str, port: str, board: str) -> Di
                 except Exception:
                     pass
 
+    # Extract package information from pyproject.toml
+    package_name, package_version = extract_package_info_from_pyproject(stub_path)
+
     return {
         "version": version,
         "port": port,
@@ -511,6 +560,73 @@ def scan_board_stubs(stub_path: Path, version: str, port: str, board: str) -> Di
         "modules": [m.model_dump() for m in modules],
         "mpy_version": mpy_version,
         "arch": arch,
+        "package_name": package_name,
+        "package_version": package_version,
+    }
+
+
+def scan_stdlib_stubs(stdlib_path: Path, version: str) -> Dict:
+    """
+    Scan stdlib stubs from micropython-stdlib-stubs package.
+
+    Args:
+        stdlib_path: Path to the micropython-stdlib-stubs directory
+        version: Version string to assign to the stdlib data
+
+    Returns:
+        Dictionary containing stdlib information formatted as board data
+    """
+    stdlib_path = Path(stdlib_path)
+    all_modules = []
+    
+    # Define directories to scan and their priorities (lower number = higher priority)
+    scan_dirs = [
+        (stdlib_path / "stdlib", 1),
+        (stdlib_path / "_mpy_shed", 2),
+        (stdlib_path / "stubs", 3),
+    ]
+    
+    # Track which modules we've already processed to avoid duplicates
+    processed_modules = set()
+    
+    for scan_dir, priority in scan_dirs:
+        if not scan_dir.exists():
+            logger.info(f"Directory {scan_dir} does not exist, skipping")
+            continue
+            
+        # Skip dist and scratch directories
+        if scan_dir.name in ("dist", "scratch"):
+            logger.info(f"Skipping excluded directory: {scan_dir}")
+            continue
+            
+        logger.info(f"Scanning stdlib directory: {scan_dir}")
+        scanner = StubScanner(scan_dir)
+        modules = scanner.scan_all_modules()
+        
+        for module in modules:
+            # Skip modules we've already processed (lower priority wins)
+            if module.name in processed_modules:
+                logger.debug(f"Module {module.name} already processed, skipping from {scan_dir}")
+                continue
+                
+            processed_modules.add(module.name)
+            all_modules.append(module)
+            logger.debug(f"Added module {module.name} from {scan_dir}")
+    
+    logger.info(f"Scanned {len(all_modules)} unique modules from stdlib")
+    
+    # Extract package information from pyproject.toml
+    package_name, package_version = extract_package_info_from_pyproject(stdlib_path)
+    
+    return {
+        "version": version,
+        "port": "stdlib",
+        "board": "micropython-stdlib-stubs",
+        "modules": [m.model_dump() for m in all_modules],
+        "mpy_version": None,
+        "arch": None,
+        "package_name": package_name,
+        "package_version": package_version,
     }
 
 

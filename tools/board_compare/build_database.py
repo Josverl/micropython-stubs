@@ -11,19 +11,65 @@ import logging
 import re
 import sqlite3
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
+
+# TOML parsing - use tomllib for Python 3.11+ or tomli fallback
+try:
+    import tomllib
+except ImportError:
+    try:
+        import tomli as tomllib
+    except ImportError:
+        tomllib = None
 
 # Handle both standalone execution and module import
 try:
     from .models import Board, Class, Method, Module, Parameter
-    from .scan_stubs import scan_board_stubs
+    from .scan_stubs import scan_board_stubs, scan_stdlib_stubs
 except ImportError:
     # Running as standalone script
     from models import Board, Class, Method, Module, Parameter
-    from scan_stubs import scan_board_stubs
+    from scan_stubs import scan_board_stubs, scan_stdlib_stubs
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+
+def extract_package_info_from_pyproject(stub_path: Path) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Extract package name and version from pyproject.toml in the stub directory.
+
+    Args:
+        stub_path: Path to the stub directory containing pyproject.toml
+
+    Returns:
+        Tuple of (package_name, package_version) or (None, None) if not found
+    """
+    stub_path = Path(stub_path)
+    pyproject_path = Path(str(stub_path) + "/pyproject.toml")
+
+    if not pyproject_path.exists():
+        logger.debug(f"No pyproject.toml found at {pyproject_path}")
+        return None, None
+
+    if tomllib is None:
+        logger.warning("TOML parsing not available. Install tomli package for Python < 3.11")
+        return None, None
+
+    try:
+        with open(str(pyproject_path), "rb") as f:
+            data = tomllib.load(f)
+
+        project = data.get("project", {})
+        package_name = project.get("name")
+        package_version = project.get("version")
+
+        logger.debug(f"Extracted from {pyproject_path}: name={package_name}, version={package_version}")
+        return package_name, package_version
+
+    except Exception as e:
+        logger.warning(f"Failed to parse {pyproject_path}: {e}")
+        return None, None
 
 
 class DatabaseBuilder:
@@ -170,7 +216,7 @@ class DatabaseBuilder:
         """Create the normalized database schema."""
         cursor = self.conn.cursor()
 
-        # Boards table (unchanged)
+        # Boards table - updated to include package information
         cursor.execute(
             """
             CREATE TABLE IF NOT EXISTS boards (
@@ -180,10 +226,25 @@ class DatabaseBuilder:
                 board TEXT NOT NULL,
                 mpy_version TEXT,
                 arch TEXT,
+                package_name TEXT,
+                package_version TEXT,
                 UNIQUE(version, port, board)
             )
         """
         )
+
+        # Add new columns to existing boards table if they don't exist
+        try:
+            cursor.execute("ALTER TABLE boards ADD COLUMN package_name TEXT")
+            logger.info("Added package_name column to existing boards table")
+        except sqlite3.OperationalError:
+            pass  # Column already exists
+
+        try:
+            cursor.execute("ALTER TABLE boards ADD COLUMN package_version TEXT")
+            logger.info("Added package_version column to existing boards table")
+        except sqlite3.OperationalError:
+            pass  # Column already exists
 
         # Unique module definitions
         cursor.execute(
@@ -428,8 +489,8 @@ class DatabaseBuilder:
         # Insert or get board
         cursor.execute(
             """
-            INSERT OR IGNORE INTO boards (version, port, board, mpy_version, arch)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT OR IGNORE INTO boards (version, port, board, mpy_version, arch, package_name, package_version)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
         """,
             (
                 board_data["version"],
@@ -437,6 +498,8 @@ class DatabaseBuilder:
                 board_data["board"],
                 board_data.get("mpy_version"),
                 board_data.get("arch"),
+                board_data.get("package_name"),
+                board_data.get("package_version"),
             ),
         )
 
@@ -1305,6 +1368,105 @@ def build_database_for_version(
     logger.info(f"Database created at {db_path}")
 
 
+def build_database_for_stdlib(
+    stdlib_dir: Path,
+    version: str,
+    db_path: Path,
+    json_path: Optional[Path] = None,
+    detailed_json_path: Optional[Path] = None,
+    no_clean: bool = False,
+    clean_only: bool = False,
+    reset_db: bool = False,
+    list_versions: bool = False,
+):
+    """
+    Build a database for the micropython-stdlib-stubs package.
+
+    Args:
+        stdlib_dir: Path to the micropython-stdlib-stubs directory
+        version: Version string to assign to the stdlib data
+        db_path: Path to output SQLite database
+        json_path: Optional path to output simplified JSON file
+        detailed_json_path: Optional path to output detailed JSON file with full data
+        no_clean: Whether to skip cleaning existing records for this version
+        clean_only: Whether to only clean (don't process any stubs)
+        reset_db: Whether to completely reset the database (removes ALL data)
+        list_versions: Whether to list all versions currently in the database
+    """
+    builder = DatabaseBuilder(db_path)
+    builder.connect()
+    builder.create_schema()
+
+    # List versions if requested
+    if list_versions:
+        builder.list_versions()
+        if not (clean_only or reset_db):
+            builder.close()
+            return
+
+    # Reset entire database if requested
+    if reset_db:
+        builder.reset_database()
+        if not clean_only:
+            logger.info("Database reset complete. Use without --reset-db to add data.")
+        builder.close()
+        return
+
+    logger.info(f"Processing micropython-stdlib-stubs with version: {version}")
+
+    # Show current versions before cleaning
+    builder.list_versions()
+
+    # Clean existing data for the "stdlib" port by default (unless --no-clean specified)
+    should_clean = not no_clean or clean_only
+    if should_clean:
+        logger.info(f"Cleaning existing stdlib data for version '{version}' (use --no-clean to skip)")
+        # Clean by searching for records with port='stdlib' and the specified version
+        cursor = builder.conn.cursor()
+        cursor.execute("DELETE FROM boards WHERE version = ? AND port = 'stdlib'", (version,))
+        builder.conn.commit()
+        builder._cleanup_orphaned_records()
+
+        # Show what's left after cleaning
+        logger.info("After cleaning:")
+        builder.list_versions()
+    else:
+        logger.warning("Skipping clean - this may result in duplicate methods/functions!")
+
+    # If clean-only, stop here
+    if clean_only:
+        logger.info("Clean-only mode: skipping stub processing")
+        builder.close()
+        return
+
+    # Verify stdlib directory exists
+    stdlib_dir = Path(stdlib_dir)
+    if not stdlib_dir.exists():
+        logger.error(f"Stdlib directory does not exist: {stdlib_dir}")
+        builder.close()
+        return
+
+    logger.info(f"Scanning micropython-stdlib-stubs at: {stdlib_dir}")
+
+    try:
+        stdlib_data = scan_stdlib_stubs(stdlib_dir, version)
+        builder.add_board(stdlib_data)
+        logger.info(f"  Added {len(stdlib_data['modules'])} modules for stdlib")
+    except Exception as e:
+        logger.error(f"  Error processing {stdlib_dir}: {e}")
+
+    # if json_path:
+    #     logger.info(f"Exporting simplified JSON to: {json_path}")
+    #     builder.export_to_json(json_path)
+
+    # if detailed_json_path:
+    #     logger.info(f"Exporting detailed JSON to: {detailed_json_path}")
+    #     builder.export_detailed_to_json(detailed_json_path)
+
+    builder.close()
+    logger.info(f"Database updated at {db_path}")
+
+
 if __name__ == "__main__":
     import argparse
     import sys
@@ -1340,16 +1502,41 @@ if __name__ == "__main__":
     parser.add_argument("--reset-db", action="store_true", help="Completely reset the database (removes ALL data for ALL versions)")
     parser.add_argument("--list-versions", action="store_true", help="List all versions currently in the database")
 
+    # Stdlib-specific options
+    parser.add_argument("--stdlib-dir", type=Path, help="Path to micropython-stdlib-stubs directory (enables stdlib processing mode)")
+    parser.add_argument("--stdlib-version", type=str, help="Version to assign to stdlib stubs (required when using --stdlib-dir)")
+
     args = parser.parse_args()
 
-    build_database_for_version(
-        args.publish_dir,
-        args.version,
-        args.db,
-        args.json,
-        args.detailed_json,
-        args.no_clean,
-        args.clean_only,
-        args.reset_db,
-        args.list_versions,
-    )
+    # Validate stdlib arguments
+    if args.stdlib_dir and not args.stdlib_version:
+        parser.error("--stdlib-version is required when using --stdlib-dir")
+    if args.stdlib_version and not args.stdlib_dir:
+        parser.error("--stdlib-dir is required when using --stdlib-version")
+
+    if args.stdlib_dir:
+        # Process stdlib stubs
+        build_database_for_stdlib(
+            args.stdlib_dir,
+            args.stdlib_version,
+            args.db,
+            args.json,
+            args.detailed_json,
+            args.no_clean,
+            args.clean_only,
+            args.reset_db,
+            args.list_versions,
+        )
+    else:
+        # Process regular board stubs
+        build_database_for_version(
+            args.publish_dir,
+            args.version,
+            args.db,
+            args.json,
+            args.detailed_json,
+            args.no_clean,
+            args.clean_only,
+            args.reset_db,
+            args.list_versions,
+        )

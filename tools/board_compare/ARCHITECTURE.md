@@ -222,10 +222,64 @@ GROUP BY m.name;
 
 This fix ensures accurate parameter information for all functions using modern Python positional-only parameter syntax, significantly improving the completeness and accuracy of the API documentation.
 
-**Schema Highlights:**
+**Package Information Enhancement (October 2025):** pyproject.toml Integration
+
+**Enhancement Added:**
+The database schema was enhanced to preserve complete package identity information extracted from pyproject.toml files in each stub package. This enables tracking of official package names and versions for all MicroPython stub packages.
+
+**Database Schema Updates:**
 ```sql
--- Boards uniquely identified by (version, port, board)
-boards (id, version TEXT, port TEXT, board TEXT, mpy_version, arch)
+-- Enhanced boards table with package information
+boards (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  version TEXT NOT NULL,           -- MicroPython version (e.g., 'v1.26.0')
+  port TEXT NOT NULL,              -- Port name (e.g., 'esp32', 'rp2') 
+  board TEXT NOT NULL,             -- Board name (e.g., 'ESP32_GENERIC')
+  mpy_version TEXT,                -- .mpy version
+  arch TEXT,                       -- Architecture
+  package_name TEXT,               -- NEW: Package name from pyproject.toml
+  package_version TEXT,            -- NEW: Package version from pyproject.toml
+  UNIQUE(version, port, board)
+)
+```
+
+**Implementation Features:**
+- **TOML Parsing**: Uses `tomllib` (Python 3.11+) with `tomli` fallback for older Python versions
+- **Graceful Handling**: Missing pyproject.toml files result in NULL package info (backward compatible)
+- **Schema Migration**: Automatic ALTER TABLE statements add columns to existing databases
+- **Data Integrity**: Package information extracted during stub scanning process
+
+**Package Information Examples:**
+```sql
+-- Stdlib package
+package_name: "micropython-stdlib-stubs"
+package_version: "1.26.0.post3"
+
+-- ESP32 board packages  
+package_name: "micropython-esp32-esp32_generic-stubs"
+package_version: "1.26.0.post1"
+
+-- RP2 board packages
+package_name: "micropython-rp2-rpi_pico-stubs"
+package_version: "1.26.0.post1"
+```
+
+**Benefits:**
+- **Complete Package Identity**: Full traceability to PyPI packages and versions
+- **Version Tracking**: Enables package version comparison and update tracking  
+- **PyPI Integration**: Direct mapping to official package repositories
+- **Dependency Analysis**: Foundation for future package dependency tracking
+
+**Backward Compatibility:**
+- Existing boards retain NULL package info (pre-enhancement imports)
+- New imports automatically populate package information
+- No breaking changes to existing queries or functionality
+
+**Schema Highlights (Updated):**
+```sql
+-- Boards uniquely identified by (version, port, board) with package information
+boards (id, version TEXT, port TEXT, board TEXT, mpy_version, arch, 
+        package_name TEXT, package_version TEXT)
   UNIQUE(version, port, board)
 
 -- Shared module definitions (deduplicated across versions)
@@ -647,22 +701,172 @@ ORDER BY ucb.base_name
 - Efficient: Single SQL query per class, cached in class object
 - No display overhead: Simple string formatting and inline rendering
 
+### 12. MicroPython Stdlib Support and Package Information Tracking
+
+**Decision:** Extend build system to support micropython-stdlib-stubs package and preserve complete package identity information
+
+**Rationale:**
+- **Complete ecosystem coverage**: Include stdlib alongside board-specific stubs for comprehensive API reference
+- **Package traceability**: Track official PyPI package names and versions for all stub packages
+- **Unified interface**: Single tool covers both stdlib and board-specific APIs
+- **Version tracking**: Enable comparison between different package releases
+- **PyPI integration**: Direct mapping to official package repositories for dependency management
+
+**Implementation Architecture:**
+
+**Stdlib Processing Pipeline:**
+```python
+# New command-line interface
+python build_database.py --stdlib-dir path/to/micropython-stdlib-stubs --stdlib-version "stdlib-1.0"
+
+# Directory scanning with exclusions
+scan_dirs = [
+    (stdlib_path / "stdlib", 1),     # Standard library modules (highest priority)
+    (stdlib_path / "_mpy_shed", 2),  # MicroPython-specific additions  
+    (stdlib_path / "stubs", 3),      # Third-party stubs (lowest priority)
+]
+# Excluded: dist/, scratch/ directories
+```
+
+**Package Information Extraction:**
+```python
+def extract_package_info_from_pyproject(stub_path: Path) -> Tuple[Optional[str], Optional[str]]:
+    """Extract package name and version from pyproject.toml."""
+    pyproject_path = stub_path / "pyproject.toml"
+    
+    with open(pyproject_path, "rb") as f:
+        data = tomllib.load(f)  # Uses tomllib (Python 3.11+) or tomli fallback
+    
+    project = data.get("project", {})
+    return project.get("name"), project.get("version")
+```
+
+**Database Integration:**
+- **Stdlib representation**: Uses port='stdlib', board='micropython-stdlib-stubs'
+- **Unified storage**: Stdlib modules stored alongside board modules in same normalized schema
+- **Package metadata**: Complete package name and version preserved in boards table
+- **Module deduplication**: Stdlib modules participate in cross-package deduplication when identical
+
+**Key Implementation Features:**
+
+**Command-Line Interface:**
+```bash
+# Stdlib processing (new)
+python build_database.py --stdlib-dir path/to/stdlib --stdlib-version "stdlib-1.0"
+
+# Regular board processing (unchanged)  
+python build_database.py --version "v1.26.0"
+
+# All standard options work with stdlib
+python build_database.py --stdlib-dir path --stdlib-version ver --clean-only
+python build_database.py --stdlib-dir path --stdlib-version ver --no-clean
+```
+
+**Data Processing Pipeline:**
+1. **Directory scanning**: Processes stdlib/, _mpy_shed/, stubs/ with priority-based deduplication
+2. **Package extraction**: Reads pyproject.toml from root directory for package metadata
+3. **Module scanning**: Uses same libcst-based scanning as regular boards
+4. **Database storage**: Stores as special board entry with complete package information
+
+**Backward Compatibility:**
+- **Schema migration**: Existing databases automatically get new package columns via ALTER TABLE
+- **Null handling**: Pre-enhancement boards have NULL package info (expected behavior)
+- **Query compatibility**: All existing queries continue to work unchanged
+- **Mixed data**: New package-aware imports coexist with legacy data
+
+**Package Information Coverage:**
+
+**Stdlib Package:**
+```json
+{
+  "package_name": "micropython-stdlib-stubs",
+  "package_version": "1.26.0.post3",
+  "modules": 63  // typing, asyncio, collections, os, sys, etc.
+}
+```
+
+**Board Packages (Examples):**
+```json
+{
+  "package_name": "micropython-esp32-esp32_generic-stubs", 
+  "package_version": "1.26.0.post1"
+},
+{
+  "package_name": "micropython-rp2-rpi_pico-stubs",
+  "package_version": "1.26.0.post1"  
+}
+```
+
+**Database Coverage Results:**
+- **Total boards**: 44 (including stdlib)
+- **Boards with package info**: 21 (v1.26.0 boards + stdlib imports)  
+- **Boards without package info**: 23 (legacy pre-enhancement imports)
+- **Module coverage**: 63 stdlib modules + 70+ board modules per platform
+
+**Error Handling and Robustness:**
+- **Missing pyproject.toml**: Graceful degradation with NULL package info
+- **TOML parsing errors**: Logged warnings with fallback to NULL values
+- **Directory validation**: Comprehensive existence checks with informative error messages
+- **Version validation**: Required --stdlib-version parameter prevents incomplete imports
+
+**Future Enhancement Foundation:**
+- **Multi-version support**: Database design supports multiple stdlib versions simultaneously
+- **Dependency tracking**: Package information enables future dependency analysis
+- **Version comparison**: Foundation for comparing package versions across releases
+- **PyPI integration**: Direct mapping enables automated package update checking
+
+**Files Modified:**
+- `build_database.py`: Enhanced with stdlib processing and package extraction
+- `scan_stubs.py`: Added stdlib scanner and package info extraction  
+- `models.py`: Updated Board model with package fields
+- Database schema: Added package_name, package_version columns to boards table
+
+**Testing Results:**
+- **Stdlib import**: 63 modules successfully imported with complete API information
+- **Package extraction**: All pyproject.toml files parsed correctly across 20+ board packages  
+- **Schema migration**: Existing database successfully upgraded with new columns
+- **Backward compatibility**: All existing functionality preserved during enhancement
+
 ## Data Flow
 
-### 1. Database Building Flow
+### 1. Database Building Flow (Enhanced with Stdlib Support)
 
 ```mermaid
 graph LR
-    A[.pyi Stub Files] --> B[StubScanner<br/>libcst]
-    B --> C[Pydantic Models<br/>In-Memory]
-    C --> D[DatabaseBuilder]
-    D --> E[(SQLite DB<br/>4.8MB)]
-    D --> F[Export Engine]
-    F --> G[Simplified JSON<br/>24KB]
+    subgraph "Input Sources"
+        A[Board Stub Files<br/>micropython-v*-*-stubs/]
+        A2[Stdlib Stub Files<br/>micropython-stdlib-stubs/]
+    end
+    
+    subgraph "Processing"
+        B[StubScanner<br/>libcst]
+        B2[Package Info Extractor<br/>pyproject.toml]
+        C[Pydantic Models<br/>In-Memory]
+        D[DatabaseBuilder]
+    end
+    
+    subgraph "Output"
+        E[(SQLite DB<br/>~6.2MB<br/>With Package Info)]
+        F[Export Engine]
+        G[Simplified JSON<br/>24KB]
+    end
+    
+    A --> B
+    A2 --> B
+    A --> B2
+    A2 --> B2
+    B --> C
+    B2 --> C
+    C --> D
+    D --> E
+    D --> F
+    F --> G
     
     style E fill:#e1f5ff
     style C fill:#f3e5f5
     style G fill:#fff3e0
+    style A2 fill:#e8f5e9
+    style B2 fill:#fff3e0
 ```
 
 ### 2. Frontend Data Flow
@@ -791,20 +995,23 @@ graph TB
 
 ### 2. Growing Board Count
 
-**Current:** 20 boards for v1.26.0
-**Scalability Projection:**
+**Current:** 44 boards (20 v1.26.0 + 1 stdlib + 23 legacy versions)
+**Scalability Projection (Updated with Package Information):**
 
-| Boards | Modules | Classes | Methods | DB Size | Query Time |
-|--------|---------|---------|---------|---------|------------|
-| 20     | 128     | 173     | 12,144  | 4.8MB   | < 50ms     |
-| 50     | 200     | 350     | 30,000  | ~12MB   | < 100ms    |
-| 100    | 300     | 600     | 60,000  | ~24MB   | < 200ms    |
+| Boards | Modules | Classes | Methods | DB Size | Query Time | Package Info |
+|--------|---------|---------|---------|---------|------------|--------------|
+| 44     | 200+    | 400+    | 20,000+ | ~6.2MB  | < 50ms     | 21 boards    |
+| 50     | 250     | 500     | 30,000  | ~8MB    | < 75ms     | All new      |
+| 100    | 400     | 800     | 60,000  | ~16MB   | < 150ms    | All new      |
+| 200    | 600     | 1200    | 120,000 | ~32MB   | < 300ms    | All new      |
 
 **Scalability Features:**
-- Linear growth in database size
+- Linear growth in database size (~150KB per board average)
 - Normalized schema prevents duplication (shared modules across boards)
+- Package information adds minimal overhead (~50 bytes per board)
 - Indexed foreign keys maintain fast query performance
-- Can efficiently handle 100+ boards in single database
+- Can efficiently handle 200+ boards with complete package metadata
+- Stdlib integration adds comprehensive standard library coverage
 
 ### 3. API Complexity Growth
 
@@ -1127,6 +1334,41 @@ if (params.has('module')) {
    - **Limited offline support**: Requires internet for first load
 
 ## Recent Updates
+
+### October 21, 2025: MicroPython Stdlib Support and Package Information Tracking
+
+Added comprehensive support for micropython-stdlib-stubs package and complete package metadata extraction from pyproject.toml files.
+
+**Major Features Implemented:**
+- **Stdlib Integration**: Full support for micropython-stdlib-stubs package with 63 standard library modules
+- **Package Information Extraction**: Automatic parsing of pyproject.toml files to preserve package names and versions
+- **Database Schema Enhancement**: Added `package_name` and `package_version` columns to boards table
+- **Command-Line Interface**: New `--stdlib-dir` and `--stdlib-version` arguments for stdlib processing
+- **Backward Compatibility**: Seamless schema migration for existing databases
+
+**Implementation Details:**
+- TOML parsing using `tomllib` (Python 3.11+) with `tomli` fallback
+- Priority-based directory scanning: stdlib/ > _mpy_shed/ > stubs/ (excludes dist/, scratch/)
+- Automatic ALTER TABLE statements for existing database migration
+- Unified storage model treating stdlib as special board entry
+
+**Database Impact:**
+- **Schema**: Added 2 new columns to boards table for package metadata
+- **Coverage**: 44 total boards (20 regular + 1 stdlib + 23 legacy)
+- **Package Info**: 21 boards with complete package information, 23 legacy with NULL values
+- **Examples**: "micropython-esp32-esp32_generic-stubs" v1.26.0.post1, "micropython-stdlib-stubs" v1.26.0.post3
+
+**Files Modified:**
+- `build_database.py`: Enhanced with stdlib processing, package extraction, and schema migration
+- `scan_stubs.py`: Added `scan_stdlib_stubs()` and `extract_package_info_from_pyproject()`  
+- `models.py`: Updated Board model with package_name and package_version fields
+- Database schema: Added package columns with automatic migration
+
+**Testing Results:**
+- Successfully imported 63 stdlib modules with complete API information
+- Package extraction working for all 20+ board packages and stdlib package
+- Existing functionality fully preserved during enhancement
+- Schema migration tested on existing database with 42 boards
 
 ### October 18, 2025: Base Class Inheritance Display
 

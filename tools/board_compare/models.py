@@ -85,6 +85,8 @@ class Board(BaseModel):
     modules: List[Module] = Field(default_factory=list, description="Modules available on this board")
     mpy_version: Optional[str] = Field(None, description=".mpy version")
     arch: Optional[str] = Field(None, description="Architecture")
+    package_name: Optional[str] = Field(None, description="Package name from pyproject.toml")
+    package_version: Optional[str] = Field(None, description="Package version from pyproject.toml")
 
 
 class DatabaseSchema(BaseModel):
