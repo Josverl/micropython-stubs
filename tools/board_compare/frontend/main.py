@@ -1,101 +1,13 @@
 import asyncio
 import json
 
-import js
-from pyscript import document, fetch, ffi, window
-
 # Import database module with all state, utilities, and database functions
 import database
+import js
 
-
-# Template utilities
-def get_template(template_id):
-    """Get a clone of a template element."""
-    template = document.getElementById(template_id)
-    if template:
-        return template.cloneNode(True)
-    return None
-
-
-def populate_template(element, data):
-    """Populate template placeholders with data."""
-    if not element:
-        return element
-
-    # Handle text content placeholders
-    for key, value in data.items():
-        # Find elements with data attributes
-        target_elements = element.querySelectorAll(f"[data-{key}]")
-
-        for target in target_elements:
-            if key.endswith("-click") and value:
-                target.setAttribute("onclick", value)
-            elif key.endswith("-class") and value:
-                target.className = value
-            elif key.endswith("-id") and value:
-                target.id = value
-            elif key.endswith("-data") and value:
-                target.setAttribute("data-module", value)
-            elif key.endswith("-style") and value:
-                if value == "hide":
-                    target.style.display = "none"
-                elif value == "show":
-                    target.style.display = "block"
-            elif key.endswith("-icon") and value:
-                # Handle icon classes - set className instead of text content
-                target.className = value
-            else:
-                # Set text content
-                if hasattr(target, "textContent"):
-                    target.textContent = str(value) if value is not None else ""
-                elif hasattr(target, "innerText"):
-                    target.innerText = str(value) if value is not None else ""
-
-    return element
-
-
-def show_loading(container_id, message="Loading...", progress=""):
-    """Show loading state using template."""
-    container = document.getElementById(container_id)
-    if not container:
-        return
-
-    loading_element = get_template("loading-template")
-    if loading_element:
-        loading_element.style.display = "block"
-        populate_template(loading_element, {"loading-message": message, "progress-step": progress})
-        container.innerHTML = ""
-        container.appendChild(loading_element)
-
-
-def show_error(container_id, title="Error", message="An error occurred", show_retry=False):
-    """Show error state using template."""
-    container = document.getElementById(container_id)
-    if not container:
-        return
-
-    error_element = get_template("error-template")
-    if error_element:
-        error_element.style.display = "block"
-        populate_template(
-            error_element, {"error-title": title, "error-message": message, "retry-button-style": "show" if show_retry else "hide"}
-        )
-        container.innerHTML = ""
-        container.appendChild(error_element)
-
-
-def show_message(container_id, title="Information", message=""):
-    """Show simple message using template."""
-    container = document.getElementById(container_id)
-    if not container:
-        return
-
-    message_element = get_template("message-template")
-    if message_element:
-        message_element.style.display = "block"
-        populate_template(message_element, {"message-title": title, "message-text": message})
-        container.innerHTML = ""
-        container.appendChild(message_element)
+# Import UI module with all template and display functions
+import ui
+from pyscript import document, fetch, ffi, window
 
 
 def create_module_item(module, options):
@@ -153,9 +65,9 @@ def create_module_item(module, options):
         module_header_class += " deprecated"
 
     # Get template and populate
-    module_element = get_template("module-item-template")
+    module_element = ui.get_template("module-item-template")
     if module_element:
-        populate_template(
+        ui.populate_template(
             module_element,
             {
                 "module-header-class": module_header_class,
@@ -204,9 +116,9 @@ def create_class_item(cls, module_name, module_prefix, module_id=None):
     base_classes_span = f" {base_classes_str}" if base_classes_str else ""
 
     # Get template and populate
-    class_element = get_template("class-item-template")
+    class_element = ui.get_template("class-item-template")
     if class_element:
-        populate_template(
+        ui.populate_template(
             class_element,
             {
                 "class-click": f"toggleClass('{class_id}', event)",
@@ -258,10 +170,10 @@ def create_function_item(func):
     function_decorator_span = f"{' '.join(decorator_strs)} " if decorator_strs else ""
 
     # Get template and populate
-    function_element = get_template("function-item-template")
+    function_element = ui.get_template("function-item-template")
     if function_element:
         icon_type = "property" if func.get("is_property") else "function"
-        populate_template(
+        ui.populate_template(
             function_element,
             {
                 "function-icon": database.get_icon_class(icon_type),
@@ -278,9 +190,9 @@ def create_constant_item(const):
     const_value = f" = {const['value']}" if const.get("value") else ""
 
     # Get template and populate
-    constant_element = get_template("constant-item-template")
+    constant_element = ui.get_template("constant-item-template")
     if constant_element:
-        populate_template(constant_element, {"constant-signature": f"{const['name']}{const_value}"})
+        ui.populate_template(constant_element, {"constant-signature": f"{const['name']}{const_value}"})
 
     return constant_element
 
@@ -801,15 +713,15 @@ async def compare_boards():
 
     # Validate selections
     if not board1_version or not board1_name or not board2_version or not board2_name:
-        show_message("compare-results", "Board Comparison", "Please select both version and board for both boards to compare.")
+        ui.show_message("compare-results", "Board Comparison", "Please select both version and board for both boards to compare.")
         return
 
     if not database.app_state["db"]:
-        show_message("compare-results", "Board Comparison", "Database not available for comparison.")
+        ui.show_message("compare-results", "Board Comparison", "Database not available for comparison.")
         return
 
     # Show loading with progress
-    show_loading("compare-results", "Preparing comparison...", "Initializing...")
+    ui.show_loading("compare-results", "Preparing comparison...", "Initializing...")
 
     try:
         # Small delay to show initial message
@@ -825,14 +737,14 @@ async def compare_boards():
             else:
                 msg = f"Board 2: '{board2_name}' version '{board2_version}' not found."
             print(msg)
-            show_error("compare-results", "Board Comparison Error", msg)
+            ui.show_error("compare-results", "Board Comparison Error", msg)
             return
 
         # Convert to comparison format
         board1 = {"version": board1_version, "port": board1_info[0], "board": board1_info[1]}
         board2 = {"version": board2_version, "port": board2_info[0], "board": board2_info[1]}
         # Update progress for board 1
-        show_loading("compare-results", f"Fetching modules for {board1_name}...", "Step 1 of 3")
+        ui.show_loading("compare-results", f"Fetching modules for {board1_name}...", "Step 1 of 3")
 
         print(f"Fetching modules for board 1: {board1}")
         modules1 = database.get_board_modules(board1)
@@ -841,7 +753,7 @@ async def compare_boards():
         await asyncio.sleep(0.3)
 
         # Update progress for board 2
-        show_loading("compare-results", f"Fetching modules for {board2_name}...", "Step 2 of 3")
+        ui.show_loading("compare-results", f"Fetching modules for {board2_name}...", "Step 2 of 3")
 
         print(f"Fetching modules for board 2: {board2}")
         modules2 = database.get_board_modules(board2)
@@ -850,7 +762,7 @@ async def compare_boards():
         await asyncio.sleep(0.2)
 
         # Update progress for comparison
-        show_loading("compare-results", "Analyzing differences...", "Step 3 of 3")
+        ui.show_loading("compare-results", "Analyzing differences...", "Step 3 of 3")
 
         # Small delay to show final step
         await asyncio.sleep(0.2)
@@ -868,7 +780,7 @@ async def compare_boards():
 
     except Exception as e:
         print(f"Error during comparison: {e}")
-        show_error("compare-results", "⚠️ Comparison Error", str(e), show_retry=True)
+        ui.show_error("compare-results", "⚠️ Comparison Error", str(e), show_retry=True)
 
 
 def render_module_tree_dom(modules, options):
@@ -886,27 +798,27 @@ def render_module_tree_dom(modules, options):
     container.className = "module-tree"
 
     for module in modules:
-        module_element = create_module_item(module, options)
+        module_element = ui.create_module_item(module, options)
         if module_element and show_details:
             # Add children to module
             children_container = module_element.querySelector("[data-module-children]")
             if children_container:
                 # Add classes
                 for cls in module.get("classes", []):
-                    class_element = create_class_item(cls, module["name"], options.get("module_prefix", "tree"), module.get("id"))
+                    class_element = ui.create_class_item(cls, module["name"], options.get("module_prefix", "tree"), module.get("id"))
                     if class_element:
                         # Add methods and attributes to class
                         class_children = class_element.querySelector("[data-class-children]")
                         if class_children:
                             # Add methods
                             for method in cls.get("methods", []):
-                                method_element = create_method_item(method)
+                                method_element = ui.create_method_item(method)
                                 if method_element:
                                     class_children.appendChild(method_element)
 
                             # Add attributes
                             for attr in cls.get("attributes", []):
-                                attr_element = create_attribute_item(attr)
+                                attr_element = ui.create_attribute_item(attr)
                                 if attr_element:
                                     class_children.appendChild(attr_element)
 
@@ -914,13 +826,13 @@ def render_module_tree_dom(modules, options):
 
                 # Add functions
                 for func in module.get("functions", []):
-                    func_element = create_function_item(func)
+                    func_element = ui.create_function_item(func)
                     if func_element:
                         children_container.appendChild(func_element)
 
                 # Add constants
                 for const in module.get("constants", []):
-                    const_element = create_constant_item(const)
+                    const_element = ui.create_constant_item(const)
                     if const_element:
                         children_container.appendChild(const_element)
 
@@ -985,9 +897,9 @@ def create_method_item(method):
     decorator_span = f"{' '.join(decorator_strs)} " if decorator_strs else ""
 
     # Get template and populate
-    method_element = get_template("function-item-template")
+    method_element = ui.get_template("function-item-template")
     if method_element:
-        populate_template(
+        ui.populate_template(
             method_element,
             {
                 "function-icon": database.get_icon_class(icon_type),
@@ -1005,9 +917,9 @@ def create_attribute_item(attr):
     value = f" = {attr['value']}" if attr.get("value") else ""
 
     # Get template and populate
-    attr_element = get_template("constant-item-template")
+    attr_element = ui.get_template("constant-item-template")
     if attr_element:
-        populate_template(attr_element, {"constant-signature": f"{attr['name']}{type_hint}{value}"})
+        ui.populate_template(attr_element, {"constant-signature": f"{attr['name']}{type_hint}{value}"})
 
         # Update icon for attributes (use circle-dot instead of circle)
         icon_elem = attr_element.querySelector(".fa-icon")
@@ -1022,7 +934,7 @@ def render_module_tree_html(modules, options):
     Legacy function that returns HTML string for backward compatibility.
     Consider migrating to render_module_tree_dom for better performance.
     """
-    dom_tree = render_module_tree_dom(modules, options)
+    dom_tree = ui.render_module_tree_dom(modules, options)
     return dom_tree.innerHTML if dom_tree else ""
 
 
@@ -1066,10 +978,10 @@ def update_comparison():
         stats_element.style.display = "block"
 
         # Use template for statistics
-        stats_template = get_template("stats-template")
+        stats_template = ui.get_template("stats-template")
         if stats_template:
             stats_template.style.display = "block"
-            populate_template(
+            ui.populate_template(
                 stats_template,
                 {
                     "board1-name": board1_name,
@@ -1117,12 +1029,12 @@ def update_comparison():
         board2_modules_to_show = sorted(modules2, key=lambda m: m["name"])
 
     # Use comparison grid template
-    comparison_grid = get_template("comparison-grid-template")
+    comparison_grid = ui.get_template("comparison-grid-template")
     if comparison_grid:
         comparison_grid.style.display = "block"
 
         # Generate module trees using DOM-based rendering
-        board1_tree_dom = render_module_tree_dom(
+        board1_tree_dom = ui.render_module_tree_dom(
             board1_modules_to_show,
             {
                 "module_prefix": "board1",
@@ -1132,7 +1044,7 @@ def update_comparison():
             },
         )
 
-        board2_tree_dom = render_module_tree_dom(
+        board2_tree_dom = ui.render_module_tree_dom(
             board2_modules_to_show,
             {
                 "module_prefix": "board2",
@@ -1143,7 +1055,7 @@ def update_comparison():
         )
 
         # Populate board headers
-        populate_template(
+        ui.populate_template(
             comparison_grid,
             {"board1-header": f"{board1_name} ({board1['version']})", "board2-header": f"{board2_name} ({board2['version']})"},
         )
@@ -1158,9 +1070,9 @@ def update_comparison():
                 board1_container.appendChild(board1_tree_dom)
             else:
                 # Use template for "No differences" message
-                no_diff_elem = get_template("message-template")
+                no_diff_elem = ui.get_template("message-template")
                 if no_diff_elem:
-                    populate_template(
+                    ui.populate_template(
                         no_diff_elem, {"data-show-detail-view": "false", "data-show-simple": "true", "data-simple-text": "No differences"}
                     )
                     board1_container.appendChild(no_diff_elem)
@@ -1171,9 +1083,9 @@ def update_comparison():
                 board2_container.appendChild(board2_tree_dom)
             else:
                 # Use template for "No differences" message
-                no_diff_elem = get_template("message-template")
+                no_diff_elem = ui.get_template("message-template")
                 if no_diff_elem:
-                    populate_template(
+                    ui.populate_template(
                         no_diff_elem, {"data-show-detail-view": "false", "data-show-simple": "true", "data-simple-text": "No differences"}
                     )
                     board2_container.appendChild(no_diff_elem)
@@ -1182,7 +1094,7 @@ def update_comparison():
         common_section = comparison_grid.querySelector("[data-common-section]")
         if not hide_common and len(common_names) > 0:
             common_modules = [m for m in modules1 if m["name"] in common_names]
-            common_tree_dom = render_module_tree_dom(
+            common_tree_dom = ui.render_module_tree_dom(
                 common_modules,
                 {
                     "module_prefix": "common",
@@ -1192,7 +1104,7 @@ def update_comparison():
                 },
             )
 
-            populate_template(comparison_grid, {"common-header": f"Common Modules ({len(common_names)})"})
+            ui.populate_template(comparison_grid, {"common-header": f"Common Modules ({len(common_names)})"})
 
             common_container = comparison_grid.querySelector("[data-common-modules]")
             if common_container and common_tree_dom:
@@ -1219,15 +1131,15 @@ async def search_apis():
     search_term = search_input.value.strip()
 
     if not search_term:
-        show_message("search-results", "Search Results", "Enter a search term to find modules, classes, methods, functions, or constants.")
+        ui.show_message("search-results", "Search Results", "Enter a search term to find modules, classes, methods, functions, or constants.")
         return
 
     if not database.app_state["db"]:
-        show_error("search-results", "Search Error", "Database not loaded. Please wait for the application to initialize.")
+        ui.show_error("search-results", "Search Error", "Database not loaded. Please wait for the application to initialize.")
         return
 
     # Show loading
-    show_loading("search-results", f'Searching for "{search_term}"...', "Scanning database...")
+    ui.show_loading("search-results", f'Searching for "{search_term}"...', "Scanning database...")
 
     try:
         # Allow UI update
@@ -1237,7 +1149,7 @@ async def search_apis():
         display_search_results(search_results, search_term)
 
     except Exception as e:
-        show_error("search-results", "Search Error", f"Error performing search: {str(e)}")
+        ui.show_error("search-results", "Search Error", f"Error performing search: {str(e)}")
 
 
 async def perform_search(search_term):
@@ -1795,7 +1707,7 @@ def display_search_results(results, search_term):
     results_div = document.getElementById("search-results")
 
     if not results:
-        show_message("search-results", "Search Results", f'No results found for "<strong>{search_term}</strong>"')
+        ui.show_message("search-results", "Search Results", f'No results found for "<strong>{search_term}</strong>"')
         update_search_url(search_term)
         return
 
@@ -1811,7 +1723,7 @@ def display_search_results(results, search_term):
     }
     
     # Render using existing tree system
-    tree_dom = render_module_tree_dom(tree_modules, options)
+    tree_dom = ui.render_module_tree_dom(tree_modules, options)
     
     # Create search results header
     search_header = document.createElement("div")
@@ -1852,7 +1764,7 @@ def create_search_result_item(result, entity_type):
     context_path = get_context_path(result)
 
     # Use search result template
-    result_element = get_template("search-result-item-template")
+    result_element = ui.get_template("search-result-item-template")
     if result_element:
         # Apply hierarchical styling
         if result.get("is_grandchild"):
@@ -1881,7 +1793,7 @@ def create_search_result_item(result, entity_type):
             entity_name = f"└─ {entity_name}"
         
         # Populate template data
-        populate_template(
+        ui.populate_template(
             result_element,
             {"entity-name": entity_name, "context-path": context_path, "board-name": board_name, "version": result["version"]},
         )
@@ -2226,9 +2138,9 @@ async def load_board_details():
 
     if not selected_version or not selected_board_name:
         # Use template for selection prompt
-        select_prompt = get_template("message-template")
+        select_prompt = ui.get_template("message-template")
         if select_prompt:
-            populate_template(
+            ui.populate_template(
                 select_prompt,
                 {
                     "data-show-detail-view": "false",
@@ -2243,9 +2155,9 @@ async def load_board_details():
         return
 
     # Show loading using template
-    loading_template = get_template("loading-template")
+    loading_template = ui.get_template("loading-template")
     if loading_template:
-        populate_template(
+        ui.populate_template(
             loading_template, {"data-show-spinner": "false", "data-show-progress": "true", "data-loading-text": "Loading board details..."}
         )
         content.innerHTML = ""
@@ -2333,21 +2245,21 @@ async def load_board_details():
         stmt.free()
 
         # Use template-based board details
-        board_details = get_template("board-details-template")
+        board_details = ui.get_template("board-details-template")
         if board_details:
             # Populate header information
-            populate_template(board_details, {"board-title": f"{selected_board_name} ({selected_version})"})
+            ui.populate_template(board_details, {"board-title": f"{selected_board_name} ({selected_version})"})
 
             # Create module tree using DOM-based rendering
             options = {"module_prefix": "explorer", "get_badge_class": lambda m: "", "get_module_badge": lambda m: "", "show_details": True}
 
-            module_tree_dom = render_module_tree_dom(modules, options)
+            module_tree_dom = ui.render_module_tree_dom(modules, options)
 
             # Use board content template
-            board_content_template = get_template("board-content-template")
+            board_content_template = ui.get_template("board-content-template")
             if board_content_template:
                 # Populate template data
-                populate_template(board_content_template, {"modules-title": f"Modules ({len(modules)})"})
+                ui.populate_template(board_content_template, {"modules-title": f"Modules ({len(modules)})"})
 
                 # Add module tree to template
                 modules_tree_container = board_content_template.querySelector("[data-modules-tree]")
@@ -2365,9 +2277,9 @@ async def load_board_details():
 
     except Exception as e:
         # Use error template instead of inline HTML
-        error_template = get_template("error-template")
+        error_template = ui.get_template("error-template")
         if error_template:
-            populate_template(
+            ui.populate_template(
                 error_template,
                 {"data-error-message": str(e), "data-error-details": f"{type(e).__name__}: {str(e)}", "data-error-icon": "true"},
             )

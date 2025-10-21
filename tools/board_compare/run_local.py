@@ -2,7 +2,7 @@ import http.server
 import socketserver
 from pathlib import Path
 
-PORT = 8000
+PORT = 8080
 DIRECTORY = Path("./frontend")
 
 
