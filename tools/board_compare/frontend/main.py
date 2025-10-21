@@ -50,7 +50,7 @@ def switch_page(page_id):
 
 
 def populate_board_selects():
-    """Populate all board selection dropdowns."""
+    """Populate all board selection datalists."""
     if not database.app_state["boards"]:
         return
 
@@ -58,139 +58,36 @@ def populate_board_selects():
     versions = list(set(board.get("version", "") for board in database.app_state["boards"]))
     versions.sort(reverse=True)
 
-    # Populate version selects
-    for select_id in ["explorer-version", "board1-version", "board2-version"]:
-        select = document.getElementById(select_id)
-        select.innerHTML = '<option value="">All versions</option>'
+    # Populate version datalists
+    for list_id in ["explorer-version-list", "board1-version-list", "board2-version-list"]:
+        datalist = document.getElementById(list_id)
+        datalist.innerHTML = '<option value="">All versions</option>'
 
         for version in versions:
             option = document.createElement("option")
             option.value = version
-            option.textContent = version
-            select.appendChild(option)
+            datalist.appendChild(option)
 
     # Get unique board names (formatted)
     board_names = list(set(database.format_board_name(board.get("port", ""), board.get("board", "")) for board in database.app_state["boards"]))
     board_names.sort()
 
-    # Populate board selects
-    for select_id in ["explorer-board", "board1", "board2"]:
-        select = document.getElementById(select_id)
-        select.innerHTML = '<option value="">Select a board...</option>'
+    # Populate board datalists
+    for list_id in ["explorer-board-list", "board1-list", "board2-list"]:
+        datalist = document.getElementById(list_id)
+        datalist.innerHTML = '<option value="">Select a board...</option>'
 
         for board_name in board_names:
             option = document.createElement("option")
             option.value = board_name
-            option.textContent = board_name
-            select.appendChild(option)
+            datalist.appendChild(option)
 
 
-def initialize_searchable_dropdowns():
-    """Initialize searchable dropdowns using JavaScript."""
-    js.eval("""
-    // Initialize searchable dropdowns for board selection
-    function initializeSearchableDropdown(selectId) {
-        const select = document.getElementById(selectId);
-        if (!select) return;
-        
-        // Create wrapper
-        const wrapper = document.createElement('div');
-        wrapper.className = 'dropdown-wrapper';
-        wrapper.style.position = 'relative';
-        wrapper.style.display = 'inline-block';
-        wrapper.style.width = '100%';
-        
-        // Create search input
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.className = 'form-control dropdown-search';
-        input.placeholder = select.options[0]?.text || 'Select...';
-        input.style.width = '100%';
-        
-        // Create dropdown
-        const dropdown = document.createElement('div');
-        dropdown.className = 'dropdown-options';
-        dropdown.style.position = 'absolute';
-        dropdown.style.top = '100%';
-        dropdown.style.left = '0';
-        dropdown.style.right = '0';
-        dropdown.style.backgroundColor = 'white';
-        dropdown.style.border = '1px solid #ced4da';
-        dropdown.style.borderTop = 'none';
-        dropdown.style.maxHeight = '200px';
-        dropdown.style.overflowY = 'auto';
-        dropdown.style.zIndex = '1000';
-        dropdown.style.display = 'none';
-        
-        // Populate dropdown options
-        function populateDropdown(filter = '') {
-            dropdown.innerHTML = '';
-            for (let i = 0; i < select.options.length; i++) {
-                const option = select.options[i];
-                if (filter === '' || option.text.toLowerCase().includes(filter.toLowerCase())) {
-                    const div = document.createElement('div');
-                    div.className = 'dropdown-option';
-                    div.textContent = option.text;
-                    div.style.padding = '8px 12px';
-                    div.style.cursor = 'pointer';
-                    div.style.borderBottom = '1px solid #eee';
-                    
-                    div.addEventListener('click', () => {
-                        select.value = option.value;
-                        input.value = option.text;
-                        dropdown.style.display = 'none';
-                        
-                        // Trigger change event
-                        const changeEvent = new Event('change', { bubbles: true });
-                        select.dispatchEvent(changeEvent);
-                    });
-                    
-                    div.addEventListener('mouseenter', () => {
-                        div.style.backgroundColor = '#f8f9fa';
-                    });
-                    
-                    div.addEventListener('mouseleave', () => {
-                        div.style.backgroundColor = 'white';
-                    });
-                    
-                    dropdown.appendChild(div);
-                }
-            }
-        }
-        
-        // Event listeners
-        input.addEventListener('input', (e) => {
-            populateDropdown(e.target.value);
-            dropdown.style.display = 'block';
-        });
-        
-        input.addEventListener('focus', () => {
-            populateDropdown(input.value);
-            dropdown.style.display = 'block';
-        });
-        
-        document.addEventListener('click', (e) => {
-            if (!wrapper.contains(e.target)) {
-                dropdown.style.display = 'none';
-            }
-        });
-        
-        // Replace select with wrapper
-        select.parentNode.insertBefore(wrapper, select);
-        select.style.display = 'none';
-        
-        wrapper.appendChild(input);
-        wrapper.appendChild(dropdown);
-        wrapper.appendChild(select);
-        
-        populateDropdown();
-    }
-    
-    // Initialize all board selects
-    initializeSearchableDropdown('explorer-board');
-    initializeSearchableDropdown('board1');
-    initializeSearchableDropdown('board2');
-    """)
+def initialize_input_change_handlers():
+    """Set up change handlers for input elements - handled by individual modules."""
+    # URL update handlers are now set up by the individual page modules
+    # in their respective setup_*_event_handlers() functions
+    pass
 
 
 def setup_event_handlers():
@@ -231,8 +128,8 @@ async def main():
         await database.load_board_list_from_db()
         populate_board_selects()
 
-        # Initialize searchable dropdowns after populating selects
-        initialize_searchable_dropdowns()
+        # Initialize input change handlers for URL updates
+        initialize_input_change_handlers()
 
         # Check URL parameters and auto-switch to appropriate mode
         url = js.eval("new URL(window.location.href)")

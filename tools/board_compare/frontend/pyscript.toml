@@ -9,12 +9,13 @@ packages = [
 # URL to a destination in the filesystem path
 # modules and database file are stored in the project folder
 [files]
-"sqlite_wasm.py" = ""
+"main.py" = ""
 "database.py" = ""
 "ui.py" = ""
 "explorer.py" = ""
 "compare.py" = ""
 "search.py" = ""
+"sqlite_wasm.py" = ""
 
 # database is loaded from URL 
 # "board_comparison.db" = ""

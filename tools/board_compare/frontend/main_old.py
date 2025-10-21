@@ -60,7 +60,7 @@ def populate_board_selects():
     # Populate version selects
     for select_id in ["explorer-version", "board1-version", "board2-version"]:
         select = document.getElementById(select_id)
-        select.innerHTML = '<option value="">All versions</option>'
+        select.innerHTML = f'<option value="">{versions[0]}</option>'
 
         for version in versions:
             option = document.createElement("option")

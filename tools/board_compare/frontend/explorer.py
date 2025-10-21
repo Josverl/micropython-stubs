@@ -11,11 +11,11 @@ from pyscript import document, ffi, window
 
 async def load_board_details():
     """Load board details when a board is selected."""
-    version_select = document.getElementById("explorer-version")
-    board_select = document.getElementById("explorer-board")
+    version_input = document.getElementById("explorer-version")
+    board_input = document.getElementById("explorer-board")
 
-    selected_version = version_select.value if version_select else ""
-    selected_board_name = board_select.value if board_select else ""
+    selected_version = version_input.value if version_input else ""
+    selected_board_name = board_input.value if board_input else ""
 
     content = document.getElementById("explorer-content")
 
@@ -113,11 +113,11 @@ async def load_board_details():
 
 def update_explorer_url():
     """Update the URL to reflect the current explorer state."""
-    version_select = document.getElementById("explorer-version")
-    board_select = document.getElementById("explorer-board")
+    version_input = document.getElementById("explorer-version")
+    board_input = document.getElementById("explorer-board")
     
-    version = version_select.value if version_select else ""
-    board = board_select.value if board_select else ""
+    version = version_input.value if version_input else ""
+    board = board_input.value if board_input else ""
     
     # Get current URL
     url = window.location.href.split('?')[0]
@@ -143,14 +143,14 @@ async def populate_explorer_from_url(search_params):
         board = search_params.get("board")
 
         if version:
-            version_select = document.getElementById("explorer-version")
-            if version_select:
-                version_select.value = version
+            version_input = document.getElementById("explorer-version")
+            if version_input:
+                version_input.value = version
 
         if board:
-            board_select = document.getElementById("explorer-board")
-            if board_select:
-                board_select.value = board
+            board_input = document.getElementById("explorer-board")
+            if board_input:
+                board_input.value = board
 
         # Trigger board details load if both are set
         if version and board:
@@ -164,11 +164,11 @@ def share_explorer():
     """Share the current explorer view."""
     print("=== Share Explorer Called ===")
     
-    version_select = document.getElementById("explorer-version")
-    board_select = document.getElementById("explorer-board")
+    version_input = document.getElementById("explorer-version")
+    board_input = document.getElementById("explorer-board")
     
-    version = version_select.value if version_select else ""
-    board = board_select.value if board_select else ""
+    version = version_input.value if version_input else ""
+    board = board_input.value if board_input else ""
     
     print(f"Version: '{version}', Board: '{board}'")
     
@@ -220,21 +220,29 @@ def setup_explorer_event_handlers():
     """Set up event handlers specific to the explorer page."""
     print("Setting up explorer event handlers...")
     
-    # Version dropdown change handler
-    version_select = document.getElementById("explorer-version")
-    if version_select:
-        print(f"Found version select: {version_select}")
-        version_select.onchange = lambda e: asyncio.create_task(load_board_details())
+    # Version input change handler
+    version_input = document.getElementById("explorer-version")
+    if version_input:
+        print(f"Found version input: {version_input}")
+        def version_handler(e):
+            asyncio.create_task(load_board_details())
+            update_explorer_url()
+        version_input.oninput = version_handler
+        version_input.onchange = version_handler
     else:
-        print("Version select not found!")
+        print("Version input not found!")
     
-    # Board dropdown change handler  
-    board_select = document.getElementById("explorer-board")
-    if board_select:
-        print(f"Found board select: {board_select}")
-        board_select.onchange = lambda e: asyncio.create_task(load_board_details())
+    # Board input change handler  
+    board_input = document.getElementById("explorer-board")
+    if board_input:
+        print(f"Found board input: {board_input}")
+        def board_handler(e):
+            asyncio.create_task(load_board_details())
+            update_explorer_url()
+        board_input.oninput = board_handler
+        board_input.onchange = board_handler
     else:
-        print("Board select not found!")
+        print("Board input not found!")
     
     # Share button
     share_explorer_btn = document.getElementById("explorer-share-btn")

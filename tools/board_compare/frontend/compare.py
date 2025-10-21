@@ -653,22 +653,22 @@ async def populate_comparison_from_url(search_params):
         board2 = search_params.get("board2")
         hide_common = search_params.get("hide_common") == "true"
 
-        # Set the dropdowns
-        board1_version_select = document.getElementById("board1-version")
-        if board1_version_select and board1_version:
-            board1_version_select.value = board1_version
+        # Set the inputs
+        board1_version_input = document.getElementById("board1-version")
+        if board1_version_input and board1_version:
+            board1_version_input.value = board1_version
 
-        board1_select = document.getElementById("board1")
-        if board1_select and board1:
-            board1_select.value = board1
+        board1_input = document.getElementById("board1")
+        if board1_input and board1:
+            board1_input.value = board1
 
-        board2_version_select = document.getElementById("board2-version")
-        if board2_version_select and board2_version:
-            board2_version_select.value = board2_version
+        board2_version_input = document.getElementById("board2-version")
+        if board2_version_input and board2_version:
+            board2_version_input.value = board2_version
 
-        board2_select = document.getElementById("board2")
-        if board2_select and board2:
-            board2_select.value = board2
+        board2_input = document.getElementById("board2")
+        if board2_input and board2:
+            board2_input.value = board2
 
         hide_common_checkbox = document.getElementById("hide-common")
         if hide_common_checkbox:
@@ -768,7 +768,8 @@ def setup_compare_event_handlers():
         share_compare_btn.onclick = lambda e: share_comparison()
 
     # Board selection change handlers (for URL updates)
-    for select_id in ["board1-version", "board1", "board2-version", "board2"]:
-        select = document.getElementById(select_id)
-        if select:
-            select.onchange = lambda e: update_comparison_url()
+    for input_id in ["board1-version", "board1", "board2-version", "board2"]:
+        input_elem = document.getElementById(input_id)
+        if input_elem:
+            input_elem.onchange = lambda e: update_comparison_url()
+            input_elem.oninput = lambda e: update_comparison_url()

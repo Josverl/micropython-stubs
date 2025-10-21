@@ -428,11 +428,78 @@ The **6-module architecture has been successfully completed** with outstanding r
   - ✅ Result: All searchable dropdowns now work without errors, URL updates correctly
 
 ### REMAINING ISSUES
-- [ ] **Search Error 3170** (deferred - low priority)
-  - Error occurs in Search APIs after successful database queries during display rendering phase
-  - Error appears to be search/display related rather than database related
-  - Application functions correctly despite this error - search results display properly
-  - Can be addressed in future maintenance cycle
+
+#### **PyScript Search Functionality Issues** (Priority: Medium - Technical Debt)
+
+- [ ] **Task: Fix Search Error Template Reuse Issue**
+  - **Problem**: Search error uses compare functionality's error template with wrong onclick handler
+  - **Current**: `<button onclick="pyscript.run_code('await compare_boards()')"...>🔄 Try Again</button>`
+  - **Should be**: Search-specific retry handler calling `search_apis()` function
+  - **Location**: `board-explorer-mpy.html` line 1048, error template used by `ui.py show_error()` function
+  - **Impact**: "Try Again" button fails with `ReferenceError: pyscript is not defined`
+  - **Solution**: 
+    - Create search-specific error template or add conditional logic to retry button
+    - Use `asyncio.create_task(search_apis())` instead of `pyscript.run_code()`
+    - Update `ui.py show_error()` function to accept retry function parameter
+
+- [ ] **Task: Fix PyScript API Context Issue**
+  - **Problem**: `pyscript.run_code()` API not available in current PyScript runtime context
+  - **Root Cause**: Incorrect PyScript API usage in HTML onclick handlers
+  - **Modern Approach**: Use direct Python function calls with proper event handling
+  - **Files Affected**: `board-explorer-mpy.html`, potentially other onclick handlers
+  - **Solution**: Replace `pyscript.run_code()` calls with proper PyScript event binding
+
+- [ ] **Task: Debug Search Result Processing Error (ID: 3170)**
+  - **Problem**: Search succeeds (620 results found) but fails during `convert_search_results_to_tree_format()`
+  - **Error Message**: "Error performing search: 3170" (appears to be class ID causing processing failure)
+  - **Location**: `search.py convert_search_results_to_tree_format()` function
+  - **Symptoms**: 
+    - Database queries work correctly (52 classes, 29 methods found)
+    - Error occurs during result conversion/display phase  
+    - Specific class ID 3170 triggers processing failure
+  - **Investigation Needed**:
+    - Check database content for class ID 3170 inconsistencies
+    - Add error handling to skip problematic results instead of failing entirely
+    - Improve debugging output for result processing pipeline
+  - **Solution**:
+    ```python
+    # Add robust error handling in convert_search_results_to_tree_format()
+    try:
+        # Process search result
+        process_search_result(result)
+    except Exception as e:
+        print(f"Error processing result {result}: {e}")
+        continue  # Skip problematic results instead of failing entirely
+    ```
+
+- [ ] **Task: Create Search-Specific Templates**
+  - **Problem**: Search functionality reuses compare page templates inappropriately
+  - **Current**: Single error template shared between compare and search functionality
+  - **Should be**: Dedicated templates for search-specific UI states
+  - **Files Affected**: `board-explorer-mpy.html` (error templates section)
+  - **Solution**:
+    - Create `search-error-template` separate from `compare-error-template`
+    - Update search error handling to use search-specific templates
+    - Ensure proper onclick handlers for each template type
+
+- [ ] **Task: Improve Search Error Recovery**
+  - **Problem**: Search errors provide poor user experience and debugging information
+  - **Current**: Generic error message "Error performing search: 3170" with broken retry
+  - **Should be**: Clear error messages with working recovery options
+  - **Enhancements Needed**:
+    - Better error categorization (database vs processing vs display errors)
+    - Partial result display (show successful results even if some fail)
+    - Working retry mechanism with proper PyScript integration
+    - User-friendly error messages with actionable guidance
+
+#### **Search Functionality Analysis Summary**
+**Status**: Pre-existing technical debt unrelated to datalist conversion work  
+**Priority**: Medium (affects user experience but doesn't break core functionality)  
+**Scope**: Search page error handling, template architecture, PyScript API usage  
+**Testing**: Can be validated using MCP browser automation for search workflows  
+**Dependencies**: Requires understanding of PyScript runtime context and event handling patterns
+
+**Note**: These issues existed before the HTML5 datalist conversion work and are unrelated to the dropdown simplification project. The search errors demonstrate template reuse problems and PyScript API integration challenges that should be addressed in a focused search functionality improvement sprint.
 
 ## Migration Strategy
 
