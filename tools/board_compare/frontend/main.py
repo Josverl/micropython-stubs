@@ -1,44 +1,11 @@
 import asyncio
 import json
 
-import board_utils
 import js
 from pyscript import document, fetch, ffi, window
-from sqlite_wasm import SQLDatabase, SQLExecResult, SQLExecResults, SQLite
 
-# Global state
-app_state = {
-    "SQL": None,
-    "db": None,
-    "boards": [],
-    "current_board": None,
-}
-
-U_MODULES = [
-    "array",
-    "asyncio",
-    "binascii",
-    "bluetooth",
-    "cryptolib",
-    "errno",
-    "hashlib",
-    "heapq",
-    "io",
-    "json",
-    "machine",
-    "os",
-    "platform",
-    "random",
-    "re",
-    "select",
-    "ssl",
-    "struct",
-    "socket",
-    "sys",
-    "time",
-    "websocket",
-    "zlib",
-]
+# Import database module with all state, utilities, and database functions
+import database
 
 
 # Template utilities
@@ -144,7 +111,7 @@ def create_module_item(module, options):
     # has_children = len(classes) > 0 or len(functions) > 0 or len(constants) > 0
     is_deprecated = module["name"].startswith("u") and len(module["name"]) != "uctypes"
     # FIXME: Why does in not work ?
-    # is_deprecated =str(module['name']) in U_MODULES
+    # is_deprecated =str(module['name']) in database.U_MODULES
     # if is_deprecated:
     #     print(f"{module['name']=}")
     #     window.console.log(ffi.to_js(module["name"]))
@@ -173,6 +140,12 @@ def create_module_item(module, options):
     else:
         module_summary = "empty module"
 
+    # Format board and version information if available
+    board_version_label = ""
+    if module.get("version") and module.get("port") and module.get("board"):
+        board_name = format_board_name(module["port"], module["board"])
+        board_version_label = f"[{board_name} {module['version']}]"
+
     module_header_class = "module-header"
     if badge_class:
         module_header_class += " unique"
@@ -191,6 +164,7 @@ def create_module_item(module, options):
                 "module-name": module["name"],
                 "module-badge-style": "inline" if module_badge else "hide",
                 "module-details": module_summary,
+                "module-board-version": board_version_label,
                 "module-id": module_tree_id,
             },
         )
@@ -290,7 +264,7 @@ def create_function_item(func):
         populate_template(
             function_element,
             {
-                "function-icon": board_utils.get_icon_class(icon_type),
+                "function-icon": database.get_icon_class(icon_type),
                 "decorators": function_decorator_span,
                 "signature": f"{async_marker}{signature}",
             },
@@ -328,67 +302,7 @@ def update_status(message, status_type="info"):
         status_elem.classList.add("error")
 
 
-async def load_database():
-    """Load SQLite database using SQL.js."""
-    try:
-        update_status("SQLite.initialize ...", "info")
-        SQL = await SQLite.initialize(version="1.13.0", cdn="cdnjs")
-        window.console.log("SQLite-wasm wrapper created")
-        app_state["SQL"] = SQL
-        update_status("Loading database...", "info")
-        await asyncio.sleep(0.1)  # Allow UI update
-        window.console.log("Opening database 'board_comparison.db'...")
-        app_state["db"] = await SQL.open_database_url("board_comparison.db")
-        await asyncio.sleep(0.1)  # Allow UI update
-        update_status("Database loaded successfully!", "success")
 
-        # Test database connection
-        stmt = app_state["db"].prepare("SELECT COUNT(*) as count FROM boards")
-        stmt.step()
-        row = stmt.getAsObject()
-        stmt.free()
-
-        board_count = row["count"]
-        update_status(f"Database ready! Found {board_count} boards.", "success")
-
-        return True
-
-    except Exception as e:
-        update_status(f"Error loading database: {str(e)}", "error")
-        print(f"Database error: {e}")
-        return False
-
-
-async def load_board_list_from_db():
-    """Load board list from database."""
-    if not app_state["db"]:
-        return False
-
-    try:
-        update_status("Loading board list from database...", "info")
-
-        stmt = app_state["db"].prepare("""
-            SELECT DISTINCT version, port, board
-            FROM boards
-            ORDER BY version DESC, port, board
-        """)
-
-        boards = []
-        while stmt.step():
-            row = stmt.getAsObject()
-            boards.append({"version": row["version"], "port": row["port"], "board": row["board"]})
-
-        stmt.free()
-
-        app_state["boards"] = boards
-        update_status(f"Loaded {len(boards)} boards from database", "success")
-
-        return True
-
-    except Exception as e:
-        update_status(f"Error loading board list: {str(e)}", "error")
-        print(f"Board list error: {e}")
-        return False
 
 
 def switch_page(page_id):
@@ -411,11 +325,11 @@ def switch_page(page_id):
 
 def populate_board_selects():
     """Populate all board selection dropdowns."""
-    if not app_state["boards"]:
+    if not database.app_state["boards"]:
         return
 
     # Get unique versions
-    versions = list(set(board.get("version", "") for board in app_state["boards"]))
+    versions = list(set(board.get("version", "") for board in database.app_state["boards"]))
     versions.sort(reverse=True)
 
     # Populate version selects
@@ -430,7 +344,7 @@ def populate_board_selects():
             select.appendChild(option)
 
     # Get unique board names (formatted)
-    board_names = list(set(board_utils.format_board_name(board.get("port", ""), board.get("board", "")) for board in app_state["boards"]))
+    board_names = list(set(database.format_board_name(board.get("port", ""), board.get("board", "")) for board in database.app_state["boards"]))
     board_names.sort()
 
     # Populate board selects
@@ -447,7 +361,7 @@ def populate_board_selects():
 
 def format_board_name(port, board):
     """Format board display name."""
-    return board_utils.format_board_name(port, board)
+    return database.format_board_name(port, board)
 
 
 # Set up event handlers
@@ -890,7 +804,7 @@ async def compare_boards():
         show_message("compare-results", "Board Comparison", "Please select both version and board for both boards to compare.")
         return
 
-    if not app_state["db"]:
+    if not database.app_state["db"]:
         show_message("compare-results", "Board Comparison", "Database not available for comparison.")
         return
 
@@ -902,8 +816,8 @@ async def compare_boards():
         await asyncio.sleep(0.2)
         print(f"Comparing boards: {board1_name} ({board1_version}) vs {board2_name} ({board2_version})")
         # Find board info
-        board1_info = board_utils.find_board_in_list(app_state["boards"], board1_version, board1_name)
-        board2_info = board_utils.find_board_in_list(app_state["boards"], board2_version, board2_name)
+        board1_info = database.find_board_in_list(database.app_state["boards"], board1_version, board1_name)
+        board2_info = database.find_board_in_list(database.app_state["boards"], board2_version, board2_name)
 
         if not board1_info or not board2_info:
             if not board1_info:
@@ -921,7 +835,7 @@ async def compare_boards():
         show_loading("compare-results", f"Fetching modules for {board1_name}...", "Step 1 of 3")
 
         print(f"Fetching modules for board 1: {board1}")
-        modules1 = get_board_modules(board1)
+        modules1 = database.get_board_modules(board1)
 
         # Small delay to show progress
         await asyncio.sleep(0.3)
@@ -930,7 +844,7 @@ async def compare_boards():
         show_loading("compare-results", f"Fetching modules for {board2_name}...", "Step 2 of 3")
 
         print(f"Fetching modules for board 2: {board2}")
-        modules2 = get_board_modules(board2)
+        modules2 = database.get_board_modules(board2)
 
         # Small delay to show progress
         await asyncio.sleep(0.2)
@@ -1076,7 +990,7 @@ def create_method_item(method):
         populate_template(
             method_element,
             {
-                "function-icon": board_utils.get_icon_class(icon_type),
+                "function-icon": database.get_icon_class(icon_type),
                 "decorators": decorator_span,
                 "signature": f"{async_marker}{signature}",
             },
@@ -1098,7 +1012,7 @@ def create_attribute_item(attr):
         # Update icon for attributes (use circle-dot instead of circle)
         icon_elem = attr_element.querySelector(".fa-icon")
         if icon_elem:
-            icon_elem.className = f"{board_utils.get_icon_class('variable')} fa-icon"
+            icon_elem.className = f"{database.get_icon_class('variable')} fa-icon"
 
     return attr_element
 
@@ -1308,7 +1222,7 @@ async def search_apis():
         show_message("search-results", "Search Results", "Enter a search term to find modules, classes, methods, functions, or constants.")
         return
 
-    if not app_state["db"]:
+    if not database.app_state["db"]:
         show_error("search-results", "Search Error", "Database not loaded. Please wait for the application to initialize.")
         return
 
@@ -1328,7 +1242,7 @@ async def search_apis():
 
 async def perform_search(search_term):
     """Perform comprehensive search across all database entities."""
-    if not app_state["db"]:
+    if not database.app_state["db"]:
         print("Database not available for search")
         return []
 
@@ -1340,14 +1254,14 @@ async def perform_search(search_term):
 
     # First check if we have any data at all
     try:
-        count_stmt = app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules")
+        count_stmt = database.app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules")
         count_stmt.step()
         module_count = count_stmt.getAsObject()["count"]
         count_stmt.free()
         print(f"Total modules in database: {module_count}")
 
         # Show some sample module names for debugging
-        sample_stmt = app_state["db"].prepare("SELECT name FROM unique_modules LIMIT 10")
+        sample_stmt = database.app_state["db"].prepare("SELECT name FROM unique_modules LIMIT 10")
         sample_names = []
         while sample_stmt.step():
             name = sample_stmt.getAsObject()["name"]
@@ -1363,7 +1277,7 @@ async def perform_search(search_term):
             print(f"Testing with first module: '{first_module}' (type: {type(first_module)}, len: {len(first_module)})")
 
             # Test different query approaches
-            test_stmt = app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules WHERE name = ?")
+            test_stmt = database.app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules WHERE name = ?")
             test_stmt.bind(ffi.to_js([first_module]))
             test_stmt.step()
             exact_count = test_stmt.getAsObject()["count"]
@@ -1371,7 +1285,7 @@ async def perform_search(search_term):
             print(f"Exact match count for '{first_module}': {exact_count}")
 
             # Try a simple SELECT to see what we get
-            debug_stmt = app_state["db"].prepare("SELECT name FROM unique_modules WHERE name = ? LIMIT 1")
+            debug_stmt = database.app_state["db"].prepare("SELECT name FROM unique_modules WHERE name = ? LIMIT 1")
             debug_stmt.bind(ffi.to_js([first_module]))
             if debug_stmt.step():
                 found_name = debug_stmt.getAsObject()["name"]
@@ -1382,7 +1296,7 @@ async def perform_search(search_term):
             debug_stmt.free()
 
             # Test LIKE query for search term
-            test_like_stmt = app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules WHERE name LIKE ?")
+            test_like_stmt = database.app_state["db"].prepare("SELECT COUNT(*) as count FROM unique_modules WHERE name LIKE ?")
             test_like_stmt.bind(ffi.to_js([search_pattern]))
             test_like_stmt.step()
             like_search_count = test_like_stmt.getAsObject()["count"]
@@ -1396,7 +1310,7 @@ async def perform_search(search_term):
         print("Searching modules...")
 
         # First try without any LIKE pattern - just get all modules and filter in Python
-        all_modules_stmt = app_state["db"].prepare("""
+        all_modules_stmt = database.app_state["db"].prepare("""
             SELECT DISTINCT 
                 um.name as entity_name,
                 'module' as entity_type,
@@ -1447,7 +1361,7 @@ async def perform_search(search_term):
 
         # Search classes
         print(f"Starting class search for pattern: {search_pattern}")
-        stmt = app_state["db"].prepare("""
+        stmt = database.app_state["db"].prepare("""
             SELECT DISTINCT
                 uc.name as entity_name,
                 'class' as entity_type,
@@ -1488,7 +1402,7 @@ async def perform_search(search_term):
 
         # Search methods
         print(f"Starting method search for pattern: {search_pattern}")
-        stmt = app_state["db"].prepare("""
+        stmt = database.app_state["db"].prepare("""
             SELECT DISTINCT
                 umet.name as entity_name,
                 'method' as entity_type,
@@ -1526,7 +1440,7 @@ async def perform_search(search_term):
         print(f"Found {method_count} methods matching '{search_term}'")
 
         # Search module constants
-        stmt = app_state["db"].prepare("""
+        stmt = database.app_state["db"].prepare("""
             SELECT DISTINCT
                 umc.name as entity_name,
                 'constant' as entity_type,
@@ -1560,7 +1474,7 @@ async def perform_search(search_term):
         stmt.free()
 
         # Search class attributes
-        stmt = app_state["db"].prepare("""
+        stmt = database.app_state["db"].prepare("""
             SELECT DISTINCT
                 uca.name as entity_name,
                 'attribute' as entity_type,
@@ -1595,7 +1509,7 @@ async def perform_search(search_term):
         stmt.free()
 
         # Search parameters
-        stmt = app_state["db"].prepare("""
+        stmt = database.app_state["db"].prepare("""
             SELECT DISTINCT
                 up.name as entity_name,
                 'parameter' as entity_type,
@@ -1644,7 +1558,7 @@ def enhance_results_with_children(results):
     """Enhance search results by adding children of found modules and classes."""
     print("enhance_results_with_children: Starting...")
     
-    if not app_state["db"]:
+    if not database.app_state["db"]:
         print("enhance_results_with_children: No database available")
         return results
     
@@ -1721,6 +1635,7 @@ def convert_search_results_to_tree_format(results):
     
     # First pass: collect all module names by module_id and identify found classes/methods
     module_names = {}
+    module_contexts = {}  # Store board/version info for modules
     found_classes = {}  # class_id -> {methods: set(), attributes: set()}
     board_contexts = {}
     
@@ -1735,6 +1650,14 @@ def convert_search_results_to_tree_format(results):
         elif entity_type != "module" and result.get("parent_name"):
             # For non-module entities, parent_name is the module name
             module_names[module_id] = result["parent_name"]
+        
+        # Store board context for modules
+        if module_id and module_id not in module_contexts:
+            module_contexts[module_id] = {
+                "version": result["version"],
+                "port": result["port"], 
+                "board": result["board"]
+            }
         
         if entity_type == "class" and class_id:
             if class_id not in found_classes:
@@ -1781,12 +1704,16 @@ def convert_search_results_to_tree_format(results):
             if module_id not in modules:
                 # Create module entry if it doesn't exist
                 module_name = module_names.get(module_id, "unknown")
+                module_context = module_contexts.get(module_id, {})
                 modules[module_id] = {
                     "name": module_name,
                     "id": module_id,
                     "classes": {},
                     "constants": [],
-                    "functions": []  # Keep for compatibility even though we don't use it
+                    "functions": [],  # Keep for compatibility even though we don't use it
+                    "version": module_context.get("version", ""),
+                    "port": module_context.get("port", ""),
+                    "board": module_context.get("board", "")
                 }
             
             module = modules[module_id]
@@ -1794,7 +1721,7 @@ def convert_search_results_to_tree_format(results):
             # For ANY result that has a class_id, ensure the class exists first
             if class_id and class_id not in module["classes"]:
                 # Get basic class info and create empty containers for methods/attributes
-                basic_class = get_basic_class_info_for_search(class_id, board_contexts[class_id])
+                basic_class = database.get_basic_class_info_for_search(class_id, board_contexts[class_id])
                 if basic_class:
                     basic_class["methods"] = []
                     basic_class["attributes"] = []
@@ -1833,7 +1760,7 @@ def convert_search_results_to_tree_format(results):
                 # Class was directly found in search - populate with COMPLETE class content
                 if class_id in module["classes"]:
                     print(f"DEBUG: Class {entity_name} was directly found in search - populating with complete content")
-                    complete_class = get_complete_class_for_search(class_id, board_contexts[class_id])
+                    complete_class = database.get_complete_class_for_search(class_id, board_contexts[class_id])
                     if complete_class:
                         # Replace the basic class with the complete one
                         module["classes"][class_id] = complete_class
@@ -1861,104 +1788,6 @@ def convert_search_results_to_tree_format(results):
     
     print(f"DEBUG: Created {len(tree_modules)} modules for tree display")
     return tree_modules
-
-
-def get_basic_class_info_for_search(class_id, board_context):
-    """Get basic class info (name, base classes) without all methods - for search results."""
-    print(f"DEBUG: Fetching basic class info for {class_id}")
-    
-    if not app_state["db"]:
-        return None
-    
-    try:
-        # Get basic class info
-        stmt = app_state["db"].prepare("""
-            SELECT uc.id, uc.name, uc.docstring
-            FROM unique_classes uc
-            WHERE uc.id = ?
-        """)
-        stmt.bind(ffi.to_js([class_id]))
-        
-        if not stmt.step():
-            stmt.free()
-            return None
-            
-        row = stmt.getAsObject()
-        class_name = row["name"]
-        class_docstring = row["docstring"]
-        stmt.free()
-        
-        # Get base classes
-        base_classes = get_class_bases(class_id)
-        
-        result = {
-            "id": class_id,
-            "name": class_name,
-            "docstring": class_docstring,
-            "base_classes": base_classes,
-            "methods": [],  # Will be populated by caller with search results
-            "attributes": [],  # Will be populated by caller with search results
-        }
-        
-        print(f"DEBUG: Returning basic class info for {class_name}")
-        return result
-        
-    except Exception as e:
-        print(f"ERROR: Getting basic class {class_id}: {e}")
-        return None
-
-
-def get_complete_class_for_search(class_id, board_context):
-    """Get complete class definition for search results."""
-    print(f"DEBUG: Fetching complete class {class_id} for board {board_context['port']}/{board_context['board']}")
-    
-    if not app_state["db"]:
-        return None
-    
-    try:
-        # Get basic class info
-        stmt = app_state["db"].prepare("""
-            SELECT uc.id, uc.name, uc.docstring
-            FROM unique_classes uc
-            WHERE uc.id = ?
-        """)
-        stmt.bind(ffi.to_js([class_id]))
-        
-        if not stmt.step():
-            stmt.free()
-            return None
-            
-        row = stmt.getAsObject()
-        class_name = row["name"]
-        class_docstring = row["docstring"]
-        stmt.free()
-        
-        # Get base classes
-        base_classes = get_class_bases(class_id)
-        
-        # Get methods using existing function
-        methods = get_class_methods(board_context["module_id"], class_id, board_context)
-        print(f"DEBUG: Fetched {len(methods)} methods for class {class_name}")
-        
-        # Get attributes using existing function  
-        attributes = get_class_attributes(class_id)
-        print(f"DEBUG: Fetched {len(attributes)} attributes for class {class_name}")
-        
-        result = {
-            "id": class_id,
-            "name": class_name,
-            "docstring": class_docstring,
-            "base_classes": base_classes,
-            "methods": methods,
-            "attributes": attributes,
-        }
-        
-        print(f"DEBUG: Returning class {class_name} with {len(methods)} methods, {len(attributes)} attributes")
-        return result
-        
-    except Exception as e:
-        print(f"Error getting complete class {class_id}: {e}")
-        return None
 
 
 def display_search_results(results, search_term):
@@ -2131,13 +1960,13 @@ def setup_search_result_expansion(result_element, result, entity_type, module_id
 
 def check_search_result_has_children(entity_type, module_id, class_id):
     """Check if a search result item has children using existing database queries."""
-    if not app_state["db"]:
+    if not database.app_state["db"]:
         return False
     
     try:
         if entity_type == "module":
             # Check if module has classes or functions
-            stmt = app_state["db"].prepare("""
+            stmt = database.app_state["db"].prepare("""
                 SELECT COUNT(*) as count FROM (
                     SELECT 1 FROM unique_classes WHERE module_id = ? 
                     UNION ALL 
@@ -2148,7 +1977,7 @@ def check_search_result_has_children(entity_type, module_id, class_id):
             
         elif entity_type == "class":
             # Check if class has methods or attributes  
-            stmt = app_state["db"].prepare("""
+            stmt = database.app_state["db"].prepare("""
                 SELECT COUNT(*) as count FROM (
                     SELECT 1 FROM unique_methods WHERE class_id = ?
                     UNION ALL
@@ -2202,7 +2031,7 @@ def toggle_search_result_expansion(result_element, result, entity_type, module_i
 
 def load_search_result_children(container, entity_type, module_id, class_id, parent_result):
     """Load and display children of a search result item, reusing existing database queries."""
-    if not app_state["db"]:
+    if not database.app_state["db"]:
         return
     
     try:
@@ -2239,7 +2068,7 @@ def load_search_result_children(container, entity_type, module_id, class_id, par
 def get_search_result_classes(module_id, parent_result):
     """Get classes for a module in search result format."""
     classes = []
-    stmt = app_state["db"].prepare("SELECT id, name FROM unique_classes WHERE module_id = ?")
+    stmt = database.app_state["db"].prepare("SELECT id, name FROM unique_classes WHERE module_id = ?")
     stmt.bind(ffi.to_js([int(module_id)]))
     
     while stmt.step():
@@ -2260,7 +2089,7 @@ def get_search_result_classes(module_id, parent_result):
 def get_search_result_constants(module_id, parent_result):
     """Get constants for a module in search result format."""
     constants = []
-    stmt = app_state["db"].prepare("SELECT id, name FROM unique_module_constants WHERE module_id = ?")
+    stmt = database.app_state["db"].prepare("SELECT id, name FROM unique_module_constants WHERE module_id = ?")
     stmt.bind(ffi.to_js([int(module_id)]))
     
     while stmt.step():
@@ -2281,7 +2110,7 @@ def get_search_result_constants(module_id, parent_result):
 def get_search_result_methods(class_id, parent_result):
     """Get methods for a class in search result format."""
     methods = []
-    stmt = app_state["db"].prepare("SELECT id, name FROM unique_methods WHERE class_id = ?")
+    stmt = database.app_state["db"].prepare("SELECT id, name FROM unique_methods WHERE class_id = ?")
     stmt.bind(ffi.to_js([int(class_id)]))
     
     while stmt.step():
@@ -2302,7 +2131,7 @@ def get_search_result_methods(class_id, parent_result):
 def get_search_result_attributes(class_id, parent_result):
     """Get attributes for a class in search result format."""
     attributes = []
-    stmt = app_state["db"].prepare("SELECT id, name FROM unique_class_attributes WHERE class_id = ?")
+    stmt = database.app_state["db"].prepare("SELECT id, name FROM unique_class_attributes WHERE class_id = ?")
     stmt.bind(ffi.to_js([int(class_id)]))
     
     while stmt.step():
@@ -2349,40 +2178,13 @@ def get_context_path(result):
     return ""
 
 
-def get_class_bases(class_id):
-    """Get base classes for a class."""
-    if not app_state["db"]:
-        return []
-
-    try:
-        stmt = app_state["db"].prepare("""
-            SELECT ucb.base_name
-            FROM unique_class_bases ucb
-            WHERE ucb.class_id = ?
-            ORDER BY ucb.base_name
-        """)
-        # need to convert to js object
-        stmt.bind(ffi.to_js([class_id]))
-
-        bases = []
-        while stmt.step():
-            row = stmt.getAsObject()
-            bases.append(row["base_name"])
-
-        stmt.free()
-        return bases
-    except Exception as e:
-        print(f"Error getting base classes: {e}")
-        return []
-
-
 def get_method_parameters(method_id):
     """Get parameters for a method/function."""
-    if not app_state["db"]:
+    if not database.app_state["db"]:
         return []
 
     try:
-        stmt = app_state["db"].prepare("""
+        stmt = database.app_state["db"].prepare("""
             SELECT up.name, up.position, up.type_hint, up.default_value, 
                     up.is_optional, up.is_variadic
             FROM unique_parameters up
@@ -2409,286 +2211,6 @@ def get_method_parameters(method_id):
         return params
     except Exception as e:
         print(f"Error getting parameters: {e}")
-        return []
-
-
-def get_class_methods(module_id, class_id, board_context):
-    """Get methods for a class."""
-    if not app_state["db"]:
-        return []
-
-    try:
-        stmt = app_state["db"].prepare("""
-            SELECT um.id, um.name, um.return_type, um.is_async, um.is_property, 
-                    um.is_classmethod, um.is_staticmethod, um.decorators, um.docstring
-            FROM unique_methods um
-            JOIN board_method_support bms ON um.id = bms.method_id
-            JOIN boards b ON bms.board_id = b.id
-            WHERE um.module_id = ? AND um.class_id = ?
-                AND b.version = ? AND b.port = ? AND b.board = ?
-            ORDER BY um.name
-        """)
-        stmt.bind(
-            ffi.to_js(
-                [
-                    module_id,
-                    class_id,
-                    board_context["version"],
-                    board_context["port"],
-                    board_context["board"],
-                ]
-            )
-        )
-
-        methods = []
-        while stmt.step():
-            row = stmt.getAsObject()
-            method_id = row["id"]
-
-            # Get parameters
-            parameters = get_method_parameters(method_id)
-
-            # Parse decorators
-            decorators_list = []
-            if row["decorators"]:
-                try:
-                    decorators_list = js.JSON.parse(row["decorators"])
-                except Exception:
-                    pass
-
-            methods.append(
-                {
-                    "id": method_id,
-                    "name": row["name"],
-                    "return_type": row["return_type"],
-                    "is_async": row["is_async"],
-                    "is_property": row["is_property"],
-                    "is_classmethod": row["is_classmethod"],
-                    "is_staticmethod": row["is_staticmethod"],
-                    "decorators_list": decorators_list,
-                    "parameters": parameters,
-                    "docstring": row["docstring"],
-                }
-            )
-
-        stmt.free()
-        return methods
-    except Exception as e:
-        print(f"Error getting class methods: {e}")
-        return []
-
-
-def get_class_attributes(class_id):
-    """Get attributes for a class."""
-    if not app_state["db"]:
-        return []
-
-    try:
-        stmt = app_state["db"].prepare("""
-            SELECT uca.name, uca.type_hint, uca.value
-            FROM unique_class_attributes uca
-            WHERE uca.class_id = ? AND (uca.is_hidden = 0 OR uca.is_hidden IS NULL)
-            ORDER BY uca.name
-        """)
-        stmt.bind(ffi.to_js([class_id]))
-
-        attributes = []
-        while stmt.step():
-            row = stmt.getAsObject()
-            attributes.append({"name": row["name"], "type_hint": row["type_hint"], "value": row["value"]})
-
-        stmt.free()
-        return attributes
-    except Exception as e:
-        print(f"Error getting class attributes: {e}")
-        return []
-
-
-def get_module_classes(module_id, board_context):
-    """Get classes for a module."""
-    if not app_state["db"]:
-        return []
-
-    try:
-        stmt = app_state["db"].prepare("""
-            SELECT uc.id, uc.name, uc.docstring
-            FROM unique_classes uc
-            WHERE uc.module_id = ?
-            ORDER BY uc.name
-        """)
-        stmt.bind(ffi.to_js([module_id]))
-
-        classes = []
-        while stmt.step():
-            row = stmt.getAsObject()
-            class_id = row["id"]
-
-            # Get base classes
-            base_classes = get_class_bases(class_id)
-
-            # Get methods
-            methods = get_class_methods(module_id, class_id, board_context)
-
-            # Get attributes
-            attributes = get_class_attributes(class_id)
-
-            classes.append(
-                {
-                    "id": class_id,
-                    "name": row["name"],
-                    "docstring": row["docstring"],
-                    "base_classes": base_classes,
-                    "methods": methods,
-                    "attributes": attributes,
-                }
-            )
-
-        stmt.free()
-        return classes
-    except Exception as e:
-        print(f"Error getting module classes: {e}")
-        return []
-
-
-def get_module_functions(module_id, board_context):
-    """Get module-level functions."""
-    if not app_state["db"]:
-        return []
-
-    try:
-        stmt = app_state["db"].prepare("""
-            SELECT um.id, um.name, um.return_type, um.is_async, um.decorators, um.docstring
-            FROM unique_methods um
-            JOIN board_method_support bms ON um.id = bms.method_id
-            JOIN boards b ON bms.board_id = b.id
-            WHERE um.module_id = ? AND um.class_id IS NULL
-                AND b.version = ? AND b.port = ? AND b.board = ?
-            ORDER BY um.name
-        """)
-        stmt.bind(
-            ffi.to_js(
-                [
-                    module_id,
-                    board_context["version"],
-                    board_context["port"],
-                    board_context["board"],
-                ]
-            )
-        )
-
-        functions = []
-        while stmt.step():
-            row = stmt.getAsObject()
-            func_id = row["id"]
-
-            # Get parameters
-            parameters = get_method_parameters(func_id)
-
-            # Parse decorators
-            decorators_list = []
-            if row["decorators"]:
-                try:
-                    decorators_list = js.JSON.parse(row["decorators"])
-                except Exception:
-                    pass
-
-            functions.append(
-                {
-                    "id": func_id,
-                    "name": row["name"],
-                    "return_type": row["return_type"],
-                    "is_async": row["is_async"],
-                    "decorators_list": decorators_list,
-                    "parameters": parameters,
-                    "docstring": row["docstring"],
-                }
-            )
-
-        stmt.free()
-        return functions
-    except Exception as e:
-        print(f"Error getting module functions: {e}")
-        return []
-
-
-def get_module_constants(module_id):
-    """Get module constants."""
-    if not app_state["db"]:
-        return []
-
-    try:
-        stmt = app_state["db"].prepare("""
-            SELECT umc.name, umc.value, umc.type_hint
-            FROM unique_module_constants umc
-            WHERE umc.module_id = ?
-            ORDER BY umc.name
-        """)
-        stmt.bind(ffi.to_js([module_id]))
-
-        constants = []
-        while stmt.step():
-            row = stmt.getAsObject()
-            constants.append({"name": row["name"], "value": row["value"], "type": row["type"]})
-
-        stmt.free()
-        return constants
-    except Exception as e:
-        print(f"Error getting constants: {e}")
-        return []
-
-
-def get_board_modules(board_info):
-    """Get detailed module information for a board (for comparison purposes)."""
-    if not app_state["db"]:
-        return []
-
-    try:
-        version, port, board = board_info["version"], board_info["port"], board_info["board"]
-
-        # Query database for modules
-        stmt = app_state["db"].prepare("""
-            SELECT um.id, um.name, um.docstring 
-            FROM unique_modules um
-            JOIN board_module_support bms ON um.id = bms.module_id
-            JOIN boards b ON bms.board_id = b.id
-            WHERE b.version = ? AND b.port = ? AND b.board = ?
-            ORDER BY um.name
-        """)
-
-        stmt.bind(ffi.to_js([version, port, board]))
-
-        modules = []
-        board_context = {"version": version, "port": port, "board": board}
-
-        while stmt.step():
-            row = stmt.getAsObject()
-            module_id = row["id"]
-
-            # Get classes with full details
-            classes = get_module_classes(module_id, board_context)
-
-            # Get functions with full details
-            functions = get_module_functions(module_id, board_context)
-
-            # Get constants
-            constants = get_module_constants(module_id)
-
-            modules.append(
-                {
-                    "id": module_id,
-                    "name": row["name"],
-                    "docstring": row["docstring"],
-                    "classes": classes,
-                    "functions": functions,
-                    "constants": constants,
-                }
-            )
-
-        stmt.free()
-        return modules
-
-    except Exception as e:
-        print(f"Error getting board modules: {e}")
         return []
 
 
@@ -2738,7 +2260,7 @@ async def load_board_details():
         </div>
         """
 
-    if not app_state["db"]:
+    if not database.app_state["db"]:
         # Database is required
         content.innerHTML = f"""
         <div class="detail-view">
@@ -2755,7 +2277,7 @@ async def load_board_details():
 
     try:
         # Find the actual port/board from the board list
-        board_info = board_utils.find_board_in_list(app_state["boards"], selected_version, selected_board_name)
+        board_info = database.find_board_in_list(database.app_state["boards"], selected_version, selected_board_name)
 
         if not board_info:
             content.innerHTML = f"""
@@ -2772,7 +2294,7 @@ async def load_board_details():
         board_context = {"version": selected_version, "port": port, "board": board}
 
         # Query database for modules
-        stmt = app_state["db"].prepare("""
+        stmt = database.app_state["db"].prepare("""
             SELECT um.id, um.name, um.docstring 
             FROM unique_modules um
             JOIN board_module_support bms ON um.id = bms.module_id
@@ -2789,13 +2311,13 @@ async def load_board_details():
             module_id = row["id"]
 
             # Get classes with full details
-            classes = get_module_classes(module_id, board_context)
+            classes = database.get_module_classes(module_id, board_context)
 
             # Get functions with full details
-            functions = get_module_functions(module_id, board_context)
+            functions = database.get_module_functions(module_id, board_context)
 
             # Get constants
-            constants = get_module_constants(module_id)
+            constants = database.get_module_constants(module_id)
 
             modules.append(
                 {
@@ -3400,7 +2922,7 @@ async def open_search_result(module_id, class_id, entity_name, entity_type):
     switch_page("explorer")
 
     # Get board info for this module
-    if not app_state["db"]:
+    if not database.app_state["db"]:
         print("Database not available")
         return
 
@@ -3413,13 +2935,13 @@ async def open_search_result(module_id, class_id, entity_name, entity_type):
         module_id_int = int(module_id)
         print(f"Converted to int: {module_id_int}")
 
-        module_stmt = app_state["db"].prepare("SELECT name FROM unique_modules WHERE id = ?")
+        module_stmt = database.app_state["db"].prepare("SELECT name FROM unique_modules WHERE id = ?")
         module_stmt.bind(ffi.to_js([module_id_int]))
 
         if not module_stmt.step():
             print("Module not found")
             # Debug: Let's see what IDs actually exist
-            debug_stmt = app_state["db"].prepare("SELECT id, name FROM unique_modules LIMIT 10")
+            debug_stmt = database.app_state["db"].prepare("SELECT id, name FROM unique_modules LIMIT 10")
             print("Sample module IDs in database:")
             while debug_stmt.step():
                 row = debug_stmt.getAsObject()
@@ -3434,7 +2956,7 @@ async def open_search_result(module_id, class_id, entity_name, entity_type):
         print(f"Found module: {module_name}")
 
         # Now get board information through the junction table
-        stmt = app_state["db"].prepare("""
+        stmt = database.app_state["db"].prepare("""
             SELECT DISTINCT b.version, b.port, b.board
             FROM unique_modules um
             JOIN board_module_support bms ON um.id = bms.module_id
@@ -3481,7 +3003,7 @@ async def highlight_search_target(module_id, class_id, entity_name, entity_type)
         # Get module name first using normalized schema
         module_id_int = int(module_id) if module_id else None
         if module_id_int:
-            stmt = app_state["db"].prepare("SELECT name FROM unique_modules WHERE id = ?")
+            stmt = database.app_state["db"].prepare("SELECT name FROM unique_modules WHERE id = ?")
             stmt.bind(ffi.to_js([module_id_int]))
             if not stmt.step():
                 stmt.free()
@@ -3500,7 +3022,7 @@ async def highlight_search_target(module_id, class_id, entity_name, entity_type)
 
             # If targeting a class or its members, expand the class too
             if class_id and (entity_type in ["class", "method", "attribute"]):
-                stmt = app_state["db"].prepare("SELECT name FROM unique_classes WHERE id = ?")
+                stmt = database.app_state["db"].prepare("SELECT name FROM unique_classes WHERE id = ?")
                 stmt.bind([class_id])
                 if stmt.step():
                     class_name = stmt.getAsObject()["name"]
@@ -3548,11 +3070,11 @@ async def main():
     setup_event_handlers()
 
     # Load database
-    db_loaded = await load_database()
+    db_loaded = await database.load_database()
 
     if db_loaded:
         # Load board list from database
-        await load_board_list_from_db()
+        await database.load_board_list_from_db()
         populate_board_selects()
 
         # Initialize searchable dropdowns after populating selects

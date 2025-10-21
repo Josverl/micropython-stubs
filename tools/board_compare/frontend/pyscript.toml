@@ -9,7 +9,7 @@ packages = [
 # modules and database file are stored in the project folder
 [files]
 "sqlite_wasm.py" = ""
-"board_utils.py" = ""
+"database.py" = ""
 
 # database is loaded from URL 
 # "board_comparison.db" = ""
