@@ -186,8 +186,6 @@ class SQLite:
             # Use the current page's base URL and preserve the path
             base_url = str(js.window.location.href).rsplit('/', 1)[0]
             url = f"{base_url}/{url}"
-            base_url = str(js.window.location.origin)
-            url = f"{base_url}/{url}"
 
         window.console.log(f"{_timestamp()} Starting database open with IndexedDB caching")
         start_time = _performance_now()
