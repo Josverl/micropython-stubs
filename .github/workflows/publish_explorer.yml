@@ -1,6 +1,7 @@
 name: Publish explorer frontend to GitHub Pages
 
 on:
+  workflow_dispatch:
   push:
     branches: [  copilot/create-database-viewer-tool] # or main
 
