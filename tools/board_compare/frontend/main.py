@@ -10,193 +10,6 @@ import ui
 from pyscript import document, fetch, ffi, window
 
 
-def create_module_item(module, options):
-    """Create a module item using template."""
-    module_prefix = options.get("module_prefix", "tree")
-    get_badge_class = options.get("get_badge_class", lambda m: "")
-    get_module_badge = options.get("get_module_badge", lambda m: "")
-
-    classes = module.get("classes", [])
-    functions = module.get("functions", [])
-    constants = module.get("constants", [])
-
-    # has_children = len(classes) > 0 or len(functions) > 0 or len(constants) > 0
-    is_deprecated = module["name"].startswith("u") and len(module["name"]) != "uctypes"
-    # FIXME: Why does in not work ?
-    # is_deprecated =str(module['name']) in database.U_MODULES
-    # if is_deprecated:
-    #     print(f"{module['name']=}")
-    #     window.console.log(ffi.to_js(module["name"]))
-    #     window.console.log(ffi.to_js(module))
-
-    badge_class = get_badge_class(module)
-    module_badge = get_module_badge(module)
-    # Use module ID to ensure uniqueness when same module names exist across different boards
-    module_id = module.get('id', 'unknown')
-    module_tree_id = f"{module_prefix}-module-{module['name']}-{module_id}"
-
-    # Format module summary
-    summary_parts = []
-    if len(classes) > 0:
-        summary_parts.append(f"{len(classes)} classes")
-    if len(functions) > 0:
-        summary_parts.append(f"{len(functions)} functions")
-    if len(constants) > 0:
-        summary_parts.append(f"{len(constants)} constants")
-
-    if summary_parts:
-        module_summary = ", ".join(summary_parts)
-    elif is_deprecated:
-        base_module_name = module["name"][1:]  # Remove 'u' prefix
-        module_summary = f"deprecated - use {base_module_name} instead"
-    else:
-        module_summary = "empty module"
-
-    # Format board and version information if available
-    board_version_label = ""
-    if module.get("version") and module.get("port") and module.get("board"):
-        board_name = format_board_name(module["port"], module["board"])
-        board_version_label = f"[{board_name} {module['version']}]"
-
-    module_header_class = "module-header"
-    if badge_class:
-        module_header_class += " unique"
-    if is_deprecated:
-        module_header_class += " deprecated"
-
-    # Get template and populate
-    module_element = ui.get_template("module-item-template")
-    if module_element:
-        ui.populate_template(
-            module_element,
-            {
-                "module-header-class": module_header_class,
-                "module-click": f"toggleModule('{module_tree_id}', event)",
-                "module-data": module["name"],
-                "module-name": module["name"],
-                "module-badge-style": "inline" if module_badge else "hide",
-                "module-details": module_summary,
-                "module-board-version": board_version_label,
-                "module-id": module_tree_id,
-            },
-        )
-
-        # Show/hide badge
-        badge_elem = module_element.querySelector("[data-module-badge]")
-        if badge_elem:
-            badge_elem.style.display = "inline" if module_badge else "none"
-
-    return module_element
-
-
-def create_class_item(cls, module_name, module_prefix, module_id=None):
-    """Create a class item using template."""
-    # Use module_id to ensure uniqueness when same module names exist across different boards
-    if module_id:
-        class_id = f"{module_prefix}-class-{module_name}-{cls['name']}-{module_id}"
-    else:
-        class_id = f"{module_prefix}-class-{module_name}-{cls['name']}"
-
-    base_classes_str = ""
-    if cls.get("base_classes") and len(cls["base_classes"]) > 0:
-        base_classes_str = f"({', '.join(cls['base_classes'])})"
-
-    # Format class summary
-    method_count = len(cls.get("methods", []))
-    attr_count = len(cls.get("attributes", []))
-
-    class_summary_parts = []
-    if method_count > 0:
-        class_summary_parts.append(f"{method_count} methods")
-    if attr_count > 0:
-        class_summary_parts.append(f"{attr_count} attributes")
-
-    class_summary = ", ".join(class_summary_parts) if class_summary_parts else "empty class"
-
-    base_classes_span = f" {base_classes_str}" if base_classes_str else ""
-
-    # Get template and populate
-    class_element = ui.get_template("class-item-template")
-    if class_element:
-        ui.populate_template(
-            class_element,
-            {
-                "class-click": f"toggleClass('{class_id}', event)",
-                "class-signature": f"class {cls['name']}",
-                "base-classes": base_classes_span,
-                "class-summary": class_summary,
-                "class-id": class_id,
-            },
-        )
-
-    return class_element
-
-
-def create_function_item(func):
-    """Create a function item using template."""
-    # Format function signature
-    signature = func["name"]
-
-    params = ""
-    if func.get("parameters"):
-        param_strs = []
-        for param in func["parameters"]:
-            param_str = param["name"]
-
-            if param.get("type_hint") and param["type_hint"] not in ["None", ""]:
-                param_str += f": {param['type_hint']}"
-
-            if param.get("default_value") and param["default_value"] != "None":
-                param_str += f" = {param['default_value']}"
-            elif param.get("is_optional"):
-                param_str += " = None"
-
-            if param.get("is_variadic"):
-                param_str = ("**" if param["name"] == "kwargs" else "*") + param_str
-
-            param_strs.append(param_str)
-
-        params = ", ".join(param_strs)
-
-    signature += f"({params})"
-
-    if func.get("return_type") and func["return_type"] not in ["None", "", "Any"]:
-        signature += f" -> {func['return_type']}"
-
-    decorators_list = func.get("decorators_list", [])
-    decorator_strs = [f"@{d}" for d in decorators_list]
-    async_marker = "async " if func.get("is_async") else ""
-
-    function_decorator_span = f"{' '.join(decorator_strs)} " if decorator_strs else ""
-
-    # Get template and populate
-    function_element = ui.get_template("function-item-template")
-    if function_element:
-        icon_type = "property" if func.get("is_property") else "function"
-        ui.populate_template(
-            function_element,
-            {
-                "function-icon": database.get_icon_class(icon_type),
-                "decorators": function_decorator_span,
-                "signature": f"{async_marker}{signature}",
-            },
-        )
-
-    return function_element
-
-
-def create_constant_item(const):
-    """Create a constant item using template."""
-    const_value = f" = {const['value']}" if const.get("value") else ""
-
-    # Get template and populate
-    constant_element = ui.get_template("constant-item-template")
-    if constant_element:
-        ui.populate_template(constant_element, {"constant-signature": f"{const['name']}{const_value}"})
-
-    return constant_element
-
-
 def update_status(message, status_type="info"):
     """Update the status indicator."""
     status_elem = document.getElementById("status")
@@ -269,11 +82,6 @@ def populate_board_selects():
             option.value = board_name
             option.textContent = board_name
             select.appendChild(option)
-
-
-def format_board_name(port, board):
-    """Format board display name."""
-    return database.format_board_name(port, board)
 
 
 # Set up event handlers
@@ -842,93 +650,6 @@ def render_module_tree_dom(modules, options):
     return container
 
 
-def create_method_item(method):
-    """Create a method item using template."""
-    # Format method signature
-    signature = method["name"]
-
-    # Build parameter list
-    params = ""
-    if method.get("parameters"):
-        param_strs = []
-        for param in method["parameters"]:
-            param_str = param["name"]
-
-            # Add type hint if available
-            if param.get("type_hint") and param["type_hint"] not in ["None", ""]:
-                param_str += f": {param['type_hint']}"
-
-            # Add default value if available
-            if param.get("default_value") and param["default_value"] != "None":
-                param_str += f" = {param['default_value']}"
-            elif param.get("is_optional"):
-                param_str += " = None"
-
-            # Handle variadic parameters
-            if param.get("is_variadic"):
-                param_str = ("**" if param["name"] == "kwargs" else "*") + param_str
-
-            param_strs.append(param_str)
-
-        params = ", ".join(param_strs)
-
-    signature += f"({params})"
-
-    # Add return type if available
-    if method.get("return_type") and method["return_type"] not in ["None", "", "Any"]:
-        signature += f" -> {method['return_type']}"
-
-    # Format decorators
-    decorators_list = method.get("decorators_list", [])
-    if not decorators_list:
-        # Fallback to building from boolean flags
-        if method.get("is_property"):
-            decorators_list.append("property")
-        if method.get("is_classmethod"):
-            decorators_list.append("classmethod")
-        if method.get("is_staticmethod"):
-            decorators_list.append("staticmethod")
-
-    decorator_strs = [f"@{d}" for d in decorators_list]
-    async_marker = "async " if method.get("is_async") else ""
-
-    icon_type = "property" if method.get("is_property") else "method"
-
-    decorator_span = f"{' '.join(decorator_strs)} " if decorator_strs else ""
-
-    # Get template and populate
-    method_element = ui.get_template("function-item-template")
-    if method_element:
-        ui.populate_template(
-            method_element,
-            {
-                "function-icon": database.get_icon_class(icon_type),
-                "decorators": decorator_span,
-                "signature": f"{async_marker}{signature}",
-            },
-        )
-
-    return method_element
-
-
-def create_attribute_item(attr):
-    """Create an attribute item using template."""
-    type_hint = f": {attr['type_hint']}" if attr.get("type_hint") else ""
-    value = f" = {attr['value']}" if attr.get("value") else ""
-
-    # Get template and populate
-    attr_element = ui.get_template("constant-item-template")
-    if attr_element:
-        ui.populate_template(attr_element, {"constant-signature": f"{attr['name']}{type_hint}{value}"})
-
-        # Update icon for attributes (use circle-dot instead of circle)
-        icon_elem = attr_element.querySelector(".fa-icon")
-        if icon_elem:
-            icon_elem.className = f"{database.get_icon_class('variable')} fa-icon"
-
-    return attr_element
-
-
 def render_module_tree_html(modules, options):
     """
     Legacy function that returns HTML string for backward compatibility.
@@ -969,8 +690,8 @@ def update_comparison():
     level1, level2, level3 = stats["level1"], stats["level2"], stats["level3"]
 
     # Get board names for display
-    board1_name = format_board_name(board1["port"], board1["board"])
-    board2_name = format_board_name(board2["port"], board2["board"])
+    board1_name = database.format_board_name(board1["port"], board1["board"])
+    board2_name = database.format_board_name(board2["port"], board2["board"])
 
     # Update stats display
     stats_element = document.getElementById("compare-stats")
@@ -1760,7 +1481,7 @@ def display_search_results(results, search_term):
 
 def create_search_result_item(result, entity_type):
     """Create a search result item using template with hierarchical indentation."""
-    board_name = format_board_name(result["port"], result["board"])
+    board_name = database.format_board_name(result["port"], result["board"])
     context_path = get_context_path(result)
 
     # Use search result template
@@ -2894,7 +2615,7 @@ async def open_search_result(module_id, class_id, entity_name, entity_type):
         version_select.value = board_info["version"]
 
         # Set board (need to format the board name)
-        board_name = format_board_name(board_info["port"], board_info["board"])
+        board_name = database.format_board_name(board_info["port"], board_info["board"])
         board_select.value = board_name
 
         # Load the board details which will show all modules
