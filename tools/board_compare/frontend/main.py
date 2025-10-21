@@ -1830,8 +1830,18 @@ def convert_search_results_to_tree_format(results):
                 print(f"DEBUG: Added attribute {entity_name} to class {class_id} in module {module['name']}")
                 
             elif entity_type == "class" and class_id:
-                # Class was directly found in search - it should already be created above
-                print(f"DEBUG: Class {entity_name} was directly found in search (already created)")
+                # Class was directly found in search - populate with COMPLETE class content
+                if class_id in module["classes"]:
+                    print(f"DEBUG: Class {entity_name} was directly found in search - populating with complete content")
+                    complete_class = get_complete_class_for_search(class_id, board_contexts[class_id])
+                    if complete_class:
+                        # Replace the basic class with the complete one
+                        module["classes"][class_id] = complete_class
+                        print(f"DEBUG: Populated class {entity_name} with {len(complete_class.get('methods', []))} methods and {len(complete_class.get('attributes', []))} attributes")
+                    else:
+                        print(f"DEBUG: Failed to get complete class content for {entity_name}")
+                else:
+                    print(f"DEBUG: Class {entity_name} not found in module classes - this shouldn't happen")
             
             elif entity_type == "constant" and not class_id:
                 # Add module-level constant
