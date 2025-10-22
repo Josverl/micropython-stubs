@@ -11,6 +11,9 @@ micropython-stubber
 #no secrets
 .secrets*
 
+# no .* 
+.playwright-mcp
+
 
 # no documentation artefacts 
 */~*.pptx
