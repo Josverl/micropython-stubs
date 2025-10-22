@@ -13,9 +13,6 @@ from playwright.async_api import async_playwright
 async def test_app_loads():
     """Test that the application loads properly with external JS."""
 
-    frontend_dir = Path(__file__).parent / "frontend"
-    html_file = frontend_dir / "board-explorer-mpy.html"
-
     print("Testing application loading with extracted JavaScript...")
 
     async with async_playwright() as p:
@@ -26,9 +23,9 @@ async def test_app_loads():
         page.on("console", lambda msg: console_messages.append(f"{msg.type}: {msg.text}"))
 
         try:
-            file_url = f"file://{html_file.absolute()}"
-            print(f"Loading: {file_url}")
-            await page.goto(file_url)
+            url = "http://localhost:8080/board-explorer-mpy.html"
+            print(f"Loading: {url}")
+            await page.goto(url)
 
             # Wait for PyScript and dbOptimizer to load
             await page.wait_for_timeout(3000)

@@ -3,7 +3,7 @@
 Unit tests for module naming fixes in scan_stubs.py.
 
 Tests ensure that:
-1. Path separators (\ and /) are properly converted to dots in module names
+1. Path separators (\\ and /) are properly converted to dots in module names
 2. __init__.pyi files are processed correctly to create parent modules
 3. Nested directory structures work correctly
 """
