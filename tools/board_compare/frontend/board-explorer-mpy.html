@@ -23,27 +23,6 @@
     <!-- SQLite Database Optimization Functions -->
     <script src="db-optimizer.js"></script>
 
-    <!-- JavaScript for tree toggling -->
-    <script>
-        function toggleModule(moduleId, event) {
-            if (event) event.stopPropagation();
-            const elem = document.getElementById(moduleId);
-            if (elem) {
-                elem.classList.toggle('hidden');
-            }
-        }
-
-        function toggleClass(classId, event) {
-            if (event) event.stopPropagation();
-            const elem = document.getElementById(classId);
-            if (elem) {
-                elem.classList.toggle('hidden');
-            }
-        }
-
-    </script>
-
-
     <style>
         * {
             margin: 0;
@@ -1107,7 +1086,7 @@
         <!-- Module Item Template (specialized version of tree-item) -->
         <div id="module-item-template">
             <div class="module-item">
-                <div class="module-header" data-module-header-class data-module-click data-module-data>
+                <div class="module-header" data-module-header-class data-module-click data-module-target data-module-data>
                     <span class="module-icon"><i class="fas fa-cube"></i></span>
                     <span class="module-name" data-module-name></span>
                     <span class="module-badge" data-module-badge style="display: none;">[UNIQUE]</span>
@@ -1120,7 +1099,7 @@
         <!-- Class Item Template (specialized version of tree-item) -->
         <div id="class-item-template">
             <div class="class-item">
-                <div class="tree-node" data-class-click>
+                <div class="tree-node" data-class-click data-class-target>
                     <span class="tree-icon"><i class="fas fa-object-group fa-icon"></i></span>
                     <span style="color: #495057; font-weight: 600;" data-class-signature></span>
                     <span style="color: #888; font-size: 0.9em; font-weight: normal;" data-base-classes></span>

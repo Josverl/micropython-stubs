@@ -14,17 +14,31 @@ import ui
 from pyscript import document
 
 
-def go_explorer():
+def go_explorer(event=None):
     """Wrapper for mpy-click navigation to explorer page."""
     switch_page("explorer")
 
-def go_compare():
+def go_compare(event=None):
     """Wrapper for mpy-click navigation to compare page."""
     switch_page("compare")
 
-def go_search():
+def go_search(event=None):
     """Wrapper for mpy-click navigation to search page."""
     switch_page("search")
+
+def toggle_tree_node(event):
+    """Toggle visibility of a tree node's children (modules, classes)."""
+    if event:
+        event.stopPropagation()
+        # Get element ID from data attribute
+        target = event.target
+        # Find the element with data-module-target or data-class-target
+        # Note: dataset is a JS proxy, use attribute access not .get()
+        element_id = getattr(target.dataset, 'moduleTarget', None) or getattr(target.dataset, 'classTarget', None)
+        if element_id:
+            elem = document.getElementById(element_id)
+            if elem:
+                elem.classList.toggle("hidden")
 
 def update_status(message, status_type="info"):
     """Update the status indicator."""

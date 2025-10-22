@@ -33,9 +33,12 @@ def populate_template(element, data):
 
         for target in target_elements:
             if key.endswith("-click") and value:
-                target.setAttribute("onclick", value)
+                    target.setAttribute("mpy-click", value)
             elif key.endswith("-class") and value:
                 target.className = value
+            elif key.endswith("-target") and value:
+                # Set data attribute for element ID reference (used by toggle functions)
+                target.setAttribute(f"data-{key}", value)
             elif key.endswith("-id") and value:
                 target.id = value
             elif key.endswith("-data") and value:
@@ -183,7 +186,8 @@ def create_module_item(module, options):
             module_element,
             {
                 "module-header-class": module_header_class,
-                "module-click": f"toggleModule('{module_tree_id}', event)",
+                "module-click": "toggle_tree_node",
+                "module-target": module_tree_id,  # Element ID to toggle
                 "module-data": module["name"],
                 "module-name": module["name"],
                 "module-badge-style": "inline" if module_badge else "hide",
@@ -233,7 +237,8 @@ def create_class_item(cls, module_name, module_prefix, module_id=None):
         populate_template(
             class_element,
             {
-                "class-click": f"toggleClass('{class_id}', event)",
+                "class-click": "toggle_tree_node",
+                "class-target": class_id,  # Element ID to toggle
                 "class-signature": f"class {cls['name']}",
                 "base-classes": base_classes_span,
                 "class-summary": class_summary,
