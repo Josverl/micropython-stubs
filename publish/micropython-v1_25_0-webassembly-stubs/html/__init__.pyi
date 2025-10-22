@@ -1,14 +1,12 @@
-"""
-Module: 'html.__init__' on micropython-v1.25.0-preview-webassembly
-"""
-# MCU: {'family': 'micropython', 'version': '1.25.0-preview', 'build': '301', 'ver': '1.25.0-preview-301', 'port': 'webassembly', 'board': '', 'board_id': '', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.26.2
-from __future__ import annotations
-from typing import Any, Final, Generator
 from _typeshed import Incomplete
 
-_escape_map_full: dict = {}
-_escape_map: dict = {}
-def escape(*args, **kwargs) -> Incomplete:
-    ...
+_escape_map: Incomplete
+_escape_map_full: Incomplete
 
+def escape(s, quote: bool = True):
+    """
+    Replace special characters "&", "<" and ">" to HTML-safe sequences.
+    If the optional flag quote is true (the default), the quotation mark
+    characters, both double quote (") and single quote (\') characters are also
+    translated.
+    """

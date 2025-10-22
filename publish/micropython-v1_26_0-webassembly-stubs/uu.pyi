@@ -1,15 +1,9 @@
-"""
-Module: 'uu' on micropython-v1.26.0-preview-webassembly-pyscript
-"""
-
-# MCU: {'family': 'micropython', 'version': '1.26.0-preview', 'build': '293', 'ver': '1.26.0-preview-293', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.26.2
-from __future__ import annotations
-from typing import Any, Final, Generator
-from _typeshed import Incomplete
-
-def test(*args, **kwargs) -> Incomplete: ...
-def encode(*args, **kwargs) -> Incomplete: ...
-def decode(*args, **kwargs) -> Incomplete: ...
+__all__ = ["Error", "encode", "decode"]
 
 class Error(Exception): ...
+
+def encode(in_file, out_file, name=None, mode=None) -> None:
+    """Uuencode file"""
+
+def decode(in_file, out_file=None, mode=None, quiet: bool = False) -> None:
+    """Decode uuencoded file"""

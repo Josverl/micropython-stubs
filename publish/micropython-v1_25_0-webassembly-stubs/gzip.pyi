@@ -26,17 +26,13 @@ file format.
 
 * Compression support will only be available if compression support is enabled
   in the built-in :mod:`deflate <deflate>` module.
-
----
-Module: 'gzip' on micropython-v1.25.0-preview-webassembly
 """
 
-# MCU: {'family': 'micropython', 'version': '1.25.0-preview', 'build': '301', 'ver': '1.25.0-preview-301', 'port': 'webassembly', 'board': '', 'board_id': '', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.26.2
 from __future__ import annotations
-from typing import Any, Final, Generator
 from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+_WBITS: int
 
 class GzipFile:
     """
@@ -63,20 +59,20 @@ class GzipFile:
 
     def __init__(self, *, fileobj, mode) -> None: ...
 
-def decompress(data, /) -> Incomplete:
+def open(filename, mode: str = "rb") -> Incomplete:
     """
-    Decompresses *data* into a bytes object.
+    Wrapper around built-in :func:`open` returning a GzipFile instance.
     """
     ...
 
-def compress(data, /) -> Incomplete:
+def compress(data) -> Incomplete:
     """
     Compresses *data* into a bytes object.
     """
     ...
 
-def open(filename, mode, /) -> Incomplete:
+def decompress(data) -> Incomplete:
     """
-    Wrapper around built-in :func:`open` returning a GzipFile instance.
+    Decompresses *data* into a bytes object.
     """
     ...

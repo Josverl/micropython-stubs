@@ -1,17 +1,33 @@
-"""
-Module: 'fnmatch' on micropython-v1.25.0-preview-webassembly
-"""
+__all__ = ["filter", "fnmatch", "fnmatchcase", "translate"]
 
-# MCU: {'family': 'micropython', 'version': '1.25.0-preview', 'build': '301', 'ver': '1.25.0-preview-301', 'port': 'webassembly', 'board': '', 'board_id': '', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.26.2
-from __future__ import annotations
-from typing import Any, Final, Generator
-from _typeshed import Incomplete
+def fnmatch(name, pat):
+    """Test whether FILENAME matches PATTERN.
 
-def translate(*args, **kwargs) -> Incomplete: ...
-def fnmatchcase(*args, **kwargs) -> Incomplete: ...
-def normcase(*args, **kwargs) -> Incomplete: ...
-def re_escape(*args, **kwargs) -> Incomplete: ...
-def fnmatch(*args, **kwargs) -> Incomplete: ...
-def filter(*args, **kwargs) -> Incomplete: ...
-def _compile_pattern(*args, **kwargs) -> Incomplete: ...
+    Patterns are Unix shell style:
+
+    *       matches everything
+    ?       matches any single character
+    [seq]   matches any character in seq
+    [!seq]  matches any char not in seq
+
+    An initial period in FILENAME is not special.
+    Both FILENAME and PATTERN are first case-normalized
+    if the operating system requires it.
+    If you don't want this, use fnmatchcase(FILENAME, PATTERN).
+    """
+
+def filter(names, pat):
+    """Return the subset of the list NAMES that match PAT."""
+
+def fnmatchcase(name, pat):
+    """Test whether FILENAME matches PATTERN, including case.
+
+    This is a version of fnmatch() which doesn't case-normalize
+    its arguments.
+    """
+
+def translate(pat):
+    """Translate a shell PATTERN to a regular expression.
+
+    There is no way to quote meta-characters.
+    """

@@ -30,7 +30,7 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_26_0-webassembly-merged`
-* Frozen stubs from `stubs/micropython-v1_26_0-frozen/webassembly`
+* Frozen stubs from `stubs/micropython-v1_26_0-frozen/webassembly/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 
