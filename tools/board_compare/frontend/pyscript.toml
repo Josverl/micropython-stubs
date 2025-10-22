@@ -1,4 +1,4 @@
-name = "MicroPython board / type stubs browser"
+name = "MicroPython stubs explorer"
 
 packages = [
     "github:josverl/micropython-stubs/mip/typing.json",

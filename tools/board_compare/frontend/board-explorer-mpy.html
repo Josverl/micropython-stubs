@@ -13,8 +13,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- PyScript CSS -->
-    <link rel="stylesheet" href="https://pyscript.net/releases/2025.8.1/core.css">
+    <!-- PyScript -->
+    <script type="module" src="https://pyscript.net/releases/2025.10.1/core.js"></script>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2025.10.1/core.css">
+
+
+    <!-- SQL.js for database -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js"></script>
+    <!-- SQLite Database Optimization Functions -->
+    <script src="db-optimizer.js"></script>
+
+    <!-- JavaScript for tree toggling -->
+    <script>
+        function toggleModule(moduleId, event) {
+            if (event) event.stopPropagation();
+            const elem = document.getElementById(moduleId);
+            if (elem) {
+                elem.classList.toggle('hidden');
+            }
+        }
+
+        function toggleClass(classId, event) {
+            if (event) event.stopPropagation();
+            const elem = document.getElementById(classId);
+            if (elem) {
+                elem.classList.toggle('hidden');
+            }
+        }
+
+    </script>
+
 
     <style>
         * {
@@ -1206,34 +1234,7 @@
 
     </div>
 
-    <!-- SQL.js for database -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.13.0/sql-wasm.js"></script>
 
-    <!-- PyScript -->
-    <script type="module" src="https://pyscript.net/releases/2025.8.1/core.js"></script>
-    
-    <!-- SQLite Database Optimization Functions -->
-    <script src="db-optimizer.js"></script>
-
-    <!-- JavaScript for tree toggling -->
-    <script>
-        function toggleModule(moduleId, event) {
-            if (event) event.stopPropagation();
-            const elem = document.getElementById(moduleId);
-            if (elem) {
-                elem.classList.toggle('hidden');
-            }
-        }
-
-        function toggleClass(classId, event) {
-            if (event) event.stopPropagation();
-            const elem = document.getElementById(classId);
-            if (elem) {
-                elem.classList.toggle('hidden');
-            }
-        }
-
-    </script>
 
     <!-- Main Python script -->
     <script type="mpy" src="./main.py" config="./pyscript.toml"></script>
