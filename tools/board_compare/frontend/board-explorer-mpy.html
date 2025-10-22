@@ -779,9 +779,9 @@
             <p style="font-size: 0.9em; opacity: 0.9;">A web application written in MicroPython using PyScript.</p>
             </div>
             <div class="nav-tabs">
-            <button class="nav-tab active" id="tab-explorer">Stubs Explorer</button>
-            <button class="nav-tab" id="tab-compare">Compare Board-stubs</button>
-            <button class="nav-tab" id="tab-search">Search APIs</button>
+            <button class="nav-tab active" id="tab-explorer" mpy-click="go_explorer">Stubs Explorer</button>
+            <button class="nav-tab" id="tab-compare" mpy-click="go_compare">Compare Board-stubs</button>
+            <button class="nav-tab" id="tab-search" mpy-click="go_search">Search APIs</button>
             </div>
         </nav>
 
@@ -813,7 +813,7 @@
                 </div>
                 <div class="control-row">
                     <div class="control-actions">
-                        <button class="share-btn" id="explorer-share-btn" title="Copy shareable link">
+                        <button class="share-btn" id="explorer-share-btn" title="Copy shareable link" mpy-click="share_explorer">
                             <span class="share-icon">🔗</span> Share
                         </button>
                     </div>
@@ -870,8 +870,8 @@
                         </div>
                         <div class="control-row">
                             <div class="control-actions">
-                                <button id="compare-boards-btn">Compare Boards</button>
-                                <button class="share-btn" id="share-btn" title="Copy shareable link">
+                                <button id="compare-boards-btn" mpy-click="compare_boards">Compare Boards</button>
+                                <button class="share-btn" id="share-btn" title="Copy shareable link" mpy-click="share_comparison">
                                     <span class="share-icon">🔗</span> Share
                                 </button>
                             </div>
@@ -906,8 +906,8 @@
                 </div>
                 <div class="control-row">
                     <div class="control-actions">
-                        <button id="search-btn">Search</button>
-                        <button class="share-btn" id="search-share-btn" title="Copy shareable link">
+                        <button id="search-btn" mpy-click="search_apis">Search</button>
+                        <button class="share-btn" id="search-share-btn" title="Copy shareable link" mpy-click="share_search">
                             <span class="share-icon">🔗</span> Share
                         </button>
                     </div>

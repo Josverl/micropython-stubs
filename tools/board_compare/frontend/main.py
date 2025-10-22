@@ -14,6 +14,18 @@ import ui
 from pyscript import document
 
 
+def go_explorer():
+    """Wrapper for mpy-click navigation to explorer page."""
+    switch_page("explorer")
+
+def go_compare():
+    """Wrapper for mpy-click navigation to compare page."""
+    switch_page("compare")
+
+def go_search():
+    """Wrapper for mpy-click navigation to search page."""
+    switch_page("search")
+
 def update_status(message, status_type="info"):
     """Update the status indicator."""
     status_elem = document.getElementById("status")
@@ -92,18 +104,7 @@ def initialize_input_change_handlers():
 
 def setup_event_handlers():
     """Set up event listeners for the UI."""
-    # Tab navigation
-    tab_explorer = document.getElementById("tab-explorer")
-    if tab_explorer:
-        tab_explorer.onclick = lambda e: switch_page("explorer")
-
-    tab_compare = document.getElementById("tab-compare")
-    if tab_compare:
-        tab_compare.onclick = lambda e: switch_page("compare")
-
-    tab_search = document.getElementById("tab-search")
-    if tab_search:
-        tab_search.onclick = lambda e: switch_page("search")
+    # Navigation handled by mpy-click attributes (go_explorer/go_compare/go_search)
 
     # Set up page-specific event handlers
     print("Setting up page-specific event handlers...")
