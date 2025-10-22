@@ -4,6 +4,7 @@
 [![Star on GitHub](https://img.shields.io/github/stars/josverl/micropython-stubs.svg?style=social)](https://github.com/josverl/micropython-stubs/stargazers)
 [![All Contributors](https://img.shields.io/badge/all_contributors-19-green.svg?style=flat-square)](#Contributions)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/python/black "Black badge")
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![Checked with pyright](https://microsoft.github.io/pyright/img/pyright_badge.svg)](https://microsoft.github.io/pyright/) 
 <!-- [![Checked with pyright](https://github.com/Josverl/micropython-stubs/actions/workflows/test_stub_quality.yml/badge.svg?branch=main)](https://microsoft.github.io/pyright/) -->
 
@@ -29,7 +30,11 @@ Stubs are like cheat sheets for your code. They provide hints, auto-completion, 
 For installation instructions and configuration of your preferred IDE, please refer to the [documentation](https://micropython-stubs.readthedocs.io/en/main/)
 ## Explore Available Stubs
 
-Curious about which versions, ports, and boards are covered? Check out the [online viewer](https://flatgithub.com/Josverl/micropython-stubs/?filename=all_modules.json) or search for [MicroPython stub packages on PyPI](https://pypi.org/search/?q=-stubs&o=&c=Programming+Language+%3A%3A+Python+%3A%3A+Implementation+%3A%3A+MicroPython).
+Curious about which versions, ports, and boards are covered, or the differences between different board  ? 
+
+Try the beta version of the new [Stubs Explorer](https://josverl.github.io/micropython-stubs/board-explorer-mpy.html), an app written in MicroPython using PyScript to explore and compare MicroPython stubs for various boards.
+
+Or check out the [online viewer](https://flatgithub.com/Josverl/micropython-stubs/?filename=all_modules.json) or search for [MicroPython stub packages on PyPI](https://pypi.org/search/?q=-stubs&o=&c=Programming+Language+%3A%3A+Python+%3A%3A+Implementation+%3A%3A+MicroPython).
 
 For a comprehensive overview of all stubs, dive into the documentation on [the documentation on read the docs](https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html).
 

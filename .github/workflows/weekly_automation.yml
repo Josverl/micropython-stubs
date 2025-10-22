@@ -1,0 +1,76 @@
+# This workflow runs weekly automation tasks:
+# - Updates all_modules.json
+# - Updates documentation
+# - Updates stub-packages.json from database
+
+name: weekly_automation
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * 0" # Run every Sunday at 02:00
+
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: 1
+
+jobs:
+  weekly-update:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{github.workspace}}
+
+    steps:
+      ######################################
+      # Check out repo
+      ######################################
+      - name: Checkout stubs repo
+        uses: actions/checkout@v4
+
+      ######################################
+      # Set up Python and dependencies
+      ######################################
+      - name: Set up Python
+        uses: actions/setup-python@v5
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          activate-environment: true
+
+      - name: Install Python dependencies
+        working-directory: ${{github.workspace}}
+        run: |
+          uv pip install -U -r pyproject.toml --extra docs
+          uv pip install jsons packaging tomli
+
+      ######################################
+      # Run automation tasks
+      ######################################
+      - name: Update all_modules.json
+        working-directory: ${{github.workspace}}
+        run: |
+          echo "Updating all_modules.json"
+          python update_all_modules.py
+
+      - name: Update Documentation
+        working-directory: ${{github.workspace}}/docs
+        run: |
+          echo "Updating documentation"
+          python update_docs.py
+
+      - name: Update stub-packages.json
+        working-directory: ${{github.workspace}}/data
+        run: |
+          echo "Updating stub-packages.json from database"
+          python package_db_to_json.py
+
+      ######################################
+      # Commit changes
+      ######################################
+      - name: commit
+        uses: ./.github/actions/commit
+        with:
+          message: "Weekly automation: update modules, docs, and package database"

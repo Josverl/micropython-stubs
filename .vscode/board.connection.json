@@ -1,0 +1,9 @@
+{
+  "id": "micropython-board-comparison",
+  "type": "sqlite",
+  "description": "MicroPython stub explorer database used in pyscript webapp. Used for comparing API differences between boards and versions.",
+  "options": { 
+    "filename": "d:/mypython/micropython-stubs/tools/board_compare/frontend/board_comparison.db",
+    "mode": 6
+  }
+}

@@ -128,6 +128,27 @@
             ""
         ],
         [
+            "micropython-unix-stubs",
+            "1.26.0",
+            "unix",
+            "GENERIC",
+            ""
+        ],
+        [
+            "micropython-webassembly-stubs",
+            "1.26.0",
+            "webassembly",
+            "GENERIC",
+            ""
+        ],
+        [
+            "micropython-windows-stubs",
+            "1.26.0",
+            "windows",
+            "GENERIC",
+            ""
+        ],
+        [
             "micropython-esp32-esp32_generic-stubs",
             "1.25.0",
             "esp32",
@@ -229,6 +250,27 @@
             "micropython-stm32-stubs",
             "1.25.0",
             "stm32",
+            "GENERIC",
+            ""
+        ],
+        [
+            "micropython-unix-stubs",
+            "1.25.0",
+            "unix",
+            "GENERIC",
+            ""
+        ],
+        [
+            "micropython-webassembly-stubs",
+            "1.25.0",
+            "webassembly",
+            "GENERIC",
+            ""
+        ],
+        [
+            "micropython-windows-stubs",
+            "1.25.0",
+            "windows",
             "GENERIC",
             ""
         ],

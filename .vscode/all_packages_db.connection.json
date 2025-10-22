@@ -1,0 +1,9 @@
+{
+  "id": "all_packages_db",
+  "type": "sqlite",
+  "description": "information on published packages and versions and hashes and sources for all MicroPython type stub packages",
+  "options": { 
+    "filename": "D:\\mypython\\micropython-stubs\\data\\all_packages.db",
+    "mode": 6
+  }
+}

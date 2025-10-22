@@ -28,20 +28,16 @@ This module allows compression and decompression of binary data with the
 
 * Compression support will only be available if compression support is enabled
   in the built-in :mod:`deflate <deflate>` module.
-
----
-Module: 'zlib' on micropython-v1.25.0-preview-webassembly
 """
 
-# MCU: {'family': 'micropython', 'version': '1.25.0-preview', 'build': '301', 'ver': '1.25.0-preview-301', 'port': 'webassembly', 'board': '', 'board_id': '', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
-# Stubber: v1.26.2
 from __future__ import annotations
-from typing import Any, Final, Generator
 from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-def _decode_wbits(*args, **kwargs) -> Incomplete: ...
-def compress(data, wbits=15, /) -> Incomplete:
+_MAX_WBITS: int
+
+def _decode_wbits(wbits, decompress): ...
+def compress(data, wbits=...) -> Incomplete:
     """
     Compresses *data* into a bytes object.
 
@@ -71,7 +67,7 @@ def compress(data, wbits=15, /) -> Incomplete:
     """
     ...
 
-def decompress(data: bytes, wbits: int = 0, bufsize: int = 0, /) -> bytes:
+def decompress(data, wbits=...) -> bytes:
     """
     Decompresses *data* into a bytes object.
 

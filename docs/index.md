@@ -18,6 +18,7 @@ definitions.md
 24_pycharm.md
 27_micropico.md
 28_mypy.md
+29_ruff.md
 26_pylint.md
 microbit_v2 type checking.md
 pyproject.md
