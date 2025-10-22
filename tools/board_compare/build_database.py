@@ -1412,7 +1412,10 @@ def build_database_for_stdlib(
         builder.close()
         return
 
-    logger.info(f"Processing micropython-stdlib-stubs with version: {version}")
+    # Normalize version for consistency with regular board processing
+    display_version = normalize_version_for_display(version)
+    
+    logger.info(f"Processing micropython-stdlib-stubs with version: {display_version}")
 
     # Show current versions before cleaning
     builder.list_versions()
@@ -1420,10 +1423,10 @@ def build_database_for_stdlib(
     # Clean existing data for the "stdlib" port by default (unless --no-clean specified)
     should_clean = not no_clean or clean_only
     if should_clean:
-        logger.info(f"Cleaning existing stdlib data for version '{version}' (use --no-clean to skip)")
+        logger.info(f"Cleaning existing stdlib data for version '{display_version}' (use --no-clean to skip)")
         # Clean by searching for records with port='stdlib' and the specified version
         cursor = builder.conn.cursor()
-        cursor.execute("DELETE FROM boards WHERE version = ? AND port = 'stdlib'", (version,))
+        cursor.execute("DELETE FROM boards WHERE version = ? AND port = 'stdlib'", (display_version,))
         builder.conn.commit()
         builder._cleanup_orphaned_records()
 
@@ -1449,7 +1452,7 @@ def build_database_for_stdlib(
     logger.info(f"Scanning micropython-stdlib-stubs at: {stdlib_dir}")
 
     try:
-        stdlib_data = scan_stdlib_stubs(stdlib_dir, version)
+        stdlib_data = scan_stdlib_stubs(stdlib_dir, display_version)
         builder.add_board(stdlib_data)
         logger.info(f"  Added {len(stdlib_data['modules'])} modules for stdlib")
     except Exception as e:
@@ -1485,7 +1488,7 @@ if __name__ == "__main__":
         "--version",
         type=str,
         default="v1.26.0",
-        help="MicroPython version to process (e.g., v1.26.0, 1.26.0, or v1_26_0)",
+        help="MicroPython version to process for both regular and stdlib stubs (e.g., v1.26.0, 1.26.0, or v1_26_0)",
     )
     parser.add_argument(
         "--db",
@@ -1504,21 +1507,16 @@ if __name__ == "__main__":
 
     # Stdlib-specific options
     parser.add_argument("--stdlib-dir", type=Path, help="Path to micropython-stdlib-stubs directory (enables stdlib processing mode)")
-    parser.add_argument("--stdlib-version", type=str, help="Version to assign to stdlib stubs (required when using --stdlib-dir)")
 
     args = parser.parse_args()
 
-    # Validate stdlib arguments
-    if args.stdlib_dir and not args.stdlib_version:
-        parser.error("--stdlib-version is required when using --stdlib-dir")
-    if args.stdlib_version and not args.stdlib_dir:
-        parser.error("--stdlib-dir is required when using --stdlib-version")
+    # No validation needed - --version is used for both modes
 
     if args.stdlib_dir:
         # Process stdlib stubs
         build_database_for_stdlib(
             args.stdlib_dir,
-            args.stdlib_version,
+            args.version,
             args.db,
             args.json,
             args.detailed_json,
