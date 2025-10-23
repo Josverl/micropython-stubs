@@ -18,6 +18,8 @@ from explorer import share_explorer
 from pyscript import document
 from search import share_search
 
+__version__ = "0.5.0"
+
 
 def go_explorer(event=None):
     """Wrapper for mpy-click navigation to explorer page."""

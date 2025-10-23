@@ -870,3 +870,321 @@ def get_search_result_attributes(class_id, parent_result):
     
     stmt.free()
     return attributes
+
+
+# ========================================
+# Sprint 4.5: SQL-based Comparison Functions
+# ========================================
+
+def get_board_id(version, port, board):
+    """Get board ID from version, port, and board name."""
+    stmt = app_state["db"].prepare("""
+        SELECT id FROM boards WHERE version = ? AND port = ? AND board = ?
+    """)
+    stmt.bind(ffi.to_js([version, port, board]))
+    board_id = None
+    if stmt.step():
+        board_id = stmt.getAsObject()["id"]
+    stmt.free()
+    return board_id
+
+
+def calculate_comparison_stats_sql(board_id_1, board_id_2):
+    """
+    Calculate comparison statistics using SQL views instead of Python iteration.
+    Returns statistics at 3 levels: modules, direct children (classes/functions/constants), 
+    and class members (methods/attributes).
+    
+    Sprint 4.5 Task 4.5.2: Replaces 300+ lines of nested Python loops with SQL queries.
+    """
+    
+    # Level 1: Module comparison
+    sql_modules = """
+        WITH board1_modules AS (
+            SELECT module_name, module_id FROM v_board_comparison_modules WHERE board_id = ?
+        ),
+        board2_modules AS (
+            SELECT module_name, module_id FROM v_board_comparison_modules WHERE board_id = ?
+        )
+        SELECT 
+            (SELECT COUNT(DISTINCT module_name) FROM board1_modules) as total1,
+            (SELECT COUNT(DISTINCT module_name) FROM board2_modules) as total2,
+            (SELECT COUNT(DISTINCT b1.module_name) FROM board1_modules b1 
+             WHERE b1.module_name NOT IN (SELECT module_name FROM board2_modules)) as unique1,
+            (SELECT COUNT(DISTINCT b2.module_name) FROM board2_modules b2 
+             WHERE b2.module_name NOT IN (SELECT module_name FROM board1_modules)) as unique2,
+            (SELECT COUNT(DISTINCT b1.module_name) FROM board1_modules b1 
+             INNER JOIN board2_modules b2 ON b1.module_name = b2.module_name) as common
+    """
+    
+    stmt = app_state["db"].prepare(sql_modules)
+    stmt.bind(ffi.to_js([int(board_id_1), int(board_id_2)]))
+    stmt.step()
+    level1_data = stmt.getAsObject()
+    stmt.free()
+    
+    level1 = {
+        "total1": level1_data["total1"],
+        "total2": level1_data["total2"],
+        "unique1": level1_data["unique1"],
+        "unique2": level1_data["unique2"],
+        "common": level1_data["common"],
+    }
+    
+    # Level 2: Classes, functions, constants comparison
+    sql_level2 = """
+        WITH board1_modules AS (
+            SELECT module_name FROM v_board_comparison_modules WHERE board_id = ?1
+        ),
+        board2_modules AS (
+            SELECT module_name FROM v_board_comparison_modules WHERE board_id = ?2
+        ),
+        unique_modules1 AS (
+            SELECT module_name FROM board1_modules 
+            WHERE module_name NOT IN (SELECT module_name FROM board2_modules)
+        ),
+        unique_modules2 AS (
+            SELECT module_name FROM board2_modules 
+            WHERE module_name NOT IN (SELECT module_name FROM board1_modules)
+        ),
+        common_modules AS (
+            SELECT b1.module_name FROM board1_modules b1 
+            INNER JOIN board2_modules b2 ON b1.module_name = b2.module_name
+        ),
+        -- Classes in unique modules
+        classes_unique1 AS (
+            SELECT c.class_id FROM v_board_comparison_classes c
+            INNER JOIN unique_modules1 u ON c.module_name = u.module_name
+            WHERE c.board_id = ?1
+        ),
+        classes_unique2 AS (
+            SELECT c.class_id FROM v_board_comparison_classes c
+            INNER JOIN unique_modules2 u ON c.module_name = u.module_name
+            WHERE c.board_id = ?2
+        ),
+        -- Classes in common modules
+        classes_in_common1 AS (
+            SELECT c.class_id, c.class_name, c.module_name FROM v_board_comparison_classes c
+            INNER JOIN common_modules cm ON c.module_name = cm.module_name
+            WHERE c.board_id = ?1
+        ),
+        classes_in_common2 AS (
+            SELECT c.class_id, c.class_name, c.module_name FROM v_board_comparison_classes c
+            INNER JOIN common_modules cm ON c.module_name = cm.module_name
+            WHERE c.board_id = ?2
+        ),
+        -- Functions and constants
+        funcs_in_common1 AS (
+            SELECT m.method_id, m.method_name, m.module_name FROM v_board_comparison_methods m
+            INNER JOIN common_modules cm ON m.module_name = cm.module_name
+            WHERE m.board_id = ?1 AND m.class_name IS NULL
+        ),
+        funcs_in_common2 AS (
+            SELECT m.method_id, m.method_name, m.module_name FROM v_board_comparison_methods m
+            INNER JOIN common_modules cm ON m.module_name = cm.module_name
+            WHERE m.board_id = ?2 AND m.class_name IS NULL
+        ),
+        consts_in_common1 AS (
+            SELECT c.constant_id, c.constant_name, c.module_name FROM v_board_comparison_constants c
+            INNER JOIN common_modules cm ON c.module_name = cm.module_name
+            WHERE c.board_id = ?1
+        ),
+        consts_in_common2 AS (
+            SELECT c.constant_id, c.constant_name, c.module_name FROM v_board_comparison_constants c
+            INNER JOIN common_modules cm ON c.module_name = cm.module_name
+            WHERE c.board_id = ?2
+        )
+        SELECT 
+            (SELECT COUNT(*) FROM classes_unique1) as classes1_unique,
+            (SELECT COUNT(*) FROM classes_unique2) as classes2_unique,
+            (SELECT COUNT(*) FROM classes_in_common1 c1 
+             WHERE c1.class_name NOT IN (SELECT class_name FROM classes_in_common2 c2 
+                                          WHERE c2.module_name = c1.module_name)) as classes1_diff,
+            (SELECT COUNT(*) FROM classes_in_common2 c2 
+             WHERE c2.class_name NOT IN (SELECT class_name FROM classes_in_common1 c1 
+                                          WHERE c1.module_name = c2.module_name)) as classes2_diff,
+            (SELECT COUNT(*) FROM funcs_in_common1 f1 
+             WHERE f1.method_name NOT IN (SELECT method_name FROM funcs_in_common2 f2 
+                                           WHERE f2.module_name = f1.module_name)) as functions1_unique,
+            (SELECT COUNT(*) FROM funcs_in_common2 f2 
+             WHERE f2.method_name NOT IN (SELECT method_name FROM funcs_in_common1 f1 
+                                           WHERE f1.module_name = f2.module_name)) as functions2_unique,
+            (SELECT COUNT(*) FROM consts_in_common1 c1 
+             WHERE c1.constant_name NOT IN (SELECT constant_name FROM consts_in_common2 c2 
+                                             WHERE c2.module_name = c1.module_name)) as constants1_unique,
+            (SELECT COUNT(*) FROM consts_in_common2 c2 
+             WHERE c2.constant_name NOT IN (SELECT constant_name FROM consts_in_common1 c1 
+                                             WHERE c1.module_name = c2.module_name)) as constants2_unique
+    """
+    
+    stmt = app_state["db"].prepare(sql_level2)
+    # Bind: only 2 parameters now (was 10)
+    stmt.bind(ffi.to_js([int(board_id_1), int(board_id_2)]))
+    stmt.step()
+    level2_data = stmt.getAsObject()
+    stmt.free()
+    
+    level2 = {
+        "classes1_unique": level2_data["classes1_unique"] + level2_data["classes1_diff"],
+        "classes2_unique": level2_data["classes2_unique"] + level2_data["classes2_diff"],
+        "functions1_unique": level2_data["functions1_unique"],
+        "functions2_unique": level2_data["functions2_unique"],
+        "constants1_unique": level2_data["constants1_unique"],
+        "constants2_unique": level2_data["constants2_unique"],
+        "classes_different": 0,  # Will be calculated in level 3
+        "functions_different": 0,
+        "constants_different": 0,
+    }
+    
+    # Level 3: Methods and attributes comparison
+    sql_level3 = """
+        WITH board1_modules AS (
+            SELECT module_name FROM v_board_comparison_modules WHERE board_id = ?1
+        ),
+        board2_modules AS (
+            SELECT module_name FROM v_board_comparison_modules WHERE board_id = ?2
+        ),
+        common_modules AS (
+            SELECT b1.module_name FROM board1_modules b1 
+            INNER JOIN board2_modules b2 ON b1.module_name = b2.module_name
+        ),
+        common_classes AS (
+            SELECT c1.class_id as class_id1, c2.class_id as class_id2, 
+                   c1.class_name, c1.module_name
+            FROM v_board_comparison_classes c1
+            INNER JOIN v_board_comparison_classes c2 
+                ON c1.class_name = c2.class_name AND c1.module_name = c2.module_name
+            INNER JOIN common_modules cm ON c1.module_name = cm.module_name
+            WHERE c1.board_id = ?1 AND c2.board_id = ?2
+        ),
+        methods1 AS (
+            SELECT m.method_id, m.method_name, m.class_id, cc.class_name, cc.module_name
+            FROM v_board_comparison_methods m
+            INNER JOIN common_classes cc ON m.class_id = cc.class_id1
+            WHERE m.board_id = ?1
+        ),
+        methods2 AS (
+            SELECT m.method_id, m.method_name, m.class_id, cc.class_name, cc.module_name
+            FROM v_board_comparison_methods m
+            INNER JOIN common_classes cc ON m.class_id = cc.class_id2
+            WHERE m.board_id = ?2
+        ),
+        attrs1 AS (
+            SELECT a.attribute_id, a.attribute_name, a.class_id, cc.class_name, cc.module_name
+            FROM v_board_comparison_attributes a
+            INNER JOIN common_classes cc ON a.class_id = cc.class_id1
+            WHERE a.board_id = ?1
+        ),
+        attrs2 AS (
+            SELECT a.attribute_id, a.attribute_name, a.class_id, cc.class_name, cc.module_name
+            FROM v_board_comparison_attributes a
+            INNER JOIN common_classes cc ON a.class_id = cc.class_id2
+            WHERE a.board_id = ?2
+        ),
+        -- Also count methods/attrs from unique classes in unique modules
+        unique_modules1 AS (
+            SELECT module_name FROM board1_modules 
+            WHERE module_name NOT IN (SELECT module_name FROM board2_modules)
+        ),
+        unique_modules2 AS (
+            SELECT module_name FROM board2_modules 
+            WHERE module_name NOT IN (SELECT module_name FROM board1_modules)
+        ),
+        unique_classes1 AS (
+            SELECT c.class_id FROM v_board_comparison_classes c
+            INNER JOIN unique_modules1 u ON c.module_name = u.module_name
+            WHERE c.board_id = ?1
+        ),
+        unique_classes2 AS (
+            SELECT c.class_id FROM v_board_comparison_classes c
+            INNER JOIN unique_modules2 u ON c.module_name = u.module_name
+            WHERE c.board_id = ?2
+        ),
+        methods_unique_modules1 AS (
+            SELECT m.method_id FROM v_board_comparison_methods m
+            INNER JOIN unique_classes1 uc ON m.class_id = uc.class_id
+            WHERE m.board_id = ?1
+        ),
+        methods_unique_modules2 AS (
+            SELECT m.method_id FROM v_board_comparison_methods m
+            INNER JOIN unique_classes2 uc ON m.class_id = uc.class_id
+            WHERE m.board_id = ?2
+        ),
+        attrs_unique_modules1 AS (
+            SELECT a.attribute_id FROM v_board_comparison_attributes a
+            INNER JOIN unique_classes1 uc ON a.class_id = uc.class_id
+            WHERE a.board_id = ?1
+        ),
+        attrs_unique_modules2 AS (
+            SELECT a.attribute_id FROM v_board_comparison_attributes a
+            INNER JOIN unique_classes2 uc ON a.class_id = uc.class_id
+            WHERE a.board_id = ?2
+        )
+        SELECT 
+            (SELECT COUNT(*) FROM methods1 m1 
+             WHERE NOT EXISTS (SELECT 1 FROM methods2 m2 
+                               WHERE m2.method_name = m1.method_name 
+                               AND m2.class_name = m1.class_name 
+                               AND m2.module_name = m1.module_name)) 
+            + (SELECT COUNT(*) FROM methods_unique_modules1) as methods1_unique,
+            (SELECT COUNT(*) FROM methods2 m2 
+             WHERE NOT EXISTS (SELECT 1 FROM methods1 m1 
+                               WHERE m1.method_name = m2.method_name 
+                               AND m1.class_name = m2.class_name 
+                               AND m1.module_name = m2.module_name))
+            + (SELECT COUNT(*) FROM methods_unique_modules2) as methods2_unique,
+            (SELECT COUNT(*) FROM attrs1 a1 
+             WHERE NOT EXISTS (SELECT 1 FROM attrs2 a2 
+                               WHERE a2.attribute_name = a1.attribute_name 
+                               AND a2.class_name = a1.class_name 
+                               AND a2.module_name = a1.module_name))
+            + (SELECT COUNT(*) FROM attrs_unique_modules1) as attributes1_unique,
+            (SELECT COUNT(*) FROM attrs2 a2 
+             WHERE NOT EXISTS (SELECT 1 FROM attrs1 a1 
+                               WHERE a1.attribute_name = a2.attribute_name 
+                               AND a1.class_name = a2.class_name 
+                               AND a1.module_name = a2.module_name))
+            + (SELECT COUNT(*) FROM attrs_unique_modules2) as attributes2_unique,
+            (SELECT COUNT(DISTINCT class_name || ':' || module_name) 
+             FROM (SELECT m1.class_name, m1.module_name FROM methods1 m1 
+                   WHERE NOT EXISTS (SELECT 1 FROM methods2 m2 
+                                     WHERE m2.method_name = m1.method_name 
+                                     AND m2.class_name = m1.class_name 
+                                     AND m2.module_name = m1.module_name)
+                   UNION
+                   SELECT m2.class_name, m2.module_name FROM methods2 m2 
+                   WHERE NOT EXISTS (SELECT 1 FROM methods1 m1 
+                                     WHERE m1.method_name = m2.method_name 
+                                     AND m1.class_name = m2.class_name 
+                                     AND m1.module_name = m2.module_name))) as methods_different,
+            (SELECT COUNT(DISTINCT class_name || ':' || module_name) 
+             FROM (SELECT a1.class_name, a1.module_name FROM attrs1 a1 
+                   WHERE NOT EXISTS (SELECT 1 FROM attrs2 a2 
+                                     WHERE a2.attribute_name = a1.attribute_name 
+                                     AND a2.class_name = a1.class_name 
+                                     AND a2.module_name = a1.module_name)
+                   UNION
+                   SELECT a2.class_name, a2.module_name FROM attrs2 a2 
+                   WHERE NOT EXISTS (SELECT 1 FROM attrs1 a1 
+                                     WHERE a1.attribute_name = a2.attribute_name 
+                                     AND a1.class_name = a2.class_name 
+                                     AND a1.module_name = a2.module_name))) as attributes_different
+    """
+    
+    stmt = app_state["db"].prepare(sql_level3)
+    # Bind: only 2 parameters now (was 14)
+    stmt.bind(ffi.to_js([int(board_id_1), int(board_id_2)]))
+    stmt.step()
+    level3_data = stmt.getAsObject()
+    stmt.free()
+    
+    level3 = {
+        "methods1_unique": level3_data["methods1_unique"],
+        "methods2_unique": level3_data["methods2_unique"],
+        "attributes1_unique": level3_data["attributes1_unique"],
+        "attributes2_unique": level3_data["attributes2_unique"],
+        "methods_different": level3_data["methods_different"],
+        "attributes_different": level3_data["attributes_different"],
+    }
+    
+    return {"level1": level1, "level2": level2, "level3": level3}

@@ -452,8 +452,19 @@ def update_comparison():
 
     print(f"Common: {len(common_names)}, Unique to 1: {len(unique_names1)}, Unique to 2: {len(unique_names2)}")
 
-    # Calculate comprehensive statistics
-    stats = calculate_comparison_stats(modules1, modules2)
+    # Calculate comprehensive statistics using SQL (Sprint 4.5 Task 4.5.2)
+    # Get board IDs for SQL-based comparison
+    board1_id = database.get_board_id(board1["version"], board1["port"], board1["board"])
+    board2_id = database.get_board_id(board2["version"], board2["port"], board2["board"])
+    
+    if board1_id and board2_id:
+        # Use new SQL-based calculation (replaces 300+ lines of Python iteration)
+        stats = database.calculate_comparison_stats_sql(board1_id, board2_id)
+    else:
+        # Fallback to Python calculation if board IDs not found
+        print(f"Warning: Board IDs not found (board1_id={board1_id}, board2_id={board2_id}), using Python fallback")
+        stats = calculate_comparison_stats(modules1, modules2)
+    
     level1, level2, level3 = stats["level1"], stats["level2"], stats["level3"]
 
     # Get board names for display

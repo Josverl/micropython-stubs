@@ -831,8 +831,113 @@ class DatabaseBuilder:
             JOIN boards b ON bcas.board_id = b.id
         """)
         
+        # Sprint 4.5: Drop and recreate comparison views to ensure latest schema
+        cursor.execute("DROP VIEW IF EXISTS v_board_comparison_modules")
+        cursor.execute("DROP VIEW IF EXISTS v_board_comparison_classes")
+        cursor.execute("DROP VIEW IF EXISTS v_board_comparison_methods")
+        cursor.execute("DROP VIEW IF EXISTS v_board_comparison_attributes")
+        cursor.execute("DROP VIEW IF EXISTS v_board_comparison_constants")
+        
+        # View 6: v_board_comparison_modules - Module presence across all boards
+        # Query with: WHERE (board_id_a = X OR board_id_b = Y)
+        cursor.execute("""
+            CREATE VIEW v_board_comparison_modules AS
+            SELECT 
+                um.id as module_id,
+                um.name as module_name,
+                bms.board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_modules um
+            JOIN board_module_support bms ON um.id = bms.module_id
+            JOIN boards b ON bms.board_id = b.id
+        """)
+        
+        # View 7: v_board_comparison_classes - Class presence across all boards
+        cursor.execute("""
+            CREATE VIEW v_board_comparison_classes AS
+            SELECT 
+                uc.id as class_id,
+                uc.name as class_name,
+                uc.module_id,
+                um.name as module_name,
+                bcs.board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_classes uc
+            JOIN unique_modules um ON uc.module_id = um.id
+            JOIN board_class_support bcs ON uc.id = bcs.class_id
+            JOIN boards b ON bcs.board_id = b.id
+        """)
+        
+        # View 8: v_board_comparison_methods - Method presence and signatures across boards
+        cursor.execute("""
+            CREATE VIEW v_board_comparison_methods AS
+            SELECT 
+                umet.id as method_id,
+                umet.name as method_name,
+                umet.class_id,
+                uc.name as class_name,
+                COALESCE(uc.module_id, umet.module_id) as module_id,
+                um.name as module_name,
+                umet.signature_hash,
+                umet.docstring,
+                bmets.board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_methods umet
+            LEFT JOIN unique_classes uc ON umet.class_id = uc.id
+            LEFT JOIN unique_modules um ON COALESCE(uc.module_id, umet.module_id) = um.id
+            JOIN board_method_support bmets ON umet.id = bmets.method_id
+            JOIN boards b ON bmets.board_id = b.id
+        """)
+
+        # View 9: v_board_comparison_attributes - Attribute presence and types across boards
+        cursor.execute("""
+            CREATE VIEW v_board_comparison_attributes AS
+            SELECT 
+                uca.id as attribute_id,
+                uca.name as attribute_name,
+                uca.class_id,
+                uc.name as class_name,
+                uc.module_id,
+                um.name as module_name,
+                uca.type_hint,
+                bcas.board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_class_attributes uca
+            JOIN unique_classes uc ON uca.class_id = uc.id
+            JOIN unique_modules um ON uc.module_id = um.id
+            JOIN board_class_attribute_support bcas ON uca.id = bcas.attribute_id
+            JOIN boards b ON bcas.board_id = b.id
+        """)
+        
+        # View 10: v_board_comparison_constants - Constant presence across boards
+        cursor.execute("""
+            CREATE VIEW v_board_comparison_constants AS
+            SELECT 
+                umc.id as constant_id,
+                umc.name as constant_name,
+                umc.module_id,
+                um.name as module_name,
+                umc.value,
+                bmcs.board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_module_constants umc
+            JOIN unique_modules um ON umc.module_id = um.id
+            JOIN board_module_constant_support bmcs ON umc.id = bmcs.constant_id
+            JOIN boards b ON bmcs.board_id = b.id
+        """)
+        
         self.conn.commit()
-        logger.info("Database views created successfully")
+        logger.info("Database views created successfully (including comparison views)")
 
     def connect(self):
         """Connect to the database."""
