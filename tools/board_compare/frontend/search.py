@@ -1043,7 +1043,7 @@ async def populate_search_from_url(search_params):
         print(f"Error populating search from URL: {e}")
 
 
-def share_search():
+def share_search(event=None):
     """Share the current search view."""
     print("=== Share Search Called ===")
     
@@ -1144,20 +1144,16 @@ async def open_search_result(module_id, class_id, entity_name, entity_type):
 
 def setup_search_event_handlers():
     """Set up event handlers specific to the search page."""
-    # Search button
-    search_btn = document.getElementById("search-btn")
-    if search_btn:
-        search_btn.onclick = lambda e: asyncio.create_task(search_apis())
-
-    # Search input (Enter key)
+    # Search button - HTML has mpy-click="search_apis" which calls main.search_apis()
+    # Previous Python override removed: search_btn.onclick = lambda e: asyncio.create_task(search_apis())
+    
+    # Search input (Enter key) - direct event handler (no mpy-click equivalent for keypress)
     search_input = document.getElementById("search-input")
     if search_input:
         search_input.onkeypress = lambda e: asyncio.create_task(search_apis()) if e.key == "Enter" else None
 
-    # Share button
-    share_search_btn = document.getElementById("search-share-btn")
-    if share_search_btn:
-        share_search_btn.onclick = lambda e: share_search()
+    # Share button - HTML has mpy-click="share_search" which calls main.share_search()
+    # Previous Python override removed: share_search_btn.onclick = lambda e: share_search()
 
     # Max results dropdown (for URL updates)
     max_results_select = document.getElementById("max-results")

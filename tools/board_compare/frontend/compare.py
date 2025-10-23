@@ -682,7 +682,7 @@ async def populate_comparison_from_url(search_params):
         print(f"Error populating comparison from URL: {e}")
 
 
-def share_comparison():
+def share_comparison(event=None):
     """Share the current comparison view."""
     print("=== Share Comparison Called ===")
     
@@ -748,24 +748,16 @@ def setup_compare_event_handlers():
     """Set up event handlers specific to the comparison page."""
     print("Setting up compare event handlers...")
     
-    # Compare button
-    compare_btn = document.getElementById("compare-boards-btn")
-    print(f"Compare button found: {compare_btn is not None}")
-    if compare_btn:
-        def compare_handler(e):
-            print("Compare button clicked!")
-            asyncio.create_task(compare_boards())
-        compare_btn.onclick = compare_handler
+    # Compare button - HTML has mpy-click="compare_boards" which calls main.compare_boards()
+    # Previous Python override removed - compare_btn.onclick was set to async handler
 
     # Hide common checkbox
     hide_common_checkbox = document.getElementById("hide-common")
     if hide_common_checkbox:
         hide_common_checkbox.onchange = lambda e: update_comparison()
 
-    # Share button
-    share_compare_btn = document.getElementById("share-btn")
-    if share_compare_btn:
-        share_compare_btn.onclick = lambda e: share_comparison()
+    # Share button - HTML has mpy-click="share_comparison" which calls main.share_comparison()
+    # Previous Python override removed - share_compare_btn.onclick was set to lambda
 
     # Board selection change handlers (for URL updates)
     for input_id in ["board1-version", "board1", "board2-version", "board2"]:

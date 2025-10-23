@@ -152,7 +152,7 @@ async def populate_explorer_from_url(search_params):
         print(f"Error populating explorer from URL: {e}")
 
 
-def share_explorer():
+def share_explorer(event=None):
     """Share the current explorer view."""
     print("=== Share Explorer Called ===")
 
@@ -240,10 +240,6 @@ def setup_explorer_event_handlers():
     else:
         print("Board input not found!")
 
-    # Share button
-    share_explorer_btn = document.getElementById("explorer-share-btn")
-    if share_explorer_btn:
-        print(f"Found share button: {share_explorer_btn}")
-        share_explorer_btn.onclick = lambda e: share_explorer()
-    else:
-        print("Share button not found!")
+    # Share button - HTML has mpy-click="share_explorer" which calls main.share_explorer()
+    # Previous Python override removed: share_explorer_btn.onclick = lambda e: share_explorer()
+

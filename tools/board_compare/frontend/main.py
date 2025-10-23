@@ -11,7 +11,12 @@ import explorer
 import js
 import search
 import ui
+
+# Import share functions directly to make them available in global scope for mpy-click
+from compare import share_comparison
+from explorer import share_explorer
 from pyscript import document
+from search import share_search
 
 
 def go_explorer(event=None):
@@ -25,6 +30,18 @@ def go_compare(event=None):
 def go_search(event=None):
     """Wrapper for mpy-click navigation to search page."""
     switch_page("search")
+
+def retry_comparison(event=None):
+    """Wrapper for mpy-click retry button in error template."""
+    asyncio.create_task(compare.compare_boards())
+
+def search_apis(event=None):
+    """Wrapper for mpy-click search button - handles async search_apis() from search module."""
+    asyncio.create_task(search.search_apis())
+
+def compare_boards(event=None):
+    """Wrapper for mpy-click compare button - handles async compare_boards() from compare module."""
+    asyncio.create_task(compare.compare_boards())
 
 def toggle_tree_node(event):
     """Toggle visibility of a tree node's children (modules, classes)."""

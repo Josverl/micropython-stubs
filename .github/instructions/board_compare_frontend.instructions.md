@@ -94,6 +94,15 @@ When Unsure: Start with pure Python data prep, add minimal FFI conversions, then
 - Do not introduce hash fragments for internal routing unless enhancing deep links—use query string keys (`?view=compare&boardA=...`).
 
 ## Testing Strategy
+1. you should be realistic during testing. do not bee optimistic. 
+   expect to see explicit proof of success, the absense of error does not means success.
+   - use logging / console output to confirm steps completed.
+   - consider edge cases and potential failure points.
+   - be prepared to debug via browser dev tools (console, network, performance).
+   - most pages require both a version and a board to be entered
+       - Use version 1.26.0 or 1.25.0, boards esp32 or stm32
+       - search terms : pi, SEC_, asm_, I2S
+    
 1. Logic tests (pytest):
    - Extract core comparison logic and search normalization into pure Python modules runnable under standard CPython pytest (avoid browser dependencies).
    - Mirror minimal dataset fixtures (small in-memory SQLite or dict mocks).

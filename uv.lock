@@ -1385,6 +1385,7 @@ test = [
     { name = "python-dotenv" },
     { name = "requests" },
     { name = "rich-click" },
+    { name = "ruff" },
 ]
 
 [package.metadata]
@@ -1411,6 +1412,7 @@ requires-dist = [
     { name = "python-dotenv", marker = "extra == 'test'" },
     { name = "requests", marker = "extra == 'test'" },
     { name = "rich-click", marker = "extra == 'test'" },
+    { name = "ruff", marker = "extra == 'test'" },
     { name = "sphinx", marker = "extra == 'docs'", specifier = ">=4" },
     { name = "sphinx-autoapi", marker = "extra == 'docs'", specifier = ">=1.8" },
     { name = "sphinx-rtd-theme", marker = "extra == 'docs'" },
