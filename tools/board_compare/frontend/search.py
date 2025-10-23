@@ -601,34 +601,33 @@ def setup_search_result_expansion(result_element, result, entity_type, module_id
 
 
 def check_search_result_has_children(entity_type, module_id, class_id):
-    """Check if a search result item has children using existing database queries."""
+    """Check if a search result item has children using v_entity_hierarchy view.
+    
+    Uses the v_entity_hierarchy view for unified parent-child queries.
+    Replaces multiple UNION queries with single view query.
+    """
     if not database.app_state["db"]:
         return False
     
     try:
+        # Determine parent_id and parent_type based on entity_type
         if entity_type == "module":
-            # Check if module has classes or functions
-            stmt = database.app_state["db"].prepare("""
-                SELECT COUNT(*) as count FROM (
-                    SELECT 1 FROM unique_classes WHERE module_id = ? 
-                    UNION ALL 
-                    SELECT 1 FROM unique_module_constants WHERE module_id = ?
-                ) LIMIT 1
-            """)
-            stmt.bind(ffi.to_js([int(module_id), int(module_id)]))
-            
+            parent_id = int(module_id)
+            parent_type = "module"
         elif entity_type == "class":
-            # Check if class has methods or attributes  
-            stmt = database.app_state["db"].prepare("""
-                SELECT COUNT(*) as count FROM (
-                    SELECT 1 FROM unique_methods WHERE class_id = ?
-                    UNION ALL
-                    SELECT 1 FROM unique_class_attributes WHERE class_id = ?
-                ) LIMIT 1
-            """)
-            stmt.bind(ffi.to_js([int(class_id), int(class_id)]))
+            parent_id = int(class_id)
+            parent_type = "class"
         else:
             return False
+        
+        # Single query using v_entity_hierarchy view
+        stmt = database.app_state["db"].prepare("""
+            SELECT COUNT(*) as count 
+            FROM v_entity_hierarchy 
+            WHERE parent_id = ? AND parent_type = ?
+            LIMIT 1
+        """)
+        stmt.bind(ffi.to_js([parent_id, parent_type]))
             
         if stmt.step():
             count = stmt.getAsObject()["count"]
@@ -706,89 +705,105 @@ def load_search_result_children(container, entity_type, module_id, class_id, par
         print(f"Error loading children for {entity_type}: {e}")
 
 
-# Helper functions for search result children (DRY - reuse database patterns)
-def get_search_result_classes(module_id, parent_result):
-    """Get classes for a module in search result format."""
-    classes = []
-    stmt = database.app_state["db"].prepare("SELECT id, name FROM unique_classes WHERE module_id = ?")
-    stmt.bind(ffi.to_js([int(module_id)]))
+# Helper functions for search result children - using v_entity_hierarchy view
+def get_search_result_children_from_hierarchy(parent_id, parent_type, parent_result, entity_type_filter=None):
+    """Get children for a parent entity using v_entity_hierarchy view.
+    
+    Unified function that replaces individual get_search_result_* functions.
+    Uses v_entity_hierarchy view for consistent parent-child queries.
+    
+    Args:
+        parent_id: ID of the parent entity
+        parent_type: Type of parent ('module' or 'class')
+        parent_result: Parent result dict to copy context from
+        entity_type_filter: Optional filter for specific entity type
+        
+    Returns:
+        List of child result dicts with appropriate type-specific ID fields
+    """
+    children = []
+    
+    # Query v_entity_hierarchy view for all children
+    sql = """
+        SELECT entity_id, entity_type, entity_name 
+        FROM v_entity_hierarchy 
+        WHERE parent_id = ? AND parent_type = ?
+    """
+    if entity_type_filter:
+        sql += " AND entity_type = ?"
+        
+    stmt = database.app_state["db"].prepare(sql)
+    
+    if entity_type_filter:
+        stmt.bind(ffi.to_js([int(parent_id), parent_type, entity_type_filter]))
+    else:
+        stmt.bind(ffi.to_js([int(parent_id), parent_type]))
     
     while stmt.step():
-        class_data = stmt.getAsObject()
-        # Create new dict without spread operator for PyScript compatibility
-        class_result = dict(parent_result)  # Copy parent data
-        class_result.update({
-            "entity_type": "class",
-            "entity_name": class_data["name"],
-            "class_id": class_data["id"],
-        })
-        classes.append(class_result)
+        child_data = stmt.getAsObject()
+        child_result = dict(parent_result)  # Copy parent data
+        
+        # Set entity type and name
+        child_result["entity_type"] = child_data["entity_type"]
+        child_result["entity_name"] = child_data["entity_name"]
+        
+        # Set type-specific ID field for backward compatibility
+        entity_type = child_data["entity_type"]
+        entity_id = child_data["entity_id"]
+        
+        if entity_type == "class":
+            child_result["class_id"] = entity_id
+        elif entity_type == "constant":
+            child_result["constant_id"] = entity_id
+        elif entity_type == "method":
+            child_result["method_id"] = entity_id
+        elif entity_type == "attribute":
+            child_result["attribute_id"] = entity_id
+            
+        children.append(child_result)
     
     stmt.free()
-    return classes
+    return children
+
+
+def get_search_result_classes(module_id, parent_result):
+    """Get classes for a module in search result format.
+    
+    Wrapper for backward compatibility - uses v_entity_hierarchy view.
+    """
+    return get_search_result_children_from_hierarchy(
+        int(module_id), "module", parent_result, "class"
+    )
 
 
 def get_search_result_constants(module_id, parent_result):
-    """Get constants for a module in search result format."""
-    constants = []
-    stmt = database.app_state["db"].prepare("SELECT id, name FROM unique_module_constants WHERE module_id = ?")
-    stmt.bind(ffi.to_js([int(module_id)]))
+    """Get constants for a module in search result format.
     
-    while stmt.step():
-        const_data = stmt.getAsObject()
-        # Create new dict without spread operator for PyScript compatibility
-        const_result = dict(parent_result)  # Copy parent data
-        const_result.update({
-            "entity_type": "constant",
-            "entity_name": const_data["name"], 
-            "constant_id": const_data["id"],
-        })
-        constants.append(const_result)
-    
-    stmt.free()
-    return constants
+    Wrapper for backward compatibility - uses v_entity_hierarchy view.
+    """
+    return get_search_result_children_from_hierarchy(
+        int(module_id), "module", parent_result, "constant"
+    )
 
 
 def get_search_result_methods(class_id, parent_result):
-    """Get methods for a class in search result format."""
-    methods = []
-    stmt = database.app_state["db"].prepare("SELECT id, name FROM unique_methods WHERE class_id = ?")
-    stmt.bind(ffi.to_js([int(class_id)]))
+    """Get methods for a class in search result format.
     
-    while stmt.step():
-        method_data = stmt.getAsObject()
-        # Create new dict without spread operator for PyScript compatibility
-        method_result = dict(parent_result)  # Copy parent data
-        method_result.update({
-            "entity_type": "method",
-            "entity_name": method_data["name"],
-            "method_id": method_data["id"],
-        })
-        methods.append(method_result)
-    
-    stmt.free()  
-    return methods
+    Wrapper for backward compatibility - uses v_entity_hierarchy view.
+    """
+    return get_search_result_children_from_hierarchy(
+        int(class_id), "class", parent_result, "method"
+    )
 
 
 def get_search_result_attributes(class_id, parent_result):
-    """Get attributes for a class in search result format."""
-    attributes = []
-    stmt = database.app_state["db"].prepare("SELECT id, name FROM unique_class_attributes WHERE class_id = ?")
-    stmt.bind(ffi.to_js([int(class_id)]))
+    """Get attributes for a class in search result format.
     
-    while stmt.step():
-        attr_data = stmt.getAsObject()
-        # Create new dict without spread operator for PyScript compatibility
-        attr_result = dict(parent_result)  # Copy parent data
-        attr_result.update({
-            "entity_type": "attribute",
-            "entity_name": attr_data["name"],
-            "attribute_id": attr_data["id"],
-        })
-        attributes.append(attr_result)
-    
-    stmt.free()
-    return attributes
+    Wrapper for backward compatibility - uses v_entity_hierarchy view.
+    """
+    return get_search_result_children_from_hierarchy(
+        int(class_id), "class", parent_result, "attribute"
+    )
 
 
 def get_context_path(result):

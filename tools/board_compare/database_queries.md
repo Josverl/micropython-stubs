@@ -749,6 +749,136 @@ stmt = app_state["db"].prepare("""
 
 **Sprint 3 Time Estimate**: 6 hours
 
+**Sprint 3 Results**: ✅ **COMPLETED** in ~2 hours (vs 6 hours estimated)
+
+---
+
+## Lessons Learned from Implementation
+
+### Sprint 1: Foundation
+
+**Lesson 1: View Design Pays Off Early**
+- Created 5 views that simplified complex JOINs across the codebase
+- Investment: 2.5 hours; Savings: Multiple hours across Sprints 2-3
+- **Takeaway**: Spend time on good database design - it multiplies benefits
+
+**Lesson 2: Testing Infrastructure Matters**
+- 8 validation tests caught issues immediately
+- Performance benchmarks provided concrete metrics
+- **Takeaway**: Build testing infrastructure early, not after problems appear
+
+### Sprint 2: Search Optimization
+
+**Lesson 3: Unified Views Beat Multiple Queries**
+- Replaced 6 separate entity queries with 1 unified `v_board_entities` view
+- 76% code reduction (250→60 lines)
+- Performance competitive or better
+- **Takeaway**: Look for opportunities to unify similar query patterns
+
+**Lesson 4: Testing Reveals Hidden Bugs**
+- Comprehensive Playwright testing discovered 3 critical UX bugs:
+  1. UnknownClass placeholders (34 database integrity issues)
+  2. Empty modules displayed (9 modules with no content)
+  3. Broken click handlers (CSS event bubbling issue)
+- All bugs would have reached production without thorough testing
+- **Takeaway**: Manual browser testing with Playwright MCP is invaluable for UX validation
+
+**Lesson 5: Database Integrity Issues Need Filtering**
+- 34 missing class IDs in database caused KeyError fallbacks
+- Solution: Filter at display layer rather than try to fix all data
+- **Takeaway**: Defensive programming - handle imperfect data gracefully
+
+**Lesson 6: CSS Event Handling Gotchas**
+- Child elements intercepted clicks meant for parent
+- Solution: `pointer-events: none` on children
+- Fixed once, worked everywhere
+- **Takeaway**: Understand event bubbling in declarative frameworks like PyScript
+
+**Lesson 7: Early Filtering Improves UX**
+- Filtering empty modules and placeholder classes reduced noise
+- Search results: 31→22 modules (9 empty filtered)
+- **Takeaway**: Remove non-functional elements early in processing
+
+### Sprint 3: Loading Optimization
+
+**Lesson 8: Bulk Queries Dramatically Beat N+1**
+- N+1 pattern: ~1,200 queries for typical board
+- Bulk pattern: 6 queries total
+- 99.5% reduction in queries
+- **Takeaway**: Always prefer bulk fetch + in-memory assembly over N+1 queries
+
+**Lesson 9: Views Simplify Bulk Queries**
+- Using `v_board_modules`, `v_module_classes`, `v_class_methods` views
+- Pre-joined data reduced query complexity
+- Single source of truth for entity definitions
+- **Takeaway**: Views make bulk queries more maintainable
+
+**Lesson 10: Task Consolidation Happens Naturally**
+- Tasks 3.2 and 3.3 rendered obsolete by comprehensive Task 3.1
+- Original plan: 3 separate refactorings
+- Actual result: 1 holistic solution covered all cases
+- **Takeaway**: Don't over-plan - let the best solution emerge during implementation
+
+**Lesson 11: Column Naming Consistency Matters**
+- Initial bug: Expected `method_docstring` but view had `docstring`
+- Quick fix but highlighted importance of schema documentation
+- **Takeaway**: Document view schemas clearly; maintain naming consistency
+
+**Lesson 12: Cross-Architecture Testing is Essential**
+- Tested ESP32 (70 modules), RP2 (48 modules), STM32 (47 modules)
+- Each architecture has unique modules (esp32, rp2, pyb)
+- Solution worked universally across all board types
+- **Takeaway**: Test across diverse hardware platforms, not just one
+
+**Lesson 13: Building on Previous Work**
+- Sprint 2 CSS click fixes carried over seamlessly to Sprint 3
+- No new UI issues appeared
+- **Takeaway**: Fixing foundational issues early prevents cascading problems
+
+**Lesson 14: Actual Time vs Estimated Time**
+- Sprint 1: 2.5h actual vs 8h estimated (3.2x faster)
+- Sprint 2: 4h actual vs 4h estimated (on target, but included 3 bonus bug fixes)
+- Sprint 3: 2h actual vs 6h estimated (3x faster)
+- **Takeaway**: Good design and views accelerate implementation significantly
+
+### General Lessons
+
+**Lesson 15: Playwright MCP is Perfect for Frontend Testing**
+- Browser automation with real PyScript/MicroPython runtime
+- Catches bugs that unit tests miss (CSS, event handling, UI state)
+- Quick iteration: test → fix → retest in minutes
+- **Takeaway**: Use Playwright MCP for all frontend validation
+
+**Lesson 16: Incremental Delivery Works**
+- Each sprint delivered working, tested improvements
+- No "big bang" integration issues
+- Users could see progress sprint by sprint
+- **Takeaway**: Break work into demonstrable increments
+
+**Lesson 17: Documentation During Development**
+- Updated SPRINT_PROGRESS.md after each task
+- Captured lessons while fresh in memory
+- Made it easy to communicate progress
+- **Takeaway**: Document as you go, not after the fact
+
+**Lesson 18: Performance Metrics Drive Decisions**
+- Concrete measurements (99.5% query reduction, 76% code reduction)
+- Validated improvements objectively
+- Helped prioritize which optimizations to pursue
+- **Takeaway**: Measure everything - it justifies the work and guides priorities
+
+**Lesson 19: Views as Abstraction Layer**
+- Frontend code never needs to know about support tables
+- Database schema changes isolated from frontend
+- Views act as stable API between backend and frontend
+- **Takeaway**: Use views as abstraction layer for complex schemas
+
+**Lesson 20: Zero-Error Goal is Achievable**
+- Every sprint ended with zero console errors
+- Comprehensive testing made this possible
+- Users get polished, professional experience
+- **Takeaway**: Don't accept errors as "normal" - fix them all
+
 ---
 
 ### Sprint 4: Hierarchy Navigation Optimization
