@@ -8,6 +8,11 @@ Compare MicroPython APIs (modules/classes/methods/params/constants) across board
 - build_database.py (normalized SQLite builder)
 - frontend/ (SQL.js-powered explorers & diff views)
 
+## Agent tooling
+MCP Server Usage (Agents)
+- For DB queries: use Data Access MCP server rather than custom ad-hoc scripts; ensures consistent environment (no local sqlite binary reliance).
+- For UI automation: use PlayWright MCP server; do not embed manual sleeps—use explicit waits for selectors / network idle.
+
 ## Core Data Flow
 stubs (.pyi) -> scan_stubs.py -> Pydantic models (models.py) -> build_database.py -> normalized SQLite (frontend/board_comparison.db) -> browser (SQL.js queries + UI state in URL).
 

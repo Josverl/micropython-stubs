@@ -462,6 +462,356 @@ class DatabaseBuilder:
         )
 
         self.conn.commit()
+    
+    def create_views(self):
+        """Create database views for optimized querying."""
+        cursor = self.conn.cursor()
+        
+        logger.info("Creating database views...")
+        
+        # View 1: v_board_entities - Unified view of all entities with board context
+        cursor.execute("""
+            CREATE VIEW IF NOT EXISTS v_board_entities AS
+            SELECT 
+                'module' as entity_type,
+                um.id as entity_id,
+                um.name as entity_name,
+                NULL as entity_type_hint,
+                NULL as entity_value,
+                NULL as entity_return_type,
+                um.docstring as entity_docstring,
+                
+                -- Module context
+                um.id as module_id,
+                um.name as module_name,
+                
+                -- Class context (NULL for modules)
+                NULL as class_id,
+                NULL as class_name,
+                
+                -- Method context (NULL for modules)
+                NULL as method_id,
+                NULL as method_name,
+                
+                -- Board context
+                b.id as board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_modules um
+            JOIN board_module_support bms ON um.id = bms.module_id
+            JOIN boards b ON bms.board_id = b.id
+            
+            UNION ALL
+            
+            SELECT 
+                'class' as entity_type,
+                uc.id as entity_id,
+                uc.name as entity_name,
+                NULL as entity_type_hint,
+                NULL as entity_value,
+                NULL as entity_return_type,
+                uc.docstring as entity_docstring,
+                
+                -- Module context
+                um.id as module_id,
+                um.name as module_name,
+                
+                -- Class context
+                uc.id as class_id,
+                uc.name as class_name,
+                
+                -- Method context
+                NULL as method_id,
+                NULL as method_name,
+                
+                -- Board context
+                b.id as board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_classes uc
+            JOIN unique_modules um ON uc.module_id = um.id
+            JOIN board_class_support bcs ON uc.id = bcs.class_id
+            JOIN boards b ON bcs.board_id = b.id
+            
+            UNION ALL
+            
+            SELECT 
+                'method' as entity_type,
+                umet.id as entity_id,
+                umet.name as entity_name,
+                NULL as entity_type_hint,
+                NULL as entity_value,
+                umet.return_type as entity_return_type,
+                umet.docstring as entity_docstring,
+                
+                -- Module context
+                um.id as module_id,
+                um.name as module_name,
+                
+                -- Class context
+                uc.id as class_id,
+                uc.name as class_name,
+                
+                -- Method context
+                umet.id as method_id,
+                umet.name as method_name,
+                
+                -- Board context
+                b.id as board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_methods umet
+            JOIN unique_modules um ON umet.module_id = um.id
+            LEFT JOIN unique_classes uc ON umet.class_id = uc.id
+            JOIN board_method_support bmets ON umet.id = bmets.method_id
+            JOIN boards b ON bmets.board_id = b.id
+            
+            UNION ALL
+            
+            SELECT 
+                'constant' as entity_type,
+                umc.id as entity_id,
+                umc.name as entity_name,
+                umc.type_hint as entity_type_hint,
+                umc.value as entity_value,
+                NULL as entity_return_type,
+                NULL as entity_docstring,
+                
+                -- Module context
+                um.id as module_id,
+                um.name as module_name,
+                
+                -- Class context
+                NULL as class_id,
+                NULL as class_name,
+                
+                -- Method context
+                NULL as method_id,
+                NULL as method_name,
+                
+                -- Board context
+                b.id as board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_module_constants umc
+            JOIN unique_modules um ON umc.module_id = um.id
+            JOIN board_module_constant_support bmcs ON umc.id = bmcs.constant_id
+            JOIN boards b ON bmcs.board_id = b.id
+            
+            UNION ALL
+            
+            SELECT 
+                'attribute' as entity_type,
+                uca.id as entity_id,
+                uca.name as entity_name,
+                uca.type_hint as entity_type_hint,
+                uca.value as entity_value,
+                NULL as entity_return_type,
+                NULL as entity_docstring,
+                
+                -- Module context
+                um.id as module_id,
+                um.name as module_name,
+                
+                -- Class context
+                uc.id as class_id,
+                uc.name as class_name,
+                
+                -- Method context
+                NULL as method_id,
+                NULL as method_name,
+                
+                -- Board context
+                b.id as board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_class_attributes uca
+            JOIN unique_classes uc ON uca.class_id = uc.id
+            JOIN unique_modules um ON uc.module_id = um.id
+            JOIN board_class_attribute_support bcas ON uca.id = bcas.attribute_id
+            JOIN boards b ON bcas.board_id = b.id
+            
+            UNION ALL
+            
+            SELECT 
+                'parameter' as entity_type,
+                up.id as entity_id,
+                up.name as entity_name,
+                up.type_hint as entity_type_hint,
+                NULL as entity_value,
+                NULL as entity_return_type,
+                NULL as entity_docstring,
+                
+                -- Module context
+                um.id as module_id,
+                um.name as module_name,
+                
+                -- Class context
+                uc.id as class_id,
+                uc.name as class_name,
+                
+                -- Method context
+                umet.id as method_id,
+                umet.name as method_name,
+                
+                -- Board context
+                b.id as board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_parameters up
+            JOIN unique_methods umet ON up.method_id = umet.id
+            JOIN unique_modules um ON umet.module_id = um.id
+            LEFT JOIN unique_classes uc ON umet.class_id = uc.id
+            JOIN board_method_support bmets ON umet.id = bmets.method_id
+            JOIN boards b ON bmets.board_id = b.id
+        """)
+        
+        # View 2: v_board_modules - Modules with counts (simpler version without subqueries)
+        cursor.execute("""
+            CREATE VIEW IF NOT EXISTS v_board_modules AS
+            SELECT 
+                um.id as module_id,
+                um.name as module_name,
+                um.docstring as module_docstring,
+                b.id as board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_modules um
+            JOIN board_module_support bms ON um.id = bms.module_id
+            JOIN boards b ON bms.board_id = b.id
+        """)
+        
+        # View 3: v_module_classes - Classes with context
+        cursor.execute("""
+            CREATE VIEW IF NOT EXISTS v_module_classes AS
+            SELECT 
+                uc.id as class_id,
+                uc.name as class_name,
+                uc.docstring as class_docstring,
+                uc.module_id,
+                um.name as module_name,
+                b.id as board_id,
+                b.version,
+                b.port,
+                b.board,
+                (SELECT GROUP_CONCAT(base_name, ', ')
+                 FROM unique_class_bases ucb
+                 WHERE ucb.class_id = uc.id) as base_classes
+            FROM unique_classes uc
+            JOIN unique_modules um ON uc.module_id = um.id
+            JOIN board_class_support bcs ON uc.id = bcs.class_id
+            JOIN boards b ON bcs.board_id = b.id
+        """)
+        
+        # View 4: v_class_methods - Methods with full context
+        cursor.execute("""
+            CREATE VIEW IF NOT EXISTS v_class_methods AS
+            SELECT 
+                umet.id as method_id,
+                umet.name as method_name,
+                umet.return_type,
+                umet.is_async,
+                umet.is_property,
+                umet.is_classmethod,
+                umet.is_staticmethod,
+                umet.decorators,
+                umet.docstring,
+                umet.module_id,
+                um.name as module_name,
+                umet.class_id,
+                uc.name as class_name,
+                b.id as board_id,
+                b.version,
+                b.port,
+                b.board
+            FROM unique_methods umet
+            JOIN unique_modules um ON umet.module_id = um.id
+            LEFT JOIN unique_classes uc ON umet.class_id = uc.id
+            JOIN board_method_support bmets ON umet.id = bmets.method_id
+            JOIN boards b ON bmets.board_id = b.id
+        """)
+        
+        # View 5: v_entity_hierarchy - Parent-child relationships
+        cursor.execute("""
+            CREATE VIEW IF NOT EXISTS v_entity_hierarchy AS
+            -- Modules (root level)
+            SELECT 
+                um.id as entity_id,
+                'module' as entity_type,
+                NULL as parent_id,
+                NULL as parent_type,
+                um.name as entity_name,
+                b.id as board_id
+            FROM unique_modules um
+            JOIN board_module_support bms ON um.id = bms.module_id
+            JOIN boards b ON bms.board_id = b.id
+            
+            UNION ALL
+            
+            -- Classes (children of modules)
+            SELECT 
+                uc.id as entity_id,
+                'class' as entity_type,
+                uc.module_id as parent_id,
+                'module' as parent_type,
+                uc.name as entity_name,
+                b.id as board_id
+            FROM unique_classes uc
+            JOIN board_class_support bcs ON uc.id = bcs.class_id
+            JOIN boards b ON bcs.board_id = b.id
+            
+            UNION ALL
+            
+            -- Methods (children of classes or modules)
+            SELECT 
+                umet.id as entity_id,
+                'method' as entity_type,
+                COALESCE(umet.class_id, umet.module_id) as parent_id,
+                CASE WHEN umet.class_id IS NULL THEN 'module' ELSE 'class' END as parent_type,
+                umet.name as entity_name,
+                b.id as board_id
+            FROM unique_methods umet
+            JOIN board_method_support bmets ON umet.id = bmets.method_id
+            JOIN boards b ON bmets.board_id = b.id
+            
+            UNION ALL
+            
+            -- Constants (children of modules)
+            SELECT 
+                umc.id as entity_id,
+                'constant' as entity_type,
+                umc.module_id as parent_id,
+                'module' as parent_type,
+                umc.name as entity_name,
+                b.id as board_id
+            FROM unique_module_constants umc
+            JOIN board_module_constant_support bmcs ON umc.id = bmcs.constant_id
+            JOIN boards b ON bmcs.board_id = b.id
+            
+            UNION ALL
+            
+            -- Attributes (children of classes)
+            SELECT 
+                uca.id as entity_id,
+                'attribute' as entity_type,
+                uca.class_id as parent_id,
+                'class' as parent_type,
+                uca.name as entity_name,
+                b.id as board_id
+            FROM unique_class_attributes uca
+            JOIN board_class_attribute_support bcas ON uca.id = bcas.attribute_id
+            JOIN boards b ON bcas.board_id = b.id
+        """)
+        
+        self.conn.commit()
+        logger.info("Database views created successfully")
 
     def connect(self):
         """Connect to the database."""
@@ -1211,6 +1561,10 @@ class DatabaseBuilder:
         # Recreate schema
         self.create_schema()
         logger.info("Database schema recreated")
+        
+        # Create views
+        self.create_views()
+        logger.info("Database views created")
 
 
 def normalize_version_for_directory(version: str) -> str:
@@ -1283,6 +1637,7 @@ def build_database_for_version(
     builder = DatabaseBuilder(db_path)
     builder.connect()
     builder.create_schema()
+    builder.create_views()  # Create views after schema
 
     # List versions if requested
     if list_versions:
@@ -1396,6 +1751,7 @@ def build_database_for_stdlib(
     builder = DatabaseBuilder(db_path)
     builder.connect()
     builder.create_schema()
+    builder.create_views()  # Create views after schema
 
     # List versions if requested
     if list_versions:
