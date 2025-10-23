@@ -13,6 +13,14 @@ MCP Server Usage (Agents)
 - For DB queries: use Data Access MCP server rather than custom ad-hoc scripts; ensures consistent environment (no local sqlite binary reliance).
 - For UI automation: use PlayWright MCP server; do not embed manual sleeps—use explicit waits for selectors / network idle.
 
+### Playwright Guidelines
+- the pages can be server as http://localhost:8080 for testing via python. There is a VSCode task defined for this.
+  The server is a VSCode task - you can stop / start / restart is via the VSCode tasks
+    "label": "http.server: board explorer",
+    "detail": "Start the python board_explorer server on port 8080",
+   the frontend folder will be served as the root.
+- Run headless by default; allow headed mode via env flag.
+
 ## Core Data Flow
 stubs (.pyi) -> scan_stubs.py -> Pydantic models (models.py) -> build_database.py -> normalized SQLite (frontend/board_comparison.db) -> browser (SQL.js queries + UI state in URL).
 

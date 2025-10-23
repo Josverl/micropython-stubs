@@ -103,157 +103,29 @@ async def perform_search(search_term):
         print(f"Error counting modules: {e}")
 
     try:
-        # Search modules - try a simpler approach first
-        print("Searching modules...")
-
-        # First try without any LIKE pattern - just get all modules and filter in Python
-        all_modules_stmt = database.app_state["db"].prepare("""
-            SELECT DISTINCT 
-                um.name as entity_name,
-                'module' as entity_type,
-                b.version, b.port, b.board,
-                um.id as module_id,
-                NULL as class_id,
-                NULL as parent_name
-            FROM unique_modules um
-            JOIN board_module_support bms ON um.id = bms.module_id
-            JOIN boards b ON bms.board_id = b.id  
-            ORDER BY b.version DESC, b.port, b.board, um.name
-        """)
-
-        all_modules = []
-        while all_modules_stmt.step():
-            result_obj = all_modules_stmt.getAsObject()
-            # Convert to regular Python dict to avoid JS proxy issues
-            result = {
-                "entity_name": result_obj["entity_name"],
-                "entity_type": result_obj["entity_type"],
-                "version": result_obj["version"],
-                "port": result_obj["port"],
-                "board": result_obj["board"],
-                "module_id": result_obj["module_id"],
-                "class_id": result_obj["class_id"],
-                "parent_name": result_obj["parent_name"],
-            }
-            all_modules.append(result)
-        all_modules_stmt.free()
-
-        print(f"Retrieved {len(all_modules)} total module entries")
-
-        # Filter in Python for case-insensitive search
-        search_term_lower = search_term.lower()
-        module_matches = []
-        for module in all_modules:
-            if search_term_lower in module["entity_name"].lower():
-                module_matches.append(module)
-                # Debug: Print first few matches
-                if len(module_matches) <= 3:
-                    print(
-                        f"Match {len(module_matches)}: {module['entity_name']} (ID: {module['module_id']}, port: {module['port']}, board: {module['board']})"
-                    )
-
-        print(f"Found {len(module_matches)} modules matching '{search_term}' after Python filtering")
-        results.extend(module_matches)
-        print(f"Added {len(module_matches)} module results. Total results so far: {len(results)}")
-
-        # Search classes
-        print(f"Starting class search for pattern: {search_pattern}")
+        # Use unified v_board_entities view - replaces 6 separate queries
+        print(f"Searching all entities using v_board_entities view for: '{search_term}'")
+        
         stmt = database.app_state["db"].prepare("""
             SELECT DISTINCT
-                uc.name as entity_name,
-                'class' as entity_type,
-                b.version, b.port, b.board,
-                um.id as module_id,
-                uc.id as class_id,
-                um.name as parent_name
-            FROM unique_classes uc
-            JOIN unique_modules um ON uc.module_id = um.id
-            JOIN board_class_support bcs ON uc.id = bcs.class_id
-            JOIN boards b ON bcs.board_id = b.id
-            WHERE uc.name LIKE ? COLLATE NOCASE
-            ORDER BY b.version DESC, b.port, b.board, um.name, uc.name
+                entity_type,
+                entity_name,
+                version,
+                port,
+                board,
+                module_id,
+                class_id,
+                parent_name
+            FROM v_board_entities
+            WHERE entity_name LIKE ? COLLATE NOCASE
+            ORDER BY version DESC, port, board, module_id, entity_type, entity_name
         """)
-
+        
         stmt.bind(ffi.to_js([search_pattern]))
-        class_count = 0
-        while stmt.step():
-            class_count += 1
-            result_obj = stmt.getAsObject()
-            # Convert to regular Python dict to avoid JS proxy issues
-            result = {
-                "entity_name": result_obj["entity_name"],
-                "entity_type": result_obj["entity_type"],
-                "version": result_obj["version"],
-                "port": result_obj["port"],
-                "board": result_obj["board"],
-                "module_id": result_obj["module_id"],
-                "class_id": result_obj["class_id"],
-                "parent_name": result_obj["parent_name"],
-            }
-            results.append(result)
-            # Debug: Print first few matches
-            if class_count <= 3:
-                print(f"Class match {class_count}: {result['entity_name']} in {result['parent_name']} (ID: {result['class_id']})")
-        stmt.free()
-        print(f"Found {class_count} classes matching '{search_term}'")
-
-        # Search methods
-        print(f"Starting method search for pattern: {search_pattern}")
-        stmt = database.app_state["db"].prepare("""
-            SELECT DISTINCT
-                umet.name as entity_name,
-                'method' as entity_type,
-                b.version, b.port, b.board,
-                um.id as module_id,
-                uc.id as class_id,
-                uc.name as parent_name
-            FROM unique_methods umet
-            JOIN unique_classes uc ON umet.class_id = uc.id
-            JOIN unique_modules um ON uc.module_id = um.id
-            JOIN board_method_support bmets ON umet.id = bmets.method_id
-            JOIN boards b ON bmets.board_id = b.id
-            WHERE umet.name LIKE ? COLLATE NOCASE
-            ORDER BY b.version DESC, b.port, b.board, um.name, uc.name, umet.name
-        """)
-
-        stmt.bind(ffi.to_js([search_pattern]))
-        method_count = 0
-        while stmt.step():
-            method_count += 1
-            result_obj = stmt.getAsObject()
-            # Convert to regular Python dict to avoid JS proxy issues
-            result = {
-                "entity_name": result_obj["entity_name"],
-                "entity_type": result_obj["entity_type"],
-                "version": result_obj["version"],
-                "port": result_obj["port"],
-                "board": result_obj["board"],
-                "module_id": result_obj["module_id"],
-                "class_id": result_obj["class_id"],
-                "parent_name": result_obj["parent_name"],
-            }
-            results.append(result)
-        stmt.free()
-        print(f"Found {method_count} methods matching '{search_term}'")
-
-        # Search module constants
-        stmt = database.app_state["db"].prepare("""
-            SELECT DISTINCT
-                umc.name as entity_name,
-                'constant' as entity_type,
-                b.version, b.port, b.board,
-                um.id as module_id,
-                NULL as class_id,
-                um.name as parent_name
-            FROM unique_module_constants umc
-            JOIN unique_modules um ON umc.module_id = um.id
-            JOIN board_module_constant_support bmcs ON umc.id = bmcs.constant_id
-            JOIN boards b ON bmcs.board_id = b.id
-            WHERE umc.name LIKE ? COLLATE NOCASE
-            ORDER BY b.version DESC, b.port, b.board, um.name, umc.name
-        """)
-
-        stmt.bind(ffi.to_js([search_pattern]))
+        
+        # Count results by type for debugging
+        entity_counts = {}
+        
         while stmt.step():
             result_obj = stmt.getAsObject()
             # Convert to regular Python dict to avoid JS proxy issues
@@ -268,78 +140,23 @@ async def perform_search(search_term):
                 "parent_name": result_obj["parent_name"],
             }
             results.append(result)
+            
+            # Track counts by entity type
+            entity_type = result["entity_type"]
+            entity_counts[entity_type] = entity_counts.get(entity_type, 0) + 1
+        
         stmt.free()
-
-        # Search class attributes
-        stmt = database.app_state["db"].prepare("""
-            SELECT DISTINCT
-                uca.name as entity_name,
-                'attribute' as entity_type,
-                b.version, b.port, b.board,
-                um.id as module_id,
-                uc.id as class_id,
-                uc.name as parent_name
-            FROM unique_class_attributes uca
-            JOIN unique_classes uc ON uca.class_id = uc.id
-            JOIN unique_modules um ON uc.module_id = um.id
-            JOIN board_class_attribute_support bcas ON uca.id = bcas.attribute_id
-            JOIN boards b ON bcas.board_id = b.id
-            WHERE uca.name LIKE ? COLLATE NOCASE
-            ORDER BY b.version DESC, b.port, b.board, um.name, uc.name, uca.name
-        """)
-
-        stmt.bind(ffi.to_js([search_pattern]))
-        while stmt.step():
-            result_obj = stmt.getAsObject()
-            # Convert to regular Python dict to avoid JS proxy issues
-            result = {
-                "entity_name": result_obj["entity_name"],
-                "entity_type": result_obj["entity_type"],
-                "version": result_obj["version"],
-                "port": result_obj["port"],
-                "board": result_obj["board"],
-                "module_id": result_obj["module_id"],
-                "class_id": result_obj["class_id"],
-                "parent_name": result_obj["parent_name"],
-            }
-            results.append(result)
-        stmt.free()
-
-        # Search parameters
-        stmt = database.app_state["db"].prepare("""
-            SELECT DISTINCT
-                up.name as entity_name,
-                'parameter' as entity_type,
-                b.version, b.port, b.board,
-                um.id as module_id,
-                uc.id as class_id,
-                umet.name as parent_name
-            FROM unique_parameters up
-            JOIN unique_methods umet ON up.method_id = umet.id
-            JOIN unique_classes uc ON umet.class_id = uc.id
-            JOIN unique_modules um ON uc.module_id = um.id
-            JOIN board_method_support bmets ON umet.id = bmets.method_id
-            JOIN boards b ON bmets.board_id = b.id
-            WHERE up.name LIKE ? COLLATE NOCASE
-            ORDER BY b.version DESC, b.port, b.board, um.name, uc.name, umet.name, up.name
-        """)
-
-        stmt.bind(ffi.to_js([search_pattern]))
-        while stmt.step():
-            result_obj = stmt.getAsObject()
-            # Convert to regular Python dict to avoid JS proxy issues
-            result = {
-                "entity_name": result_obj["entity_name"],
-                "entity_type": result_obj["entity_type"],
-                "version": result_obj["version"],
-                "port": result_obj["port"],
-                "board": result_obj["board"],
-                "module_id": result_obj["module_id"],
-                "class_id": result_obj["class_id"],
-                "parent_name": result_obj["parent_name"],
-            }
-            results.append(result)
-        stmt.free()
+        
+        # Log results by entity type
+        print(f"Search completed. Found {len(results)} total results:")
+        for entity_type, count in sorted(entity_counts.items()):
+            print(f"  {entity_type}: {count}")
+            
+        # Show sample results
+        if results:
+            print("Sample results (first 3):")
+            for i, result in enumerate(results[:3]):
+                print(f"  {i+1}. {result['entity_type']}: {result['entity_name']} (module_id: {result['module_id']})")
 
     except Exception as e:
         print(f"Search error: {e}")
@@ -394,11 +211,7 @@ def group_results_hierarchically(results):
 
 def convert_search_results_to_tree_format(results):
     """Convert search results into the module tree format used by existing tree system."""
-    print(f"DEBUG: Converting {len(results)} search results to tree format")
-    
-    # Debug: Log sample results to understand data structure
-    for i, result in enumerate(results[:5]):  # Log first 5 results
-        print(f"DEBUG: Result {i}: {result['entity_type']} '{result['entity_name']}' in module {result.get('parent_name', 'N/A')} (module_id: {result.get('module_id')}, class_id: {result.get('class_id')})")
+    print(f"Converting {len(results)} search results to tree format")
     
     modules = {}
     
@@ -424,10 +237,8 @@ def convert_search_results_to_tree_format(results):
         if key not in seen_items:
             seen_items.add(key)
             deduplicated_results.append(result)
-        else:
-            print(f"DEBUG: Filtering duplicate {result['entity_type']} '{result['entity_name']}' in class {result.get('class_id')}")
     
-    print(f"DEBUG: After deduplication: {len(deduplicated_results)} results (removed {len(filtered_results) - len(deduplicated_results)} duplicates)")
+    print(f"After deduplication: {len(deduplicated_results)} results (removed {len(filtered_results) - len(deduplicated_results)} duplicates)")
     results = deduplicated_results
     
     # First pass: collect all module names by module_id and identify found classes/methods
@@ -518,12 +329,20 @@ def convert_search_results_to_tree_format(results):
             # For ANY result that has a class_id, ensure the class exists first
             if class_id and class_id not in module["classes"]:
                 # Get basic class info and create empty containers for methods/attributes
-                basic_class = database.get_basic_class_info_for_search(class_id, board_contexts[class_id])
+                try:
+                    basic_class = database.get_basic_class_info_for_search(class_id, board_contexts[class_id])
+                except KeyError as e:
+                    # Class ID not found in board_contexts - this can happen with cross-board search results
+                    print(f"Warning: Class ID {class_id} not found in board contexts (key error: {e})")
+                    basic_class = None
+                except Exception as e:
+                    print(f"Error fetching class info for class_id={class_id}: {type(e).__name__}: {e}")
+                    basic_class = None
+                    
                 if basic_class:
                     basic_class["methods"] = []
                     basic_class["attributes"] = []
                     module["classes"][class_id] = basic_class
-                    print(f"DEBUG: Created class {basic_class['name']} (id: {class_id}) in module {module['name']}")
                 else:
                     # Fallback to basic class info if fetch fails
                     module["classes"][class_id] = {
@@ -533,7 +352,6 @@ def convert_search_results_to_tree_format(results):
                         "attributes": [],
                         "base_classes": []
                     }
-                    print(f"DEBUG: Created fallback class (id: {class_id}) in module {module['name']}")
             
             # Now add the specific search result to the appropriate container
             if entity_type == "method" and class_id:
@@ -543,7 +361,6 @@ def convert_search_results_to_tree_format(results):
                     "signature": f"{entity_name}()"  # Simple signature for search results
                 }
                 module["classes"][class_id]["methods"].append(method_item)
-                print(f"DEBUG: Added method {entity_name} to class {class_id} in module {module['name']}")
                 
             elif entity_type == "attribute" and class_id:
                 # Add attribute to its class
@@ -551,21 +368,18 @@ def convert_search_results_to_tree_format(results):
                     "name": entity_name
                 }
                 module["classes"][class_id]["attributes"].append(attr_item)
-                print(f"DEBUG: Added attribute {entity_name} to class {class_id} in module {module['name']}")
                 
             elif entity_type == "class" and class_id:
                 # Class was directly found in search - populate with COMPLETE class content
                 if class_id in module["classes"]:
-                    print(f"DEBUG: Class {entity_name} was directly found in search - populating with complete content")
                     complete_class = database.get_complete_class_for_search(class_id, board_contexts[class_id])
                     if complete_class:
                         # Replace the basic class with the complete one
                         module["classes"][class_id] = complete_class
-                        print(f"DEBUG: Populated class {entity_name} with {len(complete_class.get('methods', []))} methods and {len(complete_class.get('attributes', []))} attributes")
                     else:
-                        print(f"DEBUG: Failed to get complete class content for {entity_name}")
+                        print(f"Warning: Failed to get complete class content for {entity_name} (class_id={class_id})")
                 else:
-                    print(f"DEBUG: Class {entity_name} not found in module classes - this shouldn't happen")
+                    print(f"Warning: Class {entity_name} (id={class_id}) not found in module classes - unexpected state")
             
             elif entity_type == "constant" and not class_id:
                 # Add module-level constant
@@ -574,16 +388,47 @@ def convert_search_results_to_tree_format(results):
                     "value": "?",  # We don't have the value in search results
                     "type": "?"
                 })
-                print(f"DEBUG: Added constant {entity_name} to module {module['name']}")
     
-    # Convert to list format expected by tree renderer
+    # Convert modules dict to list
     tree_modules = []
-    for module in modules.values():
-        # Convert classes dict to list
-        module["classes"] = list(module["classes"].values())
-        tree_modules.append(module)
     
-    print(f"DEBUG: Created {len(tree_modules)} modules for tree display")
+    # Manually iterate to avoid potential JsProxy issues in PyScript
+    try:
+        # Get all keys as a list first
+        all_keys = []
+        for k in modules:
+            all_keys.append(k)
+        
+        # Iterate using the keys list
+        for module_id in all_keys:
+            module = modules[module_id]
+            
+            # Convert classes dict to list, filtering out placeholder UnknownClass entries
+            # UnknownClass placeholders are created for missing class IDs but have no real content
+            classes_list = []
+            classes_dict = module["classes"]
+            for class_id in classes_dict:
+                cls = classes_dict[class_id]
+                # Skip UnknownClass placeholders - they're just fallbacks with no content
+                if cls.get("name") == "UnknownClass":
+                    continue
+                classes_list.append(cls)
+            
+            module["classes"] = classes_list
+            
+            # Skip empty modules - no classes, methods, attributes, or constants
+            if (not classes_list and 
+                not module.get("methods") and 
+                not module.get("attributes") and 
+                not module.get("constants")):
+                continue
+                
+            tree_modules.append(module)
+    except Exception as e:
+        print(f"Error converting modules dict to tree list: {type(e).__name__}: {e}")
+        raise
+    
+    print(f"Created {len(tree_modules)} modules for tree display")
     return tree_modules
 
 

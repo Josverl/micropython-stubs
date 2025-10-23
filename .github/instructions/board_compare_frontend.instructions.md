@@ -119,10 +119,10 @@ When Unsure: Start with pure Python data prep, add minimal FFI conversions, then
     "label": "http.server: board explorer",
     "detail": "Start the python board_explorer server on port 8080",
    the frontend folder will be served as the root.
+- Run headless by default; allow headed mode via env flag.
 
 - Prefer role-based selectors (`getByRole('button', { name: /Refresh/i })`) or stable IDs; avoid brittle text-only selectors.
 - Include at least one test ensuring `mpy-click` handlers executed (e.g. button increments counter / refreshes list).
-- Run headless by default; allow headed mode via env flag.
 
 ## Pytest Layout
 - Place pure logic tests in `tests/frontend_logic/`.

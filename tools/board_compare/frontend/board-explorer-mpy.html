@@ -355,12 +355,14 @@
             font-size: 14px;
             width: 16px;
             text-align: center;
+            pointer-events: none; /* Allow clicks to bubble to parent */
         }
 
         .module-name {
             font-weight: 600;
             color: #333;
             margin-right: 8px;
+            pointer-events: none; /* Allow clicks to bubble to parent */
         }
 
         .module-badge {
@@ -371,11 +373,13 @@
             font-size: 11px;
             font-weight: 600;
             margin-right: 8px;
+            pointer-events: none; /* Allow clicks to bubble to parent */
         }
 
         .module-details {
             color: #666;
             font-size: 13px;
+            pointer-events: none; /* Allow clicks to bubble to parent */
         }
 
         .module-children {
@@ -583,6 +587,11 @@
 
         }
 
+        /* Allow clicks on child elements to bubble up to parent with mpy-click */
+        .tree-node > *, .module-header > * {
+            pointer-events: none;
+        }
+
         .tree-node:hover {
             background: #f0f0f0 !important;
         }
@@ -600,6 +609,7 @@
 
         .fa-icon {
             margin-right: 8px;
+            pointer-events: none; /* Allow clicks to bubble to parent */
         }
 
         /* Status indicator for PyScript */

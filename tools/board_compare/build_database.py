@@ -469,9 +469,12 @@ class DatabaseBuilder:
         
         logger.info("Creating database views...")
         
+        # Drop existing views first to ensure they're recreated with latest schema
+        cursor.execute("DROP VIEW IF EXISTS v_board_entities")
+        
         # View 1: v_board_entities - Unified view of all entities with board context
         cursor.execute("""
-            CREATE VIEW IF NOT EXISTS v_board_entities AS
+            CREATE VIEW v_board_entities AS
             SELECT 
                 'module' as entity_type,
                 um.id as entity_id,
@@ -492,6 +495,9 @@ class DatabaseBuilder:
                 -- Method context (NULL for modules)
                 NULL as method_id,
                 NULL as method_name,
+                
+                -- Parent name (polymorphic based on entity type)
+                NULL as parent_name,
                 
                 -- Board context
                 b.id as board_id,
@@ -525,6 +531,9 @@ class DatabaseBuilder:
                 NULL as method_id,
                 NULL as method_name,
                 
+                -- Parent name (module name for classes)
+                um.name as parent_name,
+                
                 -- Board context
                 b.id as board_id,
                 b.version,
@@ -557,6 +566,9 @@ class DatabaseBuilder:
                 -- Method context
                 umet.id as method_id,
                 umet.name as method_name,
+                
+                -- Parent name (class name for methods)
+                uc.name as parent_name,
                 
                 -- Board context
                 b.id as board_id,
@@ -592,6 +604,9 @@ class DatabaseBuilder:
                 NULL as method_id,
                 NULL as method_name,
                 
+                -- Parent name (module name for constants)
+                um.name as parent_name,
+                
                 -- Board context
                 b.id as board_id,
                 b.version,
@@ -624,6 +639,9 @@ class DatabaseBuilder:
                 -- Method context
                 NULL as method_id,
                 NULL as method_name,
+                
+                -- Parent name (class name for attributes)
+                uc.name as parent_name,
                 
                 -- Board context
                 b.id as board_id,
@@ -658,6 +676,9 @@ class DatabaseBuilder:
                 -- Method context
                 umet.id as method_id,
                 umet.name as method_name,
+                
+                -- Parent name (method name for parameters - THIS IS THE CRITICAL FIX)
+                umet.name as parent_name,
                 
                 -- Board context
                 b.id as board_id,
