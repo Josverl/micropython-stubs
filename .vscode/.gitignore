@@ -1,0 +1,4 @@
+# Ignore MCP server store configurations to avoid committing sensitive database paths
+stores/
+*store*.json
+*connection*.json
