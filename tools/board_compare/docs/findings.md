@@ -175,3 +175,67 @@ It also does not allow for passing a dynamic variables
 
 ---> 
 
+## Logging 
+
+one of my pet-peeves are hard to trace errors / exceptions in the console.log. 
+So extending  logging to logging_console ( name tbd)  reults in a console log that has the same levels ( not just info ) and can be filtered on that same level by just about any browser.
+
+And Tracebacks with actual useful info on where the problem is  🙂 
+OK , not the file and module name - work to be done ) 
+```py
+import logging_console as logging
+
+logging.basicConfig(level=logging.INFO )
+logging.getLogger().addHandler(logging.PyscriptHandler())
+
+log = logging.getLogger()
+
+# keep default handler only for critical logs
+for handler in logging.getLogger().handlers:
+    if not isinstance(handler, logging.PyscriptHandler):
+        handler.setLevel(logging.CRITICAL)
+
+log.debug("test - debug")  # ignored by default
+log.info("test - info")  
+log.warning("test - warning")
+log.error("test - error")
+log.critical("test - critical")
+
+try:
+    1 / 0
+except Exception as e:
+    log.exception("OOPS", exc_info=e)
+
+import foo
+foo.bar()
+```
+![Browser Console Logging](image-2.png)
+
+
+logging_console.py
+Need a PR to MicroPython-lib 
+or as logging.pyscript ?
+```py
+from logging import *
+
+# from logging import CRITICAL, DEBUG, ERROR, INFO, WARNING, Handler
+from pyscript import window
+
+
+class PyscriptHandler(Handler):
+    def emit(self, record):
+        # print(f"Emitting record with levelno={record.levelno} and handler level={self.level}")
+        if record.levelno >= ERROR:
+            log_func = window.console.error
+        elif record.levelno >= WARNING:
+            log_func = window.console.warn
+        elif record.levelno >= INFO:
+            log_func = window.console.info
+        elif record.levelno >= DEBUG:
+            log_func = window.console.debug
+        else:
+            log_func = window.console.trace
+
+        log_func(self.format(record) if self.formatter else record.message)
+        # log_func("levelname=%(levelname)s name=%(name)s message=%(message)s" % record.__dict__)
+```
