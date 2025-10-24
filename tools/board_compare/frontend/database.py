@@ -7,6 +7,9 @@ import asyncio
 
 from pyscript import document, ffi, window
 from sqlite_wasm import SQLDatabase, SQLExecResult, SQLExecResults, SQLite
+import logging_console as logging
+
+log = logging.getLogger("explorer")
 
 # Global application state
 app_state = {

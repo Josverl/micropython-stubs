@@ -20,9 +20,16 @@ import time
 from typing import Any, Dict, List, Optional, Protocol, Self, Sequence, TypedDict
 
 import js
-from pyscript import fetch, ffi, window
+from pyscript import ffi, window
 
-__version__ = "0.3.0"
+try:
+    import logging_console as logging
+except ImportError:
+    import logging
+
+log = logging.getLogger("explorer")
+
+__version__ = "0.3.1"
 
 # Database loading uses IndexedDB caching (previously Option 4)
 

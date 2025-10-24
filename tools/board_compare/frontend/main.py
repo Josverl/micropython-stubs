@@ -5,12 +5,25 @@ import asyncio
 
 import compare
 
+import logging_console as logging
+
+logging.basicConfig(level=logging.INFO )
+logging.getLogger().addHandler(logging.PyscriptHandler())
+
+log = logging.getLogger("explorer")
+
+# keep default handler only for critical logs
+for handler in logging.getLogger().handlers:
+    if not isinstance(handler, logging.PyscriptHandler):
+        handler.setLevel(logging.CRITICAL)
+
 # Import all modules
 import database
 import explorer
 import js
 import search
 import ui
+
 
 # Import share functions directly to make them available in global scope for mpy-click
 from compare import share_comparison

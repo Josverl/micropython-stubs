@@ -16,6 +16,8 @@ packages = [
 "compare.py" = ""
 "search.py" = ""
 "sqlite_wasm.py" = ""
+"logging_console.py" = ""
+
 
 # database is loaded from URL 
 # "board_comparison.db" = ""

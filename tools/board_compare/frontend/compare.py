@@ -10,6 +10,10 @@ import database
 import ui
 from pyscript import document, ffi, window
 
+import logging_console as logging
+
+log = logging.getLogger("explorer")
+
 # Global comparison data (moved from main.py)
 comparison_data = {
     "board1": None,
