@@ -138,7 +138,7 @@
             "micropython-webassembly-stubs",
             "1.26.0",
             "webassembly",
-            "GENERIC",
+            "standard",
             ""
         ],
         [
@@ -264,7 +264,7 @@
             "micropython-webassembly-stubs",
             "1.25.0",
             "webassembly",
-            "GENERIC",
+            "standard",
             ""
         ],
         [
@@ -383,7 +383,7 @@
             "micropython-webassembly-stubs",
             "1.24.1",
             "webassembly",
-            "GENERIC",
+            "standard",
             ""
         ],
         [
@@ -684,7 +684,7 @@
             "micropython-webassembly-stubs",
             "1.21.0",
             "webassembly",
-            "",
+            "standard",
             ""
         ],
         [
