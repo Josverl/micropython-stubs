@@ -48,7 +48,7 @@ class JSModule:
 PyWorker: None
 """Not available in worker context (None)."""
 
-window: Incomplete | None
+window: Incomplete 
 """
 The browser's window object.
 
@@ -58,7 +58,7 @@ and methods when running in the main thread.
 Not available in worker context (None).
 """
 
-document: Incomplete | None
+document: Incomplete 
 """
 The browser's document object.
 
