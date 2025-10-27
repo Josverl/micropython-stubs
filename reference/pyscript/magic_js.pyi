@@ -1,6 +1,6 @@
 """
 Pyscript 2025.2.3 type-stub.
-see: https://docs.pyscript.net/2025.2.3/api/
+see: https://docs.pyscript.net/2025.10.1/api/
 """
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
@@ -85,7 +85,7 @@ def current_target() -> Any:
     Returns:
         The worker's global scope object
 
-    rRef: https://docs.pyscript.net/2025.8.1/api/#pyscriptcurrent_target
+    rRef: https://docs.pyscript.net/2025.10.1/api/#pyscriptcurrent_target
     """
     ...
 

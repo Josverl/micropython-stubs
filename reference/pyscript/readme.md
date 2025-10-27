@@ -27,7 +27,7 @@ Steps to run createstubs on pyscript.com
 
 - create a project in pyscript.com
     - set script type to mpy 
-    - use pyscript 2025.2.3 or newer to be able to use [`pyscript.fs`](https://docs.pyscript.net/2025.2.3/api/#pyscriptfs)
+    - use pyscript 2025.2.3 or newer to be able to use [`pyscript.fs`](https://docs.pyscript.net/2025.10.1/api/#pyscriptfs)
 - copy the createstubs.py script to the project
 - add the script to mount , sync and dismount a local filesystem
 
