@@ -1,0 +1,115 @@
+name: Publish Board Comparison Tool to GitHub Pages
+
+on:
+  # Run when frontend files are updated
+  push:
+    branches:
+      - main
+    paths:
+      - 'tools/board_compare/frontend/**'
+      - '.github/workflows/publish_board_comparison_to_pages.yml'
+  
+  # Allow manual triggering
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Prepare deployment directory
+        run: |
+          mkdir -p _site/board-compare
+          cp -r tools/board_compare/frontend/* _site/board-compare/
+          # Rename board-explorer.html to index.html for default page
+          mv _site/board-compare/board-explorer.html _site/board-compare/index.html
+          # Create a simple index.html in root if needed
+          if [ ! -f "_site/index.html" ]; then
+            cat > _site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>MicroPython Stubs</title>
+              <style>
+                  body {
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                      max-width: 800px;
+                      margin: 50px auto;
+                      padding: 20px;
+                      line-height: 1.6;
+                  }
+                  h1 { color: #2c3e50; }
+                  a {
+                      color: #3498db;
+                      text-decoration: none;
+                      border-bottom: 1px solid #3498db;
+                  }
+                  a:hover { color: #2980b9; }
+                  .tool {
+                      background: #f8f9fa;
+                      border-left: 4px solid #3498db;
+                      padding: 15px;
+                      margin: 20px 0;
+                  }
+              </style>
+          </head>
+          <body>
+              <h1>🐍 MicroPython Stubs</h1>
+              <p>Type stubs and tools for MicroPython development.</p>
+              
+              <div class="tool">
+                  <h2><a href="/micropython-stubs/board-compare/">📊 Board Comparison Tool</a></h2>
+                  <p>Compare MicroPython APIs (modules, classes, methods) across different boards and versions.</p>
+                  <p>Features:</p>
+                  <ul>
+                      <li>Board Explorer - View complete API structure for any board</li>
+                      <li>Compare Boards - Side-by-side comparison with diff mode</li>
+                      <li>Search APIs - Find which boards support specific modules/classes</li>
+                  </ul>
+              </div>
+              
+              <h2>Resources</h2>
+              <ul>
+                  <li><a href="https://github.com/Josverl/micropython-stubs">GitHub Repository</a></li>
+                  <li><a href="https://github.com/Josverl/micropython-stubber">MicroPython Stubber</a></li>
+              </ul>
+          </body>
+          </html>
+          EOF
+          fi
+          echo "Deployment directory contents:"
+          ls -lR _site/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

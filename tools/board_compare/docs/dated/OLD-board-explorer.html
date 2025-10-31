@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MicroPython Board Explorer & Comparison</title>
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+        
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        nav h1 {
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .nav-tab {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .nav-tab:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .nav-tab.active {
+            background: white;
+            color: #667eea;
+        }
+        
+        /* Page Content */
+        .page {
+            display: none;
+            padding: 30px;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        /* Controls */
+        .controls {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .control-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+            align-items: end;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            min-width: 0; /* Allow shrinking */
+        }
+
+        .compare-control-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .control-fields {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .control-fields .control-row {
+            margin-bottom: 0;
+        }
+
+        .control-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 0;
+        }
+
+        .control-actions button {
+            flex: 0 0 auto;
+        }
+
+        .stats-panel {
+            flex: 0 0 auto;
+            align-self: flex-start;
+        }
+
+        .stats-panel .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 0;
+        }
+
+        /* Compact stats for compare view */
+        .stats-compact {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-card-compact {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-card-full {
+            flex: 1 1 100%;
+        }
+
+        .stat-card-half {
+            flex: 1 1 calc(50% - 4px);
+        }
+
+        .stat-label-inline {
+            font-size: 0.9em;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .stat-value-inline {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #667eea;
+            margin-left: auto;
+        }
+
+        @media (min-width: 960px) {
+            .compare-control-layout {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .stats-panel {
+                min-width: 240px;
+                margin-left: 20px;
+            }
+
+            .stats-panel .stats-compact {
+                gap: 6px;
+            }
+
+            .stat-card-compact {
+                padding: 8px 10px;
+                font-size: 0.95em;
+            }
+        }
+
+        .control-row.control-row-actions {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-row.control-row-actions .checkbox-label {
+            flex: 1 1 auto;
+        }
+        
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        select, input {
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            background: white;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .share-btn {
+            display: none;
+            padding: 8px 16px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 10px;
+        }
+        
+        .share-btn:hover {
+            background: #218838;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        /* Module Tree */
+        .module-tree {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .tree-item {
+            margin-left: 0;
+            margin-bottom: 4px;
+        }
+        
+        .tree-node {
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #2c3e50;
+            font-weight: 500;
+            border: 2px solid transparent;
+            background: #f8f9fa;
+            margin-bottom: 6px;
+        }
+        
+        .tree-node:hover {
+            background: #e3f2fd;
+            border-color: #667eea;
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+        
+        .tree-node.selected {
+            background: #667eea;
+            color: white;
+            border-color: #5a6fd8;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3);
+        }
+        
+        .tree-icon {
+            font-size: 1.1em;
+            width: 24px;
+            text-align: center;
+            color: #667eea;
+        }
+        
+        .tree-node.selected .tree-icon {
+            color: white;
+        }
+        
+        .tree-children {
+            margin-left: 24px;
+            border-left: 3px solid #667eea;
+            padding-left: 20px;
+            margin-top: 8px;
+            position: relative;
+        }
+        
+        .tree-children::before {
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #667eea, rgba(102, 126, 234, 0.3));
+        }
+        
+        .tree-children .tree-node {
+            background: #ffffff;
+            font-size: 0.95em;
+            border-left: 4px solid #e3f2fd;
+        }
+        
+        .tree-children .tree-node:hover {
+            border-left-color: #667eea;
+        }
+        
+        .tree-children .tree-node.selected {
+            border-left-color: #5a6fd8;
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+        
+        /* Detail View */
+        .detail-view {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .detail-header {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        .detail-section {
+            margin-bottom: 25px;
+        }
+        
+        .detail-section h3 {
+            font-size: 1.2em;
+            color: #667eea;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .method-list, .class-list {
+            margin-top: 10px;
+        }
+        
+        .method-item, .class-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .method-name {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .method-params {
+            color: #666;
+            margin-left: 5px;
+        }
+        
+        .method-return {
+            color: #28a745;
+            margin-left: 5px;
+        }
+        
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .board-section {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .board-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .module-list {
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .module-item {
+            background: #f8f9fa;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            border-left: 4px solid #667eea;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .module-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .module-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        
+        .module-details {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .module-details div {
+            margin: 4px 0;
+        }
+        
+        .class-list {
+            margin-top: 10px;
+            padding-left: 10px;
+        }
+        
+        .class-item {
+            background: #e9ecef;
+            padding: 8px;
+            margin-bottom: 6px;
+            border-radius: 4px;
+            border-left: 3px solid #667eea;
+            font-size: 0.85em;
+        }
+        
+        .unique-to-board1 {
+            background: #ffe4cc;
+            border-left-color: #FF8C00;
+        }
+
+        .unique-to-board1.tree-node:hover {
+            background: #ffd9b3;
+            border-color: #e67e00;
+        }
+        
+        .unique-to-board2 {
+            background: #ccf0f0;
+            border-left-color: #008B8B;
+        }
+
+        .unique-to-board2.tree-node:hover {
+            background: #b3e5e5;
+            border-color: #006666;
+        }
+        
+        .different {
+            background: #fff3cd;
+            border-left-color: #ffc107;
+        }
+        
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 2px solid #e9ecef;
+        }
+        
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        /* Search Results */
+        .search-results {
+            margin-top: 20px;
+        }
+        
+        .search-result-item {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .search-result-header {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .board-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 50px 40px;
+            color: #666;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .loading p {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .spinner {
+            border: 4px solid #e9ecef;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Progress indicator */
+        .progress-step {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+        
+        /* Font Awesome Icon Styling */
+        .fa-icon {
+            margin-right: 8px;
+            color: inherit;
+            width: 16px;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        .tree-icon .fa-icon {
+            margin-right: 6px;
+            width: 14px;
+        }
+        
+        .header-icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <h1><i class="fas fa-microscope header-icon" aria-label="Explorer" title="Explorer"></i> MicroPython Board Explorer</h1>
+            <div class="nav-tabs">
+                <button class="nav-tab active" onclick="switchPage('explorer', this)">Board Explorer</button>
+                <button class="nav-tab" onclick="switchPage('compare', this)">Compare Boards</button>
+                <button class="nav-tab" onclick="switchPage('search', this)">Search APIs</button>
+            </div>
+        </nav>
+        
+        <!-- Board Explorer Page -->
+        <div id="explorer-page" class="page active">
+            <div class="controls">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="explorer-version">Version:</label>
+                        <select id="explorer-version" onchange="updateBoardOptions('explorer-version', 'explorer-board'); loadBoardDetails()">
+                            <option value="">All versions</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="explorer-board">Board:</label>
+                        <select id="explorer-board" onchange="updateVersionOptions('explorer-version', 'explorer-board'); loadBoardDetails()">
+                            <option value="">Select a board...</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="explorer-content" class="loading">
+                <p>Select both version and board to explore modules and APIs</p>
+            </div>
+        </div>
+        
+        <!-- Compare Boards Page -->
+        <div id="compare-page" class="page">
+            <div class="controls">
+                <div class="compare-control-layout">
+                    <div class="control-fields">
+                        <div class="control-row">
+                            <div class="control-group">
+                                <label for="board1-version">Board 1 Version:</label>
+                                <select id="board1-version" onchange="updateBoardOptions('board1-version', 'board1'); updateComparisonURL()">
+                                    <option value="">All versions</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="board1">Board 1:</label>
+                                <select id="board1" onchange="updateVersionOptions('board1-version', 'board1'); updateComparisonURL()">
+                                    <option value="">Select a board...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-row">
+                            <div class="control-group">
+                                <label for="board2-version">Board 2 Version:</label>
+                                <select id="board2-version" onchange="updateBoardOptions('board2-version', 'board2'); updateComparisonURL()">
+                                    <option value="">All versions</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label for="board2">Board 2:</label>
+                                <select id="board2" onchange="updateVersionOptions('board2-version', 'board2'); updateComparisonURL()">
+                                    <option value="">Select a board...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-row control-row-actions">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="hide-common" onchange="updateComparison()">
+                                <span>Show only differences (all levels)</span>
+                            </label>
+                        </div>
+                        <div class="control-row">
+                            <div class="control-actions">
+                                <button onclick="compareBoards()">Compare Boards</button>
+                                <button class="share-btn" title="Copy shareable link"><i class="fas fa-share fa-icon" aria-label="Share" title="Share"></i> Share</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="compare-stats" class="stats-panel" style="display: none;"></div>
+                </div>
+            </div>
+            <div id="compare-results"></div>
+        </div>
+        
+        <!-- Search APIs Page -->
+        <div id="search-page" class="page">
+            <div class="controls">
+                <div class="control-row">
+                    <div class="control-group">
+                        <label for="search-input">Search for Module, Class, or Method:</label>
+                        <input type="text" id="search-input" placeholder="e.g., Neopixel, I2S, machine.Pin, etc." onkeypress="handleSearchEnter(event)">
+                    </div>
+                </div>
+                <button onclick="searchAPIs()">Search</button>
+                <button class="share-btn" title="Copy shareable link"><i class="fas fa-share fa-icon" aria-label="Share" title="Share"></i> Share</button>
+            </div>
+            
+            <div id="search-results"></div>
+        </div>
+    </div>
+    
+    <!-- SQL.js library will be loaded dynamically by JavaScript -->
+    <script src="board-explorer.js"></script>
+</body>
+</html>
