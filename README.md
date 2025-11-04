@@ -28,6 +28,21 @@ Stubs are like cheat sheets for your code. They provide hints, auto-completion, 
 #### Installation
 
 For installation instructions and configuration of your preferred IDE, please refer to the [documentation](https://micropython-stubs.readthedocs.io/en/main/)
+
+## Integrations with IDEs and Tools
+
+VSCode: 
+ - https://github.com/paulober/MicroPico - A VSCode extension to simplify and speed up the development of MicroPython projects for the Raspberry Pi Pico and Pico W boards.
+
+ PyCharm / IntelliJ:
+ - https://github.com/lukaskremla/micropython-tools-jetbrains - MicroPython Tools Plugin for PyCharm, CLion, IntelliJ and other JetBrains IDEs
+
+Thonny :
+ -https://github.com/thonny/thonny - Thonny IDE has built-in support for MicroPython and  V5.beta includes the micropython-stubs.
+
+Tooling:
+ - https://github.com/standsi/MicropythonStubsFetchTypescript - A TypeScript tool to fetch and use MicroPython stubs for code completion and type checking in editors like VSCode.
+
 ## Explore Available Stubs
 
 Curious about which versions, ports, and boards are covered, or the differences between different board  ? 
@@ -37,6 +52,7 @@ Try the beta version of the new [Stubs Explorer](https://josverl.github.io/micro
 Or check out the [online viewer](https://flatgithub.com/Josverl/micropython-stubs/?filename=all_modules.json) or search for [MicroPython stub packages on PyPI](https://pypi.org/search/?q=-stubs&o=&c=Programming+Language+%3A%3A+Python+%3A%3A+Implementation+%3A%3A+MicroPython).
 
 For a comprehensive overview of all stubs, dive into the documentation on [the documentation on read the docs](https://micropython-stubs.readthedocs.io/en/main/firmware_grp.html).
+
 
 ## Sponsoring
 
