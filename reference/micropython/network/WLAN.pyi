@@ -31,11 +31,17 @@ class WLAN:
     
     **Note:** The numeric values of these constants are platform-specific:
     
-    * **ESP32/ESP8266** (using Espressif WiFi driver):
+    * **ESP32** (using Espressif WiFi driver):
     
       - ``PM_NONE = 0`` (maps to WIFI_PS_NONE)
       - ``PM_PERFORMANCE = 1`` (maps to WIFI_PS_MIN_MODEM)
       - ``PM_POWERSAVE = 2`` (maps to WIFI_PS_MAX_MODEM)
+    
+    * **ESP8266** (using Espressif WiFi driver):
+    
+      - ``PM_NONE = 0``
+      - ``PM_PERFORMANCE = 2``
+      - ``PM_POWERSAVE = 1``
     
     * **RP2 Pico W** (using Cyw43 driver):
     
