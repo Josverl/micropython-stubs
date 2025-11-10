@@ -18,42 +18,14 @@ class WLAN:
         # now use sockets as usual
     """
 
-    PM_NONE: int
-    PM_PERFORMANCE: int
-    PM_POWERSAVE: int
+    PM_NONE: int = ...
+    """Disable WiFi power management (always on, highest performance, highest power consumption)"""
+    PM_PERFORMANCE: int = ...
+    """Enable WiFi power management to balance power savings and WiFi performance"""
+    PM_POWERSAVE: int = ...
+    """Enable WiFi power management with additional power savings and reduced WiFi performance"""" 
 
-    """\
-    Allowed values for the ``WLAN.config(pm=...)`` network interface parameter:
-    
-    * ``PM_NONE``: disable WiFi power management (always on, highest performance, highest power consumption)
-    * ``PM_PERFORMANCE``: enable WiFi power management to balance power savings and WiFi performance
-    * ``PM_POWERSAVE``: enable WiFi power management with additional power savings and reduced WiFi performance
-    
-    **Note:** The numeric values of these constants are platform-specific:
-    
-    * **ESP32** (using Espressif WiFi driver):
-    
-      - ``PM_NONE = 0`` (maps to WIFI_PS_NONE)
-      - ``PM_PERFORMANCE = 1`` (maps to WIFI_PS_MIN_MODEM)
-      - ``PM_POWERSAVE = 2`` (maps to WIFI_PS_MAX_MODEM)
-    
-    * **ESP8266** (using Espressif WiFi driver):
-    
-      - ``PM_NONE = 0``
-      - ``PM_PERFORMANCE = 2``
-      - ``PM_POWERSAVE = 1``
-    
-    * **RP2 Pico W** (using Cyw43 driver):
-    
-      - ``PM_NONE = 16`` (0x10)
-      - ``PM_PERFORMANCE = 10555714`` (0xa11142, aggressive power saving disabled)
-      - ``PM_POWERSAVE = 17`` (0x11, aggressive power saving enabled)
-    
-    Always use the symbolic constants (``PM_NONE``, ``PM_PERFORMANCE``, ``PM_POWERSAVE``) rather than 
-    numeric values for portability across different MicroPython ports and boards.
-    
-    See: https://github.com/micropython/micropython/blob/master/ports/esp32/network_wlan.c
-    """
+    // **Note:** The numeric values of these constants are platform-specific:
 
     def __init__(self, interface_id: int = ..., /) -> None:
         """
