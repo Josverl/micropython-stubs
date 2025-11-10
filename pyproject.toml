@@ -14,7 +14,7 @@ license = "MIT"
 
 
 [project.optional-dependencies]
-# uv pip install -r pyproject.toml --extra stubber --prerelease=allow
+# uv pip install .[stubber] --prerelease=allow
 stubber = [
   "micropython-stubber>=v1.26.0",
   "mpflash>=1.26.0"
