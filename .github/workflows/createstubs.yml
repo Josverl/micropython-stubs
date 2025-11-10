@@ -63,7 +63,7 @@ jobs:
         working-directory: ${{github.workspace}}
         run: |
           uv tool install poetry
-          uv pip install -U .[stubber]
+          uv pip install -U -r pyproject.toml --extra stubber
 
       # - name: Patch mpremote/mip.py
       #   continue-on-error: true
