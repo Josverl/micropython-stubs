@@ -52,7 +52,7 @@ jobs:
       - name: Install Python dependencies (doc only)
         working-directory: ${{github.workspace}}
         run: |
-          uv pip install -U -r pyproject.toml --extra docs
+          uv pip install -U .[docs]
 
       ######################################
       # This is where the actual work starts

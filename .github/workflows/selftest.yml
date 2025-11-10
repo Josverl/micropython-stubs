@@ -45,7 +45,7 @@ jobs:
       - name: Install Python dependencies (doc only)
         working-directory: ${{github.workspace}}
         run: |
-          uv pip install -U -r pyproject.toml --extra stubber
+          uv pip install -U .[stubber]
 
       - name: Patch mpremote/mip.py
         continue-on-error: true
