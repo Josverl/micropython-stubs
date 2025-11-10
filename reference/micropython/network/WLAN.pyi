@@ -18,19 +18,14 @@ class WLAN:
         # now use sockets as usual
     """
 
-    PM_NONE: int
-    PM_POWERSAVE: int
-    PM_PERFORMANCE: int
+    PM_NONE: int = ...
+    """Disable WiFi power management (always on, highest performance, highest power consumption)"""
+    PM_PERFORMANCE: int = ...
+    """Enable WiFi power management to balance power savings and WiFi performance"""
+    PM_POWERSAVE: int = ...
+    """Enable WiFi power management with additional power savings and reduced WiFi performance"""" 
 
-    """\
-    Allowed values for the ``WLAN.config(pm=...)`` network interface parameter:
-    
-    * ``PM_PERFORMANCE``: enable WiFi power management to balance power
-    savings and WiFi performance
-    * ``PM_POWERSAVE``: enable WiFi power management with additional power
-    savings and reduced WiFi performance
-    * ``PM_NONE``: disable wifi power management
-    """
+    // **Note:** The numeric values of these constants are platform-specific:
 
     def __init__(self, interface_id: int = ..., /) -> None:
         """
