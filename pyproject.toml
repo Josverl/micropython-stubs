@@ -11,6 +11,7 @@ classifiers = [
 ]
 readme = "readme.md"
 license = "MIT"
+dependencies = []
 
 
 [project.optional-dependencies]
