@@ -599,6 +599,16 @@ def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: int, /) -> Non
         ``Note:`` This is only available for boards that have ext1 support.
     """
     ...
+def wake_on_gpio(pins, level) -> None:
+    """
+        Configure how GPIO wakes the device from sleep.  *pins* can be ``None``
+        or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
+        or ``esp32.WAKEUP_ANY_HIGH``.
+    
+        ``Note:`` Some boards don't support waking on GPIO from deep sleep,
+           on those boards, the pins set here can only be used to wake from light sleep.
+    """
+    ...
 def gpio_deep_sleep_hold(enable) -> None:
     """
         Configure whether non-RTC GPIO pin configuration is retained during
