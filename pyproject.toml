@@ -70,9 +70,6 @@ template-path = "./publish/template"
 #-----------------
 
 
-
-
-
 #-----------------
 [tool.black]
 # use same config as -stubber
@@ -115,6 +112,27 @@ addopts = "--verbose --capture=no"
 # -n --numprocesses=numprocesses - 
 
 markers = ["snippets: test snippets to check the stub quality"]
+
+[tool.coverage.run]
+# Exclude example and utility scripts from coverage
+omit = [
+    "*/example*.py",
+    "*/run_*.py",
+    "*/check_*.py",
+]
+
+[tool.coverage.report]
+# Show missing lines in coverage report
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    # Standard pragma
+    "pragma: no cover",
+    # Don't complain about code that raises NotImplementedError
+    "raise NotImplementedError",
+    # Don't complain if non-code is in files that had code
+    "^\\s*pass\\s*$",
+]
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
@@ -160,4 +178,30 @@ ignore = [
     "PYI011", # Only simple default values allowed for typed arguments - we want actual defaults
     "PYI014", # Only simple default values allowed for arguments - we want actual defaults
     "PYI029", # __str__ and __repr__ are useful in MicroPython stubs
+]
+
+
+# ###################################################################
+# pyright options for MicroPython
+# ###################################################################
+[tool.pyright]
+# places to check
+include = ["tools/board_compare/frontend"]
+extraPaths = ["tools/board_compare/frontend/lib"]
+# how to check
+typeCheckingMode = "standard"
+pythonPlatform = "Linux"
+reportMissingModuleSource = "none"
+reportOptionalMemberAccess = "information"
+reportOptionalCall = "information"
+# what to use 
+stubPath = "typings"
+# use stdlib override based on typeshed
+typeshedPath = "typings"
+# things not to check
+ignore = ["**/typings"]
+exclude = [
+    ".*", 
+    "__*", 
+    "**/typings"
 ]
