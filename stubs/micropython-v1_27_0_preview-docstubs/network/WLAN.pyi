@@ -27,6 +27,26 @@ class WLAN:
     savings and reduced WiFi performance
     * ``PM_NONE``: disable wifi power management
     """
+    PROTOCOL_DEFAULTS: Incomplete
+    """\
+    A bitmap representing all of the default 802.11 Wi-Fi modes supported by
+    the chip. Consult `ESP-IDF Wi-Fi Protocols`_ documentation for details.
+    """
+    PROTOCOL_LR: Incomplete
+    """\
+    This value corresponds to the `Espressif proprietary "long-range" mode`_,
+    which is not compatible with standard Wi-Fi devices. By setting this
+    protocol it's possible for an ESP32 STA in long-range mode to connect to
+    an ESP32 AP in long-range mode, or to use `ESP-NOW long range modes
+    <espnow-long-range>`.
+    
+    This mode can be bitwise ORed with some standard 802.11 protocol bits
+    (including `WLAN.PROTOCOL_DEFAULTS`) in order to support a mix of standard
+    Wi-Fi modes as well as LR mode, consult the `Espressif long-range
+    documentation`_ for more details.
+    
+    Long range mode is not supported on ESP32-C2.
+    """
     def __init__(self, interface_id) -> None: ...
     def active(self, is_active: Optional[Any] = None) -> None:
         """
@@ -153,6 +173,7 @@ class WLAN:
         reconnects     Number of reconnect attempts to make (integer, 0=none, -1=unlimited)
         txpower        Maximum transmit power in dBm (integer or float)
         pm             WiFi Power Management setting (see below for allowed values)
+        protocol       (ESP32 Only.) WiFi Low level 802.11 protocol. See `WLAN.PROTOCOL_DEFAULTS`.
         =============  ===========
         """
         ...
