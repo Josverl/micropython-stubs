@@ -50,12 +50,19 @@ target-version = "py39"
 extend-select = [
     "PYI", # flake8-pyi - stub file specific checks
 ]
-ignore = [
+extend-ignore = [
     "F401", # unused import
     "F403", # import *
+    "F405", # may be undefined, or defined from star imports
+
+    "F811", # redefenition
     "F821", # undefined name (can occur in stubs)
+    "F841", # Local variable `data` is assigned to but never used
     "E402", # module level import not at top of file - common in test snippets
+    "E722", # Bare except
+    "E741", # Ambiguous variable name
     "PYI021", # Docstrings should not be included in stubs (but we want them for MicroPython)
+    "PYI024",  # do not use collections.namedtuple
     "PYI044", # `from __future__ import annotations` - used in generated stubs
     "PYI048", # Function body must contain exactly one statement - docstrings count
     "PYI011", # Only simple default values allowed for typed arguments - we want actual defaults
