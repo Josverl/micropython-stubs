@@ -2,6 +2,27 @@
     "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/packages-v1.0.0.json",
     "packages": [
         [
+            "micropython-mimxrt-mimxrt1010_evk-stubs",
+            "1.26.1",
+            "mimxrt",
+            "MIMXRT1010_EVK",
+            ""
+        ],
+        [
+            "micropython-mimxrt-seeed_arch_mix-stubs",
+            "1.26.1",
+            "mimxrt",
+            "SEEED_ARCH_MIX",
+            ""
+        ],
+        [
+            "micropython-mimxrt-stubs",
+            "1.26.1",
+            "mimxrt",
+            "GENERIC",
+            ""
+        ],
+        [
             "micropython-esp32-esp32_generic-stubs",
             "1.26.0",
             "esp32",
