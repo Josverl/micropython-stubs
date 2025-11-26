@@ -1,5 +1,5 @@
 [project]
-name = "micropython-mimxrt-mimxrt1010_evk-stubs"
+name = "micropython-mimxrt-stubs"
 description = "MicroPython stubs"
 version = "1.26.1.post1"
 readme = "README.md"
@@ -47,6 +47,7 @@ packages = [
     { include = "_onewire.pyi" },
     { include = "binascii.pyi" },
     { include = "cmath.pyi" },
+    { include = "cryptolib.pyi" },
     { include = "deflate.pyi" },
     { include = "dht.pyi" },
     { include = "ds18x20.pyi" },
@@ -55,17 +56,22 @@ packages = [
     { include = "gc.pyi" },
     { include = "hashlib.pyi" },
     { include = "heapq.pyi" },
+    { include = "lwip.pyi" },
     { include = "machine.pyi" },
     { include = "math.pyi" },
     { include = "micropython.pyi" },
     { include = "mimxrt.pyi" },
+    { include = "mip/__init__.pyi" },
     { include = "network.pyi" },
+    { include = "ntptime.pyi" },
     { include = "onewire.pyi" },
     { include = "platform.pyi" },
     { include = "random.pyi" },
+    { include = "requests/__init__.pyi" },
     { include = "select.pyi" },
     { include = "socket.pyi" },
     { include = "time.pyi" },
+    { include = "tls.pyi" },
     { include = "uarray.pyi" },
     { include = "uasyncio.pyi" },
     { include = "ubinascii.pyi" },
@@ -83,8 +89,7 @@ packages = [
     { include = "uplatform.pyi" },
     { include = "urandom.pyi" },
     { include = "ure.pyi" },
-    { include = "usb/device/cdc.pyi" },
-    { include = "usb/device.pyi" },
+    { include = "urequests.pyi" },
     { include = "uselect.pyi" },
     { include = "usocket.pyi" },
     { include = "ussl.pyi" },
@@ -94,6 +99,9 @@ packages = [
     { include = "uwebsocket.pyi" },
     { include = "uzlib.pyi" },
     { include = "vfs.pyi" },
+    { include = "webrepl.pyi" },
+    { include = "webrepl_setup.pyi" },
+    { include = "websocket.pyi" },
 ]
 
 [build-system]

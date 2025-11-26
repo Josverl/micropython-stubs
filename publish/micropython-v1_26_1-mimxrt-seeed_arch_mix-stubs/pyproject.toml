@@ -43,6 +43,7 @@ include = [
 ]
 packages = [
     { include = "__builtins__.pyi" },
+    { include = "_boot.pyi" },
     { include = "_onewire.pyi" },
     { include = "binascii.pyi" },
     { include = "cmath.pyi" },
@@ -98,6 +99,8 @@ packages = [
     { include = "uwebsocket.pyi" },
     { include = "uzlib.pyi" },
     { include = "vfs.pyi" },
+    { include = "webrepl.pyi" },
+    { include = "webrepl_setup.pyi" },
     { include = "websocket.pyi" },
 ]
 

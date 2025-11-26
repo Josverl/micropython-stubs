@@ -30,6 +30,7 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_26_1-mimxrt-SEEED_ARCH_MIX-merged`
+* Frozen stubs from `stubs/micropython-v1_26_1-frozen/mimxrt/SEEED_ARCH_MIX`
 * Core stubs from `stubs/micropython-core`
 
 
