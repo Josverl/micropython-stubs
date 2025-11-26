@@ -99,6 +99,23 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
     """
     def __init__(self, *args, **kwargs) -> None:
         ...
+    def popitem(self) -> Incomplete:
+        """
+                Remove and return a (key, value) pair from the dictionary.
+                Pairs are returned in LIFO order.
+        
+                Admonition:Difference to CPython
+                    :class: attention
+        
+                    ``OrderedDict.popitem()`` does not support the ``last=False`` argument and
+                    will always remove and return the last item if present.
+        
+                    A workaround for this is to use ``pop(<first_key>)`` to remove the first item::
+        
+                        first_key = next(iter(d))
+                        d.pop(first_key)
+        """
+        ...
 def namedtuple(name: str, fields: str | Iterable[str]) -> type[Tuple[Any, ...]]:
     """
         This is factory function to create a new namedtuple type with a specific

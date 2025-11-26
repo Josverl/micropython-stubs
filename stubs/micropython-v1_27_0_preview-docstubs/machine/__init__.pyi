@@ -21,6 +21,7 @@ from machine.Pin import Pin
 from machine.Signal import Signal
 from machine.ADC import ADC
 from machine.ADCBlock import ADCBlock
+from machine.DAC import DAC
 from machine.PWM import PWM
 from machine.UART import UART
 from machine.SPI import SPI

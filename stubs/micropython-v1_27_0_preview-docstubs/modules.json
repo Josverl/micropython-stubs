@@ -8,7 +8,7 @@
         "firmware": "micropython-v1_27_0_preview",
         "nodename": "micropython",
         "version": "v1.27.0-preview",
-        "release": "v1.27.0-preview-449-g938e2c0f2",
+        "release": "v1.27.0-preview-457-g3d9a3e89c",
         "sysname": "micropython"
     },
     "stubber": {
@@ -119,6 +119,10 @@
         {
             "file": "machine/Counter.pyi",
             "module": "Counter"
+        },
+        {
+            "file": "machine/DAC.pyi",
+            "module": "DAC"
         },
         {
             "file": "machine/Encoder.pyi",
