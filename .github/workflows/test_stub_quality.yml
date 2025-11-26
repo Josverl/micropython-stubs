@@ -20,7 +20,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
-          activate-environment: true
+          # activate-environment: true
 
       - name: Install poetry # poetry is not in the default image
         run: uv tool install poetry
@@ -43,7 +43,7 @@ jobs:
       #----------------------------------------------
       - name: stubber clone
         run: | 
-          stubber clone
+          uv run stubber clone
 
 
     #   - name: update the stubs (not pushed) 
@@ -55,9 +55,9 @@ jobs:
       - name: Test the snippets 
         continue-on-error: true
         run: |
-          pytest -m 'snippets' --cache-clear --junitxml=./results/results.xml
+          uv run pytest -m 'snippets' --cache-clear --junitxml=./results/results.xml
 
 
       - name: compare and update
         run: |
-          python .github/workflows/compare_score.py
+          uv run .github/workflows/compare_score.py
