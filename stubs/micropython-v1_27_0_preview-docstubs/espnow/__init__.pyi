@@ -16,10 +16,74 @@ from _espnow import ESPNowBase  # type: ignore
 from _mpy_shed import mp_available
 
 MAX_DATA_LEN: Incomplete = 250
+"""\
+The following constants correspond to different transmit data rates on ESP32
+only. Lower data rates are generally more reliable over long distances:
+"""
 KEY_LEN: Incomplete = 16
+"""\
+The following constants correspond to different transmit data rates on ESP32
+only. Lower data rates are generally more reliable over long distances:
+"""
 ADDR_LEN: Incomplete = 6
+"""\
+The following constants correspond to different transmit data rates on ESP32
+only. Lower data rates are generally more reliable over long distances:
+"""
 MAX_TOTAL_PEER_NUM: Incomplete = 20
+"""\
+The following constants correspond to different transmit data rates on ESP32
+only. Lower data rates are generally more reliable over long distances:
+"""
 MAX_ENCRYPT_PEER_NUM: Incomplete = 6
+"""\
+The following constants correspond to different transmit data rates on ESP32
+only. Lower data rates are generally more reliable over long distances:
+"""
+RATE_LORA_250K: Incomplete
+"""See  `espnow-long-range`."""
+RATE_LORA_500K: Incomplete
+"""See  `espnow-long-range`."""
+RATE_1M: Incomplete
+"""\
+Unless using the two proprietary long range data rates, only the sender must
+configure the data rate.
+"""
+RATE_2M: Incomplete
+"""\
+Unless using the two proprietary long range data rates, only the sender must
+configure the data rate.
+"""
+RATE_5M: Incomplete
+"""\
+Unless using the two proprietary long range data rates, only the sender must
+configure the data rate.
+"""
+RATE_6M: Incomplete
+"""\
+Unless using the two proprietary long range data rates, only the sender must
+configure the data rate.
+"""
+RATE_11M: Incomplete
+"""\
+Unless using the two proprietary long range data rates, only the sender must
+configure the data rate.
+"""
+RATE_12M: Incomplete
+"""\
+Unless using the two proprietary long range data rates, only the sender must
+configure the data rate.
+"""
+RATE_24M: Incomplete
+"""\
+Unless using the two proprietary long range data rates, only the sender must
+configure the data rate.
+"""
+RATE_54M: Incomplete
+"""\
+Unless using the two proprietary long range data rates, only the sender must
+configure the data rate.
+"""
 _MACAddress: TypeAlias = bytes
 _PeerInfo: TypeAlias = Tuple[_MACAddress, bytes, int, int, bool]
 class ESPNow(ESPNowBase, Iterator):
@@ -124,13 +188,15 @@ class ESPNow(ESPNowBase, Iterator):
                 wait forever. The timeout can also be provided as arg to
                 `recv()`/`irecv()`/`recvinto()`.
         
-                *rate*: (ESP32 only) Set the transmission speed for
-                ESPNow packets. Must be set to a number from the allowed numeric values
-                in `enum wifi_phy_rate_t
-                <https://docs.espressif.com/projects/esp-idf/en/v5.2.3/esp32/
+                *rate*: (ESP32 only) Set the transmission data rate for ESPNow packets.
+                The default setting is `espnow.RATE_1M`. It's recommended to use one of
+                the other ``espnow.RATE_nnn`` constants to set this, but it's also
+                possible to pass an integer corresponding to the `enum wifi_phy_rate_t
+                <https://docs.espressif.com/projects/esp-idf/en/v5.5.1/esp32/
                 api-reference/network/esp_wifi.html#_CPPv415wifi_phy_rate_t>`_. This
                 parameter is actually *write-only* due to ESP-IDF not providing any
                 means for querying the radio interface's rate parameter.
+                See also `espnow-long-range`. This API currently doesn't work on ESP32-C6.
         
             Returns:
         

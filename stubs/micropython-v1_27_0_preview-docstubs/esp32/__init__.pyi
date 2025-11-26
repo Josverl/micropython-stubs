@@ -357,7 +357,8 @@ class RMT():
     def clock_div(self) -> int:
         """
             Return the clock divider. Note that the channel resolution is
-            ``1 / (source_freq / clock_div)``.
+            ``1 / (source_freq / clock_div)``. (Method deprecated. The value may
+            not be faithful if resolution was supplied as *resolution_hz*.)
         """
         ...
     def wait_done(self, *, timeout: int = 0) -> bool:
@@ -365,7 +366,8 @@ class RMT():
             Returns ``True`` if the channel is idle or ``False`` if a sequence of
             pulses started with `RMT.write_pulses` is being transmitted. If the
             *timeout* keyword argument is given then block for up to this many
-            milliseconds for transmission to complete.
+            milliseconds for transmission to complete. Timeout of -1 blocks until
+            transmission is complete (and blocks forever if loop is enabled).
         """
         ...
     def loop(self, enable_loop: bool, /) -> None:
@@ -373,7 +375,39 @@ class RMT():
             Configure looping on the channel. *enable_loop* is bool, set to ``True`` to
             enable looping on the *next* call to `RMT.write_pulses`. If called with
             ``False`` while a looping sequence is currently being transmitted then the
-            current loop iteration will be completed and then transmission will stop.
+            transmission will stop. (Method deprecated by `RMT.loop_count`.)
+        """
+        ...
+    def loop_count(self, n) -> None:
+        """
+            Configure looping on the channel. *n* is int. Affects the *next* call to
+            `RMT.write_pulses`. Set to ``0`` to disable looping, ``-1`` to enable
+            infinite looping, or a positive number to loop for a given number of times.
+            If *n* is changed, the current transmission is stopped.
+        
+            Note: looping for a finite number of times is not supported by all flavors
+            of ESP32.
+        """
+        ...
+    def active(self, boolean: Optional[Any]=None) -> Incomplete:
+        """
+            If called without parameters, returns *True* if there is an ongoing transmission.
+        
+            If called with parameter *False*, stops the ongoing transmission.
+            This is useful to stop an infinite transmission loop.
+            The current loop is finished and transmission stops.
+            The object is not invalidated, and the RMT channel is again enabled when a new
+            transmission is started.
+        
+            Calling with parameter *True* does not restart transmission. A new transmission
+            should always be initiated by *write_pulses()*.
+        """
+        ...
+    def deinit(self) -> Incomplete:
+        """
+            Release all RMT resources and invalidate the object. All subsequent method
+            calls will raise OSError. Useful to free RMT resources without having to wait
+            for the object to be garbage-collected.
         """
         ...
 
@@ -474,17 +508,30 @@ class RMT():
             supported by the hardware.
         """
     @staticmethod
+    def bitstream_rmt(value: Optional[Any]=None) -> Incomplete:
+        """
+            Configure RMT usage in the `machine.bitstream` implementation.
+        
+            If *value* is ``True``, bitstream tries to use RMT if possible. If *value*
+            is ``False``, bitstream sticks to the bit-banging implementation.
+        
+            If no parameter is supplied, it returns the current state. The default state
+            is ``True``.
+        """
+        ...
+    @staticmethod
     def bitstream_channel(value: Optional[Any] = None) -> int:
         """
-            Select which RMT channel is used by the `machine.bitstream` implementation.
-            *value* can be ``None`` or a valid RMT channel number.  The default RMT
-            channel is the highest numbered one.
+            *This function is deprecated and will be replaced by `RMT.bitstream_rmt()`.*
         
-            Passing in ``None`` disables the use of RMT and instead selects a bit-banging
-            implementation for `machine.bitstream`.
+            Passing in no argument will return ``1`` if RMT was enabled for the `machine.bitstream`
+            feature, and ``None`` otherwise.
         
-            Passing in no argument will not change the channel.  This function returns
-            the current channel number.
+            Passing any non-negative integer argument is equivalent to calling ``RMT.bitstream_rmt(True)``.
+        
+            ``Note:`` In previous versions of MicroPython it was necessary to use this function to assign
+                      a specific RMT channel number for the bitstream, but the channel number is now assigned
+                      dynamically.
         """
         ...
 class ULP():
@@ -597,6 +644,16 @@ def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: int, /) -> Non
         or ``esp32.WAKEUP_ANY_HIGH``.
     
         ``Note:`` This is only available for boards that have ext1 support.
+    """
+    ...
+def wake_on_gpio(pins, level) -> None:
+    """
+        Configure how GPIO wakes the device from sleep.  *pins* can be ``None``
+        or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
+        or ``esp32.WAKEUP_ANY_HIGH``.
+    
+        ``Note:`` Some boards don't support waking on GPIO from deep sleep,
+           on those boards, the pins set here can only be used to wake from light sleep.
     """
     ...
 def gpio_deep_sleep_hold(enable) -> None:
