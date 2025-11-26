@@ -18,9 +18,9 @@ jobs:
 
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v6
-        with:
-          # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
-          # activate-environment: true
+        # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
+        # with:
+        #   activate-environment: true
 
       - name: Install poetry # poetry is not in the default image
         run: uv tool install poetry
