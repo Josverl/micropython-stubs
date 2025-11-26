@@ -34,6 +34,7 @@ jobs:
       - name: Install Python dependencies
         working-directory: ${{github.workspace}}
         run: |
+          uv venv
           uv pip install -U -r pyproject.toml --extra stubber --extra test
 
 
