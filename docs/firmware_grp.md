@@ -886,7 +886,7 @@
 |micropython |v1.26.1 |documentation|-|micropython|114|1.26.3|[stubs/micropython-v1_26_1-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-docstubs)
 |micropython |v1.26.1 |board   |unix|generic|73|v1.26.2|[stubs/micropython-v1_26_1-unix-standard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-unix-standard)
 |micropython |v1.26.1 |board   |windows|generic|37|v1.26.2|[stubs/micropython-v1_26_1-windows-standard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-windows-standard)
-|micropython |v1.27-La|documentation|-|micropython|114|1.26.3|[stubs/micropython-v1_27_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0_preview-docstubs)
+|micropython |v1.27-La|documentation|-|micropython|115|1.26.3|[stubs/micropython-v1_27_0_preview-docstubs](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0_preview-docstubs)
 |micropython |v1.27-La|board   |unix|generic|73|v1.26.2|[stubs/micropython-v1_27_0-preview-unix-standard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-preview-unix-standard)
 |micropython |v1.27-La|board   |webassembly|generic|79|v1.26.2|[stubs/micropython-v1_27_0-preview-webassembly-pyscript](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-preview-webassembly-pyscript)
 |micropython |v1.27-La|board   |windows|generic|37|v1.26.2|[stubs/micropython-v1_27_0-preview-windows-standard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-preview-windows-standard)
@@ -946,4 +946,4 @@
 
 ## Metrics
 
-Total stub modules:  23966
+Total stub modules:  23967
