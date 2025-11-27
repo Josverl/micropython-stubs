@@ -51,6 +51,7 @@ class Timer:
         mode: int = PERIODIC,
         period: int | None = None,
         callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
     ):
         """
         Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
@@ -69,6 +70,7 @@ class Timer:
         mode: int = PERIODIC,
         freq: int | None = None,
         callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
     ):
         """
         Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
@@ -87,6 +89,7 @@ class Timer:
         mode: int = PERIODIC,
         tick_hz: int | None = None,
         callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
     ):
         """
         Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
@@ -103,6 +106,7 @@ class Timer:
         mode: int = PERIODIC,
         period: int | None = None,
         callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
     ) -> None: ...
     @overload
     def init(
@@ -111,6 +115,7 @@ class Timer:
         mode: int = PERIODIC,
         freq: int | None = None,
         callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
     ) -> None: ...
     @overload
     def init(
@@ -119,6 +124,7 @@ class Timer:
         mode: int = PERIODIC,
         tick_hz: int | None = None,
         callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
     ) -> None:
         """
         Initialise the timer. Example::
