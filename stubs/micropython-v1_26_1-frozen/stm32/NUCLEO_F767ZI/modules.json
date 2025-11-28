@@ -1,0 +1,56 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "stm32",
+        "platform": "stm32",
+        "machine": "NUCLEO_F767ZI",
+        "firmware": "micropython-stm32-v1_26_1",
+        "nodename": "micropython",
+        "version": "v1.26.1",
+        "release": "v1.26.1",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.26.3",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "mip/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "requests/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        }
+    ]
+}
