@@ -114,6 +114,9 @@ class timerchannel:
               ``TimerWiPy.ONE_SHOT``. In the case that mode is ``TimerWiPy.PWM`` then trigger must be equal to
               ``TimerWiPy.MATCH``.
 
+        Note that callback handlers are hard interrupts, and the constraints described in :ref:`isr_rules`
+        apply when they are executed.
+
         Returns a callback object.
         """
         ...

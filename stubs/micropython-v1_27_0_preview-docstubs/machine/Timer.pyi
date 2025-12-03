@@ -159,22 +159,22 @@ class Timer:
 
           - ``callback`` - The callable to call upon expiration of the timer period.
             The callback must take one argument, which is passed the Timer object.
+
             The ``callback`` argument shall be specified. Otherwise an exception
             will occur upon timer expiration:
             ``TypeError: 'NoneType' object isn't callable``
 
           - ``hard`` can be one of:
 
-            - ``True`` - The callback will be executed in hard interrupt
-              context, which minimises delay and jitter but is subject to the
-              limitations described in :ref:`isr_rules` including being unable
-              to allocate on the heap.
+            - ``True`` - The callback will be executed in hard interrupt context,
+              which minimises delay and jitter but is subject to the limitations
+              described in :ref:`isr_rules`. Not all ports support hard interrupts,
+              see the port documentation for more information.
             - ``False`` - The callback will be scheduled as a soft interrupt,
               allowing it to allocate but possibly also introducing
               garbage-collection delays and jitter.
 
-            The default value of this option is port-specific for historical
-            reasons.
+            The default value of this parameter is port-specific for historical reasons.
         """
         ...
     def deinit(self) -> None:
