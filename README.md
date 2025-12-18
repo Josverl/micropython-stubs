@@ -133,6 +133,7 @@ npx all-contributors-cli generate
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/DavideRossi"><img src="https://avatars.githubusercontent.com/u/9553056?v=4?s=100" width="100px;" alt="morcilab"/><br /><sub><b>morcilab</b></sub></a><br /><a href="#test-DavideRossi" title="Test">✔</a> <a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3ADavideRossi" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://tinyu-zhao.github.io/"><img src="https://avatars.githubusercontent.com/u/44396641?v=4?s=100" width="100px;" alt="Tinyu"/><br /><sub><b>Tinyu</b></sub></a><br /><a href="#test-Tinyu-Zhao" title="Test">✔</a> <a href="https://github.com/Josverl/micropython-stubs/issues?q=author%3ATinyu-Zhao" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="12.5%"><a href="https://github.com/markusand"><img src="https://avatars.githubusercontent.com/u/12972543?v=4?s=100" width="100px;" alt="Marc Vilella"/><br /><sub><b>Marc Vilella</b></sub></a><br /><a href="#stubs-markusand" title="type-stubs">📝</a></td>
+      <td align="center" valign="top" width="12.5%"><a href="http://www.ziesemer.com/"><img src="https://avatars.githubusercontent.com/u/1887649?v=4?s=100" width="100px;" alt="Mark A. Ziesemer"/><br /><sub><b>Mark A. Ziesemer</b></sub></a><br /><a href="#stubs-ziesemer" title="type-stubs">📝</a></td>
     </tr>
   </tbody>
 </table>
