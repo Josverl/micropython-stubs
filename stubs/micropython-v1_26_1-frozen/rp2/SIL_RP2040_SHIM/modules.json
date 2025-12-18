@@ -1,0 +1,72 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "rp2",
+        "platform": "rp2",
+        "machine": "SIL_RP2040_SHIM",
+        "firmware": "micropython-rp2-v1_26_1",
+        "nodename": "micropython",
+        "version": "v1.26.1",
+        "release": "v1.26.1",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.26.3",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "_boot_fat.py",
+            "module": "_boot_fat"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "mip/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "neopixel.py",
+            "module": "neopixel"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "requests/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        }
+    ]
+}
