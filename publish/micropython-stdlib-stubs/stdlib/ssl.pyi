@@ -1,6 +1,28 @@
 """
 TLS/SSL wrapper for socket objects.
 
+MicroPython module: https://docs.micropython.org/en/v1.27.0/library/ssl.html
+
+CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
+
+This module provides access to Transport Layer Security (previously and
+widely known as “Secure Sockets Layer”) encryption and peer authentication
+facilities for network sockets, both client-side and server-side.
+
+---
+TLS/SSL wrapper for socket objects.
+
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/ssl.html
+
+CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
+
+This module provides access to Transport Layer Security (previously and
+widely known as “Secure Sockets Layer”) encryption and peer authentication
+facilities for network sockets, both client-side and server-side.
+
+---
+TLS/SSL wrapper for socket objects.
+
 MicroPython module: https://docs.micropython.org/en/v1.26.0/library/ssl.html
 
 CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
@@ -95,7 +117,6 @@ class SSLCertVerificationError(SSLError, ValueError):
 # CertificateError = SSLCertVerificationError
 
 if True:
-
     # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
     # End duplicated section
     # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -199,8 +220,20 @@ class VerifyMode(enum.IntEnum):
     CERT_REQUIRED = 2
 
 CERT_NONE: VerifyMode
+"""\
+Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
+attribute.
+"""
 CERT_OPTIONAL: VerifyMode
+"""\
+Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
+attribute.
+"""
 CERT_REQUIRED: VerifyMode
+"""\
+Supported values for *cert_reqs* parameter, and the :attr:`SSLContext.verify_mode`
+attribute.
+"""
 
 class VerifyFlags(enum.IntFlag):
     VERIFY_DEFAULT = 0
@@ -241,7 +274,9 @@ class _SSLMethod(enum.IntEnum):
 # PROTOCOL_TLSv1_2: _SSLMethod
 # PROTOCOL_TLS: _SSLMethod
 PROTOCOL_TLS_CLIENT: _SSLMethod
+"""Supported values for the *protocol* parameter."""
 PROTOCOL_TLS_SERVER: _SSLMethod
+"""Supported values for the *protocol* parameter."""
 
 class Options(enum.IntFlag):
     OP_ALL = 2147483728
@@ -390,7 +425,6 @@ class SSLSocket:
     def shutdown(self, how: int) -> None: ...
     # TODO : SSLSocket is undocumented
     # ref: micropython\extmod\modtls_axtls.c ( read ... close)
-
     # repos\micropython\extmod\modtls_mbedtls.c
     @mp_available()  # force merge
     def read(self, *argv, **kwargs) -> Incomplete: ...
@@ -427,7 +461,6 @@ class SSLSocket:
     if sys.version_info >= (3, 13):
         def get_verified_chain(self) -> list[bytes]: ...
         def get_unverified_chain(self) -> list[bytes]: ...
-
     @mp_available()  # force merge
     def readinto(self, *argv, **kwargs) -> Incomplete: ...
     @mp_available()  # force merge
@@ -638,6 +671,10 @@ if sys.version_info < (3, 9):
 # SOCK_STREAM: int
 # SOL_SOCKET: int
 # SO_TYPE: int
-PROTOCOL_DTLS_CLIENT: Incomplete
-PROTOCOL_DTLS_SERVER: Incomplete
+# PROTOCOL_DTLS_CLIENT: Incomplete
+# PROTOCOL_DTLS_SERVER: Incomplete
 MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"
+PROTOCOL_DTLS_CLIENT: Incomplete
+"""Supported values for the *protocol* parameter."""
+PROTOCOL_DTLS_SERVER: Incomplete
+"""Supported values for the *protocol* parameter."""

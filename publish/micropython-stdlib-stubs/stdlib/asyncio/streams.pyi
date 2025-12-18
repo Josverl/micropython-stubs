@@ -1,9 +1,10 @@
 import ssl
 import sys
-from _typeshed import ReadableBuffer, StrPath, Incomplete
 from collections.abc import Awaitable, Callable, Iterable, Sequence, Sized
 from types import ModuleType
 from typing import Any, Protocol, SupportsIndex
+
+from _typeshed import Incomplete, ReadableBuffer, StrPath
 from typing_extensions import Self, TypeAlias
 
 from . import events, protocols, transports
@@ -116,10 +117,14 @@ class StreamReaderProtocol(FlowControlMixin, protocols.Protocol):
     def __del__(self) -> None: ...
 
 class StreamWriter:
+    """\
+    Represents a writer object that provides APIs to write data to the IO stream.
+
+    It is not recommended to instantiate StreamWriter objects directly; use open_connection() and start_server() instead."""
     def __init__(
         self,
         transport: transports.WriteTransport | Incomplete,
-        protocol: protocols.BaseProtocol | Incomplete,
+        protocol: protocols.BaseProtocol | Incomplete = None,
         # MicroPython doesn't support reader and loop arguments
         # reader: StreamReader | None,
         # loop: events.AbstractEventLoop,
@@ -169,6 +174,14 @@ class StreamReader:
         # limit: int = 65536,
         # loop: events.AbstractEventLoop | None = None,
     ) -> None: ...
+    async def readinto(self, buf: bytearray | memoryview) -> int:
+        """Read up to n bytes into buf with n being equal to the length of buf.
+
+        Return the number of bytes read into buf.
+
+        This is a coroutine, and a MicroPython extension.
+        """
+        ...
     def exception(self) -> Exception: ...
     def set_exception(self, exc: Exception) -> None: ...
     def set_transport(self, transport: transports.BaseTransport) -> None: ...

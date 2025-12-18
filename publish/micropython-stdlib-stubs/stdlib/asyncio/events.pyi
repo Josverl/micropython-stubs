@@ -72,7 +72,11 @@ class Handle:
     _cancelled: bool
     _args: Sequence[Any]
     def __init__(
-        self, callback: Callable[..., object], args: Sequence[Any], loop: AbstractEventLoop, context: Context | None = None  # type: ignore
+        self,
+        callback: Callable[..., object],
+        args: Sequence[Any],
+        loop: AbstractEventLoop,
+        context: Context | None = None,  # type: ignore
     ) -> None: ...
     def cancel(self) -> None: ...
     def _run(self) -> None: ...
@@ -141,11 +145,19 @@ class AbstractEventLoop:
         def call_soon(self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None) -> Handle: ...  # type: ignore
         @abstractmethod
         def call_later(
-            self, delay: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None  # type: ignore
+            self,
+            delay: float,
+            callback: Callable[[Unpack[_Ts]], object],
+            *args: Unpack[_Ts],
+            context: Context | None = None,  # type: ignore
         ) -> TimerHandle: ...
         @abstractmethod
         def call_at(
-            self, when: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None  # type: ignore
+            self,
+            when: float,
+            callback: Callable[[Unpack[_Ts]], object],
+            *args: Unpack[_Ts],
+            context: Context | None = None,  # type: ignore
         ) -> TimerHandle: ...
     else:
         @abstractmethod
@@ -176,7 +188,10 @@ class AbstractEventLoop:
     if sys.version_info >= (3, 9):  # "context" added in 3.9.10/3.10.2
         @abstractmethod
         def call_soon_threadsafe(
-            self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None  # type: ignore
+            self,
+            callback: Callable[[Unpack[_Ts]], object],
+            *args: Unpack[_Ts],
+            context: Context | None = None,  # type: ignore
         ) -> Handle: ...
     else:
         @abstractmethod

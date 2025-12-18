@@ -73,10 +73,18 @@ class BaseEventLoop(AbstractEventLoop):
     # Methods scheduling callbacks.  All these return Handles.
     def call_soon(self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None) -> Handle: ...  # type: ignore
     def call_later(
-        self, delay: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None  # type: ignore
+        self,
+        delay: float,
+        callback: Callable[[Unpack[_Ts]], object],
+        *args: Unpack[_Ts],
+        context: Context | None = None,  # type: ignore
     ) -> TimerHandle: ...
     def call_at(
-        self, when: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None  # type: ignore
+        self,
+        when: float,
+        callback: Callable[[Unpack[_Ts]], object],
+        *args: Unpack[_Ts],
+        context: Context | None = None,  # type: ignore
     ) -> TimerHandle: ...
     def time(self) -> float: ...
     # Future methods
@@ -91,7 +99,10 @@ class BaseEventLoop(AbstractEventLoop):
     def get_task_factory(self) -> _TaskFactory | None: ...
     # Methods for interacting with threads
     def call_soon_threadsafe(
-        self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None  # type: ignore
+        self,
+        callback: Callable[[Unpack[_Ts]], object],
+        *args: Unpack[_Ts],
+        context: Context | None = None,  # type: ignore
     ) -> Handle: ...
     def run_in_executor(self, executor: Any, func: Callable[[Unpack[_Ts]], _T], *args: Unpack[_Ts]) -> Future[_T]: ...
     def set_default_executor(self, executor: Any) -> None: ...

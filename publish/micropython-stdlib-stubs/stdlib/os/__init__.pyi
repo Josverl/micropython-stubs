@@ -1,6 +1,28 @@
 """
 Basic "operating system" services.
 
+MicroPython module: https://docs.micropython.org/en/v1.27.0/library/os.html
+
+CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
+
+The ``os`` module contains functions for filesystem access and mounting,
+terminal redirection and duplication, and the ``uname`` and ``urandom``
+functions.
+
+---
+Basic "operating system" services.
+
+MicroPython module: https://docs.micropython.org/en/v1.24.0/library/os.html
+
+CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
+
+The ``os`` module contains functions for filesystem access and mounting,
+terminal redirection and duplication, and the ``uname`` and ``urandom``
+functions.
+
+---
+Basic "operating system" services.
+
 MicroPython module: https://docs.micropython.org/en/v1.26.0/library/os.html
 
 CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
@@ -443,6 +465,9 @@ def listdir(path: StrPath | None = None) -> list[str]: ...
 def listdir(path: BytesPath) -> list[bytes]: ...
 @overload
 def listdir(path: int) -> list[str]: ...
+
+
+
 @mp_available()  # force merge
 def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
@@ -574,16 +599,16 @@ if sys.platform != "win32":
     def setuid(uid: int, /) -> None: ...
     def uname() -> uname_result:
         """
-        Return a tuple (possibly a named tuple) containing information about the
-        underlying machine and/or its operating system.  The tuple has five fields
-        in the following order, each of them being a string:
-
-             * ``sysname`` -- the name of the underlying system
-             * ``nodename`` -- the network name (can be the same as ``sysname``)
-             * ``release`` -- the version of the underlying system
-             * ``version`` -- the MicroPython version and build date
-             * ``machine`` -- an identifier for the underlying hardware (eg board, CPU)
-        """
+       Return a tuple (possibly a named tuple) containing information about the
+       underlying machine and/or its operating system.  The tuple has five fields
+       in the following order, each of them being a string:
+    
+            * ``sysname`` -- the name of the underlying system
+            * ``nodename`` -- the network name (can be the same as ``sysname``)
+            * ``release`` -- the version of the underlying system
+            * ``version`` -- the MicroPython version and build date
+            * ``machine`` -- an identifier for the underlying hardware (eg board, CPU)
+    """
         ...
 
 @overload
@@ -780,6 +805,7 @@ def write(fd: int, data: ReadableBuffer, /) -> int: ...
 def access(
     path: FileDescriptorOrPath, mode: int, *, dir_fd: int | None = None, effective_ids: bool = False, follow_symlinks: bool = True
 ) -> bool: ...
+
 @mp_available()  # force merge
 def chdir(path) -> Incomplete:
     """
@@ -818,6 +844,7 @@ def link(
     follow_symlinks: bool = True,
 ) -> None: ...
 def lstat(path: StrOrBytesPath, *, dir_fd: int | None = None) -> stat_result: ...
+
 @mp_available()  # force merge
 def mkdir(path) -> Incomplete:
     """
@@ -838,6 +865,7 @@ if sys.platform != "win32":
     def pathconf(path: FileDescriptorOrPath, name: str | int) -> int: ...  # Unix only
 
 def readlink(path: GenericPath[AnyStr], *, dir_fd: int | None = None) -> AnyStr: ...
+
 @mp_available()  # force merge
 def remove(path) -> None:
     """
@@ -846,6 +874,7 @@ def remove(path) -> None:
     ...
 
 def removedirs(name: StrOrBytesPath) -> None: ...
+
 @mp_available()  # force merge
 def rename(old_path, new_path) -> None:
     """
@@ -855,6 +884,7 @@ def rename(old_path, new_path) -> None:
 
 def renames(old: StrOrBytesPath, new: StrOrBytesPath) -> None: ...
 def replace(src: StrOrBytesPath, dst: StrOrBytesPath, *, src_dir_fd: int | None = None, dst_dir_fd: int | None = None) -> None: ...
+
 @mp_available()  # force merge
 def rmdir(path) -> None:
     """
@@ -873,14 +903,14 @@ def scandir(path: None = None) -> _ScandirIterator[str]: ...
 def scandir(path: int) -> _ScandirIterator[str]: ...
 @overload
 def scandir(path: GenericPath[AnyStr]) -> _ScandirIterator[AnyStr]: ...
-def stat(path: str | bytes) -> stat_result:
+def stat(path:str|bytes) -> stat_result:
     """
-    Get the status of a file or directory.
+       Get the status of a file or directory.
     """
     ...
 
 if sys.platform != "win32":
-
+    
     @mp_available()  # force merge
     def statvfs(path) -> Tuple:
         """
@@ -908,7 +938,7 @@ if sys.platform != "win32":
 def symlink(src: StrOrBytesPath, dst: StrOrBytesPath, target_is_directory: bool = False, *, dir_fd: int | None = None) -> None: ...
 
 if sys.platform != "win32":
-
+    
     @mp_available()  # force merge
     def sync() -> None:
         """
@@ -1187,7 +1217,7 @@ if sys.platform == "linux":
     def getrandom(size: int, flags: int = 0) -> bytes: ...
 
 @mp_available()  # force merge
-def urandom(n: int) -> bytes:
+def urandom(n:int) -> bytes:
     """
     Return a bytes object with *n* random bytes. Whenever possible, it is
     generated by the hardware random number generator.
@@ -1477,6 +1507,54 @@ def ilistdir(dir: Union[str, bytes]) -> Iterator[Union[Tuple[str, int, int], Tup
 
 @overload
 def ilistdir() -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]: ...
+
+@overload
+def ilistdir(dir: Union[str,bytes]) -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]:
+    """
+       This function returns an iterator which then yields tuples corresponding to
+       the entries in the directory that it is listing.  With no argument it lists the
+       current directory, otherwise it lists the directory given by *dir*.
+    
+       The tuples have the form *(name, type, inode[, size])*:
+    
+        - *name* is a string (or bytes if *dir* is a bytes object) and is the name of
+          the entry;
+        - *type* is an integer that specifies the type of the entry, with 0x4000 for
+          directories and 0x8000 for regular files;
+        - *inode* is an integer corresponding to the inode of the file, and may be 0
+          for filesystems that don't have such a notion.
+        - Some platforms may return a 4-tuple that includes the entry's *size*.  For
+          file entries, *size* is an integer representing the size of the file
+          or -1 if unknown.  Its meaning is currently undefined for directory
+          entries.
+    """
+    ...
+@overload
+def ilistdir() -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]: ...
+
+@overload
+def ilistdir(dir: Union[str,bytes]) -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]:
+    """
+       This function returns an iterator which then yields tuples corresponding to
+       the entries in the directory that it is listing.  With no argument it lists the
+       current directory, otherwise it lists the directory given by *dir*.
+    
+       The tuples have the form *(name, type, inode[, size])*:
+    
+        - *name* is a string (or bytes if *dir* is a bytes object) and is the name of
+          the entry;
+        - *type* is an integer that specifies the type of the entry, with 0x4000 for
+          directories and 0x8000 for regular files;
+        - *inode* is an integer corresponding to the inode of the file, and may be 0
+          for filesystems that don't have such a notion.
+        - *size* is an integer that may be included depending on the filesystem type.
+          For file entries, *size* represents the size of the file or -1 if unknown.
+          Its meaning is currently undefined for directory entries.
+    """
+    ...
+@overload
+def ilistdir() -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]: ...
+
 @mp_available()  # force merge
 def dupterm(stream_object, index=0, /) -> IO:
     """
@@ -1501,11 +1579,12 @@ def dupterm(stream_object, index=0, /) -> IO:
     """
     ...
 
-# Deprecated functions and classes
-# The following functions and classes have been moved to the vfs module.
+
+# Deprecated functions and classes 
+# The following functions and classes have been moved to the vfs module. 
 
 @mp_available()  # force merge
-@deprecated("The `mount` function is deprecated, use `vfs.mount` instead.")
+@deprecated(   "The `mount` function is deprecated, use `vfs.mount` instead.")
 def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
     See `vfs.mount`.
@@ -1513,7 +1592,7 @@ def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     ...
 
 @mp_available()  # force merge
-@deprecated("The `umount` function is deprecated, use `vfs.umount` instead.")
+@deprecated(   "The `umount` function is deprecated, use `vfs.umount` instead.")
 def umount(mount_point) -> Incomplete:
     """
     See `vfs.umount`.

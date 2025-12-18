@@ -493,7 +493,7 @@ def update_asyncio_manual(reference_path: Path, dist_stdlib_path: Path):
     "-v",
     type=str,
     help="Specify Micropython version",
-    default="1.24.1",
+    default=get_stable_mp_version(), 
     show_default=True,
 )
 @click.option(
