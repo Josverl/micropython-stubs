@@ -1,0 +1,13 @@
+"""
+Module: 'uheapq' on micropython-v1.27.0-stm32-PYBV11-NETWORK
+"""
+
+# MCU: {'variant': 'NETWORK', 'build': '', 'arch': 'armv7emsp', 'port': 'stm32', 'board': 'PYBV11', 'board_id': 'PYBV11-NETWORK', 'mpy': 'v6.3', 'ver': '1.27.0', 'family': 'micropython', 'cpu': 'STM32F405RG', 'version': '1.27.0'}
+# Stubber: v1.26.4
+from __future__ import annotations
+from typing import Any, Final, Generator
+from _typeshed import Incomplete
+
+def heappop(*args, **kwargs) -> Incomplete: ...
+def heappush(*args, **kwargs) -> Incomplete: ...
+def heapify(*args, **kwargs) -> Incomplete: ...
