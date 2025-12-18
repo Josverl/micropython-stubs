@@ -148,13 +148,18 @@ As MicroPython has no native typing implementation, the `typing_extensions.py` m
 
 ## Cross Compiling
 
-In order to create the smallest possible `.mpy` versions of the typing modules use:
+In order to create the smallest possible `.mpy` versions of the typing modules use the scripts 
+- `mip/x-compile.ps1` on Windows
+- `mip/x-compile.sh` on WSL2 / Linux / macOS bash
+or manually run the following commands:
 
 ```sh
 cd mip
 mpy-cross typing.py -O3
 mpy-cross typing_extensions.py -O3
 ```
+
+
 
 ### Origin
 
