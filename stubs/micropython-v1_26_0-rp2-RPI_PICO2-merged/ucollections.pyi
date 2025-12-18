@@ -13,7 +13,7 @@ Module: 'ucollections' on micropython-v1.26.0-rp2-RPI_PICO2
 """
 
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.26.0', 'arch': 'armv7emsp', 'version': '1.26.0', 'port': 'rp2', 'board': 'RPI_PICO2', 'family': 'micropython', 'board_id': 'RPI_PICO2', 'variant': '', 'cpu': 'RP2350'}
-# Stubber: v1.26.0
+# Stubber: v1.26.4
 from __future__ import annotations
 from typing import Dict, Generic, Tuple, Any, Final, Generator
 from _typeshed import Incomplete
@@ -68,7 +68,6 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
         w 5
         b 3
     """
-
     def popitem(self, *args, **kwargs) -> Incomplete: ...
     def pop(self, *args, **kwargs) -> Incomplete: ...
     def values(self, *args, **kwargs) -> Incomplete: ...
@@ -87,14 +86,12 @@ class deque:
     """
     Minimal implementation of a deque that implements a FIFO buffer.
     """
-
     def pop(self) -> Incomplete:
         """
         Remove and return an item from the right side of the deque.
         Raises ``IndexError`` if no items are present.
         """
         ...
-
     def appendleft(self, x: _T, /) -> Incomplete:
         """
         Add *x* to the left side of the deque.
@@ -102,14 +99,12 @@ class deque:
         no more room in the queue.
         """
         ...
-
     def popleft(self) -> Any:
         """
         Remove and return an item from the left side of the deque.
         Raises ``IndexError`` if no items are present.
         """
         ...
-
     def extend(self, iterable: Iterable[_T], /) -> Incomplete:
         """
         Extend the deque by appending all the items from *iterable* to
@@ -118,7 +113,6 @@ class deque:
         no more room in the deque.
         """
         ...
-
     def append(self, x: _T, /) -> None:
         """
         Add *x* to the right side of the deque.
@@ -126,7 +120,6 @@ class deque:
         no more room in the queue.
         """
         ...
-
     def __init__(self, iterable: tuple[Any], maxlen: int, flags: int = 0, /) -> None:
         """
         Deques (double-ended queues) are a list-like container that support O(1)

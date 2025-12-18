@@ -11,7 +11,7 @@ Module: 'framebuf' on micropython-v1.26.0-rp2-RPI_PICO2
 """
 
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.26.0', 'arch': 'armv7emsp', 'version': '1.26.0', 'port': 'rp2', 'board': 'RPI_PICO2', 'family': 'micropython', 'board_id': 'RPI_PICO2', 'variant': '', 'cpu': 'RP2350'}
-# Stubber: v1.26.0
+# Stubber: v1.26.4
 from __future__ import annotations
 from typing import Any, Optional, overload, Final
 from _typeshed import Incomplete
@@ -19,13 +19,41 @@ from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 MONO_HMSB: Final[int] = 4
+"""\
+Monochrome (1-bit) color format
+This defines a mapping where the bits in a byte are horizontally mapped.
+Each byte occupies 8 horizontal pixels with bit 0 being the leftmost.
+Subsequent bytes appear at successive horizontal locations until the
+rightmost edge is reached. Further bytes are rendered on the next row, one
+pixel lower.
+"""
 MONO_HLSB: Final[int] = 3
+"""\
+Monochrome (1-bit) color format
+This defines a mapping where the bits in a byte are horizontally mapped.
+Each byte occupies 8 horizontal pixels with bit 7 being the leftmost.
+Subsequent bytes appear at successive horizontal locations until the
+rightmost edge is reached. Further bytes are rendered on the next row, one
+pixel lower.
+"""
 RGB565: Final[int] = 1
+"""Red Green Blue (16-bit, 5+6+5) color format"""
 MONO_VLSB: Final[int] = 0
+"""\
+Monochrome (1-bit) color format
+This defines a mapping where the bits in a byte are vertically mapped with
+bit 0 being nearest the top of the screen. Consequently each byte occupies
+8 vertical pixels. Subsequent bytes appear at successive horizontal
+locations until the rightmost edge is reached. Further bytes are rendered
+at locations starting at the leftmost edge, 8 pixels lower.
+"""
 MVLSB: Final[int] = 0
 GS2_HMSB: Final[int] = 5
+"""Grayscale (2-bit) color format"""
 GS8: Final[int] = 6
+"""Grayscale (8-bit) color format"""
 GS4_HMSB: Final[int] = 2
+"""Grayscale (4-bit) color format"""
 
 def FrameBuffer1(*args, **kwargs) -> Incomplete: ...
 
@@ -46,7 +74,6 @@ class FrameBuffer:
         fbuf.text('MicroPython!', 0, 0, 0xffff)
         fbuf.hline(0, 9, 96, 0xffff)
     """
-
     def poly(self, x, y, coords, c, f: Optional[Any] = None) -> Incomplete:
         """
         Given a list of coordinates, draw an arbitrary (convex or concave) closed
@@ -59,7 +86,6 @@ class FrameBuffer:
         Otherwise just a one pixel outline is drawn.
         """
         ...
-
     def vline(self, x: int, y: int, h: int, c: int, /) -> None:
         """
         Draw a line from a set of coordinates using the given color and
@@ -82,7 +108,6 @@ class FrameBuffer:
         If *c* is not given, get the color value of the specified pixel.
         If *c* is given, set the specified pixel to the given color.
         """
-
     def text(self, s: str, x: int, y: int, c: int = 1, /) -> None:
         """
         Write text to the FrameBuffer using the coordinates as the upper-left
@@ -91,7 +116,6 @@ class FrameBuffer:
         dimensions of 8x8 pixels and there is currently no way to change the font.
         """
         ...
-
     def rect(self, x: int, y: int, w: int, h: int, c: int, /) -> None:
         """
         Draw a rectangle at the given location, size and color.
@@ -100,14 +124,12 @@ class FrameBuffer:
         Otherwise just a one pixel outline is drawn.
         """
         ...
-
     def scroll(self, xstep: int, ystep: int, /) -> None:
         """
         Shift the contents of the FrameBuffer by the given vector. This may
         leave a footprint of the previous colors in the FrameBuffer.
         """
         ...
-
     def ellipse(self, x, y, xr, yr, c, f, m: Optional[Any] = None) -> None:
         """
         Draw an ellipse at the given location. Radii *xr* and *yr* define the
@@ -123,7 +145,6 @@ class FrameBuffer:
         are numbered counterclockwise with Q1 being top right.
         """
         ...
-
     def line(self, x1: int, y1: int, x2: int, y2: int, c: int, /) -> None:
         """
         Draw a line from a set of coordinates using the given color and
@@ -133,7 +154,6 @@ class FrameBuffer:
         a given length.
         """
         ...
-
     def blit(
         self,
         fbuf: FrameBuffer,
@@ -175,7 +195,6 @@ class FrameBuffer:
         color of the corresponding source pixel.
         """
         ...
-
     def hline(self, x: int, y: int, w: int, c: int, /) -> None:
         """
         Draw a line from a set of coordinates using the given color and
@@ -184,13 +203,11 @@ class FrameBuffer:
         methods draw horizontal and vertical lines respectively up to
         a given length.
         """
-
     def fill(self, c: int, /) -> None:
         """
         Fill the entire FrameBuffer with the specified color.
         """
         ...
-
     def fill_rect(self, *args, **kwargs) -> Incomplete: ...
     def __init__(
         self,

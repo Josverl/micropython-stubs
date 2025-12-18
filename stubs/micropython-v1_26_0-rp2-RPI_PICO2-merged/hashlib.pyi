@@ -28,7 +28,7 @@ Module: 'hashlib' on micropython-v1.26.0-rp2-RPI_PICO2
 """
 
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.26.0', 'arch': 'armv7emsp', 'version': '1.26.0', 'port': 'rp2', 'board': 'RPI_PICO2', 'family': 'micropython', 'board_id': 'RPI_PICO2', 'variant': '', 'cpu': 'RP2350'}
-# Stubber: v1.26.0
+# Stubber: v1.26.4
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _Hash
@@ -42,7 +42,6 @@ class sha256(_Hash):
     MicroPython core and any board is recommended to provide this, unless
     it has particular code size constraints.
     """
-
     def digest(self, *args, **kwargs) -> Incomplete: ...
     def update(self, *args, **kwargs) -> Incomplete: ...
     @overload
@@ -76,7 +75,6 @@ class sha1(_Hash):
     applications, so boards targeting network connectivity and
     interoperability will try to provide this.
     """
-
     def digest(self, *args, **kwargs) -> Incomplete: ...
     def update(self, *args, **kwargs) -> Incomplete: ...
     @overload

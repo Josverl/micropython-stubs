@@ -32,10 +32,10 @@ For a simpler and clearer reference on PIO assembly, you can also visit: https:/
 
 rp2.PIO type hints have to be loaded manually. Add the following lines to the top of the file with the PIO assembler code:
 
-```py   
+```py
 # -----------------------------------------------
 # add type hints for the rp2.PIO Instructions
-try: 
+try:
     from typing_extensions import TYPE_CHECKING # type: ignore
 except ImportError:
     TYPE_CHECKING = False
@@ -49,7 +49,7 @@ Module: 'rp2' on micropython-v1.26.0-rp2-RPI_PICO2
 """
 
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.26.0', 'arch': 'armv7emsp', 'version': '1.26.0', 'port': 'rp2', 'board': 'RPI_PICO2', 'family': 'micropython', 'board_id': 'RPI_PICO2', 'variant': '', 'cpu': 'RP2350'}
-# Stubber: v1.26.0
+# Stubber: v1.26.4
 from __future__ import annotations
 from typing import Union, Dict, List, Callable, Literal, overload, Any, Optional, Final
 from _typeshed import Incomplete
@@ -146,7 +146,6 @@ class Flash(AbstractBlockDev):
     """
     Gets the singleton object for accessing the SPI flash memory.
     """
-
     @overload
     def readblocks(self, block_num: int, buf: bytearray) -> bool:
         """
@@ -203,20 +202,17 @@ class Flash(AbstractBlockDev):
         :ref:`block protocol <block-device-interface>` defined by
         :class:`vfs.AbstractBlockDev`.
         """
-
     def __init__(self) -> None: ...
 
 class DMA:
     """
     Claim one of the DMA controller channels for exclusive use.
     """
-
     def irq(self, handler=None, hard=False) -> _IRQ:
         """
         Returns the IRQ object for this DMA channel and optionally configures it.
         """
         ...
-
     def unpack_ctrl(self, value) -> dict:
         """
         Unpack a value for a DMA channel control register into a dictionary with key/value pairs
@@ -231,7 +227,6 @@ class DMA:
         directly as the keyword arguments for packing.
         """
         ...
-
     def pack_ctrl(self, default=None, **kwargs) -> int:
         """
         Pack the values provided in the keyword arguments into the named fields of a new control
@@ -290,14 +285,12 @@ class DMA:
         datasheet for details of all of these fields.
         """
         ...
-
     def close(self) -> None:
         """
         Release the claim on the underlying DMA channel and free the interrupt
         handler. The :class:`DMA` object can not be used after this operation.
         """
         ...
-
     def config(
         self,
         read: int | AnyReadableBuf | None = None,
@@ -325,7 +318,6 @@ class DMA:
         - *trigger*: Optionally commence the transfer immediately.
         """
         ...
-
     def active(self, value: Any | None = None) -> bool:
         """
         Gets or sets whether the DMA channel is currently running.
@@ -336,7 +328,6 @@ class DMA:
         >>> while sm.active():
         """
         ...
-
     def __init__(
         self,
         read: int | AnyReadableBuf | None = None,
@@ -355,7 +346,6 @@ class StateMachine:
     Optionally initialize it with the given program *program*: see
     `StateMachine.init`.
     """
-
     def irq(self, handler=None, trigger=0 | 1, hard=False) -> _IRQ:
         """
         Returns the IRQ object for the given StateMachine.
@@ -363,7 +353,6 @@ class StateMachine:
         Optionally configure it.
         """
         ...
-
     def put(self, value, shift=0):
         """
         Push words onto the state machine's TX FIFO.
@@ -379,7 +368,6 @@ class StateMachine:
         receives ``word << shift``.
         """
         ...
-
     def restart(self) -> None:
         """
         Restarts the state machine and jumps to the beginning of the program.
@@ -394,7 +382,6 @@ class StateMachine:
          - a stalled instruction run using `StateMachine.exec()`
         """
         ...
-
     def rx_fifo(self) -> int:
         """
         Returns the number of words in the state machine's RX FIFO. A value of 0
@@ -404,7 +391,6 @@ class StateMachine:
         `StateMachine.get()`.
         """
         ...
-
     def tx_fifo(self) -> int:
         """
         Returns the number of words in the state machine's TX FIFO. A value of 0
@@ -414,7 +400,6 @@ class StateMachine:
         `StateMachine.put()`.
         """
         ...
-
     def init(
         self,
         program: _PIO_ASM_Program,
@@ -467,7 +452,6 @@ class StateMachine:
         can also be configured manually, but by default will be an input pin.
         """
         ...
-
     def exec(self, instr) -> None:
         """
         Execute a single PIO instruction.
@@ -483,7 +467,6 @@ class StateMachine:
         >>> sm.exec(rp2.asm_pio_encode("out(y, 8)", 0))
         """
         ...
-
     def get(self, buf=None, shift=0) -> Incomplete:
         """
         Pull a word from the state machine's RX FIFO.
@@ -495,7 +478,6 @@ class StateMachine:
         return value is ``word >> shift``.
         """
         ...
-
     def active(self, value: Optional[Any] = None) -> bool:
         """
         Gets or sets whether the state machine is currently running.
@@ -506,7 +488,6 @@ class StateMachine:
         False
         """
         ...
-
     def __init__(
         self,
         id: int,
@@ -533,18 +514,49 @@ class PIO:
     """
 
     JOIN_TX: Final[int] = 1
+    """These constants are used for the *fifo_join* argument to `asm_pio`."""
     JOIN_NONE: Final[int] = 0
+    """These constants are used for the *fifo_join* argument to `asm_pio`."""
     JOIN_RX: Final[int] = 2
+    """These constants are used for the *fifo_join* argument to `asm_pio`."""
     SHIFT_LEFT: Final[int] = 0
+    """\
+    These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
+    to `asm_pio` or `StateMachine.init`.
+    """
     OUT_HIGH: Final[int] = 3
+    """\
+    These constants are used for the *out_init*, *set_init*, and *sideset_init*
+    arguments to `asm_pio`.
+    """
     OUT_LOW: Final[int] = 2
+    """\
+    These constants are used for the *out_init*, *set_init*, and *sideset_init*
+    arguments to `asm_pio`.
+    """
     SHIFT_RIGHT: Final[int] = 1
+    """\
+    These constants are used for the *in_shiftdir* and *out_shiftdir* arguments
+    to `asm_pio` or `StateMachine.init`.
+    """
     IN_LOW: Final[int] = 0
+    """\
+    These constants are used for the *out_init*, *set_init*, and *sideset_init*
+    arguments to `asm_pio`.
+    """
     IRQ_SM3: Final[int] = 2048
+    """These constants are used for the *trigger* argument to `PIO.irq`."""
     IN_HIGH: Final[int] = 1
+    """\
+    These constants are used for the *out_init*, *set_init*, and *sideset_init*
+    arguments to `asm_pio`.
+    """
     IRQ_SM2: Final[int] = 1024
+    """These constants are used for the *trigger* argument to `PIO.irq`."""
     IRQ_SM0: Final[int] = 256
+    """These constants are used for the *trigger* argument to `PIO.irq`."""
     IRQ_SM1: Final[int] = 512
+    """These constants are used for the *trigger* argument to `PIO.irq`."""
     def state_machine(self, id: int, program: _PIO_ASM_Program, *args, **kwargs) -> StateMachine:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
@@ -556,7 +568,6 @@ class PIO:
         StateMachine(7)
         """
         ...
-
     def remove_program(self, program: Optional[_PIO_ASM_Program] = None) -> None:
         """
         Remove *program* from the instruction memory of this PIO instance.
@@ -566,7 +577,6 @@ class PIO:
         It is not an error to remove a program which has already been removed.
         """
         ...
-
     def irq(
         self,
         handler: Optional[Callable[[PIO], None]] = None,
@@ -581,7 +591,6 @@ class PIO:
         Optionally configure it.
         """
         ...
-
     def add_program(self, program: _PIO_ASM_Program) -> None:
         """
         Add the *program* to the instruction memory of this PIO instance.
@@ -591,7 +600,6 @@ class PIO:
         this method will raise ``OSError(ENOMEM)``.
         """
         ...
-
     def __init__(self, id) -> None: ...
 
 class PIOASMError(Exception): ...
@@ -605,7 +613,6 @@ class PIOASMEmit:
 
     The class should not be instantiated directly, but used via the `@asm_pio` decorator.
     """
-
     def in_(self, src: int, data) -> _PIO_ASM_Program:
         """rp2.PIO IN instruction.
 
@@ -638,7 +645,6 @@ class PIOASMEmit:
         from FIFO address + 3, which would take bits 31…24 of the FIFO contents.
         """
         ...
-
     def side(self, value: int):
         """rp2.PIO side modifier.
         This is a modifier which can be applied to any instruction, and is used to control side-set pin values.
@@ -651,7 +657,6 @@ class PIOASMEmit:
         `side(0b00011)` sets the first and the second side-set pin HIGH, and the others LOW.
         """
         ...
-
     def out(self, destination: int, bit_count: int) -> _PIO_ASM_Program:
         """rp2.PIO OUT instruction.
 
@@ -689,7 +694,6 @@ class PIOASMEmit:
         OUT PC behaves as an unconditional jump to an address shifted out from the OSR.
         """
         ...
-
     def jmp(self, condition, label: Incomplete | None = ...) -> _PIO_ASM_Program:
         """rp2.PIO JMP instruction.
 
@@ -724,14 +728,12 @@ class PIOASMEmit:
         decrement took place: if the register is initially nonzero, the branch is taken.
         """
         ...
-
     def start_pass(self, pass_) -> None:
         """The start_pass method is used to start a pass over the instructions,
         setting up the necessary state for the pass. It handles wrapping instructions
         if needed and adjusts the delay maximum based on the number of side-set bits.
         """
         ...
-
     def wrap(self) -> None:
         """rp2.PIO WRAP directive.
 
@@ -742,7 +744,6 @@ class PIOASMEmit:
         defaults to after the last program instruction.
         """
         ...
-
     def word(self, instr, label: Incomplete | None = ...) -> _PIO_ASM_Program:
         """rp2.PIO instruction.
 
@@ -750,7 +751,6 @@ class PIOASMEmit:
         invalid outside of a program.
         """
         ...
-
     def wait(self, polarity: int, src: int, index: int, /) -> _PIO_ASM_Program:
         """rp2.PIO WAIT instruction.
 
@@ -785,7 +785,6 @@ class PIOASMEmit:
         system interrupt handler
         """
         ...
-
     def wrap_target(self) -> None:
         """rp2.PIO WRAP_TARGET directive.
 
@@ -794,14 +793,12 @@ class PIOASMEmit:
         of a program, may only be used once within a program, and if not specified
         defaults to the start of the program
         """
-
     def delay(self, delay: int):
         """rp2.PIO delay modifier.
 
         The delay method allows setting a delay for the current instruction,
         ensuring it does not exceed the maximum allowed delay.
         """
-
     def label(self, label: str) -> None:
         """rp2.PIO instruction.
 
@@ -816,7 +813,6 @@ class PIOASMEmit:
         at the start of a line
         """
         ...
-
     def irq(self, mod, index: Incomplete | None = ...) -> _PIO_ASM_Program:
         """rp2.PIO instruction.
 
@@ -835,7 +831,6 @@ class PIOASMEmit:
         The modulo addition bit allows relative addressing of 'IRQ' and 'WAIT' instructions, for synchronising state machines
         which are running the same program. Bit 2 (the third LSB) is unaffected by this addition.
         If Wait is set, Delay cycles do not begin until after the wait period elapses."""
-
     def set(self, destination: int, data) -> _PIO_ASM_Program:
         """rp2.PIO SET instruction.
 
@@ -859,7 +854,6 @@ class PIOASMEmit:
         UART transmitter might use SET to assert start and stop bits, and OUT instructions to shift out FIFO data to the same pins.
         """
         ...
-
     def mov(self, dest, src, operation: int | None = None) -> _PIO_ASM_Program:
         """rp2.PIO MOV instruction.
 
@@ -905,7 +899,6 @@ class PIOASMEmit:
 
         """
         ...
-
     def push(self, value: int = ..., value2: int = ...) -> _PIO_ASM_Program:
         """rp2.PIO PUSH instruction.
 
@@ -924,7 +917,6 @@ class PIOASMEmit:
 
         """
         ...
-
     def pull(self, block: int = block, timeout: int = 0) -> _PIO_ASM_Program:
         """rp2.PIO PULL instruction.
 
@@ -950,7 +942,6 @@ class PIOASMEmit:
         on autopull
         """
         ...
-
     def nop(self) -> _PIO_ASM_Program:
         """rp2.PIO NOP instruction.
 
@@ -958,7 +949,6 @@ class PIOASMEmit:
         operation or an extra delay.
         """
         ...
-
     def __init__(
         self,
         *,

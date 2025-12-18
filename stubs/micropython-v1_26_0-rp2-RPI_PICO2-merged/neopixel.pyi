@@ -15,7 +15,7 @@ Module: 'neopixel' on micropython-v1.26.0-rp2-RPI_PICO2
 """
 
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.26.0', 'arch': 'armv7emsp', 'version': '1.26.0', 'port': 'rp2', 'board': 'RPI_PICO2', 'family': 'micropython', 'board_id': 'RPI_PICO2', 'variant': '', 'cpu': 'RP2350'}
-# Stubber: v1.26.0
+# Stubber: v1.26.4
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import _NeoPixelBase
@@ -55,14 +55,12 @@ class NeoPixel(_NeoPixelBase):
         Writes the current pixel data to the strip.
         """
         ...
-
     def fill(self, pixel: _Color, /) -> None:
         """
         Sets the value of all pixels to the specified *pixel* value (i.e. an
         RGB/RGBW tuple).
         """
         ...
-
     def __init__(self, pin: Pin, n: int, /, *, bpp: int = 3, timing: int = 1) -> None:
         """
         Construct an NeoPixel object.  The parameters are:

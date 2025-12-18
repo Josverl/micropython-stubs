@@ -13,7 +13,7 @@ Module: 'errno' on micropython-v1.26.0-rp2-RPI_PICO2
 """
 
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.26.0', 'arch': 'armv7emsp', 'version': '1.26.0', 'port': 'rp2', 'board': 'RPI_PICO2', 'family': 'micropython', 'board_id': 'RPI_PICO2', 'variant': '', 'cpu': 'RP2350'}
-# Stubber: v1.26.0
+# Stubber: v1.26.4
 from __future__ import annotations
 from typing import Dict, Final
 from _typeshed import Incomplete
@@ -31,13 +31,44 @@ ENOMEM: Final[int] = 12
 EOPNOTSUPP: Final[int] = 95
 ENOTCONN: Final[int] = 107
 errorcode: dict = {}
+"""\
+Dictionary mapping numeric error codes to strings with symbolic error
+code (see above)::
+
+>>> print(errno.errorcode[errno.EEXIST])
+EEXIST
+"""
 EAGAIN: Final[int] = 11
+"""\
+Error codes, based on ANSI C/POSIX standard. All error codes start with
+"E". As mentioned above, inventory of the codes depends on
+:term:`MicroPython port`. Errors are usually accessible as ``exc.errno``
+where ``exc`` is an instance of `OSError`. Usage example::
+
+try:
+os.mkdir("my_dir")
+except OSError as exc:
+if exc.errno == errno.EEXIST:
+print("Directory already exists")
+"""
 EALREADY: Final[int] = 114
 EBADF: Final[int] = 9
 EADDRINUSE: Final[int] = 98
 EACCES: Final[int] = 13
 EINPROGRESS: Final[int] = 115
 EEXIST: Final[int] = 17
+"""\
+Error codes, based on ANSI C/POSIX standard. All error codes start with
+"E". As mentioned above, inventory of the codes depends on
+:term:`MicroPython port`. Errors are usually accessible as ``exc.errno``
+where ``exc`` is an instance of `OSError`. Usage example::
+
+try:
+os.mkdir("my_dir")
+except OSError as exc:
+if exc.errno == errno.EEXIST:
+print("Directory already exists")
+"""
 EHOSTUNREACH: Final[int] = 113
 ECONNABORTED: Final[int] = 103
 ECONNRESET: Final[int] = 104

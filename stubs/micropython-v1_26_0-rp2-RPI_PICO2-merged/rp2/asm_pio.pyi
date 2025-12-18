@@ -15,10 +15,10 @@ For a simpler and clearer reference on PIO assembly, you can also visit: https:/
 
 rp2.PIO type hints have to be loaded manually. Add the following lines to the top of the file with the PIO assembler code:
 
-```py	
+```py
 # -----------------------------------------------
 # add type hints for the rp2.PIO Instructions
-try: 
+try:
     from typing_extensions import TYPE_CHECKING # type: ignore
 except ImportError:
     TYPE_CHECKING = False
@@ -109,7 +109,6 @@ if TYPE_CHECKING:
     # being stored in only a few bits. This directive is invalid outside of a program
 
     ####################################################################################
-
     def delay(delay: int) -> _PIO_ASM_Program:
         """rp2.PIO delay modifier.
 

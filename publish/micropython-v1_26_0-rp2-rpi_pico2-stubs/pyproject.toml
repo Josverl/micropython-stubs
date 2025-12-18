@@ -92,6 +92,7 @@ packages = [
     { include = "ustruct.pyi" },
     { include = "usys.pyi" },
     { include = "utime.pyi" },
+    { include = "uwebsocket.pyi" },
     { include = "uzlib.pyi" },
     { include = "vfs.pyi" },
 ]

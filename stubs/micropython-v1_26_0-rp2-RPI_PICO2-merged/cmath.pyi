@@ -16,7 +16,7 @@ Module: 'cmath' on micropython-v1.26.0-rp2-RPI_PICO2
 """
 
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.26.0', 'arch': 'armv7emsp', 'version': '1.26.0', 'port': 'rp2', 'board': 'RPI_PICO2', 'family': 'micropython', 'board_id': 'RPI_PICO2', 'variant': '', 'cpu': 'RP2350'}
-# Stubber: v1.26.0
+# Stubber: v1.26.4
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing import SupportsComplex, SupportsFloat, SupportsIndex, Tuple
@@ -25,7 +25,9 @@ from typing_extensions import Awaitable, TypeAlias, TypeVar
 _C: TypeAlias = SupportsFloat | SupportsComplex | SupportsIndex | complex
 
 e: float = 2.7182818
+"""base of the natural logarithm"""
 pi: float = 3.1415928
+"""the ratio of a circle's circumference to its diameter"""
 
 def polar(z: _C, /) -> Tuple:
     """

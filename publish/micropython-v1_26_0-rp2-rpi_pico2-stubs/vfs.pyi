@@ -22,7 +22,7 @@ Module: 'vfs' on micropython-v1.26.0-rp2-RPI_PICO2
 """
 
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.26.0', 'arch': 'armv7emsp', 'version': '1.26.0', 'port': 'rp2', 'board': 'RPI_PICO2', 'family': 'micropython', 'board_id': 'RPI_PICO2', 'variant': '', 'cpu': 'RP2350'}
-# Stubber: v1.26.0
+# Stubber: v1.26.4
 from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import _BlockDeviceProtocol
@@ -81,7 +81,6 @@ class VfsLfs2:
 
     See :ref:`filesystem` for more information.
     """
-
     def rename(self, *args, **kwargs) -> Incomplete: ...
     @staticmethod
     def mkfs(block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32) -> None:
@@ -92,7 +91,6 @@ class VfsLfs2:
                   for details see `littlefs issue 295`_.
         """
         ...
-
     def mount(self, *args, **kwargs) -> Incomplete: ...
     def statvfs(self, *args, **kwargs) -> Incomplete: ...
     def rmdir(self, *args, **kwargs) -> Incomplete: ...
@@ -112,7 +110,6 @@ class VfsFat:
     the FAT filesystem is provided by *block_dev*.
     Objects created by this constructor can be mounted using :func:`mount`.
     """
-
     def rename(self, *args, **kwargs) -> Incomplete: ...
     @staticmethod
     def mkfs(block_dev: AbstractBlockDev) -> None:
@@ -120,7 +117,6 @@ class VfsFat:
         Build a FAT filesystem on *block_dev*.
         """
         ...
-
     def mount(self, *args, **kwargs) -> Incomplete: ...
     def statvfs(self, *args, **kwargs) -> Incomplete: ...
     def rmdir(self, *args, **kwargs) -> Incomplete: ...

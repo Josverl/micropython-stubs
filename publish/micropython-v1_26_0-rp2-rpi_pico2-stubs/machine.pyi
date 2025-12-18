@@ -15,7 +15,7 @@ Module: 'machine' on micropython-v1.26.0-rp2-RPI_PICO2
 """
 
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.26.0', 'arch': 'armv7emsp', 'version': '1.26.0', 'port': 'rp2', 'board': 'RPI_PICO2', 'family': 'micropython', 'board_id': 'RPI_PICO2', 'variant': '', 'cpu': 'RP2350'}
-# Stubber: v1.26.0
+# Stubber: v1.26.4
 from __future__ import annotations
 from typing import NoReturn, Union, Tuple, Callable, List, Sequence, Any, Optional, overload, Final
 from _typeshed import Incomplete
@@ -24,19 +24,30 @@ from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 from vfs import AbstractBlockDev
 
 PWRON_RESET: Final[int] = 1
+"""Reset causes."""
 WDT_RESET: Final[int] = 3
+"""Reset causes."""
 ATTN_0DB: int = ...
 ID_T: TypeAlias = int | str
 PinLike: TypeAlias = Pin | int | str
 IDLE: Incomplete
+"""IRQ wake values."""
 SLEEP: Incomplete
+"""IRQ wake values."""
 DEEPSLEEP: Incomplete
+"""IRQ wake values."""
 HARD_RESET: Incomplete
+"""Reset causes."""
 DEEPSLEEP_RESET: Incomplete
+"""Reset causes."""
 SOFT_RESET: Incomplete
+"""Reset causes."""
 WLAN_WAKE: Incomplete
+"""Wake-up reasons."""
 PIN_WAKE: Incomplete
+"""Wake-up reasons."""
 RTC_WAKE: Incomplete
+"""Wake-up reasons."""
 _IRQ_STATE: TypeAlias = int
 
 def dht_readinto(*args, **kwargs) -> Incomplete: ...
@@ -290,8 +301,19 @@ def lightsleep(time_ms: int, /) -> None:
     """
 
 mem8: Incomplete  ## <class 'mem'> = <8-bit memory>
+"""Read/write 8 bits of memory."""
 mem32: Incomplete  ## <class 'mem'> = <32-bit memory>
+"""\
+Read/write 32 bits of memory.
+
+Use subscript notation ``[...]`` to index these objects with the address of
+interest. Note that the address is the byte address, regardless of the size of
+memory being accessed.
+
+Example use (registers are specific to an stm32 microcontroller):
+"""
 mem16: Incomplete  ## <class 'mem'> = <16-bit memory>
+"""Read/write 16 bits of memory."""
 
 class PWM:
     """
@@ -397,7 +419,6 @@ class PWM:
         With a single *value* argument the frequency is set to that value in Hz.  The
         method may raise a ``ValueError`` if the frequency is outside the valid range.
         """
-
     def init(self, *, freq: int = ..., duty_u16: int = ..., duty_ns: int = ...) -> None:
         """
         Modify settings for the PWM object.  See the above constructor for details
@@ -428,13 +449,11 @@ class PWM:
 
         With a single *value* argument the pulse width is set to that value.
         """
-
     def deinit(self) -> None:
         """
         Disable the PWM output.
         """
         ...
-
     def __init__(
         self,
         dest: PinLike,
@@ -475,7 +494,6 @@ class WDT:
 
     Availability of this class: pyboard, WiPy, esp8266, esp32.
     """
-
     def feed(self) -> None:
         """
         Feed the WDT to prevent it from resetting the system. The application
@@ -483,7 +501,6 @@ class WDT:
         only fed after verifying that everything is functioning correctly.
         """
         ...
-
     def __init__(self, *, id: int = 0, timeout: int = 5000) -> None:
         """
         Create a WDT object and start it. The timeout must be given in milliseconds.
@@ -565,9 +582,13 @@ class I2S:
     """
 
     RX: Final[int] = 0
+    """for initialising the I2S bus ``mode`` to receive"""
     MONO: Final[int] = 0
+    """for initialising the I2S bus ``format`` to mono"""
     STEREO: Final[int] = 1
+    """for initialising the I2S bus ``format`` to stereo"""
     TX: Final[int] = 1
+    """for initialising the I2S bus ``mode`` to transmit"""
     @staticmethod
     def shift(
         buf: AnyWritableBuf,
@@ -581,7 +602,6 @@ class I2S:
         Typically used for volume control.  Each bit shift changes sample volume by 6dB.
         """
         ...
-
     def init(
         self,
         *,
@@ -598,7 +618,6 @@ class I2S:
         see Constructor for argument descriptions
         """
         ...
-
     def irq(
         self,
         handler: Callable[[], None],
@@ -610,7 +629,6 @@ class I2S:
         ``handler`` is called in the context of the MicroPython scheduler.
         """
         ...
-
     def readinto(
         self,
         buf: AnyWritableBuf,
@@ -623,13 +641,11 @@ class I2S:
         Returns number of bytes read
         """
         ...
-
     def deinit(self) -> None:
         """
         Deinitialize the I2S bus
         """
         ...
-
     def write(
         self,
         buf: AnyReadableBuf,
@@ -642,7 +658,6 @@ class I2S:
         Returns number of bytes written
         """
         ...
-
     def __init__(
         self,
         id: ID_T,
@@ -718,7 +733,6 @@ class ADC:
         such that the minimum value is 0 and the maximum value is 65535.
         """
         ...
-
     def __init__(self, pin: PinLike, *, atten=ATTN_0DB) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
@@ -817,7 +831,6 @@ class I2C:
         i2c.writeto_mem(42, 2, b'\x10') # write 1 byte to memory of peripheral 42
                                         #   starting at address 2 in the peripheral
     """
-
     def readfrom_mem_into(self, addr: int, memaddr: int, buf: AnyWritableBuf, /, *, addrsize: int = 8) -> None:
         """
         Read into *buf* from the peripheral specified by *addr* starting from the
@@ -829,7 +842,6 @@ class I2C:
         The method returns ``None``.
         """
         ...
-
     def readfrom_into(self, addr: int, buf: AnyWritableBuf, stop: bool = True, /) -> None:
         """
         Read into *buf* from the peripheral specified by *addr*.
@@ -839,7 +851,6 @@ class I2C:
         The method returns ``None``.
         """
         ...
-
     def readfrom_mem(self, addr: int, memaddr: int, nbytes: int, /, *, addrsize: int = 8) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr* starting from the memory
@@ -848,7 +859,6 @@ class I2C:
         Returns a `bytes` object with the data read.
         """
         ...
-
     def writeto_mem(self, addr: int, memaddr: int, buf: AnyReadableBuf, /, *, addrsize: int = 8) -> None:
         """
         Write *buf* to the peripheral specified by *addr* starting from the
@@ -859,7 +869,6 @@ class I2C:
         The method returns ``None``.
         """
         ...
-
     def scan(self) -> List:
         """
         Scan all I2C addresses between 0x08 and 0x77 inclusive and return a list of
@@ -867,7 +876,6 @@ class I2C:
         its address (including a write bit) is sent on the bus.
         """
         ...
-
     def writeto(self, addr: int, buf: AnyReadableBuf, stop: bool = True, /) -> int:
         """
         Write the bytes from *buf* to the peripheral specified by *addr*.  If a
@@ -877,7 +885,6 @@ class I2C:
         The function returns the number of ACKs that were received.
         """
         ...
-
     def writevto(self, addr: int, vector: Sequence[AnyReadableBuf], stop: bool = True, /) -> int:
         """
         Write the bytes contained in *vector* to the peripheral specified by *addr*.
@@ -893,13 +900,11 @@ class I2C:
         returns the number of ACKs that were received.
         """
         ...
-
     def start(self) -> None:
         """
         Generate a START condition on the bus (SDA transitions to low while SCL is high).
         """
         ...
-
     def readfrom(self, addr: int, nbytes: int, stop: bool = True, /) -> bytes:
         """
         Read *nbytes* from the peripheral specified by *addr*.
@@ -907,7 +912,6 @@ class I2C:
         Returns a `bytes` object with the data read.
         """
         ...
-
     def readinto(self, buf: AnyWritableBuf, nack: bool = True, /) -> None:
         """
         Reads bytes from the bus and stores them into *buf*.  The number of bytes
@@ -945,13 +949,11 @@ class I2C:
          requested frequency. This is dependent on the platform hardware. The actual
          rate may be determined by printing the I2C object.
         """
-
     def stop(self) -> None:
         """
         Generate a STOP condition on the bus (SDA transitions to high while SCL is high).
         """
         ...
-
     def write(self, buf: AnyReadableBuf, /) -> int:
         """
         Write the bytes from *buf* to the bus.  Checks that an ACK is received
@@ -1032,18 +1034,23 @@ class I2CTarget:
     """
 
     IRQ_END_READ: Final[int] = 16
+    """IRQ trigger sources."""
     IRQ_ADDR_MATCH_WRITE: Final[int] = 2
+    """IRQ trigger sources."""
     IRQ_END_WRITE: Final[int] = 32
+    """IRQ trigger sources."""
     IRQ_READ_REQ: Final[int] = 4
+    """IRQ trigger sources."""
     IRQ_ADDR_MATCH_READ: Final[int] = 1
+    """IRQ trigger sources."""
     IRQ_WRITE_REQ: Final[int] = 8
+    """IRQ trigger sources."""
     def deinit(self) -> Incomplete:
         """
         Deinitialise the I2C target.  After this method is called the hardware will no
         longer respond to requests on the I2C bus, and no other methods can be called.
         """
         ...
-
     def irq(self, handler=None, trigger=IRQ_END_READ | IRQ_END_WRITE, hard=False) -> Incomplete:
         """
         Configure an IRQ *handler* to be called when an event occurs.  The possible events are
@@ -1083,7 +1090,6 @@ class I2CTarget:
              hardware event.
         """
         ...
-
     def write(self, buf) -> int:
         """
         Write out the bytes from the given buffer, to be passed to the I2C controller
@@ -1091,14 +1097,12 @@ class I2CTarget:
         only accept one byte at a time to this method.
         """
         ...
-
     def readinto(self, buf) -> int:
         """
         Read into the given buffer any pending bytes written by the I2C controller.
         Returns the number of bytes read.
         """
         ...
-
     def __init__(self, id, addr, *, addrsize=7, mem=None, mem_addrsize=8, scl=None, sda=None) -> None: ...
 
 class SoftSPI(SPI):
@@ -1109,7 +1113,9 @@ class SoftSPI(SPI):
     """
 
     LSB: Final[int] = 0
+    """set the first bit to be the least significant bit"""
     MSB: Final[int] = 1
+    """set the first bit to be the most significant bit"""
     def deinit(self, *args, **kwargs) -> Incomplete: ...
     def init(self, *args, **kwargs) -> Incomplete: ...
     def write_readinto(self, *args, **kwargs) -> Incomplete: ...
@@ -1153,7 +1159,9 @@ class Timer:
     """
 
     PERIODIC: Final[int] = 1
+    """Timer operating mode."""
     ONE_SHOT: Final[int] = 0
+    """Timer operating mode."""
 
     @overload
     def init(
@@ -1217,13 +1225,11 @@ class Timer:
             ``TypeError: 'NoneType' object isn't callable``
         """
         ...
-
     def deinit(self) -> None:
         """
         Deinitialises the timer. Stops the timer, and disables the timer peripheral.
         """
         ...
-
     @overload
     def __init__(self, id: int, /):
         """
@@ -1322,11 +1328,36 @@ class UART:
 
     INV_TX: Final[int] = 1
     RTS: Final[int] = 2
+    """\
+    Flow control options.
+    
+    Availability: esp32, mimxrt, renesas-ra, rp2, stm32.
+    """
     INV_RX: Final[int] = 2
     IRQ_TXIDLE: Final[int] = 32
+    """\
+    IRQ trigger sources.
+    
+    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
+    """
     IRQ_BREAK: Final[int] = 512
+    """\
+    IRQ trigger sources.
+    
+    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
+    """
     IRQ_RXIDLE: Final[int] = 64
+    """\
+    IRQ trigger sources.
+    
+    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
+    """
     CTS: Final[int] = 1
+    """\
+    Flow control options.
+    
+    Availability: esp32, mimxrt, renesas-ra, rp2, stm32.
+    """
     IRQ_RX: Incomplete
     IDLE: int = ...
     def irq(
@@ -1364,14 +1395,12 @@ class UART:
         Due to limitations of the hardware not all trigger events are available on all ports.
         """
         ...
-
     def sendbreak(self) -> None:
         """
         Send a break condition on the bus. This drives the bus low for a duration
         longer than required for a normal transmission of a character.
         """
         ...
-
     def deinit(self) -> None:
         """
         Turn off the UART bus.
@@ -1576,7 +1605,6 @@ class UART:
           Also do not call ``deinit()`` as it will prevent calling ``init()``
           again.
         """
-
     def flush(self) -> Incomplete:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
@@ -1591,7 +1619,6 @@ class UART:
         Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
         """
         ...
-
     def txdone(self) -> bool:
         """
         Tells whether all data has been sent or no data transfer is happening. In this case,
@@ -1628,7 +1655,6 @@ class UART:
         Return value: a bytes object containing the bytes read in.  Returns ``None``
         on timeout.
         """
-
     def any(self) -> int:
         """
         Returns an integer counting the number of characters that can be read without
@@ -1643,7 +1669,6 @@ class UART:
          poll.poll(timeout)
         """
         ...
-
     def write(self, buf: AnyReadableBuf, /) -> Union[int, None]:
         """
         Write the buffer of bytes to the bus.
@@ -1673,7 +1698,6 @@ class UART:
         Return value: number of bytes read and stored into ``buf`` or ``None`` on
         timeout.
         """
-
     def readline(self) -> Union[str, None]:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
@@ -1682,7 +1706,6 @@ class UART:
         Return value: the line read or ``None`` on timeout.
         """
         ...
-
     @overload
     def __init__(
         self,
@@ -1771,7 +1794,6 @@ class USBDevice:
         active.
         """
         ...
-
     def config(
         self,
         desc_dev,
@@ -1879,7 +1901,6 @@ class USBDevice:
                     already completed.
         """
         ...
-
     def remote_wakeup(self) -> bool:
         """
         Wake up host if we are in suspend mode and the REMOTE_WAKEUP feature
@@ -1888,7 +1909,6 @@ class USBDevice:
         active and the host was woken up.
         """
         ...
-
     def stall(self, ep, stall: bool | None = None, /) -> bool:
         """
         Calling this function gets or sets the STALL state of a device endpoint.
@@ -1909,7 +1929,6 @@ class USBDevice:
         active.
         """
         ...
-
     def active(self, value: Any | None = None, /) -> bool:
         """
         Returns the current active state of this runtime USB device as a
@@ -1936,9 +1955,7 @@ class USBDevice:
         itf_max: int = 2
         str_max: int = 5
         desc_dev: bytes = b"\x12\x01\x00\x02\xef\x02\x01@\x8a.\x05\x00\x00\x01\x01\x02\x03\x01"
-        desc_cfg: bytes = (
-            b"\t\x02K\x00\x02\x01\x00\x80}\x08\x0b\x00\x02\x02\x02\x00\x00\t\x04\x00\x00\x01\x02\x02\x00\x04\x05$\x00 \x01\x05$\x01\x00\x01\x04$\x02\x06\x05$\x06\x00\x01\x07\x05\x81\x03\x08\x00\x10\t\x04\x01\x00\x02\n\x00\x00\x00\x07\x05\x02\x02@\x00\x00\x07\x05\x82\x02@\x00\x00"
-        )
+        desc_cfg: bytes = b"\t\x02K\x00\x02\x01\x00\x80}\x08\x0b\x00\x02\x02\x02\x00\x00\t\x04\x00\x00\x01\x02\x02\x00\x04\x05$\x00 \x01\x05$\x01\x00\x01\x04$\x02\x06\x05$\x06\x00\x01\x07\x05\x81\x03\x08\x00\x10\t\x04\x01\x00\x02\n\x00\x00\x00\x07\x05\x02\x02@\x00\x00\x07\x05\x82\x02@\x00\x00"
         def __init__(self, *argv, **kwargs) -> None: ...
 
     class BUILTIN_NONE:
@@ -1954,9 +1971,7 @@ class USBDevice:
         itf_max: int = 2
         str_max: int = 5
         desc_dev: bytes = b"\x12\x01\x00\x02\xef\x02\x01@\x8a.\x05\x00\x00\x01\x01\x02\x03\x01"
-        desc_cfg: bytes = (
-            b"\t\x02K\x00\x02\x01\x00\x80}\x08\x0b\x00\x02\x02\x02\x00\x00\t\x04\x00\x00\x01\x02\x02\x00\x04\x05$\x00 \x01\x05$\x01\x00\x01\x04$\x02\x06\x05$\x06\x00\x01\x07\x05\x81\x03\x08\x00\x10\t\x04\x01\x00\x02\n\x00\x00\x00\x07\x05\x02\x02@\x00\x00\x07\x05\x82\x02@\x00\x00"
-        )
+        desc_cfg: bytes = b"\t\x02K\x00\x02\x01\x00\x80}\x08\x0b\x00\x02\x02\x02\x00\x00\t\x04\x00\x00\x01\x02\x02\x00\x04\x05$\x00 \x01\x05$\x01\x00\x01\x04$\x02\x06\x05$\x06\x00\x01\x07\x05\x81\x03\x08\x00\x10\t\x04\x01\x00\x02\n\x00\x00\x00\x07\x05\x02\x02@\x00\x00\x07\x05\x82\x02@\x00\x00"
         def __init__(self, *argv, **kwargs) -> None: ...
 
     def __init__(self) -> None: ...
@@ -2001,17 +2016,31 @@ class Pin:
 
     ALT_SPI: Final[int] = 1
     IN: Final[int] = 0
+    """Selects the pin mode."""
     ALT_USB: Final[int] = 10
     ALT_UART: Final[int] = 2
     IRQ_FALLING: Final[int] = 4
+    """Selects the IRQ trigger type."""
     OUT: Final[int] = 1
+    """Selects the pin mode."""
     OPEN_DRAIN: Final[int] = 2
+    """Selects the pin mode."""
     IRQ_RISING: Final[int] = 8
+    """Selects the IRQ trigger type."""
     PULL_DOWN: Final[int] = 2
+    """\
+    Selects whether there is a pull up/down resistor.  Use the value
+    ``None`` for no pull.
+    """
     ALT_SIO: Final[int] = 5
     ALT_GPCK: Final[int] = 9
     ALT: Final[int] = 3
+    """Selects the pin mode."""
     PULL_UP: Final[int] = 1
+    """\
+    Selects whether there is a pull up/down resistor.  Use the value
+    ``None`` for no pull.
+    """
     ALT_I2C: Final[int] = 3
     ALT_PWM: Final[int] = 4
     ALT_PIO1: Final[int] = 7
@@ -2031,7 +2060,6 @@ class Pin:
         Availability: mimxrt, nrf, renesas-ra, rp2, samd, stm32 ports.
         """
         ...
-
     def irq(
         self,
         /,
@@ -2085,7 +2113,6 @@ class Pin:
         The following methods are not part of the core Pin API and only implemented on certain ports.
         """
         ...
-
     def toggle(self) -> Incomplete:
         """
         Toggle output pin from "0" to "1" or vice-versa.
@@ -2093,19 +2120,16 @@ class Pin:
         Availability: cc3200, esp32, esp8266, mimxrt, rp2, samd ports.
         """
         ...
-
     def off(self) -> None:
         """
         Set pin to "0" output level.
         """
         ...
-
     def on(self) -> None:
         """
         Set pin to "1" output level.
         """
         ...
-
     def init(
         self,
         mode: int = -1,
@@ -2191,7 +2215,6 @@ class Pin:
 
         When setting the value this method returns ``None``.
         """
-
     def high(self) -> None:
         """
         Set pin to "1" output level.
@@ -2421,7 +2444,6 @@ class SoftI2C(I2C):
          stretching (SCL held low by another device on the bus), after
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
-
     def readfrom_mem_into(self, *args, **kwargs) -> Incomplete: ...
     def readfrom_into(self, *args, **kwargs) -> Incomplete: ...
     def readfrom_mem(self, *args, **kwargs) -> Incomplete: ...
@@ -2469,7 +2491,6 @@ class RTC:
         The meaning of the ``subseconds`` field is hardware dependent.
         """
         ...
-
     @overload
     def __init__(self, id: int = 0):
         """
@@ -2740,7 +2761,9 @@ class SPI:
     """
 
     LSB: Final[int] = 0
+    """set the first bit to be the least significant bit"""
     MSB: Final[int] = 1
+    """set the first bit to be the most significant bit"""
     CONTROLLER: Incomplete
     def deinit(self) -> None:
         """
@@ -2815,7 +2838,6 @@ class SPI:
         requested baudrate. This is dependent on the platform hardware. The actual
         rate may be determined by printing the SPI object.
         """
-
     def write_readinto(self, write_buf: AnyReadableBuf, read_buf: AnyWritableBuf, /) -> int:
         """
         Write the bytes from ``write_buf`` while reading into ``read_buf``.  The
@@ -2826,7 +2848,6 @@ class SPI:
         Note: on WiPy this function returns the number of bytes written.
         """
         ...
-
     def read(self, nbytes: int, write: int = 0x00, /) -> bytes:
         """
         Read a number of bytes specified by ``nbytes`` while continuously writing
@@ -2834,7 +2855,6 @@ class SPI:
         Returns a ``bytes`` object with the data that was read.
         """
         ...
-
     def write(self, buf: AnyReadableBuf, /) -> int:
         """
         Write the bytes contained in ``buf``.
@@ -2843,7 +2863,6 @@ class SPI:
         Note: on WiPy this function returns the number of bytes written.
         """
         ...
-
     def readinto(self, buf: AnyWritableBuf, write: int = 0x00, /) -> int:
         """
         Read into the buffer specified by ``buf`` while continuously writing the
@@ -2853,7 +2872,6 @@ class SPI:
         Note: on WiPy this function returns the number of bytes read.
         """
         ...
-
     @overload
     def __init__(self, id: int, /):
         """
@@ -2986,13 +3004,11 @@ class Signal(Pin):
     work for them simply because their LEDs or relays are wired in a slightly
     different way.
     """
-
     def off(self) -> None:
         """
         Deactivate signal.
         """
         ...
-
     def on(self) -> None:
         """
         Activate signal.
