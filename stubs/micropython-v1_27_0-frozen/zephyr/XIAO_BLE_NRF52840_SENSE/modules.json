@@ -1,0 +1,68 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "zephyr",
+        "platform": "zephyr",
+        "machine": "XIAO_BLE_NRF52840_SENSE",
+        "firmware": "micropython-zephyr-v1_27_0",
+        "nodename": "micropython",
+        "version": "v1.27.0",
+        "release": "v1.27.0",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.26.4",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "aioble/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "aioble/central.py",
+            "module": "central"
+        },
+        {
+            "file": "aioble/client.py",
+            "module": "client"
+        },
+        {
+            "file": "aioble/core.py",
+            "module": "core"
+        },
+        {
+            "file": "aioble/device.py",
+            "module": "device"
+        },
+        {
+            "file": "aioble/l2cap.py",
+            "module": "l2cap"
+        },
+        {
+            "file": "aioble/peripheral.py",
+            "module": "peripheral"
+        },
+        {
+            "file": "aioble/security.py",
+            "module": "security"
+        },
+        {
+            "file": "aioble/server.py",
+            "module": "server"
+        },
+        {
+            "file": "aiorepl.py",
+            "module": "aiorepl"
+        },
+        {
+            "file": "upysh.py",
+            "module": "upysh"
+        }
+    ]
+}

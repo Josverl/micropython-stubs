@@ -1,0 +1,3 @@
+_compressed_pinout: bytes
+
+def pinout() -> None: ...

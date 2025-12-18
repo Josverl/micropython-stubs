@@ -1,0 +1,36 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "samd",
+        "platform": "samd",
+        "machine": "GENERIC",
+        "firmware": "micropython-samd-v1_27_0",
+        "nodename": "micropython",
+        "version": "v1.27.0",
+        "release": "v1.27.0",
+        "sysname": "micropython"
+    },
+    "stubber": {
+        "version": "1.26.4",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        }
+    ]
+}
