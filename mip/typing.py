@@ -1,4 +1,5 @@
-__version__ = "1.26.1"
+__version__ = "1.27.0"
+
 
 def cast(type, val):
     return val
@@ -20,6 +21,10 @@ def overload(func):
     return None
 
 
+def override(func):
+    return func
+
+
 class _AnyCall:
     def __init__(*args, **kwargs):
         pass
@@ -29,6 +34,7 @@ class _AnyCall:
 
     def __getitem__(self, arg):
         return _anyCall
+
 
 _anyCall = _AnyCall()
 
@@ -41,7 +47,7 @@ class _SubscriptableType:
 _Subscriptable = _SubscriptableType()
 
 
-def TypeVar(name, *types, bound: Any | None = None, covariant = False, contravariant = False, infer_variance = False):
+def TypeVar(name, *types, bound: Any | None = None, covariant=False, contravariant=False, infer_variance=False):
     return None
 
 
@@ -124,7 +130,6 @@ TypedDict = dict
 # Text = str
 # Pattern = str
 # Match = str
-
 
 AbstractSet = _Subscriptable
 AsyncContextManager = _Subscriptable
