@@ -102,6 +102,9 @@ def sleep(seconds: float, /) -> None:
        floating-point number to sleep for a fractional number of seconds. Note that
        other boards may not accept a floating-point argument, for compatibility with
        them use `sleep_ms()` and `sleep_us()` functions.
+    
+       Calling ``sleep``, including ``sleep(0)`` is guaranteed to call pending callback
+       functions.
     """
     ...
 def sleep_ms(ms: int, /) -> None:
@@ -112,6 +115,9 @@ def sleep_ms(ms: int, /) -> None:
        may take longer than that if other processing must take place, for example
        interrupt handlers or other threads.  Passing in 0 for *ms* will still allow
        this other processing to occur.  Use `sleep_us()` for more precise delays.
+    
+       Calling ``sleep_ms``, including ``sleep_ms(0)`` is guaranteed to call
+       pending callback functions.
     """
     ...
 def sleep_us(us: int, /) -> None:

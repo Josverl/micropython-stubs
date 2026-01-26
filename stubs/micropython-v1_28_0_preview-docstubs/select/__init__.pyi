@@ -69,6 +69,9 @@ class poll():
         
            In case of timeout, an empty list is returned.
         
+           Calling ``poll.poll`` is guaranteed to call pending callback functions
+           before entering the polling loop.
+        
            Admonition:Difference to CPython
               :class: attention
         
@@ -86,6 +89,9 @@ class poll():
            (equivalent to ``poll.modify(obj, 0)``), so new events for such a stream
            won't be processed until new mask is set with `poll.modify()`. This
            behaviour is useful for asynchronous I/O schedulers.
+        
+           Calling ``poll.ipoll`` is guaranteed to call pending callback functions
+           before entering the polling loop.
         
            Admonition:Difference to CPython
               :class: attention
