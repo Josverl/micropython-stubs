@@ -8,7 +8,7 @@
         "firmware": "micropython-v1_28_0_preview",
         "nodename": "micropython",
         "version": "v1.28.0-preview",
-        "release": "v1.28.0-preview-96-g25b400f68",
+        "release": "v1.28.0-preview-109-gbe15be3ab",
         "sysname": "micropython"
     },
     "stubber": {
@@ -202,6 +202,14 @@
         },
         {
             "file": "micropython/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "mimxrt/Flash.pyi",
+            "module": "Flash"
+        },
+        {
+            "file": "mimxrt/__init__.pyi",
             "module": "__init__"
         },
         {
