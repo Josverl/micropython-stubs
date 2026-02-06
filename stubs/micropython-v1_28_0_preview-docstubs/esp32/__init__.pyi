@@ -612,6 +612,27 @@ class NVS():
             Commits changes made by *set_xxx* methods to flash.
         """
         ...
+class LDO():
+    """
+        Create an object providing access to the Low Dropout Voltage Regulator for a given LDO *channel*.
+    
+        Supported keyword arguments:
+    
+          - *voltage_mv*: The voltage value to be set to the LDO channel, in millivolts
+          - *adjustable*: (Optional): Whether the LDO channel is adjustable, and the voltage can be updated by `adjust_voltage`
+    """
+    def __init__(self, channel, voltage_mv, adjustable=False) -> None:
+        ...
+    def adjust_voltage(self, voltage_mv) -> Incomplete:
+        """
+            Adjust the voltage of the LDO channel.
+        """
+        ...
+    def release(self) -> Incomplete:
+        """
+            Release the LDO channel.
+        """
+        ...
 def wake_on_touch(wake: bool, /) -> None:
     """
         Configure whether or not a touch will wake the device from sleep.
