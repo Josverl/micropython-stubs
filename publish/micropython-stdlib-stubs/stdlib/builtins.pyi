@@ -919,11 +919,7 @@ class slice(Generic[_StartT, _StopT, _StepT]):
     def __new__(cls, stop: int | None, /) -> slice[int | MaybeNone, int | MaybeNone, int | MaybeNone]: ...
     @overload
     def __new__(
-        cls,
-        start: int | None,
-        stop: int | None,
-        step: int | None = None,  # type: ignore
-        /,  # type: ignore
+        cls, start: int | None, stop: int | None, step: int | None = None, /  # type: ignore
     ) -> slice[int | MaybeNone, int | MaybeNone, int | MaybeNone]: ...
     @overload
     def __new__(cls, stop: _T2, /) -> slice[Any, _T2, Any]: ...
@@ -1635,11 +1631,7 @@ def print(
 ) -> None: ...
 @overload
 def print(
-    *values: object,
-    sep: str | None = " ",  # type: ignore
-    end: str | None = "\n",  # type: ignore
-    file: _SupportsWriteAndFlush[str] | None = None,  # type: ignore
-    flush: bool,  # type: ignore
+    *values: object, sep: str | None = " ", end: str | None = "\n", file: _SupportsWriteAndFlush[str] | None = None, flush: bool  # type: ignore
 ) -> None: ...
 
 _E = TypeVar("_E", contravariant=True)

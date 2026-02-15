@@ -8,28 +8,6 @@ CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
 This module provides access to Transport Layer Security (previously and
 widely known as “Secure Sockets Layer”) encryption and peer authentication
 facilities for network sockets, both client-side and server-side.
-
----
-TLS/SSL wrapper for socket objects.
-
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/ssl.html
-
-CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
-
-This module provides access to Transport Layer Security (previously and
-widely known as “Secure Sockets Layer”) encryption and peer authentication
-facilities for network sockets, both client-side and server-side.
-
----
-TLS/SSL wrapper for socket objects.
-
-MicroPython module: https://docs.micropython.org/en/v1.26.0/library/ssl.html
-
-CPython module: :mod:`python:ssl` https://docs.python.org/3/library/ssl.html .
-
-This module provides access to Transport Layer Security (previously and
-widely known as “Secure Sockets Layer”) encryption and peer authentication
-facilities for network sockets, both client-side and server-side.
 """
 
 from __future__ import annotations
@@ -524,7 +502,6 @@ class SSLContext:
         containing the CA certificates.  Only one of these arguments should be provided.
         """
         ...
-
     @overload
     def get_ca_certs(self, binary_form: Literal[False] = False) -> list[_PeerCertRetDictType]: ...
     @overload
@@ -536,7 +513,6 @@ class SSLContext:
         Get a list of enabled ciphers, returned as a list of strings.
         """
         ...
-
     def set_default_verify_paths(self) -> None: ...
     def set_ciphers(self, ciphers) -> None:
         """
@@ -544,7 +520,6 @@ class SSLContext:
         a list of strings in the `IANA cipher suite format <https://wiki.mozilla.org/Security/Cipher_Suites>`_ .
         """
         ...
-
     def set_alpn_protocols(self, alpn_protocols: Iterable[str]) -> None: ...
     def set_npn_protocols(self, npn_protocols: Iterable[str]) -> None: ...
     def set_servername_callback(self, server_name_callback: _SrvnmeCbType | None) -> None: ...
@@ -584,7 +559,6 @@ class SSLContext:
           Server. See :ref:`dtls` for details.
         """
         ...
-
     def wrap_bio(
         self,
         incoming: MemoryBIO,
@@ -671,10 +645,8 @@ if sys.version_info < (3, 9):
 # SOCK_STREAM: int
 # SOL_SOCKET: int
 # SO_TYPE: int
-# PROTOCOL_DTLS_CLIENT: Incomplete
-# PROTOCOL_DTLS_SERVER: Incomplete
-MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"
 PROTOCOL_DTLS_CLIENT: Incomplete
 """Supported values for the *protocol* parameter."""
 PROTOCOL_DTLS_SERVER: Incomplete
 """Supported values for the *protocol* parameter."""
+MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"

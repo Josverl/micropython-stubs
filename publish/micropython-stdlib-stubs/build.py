@@ -62,6 +62,10 @@ STDLIB_MODULES_TO_KEEP = list(
 
 # try to limit the "overspeak" of python modules to the bare minimum
 STDLIB_MODULES_TO_REMOVE = [
+    "_typeshed/_type_checker_internals.pyi",
+    "_typeshed/README.md",
+    "_typeshed/wsgi.pyi",
+    #
     "os/path.pyi",
     "sys/_monitoring.pyi",
     #
@@ -75,6 +79,7 @@ STDLIB_MODULES_TO_REMOVE = [
     "json/decoder.pyi",
     "json/encoder.pyi",
     "json/tool.pyi",
+    "json/scanner.pyi",
 ]
 
 
@@ -142,10 +147,10 @@ COMMENT_OUT_LINES = [
 # this is for things such as function or classdefs that extend beyond a single line
 CHANGE_LINES = [
     (
-        "ssl", 
+        "ssl",
         [
             ("def create_default_context", "def __mpy_has_no_create_default_context"),
-            ("if sys.version_info < (3, 12):","if True:")  # force def wrap_socket to be seen.
+            ("if sys.version_info < (3, 12):", "if True:"),  # force def wrap_socket to be seen.
         ],
     ),
     (
@@ -233,10 +238,10 @@ def update_module_vars(module: Path, keep: set):
 def add_type_ignore(folder: Path):
     """Add type ignores to some of the lines in the _typeshed stubs."""
     n = 0
-    for mod, lines in TYPE_IGNORES:
-        file_path = folder / mod / "__init__.pyi"
+    for module, patterns in TYPE_IGNORES:
+        file_path = folder / module / "__init__.pyi"
         if not file_path.exists():
-            file_path = folder / f"{mod}.pyi"
+            file_path = folder / f"{module}.pyi"
             if not file_path.exists():
                 continue
         with open(file_path, "r") as f:
@@ -244,7 +249,7 @@ def add_type_ignore(folder: Path):
         with open(file_path, "w") as f:
             for line in content:
                 _line = line.rstrip("\n")
-                for ignore in lines:
+                for ignore in patterns:
                     if ignore in _line and not _line.endswith("# type: ignore"):
                         f.write(f"{_line}  # type: ignore\n")
                         n += 1
@@ -304,7 +309,7 @@ def change_lines(folder: Path):
 def update_typing_pyi(
     rootpath: Path,
     dist_stdlib_path: Path,
-    ):
+):
     """
     patch updates into typing.pyi
     - allow IO.write(bytes) overload
@@ -329,6 +334,7 @@ def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
         typeshed_path (Path): The path to the typeshed folder.
     """
     pkg_stdlib_path = dist_stdlib_path / "stdlib"
+    # Clear the stdlib folder
     log.info("Clean up the stdlib folder")
     shutil.rmtree(pkg_stdlib_path, ignore_errors=True)
     time.sleep(1)
@@ -349,7 +355,7 @@ def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
         if fldr.is_dir() and fldr.stem not in STDLIB_MODULES_TO_KEEP:
             shutil.rmtree(fldr)
             time.sleep(0.1)
-
+    # Remove unwanted modules
     log.info("Clean up extraneous stubs from stdlib")
     for stub in pkg_stdlib_path.glob("*.pyi"):
         if stub.stem not in STDLIB_MODULES_TO_KEEP:
@@ -374,7 +380,7 @@ def merge_docstubs_into_stdlib(
     Args:
         dist_stdlib_path (Path): The path to the destination stdlib folder.
         docstubs_path (Path): The path to the docstubs folder.
-        dry_run (bool, optional): Whether to perform a dry run or not. Defaults to True.
+        dry_run (bool, optional): Whether to perform a dry run or not.
     """
     write_back = not dry_run
     show_diff = dry_run
@@ -487,20 +493,20 @@ def update_asyncio_manual(reference_path: Path, dist_stdlib_path: Path):
 
 @click.command()
 # Boolean flags: use dual-form (--flag/--no-flag) so users can explicitly enable/disable
-@click.option("--clone/--no-clone", "-c", help="Clone the typeshed repo.", default=False, show_default=True)
+@click.option("--clone/--no-clone", help="Clone the typeshed repo.", default=False, show_default=True)
 @click.option(
     "--version",
     "-v",
     type=str,
     help="Specify Micropython version",
-    default=get_stable_mp_version(), 
+    default=get_stable_mp_version(),
     show_default=True,
 )
 @click.option(
     "--typeshed/--no-typeshed",
     "-t",
     help="Update stdlib from the typeshed repo.",
-    default=False,
+    default=True,
     show_default=True,
 )
 @click.option(
@@ -512,13 +518,15 @@ def update_asyncio_manual(reference_path: Path, dist_stdlib_path: Path):
 )
 @click.option("--publish/--no-publish", help="Publish the stdlib-stubs module.", default=False, show_default=True)
 @click.option("--build/--no-build", "-b", help="Build the stdlib-stubs module.", default=True, show_default=True)
+@click.option("--clean/--no-clean", "-c", help="Clean the build directories.", default=True, show_default=True)
 def update(
     version: Optional[str] = None,
     clone: bool = False,
-    typeshed: bool = False,
+    typeshed: bool = True,
     merge: bool = True,
     build: bool = True,
     publish: bool = False,
+    clean: bool = True,
 ):
     """
     Update the micropython-stdlib-stubs package and create a wheel file.
@@ -559,6 +567,12 @@ def update(
         print("in the repos folder run:")
         print("git clone https://github.com/python/typeshed.git\ncd typeshed\ngit checkout <commit-hash>")
         log.warning("Not implemented yet")
+
+    if clean:
+        # remove and recreate these folders
+        for folder in (dist_stdlib_path / "stdlib", dist_stdlib_path / "_mpy_shed"):
+            shutil.rmtree(folder, ignore_errors=True)
+            folder.mkdir(parents=True, exist_ok=True)
 
     if typeshed:
         update_stdlib_from_typeshed(dist_stdlib_path, typeshed_path)
@@ -610,6 +624,7 @@ def update(
 
         if publish:
             import keyring
+
             print(f"Publishing stdlib-stubs module... {version}")
             # Run publish capturing stderr so we can show only the error message on failure
             publish_cmd = [

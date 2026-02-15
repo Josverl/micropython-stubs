@@ -7,28 +7,7 @@ CPython module: :mod:`python:collections` https://docs.python.org/3/library/coll
 
 This module implements advanced collection and container types to
 hold/accumulate various objects.
-
----
-Collection and container types.
-
-MicroPython module: https://docs.micropython.org/en/v1.24.0/library/collections.html
-
-CPython module: :mod:`python:collections` https://docs.python.org/3/library/collections.html .
-
-This module implements advanced collection and container types to
-hold/accumulate various objects.
-
----
-Collection and container types.
-
-MicroPython module: https://docs.micropython.org/en/v1.26.0/library/collections.html
-
-CPython module: :mod:`python:collections` https://docs.python.org/3/library/collections.html .
-
-This module implements advanced collection and container types to
-hold/accumulate various objects.
 """
-
 from __future__ import annotations
 import sys
 from _collections_abc import dict_items, dict_keys, dict_values
@@ -68,7 +47,8 @@ _KT_co = TypeVar("_KT_co", covariant=True)
 _VT_co = TypeVar("_VT_co", covariant=True)
 
 # namedtuple is special-cased in the type checker; the initializer is ignored.
-def namedtuple(name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
+def namedtuple(
+    name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
     """
         This is factory function to create a new namedtuple type with a specific
         name and set of fields. A namedtuple is a subclass of tuple which allows
@@ -277,11 +257,10 @@ class UserString(Sequence[UserString]):
     def upper(self) -> Self: ...
     def zfill(self, width: int) -> Self: ...
 
-class deque:
+class deque():
     """
     Minimal implementation of a deque that implements a FIFO buffer.
     """
-
     @property
     def maxlen(self) -> int | None: ...
     @overload
@@ -295,7 +274,6 @@ class deque:
                 no more room in the queue.
         """
         ...
-
     def appendleft(self, x: _T, /) -> None:  # type: ignore
         """
                 Add *x* to the left side of the deque.
@@ -303,7 +281,6 @@ class deque:
                 no more room in the queue.
         """
         ...
-
     def copy(self) -> Self: ...
     def count(self, x: _T, /) -> int: ...  # type: ignore
     def extend(self, iterable: Iterable[_T], /) -> None:
@@ -314,7 +291,6 @@ class deque:
                 no more room in the deque.
         """
         ...
-
     def extendleft(self, iterable: Iterable[_T], /) -> None: ...
     def insert(self, i: int, x: _T, /) -> None: ...  # type: ignore
     def index(self, x: _T, start: int = 0, stop: int = ..., /) -> int: ...  # type: ignore
@@ -324,14 +300,12 @@ class deque:
                 Raises ``IndexError`` if no items are present.
         """
         ...
-
     def popleft(self) -> _T:  # type: ignore
         """
                 Remove and return an item from the left side of the deque.
                 Raises ``IndexError`` if no items are present.
         """
         ...
-
     def remove(self, value: _T, /) -> None: ...  # type: ignore
     def rotate(self, n: int = 1, /) -> None: ...
     def __copy__(self) -> Self: ...
@@ -461,7 +435,6 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):  # type: ignore
         w 5
         b 3
     """
-
     def popitem(self) -> tuple[_KT, _VT]:  # type: ignore
         """
                 Remove and return a (key, value) pair from the dictionary.
