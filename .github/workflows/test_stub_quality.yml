@@ -10,6 +10,7 @@ env:
 
 
 jobs:
+  # Test with --stable-only: current stable release (BLOCKING - will fail workflow)
   test_snippets:
     runs-on: ubuntu-latest
     permissions:
@@ -48,6 +49,12 @@ jobs:
         run: | 
           uv run stubber clone
 
+      - name: Get stable version
+        id: get_version
+        run: |
+          STABLE_VERSION=$(uv run python -c "from mpflash.versions import get_stable_mp_version; print(get_stable_mp_version())")
+          echo "stable_version=$STABLE_VERSION" >> $GITHUB_OUTPUT
+          echo "Testing stable version: $STABLE_VERSION"
 
     #   - name: update the stubs (not pushed) 
     #     continue-on-error: true
@@ -55,15 +62,17 @@ jobs:
     #       source .venv/bin/activate
     #       pwsh -file ./update-stubs.ps1
 
-      - name: Test the snippets (stable only)
-        continue-on-error: true
+      - name: Test the snippets (stable only - blocking)
         run: |
           uv run pytest -m 'snippets' --stable-only --cache-clear --junitxml=./results/results.xml
 
 
-      - name: compare and update
+      - name: Compare and update (stable - will fail on drop)
+        env:
+          VERSION_TYPE: stable
+          TEST_VERSION: ${{ steps.get_version.outputs.stable_version }}
         run: |
-          uv run .github/workflows/compare_score.py
+          uv run python .github/workflows/compare_score_v2.py
 
       - name: Upload results artifact
         uses: actions/upload-artifact@v4
@@ -72,6 +81,7 @@ jobs:
           name: snippet-results-stable-${{ github.run_id }}
           path: results/
 
+  # Test with --preview-only: most recent preview version (NON-BLOCKING - warnings only)
   test_snippets_preview:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -101,15 +111,79 @@ jobs:
         run: |
           uv run stubber clone
 
-      - name: Test the snippets (preview versions, non-blocking)
+      - name: Get preview version
+        id: get_version
+        run: |
+          PREVIEW_VERSION=$(uv run python -c "from mpflash.versions import get_preview_mp_version; print(get_preview_mp_version())")
+          echo "preview_version=$PREVIEW_VERSION" >> $GITHUB_OUTPUT
+          echo "Testing preview version: $PREVIEW_VERSION"
+
+      - name: Test the snippets (preview only - non-blocking)
         continue-on-error: true
         run: |
-          uv run pytest -m 'snippets' --cache-clear --junitxml=./results/results_preview.xml
+          uv run pytest -m 'snippets' --preview-only --cache-clear --junitxml=./results/results_preview.xml
+
+      - name: Compare and log (preview - non-blocking)
+        continue-on-error: true
+        env:
+          VERSION_TYPE: preview
+          TEST_VERSION: ${{ steps.get_version.outputs.preview_version }}
+        run: |
+          uv run python .github/workflows/compare_score_v2.py
 
       - name: Upload preview results artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: snippet-results-preview-${{ github.run_id }}
+          path: results/
+
+  # Test with --recent-majors: last 3 stable major.minor releases (NON-BLOCKING - warnings only)
+  test_snippets_recent:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install poetry
+        run: uv tool install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        working-directory: ${{github.workspace}}
+        run: |
+          uv venv
+          uv pip install -U -r pyproject.toml --extra stubber --extra test
+
+      - name: stubber clone
+        run: |
+          uv run stubber clone
+
+      - name: Test the snippets (recent majors - non-blocking)
+        continue-on-error: true
+        run: |
+          uv run pytest -m 'snippets' --recent-majors --cache-clear --junitxml=./results/results_recent.xml
+
+      - name: Compare and log (recent majors - non-blocking)
+        continue-on-error: true
+        env:
+          VERSION_TYPE: recent_majors
+        run: |
+          uv run python .github/workflows/compare_score_v2.py
+
+      - name: Upload recent majors results artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: snippet-results-recent-${{ github.run_id }}
           path: results/
 
