@@ -27,7 +27,8 @@ from pathlib import Path
 import fasteners
 import pytest
 from loguru import logger as log
-from mpflash.versions import get_preview_mp_version, get_stable_mp_version
+from mpflash.versions import get_preview_mp_version, get_stable_mp_version, micropython_versions
+from packaging.version import Version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
 MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
@@ -40,6 +41,38 @@ def pytest_addoption(parser: pytest.Parser):
         default=False,
         help="Only run tests for the current stable MicroPython release, skipping preview versions.",
     )
+
+
+def major_minor(versions):
+    """Create a list of the most recent version for each major.minor."""
+    mm_groups = {}
+    for v in versions:
+        if v.endswith("-preview"):
+            mm_groups["preview"] = [v]
+            continue
+        major_minor = f"{Version(v).major}.{Version(v).minor}"
+        if major_minor not in mm_groups or "-preview" in v:
+            mm_groups[major_minor] = [v]
+        else:
+            mm_groups[major_minor].append(v)
+    return [max(v) for v in mm_groups.values()]
+
+
+def get_test_versions(config: pytest.Config) -> list[str]:
+    """Get the list of MicroPython versions to test based on --stable-only flag.
+    
+    Args:
+        config: The pytest Config object.
+        
+    Returns:
+        List of version strings to test (e.g., ['v1.27.0'] or ['v1.27.0', 'v1.26.0', 'v1.25.0']).
+    """
+    stable_only = config.getoption("--stable-only", default=False)
+    if stable_only:
+        return [get_stable_mp_version()]
+    else:
+        # Only the recent versions (last 3 major.minor releases)
+        return sorted(major_minor(micropython_versions(minver="v1.24.0")), reverse=True)[:3]
 
 
 def flat_version(version):
