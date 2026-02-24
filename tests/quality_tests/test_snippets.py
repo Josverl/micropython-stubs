@@ -96,21 +96,23 @@ HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
 # only the recent versions
-VERSIONS = sorted(major_minor(micropython_versions(minver="v1.24.0")), reverse=True)[:3]
+ALL_VERSIONS = sorted(major_minor(micropython_versions(minver="v1.24.0")), reverse=True)[:3]
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
     """
     Generates a test parameterization for each portboard, version and feature defined in:
     - SOURCES
-    - VERSIONS
+    - VERSIONS (filtered by --stable-only if requested)
     - PORTBOARD_FEATURES
     """
+    stable_only = metafunc.config.getoption("--stable-only", default=False)
+    versions = [v for v in ALL_VERSIONS if not v.endswith("-preview")] if stable_only else ALL_VERSIONS
     argnames = "stub_source, version, portboard, feature"
     args_lst = []
     copy_config_files()
     for src in SOURCES:
-        for version in VERSIONS:
+        for version in versions:
             # skip latest for pypi
             if src == "pypi" and version in {"preview", "latest"}:
                 continue

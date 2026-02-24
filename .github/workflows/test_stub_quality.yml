@@ -12,6 +12,8 @@ env:
 jobs:
   test_snippets:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       #----------------------------------------------
@@ -53,12 +55,61 @@ jobs:
     #       source .venv/bin/activate
     #       pwsh -file ./update-stubs.ps1
 
-      - name: Test the snippets 
+      - name: Test the snippets (stable only)
         continue-on-error: true
         run: |
-          uv run pytest -m 'snippets' --cache-clear --junitxml=./results/results.xml
+          uv run pytest -m 'snippets' --stable-only --cache-clear --junitxml=./results/results.xml
 
 
       - name: compare and update
         run: |
           uv run .github/workflows/compare_score.py
+
+      - name: Upload results artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: snippet-results-stable-${{ github.run_id }}
+          path: results/
+
+  test_snippets_preview:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+
+      - name: Install poetry
+        run: uv tool install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        working-directory: ${{github.workspace}}
+        run: |
+          uv venv
+          uv pip install -U -r pyproject.toml --extra stubber --extra test
+
+      - name: stubber clone
+        run: |
+          uv run stubber clone
+
+      - name: Test the snippets (preview versions, non-blocking)
+        continue-on-error: true
+        run: |
+          uv run pytest -m 'snippets' --cache-clear --junitxml=./results/results_preview.xml
+
+      - name: Upload preview results artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: snippet-results-preview-${{ github.run_id }}
+          path: results/
+

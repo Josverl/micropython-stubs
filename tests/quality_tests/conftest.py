@@ -33,6 +33,15 @@ SNIPPETS_PREFIX = "tests/quality_tests/"
 MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
 
 
+def pytest_addoption(parser: pytest.Parser):
+    parser.addoption(
+        "--stable-only",
+        action="store_true",
+        default=False,
+        help="Only run tests for the current stable MicroPython release, skipping preview versions.",
+    )
+
+
 def flat_version(version):
     """Converts a version string to a flat version string. (simplified)"""
     return version.replace(".", "_").replace("-", "_")
@@ -252,9 +261,12 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config)
     stats = {}
     for status in ["passed", "failed", "xfailed", "skipped"]:
         stats[status] = snipcount(terminalreporter, status)
-    # simple straigth forward scoring
+    executed = stats["passed"] + stats["failed"]
+    stats["executed"] = executed
+    stats["pass_rate"] = round(stats["passed"] / executed, 4) if executed > 0 else 0.0
+    # keep for backward compatibility
     stats["snippet_score"] = int(stats["passed"] - stats["failed"])
-    if stats["snippet_score"] > 0:
+    if executed > 0:
         # Write stats to file
         (config.rootpath / "results").mkdir(exist_ok=True)
         with open(config.rootpath / "results" / "snippet_score.json", "w") as f:
