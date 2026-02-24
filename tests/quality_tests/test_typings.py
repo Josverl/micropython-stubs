@@ -96,7 +96,6 @@ def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Confi
 
 @pytest.mark.parametrize("ext", [".py", ".mpy"], scope="session")
 @pytest.mark.parametrize("mp_version", get_unix_docker_versions(), scope="session")
-@pytest.mark.parametrize("version", ["preview"], scope="session")
 @pytest.mark.parametrize("feature", ["stdlib"], scope="session")
 @pytest.mark.parametrize(
     "check_file", set([f.name for f in (HERE / "feat_typing").glob("check_*.py")]), scope="session"
@@ -107,7 +106,6 @@ def test_typing_runtime(
     feature: str,
     snip_path_fx: Path,  # Not a fixture - overriden by parameterize
     check_file,
-    version: str,
     mp_version: str,
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
