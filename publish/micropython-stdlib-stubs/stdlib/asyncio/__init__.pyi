@@ -18,6 +18,7 @@ from .streams import *
 # from .subprocess import *
 from .tasks import *
 from .tasks import sleep_ms as sleep_ms
+from .tasks import wait_for_ms as wait_for_ms
 from .micropython import *
 
 from .transports import *

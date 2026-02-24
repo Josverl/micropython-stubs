@@ -30,6 +30,7 @@ if sys.version_info >= (3, 12):
         "as_completed",
         "sleep",
         "sleep_ms",
+        "wait_for_ms",
         "gather",
         "shield",
         "ensure_future",
@@ -54,6 +55,8 @@ else:
         "wait_for",
         "as_completed",
         "sleep",
+        "sleep_ms",
+        "wait_for_ms",
         "gather",
         "shield",
         "ensure_future",
@@ -390,6 +393,8 @@ if sys.version_info >= (3, 10):
     async def sleep_ms(delay: float) -> None: ...
     @overload
     async def sleep_ms(delay: int) -> None: ...
+    # MicroPython extension: wait_for with millisecond timeout
+    async def wait_for_ms(aw: _FutureLike[_T], timeout: int) -> _T: ...
 
 else:
     def shield(arg: _FutureLike[_T], *, loop: AbstractEventLoop | None = None) -> Future[_T]: ...
@@ -403,6 +408,8 @@ else:
     async def sleep_ms(delay: float) -> None: ...
     @overload
     async def sleep_ms(delay: int) -> None: ...
+    # MicroPython extension: wait_for with millisecond timeout
+    async def wait_for_ms(aw: _FutureLike[_T], timeout: int) -> _T: ...
 
 if sys.version_info >= (3, 11):
     @overload
