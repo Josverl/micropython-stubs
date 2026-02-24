@@ -1,7 +1,10 @@
 import functools
+import json
 import logging
+import re
 import shutil
 import subprocess
+import urllib.request
 from pathlib import Path
 
 import pytest
@@ -14,6 +17,53 @@ log = logging.getLogger()
 
 HERE = Path(__file__).parent.absolute()
 _docker = None
+
+# Fallback list of known micropython/unix Docker image versions (used when Docker Hub is unreachable)
+_KNOWN_UNIX_VERSIONS = [
+    "v1.20.0",
+    "v1.21.0",
+    "v1.22.0",
+    "v1.23.0",
+    "v1.24.0",
+    "v1.24.1",
+    "v1.25.0",
+    "v1.26.0",
+    "v1.27.0",
+]
+
+
+@functools.lru_cache()
+def get_unix_docker_versions(minver: str = "v1.20.0") -> list:
+    """
+    Retrieve available version tags for the micropython/unix Docker image from Docker Hub.
+
+    Falls back to a known static list when Docker Hub is unreachable.
+
+    Note: Fetches up to 100 tags. The micropython/unix image currently has far fewer
+    than 100 version tags, so pagination is not required.
+
+    Args:
+        minver: The minimum version to include (default: v1.20.0, when typing module support was added).
+
+    Returns:
+        list: Sorted list of version strings (e.g. ["v1.20.0", "v1.21.0", ...]).
+    """
+    from packaging.version import Version
+
+    min_version = Version(minver.lstrip("v"))
+    version_pattern = re.compile(r"^v\d+\.\d+(\.\d+)?$")
+
+    try:
+        url = "https://hub.docker.com/v2/repositories/micropython/unix/tags?page_size=100"
+        with urllib.request.urlopen(url, timeout=10) as response:
+            data = json.loads(response.read().decode())
+        tags = [entry["name"] for entry in data.get("results", [])]
+    except Exception:
+        log.warning("Could not fetch micropython/unix tags from Docker Hub; using fallback list", exc_info=True)
+        tags = _KNOWN_UNIX_VERSIONS
+
+    versions = [t for t in tags if version_pattern.match(t) and Version(t.lstrip("v")) >= min_version]
+    return sorted(versions, key=lambda v: Version(v.lstrip("v")))
 
 
 @functools.lru_cache()
@@ -45,15 +95,7 @@ def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Confi
 
 
 @pytest.mark.parametrize("ext", [".py", ".mpy"], scope="session")
-@pytest.mark.parametrize(
-    "mp_version",
-    [
-        "v1.24.1",
-        "v1.25.0",
-        # "v1.26.0",
-    ],
-    scope="session",
-)
+@pytest.mark.parametrize("mp_version", get_unix_docker_versions(), scope="session")
 @pytest.mark.parametrize("version", ["preview"], scope="session")
 @pytest.mark.parametrize("feature", ["stdlib"], scope="session")
 @pytest.mark.parametrize(
