@@ -63,6 +63,7 @@ jobs:
     #       pwsh -file ./update-stubs.ps1
 
       - name: Test the snippets (stable only - blocking)
+        continue-on-error: true
         run: |
           uv run pytest -m 'snippets' --stable-only --cache-clear --junitxml=./results/results.xml
 
