@@ -1,128 +1,272 @@
+#!/usr/bin/env python3
+"""Enhanced snippet score comparison with multi-version support and history tracking.
+
+Structure of SNIPPET_SCORE:
+{
+  "stable": {
+    "v1.27.0": {
+      "pass_rate": 0.95,
+      "executed": 100,
+      "passed": 95,
+      "failed": 5,
+      "timestamp": "2026-02-24T12:34:56Z",
+      "commit": "abc123"
+    }
+  },
+  "preview": {
+    "pass_rate": 0.92,
+    "executed": 100,
+    "passed": 92,
+    "failed": 8,
+    "timestamp": "2026-02-24T12:34:56Z",
+    "version": "v1.28.0-preview"
+  },
+  "recent_majors": {
+    "pass_rate": 0.93,
+    "executed": 300,
+    "passed": 279,
+    "failed": 21,
+    "timestamp": "2026-02-24T12:34:56Z",
+    "versions": ["v1.27.0", "v1.26.1", "v1.25.0"]
+  },
+  "history": {
+    "v1.27.0": [
+      {"pass_rate": 0.95, "executed": 100, "timestamp": "...", "commit": "..."},
+      ...  # up to last 10 records
+    ],
+    "preview": [...],
+    "recent_majors": [...]
+  }
+}
+"""
+
 import json
 import os
+import sys
+from datetime import datetime, timezone
+from typing import Optional
 
 import requests
 from dotenv import load_dotenv
 
 try:
-
-    load_dotenv()  # load variables 
-    load_dotenv(".secrets")  # load variables from the ".secrets" file
+    load_dotenv()
+    load_dotenv(".secrets")
 except:
     pass
 
-# Thresholds for pass_rate comparison
-PASS_RATE_TOLERANCE = 0.05   # allow up to 5% drop in pass_rate before failing
-# 50%: enough to detect mass-skip scenarios (e.g. all stubs unavailable) while allowing
-# natural variation as the stable version set changes over time
-MIN_EXECUTED_FRACTION = 0.50  # require at least 50% of baseline executed count
-
-# has been propagated from repo vars to env vars
-try:
-    current_scores = json.loads(os.getenv("SNIPPET_SCORE", '{"snippet_score": 0}'))
-except json.decoder.JSONDecodeError:
-    current_scores = {"snippet_score": 0}
-
-# set by pytest in custom conftest reporting
-new_scores = {}
-with open("results/snippet_score.json", "r") as f:
-    new_scores = json.load(f)
+# Thresholds
+PASS_RATE_TOLERANCE = 0.05  # 5% drop tolerance
+MIN_EXECUTED_FRACTION = 0.50  # require 50% of baseline executed
+MAX_HISTORY_RECORDS = 10  # keep last 10 records per version
 
 
-# Compare the scores and update the repository variable if necessary
-def add_summary(msg, current_scores: dict, new_scores: dict):
-    if os.getenv("GITHUB_STEP_SUMMARY") is None:
-        print(f"The environment variable GITHUB_STEP_SUMMARY does not exist.")
+def get_version_type() -> str:
+    """Get version type from environment variable."""
+    return os.getenv("VERSION_TYPE", "stable")  # stable, preview, or recent_majors
+
+
+def get_current_version() -> Optional[str]:
+    """Get the specific version being tested (for stable)."""
+    return os.getenv("TEST_VERSION", None)
+
+
+def load_baseline_scores() -> dict:
+    """Load baseline scores from environment variable."""
+    try:
+        scores = json.loads(os.getenv("SNIPPET_SCORE", "{}"))
+        if not scores or "stable" not in scores:
+            # Migrate old format
+            return {
+                "stable": {},
+                "preview": {},
+                "recent_majors": {},
+                "history": {},
+            }
+        return scores
+    except json.decoder.JSONDecodeError:
+        return {
+            "stable": {},
+            "preview": {},
+            "recent_majors": {},
+            "history": {},
+        }
+
+
+def load_new_scores() -> dict:
+    """Load new test results."""
+    with open("results/snippet_score.json", "r") as f:
+        return json.load(f)
+
+
+def add_summary(msg: str, version_type: str, new_scores: dict, baseline: dict):
+    """Add summary to GitHub Actions step summary."""
+    summary_file = os.getenv("GITHUB_STEP_SUMMARY")
+    if not summary_file:
+        print("GITHUB_STEP_SUMMARY not available")
         return
-    with open(os.getenv("GITHUB_STEP_SUMMARY", 0), "a") as f:
-        f.write("# Snippets\n")
-        f.write(msg)
-        f.write("\n```json\n")
-        json.dump({"current": new_scores}, f)
-        f.write("\n")
-        json.dump({"previous": current_scores}, f)
+
+    with open(summary_file, "a") as f:
+        f.write(f"# Snippet Test Results ({version_type})\n\n")
+        f.write(f"{msg}\n\n")
+        f.write("## New Results\n```json\n")
+        json.dump(new_scores, f, indent=2)
+        f.write("\n```\n\n")
+        f.write("## Baseline\n```json\n")
+        json.dump(baseline, f, indent=2)
         f.write("\n```\n")
 
 
-
 def update_var(var_name: str, value: str):
+    """Update GitHub repository variable."""
     repo = os.getenv("GITHUB_REPOSITORY", "Josverl/micropython-stubs")
     gh_token_vars = os.getenv("GH_TOKEN_VARS", os.getenv("GH_TOKEN", "-"))
+
     if gh_token_vars == "-":
-        print("No token available to update the repository variable")
-        return
-    # update the repository variable
+        print("No token available to update repository variable")
+        return False
+
     url = f"https://api.github.com/repos/{repo}/actions/variables/{var_name}"
     headers = {
         "Authorization": f"token {gh_token_vars}",
         "Content-Type": "application/json",
         "User-Agent": "josverl",
     }
-    data = {"name": str(var_name), "value": str(value)}
-    response = requests.patch(url, headers=headers, json=data)
-    response.raise_for_status()
+    data = {"name": var_name, "value": value}
+
+    try:
+        response = requests.patch(url, headers=headers, json=data)
+        response.raise_for_status()
+        return True
+    except Exception as e:
+        print(f"Failed to update variable: {e}")
+        return False
 
 
-# Compute new metrics - use pass_rate/executed when available, fall back to snippet_score
-new_executed = new_scores.get("executed", new_scores.get("passed", 0) + new_scores.get("failed", 0))
-current_executed = current_scores.get("executed", 0)
-new_pass_rate = new_scores.get("pass_rate", None)
-current_pass_rate = current_scores.get("pass_rate", None)
+def add_to_history(all_scores: dict, version_type: str, version_key: str, new_scores: dict):
+    """Add current results to history, keeping last MAX_HISTORY_RECORDS."""
+    if "history" not in all_scores:
+        all_scores["history"] = {}
 
-# Check minimum executed threshold (50% of baseline) - only when baseline has data
-if current_executed > 0 and new_executed < current_executed * MIN_EXECUTED_FRACTION:
-    msg = (
-        f"Too few tests executed: {new_executed} is less than "
-        f"{MIN_EXECUTED_FRACTION:.0%} of baseline ({current_executed}). "
-        f"Possible mass-skip or environment issue."
-    )
-    print(msg)
-    add_summary(msg, current_scores, new_scores)
-    exit(1)
+    if version_key not in all_scores["history"]:
+        all_scores["history"][version_key] = []
 
-# Compare using pass_rate when both baseline and current have it
-if new_pass_rate is not None and current_pass_rate is not None:
-    rate_delta = new_pass_rate - current_pass_rate
-    if new_pass_rate < current_pass_rate - PASS_RATE_TOLERANCE:
+    history_entry = {
+        "pass_rate": new_scores.get("pass_rate", 0),
+        "executed": new_scores.get("executed", 0),
+        "passed": new_scores.get("passed", 0),
+        "failed": new_scores.get("failed", 0),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "commit": os.getenv("GITHUB_SHA", "unknown")[:7],
+    }
+
+    all_scores["history"][version_key].append(history_entry)
+    # Keep only last MAX_HISTORY_RECORDS
+    all_scores["history"][version_key] = all_scores["history"][version_key][-MAX_HISTORY_RECORDS:]
+
+
+def compare_and_update(version_type: str, fail_on_drop: bool = False) -> int:
+    """
+    Compare new scores with baseline and update if appropriate.
+
+    Args:
+        version_type: "stable", "preview", or "recent_majors"
+        fail_on_drop: If True, exit with error code 1 on quality drop
+
+    Returns:
+        0 for success, 1 for failure
+    """
+    all_scores = load_baseline_scores()
+    new_scores = load_new_scores()
+
+    # Add metadata
+    new_scores["timestamp"] = datetime.now(timezone.utc).isoformat()
+    new_scores["commit"] = os.getenv("GITHUB_SHA", "unknown")[:7]
+
+    # Determine the key to store under
+    if version_type == "stable":
+        version = get_current_version()
+        if not version:
+            print("ERROR: TEST_VERSION not set for stable tests")
+            return 1
+        storage_key = version
+        baseline = all_scores["stable"].get(version, {})
+    elif version_type == "preview":
+        storage_key = "preview"
+        new_scores["version"] = get_current_version() or "unknown"
+        baseline = all_scores.get("preview", {})
+    elif version_type == "recent_majors":
+        storage_key = "recent_majors"
+        # Extract tested versions from new_scores if available
+        baseline = all_scores.get("recent_majors", {})
+    else:
+        print(f"ERROR: Unknown version_type: {version_type}")
+        return 1
+
+    # Extract metrics
+    new_executed = new_scores.get("executed", 0)
+    baseline_executed = baseline.get("executed", 0)
+    new_pass_rate = new_scores.get("pass_rate", 0)
+    baseline_pass_rate = baseline.get("pass_rate", 0)
+
+    # Check minimum executed threshold
+    if baseline_executed > 0 and new_executed < baseline_executed * MIN_EXECUTED_FRACTION:
         msg = (
-            f"pass_rate dropped by more than {PASS_RATE_TOLERANCE:.0%}: "
-            f"{current_pass_rate:.2%} -> {new_pass_rate:.2%} "
-            f"(executed: {new_executed})"
+            f"⚠️ Too few tests executed: {new_executed} < "
+            f"{MIN_EXECUTED_FRACTION:.0%} of baseline ({baseline_executed}). "
+            f"Possible mass-skip or environment issue."
         )
         print(msg)
-        add_summary(msg, current_scores, new_scores)
-        exit(1)
-    elif rate_delta >= 0:
-        msg = f"pass_rate improved or unchanged: {current_pass_rate:.2%} -> {new_pass_rate:.2%} (executed: {new_executed})"
+        add_summary(msg, version_type, new_scores, baseline)
+        return 1 if fail_on_drop else 0
+
+    # Compare pass rates
+    rate_delta = new_pass_rate - baseline_pass_rate
+
+    if baseline_pass_rate > 0 and new_pass_rate < baseline_pass_rate - PASS_RATE_TOLERANCE:
+        msg = (
+            f"❌ pass_rate dropped by more than {PASS_RATE_TOLERANCE:.0%}: "
+            f"{baseline_pass_rate:.2%} → {new_pass_rate:.2%} "
+            f"(Δ {rate_delta:.2%}, executed: {new_executed})"
+        )
         print(msg)
-        add_summary(msg, current_scores, new_scores)
+        add_summary(msg, version_type, new_scores, baseline)
+        return 1 if fail_on_drop else 0
+    elif rate_delta >= 0 or baseline_pass_rate == 0:
+        if baseline_pass_rate == 0:
+            msg = f"✨ New baseline established: {new_pass_rate:.2%} (executed: {new_executed})"
+        else:
+            msg = f"✅ pass_rate: {baseline_pass_rate:.2%} → {new_pass_rate:.2%} (Δ {rate_delta:+.2%}, executed: {new_executed})"
+        print(msg)
+        add_summary(msg, version_type, new_scores, baseline)
+
+        # Update scores - stable is nested by version, preview/recent_majors are not
+        if version_type == "stable":
+            all_scores["stable"][storage_key] = new_scores
+        else:
+            all_scores[version_type] = new_scores
+        add_to_history(all_scores, version_type, storage_key, new_scores)
+
+        # Only update on main branch
         if os.getenv("GITHUB_REF_NAME", "main") == "main":
-            update_var(var_name="SNIPPET_SCORE", value=json.dumps(new_scores, skipkeys=True, indent=4))
+            update_var("SNIPPET_SCORE", json.dumps(all_scores, indent=2))
+
+        return 0
     else:
         msg = (
-            f"pass_rate decreased within tolerance: "
-            f"{current_pass_rate:.2%} -> {new_pass_rate:.2%} "
-            f"(delta: {rate_delta:.2%}, executed: {new_executed})"
+            f"⚠️ pass_rate decreased within tolerance: "
+            f"{baseline_pass_rate:.2%} → {new_pass_rate:.2%} "
+            f"(Δ {rate_delta:.2%}, executed: {new_executed})"
         )
         print(msg)
-        add_summary(msg, current_scores, new_scores)
-else:
-    # Fall back to legacy snippet_score comparison
-    if new_scores["snippet_score"] < current_scores["snippet_score"]:
-        msg = f"The snippet_score has decreased from {current_scores['snippet_score']} to {new_scores['snippet_score']}"
-        print(msg)
-        add_summary(msg, current_scores, new_scores)
-        exit(1)
-    elif new_scores["snippet_score"] == current_scores["snippet_score"]:
-        msg = f"The snippet_score has not changed from {current_scores['snippet_score']}"
-        print(msg)
-        add_summary(msg, current_scores, new_scores)
-    elif new_scores["snippet_score"] > current_scores["snippet_score"]:
-        msg = f"The snippet_score has improved to {new_scores['snippet_score']}"
-        print(msg)
-        add_summary(msg, current_scores, new_scores)
-        if os.getenv("GITHUB_REF_NAME", "main") == "main":
-            update_var(var_name="SNIPPET_SCORE", value=json.dumps(new_scores, skipkeys=True, indent=4))
+        add_summary(msg, version_type, new_scores, baseline)
+        return 0
 
-print("Done")
-exit(0)
+
+if __name__ == "__main__":
+    version_type = get_version_type()
+    fail_on_drop = version_type == "stable"  # Only fail on stable drops
+
+    print(f"Comparing {version_type} scores (fail_on_drop={fail_on_drop})")
+    exit_code = compare_and_update(version_type, fail_on_drop)
+    sys.exit(exit_code)

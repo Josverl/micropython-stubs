@@ -72,7 +72,7 @@ jobs:
           VERSION_TYPE: stable
           TEST_VERSION: ${{ steps.get_version.outputs.stable_version }}
         run: |
-          uv run python .github/workflows/compare_score_v2.py
+          uv run python .github/workflows/compare_score.py
 
       - name: Upload results artifact
         uses: actions/upload-artifact@v4
@@ -129,7 +129,7 @@ jobs:
           VERSION_TYPE: preview
           TEST_VERSION: ${{ steps.get_version.outputs.preview_version }}
         run: |
-          uv run python .github/workflows/compare_score_v2.py
+          uv run python .github/workflows/compare_score.py
 
       - name: Upload preview results artifact
         uses: actions/upload-artifact@v4
@@ -178,7 +178,7 @@ jobs:
         env:
           VERSION_TYPE: recent_majors
         run: |
-          uv run python .github/workflows/compare_score_v2.py
+          uv run python .github/workflows/compare_score.py
 
       - name: Upload recent majors results artifact
         uses: actions/upload-artifact@v4
