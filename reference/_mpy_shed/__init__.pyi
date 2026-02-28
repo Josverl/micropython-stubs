@@ -27,7 +27,11 @@ from .blockdevice import (
     _OldAbstractBlockDev,
     _OldAbstractReadOnlyBlockDev,
 )
-from .buffer_mp import AnyReadableBuf as AnyReadableBuf, AnyWritableBuf as AnyWritableBuf
+from .buffer_mp import (
+    AnyReadableBuf as AnyReadableBuf,
+    AnyWritableBuf as AnyWritableBuf,
+    _WriteStream as _WriteStream,
+)
 
 from .io_mp import (
     BytesIO as BytesIO,
