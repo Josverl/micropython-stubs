@@ -27,10 +27,77 @@ from pathlib import Path
 import fasteners
 import pytest
 from loguru import logger as log
-from mpflash.versions import get_preview_mp_version, get_stable_mp_version
+from mpflash.versions import get_preview_mp_version, get_stable_mp_version, micropython_versions
+from packaging.version import Version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
 MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
+
+
+def pytest_addoption(parser: pytest.Parser):
+    parser.addoption(
+        "--stable-only",
+        action="store_true",
+        default=False,
+        help="Only run tests for the current stable MicroPython release, skipping preview versions.",
+    )
+    parser.addoption(
+        "--preview-only",
+        action="store_true",
+        default=False,
+        help="Only run tests for the most recent preview MicroPython version.",
+    )
+    parser.addoption(
+        "--recent-majors",
+        action="store_true",
+        default=False,
+        help="Only run tests for the last 3 stable major.minor MicroPython releases (excludes preview).",
+    )
+
+
+def major_minor(versions):
+    """Create a list of the most recent version for each major.minor."""
+    mm_groups = {}
+    for v in versions:
+        if v.endswith("-preview"):
+            mm_groups["preview"] = [v]
+            continue
+        major_minor = f"{Version(v).major}.{Version(v).minor}"
+        if major_minor not in mm_groups or "-preview" in v:
+            mm_groups[major_minor] = [v]
+        else:
+            mm_groups[major_minor].append(v)
+    return [max(v) for v in mm_groups.values()]
+
+
+def get_test_versions(config: pytest.Config) -> list[str]:
+    """Get the list of MicroPython versions to test based on version selection flags.
+    
+    Args:
+        config: The pytest Config object.
+        
+    Returns:
+        List of version strings to test (e.g., ['v1.27.0'] or ['v1.27.0', 'v1.26.0', 'v1.25.0']).
+        
+    Priority:
+        --stable-only: Only the current stable release
+        --preview-only: Only the most recent preview version
+        --recent-majors: Last 3 major.minor stable releases (no preview) [default]
+    """
+    stable_only = config.getoption("--stable-only", default=False)
+    preview_only = config.getoption("--preview-only", default=False)
+    recent_majors = config.getoption("--recent-majors", default=False)
+    
+    if stable_only:
+        return [get_stable_mp_version()]
+    elif preview_only:
+        return [get_preview_mp_version()]
+    else:
+        # Last 3 major.minor stable releases (exclude preview)
+        all_versions = major_minor(micropython_versions(minver="v1.24.0"))
+        stable_versions = [v for v in all_versions if not v.endswith("-preview")]
+        return sorted(stable_versions, reverse=True)[:3]
+
 
 
 def flat_version(version):
@@ -252,9 +319,32 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config)
     stats = {}
     for status in ["passed", "failed", "xfailed", "skipped"]:
         stats[status] = snipcount(terminalreporter, status)
-    # simple straigth forward scoring
+    executed = stats["passed"] + stats["failed"]
+    stats["executed"] = executed
+    stats["pass_rate"] = round(stats["passed"] / executed, 4) if executed > 0 else 0.0
+    # keep for backward compatibility
     stats["snippet_score"] = int(stats["passed"] - stats["failed"])
-    if stats["snippet_score"] > 0:
+    
+    # Add version information from command-line options
+    stable_only = config.getoption("--stable-only", default=False)
+    preview_only = config.getoption("--preview-only", default=False)
+    recent_majors = config.getoption("--recent-majors", default=False)
+    
+    # Determine version type and get tested versions
+    if stable_only:
+        stats["version_type"] = "stable"
+        stats["versions"] = get_test_versions(config)
+    elif preview_only:
+        stats["version_type"] = "preview"
+        stats["versions"] = get_test_versions(config)
+    elif recent_majors:
+        stats["version_type"] = "recent_majors"
+        stats["versions"] = get_test_versions(config)
+    else:
+        stats["version_type"] = "default"
+        stats["versions"] = get_test_versions(config)
+    
+    if executed > 0:
         # Write stats to file
         (config.rootpath / "results").mkdir(exist_ok=True)
         with open(config.rootpath / "results" / "snippet_score.json", "w") as f:

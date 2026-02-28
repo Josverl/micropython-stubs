@@ -6,6 +6,7 @@ It provides a function `micropython_versions` that returns a list of versions st
 The module also includes a main block that generates a matrix of versions based on command-line arguments and environment variables.
 The matrix is printed as JSON and can be optionally written to a file if running in a GitHub Actions workflow.
 """
+
 import argparse
 import json
 import os
@@ -17,8 +18,9 @@ from packaging.version import Version, parse
 
 # Token with no permissions to avoid throttling
 # https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28#getting-a-higher-rate-limit
-PAT_NO_ACCESS = "github_pat_"+"11AAHPVFQ0G4NTaQ73Bw5J"+"_fAp7K9sZ1qL8VFnI9g78eUlCdmOXHB3WzSdj2jtEYb4XF3N7PDJBl32qIxq"
+PAT_NO_ACCESS = "github_pat_" + "11AAHPVFQ0G4NTaQ73Bw5J" + "_fAp7K9sZ1qL8VFnI9g78eUlCdmOXHB3WzSdj2jtEYb4XF3N7PDJBl32qIxq"
 PAT = os.environ.get("GITHUB_TOKEN") or PAT_NO_ACCESS
+
 
 @lru_cache()
 def micropython_versions(start="v1.10"):
@@ -31,6 +33,7 @@ def micropython_versions(start="v1.10"):
         print(f"Error: {e}")
         tags = ["preview", "stable"]
     return tags
+
 
 def major_minor(versions):
     """create a list of the most recent version for each major.minor"""
@@ -45,11 +48,12 @@ def major_minor(versions):
             mm_groups[major_minor].append(v)
     return [max(v) for v in mm_groups.values()]
 
+
 def main():
     matrix = {}
-    
+
     parser = argparse.ArgumentParser()
-    parser.add_argument("--stable", "--latest","-s", action=argparse.BooleanOptionalAction,default=True, help="Add latest version")
+    parser.add_argument("--stable", "--latest", "-s", action=argparse.BooleanOptionalAction, default=True, help="Add latest version")
     parser.add_argument("--preview", "-p", action=argparse.BooleanOptionalAction, default=False, help="Add preview version")
     parser.add_argument("--max", "-m", type=int, default=3, help="Maximum number of versions")
 
@@ -58,24 +62,23 @@ def main():
     # only run latests when running in ACT locally for testing
     if os.environ.get("ACT"):
         args.max = 1
-    matrix["version"] = major_minor(micropython_versions(start="v1.20"))[1:args.max] 
-
+    matrix["version"] = major_minor(micropython_versions(start="v1.20"))[1 : args.max]
 
     # print(args)
     if args.stable:
         matrix["version"].insert(0, "stable")
     if args.preview:
         matrix["version"].insert(0, "preview")
-    matrix["version"]=matrix["version"][:args.max]
+    matrix["version"] = matrix["version"][: args.max]
     # GITHUB_OUTPUT is set by github actions
-    if os.getenv('GITHUB_OUTPUT'):
-        with open(os.getenv('GITHUB_OUTPUT'), 'a') as file:   #  type: ignore
+    if os.getenv("GITHUB_OUTPUT"):
+        with open(os.getenv("GITHUB_OUTPUT"), "a") as file:  #  type: ignore
             file.write(f"versions={json.dumps(matrix)}\n")
-            file.write(f'mp_versions={json.dumps(matrix["version"])}\n')
+            file.write(f"mp_versions={json.dumps(matrix['version'])}\n")
     else:
         print(json.dumps(matrix, indent=4))
+
 
 # sourcery skip: assign-if-exp, merge-dict-assign
 if __name__ == "__main__":
     main()
-
