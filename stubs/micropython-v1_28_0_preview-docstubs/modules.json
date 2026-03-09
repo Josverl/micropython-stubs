@@ -8,7 +8,7 @@
         "firmware": "micropython-v1_28_0_preview",
         "nodename": "micropython",
         "version": "v1.28.0-preview",
-        "release": "v1.28.0-preview-241-g2322d37a9",
+        "release": "v1.28.0-preview-250-g68c2d4e45",
         "sysname": "micropython"
     },
     "stubber": {
@@ -367,6 +367,10 @@
         {
             "file": "stm/__init__.pyi",
             "module": "__init__"
+        },
+        {
+            "file": "string/templatelib.pyi",
+            "module": "templatelib"
         },
         {
             "file": "struct/__init__.pyi",
