@@ -384,7 +384,7 @@ class CAN:
           - *list* is an optional list object to be used as the return value
           - *timeout* is the timeout in milliseconds to wait for the receive.
 
-        Return value: A tuple containing five values.
+        Return value: A list containing five values.
 
           - The id of the message.
           - A boolean that indicates if the message ID is standard or extended.
@@ -392,8 +392,8 @@ class CAN:
           - The FMI (Filter Match Index) value.
           - An array containing the data.
 
-        If *list* is ``None`` then a new tuple will be allocated, as well as a new
-        bytes object to contain the data (as the fifth element in the tuple).
+        If *list* is ``None`` then a new list will be allocated, as well as a new
+        bytes object to contain the data (as the fifth element in the list).
 
         If *list* is not ``None`` then it should be a list object with a least five
         elements.  The fifth element should be a memoryview object which is created
@@ -420,7 +420,7 @@ class CAN:
           - *list* is an optional list object to be used as the return value
           - *timeout* is the timeout in milliseconds to wait for the receive.
 
-        Return value: A tuple containing five values.
+        Return value: A list containing five values.
 
           - The id of the message.
           - A boolean that indicates if the message ID is standard or extended.
@@ -428,8 +428,8 @@ class CAN:
           - The FMI (Filter Match Index) value.
           - An array containing the data.
 
-        If *list* is ``None`` then a new tuple will be allocated, as well as a new
-        bytes object to contain the data (as the fifth element in the tuple).
+        If *list* is ``None`` then a new list will be allocated, as well as a new
+        bytes object to contain the data (as the fifth element in the list).
 
         If *list* is not ``None`` then it should be a list object with a least five
         elements.  The fifth element should be a memoryview object which is created
@@ -456,7 +456,7 @@ class CAN:
           - *list* is an optional list object to be used as the return value
           - *timeout* is the timeout in milliseconds to wait for the receive.
 
-        Return value: A tuple containing five values.
+        Return value: A list containing five values.
 
           - The id of the message.
           - A boolean that indicates if the message ID is standard or extended.
@@ -464,8 +464,8 @@ class CAN:
           - The FMI (Filter Match Index) value.
           - An array containing the data.
 
-        If *list* is ``None`` then a new tuple will be allocated, as well as a new
-        bytes object to contain the data (as the fifth element in the tuple).
+        If *list* is ``None`` then a new list will be allocated, as well as a new
+        bytes object to contain the data (as the fifth element in the list).
 
         If *list* is not ``None`` then it should be a list object with a least five
         elements.  The fifth element should be a memoryview object which is created

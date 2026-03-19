@@ -8,7 +8,7 @@
         "firmware": "micropython-v1_28_0_preview",
         "nodename": "micropython",
         "version": "v1.28.0-preview",
-        "release": "v1.28.0-preview-266-gf625d2ed6",
+        "release": "v1.28.0-preview-276-gc802a13fb",
         "sysname": "micropython"
     },
     "stubber": {
@@ -115,6 +115,10 @@
         {
             "file": "machine/ADCWiPy.pyi",
             "module": "ADCWiPy"
+        },
+        {
+            "file": "machine/CAN.pyi",
+            "module": "CAN"
         },
         {
             "file": "machine/Counter.pyi",
