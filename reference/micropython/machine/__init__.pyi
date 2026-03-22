@@ -16,8 +16,8 @@ damage.
 from __future__ import annotations
 
 from typing import Any, Final, NoReturn, Optional, overload
-from typing_extensions import TypeAlias
 
+from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 from _typeshed import Incomplete
 from machine.ADC import ADC
 from machine.ADCBlock import ADCBlock
@@ -34,26 +34,33 @@ from machine.Timer import Timer
 from machine.UART import UART
 from machine.USBDevice import USBDevice
 from machine.WDT import WDT
-from typing_extensions import deprecated
-
-
+from typing_extensions import TypeAlias, deprecated
 
 _IRQ_STATE: TypeAlias = int
 
-mem8: bytearray
-"""Read/write 8 bits of memory."""
-mem16: bytearray
-"""Read/write 16 bits of memory."""
-mem32: bytearray
+mem8: _MemoryObject
+"""
+Read/write 8 bits of memory.
+Use subscript notation ``[...]`` to index these objects with the address of
+interest. Note that the address is the byte address, regardless of the size of
+memory being accessed.
+"""
+mem16: _MemoryObject
+"""
+Read/write 16 bits of memory.
+Use subscript notation ``[...]`` to index these objects with the address of
+interest. Note that the address is the byte address, regardless of the size of
+memory being accessed.
+"""
+mem32: _MemoryObject
 """\
 Read/write 32 bits of memory.
 
 Use subscript notation ``[...]`` to index these objects with the address of
 interest. Note that the address is the byte address, regardless of the size of
 memory being accessed.
-
-Example use (registers are specific to an stm32 microcontroller):
 """
+
 IDLE: Final[int] = ...
 """IRQ wake values."""
 SLEEP: Final[int] = ...
