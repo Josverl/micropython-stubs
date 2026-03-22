@@ -8,7 +8,7 @@
         "firmware": "micropython-v1_28_0_preview",
         "nodename": "micropython",
         "version": "v1.28.0-preview",
-        "release": "v1.28.0-preview-297-g82e44e07e",
+        "release": "v1.28.0-preview-306-g5c00edcee",
         "sysname": "micropython"
     },
     "stubber": {
@@ -462,6 +462,10 @@
         },
         {
             "file": "vfs/__init__.pyi",
+            "module": "__init__"
+        },
+        {
+            "file": "weakref/__init__.pyi",
             "module": "__init__"
         },
         {
