@@ -23,9 +23,9 @@ class WLAN:
     PM_PERFORMANCE: int = ...
     """Enable WiFi power management to balance power savings and WiFi performance"""
     PM_POWERSAVE: int = ...
-    """Enable WiFi power management with additional power savings and reduced WiFi performance""" 
+    """Enable WiFi power management with additional power savings and reduced WiFi performance"""
 
-    // **Note:** The numeric values of these constants are platform-specific:
+    # **Note:** The numeric values of these constants are platform-specific:
 
     def __init__(self, interface_id: int = ..., /) -> None:
         """
