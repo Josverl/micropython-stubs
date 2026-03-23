@@ -13,6 +13,8 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from _mpy_shed.mp_mem import _MemoryObject
+
 mem8: bytearray
 """Read/write 8 bits of memory."""
 mem16: bytearray
