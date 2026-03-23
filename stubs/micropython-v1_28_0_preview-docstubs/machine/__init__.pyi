@@ -37,6 +37,8 @@ from machine.WDT import WDT
 from machine.SD import SD
 from machine.SDCard import SDCard
 from machine.USBDevice import USBDevice
+from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
+
 mem8: Incomplete
 """Read/write 8 bits of memory."""
 mem16: Incomplete
