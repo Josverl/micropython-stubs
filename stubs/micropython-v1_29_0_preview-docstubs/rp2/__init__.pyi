@@ -22,14 +22,13 @@ from rp2.DMA import DMA
 from rp2.Flash import Flash
 from rp2.PIO import PIO
 from rp2.StateMachine import StateMachine
-from typing import Callable, Union, List, overload
 from machine import Pin
 from rp2.PIOASMEmit import PIOASMEmit
+from typing import Callable, List, Union, overload
 from micropython import const
-from rp2 import PIOASMEmit, _PIO_ASM_Program
+from rp2 import bootsel_button, PIOASMEmit, _PIO_ASM_Program
 
 _PIO_ASM_Program: TypeAlias = PIOASMEmit
-
 class PIOASMError(Exception):
     """
     This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
