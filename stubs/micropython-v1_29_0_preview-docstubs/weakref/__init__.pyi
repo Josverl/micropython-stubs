@@ -27,7 +27,7 @@ A ref object is the simplest way to make a weak reference.
 # origin module:: repos/micropython/docs/library/weakref.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union, NamedTuple
+from typing import Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 class ref():
     """
@@ -61,7 +61,7 @@ class finalize():
        the *callback* will be called.  The *callback* will be passed arguments as:
        ``callback(*args, **kwargs)``.
     """
-    def __init__(self, object, callback, /, *args, *kwargs) -> None:
+    def __init__(self, object, callback, /, *args, **kwargs) -> None:
         ...
     def __call__(self) -> Incomplete:
         """
