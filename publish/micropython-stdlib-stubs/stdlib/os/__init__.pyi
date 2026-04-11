@@ -1,7 +1,7 @@
 """
 Basic "operating system" services.
 
-MicroPython module: https://docs.micropython.org/en/v1.27.0/library/os.html
+MicroPython module: https://docs.micropython.org/en/v1.28.0/library/os.html
 
 CPython module: :mod:`python:os` https://docs.python.org/3/library/os.html .
 

@@ -550,6 +550,7 @@ def update(
 
     dist_stdlib_path = rootpath / "publish/micropython-stdlib-stubs"
     docstubs_path = rootpath / f"stubs/micropython-{flat_version}-docstubs"
+    # TODO: make the boardstub path more generic by looking for any firmware folder in the stubs directory instead of hardcoding the name
     boardstub_path = rootpath / f"stubs/micropython-{flat_version}-esp32-ESP32_GENERIC"
     typeshed_path = rootpath / "repos/typeshed"
     reference_path = rootpath / "reference"
