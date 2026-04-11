@@ -1,0 +1,25 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "renesas-ra",
+        "platform": "renesas-ra",
+        "machine": "EK_RA4M1",
+        "firmware": "micropython-renesas-ra-EK_RA4M1-v1_28_0",
+        "nodename": "micropython",
+        "version": "v1.28.0",
+        "release": "v1.28.0",
+        "sysname": "micropython",
+        "board": "EK_RA4M1"
+    },
+    "stubber": {
+        "version": "1.28.0",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "sdcard.py",
+            "module": "sdcard"
+        }
+    ]
+}

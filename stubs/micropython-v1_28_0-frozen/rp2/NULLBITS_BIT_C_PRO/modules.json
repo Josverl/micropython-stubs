@@ -1,0 +1,49 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "rp2",
+        "platform": "rp2",
+        "machine": "NULLBITS_BIT_C_PRO",
+        "firmware": "micropython-rp2-NULLBITS_BIT_C_PRO-v1_28_0",
+        "nodename": "micropython",
+        "version": "v1.28.0",
+        "release": "v1.28.0",
+        "sysname": "micropython",
+        "board": "NULLBITS_BIT_C_PRO"
+    },
+    "stubber": {
+        "version": "1.28.0",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        },
+        {
+            "file": "_boot_fat.py",
+            "module": "_boot_fat"
+        },
+        {
+            "file": "board.py",
+            "module": "board"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "neopixel.py",
+            "module": "neopixel"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        }
+    ]
+}
