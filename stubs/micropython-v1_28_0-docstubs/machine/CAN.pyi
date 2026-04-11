@@ -2,28 +2,30 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import IO, Any, Callable, Coroutine, Dict, Generator, Iterator, List, NoReturn, Optional, Tuple, Union, NamedTuple
+from typing import List
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-class CAN():
+
+class CAN:
     """
-       Construct a CAN controller object of the given id:
-    
-       - ``id`` identifies a particular CAN controller object; it is board and port specific.
-       - All other arguments are passed to :func:`CAN.init`. At least one argument (``bitrate``)
-         must be provided.
-    
-       Future versions of this class may also accept port-specific keyword arguments
-       here which configure the hardware. Currently no such keyword arguments are
-       implemented.
-    
-       Example
-       ^^^^^^^
-    
-       Construct and initialise CAN controller 1 with bitrate 500kbps::
-    
-          from machine import CAN
-          can = CAN(1, 500_000)
+    Construct a CAN controller object of the given id:
+
+    - ``id`` identifies a particular CAN controller object; it is board and port specific.
+    - All other arguments are passed to :func:`CAN.init`. At least one argument (``bitrate``)
+      must be provided.
+
+    Future versions of this class may also accept port-specific keyword arguments
+    here which configure the hardware. Currently no such keyword arguments are
+    implemented.
+
+    Example
+    ^^^^^^^
+
+    Construct and initialise CAN controller 1 with bitrate 500kbps::
+
+       from machine import CAN
+       can = CAN(1, 500_000)
     """
+
     FILTERS_MAX: int
     """\
     Constant value that reads the maximum number of supported receive filters
@@ -133,346 +135,345 @@ class CAN():
     """Additional IRQ event flags for `CAN.IRQ_TX`. See `machine_can_irq_flags`."""
     IRQ_TX_IDX_MASK: Incomplete
     """Additional IRQ event flags for `CAN.IRQ_TX`. See `machine_can_irq_flags`."""
-    def __init__(self, id, *args, *kwargs) -> None:
-        ...
+    def __init__(self, id, *args, **kwargs) -> None: ...
     def init(self, bitrate, mode=MODE_NORMAL, sample_point=75, sjw=1, tseg1=None, tseg2=None) -> None:
         """
-           Initialise the CAN bus with the given parameters:
-        
-           - *bitrate* is the desired bus bit rate in bits per second.
-           - *mode* is one of the values shown under `can-modes`, indicating the
-             desired mode of operation. The default is "normal" operation on the bus.
-        
-           The next parameters are optional and relate to CAN bit timings. In most cases
-           you can leave these parameters set to the default values:
-        
-           - *sample_point* is an integer percentage of the data bit time. It
-             specifies the position of the bit sample with respect to the whole nominal
-             bit time. The CAN driver will calculate parameters accordingly. This
-             parameter is ignored if *tseg1* and *tseg2* are set.
-           - *sjw* is the resynchronisation jump width in units of time quanta for
-             nominal bits; it can be a value between 1 and 4 inclusive for classic CAN.
-           - *tseg1* defines the location of the sample point in units of time quanta
-             for nominal bits; it can be a value between 1 and 16 inclusive for classic
-             CAN. This is the sum of the ``Prop_Seg`` and ``Phase_Seg1`` phases as
-             defined in the ISO-11898 standard. If this value is set then *tseg2*
-             must also be set and *sample_point* is ignored.
-           - *tseg2* defines the location of the transmit point in units of the time
-             quanta for nominal bits; it can be a value between 1 and 8 inclusive for
-             classic CAN. This corresponds to ``Phase_Seg2`` in the ISO-11898 standard.
-             If this value is set then *tseg1* must also be set.
-        
-           If these arguments are specified then the CAN controller is configured
-           correctly for the desired *bitrate* and the specified total number of time
-           quanta per bit. The *tseg1* and *tseg2* values override the
-           *sample_point* argument if all of these are supplied.
-        
-           ``Note:`` Individual controller hardware may have additional restrictions on
-                     valid values for these parameters, and will raise a ``ValueError``
-                     if a given value is not supported.
-        
-           ``Note:`` Specific controller hardware may accept additional optional
-                     keyword parameters for hardware-specific features such as oversampling.
+        Initialise the CAN bus with the given parameters:
+
+        - *bitrate* is the desired bus bit rate in bits per second.
+        - *mode* is one of the values shown under `can-modes`, indicating the
+          desired mode of operation. The default is "normal" operation on the bus.
+
+        The next parameters are optional and relate to CAN bit timings. In most cases
+        you can leave these parameters set to the default values:
+
+        - *sample_point* is an integer percentage of the data bit time. It
+          specifies the position of the bit sample with respect to the whole nominal
+          bit time. The CAN driver will calculate parameters accordingly. This
+          parameter is ignored if *tseg1* and *tseg2* are set.
+        - *sjw* is the resynchronisation jump width in units of time quanta for
+          nominal bits; it can be a value between 1 and 4 inclusive for classic CAN.
+        - *tseg1* defines the location of the sample point in units of time quanta
+          for nominal bits; it can be a value between 1 and 16 inclusive for classic
+          CAN. This is the sum of the ``Prop_Seg`` and ``Phase_Seg1`` phases as
+          defined in the ISO-11898 standard. If this value is set then *tseg2*
+          must also be set and *sample_point* is ignored.
+        - *tseg2* defines the location of the transmit point in units of the time
+          quanta for nominal bits; it can be a value between 1 and 8 inclusive for
+          classic CAN. This corresponds to ``Phase_Seg2`` in the ISO-11898 standard.
+          If this value is set then *tseg1* must also be set.
+
+        If these arguments are specified then the CAN controller is configured
+        correctly for the desired *bitrate* and the specified total number of time
+        quanta per bit. The *tseg1* and *tseg2* values override the
+        *sample_point* argument if all of these are supplied.
+
+        ``Note:`` Individual controller hardware may have additional restrictions on
+                  valid values for these parameters, and will raise a ``ValueError``
+                  if a given value is not supported.
+
+        ``Note:`` Specific controller hardware may accept additional optional
+                  keyword parameters for hardware-specific features such as oversampling.
         """
         ...
     def set_filters(self, filters) -> Incomplete:
         """
-           Set receive filters in the CAN controller. *filters* can be:
-        
-           - ``None`` to accept all incoming messages, or
-           - ``[]`` or ``()`` to disable all message receiving, or
-           - An iterable of one or more items defining the filter criteria. Each item
-             should be a tuple or list with three elements:
-        
-             - ``identifier`` is a CAN identifier (int).
-             - ``bit_mask`` is a bit mask for bits in the CAN identifier field (int).
-             - ``flags`` is an integer with zero or more of the bits defined in
-               `can-flags` set. This specifies properties that the incoming message needs
-               to match. Not all controllers support filtering on all flags, a
-               ``ValueError`` is raised if an unsupported flag is requested.
-        
-           Incoming messages are accepted if the bits masked in ``bit_mask`` match between
-           the message identifier and the filter ``identifier`` value, and flags set in the
-           filter match the incoming message.
-        
-           If the `CAN.FLAG_EXT_ID` bit is set in flags, the filter matches Extended
-           CAN IDs only. If the `CAN.FLAG_EXT_ID` bit is not set, the filter matches
-           Standard CAN IDs only.
-        
-           All filters are ORed together in the controller. Passing an empty list or
-           tuple for the filters argument means that no messages will be received.
-        
-           Some CAN controllers require each filter to be associated with only one
-           receive FIFO. In these cases, the filter items in the argument are allocated
-           round-robin to the available FIFOs. This driver does not distinguish between
-           FIFOs in the receive IRQ.
-        
-           ``Note:`` If the caller passes an iterable with more items than
-              :data:`CAN.FILTERS_MAX`, ``ValueError`` will be raised.
-        
-           ``Note:`` If either the ``identifier`` or the ``bit_mask`` is out of range
-                     for the specified ID type, a ``ValueError`` with reason "invalid id"
-                     will be raised.
-        
-           Examples
-           ^^^^^^^^
-        
-           Receive all incoming messages::
-        
-             can.set_filters(None)
-        
-           Receive messages with Standard ID values 0x301 and 0x700 only::
-        
-             can.set_filters(((0x301, 0x7FF, 0),
-                              (0x700, 0x7FF, 0)))
-        
-           Receive messages with Standard ID values in range 0x300-0x3FF, and Extended
-           ID value 0x50700 only::
-        
-             can.set_filters(((0x300, 0x700, 0),
-                              (0x50700, 0x1FFF_FFFF, CAN.FLAG_EXT_ID)))
+        Set receive filters in the CAN controller. *filters* can be:
+
+        - ``None`` to accept all incoming messages, or
+        - ``[]`` or ``()`` to disable all message receiving, or
+        - An iterable of one or more items defining the filter criteria. Each item
+          should be a tuple or list with three elements:
+
+          - ``identifier`` is a CAN identifier (int).
+          - ``bit_mask`` is a bit mask for bits in the CAN identifier field (int).
+          - ``flags`` is an integer with zero or more of the bits defined in
+            `can-flags` set. This specifies properties that the incoming message needs
+            to match. Not all controllers support filtering on all flags, a
+            ``ValueError`` is raised if an unsupported flag is requested.
+
+        Incoming messages are accepted if the bits masked in ``bit_mask`` match between
+        the message identifier and the filter ``identifier`` value, and flags set in the
+        filter match the incoming message.
+
+        If the `CAN.FLAG_EXT_ID` bit is set in flags, the filter matches Extended
+        CAN IDs only. If the `CAN.FLAG_EXT_ID` bit is not set, the filter matches
+        Standard CAN IDs only.
+
+        All filters are ORed together in the controller. Passing an empty list or
+        tuple for the filters argument means that no messages will be received.
+
+        Some CAN controllers require each filter to be associated with only one
+        receive FIFO. In these cases, the filter items in the argument are allocated
+        round-robin to the available FIFOs. This driver does not distinguish between
+        FIFOs in the receive IRQ.
+
+        ``Note:`` If the caller passes an iterable with more items than
+           :data:`CAN.FILTERS_MAX`, ``ValueError`` will be raised.
+
+        ``Note:`` If either the ``identifier`` or the ``bit_mask`` is out of range
+                  for the specified ID type, a ``ValueError`` with reason "invalid id"
+                  will be raised.
+
+        Examples
+        ^^^^^^^^
+
+        Receive all incoming messages::
+
+          can.set_filters(None)
+
+        Receive messages with Standard ID values 0x301 and 0x700 only::
+
+          can.set_filters(((0x301, 0x7FF, 0),
+                           (0x700, 0x7FF, 0)))
+
+        Receive messages with Standard ID values in range 0x300-0x3FF, and Extended
+        ID value 0x50700 only::
+
+          can.set_filters(((0x300, 0x700, 0),
+                           (0x50700, 0x1FFF_FFFF, CAN.FLAG_EXT_ID)))
         """
         ...
     def send(self, id, data, flags=0) -> int:
         """
-           Copy a new CAN message into the controller's hardware transmit queue to be
-           sent onto the bus. The transmit queue is a priority queue sorted on CAN
-           identifier priority (lower numeric identifiers have higher priority).
-        
-           - *id* is an integer CAN identifier value.
-           - *data* is a bytes object (or similar) containing the CAN message data,
-             or describing a Remote Transmission Request (see below).
-           - *flags* is an integer with zero or more of the bits defined in
-             `can-flags` set, specifying properties of the outgoing CAN message
-             (Extended ID, Remote Transmission Request, etc.)
-        
-           If the message is successfully queued for transmit onto the bus, the function
-           returns an integer in the range ``0`` to `CAN.TX_QUEUE_LEN` (exclusive). This
-           value is the transmit buffer index where the message is queued to send, and
-           can be used by the `CAN.cancel_send` function and in `CAN.IRQ_TX` events.
-        
-           If the queue is full then the send will fail and ``None`` is returned.
-        
-           The send can also fail and return ``None`` if the provided *id* value has
-           equal priority to an existing message in the transmit queue and the CAN
-           controller hardware cannot guarantee that messages with the same ID will be
-           sent onto the bus in the same order they were added to the queue. To queue
-           the message anyway, pass the value :data:`CAN.FLAG_UNORDERED` flag in
-           the *flags* argument. This flag indicates that it's OK to send messages with
-           the same CAN ID onto the bus in any order.
-        
-           If the controller is in the "Bus Off" error state or disabled then calling
-           this function will raise an ``OSError``.
-        
-           ``Note:`` This intentionally low-level implementation is designed so the
-              caller can establish a software queue of outgoing messages.
+        Copy a new CAN message into the controller's hardware transmit queue to be
+        sent onto the bus. The transmit queue is a priority queue sorted on CAN
+        identifier priority (lower numeric identifiers have higher priority).
+
+        - *id* is an integer CAN identifier value.
+        - *data* is a bytes object (or similar) containing the CAN message data,
+          or describing a Remote Transmission Request (see below).
+        - *flags* is an integer with zero or more of the bits defined in
+          `can-flags` set, specifying properties of the outgoing CAN message
+          (Extended ID, Remote Transmission Request, etc.)
+
+        If the message is successfully queued for transmit onto the bus, the function
+        returns an integer in the range ``0`` to `CAN.TX_QUEUE_LEN` (exclusive). This
+        value is the transmit buffer index where the message is queued to send, and
+        can be used by the `CAN.cancel_send` function and in `CAN.IRQ_TX` events.
+
+        If the queue is full then the send will fail and ``None`` is returned.
+
+        The send can also fail and return ``None`` if the provided *id* value has
+        equal priority to an existing message in the transmit queue and the CAN
+        controller hardware cannot guarantee that messages with the same ID will be
+        sent onto the bus in the same order they were added to the queue. To queue
+        the message anyway, pass the value :data:`CAN.FLAG_UNORDERED` flag in
+        the *flags* argument. This flag indicates that it's OK to send messages with
+        the same CAN ID onto the bus in any order.
+
+        If the controller is in the "Bus Off" error state or disabled then calling
+        this function will raise an ``OSError``.
+
+        ``Note:`` This intentionally low-level implementation is designed so the
+           caller can establish a software queue of outgoing messages.
         """
         ...
     def recv(self, arg=None) -> None:
         """
-           Return a CAN message that has been received by the controller, according to
-           filters set by :func:`CAN.set_filters`.
-        
-           This function takes a single optional argument, if provided then it must be a
-           list of at least 4 elements where the second element is a `memoryview` object
-           that refers to a `bytearray` or similar object that has enough capacity to hold
-           any received CAN message (8 bytes for CAN Classic, 64 bytes for CAN FD). The
-           provided list will be returned as a successful result, and avoids memory
-           allocation inside the function.
-        
-           If no messages have been received by the CAN controller, this function
-           returns ``None``.
-        
-           ``Note:`` `CAN.set_filters` must be called before any messages can be received by
-                     the controller. To receive all messages, call ``set_filters(None)``.
-        
-           If a message has been received by the CAN controller, this function returns a
-           list with 4 elements:
-        
-           - Index 0 is the CAN ID of the received message, as an integer.
-           - Index 1 is a memoryview that provides access to the received message data.
-        
-             - If *arg* is not provided then this is a `memoryview` holding the bytes
-               which were received. This `memoryview` is backed by a newly allocated
-               `bytearray` large enough to hold any received CAN message. This allows
-               the result to be safely reused as a future *arg*, to save memory allocations.
-             - If *arg* is provided then the provided `memoryview` will be resized to
-               hold exactly the bytes which were received. The caller is responsible for
-               making sure the backing object for the `memoryview` can hold a CAN
-               message of any length.
-        
-           - Index 2 is an integer with zero or more of the bits defined in
-             `can-flags` set. It indicates metadata about the received message.
-           - Index 3 is an integer with zero or more of the bits defined in
-             `can-recv-errors` set. Any non-zero value indicates potential issues when
-             receiving CAN messages. These flags are reset inside the controller each
-             time this function returns.
-        
-           Remote Transmission Requests
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        
-           If a Remote Transmission Request is received then the bit `CAN.FLAG_RTR`
-           will be set in Index 2 and the memoryview at Index 1 will contain all
-           zeroes, with a length equal to the ``DLC`` field of the received request.
-        
-           Example
-           ^^^^^^^
-           ::
-        
-               can.set_filters(None)   # receive all
-               while True:
-                   res = can.recv()
-                   if res:
-                       can_id, data, flags, errs = res
-                       print("Received", hex(can_id), data.hex(), hex(flags), hex(errs))
-                   else:
-                       time.sleep_ms(1)  # not a good pattern, use the irq instead!
+        Return a CAN message that has been received by the controller, according to
+        filters set by :func:`CAN.set_filters`.
+
+        This function takes a single optional argument, if provided then it must be a
+        list of at least 4 elements where the second element is a `memoryview` object
+        that refers to a `bytearray` or similar object that has enough capacity to hold
+        any received CAN message (8 bytes for CAN Classic, 64 bytes for CAN FD). The
+        provided list will be returned as a successful result, and avoids memory
+        allocation inside the function.
+
+        If no messages have been received by the CAN controller, this function
+        returns ``None``.
+
+        ``Note:`` `CAN.set_filters` must be called before any messages can be received by
+                  the controller. To receive all messages, call ``set_filters(None)``.
+
+        If a message has been received by the CAN controller, this function returns a
+        list with 4 elements:
+
+        - Index 0 is the CAN ID of the received message, as an integer.
+        - Index 1 is a memoryview that provides access to the received message data.
+
+          - If *arg* is not provided then this is a `memoryview` holding the bytes
+            which were received. This `memoryview` is backed by a newly allocated
+            `bytearray` large enough to hold any received CAN message. This allows
+            the result to be safely reused as a future *arg*, to save memory allocations.
+          - If *arg* is provided then the provided `memoryview` will be resized to
+            hold exactly the bytes which were received. The caller is responsible for
+            making sure the backing object for the `memoryview` can hold a CAN
+            message of any length.
+
+        - Index 2 is an integer with zero or more of the bits defined in
+          `can-flags` set. It indicates metadata about the received message.
+        - Index 3 is an integer with zero or more of the bits defined in
+          `can-recv-errors` set. Any non-zero value indicates potential issues when
+          receiving CAN messages. These flags are reset inside the controller each
+          time this function returns.
+
+        Remote Transmission Requests
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+        If a Remote Transmission Request is received then the bit `CAN.FLAG_RTR`
+        will be set in Index 2 and the memoryview at Index 1 will contain all
+        zeroes, with a length equal to the ``DLC`` field of the received request.
+
+        Example
+        ^^^^^^^
+        ::
+
+            can.set_filters(None)   # receive all
+            while True:
+                res = can.recv()
+                if res:
+                    can_id, data, flags, errs = res
+                    print("Received", hex(can_id), data.hex(), hex(flags), hex(errs))
+                else:
+                    time.sleep_ms(1)  # not a good pattern, use the irq instead!
         """
         ...
     def irq(self, handler=None, trigger=0, hard=False) -> irq:
         """
-           Sets an interrupt *handler* function to be called when one or more of the
-           events flagged in *trigger* has occurred.
-        
-             - *handler* is a function to be called when the interrupt event
-               triggers.  The handler must take exactly one argument which is the
-               :class:`CAN` instance.
-        
-             - *trigger* configures the event(s) which can generate an interrupt.
-               Possible values are a mask of one or more of the following:
-        
-               - `CAN.IRQ_RX` event occurs after the CAN controller has received
-                 at least one message into its RX FIFO (meaning that :func:`CAN.recv()`
-                 will return successfully).
-               - `CAN.IRQ_TX` event occurs after the CAN controller has either
-                 successfully sent a message onto the CAN bus or failed to send a
-                 message. This trigger has additional requirements for the handler, see
-                 `machine_can_irq_flags` for details.
-               - `CAN.IRQ_STATE` event occurs when the CAN controller has transitioned
-                 into a more severe error state. Call :func:`CAN.state()` to get the
-                 updated state.
-        
-             - *hard* if True, a hard interrupt is used. This reduces the delay between
-               the CAN controller event and the handler being called. Hard interrupt
-               handlers may not allocate memory; see :ref:`isr_rules`.
-        
-           Returns an irq object. If called with no arguments then a previously-configured
-           irq object is returned.
-        
-           See `machine_can_irq_flags` for an example.
+        Sets an interrupt *handler* function to be called when one or more of the
+        events flagged in *trigger* has occurred.
+
+          - *handler* is a function to be called when the interrupt event
+            triggers.  The handler must take exactly one argument which is the
+            :class:`CAN` instance.
+
+          - *trigger* configures the event(s) which can generate an interrupt.
+            Possible values are a mask of one or more of the following:
+
+            - `CAN.IRQ_RX` event occurs after the CAN controller has received
+              at least one message into its RX FIFO (meaning that :func:`CAN.recv()`
+              will return successfully).
+            - `CAN.IRQ_TX` event occurs after the CAN controller has either
+              successfully sent a message onto the CAN bus or failed to send a
+              message. This trigger has additional requirements for the handler, see
+              `machine_can_irq_flags` for details.
+            - `CAN.IRQ_STATE` event occurs when the CAN controller has transitioned
+              into a more severe error state. Call :func:`CAN.state()` to get the
+              updated state.
+
+          - *hard* if True, a hard interrupt is used. This reduces the delay between
+            the CAN controller event and the handler being called. Hard interrupt
+            handlers may not allocate memory; see :ref:`isr_rules`.
+
+        Returns an irq object. If called with no arguments then a previously-configured
+        irq object is returned.
+
+        See `machine_can_irq_flags` for an example.
         """
         ...
     def cancel_send(self, index) -> Incomplete:
         """
-           Request the CAN controller to cancel sending a message onto the bus.
-        
-           Argument *index* identifies a single transmit buffer. It should be an
-           integer in the range ``0`` to ``CAN.TX_QUEUE_LEN`` (exclusive). Generally
-           this will be a value previously returned by :func:`CAN.send()`.
-        
-           The result is ``True`` if a message was pending transmission in this buffer
-           and transmission was cancelled.
-        
-           The result is ``False`` otherwise (either no message was pending transmission
-           in this buffer, or transmission succeeded already).
-        
-           The IRQ event `CAN.IRQ_TX` should be used to determine if a message
-           was definitely sent or not, but note there are potential race conditions if a
-           transmission is cancelled and then the same buffer is used to send another
-           message (especially if the CAN controller IRQ is not "hard").
+        Request the CAN controller to cancel sending a message onto the bus.
+
+        Argument *index* identifies a single transmit buffer. It should be an
+        integer in the range ``0`` to ``CAN.TX_QUEUE_LEN`` (exclusive). Generally
+        this will be a value previously returned by :func:`CAN.send()`.
+
+        The result is ``True`` if a message was pending transmission in this buffer
+        and transmission was cancelled.
+
+        The result is ``False`` otherwise (either no message was pending transmission
+        in this buffer, or transmission succeeded already).
+
+        The IRQ event `CAN.IRQ_TX` should be used to determine if a message
+        was definitely sent or not, but note there are potential race conditions if a
+        transmission is cancelled and then the same buffer is used to send another
+        message (especially if the CAN controller IRQ is not "hard").
         """
         ...
     def state(self) -> int:
         """
-           Returns an integer value indicating the current state of the controller.
-           The value will be one of the values defined in `can-states`.
-        
-           Lower severity error states may automatically clear if the bus recovers, but
-           the `CAN.STATE_BUS_OFF` state can only be recovered by calling
-           :func:`CAN.restart()`.
+        Returns an integer value indicating the current state of the controller.
+        The value will be one of the values defined in `can-states`.
+
+        Lower severity error states may automatically clear if the bus recovers, but
+        the `CAN.STATE_BUS_OFF` state can only be recovered by calling
+        :func:`CAN.restart()`.
         """
         ...
-    def get_counters(self, list=None ,/) -> None:
+    def get_counters(self, list=None, /) -> None:
         """
-           Returns controller's error counter values. The result is a list of eight
-           values. If the optional *list* parameter is specified then the provided
-           list object is updated and returned as the result, to avoid an allocation.
-        
-           The list items are:
-        
-           - TEC (Transmit Error Counter) value
-           - REC (Receive Error Counter) value
-           - Number of times the controller entered the Warning state from the Active state.
-           - Number of times the controller entered the Error Passive state from the Warning state.
-           - Number of times the controller entered the Bus Off state from the Error Passive state.
-           - Total number of pending TX messages in the hardware queue.
-           - Total number of pending RX messages in the hardware queue.
-           - Number of times an RX overrun occurred.
-        
-          ``Note:`` Depending on the controller, these values may overflow back to 0 after
-                    a certain value.
-        
-          ``Note:`` If a controller doesn't support a particular counter, it will return
-                    ``None`` for that list element.
+         Returns controller's error counter values. The result is a list of eight
+         values. If the optional *list* parameter is specified then the provided
+         list object is updated and returned as the result, to avoid an allocation.
+
+         The list items are:
+
+         - TEC (Transmit Error Counter) value
+         - REC (Receive Error Counter) value
+         - Number of times the controller entered the Warning state from the Active state.
+         - Number of times the controller entered the Error Passive state from the Warning state.
+         - Number of times the controller entered the Bus Off state from the Error Passive state.
+         - Total number of pending TX messages in the hardware queue.
+         - Total number of pending RX messages in the hardware queue.
+         - Number of times an RX overrun occurred.
+
+        ``Note:`` Depending on the controller, these values may overflow back to 0 after
+                  a certain value.
+
+        ``Note:`` If a controller doesn't support a particular counter, it will return
+                  ``None`` for that list element.
         """
         ...
-    def get_timings(self, list=None ,/) -> List:
+    def get_timings(self, list=None, /) -> List:
         """
-           Returns a list of elements indicating the current timings configured in the
-           CAN controller. This can be used to verify timings for debugging purposes.
-           The result is a list of six values. If the optional *list* parameter is
-           specified then the provided list object is updated and returned as the
-           result, to avoid an allocation.
-        
-           The list items are:
-        
-           - Exact bitrate used by the controller. May vary from *bitrate* argument
-             passed to :func:`CAN.init()` due to quantisation to meet hardware
-             constraints.
-           - Resynchronisation jump width (SJW) in units of time quanta for nominal
-             bits. Has the same meaning as the *sjw* parameter of :func:`CAN.init()`.
-           - Location of the sample point in units of time quanta for nominal bits. Has
-             the same meaning as the *tseg1* parameter of :func:`CAN.init()`.
-           - Location of the transmit point in units of time quanta for nominal bits.
-             Has the same meaning as the *tseg2* parameter of :func:`CAN.init()`.
-           - CAN FD timing information. ``None`` for controllers which don't support CAN
-             FD, or if CAN FD is not initialised. Otherwise, a nested list of four
-             elements corresponding to the items above but applicable to the CAN FD BRS
-             feature.
-           - Optional controller-specific timing information. Depending on the
-             controller this will either be ``None`` if controller doesn't report any,
-             or it will be a constant length list whose elements are specific to a
-             particular hardware controller.
-        
-           ``Note:`` If :func:`CAN.init()` has not been called then this function
-                     still returns a result, but the result depends on the controller
-                     internals and may not be accurate.
+        Returns a list of elements indicating the current timings configured in the
+        CAN controller. This can be used to verify timings for debugging purposes.
+        The result is a list of six values. If the optional *list* parameter is
+        specified then the provided list object is updated and returned as the
+        result, to avoid an allocation.
+
+        The list items are:
+
+        - Exact bitrate used by the controller. May vary from *bitrate* argument
+          passed to :func:`CAN.init()` due to quantisation to meet hardware
+          constraints.
+        - Resynchronisation jump width (SJW) in units of time quanta for nominal
+          bits. Has the same meaning as the *sjw* parameter of :func:`CAN.init()`.
+        - Location of the sample point in units of time quanta for nominal bits. Has
+          the same meaning as the *tseg1* parameter of :func:`CAN.init()`.
+        - Location of the transmit point in units of time quanta for nominal bits.
+          Has the same meaning as the *tseg2* parameter of :func:`CAN.init()`.
+        - CAN FD timing information. ``None`` for controllers which don't support CAN
+          FD, or if CAN FD is not initialised. Otherwise, a nested list of four
+          elements corresponding to the items above but applicable to the CAN FD BRS
+          feature.
+        - Optional controller-specific timing information. Depending on the
+          controller this will either be ``None`` if controller doesn't report any,
+          or it will be a constant length list whose elements are specific to a
+          particular hardware controller.
+
+        ``Note:`` If :func:`CAN.init()` has not been called then this function
+                  still returns a result, but the result depends on the controller
+                  internals and may not be accurate.
         """
         ...
     def restart(self) -> Incomplete:
         """
-           Causes the controller to exit `STATE_BUS_OFF` without clearing any other
-           internal state. Also clears some of the error counters (always the number
-           of times each error state has been entered, possibly TEC and REC depending
-           on the controller.)
-        
-           Calling this function also cancels any messages waiting to be sent. No
-           `IRQ_TX` interrupts are delivered for these messages.
-        
-           Note that this function may or may not cause the controller to exit the
-           "Error Passive" state, depending whether the controller hardware zeroes
-           TEC and REC or not.
+        Causes the controller to exit `STATE_BUS_OFF` without clearing any other
+        internal state. Also clears some of the error counters (always the number
+        of times each error state has been entered, possibly TEC and REC depending
+        on the controller.)
+
+        Calling this function also cancels any messages waiting to be sent. No
+        `IRQ_TX` interrupts are delivered for these messages.
+
+        Note that this function may or may not cause the controller to exit the
+        "Error Passive" state, depending whether the controller hardware zeroes
+        TEC and REC or not.
         """
         ...
     def deinit(self) -> None:
         """
-           De-initialises a previously active CAN instance. All pending messages
-           (transmit and receive) are dropped and the controller stops interacting on
-           the bus. To use this instance again, call :func:`CAN.init()`.
-        
-           No `IRQ_TX` or `IRQ_RX` interrupts are called in response to calling this
-           function.
-        
-           See also :func:`CAN.restart()`.
+        De-initialises a previously active CAN instance. All pending messages
+        (transmit and receive) are dropped and the controller stops interacting on
+        the bus. To use this instance again, call :func:`CAN.init()`.
+
+        No `IRQ_TX` or `IRQ_RX` interrupts are called in response to calling this
+        function.
+
+        See also :func:`CAN.restart()`.
         """
         ...

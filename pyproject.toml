@@ -3,7 +3,7 @@ name = "micropython-stubs"
 authors = [{ name = "Jos Verlinde", email = "jos_verlinde@hotmail.com"}]
 
 description = "The MicroPython stubs project"
-version = "0.1.0"
+version = "1.28.0"
 classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: MicroPython",
