@@ -9,7 +9,7 @@ This module implements advanced collection and container types to
 hold/accumulate various objects.
 
 ---
-Module: 'ucollections' on micropython-v1.28.0-stm32-PYBV11
+Module: 'ucollections' on micropython-v1.28.0-stm32-PYBV11-NETWORK
 """
 # import module from stdlib/module
 from collections import *
