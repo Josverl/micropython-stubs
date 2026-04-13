@@ -9,24 +9,9 @@ from typing import Dict, List
 
 import fasteners
 import pytest
-from mpflash.versions import micropython_versions
+from conftest import get_test_versions
 from packaging.version import Version
 from typecheck import copy_config_files, port_and_board, run_typechecker
-
-
-def major_minor(versions):
-    """create a list of the most recent version for each major.minor"""
-    mm_groups = {}
-    for v in versions:
-        if v.endswith("-preview"):
-            mm_groups["preview"] = [v]
-            continue
-        major_minor = f"{Version(v).major}.{Version(v).minor}"
-        if major_minor not in mm_groups or "-preview" in v:
-            mm_groups[major_minor] = [v]
-        else:
-            mm_groups[major_minor].append(v)
-    return [max(v) for v in mm_groups.values()]
 
 
 # only snippets tests
@@ -95,22 +80,20 @@ SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
-# only the recent versions
-VERSIONS = sorted(major_minor(micropython_versions(minver="v1.24.0")), reverse=True)[:3]
-
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
     """
     Generates a test parameterization for each portboard, version and feature defined in:
     - SOURCES
-    - VERSIONS
+    - VERSIONS (filtered by --stable-only if requested)
     - PORTBOARD_FEATURES
     """
+    versions = get_test_versions(metafunc.config)
     argnames = "stub_source, version, portboard, feature"
     args_lst = []
     copy_config_files()
     for src in SOURCES:
-        for version in VERSIONS:
+        for version in versions:
             # skip latest for pypi
             if src == "pypi" and version in {"preview", "latest"}:
                 continue
