@@ -13,6 +13,9 @@ name: get-all-frozen
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/get-all-frozen.yml"
   schedule:
     - cron: "0 1 * * *" # Run everyday at 01:00
 
