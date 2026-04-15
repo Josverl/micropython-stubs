@@ -35,7 +35,7 @@ class ADC:
     WIDTH_10BIT: int = 10
     WIDTH_11BIT: int = 11
     WIDTH_12BIT: int = 12
-    def __init__(self, pin: PinLike, *, atten=ATTN_0DB) -> None:
+    def __init__(self, pin: PinLike, *, sample_ns: int | None = None, atten=ATTN_0DB) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -47,7 +47,7 @@ class ADC:
 
         on ESP32 :  `atten` specifies the attenuation level for the ADC input.
         """
-    def init(self, *, sample_ns, atten=ATTN_0DB) -> Incomplete:
+    def init(self, *, sample_ns: int | None = None, atten=ATTN_0DB) -> Incomplete:
         """
         Apply the given settings to the ADC.  Only those arguments that are
         specified will be changed.  See the ADC constructor above for what the
