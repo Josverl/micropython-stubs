@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # APA106driver for MicroPython on ESP32
 # MIT license; Copyright (c) 2016 Damien P. George
 

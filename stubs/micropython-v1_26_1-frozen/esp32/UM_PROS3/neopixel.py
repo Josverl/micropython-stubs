@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # NeoPixel driver for MicroPython
 # MIT license; Copyright (c) 2016 Damien P. George, 2021 Jim Mussared
 

@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 class defaultdict:
     @staticmethod
     def __new__(cls, default_factory=None, **kwargs):

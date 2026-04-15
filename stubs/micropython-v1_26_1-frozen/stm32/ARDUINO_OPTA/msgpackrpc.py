@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # This file is part of the msgpack-rpc module.
 # Copyright (c) 2023 Arduino SA
 # This Source Code Form is subject to the terms of the Mozilla Public

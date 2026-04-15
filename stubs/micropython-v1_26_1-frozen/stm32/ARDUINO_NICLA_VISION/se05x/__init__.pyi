@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 from .iso7816 import SmartCard as SmartCard
 from .se05x import SE05X as SE05X
 from micropython import const as const

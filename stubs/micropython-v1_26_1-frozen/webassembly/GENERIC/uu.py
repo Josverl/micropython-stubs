@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 #! /usr/bin/env python3
 
 # Copyright 1994 by Lance Ellinghouse

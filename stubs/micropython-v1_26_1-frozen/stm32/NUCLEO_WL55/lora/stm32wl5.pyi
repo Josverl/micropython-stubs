@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 from . import sx126x as sx126x
 from .async_modem import AsyncModem as AsyncModem
 from .sync_modem import SyncModem as SyncModem

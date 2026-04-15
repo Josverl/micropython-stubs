@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 from time import sleep_ms
 from ssd1306 import SSD1306_I2C
 import network

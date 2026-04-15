@@ -5,14 +5,15 @@
         "port": "esp32",
         "platform": "esp32",
         "machine": "UM_TINYS2",
-        "firmware": "micropython-esp32-v1_26_1",
+        "firmware": "micropython-esp32-UM_TINYS2-v1_26_1",
         "nodename": "micropython",
         "version": "v1.26.1",
         "release": "v1.26.1",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "UM_TINYS2"
     },
     "stubber": {
-        "version": "1.26.3",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

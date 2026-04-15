@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 """
 Functions related to the hardware.
 
@@ -14,16 +15,13 @@ damage.
 from __future__ import annotations
 from _typeshed import Incomplete
 from micropython import const as const
-from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf, mp_available
+from typing import Callable, Any, NoReturn, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
-from typing import NoReturn, Callable, Any, overload
+from _mpy_shed import mp_available, AnyReadableBuf, AnyWritableBuf, _IRQ
 from vfs import AbstractBlockDev
 
 _path: Incomplete
 _PCNT_RANGE: int
-ATTN_0DB: int = ...
-ID_T: TypeAlias = int | str
-PinLike: TypeAlias = Pin | int | str
 IDLE: Incomplete
 """IRQ wake values."""
 SLEEP: Incomplete
@@ -47,6 +45,9 @@ PIN_WAKE: Incomplete
 RTC_WAKE: Incomplete
 """Wake-up reasons."""
 _IRQ_STATE: TypeAlias = int
+ID_T: TypeAlias = int | str
+PinLike: TypeAlias = Pin | int | str
+ATTN_0DB: int = ...
 
 class _CounterBase:
     _PCNT: Incomplete
@@ -101,995 +102,167 @@ class Encoder:
     def phases(self): ...
 
 def __getattr__(attr): ...
-
-class ADC:
-    # ESP32 specific
-    @mp_available(port="esp32")
-    @deprecated("Use ADC.block().init(bits=bits) instead.")
-    def width(self, bits: int) -> None:
-        """
-        Equivalent to ADC.block().init(bits=bits).
-        The only chip that can switch resolution to a lower one is the normal esp32. The C2 & S3 are stuck at 12 bits, while the S2 is at 13 bits.
-
-        For compatibility, the ADC object also provides constants matching the supported ADC resolutions, per chip:
-
-        ESP32:
-            ADC.WIDTH_9BIT = 9
-            ADC.WIDTH_10BIT = 10
-            ADC.WIDTH_11BIT = 11
-            ADC.WIDTH_12BIT = 12
-
-        ESP32 C3 & S3:
-            ADC.WIDTH_12BIT = 12
-
-        ESP32 S2:
-            ADC.WIDTH_13BIT = 13
-
-        Available : ESP32
-        """
-        ...
-
-    @mp_available(port="esp32")
-    @deprecated("Use read_u16() instead.")
-    def read(self) -> int:
-        """
-        Take an analog reading and return an integer in the range 0-4095.
-        The return value represents the raw reading taken by the ADC, scaled
-        such that the minimum value is 0 and the maximum value is 4095.
-
-        This method is deprecated, use `read_u16()` instead.
-
-        Available : ESP32
-        """
-        ...
-
-    @mp_available(port="esp32")
-    @deprecated("Use ADC.init(atten=atten) instead.")
-    def atten(self, atten: int) -> None:
-        """
-        Set the attenuation level for the ADC input.
-
-        Available : ESP32
-        """
-        ...
-
-class ADCBlock:
-    @overload
-    def connect(self, channel: int, **kwargs) -> ADC: ...
-    @overload
-    def connect(self, source: PinLike, **kwargs) -> ADC: ...
-    @overload
-    def connect(self, channel: int, source: PinLike, **kwargs) -> ADC:
-        """
-        Connect up a channel on the ADC peripheral so it is ready for sampling,
-        and return an :ref:`ADC <machine.ADC>` object that represents that connection.
-
-        The *channel* argument must be an integer, and *source* must be an object
-        (for example a :ref:`Pin <machine.Pin>`) which can be connected up for sampling.
-
-        If only *channel* is given then it is configured for sampling.
-
-        If only *source* is given then that object is connected to a default
-        channel ready for sampling.
-
-        If both *channel* and *source* are given then they are connected together
-        and made ready for sampling.
-
-        Any additional keyword arguments are used to configure the returned ADC object,
-        via its :meth:`init <machine.ADC.init>` method.
-        """
-        ...
-
-class I2C:
-    @overload
-    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
-        """
-        Construct and return a new I2C object using the following parameters:
-
-           - *id* identifies a particular I2C peripheral.  Allowed values for
-             depend on the particular port/board
-           - *scl* should be a pin object specifying the pin to use for SCL.
-           - *sda* should be a pin object specifying the pin to use for SDA.
-           - *freq* should be an integer which sets the maximum frequency
-             for SCL.
-
-        Note that some ports/boards will have default values of *scl* and *sda*
-        that can be changed in this constructor.  Others will have fixed values
-        of *scl* and *sda* that cannot be changed.
-        """
-
-    @overload
-    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
-        """
-        Construct and return a new I2C object using the following parameters:
-
-           - *id* identifies a particular I2C peripheral.  Allowed values for
-             depend on the particular port/board
-           - *scl* should be a pin object specifying the pin to use for SCL.
-           - *sda* should be a pin object specifying the pin to use for SDA.
-           - *freq* should be an integer which sets the maximum frequency
-             for SCL.
-
-        Note that some ports/boards will have default values of *scl* and *sda*
-        that can be changed in this constructor.  Others will have fixed values
-        of *scl* and *sda* that cannot be changed.
-        """
-
-    @overload
-    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
-        """
-        Initialise the I2C bus with the given arguments:
-
-           - *scl* is a pin object for the SCL line
-           - *sda* is a pin object for the SDA line
-           - *freq* is the SCL clock rate
-
-         In the case of hardware I2C the actual clock frequency may be lower than the
-         requested frequency. This is dependent on the platform hardware. The actual
-         rate may be determined by printing the I2C object.
-        """
-
-    @overload
-    def init(self, *, freq: int = 400_000) -> None:
-        """
-        Initialise the I2C bus with the given arguments:
-
-           - *scl* is a pin object for the SCL line
-           - *sda* is a pin object for the SDA line
-           - *freq* is the SCL clock rate
-
-         In the case of hardware I2C the actual clock frequency may be lower than the
-         requested frequency. This is dependent on the platform hardware. The actual
-         rate may be determined by printing the I2C object.
-        """
-
-    @overload
-    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
-        """
-        Initialise the I2C bus with the given arguments:
-
-           - *scl* is a pin object for the SCL line
-           - *sda* is a pin object for the SDA line
-           - *freq* is the SCL clock rate
-
-         In the case of hardware I2C the actual clock frequency may be lower than the
-         requested frequency. This is dependent on the platform hardware. The actual
-         rate may be determined by printing the I2C object.
-        """
-
-class Pin:
-    @overload
-    def value(self) -> int:
-        """
-        This method allows to set and get the value of the pin, depending on whether
-        the argument ``x`` is supplied or not.
-
-        If the argument is omitted then this method gets the digital logic level of
-        the pin, returning 0 or 1 corresponding to low and high voltage signals
-        respectively.  The behaviour of this method depends on the mode of the pin:
-
-          - ``Pin.IN`` - The method returns the actual input value currently present
-            on the pin.
-          - ``Pin.OUT`` - The behaviour and return value of the method is undefined.
-          - ``Pin.OPEN_DRAIN`` - If the pin is in state '0' then the behaviour and
-            return value of the method is undefined.  Otherwise, if the pin is in
-            state '1', the method returns the actual input value currently present
-            on the pin.
-
-        If the argument is supplied then this method sets the digital logic level of
-        the pin.  The argument ``x`` can be anything that converts to a boolean.
-        If it converts to ``True``, the pin is set to state '1', otherwise it is set
-        to state '0'.  The behaviour of this method depends on the mode of the pin:
-
-          - ``Pin.IN`` - The value is stored in the output buffer for the pin.  The
-            pin state does not change, it remains in the high-impedance state.  The
-            stored value will become active on the pin as soon as it is changed to
-            ``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode.
-          - ``Pin.OUT`` - The output buffer is set to the given value immediately.
-          - ``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage
-            state.  Otherwise the pin is set to high-impedance state.
-
-        When setting the value this method returns ``None``.
-        """
-
-    @overload
-    def value(self, x: Any, /) -> None:
-        """
-        This method allows to set and get the value of the pin, depending on whether
-        the argument ``x`` is supplied or not.
-
-        If the argument is omitted then this method gets the digital logic level of
-        the pin, returning 0 or 1 corresponding to low and high voltage signals
-        respectively.  The behaviour of this method depends on the mode of the pin:
-
-          - ``Pin.IN`` - The method returns the actual input value currently present
-            on the pin.
-          - ``Pin.OUT`` - The behaviour and return value of the method is undefined.
-          - ``Pin.OPEN_DRAIN`` - If the pin is in state '0' then the behaviour and
-            return value of the method is undefined.  Otherwise, if the pin is in
-            state '1', the method returns the actual input value currently present
-            on the pin.
-
-        If the argument is supplied then this method sets the digital logic level of
-        the pin.  The argument ``x`` can be anything that converts to a boolean.
-        If it converts to ``True``, the pin is set to state '1', otherwise it is set
-        to state '0'.  The behaviour of this method depends on the mode of the pin:
-
-          - ``Pin.IN`` - The value is stored in the output buffer for the pin.  The
-            pin state does not change, it remains in the high-impedance state.  The
-            stored value will become active on the pin as soon as it is changed to
-            ``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode.
-          - ``Pin.OUT`` - The output buffer is set to the given value immediately.
-          - ``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage
-            state.  Otherwise the pin is set to high-impedance state.
-
-        When setting the value this method returns ``None``.
-        """
-
-    @overload
-    def __call__(self) -> int:
-        """
-        Pin objects are callable.  The call method provides a (fast) shortcut to set
-        and get the value of the pin.  It is equivalent to Pin.value([x]).
-        See :meth:`Pin.value` for more details.
-        """
-
-    @overload
-    def __call__(self, x: Any, /) -> None:
-        """
-        Pin objects are callable.  The call method provides a (fast) shortcut to set
-        and get the value of the pin.  It is equivalent to Pin.value([x]).
-        See :meth:`Pin.value` for more details.
-        """
-
-    @overload
-    def mode(self) -> int:
-        """
-        Get or set the pin mode.
-        See the constructor documentation for details of the ``mode`` argument.
-
-        Availability: cc3200, stm32 ports.
-        """
-
-    @overload
-    def mode(self, mode: int, /) -> None:
-        """
-        Get or set the pin mode.
-        See the constructor documentation for details of the ``mode`` argument.
-
-        Availability: cc3200, stm32 ports.
-        """
-
-    @overload
-    def pull(self) -> int:
-        """
-        Get or set the pin pull state.
-        See the constructor documentation for details of the ``pull`` argument.
-
-        Availability: cc3200, stm32 ports.
-        """
-
-    @overload
-    def pull(self, pull: int, /) -> None:
-        """
-        Get or set the pin pull state.
-        See the constructor documentation for details of the ``pull`` argument.
-
-        Availability: cc3200, stm32 ports.
-        """
-
-    @overload
-    def drive(self, drive: int, /) -> None:
-        """
-        Get or set the pin drive strength.
-        See the constructor documentation for details of the ``drive`` argument.
-
-        Availability: cc3200 port.
-        """
-        ...
-
-    @overload
-    def drive(self, /) -> int:
-        """
-        Get or set the pin drive strength.
-        See the constructor documentation for details of the ``drive`` argument.
-
-        Availability: cc3200 port.
-        """
-
-class PWM:
-    @overload
-    def freq(self) -> int:
-        """
-        Get or set the current frequency of the PWM output.
-
-        With no arguments the frequency in Hz is returned.
-
-        With a single *value* argument the frequency is set to that value in Hz.  The
-        method may raise a ``ValueError`` if the frequency is outside the valid range.
-        """
-
-    @overload
-    def freq(
-        self,
-        value: int,
-        /,
-    ) -> None:
-        """
-        Get or set the current frequency of the PWM output.
-
-        With no arguments the frequency in Hz is returned.
-
-        With a single *value* argument the frequency is set to that value in Hz.  The
-        method may raise a ``ValueError`` if the frequency is outside the valid range.
-        """
-
-    @overload
-    def duty_u16(self) -> int:
-        """
-        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
-        value in the range 0 to 65535 inclusive.
-
-        With no arguments the duty cycle is returned.
-
-        With a single *value* argument the duty cycle is set to that value, measured
-        as the ratio ``value / 65535``.
-        """
-
-    @overload
-    def duty_u16(
-        self,
-        value: int,
-        /,
-    ) -> None:
-        """
-        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
-        value in the range 0 to 65535 inclusive.
-
-        With no arguments the duty cycle is returned.
-
-        With a single *value* argument the duty cycle is set to that value, measured
-        as the ratio ``value / 65535``.
-        """
-
-    @overload
-    def duty_ns(self) -> int:
-        """
-        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
-
-        With no arguments the pulse width in nanoseconds is returned.
-
-        With a single *value* argument the pulse width is set to that value.
-        """
-
-    @overload
-    def duty_ns(
-        self,
-        value: int,
-        /,
-    ) -> None:
-        """
-        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
-
-        With no arguments the pulse width in nanoseconds is returned.
-
-        With a single *value* argument the pulse width is set to that value.
-        """
-
-class RTC:
-    @overload
-    def __init__(self, id: int = 0):
-        """
-        Create an RTC object. See init for parameters of initialization.
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int, int, int]):
-        """
-        Create an RTC object. See init for parameters of initialization.
-
-        The documentation for RTC is in a poor state; better to experiment and use `dir`!
-        """
-
-    @overload
-    def init(self) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
-
-        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
-        values are currently ignored but might be used in the future.
-
-        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
-        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
-        accept arguments.
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
-
-        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
-        values are currently ignored but might be used in the future.
-
-        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
-        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
-        accept arguments.
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
-
-        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
-        values are currently ignored but might be used in the future.
-
-        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
-        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
-        accept arguments.
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
-
-        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
-        values are currently ignored but might be used in the future.
-
-        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
-        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
-        accept arguments.
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
-
-        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
-        values are currently ignored but might be used in the future.
-
-        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
-        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
-        accept arguments.
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
-
-        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
-        values are currently ignored but might be used in the future.
-
-        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
-        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
-        accept arguments.
-        """
-
-    @overload
-    def init(self, datetime: tuple[int, int, int, int, int, int, int, int], /) -> None:
-        """
-        Initialise the RTC. Datetime is a tuple of the form:
-
-           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
-
-        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
-        values are currently ignored but might be used in the future.
-
-        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
-        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
-        accept arguments.
-        """
-
-    @overload
-    def alarm(self, id: int, time: int, /, *, repeat: bool = False) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-    @overload
-    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int, int], /) -> None:
-        """
-        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
-        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
-        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
-        """
-
-class SDCard:
-    @overload
-    def readblocks(self, block_num: int, buf: bytearray) -> bool:
-        """
-        The first form reads aligned, multiples of blocks.
-        Starting at the block given by the index *block_num*, read blocks from
-        the device into *buf* (an array of bytes).
-        The number of blocks to read is given by the length of *buf*,
-        which will be a multiple of the block size.
-        """
-
-    @overload
-    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
-        """
-        The second form allows reading at arbitrary locations within a block,
-        and arbitrary lengths.
-        Starting at block index *block_num*, and byte offset within that block
-        of *offset*, read bytes from the device into *buf* (an array of bytes).
-        The number of bytes to read is given by the length of *buf*.
-        """
-
-    @overload
-    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
-        """
-        The first form writes aligned, multiples of blocks, and requires that the
-        blocks that are written to be first erased (if necessary) by this method.
-        Starting at the block given by the index *block_num*, write blocks from
-        *buf* (an array of bytes) to the device.
-        The number of blocks to write is given by the length of *buf*,
-        which will be a multiple of the block size.
-        """
-
-    @overload
-    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
-        """
-        The second form allows writing at arbitrary locations within a block,
-        and arbitrary lengths.  Only the bytes being written should be changed,
-        and the caller of this method must ensure that the relevant blocks are
-        erased via a prior ``ioctl`` call.
-        Starting at block index *block_num*, and byte offset within that block
-        of *offset*, write bytes from *buf* (an array of bytes) to the device.
-        The number of bytes to write is given by the length of *buf*.
-
-        Note that implementations must never implicitly erase blocks if the offset
-        argument is specified, even if it is zero.
-        """
-
-class Signal:
-    @overload
-    def __init__(self, pin_obj: PinLike, invert: bool = False, /):
-        """
-        Create a Signal object. There're two ways to create it:
-
-        * By wrapping existing Pin object - universal method which works for
-          any board.
-        * By passing required Pin parameters directly to Signal constructor,
-          skipping the need to create intermediate Pin object. Available on
-          many, but not all boards.
-
-        The arguments are:
-
-          - ``pin_obj`` is existing Pin object.
-
-          - ``pin_arguments`` are the same arguments as can be passed to Pin constructor.
-
-          - ``invert`` - if True, the signal will be inverted (active low).
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: PinLike,
-        /,
-        mode: int = -1,
-        pull: int = -1,
-        *,
-        value: Any = None,
-        drive: int | None = None,
-        alt: int | None = None,
-        invert: bool = False,
-    ):
-        """
-        Create a Signal object. There're two ways to create it:
-
-        * By wrapping existing Pin object - universal method which works for
-          any board.
-        * By passing required Pin parameters directly to Signal constructor,
-          skipping the need to create intermediate Pin object. Available on
-          many, but not all boards.
-
-        The arguments are:
-
-          - ``pin_obj`` is existing Pin object.
-
-          - ``pin_arguments`` are the same arguments as can be passed to Pin constructor.
-
-          - ``invert`` - if True, the signal will be inverted (active low).
-        """
-
-    @overload
-    def value(self) -> int:
-        """
-        This method allows to set and get the value of the signal, depending on whether
-        the argument ``x`` is supplied or not.
-
-        If the argument is omitted then this method gets the signal level, 1 meaning
-        signal is asserted (active) and 0 - signal inactive.
-
-        If the argument is supplied then this method sets the signal level. The
-        argument ``x`` can be anything that converts to a boolean. If it converts
-        to ``True``, the signal is active, otherwise it is inactive.
-
-        Correspondence between signal being active and actual logic level on the
-        underlying pin depends on whether signal is inverted (active-low) or not.
-        For non-inverted signal, active status corresponds to logical 1, inactive -
-        to logical 0. For inverted/active-low signal, active status corresponds
-        to logical 0, while inactive - to logical 1.
-        """
-
-    @overload
-    def value(self, x: Any, /) -> None:
-        """
-        This method allows to set and get the value of the signal, depending on whether
-        the argument ``x`` is supplied or not.
-
-        If the argument is omitted then this method gets the signal level, 1 meaning
-        signal is asserted (active) and 0 - signal inactive.
-
-        If the argument is supplied then this method sets the signal level. The
-        argument ``x`` can be anything that converts to a boolean. If it converts
-        to ``True``, the signal is active, otherwise it is inactive.
-
-        Correspondence between signal being active and actual logic level on the
-        underlying pin depends on whether signal is inverted (active-low) or not.
-        For non-inverted signal, active status corresponds to logical 1, inactive -
-        to logical 0. For inverted/active-low signal, active status corresponds
-        to logical 0, while inactive - to logical 1.
-        """
-
-class SPI:
-    @overload
-    def __init__(self, id: int, /):
-        """
-        Construct an SPI object on the given bus, *id*. Values of *id* depend
-        on a particular port and its hardware. Values 0, 1, etc. are commonly used
-        to select hardware SPI block #0, #1, etc.
-
-        With no additional parameters, the SPI object is created but not
-        initialised (it has the settings from the last initialisation of
-        the bus, if any).  If extra arguments are given, the bus is initialised.
-        See ``init`` for parameters of initialisation.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: int,
-        /,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
-        bits: int = 8,
-        firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
-    ):
-        """
-        Construct an SPI object on the given bus, *id*. Values of *id* depend
-        on a particular port and its hardware. Values 0, 1, etc. are commonly used
-        to select hardware SPI block #0, #1, etc.
-
-        With no additional parameters, the SPI object is created but not
-        initialised (it has the settings from the last initialisation of
-        the bus, if any).  If extra arguments are given, the bus is initialised.
-        See ``init`` for parameters of initialisation.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: int,
-        /,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
-        bits: int = 8,
-        firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
-    ):
-        """
-        Construct an SPI object on the given bus, *id*. Values of *id* depend
-        on a particular port and its hardware. Values 0, 1, etc. are commonly used
-        to select hardware SPI block #0, #1, etc.
-
-        With no additional parameters, the SPI object is created but not
-        initialised (it has the settings from the last initialisation of
-        the bus, if any).  If extra arguments are given, the bus is initialised.
-        See ``init`` for parameters of initialisation.
-        """
-
-    @overload
-    def init(
-        self,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
-        bits: int = 8,
-        firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
-    ) -> None:
-        """
-        Initialise the SPI bus with the given parameters:
-
-          - ``baudrate`` is the SCK clock rate.
-          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
-          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
-            respectively.
-          - ``bits`` is the width in bits of each transfer. Only 8 is guaranteed to be supported by all hardware.
-          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
-          - ``sck``, ``mosi``, ``miso`` are pins (machine.Pin) objects to use for bus signals. For most
-            hardware SPI blocks (as selected by ``id`` parameter to the constructor), pins are fixed
-            and cannot be changed. In some cases, hardware blocks allow 2-3 alternative pin sets for
-            a hardware SPI block. Arbitrary pin assignments are possible only for a bitbanging SPI driver
-            (``id`` = -1).
-          - ``pins`` - WiPy port doesn't ``sck``, ``mosi``, ``miso`` arguments, and instead allows to
-            specify them as a tuple of ``pins`` parameter.
-
-        In the case of hardware SPI the actual clock frequency may be lower than the
-        requested baudrate. This is dependent on the platform hardware. The actual
-        rate may be determined by printing the SPI object.
-        """
-
-    @overload
-    def init(
-        self,
-        baudrate: int = 1_000_000,
-        *,
-        polarity: int = 0,
-        phase: int = 0,
-        bits: int = 8,
-        firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
-    ) -> None:
-        """
-        Initialise the SPI bus with the given parameters:
-
-          - ``baudrate`` is the SCK clock rate.
-          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
-          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
-            respectively.
-          - ``bits`` is the width in bits of each transfer. Only 8 is guaranteed to be supported by all hardware.
-          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
-          - ``sck``, ``mosi``, ``miso`` are pins (machine.Pin) objects to use for bus signals. For most
-            hardware SPI blocks (as selected by ``id`` parameter to the constructor), pins are fixed
-            and cannot be changed. In some cases, hardware blocks allow 2-3 alternative pin sets for
-            a hardware SPI block. Arbitrary pin assignments are possible only for a bitbanging SPI driver
-            (``id`` = -1).
-          - ``pins`` - WiPy port doesn't ``sck``, ``mosi``, ``miso`` arguments, and instead allows to
-            specify them as a tuple of ``pins`` parameter.
-
-        In the case of hardware SPI the actual clock frequency may be lower than the
-        requested baudrate. This is dependent on the platform hardware. The actual
-        rate may be determined by printing the SPI object.
-        """
-
-class Timer:
-    @overload
-    def __init__(self, id: int, /):
-        """
-        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
-        virtual timer (if supported by a board).
-        ``id`` shall not be passed as a keyword argument.
-
-        See ``init`` for parameters of initialisation.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: int,
-        /,
-        *,
-        mode: int = PERIODIC,
-        period: int | None = None,
-        callback: Callable[[Timer], None] | None = None,
-    ):
-        """
-        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
-        virtual timer (if supported by a board).
-        ``id`` shall not be passed as a keyword argument.
-
-        See ``init`` for parameters of initialisation.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: int,
-        /,
-        *,
-        mode: int = PERIODIC,
-        freq: int | None = None,
-        callback: Callable[[Timer], None] | None = None,
-    ):
-        """
-        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
-        virtual timer (if supported by a board).
-        ``id`` shall not be passed as a keyword argument.
-
-        See ``init`` for parameters of initialisation.
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: int,
-        /,
-        *,
-        mode: int = PERIODIC,
-        tick_hz: int | None = None,
-        callback: Callable[[Timer], None] | None = None,
-    ):
-        """
-        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
-        virtual timer (if supported by a board).
-        ``id`` shall not be passed as a keyword argument.
-
-        See ``init`` for parameters of initialisation.
-        """
-
-    @overload
-    def init(
-        self,
-        *,
-        mode: int = PERIODIC,
-        period: int | None = None,
-        callback: Callable[[Timer], None] | None = None,
-    ) -> None: ...
-    @overload
-    def init(
-        self,
-        *,
-        mode: int = PERIODIC,
-        freq: int | None = None,
-        callback: Callable[[Timer], None] | None = None,
-    ) -> None: ...
-    @overload
-    def init(
-        self,
-        *,
-        mode: int = PERIODIC,
-        tick_hz: int | None = None,
-        callback: Callable[[Timer], None] | None = None,
-    ) -> None:
-        """
-        Initialise the timer. Example::
-
-            def mycallback(t):
-                pass
-
-            # periodic at 1kHz
-            tim.init(mode=Timer.PERIODIC, freq=1000, callback=mycallback)
-
-            # periodic with 100ms period
-            tim.init(period=100, callback=mycallback)
-
-            # one shot firing after 1000ms
-            tim.init(mode=Timer.ONE_SHOT, period=1000, callback=mycallback)
-
-        Keyword arguments:
-
-          - ``mode`` can be one of:
-
-            - ``Timer.ONE_SHOT`` - The timer runs once until the configured
-              period of the channel expires.
-            - ``Timer.PERIODIC`` - The timer runs periodically at the configured
-              frequency of the channel.
-
-          - ``freq`` - The timer frequency, in units of Hz.  The upper bound of
-            the frequency is dependent on the port.  When both the ``freq`` and
-            ``period`` arguments are given, ``freq`` has a higher priority and
-            ``period`` is ignored.
-
-          - ``period`` - The timer period, in milliseconds.
-
-          - ``callback`` - The callable to call upon expiration of the timer period.
-            The callback must take one argument, which is passed the Timer object.
-            The ``callback`` argument shall be specified. Otherwise an exception
-            will occur upon timer expiration:
-            ``TypeError: 'NoneType' object isn't callable``
-        """
-        ...
+@overload
+def freq() -> int:
+    """
+    Returns the CPU frequency in hertz.
+
+    On some ports this can also be used to set the CPU frequency by passing in *hz*.
+    """
+
+@overload
+def freq(hz: int, /) -> None:
+    """
+    Returns the CPU frequency in hertz.
+
+    On some ports this can also be used to set the CPU frequency by passing in *hz*.
+    """
+
+@overload
+def freq(self) -> int:
+    """
+    Returns the CPU frequency in hertz.
+
+    On some ports this can also be used to set the CPU frequency by passing in *hz*.
+    """
+
+@overload
+def freq(
+    self,
+    value: int,
+    /,
+) -> None:
+    """
+    Returns the CPU frequency in hertz.
+
+    On some ports this can also be used to set the CPU frequency by passing in *hz*.
+    """
+
+@overload
+def freq(self) -> int:
+    """
+    Get or set the current frequency of the PWM output.
+
+    With no arguments the frequency in Hz is returned.
+
+    With a single *value* argument the frequency is set to that value in Hz.  The
+    method may raise a ``ValueError`` if the frequency is outside the valid range.
+    """
+
+@overload
+def freq(
+    self,
+    value: int,
+    /,
+) -> None:
+    """
+    Get or set the current frequency of the PWM output.
+
+    With no arguments the frequency in Hz is returned.
+
+    With a single *value* argument the frequency is set to that value in Hz.  The
+    method may raise a ``ValueError`` if the frequency is outside the valid range.
+    """
+
+@overload
+def lightsleep() -> None:
+    """
+    Stops execution in an attempt to enter a low power state.
+
+    If *time_ms* is specified then this will be the maximum time in milliseconds that
+    the sleep will last for.  Otherwise the sleep can last indefinitely.
+
+    With or without a timeout, execution may resume at any time if there are events
+    that require processing.  Such events, or wake sources, should be configured before
+    sleeping, like `Pin` change or `RTC` timeout.
+
+    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
+    highly dependent on the underlying hardware, but the general properties are:
+
+    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
+      from the point where the sleep was requested, with all subsystems operational.
+
+    * A deepsleep may not retain RAM or any other state of the system (for example
+      peripherals or network interfaces).  Upon wake execution is resumed from the main
+      script, similar to a hard or power-on reset. The `reset_cause()` function will
+      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
+      from other resets.
+    """
+
+@overload
+def lightsleep(time_ms: int, /) -> None:
+    """
+    Stops execution in an attempt to enter a low power state.
+
+    If *time_ms* is specified then this will be the maximum time in milliseconds that
+    the sleep will last for.  Otherwise the sleep can last indefinitely.
+
+    With or without a timeout, execution may resume at any time if there are events
+    that require processing.  Such events, or wake sources, should be configured before
+    sleeping, like `Pin` change or `RTC` timeout.
+
+    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
+    highly dependent on the underlying hardware, but the general properties are:
+
+    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
+      from the point where the sleep was requested, with all subsystems operational.
+
+    * A deepsleep may not retain RAM or any other state of the system (for example
+      peripherals or network interfaces).  Upon wake execution is resumed from the main
+      script, similar to a hard or power-on reset. The `reset_cause()` function will
+      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
+      from other resets.
+    """
+
+@overload
+def deepsleep() -> NoReturn:
+    """
+    Stops execution in an attempt to enter a low power state.
+
+    If *time_ms* is specified then this will be the maximum time in milliseconds that
+    the sleep will last for.  Otherwise the sleep can last indefinitely.
+
+    With or without a timeout, execution may resume at any time if there are events
+    that require processing.  Such events, or wake sources, should be configured before
+    sleeping, like `Pin` change or `RTC` timeout.
+
+    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
+    highly dependent on the underlying hardware, but the general properties are:
+
+    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
+      from the point where the sleep was requested, with all subsystems operational.
+
+    * A deepsleep may not retain RAM or any other state of the system (for example
+      peripherals or network interfaces).  Upon wake execution is resumed from the main
+      script, similar to a hard or power-on reset. The `reset_cause()` function will
+      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
+      from other resets.
+    """
+
+@overload
+def deepsleep(time_ms: int, /) -> NoReturn:
+    """
+    Stops execution in an attempt to enter a low power state.
+
+    If *time_ms* is specified then this will be the maximum time in milliseconds that
+    the sleep will last for.  Otherwise the sleep can last indefinitely.
+
+    With or without a timeout, execution may resume at any time if there are events
+    that require processing.  Such events, or wake sources, should be configured before
+    sleeping, like `Pin` change or `RTC` timeout.
+
+    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
+    highly dependent on the underlying hardware, but the general properties are:
+
+    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
+      from the point where the sleep was requested, with all subsystems operational.
+
+    * A deepsleep may not retain RAM or any other state of the system (for example
+      peripherals or network interfaces).  Upon wake execution is resumed from the main
+      script, similar to a hard or power-on reset. The `reset_cause()` function will
+      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
+      from other resets.
+    """
 
 class UART:
     @overload
@@ -1385,138 +558,997 @@ class UART:
         timeout.
         """
 
-@overload
-def freq() -> int:
-    """
-    Returns the CPU frequency in hertz.
+class SDCard:
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray) -> bool:
+        """
+        The first form reads aligned, multiples of blocks.
+        Starting at the block given by the index *block_num*, read blocks from
+        the device into *buf* (an array of bytes).
+        The number of blocks to read is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
 
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
+    @overload
+    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
+        """
+        The second form allows reading at arbitrary locations within a block,
+        and arbitrary lengths.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, read bytes from the device into *buf* (an array of bytes).
+        The number of bytes to read is given by the length of *buf*.
+        """
 
-@overload
-def freq(hz: int, /) -> None:
-    """
-    Returns the CPU frequency in hertz.
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+        """
+        The first form writes aligned, multiples of blocks, and requires that the
+        blocks that are written to be first erased (if necessary) by this method.
+        Starting at the block given by the index *block_num*, write blocks from
+        *buf* (an array of bytes) to the device.
+        The number of blocks to write is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
 
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
+    @overload
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+        """
+        The second form allows writing at arbitrary locations within a block,
+        and arbitrary lengths.  Only the bytes being written should be changed,
+        and the caller of this method must ensure that the relevant blocks are
+        erased via a prior ``ioctl`` call.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, write bytes from *buf* (an array of bytes) to the device.
+        The number of bytes to write is given by the length of *buf*.
 
-@overload
-def freq(self) -> int:
-    """
-    Returns the CPU frequency in hertz.
+        Note that implementations must never implicitly erase blocks if the offset
+        argument is specified, even if it is zero.
+        """
 
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
+class Pin:
+    @overload
+    def value(self) -> int:
+        """
+        This method allows to set and get the value of the pin, depending on whether
+        the argument ``x`` is supplied or not.
 
-@overload
-def freq(
-    self,
-    value: int,
-    /,
-) -> None:
-    """
-    Returns the CPU frequency in hertz.
+        If the argument is omitted then this method gets the digital logic level of
+        the pin, returning 0 or 1 corresponding to low and high voltage signals
+        respectively.  The behaviour of this method depends on the mode of the pin:
 
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
+          - ``Pin.IN`` - The method returns the actual input value currently present
+            on the pin.
+          - ``Pin.OUT`` - The behaviour and return value of the method is undefined.
+          - ``Pin.OPEN_DRAIN`` - If the pin is in state '0' then the behaviour and
+            return value of the method is undefined.  Otherwise, if the pin is in
+            state '1', the method returns the actual input value currently present
+            on the pin.
 
-@overload
-def lightsleep() -> None:
-    """
-    Stops execution in an attempt to enter a low power state.
+        If the argument is supplied then this method sets the digital logic level of
+        the pin.  The argument ``x`` can be anything that converts to a boolean.
+        If it converts to ``True``, the pin is set to state '1', otherwise it is set
+        to state '0'.  The behaviour of this method depends on the mode of the pin:
 
-    If *time_ms* is specified then this will be the maximum time in milliseconds that
-    the sleep will last for.  Otherwise the sleep can last indefinitely.
+          - ``Pin.IN`` - The value is stored in the output buffer for the pin.  The
+            pin state does not change, it remains in the high-impedance state.  The
+            stored value will become active on the pin as soon as it is changed to
+            ``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode.
+          - ``Pin.OUT`` - The output buffer is set to the given value immediately.
+          - ``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage
+            state.  Otherwise the pin is set to high-impedance state.
 
-    With or without a timeout, execution may resume at any time if there are events
-    that require processing.  Such events, or wake sources, should be configured before
-    sleeping, like `Pin` change or `RTC` timeout.
+        When setting the value this method returns ``None``.
+        """
 
-    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
-    highly dependent on the underlying hardware, but the general properties are:
+    @overload
+    def value(self, x: Any, /) -> None:
+        """
+        This method allows to set and get the value of the pin, depending on whether
+        the argument ``x`` is supplied or not.
 
-    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
-      from the point where the sleep was requested, with all subsystems operational.
+        If the argument is omitted then this method gets the digital logic level of
+        the pin, returning 0 or 1 corresponding to low and high voltage signals
+        respectively.  The behaviour of this method depends on the mode of the pin:
 
-    * A deepsleep may not retain RAM or any other state of the system (for example
-      peripherals or network interfaces).  Upon wake execution is resumed from the main
-      script, similar to a hard or power-on reset. The `reset_cause()` function will
-      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
-      from other resets.
-    """
+          - ``Pin.IN`` - The method returns the actual input value currently present
+            on the pin.
+          - ``Pin.OUT`` - The behaviour and return value of the method is undefined.
+          - ``Pin.OPEN_DRAIN`` - If the pin is in state '0' then the behaviour and
+            return value of the method is undefined.  Otherwise, if the pin is in
+            state '1', the method returns the actual input value currently present
+            on the pin.
 
-@overload
-def lightsleep(time_ms: int, /) -> None:
-    """
-    Stops execution in an attempt to enter a low power state.
+        If the argument is supplied then this method sets the digital logic level of
+        the pin.  The argument ``x`` can be anything that converts to a boolean.
+        If it converts to ``True``, the pin is set to state '1', otherwise it is set
+        to state '0'.  The behaviour of this method depends on the mode of the pin:
 
-    If *time_ms* is specified then this will be the maximum time in milliseconds that
-    the sleep will last for.  Otherwise the sleep can last indefinitely.
+          - ``Pin.IN`` - The value is stored in the output buffer for the pin.  The
+            pin state does not change, it remains in the high-impedance state.  The
+            stored value will become active on the pin as soon as it is changed to
+            ``Pin.OUT`` or ``Pin.OPEN_DRAIN`` mode.
+          - ``Pin.OUT`` - The output buffer is set to the given value immediately.
+          - ``Pin.OPEN_DRAIN`` - If the value is '0' the pin is set to a low voltage
+            state.  Otherwise the pin is set to high-impedance state.
 
-    With or without a timeout, execution may resume at any time if there are events
-    that require processing.  Such events, or wake sources, should be configured before
-    sleeping, like `Pin` change or `RTC` timeout.
+        When setting the value this method returns ``None``.
+        """
 
-    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
-    highly dependent on the underlying hardware, but the general properties are:
+    @overload
+    def __call__(self) -> int:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
 
-    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
-      from the point where the sleep was requested, with all subsystems operational.
+    @overload
+    def __call__(self, x: Any, /) -> None:
+        """
+        Pin objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Pin.value([x]).
+        See :meth:`Pin.value` for more details.
+        """
 
-    * A deepsleep may not retain RAM or any other state of the system (for example
-      peripherals or network interfaces).  Upon wake execution is resumed from the main
-      script, similar to a hard or power-on reset. The `reset_cause()` function will
-      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
-      from other resets.
-    """
+    @overload
+    def mode(self) -> int:
+        """
+        Get or set the pin mode.
+        See the constructor documentation for details of the ``mode`` argument.
 
-@overload
-def deepsleep() -> NoReturn:
-    """
-    Stops execution in an attempt to enter a low power state.
+        Availability: cc3200, stm32 ports.
+        """
 
-    If *time_ms* is specified then this will be the maximum time in milliseconds that
-    the sleep will last for.  Otherwise the sleep can last indefinitely.
+    @overload
+    def mode(self, mode: int, /) -> None:
+        """
+        Get or set the pin mode.
+        See the constructor documentation for details of the ``mode`` argument.
 
-    With or without a timeout, execution may resume at any time if there are events
-    that require processing.  Such events, or wake sources, should be configured before
-    sleeping, like `Pin` change or `RTC` timeout.
+        Availability: cc3200, stm32 ports.
+        """
 
-    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
-    highly dependent on the underlying hardware, but the general properties are:
+    @overload
+    def pull(self) -> int:
+        """
+        Get or set the pin pull state.
+        See the constructor documentation for details of the ``pull`` argument.
 
-    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
-      from the point where the sleep was requested, with all subsystems operational.
+        Availability: cc3200, stm32 ports.
+        """
 
-    * A deepsleep may not retain RAM or any other state of the system (for example
-      peripherals or network interfaces).  Upon wake execution is resumed from the main
-      script, similar to a hard or power-on reset. The `reset_cause()` function will
-      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
-      from other resets.
-    """
+    @overload
+    def pull(self, pull: int, /) -> None:
+        """
+        Get or set the pin pull state.
+        See the constructor documentation for details of the ``pull`` argument.
 
-@overload
-def deepsleep(time_ms: int, /) -> NoReturn:
-    """
-    Stops execution in an attempt to enter a low power state.
+        Availability: cc3200, stm32 ports.
+        """
 
-    If *time_ms* is specified then this will be the maximum time in milliseconds that
-    the sleep will last for.  Otherwise the sleep can last indefinitely.
+    @overload
+    def drive(self, drive: int, /) -> None:
+        """
+        Get or set the pin drive strength.
+        See the constructor documentation for details of the ``drive`` argument.
 
-    With or without a timeout, execution may resume at any time if there are events
-    that require processing.  Such events, or wake sources, should be configured before
-    sleeping, like `Pin` change or `RTC` timeout.
+        Availability: cc3200 port.
+        """
+        ...
 
-    The precise behaviour and power-saving capabilities of lightsleep and deepsleep is
-    highly dependent on the underlying hardware, but the general properties are:
+    @overload
+    def drive(self, /) -> int:
+        """
+        Get or set the pin drive strength.
+        See the constructor documentation for details of the ``drive`` argument.
 
-    * A lightsleep has full RAM and state retention.  Upon wake execution is resumed
-      from the point where the sleep was requested, with all subsystems operational.
+        Availability: cc3200 port.
+        """
 
-    * A deepsleep may not retain RAM or any other state of the system (for example
-      peripherals or network interfaces).  Upon wake execution is resumed from the main
-      script, similar to a hard or power-on reset. The `reset_cause()` function will
-      return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
-      from other resets.
-    """
+class SPI:
+    @overload
+    def __init__(self, id: int, /):
+        """
+        Construct an SPI object on the given bus, *id*. Values of *id* depend
+        on a particular port and its hardware. Values 0, 1, etc. are commonly used
+        to select hardware SPI block #0, #1, etc.
+
+        With no additional parameters, the SPI object is created but not
+        initialised (it has the settings from the last initialisation of
+        the bus, if any).  If extra arguments are given, the bus is initialised.
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        baudrate: int = 1_000_000,
+        *,
+        polarity: int = 0,
+        phase: int = 0,
+        bits: int = 8,
+        firstbit: int = MSB,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
+    ):
+        """
+        Construct an SPI object on the given bus, *id*. Values of *id* depend
+        on a particular port and its hardware. Values 0, 1, etc. are commonly used
+        to select hardware SPI block #0, #1, etc.
+
+        With no additional parameters, the SPI object is created but not
+        initialised (it has the settings from the last initialisation of
+        the bus, if any).  If extra arguments are given, the bus is initialised.
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        baudrate: int = 1_000_000,
+        *,
+        polarity: int = 0,
+        phase: int = 0,
+        bits: int = 8,
+        firstbit: int = MSB,
+        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+    ):
+        """
+        Construct an SPI object on the given bus, *id*. Values of *id* depend
+        on a particular port and its hardware. Values 0, 1, etc. are commonly used
+        to select hardware SPI block #0, #1, etc.
+
+        With no additional parameters, the SPI object is created but not
+        initialised (it has the settings from the last initialisation of
+        the bus, if any).  If extra arguments are given, the bus is initialised.
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def init(
+        self,
+        baudrate: int = 1_000_000,
+        *,
+        polarity: int = 0,
+        phase: int = 0,
+        bits: int = 8,
+        firstbit: int = MSB,
+        sck: PinLike | None = None,
+        mosi: PinLike | None = None,
+        miso: PinLike | None = None,
+    ) -> None:
+        """
+        Initialise the SPI bus with the given parameters:
+
+          - ``baudrate`` is the SCK clock rate.
+          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
+          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
+            respectively.
+          - ``bits`` is the width in bits of each transfer. Only 8 is guaranteed to be supported by all hardware.
+          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
+          - ``sck``, ``mosi``, ``miso`` are pins (machine.Pin) objects to use for bus signals. For most
+            hardware SPI blocks (as selected by ``id`` parameter to the constructor), pins are fixed
+            and cannot be changed. In some cases, hardware blocks allow 2-3 alternative pin sets for
+            a hardware SPI block. Arbitrary pin assignments are possible only for a bitbanging SPI driver
+            (``id`` = -1).
+          - ``pins`` - WiPy port doesn't ``sck``, ``mosi``, ``miso`` arguments, and instead allows to
+            specify them as a tuple of ``pins`` parameter.
+
+        In the case of hardware SPI the actual clock frequency may be lower than the
+        requested baudrate. This is dependent on the platform hardware. The actual
+        rate may be determined by printing the SPI object.
+        """
+
+    @overload
+    def init(
+        self,
+        baudrate: int = 1_000_000,
+        *,
+        polarity: int = 0,
+        phase: int = 0,
+        bits: int = 8,
+        firstbit: int = MSB,
+        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+    ) -> None:
+        """
+        Initialise the SPI bus with the given parameters:
+
+          - ``baudrate`` is the SCK clock rate.
+          - ``polarity`` can be 0 or 1, and is the level the idle clock line sits at.
+          - ``phase`` can be 0 or 1 to sample data on the first or second clock edge
+            respectively.
+          - ``bits`` is the width in bits of each transfer. Only 8 is guaranteed to be supported by all hardware.
+          - ``firstbit`` can be ``SPI.MSB`` or ``SPI.LSB``.
+          - ``sck``, ``mosi``, ``miso`` are pins (machine.Pin) objects to use for bus signals. For most
+            hardware SPI blocks (as selected by ``id`` parameter to the constructor), pins are fixed
+            and cannot be changed. In some cases, hardware blocks allow 2-3 alternative pin sets for
+            a hardware SPI block. Arbitrary pin assignments are possible only for a bitbanging SPI driver
+            (``id`` = -1).
+          - ``pins`` - WiPy port doesn't ``sck``, ``mosi``, ``miso`` arguments, and instead allows to
+            specify them as a tuple of ``pins`` parameter.
+
+        In the case of hardware SPI the actual clock frequency may be lower than the
+        requested baudrate. This is dependent on the platform hardware. The actual
+        rate may be determined by printing the SPI object.
+        """
+
+class RTC:
+    @overload
+    def __init__(self, id: int = 0):
+        """
+        Create an RTC object. See init for parameters of initialization.
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def __init__(self, id: int = 0, /, *, datetime: tuple[int, int, int, int, int, int, int, int]):
+        """
+        Create an RTC object. See init for parameters of initialization.
+
+        The documentation for RTC is in a poor state; better to experiment and use `dir`!
+        """
+
+    @overload
+    def init(self) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int, int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int, int, int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def init(self, datetime: tuple[int, int, int, int, int, int, int, int], /) -> None:
+        """
+        Initialise the RTC. Datetime is a tuple of the form:
+
+           ``(year, month, day, hour, minute, second, microsecond, tzinfo)``
+
+        All eight arguments must be present. The ``microsecond`` and ``tzinfo``
+        values are currently ignored but might be used in the future.
+
+        Availability: CC3200, ESP32, MIMXRT, SAMD. The rtc.init() method on
+        the stm32 and renesas-ra ports just (re-)starts the RTC and does not
+        accept arguments.
+        """
+
+    @overload
+    def alarm(self, id: int, time: int, /, *, repeat: bool = False) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+    @overload
+    def alarm(self, id: int, time: tuple[int, int, int, int, int, int, int, int], /) -> None:
+        """
+        Set the RTC alarm. Time might be either a millisecond value to program the alarm to
+        current time + time_in_ms in the future, or a datetimetuple. If the time passed is in
+        milliseconds, repeat can be set to ``True`` to make the alarm periodic.
+        """
+
+class ADC:
+    # ESP32 specific
+    @mp_available(port="esp32")
+    @deprecated("Use ADC.block().init(bits=bits) instead.")
+    def width(self, bits: int) -> None:
+        """
+        Equivalent to ADC.block().init(bits=bits).
+        The only chip that can switch resolution to a lower one is the normal esp32. The C2 & S3 are stuck at 12 bits, while the S2 is at 13 bits.
+
+        For compatibility, the ADC object also provides constants matching the supported ADC resolutions, per chip:
+
+        ESP32:
+            ADC.WIDTH_9BIT = 9
+            ADC.WIDTH_10BIT = 10
+            ADC.WIDTH_11BIT = 11
+            ADC.WIDTH_12BIT = 12
+
+        ESP32 C3 & S3:
+            ADC.WIDTH_12BIT = 12
+
+        ESP32 S2:
+            ADC.WIDTH_13BIT = 13
+
+        Available : ESP32
+        """
+        ...
+
+    @mp_available(port="esp32")
+    @deprecated("Use read_u16() instead.")
+    def read(self) -> int:
+        """
+        Take an analog reading and return an integer in the range 0-4095.
+        The return value represents the raw reading taken by the ADC, scaled
+        such that the minimum value is 0 and the maximum value is 4095.
+
+        This method is deprecated, use `read_u16()` instead.
+
+        Available : ESP32
+        """
+        ...
+
+    @mp_available(port="esp32")
+    @deprecated("Use ADC.init(atten=atten) instead.")
+    def atten(self, atten: int) -> None:
+        """
+        Set the attenuation level for the ADC input.
+
+        Available : ESP32
+        """
+        ...
+
+class Timer:
+    @overload
+    def __init__(self, id: int, /):
+        """
+        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
+        virtual timer (if supported by a board).
+        ``id`` shall not be passed as a keyword argument.
+
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        *,
+        mode: int = PERIODIC,
+        period: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
+    ):
+        """
+        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
+        virtual timer (if supported by a board).
+        ``id`` shall not be passed as a keyword argument.
+
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        *,
+        mode: int = PERIODIC,
+        freq: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
+    ):
+        """
+        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
+        virtual timer (if supported by a board).
+        ``id`` shall not be passed as a keyword argument.
+
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: int,
+        /,
+        *,
+        mode: int = PERIODIC,
+        tick_hz: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
+    ):
+        """
+        Construct a new timer object of the given ``id``. ``id`` of -1 constructs a
+        virtual timer (if supported by a board).
+        ``id`` shall not be passed as a keyword argument.
+
+        See ``init`` for parameters of initialisation.
+        """
+
+    @overload
+    def init(
+        self,
+        *,
+        mode: int = PERIODIC,
+        period: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
+    ) -> None: ...
+    @overload
+    def init(
+        self,
+        *,
+        mode: int = PERIODIC,
+        freq: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
+    ) -> None: ...
+    @overload
+    def init(
+        self,
+        *,
+        mode: int = PERIODIC,
+        tick_hz: int | None = None,
+        callback: Callable[[Timer], None] | None = None,
+        hard: bool | None = None,
+    ) -> None:
+        """
+        Initialise the timer. Example::
+
+            def mycallback(t):
+                pass
+
+            # periodic at 1kHz
+            tim.init(mode=Timer.PERIODIC, freq=1000, callback=mycallback)
+
+            # periodic with 100ms period
+            tim.init(period=100, callback=mycallback)
+
+            # one shot firing after 1000ms
+            tim.init(mode=Timer.ONE_SHOT, period=1000, callback=mycallback)
+
+        Keyword arguments:
+
+          - ``mode`` can be one of:
+
+            - ``Timer.ONE_SHOT`` - The timer runs once until the configured
+              period of the channel expires.
+            - ``Timer.PERIODIC`` - The timer runs periodically at the configured
+              frequency of the channel.
+
+          - ``freq`` - The timer frequency, in units of Hz.  The upper bound of
+            the frequency is dependent on the port.  When both the ``freq`` and
+            ``period`` arguments are given, ``freq`` has a higher priority and
+            ``period`` is ignored.
+
+          - ``period`` - The timer period, in milliseconds.
+
+          - ``callback`` - The callable to call upon expiration of the timer period.
+            The callback must take one argument, which is passed the Timer object.
+            The ``callback`` argument shall be specified. Otherwise an exception
+            will occur upon timer expiration:
+            ``TypeError: 'NoneType' object isn't callable``
+        """
+        ...
+
+class I2C:
+    @overload
+    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
+        """
+        Construct and return a new I2C object using the following parameters:
+
+           - *id* identifies a particular I2C peripheral.  Allowed values for
+             depend on the particular port/board
+           - *scl* should be a pin object specifying the pin to use for SCL.
+           - *sda* should be a pin object specifying the pin to use for SDA.
+           - *freq* should be an integer which sets the maximum frequency
+             for SCL.
+
+        Note that some ports/boards will have default values of *scl* and *sda*
+        that can be changed in this constructor.  Others will have fixed values
+        of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
+        """
+        Construct and return a new I2C object using the following parameters:
+
+           - *id* identifies a particular I2C peripheral.  Allowed values for
+             depend on the particular port/board
+           - *scl* should be a pin object specifying the pin to use for SCL.
+           - *sda* should be a pin object specifying the pin to use for SDA.
+           - *freq* should be an integer which sets the maximum frequency
+             for SCL.
+
+        Note that some ports/boards will have default values of *scl* and *sda*
+        that can be changed in this constructor.  Others will have fixed values
+        of *scl* and *sda* that cannot be changed.
+        """
+
+    @overload
+    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
+
+    @overload
+    def init(self, *, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
+
+    @overload
+    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+        """
+        Initialise the I2C bus with the given arguments:
+
+           - *scl* is a pin object for the SCL line
+           - *sda* is a pin object for the SDA line
+           - *freq* is the SCL clock rate
+
+         In the case of hardware I2C the actual clock frequency may be lower than the
+         requested frequency. This is dependent on the platform hardware. The actual
+         rate may be determined by printing the I2C object.
+        """
+
+class ADCBlock:
+    @overload
+    def connect(self, channel: int, **kwargs) -> ADC: ...
+    @overload
+    def connect(self, source: PinLike, **kwargs) -> ADC: ...
+    @overload
+    def connect(self, channel: int, source: PinLike, **kwargs) -> ADC:
+        """
+        Connect up a channel on the ADC peripheral so it is ready for sampling,
+        and return an :ref:`ADC <machine.ADC>` object that represents that connection.
+
+        The *channel* argument must be an integer, and *source* must be an object
+        (for example a :ref:`Pin <machine.Pin>`) which can be connected up for sampling.
+
+        If only *channel* is given then it is configured for sampling.
+
+        If only *source* is given then that object is connected to a default
+        channel ready for sampling.
+
+        If both *channel* and *source* are given then they are connected together
+        and made ready for sampling.
+
+        Any additional keyword arguments are used to configure the returned ADC object,
+        via its :meth:`init <machine.ADC.init>` method.
+        """
+        ...
+
+class Signal:
+    @overload
+    def __init__(self, pin_obj: PinLike, invert: bool = False, /):
+        """
+        Create a Signal object. There're two ways to create it:
+
+        * By wrapping existing Pin object - universal method which works for
+          any board.
+        * By passing required Pin parameters directly to Signal constructor,
+          skipping the need to create intermediate Pin object. Available on
+          many, but not all boards.
+
+        The arguments are:
+
+          - ``pin_obj`` is existing Pin object.
+
+          - ``pin_arguments`` are the same arguments as can be passed to Pin constructor.
+
+          - ``invert`` - if True, the signal will be inverted (active low).
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: PinLike,
+        /,
+        mode: int = -1,
+        pull: int = -1,
+        *,
+        value: Any = None,
+        drive: int | None = None,
+        alt: int | None = None,
+        invert: bool = False,
+    ):
+        """
+        Create a Signal object. There're two ways to create it:
+
+        * By wrapping existing Pin object - universal method which works for
+          any board.
+        * By passing required Pin parameters directly to Signal constructor,
+          skipping the need to create intermediate Pin object. Available on
+          many, but not all boards.
+
+        The arguments are:
+
+          - ``pin_obj`` is existing Pin object.
+
+          - ``pin_arguments`` are the same arguments as can be passed to Pin constructor.
+
+          - ``invert`` - if True, the signal will be inverted (active low).
+        """
+
+    @overload
+    def value(self) -> int:
+        """
+        This method allows to set and get the value of the signal, depending on whether
+        the argument ``x`` is supplied or not.
+
+        If the argument is omitted then this method gets the signal level, 1 meaning
+        signal is asserted (active) and 0 - signal inactive.
+
+        If the argument is supplied then this method sets the signal level. The
+        argument ``x`` can be anything that converts to a boolean. If it converts
+        to ``True``, the signal is active, otherwise it is inactive.
+
+        Correspondence between signal being active and actual logic level on the
+        underlying pin depends on whether signal is inverted (active-low) or not.
+        For non-inverted signal, active status corresponds to logical 1, inactive -
+        to logical 0. For inverted/active-low signal, active status corresponds
+        to logical 0, while inactive - to logical 1.
+        """
+
+    @overload
+    def value(self, x: Any, /) -> None:
+        """
+        This method allows to set and get the value of the signal, depending on whether
+        the argument ``x`` is supplied or not.
+
+        If the argument is omitted then this method gets the signal level, 1 meaning
+        signal is asserted (active) and 0 - signal inactive.
+
+        If the argument is supplied then this method sets the signal level. The
+        argument ``x`` can be anything that converts to a boolean. If it converts
+        to ``True``, the signal is active, otherwise it is inactive.
+
+        Correspondence between signal being active and actual logic level on the
+        underlying pin depends on whether signal is inverted (active-low) or not.
+        For non-inverted signal, active status corresponds to logical 1, inactive -
+        to logical 0. For inverted/active-low signal, active status corresponds
+        to logical 0, while inactive - to logical 1.
+        """
+
+class PWM:
+    @overload
+    def freq(self) -> int:
+        """
+        Get or set the current frequency of the PWM output.
+
+        With no arguments the frequency in Hz is returned.
+
+        With a single *value* argument the frequency is set to that value in Hz.  The
+        method may raise a ``ValueError`` if the frequency is outside the valid range.
+        """
+
+    @overload
+    def freq(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current frequency of the PWM output.
+
+        With no arguments the frequency in Hz is returned.
+
+        With a single *value* argument the frequency is set to that value in Hz.  The
+        method may raise a ``ValueError`` if the frequency is outside the valid range.
+        """
+
+    @overload
+    def duty_u16(self) -> int:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+
+    @overload
+    def duty_u16(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+
+    @overload
+    def duty_ns(self) -> int:
+        """
+        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
+
+        With no arguments the pulse width in nanoseconds is returned.
+
+        With a single *value* argument the pulse width is set to that value.
+        """
+
+    @overload
+    def duty_ns(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
+
+        With no arguments the pulse width in nanoseconds is returned.
+
+        With a single *value* argument the pulse width is set to that value.
+        """

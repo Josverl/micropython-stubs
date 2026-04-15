@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # NanoS3 Helper Library
 # MIT license; Copyright (c) 2023 Seon Rozenblum - Unexpected Maker
 #

@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 """
 Define names for built-in types that aren't directly accessible as a builtin.
 """

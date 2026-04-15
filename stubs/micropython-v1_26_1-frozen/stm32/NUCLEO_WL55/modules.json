@@ -5,14 +5,15 @@
         "port": "stm32",
         "platform": "stm32",
         "machine": "NUCLEO_WL55",
-        "firmware": "micropython-stm32-v1_26_1",
+        "firmware": "micropython-stm32-NUCLEO_WL55-v1_26_1",
         "nodename": "micropython",
         "version": "v1.26.1",
         "release": "v1.26.1",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "NUCLEO_WL55"
     },
     "stubber": {
-        "version": "1.26.3",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

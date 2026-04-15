@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 def partial(func, *args, **kwargs):
     def _partial(*more_args, **more_kwargs):
         kw = kwargs.copy()

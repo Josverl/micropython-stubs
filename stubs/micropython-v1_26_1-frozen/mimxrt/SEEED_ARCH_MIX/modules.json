@@ -5,14 +5,15 @@
         "port": "mimxrt",
         "platform": "mimxrt",
         "machine": "SEEED_ARCH_MIX",
-        "firmware": "micropython-mimxrt-v1_26_1",
+        "firmware": "micropython-mimxrt-SEEED_ARCH_MIX-v1_26_1",
         "nodename": "micropython",
         "version": "v1.26.1",
         "release": "v1.26.1",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "SEEED_ARCH_MIX"
     },
     "stubber": {
-        "version": "1.26.3",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [
