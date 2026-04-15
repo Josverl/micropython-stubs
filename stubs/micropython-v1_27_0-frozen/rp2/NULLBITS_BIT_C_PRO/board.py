@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 from machine import Pin, Signal
 
 led_red = Signal("LED_RED", Pin.OUT, invert=True, value=0)

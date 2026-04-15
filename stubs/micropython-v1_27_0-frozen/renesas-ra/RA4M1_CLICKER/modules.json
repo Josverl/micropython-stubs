@@ -5,14 +5,15 @@
         "port": "renesas-ra",
         "platform": "renesas-ra",
         "machine": "RA4M1_CLICKER",
-        "firmware": "micropython-renesas-ra-v1_27_0",
+        "firmware": "micropython-renesas-ra-RA4M1_CLICKER-v1_27_0",
         "nodename": "micropython",
         "version": "v1.27.0",
         "release": "v1.27.0",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "RA4M1_CLICKER"
     },
     "stubber": {
-        "version": "1.26.4",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

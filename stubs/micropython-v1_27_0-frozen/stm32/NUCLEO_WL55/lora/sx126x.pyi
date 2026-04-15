@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 from .async_modem import AsyncModem as AsyncModem
 from .modem import BaseModem as BaseModem, ConfigError as ConfigError, RxPacket as RxPacket, _clamp as _clamp, _flag as _flag
 from .sync_modem import SyncModem as SyncModem

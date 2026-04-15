@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # Replace built-in os module.
 from uos import *
 

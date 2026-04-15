@@ -5,14 +5,15 @@
         "port": "stm32",
         "platform": "stm32",
         "machine": "NUCLEO_F767ZI",
-        "firmware": "micropython-stm32-v1_27_0",
+        "firmware": "micropython-stm32-NUCLEO_F767ZI-v1_27_0",
         "nodename": "micropython",
         "version": "v1.27.0",
         "release": "v1.27.0",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "NUCLEO_F767ZI"
     },
     "stubber": {
-        "version": "1.26.4",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

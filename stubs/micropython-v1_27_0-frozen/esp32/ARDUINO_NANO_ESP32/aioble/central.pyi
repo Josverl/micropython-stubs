@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 from .core import (
     ble as ble,
     ensure_active as ensure_active,

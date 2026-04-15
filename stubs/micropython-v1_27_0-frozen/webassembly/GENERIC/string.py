@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # Some strings for ctype-style character classification
 whitespace = " \t\n\r\v\f"
 ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"

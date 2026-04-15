@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # datetime.py
 
 import time as _t

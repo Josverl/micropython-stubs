@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # Update Mboot or MicroPython from a .dfu.gz file on the board's filesystem
 # MIT license; Copyright (c) 2019-2022 Damien P. George
 

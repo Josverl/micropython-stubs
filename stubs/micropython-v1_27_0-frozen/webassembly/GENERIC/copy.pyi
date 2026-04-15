@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 __all__ = ["Error", "copy", "deepcopy"]
 
 class Error(Exception): ...

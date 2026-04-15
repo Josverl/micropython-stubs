@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # espnow module for MicroPython on ESP32
 # MIT license; Copyright (c) 2022 Glenn Moloney @glenn20
 

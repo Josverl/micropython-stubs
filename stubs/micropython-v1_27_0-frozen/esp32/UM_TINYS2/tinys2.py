@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # TinyS2 MicroPython Helper Library
 # 2021 Seon Rozenblum - Unexpected Maker
 #

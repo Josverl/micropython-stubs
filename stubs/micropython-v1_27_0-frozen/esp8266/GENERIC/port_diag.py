@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 import esp
 import uctypes
 import network

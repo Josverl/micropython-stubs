@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # This file is part of the MicroPython project, http://micropython.org/
 #
 # The MIT License (MIT)

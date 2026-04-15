@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 from utime import *
 from micropython import const
 

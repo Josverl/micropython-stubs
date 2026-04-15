@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 from ubinascii import *
 
 if not "unhexlify" in globals():

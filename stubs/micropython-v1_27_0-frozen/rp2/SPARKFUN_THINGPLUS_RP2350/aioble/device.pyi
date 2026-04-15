@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 import types
 from .core import ble as ble, log_error as log_error, register_irq_handler as register_irq_handler
 from _typeshed import Incomplete

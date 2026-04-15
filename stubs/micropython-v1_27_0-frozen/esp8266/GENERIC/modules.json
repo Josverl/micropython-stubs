@@ -5,14 +5,15 @@
         "port": "esp8266",
         "platform": "esp8266",
         "machine": "GENERIC",
-        "firmware": "micropython-esp8266-v1_27_0",
+        "firmware": "micropython-esp8266-GENERIC-v1_27_0",
         "nodename": "micropython",
         "version": "v1.27.0",
         "release": "v1.27.0",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "GENERIC"
     },
     "stubber": {
-        "version": "1.26.4",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

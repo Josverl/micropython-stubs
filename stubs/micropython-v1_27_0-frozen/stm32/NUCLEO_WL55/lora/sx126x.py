@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # MicroPython LoRa SX126x (SX1261, SX1262) driver
 # MIT license; Copyright (c) 2023 Angus Gratton
 #

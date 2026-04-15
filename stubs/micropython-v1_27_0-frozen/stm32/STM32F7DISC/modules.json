@@ -5,14 +5,15 @@
         "port": "stm32",
         "platform": "stm32",
         "machine": "STM32F7DISC",
-        "firmware": "micropython-stm32-v1_27_0",
+        "firmware": "micropython-stm32-STM32F7DISC-v1_27_0",
         "nodename": "micropython",
         "version": "v1.27.0",
         "release": "v1.27.0",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "STM32F7DISC"
     },
     "stubber": {
-        "version": "1.26.4",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 from .iso7816 import SmartCard as SmartCard
 from _typeshed import Incomplete
 

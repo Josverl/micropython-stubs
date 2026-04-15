@@ -5,14 +5,15 @@
         "port": "esp32",
         "platform": "esp32",
         "machine": "ARDUINO_NANO_ESP32",
-        "firmware": "micropython-esp32-v1_27_0",
+        "firmware": "micropython-esp32-ARDUINO_NANO_ESP32-v1_27_0",
         "nodename": "micropython",
         "version": "v1.27.0",
         "release": "v1.27.0",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "ARDUINO_NANO_ESP32"
     },
     "stubber": {
-        "version": "1.26.4",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

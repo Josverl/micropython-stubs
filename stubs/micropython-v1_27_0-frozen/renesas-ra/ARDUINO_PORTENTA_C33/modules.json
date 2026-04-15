@@ -5,14 +5,15 @@
         "port": "renesas-ra",
         "platform": "renesas-ra",
         "machine": "ARDUINO_PORTENTA_C33",
-        "firmware": "micropython-renesas-ra-v1_27_0",
+        "firmware": "micropython-renesas-ra-ARDUINO_PORTENTA_C33-v1_27_0",
         "nodename": "micropython",
         "version": "v1.27.0",
         "release": "v1.27.0",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "ARDUINO_PORTENTA_C33"
     },
     "stubber": {
-        "version": "1.26.4",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [
