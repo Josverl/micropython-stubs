@@ -1,0 +1,61 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "stm32",
+        "platform": "stm32",
+        "machine": "PYBD_SF2",
+        "firmware": "micropython-stm32-PYBD_SF2-v1_29_0_preview",
+        "nodename": "micropython",
+        "version": "v1.29.0-preview",
+        "release": "v1.29.0-preview",
+        "sysname": "micropython",
+        "board": "PYBD_SF2"
+    },
+    "stubber": {
+        "version": "1.28.1",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "lcd160cr.py",
+            "module": "lcd160cr"
+        },
+        {
+            "file": "mip/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "ntptime.py",
+            "module": "ntptime"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
+        },
+        {
+            "file": "requests/__init__.py",
+            "module": "__init__"
+        },
+        {
+            "file": "ssl.py",
+            "module": "ssl"
+        },
+        {
+            "file": "urequests.py",
+            "module": "urequests"
+        },
+        {
+            "file": "webrepl.py",
+            "module": "webrepl"
+        },
+        {
+            "file": "webrepl_setup.py",
+            "module": "webrepl_setup"
+        }
+    ]
+}

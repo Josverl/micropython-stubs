@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # 1-Wire driver for MicroPython
 # MIT license; Copyright (c) 2016 Damien P. George
 

@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 __all__ = ["Error", "encode", "decode"]
 
 class Error(Exception): ...

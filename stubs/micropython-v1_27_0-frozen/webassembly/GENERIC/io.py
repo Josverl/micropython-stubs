@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 from uio import *
 
 SEEK_SET = 0

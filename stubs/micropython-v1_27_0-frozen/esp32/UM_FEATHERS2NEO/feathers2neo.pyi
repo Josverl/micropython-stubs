@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 from micropython import const as const
 
 VBUS_SENSE: int

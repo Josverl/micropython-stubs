@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 def attrgetter(attr):
     assert "." not in attr
 

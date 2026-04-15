@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # OMGS3 Helper Library
 # MIT license; Copyright (c) 2024 Seon Rozenblum - Unexpected Maker
 #

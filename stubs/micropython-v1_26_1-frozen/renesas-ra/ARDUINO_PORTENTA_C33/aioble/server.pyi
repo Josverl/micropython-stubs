@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 from .core import (
     GattError as GattError,
     ble as ble,

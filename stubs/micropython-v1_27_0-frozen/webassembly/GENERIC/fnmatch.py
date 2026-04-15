@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 """Filename matching with shell patterns.
 
 fnmatch(FILENAME, PATTERN) matches according to the local convention.

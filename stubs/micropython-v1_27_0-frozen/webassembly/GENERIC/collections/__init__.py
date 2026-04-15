@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # Replace built-in collections module.
 from ucollections import *
 

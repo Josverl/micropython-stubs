@@ -17,12 +17,11 @@ from packaging.version import Version, parse
 
 # Token with no permissions to avoid throttling
 # https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api?apiVersion=2022-11-28#getting-a-higher-rate-limit
-PAT_NO_ACCESS = "github_pat_"+"11AAHPVFQ0G4NTaQ73Bw5J"+"_fAp7K9sZ1qL8VFnI9g78eUlCdmOXHB3WzSdj2jtEYb4XF3N7PDJBl32qIxq"
-PAT = os.environ.get("GITHUB_TOKEN") or PAT_NO_ACCESS
+PAT = os.environ.get("GITHUB_TOKEN")
 
 @lru_cache()
 def micropython_versions(start="v1.10"):
-    g = Github(auth=Auth.Token(PAT))
+    g = Github(auth=Auth.Token(PAT)) if PAT else Github()
     try:
         repo = g.get_repo("micropython/micropython")
         # Suppress `v1.22.0-preview` tags

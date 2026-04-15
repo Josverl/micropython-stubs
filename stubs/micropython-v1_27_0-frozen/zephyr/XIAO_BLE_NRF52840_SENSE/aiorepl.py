@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # MIT license; Copyright (c) 2022 Jim Mussared
 
 import micropython

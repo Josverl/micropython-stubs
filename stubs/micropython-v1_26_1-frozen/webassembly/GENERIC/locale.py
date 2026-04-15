@@ -1,2 +1,3 @@
+# Micropython v1.26.1 frozen stubs
 def getpreferredencoding():
     return "utf-8"

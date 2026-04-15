@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 import socket
 import struct
 from binascii import hexlify

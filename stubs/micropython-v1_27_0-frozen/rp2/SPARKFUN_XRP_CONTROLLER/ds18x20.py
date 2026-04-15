@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 """
 DS18x20 temperature sensor driver for MicroPython.
 

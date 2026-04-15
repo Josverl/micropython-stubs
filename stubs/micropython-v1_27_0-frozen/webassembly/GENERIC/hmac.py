@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # Implements the hmac module from the Python standard library.
 
 

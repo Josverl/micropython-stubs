@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # TinyPICO MicroPython Helper Library
 # 2019 Seon Rozenblum, Matt Trentini
 #

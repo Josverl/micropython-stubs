@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 from . import simple as simple
 
 class MQTTClient(simple.MQTTClient):

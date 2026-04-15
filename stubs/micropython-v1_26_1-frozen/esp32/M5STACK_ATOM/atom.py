@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # M5Stack ATOM MicroPython Helper Library
 # MIT license; Copyright (c) 2021 IAMLIUBO work for M5STACK
 #

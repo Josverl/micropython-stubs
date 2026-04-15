@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 """
 Minimal and functional version of CPython's argparse module.
 """

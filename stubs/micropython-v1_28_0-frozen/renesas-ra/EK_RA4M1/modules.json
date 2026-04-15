@@ -13,7 +13,7 @@
         "board": "EK_RA4M1"
     },
     "stubber": {
-        "version": "1.28.0",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

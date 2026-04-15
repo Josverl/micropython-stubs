@@ -13,7 +13,7 @@
         "board": "SPARKFUN_IOT_REDBOARD_ESP32"
     },
     "stubber": {
-        "version": "1.28.0",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

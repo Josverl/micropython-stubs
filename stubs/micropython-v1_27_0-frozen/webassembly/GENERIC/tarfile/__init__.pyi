@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 import types
 from .write import _close_write as _close_write, _open_write as _open_write, add as add, addfile as addfile
 from _typeshed import Incomplete

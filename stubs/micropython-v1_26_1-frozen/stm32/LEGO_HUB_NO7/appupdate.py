@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # Application firmware update function for LEGO_HUB_NO6.
 # MIT license; Copyright (c) 2022-2024 Damien P. George
 

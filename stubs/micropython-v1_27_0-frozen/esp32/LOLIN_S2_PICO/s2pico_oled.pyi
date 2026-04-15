@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 from _typeshed import Incomplete
 from ssd1306 import SSD1306_I2C
 

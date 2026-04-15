@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 from _typeshed import Incomplete
 from machine import I2C as I2C
 

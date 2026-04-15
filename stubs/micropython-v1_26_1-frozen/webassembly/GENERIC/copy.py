@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 """Generic (shallow and deep) copying operations.
 
 Interface summary:

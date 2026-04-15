@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # LOLIN S2 MINI MicroPython Helper Library
 
 from micropython import const

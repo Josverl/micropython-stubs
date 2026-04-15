@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 from .se05x import SE05X # noqa
 from .iso7816 import SmartCard # noqa
 from micropython import const

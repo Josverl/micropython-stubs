@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # Driver for official MicroPython LCD160CR display
 # MIT license; Copyright (c) 2017 Damien P. George
 

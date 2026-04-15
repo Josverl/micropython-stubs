@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # DHT11/DHT22 driver for MicroPython on ESP8266
 # MIT license; Copyright (c) 2016 Damien P. George
 

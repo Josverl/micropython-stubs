@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 import types
 from _typeshed import Incomplete
 from senml.senml_base import SenmlBase as SenmlBase

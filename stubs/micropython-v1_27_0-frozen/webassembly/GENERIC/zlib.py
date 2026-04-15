@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # MicroPython zlib module
 # MIT license; Copyright (c) 2023 Jim Mussared
 

@@ -5,14 +5,15 @@
         "port": "esp32",
         "platform": "esp32",
         "machine": "LOLIN_S2_MINI",
-        "firmware": "micropython-esp32-v1_27_0",
+        "firmware": "micropython-esp32-LOLIN_S2_MINI-v1_27_0",
         "nodename": "micropython",
         "version": "v1.27.0",
         "release": "v1.27.0",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "LOLIN_S2_MINI"
     },
     "stubber": {
-        "version": "1.26.4",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

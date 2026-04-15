@@ -5,14 +5,15 @@
         "port": "stm32",
         "platform": "stm32",
         "machine": "OLIMEX_E407",
-        "firmware": "micropython-stm32-v1_27_0",
+        "firmware": "micropython-stm32-OLIMEX_E407-v1_27_0",
         "nodename": "micropython",
         "version": "v1.27.0",
         "release": "v1.27.0",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "OLIMEX_E407"
     },
     "stubber": {
-        "version": "1.26.4",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

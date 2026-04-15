@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # MicroPython SSD1306 OLED driver, I2C and SPI interfaces
 
 from micropython import const

@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 from _typeshed import Incomplete
 from collections.abc import Generator
 from micropython import const as const

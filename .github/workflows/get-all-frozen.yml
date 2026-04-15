@@ -13,6 +13,9 @@ name: get-all-frozen
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/get-all-frozen.yml"
   schedule:
     - cron: "0 1 * * *" # Run everyday at 01:00
 
@@ -22,6 +25,7 @@ env:
 jobs:
   ########################################################################################################################################
   list-versions-fr:
+    # 'Get a matrix for the latest versions of micropython'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,10 +34,8 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11 
-
-      - run: pip install pygithub packaging
-      - run: python .github/workflows/list_versions.py --latest
+          python-version: 3.11
+      - uses: ./.github/actions/get-mpversions
         id: dynamic
     outputs:
       job_versions: ${{ steps.dynamic.outputs.versions }}

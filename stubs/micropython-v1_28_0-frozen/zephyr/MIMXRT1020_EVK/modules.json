@@ -13,7 +13,7 @@
         "board": "MIMXRT1020_EVK"
     },
     "stubber": {
-        "version": "1.28.0",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

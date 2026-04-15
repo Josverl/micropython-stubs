@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 """Additions to the TarFile class to support creating and appending tar files.
 
 The methods defined below in are injected into the TarFile class in the

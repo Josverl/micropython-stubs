@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 from esp32 import Partition
 
 # MicroPython's partition table uses "vfs", TinyUF2 uses "ffat".

@@ -1,4 +1,5 @@
-__all__ = ["filter", "fnmatch", "fnmatchcase", "translate"]
+# Micropython v1.27.0 frozen stubs
+__all__ = ["fnmatch", "filter", "fnmatchcase", "translate"]
 
 def fnmatch(name, pat):
     """Test whether FILENAME matches PATTERN.

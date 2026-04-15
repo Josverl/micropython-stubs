@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # DotStar strip driver for MicroPython
 #
 # The MIT License (MIT)

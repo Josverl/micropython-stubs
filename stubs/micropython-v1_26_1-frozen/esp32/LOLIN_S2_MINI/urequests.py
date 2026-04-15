@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 # This module provides a backwards-compatble import for `urequests`.
 # It lazy-loads from `requests` without duplicating its globals dict.
 

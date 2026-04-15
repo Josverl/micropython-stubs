@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # aioespnow module for MicroPython on ESP32 and ESP8266
 # MIT license; Copyright (c) 2022 Glenn Moloney @glenn20
 

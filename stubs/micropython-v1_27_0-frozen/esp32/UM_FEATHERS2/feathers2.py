@@ -1,3 +1,4 @@
+# Micropython v1.27.0 frozen stubs
 # FeatherS2 MicroPython Helper Library
 # 2021 Seon Rozenblum - Unexpected Maker
 #

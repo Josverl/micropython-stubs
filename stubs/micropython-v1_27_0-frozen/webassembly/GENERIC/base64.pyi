@@ -1,18 +1,19 @@
+# Micropython v1.27.0 frozen stubs
 __all__ = [
-    "encode",
-    "decode",
-    "encodebytes",
-    "decodebytes",
     "b64encode",
     "b64decode",
-    "b32encode",
-    "b32decode",
-    "b16encode",
-    "b16decode",
     "standard_b64encode",
     "standard_b64decode",
     "urlsafe_b64encode",
     "urlsafe_b64decode",
+    "b32encode",
+    "b32decode",
+    "b16encode",
+    "b16decode",
+    "encode",
+    "decode",
+    "encodebytes",
+    "decodebytes",
 ]
 
 def b64encode(s, altchars=None):

@@ -1,3 +1,4 @@
+# Micropython v1.26.1 frozen stubs
 """LILYGO TTGO LoRa32 MicroPython Helper Library."""
 
 from machine import Pin, SoftI2C, Signal

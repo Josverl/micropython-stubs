@@ -13,7 +13,7 @@
         "board": "ARDUINO_NICLA_VISION"
     },
     "stubber": {
-        "version": "1.28.0",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

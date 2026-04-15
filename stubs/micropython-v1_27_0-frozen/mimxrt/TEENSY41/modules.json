@@ -5,14 +5,15 @@
         "port": "mimxrt",
         "platform": "mimxrt",
         "machine": "TEENSY41",
-        "firmware": "micropython-mimxrt-v1_27_0",
+        "firmware": "micropython-mimxrt-TEENSY41-v1_27_0",
         "nodename": "micropython",
         "version": "v1.27.0",
         "release": "v1.27.0",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "TEENSY41"
     },
     "stubber": {
-        "version": "1.26.4",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [

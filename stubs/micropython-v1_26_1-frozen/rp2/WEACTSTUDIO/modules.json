@@ -5,14 +5,15 @@
         "port": "rp2",
         "platform": "rp2",
         "machine": "WEACTSTUDIO",
-        "firmware": "micropython-rp2-v1_26_1",
+        "firmware": "micropython-rp2-WEACTSTUDIO-v1_26_1",
         "nodename": "micropython",
         "version": "v1.26.1",
         "release": "v1.26.1",
-        "sysname": "micropython"
+        "sysname": "micropython",
+        "board": "WEACTSTUDIO"
     },
     "stubber": {
-        "version": "1.26.3",
+        "version": "1.28.1",
         "stubtype": "frozen"
     },
     "modules": [
