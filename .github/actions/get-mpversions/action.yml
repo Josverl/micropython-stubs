@@ -26,4 +26,6 @@ runs:
       - run: python .github/actions/get-mpversions/list_versions.py --latest  --preview  --max ${{ inputs.max }}
         shell: bash
         id: dynamic
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
 
