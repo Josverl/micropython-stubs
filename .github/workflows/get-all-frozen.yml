@@ -22,18 +22,13 @@ env:
 jobs:
   ########################################################################################################################################
   list-versions-fr:
+    # 'Get a matrix for the latest versions of micropython'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.11 
-
-      - run: pip install pygithub packaging
-      - run: python .github/actions/get-mpversions/list_versions.py --latest
+      - uses: ./.github/actions/get-mpversions
         id: dynamic
     outputs:
       job_versions: ${{ steps.dynamic.outputs.versions }}
