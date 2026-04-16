@@ -37,7 +37,7 @@ behave not as expected.
 # origin module:: repos/micropython/docs/library/time.rst
 from __future__ import annotations
 
-from typing import Tuple, TypeVar
+from typing import TypeVar
 
 from typing_extensions import TypeAlias, TypeVar
 from _mpy_shed import _TimeTuple
@@ -131,7 +131,7 @@ def sleep_us(us: int, /) -> None:
     """
     ...
 
-def ticks_ms() -> int:
+def ticks_ms() -> _TicksMs:
     """
     Returns an increasing millisecond counter with an arbitrary reference point, that
     wraps around after some value.
