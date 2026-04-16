@@ -15,6 +15,7 @@ damage.
 from __future__ import annotations
 from _typeshed import Incomplete
 from micropython import const as const
+from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 from typing import Callable, Any, NoReturn, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 from _mpy_shed import mp_available, AnyReadableBuf, AnyWritableBuf, _IRQ

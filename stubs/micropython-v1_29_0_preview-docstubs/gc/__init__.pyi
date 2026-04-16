@@ -1,7 +1,8 @@
 """
-Control the garbage collector.
+Control the garbage collector which automatically frees.
 
 MicroPython module: https://docs.micropython.org/en/v1.29.0/library/gc.html
+              :ref:`heap memory <heap>`
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 """
@@ -21,6 +22,11 @@ def disable() -> None:
     """
        Disable automatic garbage collection.  Heap memory can still be allocated,
        and garbage collection can still be initiated manually using :meth:`gc.collect`.
+    """
+    ...
+def isenabled() -> bool:
+    """
+       Returns True if automatic garbage collection is enabled, and False otherwise.
     """
     ...
 def collect() -> None:
@@ -74,6 +80,17 @@ def threshold() -> int:
           This function is a MicroPython extension. CPython has a similar
           function - ``set_threshold()``, but due to different GC
           implementations, its signature and semantics are different.
+    
+       Examples
+       ^^^^^^^^
+    
+       To trigger a garbage collection each time 32768 bytes of RAM have been allocated in total::
+    
+           gc.threshold(32768)
+    
+       To restore the default behaviour, only triggering garbage collection when out of memory::
+    
+           gc.threshold(-1)
     """
 
 @overload
@@ -100,4 +117,15 @@ def threshold(amount: int) -> None:
           This function is a MicroPython extension. CPython has a similar
           function - ``set_threshold()``, but due to different GC
           implementations, its signature and semantics are different.
+    
+       Examples
+       ^^^^^^^^
+    
+       To trigger a garbage collection each time 32768 bytes of RAM have been allocated in total::
+    
+           gc.threshold(32768)
+    
+       To restore the default behaviour, only triggering garbage collection when out of memory::
+    
+           gc.threshold(-1)
     """
