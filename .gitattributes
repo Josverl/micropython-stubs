@@ -1,0 +1,2 @@
+# These are binary so should never be modified by git.
+*.mpy binary
