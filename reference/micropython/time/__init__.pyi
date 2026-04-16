@@ -37,17 +37,29 @@ behave not as expected.
 # origin module:: repos/micropython/docs/library/time.rst
 from __future__ import annotations
 
-from typing import TypeVar
-
-from typing_extensions import TypeAlias, TypeVar
-from _mpy_shed import _TimeTuple
-
-_TicksMs: TypeAlias = int
-_TicksUs: TypeAlias = int
-_TicksCPU: TypeAlias = int
-_Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
+from typing_extensions import TypeVar
 
 # Not all ports use the same time tuple :-) Some use 8-tuple, some use 9-tuple.
+from _mpy_shed import _TimeTuple
+
+# Opaque types for tick values to prevent direct arithmetic operations.
+# These are stub-only types that don't exist at runtime (values are actually int).
+# They prevent operations like `ticks_ms() - ticks_ms()` which would be incorrect.
+# Use ticks_diff() and ticks_add() instead.
+class _TicksMs:
+    """Opaque millisecond tick value. Use ticks_diff() and ticks_add() for operations."""
+    def __init__(self, value: int, /) -> None: ...
+
+class _TicksUs:
+    """Opaque microsecond tick value. Use ticks_diff() and ticks_add() for operations."""
+    def __init__(self, value: int, /) -> None: ...
+
+class _TicksCPU:
+    """Opaque CPU tick value. Use ticks_diff() and ticks_add() for operations."""
+    def __init__(self, value: int, /) -> None: ...
+
+_Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU)
+
 
 def gmtime(secs: int | None = None, /) -> _TimeTuple:
     """
