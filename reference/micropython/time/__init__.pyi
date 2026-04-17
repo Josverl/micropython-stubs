@@ -33,33 +33,13 @@ functions below which require reference to current absolute time may
 behave not as expected.
 """
 
-# source version: v1.24.0
 # origin module:: repos/micropython/docs/library/time.rst
 from __future__ import annotations
 
 from typing_extensions import TypeVar
 
 # Not all ports use the same time tuple :-) Some use 8-tuple, some use 9-tuple.
-from _mpy_shed import _TimeTuple
-
-# Opaque types for tick values to prevent direct arithmetic operations.
-# These are stub-only types that don't exist at runtime (values are actually int).
-# They prevent operations like `ticks_ms() - ticks_ms()` which would be incorrect.
-# Use ticks_diff() and ticks_add() instead.
-class _TicksMs:
-    """Opaque millisecond tick value. Use ticks_diff() and ticks_add() for operations."""
-    def __init__(self, value: int, /) -> None: ...
-
-class _TicksUs:
-    """Opaque microsecond tick value. Use ticks_diff() and ticks_add() for operations."""
-    def __init__(self, value: int, /) -> None: ...
-
-class _TicksCPU:
-    """Opaque CPU tick value. Use ticks_diff() and ticks_add() for operations."""
-    def __init__(self, value: int, /) -> None: ...
-
-_Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU)
-
+from _mpy_shed import _TimeTuple, _TicksMs, _TicksUs, _TicksCPU, _Ticks
 
 def gmtime(secs: int | None = None, /) -> _TimeTuple:
     """
