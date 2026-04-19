@@ -39,7 +39,7 @@ from __future__ import annotations
 from typing_extensions import TypeVar
 
 # Not all ports use the same time tuple :-) Some use 8-tuple, some use 9-tuple.
-from _mpy_shed import _TimeTuple, _TicksMs, _TicksUs, _TicksCPU, _Ticks
+from _mpy_shed import mp_available, _TimeTuple, _TicksMs, _TicksUs, _TicksCPU, _Ticks
 
 def gmtime(secs: int | None = None, /) -> _TimeTuple:
     """
@@ -123,6 +123,8 @@ def sleep_us(us: int, /) -> None:
     """
     ...
 
+# override the type of ticks_ms()  as it is discovered as `int` in docstubs.
+@mp_available
 def ticks_ms() -> _TicksMs:
     """
     Returns an increasing millisecond counter with an arbitrary reference point, that
