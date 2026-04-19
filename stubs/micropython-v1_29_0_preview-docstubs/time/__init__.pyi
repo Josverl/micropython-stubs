@@ -41,12 +41,7 @@ from _typeshed import Incomplete
 from typing import Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias, TypeVar
-from _mpy_shed import _Ticks, _TicksCPU, _TicksMs, _TicksUs, _TimeTuple
-
-_TicksMs: TypeAlias = int
-_TicksUs: TypeAlias = int
-_TicksCPU: TypeAlias = int
-_Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
+from _mpy_shed import _TimeTuple, mp_available, _Ticks, _TicksMs, _TicksUs, _TicksCPU
 def gmtime(secs: int | None = None, /) -> Tuple:
     """
        Convert the time *secs* expressed in seconds since the Epoch (see above) into an
@@ -129,7 +124,10 @@ def sleep_us(us: int, /) -> None:
        processing to perform.
     """
     ...
-def ticks_ms() -> int:
+
+# override the type of ticks_ms()  as it is discovered as `int` in docstubs.
+@mp_available
+def ticks_ms() -> _TicksMs:
     """
         Returns an increasing millisecond counter with an arbitrary reference point, that
         wraps around after some value.
