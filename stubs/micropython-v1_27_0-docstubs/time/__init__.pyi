@@ -41,7 +41,7 @@ from _typeshed import Incomplete
 from typing import Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias, TypeVar
-from _mpy_shed import _TimeTuple
+from _mpy_shed import _Ticks, _TicksCPU, _TicksMs, _TicksUs, _TimeTuple
 
 _TicksMs: TypeAlias = int
 _TicksUs: TypeAlias = int
