@@ -41,14 +41,9 @@ Module: 'time' on micropython-v1.28.0-esp32-ESP32_GENERIC
 # Stubber: v1.28.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import _TimeTuple
+from _mpy_shed import _Ticks, _TicksCPU, _TicksMs, _TicksUs, _TimeTuple, mp_available
 from typing import Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
-
-_TicksMs: TypeAlias = int
-_TicksUs: TypeAlias = int
-_TicksCPU: TypeAlias = int
-_Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
 
 def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     """
@@ -186,7 +181,9 @@ def time() -> int:
     """
     ...
 
-def ticks_ms() -> int:
+# override the type of ticks_ms()  as it is discovered as `int` in docstubs.
+@mp_available
+def ticks_ms() -> _TicksMs:
     """
     Returns an increasing millisecond counter with an arbitrary reference point, that
     wraps around after some value.
