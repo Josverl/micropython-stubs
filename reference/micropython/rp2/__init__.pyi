@@ -19,15 +19,21 @@ for example code.
 
 from __future__ import annotations
 
-from typing import Callable, Dict, List, Union, overload
+from typing import Any,Callable, List, Union, overload
 from _typeshed import Incomplete
-from typing_extensions import TypeAlias
+from typing_extensions import Protocol
 
 from rp2.PIO import PIO
 from rp2.PIOASMEmit import PIOASMEmit
 from machine import Pin
 
-_PIO_ASM_Program: TypeAlias = PIOASMEmit
+class _PIO_ASM_Program(Protocol):
+    """"A PIO program assembled by `@rp2.asm_pio()` from a function."""
+    def __call__(self, *args: Any, **kwargs: Any) -> Any: ...
+    @overload
+    def __getitem__(self, key: int) -> int: ...
+    @overload
+    def __getitem__(self, key: slice) -> list[int]: ...
 
 class PIOASMError(Exception):
     """
