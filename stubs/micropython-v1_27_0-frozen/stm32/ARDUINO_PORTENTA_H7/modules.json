@@ -13,7 +13,7 @@
         "board": "ARDUINO_PORTENTA_H7"
     },
     "stubber": {
-        "version": "1.28.1",
+        "version": "1.28.2",
         "stubtype": "frozen"
     },
     "modules": [

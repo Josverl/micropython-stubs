@@ -13,7 +13,7 @@
         "board": "SPARKFUN_THINGPLUS_RP2350"
     },
     "stubber": {
-        "version": "1.28.1",
+        "version": "1.28.2",
         "stubtype": "frozen"
     },
     "modules": [

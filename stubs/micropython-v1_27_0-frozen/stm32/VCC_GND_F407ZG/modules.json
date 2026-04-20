@@ -13,7 +13,7 @@
         "board": "VCC_GND_F407ZG"
     },
     "stubber": {
-        "version": "1.28.1",
+        "version": "1.28.2",
         "stubtype": "frozen"
     },
     "modules": [
