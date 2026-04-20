@@ -13,7 +13,7 @@
         "board": "NUCLEO_F439ZI"
     },
     "stubber": {
-        "version": "1.28.1",
+        "version": "1.28.2",
         "stubtype": "frozen"
     },
     "modules": [

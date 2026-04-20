@@ -13,7 +13,7 @@
         "board": "SEEED_ARCH_MIX"
     },
     "stubber": {
-        "version": "1.28.1",
+        "version": "1.28.2",
         "stubtype": "frozen"
     },
     "modules": [
