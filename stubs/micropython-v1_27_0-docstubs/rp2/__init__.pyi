@@ -17,7 +17,7 @@ for example code.
 # origin module:: repos/micropython/docs/library/rp2.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing_extensions import TYPE_CHECKING, TypeVar, TypeAlias, Awaitable
+from typing_extensions import TYPE_CHECKING, Protocol, TypeVar, TypeAlias, Awaitable
 from rp2.DMA import DMA
 from rp2.Flash import Flash
 from rp2.PIO import PIO
@@ -28,7 +28,6 @@ from typing import Callable, List, Union, overload
 from micropython import const
 from rp2 import bootsel_button, PIOASMEmit, _PIO_ASM_Program
 
-_PIO_ASM_Program: TypeAlias = PIOASMEmit
 class PIOASMError(Exception):
     """
     This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
@@ -105,6 +104,11 @@ def bootsel_button() -> int:
         prevent them from trying to execute code from flash.
     """
     ...
+class _PIO_ASM_Program:
+    @overload
+    def __getitem__(self, key: int) -> int: ...
+    @overload
+    def __getitem__(self, key: slice) -> list[int]: ...
 class PIOASMEmit:
     @overload
     def __getitem__(self, key): ...
