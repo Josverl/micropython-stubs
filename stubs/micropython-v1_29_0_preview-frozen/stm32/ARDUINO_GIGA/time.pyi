@@ -38,7 +38,7 @@ behave not as expected.
 from __future__ import annotations
 from utime import *
 from _typeshed import Incomplete
-from _mpy_shed import _Ticks, _TicksCPU, _TicksMs, _TicksUs, _TimeTuple
+from _mpy_shed import _Ticks, _TicksCPU, _TicksMs, _TicksUs, _TimeTuple, mp_available
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _TS_YEAR: int
@@ -52,9 +52,31 @@ _TS_YDAY: int
 _TS_ISDST: int
 _WDAY: Incomplete
 _MDAY: Incomplete
-_TicksMs: TypeAlias = int
-_TicksUs: TypeAlias = int
-_TicksCPU: TypeAlias = int
-_Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
 
 def strftime(datefmt, ts): ...
+
+# override the type of ticks_ms()  as it is discovered as `int` in docstubs.
+@mp_available
+def ticks_ms() -> _TicksMs:
+    """
+    Returns an increasing millisecond counter with an arbitrary reference point, that
+    wraps around after some value.
+
+    The wrap-around value is not explicitly exposed, but we will
+    refer to it as *TICKS_MAX* to simplify discussion. Period of the values is
+    *TICKS_PERIOD = TICKS_MAX + 1*. *TICKS_PERIOD* is guaranteed to be a power of
+    two, but otherwise may differ from port to port. The same period value is used
+    for all of `ticks_ms()`, `ticks_us()`, `ticks_cpu()` functions (for
+    simplicity). Thus, these functions will return a value in range [*0* ..
+    *TICKS_MAX*], inclusive, total *TICKS_PERIOD* values. Note that only
+    non-negative values are used. For the most part, you should treat values returned
+    by these functions as opaque. The only operations available for them are
+    `ticks_diff()` and `ticks_add()` functions described below.
+
+    Note: Performing standard mathematical operations (+, -) or relational
+    operators (<, <=, >, >=) directly on these value will lead to invalid
+    result. Performing mathematical operations and then passing their results
+    as arguments to `ticks_diff()` or `ticks_add()` will also lead to
+    invalid results from the latter functions.
+    """
+    ...
