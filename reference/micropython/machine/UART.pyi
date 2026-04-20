@@ -401,7 +401,7 @@ class UART:
         timeout.
         """
 
-    def readline(self) -> str | None:
+    def readline(self) -> bytes | None:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
