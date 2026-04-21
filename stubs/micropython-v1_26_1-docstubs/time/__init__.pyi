@@ -42,6 +42,8 @@ from typing import Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias, TypeVar
 from _mpy_shed import _TimeTuple, mp_available, _Ticks, _TicksMs, _TicksUs, _TicksCPU
+from _mpy_shed.time_mp import _Ticks, _TicksCPU, _TicksMs, _TicksUs
+
 def gmtime(secs: int | None = None, /) -> Tuple:
     """
        Convert the time *secs* expressed in seconds since the Epoch (see above) into an
