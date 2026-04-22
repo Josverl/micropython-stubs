@@ -54,7 +54,7 @@ from __future__ import annotations
 from typing import Union, Dict, List, Literal, overload, Any, Callable, Optional, Final
 from _typeshed import Incomplete
 from micropython import const
-from typing_extensions import Awaitable, TypeAlias, TypeVar, TYPE_CHECKING
+from typing_extensions import Protocol, Awaitable, TypeAlias, TypeVar, TYPE_CHECKING
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from vfs import AbstractBlockDev
 from machine import Pin
@@ -991,3 +991,9 @@ class Flash(AbstractBlockDev):
     def __init__(self) -> None: ...
 
 class PIOASMError(Exception): ...
+
+class _PIO_ASM_Program:
+    @overload
+    def __getitem__(self, key: int) -> int: ...
+    @overload
+    def __getitem__(self, key: slice) -> list[int]: ...

@@ -41,7 +41,8 @@ Module: 'time' on micropython-v1.28.0-esp32-ESP32_GENERIC_S2
 # Stubber: v1.28.1
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import _Ticks, _TicksCPU, _TicksMs, _TicksUs, _TimeTuple, mp_available
+from _mpy_shed import _TimeTuple, mp_available
+from _mpy_shed.time_mp import _Ticks, _TicksCPU, _TicksMs, _TicksUs
 from typing import Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
