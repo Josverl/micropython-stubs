@@ -974,7 +974,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |frozen| micropython| v1.26.1| rp2| W5500_EVB_PICO| 13| 1.28.2|[stubs/micropython-v1_26_1-frozen/rp2/W5500_EVB_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-frozen/rp2/W5500_EVB_PICO)
 |frozen| micropython| v1.26.1| rp2| WEACTSTUDIO| 7| 1.28.2|[stubs/micropython-v1_26_1-frozen/rp2/WEACTSTUDIO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-frozen/rp2/WEACTSTUDIO)
 |frozen| micropython| v1.26.1| rp2| WEACTSTUDIO_RP2350B_CORE| 6| 1.28.2|[stubs/micropython-v1_26_1-frozen/rp2/WEACTSTUDIO_RP2350B_CORE](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-frozen/rp2/WEACTSTUDIO_RP2350B_CORE)
-|frozen| micropython| v1.26.1| samd| GENERIC| 4| 1.28.2|[stubs/micropython-v1_26_1-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-frozen/samd/GENERIC)
+|frozen| micropython| v1.26.1| samd| GENERIC| 1| 1.28.2|[stubs/micropython-v1_26_1-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-frozen/samd/GENERIC)
 |frozen| micropython| v1.26.1| stm32| ARDUINO_GIGA| 30| 1.28.2|[stubs/micropython-v1_26_1-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-frozen/stm32/ARDUINO_GIGA)
 |frozen| micropython| v1.26.1| stm32| ARDUINO_NICLA_VISION| 33| 1.28.2|[stubs/micropython-v1_26_1-frozen/stm32/ARDUINO_NICLA_VISION](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-frozen/stm32/ARDUINO_NICLA_VISION)
 |frozen| micropython| v1.26.1| stm32| ARDUINO_OPTA| 31| 1.28.2|[stubs/micropython-v1_26_1-frozen/stm32/ARDUINO_OPTA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_26_1-frozen/stm32/ARDUINO_OPTA)
@@ -1269,4 +1269,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  31251
+Total modules  31248
