@@ -17,16 +17,16 @@ for example code.
 # origin module:: repos/micropython/docs/library/rp2.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing_extensions import Protocol, TYPE_CHECKING, TypeVar, TypeAlias, Awaitable
+from typing_extensions import TYPE_CHECKING, Protocol, TypeVar, TypeAlias, Awaitable
 from rp2.DMA import DMA
 from rp2.Flash import Flash
 from rp2.PIO import PIO
 from rp2.StateMachine import StateMachine
-from micropython import const
-from rp2 import PIOASMEmit, _PIO_ASM_Program
-from typing import Callable, Union, List, overload
 from machine import Pin
 from rp2.PIOASMEmit import PIOASMEmit
+from typing import Callable, List, Union, overload
+from micropython import const
+from rp2 import bootsel_button, PIOASMEmit, _PIO_ASM_Program
 
 class PIOASMError(Exception):
     """
@@ -104,13 +104,13 @@ def bootsel_button() -> int:
         prevent them from trying to execute code from flash.
     """
     ...
-class PIOASMEmit:
-    @overload
-    def __getitem__(self, key): ...
-    @overload
-    def __getitem__(self, key: int): ...
 class _PIO_ASM_Program:
     @overload
     def __getitem__(self, key: int) -> int: ...
     @overload
     def __getitem__(self, key: slice) -> list[int]: ...
+class PIOASMEmit:
+    @overload
+    def __getitem__(self, key): ...
+    @overload
+    def __getitem__(self, key: int): ...
