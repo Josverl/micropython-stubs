@@ -20,6 +20,18 @@
         {
             "file": "_boot.py",
             "module": "_boot"
+        },
+        {
+            "file": "dht.py",
+            "module": "dht"
+        },
+        {
+            "file": "ds18x20.py",
+            "module": "ds18x20"
+        },
+        {
+            "file": "onewire.py",
+            "module": "onewire"
         }
     ]
 }
