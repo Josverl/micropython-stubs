@@ -25,7 +25,9 @@ class _IRQ_RP2:
 
 # pybv11
 # TODO: Not sure what the correct implementation is
-# NoneType
-_IRQ_PYB: TypeAlias = None
+class _IRQ_PYB:
+    def flags(self) -> int: ...
+    def trigger(self) -> int: ...
+
 
 _IRQ: TypeAlias = Type[_IRQ_ESP32] | Type[_IRQ_RP2] | Type[_IRQ_PYB] | Incomplete
