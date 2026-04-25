@@ -578,7 +578,12 @@ def wake_on_ulp(wake: bool, /) -> None:
     """
     ...
 
-def wake_on_ext0(pin: Pin | None, level: int, /) -> None:
+@overload
+def wake_on_ext0() -> None:
+    ...
+
+@overload
+def wake_on_ext0(pin: Pin | None, level: bool, /) -> None:
     """
     Configure how EXT0 wakes the device from sleep.  *pin* can be ``None``
     or a valid Pin object.  *level* should be ``esp32.WAKEUP_ALL_LOW`` or
@@ -586,7 +591,12 @@ def wake_on_ext0(pin: Pin | None, level: int, /) -> None:
     """
     ...
 
-def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: int, /) -> None:
+@overload
+def wake_on_ext1() -> None:
+    ...
+
+@overload
+def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: bool, /) -> None:
     """
     Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
     or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
@@ -594,7 +604,12 @@ def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: int, /) -> Non
     """
     ...
 
-def wake_on_gpio(pins: List[Pin] | Tuple[Pin, ...] | None, level: int, /) -> None:
+@overload
+def wake_on_gpio() -> None:
+    ...
+
+@overload
+def wake_on_gpio(pins: List[Pin] | Tuple[Pin, ...] | None, level: bool, /) -> None:
     """
     Configure how GPIO wakes the device from sleep.  *pins* can be ``None``
     or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``

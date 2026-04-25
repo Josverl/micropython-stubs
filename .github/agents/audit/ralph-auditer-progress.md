@@ -25,7 +25,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\deflate\__init__.pyi | done |  | No stub changes needed; API and constants align with extmod/moddeflate.c |
 | reference\micropython\errno\__init__.pyi | done |  | No API changes needed after review against py/moderrno.c |
 | reference\micropython\esp\__init__.pyi | done |  | Corrected deepsleep signature to support optional second arg from ports/esp8266/modesp.c |
-| reference\micropython\esp32\__init__.pyi | pending |  |  |
+| reference\micropython\esp32\__init__.pyi | done |  | Corrected wake_on_ext0/ext1/gpio overloads (allow no-arg forms) and boolean level type from ports/esp32/modesp32.c |
 | reference\micropython\espnow\__init__.pyi | done |  | No API changes needed after review against ports/esp32/modules/espnow.py |
 | reference\micropython\framebuf\__init__.pyi | pending |  |  |
 | reference\micropython\gc\__init__.pyi | done |  | collect() return typed as int|None to match MICROPY_PY_GC_COLLECT_RETVAL builds |
