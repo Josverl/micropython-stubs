@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "micropython-stubs"
 authors = [{ name = "Jos Verlinde", email = "jos_verlinde@hotmail.com"}]
@@ -6,13 +10,14 @@ description = "The MicroPython stubs project"
 version = "1.28.0"
 classifiers = [
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: MicroPython",
-  "License :: OSI Approved :: MIT License"
+    "Programming Language :: Python :: Implementation :: MicroPython"
 ]
 readme = "readme.md"
 license = "MIT"
 dependencies = []
 
+[tool.hatch.build.targets.wheel]
+only-include = ["readme.md", "LICENSE.md"]
 
 [project.optional-dependencies]
 # uv pip install -r pyproject.toml --extra stubber --prerelease=allow

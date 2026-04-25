@@ -61,3 +61,6 @@ publish/micropython-stdlib-stubs_100b1
 # no test lock files
 **/*_lock.file
 tests/doc_test/micropython/
+
+# build metadata
+*.egg-info/
