@@ -44,20 +44,20 @@ _property: TypeAlias = Incomplete
 # _descriptor: TypeAlias = tuple[str, _property]
 _descriptor: TypeAlias = Tuple | Dict
 
-LITTLE_ENDIAN: bytes
+LITTLE_ENDIAN: int
 """\
 Layout type for a little-endian packed structure. (Packed means that every
 field occupies exactly as many bytes as defined in the descriptor, i.e.
 the alignment is 1).
 """
-BIG_ENDIAN: Incomplete
+BIG_ENDIAN: int
 """Layout type for a big-endian packed structure."""
-NATIVE: Incomplete
+NATIVE: int
 """\
 Layout type for a native structure - with data endianness and alignment
 conforming to the ABI of the system on which MicroPython runs.
 """
-UINT8:TypeAlias = int
+UINT8: int
 """\
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
@@ -97,27 +97,35 @@ INT64: int
 Integer types for structure descriptors. Constants for 8, 16, 32,
 and 64 bit types are provided, both signed and unsigned.
 """
-FLOAT32: float
+FLOAT32: int
 """Floating-point types for structure descriptors."""
-FLOAT64: float
+FLOAT64: int
 """Floating-point types for structure descriptors."""
-VOID: UINT8
+VOID: int
 """\
 ``VOID`` is an alias for ``UINT8``, and is provided to conveniently define
 C's void pointers: ``(uctypes.PTR, uctypes.VOID)``.
 """
-PTR: Incomplete
+PTR: int
 """\
 Type constants for pointers and arrays. Note that there is no explicit
 constant for structures, it's implicit: an aggregate type without ``PTR``
 or ``ARRAY`` flags is a structure.
 """
-ARRAY: Incomplete
+ARRAY: int
 """\
 Type constants for pointers and arrays. Note that there is no explicit
 constant for structures, it's implicit: an aggregate type without ``PTR``
 or ``ARRAY`` flags is a structure.
 """
+BFUINT8: int
+BFINT8: int
+BFUINT16: int
+BFINT16: int
+BFUINT32: int
+BFINT32: int
+BF_POS: int
+BF_LEN: int
 
 class struct:
     """
@@ -130,6 +138,7 @@ class struct:
         Instantiate a "foreign data structure" object based on structure address in
         memory, descriptor (encoded as a dictionary), and layout type (see below).
         """
+        ...
     @mp_available()  # force push
     def __getattr__(self, a): ...
 

@@ -102,8 +102,8 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\struct\__init__.pyi | done |  | No API changes needed after review against py/modstruct.c |
 | reference\micropython\sys\__init__.pyi | done |  | No stub changes needed after review against py/modsys.c exports and signatures |
 | reference\micropython\time\__init__.pyi | done |  | No stub changes needed after review against extmod/modtime.c exports and signatures |
-| reference\micropython\tls\__init__.pyi | done |  | Normalized backend-dependent TLS constants from extmod/modtls_mbedtls.c and modtls_axtls.c |
-| reference\micropython\uctypes\__init__.pyi | pending |  |  |
+| reference\micropython\tls\__init__.pyi | done | 7f5ac49b2 | Normalized backend-dependent TLS constants from extmod/modtls_mbedtls.c and modtls_axtls.c |
+| reference\micropython\uctypes\__init__.pyi | done |  | Corrected integer constant types and added exported BF* constants per extmod/moductypes.c |
 | reference\micropython\vfs\__init__.pyi | pending |  |  |
 | reference\micropython\wipy\__init__.pyi | pending |  |  |
 | reference\micropython\wm8960\__init__.pyi | pending |  |  |
