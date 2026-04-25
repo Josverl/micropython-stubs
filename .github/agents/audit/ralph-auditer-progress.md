@@ -82,7 +82,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\RTC.pyi | done |  | Restored missing method bodies, added init(), precise datetime tuple typing, and wakeup overloads for (None|ms|wucksel,wut) per ports/stm32/rtc.c. |
 | reference\micropython\pyb\Servo.pyi | done |  | Replaced duplicate/incomplete overload set; aligned angle/speed/pulse_width/calibration signatures to ports/stm32/servo.c argument counts and returns. |
 | reference\micropython\pyb\SPI.pyi | done |  | Added MASTER/SLAVE constants, dir/nss kwargs, and buffer-aware recv/send_recv overload returns; corrected send parameter to readable buffer per ports/stm32/pyb_spi.c. |
-| reference\micropython\pyb\Switch.pyi | pending |  |  |
+| reference\micropython\pyb\Switch.pyi | done |  | Completed constructor stub body; API otherwise already matched ports/stm32/usrsw.c (call/value/callback). |
 | reference\micropython\pyb\Timer.pyi | pending |  |  |
 | reference\micropython\pyb\UART.pyi | pending |  |  |
 | reference\micropython\pyb\USB_HID.pyi | pending |  |  |
