@@ -18,13 +18,13 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\asyncio\task.pyi | done |  | No API changes needed after review against extmod/asyncio/task.py and extmod/modasyncio.c |
 | reference\micropython\binascii\__init__.pyi | done |  | Added b2a_base64 newline kwarg from extmod/modbinascii.c |
 | reference\micropython\bluetooth\__init__.pyi | done | 362977422 | Added FLAG_* module constants from extmod/modbluetooth.c globals table |
-| reference\micropython\btree\__init__.pyi | done |  | Aligned close/flush returns and added put/seq legacy methods from extmod/modbtree.c |
+| reference\micropython\btree\__init__.pyi | done | e5b18c7e9 | Aligned close/flush returns and added put/seq legacy methods from extmod/modbtree.c |
 | reference\micropython\cmath\__init__.pyi | done |  | Corrected complex-returning function signatures and polar/rect typing |
 | reference\micropython\collections\__init__.pyi | done |  | No API changes needed after review against py/modcollections.c |
 | reference\micropython\cryptolib\__init__.pyi | done |  | Added MODE_ECB/MODE_CBC/MODE_CTR constants from extmod/modcryptolib.c |
-| reference\micropython\deflate\__init__.pyi | pending |  |  |
+| reference\micropython\deflate\__init__.pyi | done |  | No stub changes needed; API and constants align with extmod/moddeflate.c |
 | reference\micropython\errno\__init__.pyi | done |  | No API changes needed after review against py/moderrno.c |
-| reference\micropython\esp\__init__.pyi | pending |  |  |
+| reference\micropython\esp\__init__.pyi | done |  | Corrected deepsleep signature to support optional second arg from ports/esp8266/modesp.c |
 | reference\micropython\esp32\__init__.pyi | pending |  |  |
 | reference\micropython\espnow\__init__.pyi | done |  | No API changes needed after review against ports/esp32/modules/espnow.py |
 | reference\micropython\framebuf\__init__.pyi | pending |  |  |

@@ -15,7 +15,6 @@ from __future__ import annotations
 from typing import overload
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from _typeshed import Incomplete
 
 # ESP8266-only API.
 # noinspection PyShadowingNames
@@ -64,7 +63,7 @@ def sleep_type() -> int:
     """
     ...
 
-def deepsleep(time_us: int = 0, /) -> None:
+def deepsleep(time_us: int = 0, option: int = 0, /) -> None:
     """
     **Note**: ESP8266 only - use `machine.deepsleep()` on ESP32
 
