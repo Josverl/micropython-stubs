@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Callable, Iterable
+from typing import Any, Callable, Iterable, List
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
 
@@ -249,7 +249,7 @@ class CAN:
                            (0x50700, 0x1FFF_FFFF, CAN.FLAG_EXT_ID)))
         """
         ...
-    def send(self, id: int, data: bytes | bytearray | memoryview, flags: int = 0) -> int | None:
+    def send(self, id: int, data: bytes | bytearray | memoryview, flags: int = 0) -> int:
         """
         Copy a new CAN message into the controller's hardware transmit queue to be
         sent onto the bus. The transmit queue is a priority queue sorted on CAN
@@ -284,7 +284,7 @@ class CAN:
            caller can establish a software queue of outgoing messages.
         """
         ...
-    def recv(self, arg: list[Any] | None = None) -> __CANRecvResult | None:
+    def recv(self, arg: list[Any] | None = None) -> None:
         """
         Return a CAN message that has been received by the controller, according to
         filters set by :func:`CAN.set_filters`.
@@ -345,7 +345,7 @@ class CAN:
                     time.sleep_ms(1)  # not a good pattern, use the irq instead!
         """
         ...
-    def irq(self, handler: Callable[[CAN], None] | None = None, trigger: int = 0, hard: bool = False) -> _IRQ:
+    def irq(self, handler: Callable[[CAN], None] | None = None, trigger: int = 0, hard: bool = False) -> irq:
         """
         Sets an interrupt *handler* function to be called when one or more of the
         events flagged in *trigger* has occurred.
@@ -408,7 +408,7 @@ class CAN:
         :func:`CAN.restart()`.
         """
         ...
-    def get_counters(self, list: __CANCounters | None = None, /) -> __CANCounters:
+    def get_counters(self, list: __CANCounters | None = None, /) -> None:
         """
          Returns controller's error counter values. The result is a list of eight
          values. If the optional *list* parameter is specified then the provided
@@ -432,7 +432,7 @@ class CAN:
                   ``None`` for that list element.
         """
         ...
-    def get_timings(self, list: __CANTimings | None = None, /) -> __CANTimings:
+    def get_timings(self, list: __CANTimings | None = None, /) -> List:
         """
         Returns a list of elements indicating the current timings configured in the
         CAN controller. This can be used to verify timings for debugging purposes.
