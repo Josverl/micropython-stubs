@@ -5,10 +5,10 @@ Status values: pending | in_progress | done | skipped | blocked
 | Module | Status | Commit | Notes |
 |---|---|---|---|
 | reference\micropython\_espnow\__init__.pyi | done | 9df18a103 | Added send() overloads and RATE_* constants from modespnow.c v1.28.0 |
-| reference\micropython\_rp2\__init__.pyi | done |  | Removed PIOASMEmit export; not present in _rp2 C module globals |
+| reference\micropython\_rp2\__init__.pyi | done | efbaf26fc | Removed PIOASMEmit export; not present in _rp2 C module globals |
 | reference\micropython\_thread\__init__.pyi | done | 632ad0ea5 | Aligned start_new_thread return/kwargs, stack_size overloads, and LockType/context manager API |
-| reference\micropython\aioespnow\__init__.pyi | pending |  |  |
-| reference\micropython\array\__init__.pyi | pending |  |  |
+| reference\micropython\aioespnow\__init__.pyi | done |  | No stub changes needed; signatures match lib/micropython-lib/micropython/aioespnow/aioespnow.py |
+| reference\micropython\array\__init__.pyi | done |  | Fixed __iadd__ to return array (objarray.c returns lhs_in) |
 | reference\micropython\asyncio\__init__.pyi | pending |  |  |
 | reference\micropython\asyncio\core.pyi | pending |  |  |
 | reference\micropython\asyncio\event.pyi | pending |  |  |
