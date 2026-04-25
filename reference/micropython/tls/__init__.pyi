@@ -17,7 +17,6 @@ from __future__ import annotations
 from _mpy_shed import mp_available
 import socket
 from ssl import SSLSocket
-from typing import overload
 
 from _typeshed import Incomplete
 
@@ -27,12 +26,14 @@ from _typeshed import Incomplete
 # todo: avoid duplication by moving to _mpy_shed
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-MBEDTLS_VERSION: str = "Mbed TLS 3.6.0"
-PROTOCOL_TLS_SERVER: int = 1
-PROTOCOL_TLS_CLIENT: int = 0
-CERT_NONE: int = 0
-CERT_REQUIRED: int = 2
-CERT_OPTIONAL: int = 1
+# Exported by mbedtls builds; absent in axtls builds.
+MBEDTLS_VERSION: str
+PROTOCOL_TLS_SERVER: int
+PROTOCOL_TLS_CLIENT: int
+CERT_NONE: int
+# Exported by mbedtls builds; axtls exposes CERT_NONE only.
+CERT_REQUIRED: int
+CERT_OPTIONAL: int
 
 class SSLContext:
     """

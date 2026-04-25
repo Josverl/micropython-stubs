@@ -96,13 +96,13 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\rp2\PIOASMEmit.pyi | done | 3d1b9e308 | Added side_pindir kwarg and aligned pull/mov signatures to ports/rp2/modules/rp2.py PIOASMEmit methods |
 | reference\micropython\rp2\StateMachine.pyi | done | e2f2104a8 | Corrected constructor/init defaults, active() return typing, and get/put buffer signatures per ports/rp2/rp2_pio.c |
 | reference\micropython\select\__init__.pyi | done | bd35e1cd4 | Corrected select() tuple return type and poll.unregister() return to None per extmod/modselect.c |
-| reference\micropython\socket\__init__.pyi | done |  | Corrected socket.sendto() return type to int per extmod/modsocket.c |
-| reference\micropython\ssl\__init__.pyi | pending |  |  |
-| reference\micropython\stm\__init__.pyi | pending |  |  |
+| reference\micropython\socket\__init__.pyi | done | 2cc9c252d | Corrected socket.sendto() return type to int per extmod/modsocket.c |
+| reference\micropython\ssl\__init__.pyi | done |  | No stub changes needed after review across extmod/modtls_mbedtls.c, extmod/modtls_axtls.c, and ports/cc3200/modssl.c exports |
+| reference\micropython\stm\__init__.pyi | done |  | No API changes needed after review against ports/stm32/modstm.c (mem objects + conditional rfcore/subghz APIs) |
 | reference\micropython\struct\__init__.pyi | done |  | No API changes needed after review against py/modstruct.c |
-| reference\micropython\sys\__init__.pyi | pending |  |  |
-| reference\micropython\time\__init__.pyi | pending |  |  |
-| reference\micropython\tls\__init__.pyi | pending |  |  |
+| reference\micropython\sys\__init__.pyi | done |  | No stub changes needed after review against py/modsys.c exports and signatures |
+| reference\micropython\time\__init__.pyi | done |  | No stub changes needed after review against extmod/modtime.c exports and signatures |
+| reference\micropython\tls\__init__.pyi | done |  | Normalized backend-dependent TLS constants from extmod/modtls_mbedtls.c and modtls_axtls.c |
 | reference\micropython\uctypes\__init__.pyi | pending |  |  |
 | reference\micropython\vfs\__init__.pyi | pending |  |  |
 | reference\micropython\wipy\__init__.pyi | pending |  |  |
