@@ -9,13 +9,13 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\_thread\__init__.pyi | done | 632ad0ea5 | Aligned start_new_thread return/kwargs, stack_size overloads, and LockType/context manager API |
 | reference\micropython\aioespnow\__init__.pyi | done |  | No stub changes needed; signatures match lib/micropython-lib/micropython/aioespnow/aioespnow.py |
 | reference\micropython\array\__init__.pyi | done | 7669cd57c | Fixed __iadd__ to return array (objarray.c returns lhs_in) |
-| reference\micropython\asyncio\__init__.pyi | done |  | Added exported __version__ constant from extmod/asyncio/__init__.py |
-| reference\micropython\asyncio\core.pyi | pending |  |  |
-| reference\micropython\asyncio\event.pyi | pending |  |  |
-| reference\micropython\asyncio\funcs.pyi | pending |  |  |
-| reference\micropython\asyncio\lock.pyi | pending |  |  |
-| reference\micropython\asyncio\stream.pyi | pending |  |  |
-| reference\micropython\asyncio\task.pyi | pending |  |  |
+| reference\micropython\asyncio\__init__.pyi | done | 30800821b | Added exported __version__ constant from extmod/asyncio/__init__.py |
+| reference\micropython\asyncio\core.pyi | done |  | No API changes needed after source review against extmod/asyncio/core.py |
+| reference\micropython\asyncio\event.pyi | done |  | Corrected wait return annotations to match extmod/asyncio/event.py |
+| reference\micropython\asyncio\funcs.pyi | done |  | Corrected wait_for and gather return types to match extmod/asyncio/funcs.py |
+| reference\micropython\asyncio\lock.pyi | done |  | Corrected acquire and async context manager return annotations |
+| reference\micropython\asyncio\stream.pyi | done |  | Corrected stream/server function return annotations from extmod/asyncio/stream.py |
+| reference\micropython\asyncio\task.pyi | done |  | No API changes needed after review against extmod/asyncio/task.py and extmod/modasyncio.c |
 | reference\micropython\binascii\__init__.pyi | pending |  |  |
 | reference\micropython\bluetooth\__init__.pyi | pending |  |  |
 | reference\micropython\btree\__init__.pyi | pending |  |  |

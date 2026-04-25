@@ -16,7 +16,7 @@ from _typeshed import Incomplete
 # from . import core as core
 
 async def _run(waiter, aw) -> None: ...
-async def wait_for(aw, timeout, sleep=...) -> Coroutine[Incomplete, Any, Any]:
+async def wait_for(aw, timeout, sleep=...) -> Any:
     """
     Wait for the *awaitable* to complete, but cancel it if it takes longer
     than *timeout* seconds.  If *awaitable* is not a task then a task will be
@@ -45,7 +45,7 @@ class _Remove:
     @staticmethod
     def remove(t) -> None: ...
 
-async def gather(*aws, return_exceptions: bool = False) -> Generator[None, None, Incomplete]:
+async def gather(*aws, return_exceptions: bool = False) -> list[Any]:
     """
     Run all *awaitables* concurrently.  Any *awaitables* that are not tasks are
     promoted to tasks.
