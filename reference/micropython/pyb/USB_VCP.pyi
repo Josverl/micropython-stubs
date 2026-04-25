@@ -14,11 +14,11 @@ class USB_VCP:
     the connected host.
     """
 
-    RTS: Incomplete
+    RTS: int
     """to select the flow control type."""
-    CTS: Incomplete
+    CTS: int
     """to select the flow control type."""
-    IRQ_RX: Incomplete
+    IRQ_RX: int
     """IRQ trigger values for :meth:`USB_VCP.irq`."""
     def __init__(self, id: int = 0, /) -> None:
         """
@@ -110,7 +110,7 @@ class USB_VCP:
         if no pending data available.
         """
 
-    def readline(self) -> bytes:
+    def readline(self) -> bytes | None:
         """
         Read a whole line from the serial device.
 
@@ -138,7 +138,7 @@ class USB_VCP:
         ...
 
     @overload
-    def recv(self, data: int, /, *, timeout: int = 5000) -> bytes | None:
+    def recv(self, data: int, /, *, timeout: int = 5000) -> bytes:
         """
         Receive data on the bus:
 
@@ -151,7 +151,7 @@ class USB_VCP:
         """
 
     @overload
-    def recv(self, data: AnyWritableBuf, /, *, timeout: int = 5000) -> int | None:
+    def recv(self, data: AnyWritableBuf, /, *, timeout: int = 5000) -> int:
         """
         Receive data on the bus:
 
@@ -163,7 +163,7 @@ class USB_VCP:
         otherwise the number of bytes read into ``data`` is returned.
         """
 
-    def send(self, buf: AnyWritableBuf | bytes | int, /, *, timeout: int = 5000) -> int:
+    def send(self, buf: AnyReadableBuf | int, /, *, timeout: int = 5000) -> int:
         """
         Send data over the USB VCP:
 
