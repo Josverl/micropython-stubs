@@ -32,7 +32,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\gzip\__init__.pyi | done |  | Corrected function-based API and return types from micropython-lib gzip.py |
 | reference\micropython\hashlib\__init__.pyi | done |  | Removed duplicate overload blocks; API verified against extmod/modhashlib.c |
 | reference\micropython\heapq\__init__.pyi | done |  | Removed duplicate TypeVar declaration; API verified against extmod/modheapq.c |
-| reference\micropython\io\__init__.pyi | pending |  |  |
+| reference\micropython\io\__init__.pyi | done |  | Added missing IOBase and BufferedWriter exports; removed conflicting AnyReadableBuf/AnyWritableBuf redefinitions |
 | reference\micropython\jsffi\__init__.pyi | pending |  |  |
 | reference\micropython\json\__init__.pyi | done |  | No API changes needed after review against extmod/modjson.c |
 | reference\micropython\lcd160cr\__init__.pyi | pending |  |  |
