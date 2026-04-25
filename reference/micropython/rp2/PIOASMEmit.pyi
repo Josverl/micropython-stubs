@@ -9,6 +9,7 @@ from __future__ import annotations
 from typing import Dict, List, overload
 
 from _typeshed import Incomplete
+from rp2 import _PIO_ASM_Program
 
 class PIOASMEmit:
     """
@@ -40,6 +41,7 @@ class PIOASMEmit:
         out_init: int | List | None = ...,
         set_init: int | List | None = ...,
         sideset_init: int | List | None = ...,
+        side_pindir: bool = ...,
         in_shiftdir: int = ...,
         out_shiftdir: int = ...,
         autopush: bool = ...,
@@ -291,7 +293,7 @@ class PIOASMEmit:
         """
         ...
 
-    def pull(self, block: int = block, timeout: int = 0) -> _PIO_ASM_Program:
+    def pull(self, value: int = ..., value2: int = ...) -> _PIO_ASM_Program:
         """rp2.PIO PULL instruction.
 
         Load a 32-bit word from the TX FIFO into the OSR.
@@ -317,7 +319,7 @@ class PIOASMEmit:
         """
         ...
 
-    def mov(self, dest, src, operation: int | None = None) -> _PIO_ASM_Program:
+    def mov(self, dest, src) -> _PIO_ASM_Program:
         """rp2.PIO MOV instruction.
 
         Copy data from Source to Destination.

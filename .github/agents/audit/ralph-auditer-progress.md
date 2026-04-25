@@ -93,7 +93,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\rp2\DMA.pyi | done |  | Added register attrs, made unpack_ctrl static, and aligned constructor/config kwargs to ports/rp2/rp2_dma.c |
 | reference\micropython\rp2\Flash.pyi | done |  | Aligned constructor kwargs and block API buffer/return typing to ports/rp2/rp2_flash.c |
 | reference\micropython\rp2\PIO.pyi | done |  | Added gpio_base API, made state_machine program optional, and set irq trigger default to 0xF00 per rp2_pio.c |
-| reference\micropython\rp2\PIOASMEmit.pyi | pending |  |  |
+| reference\micropython\rp2\PIOASMEmit.pyi | done |  | Added side_pindir kwarg and aligned pull/mov signatures to ports/rp2/modules/rp2.py PIOASMEmit methods |
 | reference\micropython\rp2\StateMachine.pyi | pending |  |  |
 | reference\micropython\select\__init__.pyi | pending |  |  |
 | reference\micropython\socket\__init__.pyi | pending |  |  |
