@@ -17,7 +17,7 @@ Module: 'machine' on micropython-v1.28.0-stm32-PYBV11-NETWORK
 # MCU: {'variant': 'NETWORK', 'build': '', 'arch': 'armv7emsp', 'port': 'stm32', 'board': 'PYBV11', 'board_id': 'PYBV11-NETWORK', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'STM32F405RG', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import NoReturn, Union, Tuple, Sequence, Optional, Any, Callable, Iterable, List, overload, Final
+from typing import NoReturn, Tuple, List, Sequence, Optional, Any, Callable, Iterable, overload, Final
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ, mp_available
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
@@ -1040,7 +1040,7 @@ class CAN:
     """IRQ event triggers. Used with :func:`CAN.irq()` and `machine_can_irq_flags`."""
     IRQ_STATE: Final[int] = 8
     """IRQ event triggers. Used with :func:`CAN.irq()` and `machine_can_irq_flags`."""
-    def recv(self, arg: list[Any] | None = None) -> None:
+    def recv(self, arg: list[Any] | None = None) -> __CANRecvResult | None:
         """
         Return a CAN message that has been received by the controller, according to
         filters set by :func:`CAN.set_filters`.
@@ -1101,7 +1101,7 @@ class CAN:
                     time.sleep_ms(1)  # not a good pattern, use the irq instead!
         """
         ...
-    def irq(self, handler: Callable[[CAN], None] | None = None, trigger: int = 0, hard: bool = False) -> irq:
+    def irq(self, handler: Callable[[CAN], None] | None = None, trigger: int = 0, hard: bool = False) -> _IRQ:
         """
         Sets an interrupt *handler* function to be called when one or more of the
         events flagged in *trigger* has occurred.
@@ -1286,7 +1286,7 @@ class CAN:
         message (especially if the CAN controller IRQ is not "hard").
         """
         ...
-    def send(self, id: int, data: bytes | bytearray | memoryview, flags: int = 0) -> int:
+    def send(self, id: int, data: bytes | bytearray | memoryview, flags: int = 0) -> int | None:
         """
         Copy a new CAN message into the controller's hardware transmit queue to be
         sent onto the bus. The transmit queue is a priority queue sorted on CAN
@@ -1321,7 +1321,7 @@ class CAN:
            caller can establish a software queue of outgoing messages.
         """
         ...
-    def get_timings(self, list: __CANTimings | None = None, /) -> List:
+    def get_timings(self, list: __CANTimings | None = None, /) -> __CANTimings:
         """
         Returns a list of elements indicating the current timings configured in the
         CAN controller. This can be used to verify timings for debugging purposes.
@@ -1366,7 +1366,7 @@ class CAN:
         See also :func:`CAN.restart()`.
         """
         ...
-    def get_counters(self, list: __CANCounters | None = None, /) -> None:
+    def get_counters(self, list: __CANCounters | None = None, /) -> __CANCounters:
         """
          Returns controller's error counter values. The result is a list of eight
          values. If the optional *list* parameter is specified then the provided
@@ -2211,7 +2211,7 @@ class UART:
          poll.poll(timeout)
         """
         ...
-    def write(self, buf: AnyReadableBuf, /) -> Union[int, None]:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the buffer of bytes to the bus.
 
@@ -2240,7 +2240,7 @@ class UART:
         Return value: number of bytes read and stored into ``buf`` or ``None`` on
         timeout.
         """
-    def readline(self) -> Union[str, None]:
+    def readline(self) -> bytes | None:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.

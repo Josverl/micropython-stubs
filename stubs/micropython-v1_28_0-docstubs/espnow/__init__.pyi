@@ -10,7 +10,7 @@ MicroPython module: https://docs.micropython.org/en/v1.28.0/library/aioespnow.ht
 # origin module:: repos/micropython/docs/library/espnow.rst
 from __future__ import annotations
 from _typeshed import TypeAlias, Incomplete
-from typing import Callable, overload, Any, Dict, Iterator, List, Optional, Tuple, Union
+from typing import Callable, overload, Any, Dict, Iterator, List, Optional, Tuple
 from typing_extensions import Buffer, TypeVar, TypeAlias, Awaitable
 from _espnow import ESPNowBase  # type: ignore
 from _mpy_shed import mp_available
@@ -311,7 +311,7 @@ class ESPNow(ESPNowBase, Iterator):
             actively listening for ESP-NOW traffic (see the Espressif ESP-NOW docs).
         """
         ...
-    def recv(self, timeout_ms: Optional[Any] = None) -> Union[List, Tuple[None,None]]:
+    def recv(self, timeout_ms: Optional[Any] = None) -> Tuple[_MACAddress | None, bytes | None]:
         """
             Wait for an incoming message and return the ``mac`` address of the peer and
             the message. **Note**: It is **not** necessary to register a peer (using
@@ -584,7 +584,7 @@ class ESPNow(ESPNowBase, Iterator):
               - ``encrypt_num`` is the number of encrypted peers.
         """
         ...
-    def get_peers(self) -> Tuple:
+    def get_peers(self) -> Tuple[_PeerInfo, ...]:
         """
             Return the "peer info" parameters for all the registered peers (as a tuple
             of tuples).
