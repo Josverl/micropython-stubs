@@ -31,6 +31,7 @@ test = [
 "rich-click",
 # for quality reporting
 "pytest",
+"pytest-xdist",
 "pyright>=1.1.341",
 "mypy",
 "ruff",
@@ -130,11 +131,10 @@ norecursedirs = [
 ]
 junit_family = "xunit1"
 
-addopts = "--verbose --capture=no"
+addopts = "--verbose --capture=no --numprocesses=auto"
 #  -m 'not snippets'
-# --numprocesses=auto 
 # -m MARKEXPR           Only run tests matching given mark expression. For example: -m 'mark1 and not mark2'.
-# -n --numprocesses=numprocesses - 
+# -n --numprocesses=numprocesses - number of parallel workers (pytest-xdist)
 
 markers = ["snippets: test snippets to check the stub quality"]
 

@@ -9,7 +9,6 @@ import sys
 from pathlib import Path
 from typing import Dict, List
 
-import fasteners
 import pytest
 from mypy_gitlab_code_quality import generate_report as gitlab_report
 from packaging.version import Version, InvalidVersion
@@ -126,39 +125,39 @@ def run_typechecker(
     linter: str,
 ):
     """
-    Run Pyright static type checker a path with validation code
+    Run a static type checker against a path with validation code.
+
+    Each test is expected to run in its own isolated workspace (see
+    ``snip_path_fx`` in conftest.py), so no per-folder lock is required here.
 
     Args:
-        snip_path (Path): The path to the project.
-        version (str): The version of the stubs .
+        snip_path (Path): The path to the project (isolated workspace).
+        version (str): The version of the stubs.
         portboard (str): The portboard of the project.
         pytestconfig: The pytest configuration object.
+        linter (str): The type-checker to use ("pyright", "mypy", or "ruff").
 
     Returns:
         tuple: A tuple containing the information message and the number of errors found.
     """
 
-    typecheck_lock = fasteners.InterProcessLock(snip_path / "typecheck_lock.file")
-
     results = {}
-    with typecheck_lock:
-        if linter == "pyright":
-            results = check_with_pyright(snip_path)
-        elif linter == "mypy":
-            patch = False
-            try:
-                if Version(version) < Version("1.24.1"):
-                    patch = True
-            except InvalidVersion:
-                # likely preview or stdlib
-                pass
+    if linter == "pyright":
+        results = check_with_pyright(snip_path)
+    elif linter == "mypy":
+        patch = False
+        try:
+            if Version(version) < Version("1.24.1"):
+                patch = True
+        except InvalidVersion:
+            # likely preview or stdlib
+            pass
 
-            results = check_with_mypy(snip_path, patch=patch)
-        elif linter == "ruff":
-            results = check_with_ruff(snip_path)
-        else:
-            raise NotImplementedError(f"Unknown linter {linter}")
-            results = []
+        results = check_with_mypy(snip_path, patch=patch)
+    elif linter == "ruff":
+        results = check_with_ruff(snip_path)
+    else:
+        raise NotImplementedError(f"Unknown linter {linter}")
 
     if not results or not "generalDiagnostics" in results:
         pytest.xfail(f"Could not run {linter} on {snip_path}")

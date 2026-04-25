@@ -1,13 +1,8 @@
-import json
 import logging
-import platform
 import re
-import subprocess
 import sys
 from pathlib import Path
-from typing import Dict, List
 
-import fasteners
 import pytest
 from mpflash.versions import micropython_versions
 from packaging.version import Version
@@ -90,8 +85,6 @@ PORTBOARD_FEATURES = {
 
 SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 
-
-
 HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
@@ -141,27 +134,6 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
     metafunc.parametrize(argnames, args_lst, scope="session")
 
 
-
-
-
-def filter_issues(issues: List[Dict], version: str, portboard: str = ""):
-    port, board = portboard.split("-") if "-" in portboard else (portboard, "")
-    for issue in issues:
-        try:
-            filename = Path(issue["file"])
-            with open(filename, "r") as f:
-                lines = f.readlines()
-            line = issue["range"]["start"]["line"]
-            if len(lines) > line:
-                theline: str = lines[line]
-                # check if the line contains a stubs-ignore comment
-                if stub_ignore(theline, version, port, board):
-                    issue["severity"] = "information"
-        except KeyError as e:
-            log.warning(f"Could not process issue: {e} \n{json.dumps(issues, indent=4)}")
-    return issues
-
-
 def stub_ignore(line, version, port, board, linter="pyright", is_source=True) -> bool:
     """
     Check if a typecheck error should be ignored based on the version of micropython , the port and the board
@@ -206,69 +178,6 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         result = False
 
     return bool(result)
-
-
-def run_pyright(snip_path, version, portboard, pytestconfig):
-    """
-    Run Pyright static type checker a path with validation code
-
-    Args:
-        snip_path (Path): The path to the project.
-        version (str): The version of the stubs .
-        portboard (str): The portboard of the project.
-        pytestconfig: The pytest configuration object.
-
-    Returns:
-        tuple: A tuple containing the information message and the number of errors found.
-    """
-
-    cmd = f"pyright --project {snip_path.as_posix()} --outputjson"
-    typecheck_lock = fasteners.InterProcessLock(snip_path / "typecheck_lock.file")
-
-    use_shell = platform.system() != "Windows"
-    results = {}
-    with typecheck_lock:
-        try:
-            # run pyright in the folder with the check_scripts to allow modules to import each other.
-            result = subprocess.run(
-                cmd, shell=use_shell, capture_output=True, cwd=snip_path.as_posix()
-            )
-        except OSError as e:
-            raise e
-        if result.returncode >= 2:
-            assert (
-                0
-            ), f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
-        try:
-            results = json.loads(result.stdout)
-        except Exception:
-            assert 0, "Could not load pyright's JSON output..."
-
-    issues: List[Dict] = results["generalDiagnostics"]
-    # for each of the issues - retrieve the line in the source file to inspect if has a trailing comment
-    issues = filter_issues(issues, version, portboard)
-
-    # log the errors  in the issues list so that pytest will capture the output
-    for issue in issues:
-        # log file:line:column?: message
-        try:
-            relative = Path(issue["file"]).relative_to(pytestconfig.rootpath).as_posix()
-        except Exception:
-            relative = issue["file"]
-        msg = f"{relative}:{issue['range']['start']['line']+1}:{issue['range']['start']['character']} {issue['message']}"
-        # caplog.messages.append(msg)
-        if issue["severity"] == "error":
-            log.error(msg)
-        elif issue["severity"] == "warning":
-            log.warning(msg)
-        else:
-            log.info(msg)
-
-    info_msg = f"Pyright found {results['summary']['errorCount']} errors and {results['summary']['warningCount']} warnings in {results['summary']['filesAnalyzed']} files."
-    errorcount = len([i for i in issues if i["severity"] == "error"])
-    return info_msg, errorcount
-
-    # return issues
 
 
 @pytest.mark.parametrize(
