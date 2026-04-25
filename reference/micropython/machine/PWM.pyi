@@ -3,8 +3,7 @@
 from __future__ import annotations
 
 from typing import overload
-from typing_extensions import TypeAlias
-from machine.Pin import Pin, PinLike
+from machine.Pin import PinLike
 
 class PWM:
     """
@@ -65,6 +64,7 @@ class PWM:
         freq: int = ...,
         duty_u16: int = ...,
         duty_ns: int = ...,
+        invert: bool = ...,
     ) -> None:
         """
         Construct and return a new PWM object using the following parameters:
@@ -82,7 +82,7 @@ class PWM:
         Only one of *duty_u16* and *duty_ns* should be specified at a time.
         """
 
-    def init(self, *, freq: int = ..., duty_u16: int = ..., duty_ns: int = ...) -> None:
+    def init(self, *, freq: int = ..., duty_u16: int = ..., duty_ns: int = ..., invert: bool = ...) -> None:
         """
         Modify settings for the PWM object.  See the above constructor for details
         about the parameters.
