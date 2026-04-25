@@ -44,7 +44,7 @@ class poll:
         """
         ...
 
-    def unregister(self, obj) -> Incomplete:
+    def unregister(self, obj) -> None:
         """
         Unregister *obj* from polling.
         """
@@ -107,7 +107,7 @@ def select(
     xlist: Iterable[Any],
     timeout: int = -1,
     /,
-) -> None:
+) -> tuple[list[Any], list[Any], list[Any]]:
     """
     Wait for activity on a set of objects.
 
