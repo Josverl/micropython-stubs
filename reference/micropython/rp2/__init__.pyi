@@ -117,8 +117,8 @@ def bootsel_button() -> int:
     """
     ...
 
-  @overload
-  def country() -> str:
+@overload
+def country() -> str:
     """
     Get the two-letter country code.
 
@@ -127,8 +127,8 @@ def bootsel_button() -> int:
     """
     ...
 
-  @overload
-  def country(code: str, /) -> None:
+@overload
+def country(code: str, /) -> None:
     """
     Set the two-letter country code.
 
