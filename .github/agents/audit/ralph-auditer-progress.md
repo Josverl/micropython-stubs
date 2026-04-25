@@ -56,14 +56,14 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\machine\USBDevice.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
 | reference\micropython\machine\WDT.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
 | reference\micropython\math\__init__.pyi | done |  | Added log(x, base) overload and precise modf tuple typing |
-| reference\micropython\micropython\__init__.pyi | pending |  |  |
-| reference\micropython\neopixel\__init__.pyi | pending |  |  |
-| reference\micropython\network\__init__.pyi | pending |  |  |
-| reference\micropython\network\LAN.pyi | pending |  |  |
-| reference\micropython\network\PPP.pyi | pending |  |  |
-| reference\micropython\network\WIZNET5K.pyi | pending |  |  |
-| reference\micropython\network\WLAN.pyi | pending |  |  |
-| reference\micropython\network\WLANWiPy.pyi | pending |  |  |
+| reference\micropython\micropython\__init__.pyi | done |  | Removed duplicate TypeVar import; API review against py/modmicropython.c |
+| reference\micropython\neopixel\__init__.pyi | done |  | No API changes needed after review against neopixel driver/docs |
+| reference\micropython\network\__init__.pyi | done |  | Added module-level country/hostname/ipconfig/route and STA/AP/status constants from extmod/modnetwork.c |
+| reference\micropython\network\LAN.pyi | done |  | No API changes needed after network-family review against v1.28 sources/docs |
+| reference\micropython\network\PPP.pyi | done |  | No API changes needed after network-family review against v1.28 sources/docs |
+| reference\micropython\network\WIZNET5K.pyi | done |  | No API changes needed after network-family review against v1.28 sources/docs |
+| reference\micropython\network\WLAN.pyi | done |  | No API changes needed after network-family review against v1.28 sources/docs |
+| reference\micropython\network\WLANWiPy.pyi | done |  | No API changes needed after network-family review against v1.28 sources/docs |
 | reference\micropython\onewire\__init__.pyi | pending |  |  |
 | reference\micropython\openamp\__init__.pyi | pending |  |  |
 | reference\micropython\os\__init__.pyi | pending |  |  |

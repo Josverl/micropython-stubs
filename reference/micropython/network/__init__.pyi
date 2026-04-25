@@ -49,6 +49,33 @@ from network.WLAN import WLAN
 from network.WIZNET5K import WIZNET5K
 from network.WLANWiPy import WLANWiPy
 
+STA_IF: int
+AP_IF: int
+
+# CYW43-specific status constants (when provided by the port).
+STAT_IDLE: int
+STAT_CONNECTING: int
+STAT_WRONG_PASSWORD: int
+STAT_NO_AP_FOUND: int
+STAT_CONNECT_FAIL: int
+STAT_GOT_IP: int
+
+@overload
+def country() -> str: ...
+
+@overload
+def country(code: str, /) -> None: ...
+
+@overload
+def hostname() -> str: ...
+
+@overload
+def hostname(name: str, /) -> None: ...
+
+def ipconfig(*args: Any, **kwargs: Any) -> Any: ...
+
+def route() -> list[AbstractNIC]: ...
+
 class AbstractNIC(Protocol):
     """
     Common network adapter interface
