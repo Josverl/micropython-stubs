@@ -74,8 +74,8 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\CAN.pyi | done |  | Added CAN-FD init/send/clearfilter kwargs; corrected recv return shape and callback/send buffer typing |
 | reference\micropython\pyb\DAC.pyi | done |  | Typed DAC mode constants as int and corrected write_timed input buffer to readable |
 | reference\micropython\pyb\ExtInt.pyi | done | 71724f2ea | Added EVT_* constants and typed IRQ/EVT constants as int; callback allows None per extint.c constructor parsing |
-| reference\micropython\pyb\Flash.pyi | done |  | Aligned readblocks/writeblocks to int status returns and generalized buffer mutability per storage.c |
-| reference\micropython\pyb\I2C.pyi | pending |  |  |
+| reference\micropython\pyb\Flash.pyi | done | 30d4fd8b6 | Aligned readblocks/writeblocks to int status returns and generalized buffer mutability per storage.c |
+| reference\micropython\pyb\I2C.pyi | done |  | Fixed constructor/init signatures, send parameter, mem_write buffer direction, and scan typing per pyb_i2c.c |
 | reference\micropython\pyb\LCD.pyi | pending |  |  |
 | reference\micropython\pyb\LED.pyi | pending |  |  |
 | reference\micropython\pyb\Pin.pyi | pending |  |  |
