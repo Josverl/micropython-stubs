@@ -257,7 +257,7 @@ class UserString(Sequence[UserString]):
     def upper(self) -> Self: ...
     def zfill(self, width: int) -> Self: ...
 
-class deque():
+class deque(Generic[_T]):
     """
     Minimal implementation of a deque that implements a FIFO buffer.
     """
