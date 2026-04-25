@@ -21,7 +21,8 @@ from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 from _typeshed import Incomplete
 from machine.ADC import ADC
 from machine.ADCBlock import ADCBlock
-from machine.I2C import I2C
+from machine.CAN import CAN
+from machine.I2C import I2C, SoftI2C
 from machine.I2S import I2S
 from machine.Pin import Pin
 from machine.PWM import PWM
@@ -29,7 +30,7 @@ from machine.RTC import RTC
 from machine.SD import SD
 from machine.SDCard import SDCard
 from machine.Signal import Signal
-from machine.SPI import SPI
+from machine.SPI import SPI, SoftSPI
 from machine.Timer import Timer
 from machine.UART import UART
 from machine.USBDevice import USBDevice
@@ -147,32 +148,6 @@ def freq(hz: int, /) -> None:
     Returns the CPU frequency in hertz.
 
     On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-@overload
-def freq(self) -> int:
-    """
-    Get or set the current frequency of the PWM output.
-
-    With no arguments the frequency in Hz is returned.
-
-    With a single *value* argument the frequency is set to that value in Hz.  The
-    method may raise a ``ValueError`` if the frequency is outside the valid range.
-    """
-
-@overload
-def freq(
-    self,
-    value: int,
-    /,
-) -> None:
-    """
-    Get or set the current frequency of the PWM output.
-
-    With no arguments the frequency in Hz is returned.
-
-    With a single *value* argument the frequency is set to that value in Hz.  The
-    method may raise a ``ValueError`` if the frequency is outside the valid range.
     """
 
 def idle() -> None:
@@ -362,4 +337,17 @@ def rng() -> int:
 
     Availability: WiPy.
     """
+    ...
+
+# Compile-time optional exports present in extmod/modmachine.c.
+class PinBase:
+    ...
+
+class DAC:
+    ...
+
+class I2CTarget:
+    ...
+
+def dht_readinto(pin: Pin, buf: Any, /) -> None:
     ...
