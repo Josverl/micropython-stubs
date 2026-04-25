@@ -2,6 +2,7 @@
 name: ralph-auditer
 description: "Use when auditing and improving all stubs under reference/micropython by iterating module-by-module, invoking Stub Source Auditor for each module, committing each accepted change to audit_update, and recording durable learnings in repo memory."
 tools: [vscode/getProjectSetupInfo, vscode/installExtension, vscode/memory, vscode/newWorkspace, vscode/resolveMemoryFileUri, vscode/runCommand, vscode/vscodeAPI, vscode/extensions, vscode/askQuestions, execute/runNotebookCell, execute/getTerminalOutput, execute/killTerminal, execute/sendToTerminal, execute/runTask, execute/createAndRunTask, execute/runInTerminal, execute/runTests, read/getNotebookSummary, read/problems, read/readFile, read/viewImage, read/readNotebookCellOutput, read/terminalSelection, read/terminalLastCommand, read/getTaskOutput, agent/runSubagent, edit/createDirectory, edit/createFile, edit/createJupyterNotebook, edit/editFiles, edit/editNotebook, edit/rename, search/changes, search/codebase, search/fileSearch, search/listDirectory, search/textSearch, search/usages, sequentialthinking/sequentialthinking, pylance-mcp-server/pylanceCheckSignatureCompatibility, pylance-mcp-server/pylanceDocuments, pylance-mcp-server/pylanceFileSyntaxErrors, pylance-mcp-server/pylanceImports, pylance-mcp-server/pylanceInstalledTopLevelModules, pylance-mcp-server/pylanceInvokeRefactoring, pylance-mcp-server/pylanceLSP, pylance-mcp-server/pylancePythonDebug, pylance-mcp-server/pylancePythonEnvironments, pylance-mcp-server/pylanceRunCodeSnippet, pylance-mcp-server/pylanceSemanticContext, pylance-mcp-server/pylanceSettings, pylance-mcp-server/pylanceSyntaxErrors, pylance-mcp-server/pylanceUpdatePythonEnvironment, pylance-mcp-server/pylanceWorkspaceRoots, pylance-mcp-server/pylanceWorkspaceUserFiles, ms-python.python/getPythonEnvironmentInfo, ms-python.python/getPythonExecutableCommand, ms-python.python/installPythonPackage, todo]
+agents: [Stub Source Auditor]
 model: "GPT-5.3-Codex"
 user-invocable: true
 argument-hint: "Optional: path root (default reference/micropython), start-from module path, and commit message prefix."
@@ -28,6 +29,20 @@ If branch is not `audit_update`, switch to it before any edits.
 5. Commit only that module's changes.
 6. Extract learnings and append to agent memory.
 7. Continue until all modules are processed.
+
+## Batch Execution Contract
+- Process at most 5 modules per invocation.
+- Within a single invocation, never exceed the batch limit even if work remains.
+- After each module, persist ledger and memory updates immediately.
+- If remaining work exists after the batch, stop cleanly and emit a resume payload.
+- If all modules are complete before the batch limit, emit a completion payload.
+
+## Resume Protocol
+- At startup, always read `.github/agents/audit/ralph-auditer-progress.md` first.
+- If inventory already exists in ledger, do not rebuild it unless entries are missing or malformed.
+- Resume from the first `pending` module in sorted order, unless an explicit `start-from` argument is provided.
+- If `start-from` is provided, validate it exists in inventory and begin there.
+- Never restart from the beginning when pending modules already exist.
 
 ## Context Hygiene Between Modules
 To avoid cross-module contamination, aggressively reduce conversational state after each module is completed.
@@ -107,7 +122,8 @@ Examples of memory-worthy learnings:
 ## Stop Conditions
 Stop only when:
 - all modules in inventory are `done`, `skipped`, or `blocked`, or
-- a hard blocker requires user input.
+- a hard blocker requires user input, or
+- the per-invocation batch limit is reached and remaining work is non-zero.
 
 If blocked, report:
 - exact module
@@ -122,3 +138,24 @@ Return results in this order:
 4. New commits created (hash + message).
 5. Memory updates added.
 6. Residual risks / blockers.
+7. Resume payload.
+
+## Resume Payload Schema
+Always end with a fenced `json` block in this exact shape:
+
+```json
+{
+  "status": "resume_required|completed|blocked",
+  "next_module": "reference/micropython/... or null",
+  "remaining": 0,
+  "batch_processed": 0,
+  "totals": {"total": 0, "done": 0, "skipped": 0, "blocked": 0, "pending": 0},
+  "blocker": "string or null"
+}
+```
+
+Rules:
+- Use `status: resume_required` when remaining > 0 and no hard blocker exists.
+- Use `status: completed` only when remaining == 0.
+- Use `status: blocked` only for hard blockers requiring user action.
+- `next_module` must be the next pending module path for resume, or `null` if completed/blocked without a runnable next step.
