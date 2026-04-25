@@ -196,7 +196,7 @@ def test_typecheck(
     pytestconfig: pytest.Config,
 ):
     if not snip_path_fx or not snip_path_fx.exists():
-        FileNotFoundError(f"no feature folder for {feature}")
+        pytest.skip(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
 
     log.info(f"Typecheck {linter} on {portboard}, {feature} {version} from {stub_source}")

@@ -35,7 +35,7 @@ def test_ruff(
 ):
 
     if not snip_path_fx or not snip_path_fx.exists():
-        FileNotFoundError(f"no feature folder for {feature}")
+        pytest.skip(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
     log.info(f"Typechecker {linter} : {portboard}, {feature} from {stub_source}")
 
