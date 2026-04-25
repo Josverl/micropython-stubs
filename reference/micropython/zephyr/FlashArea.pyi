@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from _typeshed import Incomplete
 from typing import overload
 
 class FlashArea:
@@ -17,9 +16,11 @@ class FlashArea:
     ID integer values 1, 2, 3, and 4, respectively.
     """
 
-    def __init__(self, id, block_size) -> None: ...
+    areas: dict[str, tuple[int, int]]
+
+    def __init__(self, id: int, block_size: int) -> None: ...
     @overload
-    def readblocks(self, block_num: int, buf: bytearray) -> bool:
+    def readblocks(self, block_num: int, buf: bytearray) -> int:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -29,7 +30,7 @@ class FlashArea:
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
+    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> int:
         """
         The second form allows reading at arbitrary locations within a block,
         and arbitrary lengths.
@@ -39,7 +40,7 @@ class FlashArea:
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> int:
         """
         The first form writes aligned, multiples of blocks, and requires that the
         blocks that are written to be first erased (if necessary) by this method.
@@ -50,7 +51,7 @@ class FlashArea:
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> int:
         """
         The second form allows writing at arbitrary locations within a block,
         and arbitrary lengths.  Only the bytes being written should be changed,
@@ -64,7 +65,7 @@ class FlashArea:
         argument is specified, even if it is zero.
         """
 
-    def ioctl(self, op: int, arg: int) -> int | None:
+    def ioctl(self, op: int, arg: int) -> int:
         """
         These methods implement the simple and :ref:`extended
         <block-device-interface>` block protocol defined by
