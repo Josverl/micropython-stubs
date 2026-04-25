@@ -94,7 +94,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\rp2\Flash.pyi | done | 12edf5eec | Aligned constructor kwargs and block API buffer/return typing to ports/rp2/rp2_flash.c |
 | reference\micropython\rp2\PIO.pyi | done | 2fe8e9cf6 | Added gpio_base API, made state_machine program optional, and set irq trigger default to 0xF00 per rp2_pio.c |
 | reference\micropython\rp2\PIOASMEmit.pyi | done | 3d1b9e308 | Added side_pindir kwarg and aligned pull/mov signatures to ports/rp2/modules/rp2.py PIOASMEmit methods |
-| reference\micropython\rp2\StateMachine.pyi | pending |  |  |
+| reference\micropython\rp2\StateMachine.pyi | done |  | Corrected constructor/init defaults, active() return typing, and get/put buffer signatures per ports/rp2/rp2_pio.c |
 | reference\micropython\select\__init__.pyi | pending |  |  |
 | reference\micropython\socket\__init__.pyi | pending |  |  |
 | reference\micropython\ssl\__init__.pyi | pending |  |  |
