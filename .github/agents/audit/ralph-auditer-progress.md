@@ -105,8 +105,8 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\tls\__init__.pyi | done | 7f5ac49b2 | Normalized backend-dependent TLS constants from extmod/modtls_mbedtls.c and modtls_axtls.c |
 | reference\micropython\uctypes\__init__.pyi | done | f36c03082 | Corrected integer constant types and added exported BF* constants per extmod/moductypes.c |
 | reference\micropython\vfs\__init__.pyi | done |  | Added optional VfsRom/rom_ioctl exports and set umount() return to None from extmod/modvfs.c + extmod/vfs.c |
-| reference\micropython\wipy\__init__.pyi | pending |  |  |
-| reference\micropython\wm8960\__init__.pyi | pending |  |  |
+| reference\micropython\wipy\__init__.pyi | done |  | No stub changes needed; heartbeat([enable]) overload matches ports/cc3200/modwipy.c behavior (bool getter, None setter). |
+| reference\micropython\wm8960\__init__.pyi | done |  | Aligned __init__ default sample_rate, volume getter/setter returns, mute(enable,...) signature, and helper method None returns to wm8960.py. |
 | reference\micropython\zephyr\__init__.pyi | pending |  |  |
 | reference\micropython\zephyr\DiskAccess.pyi | pending |  |  |
 | reference\micropython\zephyr\FlashArea.pyi | pending |  |  |

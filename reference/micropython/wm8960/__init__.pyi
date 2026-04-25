@@ -4,7 +4,7 @@ A MicroPython driver for the WM8960 audio codec.
 
 from __future__ import annotations
 
-from _typeshed import Incomplete
+from typing import overload
 
 from micropython import const
 
@@ -152,8 +152,7 @@ class WM8960:
     def __init__(
         self,
         i2c,
-        sample_rate,
-        *,
+        sample_rate=16000,
         bits=16,
         swap=SWAP_NONE,
         route=ROUTE_PLAYBACK_RECORD,
@@ -178,7 +177,15 @@ class WM8960:
         """
         ...
 
-    def volume(self, module, volume_l=None, volume_r=None) -> None:
+    @overload
+    def volume(self, module, volume_l: None = None, volume_r: None = None) -> tuple[int, int]:
+        ...
+
+    @overload
+    def volume(self, module, volume_l, volume_r=None) -> None:
+        ...
+
+    def volume(self, module, volume_l=None, volume_r=None) -> tuple[int, int] | None:
         """
         Sets or gets the volume of a certain module.
 
@@ -194,9 +201,9 @@ class WM8960:
         """
         ...
 
-    def mute(self, module, mute, soft=True, ramp=MUTE_FAST) -> None:
+    def mute(self, enable, soft=True, ramp=MUTE_FAST) -> None:
         """
-        Mute or unmute the output. If *mute* is True, the output is muted, if ``False``
+        Mute or unmute the output. If *enable* is True, the output is muted, if ``False``
         it is unmuted.
 
         If *soft* is set as True, muting will happen as a soft transition.  The time for
@@ -309,14 +316,14 @@ class WM8960:
         """
         ...
 
-    def set_internal_pll_config(self, input_mclk, output_clk):
+    def set_internal_pll_config(self, input_mclk, output_clk) -> None:
         """ """
         ...
 
-    def set_master_clock(self, sysclk, sample_rate, bit_width):
+    def set_master_clock(self, sysclk, sample_rate, bit_width) -> None:
         """ """
         ...
 
-    def set_speaker_clock(self, sysclk):
+    def set_speaker_clock(self, sysclk) -> None:
         """ """
         ...
