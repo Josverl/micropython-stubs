@@ -17,7 +17,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\asyncio\stream.pyi | done |  | Corrected stream/server function return annotations from extmod/asyncio/stream.py |
 | reference\micropython\asyncio\task.pyi | done |  | No API changes needed after review against extmod/asyncio/task.py and extmod/modasyncio.c |
 | reference\micropython\binascii\__init__.pyi | done |  | Added b2a_base64 newline kwarg from extmod/modbinascii.c |
-| reference\micropython\bluetooth\__init__.pyi | pending |  |  |
+| reference\micropython\bluetooth\__init__.pyi | done |  | Added FLAG_* module constants from extmod/modbluetooth.c globals table |
 | reference\micropython\btree\__init__.pyi | pending |  |  |
 | reference\micropython\cmath\__init__.pyi | done |  | Corrected complex-returning function signatures and polar/rect typing |
 | reference\micropython\collections\__init__.pyi | done |  | No API changes needed after review against py/modcollections.c |

@@ -980,3 +980,9 @@ class UUID:
         - A 16-bit integer. e.g. ``0x2908``.
         - A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``.
         """
+
+FLAG_READ: int
+FLAG_WRITE: int
+FLAG_NOTIFY: int
+FLAG_INDICATE: int
+FLAG_WRITE_NO_RESPONSE: int
