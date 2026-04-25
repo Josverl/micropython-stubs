@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any, Callable, overload
 from typing_extensions import TypeAlias
 
-from _typeshed import Incomplete
+from _mpy_shed import _IRQ
 
 PinLike: TypeAlias = Pin | int | str
 
@@ -47,29 +47,29 @@ class Pin:
         p0.irq(lambda p:print(p))
     """
 
-    IN: Incomplete
+    IN: int
     """Selects the pin mode."""
-    OUT: Incomplete
+    OUT: int
     """Selects the pin mode."""
-    OPEN_DRAIN: Incomplete
+    OPEN_DRAIN: int
     """Selects the pin mode."""
-    ALT: Incomplete
+    ALT: int
     """Selects the pin mode."""
-    ALT_OPEN_DRAIN: Incomplete
+    ALT_OPEN_DRAIN: int
     """Selects the pin mode."""
-    ANALOG: Incomplete
+    ANALOG: int
     """Selects the pin mode."""
-    PULL_UP: Incomplete
+    PULL_UP: int
     """\
     Selects whether there is a pull up/down resistor.  Use the value
     ``None`` for no pull.
     """
-    PULL_DOWN: Incomplete
+    PULL_DOWN: int
     """\
     Selects whether there is a pull up/down resistor.  Use the value
     ``None`` for no pull.
     """
-    PULL_HOLD: Incomplete
+    PULL_HOLD: int
     """\
     Selects whether there is a pull up/down resistor.  Use the value
     ``None`` for no pull.
@@ -92,13 +92,13 @@ class Pin:
     constants with increasing number corresponding to increasing drive
     strength.
     """
-    IRQ_FALLING: Incomplete
+    IRQ_FALLING: int
     """Selects the IRQ trigger type."""
-    IRQ_RISING: Incomplete
+    IRQ_RISING: int
     """Selects the IRQ trigger type."""
-    IRQ_LOW_LEVEL: Incomplete
+    IRQ_LOW_LEVEL: int
     """Selects the IRQ trigger type."""
-    IRQ_HIGH_LEVEL: Incomplete
+    IRQ_HIGH_LEVEL: int
     """Selects the IRQ trigger type."""
     def __init__(
         self,
@@ -297,7 +297,7 @@ class Pin:
         priority: int = 1,
         wake: int | None = None,
         hard: bool = False,
-    ) -> Callable[..., Incomplete]:
+    ) -> _IRQ:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is
@@ -413,7 +413,7 @@ class Pin:
         Availability: cc3200 port.
         """
 
-    def toggle(self) -> Incomplete:
+    def toggle(self) -> None:
         """
         Toggle output pin from "0" to "1" or vice-versa.
 
