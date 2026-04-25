@@ -26,7 +26,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\errno\__init__.pyi | done |  | No API changes needed after review against py/moderrno.c |
 | reference\micropython\esp\__init__.pyi | pending |  |  |
 | reference\micropython\esp32\__init__.pyi | pending |  |  |
-| reference\micropython\espnow\__init__.pyi | pending |  |  |
+| reference\micropython\espnow\__init__.pyi | done |  | No API changes needed after review against ports/esp32/modules/espnow.py |
 | reference\micropython\framebuf\__init__.pyi | pending |  |  |
 | reference\micropython\gc\__init__.pyi | done |  | collect() return typed as int|None to match MICROPY_PY_GC_COLLECT_RETVAL builds |
 | reference\micropython\gzip\__init__.pyi | done |  | Corrected function-based API and return types from micropython-lib gzip.py |
