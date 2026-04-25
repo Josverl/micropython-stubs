@@ -108,7 +108,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\wipy\__init__.pyi | done |  | No stub changes needed; heartbeat([enable]) overload matches ports/cc3200/modwipy.c behavior (bool getter, None setter). |
 | reference\micropython\wm8960\__init__.pyi | done |  | Aligned __init__ default sample_rate, volume getter/setter returns, mute(enable,...) signature, and helper method None returns to wm8960.py. |
 | reference\micropython\zephyr\__init__.pyi | done |  | Typed API from ports/zephyr/modzephyr.c: is_preempt_thread->bool, current_tid->int, thread_analyze(cpu)->None, shell_exec(str)->None. |
-| reference\micropython\zephyr\DiskAccess.pyi | pending |  |  |
+| reference\micropython\zephyr\DiskAccess.pyi | done |  | Matched zephyr_storage.c: readblocks/writeblocks return int status, no offset overloads, ioctl returns int, and class disks tuple exported. |
 | reference\micropython\zephyr\FlashArea.pyi | pending |  |  |
 | reference\micropython\zephyr\zsensor.pyi | pending |  |  |
 | reference\micropython\zlib\__init__.pyi | done |  | Corrected compress/decompress signatures to micropython-lib zlib.py |
