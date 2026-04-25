@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from array import array
-from typing import overload
+from typing import TypeVar, overload
 
-from _mpy_shed import AnyWritableBuf
-from _typeshed import Incomplete
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+
+_WB = TypeVar("_WB", bound=AnyWritableBuf)
 
 class SPI:
     """
@@ -32,11 +32,13 @@ class SPI:
         spi.send_recv(buf, buf)              # send/recv 4 bytes from/to buf
     """
 
-    CONTROLLER: Incomplete
-    PERIPHERAL: Incomplete
+    CONTROLLER: int
+    PERIPHERAL: int
     """for initialising the SPI bus to controller or peripheral mode"""
-    LSB: Incomplete
-    MSB: Incomplete
+    MASTER: int
+    SLAVE: int
+    LSB: int
+    MSB: int
     """set the first bit to be the least or most significant bit"""
     @overload
     def __init__(self, bus: int, /):
@@ -61,12 +63,14 @@ class SPI:
         self,
         bus: int,
         /,
-        mode: int = CONTROLLER,
+      mode: int,
         baudrate: int = 328125,
         *,
         polarity: int = 1,
         phase: int = 0,
+      dir: int = 0,
         bits: int = 8,
+      nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -92,12 +96,14 @@ class SPI:
         self,
         bus: int,
         /,
-        mode: int = CONTROLLER,
+      mode: int,
         *,
         prescaler: int = 256,
         polarity: int = 1,
         phase: int = 0,
+      dir: int = 0,
         bits: int = 8,
+      nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -127,12 +133,14 @@ class SPI:
     @overload
     def init(
         self,
-        mode: int = CONTROLLER,
+      mode: int,
         baudrate: int = 328125,
         *,
         polarity: int = 1,
         phase: int = 0,
+      dir: int = 0,
         bits: int = 8,
+      nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -166,12 +174,14 @@ class SPI:
     @overload
     def init(
         self,
-        mode: int = CONTROLLER,
+      mode: int,
         *,
         prescaler: int = 256,
         polarity: int = 1,
         phase: int = 0,
+      dir: int = 0,
         bits: int = 8,
+      nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -202,7 +212,15 @@ class SPI:
         prescaler.
         """
 
-    def recv(self, recv: int | AnyWritableBuf, /, *, timeout: int = 5000) -> bytes:
+    @overload
+    def recv(self, recv: int, /, *, timeout: int = 5000) -> bytes:
+      ...
+
+    @overload
+    def recv(self, recv: _WB, /, *, timeout: int = 5000) -> _WB:
+      ...
+
+    def recv(self, recv: int | AnyWritableBuf, /, *, timeout: int = 5000) -> bytes | AnyWritableBuf:
         """
         Receive data on the bus:
 
@@ -215,7 +233,7 @@ class SPI:
         """
         ...
 
-    def send(self, send: int | AnyWritableBuf | bytes, /, *, timeout: int = 5000) -> None:
+    def send(self, send: int | AnyReadableBuf, /, *, timeout: int = 5000) -> None:
         """
         Send data on the bus:
 
@@ -226,14 +244,36 @@ class SPI:
         """
         ...
 
+    @overload
+    def send_recv(
+      self,
+      send: int | AnyReadableBuf,
+      recv: None = None,
+      /,
+      *,
+      timeout: int = 5000,
+    ) -> bytes:
+      ...
+
+    @overload
+    def send_recv(
+      self,
+      send: int | AnyReadableBuf,
+      recv: _WB,
+      /,
+      *,
+      timeout: int = 5000,
+    ) -> _WB:
+      ...
+
     def send_recv(
         self,
-        send: int | AnyWritableBuf,
+      send: int | AnyReadableBuf,
         recv: AnyWritableBuf | None = None,
         /,
         *,
         timeout: int = 5000,
-    ) -> bytes:
+    ) -> bytes | AnyWritableBuf:
         """
         Send and receive data on the bus at the same time:
 

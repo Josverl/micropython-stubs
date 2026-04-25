@@ -81,7 +81,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\Pin.pyi | done |  | Added missing Pin IRQ/on-off helpers and IRQ/OUT/OPEN_DRAIN constants; corrected names() to list[str] per ports/stm32/pin.c. |
 | reference\micropython\pyb\RTC.pyi | done |  | Restored missing method bodies, added init(), precise datetime tuple typing, and wakeup overloads for (None|ms|wucksel,wut) per ports/stm32/rtc.c. |
 | reference\micropython\pyb\Servo.pyi | done |  | Replaced duplicate/incomplete overload set; aligned angle/speed/pulse_width/calibration signatures to ports/stm32/servo.c argument counts and returns. |
-| reference\micropython\pyb\SPI.pyi | pending |  |  |
+| reference\micropython\pyb\SPI.pyi | done |  | Added MASTER/SLAVE constants, dir/nss kwargs, and buffer-aware recv/send_recv overload returns; corrected send parameter to readable buffer per ports/stm32/pyb_spi.c. |
 | reference\micropython\pyb\Switch.pyi | pending |  |  |
 | reference\micropython\pyb\Timer.pyi | pending |  |  |
 | reference\micropython\pyb\UART.pyi | pending |  |  |
