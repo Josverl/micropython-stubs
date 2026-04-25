@@ -49,6 +49,10 @@ _IRQ_STATE: TypeAlias = int
 ID_T: TypeAlias = int | str
 PinLike: TypeAlias = Pin | int | str
 ATTN_0DB: int = ...
+__CANFilter: TypeAlias = tuple[int, int, int] | list[int]
+__CANRecvResult: TypeAlias = list[int | memoryview]
+__CANCounters: TypeAlias = list[int | None]
+__CANTimings: TypeAlias = list[int | list[int] | None]
 
 class _CounterBase:
     _PCNT: Incomplete
