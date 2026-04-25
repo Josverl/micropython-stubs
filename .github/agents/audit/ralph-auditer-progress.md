@@ -37,7 +37,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\json\__init__.pyi | done |  | No API changes needed after review against extmod/modjson.c |
 | reference\micropython\lcd160cr\__init__.pyi | done |  | Corrected constants/member types and orient/startup-deco signatures to match micropython-lib lcd160cr.py |
 | reference\micropython\machine\__init__.pyi | done |  | Added optional PinBase/DAC/I2CTarget/dht_readinto exports from extmod/modmachine.c globals |
-| reference\micropython\machine\ADC.pyi | pending |  |  |
+| reference\micropython\machine\ADC.pyi | done |  | Aligned constructor/init/block typing and added WIDTH_13BIT constant from extmod machine_adc + esp32 constants |
 | reference\micropython\machine\ADCBlock.pyi |pending |  |  |
 | reference\micropython\machine\ADCWiPy.pyi |pending |  |  |
 | reference\micropython\machine\CAN.pyi |pending |  |  |

@@ -3,9 +3,8 @@
 from __future__ import annotations
 
 from _mpy_shed import mp_available
-from _typeshed import Incomplete
 from machine.Pin import Pin, PinLike
-from typing_extensions import TypeAlias, deprecated
+from typing_extensions import deprecated
 
 class ADC:
     """
@@ -36,8 +35,9 @@ class ADC:
     WIDTH_10BIT: int = 10
     WIDTH_11BIT: int = 11
     WIDTH_12BIT: int = 12  # esp32
+    WIDTH_13BIT: int = 13  # esp32 on selected targets
 
-    def __init__(self, pin: PinLike, *, sample_ns: int | None = None, atten=ATTN_0DB) -> None:
+    def __init__(self, id: int | PinLike, *, sample_ns: int = ..., atten: int = ...) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -50,7 +50,7 @@ class ADC:
         on ESP32 :  `atten` specifies the attenuation level for the ADC input.
         """
     # TODO: sample_ns only supported on ESP32
-    def init(self, *, sample_ns: int | None = None, atten=ATTN_0DB) -> Incomplete:
+    def init(self, *, sample_ns: int = ..., atten: int = ...) -> None:
         """
         Apply the given settings to the ADC.  Only those arguments that are
         specified will be changed.  See the ADC constructor above for what the
@@ -58,7 +58,7 @@ class ADC:
         """
         ...
 
-    def block(self) -> Incomplete:
+    def block(self) -> ADCBlock:
         """
         Return the :ref:`ADCBlock <machine.ADCBlock>` instance associated with
         this ADC object.
