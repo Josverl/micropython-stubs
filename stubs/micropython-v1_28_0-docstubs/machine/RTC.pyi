@@ -5,6 +5,7 @@ from _typeshed import Incomplete
 from typing import Callable, overload, Any, Tuple
 from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
 from machine import IDLE
+from _mpy_shed import AnyReadableBuf, _IRQ
 
 class RTC:
     """
@@ -285,7 +286,7 @@ class RTC:
         trigger: int,
         handler: Callable[[RTC], None] | None = None,
         wake: int = IDLE,
-    ) -> None:
+    ) -> _IRQ | None:
         """
         Create an irq object triggered by a real time clock alarm.
 
@@ -295,7 +296,27 @@ class RTC:
              up the system.
         """
         ...
-    def memory(self, data: Any | None = None) -> bytes:
+
+    @overload
+    def memory(self) -> bytes:
+        """
+        ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any
+        object which supports the buffer protocol (including `bytes`, `bytearray`,
+        `memoryview` and `array.array`). ``RTC.memory()`` reads RTC memory and returns
+        a `bytes` object.
+
+        Data written to RTC user memory is persistent across restarts, including
+        :ref:`soft_reset` and `machine.deepsleep()`.
+
+        The maximum length of RTC user memory is 2048 bytes by default on esp32,
+        and 492 bytes on esp8266.
+
+        Availability: esp32, esp8266 ports.
+        """
+        ...
+
+    @overload
+    def memory(self, data: AnyReadableBuf, /) -> None:
         """
         ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any
         object which supports the buffer protocol (including `bytes`, `bytearray`,

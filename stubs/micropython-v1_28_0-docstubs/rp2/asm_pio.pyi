@@ -28,8 +28,6 @@ if TYPE_CHECKING:
 ```
 """
 
-from typing import Optional
-
 from _typeshed import Incomplete
 from typing_extensions import TYPE_CHECKING
 
@@ -341,7 +339,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def pull(block: int = block, timeout: int = 0) -> _PIO_ASM_Program:
+    def pull(value: int = ..., value2: int = ...) -> _PIO_ASM_Program:
         """rp2.PIO PULL instruction..
 
         Load a 32-bit word from the TX FIFO into the OSR.
@@ -367,7 +365,7 @@ if TYPE_CHECKING:
         """
         ...
 
-    def mov(dest, src, operation: Optional[int] = None) -> _PIO_ASM_Program:
+    def mov(dest, src) -> _PIO_ASM_Program:
         """rp2.PIO MOV instruction..
 
         Copy data from Source to Destination.

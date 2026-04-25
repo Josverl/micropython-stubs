@@ -52,7 +52,7 @@ Module: 'rp2' on micropython-v1.28.0-rp2-RPI_PICO_W
 # Stubber: v1.28.0
 from __future__ import annotations
 from typing import Union, Dict, List, Literal, overload, Any, Callable, Optional, Final
-from _typeshed import Incomplete
+from _typeshed import ReadableBuffer, WriteableBuffer, Incomplete
 from micropython import const
 from typing_extensions import Protocol, Awaitable, TypeAlias, TypeVar, TYPE_CHECKING
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
@@ -131,7 +131,26 @@ def asm_pio(
     """
     ...
 
-def country(*args, **kwargs) -> Incomplete: ...
+@overload
+def country() -> str:
+    """
+    Get the two-letter country code.
+
+    Deprecated alias to ``network.country``.
+    Only available when CYW43 networking support is enabled.
+    """
+    ...
+
+@overload
+def country(code: str, /) -> None:
+    """
+    Set the two-letter country code.
+
+    Deprecated alias to ``network.country``.
+    Only available when CYW43 networking support is enabled.
+    """
+    ...
+
 def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> int:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
@@ -153,7 +172,8 @@ class DMA:
         Returns the IRQ object for this DMA channel and optionally configures it.
         """
         ...
-    def unpack_ctrl(self, value: int) -> dict:
+    @staticmethod
+    def unpack_ctrl(value: int) -> dict[str, int]:
         """
         Unpack a value for a DMA channel control register into a dictionary with key/value pairs
         for each of the fields in the control register.  *value* is the ``ctrl`` register value
@@ -170,6 +190,7 @@ class DMA:
     def pack_ctrl(
         self,
         *,
+        default: int | None = None,
         enable: bool = True,
         high_pri: bool = False,
         size: int = 2,
@@ -245,10 +266,11 @@ class DMA:
         ...
     def config(
         self,
+        *,
         read: int | AnyReadableBuf | None = None,
         write: int | AnyWritableBuf | None = None,
-        count: int = -1,
-        ctrl: int = -1,
+        count: int | None = None,
+        ctrl: int | None = None,
         trigger: bool = False,
     ) -> None:
         """
@@ -280,14 +302,7 @@ class DMA:
         >>> while sm.active():
         """
         ...
-    def __init__(
-        self,
-        read: int | AnyReadableBuf | None = None,
-        write: int | AnyWritableBuf | None = None,
-        count: int = -1,
-        ctrl: int = -1,
-        trigger: bool = False,
-    ) -> None: ...
+    def __init__(self) -> None: ...
 
 class PIO:
     """
@@ -341,7 +356,7 @@ class PIO:
     """These constants are used for the *trigger* argument to `PIO.irq`."""
     IRQ_SM1: Final[int] = 512
     """These constants are used for the *trigger* argument to `PIO.irq`."""
-    def state_machine(self, id: int, program: _PIO_ASM_Program, **kwargs) -> StateMachine:
+    def state_machine(self, id: int, program: _PIO_ASM_Program | None = None, **kwargs) -> StateMachine:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
         four state machines, numbered 0 to 3.
@@ -364,7 +379,7 @@ class PIO:
     def irq(
         self,
         handler: Optional[Callable[[PIO], None]] = None,
-        trigger: _IRQ_TRIGGERS | None = None,
+        trigger: _IRQ_TRIGGERS = 0xF00,
         hard: bool = False,
     ) -> _IRQ:
         """
@@ -395,14 +410,14 @@ class StateMachine:
     Optionally initialize it with the given program *program*: see
     `StateMachine.init`.
     """
-    def irq(self, handler: Optional[Callable] = None, trigger: int = 0 | 1, hard: bool = False) -> _IRQ:
+    def irq(self, handler: Optional[Callable] = None, trigger: int = 1, hard: bool = False) -> _IRQ:
         """
         Returns the IRQ object for the given StateMachine.
 
         Optionally configure it.
         """
         ...
-    def put(self, value: Union[int, bytes, bytearray], shift: int = 0):
+    def put(self, value: int | ReadableBuffer, shift: int = 0) -> None:
         """
         Push words onto the state machine's TX FIFO.
 
@@ -453,7 +468,7 @@ class StateMachine:
         self,
         program: _PIO_ASM_Program,
         *,
-        freq: int = 1,
+        freq: int = -1,
         in_base: Pin | None = None,
         out_base: Pin | None = None,
         set_base: Pin | None = None,
@@ -517,22 +532,15 @@ class StateMachine:
         >>> sm.exec(rp2.asm_pio_encode("out(y, 8)", 0))
         """
         ...
-    def get(self, buf: Optional[bytearray] = None, shift: int = 0) -> Union[int, None]:
-        """
-        Pull a word from the state machine's RX FIFO.
-
-        If the FIFO is empty, it blocks until data arrives (i.e. the state machine
-        pushes a word).
-
-        The value is shifted right by *shift* bits before returning, i.e. the
-        return value is ``word >> shift``.
-        """
-        ...
 
     @overload
-    def active(self, value: None) -> bool: ...
+    def get(self, buf: None = None, shift: int = 0) -> int: ...
     @overload
-    def active(self, value: Union[bool, int]) -> None:
+    def get(self, buf: WriteableBuffer, shift: int = 0) -> WriteableBuffer: ...
+    @overload
+    def active(self) -> bool: ...
+    @overload
+    def active(self, value: Union[bool, int]) -> bool:
         """
         Gets or sets whether the state machine is currently running.
 
@@ -545,9 +553,9 @@ class StateMachine:
     def __init__(
         self,
         id: int,
-        program: _PIO_ASM_Program,
+        program: _PIO_ASM_Program | None = None,
         *,
-        freq: int = 1,
+        freq: int = -1,
         in_base: Pin | None = None,
         out_base: Pin | None = None,
         set_base: Pin | None = None,
@@ -810,7 +818,7 @@ class PIOASMEmit:
         UART transmitter might use SET to assert start and stop bits, and OUT instructions to shift out FIFO data to the same pins.
         """
         ...
-    def mov(self, dest, src, operation: int | None = None) -> _PIO_ASM_Program:
+    def mov(self, dest, src) -> _PIO_ASM_Program:
         """rp2.PIO MOV instruction.
 
         Copy data from Source to Destination.
@@ -873,7 +881,7 @@ class PIOASMEmit:
 
         """
         ...
-    def pull(self, block: int = block, timeout: int = 0) -> _PIO_ASM_Program:
+    def pull(self, value: int = ..., value2: int = ...) -> _PIO_ASM_Program:
         """rp2.PIO PULL instruction.
 
         Load a 32-bit word from the TX FIFO into the OSR.
@@ -911,6 +919,7 @@ class PIOASMEmit:
         out_init: int | List | None = ...,
         set_init: int | List | None = ...,
         sideset_init: int | List | None = ...,
+        side_pindir: bool = ...,
         in_shiftdir: int = ...,
         out_shiftdir: int = ...,
         autopush: bool = ...,
@@ -933,7 +942,7 @@ class Flash(AbstractBlockDev):
     Gets the singleton object for accessing the SPI flash memory.
     """
     @overload
-    def readblocks(self, block_num: int, buf: bytearray) -> bool:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf) -> None:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -943,7 +952,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int) -> None:
         """
         The second form allows reading at arbitrary locations within a block,
         and arbitrary lengths.
@@ -953,7 +962,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf) -> None:
         """
         The first form writes aligned, multiples of blocks, and requires that the
         blocks that are written to be first erased (if necessary) by this method.
@@ -964,7 +973,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf, offset: int) -> None:
         """
         The second form allows writing at arbitrary locations within a block,
         and arbitrary lengths.  Only the bytes being written should be changed,
@@ -979,7 +988,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def ioctl(self, op: int, arg) -> int | None: ...
+    def ioctl(self, op: int, arg: int) -> int | None: ...
     #
     @overload
     def ioctl(self, op: int) -> int | None:
@@ -988,7 +997,7 @@ class Flash(AbstractBlockDev):
         :ref:`block protocol <block-device-interface>` defined by
         :class:`vfs.AbstractBlockDev`.
         """
-    def __init__(self) -> None: ...
+    def __init__(self, *, start: int = -1, len: int = -1) -> None: ...
 
 class PIOASMError(Exception): ...
 

@@ -43,7 +43,6 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import _TimeTuple, mp_available
 from _mpy_shed.time_mp import _Ticks, _TicksCPU, _TicksMs, _TicksUs
-from typing import Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
@@ -222,7 +221,7 @@ def time() -> int:
     ...
 
 def strftime(*args, **kwargs) -> Incomplete: ...
-def gmtime(secs: int | None = None, /) -> Tuple:
+def gmtime(secs: int | None = None, /) -> _TimeTuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
     8-tuple which contains: ``(year, month, mday, hour, minute, second, weekday, yearday)``
@@ -244,7 +243,7 @@ def gmtime(secs: int | None = None, /) -> Tuple:
     """
     ...
 
-def localtime(secs: int | None = None, /) -> Tuple:
+def localtime(secs: int | None = None, /) -> _TimeTuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
     8-tuple which contains: ``(year, month, mday, hour, minute, second, weekday, yearday)``

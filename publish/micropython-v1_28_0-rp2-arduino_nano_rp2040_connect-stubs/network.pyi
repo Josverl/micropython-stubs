@@ -54,36 +54,18 @@ from abc import abstractmethod
 
 STA_IF: Final[int] = 0
 AP_IF: Final[int] = 1
+STAT_IDLE: int
+STAT_CONNECTING: int
+STAT_WRONG_PASSWORD: int
+STAT_NO_AP_FOUND: int
+STAT_CONNECT_FAIL: int
+STAT_GOT_IP: int
 
-def hostname(name: Optional[Any] = None) -> Incomplete:
-    """
-    Get or set the hostname that will identify this device on the network. It will
-    be used by all interfaces.
-
-    This hostname is used for:
-     * Sending to the DHCP server in the client request. (If using DHCP)
-     * Broadcasting via mDNS. (If enabled)
-
-    If the *name* parameter is provided, the hostname will be set to this value.
-    If the function is called without parameters, it returns the current
-    hostname.
-
-    A change in hostname is typically only applied during connection. For DHCP
-    this is because the hostname is part of the DHCP client request, and the
-    implementation of mDNS in most ports only initialises the hostname once
-    during connection. For this reason, you must set the hostname before
-    activating/connecting your network interfaces.
-
-    The length of the hostname is limited to 32 characters.
-    :term:`MicroPython ports <MicroPython port>` may choose to set a lower
-    limit for memory reasons. If the given name does not fit, a `ValueError`
-    is raised.
-
-    The default hostname is typically the name of the board.
-    """
-    ...
-
-def ipconfig(param: Optional[str] = None, *args, **kwargs) -> str:
+@overload
+def hostname() -> str: ...
+@overload
+def hostname(name: str, /) -> None: ...
+def ipconfig(*args: Any, **kwargs: Any) -> Any:
     """
     Get or set global IP-configuration parameters.
     Supported parameters are the following (availability of a particular
@@ -99,18 +81,10 @@ def ipconfig(param: Optional[str] = None, *args, **kwargs) -> str:
     ...
 
 def route(*args, **kwargs) -> Incomplete: ...
-def country(code: Optional[Any] = None) -> Incomplete:
-    """
-    Get or set the two-letter ISO 3166-1 Alpha-2 country code to be used for
-    radio compliance.
-
-    If the *code* parameter is provided, the country will be set to this value.
-    If the function is called without parameters, it returns the current
-    country.
-
-    The default code ``"XX"`` represents the "worldwide" region.
-    """
-    ...
+@overload
+def country() -> str: ...
+@overload
+def country(code: str, /) -> None: ...
 
 class WLAN:
     """

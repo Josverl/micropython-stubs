@@ -63,7 +63,7 @@ class LCD160CR():
     be considered read-only.
     """
     @overload
-    def __init__(self, connect: str, /):
+    def __init__(self, connect: str | None = None, /):
         """
         Construct an LCD160CR object.  The parameters are:
 
@@ -156,7 +156,7 @@ class LCD160CR():
             will turn the display off, and 1 or ``True`` will turn it on.
         """
         ...
-    def set_orient(self, orient: str, /) -> None:
+    def set_orient(self, orient: int, /) -> None:
         """
             Set the orientation of the display.  The *orient* parameter can be one
             of `PORTRAIT`, `LANDSCAPE`, `PORTRAIT_UPSIDEDOWN`, `LANDSCAPE_UPSIDEDOWN`.
@@ -178,7 +178,7 @@ class LCD160CR():
             Set the baudrate of the UART interface.
         """
         ...
-    def set_startup_deco(self, value: bool | str, /) -> None:
+    def set_startup_deco(self, value: int, /) -> None:
         """
             Set the start-up decoration of the display.  The *value* parameter can be a
             logical or of `STARTUP_DECO_NONE`, `STARTUP_DECO_MLOGO`, `STARTUP_DECO_INFO`.

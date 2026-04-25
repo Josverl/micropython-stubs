@@ -25,12 +25,12 @@ Module: 'vfs' on micropython-v1.28.0-rp2-ARDUINO_NANO_RP2040_CONNECT
 # Stubber: v1.28.1
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import _BlockDeviceProtocol
+from _mpy_shed import AnyReadableBuf, _BlockDeviceProtocol
 from abc import ABC, abstractmethod
 from typing import List, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-def umount(mount_point: Incomplete) -> Incomplete:
+def umount(mount_point: Incomplete) -> None:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
     or a previously-mounted filesystem object.  During the unmount process the
@@ -238,3 +238,12 @@ class AbstractBlockDev:
         for failure, with the value returned being an ``OSError`` errno code.
         """
         ...
+
+@overload
+def rom_ioctl(op: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, length: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, offset: int, buf: AnyReadableBuf, /) -> Incomplete: ...

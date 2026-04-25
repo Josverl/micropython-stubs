@@ -58,12 +58,15 @@ class ExtInt:
     """interrupt on a rising edge"""
     IRQ_RISING_FALLING: Incomplete
     """interrupt on a rising or falling edge"""
+    EVT_RISING: int
+    EVT_FALLING: int
+    EVT_RISING_FALLING: int
     def __init__(
         self,
         pin: int | str | Pin,
         mode: int,
         pull: int,
-        callback: Callable[[int], None],
+        callback: Callable[[int], None] | None,
     ) -> None:
         """
         Create an ExtInt object:

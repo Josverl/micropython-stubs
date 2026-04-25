@@ -56,18 +56,6 @@ class sha1(_Hash):
         Create an SHA1 hasher object and optionally feed ``data`` into it.
         """
 
-    @overload
-    def __init__(self):
-        """
-        Create an SHA1 hasher object and optionally feed ``data`` into it.
-        """
-
-    @overload
-    def __init__(self, data: AnyReadableBuf):
-        """
-        Create an SHA1 hasher object and optionally feed ``data`` into it.
-        """
-
 class sha256(_Hash):
     """
     The current generation, modern hashing algorithm (of SHA2 series).
@@ -77,18 +65,6 @@ class sha256(_Hash):
     """
     def digest(self, *args, **kwargs) -> Incomplete: ...
     def update(self, *args, **kwargs) -> Incomplete: ...
-    @overload
-    def __init__(self):
-        """
-        Create an SHA256 hasher object and optionally feed ``data`` into it.
-        """
-
-    @overload
-    def __init__(self, data: AnyReadableBuf):
-        """
-        Create an SHA256 hasher object and optionally feed ``data`` into it.
-        """
-
     @overload
     def __init__(self):
         """

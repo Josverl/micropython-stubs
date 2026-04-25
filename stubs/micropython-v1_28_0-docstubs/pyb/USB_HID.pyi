@@ -45,7 +45,7 @@ class USB_HID:
         Return value: if ``data`` is an integer then a new buffer of the bytes received,
         otherwise the number of bytes read into ``data`` is returned.
         """
-    def send(self, data: Sequence[int]) -> None:
+    def send(self, data: Sequence[int]) -> int:
         """
         Send data over the USB HID interface:
 

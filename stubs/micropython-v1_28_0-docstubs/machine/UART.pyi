@@ -81,6 +81,8 @@ class UART:
     Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
     """
     IDLE: int = ...
+    INV_TX: int = ...
+    INV_RX: int = ...
     @overload
     def __init__(
         self,
@@ -98,6 +100,9 @@ class UART:
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
+        flow: int | None = None,
+        rts: PinLike | None = None,
+        cts: PinLike | None = None,
     ):
         """
         Construct a UART object of the given id.
@@ -151,6 +156,9 @@ class UART:
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
+        flow: int | None = None,
+        rts: PinLike | None = None,
+        cts: PinLike | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -417,7 +425,7 @@ class UART:
         longer than required for a normal transmission of a character.
         """
         ...
-    def flush(self) -> Incomplete:
+    def flush(self) -> None:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
         duration depends on the tx buffer size and the baud rate. Unless flow control is enabled, a timeout

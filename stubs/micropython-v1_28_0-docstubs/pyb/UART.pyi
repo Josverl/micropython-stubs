@@ -150,7 +150,7 @@ class UART:
         flow: int = 0,
         timeout_char: int = 0,
         read_buf_len: int = 64,
-    ):
+    ) -> None:
         """
         Initialise the UART bus with the given parameters:
 
@@ -246,7 +246,7 @@ class UART:
         Return value: number of bytes read and stored into ``buf`` or ``None`` on
         timeout.
         """
-    def readline(self) -> None:
+    def readline(self) -> bytes | None:
         """
         Read a line, ending in a newline character. If such a line exists, return is
         immediate. If the timeout elapses, all available data is returned regardless
@@ -255,7 +255,7 @@ class UART:
         Return value: the line read or ``None`` on timeout if no data is available.
         """
         ...
-    def write(self, buf: AnyWritableBuf, /) -> int:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the buffer of bytes to the bus.  If characters are 7 or 8 bits wide
         then each byte is one character.  If characters are 9 bits wide then two

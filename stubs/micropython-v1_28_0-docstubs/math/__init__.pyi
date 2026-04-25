@@ -18,7 +18,7 @@ for this module.
 # origin module:: repos/micropython/docs/library/math.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import SupportsFloat, Tuple
+from typing import SupportsFloat, overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 e: float
 """base of the natural logarithm"""
@@ -157,7 +157,18 @@ def lgamma(x: SupportsFloat, /) -> float:
        Return the natural logarithm of the gamma function of ``x``.
     """
     ...
+
+@overload
 def log(x: SupportsFloat, /) -> float:
+    """
+       With one argument, return the natural logarithm of *x*.
+    
+       With two arguments, return the logarithm of *x* to the given *base*.
+    """
+    ...
+
+@overload
+def log(x: SupportsFloat, base: SupportsFloat, /) -> float:
     """
        With one argument, return the natural logarithm of *x*.
     
@@ -174,7 +185,7 @@ def log2(x: SupportsFloat, /) -> float:
        Return the base-2 logarithm of ``x``.
     """
     ...
-def modf(x: SupportsFloat, /) -> Tuple:
+def modf(x: SupportsFloat, /) -> tuple[float, float]:
     """
        Return a tuple of two floats, being the fractional and integral parts of
        ``x``.  Both return values have the same sign as ``x``.

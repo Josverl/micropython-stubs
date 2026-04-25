@@ -40,7 +40,7 @@ def mem_alloc() -> int:
     """
     ...
 
-def collect() -> None:
+def collect() -> int | None:
     """
     Run a garbage collection.
     """

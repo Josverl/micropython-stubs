@@ -4,8 +4,9 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from array import array
-from typing import overload
+from typing import TypeVar, overload
+
+_WB = TypeVar("_WB", bound=AnyWritableBuf)
 
 class SPI:
     """
@@ -37,6 +38,8 @@ class SPI:
     LSB: Incomplete
     MSB: Incomplete
     """set the first bit to be the least or most significant bit"""
+    MASTER: int
+    SLAVE: int
     @overload
     def __init__(self, bus: int, /):
         """
@@ -60,12 +63,14 @@ class SPI:
         self,
         bus: int,
         /,
-        mode: int = CONTROLLER,
+        mode: int,
         baudrate: int = 328125,
         *,
         polarity: int = 1,
         phase: int = 0,
+        dir: int = 0,
         bits: int = 8,
+        nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -91,12 +96,14 @@ class SPI:
         self,
         bus: int,
         /,
-        mode: int = CONTROLLER,
+        mode: int,
         *,
         prescaler: int = 256,
         polarity: int = 1,
         phase: int = 0,
+        dir: int = 0,
         bits: int = 8,
+        nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -125,12 +132,14 @@ class SPI:
     @overload
     def init(
         self,
-        mode: int = CONTROLLER,
+        mode: int,
         baudrate: int = 328125,
         *,
         polarity: int = 1,
         phase: int = 0,
+        dir: int = 0,
         bits: int = 8,
+        nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -164,12 +173,14 @@ class SPI:
     @overload
     def init(
         self,
-        mode: int = CONTROLLER,
+        mode: int,
         *,
         prescaler: int = 256,
         polarity: int = 1,
         phase: int = 0,
+        dir: int = 0,
         bits: int = 8,
+        nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -199,7 +210,9 @@ class SPI:
         Printing the SPI object will show you the computed baudrate and the chosen
         prescaler.
         """
-    def recv(self, recv: int | AnyWritableBuf, /, *, timeout: int = 5000) -> bytes:
+
+    @overload
+    def recv(self, recv: int, /, *, timeout: int = 5000) -> bytes:
         """
         Receive data on the bus:
 
@@ -211,7 +224,21 @@ class SPI:
         otherwise the same buffer that was passed in to ``recv``.
         """
         ...
-    def send(self, send: int | AnyWritableBuf | bytes, /, *, timeout: int = 5000) -> None:
+
+    @overload
+    def recv(self, recv: _WB, /, *, timeout: int = 5000) -> _WB:
+        """
+        Receive data on the bus:
+
+          - ``recv`` can be an integer, which is the number of bytes to receive,
+            or a mutable buffer, which will be filled with received bytes.
+          - ``timeout`` is the timeout in milliseconds to wait for the receive.
+
+        Return value: if ``recv`` is an integer then a new buffer of the bytes received,
+        otherwise the same buffer that was passed in to ``recv``.
+        """
+        ...
+    def send(self, send: int | AnyReadableBuf, /, *, timeout: int = 5000) -> None:
         """
         Send data on the bus:
 
@@ -221,14 +248,38 @@ class SPI:
         Return value: ``None``.
         """
         ...
+
+    @overload
     def send_recv(
         self,
-        send: int | AnyWritableBuf,
-        recv: AnyWritableBuf | None = None,
+        send: int | AnyReadableBuf,
+        recv: None = None,
         /,
         *,
         timeout: int = 5000,
     ) -> bytes:
+        """
+        Send and receive data on the bus at the same time:
+
+          - ``send`` is the data to send (an integer to send, or a buffer object).
+          - ``recv`` is a mutable buffer which will be filled with received bytes.
+            It can be the same as ``send``, or omitted.  If omitted, a new buffer will
+            be created.
+          - ``timeout`` is the timeout in milliseconds to wait for the receive.
+
+        Return value: the buffer with the received bytes.
+        """
+        ...
+
+    @overload
+    def send_recv(
+        self,
+        send: int | AnyReadableBuf,
+        recv: _WB,
+        /,
+        *,
+        timeout: int = 5000,
+    ) -> _WB:
         """
         Send and receive data on the bus at the same time:
 
