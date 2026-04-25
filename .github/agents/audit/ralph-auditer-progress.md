@@ -90,7 +90,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\random\__init__.pyi | done |  | Corrected random/uniform return types and generic choice return |
 | reference\micropython\rp2\__init__.pyi | done |  | Added optional deprecated country() alias overloads from ports/rp2/modrp2.c (exports mod_network_country_obj when CYW43 enabled) |
 | reference\micropython\rp2\asm_pio.pyi | done |  | Aligned pull/mov helper signatures to ports/rp2/modules/rp2.py (`pull(value,value2)`, `mov(dest,src)`) |
-| reference\micropython\rp2\DMA.pyi | pending |  |  |
+| reference\micropython\rp2\DMA.pyi | done |  | Added register attrs, made unpack_ctrl static, and aligned constructor/config kwargs to ports/rp2/rp2_dma.c |
 | reference\micropython\rp2\Flash.pyi | pending |  |  |
 | reference\micropython\rp2\PIO.pyi | pending |  |  |
 | reference\micropython\rp2\PIOASMEmit.pyi | pending |  |  |
