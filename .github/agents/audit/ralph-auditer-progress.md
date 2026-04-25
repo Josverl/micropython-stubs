@@ -79,7 +79,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\LCD.pyi | done |  | No stub changes needed after review against ports/stm32/lcd.c locals dict and method signatures |
 | reference\micropython\pyb\LED.pyi | done |  | No stub changes needed after review against ports/stm32/led.c API (on/off/toggle/intensity) |
 | reference\micropython\pyb\Pin.pyi | done |  | Added missing Pin IRQ/on-off helpers and IRQ/OUT/OPEN_DRAIN constants; corrected names() to list[str] per ports/stm32/pin.c. |
-| reference\micropython\pyb\RTC.pyi | pending |  |  |
+| reference\micropython\pyb\RTC.pyi | done |  | Restored missing method bodies, added init(), precise datetime tuple typing, and wakeup overloads for (None|ms|wucksel,wut) per ports/stm32/rtc.c. |
 | reference\micropython\pyb\Servo.pyi | pending |  |  |
 | reference\micropython\pyb\SPI.pyi | pending |  |  |
 | reference\micropython\pyb\Switch.pyi | pending |  |  |
