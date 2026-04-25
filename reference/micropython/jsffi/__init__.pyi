@@ -8,8 +8,6 @@ communication between Python and JavaScript code.
 
 from typing import Any, Iterator, TypeVar, Union, overload
 
-__version__: str
-
 T = TypeVar("T")
 
 class JsProxy:
@@ -20,10 +18,6 @@ class JsProxy:
     or when explicitly created using jsffi.create_proxy(). They provide
     transparent access to JavaScript object properties and methods.
     """
-
-    def __init__(self, js_ref: int) -> None:
-        """Initialize a JsProxy with a JavaScript object reference."""
-        ...
 
     def __repr__(self) -> str:
         """Return a string representation of the JsProxy."""
@@ -137,18 +131,7 @@ class JsException(Exception):
     JavaScript error object through its args.
     """
 
-    def __init__(self, js_error: JsProxy, name: str, message: str) -> None:
-        """
-        Initialize a JsException.
-
-        Args:
-            js_error: The original JavaScript error object
-            name: The error name (e.g., "TypeError", "ReferenceError")
-            message: The error message
-        """
-        super().__init__(message)
-        self.js_error = js_error
-        self.name = name
+    def __init__(self, *args: Any) -> None: ...
 
 def create_proxy(obj: Any) -> JsProxy:
     """
