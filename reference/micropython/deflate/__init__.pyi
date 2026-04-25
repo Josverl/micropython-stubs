@@ -25,13 +25,13 @@ from __future__ import annotations
 
 from _typeshed import Incomplete
 
-AUTO: Incomplete
+AUTO: int
 """Supported values for the *format* parameter."""
-RAW: Incomplete
+RAW: int
 """Supported values for the *format* parameter."""
-ZLIB: Incomplete
+ZLIB: int
 """Supported values for the *format* parameter."""
-GZIP: Incomplete
+GZIP: int
 """Supported values for the *format* parameter."""
 
 class DeflateIO:
@@ -79,3 +79,11 @@ class DeflateIO:
     """
 
     def __init__(self, stream, format=AUTO, wbits=0, close=False, /) -> None: ...
+
+    def read(self, size: int = -1, /) -> bytes: ...
+    def readinto(self, buf: Incomplete, nbytes: int = -1, /) -> int: ...
+    def readline(self, /) -> bytes: ...
+    def write(self, buf: Incomplete, /) -> int: ...
+    def close(self) -> None: ...
+    def __enter__(self) -> DeflateIO: ...
+    def __exit__(self, exc_type: Incomplete, exc: Incomplete, tb: Incomplete, /) -> None: ...

@@ -6,14 +6,12 @@ MicroPython module: https://docs.micropython.org/en/v1.24.0/library/espnow.html
 
 # source version: v1.24.0
 # origin module:: repos/micropython/docs/library/espnow.rst
-# source version: v1.24.0
-# origin module:: repos/micropython/docs/library/espnow.rst
 from __future__ import annotations
 
 from _mpy_shed import mp_available
 from typing import Any, Callable, Dict, Final, Iterator, List, Optional, Tuple, overload
 
-from _espnow import ESPNowBase  
+from _espnow import ESPNowBase
 from _typeshed import Incomplete, TypeAlias
 
 _MACAddress: TypeAlias = bytes  # MAC address (a 6-byte byte-string)
@@ -26,6 +24,18 @@ ADDR_LEN: Final[int] = 6
 MAX_TOTAL_PEER_NUM: Final[int] = 20
 MAX_ENCRYPT_PEER_NUM: Final[int] = 6
 
+# ESP32-only RATE_* constants. RATE_LORA_* are not exported on ESP32-C2.
+RATE_1M: Final[int]
+RATE_2M: Final[int]
+RATE_5M: Final[int]
+RATE_6M: Final[int]
+RATE_11M: Final[int]
+RATE_12M: Final[int]
+RATE_24M: Final[int]
+RATE_54M: Final[int]
+RATE_LORA_250K: Final[int]
+RATE_LORA_500K: Final[int]
+
 class ESPNow(ESPNowBase, Iterator):
     """
     Returns the singleton ESPNow object. As this is a singleton, all calls to
@@ -36,6 +46,7 @@ class ESPNow(ESPNowBase, Iterator):
       restrictions on the ESP8266 and differences in the Espressif API.
     """
 
+    # ESP32-only when MICROPY_PY_ESPNOW_RSSI is enabled.
     peers_table: Dict[bytes, List[int]] = ...
     """\
     A reference to the **peer device table**: a dict of known peer devices
@@ -70,7 +81,7 @@ class ESPNow(ESPNowBase, Iterator):
     @mp_available()  # force merge
     def __next__(self) -> Tuple[_MACAddress | None, bytes | None]: ...
     #
-    def active(self, flag: Optional[Any] = None) -> Incomplete:
+    def active(self, flag: Any | None = None) -> bool:
         """
         Initialise or de-initialise the ESP-NOW communication protocol depending on
         the value of the ``flag`` optional argument.
@@ -101,13 +112,9 @@ class ESPNow(ESPNowBase, Iterator):
         ...
 
     @overload
-    def config(self, rxbuf: int) -> None: ...
+    def config(self, /, *, rxbuf: int = ..., timeout_ms: int = ..., rate: int = ...) -> None: ...
     @overload
-    def config(self, timeout_ms: int) -> None: ...
-    @overload
-    def config(self, rate: int) -> None: ...
-    @overload
-    def config(self, param:str) -> int:
+    def config(self, param: str, /) -> int:
         """
         Set or get configuration values of the ESPNow interface. To set values, use
         the keyword syntax, and one or more parameters can be set at a time. To get
@@ -151,6 +158,8 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
+    # Port note: on ESP8266 this form requires `mac` and supports only
+    # positional peer settings in `add_peer`; `sync` is still available.
     @overload
     def send(
         self,
@@ -197,6 +206,7 @@ class ESPNow(ESPNowBase, Iterator):
 
         """
 
+    # Port note: this broadcast-style shorthand exists only on ESP32.
     @overload
     def send(
         self,
@@ -375,6 +385,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
+    # Port note: available on ESP32 from _espnow, not present on ESP8266 _espnow.
     def stats(self) -> Tuple[int, int, int, int, int]:
         """
         Returns:
@@ -419,6 +430,16 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
+    @overload
+    def add_peer(
+      self,
+      mac: _MACAddress,
+      lmk: bytes | bytearray | str | None = None,
+      channel: int | None = None,
+    ) -> None:
+      ...
+
+    @overload
     def add_peer(
         self,
         mac: _MACAddress,
@@ -426,7 +447,7 @@ class ESPNow(ESPNowBase, Iterator):
         channel: Optional[int] = None,
         ifidx: Optional[int] = None,
         encrypt: Optional[bool] = True,
-    ) -> Incomplete:
+    ) -> None:
         """
         Add/register the provided *mac* address as a peer. Additional parameters may
         also be specified as positional or keyword arguments (any parameter set to
@@ -498,6 +519,8 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
+    # Port note: available when MICROPY_PY_ESPNOW_EXTRA_PEER_METHODS is enabled
+    # on ESP32, not exported by ESP8266 _espnow.
     def get_peer(self, mac: _MACAddress) -> _PeerInfo:
         """
         Return information on a registered peer.
@@ -516,7 +539,9 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def peer_count(self) -> int:
+    # Port note: available when MICROPY_PY_ESPNOW_EXTRA_PEER_METHODS is enabled
+    # on ESP32, not exported by ESP8266 _espnow.
+    def peer_count(self) -> Tuple[int, int]:
         """
         Return the number of registered peers:
 
@@ -534,6 +559,8 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
+    # Port note: available when MICROPY_PY_ESPNOW_EXTRA_PEER_METHODS is enabled
+    # on ESP32, not exported by ESP8266 _espnow.
     def mod_peer(
         self,
         mac: _MACAddress,
@@ -550,7 +577,9 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def irq(self, callback: Callable) -> Incomplete:
+    # Port note: ESP32 wrapper exposes `irq(callback)`; ESP8266 does not expose
+    # `irq` in its local _espnow implementation.
+    def irq(self, callback: Callable[[ESPNow], Any]) -> None:
         """
         Set a callback function to be called *as soon as possible* after a message has
         been received from another ESPNow device. The callback function will be called
@@ -582,61 +611,4 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-class AIOESPNow(ESPNow):
-    """
-    The `AIOESPNow` class inherits all the methods of `ESPNow<espnow.ESPNow>`
-    and extends the interface with the following async methods.
-    """
-
-    def __init__(self) -> None: ...
-    async def arecv(self) -> Incomplete:
-        """
-        Asyncio support for `ESPNow.recv()`. Note that this method does not take a
-        timeout value as argument.
-        """
-        ...
-
-    async def airecv(self) -> Incomplete:
-        """
-        Asyncio support for `ESPNow.irecv()`. Note that this method does not take a
-        timeout value as argument.
-        """
-        ...
-
-    async def asend(self, msg) -> Incomplete:
-        """
-        Asyncio support for `ESPNow.send()`.
-        """
-        ...
-
-    def _aiter__(self) -> Incomplete:
-        """
-        `AIOESPNow` also supports reading incoming messages by asynchronous
-        iteration using ``async for``; eg::
-
-          e = AIOESPNow()
-          e.active(True)
-          async def recv_till_halt(e):
-              async for mac, msg in e:
-                  print(mac, msg)
-                  if msg == b'halt':
-                    break
-          asyncio.run(recv_till_halt(e))
-        """
-        ...
-
-    async def __anext__(self) -> Incomplete:
-        """
-        `AIOESPNow` also supports reading incoming messages by asynchronous
-        iteration using ``async for``; eg::
-
-          e = AIOESPNow()
-          e.active(True)
-          async def recv_till_halt(e):
-              async for mac, msg in e:
-                  print(mac, msg)
-                  if msg == b'halt':
-                    break
-          asyncio.run(recv_till_halt(e))
-        """
-        ...
+# Async wrapper lives in the supplementary `aioespnow` module.
