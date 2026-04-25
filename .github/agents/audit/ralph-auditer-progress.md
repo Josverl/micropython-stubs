@@ -107,7 +107,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\vfs\__init__.pyi | done |  | Added optional VfsRom/rom_ioctl exports and set umount() return to None from extmod/modvfs.c + extmod/vfs.c |
 | reference\micropython\wipy\__init__.pyi | done |  | No stub changes needed; heartbeat([enable]) overload matches ports/cc3200/modwipy.c behavior (bool getter, None setter). |
 | reference\micropython\wm8960\__init__.pyi | done |  | Aligned __init__ default sample_rate, volume getter/setter returns, mute(enable,...) signature, and helper method None returns to wm8960.py. |
-| reference\micropython\zephyr\__init__.pyi | pending |  |  |
+| reference\micropython\zephyr\__init__.pyi | done |  | Typed API from ports/zephyr/modzephyr.c: is_preempt_thread->bool, current_tid->int, thread_analyze(cpu)->None, shell_exec(str)->None. |
 | reference\micropython\zephyr\DiskAccess.pyi | pending |  |  |
 | reference\micropython\zephyr\FlashArea.pyi | pending |  |  |
 | reference\micropython\zephyr\zsensor.pyi | pending |  |  |
