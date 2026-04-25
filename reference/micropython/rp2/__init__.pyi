@@ -116,3 +116,23 @@ def bootsel_button() -> int:
     prevent them from trying to execute code from flash.
     """
     ...
+
+  @overload
+  def country() -> str:
+    """
+    Get the two-letter country code.
+
+    Deprecated alias to ``network.country``.
+    Only available when CYW43 networking support is enabled.
+    """
+    ...
+
+  @overload
+  def country(code: str, /) -> None:
+    """
+    Set the two-letter country code.
+
+    Deprecated alias to ``network.country``.
+    Only available when CYW43 networking support is enabled.
+    """
+    ...

@@ -88,7 +88,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\USB_HID.pyi | done |  | Corrected USB_HID.send return type to int bytes-sent per ports/stm32/usb.c |
 | reference\micropython\pyb\USB_VCP.pyi | done |  | Typed RTS/CTS/IRQ_RX as int and aligned readline/recv/send signatures to ports/stm32/usb.c stream + VCP APIs |
 | reference\micropython\random\__init__.pyi | done |  | Corrected random/uniform return types and generic choice return |
-| reference\micropython\rp2\__init__.pyi | pending |  |  |
+| reference\micropython\rp2\__init__.pyi | done |  | Added optional deprecated country() alias overloads from ports/rp2/modrp2.c (exports mod_network_country_obj when CYW43 enabled) |
 | reference\micropython\rp2\asm_pio.pyi | pending |  |  |
 | reference\micropython\rp2\DMA.pyi | pending |  |  |
 | reference\micropython\rp2\Flash.pyi | pending |  |  |
