@@ -37,6 +37,7 @@ from machine.SD import SD
 from machine.SDCard import SDCard
 from machine.USBDevice import USBDevice
 from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
+from _mpy_shed import _IRQ
 
 mem8: Incomplete
 """Read/write 8 bits of memory."""
@@ -75,6 +76,10 @@ PIN_WAKE: Incomplete
 RTC_WAKE: Incomplete
 """Wake-up reasons."""
 _IRQ_STATE: TypeAlias = int
+__CANFilter: TypeAlias = tuple[int, int, int] | list[int]
+__CANRecvResult: TypeAlias = list[int | memoryview]
+__CANCounters: TypeAlias = list[int | None]
+__CANTimings: TypeAlias = list[int | list[int] | None]
 def reset() -> NoReturn:
     """
        :ref:`Hard resets <hard_reset>` the device in a manner similar to pushing the
