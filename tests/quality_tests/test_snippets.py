@@ -8,6 +8,10 @@ from mpflash.versions import micropython_versions
 from packaging.version import Version
 from typecheck import copy_config_files, port_and_board, run_typechecker
 
+# Fallback version list used when the GitHub API is unreachable.
+# Keep in sync with the most recent stable + preview release.
+_FALLBACK_VERSIONS = ["v1.26.1", "v1.27.0", "v1.28.0", "v1.29.0-preview"]
+
 
 def major_minor(versions):
     """create a list of the most recent version for each major.minor"""
@@ -88,8 +92,13 @@ SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
-# only the recent versions
-VERSIONS = sorted(major_minor(micropython_versions(minver="v1.24.0")), reverse=True)[:3]
+# Only the three most-recent versions.  Fall back to a hardcoded list when the
+# GitHub API is unavailable (e.g. in a sandboxed CI environment).
+try:
+    _all_versions = micropython_versions(minver="v1.24.0")
+except Exception:
+    _all_versions = _FALLBACK_VERSIONS
+VERSIONS = sorted(major_minor(_all_versions), reverse=True)[:3]
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):

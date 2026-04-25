@@ -34,6 +34,11 @@ from mpflash.versions import get_preview_mp_version, get_stable_mp_version
 SNIPPETS_PREFIX = "tests/quality_tests/"
 MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
 
+# Fallback version strings used when the GitHub API is unreachable.
+# Keep in sync with the most recent stable + preview release.
+_FALLBACK_STABLE_VERSION = "v1.28.0"
+_FALLBACK_PREVIEW_VERSION = "v1.29.0-preview"
+
 
 def flat_version(version):
     """Converts a version string to a flat version string. (simplified)"""
@@ -143,13 +148,20 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
         bool: True if the installation was successful, False otherwise.
     """
     if version == "preview":
-        # use the latest preview version
-        version = get_preview_mp_version()
+        # use the latest preview version; fall back to the hardcoded constant
+        # when the GitHub API is unreachable (no network / sandboxed environment).
+        try:
+            version = get_preview_mp_version()
+        except Exception:
+            version = _FALLBACK_PREVIEW_VERSION
         if not version.endswith("-preview"):
             raise ValueError(f"Expected preview version, got {version}")
     elif version == "latest":
-        # use the latest release version
-        version = get_stable_mp_version()
+        # use the latest stable release; same offline fallback logic.
+        try:
+            version = get_stable_mp_version()
+        except Exception:
+            version = _FALLBACK_STABLE_VERSION
 
     flatversion = flat_version(version)
     # clean up prior install to avoid stale files
