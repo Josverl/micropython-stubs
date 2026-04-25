@@ -39,7 +39,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\machine\__init__.pyi | done |  | Added optional PinBase/DAC/I2CTarget/dht_readinto exports from extmod/modmachine.c globals |
 | reference\micropython\machine\ADC.pyi | done |  | Aligned constructor/init/block typing and added WIDTH_13BIT constant from extmod machine_adc + esp32 constants |
 | reference\micropython\machine\ADCBlock.pyi | done |  | Made bits keyword optional for constructor/init per extmod/machine_adc_block.c parse helper and docs |
-| reference\micropython\machine\ADCWiPy.pyi |pending |  |  |
+| reference\micropython\machine\ADCWiPy.pyi | done |  | Corrected channel return/callable channel object typing and removed misplaced ADCWiPy.adcchannel method per cc3200 pybadc.c |
 | reference\micropython\machine\CAN.pyi |pending |  |  |
 | reference\micropython\machine\I2C.pyi |pending |  |  |
 | reference\micropython\machine\I2S.pyi |pending |  |  |

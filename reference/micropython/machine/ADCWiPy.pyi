@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from _typeshed import Incomplete
+from typing import overload
 
 class ADCWiPy:
     """
@@ -13,7 +13,12 @@ class ADCWiPy:
     """
 
     def __init__(self, id=0, *, bits=12) -> None: ...
-    def channel(self, id, *, pin) -> Incomplete:
+    @overload
+    def channel(self, id: int, *, pin=None) -> adcchannel: ...
+    @overload
+    def channel(self, *, pin) -> adcchannel: ...
+    @overload
+    def channel(self, id: int, *, pin) -> adcchannel:
         """
         Create an analog pin. If only channel ID is given, the correct pin will
         be selected. Alternatively, only the pin can be passed and the correct
@@ -38,22 +43,22 @@ class ADCWiPy:
         """
         ...
 
-    def adcchannel(self) -> Incomplete:
+class adcchannel:
+    """ """
+
+    def __call__(self) -> int:
         """
         Fast method to read the channel value.
         """
         ...
 
-class adcchannel:
-    """ """
-
-    def value(self) -> Incomplete:
+    def value(self) -> int:
         """
         Read the channel value.
         """
         ...
 
-    def init(self) -> Incomplete:
+    def init(self) -> None:
         """
         Re-init (and effectively enable) the ADC channel.
         """
