@@ -212,7 +212,7 @@ class socket:
         """
         ...
 
-    def sendto(self, bytes: AnyReadableBuf, address: _Address, /) -> None:
+    def sendto(self, bytes: AnyReadableBuf, address: _Address, /) -> int:
         """
         Send data to the socket. The socket should not be connected to a remote socket, since the
         destination socket is specified by *address*.
