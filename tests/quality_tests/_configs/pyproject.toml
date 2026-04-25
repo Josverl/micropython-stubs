@@ -60,6 +60,7 @@ extend-ignore = [
     "F841", # Local variable `data` is assigned to but never used
     "E402", # module level import not at top of file - common in test snippets
     "E722", # Bare except
+    "E731", # do not assign a lambda expression, use a def
     "E741", # Ambiguous variable name
     "PYI021", # Docstrings should not be included in stubs (but we want them for MicroPython)
     "PYI024",  # do not use collections.namedtuple

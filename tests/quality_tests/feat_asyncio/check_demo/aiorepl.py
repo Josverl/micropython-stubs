@@ -107,7 +107,7 @@ async def task(g=None, prompt="--> "):
         hist_i = 0  # Index of most recent entry.
         hist_n = 0  # Number of history entries.
         c = 0  # ord of most recent character.
-        t = 0  # timestamp of most recent character.
+        t = time.ticks_ms()  # timestamp of most recent character.
         while True:
             hist_b = 0  # How far back in the history are we currently.
             sys.stdout.write(prompt)
@@ -124,6 +124,7 @@ async def task(g=None, prompt="--> "):
                         # If the previous character was also LF, and was less
                         # than 20 ms ago, this was likely due to CRLF->LFLF
                         # conversion, so ignore this linefeed.
+                        reveal_type(pt)
                         if pc == 0x0A and time.ticks_diff(t, pt) < 20:
                             continue
                         sys.stdout.write("\n")
