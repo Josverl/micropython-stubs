@@ -77,17 +77,16 @@ Example::
 # origin module:: repos/micropython/docs/library/btree.rst
 from __future__ import annotations
 
-from typing import Dict, Iterable
+from typing import Iterable
 
 from _mpy_shed import IOBase_mp
-from _typeshed import Incomplete
 
-INCL: Incomplete
+INCL: int
 """\
 A flag for `keys()`, `values()`, `items()` methods to specify that
 scanning should be inclusive of the end key.
 """
-DESC: Incomplete
+DESC: int
 """\
 A flag for `keys()`, `values()`, `items()` methods to specify that
 scanning should be in descending direction of keys.
@@ -96,7 +95,7 @@ scanning should be in descending direction of keys.
 class btree:
     """ """
 
-    def close(self) -> None:
+    def close(self) -> int:
         """
         Close the database. It's mandatory to close the database at the end of
         processing, as some unwritten data may be still in the cache. Note that
@@ -106,7 +105,7 @@ class btree:
         """
         ...
 
-    def flush(self) -> None:
+    def flush(self) -> int:
         """
         Flush any data in cache to the underlying stream.
         """
@@ -139,6 +138,18 @@ class btree:
     def __contains__(self, key: bytes, /) -> bool:
         """
         Standard dictionary methods.
+        """
+        ...
+
+    def put(self, key: bytes, val: bytes, flags: int = 0, /) -> int:
+        """
+        Legacy insert/update method.
+        """
+        ...
+
+    def seq(self, flags: int, key: bytes | None = None, dummy: bytes | None = None, /) -> tuple[bytes, bytes] | None:
+        """
+        Legacy cursor-style API used by some ports and compatibility code.
         """
         ...
 
@@ -226,7 +237,7 @@ def open(
     pagesize: int = 0,
     cachesize: int = 0,
     minkeypage: int = 0,
-) -> Dict:
+) -> btree:
     """
     Open a database from a random-access `stream` (like an open file). All
     other parameters are optional and keyword-only, and allow to tweak advanced

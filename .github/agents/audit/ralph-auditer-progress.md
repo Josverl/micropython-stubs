@@ -17,8 +17,8 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\asyncio\stream.pyi | done |  | Corrected stream/server function return annotations from extmod/asyncio/stream.py |
 | reference\micropython\asyncio\task.pyi | done |  | No API changes needed after review against extmod/asyncio/task.py and extmod/modasyncio.c |
 | reference\micropython\binascii\__init__.pyi | done |  | Added b2a_base64 newline kwarg from extmod/modbinascii.c |
-| reference\micropython\bluetooth\__init__.pyi | done |  | Added FLAG_* module constants from extmod/modbluetooth.c globals table |
-| reference\micropython\btree\__init__.pyi | pending |  |  |
+| reference\micropython\bluetooth\__init__.pyi | done | 362977422 | Added FLAG_* module constants from extmod/modbluetooth.c globals table |
+| reference\micropython\btree\__init__.pyi | done |  | Aligned close/flush returns and added put/seq legacy methods from extmod/modbtree.c |
 | reference\micropython\cmath\__init__.pyi | done |  | Corrected complex-returning function signatures and polar/rect typing |
 | reference\micropython\collections\__init__.pyi | done |  | No API changes needed after review against py/modcollections.c |
 | reference\micropython\cryptolib\__init__.pyi | done |  | Added MODE_ECB/MODE_CBC/MODE_CTR constants from extmod/modcryptolib.c |
