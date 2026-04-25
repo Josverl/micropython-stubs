@@ -14,6 +14,10 @@ from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
 _WB = TypeVar("_WB", bound=AnyWritableBuf)
 
+MODE_ECB: int
+MODE_CBC: int
+MODE_CTR: int
+
 class aes:
     """
     .. class:: aes
