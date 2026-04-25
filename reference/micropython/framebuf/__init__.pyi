@@ -16,7 +16,7 @@ from typing import Any, Optional, Union, overload
 from _mpy_shed import AnyWritableBuf
 from _typeshed import Incomplete
 
-MONO_VLSB: bytes
+MONO_VLSB: int
 """\
 Monochrome (1-bit) color format
 This defines a mapping where the bits in a byte are vertically mapped with
@@ -25,7 +25,7 @@ bit 0 being nearest the top of the screen. Consequently each byte occupies
 locations until the rightmost edge is reached. Further bytes are rendered
 at locations starting at the leftmost edge, 8 pixels lower.
 """
-MONO_HLSB: bytes
+MONO_HLSB: int
 """\
 Monochrome (1-bit) color format
 This defines a mapping where the bits in a byte are horizontally mapped.
@@ -34,7 +34,7 @@ Subsequent bytes appear at successive horizontal locations until the
 rightmost edge is reached. Further bytes are rendered on the next row, one
 pixel lower.
 """
-MONO_HMSB: bytes
+MONO_HMSB: int
 """\
 Monochrome (1-bit) color format
 This defines a mapping where the bits in a byte are horizontally mapped.
@@ -43,13 +43,13 @@ Subsequent bytes appear at successive horizontal locations until the
 rightmost edge is reached. Further bytes are rendered on the next row, one
 pixel lower.
 """
-RGB565: Incomplete
+RGB565: int
 """Red Green Blue (16-bit, 5+6+5) color format"""
-GS2_HMSB: Incomplete
+GS2_HMSB: int
 """Grayscale (2-bit) color format"""
-GS4_HMSB: Incomplete
+GS4_HMSB: int
 """Grayscale (4-bit) color format"""
-GS8: Incomplete
+GS8: int
 """Grayscale (8-bit) color format"""
 
 class FrameBuffer:
@@ -177,7 +177,7 @@ class FrameBuffer:
         """
         ...
 
-    def poly(self, x, y, coords, c, f: Union[bool, int] = False, /) -> Incomplete:
+    def poly(self, x, y, coords, c, f: Union[bool, int] = False, /) -> None:
         """
         Given a list of coordinates, draw an arbitrary (convex or concave) closed
         polygon at the given x, y location using the given color.
@@ -212,7 +212,7 @@ class FrameBuffer:
         x: int,
         y: int,
         key: int = -1,
-        palette: Optional[bytes] = None,
+        palette: Optional[FrameBuffer] = None,
         /,
     ) -> None:
         """

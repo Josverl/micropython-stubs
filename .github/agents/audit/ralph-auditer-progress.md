@@ -27,7 +27,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\esp\__init__.pyi | done |  | Corrected deepsleep signature to support optional second arg from ports/esp8266/modesp.c |
 | reference\micropython\esp32\__init__.pyi | done |  | Corrected wake_on_ext0/ext1/gpio overloads (allow no-arg forms) and boolean level type from ports/esp32/modesp32.c |
 | reference\micropython\espnow\__init__.pyi | done |  | No API changes needed after review against ports/esp32/modules/espnow.py |
-| reference\micropython\framebuf\__init__.pyi | pending |  |  |
+| reference\micropython\framebuf\__init__.pyi | done |  | Corrected color-format constant types, poly() return type, and blit palette type from extmod/modframebuf.c |
 | reference\micropython\gc\__init__.pyi | done |  | collect() return typed as int|None to match MICROPY_PY_GC_COLLECT_RETVAL builds |
 | reference\micropython\gzip\__init__.pyi | done |  | Corrected function-based API and return types from micropython-lib gzip.py |
 | reference\micropython\hashlib\__init__.pyi | done |  | Removed duplicate overload blocks; API verified against extmod/modhashlib.c |
