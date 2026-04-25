@@ -110,5 +110,5 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\zephyr\__init__.pyi | done |  | Typed API from ports/zephyr/modzephyr.c: is_preempt_thread->bool, current_tid->int, thread_analyze(cpu)->None, shell_exec(str)->None. |
 | reference\micropython\zephyr\DiskAccess.pyi | done |  | Matched zephyr_storage.c: readblocks/writeblocks return int status, no offset overloads, ioctl returns int, and class disks tuple exported. |
 | reference\micropython\zephyr\FlashArea.pyi | done |  | Matched zephyr_storage.c: read/writeblocks return int status (with optional offset), ioctl int, typed ctor args, and areas mapping export. |
-| reference\micropython\zephyr\zsensor.pyi | pending |  |  |
+| reference\micropython\zephyr\zsensor.pyi | done |  | Added missing Sensor.attr_get_*/attr_set APIs and typed measure/get_* returns from ports/zephyr/modzsensor.c; added full exported channel and ATTR_* constants set from module globals. |
 | reference\micropython\zlib\__init__.pyi | done |  | Corrected compress/decompress signatures to micropython-lib zlib.py |
