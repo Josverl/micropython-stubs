@@ -68,7 +68,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\openamp\__init__.pyi | done |  | Added ENDPOINT_ADDR_ANY and corrected Endpoint.send/RemoteProc/new_service_callback signatures from extmod openamp sources |
 | reference\micropython\os\__init__.pyi | done |  | No API changes needed after review against extmod/modos.c and docs |
 | reference\micropython\platform\__init__.pyi | done |  | No API changes needed after review against extmod/modplatform.c |
-| reference\micropython\pyb\__init__.pyi | pending |  |  |
+| reference\micropython\pyb\__init__.pyi | done |  | Fixed top-level signature drift: removed leaked Timer/CAN overloads, added deprecated country alias, corrected unique_id bytes and setter arg types |
 | reference\micropython\pyb\Accel.pyi | pending |  |  |
 | reference\micropython\pyb\ADC.pyi | pending |  |  |
 | reference\micropython\pyb\CAN.pyi | pending |  |  |

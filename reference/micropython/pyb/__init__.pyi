@@ -132,7 +132,7 @@ def hard_reset() -> NoReturn:
     """
     ...
 
-def bootloader() -> None:
+def bootloader() -> NoReturn:
     """
     Activate the bootloader without BOOT* pins.
     """
@@ -372,18 +372,6 @@ def freq(sysclk: int, hclk: int, pclk1: int, pclk2: int, /) -> None:
     frequencies below 36MHz do not allow the USB to function correctly.
     """
 
-@overload
-def freq(self) -> int:
-    """
-    Get or set the frequency for the timer (changes prescaler and period if set).
-    """
-
-@overload
-def freq(self, value: int, /) -> None:
-    """
-    Get or set the frequency for the timer (changes prescaler and period if set).
-    """
-
 def wfi() -> None:
     """
     Wait for an internal or external interrupt.
@@ -459,54 +447,6 @@ def info() -> None:
 def info(dump_alloc_table: bytes, /) -> None:
     """
     Print out lots of information about the board.
-    """
-
-@overload
-def info(self) -> list[int]:
-    """
-    Get information about the controller's error states and TX and RX buffers.
-    If *list* is provided then it should be a list object with at least 8 entries,
-    which will be filled in with the information.  Otherwise a new list will be
-    created and filled in.  In both cases the return value of the method is the
-    populated list.
-
-    The values in the list are:
-
-    - TEC value
-    - REC value
-    - number of times the controller enterted the Error Warning state (wrapped
-      around to 0 after 65535)
-    - number of times the controller enterted the Error Passive state (wrapped
-      around to 0 after 65535)
-    - number of times the controller enterted the Bus Off state (wrapped
-      around to 0 after 65535)
-    - number of pending TX messages
-    - number of pending RX messages on fifo 0
-    - number of pending RX messages on fifo 1
-    """
-
-@overload
-def info(self, list: list[int], /) -> list[int]:
-    """
-    Get information about the controller's error states and TX and RX buffers.
-    If *list* is provided then it should be a list object with at least 8 entries,
-    which will be filled in with the information.  Otherwise a new list will be
-    created and filled in.  In both cases the return value of the method is the
-    populated list.
-
-    The values in the list are:
-
-    - TEC value
-    - REC value
-    - number of times the controller enterted the Error Warning state (wrapped
-      around to 0 after 65535)
-    - number of times the controller enterted the Error Passive state (wrapped
-      around to 0 after 65535)
-    - number of times the controller enterted the Bus Off state (wrapped
-      around to 0 after 65535)
-    - number of pending TX messages
-    - number of pending RX messages on fifo 0
-    - number of pending RX messages on fifo 1
     """
 
 def main(filename: str, /) -> None:
@@ -609,9 +549,23 @@ def repl_uart() -> UART | None:
     """
 
 @overload
-def repl_uart(uart: UART, /) -> None:
+def repl_uart(uart: UART | None, /) -> None:
     """
     Get or set the UART object where the REPL is repeated on.
+    """
+
+@deprecated("Use `network.country()` instead.")
+@overload
+def country() -> str | None:
+    """
+    Deprecated compatibility alias for :meth:`network.country`.
+    """
+
+@deprecated("Use `network.country()` instead.")
+@overload
+def country(code: str, /) -> None:
+    """
+    Deprecated compatibility alias for :meth:`network.country`.
     """
 
 def rng() -> int:
@@ -626,7 +580,7 @@ def sync() -> None:
     """
     ...
 
-def unique_id() -> str:
+def unique_id() -> bytes:
     """
     Returns a string of 12 bytes (96 bits), which is the unique ID of the MCU.
     """
@@ -677,7 +631,7 @@ def usb_mode() -> str:
 # noinspection PyShadowingNames
 @overload
 def usb_mode(
-    modestr: str,
+    modestr: str | None,
     /,
     *,
     port: int = -1,
