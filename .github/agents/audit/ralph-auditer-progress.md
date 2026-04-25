@@ -85,7 +85,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\Switch.pyi | done |  | Completed constructor stub body; API otherwise already matched ports/stm32/usrsw.c (call/value/callback). |
 | reference\micropython\pyb\Timer.pyi | done |  | Typed BRK_OFF/BRK_LOW/BRK_HIGH constants as int per ports/stm32/timer.c ROM_INT exports |
 | reference\micropython\pyb\UART.pyi | done |  | Aligned RTS/CTS constant types and stream signatures (readline/write, write buffer direction) with extmod/machine_uart.c + ports/stm32/machine_uart.c |
-| reference\micropython\pyb\USB_HID.pyi | pending |  |  |
+| reference\micropython\pyb\USB_HID.pyi | done |  | Corrected USB_HID.send return type to int bytes-sent per ports/stm32/usb.c |
 | reference\micropython\pyb\USB_VCP.pyi | pending |  |  |
 | reference\micropython\random\__init__.pyi | done |  | Corrected random/uniform return types and generic choice return |
 | reference\micropython\rp2\__init__.pyi | pending |  |  |
