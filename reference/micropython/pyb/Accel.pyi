@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Tuple
-
 class Accel:
     """
     Accel is an object that controls the accelerometer.  Example usage::
@@ -20,7 +18,7 @@ class Accel:
         Create and return an accelerometer object.
         """
 
-    def filtered_xyz(self) -> Tuple:
+    def filtered_xyz(self) -> tuple[int, int, int]:
         """
         Get a 3-tuple of filtered x, y and z values.
 
@@ -52,5 +50,17 @@ class Accel:
     def z(self) -> int:
         """
         Get the z-axis value.
+        """
+        ...
+
+    def read(self, reg: int, /) -> int:
+        """
+        Read an accelerometer register value.
+        """
+        ...
+
+    def write(self, reg: int, val: int, /) -> None:
+        """
+        Write an accelerometer register value.
         """
         ...
