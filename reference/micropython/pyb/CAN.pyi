@@ -5,8 +5,7 @@ from __future__ import annotations
 from collections.abc import Sequence
 from typing import Callable, overload
 
-from _mpy_shed import AnyWritableBuf
-from _typeshed import Incomplete
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
 class CAN:
     """
@@ -25,37 +24,37 @@ class CAN:
         can.recv(0)                 # receive message on FIFO 0
     """
 
-    NORMAL: Incomplete
+    NORMAL: int
     """The mode of the CAN bus used in :meth:`~CAN.init()`."""
-    LOOPBACK: Incomplete
+    LOOPBACK: int
     """The mode of the CAN bus used in :meth:`~CAN.init()`."""
-    SILENT: Incomplete
+    SILENT: int
     """The mode of the CAN bus used in :meth:`~CAN.init()`."""
-    SILENT_LOOPBACK: Incomplete
+    SILENT_LOOPBACK: int
     """The mode of the CAN bus used in :meth:`~CAN.init()`."""
-    STOPPED: Incomplete
+    STOPPED: int
     """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
-    ERROR_ACTIVE: Incomplete
+    ERROR_ACTIVE: int
     """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
-    ERROR_WARNING: Incomplete
+    ERROR_WARNING: int
     """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
-    ERROR_PASSIVE: Incomplete
+    ERROR_PASSIVE: int
     """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
-    BUS_OFF: Incomplete
+    BUS_OFF: int
     """Possible states of the CAN controller returned from :meth:`~CAN.state()`."""
-    LIST16: Incomplete
+    LIST16: int
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for classic CAN."""
-    MASK16: Incomplete
+    MASK16: int
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for classic CAN."""
-    LIST32: Incomplete
+    LIST32: int
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for classic CAN."""
-    MASK32: Incomplete
+    MASK32: int
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for classic CAN."""
-    DUAL: Incomplete
+    DUAL: int
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for CAN FD."""
-    RANGE: Incomplete
+    RANGE: int
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for CAN FD."""
-    MASK: Incomplete
+    MASK: int
     """The operation mode of a filter used in :meth:`~CAN.setfilter()` for CAN FD."""
     def __init__(
         self,
@@ -96,6 +95,13 @@ class CAN:
         auto_restart: bool = False,
         baudrate: int = 0,
         sample_point: int = 75,
+        num_filter_banks: int = 14,
+        brs_prescaler: int = 1,
+        brs_sjw: int = 1,
+        brs_bs1: int = 8,
+        brs_bs2: int = 3,
+        brs_baudrate: int = 0,
+        brs_sample_point: int = 0,
     ) -> None:
         """
         Initialise the CAN bus with the given parameters:
@@ -359,7 +365,7 @@ class CAN:
           otherwise a standard identifier (11 bits) is used.
         """
 
-    def clearfilter(self, bank: int, /) -> None:
+    def clearfilter(self, bank: int, /, *, extframe: bool = False) -> None:
         """
         Clear and disables a filter bank:
 
@@ -376,7 +382,7 @@ class CAN:
         ...
 
     @overload
-    def recv(self, fifo: int, /, *, timeout: int = 5000) -> tuple[int, bool, int, memoryview]:
+    def recv(self, fifo: int, /, *, timeout: int = 5000) -> list[int | bool | bytes | memoryview]:
         """
         Receive data on the bus:
 
@@ -412,7 +418,7 @@ class CAN:
         """
 
     @overload
-    def recv(self, fifo: int, list: None, /, *, timeout: int = 5000) -> tuple[int, bool, int, memoryview]:
+    def recv(self, fifo: int, list: None, /, *, timeout: int = 5000) -> list[int | bool | bytes | memoryview]:
         """
         Receive data on the bus:
 
@@ -448,7 +454,7 @@ class CAN:
         """
 
     @overload
-    def recv(self, fifo: int, list: list[int | bool | memoryview], /, *, timeout: int = 5000) -> None:
+    def recv(self, fifo: int, list: list[int | bool | memoryview], /, *, timeout: int = 5000) -> list[int | bool | memoryview]:
         """
         Receive data on the bus:
 
@@ -485,12 +491,15 @@ class CAN:
 
     def send(
         self,
-        data: int | AnyWritableBuf,
+        data: int | AnyReadableBuf,
         id: int,
         /,
         *,
         timeout: int = 0,
         rtr: bool = False,
+        extframe: bool = False,
+        fdf: bool = False,
+        brs: bool = False,
     ) -> None:
         """
         Send a message on the bus:
@@ -520,7 +529,7 @@ class CAN:
         """
         ...
 
-    def rxcallback(self, fifo: int, fun: Callable[[CAN], None], /) -> None:
+    def rxcallback(self, fifo: int, fun: Callable[[CAN, int], None], /) -> None:
         """
         Register a function to be called when a message is accepted into a empty fifo:
 

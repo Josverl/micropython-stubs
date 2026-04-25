@@ -71,7 +71,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\__init__.pyi | done |  | Fixed top-level signature drift: removed leaked Timer/CAN overloads, added deprecated country alias, corrected unique_id bytes and setter arg types |
 | reference\micropython\pyb\Accel.pyi | done |  | Added source-exposed read/write methods and tightened filtered_xyz tuple typing from stm32 accel.c |
 | reference\micropython\pyb\ADC.pyi | done |  | Corrected read_timed return type to int (bytes written) per ports/stm32/adc.c |
-| reference\micropython\pyb\CAN.pyi | pending |  |  |
+| reference\micropython\pyb\CAN.pyi | done |  | Added CAN-FD init/send/clearfilter kwargs; corrected recv return shape and callback/send buffer typing |
 | reference\micropython\pyb\DAC.pyi | pending |  |  |
 | reference\micropython\pyb\ExtInt.pyi | pending |  |  |
 | reference\micropython\pyb\Flash.pyi | pending |  |  |
