@@ -76,26 +76,36 @@ class Pin:
     gpio pins.
     """
 
-    ALT: Incomplete
+    ALT: int
     """initialise the pin to alternate-function mode for input or output"""
-    AF_OD: Incomplete
+    AF_OD: int
     """initialise the pin to alternate-function mode with an open-drain drive"""
-    AF_PP: Incomplete
+    AF_PP: int
     """initialise the pin to alternate-function mode with a push-pull drive"""
-    ANALOG: Incomplete
+    ANALOG: int
     """initialise the pin to analog mode"""
-    IN: Incomplete
+    IN: int
     """initialise the pin to input mode"""
-    OUT_OD: Incomplete
+    OPEN_DRAIN: int
     """initialise the pin to output mode with an open-drain drive"""
-    OUT_PP: Incomplete
+    OUT: int
     """initialise the pin to output mode with a push-pull drive"""
-    PULL_DOWN: Incomplete
+    OUT_OD: int
+    """initialise the pin to output mode with an open-drain drive"""
+    OUT_PP: int
+    """initialise the pin to output mode with a push-pull drive"""
+    ALT_OPEN_DRAIN: int
+    """initialise the pin to alternate-function mode with an open-drain drive"""
+    PULL_DOWN: int
     """enable the pull-down resistor on the pin"""
-    PULL_NONE: Incomplete
+    PULL_NONE: int
     """don't enable any pull up or down resistors on the pin"""
-    PULL_UP: Incomplete
+    PULL_UP: int
     """enable the pull-up resistor on the pin"""
+    IRQ_RISING: int
+    IRQ_FALLING: int
+    board: Incomplete
+    cpu: Incomplete
     def __init__(
         self,
         id: Pin | str | int,
@@ -232,6 +242,26 @@ class Pin:
             is set high, otherwise it is set low.
         """
 
+    def off(self) -> None:
+        ...
+
+    def on(self) -> None:
+        ...
+
+    def low(self) -> None:
+        ...
+
+    def high(self) -> None:
+        ...
+
+    @overload
+    def irq(self) -> None:
+        ...
+
+    @overload
+    def irq(self, *, handler: Callable[[Pin], None] | None = None, trigger: int = IRQ_RISING | IRQ_FALLING, hard: bool = False) -> None:
+        ...
+
     def __str__(self) -> str:
         """
         Return a string describing the pin object.
@@ -246,7 +276,7 @@ class Pin:
         """
         ...
 
-    def af_list(self) -> List:
+    def af_list(self) -> List[pinaf]:
         """
         Returns an array of alternate functions available for this pin.
         """
@@ -272,7 +302,7 @@ class Pin:
         """
         ...
 
-    def names(self) -> str:
+    def names(self) -> List[str]:
         """
         Returns the cpu and board names for this pin.
         """

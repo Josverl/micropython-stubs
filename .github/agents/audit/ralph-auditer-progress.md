@@ -75,10 +75,10 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\DAC.pyi | done |  | Typed DAC mode constants as int and corrected write_timed input buffer to readable |
 | reference\micropython\pyb\ExtInt.pyi | done | 71724f2ea | Added EVT_* constants and typed IRQ/EVT constants as int; callback allows None per extint.c constructor parsing |
 | reference\micropython\pyb\Flash.pyi | done | 30d4fd8b6 | Aligned readblocks/writeblocks to int status returns and generalized buffer mutability per storage.c |
-| reference\micropython\pyb\I2C.pyi | done |  | Fixed constructor/init signatures, send parameter, mem_write buffer direction, and scan typing per pyb_i2c.c |
-| reference\micropython\pyb\LCD.pyi | pending |  |  |
-| reference\micropython\pyb\LED.pyi | pending |  |  |
-| reference\micropython\pyb\Pin.pyi | pending |  |  |
+| reference\micropython\pyb\I2C.pyi | done | 008455d7d | Fixed constructor/init signatures, send parameter, mem_write buffer direction, and scan typing per pyb_i2c.c |
+| reference\micropython\pyb\LCD.pyi | done |  | No stub changes needed after review against ports/stm32/lcd.c locals dict and method signatures |
+| reference\micropython\pyb\LED.pyi | done |  | No stub changes needed after review against ports/stm32/led.c API (on/off/toggle/intensity) |
+| reference\micropython\pyb\Pin.pyi | done |  | Added missing Pin IRQ/on-off helpers and IRQ/OUT/OPEN_DRAIN constants; corrected names() to list[str] per ports/stm32/pin.c. |
 | reference\micropython\pyb\RTC.pyi | pending |  |  |
 | reference\micropython\pyb\Servo.pyi | pending |  |  |
 | reference\micropython\pyb\SPI.pyi | pending |  |  |
