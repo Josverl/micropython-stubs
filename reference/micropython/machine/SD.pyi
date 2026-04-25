@@ -34,7 +34,6 @@ class SD:
         self,
         id: int = 0,
         pins: tuple[str, str, str] | tuple[Pin, Pin, Pin] = ("GP10", "GP11", "GP15"),
-        /,
     ) -> None:
         """
         Create a SD card object. See ``init()`` for parameters if initialization.
@@ -44,7 +43,6 @@ class SD:
         self,
         id: int = 0,
         pins: tuple[str, str, str] | tuple[Pin, Pin, Pin] = ("GP10", "GP11", "GP15"),
-        /,
     ) -> None:
         """
         Enable the SD card. In order to initialize the card, give it a 3-tuple:

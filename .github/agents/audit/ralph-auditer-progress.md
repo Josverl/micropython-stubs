@@ -46,8 +46,8 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\machine\Pin.pyi | done |  | Typed Pin mode/pull/IRQ constants as int, irq() return as _IRQ, and toggle() as None |
 | reference\micropython\machine\PWM.pyi | done |  | Added invert kwarg to constructor/init per machine.PWM docs; cleaned stale imports |
 | reference\micropython\machine\RTC.pyi | done |  | Typed ALARM0 as int, fixed RTC.memory read/write overloads, and relaxed irq return to _IRQ|None |
-| reference\micropython\machine\SD.pyi |pending |  |  |
-| reference\micropython\machine\SDCard.pyi |pending |  |  |
+| reference\micropython\machine\SD.pyi | done |  | Removed positional-only marker so documented keyword args (e.g. pins=...) type-check |
+| reference\micropython\machine\SDCard.pyi | done |  | Added documented cmd/data kwargs; removed unused imports |
 | reference\micropython\machine\Signal.pyi |pending |  |  |
 | reference\micropython\machine\SPI.pyi |pending |  |  |
 | reference\micropython\machine\Timer.pyi |pending |  |  |
