@@ -3,12 +3,10 @@
 from __future__ import annotations
 
 from typing import overload
-from typing_extensions import TypeAlias
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from _typeshed import Incomplete
 
-from machine.Pin import Pin, PinLike
+from machine.Pin import PinLike
 
 class SPI:
     """
@@ -64,11 +62,11 @@ class SPI:
             cs(1)                               # Deselect peripheral.
     """
 
-    CONTROLLER: Incomplete
+    CONTROLLER: int
     """for initialising the SPI bus to controller; this is only used for the WiPy"""
-    MSB: Incomplete
+    MSB: int
     """set the first bit to be the most significant bit"""
-    LSB: Incomplete
+    LSB: int
     """set the first bit to be the least significant bit"""
     @overload
     def __init__(self, id: int, /):
@@ -215,7 +213,7 @@ class SPI:
         """
         ...
 
-    def readinto(self, buf: AnyWritableBuf, write: int = 0x00, /) -> int:
+    def readinto(self, buf: AnyWritableBuf, write: int = 0x00, /) -> int | None:
         """
         Read into the buffer specified by ``buf`` while continuously writing the
         single byte given by ``write``.
@@ -225,7 +223,7 @@ class SPI:
         """
         ...
 
-    def write(self, buf: AnyReadableBuf, /) -> int:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the bytes contained in ``buf``.
         Returns ``None``.
@@ -234,7 +232,7 @@ class SPI:
         """
         ...
 
-    def write_readinto(self, write_buf: AnyReadableBuf, read_buf: AnyWritableBuf, /) -> int:
+    def write_readinto(self, write_buf: AnyReadableBuf, read_buf: AnyWritableBuf, /) -> int | None:
         """
         Write the bytes from ``write_buf`` while reading into ``read_buf``.  The
         buffers can be the same or different, but both buffers must have the
@@ -252,9 +250,9 @@ class SoftSPI(SPI):
     to initialise the bus.  See `SPI.init` for a description of the parameters.
     """
 
-    MSB: Incomplete
+    MSB: int
     """set the first bit to be the most significant bit"""
-    LSB: Incomplete
+    LSB: int
     """set the first bit to be the least significant bit"""
     def __init__(
         self,

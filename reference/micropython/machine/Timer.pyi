@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing import Callable, overload
 
-from _typeshed import Incomplete
-
 class Timer:
     """
     Hardware timers deal with timing of periods and events. Timers are perhaps
@@ -29,9 +27,9 @@ class Timer:
     instead of this class.
     """
 
-    ONE_SHOT: Incomplete
+    ONE_SHOT: int
     """Timer operating mode."""
-    PERIODIC: Incomplete
+    PERIODIC: int
     """Timer operating mode."""
     @overload
     def __init__(self, id: int, /):

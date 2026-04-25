@@ -48,13 +48,13 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\machine\RTC.pyi | done |  | Typed ALARM0 as int, fixed RTC.memory read/write overloads, and relaxed irq return to _IRQ|None |
 | reference\micropython\machine\SD.pyi | done |  | Removed positional-only marker so documented keyword args (e.g. pins=...) type-check |
 | reference\micropython\machine\SDCard.pyi | done |  | Added documented cmd/data kwargs; removed unused imports |
-| reference\micropython\machine\Signal.pyi |pending |  |  |
-| reference\micropython\machine\SPI.pyi |pending |  |  |
-| reference\micropython\machine\Timer.pyi |pending |  |  |
-| reference\micropython\machine\TimerWiPy.pyi |pending |  |  |
-| reference\micropython\machine\UART.pyi |pending |  |  |
-| reference\micropython\machine\USBDevice.pyi |pending |  |  |
-| reference\micropython\machine\WDT.pyi |pending |  |  |
+| reference\micropython\machine\Signal.pyi | done |  | Added explicit __init__ return typing; removed unused import |
+| reference\micropython\machine\SPI.pyi | done |  | Set constants to int; adjusted read/write return types for cross-port None|int behavior |
+| reference\micropython\machine\Timer.pyi | done |  | ONE_SHOT/PERIODIC constants typed as int |
+| reference\micropython\machine\TimerWiPy.pyi | done |  | Added mode/trigger constants and tightened channel/irq/freq typing |
+| reference\micropython\machine\UART.pyi | done |  | Added INV_TX/INV_RX and flow-control kwargs (flow/rts/cts); flush->None |
+| reference\micropython\machine\USBDevice.pyi | done |  | Normalized BUILTIN_CDC_MSC as descriptor object type |
+| reference\micropython\machine\WDT.pyi | done |  | No change; signature already matches docs (id/timeout constructor + feed) |
 | reference\micropython\math\__init__.pyi | done |  | Added log(x, base) overload and precise modf tuple typing |
 | reference\micropython\micropython\__init__.pyi | done |  | Removed duplicate TypeVar import; API review against py/modmicropython.c |
 | reference\micropython\neopixel\__init__.pyi | done |  | No API changes needed after review against neopixel driver/docs |

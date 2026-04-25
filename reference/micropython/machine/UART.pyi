@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import Callable, overload
 
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
-from _typeshed import Incomplete
 from machine.Pin import PinLike
 from typing_extensions import TypeAlias
 
@@ -44,6 +43,8 @@ class UART:
     """
 
     IDLE: int = ...
+    INV_TX: int = ...
+    INV_RX: int = ...
 
     RTS: int = 1
     """\
@@ -98,6 +99,9 @@ class UART:
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
+        flow: int | None = None,
+        rts: PinLike | None = None,
+        cts: PinLike | None = None,
     ):
         """
         Construct a UART object of the given id.
@@ -151,6 +155,9 @@ class UART:
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
+        flow: int | None = None,
+        rts: PinLike | None = None,
+        cts: PinLike | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -425,7 +432,7 @@ class UART:
         """
         ...
 
-    def flush(self) -> Incomplete:
+    def flush(self) -> None:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
         duration depends on the tx buffer size and the baud rate. Unless flow control is enabled, a timeout
