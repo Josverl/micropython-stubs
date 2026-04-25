@@ -1,7 +1,7 @@
 from typing import List
 from machine import Pin
 
-from _typeshed import Incomplete
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
 class OneWireError(Exception): ...
 
@@ -19,41 +19,41 @@ class OneWire:
         """
         ...
 
-    def scan(self) -> List[Incomplete]:
+    def scan(self) -> List[bytearray]:
         """Return a list of devices on the bus."""
         ...
 
-    def reset(self, required: bool = False):
+    def reset(self, required: bool = False) -> bool:
         """Reset the bus."""
         ...
 
-    def readbyte(self) -> Incomplete:
+    def readbyte(self) -> int:
         """Read a byte from the bus."""
         ...
 
-    def readbit(self) -> Incomplete:
+    def readbit(self) -> int:
         """Read a bit from the bus."""
         ...
 
-    def readinto(self, buf: Incomplete) -> None:
+    def readinto(self, buf: AnyWritableBuf) -> None:
         """"""
         ...
 
-    def writebyte(self, value: Incomplete):
+    def writebyte(self, value: int) -> None:
         """Write a byte on the bus."""
         ...
 
-    def writebit(self, value: Incomplete):
+    def writebit(self, value: int) -> None:
         """Write a bit on the bus."""
         ...
 
-    def write(self, buf: Incomplete) -> None:
+    def write(self, buf: AnyReadableBuf) -> None:
         """Write a buffer on the bus."""
         ...
 
-    def select_rom(self, rom: Incomplete) -> None:
+    def select_rom(self, rom: AnyReadableBuf) -> None:
         """ "Select a specific device by its ROM code."""
         ...
 
-    def crc8(self, data: Incomplete) -> Incomplete: ...
-    def _search_rom(self, l_rom, diff): ...
+    def crc8(self, data: AnyReadableBuf) -> int: ...
+    def _search_rom(self, l_rom: bytearray | bool | None, diff: int) -> tuple[bytearray | None, int]: ...

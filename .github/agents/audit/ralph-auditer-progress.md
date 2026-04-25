@@ -64,10 +64,10 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\network\WIZNET5K.pyi | done |  | No API changes needed after network-family review against v1.28 sources/docs |
 | reference\micropython\network\WLAN.pyi | done |  | No API changes needed after network-family review against v1.28 sources/docs |
 | reference\micropython\network\WLANWiPy.pyi | done |  | No API changes needed after network-family review against v1.28 sources/docs |
-| reference\micropython\onewire\__init__.pyi | pending |  |  |
-| reference\micropython\openamp\__init__.pyi | pending |  |  |
-| reference\micropython\os\__init__.pyi | pending |  |  |
-| reference\micropython\platform\__init__.pyi | pending |  |  |
+| reference\micropython\onewire\__init__.pyi | done |  | Tightened scan/reset/read/write/CRC typings to match micropython-lib onewire driver |
+| reference\micropython\openamp\__init__.pyi | done |  | Added ENDPOINT_ADDR_ANY and corrected Endpoint.send/RemoteProc/new_service_callback signatures from extmod openamp sources |
+| reference\micropython\os\__init__.pyi | done |  | No API changes needed after review against extmod/modos.c and docs |
+| reference\micropython\platform\__init__.pyi | done |  | No API changes needed after review against extmod/modplatform.c |
 | reference\micropython\pyb\__init__.pyi | pending |  |  |
 | reference\micropython\pyb\Accel.pyi | pending |  |  |
 | reference\micropython\pyb\ADC.pyi | pending |  |  |
