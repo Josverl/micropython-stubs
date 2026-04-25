@@ -5,6 +5,8 @@ from __future__ import annotations
 from typing import overload
 from typing_extensions import deprecated
 
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+
 from vfs import AbstractBlockDev
 
 class Flash(AbstractBlockDev):
@@ -39,7 +41,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: bytearray) -> bool:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf) -> int:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -49,7 +51,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int) -> int:
         """
         The second form allows reading at arbitrary locations within a block,
         and arbitrary lengths.
@@ -59,7 +61,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf, /) -> int:
         """
         The first form writes aligned, multiples of blocks, and requires that the
         blocks that are written to be first erased (if necessary) by this method.
@@ -70,7 +72,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf, offset: int, /) -> int:
         """
         The second form allows writing at arbitrary locations within a block,
         and arbitrary lengths.  Only the bytes being written should be changed,
