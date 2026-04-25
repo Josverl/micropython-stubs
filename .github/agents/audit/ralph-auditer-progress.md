@@ -16,19 +16,19 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\asyncio\lock.pyi | done |  | Corrected acquire and async context manager return annotations |
 | reference\micropython\asyncio\stream.pyi | done |  | Corrected stream/server function return annotations from extmod/asyncio/stream.py |
 | reference\micropython\asyncio\task.pyi | done |  | No API changes needed after review against extmod/asyncio/task.py and extmod/modasyncio.c |
-| reference\micropython\binascii\__init__.pyi | pending |  |  |
+| reference\micropython\binascii\__init__.pyi | done |  | Added b2a_base64 newline kwarg from extmod/modbinascii.c |
 | reference\micropython\bluetooth\__init__.pyi | pending |  |  |
 | reference\micropython\btree\__init__.pyi | pending |  |  |
 | reference\micropython\cmath\__init__.pyi | pending |  |  |
 | reference\micropython\collections\__init__.pyi | pending |  |  |
 | reference\micropython\cryptolib\__init__.pyi | pending |  |  |
 | reference\micropython\deflate\__init__.pyi | pending |  |  |
-| reference\micropython\errno\__init__.pyi | pending |  |  |
+| reference\micropython\errno\__init__.pyi | done |  | No API changes needed after review against py/moderrno.c |
 | reference\micropython\esp\__init__.pyi | pending |  |  |
 | reference\micropython\esp32\__init__.pyi | pending |  |  |
 | reference\micropython\espnow\__init__.pyi | pending |  |  |
 | reference\micropython\framebuf\__init__.pyi | pending |  |  |
-| reference\micropython\gc\__init__.pyi | pending |  |  |
+| reference\micropython\gc\__init__.pyi | done |  | collect() return typed as int|None to match MICROPY_PY_GC_COLLECT_RETVAL builds |
 | reference\micropython\gzip\__init__.pyi | pending |  |  |
 | reference\micropython\hashlib\__init__.pyi | pending |  |  |
 | reference\micropython\heapq\__init__.pyi | pending |  |  |
@@ -55,7 +55,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\machine\UART.pyi | pending |  |  |
 | reference\micropython\machine\USBDevice.pyi | pending |  |  |
 | reference\micropython\machine\WDT.pyi | pending |  |  |
-| reference\micropython\math\__init__.pyi | pending |  |  |
+| reference\micropython\math\__init__.pyi | done |  | Added log(x, base) overload and precise modf tuple typing |
 | reference\micropython\micropython\__init__.pyi | pending |  |  |
 | reference\micropython\neopixel\__init__.pyi | pending |  |  |
 | reference\micropython\network\__init__.pyi | pending |  |  |
@@ -87,7 +87,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\UART.pyi | pending |  |  |
 | reference\micropython\pyb\USB_HID.pyi | pending |  |  |
 | reference\micropython\pyb\USB_VCP.pyi | pending |  |  |
-| reference\micropython\random\__init__.pyi | pending |  |  |
+| reference\micropython\random\__init__.pyi | done |  | Corrected random/uniform return types and generic choice return |
 | reference\micropython\rp2\__init__.pyi | pending |  |  |
 | reference\micropython\rp2\asm_pio.pyi | pending |  |  |
 | reference\micropython\rp2\DMA.pyi | pending |  |  |
