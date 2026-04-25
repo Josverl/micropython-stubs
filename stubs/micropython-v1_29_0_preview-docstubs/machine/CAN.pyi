@@ -2,8 +2,14 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import List
+from typing import Any, Callable, Iterable, List
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from _mpy_shed import _IRQ
+
+__CANFilter: TypeAlias = tuple[int, int, int] | list[int]
+__CANRecvResult: TypeAlias = list[int | memoryview]
+__CANCounters: TypeAlias = list[int | None]
+__CANTimings: TypeAlias = list[int | list[int] | None]
 
 class CAN:
     """
@@ -135,8 +141,17 @@ class CAN:
     """Additional IRQ event flags for `CAN.IRQ_TX`. See `machine_can_irq_flags`."""
     IRQ_TX_IDX_MASK: Incomplete
     """Additional IRQ event flags for `CAN.IRQ_TX`. See `machine_can_irq_flags`."""
-    def __init__(self, id, *args, **kwargs) -> None: ...
-    def init(self, bitrate, mode=MODE_NORMAL, sample_point=75, sjw=1, tseg1=None, tseg2=None) -> None:
+    def __init__(self, id: int, *args: int, **kwargs: Any) -> None: ...
+    def init(
+        self,
+        bitrate: int,
+        mode: int = MODE_NORMAL,
+        sample_point: int = 75,
+        sjw: int = 1,
+        tseg1: int | None = None,
+        tseg2: int | None = None,
+        **kwargs: Any,
+    ) -> None:
         """
         Initialise the CAN bus with the given parameters:
 
@@ -176,7 +191,7 @@ class CAN:
                   keyword parameters for hardware-specific features such as oversampling.
         """
         ...
-    def set_filters(self, filters) -> Incomplete:
+    def set_filters(self, filters: Iterable[__CANFilter] | None) -> None:
         """
         Set receive filters in the CAN controller. *filters* can be:
 
@@ -234,7 +249,7 @@ class CAN:
                            (0x50700, 0x1FFF_FFFF, CAN.FLAG_EXT_ID)))
         """
         ...
-    def send(self, id, data, flags=0) -> int:
+    def send(self, id: int, data: bytes | bytearray | memoryview, flags: int = 0) -> int:
         """
         Copy a new CAN message into the controller's hardware transmit queue to be
         sent onto the bus. The transmit queue is a priority queue sorted on CAN
@@ -269,7 +284,7 @@ class CAN:
            caller can establish a software queue of outgoing messages.
         """
         ...
-    def recv(self, arg=None) -> None:
+    def recv(self, arg: list[Any] | None = None) -> None:
         """
         Return a CAN message that has been received by the controller, according to
         filters set by :func:`CAN.set_filters`.
@@ -330,7 +345,7 @@ class CAN:
                     time.sleep_ms(1)  # not a good pattern, use the irq instead!
         """
         ...
-    def irq(self, handler=None, trigger=0, hard=False) -> irq:
+    def irq(self, handler: Callable[[CAN], None] | None = None, trigger: int = 0, hard: bool = False) -> irq:
         """
         Sets an interrupt *handler* function to be called when one or more of the
         events flagged in *trigger* has occurred.
@@ -363,7 +378,7 @@ class CAN:
         See `machine_can_irq_flags` for an example.
         """
         ...
-    def cancel_send(self, index) -> Incomplete:
+    def cancel_send(self, index: int) -> bool:
         """
         Request the CAN controller to cancel sending a message onto the bus.
 
@@ -393,7 +408,7 @@ class CAN:
         :func:`CAN.restart()`.
         """
         ...
-    def get_counters(self, list=None, /) -> None:
+    def get_counters(self, list: __CANCounters | None = None, /) -> None:
         """
          Returns controller's error counter values. The result is a list of eight
          values. If the optional *list* parameter is specified then the provided
@@ -417,7 +432,7 @@ class CAN:
                   ``None`` for that list element.
         """
         ...
-    def get_timings(self, list=None, /) -> List:
+    def get_timings(self, list: __CANTimings | None = None, /) -> List:
         """
         Returns a list of elements indicating the current timings configured in the
         CAN controller. This can be used to verify timings for debugging purposes.
@@ -450,7 +465,7 @@ class CAN:
                   internals and may not be accurate.
         """
         ...
-    def restart(self) -> Incomplete:
+    def restart(self) -> None:
         """
         Causes the controller to exit `STATE_BUS_OFF` without clearing any other
         internal state. Also clears some of the error counters (always the number
