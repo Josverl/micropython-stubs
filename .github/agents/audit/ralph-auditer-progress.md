@@ -80,7 +80,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\LED.pyi | done |  | No stub changes needed after review against ports/stm32/led.c API (on/off/toggle/intensity) |
 | reference\micropython\pyb\Pin.pyi | done |  | Added missing Pin IRQ/on-off helpers and IRQ/OUT/OPEN_DRAIN constants; corrected names() to list[str] per ports/stm32/pin.c. |
 | reference\micropython\pyb\RTC.pyi | done |  | Restored missing method bodies, added init(), precise datetime tuple typing, and wakeup overloads for (None|ms|wucksel,wut) per ports/stm32/rtc.c. |
-| reference\micropython\pyb\Servo.pyi | pending |  |  |
+| reference\micropython\pyb\Servo.pyi | done |  | Replaced duplicate/incomplete overload set; aligned angle/speed/pulse_width/calibration signatures to ports/stm32/servo.c argument counts and returns. |
 | reference\micropython\pyb\SPI.pyi | pending |  |  |
 | reference\micropython\pyb\Switch.pyi | pending |  |  |
 | reference\micropython\pyb\Timer.pyi | pending |  |  |
