@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing import Callable
 
-from _typeshed import Incomplete
-
 from .Pin import Pin
 
 class ExtInt:
@@ -54,18 +52,24 @@ class ExtInt:
     usrsw.h for an example of using this.
     """
 
-    IRQ_FALLING: Incomplete
+    IRQ_FALLING: int
     """interrupt on a falling edge"""
-    IRQ_RISING: Incomplete
+    IRQ_RISING: int
     """interrupt on a rising edge"""
-    IRQ_RISING_FALLING: Incomplete
+    IRQ_RISING_FALLING: int
     """interrupt on a rising or falling edge"""
+    EVT_RISING: int
+    """event on a rising edge"""
+    EVT_FALLING: int
+    """event on a falling edge"""
+    EVT_RISING_FALLING: int
+    """event on a rising or falling edge"""
     def __init__(
         self,
         pin: int | str | Pin,
         mode: int,
         pull: int,
-        callback: Callable[[int], None],
+        callback: Callable[[int], None] | None,
     ) -> None:
         """
         Create an ExtInt object:

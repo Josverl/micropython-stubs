@@ -73,7 +73,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\ADC.pyi | done |  | Corrected read_timed return type to int (bytes written) per ports/stm32/adc.c |
 | reference\micropython\pyb\CAN.pyi | done |  | Added CAN-FD init/send/clearfilter kwargs; corrected recv return shape and callback/send buffer typing |
 | reference\micropython\pyb\DAC.pyi | done |  | Typed DAC mode constants as int and corrected write_timed input buffer to readable |
-| reference\micropython\pyb\ExtInt.pyi | pending |  |  |
+| reference\micropython\pyb\ExtInt.pyi | done |  | Added EVT_* constants and typed IRQ/EVT constants as int; callback allows None per extint.c constructor parsing |
 | reference\micropython\pyb\Flash.pyi | pending |  |  |
 | reference\micropython\pyb\I2C.pyi | pending |  |  |
 | reference\micropython\pyb\LCD.pyi | pending |  |  |
