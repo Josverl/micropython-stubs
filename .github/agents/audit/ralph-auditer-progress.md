@@ -37,24 +37,24 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\json\__init__.pyi | done |  | No API changes needed after review against extmod/modjson.c |
 | reference\micropython\lcd160cr\__init__.pyi | done |  | Corrected constants/member types and orient/startup-deco signatures to match micropython-lib lcd160cr.py |
 | reference\micropython\machine\__init__.pyi | done |  | Added optional PinBase/DAC/I2CTarget/dht_readinto exports from extmod/modmachine.c globals |
-| reference\micropython\machine\ADC.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\ADCBlock.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\ADCWiPy.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\CAN.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\I2C.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\I2S.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\Pin.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\PWM.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\RTC.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\SD.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\SDCard.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\Signal.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\SPI.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\Timer.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\TimerWiPy.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\UART.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\USBDevice.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
-| reference\micropython\machine\WDT.pyi | done |  | No API changes needed after machine-family review against v1.28 sources/docs |
+| reference\micropython\machine\ADC.pyi | pending |  |  |
+| reference\micropython\machine\ADCBlock.pyi |pending |  |  |
+| reference\micropython\machine\ADCWiPy.pyi |pending |  |  |
+| reference\micropython\machine\CAN.pyi |pending |  |  |
+| reference\micropython\machine\I2C.pyi |pending |  |  |
+| reference\micropython\machine\I2S.pyi |pending |  |  |
+| reference\micropython\machine\Pin.pyi |pending |  |  |
+| reference\micropython\machine\PWM.pyi |pending |  |  |
+| reference\micropython\machine\RTC.pyi |pending |  |  |
+| reference\micropython\machine\SD.pyi |pending |  |  |
+| reference\micropython\machine\SDCard.pyi |pending |  |  |
+| reference\micropython\machine\Signal.pyi |pending |  |  |
+| reference\micropython\machine\SPI.pyi |pending |  |  |
+| reference\micropython\machine\Timer.pyi |pending |  |  |
+| reference\micropython\machine\TimerWiPy.pyi |pending |  |  |
+| reference\micropython\machine\UART.pyi |pending |  |  |
+| reference\micropython\machine\USBDevice.pyi |pending |  |  |
+| reference\micropython\machine\WDT.pyi |pending |  |  |
 | reference\micropython\math\__init__.pyi | done |  | Added log(x, base) overload and precise modf tuple typing |
 | reference\micropython\micropython\__init__.pyi | done |  | Removed duplicate TypeVar import; API review against py/modmicropython.c |
 | reference\micropython\neopixel\__init__.pyi | done |  | No API changes needed after review against neopixel driver/docs |
