@@ -42,7 +42,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\machine\ADCWiPy.pyi | done |  | Corrected channel return/callable channel object typing and removed misplaced ADCWiPy.adcchannel method per cc3200 pybadc.c |
 | reference\micropython\machine\CAN.pyi | done |  | Tightened enum/flag constant types to int to match extmod/machine_can.c ROM_INT exports |
 | reference\micropython\machine\I2C.pyi | done |  | Added constructor timeout kwarg, tightened scan() to list[int], and typed SoftI2C constructor pins/kwargs per machine.I2C docs |
-| reference\micropython\machine\I2S.pyi |pending |  |  |
+| reference\micropython\machine\I2S.pyi | done |  | Added optional mck kwarg, typed constants as int, and made shift signature keyword-only per machine.I2S docs |
 | reference\micropython\machine\Pin.pyi |pending |  |  |
 | reference\micropython\machine\PWM.pyi |pending |  |  |
 | reference\micropython\machine\RTC.pyi |pending |  |  |
