@@ -38,7 +38,7 @@ class ADC:
         """
         ...
 
-    def read_timed(self, buf: AnyWritableBuf, timer: Timer | int, /) -> None:
+    def read_timed(self, buf: AnyWritableBuf, timer: Timer | int, /) -> int:
         """
         Read analog values into ``buf`` at a rate set by the ``timer`` object.
 
