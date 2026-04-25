@@ -26,7 +26,7 @@ from typing import List, overload
 
 from _typeshed import Incomplete
 
-from _mpy_shed import _BlockDeviceProtocol
+from _mpy_shed import AnyReadableBuf, _BlockDeviceProtocol
 
 from abc import ABC, abstractmethod
 
@@ -108,6 +108,14 @@ class VfsPosix:
     """
 
     def __init__(self, root: str | None = None) -> None: ...
+
+
+class VfsRom:
+    """
+    Create a filesystem object that accesses a ROMFS image from a readable buffer.
+    """
+
+    def __init__(self, memory: AnyReadableBuf) -> None: ...
 
 
 
@@ -237,7 +245,7 @@ def mount() -> List[tuple[Incomplete, str]]:
     ...
     
 
-def umount(mount_point: Incomplete) -> Incomplete:
+def umount(mount_point: Incomplete) -> None:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
     or a previously-mounted filesystem object.  During the unmount process the
@@ -246,3 +254,19 @@ def umount(mount_point: Incomplete) -> Incomplete:
     Will raise ``OSError(EINVAL)`` if *mount_point* is not found.
     """
     ...
+
+
+@overload
+def rom_ioctl(op: int, /) -> Incomplete: ...
+
+
+@overload
+def rom_ioctl(op: int, arg: int, /) -> Incomplete: ...
+
+
+@overload
+def rom_ioctl(op: int, arg: int, length: int, /) -> Incomplete: ...
+
+
+@overload
+def rom_ioctl(op: int, arg: int, offset: int, buf: AnyReadableBuf, /) -> Incomplete: ...
