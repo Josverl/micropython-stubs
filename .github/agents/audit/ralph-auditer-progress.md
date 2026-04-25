@@ -89,11 +89,11 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\pyb\USB_VCP.pyi | done |  | Typed RTS/CTS/IRQ_RX as int and aligned readline/recv/send signatures to ports/stm32/usb.c stream + VCP APIs |
 | reference\micropython\random\__init__.pyi | done |  | Corrected random/uniform return types and generic choice return |
 | reference\micropython\rp2\__init__.pyi | done |  | Added optional deprecated country() alias overloads from ports/rp2/modrp2.c (exports mod_network_country_obj when CYW43 enabled) |
-| reference\micropython\rp2\asm_pio.pyi | done |  | Aligned pull/mov helper signatures to ports/rp2/modules/rp2.py (`pull(value,value2)`, `mov(dest,src)`) |
-| reference\micropython\rp2\DMA.pyi | done |  | Added register attrs, made unpack_ctrl static, and aligned constructor/config kwargs to ports/rp2/rp2_dma.c |
-| reference\micropython\rp2\Flash.pyi | done |  | Aligned constructor kwargs and block API buffer/return typing to ports/rp2/rp2_flash.c |
-| reference\micropython\rp2\PIO.pyi | done |  | Added gpio_base API, made state_machine program optional, and set irq trigger default to 0xF00 per rp2_pio.c |
-| reference\micropython\rp2\PIOASMEmit.pyi | done |  | Added side_pindir kwarg and aligned pull/mov signatures to ports/rp2/modules/rp2.py PIOASMEmit methods |
+| reference\micropython\rp2\asm_pio.pyi | done | a1e543cf4 | Aligned pull/mov helper signatures to ports/rp2/modules/rp2.py (`pull(value,value2)`, `mov(dest,src)`) |
+| reference\micropython\rp2\DMA.pyi | done | 4d801f0fb | Added register attrs, made unpack_ctrl static, and aligned constructor/config kwargs to ports/rp2/rp2_dma.c |
+| reference\micropython\rp2\Flash.pyi | done | 12edf5eec | Aligned constructor kwargs and block API buffer/return typing to ports/rp2/rp2_flash.c |
+| reference\micropython\rp2\PIO.pyi | done | 2fe8e9cf6 | Added gpio_base API, made state_machine program optional, and set irq trigger default to 0xF00 per rp2_pio.c |
+| reference\micropython\rp2\PIOASMEmit.pyi | done | 3d1b9e308 | Added side_pindir kwarg and aligned pull/mov signatures to ports/rp2/modules/rp2.py PIOASMEmit methods |
 | reference\micropython\rp2\StateMachine.pyi | pending |  |  |
 | reference\micropython\select\__init__.pyi | pending |  |  |
 | reference\micropython\socket\__init__.pyi | pending |  |  |
