@@ -35,7 +35,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\io\__init__.pyi | done |  | Added missing IOBase and BufferedWriter exports; removed conflicting AnyReadableBuf/AnyWritableBuf redefinitions |
 | reference\micropython\jsffi\__init__.pyi | done |  | Removed non-exported __version__ and relaxed JsException/JsProxy construction to match ports/webassembly implementation |
 | reference\micropython\json\__init__.pyi | done |  | No API changes needed after review against extmod/modjson.c |
-| reference\micropython\lcd160cr\__init__.pyi | pending |  |  |
+| reference\micropython\lcd160cr\__init__.pyi | done |  | Corrected constants/member types and orient/startup-deco signatures to match micropython-lib lcd160cr.py |
 | reference\micropython\machine\__init__.pyi | pending |  |  |
 | reference\micropython\machine\ADC.pyi | pending |  |  |
 | reference\micropython\machine\ADCBlock.pyi | pending |  |  |

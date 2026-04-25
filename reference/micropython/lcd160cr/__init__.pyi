@@ -14,28 +14,27 @@ from typing import Any, Tuple, overload
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
-from machine.SPI import SPI
 from pyb import I2C, SPI, Pin
 
-PORTRAIT: Incomplete
+PORTRAIT: int
 """Orientations of the display, used by :meth:`LCD160CR.set_orient`."""
-LANDSCAPE: Incomplete
+LANDSCAPE: int
 """Orientations of the display, used by :meth:`LCD160CR.set_orient`."""
-PORTRAIT_UPSIDEDOWN: Incomplete
+PORTRAIT_UPSIDEDOWN: int
 """Orientations of the display, used by :meth:`LCD160CR.set_orient`."""
-LANDSCAPE_UPSIDEDOWN: Incomplete
+LANDSCAPE_UPSIDEDOWN: int
 """Orientations of the display, used by :meth:`LCD160CR.set_orient`."""
-STARTUP_DECO_NONE: Incomplete
+STARTUP_DECO_NONE: int
 """\
 Types of start-up decoration, can be OR'ed together, used by
 :meth:`LCD160CR.set_startup_deco`.
 """
-STARTUP_DECO_MLOGO: Incomplete
+STARTUP_DECO_MLOGO: int
 """\
 Types of start-up decoration, can be OR'ed together, used by
 :meth:`LCD160CR.set_startup_deco`.
 """
-STARTUP_DECO_INFO: Incomplete
+STARTUP_DECO_INFO: int
 """\
 Types of start-up decoration, can be OR'ed together, used by
 :meth:`LCD160CR.set_startup_deco`.
@@ -60,15 +59,15 @@ class LCD160CR:
         print('touch:', lcd.get_touch())
     """
 
-    w: Incomplete
-    h: Incomplete
+    w: int
+    h: int
     """\
     The width and height of the display, respectively, in pixels.  These
     members are updated when calling :meth:`LCD160CR.set_orient` and should
     be considered read-only.
     """
     @overload
-    def __init__(self, connect: str, /):
+    def __init__(self, connect: str | None = None, /):
         """
         Construct an LCD160CR object.  The parameters are:
 
@@ -165,7 +164,7 @@ class LCD160CR:
         """
         ...
 
-    def set_orient(self, orient: str, /) -> None:
+    def set_orient(self, orient: int, /) -> None:
         """
         Set the orientation of the display.  The *orient* parameter can be one
         of `PORTRAIT`, `LANDSCAPE`, `PORTRAIT_UPSIDEDOWN`, `LANDSCAPE_UPSIDEDOWN`.
@@ -191,7 +190,7 @@ class LCD160CR:
         """
         ...
 
-    def set_startup_deco(self, value: bool | str, /) -> None:
+    def set_startup_deco(self, value: int, /) -> None:
         """
         Set the start-up decoration of the display.  The *value* parameter can be a
         logical or of `STARTUP_DECO_NONE`, `STARTUP_DECO_MLOGO`, `STARTUP_DECO_INFO`.
