@@ -1,8 +1,10 @@
 """Pytest configuration file for snippets tests.
 
 - snip_path_fx
-  Creates an isolated per-test workspace with symlinks to the feature folder files.
-  Each test gets its own directory so multiple tests can run in parallel without conflicts.
+  Creates an isolated per-test workspace by *copying* the feature folder files.
+  Source files are copied (not symlinked) so that pyright's project-root discovery
+  always resolves relative to the workspace rather than the original folder.
+  Only ``typings/`` remains a symlink to the shared stub cache.
 
 - type_stub_cache_path_fx
   Session-scoped fixture that installs type stubs once per (version, portboard, stub_source)
@@ -200,6 +202,16 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
         print(f"{e.stderr}")
         pytest.skip(f"{e.stderr}")
         return False
+
+    # _mpy_shed is gitignored inside publish/micropython-stdlib-stubs/ (generated
+    # from reference/ by build.py) so it is absent in a fresh clone.  Copy it from
+    # the reference folder when it is missing so that type stubs that import from
+    # _mpy_shed (e.g. stdlib/sys/__init__.pyi) can be resolved correctly.
+    _mpy_shed_src = pytestconfig.inipath.parent / "reference" / "_mpy_shed"
+    _mpy_shed_dst = tsc_path / "_mpy_shed"
+    if _mpy_shed_src.exists() and not _mpy_shed_dst.exists():
+        shutil.copytree(_mpy_shed_src, _mpy_shed_dst)
+
     return True
 
 
@@ -209,7 +221,7 @@ def snip_path_fx(feature: str, tmp_path: Path, pytestconfig: pytest.Config) -> P
     Create an isolated per-test workspace based on the feat_<feature> or check_<feature> folder.
 
     Each test receives a unique temporary directory that contains:
-    - symlinks to all source files in the original feature folder, and
+    - real copies of all source files from the original feature folder, and
     - config files copied from _configs/ (pyproject.toml, etc.).
 
     The ``typings/`` sub-directory is intentionally omitted here; it is added by
@@ -238,22 +250,22 @@ def snip_path_fx(feature: str, tmp_path: Path, pytestconfig: pytest.Config) -> P
 
     workspace = tmp_path
 
-    # Symlink all files / sub-directories from the feature folder, skipping
-    # previously generated artefacts that should not bleed into the workspace.
+    # Copy all files / sub-directories from the feature folder into the workspace
+    # as REAL filesystem entries (not symlinks).
+    #
+    # Why not symlinks?  Pyright resolves symlinked directories to their real paths
+    # before performing project-root discovery, so it would end up looking for
+    # ``typings/`` next to the *original* feature folder rather than in the
+    # workspace.  Copying the source files avoids that resolution entirely.
     _SKIP_NAMES = {"typings", "typecheck_lock.file"}
     for item in source_path.iterdir():
         if item.name in _SKIP_NAMES:
             continue
         dest = workspace / item.name
-        try:
-            dest.symlink_to(item.resolve())
-        except (OSError, NotImplementedError):
-            # Fallback for platforms where symlinks are restricted (e.g. Windows
-            # without developer mode).
-            if item.is_dir():
-                shutil.copytree(item, dest)
-            else:
-                shutil.copy2(item, dest)
+        if item.is_dir():
+            shutil.copytree(item, dest)
+        else:
+            shutil.copy2(item, dest)
 
     # Copy per-folder type-checker config files from _configs/ so that each
     # workspace is self-contained and can be used directly from the command line.
