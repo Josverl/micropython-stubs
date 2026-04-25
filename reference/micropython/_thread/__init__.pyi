@@ -11,7 +11,7 @@ This module is highly experimental and its API is not yet fully settled
 and not yet described in this documentation.
 """
 
-from typing import Callable, NoReturn, Optional, Tuple
+from typing import Any, Callable, NoReturn, Optional, Tuple, overload
 
 def get_ident() -> int:
     """\
@@ -21,7 +21,7 @@ def get_ident() -> int:
     """
     ...
 
-def start_new_thread(function: Callable, args: Tuple) -> None:
+def start_new_thread(function: Callable[..., Any], args: Tuple[Any, ...], kwargs: Optional[dict[str, Any]] = None) -> int:
     """
     Start a new thread. The thread executes the function function with the argument list args (which must be a tuple). The optional kwargs argument specifies a dictionary of keyword arguments.
     When the function returns, the thread silently exits.
@@ -31,7 +31,15 @@ def start_new_thread(function: Callable, args: Tuple) -> None:
     """
     ...
 
-def stack_size(size: Optional[int] = 0) -> int:
+@overload
+def stack_size() -> int:
+    ...
+
+@overload
+def stack_size(size: int, /) -> int:
+    ...
+
+def stack_size(size: int = 0) -> int:
     """\
     Return the thread stack size used when creating new threads. 
     The optional size argument specifies the stack size to be used for subsequently created threads, and must be 0 (use platform or configured default) 
@@ -50,6 +58,8 @@ def allocate_lock() -> lock:  # Lock object
     Return a new lock object. The lock is initially unlocked.
     """
     ...
+
+LockType: type
 
 class lock:
     def __init__(self) -> None:
@@ -75,4 +85,10 @@ class lock:
         """
         Return the status of the lock: True if it has been acquired by some thread, False if not.
         """
+        ...
+
+    def __enter__(self) -> bool:
+        ...
+
+    def __exit__(self, exc_type: Any, exc: Any, tb: Any) -> None:
         ...
