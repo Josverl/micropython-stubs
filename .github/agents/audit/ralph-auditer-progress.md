@@ -29,12 +29,12 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\espnow\__init__.pyi | pending |  |  |
 | reference\micropython\framebuf\__init__.pyi | pending |  |  |
 | reference\micropython\gc\__init__.pyi | done |  | collect() return typed as int|None to match MICROPY_PY_GC_COLLECT_RETVAL builds |
-| reference\micropython\gzip\__init__.pyi | pending |  |  |
-| reference\micropython\hashlib\__init__.pyi | pending |  |  |
-| reference\micropython\heapq\__init__.pyi | pending |  |  |
+| reference\micropython\gzip\__init__.pyi | done |  | Corrected function-based API and return types from micropython-lib gzip.py |
+| reference\micropython\hashlib\__init__.pyi | done |  | Removed duplicate overload blocks; API verified against extmod/modhashlib.c |
+| reference\micropython\heapq\__init__.pyi | done |  | Removed duplicate TypeVar declaration; API verified against extmod/modheapq.c |
 | reference\micropython\io\__init__.pyi | pending |  |  |
 | reference\micropython\jsffi\__init__.pyi | pending |  |  |
-| reference\micropython\json\__init__.pyi | pending |  |  |
+| reference\micropython\json\__init__.pyi | done |  | No API changes needed after review against extmod/modjson.c |
 | reference\micropython\lcd160cr\__init__.pyi | pending |  |  |
 | reference\micropython\machine\__init__.pyi | pending |  |  |
 | reference\micropython\machine\ADC.pyi | pending |  |  |
@@ -99,7 +99,7 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\socket\__init__.pyi | pending |  |  |
 | reference\micropython\ssl\__init__.pyi | pending |  |  |
 | reference\micropython\stm\__init__.pyi | pending |  |  |
-| reference\micropython\struct\__init__.pyi | pending |  |  |
+| reference\micropython\struct\__init__.pyi | done |  | No API changes needed after review against py/modstruct.c |
 | reference\micropython\sys\__init__.pyi | pending |  |  |
 | reference\micropython\time\__init__.pyi | pending |  |  |
 | reference\micropython\tls\__init__.pyi | pending |  |  |
@@ -111,4 +111,4 @@ Status values: pending | in_progress | done | skipped | blocked
 | reference\micropython\zephyr\DiskAccess.pyi | pending |  |  |
 | reference\micropython\zephyr\FlashArea.pyi | pending |  |  |
 | reference\micropython\zephyr\zsensor.pyi | pending |  |  |
-| reference\micropython\zlib\__init__.pyi | pending |  |  |
+| reference\micropython\zlib\__init__.pyi | done |  | Corrected compress/decompress signatures to micropython-lib zlib.py |
