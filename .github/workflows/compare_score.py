@@ -60,17 +60,21 @@ def update_var(var_name: str, value: str):
     response.raise_for_status()
 
 
-if new_scores["snippet_score"] < current_scores["snippet_score"]:
-    msg = f"The snippet_score has decreased from {current_scores['snippet_score']} to {new_scores['snippet_score']}"
+# Safely extract snippet_score with fallback (file may not exist if all tests skipped or failed)
+new_snippet_score = new_scores.get("snippet_score", 0)
+current_snippet_score = current_scores.get("snippet_score", 0)
+
+if new_snippet_score < current_snippet_score:
+    msg = f"The snippet_score has decreased from {current_snippet_score} to {new_snippet_score}"
     print(msg)
     add_summary(msg, current_scores, new_scores)
     exit(1)  # Fail the test
-elif new_scores["snippet_score"] == current_scores["snippet_score"]:
-    msg = f"The snippet_score has not changed from {current_scores['snippet_score']}"
+elif new_snippet_score == current_snippet_score:
+    msg = f"The snippet_score has not changed from {current_snippet_score}"
     print(msg)
     add_summary(msg, current_scores, new_scores)
-elif new_scores["snippet_score"] > current_scores["snippet_score"]:
-    msg = f"The snippet_score has improved to {new_scores['snippet_score']}"
+elif new_snippet_score > current_snippet_score:
+    msg = f"The snippet_score has improved to {new_snippet_score}"
     print(msg)
     add_summary(msg, current_scores, new_scores)
     if os.getenv("GITHUB_REF_NAME", "main") == "main":
