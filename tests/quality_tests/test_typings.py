@@ -4,9 +4,11 @@ import logging
 import re
 import shutil
 import subprocess
+import time
 import urllib.request
 from pathlib import Path
 
+import fasteners
 import pytest
 from test_snippets import SOURCES, run_typechecker
 
@@ -17,6 +19,12 @@ log = logging.getLogger()
 
 HERE = Path(__file__).parent.absolute()
 _docker = None
+
+# Cache for the Docker Hub tag list, shared across pytest-xdist workers so every
+# worker collects the same parametrization (otherwise xdist aborts with
+# "Different tests were collected between gw0 and gwN"). 24h TTL.
+_DOCKER_TAGS_CACHE_FILE = HERE / ".docker_tags_cache.json"
+_DOCKER_TAGS_CACHE_TTL = 24 * 60 * 60
 
 # Fallback list of known micropython/unix Docker image versions (used when Docker Hub is unreachable)
 _KNOWN_UNIX_VERSIONS = [
@@ -39,6 +47,9 @@ def get_unix_docker_versions(minver: str = "v1.20.0") -> list:
 
     Falls back to a known static list when Docker Hub is unreachable.
 
+    Result is cached to a JSON file (24h TTL) under an inter-process lock so
+    every pytest-xdist worker computes the same parametrization matrix.
+
     Note: Fetches up to 100 tags. The micropython/unix image currently has far fewer
     than 100 version tags, so pagination is not required.
 
@@ -53,17 +64,62 @@ def get_unix_docker_versions(minver: str = "v1.20.0") -> list:
     min_version = Version(minver.lstrip("v"))
     version_pattern = re.compile(r"^v\d+\.\d+(\.\d+)?$")
 
-    try:
-        url = "https://hub.docker.com/v2/repositories/micropython/unix/tags?page_size=100"
-        with urllib.request.urlopen(url, timeout=10) as response:
-            data = json.loads(response.read().decode())
-        tags = [entry["name"] for entry in data.get("results", [])]
-    except Exception:
-        log.warning("Could not fetch micropython/unix tags from Docker Hub; using fallback list", exc_info=True)
-        tags = _KNOWN_UNIX_VERSIONS
+    def _filter_and_sort(tags):
+        versions = [
+            t for t in tags if version_pattern.match(t) and Version(t.lstrip("v")) >= min_version
+        ]
+        return sorted(versions, key=lambda v: Version(v.lstrip("v")))
 
-    versions = [t for t in tags if version_pattern.match(t) and Version(t.lstrip("v")) >= min_version]
-    return sorted(versions, key=lambda v: Version(v.lstrip("v")))
+    # Fast path: file cache fresh.
+    try:
+        if _DOCKER_TAGS_CACHE_FILE.exists():
+            data = json.loads(_DOCKER_TAGS_CACHE_FILE.read_text())
+            if (
+                time.time() - float(data.get("ts", 0)) < _DOCKER_TAGS_CACHE_TTL
+                and data.get("minver") == minver
+            ):
+                tags = data.get("tags")
+                if isinstance(tags, list) and tags:
+                    return _filter_and_sort(tags)
+    except Exception:
+        pass
+
+    # Slow path: serialize Docker Hub call across workers.
+    lock = fasteners.InterProcessLock(str(_DOCKER_TAGS_CACHE_FILE) + ".lock")
+    with lock:
+        try:
+            if _DOCKER_TAGS_CACHE_FILE.exists():
+                data = json.loads(_DOCKER_TAGS_CACHE_FILE.read_text())
+                if (
+                    time.time() - float(data.get("ts", 0)) < _DOCKER_TAGS_CACHE_TTL
+                    and data.get("minver") == minver
+                ):
+                    tags = data.get("tags")
+                    if isinstance(tags, list) and tags:
+                        return _filter_and_sort(tags)
+        except Exception:
+            pass
+
+        try:
+            url = "https://hub.docker.com/v2/repositories/micropython/unix/tags?page_size=100"
+            with urllib.request.urlopen(url, timeout=10) as response:
+                data = json.loads(response.read().decode())
+            tags = [entry["name"] for entry in data.get("results", [])]
+        except Exception:
+            log.warning(
+                "Could not fetch micropython/unix tags from Docker Hub; using fallback list",
+                exc_info=True,
+            )
+            tags = list(_KNOWN_UNIX_VERSIONS)
+
+        try:
+            _DOCKER_TAGS_CACHE_FILE.write_text(
+                json.dumps({"ts": time.time(), "minver": minver, "tags": tags})
+            )
+        except Exception:
+            pass
+
+        return _filter_and_sort(tags)
 
 
 @functools.lru_cache()
@@ -98,7 +154,9 @@ def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Confi
 @pytest.mark.parametrize("mp_version", get_unix_docker_versions(), scope="session")
 @pytest.mark.parametrize("feature", ["stdlib"], scope="session")
 @pytest.mark.parametrize(
-    "check_file", set([f.name for f in (HERE / "feat_typing").glob("check_*.py")]), scope="session"
+    "check_file",
+    sorted({f.name for f in (HERE / "feat_typing").glob("check_*.py")}),
+    scope="session",
 )
 @pytest.mark.parametrize("snip_path_fx", [HERE / "feat_typing"], scope="session")
 def test_typing_runtime(

@@ -11,3 +11,5 @@ feat_*/pyrightconfig.json
 # matrix stable across pytest-xdist workers.
 .versions_cache.json
 .versions_cache.json.lock
+.docker_tags_cache.json
+.docker_tags_cache.json.lock
