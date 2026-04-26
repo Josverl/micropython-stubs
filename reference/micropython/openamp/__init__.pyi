@@ -33,8 +33,9 @@ Example usage::
 # origin module:: repos/micropython/docs/library/openamp.rst
 from __future__ import annotations
 
-from _typeshed import Incomplete
-from typing import Callable, Optional
+from typing import Callable
+
+ENDPOINT_ADDR_ANY: int
 
 class Endpoint:
     """
@@ -56,12 +57,12 @@ class Endpoint:
 
     def __init__(
         self,
-        name,
-        callback: Callable,
-        src: Optional[Incomplete] = None,
-        dest: Optional[Incomplete] = None,
+        name: str,
+        callback: Callable | None = None,
+        src: int = ENDPOINT_ADDR_ANY,
+        dest: int = ENDPOINT_ADDR_ANY,
     ) -> None: ...
-    def deinit(self) -> Incomplete:
+    def deinit(self) -> None:
         """
         Destroy the endpoint and release all of its resources.
         """
@@ -73,7 +74,7 @@ class Endpoint:
         """
         ...
 
-    def send(self, src=-1, dest=-1, timeout=-1) -> None:
+    def send(self, data, /, *, src: int = -1, dest: int = -1, timeout: int = -1) -> int:
         """
         Send a message to the remote processor over this endpoint.
 
@@ -99,7 +100,7 @@ class RemoteProc:
     """
 
     def __init__(self, entry) -> None: ...
-    def start(self) -> Incomplete:
+    def start(self) -> None:
         """
         Starts the remote processor.
         """
@@ -113,7 +114,7 @@ class RemoteProc:
         """
         ...
 
-    def shutdown(self) -> Incomplete:
+    def shutdown(self) -> None:
         """
         Shutdown stops the remote processor and releases all of its resources. The exact behavior
         is platform-dependent, however typically it disables power and clocks to the remote core.
@@ -123,7 +124,7 @@ class RemoteProc:
         """
         ...
 
-def new_service_callback(ns_callback: Callable) -> None:
+def new_service_callback(ns_callback: Callable | None) -> None:
     """
     Set the new service callback.
 

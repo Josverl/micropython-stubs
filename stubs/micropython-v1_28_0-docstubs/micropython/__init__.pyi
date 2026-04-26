@@ -8,7 +8,7 @@ MicroPython module: https://docs.micropython.org/en/v1.28.0/library/micropython.
 # origin module:: repos/micropython/docs/library/micropython.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, Callable, Optional, Tuple
+from typing import TypeVar, overload, Any, Callable, Optional, Tuple
 from typing_extensions import ParamSpec, TypeVar, TypeAlias, Awaitable
 from typing import Tuple
 from typing_extensions import TypeVar

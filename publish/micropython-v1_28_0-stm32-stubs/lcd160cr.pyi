@@ -94,7 +94,7 @@ class LCD160CR:
         Load the entire screen from the given buffer.
         """
         ...
-    def set_orient(self, orient: str, /) -> None:
+    def set_orient(self, orient: int, /) -> None:
         """
         Set the orientation of the display.  The *orient* parameter can be one
         of `PORTRAIT`, `LANDSCAPE`, `PORTRAIT_UPSIDEDOWN`, `LANDSCAPE_UPSIDEDOWN`.
@@ -186,7 +186,7 @@ class LCD160CR:
         used when you know that the coordinates are within the display.
         """
         ...
-    def set_startup_deco(self, value: bool | str, /) -> None:
+    def set_startup_deco(self, value: int, /) -> None:
         """
         Set the start-up decoration of the display.  The *value* parameter can be a
         logical or of `STARTUP_DECO_NONE`, `STARTUP_DECO_MLOGO`, `STARTUP_DECO_INFO`.
@@ -451,7 +451,7 @@ class LCD160CR:
         """
         ...
     @overload
-    def __init__(self, connect: str, /):
+    def __init__(self, connect: str | None = None, /):
         """
         Construct an LCD160CR object.  The parameters are:
 

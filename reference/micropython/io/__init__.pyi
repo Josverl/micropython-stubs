@@ -84,15 +84,31 @@ from typing import TypeVar, overload
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, IOBase_mp, PathLike, TextIOWrapper, FileIO
 from _mpy_shed.io_modes import _OpenBinaryMode, _OpenTextModeWriting
-from typing_extensions import TypeVar
 
 _T = TypeVar("_T")
 AnyStr_co = TypeVar("AnyStr_co", str, bytes, covariant=True)
 StrOrBytesPath = TypeVar("StrOrBytesPath", str, bytes, PathLike[str], PathLike[bytes])
 _OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int)
-AnyReadableBuf = TypeVar("AnyReadableBuf", bytearray, array, memoryview, bytes)
-AnyWritableBuf = TypeVar("AnyWritableBuf", bytearray, array, memoryview)
 _Self = TypeVar("_Self")
+
+class IOBase(IOBase_mp):
+    """
+    Generic stream base class.
+    """
+
+class BufferedWriter(IOBase_mp):
+    """
+    Write-buffering wrapper available on builds with MICROPY_PY_IO_BUFFEREDWRITER.
+    """
+
+    def __init__(self, stream: IOBase_mp, alloc: int, /) -> None:
+        ...
+
+    def write(self, buf: AnyReadableBuf, /) -> int:
+        ...
+
+    def flush(self) -> None:
+        ...
 
 class StringIO(IOBase_mp):
     """

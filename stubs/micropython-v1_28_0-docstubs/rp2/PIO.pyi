@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, Literal, Any, Optional
+from typing import Callable, Literal, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
+from machine import Pin
 from rp2.StateMachine import StateMachine
 
 _PIO_ASM_Program: TypeAlias = Callable
@@ -63,7 +64,7 @@ class PIO:
     IRQ_SM3: Incomplete
     """These constants are used for the *trigger* argument to `PIO.irq`."""
     def __init__(self, id: int) -> None: ...
-    def gpio_base(self, base: Optional[Any] = None) -> Incomplete:
+    def gpio_base(self, base: int | Pin | None = None) -> Pin:
         """
         Query and optionally set the current GPIO base for this PIO instance.
 
@@ -93,7 +94,7 @@ class PIO:
         It is not an error to remove a program which has already been removed.
         """
         ...
-    def state_machine(self, id: int, program: _PIO_ASM_Program, **kwargs) -> StateMachine:
+    def state_machine(self, id: int, program: _PIO_ASM_Program | None = None, **kwargs) -> StateMachine:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
         four state machines, numbered 0 to 3.
@@ -107,7 +108,7 @@ class PIO:
     def irq(
         self,
         handler: Optional[Callable[[PIO], None]] = None,
-        trigger: _IRQ_TRIGGERS | None = None,
+        trigger: _IRQ_TRIGGERS = 0xF00,
         hard: bool = False,
     ) -> _IRQ:
         """

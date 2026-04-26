@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin
-from machine.Pin import Pin, PinLike
+from machine.Pin import PinLike
 from typing import Any, Callable
 
 ID_T: TypeAlias = int | str
@@ -97,6 +97,7 @@ class I2S:
         sck: PinLike,
         ws: PinLike,
         sd: PinLike,
+        mck: PinLike | None = None,
         mode: int,
         bits: int,
         format: int,
@@ -136,6 +137,7 @@ class I2S:
         sck: PinLike,
         ws: PinLike,
         sd: PinLike,
+        mck: PinLike | None = None,
         mode: int,
         bits: int,
         format: int,
@@ -188,10 +190,10 @@ class I2S:
         ...
     @staticmethod
     def shift(
+        *,
         buf: AnyWritableBuf,
         bits: int,
         shift: int,
-        /,
     ) -> None:
         """
         bitwise shift of all samples contained in ``buf``. ``bits`` specifies sample size in bits. ``shift`` specifies the number of bits to shift each sample.

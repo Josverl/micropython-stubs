@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import overload
 
-from _mpy_shed import AnyWritableBuf
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
 
 class UART:
@@ -49,9 +49,9 @@ class UART:
     Earlier versions use ``uart.send`` and ``uart.recv``.
     """
 
-    RTS: Incomplete
+    RTS: int
     """to select the flow control type."""
-    CTS: Incomplete
+    CTS: int
     """to select the flow control type."""
     @overload
     def __init__(self, bus: int | str, /):
@@ -152,7 +152,7 @@ class UART:
         flow: int = 0,
         timeout_char: int = 0,
         read_buf_len: int = 64,
-    ):
+    ) -> None:
         """
         Initialise the UART bus with the given parameters:
 
@@ -252,7 +252,7 @@ class UART:
         timeout.
         """
 
-    def readline(self) -> None:
+    def readline(self) -> bytes | None:
         """
         Read a line, ending in a newline character. If such a line exists, return is
         immediate. If the timeout elapses, all available data is returned regardless
@@ -262,7 +262,7 @@ class UART:
         """
         ...
 
-    def write(self, buf: AnyWritableBuf, /) -> int:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the buffer of bytes to the bus.  If characters are 7 or 8 bits wide
         then each byte is one character.  If characters are 9 bits wide then two

@@ -12,11 +12,11 @@ ports.
 # origin module:: repos/micropython/docs/library/esp.rst
 from __future__ import annotations
 
-from typing import Any, Optional, overload
+from typing import overload
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from _typeshed import Incomplete
 
+# ESP8266-only API.
 # noinspection PyShadowingNames
 @overload
 def sleep_type(sleep_type: int, /) -> None:
@@ -38,6 +38,7 @@ def sleep_type(sleep_type: int, /) -> None:
 
     The system enters the set sleep mode automatically when possible.
     """
+    ...
 
 # noinspection PyShadowingNames
 @overload
@@ -60,8 +61,9 @@ def sleep_type() -> int:
 
     The system enters the set sleep mode automatically when possible.
     """
+    ...
 
-def deepsleep(time_us: int = 0, /) -> None:
+def deepsleep(time_us: int = 0, option: int = 0, /) -> None:
     """
     **Note**: ESP8266 only - use `machine.deepsleep()` on ESP32
 
@@ -94,6 +96,9 @@ def flash_user_start() -> int:
     """
     ...
 
+# flash_read has a port-specific signature difference:
+# - ESP8266 supports reading by explicit length and returns bytes.
+# - ESP32 supports buffer reads only.
 @overload
 def flash_read(byte_offset: int, length_or_buffer: int, /) -> bytes:
     """
@@ -102,6 +107,7 @@ def flash_read(byte_offset: int, length_or_buffer: int, /) -> bytes:
     If a buffer is given: reads the buf length of bytes and writes them into the buffer.
     Note: esp32 doesn't support passing a length, just a buffer.
     """
+    ...
 
 @overload
 def flash_read(byte_offset: int, length_or_buffer: AnyWritableBuf, /) -> None:
@@ -111,6 +117,7 @@ def flash_read(byte_offset: int, length_or_buffer: AnyWritableBuf, /) -> None:
     If a buffer is given: reads the buf length of bytes and writes them into the buffer.
     Note: esp32 doesn't support passing a length, just a buffer.
     """
+    ...
 
 def flash_write(byte_offset: int, bytes: AnyReadableBuf, /) -> None:
     """
@@ -122,7 +129,15 @@ def flash_erase(sector_no: int, /) -> None:
     Erases the given *sector* of flash memory.
     """
 
-def osdebug(uart_no, level: Optional[Any] = None) -> Incomplete:
+# osdebug differs by port:
+# - ESP8266 supports one argument: uart_no | None.
+# - ESP32 supports one or two args: uart_no plus optional level.
+@overload
+def osdebug(uart_no: int | None, /) -> None:
+    ...
+
+@overload
+def osdebug(uart_no: int, level: int, /) -> None:
     """
     :no-index:
 
@@ -201,6 +216,7 @@ def set_native_code_location(start: None, length: None, /) -> None:
     will lead to `MemoryError` exception being raised during compilation of
     that function.
     """
+    ...
 
 @overload
 def set_native_code_location(start: int, length: int, /) -> None:
@@ -241,3 +257,47 @@ def set_native_code_location(start: int, length: int, /) -> None:
     will lead to `MemoryError` exception being raised during compilation of
     that function.
     """
+    ...
+
+# ESP32-only API.
+def gpio_matrix_in(pin: int, sig: int, inv: int, /) -> None:
+    ...
+
+def gpio_matrix_out(pin: int, sig: int, out_inv: int, oen_inv: int, /) -> None:
+    ...
+
+# ESP8266-only API.
+def freemem() -> int:
+    ...
+
+def meminfo() -> None:
+    ...
+
+def check_fw() -> bool:
+    ...
+
+def malloc(size: int, /) -> int:
+    ...
+
+def free(addr: int, /) -> None:
+    ...
+
+def esf_free_bufs(idx: int, /) -> int:
+    ...
+
+# ESP8266-only, compile-time optional (MICROPY_ESP8266_APA102).
+def apa102_write(clockPin: int, dataPin: int, buf: AnyReadableBuf, /) -> None:
+    ...
+
+# ESP8266-only constants.
+SLEEP_NONE: int
+SLEEP_LIGHT: int
+SLEEP_MODEM: int
+
+# ESP32-only constants.
+LOG_NONE: int
+LOG_ERROR: int
+LOG_WARNING: int
+LOG_INFO: int
+LOG_DEBUG: int
+LOG_VERBOSE: int

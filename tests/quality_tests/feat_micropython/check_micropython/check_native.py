@@ -12,6 +12,8 @@ def bar(self, arg) -> int:
     # code
     return 1
 
-
-reveal_type(foo) 
-reveal_type(bar) 
+try:
+    reveal_type(foo)
+    reveal_type(bar)
+except Exception as e:
+    pass

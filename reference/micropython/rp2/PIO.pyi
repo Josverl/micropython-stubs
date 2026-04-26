@@ -7,6 +7,7 @@ from __future__ import annotations
 from typing import Callable, Final, Literal, Optional
 
 from _mpy_shed import _IRQ
+from machine import Pin
 from rp2.StateMachine import StateMachine
 from typing_extensions import TypeAlias
 
@@ -70,7 +71,16 @@ class PIO:
     IRQ_SM3: int = 0x800
 
 
-    def __init__(self, id:int) -> None: ...
+    def __init__(self, id: int) -> None: ...
+
+    def gpio_base(self, base: int | Pin | None = None) -> Pin:
+        """
+        Query and optionally set the current GPIO base for this PIO instance.
+
+        This API is available when the port is built with GPIO base support.
+        """
+        ...
+
     def add_program(self, program: _PIO_ASM_Program) -> None:
         """
         Add the *program* to the instruction memory of this PIO instance.
@@ -91,7 +101,7 @@ class PIO:
         """
         ...
 
-    def state_machine(self, id: int, program: _PIO_ASM_Program, **kwargs) -> StateMachine:
+    def state_machine(self, id: int, program: _PIO_ASM_Program | None = None, **kwargs) -> StateMachine:
         """
         Gets the state machine numbered *id*. On the RP2040, each PIO instance has
         four state machines, numbered 0 to 3.
@@ -106,7 +116,7 @@ class PIO:
     def irq(
         self,
         handler: Optional[Callable[[PIO], None]] = None,
-        trigger: _IRQ_TRIGGERS | None = None,
+        trigger: _IRQ_TRIGGERS = 0xF00,
         hard: bool = False,
     ) -> _IRQ:
         """

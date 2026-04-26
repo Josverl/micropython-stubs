@@ -18,7 +18,7 @@ for this module.
 # origin module:: repos/micropython/docs/library/math.rst
 from __future__ import annotations
 
-from typing import SupportsFloat, Tuple
+from typing import SupportsFloat, overload
 
 e: float
 """base of the natural logarithm"""
@@ -188,12 +188,17 @@ def lgamma(x: SupportsFloat, /) -> float:
     """
     ...
 
+@overload
 def log(x: SupportsFloat, /) -> float:
     """
     With one argument, return the natural logarithm of *x*.
 
     With two arguments, return the logarithm of *x* to the given *base*.
     """
+    ...
+
+@overload
+def log(x: SupportsFloat, base: SupportsFloat, /) -> float:
     ...
 
 def log10(x: SupportsFloat, /) -> float:
@@ -208,7 +213,7 @@ def log2(x: SupportsFloat, /) -> float:
     """
     ...
 
-def modf(x: SupportsFloat, /) -> Tuple:
+def modf(x: SupportsFloat, /) -> tuple[float, float]:
     """
     Return a tuple of two floats, being the fractional and integral parts of
     ``x``.  Both return values have the same sign as ``x``.

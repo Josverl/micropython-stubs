@@ -14,7 +14,7 @@ Module: 'esp' on micropython-v1.28.0-esp32-ESP32_GENERIC_S3
 # MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC_S3', 'board_id': 'ESP32_GENERIC_S3', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32S3', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import Any, Optional, overload, Final
+from typing import overload, Final
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from typing_extensions import Awaitable, TypeAlias, TypeVar
@@ -25,8 +25,56 @@ LOG_VERBOSE: Final[int] = 5
 LOG_DEBUG: Final[int] = 4
 LOG_INFO: Final[int] = 3
 LOG_ERROR: Final[int] = 1
+SLEEP_NONE: int
+SLEEP_LIGHT: int
+SLEEP_MODEM: int
 
-def osdebug(uart_no, level: Optional[Any] = None) -> Incomplete:
+# osdebug differs by port:
+# - ESP8266 supports one argument: uart_no | None.
+# - ESP32 supports one or two args: uart_no plus optional level.
+@overload
+def osdebug(uart_no: int | None, /) -> None:
+    """
+    :no-index:
+
+    ``Note:`` This is the ESP32 form of this function.
+
+    Change the level of OS serial debug log messages. On boot, OS
+    serial debug log messages are limited to Error output only.
+
+    The behaviour of this function depends on the arguments passed to it. The
+    following combinations are supported:
+
+    ``osdebug(None)`` restores the default OS debug log message level
+    (``LOG_ERROR``).
+
+    ``osdebug(0)`` enables all available OS debug log messages (in the
+    default build configuration this is ``LOG_INFO``).
+
+    ``osdebug(0, level)`` sets the OS debug log message level to the
+     specified value. The log levels are defined as constants:
+
+        * ``LOG_NONE`` -- No log output
+        * ``LOG_ERROR`` -- Critical errors, software module can not recover on its own
+        * ``LOG_WARN`` -- Error conditions from which recovery measures have been taken
+        * ``LOG_INFO`` -- Information messages which describe normal flow of events
+        * ``LOG_DEBUG`` -- Extra information which is not necessary for normal use (values, pointers, sizes, etc)
+        * ``LOG_VERBOSE`` -- Bigger chunks of debugging information, or frequent messages
+          which can potentially flood the output
+
+    ``Note:`` ``LOG_DEBUG`` and ``LOG_VERBOSE`` are not compiled into the
+              MicroPython binary by default, to save size. A custom build with a
+              modified "``sdkconfig``" source file is needed to see any output
+              at these log levels.
+
+    ``Note:`` Log output on ESP32 is automatically suspended in "Raw REPL" mode,
+              to prevent communications issues. This means OS level logging is never
+              seen when using ``mpremote run`` and similar tools.
+    """
+    ...
+
+@overload
+def osdebug(uart_no: int, level: int, /) -> None:
     """
     :no-index:
 
@@ -86,6 +134,9 @@ def flash_erase(sector_no: int, /) -> None:
     """
     ...
 
+# flash_read has a port-specific signature difference:
+# - ESP8266 supports reading by explicit length and returns bytes.
+# - ESP32 supports buffer reads only.
 @overload
 def flash_read(byte_offset: int, length_or_buffer: int, /) -> bytes:
     """
@@ -94,6 +145,7 @@ def flash_read(byte_offset: int, length_or_buffer: int, /) -> bytes:
     If a buffer is given: reads the buf length of bytes and writes them into the buffer.
     Note: esp32 doesn't support passing a length, just a buffer.
     """
+    ...
 
 @overload
 def flash_read(byte_offset: int, length_or_buffer: AnyWritableBuf, /) -> None:
@@ -103,6 +155,7 @@ def flash_read(byte_offset: int, length_or_buffer: AnyWritableBuf, /) -> None:
     If a buffer is given: reads the buf length of bytes and writes them into the buffer.
     Note: esp32 doesn't support passing a length, just a buffer.
     """
+    ...
 
 def flash_size() -> int:
     """
@@ -110,6 +163,7 @@ def flash_size() -> int:
     """
     ...
 
+# ESP8266-only API.
 # noinspection PyShadowingNames
 @overload
 def sleep_type(sleep_type: int, /) -> None:
@@ -131,6 +185,7 @@ def sleep_type(sleep_type: int, /) -> None:
 
     The system enters the set sleep mode automatically when possible.
     """
+    ...
 
 # noinspection PyShadowingNames
 @overload
@@ -153,6 +208,7 @@ def sleep_type() -> int:
 
     The system enters the set sleep mode automatically when possible.
     """
+    ...
 
 @overload
 def set_native_code_location(start: None, length: None, /) -> None:
@@ -193,6 +249,7 @@ def set_native_code_location(start: None, length: None, /) -> None:
     will lead to `MemoryError` exception being raised during compilation of
     that function.
     """
+    ...
 
 @overload
 def set_native_code_location(start: int, length: int, /) -> None:
@@ -233,3 +290,4 @@ def set_native_code_location(start: int, length: int, /) -> None:
     will lead to `MemoryError` exception being raised during compilation of
     that function.
     """
+    ...

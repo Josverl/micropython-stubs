@@ -13,13 +13,21 @@ class DMA:
     Claim one of the DMA controller channels for exclusive use.
     """
 
+    read: int
+    write: int
+    count: int
+    ctrl: int
+    channel: int
+    registers: Any
+
     def irq(self, handler: Optional[Callable] = None, hard: bool = False) -> _IRQ:
         """
         Returns the IRQ object for this DMA channel and optionally configures it.
         """
         ...
 
-    def unpack_ctrl(self, value:int) -> dict:
+    @staticmethod
+    def unpack_ctrl(value: int) -> dict[str, int]:
         """
         Unpack a value for a DMA channel control register into a dictionary with key/value pairs
         for each of the fields in the control register.  *value* is the ``ctrl`` register value
@@ -34,9 +42,10 @@ class DMA:
         """
         ...
 
-    def pack_ctrl(self, *, 
+    def pack_ctrl(self, *,
+            default: int | None = None,
                   enable: bool = True,
-                  high_pri: bool = False, 
+            high_pri: bool = False,
                   size: int = 2,
                   inc_read: bool = True,
                   inc_write: bool = True,
@@ -109,23 +118,16 @@ class DMA:
         """
         ...
 
-    # TODO: Check if this is correct, are therese params indeed allowwed
-    def __init__(
-        self,
-        read: int | AnyReadableBuf | None = None,
-        write: int | AnyWritableBuf | None = None,
-        count: int = -1,
-        ctrl: int = -1,
-        trigger: bool = False,
-    ) -> None: ...
+    def __init__(self) -> None: ...
 
 
     def config(
         self,
-        read: int | AnyReadableBuf | None = None,
-        write: int | AnyWritableBuf | None = None,
-        count: int = -1,
-        ctrl: int = -1,
+      *,
+      read: int | AnyReadableBuf | None = None,
+      write: int | AnyWritableBuf | None = None,
+      count: int | None = None,
+      ctrl: int | None = None,
         trigger: bool = False,
     ) -> None:
         """

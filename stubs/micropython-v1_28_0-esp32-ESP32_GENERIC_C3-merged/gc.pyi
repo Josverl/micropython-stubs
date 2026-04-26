@@ -92,7 +92,7 @@ def threshold(amount: int) -> None:
        implementations, its signature and semantics are different.
     """
 
-def collect() -> None:
+def collect() -> int | None:
     """
     Run a garbage collection.
     """

@@ -11,20 +11,20 @@ controlling ESP32 modules.
 # origin module:: repos/micropython/docs/library/esp32.rst
 from __future__ import annotations
 
-from typing import Any, List, Optional, Tuple, overload, Sequence
+from typing import Any, List, Optional, Sequence, Tuple, overload
 
 from _mpy_shed import AnyReadableBuf
 from vfs import AbstractBlockDev
 from _typeshed import Incomplete
 from machine import Pin
 
-HEAP_DATA: Incomplete
+HEAP_DATA: int
 """Used in `idf_heap_info`."""
-HEAP_EXEC: Incomplete
+HEAP_EXEC: int
 """Used in `idf_heap_info`."""
-WAKEUP_ALL_LOW: Incomplete
+WAKEUP_ALL_LOW: bool
 """Selects the wake level for pins."""
-WAKEUP_ANY_HIGH: Incomplete
+WAKEUP_ANY_HIGH: bool
 """Selects the wake level for pins."""
 
 class Partition(AbstractBlockDev):
@@ -223,15 +223,20 @@ class RMT:
 
     PULSE_MAX: int
     """Maximum integer that can be set for a pulse duration."""
+    # Port/IDF note: `id` is a legacy/dummy positional argument kept for
+    # backward compatibility; `pin` is the required selector for the channel.
+    # `resolution_hz` and `clock_div` are mutually exclusive.
     def __init__(
         self,
-        channel: int,
+        id: int = -1,
         /,
         *,
-        pin: Pin | None = None,
-        clock_div: int = 8,
+        pin: Pin,
+        resolution_hz: int | None = None,
+        clock_div: int | None = None,
         idle_level: bool = False,
         tx_carrier: Tuple[int, int, bool] | None = None,
+        num_symbols: int = 48,
     ) -> None:
         """
         This class provides access to one of the eight RMT channels. *channel* is
@@ -280,6 +285,20 @@ class RMT:
         ``False`` while a looping sequence is currently being transmitted then the
         current loop iteration will be completed and then transmission will stop.
         """
+        ...
+
+    def loop_count(self, count: int, /) -> None:
+        ...
+
+    @overload
+    def active(self, /) -> bool:
+        ...
+
+    @overload
+    def active(self, value: bool, /) -> bool:
+        ...
+
+    def deinit(self) -> None:
         ...
 
     @overload
@@ -380,7 +399,7 @@ class RMT:
         """
 
     @staticmethod
-    def bitstream_channel(value: Optional[Any] = None) -> int:
+    def bitstream_channel(value: int | None = None) -> int | None:
         """
         Select which RMT channel is used by the `machine.bitstream` implementation.
         *value* can be ``None`` or a valid RMT channel number.  The default RMT
@@ -392,6 +411,10 @@ class RMT:
         Passing in no argument will not change the channel.  This function returns
         the current channel number.
         """
+        ...
+
+    @staticmethod
+    def bitstream_rmt(value: bool | None = None) -> bool:
         ...
 
 class ULP:
@@ -420,6 +443,63 @@ class ULP:
         """
         Start the ULP running at the given *entry_point*.
         """
+        ...
+
+class PCNT:
+    # Compile-time note: available when MICROPY_PY_ESP32_PCNT is enabled.
+    IGNORE: int
+    INCREMENT: int
+    DECREMENT: int
+    NORMAL: int
+    REVERSE: int
+    HOLD: int
+    IRQ_ZERO: int
+    IRQ_THRESHOLD0: int
+    IRQ_THRESHOLD1: int
+    IRQ_MIN: int
+    IRQ_MAX: int
+
+    def __init__(self, id: int, /, **kwargs: Any) -> None:
+        ...
+
+    def init(self, /, **kwargs: Any) -> None:
+        ...
+
+    @overload
+    def value(self, /) -> int:
+        ...
+
+    @overload
+    def value(self, value: int, /) -> int:
+        ...
+
+    def irq(self, /, handler: Any = None, trigger: int = IRQ_ZERO) -> Incomplete:
+        ...
+
+    def start(self) -> None:
+        ...
+
+    def stop(self) -> None:
+        ...
+
+    def deinit(self) -> None:
+        ...
+
+class LDO:
+    # Compile-time note: available when SOC_GP_LDO_SUPPORTED is enabled.
+    def __init__(self, channel_id: int, voltage_mv: int, /, *, adjustable: bool = False) -> None:
+        ...
+
+    def adjust_voltage(self, voltage_mv: int, /) -> None:
+        ...
+
+    def release(self) -> None:
+        ...
+
+    def __enter__(self) -> LDO:
+        ...
+
+    def __exit__(self, exc_type: Incomplete, exc: Incomplete, tb: Incomplete, /) -> None:
         ...
 
 class NVS:
@@ -490,14 +570,20 @@ def wake_on_touch(wake: bool, /) -> None:
     """
     ...
 
-def wake_on_ulp(wake) -> None:
+# Compile-time note: present when SOC_ULP_SUPPORTED is enabled.
+def wake_on_ulp(wake: bool, /) -> None:
     """
     Configure whether or not the Ultra-Low-Power co-processor can wake the
     device from sleep. *wake* should be a boolean value.
     """
     ...
 
-def wake_on_ext0(pin: Pin | None, level: int, /) -> None:
+@overload
+def wake_on_ext0() -> None:
+    ...
+
+@overload
+def wake_on_ext0(pin: Pin | None, level: bool, /) -> None:
     """
     Configure how EXT0 wakes the device from sleep.  *pin* can be ``None``
     or a valid Pin object.  *level* should be ``esp32.WAKEUP_ALL_LOW`` or
@@ -505,7 +591,12 @@ def wake_on_ext0(pin: Pin | None, level: int, /) -> None:
     """
     ...
 
-def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: int, /) -> None:
+@overload
+def wake_on_ext1() -> None:
+    ...
+
+@overload
+def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: bool, /) -> None:
     """
     Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
     or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
@@ -513,17 +604,36 @@ def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: int, /) -> Non
     """
     ...
 
-def gpio_deep_sleep_hold(enable) -> None:
+@overload
+def wake_on_gpio() -> None:
+    ...
+
+@overload
+def wake_on_gpio(pins: List[Pin] | Tuple[Pin, ...] | None, level: bool, /) -> None:
+    """
+    Configure how GPIO wakes the device from sleep.  *pins* can be ``None``
+    or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
+    or ``esp32.WAKEUP_ANY_HIGH``.
+    """
+    ...
+
+# Compile-time note: present on targets that support hold IO in deep sleep.
+def gpio_deep_sleep_hold(enable: bool, /) -> None:
     """
     Configure whether non-RTC GPIO pin configuration is retained during
     deep-sleep mode for held pads. *enable* should be a boolean value.
     """
     ...
 
+# Target-specific note: classic ESP32 exports raw_temperature(); newer targets
+# export mcu_temperature() instead.
 def raw_temperature() -> int:
     """
     Read the raw value of the internal temperature sensor, returning an integer.
     """
+    ...
+
+def mcu_temperature() -> int:
     ...
 
 def idf_heap_info(capabilities: int) -> List[Tuple]:
@@ -562,4 +672,8 @@ def idf_heap_info(capabilities: int) -> List[Tuple]:
        The result of :func:`gc.mem_free()` is the total of the current "free"
        and "max new split" values printed by :func:`micropython.mem_info()`.
     """
+    ...
+
+# Compile-time note: present when CONFIG_FREERTOS_USE_TRACE_FACILITY is enabled.
+def idf_task_info() -> tuple[int | None, list[tuple[int, str, int, int, int | None, int, int | None]]]:
     ...

@@ -20,6 +20,5 @@ from rp2.DMA import DMA
 from rp2.Flash import Flash
 from rp2.PIO import PIO
 from rp2.StateMachine import StateMachine
-from rp2.PIOASMEmit import PIOASMEmit
 
 from rp2 import bootsel_button

@@ -5,7 +5,7 @@ Based on v1.26.0 micropython/ports/esp32/modespnow.c
 AI Generated, human verified. Please report any issues.
 """
 
-from typing import Any, Callable, List, Optional, Tuple, Union, Dict, Final
+from typing import Any, Callable, Dict, Final, List, Literal, Optional, Tuple, Union, overload
 from typing_extensions import Buffer
 
 # Module constants
@@ -14,6 +14,19 @@ ADDR_LEN: Final[int] = 6
 KEY_LEN: Final[int] = 16
 MAX_TOTAL_PEER_NUM: Final[int] = 20
 MAX_ENCRYPT_PEER_NUM: Final[int] = 6
+
+# ESP32-only rate constants exported by modespnow.c.
+# RATE_LORA_* are not available on ESP32-C2 builds.
+RATE_1M: Final[int]
+RATE_2M: Final[int]
+RATE_5M: Final[int]
+RATE_6M: Final[int]
+RATE_11M: Final[int]
+RATE_12M: Final[int]
+RATE_24M: Final[int]
+RATE_54M: Final[int]
+RATE_LORA_250K: Final[int]
+RATE_LORA_500K: Final[int]
 
 class ESPNowBase:
     """
@@ -39,7 +52,15 @@ class ESPNowBase:
         """
         ...
 
-    def config(self, rxbuf: Optional[int] = None, timeout_ms: Optional[int] = None, **kwargs: Any) -> Optional[Any]:
+    @overload
+    def config(self, /, *, rxbuf: int = ..., timeout_ms: int = ..., rate: int = ...) -> None:
+        ...
+
+    @overload
+    def config(self, param: Literal["rxbuf", "timeout_ms"], /) -> int:
+        ...
+
+    def config(self, *args: Any, **kwargs: Any) -> Optional[Any]:
         """
         Configure ESP-NOW parameters.
 
@@ -88,7 +109,21 @@ class ESPNowBase:
         """
         ...
 
-    def send(self, peer_addr: Optional[Union[bytes, bytearray]], msg: Union[str, bytes, bytearray, Buffer], sync: bool = True) -> bool:
+    @overload
+    def send(self, msg: Union[str, bytes, bytearray, Buffer], /) -> bool:
+        ...
+
+    @overload
+    def send(
+        self,
+        peer_addr: Optional[Union[bytes, bytearray]],
+        msg: Union[str, bytes, bytearray, Buffer],
+        sync: bool = True,
+        /
+    ) -> bool:
+        ...
+
+    def send(self, *args: Any, **kwargs: Any) -> bool:
         """
         Send message to peer(s).
 

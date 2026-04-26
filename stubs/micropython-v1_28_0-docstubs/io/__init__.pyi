@@ -78,7 +78,7 @@ to implement, or subclass, a stream class in pure Python.
 # origin module:: repos/micropython/docs/library/io.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload
+from typing import TypeVar, overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import FileIO, PathLike, TextIOWrapper, AnyReadableBuf, AnyWritableBuf
 from _mpy_shed import IOBase_mp
@@ -89,8 +89,6 @@ _T = TypeVar("_T")
 AnyStr_co = TypeVar("AnyStr_co", str, bytes, covariant=True)
 StrOrBytesPath = TypeVar("StrOrBytesPath", str, bytes, PathLike[str], PathLike[bytes])
 _OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int)
-AnyReadableBuf = TypeVar("AnyReadableBuf", bytearray, array, memoryview, bytes)
-AnyWritableBuf = TypeVar("AnyWritableBuf", bytearray, array, memoryview)
 _Self = TypeVar("_Self")
 class StringIO(IOBase_mp):
     """

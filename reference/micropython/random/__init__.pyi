@@ -80,13 +80,13 @@ def randrange(start: int, stop: int, step: int, /) -> int:
     return odd numbers between 1 and 9 inclusive.
     """
 
-def random() -> int:
+def random() -> float:
     """
     Return a random floating point number in the range [0.0, 1.0).
     """
     ...
 
-def uniform(a: float, b: float) -> int:
+def uniform(a: float, b: float) -> float:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
     and *b* <= N <= *a* for *b* < *a*.
@@ -105,7 +105,7 @@ def seed(n: int | None = None, /) -> None:
     """
     ...
 
-def choice(sequence: Subscriptable, /) -> None:
+def choice(sequence: Subscriptable[_T], /) -> _T:
     """
     Chooses and returns one item at random from *sequence* (tuple, list or
     any object that supports the subscript operation).

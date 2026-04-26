@@ -56,31 +56,7 @@ class sha256(_Hash):
         Create an SHA256 hasher object and optionally feed ``data`` into it.
         """
 
-    @overload
-    def __init__(self):
-        """
-        Create an SHA256 hasher object and optionally feed ``data`` into it.
-        """
-
-    @overload
-    def __init__(self, data: AnyReadableBuf):
-        """
-        Create an SHA256 hasher object and optionally feed ``data`` into it.
-        """
-
 class sha1:
-    @overload
-    def __init__(self):
-        """
-        Create an SHA1 hasher object and optionally feed ``data`` into it.
-        """
-
-    @overload
-    def __init__(self, data: AnyReadableBuf):
-        """
-        Create an SHA1 hasher object and optionally feed ``data`` into it.
-        """
-
     @overload
     def __init__(self):
         """

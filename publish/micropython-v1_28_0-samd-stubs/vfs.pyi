@@ -25,7 +25,7 @@ Module: 'vfs' on micropython-v1.28.0-samd-SEEED_WIO_TERMINAL
 # Stubber: v1.28.0
 from __future__ import annotations
 from _typeshed import Incomplete
-from _mpy_shed import _BlockDeviceProtocol
+from _mpy_shed import AnyReadableBuf, _BlockDeviceProtocol
 from abc import ABC, abstractmethod
 from typing import List, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
@@ -54,7 +54,7 @@ def mount() -> List[tuple[Incomplete, str]]:
     """
     ...
 
-def umount(mount_point: Incomplete) -> Incomplete:
+def umount(mount_point: Incomplete) -> None:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
     or a previously-mounted filesystem object.  During the unmount process the
@@ -64,7 +64,14 @@ def umount(mount_point: Incomplete) -> Incomplete:
     """
     ...
 
-def rom_ioctl(*args, **kwargs) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, length: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, offset: int, buf: AnyReadableBuf, /) -> Incomplete: ...
 
 class VfsFat:
     """

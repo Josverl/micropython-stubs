@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from _mpy_shed import AnyWritableBuf
-from _typeshed import Incomplete
+from _mpy_shed import AnyReadableBuf
 
 from .Pin import Pin
 from .Timer import Timer
@@ -53,9 +52,9 @@ class DAC:
         dac.write_timed(buf, 400 * len(buf), mode=DAC.CIRCULAR)
     """
 
-    NORMAL: Incomplete
+    NORMAL: int
     """NORMAL mode does a single transmission of the waveform in the data buffer,"""
-    CIRCULAR: Incomplete
+    CIRCULAR: int
     """\
     CIRCULAR mode does a transmission of the waveform in the data buffer, and wraps around
     to the start of the data buffer every time it reaches the end of the table.
@@ -122,7 +121,7 @@ class DAC:
         """
         ...
 
-    def write_timed(self, data: AnyWritableBuf, freq: int | Timer, /, *, mode: int = NORMAL) -> None:
+    def write_timed(self, data: AnyReadableBuf, freq: int | Timer, /, *, mode: int = NORMAL) -> None:
         """
         Initiates a burst of RAM to DAC using a DMA transfer.
         The input data is treated as an array of bytes in 8-bit mode, and

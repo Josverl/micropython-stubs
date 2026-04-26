@@ -2,11 +2,10 @@
 
 from __future__ import annotations
 from typing import overload
-from typing_extensions import TypeAlias
 
 from vfs import AbstractBlockDev
 
-from machine.Pin import Pin, PinLike
+from machine.Pin import PinLike
 
 class SDCard(AbstractBlockDev):
     """
@@ -109,6 +108,8 @@ class SDCard(AbstractBlockDev):
         cd: PinLike | None = None,
         wp: PinLike | None = None,
         sck: PinLike | None = None,
+        cmd: PinLike | None = None,
+        data: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
         miso: PinLike | None = None,
         mosi: PinLike | None = None,
         cs: PinLike | None = None,

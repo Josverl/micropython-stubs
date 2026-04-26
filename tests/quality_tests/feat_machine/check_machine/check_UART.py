@@ -16,7 +16,7 @@ uart_2 = UART(0, 115200, timeout=10, tx=Pin(0), rx=Pin(1))
 buffer = bytearray(10)
 
 
-assert_type(uart_2.readline(), Union[str, None])  # stubs-ignore : skip version < 1.21.0
+assert_type(uart_2.readline(), Union[bytes, None])  # stubs-ignore : skip version < 1.21.0
 
 assert_type(uart_2.readinto(buffer), Union[int, None])  # stubs-ignore : skip version < 1.21.0
 assert_type(uart_2.write(buffer), Union[int, None])  # stubs-ignore : skip version < 1.21.0

@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 from _mpy_shed import _IRQ
-from _typeshed import Incomplete
 from typing import Any, Callable, Iterable
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+from typing_extensions import TypeAlias
 
 __CANFilter: TypeAlias = tuple[int, int, int] | list[int]
 __CANRecvResult: TypeAlias = list[int | memoryview]
@@ -49,67 +48,67 @@ class CAN:
     :func:`CAN.send()`, :func:`CAN.cancel_send()` and `machine_can_irq_flags`
     will be in this range.
     """
-    MODE_NORMAL: Incomplete
+    MODE_NORMAL: int
     """\
     The controller is active as a standard CAN network node (will acknowledge
     valid messages and may transmit errors depending on its current `State
     <can-states>`).
     """
-    MODE_SLEEP: Incomplete
+    MODE_SLEEP: int
     """\
     CAN controller is asleep in a low power mode. Depending on the controller,
     this may support waking the controller and transitioning to `CAN.MODE_NORMAL`
     if CAN traffic is received.
     """
-    MODE_LOOPBACK: Incomplete
+    MODE_LOOPBACK: int
     """\
     A testing mode. The CAN controller is still connected to the external bus,
     but will also receive its own transmitted messages and ignore any ACK errors.
     """
-    MODE_SILENT: Incomplete
+    MODE_SILENT: int
     """\
     CAN controller receives messages but does not interact with the CAN bus
     (including sending ACKs, errors, etc.)
     """
-    MODE_SILENT_LOOPBACK: Incomplete
+    MODE_SILENT_LOOPBACK: int
     """\
     A testing mode that does not require a CAN transceiver to be connected at
     all. The CAN controller receives its own transmitted messages without
     interacting with the CAN bus at all. The CAN TX and RX pins remain idle.
     """
-    STATE_STOPPED: Incomplete
+    STATE_STOPPED: int
     """The controller has not been initialised."""
-    STATE_ACTIVE: Incomplete
+    STATE_ACTIVE: int
     """\
     The controller is active and ``TEC`` and ``REC`` error counters are both below the
     warning threshold of 96. See :func:`CAN.get_counters()`.
     """
-    STATE_WARNING: Incomplete
+    STATE_WARNING: int
     """\
     The controller is active but at last one of the ``TEC`` and ``REC`` error counters
     are between 96 and 127. See :func:`CAN.get_counters()`.
     """
-    STATE_PASSIVE: Incomplete
+    STATE_PASSIVE: int
     """\
     The controller is in the "Error Passive" state meaning it no longer transmits active
     errors to the bus, but it is otherwise functional. This state is entered when at
     least one of the ``TEC`` and ``REC`` error counters is 128 or greater, but
     ``TEC`` is less than 255. See :func:`CAN.get_counters()`.
     """
-    STATE_BUS_OFF: Incomplete
+    STATE_BUS_OFF: int
     """\
     The controller is in the Bus-Off state, meaning ``TEC`` error counter is
     greater than 255. The CAN controller will not interact with the bus in this
     state, and needs to be restarted via :func:`CAN.restart()` to continue.
     """
-    FLAG_RTR: Incomplete
+    FLAG_RTR: int
     """Indicates a message is a remote transmission request."""
-    FLAG_EXT_ID: Incomplete
+    FLAG_EXT_ID: int
     """\
     If set, indicates a Message identifier is Extended (29-bit). If not set,
     indicates a message identifier is Standard (11-bit).
     """
-    FLAG_UNORDERED: Incomplete
+    FLAG_UNORDERED: int
     """\
     If set in the ``flags`` argument of :func:`CAN.send`, indicates that it's
     OK if messages with the same CAN ID are sent in any order onto the bus.
@@ -120,26 +119,26 @@ class CAN:
     This flag is never set on received messages, and is ignored by
     `CAN.set_filters()`.
     """
-    RECV_ERR_FULL: Incomplete
+    RECV_ERR_FULL: int
     """The hardware FIFO where this message was received is full, and additional incoming messages may be lost."""
-    RECV_ERR_OVERRUN: Incomplete
+    RECV_ERR_OVERRUN: int
     """\
     The hardware FIFO where this message was received is full, and one or more incoming messages has been lost.
     
     IRQ values
     ^^^^^^^^^^
     """
-    IRQ_RX: Incomplete
+    IRQ_RX: int
     """IRQ event triggers. Used with :func:`CAN.irq()` and `machine_can_irq_flags`."""
-    IRQ_TX: Incomplete
+    IRQ_TX: int
     """IRQ event triggers. Used with :func:`CAN.irq()` and `machine_can_irq_flags`."""
-    IRQ_STATE: Incomplete
+    IRQ_STATE: int
     """IRQ event triggers. Used with :func:`CAN.irq()` and `machine_can_irq_flags`."""
-    IRQ_TX_FAILED: Incomplete
+    IRQ_TX_FAILED: int
     """Additional IRQ event flags for `CAN.IRQ_TX`. See `machine_can_irq_flags`."""
-    IRQ_TX_IDX_SHIFT: Incomplete
+    IRQ_TX_IDX_SHIFT: int
     """Additional IRQ event flags for `CAN.IRQ_TX`. See `machine_can_irq_flags`."""
-    IRQ_TX_IDX_MASK: Incomplete
+    IRQ_TX_IDX_MASK: int
     """Additional IRQ event flags for `CAN.IRQ_TX`. See `machine_can_irq_flags`."""
     def __init__(self, id: int, *args: int, **kwargs: Any) -> None: ...
     def init(

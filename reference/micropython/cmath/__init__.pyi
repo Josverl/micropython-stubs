@@ -27,25 +27,25 @@ e: float
 pi: float
 """the ratio of a circle's circumference to its diameter"""
 
-def cos(z: _C, /) -> float:
+def cos(z: _C, /) -> complex:
     """
     Return the cosine of ``z``.
     """
     ...
 
-def exp(z: _C, /) -> float:
+def exp(z: _C, /) -> complex:
     """
     Return the exponential of ``z``.
     """
     ...
 
-def log(z: _C, /) -> float:
+def log(z: _C, /) -> complex:
     """
     Return the natural logarithm of ``z``.  The branch cut is along the negative real axis.
     """
     ...
 
-def log10(z: _C, /) -> float:
+def log10(z: _C, /) -> complex:
     """
     Return the base-10 logarithm of ``z``.  The branch cut is along the negative real axis.
     """
@@ -57,19 +57,19 @@ def phase(z: _C, /) -> float:
     """
     ...
 
-def polar(z: _C, /) -> Tuple:
+def polar(z: _C, /) -> tuple[float, float]:
     """
     Returns, as a tuple, the polar form of ``z``.
     """
     ...
 
-def rect(r: float, phi: float, /) -> float:
+def rect(r: float, phi: float, /) -> complex:
     """
     Returns the complex number with modulus ``r`` and phase ``phi``.
     """
     ...
 
-def sin(z: _C, /) -> float:
+def sin(z: _C, /) -> complex:
     """
     Return the sine of ``z``.
     """

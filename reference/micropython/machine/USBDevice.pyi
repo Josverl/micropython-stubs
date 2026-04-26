@@ -18,7 +18,7 @@ class USBDevice:
     BUILTIN_DEFAULT: Incomplete
     BUILTIN_CDC: Incomplete
     BUILTIN_MSC: Incomplete
-    BUILTIN_CDC_MSC: int
+    BUILTIN_CDC_MSC: Incomplete
     """\
     These constant objects hold the built-in descriptor data which is
     compiled into the MicroPython firmware. ``USBDevice.BUILTIN_NONE`` and

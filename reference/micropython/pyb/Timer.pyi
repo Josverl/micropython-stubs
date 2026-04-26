@@ -63,11 +63,11 @@ class Timer:
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
     CENTER: int
     """Configures the timer to count Up, Down, or from 0 to ARR and then back down to 0."""
-    BRK_OFF: Incomplete
+    BRK_OFF: int
     """Configures the break mode when passed to the ``brk`` keyword argument."""
-    BRK_LOW: Incomplete
+    BRK_LOW: int
     """Configures the break mode when passed to the ``brk`` keyword argument."""
-    BRK_HIGH: Incomplete
+    BRK_HIGH: int
     """Configures the break mode when passed to the ``brk`` keyword argument."""
     @overload
     def __init__(self, id: int, /):

@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any, Callable, Tuple, overload
 from typing_extensions import deprecated
 
-from _typeshed import Incomplete
+from _mpy_shed import AnyReadableBuf, _IRQ
 from machine import IDLE
 
 class RTC:
@@ -24,7 +24,7 @@ class RTC:
     The documentation for RTC is in a poor state;1
     """
 
-    ALARM0: Incomplete
+    ALARM0: int
     """irq trigger source"""
     @overload
     def __init__(self, id: int = 0):
@@ -246,7 +246,7 @@ class RTC:
         trigger: int,
         handler: Callable[[RTC], None] | None = None,
         wake: int = IDLE,
-    ) -> None:
+    ) -> _IRQ | None:
         """
         Create an irq object triggered by a real time clock alarm.
 
@@ -257,7 +257,12 @@ class RTC:
         """
         ...
 
-    def memory(self, data: Any | None = None) -> bytes:
+    @overload
+    def memory(self) -> bytes:
+        ...
+
+    @overload
+    def memory(self, data: AnyReadableBuf, /) -> None:
         """
         ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any
         object which supports the buffer protocol (including `bytes`, `bytearray`,

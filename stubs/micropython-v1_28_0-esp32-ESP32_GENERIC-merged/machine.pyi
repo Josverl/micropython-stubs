@@ -17,9 +17,9 @@ Module: 'machine' on micropython-v1.28.0-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import NoReturn, Union, Tuple, Callable, Sequence, Any, Optional, List, overload, Final
+from typing import NoReturn, Tuple, Sequence, Optional, Any, Callable, Iterable, overload, Final
 from _typeshed import Incomplete
-from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf, mp_available
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ, mp_available
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 from vfs import AbstractBlockDev
 from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
@@ -46,6 +46,10 @@ DEEPSLEEP_RESET: Final[int] = 4
 DEEPSLEEP: Final[int] = 4
 """IRQ wake values."""
 ATTN_0DB: int = ...
+__CANFilter: TypeAlias = tuple[int, int, int] | list[int]
+__CANRecvResult: TypeAlias = list[int | memoryview]
+__CANCounters: TypeAlias = list[int | None]
+__CANTimings: TypeAlias = list[int | list[int] | None]
 ID_T: TypeAlias = int | str
 PinLike: TypeAlias = Pin | int | str
 IDLE: Incomplete
@@ -206,26 +210,6 @@ def freq() -> int:
 
 @overload
 def freq(hz: int, /) -> None:
-    """
-    Returns the CPU frequency in hertz.
-
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-@overload
-def freq(self) -> int:
-    """
-    Returns the CPU frequency in hertz.
-
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-@overload
-def freq(
-    self,
-    value: int,
-    /,
-) -> None:
     """
     Returns the CPU frequency in hertz.
 
@@ -663,10 +647,10 @@ class I2S:
     """for initialising the I2S bus ``mode`` to transmit"""
     @staticmethod
     def shift(
+        *,
         buf: AnyWritableBuf,
         bits: int,
         shift: int,
-        /,
     ) -> None:
         """
         bitwise shift of all samples contained in ``buf``. ``bits`` specifies sample size in bits. ``shift`` specifies the number of bits to shift each sample.
@@ -680,6 +664,7 @@ class I2S:
         sck: PinLike,
         ws: PinLike,
         sd: PinLike,
+        mck: PinLike | None = None,
         mode: int,
         bits: int,
         format: int,
@@ -738,6 +723,7 @@ class I2S:
         sck: PinLike,
         ws: PinLike,
         sd: PinLike,
+        mck: PinLike | None = None,
         mode: int,
         bits: int,
         format: int,
@@ -850,7 +836,7 @@ class PWM:
         With a single *value* argument the duty cycle is set to that value, measured
         as the ratio ``value / 65535``.
         """
-    def init(self, *, freq: int = ..., duty_u16: int = ..., duty_ns: int = ...) -> None:
+    def init(self, *, freq: int = ..., duty_u16: int = ..., duty_ns: int = ..., invert: bool = ...) -> None:
         """
         Modify settings for the PWM object.  See the above constructor for details
         about the parameters.
@@ -920,6 +906,7 @@ class PWM:
         freq: int = ...,
         duty_u16: int = ...,
         duty_ns: int = ...,
+        invert: bool = ...,
     ) -> None:
         """
         Construct and return a new PWM object using the following parameters:
@@ -1036,7 +1023,7 @@ class Pin:
         priority: int = 1,
         wake: int | None = None,
         hard: bool = False,
-    ) -> Callable[..., Incomplete]:
+    ) -> _IRQ:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is
@@ -1085,7 +1072,7 @@ class Pin:
         Set pin to "1" output level.
         """
         ...
-    def toggle(self) -> Incomplete:
+    def toggle(self) -> None:
         """
         Toggle output pin from "0" to "1" or vice-versa.
 
@@ -1448,7 +1435,27 @@ class RTC:
         the stm32 and renesas-ra ports just (re-)starts the RTC and does not
         accept arguments.
         """
-    def memory(self, data: Any | None = None) -> bytes:
+
+    @overload
+    def memory(self) -> bytes:
+        """
+        ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any
+        object which supports the buffer protocol (including `bytes`, `bytearray`,
+        `memoryview` and `array.array`). ``RTC.memory()`` reads RTC memory and returns
+        a `bytes` object.
+
+        Data written to RTC user memory is persistent across restarts, including
+        :ref:`soft_reset` and `machine.deepsleep()`.
+
+        The maximum length of RTC user memory is 2048 bytes by default on esp32,
+        and 492 bytes on esp8266.
+
+        Availability: esp32, esp8266 ports.
+        """
+        ...
+
+    @overload
+    def memory(self, data: AnyReadableBuf, /) -> None:
         """
         ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any
         object which supports the buffer protocol (including `bytes`, `bytearray`,
@@ -1663,7 +1670,7 @@ class I2C:
         The method returns ``None``.
         """
         ...
-    def scan(self) -> List:
+    def scan(self) -> list[int]:
         """
         Scan all I2C addresses between 0x08 and 0x77 inclusive and return a list of
         those that respond.  A device responds if it pulls the SDA line low after
@@ -1757,7 +1764,7 @@ class I2C:
         ...
 
     @overload
-    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, freq: int = 400_000, timeout: int = 50_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -1774,7 +1781,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000, timeout: int = 50_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -1830,6 +1837,7 @@ class ADC:
     CORE_VREF: int = ...
     CORE_VBAT: int = ...
     CORE_TEMP: int = ...
+    WIDTH_13BIT: int = 13
 
     # ESP32 specific
     @mp_available(port="esp32")
@@ -1856,7 +1864,7 @@ class ADC:
         Available : ESP32
         """
         ...
-    def init(self, *, sample_ns: int | None = None, atten=ATTN_0DB) -> Incomplete:
+    def init(self, *, sample_ns: int = ..., atten: int = ...) -> None:
         """
         Apply the given settings to the ADC.  Only those arguments that are
         specified will be changed.  See the ADC constructor above for what the
@@ -1901,7 +1909,7 @@ class ADC:
         Available : ESP32
         """
         ...
-    def block(self) -> Incomplete:
+    def block(self) -> ADCBlock:
         """
         Return the :ref:`ADCBlock <machine.ADCBlock>` instance associated with
         this ADC object.
@@ -1910,7 +1918,7 @@ class ADC:
         :ref:`ADCBlock <machine.ADCBlock>` class.
         """
         ...
-    def __init__(self, pin: PinLike, *, sample_ns: int | None = None, atten=ATTN_0DB) -> None:
+    def __init__(self, id: int | PinLike, *, sample_ns: int = ..., atten: int = ...) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -1932,7 +1940,7 @@ class ADCBlock:
     conversion process.  If not specified then the previous or default
     resolution is used.
     """
-    def init(self, *, bits: int) -> None:
+    def init(self, *, bits: int = ...) -> None:
         """
         Configure the ADC peripheral.  *bits* will set the resolution of the
         conversion process.
@@ -1964,7 +1972,7 @@ class ADCBlock:
         via its :meth:`init <machine.ADC.init>` method.
         """
         ...
-    def __init__(self, id: int, *, bits: int) -> None: ...
+    def __init__(self, id: int, *, bits: int = ...) -> None: ...
 
 class DAC:
     """
@@ -2322,6 +2330,9 @@ class UART:
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
+        flow: int | None = None,
+        rts: PinLike | None = None,
+        cts: PinLike | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -2500,7 +2511,7 @@ class UART:
           Also do not call ``deinit()`` as it will prevent calling ``init()``
           again.
         """
-    def flush(self) -> Incomplete:
+    def flush(self) -> None:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
         duration depends on the tx buffer size and the baud rate. Unless flow control is enabled, a timeout
@@ -2564,7 +2575,7 @@ class UART:
          poll.poll(timeout)
         """
         ...
-    def write(self, buf: AnyReadableBuf, /) -> Union[int, None]:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the buffer of bytes to the bus.
 
@@ -2593,7 +2604,7 @@ class UART:
         Return value: number of bytes read and stored into ``buf`` or ``None`` on
         timeout.
         """
-    def readline(self) -> Union[str, None]:
+    def readline(self) -> bytes | None:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
@@ -2618,6 +2629,9 @@ class UART:
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
+        flow: int | None = None,
+        rts: PinLike | None = None,
+        cts: PinLike | None = None,
     ):
         """
         Construct a UART object of the given id.
@@ -2990,7 +3004,7 @@ class SPI:
         requested baudrate. This is dependent on the platform hardware. The actual
         rate may be determined by printing the SPI object.
         """
-    def write_readinto(self, write_buf: AnyReadableBuf, read_buf: AnyWritableBuf, /) -> int:
+    def write_readinto(self, write_buf: AnyReadableBuf, read_buf: AnyWritableBuf, /) -> int | None:
         """
         Write the bytes from ``write_buf`` while reading into ``read_buf``.  The
         buffers can be the same or different, but both buffers must have the
@@ -3007,7 +3021,7 @@ class SPI:
         Returns a ``bytes`` object with the data that was read.
         """
         ...
-    def write(self, buf: AnyReadableBuf, /) -> int:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the bytes contained in ``buf``.
         Returns ``None``.
@@ -3015,7 +3029,7 @@ class SPI:
         Note: on WiPy this function returns the number of bytes written.
         """
         ...
-    def readinto(self, buf: AnyWritableBuf, write: int = 0x00, /) -> int:
+    def readinto(self, buf: AnyWritableBuf, write: int = 0x00, /) -> int | None:
         """
         Read into the buffer specified by ``buf`` while continuously writing the
         single byte given by ``write``.
@@ -3208,7 +3222,7 @@ class Signal(Pin):
         """
 
     @overload
-    def __init__(self, pin_obj: PinLike, invert: bool = False, /):
+    def __init__(self, pin_obj: PinLike, invert: bool = False, /) -> None:
         """
         Create a Signal object. There're two ways to create it:
 
@@ -3239,7 +3253,7 @@ class Signal(Pin):
         drive: int | None = None,
         alt: int | None = None,
         invert: bool = False,
-    ):
+    ) -> None:
         """
         Create a Signal object. There're two ways to create it:
 
@@ -3283,4 +3297,23 @@ class SoftI2C(I2C):
     def init(self, *args, **kwargs) -> Incomplete: ...
     def stop(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
+    def __init__(self, scl: PinLike, sda: PinLike, *, freq: int = 400_000, timeout: int = 50_000) -> None: ...
+
+class ADCWiPy:
+    @overload
+    def channel(self, id: int, *, pin=None) -> adcchannel: ...
+    @overload
+    def channel(self, *, pin) -> adcchannel: ...
+    @overload
+    def channel(self, id: int, *, pin) -> adcchannel:
+        """
+        Create an analog pin. If only channel ID is given, the correct pin will
+        be selected. Alternatively, only the pin can be passed and the correct
+        channel will be selected. Examples::
+
+           # all of these are equivalent and enable ADC channel 1 on GP3
+           apin = adc.channel(1)
+           apin = adc.channel(pin='GP3')
+           apin = adc.channel(id=1, pin='GP3')
+        """
+        ...

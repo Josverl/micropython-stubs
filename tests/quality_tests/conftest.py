@@ -254,15 +254,16 @@ def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config)
         stats[status] = snipcount(terminalreporter, status)
     # simple straigth forward scoring
     stats["snippet_score"] = int(stats["passed"] - stats["failed"])
-    if stats["snippet_score"] > 0:
-        # Write stats to file
-        (config.rootpath / "results").mkdir(exist_ok=True)
-        with open(config.rootpath / "results" / "snippet_score.json", "w") as f:
-            json.dump(stats, f, indent=4)
+    
+    # Always write stats to file (even if score is 0 or negative)
+    # This ensures compare_score.py can reliably read the file
+    (config.rootpath / "results").mkdir(exist_ok=True)
+    with open(config.rootpath / "results" / "snippet_score.json", "w") as f:
+        json.dump(stats, f, indent=4)
 
-        # print("----------------- Final summary -----------------")
-        # print(json.dumps(stats, indent=4))
-        # print("-------------------------------------------------")
+    # print("----------------- Final summary -----------------")
+    # print(json.dumps(stats, indent=4))
+    # print("-------------------------------------------------")
 
 
 def snipcount(terminalreporter, status: str):

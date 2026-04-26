@@ -94,6 +94,13 @@ class CAN:
         auto_restart: bool = False,
         baudrate: int = 0,
         sample_point: int = 75,
+        num_filter_banks: int = 14,
+        brs_prescaler: int = 1,
+        brs_sjw: int = 1,
+        brs_bs1: int = 8,
+        brs_bs2: int = 3,
+        brs_baudrate: int = 0,
+        brs_sample_point: int = 0,
     ) -> None:
         """
          Initialise the CAN bus with the given parameters:
@@ -360,7 +367,7 @@ class CAN:
         - *extframe* If True the frame will have an extended identifier (29 bits),
           otherwise a standard identifier (11 bits) is used.
         """
-    def clearfilter(self, bank: int, /) -> None:
+    def clearfilter(self, bank: int, /, *, extframe: bool = False) -> None:
         """
         Clear and disables a filter bank:
 
@@ -376,7 +383,7 @@ class CAN:
         ...
 
     @overload
-    def recv(self, fifo: int, /, *, timeout: int = 5000) -> tuple[int, bool, int, memoryview]:
+    def recv(self, fifo: int, /, *, timeout: int = 5000) -> list[int | bool | bytes | memoryview]:
         """
         Receive data on the bus:
 
@@ -412,7 +419,7 @@ class CAN:
         """
 
     @overload
-    def recv(self, fifo: int, list: None, /, *, timeout: int = 5000) -> tuple[int, bool, int, memoryview]:
+    def recv(self, fifo: int, list: None, /, *, timeout: int = 5000) -> list[int | bool | bytes | memoryview]:
         """
         Receive data on the bus:
 
@@ -448,7 +455,7 @@ class CAN:
         """
 
     @overload
-    def recv(self, fifo: int, list: list[int | bool | memoryview], /, *, timeout: int = 5000) -> None:
+    def recv(self, fifo: int, list: list[int | bool | memoryview], /, *, timeout: int = 5000) -> list[int | bool | memoryview]:
         """
         Receive data on the bus:
 
@@ -484,12 +491,15 @@ class CAN:
         """
     def send(
         self,
-        data: int | AnyWritableBuf,
+        data: int | AnyReadableBuf,
         id: int,
         /,
         *,
         timeout: int = 0,
         rtr: bool = False,
+        extframe: bool = False,
+        fdf: bool = False,
+        brs: bool = False,
     ) -> None:
         """
         Send a message on the bus:
@@ -518,7 +528,7 @@ class CAN:
         Return value: ``None``.
         """
         ...
-    def rxcallback(self, fifo: int, fun: Callable[[CAN], None], /) -> None:
+    def rxcallback(self, fifo: int, fun: Callable[[CAN, int], None], /) -> None:
         """
         Register a function to be called when a message is accepted into a empty fifo:
 

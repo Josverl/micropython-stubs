@@ -49,7 +49,7 @@ class I2C:
     """
 
     @overload
-    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, freq: int = 400_000, timeout: int = 50_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -66,7 +66,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000, timeout: int = 50_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -132,7 +132,7 @@ class I2C:
         """
         ...
 
-    def scan(self) -> List:
+    def scan(self) -> list[int]:
         """
         Scan all I2C addresses between 0x08 and 0x77 inclusive and return a list of
         those that respond.  A device responds if it pulls the SDA line low after
@@ -259,4 +259,4 @@ class SoftI2C(I2C):
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
 
-    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
+    def __init__(self, scl: PinLike, sda: PinLike, *, freq: int = 400_000, timeout: int = 50_000) -> None: ...

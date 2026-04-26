@@ -14,7 +14,7 @@ from _mpy_shed import mp_available
 from typing import Any, Callable, Optional, Tuple, TypeVar, overload
 
 from _typeshed import Incomplete
-from typing_extensions import ParamSpec, TypeVar
+from typing_extensions import ParamSpec
 
 _T = TypeVar("_T")
 _F = TypeVar("_F", bound=Callable[..., Any])

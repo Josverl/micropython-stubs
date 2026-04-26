@@ -22,8 +22,6 @@ from typing_extensions import TypeVar
 
 _T = TypeVar("_T")
 
-_T = TypeVar("_T")
-
 def heappush(heap: list[_T], item: _T, /) -> None:
     """
     Push the ``item`` onto the ``heap``.

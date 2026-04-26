@@ -12,14 +12,14 @@ Module: 'pyb' on micropython-v1.28.0-stm32-PYBV11-NETWORK
 # MCU: {'variant': 'NETWORK', 'build': '', 'arch': 'armv7emsp', 'port': 'stm32', 'board': 'PYBV11', 'board_id': 'PYBV11-NETWORK', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'STM32F405RG', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import NoReturn, Any, Dict, List, Callable, overload, Tuple, Final
+from typing import NoReturn, TypeVar, Any, Dict, List, Callable, overload, Final
 from _typeshed import Incomplete
 from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
 from _mpy_shed import HID_Tuple, _OldAbstractBlockDev, _OldAbstractReadOnlyBlockDev, AnyReadableBuf, AnyWritableBuf
 from collections.abc import Sequence
 from vfs import AbstractBlockDev
-from array import array
 from abc import ABC, abstractmethod
+from array import array
 
 hid_mouse: tuple = ()
 """\
@@ -76,18 +76,6 @@ def info() -> None:
 
 @overload
 def info(dump_alloc_table: bytes, /) -> None:
-    """
-    Print out lots of information about the board.
-    """
-
-@overload
-def info(self) -> list[int]:
-    """
-    Print out lots of information about the board.
-    """
-
-@overload
-def info(self, list: list[int], /) -> list[int]:
     """
     Print out lots of information about the board.
     """
@@ -320,86 +308,6 @@ def freq(sysclk: int, hclk: int, pclk1: int, pclk2: int, /) -> None:
     36MHz do not allow the USB to function correctly.
     """
 
-@overload
-def freq(self) -> int:
-    """
-    If given no arguments, returns a tuple of clock frequencies:
-    (sysclk, hclk, pclk1, pclk2).
-    These correspond to:
-
-     - sysclk: frequency of the CPU
-     - hclk: frequency of the AHB bus, core memory and DMA
-     - pclk1: frequency of the APB1 bus
-     - pclk2: frequency of the APB2 bus
-
-    If given any arguments then the function sets the frequency of the CPU,
-    and the buses if additional arguments are given.  Frequencies are given in
-    Hz.  Eg freq(120000000) sets sysclk (the CPU frequency) to 120MHz.  Note that
-    not all values are supported and the largest supported frequency not greater
-    than the given value will be selected.
-
-    Supported sysclk frequencies are (in MHz): 8, 16, 24, 30, 32, 36, 40, 42, 48,
-    54, 56, 60, 64, 72, 84, 96, 108, 120, 144, 168.
-
-    The maximum frequency of hclk is 168MHz, of pclk1 is 42MHz, and of pclk2 is
-    84MHz.  Be sure not to set frequencies above these values.
-
-    The hclk, pclk1 and pclk2 frequencies are derived from the sysclk frequency
-    using a prescaler (divider).  Supported prescalers for hclk are: 1, 2, 4, 8,
-    16, 64, 128, 256, 512.  Supported prescalers for pclk1 and pclk2 are: 1, 2,
-    4, 8.  A prescaler will be chosen to best match the requested frequency.
-
-    A sysclk frequency of
-    8MHz uses the HSE (external crystal) directly and 16MHz uses the HSI
-    (internal oscillator) directly.  The higher frequencies use the HSE to
-    drive the PLL (phase locked loop), and then use the output of the PLL.
-
-    Note that if you change the frequency while the USB is enabled then the USB
-    may become unreliable. It is best to change the frequency in :ref:`boot.py`,
-    before the USB peripheral is started. Also note that sysclk frequencies below
-    36MHz do not allow the USB to function correctly.
-    """
-
-@overload
-def freq(self, value: int, /) -> None:
-    """
-    If given no arguments, returns a tuple of clock frequencies:
-    (sysclk, hclk, pclk1, pclk2).
-    These correspond to:
-
-     - sysclk: frequency of the CPU
-     - hclk: frequency of the AHB bus, core memory and DMA
-     - pclk1: frequency of the APB1 bus
-     - pclk2: frequency of the APB2 bus
-
-    If given any arguments then the function sets the frequency of the CPU,
-    and the buses if additional arguments are given.  Frequencies are given in
-    Hz.  Eg freq(120000000) sets sysclk (the CPU frequency) to 120MHz.  Note that
-    not all values are supported and the largest supported frequency not greater
-    than the given value will be selected.
-
-    Supported sysclk frequencies are (in MHz): 8, 16, 24, 30, 32, 36, 40, 42, 48,
-    54, 56, 60, 64, 72, 84, 96, 108, 120, 144, 168.
-
-    The maximum frequency of hclk is 168MHz, of pclk1 is 42MHz, and of pclk2 is
-    84MHz.  Be sure not to set frequencies above these values.
-
-    The hclk, pclk1 and pclk2 frequencies are derived from the sysclk frequency
-    using a prescaler (divider).  Supported prescalers for hclk are: 1, 2, 4, 8,
-    16, 64, 128, 256, 512.  Supported prescalers for pclk1 and pclk2 are: 1, 2,
-    4, 8.  A prescaler will be chosen to best match the requested frequency.
-
-    A sysclk frequency of
-    8MHz uses the HSE (external crystal) directly and 16MHz uses the HSI
-    (internal oscillator) directly.  The higher frequencies use the HSE to
-    drive the PLL (phase locked loop), and then use the output of the PLL.
-
-    Note that if you change the frequency while the USB is enabled then the USB
-    may become unreliable. It is best to change the frequency in :ref:`boot.py`,
-    before the USB peripheral is started. Also note that sysclk frequencies below
-    36MHz do not allow the USB to function correctly.
-    """
-
 def disable_irq() -> bool:
     """
     Disable interrupt requests.
@@ -514,7 +422,7 @@ def usb_mode() -> str:
 # noinspection PyShadowingNames
 @overload
 def usb_mode(
-    modestr: str,
+    modestr: str | None,
     /,
     *,
     port: int = -1,
@@ -569,7 +477,7 @@ def udelay(us: int, /) -> None:
     """
     ...
 
-def unique_id() -> str:
+def unique_id() -> bytes:
     """
     Returns a string of 12 bytes (96 bits), which is the unique ID of the MCU.
     """
@@ -700,7 +608,7 @@ def repl_uart() -> UART | None:
     """
 
 @overload
-def repl_uart(uart: UART, /) -> None:
+def repl_uart(uart: UART | None, /) -> None:
     """
     Get or set the UART object where the REPL is repeated on.
     """
@@ -735,13 +643,25 @@ def main(filename: str, /) -> None:
     """
     ...
 
-def bootloader() -> None:
+def bootloader() -> NoReturn:
     """
     Activate the bootloader without BOOT* pins.
     """
     ...
 
-def country(*args, **kwargs) -> Incomplete: ...
+@deprecated("Use `network.country()` instead.")
+@overload
+def country() -> str | None:
+    """
+    Deprecated compatibility alias for :meth:`network.country`.
+    """
+
+@deprecated("Use `network.country()` instead.")
+@overload
+def country(code: str, /) -> None:
+    """
+    Deprecated compatibility alias for :meth:`network.country`.
+    """
 
 class DAC:
     """
@@ -801,7 +721,7 @@ class DAC:
         to the DAC output at the given frequency.
         """
         ...
-    def write_timed(self, data: AnyWritableBuf, freq: int | Timer, /, *, mode: int = NORMAL) -> None:
+    def write_timed(self, data: AnyReadableBuf, freq: int | Timer, /, *, mode: int = NORMAL) -> None:
         """
         Initiates a burst of RAM to DAC using a DMA transfer.
         The input data is treated as an array of bytes in 8-bit mode, and
@@ -960,7 +880,7 @@ class ExtInt:
         pin: int | str | Pin,
         mode: int,
         pull: int,
-        callback: Callable[[int], None],
+        callback: Callable[[int], None] | None,
     ) -> None:
         """
         Create an ExtInt object:
@@ -991,7 +911,7 @@ class Flash(AbstractBlockDev):
     """
 
     @overload
-    def readblocks(self, block_num: int, buf: bytearray) -> bool:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf) -> int:
         """
         The first form reads aligned, multiples of blocks.
         Starting at the block given by the index *block_num*, read blocks from
@@ -1001,7 +921,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def readblocks(self, block_num: int, buf: bytearray, offset: int) -> bool:
+    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int) -> int:
         """
         The second form allows reading at arbitrary locations within a block,
         and arbitrary lengths.
@@ -1011,7 +931,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: bytes | bytearray, /) -> None:
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf, /) -> int:
         """
         The first form writes aligned, multiples of blocks, and requires that the
         blocks that are written to be first erased (if necessary) by this method.
@@ -1022,7 +942,7 @@ class Flash(AbstractBlockDev):
         """
 
     @overload
-    def writeblocks(self, block_num: int, buf: bytes | bytearray, offset: int, /) -> None:
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf, offset: int, /) -> int:
         """
         The second form allows writing at arbitrary locations within a block,
         and arbitrary lengths.  Only the bytes being written should be changed,
@@ -1121,7 +1041,7 @@ class I2C:
     CONTROLLER: Final[int] = 0
     """for initialising the bus to controller mode"""
     SLAVE: Final[int] = 1
-    def scan(self) -> List:
+    def scan(self) -> list[int]:
         """
         Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.
         Only valid when in controller mode.
@@ -1177,7 +1097,7 @@ class I2C:
         """
     def mem_write(
         self,
-        data: int | AnyWritableBuf,
+        data: int | AnyReadableBuf,
         addr: int,
         memaddr: int,
         /,
@@ -1247,6 +1167,7 @@ class I2C:
         ...
     def send(
         self,
+        send: int | AnyReadableBuf,
         addr: int = 0x00,
         /,
         *,
@@ -1269,14 +1190,14 @@ class I2C:
         ...
     def init(
         self,
-        bus: int | str,
-        mode: str,
+        mode: int = CONTROLLER,
         /,
         *,
         addr: int = 0x12,
         baudrate: int = 400_000,
         gencall: bool = False,
         dma: bool = False,
+        timingr: int | None = None,
     ) -> None:
         """
         Initialise the I2C bus with the given parameters:
@@ -1297,13 +1218,14 @@ class I2C:
     def __init__(
         self,
         bus: int | str,
-        mode: str,
+        mode: int = CONTROLLER,
         /,
         *,
         addr: int = 0x12,
         baudrate: int = 400_000,
         gencall: bool = False,
         dma: bool = False,
+        timingr: int | None = None,
     ) -> None:
         """
         Construct an I2C object on the given bus.  ``bus`` can be 1 or 2, 'X' or
@@ -1482,7 +1404,7 @@ class CAN:
         ...
 
     @overload
-    def recv(self, fifo: int, /, *, timeout: int = 5000) -> tuple[int, bool, int, memoryview]:
+    def recv(self, fifo: int, /, *, timeout: int = 5000) -> list[int | bool | bytes | memoryview]:
         """
         Receive data on the bus:
 
@@ -1518,7 +1440,7 @@ class CAN:
         """
 
     @overload
-    def recv(self, fifo: int, list: None, /, *, timeout: int = 5000) -> tuple[int, bool, int, memoryview]:
+    def recv(self, fifo: int, list: None, /, *, timeout: int = 5000) -> list[int | bool | bytes | memoryview]:
         """
         Receive data on the bus:
 
@@ -1554,7 +1476,7 @@ class CAN:
         """
 
     @overload
-    def recv(self, fifo: int, list: list[int | bool | memoryview], /, *, timeout: int = 5000) -> None:
+    def recv(self, fifo: int, list: list[int | bool | memoryview], /, *, timeout: int = 5000) -> list[int | bool | memoryview]:
         """
         Receive data on the bus:
 
@@ -1601,6 +1523,13 @@ class CAN:
         auto_restart: bool = False,
         baudrate: int = 0,
         sample_point: int = 75,
+        num_filter_banks: int = 14,
+        brs_prescaler: int = 1,
+        brs_sjw: int = 1,
+        brs_bs1: int = 8,
+        brs_bs2: int = 3,
+        brs_baudrate: int = 0,
+        brs_sample_point: int = 0,
     ) -> None:
         """
          Initialise the CAN bus with the given parameters:
@@ -1664,7 +1593,7 @@ class CAN:
          See page 680 of the STM32F405 datasheet for more details.
         """
         ...
-    def rxcallback(self, fifo: int, fun: Callable[[CAN], None], /) -> None:
+    def rxcallback(self, fifo: int, fun: Callable[[CAN, int], None], /) -> None:
         """
         Register a function to be called when a message is accepted into a empty fifo:
 
@@ -1839,12 +1768,15 @@ class CAN:
         ...
     def send(
         self,
-        data: int | AnyWritableBuf,
+        data: int | AnyReadableBuf,
         id: int,
         /,
         *,
         timeout: int = 0,
         rtr: bool = False,
+        extframe: bool = False,
+        fdf: bool = False,
+        brs: bool = False,
     ) -> None:
         """
         Send a message on the bus:
@@ -1926,7 +1858,7 @@ class CAN:
         - number of pending RX messages on fifo 0
         - number of pending RX messages on fifo 1
         """
-    def clearfilter(self, bank: int, /) -> None:
+    def clearfilter(self, bank: int, /, *, extframe: bool = False) -> None:
         """
         Clear and disables a filter bank:
 
@@ -1983,7 +1915,7 @@ class ADC:
         val = adc.read_core_vref()          # read MCU VREF
         val = adc.read_vref()               # read MCU supply voltage
     """
-    def read_timed(self, buf: AnyWritableBuf, timer: Timer | int, /) -> None:
+    def read_timed(self, buf: AnyWritableBuf, timer: Timer | int, /) -> int:
         """
         Read analog values into ``buf`` at a rate set by the ``timer`` object.
 
@@ -2124,7 +2056,7 @@ class Accel:
         """
         ...
     def read(self, *args, **kwargs) -> Incomplete: ...
-    def filtered_xyz(self) -> Tuple:
+    def filtered_xyz(self) -> tuple[int, int, int]:
         """
         Get a 3-tuple of filtered x, y and z values.
 
@@ -2164,7 +2096,7 @@ class USB_VCP:
         ...
 
     @overload
-    def recv(self, data: int, /, *, timeout: int = 5000) -> bytes | None:
+    def recv(self, data: int, /, *, timeout: int = 5000) -> bytes:
         """
         Receive data on the bus:
 
@@ -2177,7 +2109,7 @@ class USB_VCP:
         """
 
     @overload
-    def recv(self, data: AnyWritableBuf, /, *, timeout: int = 5000) -> int | None:
+    def recv(self, data: AnyWritableBuf, /, *, timeout: int = 5000) -> int:
         """
         Receive data on the bus:
 
@@ -2261,7 +2193,7 @@ class USB_VCP:
         Returns the number of bytes written.
         """
         ...
-    def send(self, buf: AnyWritableBuf | bytes | int, /, *, timeout: int = 5000) -> int:
+    def send(self, buf: AnyReadableBuf | int, /, *, timeout: int = 5000) -> int:
         """
         Send data over the USB VCP:
 
@@ -2295,7 +2227,7 @@ class USB_VCP:
         Returns the number of bytes read and stored into ``buf`` or ``None``
         if no pending data available.
         """
-    def readline(self) -> bytes:
+    def readline(self) -> bytes | None:
         """
         Read a whole line from the serial device.
 
@@ -3255,6 +3187,7 @@ class Switch:
         """
         Create and return a switch object.
         """
+        ...
 
     @overload
     def __call__(self) -> bool:
@@ -3266,28 +3199,7 @@ class Switch:
 
 class Servo:
     """
-    Servo objects control standard hobby servo motors with 3-wires (ground, power,
-    signal).  There are 4 positions on the pyboard where these motors can be plugged
-    in: pins X1 through X4 are the signal pins, and next to them are 4 sets of power
-    and ground pins.
-
-    Example usage::
-
-        import pyb
-
-        s1 = pyb.Servo(1)   # create a servo object on position X1
-        s2 = pyb.Servo(2)   # create a servo object on position X2
-
-        s1.angle(45)        # move servo 1 to 45 degrees
-        s2.angle(0)         # move servo 2 to 0 degrees
-
-        # move servo1 and servo2 synchronously, taking 1500ms
-        s1.angle(-60, 1500)
-        s2.angle(30, 1500)
-
-    .. note:: The Servo objects use Timer(5) to produce the PWM output.  You can
-       use Timer(5) for Servo control, or your own purposes, but not both at the
-       same time.
+    Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
     """
 
     @overload
@@ -3301,9 +3213,10 @@ class Servo:
           - ``time`` is the number of milliseconds to take to get to the specified
             speed.  If omitted, then the servo accelerates as quickly as possible.
         """
+        ...
 
     @overload
-    def speed(self, speed: int, time: int = 0, /) -> None:
+    def speed(self, speed: int | float, time: int = 0, /) -> None:
         """
         If no arguments are given, this function returns the current speed.
 
@@ -3313,31 +3226,20 @@ class Servo:
           - ``time`` is the number of milliseconds to take to get to the specified
             speed.  If omitted, then the servo accelerates as quickly as possible.
         """
+        ...
 
     @overload
-    def speed(self) -> int:
+    def pulse_width(self) -> int:
         """
-        If no arguments are given, this function returns the current speed.
+        If no arguments are given, this function returns the current raw pulse-width
+        value.
 
-        If arguments are given, this function sets the speed of the servo:
-
-          - ``speed`` is the speed to change to, between -100 and 100.
-          - ``time`` is the number of milliseconds to take to get to the specified
-            speed.  If omitted, then the servo accelerates as quickly as possible.
+        If an argument is given, this function sets the raw pulse-width value.
         """
+        ...
 
     @overload
-    def speed(self, value: int, /) -> None:
-        """
-        If no arguments are given, this function returns the current speed.
-
-        If arguments are given, this function sets the speed of the servo:
-
-          - ``speed`` is the speed to change to, between -100 and 100.
-          - ``time`` is the number of milliseconds to take to get to the specified
-            speed.  If omitted, then the servo accelerates as quickly as possible.
-        """
-    def pulse_width(self, value: Any | None = None) -> Incomplete:
+    def pulse_width(self, value: int, /) -> None:
         """
         If no arguments are given, this function returns the current raw pulse-width
         value.
@@ -3360,6 +3262,7 @@ class Servo:
           - ``pulse_angle_90`` is the pulse width corresponding to 90 degrees.
           - ``pulse_speed_100`` is the pulse width corresponding to a speed of 100.
         """
+        ...
 
     @overload
     def calibration(self, pulse_min: int, pulse_max: int, pulse_centre: int, /) -> None:
@@ -3375,6 +3278,7 @@ class Servo:
           - ``pulse_angle_90`` is the pulse width corresponding to 90 degrees.
           - ``pulse_speed_100`` is the pulse width corresponding to a speed of 100.
         """
+        ...
 
     @overload
     def calibration(
@@ -3398,7 +3302,7 @@ class Servo:
           - ``pulse_angle_90`` is the pulse width corresponding to 90 degrees.
           - ``pulse_speed_100`` is the pulse width corresponding to a speed of 100.
         """
-
+        ...
     @overload
     def angle(self) -> int:
         """
@@ -3411,9 +3315,10 @@ class Servo:
             angle.  If omitted, then the servo moves as quickly as possible to its
             new position.
         """
+        ...
 
     @overload
-    def angle(self, angle: int, time: int = 0, /) -> None:
+    def angle(self, angle: int | float, time: int = 0, /) -> None:
         """
         If no arguments are given, this function returns the current angle.
 
@@ -3424,10 +3329,8 @@ class Servo:
             angle.  If omitted, then the servo moves as quickly as possible to its
             new position.
         """
-    def __init__(self, id: int, /) -> None:
-        """
-        Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
-        """
+        ...
+    def __init__(self, id: int, /) -> None: ...
 
 class UART:
     """
@@ -3498,7 +3401,7 @@ class UART:
         flow: int = 0,
         timeout_char: int = 0,
         read_buf_len: int = 64,
-    ):
+    ) -> None:
         """
         Initialise the UART bus with the given parameters:
 
@@ -3581,7 +3484,7 @@ class UART:
         Returns the number of bytes waiting (may be 0).
         """
         ...
-    def write(self, buf: AnyWritableBuf, /) -> int:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the buffer of bytes to the bus.  If characters are 7 or 8 bits wide
         then each byte is one character.  If characters are 9 bits wide then two
@@ -3612,7 +3515,7 @@ class UART:
         Return value: number of bytes read and stored into ``buf`` or ``None`` on
         timeout.
         """
-    def readline(self) -> None:
+    def readline(self) -> bytes | None:
         """
         Read a line, ending in a newline character. If such a line exists, return is
         immediate. If the timeout elapses, all available data is returned regardless
@@ -3742,7 +3645,7 @@ class USB_HID:
         Return value: if ``data`` is an integer then a new buffer of the bytes received,
         otherwise the number of bytes read into ``data`` is returned.
         """
-    def send(self, data: Sequence[int]) -> None:
+    def send(self, data: Sequence[int]) -> int:
         """
         Send data over the USB HID interface:
 
@@ -3832,7 +3735,8 @@ class RTC:
         """
         ...
     def init(self, *args, **kwargs) -> Incomplete: ...
-    def wakeup(self, timeout: int, callback: Callable[[RTC], None] | None = None, /) -> None:
+    @overload
+    def wakeup(self, timeout: int | None, callback: Callable[[int], None] | None = None, /) -> None:
         """
         Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
         milliseconds.  This trigger can wake the pyboard from both the sleep
@@ -3844,6 +3748,21 @@ class RTC:
         wakeup timer.  ``callback`` must take exactly one argument.
         """
         ...
+
+    @overload
+    def wakeup(self, wucksel: int, wut: int, callback: Callable[[int], None] | None = None, /) -> None:
+        """
+        Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
+        milliseconds.  This trigger can wake the pyboard from both the sleep
+        states: :meth:`pyb.stop` and :meth:`pyb.standby`.
+
+        If ``timeout`` is ``None`` then the wakeup timer is disabled.
+
+        If ``callback`` is given then it is executed at every trigger of the
+        wakeup timer.  ``callback`` must take exactly one argument.
+        """
+        ...
+
     @overload
     def datetime(self, datetimetuple: tuple[int, int, int, int, int, int, int, int], /) -> None:
         """
@@ -3863,7 +3782,7 @@ class RTC:
         """
         ...
     @overload
-    def datetime(self, /) -> Tuple:
+    def datetime(self, /) -> tuple[int, int, int, int, int, int, int, int]:
         """
         Get or set the date and time of the RTC.
 
@@ -3898,6 +3817,7 @@ class RTC:
         usable calibration range is:
         (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
         """
+        ...
 
     @overload
     def calibration(self, cal: int, /) -> None:
@@ -3916,10 +3836,12 @@ class RTC:
         usable calibration range is:
         (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
         """
+        ...
     def __init__(self) -> None:
         """
         Create an RTC object.
         """
+        ...
 
 class Pin:
     """
@@ -4061,7 +3983,10 @@ class Pin:
         """
         ...
     def low(self, *args, **kwargs) -> Incomplete: ...
-    def irq(self, *args, **kwargs) -> Incomplete: ...
+    @overload
+    def irq(self) -> None: ...
+    @overload
+    def irq(self, *, handler: Callable[[Pin], None] | None = None, trigger: int = IRQ_RISING | IRQ_FALLING, hard: bool = False) -> None: ...
     def pin(self) -> int:
         """
         Get the pin number.
@@ -4072,7 +3997,7 @@ class Pin:
         Get the pin port.
         """
         ...
-    def names(self) -> str:
+    def names(self) -> List[str]:
         """
         Returns the cpu and board names for this pin.
         """
@@ -4119,7 +4044,7 @@ class Pin:
         Returns: ``None``.
         """
         ...
-    def af_list(self) -> List:
+    def af_list(self) -> List[pinaf]:
         """
         Returns an array of alternate functions available for this pin.
         """
@@ -4372,10 +4297,12 @@ class SPI:
         Turn off the SPI bus.
         """
         ...
+
+    @overload
     def send_recv(
         self,
-        send: int | AnyWritableBuf,
-        recv: AnyWritableBuf | None = None,
+        send: int | AnyReadableBuf,
+        recv: None = None,
         /,
         *,
         timeout: int = 5000,
@@ -4392,7 +4319,45 @@ class SPI:
         Return value: the buffer with the received bytes.
         """
         ...
-    def recv(self, recv: int | AnyWritableBuf, /, *, timeout: int = 5000) -> bytes:
+
+    @overload
+    def send_recv(
+        self,
+        send: int | AnyReadableBuf,
+        recv: _WB,
+        /,
+        *,
+        timeout: int = 5000,
+    ) -> _WB:
+        """
+        Send and receive data on the bus at the same time:
+
+          - ``send`` is the data to send (an integer to send, or a buffer object).
+          - ``recv`` is a mutable buffer which will be filled with received bytes.
+            It can be the same as ``send``, or omitted.  If omitted, a new buffer will
+            be created.
+          - ``timeout`` is the timeout in milliseconds to wait for the receive.
+
+        Return value: the buffer with the received bytes.
+        """
+        ...
+
+    @overload
+    def recv(self, recv: int, /, *, timeout: int = 5000) -> bytes:
+        """
+        Receive data on the bus:
+
+          - ``recv`` can be an integer, which is the number of bytes to receive,
+            or a mutable buffer, which will be filled with received bytes.
+          - ``timeout`` is the timeout in milliseconds to wait for the receive.
+
+        Return value: if ``recv`` is an integer then a new buffer of the bytes received,
+        otherwise the same buffer that was passed in to ``recv``.
+        """
+        ...
+
+    @overload
+    def recv(self, recv: _WB, /, *, timeout: int = 5000) -> _WB:
         """
         Receive data on the bus:
 
@@ -4408,12 +4373,14 @@ class SPI:
     @overload
     def init(
         self,
-        mode: int = CONTROLLER,
+        mode: int,
         baudrate: int = 328125,
         *,
         polarity: int = 1,
         phase: int = 0,
+        dir: int = 0,
         bits: int = 8,
+        nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -4447,12 +4414,14 @@ class SPI:
     @overload
     def init(
         self,
-        mode: int = CONTROLLER,
+        mode: int,
         *,
         prescaler: int = 256,
         polarity: int = 1,
         phase: int = 0,
+        dir: int = 0,
         bits: int = 8,
+        nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -4486,7 +4455,7 @@ class SPI:
     def write(self, *args, **kwargs) -> Incomplete: ...
     def read(self, *args, **kwargs) -> Incomplete: ...
     def readinto(self, *args, **kwargs) -> Incomplete: ...
-    def send(self, send: int | AnyWritableBuf | bytes, /, *, timeout: int = 5000) -> None:
+    def send(self, send: int | AnyReadableBuf, /, *, timeout: int = 5000) -> None:
         """
         Send data on the bus:
 
@@ -4519,12 +4488,14 @@ class SPI:
         self,
         bus: int,
         /,
-        mode: int = CONTROLLER,
+        mode: int,
         baudrate: int = 328125,
         *,
         polarity: int = 1,
         phase: int = 0,
+        dir: int = 0,
         bits: int = 8,
+        nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -4550,12 +4521,14 @@ class SPI:
         self,
         bus: int,
         /,
-        mode: int = CONTROLLER,
+        mode: int,
         *,
         prescaler: int = 256,
         polarity: int = 1,
         phase: int = 0,
+        dir: int = 0,
         bits: int = 8,
+        nss: int = 0,
         firstbit: int = MSB,
         ti: bool = False,
         crc: int | None = None,
@@ -4577,6 +4550,7 @@ class SPI:
         """
 
 SD: Incomplete  ## <class 'SDCard'> = <SDCard>
+_WB = TypeVar("_WB", bound=AnyWritableBuf)
 
 class SDCard:
     def writeblocks(self, *args, **kwargs) -> Incomplete: ...

@@ -36,7 +36,7 @@ from __future__ import annotations
 
 from _typeshed import Incomplete
 
-def decompress(data: bytes, wbits: int = 0, bufsize: int = 0, /) -> bytes:
+def decompress(data: bytes, wbits: int = 15, /) -> bytes:
     """
     Decompresses *data* into a bytes object.
 
@@ -58,7 +58,7 @@ def decompress(data: bytes, wbits: int = 0, bufsize: int = 0, /) -> bytes:
     """
     ...
 
-def compress(data, wbits=15, /) -> Incomplete:
+def compress(data: bytes, wbits: int = 15, /) -> bytes:
     """
     Compresses *data* into a bytes object.
 

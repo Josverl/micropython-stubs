@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Callable, Tuple, overload
+from typing import Callable, overload
 
 class RTC:
     """
@@ -20,6 +20,14 @@ class RTC:
         """
         Create an RTC object.
         """
+        ...
+
+    def init(self) -> None:
+        """
+        Force RTC re-initialisation.
+        """
+        ...
+
     @overload
     def datetime(self, datetimetuple: tuple[int, int, int, int, int, int, int, int], /) -> None:
         """
@@ -39,7 +47,7 @@ class RTC:
         """
         ...
     @overload
-    def datetime(self, /) -> Tuple:
+    def datetime(self, /) -> tuple[int, int, int, int, int, int, int, int]:
         """
         Get or set the date and time of the RTC.
 
@@ -57,7 +65,15 @@ class RTC:
         """
         ...
 
-    def wakeup(self, timeout: int, callback: Callable[[RTC], None] | None = None, /) -> None:
+    @overload
+    def wakeup(self, timeout: int | None, callback: Callable[[int], None] | None = None, /) -> None:
+        ...
+
+    @overload
+    def wakeup(self, wucksel: int, wut: int, callback: Callable[[int], None] | None = None, /) -> None:
+        ...
+
+    def wakeup(self, *args, **kwargs) -> None:
         """
         Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
         milliseconds.  This trigger can wake the pyboard from both the sleep
@@ -98,6 +114,7 @@ class RTC:
         usable calibration range is:
         (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
         """
+        ...
 
     @overload
     def calibration(self, cal: int, /) -> None:
@@ -116,3 +133,4 @@ class RTC:
         usable calibration range is:
         (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
         """
+        ...

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import overload
 
-from _typeshed import Incomplete
 from machine.ADC import ADC
 from machine.Pin import PinLike
 
@@ -18,8 +17,8 @@ class ADCBlock:
     resolution is used.
     """
 
-    def __init__(self, id: int, *, bits: int) -> None: ...
-    def init(self, *, bits: int) -> None:
+    def __init__(self, id: int, *, bits: int = ...) -> None: ...
+    def init(self, *, bits: int = ...) -> None:
         """
         Configure the ADC peripheral.  *bits* will set the resolution of the
         conversion process.

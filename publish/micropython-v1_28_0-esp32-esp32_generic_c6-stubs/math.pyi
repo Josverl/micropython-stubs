@@ -21,7 +21,7 @@ Module: 'math' on micropython-v1.28.0-esp32-ESP32_GENERIC_C6
 # Stubber: v1.28.1
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import SupportsFloat, Tuple
+from typing import SupportsFloat, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 inf: float = inf
@@ -87,7 +87,17 @@ def sinh(x: SupportsFloat, /) -> float:
     """
     ...
 
+@overload
 def log(x: SupportsFloat, /) -> float:
+    """
+    With one argument, return the natural logarithm of *x*.
+
+    With two arguments, return the logarithm of *x* to the given *base*.
+    """
+    ...
+
+@overload
+def log(x: SupportsFloat, base: SupportsFloat, /) -> float:
     """
     With one argument, return the natural logarithm of *x*.
 
@@ -125,7 +135,7 @@ def sin(x: SupportsFloat, /) -> float:
     """
     ...
 
-def modf(x: SupportsFloat, /) -> Tuple:
+def modf(x: SupportsFloat, /) -> tuple[float, float]:
     """
     Return a tuple of two floats, being the fractional and integral parts of
     ``x``.  Both return values have the same sign as ``x``.

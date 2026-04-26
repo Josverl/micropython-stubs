@@ -120,8 +120,6 @@
             "titleBar.inactiveForeground": "#e7e7e799"
         },
         "peacock.color": "#eb117e",
-        "testExplorer.useNativeTesting": true,
-        "python.analysis.enableSyncServer": false,
         "python.testing.autoTestDiscoverOnSaveEnabled": false,
         "editor.defaultFormatter": null,
         "ruff.lineLength": 120,

@@ -143,7 +143,7 @@ class array(MutableSequence[_T], Generic[_T]):
         """
         ...
 
-    def __iadd__(self, other: array[_T]) -> None:
+    def __iadd__(self, other: array[_T]) -> array[_T]:
         """
         Concatenates the array with *other* in-place, called as ``a += other`` (where ``a`` and *other*
         are both ``arrays``).  Equivalent to ``extend(other)``.

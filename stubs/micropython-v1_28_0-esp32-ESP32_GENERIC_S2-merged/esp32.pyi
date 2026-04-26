@@ -13,7 +13,7 @@ Module: 'esp32' on micropython-v1.28.0-esp32-ESP32_GENERIC_S2
 # MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC_S2', 'board_id': 'ESP32_GENERIC_S2', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32S2', 'version': '1.28.0'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Any, Callable, List, Optional, Sequence, Tuple, overload, Final
+from typing import Any, List, Sequence, Tuple, overload, Final
 from _typeshed import Incomplete
 from _mpy_shed import AnyReadableBuf
 from machine import Pin
@@ -68,7 +68,19 @@ def idf_heap_info(capabilities: int) -> List[Tuple]:
     ...
 
 def mcu_temperature() -> Incomplete: ...
-def wake_on_ext0(pin: Pin | None, level: int, /) -> None:
+@overload
+def wake_on_ext0() -> None:
+    """
+    Configure how EXT0 wakes the device from sleep.  *pin* can be ``None``
+    or a valid Pin object.  *level* should be ``esp32.WAKEUP_ALL_LOW`` or
+    ``esp32.WAKEUP_ANY_HIGH``.
+
+    ``Note:`` This is only available for boards that have ext0 support.
+    """
+    ...
+
+@overload
+def wake_on_ext0(pin: Pin | None, level: bool, /) -> None:
     """
     Configure how EXT0 wakes the device from sleep.  *pin* can be ``None``
     or a valid Pin object.  *level* should be ``esp32.WAKEUP_ALL_LOW`` or
@@ -87,7 +99,8 @@ def wake_on_touch(wake: bool, /) -> None:
     """
     ...
 
-def wake_on_gpio(pins, level) -> None:
+@overload
+def wake_on_gpio() -> None:
     """
     Configure how GPIO wakes the device from sleep.  *pins* can be ``None``
     or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
@@ -98,7 +111,20 @@ def wake_on_gpio(pins, level) -> None:
     """
     ...
 
-def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: int, /) -> None:
+@overload
+def wake_on_gpio(pins: List[Pin] | Tuple[Pin, ...] | None, level: bool, /) -> None:
+    """
+    Configure how GPIO wakes the device from sleep.  *pins* can be ``None``
+    or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
+    or ``esp32.WAKEUP_ANY_HIGH``.
+
+    ``Note:`` Some boards don't support waking on GPIO from deep sleep,
+       on those boards, the pins set here can only be used to wake from light sleep.
+    """
+    ...
+
+@overload
+def wake_on_ext1() -> None:
     """
     Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
     or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
@@ -108,7 +134,18 @@ def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: int, /) -> Non
     """
     ...
 
-def wake_on_ulp(wake) -> None:
+@overload
+def wake_on_ext1(pins: List[Pin] | Tuple[Pin, ...] | None, level: bool, /) -> None:
+    """
+    Configure how EXT1 wakes the device from sleep.  *pins* can be ``None``
+    or a tuple/list of valid Pin objects.  *level* should be ``esp32.WAKEUP_ALL_LOW``
+    or ``esp32.WAKEUP_ANY_HIGH``.
+
+    ``Note:`` This is only available for boards that have ext1 support.
+    """
+    ...
+
+def wake_on_ulp(wake: bool, /) -> None:
     """
     Configure whether or not the Ultra-Low-Power co-processor can wake the
     device from sleep. *wake* should be a boolean value.
@@ -117,7 +154,7 @@ def wake_on_ulp(wake) -> None:
     """
     ...
 
-def gpio_deep_sleep_hold(enable) -> None:
+def gpio_deep_sleep_hold(enable: bool, /) -> None:
     """
     Configure whether non-RTC GPIO pin configuration is retained during
     deep-sleep mode for held pads. *enable* should be a boolean value.
@@ -144,7 +181,7 @@ class PCNT:
     DECREMENT: Final[int] = 2
     HOLD: Final[int] = 2
     def deinit(self, *args, **kwargs) -> Incomplete: ...
-    def init(self, *args, **kwargs) -> Incomplete:
+    def init(self, /, **kwargs: Any) -> None:
         """
         (Re-)initialise a pulse counter unit. Supported keyword arguments are:
 
@@ -208,7 +245,7 @@ class PCNT:
             rotary.start()
         """
         ...
-    def irq(self, handler=None, trigger=IRQ_ZERO) -> Callable[..., Incomplete]:
+    def irq(self, /, handler: Any = None, trigger: int = IRQ_ZERO) -> Incomplete:
         """
         ESP32 pulse counters support interrupts on these counter events:
 
@@ -234,7 +271,20 @@ class PCNT:
         """
         ...
     def start(self, *args, **kwargs) -> Incomplete: ...
-    def value(self, value: Optional[Any] = None) -> Incomplete:
+    @overload
+    def value(self, /) -> int:
+        """
+        Call this method with no arguments to return the current counter value.
+
+        If the optional *value* argument is set to ``0`` then the counter is
+        reset (but the previous value is returned). Read and reset is not atomic and
+        so it is possible for a pulse to be missed. Any value other than ``0`` will
+        raise an error.
+        """
+        ...
+
+    @overload
+    def value(self, value: int, /) -> int:
         """
         Call this method with no arguments to return the current counter value.
 
@@ -245,7 +295,7 @@ class PCNT:
         """
         ...
     def stop(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, id, *args, **kwargs) -> None: ...
+    def __init__(self, id: int, /, **kwargs: Any) -> None: ...
 
 class NVS:
     """
@@ -521,7 +571,7 @@ class RMT:
 
     PULSE_MAX: Final[int] = 32767
     """Maximum integer that can be set for a pulse duration."""
-    def loop_count(self, n) -> None:
+    def loop_count(self, count: int, /) -> None:
         """
         Configure looping on the channel. *n* is int. Affects the *next* call to
         `RMT.write_pulses`. Set to ``0`` to disable looping, ``-1`` to enable
@@ -652,7 +702,7 @@ class RMT:
         """
         ...
     @staticmethod
-    def bitstream_channel(value: Optional[Any] = None) -> int:
+    def bitstream_channel(value: int | None = None) -> int | None:
         """
         *This function is deprecated and will be replaced by `RMT.bitstream_rmt()`.*
 
@@ -666,7 +716,9 @@ class RMT:
                   dynamically.
         """
         ...
-    def active(self, boolean: Optional[Any] = None) -> Incomplete:
+
+    @overload
+    def active(self, /) -> bool:
         """
         If called without parameters, returns *True* if there is an ongoing transmission.
 
@@ -680,7 +732,23 @@ class RMT:
         should always be initiated by *write_pulses()*.
         """
         ...
-    def deinit(self) -> Incomplete:
+
+    @overload
+    def active(self, value: bool, /) -> bool:
+        """
+        If called without parameters, returns *True* if there is an ongoing transmission.
+
+        If called with parameter *False*, stops the ongoing transmission.
+        This is useful to stop an infinite transmission loop.
+        The current loop is finished and transmission stops.
+        The object is not invalidated, and the RMT channel is again enabled when a new
+        transmission is started.
+
+        Calling with parameter *True* does not restart transmission. A new transmission
+        should always be initiated by *write_pulses()*.
+        """
+        ...
+    def deinit(self) -> None:
         """
         Release all RMT resources and invalidate the object. All subsequent method
         calls will raise OSError. Useful to free RMT resources without having to wait
@@ -688,7 +756,7 @@ class RMT:
         """
         ...
     @staticmethod
-    def bitstream_rmt(value: Optional[Any] = None) -> Incomplete:
+    def bitstream_rmt(value: bool | None = None) -> bool:
         """
         Configure RMT usage in the `machine.bitstream` implementation.
 
@@ -708,13 +776,15 @@ class RMT:
         ...
     def __init__(
         self,
-        channel: int,
+        id: int = -1,
         /,
         *,
-        pin: Pin | None = None,
-        clock_div: int = 8,
+        pin: Pin,
+        resolution_hz: int | None = None,
+        clock_div: int | None = None,
         idle_level: bool = False,
         tx_carrier: Tuple[int, int, bool] | None = None,
+        num_symbols: int = 48,
     ) -> None:
         """
         This class provides access to one of the eight RMT channels. *channel* is

@@ -25,7 +25,7 @@ def disable() -> None:
     """
     ...
 
-def collect() -> None:
+def collect() -> int | None:
     """
     Run a garbage collection.
     """

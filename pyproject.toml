@@ -1,3 +1,7 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "micropython-stubs"
 authors = [{ name = "Jos Verlinde", email = "jos_verlinde@hotmail.com"}]
@@ -6,13 +10,14 @@ description = "The MicroPython stubs project"
 version = "1.28.0"
 classifiers = [
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: MicroPython",
-  "License :: OSI Approved :: MIT License"
+    "Programming Language :: Python :: Implementation :: MicroPython"
 ]
-readme = "readme.md"
+readme = "README.md"
 license = "MIT"
 dependencies = []
 
+[tool.hatch.build.targets.wheel]
+only-include = ["README.md", "LICENSE.md"]
 
 [project.optional-dependencies]
 # uv pip install -r pyproject.toml --extra stubber --prerelease=allow
@@ -62,6 +67,24 @@ docs =[
 # New config
 "mpy-stubs-path" = "."
 
+
+# pyright options:
+
+[tool.pyright]
+include = ["reference"]
+ignore = ["**/typings"]
+exclude = [".*", "__*", "**/typings", "repos", "stubs", "publish", "tests", "docs", "data", "statistics", "scripts"]
+
+typeCheckingMode = "basic"
+stubPath = "typings"
+typeshedPath = "typings"
+extraPaths = ["reference"]
+pythonPlatform = "Linux"
+
+reportMissingModuleSource = "none"
+reportUnnecessaryTypeIgnoreComment = "error"
+
+
 #-----------------
 # < v1.18 config
 stub-path = "./stubs"
@@ -77,7 +100,6 @@ template-path = "./publish/template"
 [tool.black]
 # use same config as -stubber
 line-length = 140
-target_version = ['py38']
 include = '\.pyi?$'
 exclude = '''
 (
@@ -161,3 +183,5 @@ ignore = [
     "PYI014", # Only simple default values allowed for arguments - we want actual defaults
     "PYI029", # __str__ and __repr__ are useful in MicroPython stubs
 ]
+
+
