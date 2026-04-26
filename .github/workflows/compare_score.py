@@ -19,8 +19,11 @@ except json.decoder.JSONDecodeError:
 
 # set by pytest in custom conftest reporting
 new_scores = {}
-with open("results/snippet_score.json", "r") as f:
-    new_scores = json.load(f)
+try:
+    with open("results/snippet_score.json", "r") as f:
+        new_scores = json.load(f)
+except (FileNotFoundError, json.decoder.JSONDecodeError):
+    new_scores = {"snippet_score": 0}
 
 
 # Compare the scores and update the repository variable if necessary
