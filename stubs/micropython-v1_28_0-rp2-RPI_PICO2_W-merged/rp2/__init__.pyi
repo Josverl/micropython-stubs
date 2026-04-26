@@ -243,26 +243,6 @@ def country(code: str, /) -> None:
     """
     ...
 
-@overload
-def country() -> str:
-    """
-    Get the two-letter country code.
-
-    Deprecated alias to ``network.country``.
-    Only available when CYW43 networking support is enabled.
-    """
-    ...
-
-@overload
-def country(code: str, /) -> None:
-    """
-    Set the two-letter country code.
-
-    Deprecated alias to ``network.country``.
-    Only available when CYW43 networking support is enabled.
-    """
-    ...
-
 def asm_pio_encode(instr, sideset_count, sideset_opt=False) -> int:
     """
     Assemble a single PIO instruction. You usually want to use `asm_pio()`
@@ -841,11 +821,3 @@ class Flash:
     def __init__(self, *, start: int = -1, len: int = -1) -> None: ...
 
 class PIOASMError(Exception): ...
-class _PIO_ASM_Program:
-    """Opaque handle representing an assembled PIO program.
-
-    Returned by ``@asm_pio`` and consumed by ``StateMachine``/``PIO``.
-    Users should not introspect or index this object. The chainable
-    per-instruction expression that lives inside the decorator body is
-    a different type (``rp2.asm_pio._PIOInstr``).
-    """

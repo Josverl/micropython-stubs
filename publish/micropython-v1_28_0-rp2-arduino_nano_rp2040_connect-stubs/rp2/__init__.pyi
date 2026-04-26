@@ -821,31 +821,3 @@ def country(code: str, /) -> None:
     Only available when CYW43 networking support is enabled.
     """
     ...
-
-@overload
-def country() -> str:
-    """
-    Get the two-letter country code.
-
-    Deprecated alias to ``network.country``.
-    Only available when CYW43 networking support is enabled.
-    """
-    ...
-
-@overload
-def country(code: str, /) -> None:
-    """
-    Set the two-letter country code.
-
-    Deprecated alias to ``network.country``.
-    Only available when CYW43 networking support is enabled.
-    """
-    ...
-class _PIO_ASM_Program:
-    """Opaque handle representing an assembled PIO program.
-
-    Returned by ``@asm_pio`` and consumed by ``StateMachine``/``PIO``.
-    Users should not introspect or index this object. The chainable
-    per-instruction expression that lives inside the decorator body is
-    a different type (``rp2.asm_pio._PIOInstr``).
-    """

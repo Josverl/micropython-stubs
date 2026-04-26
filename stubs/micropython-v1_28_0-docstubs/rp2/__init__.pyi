@@ -35,8 +35,8 @@ _IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 
 class PIOASMError(Exception):
     """
-    This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
-    an error assembling a PIO program.
+        This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
+        an error assembling a PIO program.
     """
 def asm_pio(*,
     out_init: Union[Pin, List[Pin], int, List[int], None] = None,
