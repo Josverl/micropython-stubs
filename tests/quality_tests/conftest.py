@@ -42,6 +42,16 @@ _FALLBACK_STABLE_VERSION = "v1.28.0"
 _FALLBACK_PREVIEW_VERSION = "v1.29.0-preview"
 
 
+def pytest_addoption(parser: pytest.Parser):
+    """Register extra command-line options for the quality-test suite."""
+    parser.addoption(
+        "--no-cache",
+        action="store_true",
+        default=False,
+        help="Disable the 24-hour stub-installation cache and always reinstall stubs.",
+    )
+
+
 def flat_version(version):
     """Converts a version string to a flat version string. (simplified)"""
     return version.replace(".", "_").replace("-", "_")
@@ -119,8 +129,10 @@ def type_stub_cache_path_fx(
     with cache_lock:
         if (tsc_path / "micropython.pyi").exists():
             # stubs appear to be installed – check the freshness timestamp
+            # (skipped when --no-cache is passed on the command line)
+            no_cache = request.config.getoption("--no-cache", default=False)
             timestamp = request.config.cache.get(cache_key, None)
-            if timestamp and timestamp > (time.time() - MAX_CACHE_AGE):
+            if not no_cache and timestamp and timestamp > (time.time() - MAX_CACHE_AGE):
                 log.debug(f"Using cached type stubs for {portboard} {version}")
                 return tsc_path
 
