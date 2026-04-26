@@ -85,3 +85,14 @@ _OpenBinaryModeReading: TypeAlias = Literal["rb", "br", "rbU", "rUb", "Urb", "br
 _OpenBinaryMode: TypeAlias = (
     _OpenBinaryModeUpdating | _OpenBinaryModeReading | _OpenBinaryModeWriting
 )
+
+__all__ = [
+    "_OpenTextModeUpdating",
+    "_OpenTextModeWriting",
+    "_OpenTextModeReading",
+    "_OpenTextMode",
+    "_OpenBinaryModeUpdating",
+    "_OpenBinaryModeWriting",
+    "_OpenBinaryModeReading",
+    "_OpenBinaryMode",
+]

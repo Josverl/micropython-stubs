@@ -15,3 +15,8 @@ class _MemoryObject():
         ...
     def __setitem__(self, key: int, value: Any) -> None:
         ...
+
+
+__all__ = [
+    "_MemoryObject",
+]

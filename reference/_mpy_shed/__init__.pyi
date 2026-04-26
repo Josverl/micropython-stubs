@@ -11,7 +11,7 @@ Common cases are:
 
 from __future__ import annotations
 
-import abc  # type: ignore - not collections.abc
+import abc  # mypy: ignore # not collections.abc
 import sys
 from typing import Final, final
 
@@ -28,7 +28,10 @@ from .io_mp import IncrementalNewlineDecoder as IncrementalNewlineDecoder
 from .io_mp import IOBase_mp as IOBase_mp
 from .io_mp import StringIO as StringIO
 from .io_mp import TextIOWrapper as TextIOWrapper
-from .io_mp import _BufferedIOBase, _IOBase, _RawIOBase, _TextIOBase
+from .io_mp import _BufferedIOBase as _BufferedIOBase
+from .io_mp import _IOBase as _IOBase
+from .io_mp import _RawIOBase as _RawIOBase
+from .io_mp import _TextIOBase as _TextIOBase
 from .io_mp import open as open
 from .IRQs import _IRQ
 from .mp_available import mp_available as mp_available
@@ -73,7 +76,7 @@ class uname_result(structseq[str], tuple[str, str, str, str, str]):
     def machine(self) -> str: ...
 
 # ------------------------------------------------------------------------------------
-from mp_mem import _MemoryObject as _MemoryObject
+from .mp_mem import _MemoryObject as _MemoryObject
 
 # ------------------------------------------------------------------------------------
 
@@ -103,3 +106,51 @@ class _Hash(abc.ABC):
         This method is NOT implemented. Use ``binascii.hexlify(hash.digest())``
         to achieve a similar effect.
         """
+
+
+__all__ = [
+    # defined in this module
+    "GenericAlias",
+    "StrOrBytesPath",
+    "_StrOrBytesT",
+    "_AnyPath",
+    "_FdOrAnyPath",
+    "HID_Tuple",
+    "uname_result",
+    "_Hash",
+    # re-exported from .blockdevice
+    "_BlockDeviceProtocol",
+    "_OldAbstractBlockDev",
+    "_OldAbstractReadOnlyBlockDev",
+    # re-exported from .buffer_mp
+    "AnyReadableBuf",
+    "AnyWritableBuf",
+    # re-exported from .io_mp
+    "BytesIO",
+    "FileIO",
+    "IncrementalNewlineDecoder",
+    "IOBase_mp",
+    "StringIO",
+    "TextIOWrapper",
+    "_BufferedIOBase",
+    "_IOBase",
+    "_RawIOBase",
+    "_TextIOBase",
+    "open",
+    # re-exported from .IRQs
+    "_IRQ",
+    # re-exported from .mp_available
+    "mp_available",
+    # re-exported from .mp_implementation
+    "_mp_implementation",
+    # re-exported from .neopixelbase
+    "_NeoPixelBase",
+    # re-exported from .pathlike
+    "PathLike",
+    # re-exported from .subscriptable
+    "Subscriptable",
+    # re-exported from .time_mp
+    "_TimeTuple",
+    # re-exported from .mp_mem
+    "_MemoryObject",
+]

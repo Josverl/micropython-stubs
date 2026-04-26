@@ -10,7 +10,10 @@ from _io import FileIO as FileIO
 from _io import IncrementalNewlineDecoder as IncrementalNewlineDecoder
 from _io import StringIO as StringIO
 from _io import TextIOWrapper as TextIOWrapper
-from _io import _BufferedIOBase, _IOBase, _RawIOBase, _TextIOBase
+from _io import _BufferedIOBase as _BufferedIOBase
+from _io import _IOBase as _IOBase
+from _io import _RawIOBase as _RawIOBase
+from _io import _TextIOBase as _TextIOBase
 from _io import open as open
 from typing_extensions import Self
 
@@ -50,3 +53,20 @@ class IOBase_mp(_IOBase, metaclass=abc.ABCMeta): ...
 
 # Howard
 _OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int)
+
+__all__ = [
+    # re-exported from _io
+    "BytesIO",
+    "FileIO",
+    "IncrementalNewlineDecoder",
+    "StringIO",
+    "TextIOWrapper",
+    "_BufferedIOBase",
+    "_IOBase",
+    "_RawIOBase",
+    "_TextIOBase",
+    "open",
+    # defined in this module
+    "IOBase_mp",
+    "_OpenFile",
+]
