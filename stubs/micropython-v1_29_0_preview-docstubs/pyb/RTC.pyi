@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, overload, Tuple
+from typing import Callable, overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class RTC:
@@ -20,6 +20,8 @@ class RTC:
         """
         Create an RTC object.
         """
+        ...
+
     @overload
     def datetime(self, datetimetuple: tuple[int, int, int, int, int, int, int, int], /) -> None:
         """
@@ -39,7 +41,7 @@ class RTC:
         """
         ...
     @overload
-    def datetime(self, /) -> Tuple:
+    def datetime(self, /) -> tuple[int, int, int, int, int, int, int, int]:
         """
         Get or set the date and time of the RTC.
 
@@ -56,7 +58,23 @@ class RTC:
         ``subseconds`` counts down from 255 to 0
         """
         ...
-    def wakeup(self, timeout: int, callback: Callable[[RTC], None] | None = None, /) -> None:
+
+    @overload
+    def wakeup(self, timeout: int | None, callback: Callable[[int], None] | None = None, /) -> None:
+        """
+        Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
+        milliseconds.  This trigger can wake the pyboard from both the sleep
+        states: :meth:`pyb.stop` and :meth:`pyb.standby`.
+
+        If ``timeout`` is ``None`` then the wakeup timer is disabled.
+
+        If ``callback`` is given then it is executed at every trigger of the
+        wakeup timer.  ``callback`` must take exactly one argument.
+        """
+        ...
+
+    @overload
+    def wakeup(self, wucksel: int, wut: int, callback: Callable[[int], None] | None = None, /) -> None:
         """
         Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
         milliseconds.  This trigger can wake the pyboard from both the sleep
@@ -96,6 +114,7 @@ class RTC:
         usable calibration range is:
         (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
         """
+        ...
 
     @overload
     def calibration(self, cal: int, /) -> None:
@@ -114,3 +133,4 @@ class RTC:
         usable calibration range is:
         (-511 * 0.954) ~= -487.5 ppm up to (512 * 0.954) ~= 488.5 ppm
         """
+        ...

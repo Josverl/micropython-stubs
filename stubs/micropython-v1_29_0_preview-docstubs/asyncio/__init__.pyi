@@ -42,3 +42,5 @@ from asyncio.stream import (
     StreamReader as StreamReader,
     StreamWriter as StreamWriter,
 )
+
+__version__: tuple[int, int, int]

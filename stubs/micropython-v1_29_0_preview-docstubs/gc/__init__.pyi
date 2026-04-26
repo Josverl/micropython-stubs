@@ -29,7 +29,7 @@ def isenabled() -> bool:
        Returns True if automatic garbage collection is enabled, and False otherwise.
     """
     ...
-def collect() -> None:
+def collect() -> int | None:
     """
        Run a garbage collection.
     """

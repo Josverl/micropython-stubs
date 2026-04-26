@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, List
+from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 
@@ -62,16 +62,19 @@ class I2C:
     """for initialising the bus to controller mode"""
     PERIPHERAL: Incomplete
     """for initialising the bus to peripheral mode"""
+    MASTER: int
+    SLAVE: int
     def __init__(
         self,
         bus: int | str,
-        mode: str,
+        mode: int = CONTROLLER,
         /,
         *,
         addr: int = 0x12,
         baudrate: int = 400_000,
         gencall: bool = False,
         dma: bool = False,
+        timingr: int | None = None,
     ) -> None:
         """
         Construct an I2C object on the given bus.  ``bus`` can be 1 or 2, 'X' or
@@ -100,14 +103,14 @@ class I2C:
         ...
     def init(
         self,
-        bus: int | str,
-        mode: str,
+        mode: int = CONTROLLER,
         /,
         *,
         addr: int = 0x12,
         baudrate: int = 400_000,
         gencall: bool = False,
         dma: bool = False,
+        timingr: int | None = None,
     ) -> None:
         """
         Initialise the I2C bus with the given parameters:
@@ -180,7 +183,7 @@ class I2C:
         """
     def mem_write(
         self,
-        data: int | AnyWritableBuf,
+        data: int | AnyReadableBuf,
         addr: int,
         memaddr: int,
         /,
@@ -245,6 +248,7 @@ class I2C:
         """
     def send(
         self,
+        send: int | AnyReadableBuf,
         addr: int = 0x00,
         /,
         *,
@@ -260,7 +264,7 @@ class I2C:
         Return value: ``None``.
         """
         ...
-    def scan(self) -> List:
+    def scan(self) -> list[int]:
         """
         Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.
         Only valid when in controller mode.

@@ -1,3 +1,5 @@
+# MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv6m', 'version': '1.28.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'family': 'micropython', 'board_id': 'RPI_PICO_W', 'variant': '', 'cpu': 'RP2040'}
+# Stubber: v1.28.0
 """
 Functionality specific to the RP2.
 
@@ -16,22 +18,25 @@ for example code.
 # source version: v1.29.0-preview
 # origin module:: repos/micropython/docs/library/rp2.rst
 from __future__ import annotations
-from _typeshed import Incomplete
-from typing_extensions import TYPE_CHECKING, Protocol, TypeVar, TypeAlias, Awaitable
+from _typeshed import ReadableBuffer, WriteableBuffer, Incomplete
+from typing_extensions import Self, Protocol, TYPE_CHECKING, TypeVar, TypeAlias, Awaitable
 from rp2.DMA import DMA
 from rp2.Flash import Flash
 from rp2.PIO import PIO
 from rp2.StateMachine import StateMachine
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from machine import Pin
-from rp2.PIOASMEmit import PIOASMEmit
-from typing import Callable, List, Union, overload
 from micropython import const
+from typing import Callable, List, Literal, Union, overload
+from vfs import AbstractBlockDev
+from rp2.asm_pio_rp2040 import *
 from rp2 import bootsel_button, PIOASMEmit, _PIO_ASM_Program
 
+_IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 class PIOASMError(Exception):
     """
-    This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
-    an error assembling a PIO program.
+        This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
+        an error assembling a PIO program.
     """
 def asm_pio(*,
     out_init: Union[Pin, List[Pin], int, List[int], None] = None,
@@ -104,13 +109,99 @@ def bootsel_button() -> int:
         prevent them from trying to execute code from flash.
     """
     ...
-class _PIO_ASM_Program:
+
+@overload
+def country() -> str:
+    """
+    Get the two-letter country code.
+
+    Deprecated alias to ``network.country``.
+    Only available when CYW43 networking support is enabled.
+    """
+    ...
+
+@overload
+def country(code: str, /) -> None:
+    """
+    Set the two-letter country code.
+
+    Deprecated alias to ``network.country``.
+    Only available when CYW43 networking support is enabled.
+    """
+    ...
+class StateMachine:
+
     @overload
-    def __getitem__(self, key: int) -> int: ...
+    def get(self, buf: None = None, shift: int = 0) -> int: ...
     @overload
-    def __getitem__(self, key: slice) -> list[int]: ...
-class PIOASMEmit:
+    def get(self, buf: WriteableBuffer, shift: int = 0) -> WriteableBuffer: ...
     @overload
-    def __getitem__(self, key): ...
+    def active(self) -> bool: ...
     @overload
-    def __getitem__(self, key: int): ...
+    def active(self, value: Union[bool, int]) -> bool:
+        """
+        Gets or sets whether the state machine is currently running.
+
+        >>> sm.active()
+        True
+        >>> sm.active(0)
+        False
+        """
+        ...
+class Flash:
+    @overload
+    def readblocks(self, block_num: int, buf: AnyWritableBuf) -> None:
+        """
+        The first form reads aligned, multiples of blocks.
+        Starting at the block given by the index *block_num*, read blocks from
+        the device into *buf* (an array of bytes).
+        The number of blocks to read is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int) -> None:
+        """
+        The second form allows reading at arbitrary locations within a block,
+        and arbitrary lengths.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, read bytes from the device into *buf* (an array of bytes).
+        The number of bytes to read is given by the length of *buf*.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf) -> None:
+        """
+        The first form writes aligned, multiples of blocks, and requires that the
+        blocks that are written to be first erased (if necessary) by this method.
+        Starting at the block given by the index *block_num*, write blocks from
+        *buf* (an array of bytes) to the device.
+        The number of blocks to write is given by the length of *buf*,
+        which will be a multiple of the block size.
+        """
+
+    @overload
+    def writeblocks(self, block_num: int, buf: AnyReadableBuf, offset: int) -> None:
+        """
+        The second form allows writing at arbitrary locations within a block,
+        and arbitrary lengths.  Only the bytes being written should be changed,
+        and the caller of this method must ensure that the relevant blocks are
+        erased via a prior ``ioctl`` call.
+        Starting at block index *block_num*, and byte offset within that block
+        of *offset*, write bytes from *buf* (an array of bytes) to the device.
+        The number of bytes to write is given by the length of *buf*.
+
+        Note that implementations must never implicitly erase blocks if the offset
+        argument is specified, even if it is zero.
+        """
+
+    @overload
+    def ioctl(self, op: int, arg: int) -> int | None: ...
+    #
+    @overload
+    def ioctl(self, op: int) -> int | None:
+        """
+        These methods implement the simple and extended
+        :ref:`block protocol <block-device-interface>` defined by
+        :class:`vfs.AbstractBlockDev`.
+        """

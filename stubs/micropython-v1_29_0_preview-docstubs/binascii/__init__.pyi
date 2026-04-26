@@ -37,7 +37,7 @@ def a2b_base64(data: str | bytes, /) -> bytes:
        Returns a bytes object.
     """
     ...
-def b2a_base64(data: bytes, /) -> bytes:
+def b2a_base64(data: bytes, /, *, newline: bool = True) -> bytes:
     """
        Encode binary data in base64 format, as in `RFC 3548
        <https://tools.ietf.org/html/rfc3548.html>`_. Returns the encoded data

@@ -4,6 +4,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing import overload, Any, Callable
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from _mpy_shed import _IRQ
 
 PinLike: TypeAlias = Pin | int | str
 
@@ -154,7 +155,7 @@ class Pin:
     """Selects the IRQ trigger type."""
     IRQ_HIGH_LEVEL: Incomplete
     """Selects the IRQ trigger type."""
-    PULL_HOLD: Incomplete
+    PULL_HOLD: int
     def __init__(
         self,
         id: Any,
@@ -348,7 +349,7 @@ class Pin:
         priority: int = 1,
         wake: int | None = None,
         hard: bool = False,
-    ) -> Callable[..., Incomplete]:
+    ) -> _IRQ:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is
@@ -461,7 +462,7 @@ class Pin:
 
         Availability: cc3200 port.
         """
-    def toggle(self) -> Incomplete:
+    def toggle(self) -> None:
         """
         Toggle output pin from "0" to "1" or vice-versa.
 

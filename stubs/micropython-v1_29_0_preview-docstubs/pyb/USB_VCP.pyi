@@ -103,7 +103,7 @@ class USB_VCP:
         Returns the number of bytes read and stored into ``buf`` or ``None``
         if no pending data available.
         """
-    def readline(self) -> bytes:
+    def readline(self) -> bytes | None:
         """
         Read a whole line from the serial device.
 
@@ -129,7 +129,7 @@ class USB_VCP:
         ...
 
     @overload
-    def recv(self, data: int, /, *, timeout: int = 5000) -> bytes | None:
+    def recv(self, data: int, /, *, timeout: int = 5000) -> bytes:
         """
         Receive data on the bus:
 
@@ -142,7 +142,7 @@ class USB_VCP:
         """
 
     @overload
-    def recv(self, data: AnyWritableBuf, /, *, timeout: int = 5000) -> int | None:
+    def recv(self, data: AnyWritableBuf, /, *, timeout: int = 5000) -> int:
         """
         Receive data on the bus:
 
@@ -153,7 +153,7 @@ class USB_VCP:
         Return value: if ``data`` is an integer then a new buffer of the bytes received,
         otherwise the number of bytes read into ``data`` is returned.
         """
-    def send(self, buf: AnyWritableBuf | bytes | int, /, *, timeout: int = 5000) -> int:
+    def send(self, buf: AnyReadableBuf | int, /, *, timeout: int = 5000) -> int:
         """
         Send data over the USB VCP:
 
