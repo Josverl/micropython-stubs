@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, overload, Union
+from typing import Callable, overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from machine import IDLE
@@ -404,7 +404,7 @@ class UART:
         Return value: number of bytes read and stored into ``buf`` or ``None`` on
         timeout.
         """
-    def readline(self) -> Union[str, None]:
+    def readline(self) -> bytes | None:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
@@ -412,7 +412,7 @@ class UART:
         Return value: the line read or ``None`` on timeout.
         """
         ...
-    def write(self, buf: AnyReadableBuf, /) -> Union[int, None]:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the buffer of bytes to the bus.
 
