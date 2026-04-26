@@ -1,3 +1,5 @@
+# MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv6m', 'version': '1.28.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'family': 'micropython', 'board_id': 'RPI_PICO_W', 'variant': '', 'cpu': 'RP2040'}
+# Stubber: v1.28.0
 """
 Functionality specific to the RP2.
 
@@ -23,10 +25,13 @@ from rp2.Flash import Flash
 from rp2.PIO import PIO
 from rp2.StateMachine import StateMachine
 from machine import Pin
+from vfs import AbstractBlockDev
 from rp2.PIOASMEmit import PIOASMEmit
 from typing import Callable, List, Union, overload
 from micropython import const
 from rp2 import bootsel_button, PIOASMEmit, _PIO_ASM_Program
+
+_IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 
 class PIOASMError(Exception):
     """
