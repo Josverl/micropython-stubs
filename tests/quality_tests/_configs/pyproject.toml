@@ -62,12 +62,16 @@ extend-ignore = [
     "E722", # Bare except
     "E731", # do not assign a lambda expression, use a def
     "E741", # Ambiguous variable name
-    "PYI021", # Docstrings should not be included in stubs (but we want them for MicroPython)
-    "PYI024",  # do not use collections.namedtuple
-    "PYI044", # `from __future__ import annotations` - used in generated stubs
-    "PYI048", # Function body must contain exactly one statement - docstrings count
+    "PYI002",
+    "PYI010",
     "PYI011", # Only simple default values allowed for typed arguments - we want actual defaults
     "PYI014", # Only simple default values allowed for arguments - we want actual defaults
+    "PYI021", # Docstrings should not be included in stubs (but we want them for MicroPython)
+    "PYI024",  # do not use collections.namedtuple
     "PYI029", # __str__ and __repr__ are useful in MicroPython stubs
+    "PYI044", # `from __future__ import annotations` - used in generated stubs
+    "PYI048", # Function body must contain exactly one statement - docstrings count
+    "PYI052",
+
 ]
 # ###################################################################
