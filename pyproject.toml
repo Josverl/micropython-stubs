@@ -12,12 +12,12 @@ classifiers = [
   "Programming Language :: Python :: 3",
     "Programming Language :: Python :: Implementation :: MicroPython"
 ]
-readme = "readme.md"
+readme = "README.md"
 license = "MIT"
 dependencies = []
 
 [tool.hatch.build.targets.wheel]
-only-include = ["readme.md", "LICENSE.md"]
+only-include = ["README.md", "LICENSE.md"]
 
 [project.optional-dependencies]
 # uv pip install -r pyproject.toml --extra stubber --prerelease=allow
