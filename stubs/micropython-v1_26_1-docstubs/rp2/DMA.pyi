@@ -10,20 +10,14 @@ class DMA:
     """
     Claim one of the DMA controller channels for exclusive use.
     """
-    def __init__(
-        self,
-        read: int | AnyReadableBuf | None = None,
-        write: int | AnyWritableBuf | None = None,
-        count: int = -1,
-        ctrl: int = -1,
-        trigger: bool = False,
-    ) -> None: ...
+    def __init__(self) -> None: ...
     def config(
         self,
+        *,
         read: int | AnyReadableBuf | None = None,
         write: int | AnyWritableBuf | None = None,
-        count: int = -1,
-        ctrl: int = -1,
+        count: int | None = None,
+        ctrl: int | None = None,
         trigger: bool = False,
     ) -> None:
         """
@@ -59,6 +53,7 @@ class DMA:
     def pack_ctrl(
         self,
         *,
+        default: int | None = None,
         enable: bool = True,
         high_pri: bool = False,
         size: int = 2,
@@ -126,7 +121,8 @@ class DMA:
         datasheet for details of all of these fields.
         """
         ...
-    def unpack_ctrl(self, value: int) -> dict:
+    @staticmethod
+    def unpack_ctrl(value: int) -> dict[str, int]:
         """
         Unpack a value for a DMA channel control register into a dictionary with key/value pairs
         for each of the fields in the control register.  *value* is the ``ctrl`` register value

@@ -168,7 +168,7 @@ class FrameBuffer():
             are numbered counterclockwise with Q1 being top right.
         """
         ...
-    def poly(self, x, y, coords, c, f: Union[bool, int] = False, /) -> Incomplete:
+    def poly(self, x, y, coords, c, f: Union[bool, int] = False, /) -> None:
         """
             Given a list of coordinates, draw an arbitrary (convex or concave) closed
             polygon at the given x, y location using the given color.
@@ -199,7 +199,7 @@ class FrameBuffer():
         x: int,
         y: int,
         key: int = -1,
-        palette: Optional[bytes] = None,
+        palette: Optional[FrameBuffer] = None,
         /,
     ) -> None:
         """

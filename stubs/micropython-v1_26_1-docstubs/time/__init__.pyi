@@ -38,13 +38,12 @@ behave not as expected.
 # origin module:: repos/micropython/docs/library/time.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias, TypeVar
 from _mpy_shed import _TimeTuple, mp_available, _Ticks, _TicksMs, _TicksUs, _TicksCPU
 from _mpy_shed.time_mp import _Ticks, _TicksCPU, _TicksMs, _TicksUs
 
-def gmtime(secs: int | None = None, /) -> Tuple:
+def gmtime(secs: int | None = None, /) -> _TimeTuple:
     """
        Convert the time *secs* expressed in seconds since the Epoch (see above) into an
        8-tuple which contains: ``(year, month, mday, hour, minute, second, weekday, yearday)``
@@ -65,7 +64,7 @@ def gmtime(secs: int | None = None, /) -> Tuple:
        * yearday is 1-366
     """
     ...
-def localtime(secs: int | None = None, /) -> Tuple:
+def localtime(secs: int | None = None, /) -> _TimeTuple:
     """
        Convert the time *secs* expressed in seconds since the Epoch (see above) into an
        8-tuple which contains: ``(year, month, mday, hour, minute, second, weekday, yearday)``

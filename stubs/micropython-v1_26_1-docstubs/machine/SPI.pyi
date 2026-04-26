@@ -6,7 +6,7 @@ from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin
-from machine.Pin import Pin, PinLike
+from machine.Pin import PinLike
 
 class SPI:
     """
@@ -210,7 +210,7 @@ class SPI:
         Returns a ``bytes`` object with the data that was read.
         """
         ...
-    def readinto(self, buf: AnyWritableBuf, write: int = 0x00, /) -> int:
+    def readinto(self, buf: AnyWritableBuf, write: int = 0x00, /) -> int | None:
         """
         Read into the buffer specified by ``buf`` while continuously writing the
         single byte given by ``write``.
@@ -219,7 +219,7 @@ class SPI:
         Note: on WiPy this function returns the number of bytes read.
         """
         ...
-    def write(self, buf: AnyReadableBuf, /) -> int:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the bytes contained in ``buf``.
         Returns ``None``.
@@ -227,7 +227,7 @@ class SPI:
         Note: on WiPy this function returns the number of bytes written.
         """
         ...
-    def write_readinto(self, write_buf: AnyReadableBuf, read_buf: AnyWritableBuf, /) -> int:
+    def write_readinto(self, write_buf: AnyReadableBuf, read_buf: AnyWritableBuf, /) -> int | None:
         """
         Write the bytes from ``write_buf`` while reading into ``read_buf``.  The
         buffers can be the same or different, but both buffers must have the

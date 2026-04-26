@@ -27,6 +27,7 @@ class Switch:
         """
         Create and return a switch object.
         """
+        ...
 
     @overload
     def __call__(self) -> bool:

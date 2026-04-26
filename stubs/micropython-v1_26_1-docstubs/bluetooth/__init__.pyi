@@ -31,6 +31,11 @@ _Flag: TypeAlias = int
 _Descriptor: TypeAlias = tuple["UUID", _Flag]
 _Characteristic: TypeAlias = tuple["UUID", _Flag] | tuple["UUID", _Flag, tuple[_Descriptor, ...]]
 _Service: TypeAlias = tuple["UUID", tuple[_Characteristic, ...]]
+FLAG_READ: int
+FLAG_WRITE: int
+FLAG_NOTIFY: int
+FLAG_INDICATE: int
+FLAG_WRITE_NO_RESPONSE: int
 class BLE():
     """
     class BLE

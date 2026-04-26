@@ -115,7 +115,7 @@ class DAC:
         object or by using the ``init`` method.
         """
         ...
-    def write_timed(self, data: AnyWritableBuf, freq: int | Timer, /, *, mode: int = NORMAL) -> None:
+    def write_timed(self, data: AnyReadableBuf, freq: int | Timer, /, *, mode: int = NORMAL) -> None:
         """
         Initiates a burst of RAM to DAC using a DMA transfer.
         The input data is treated as an array of bytes in 8-bit mode, and

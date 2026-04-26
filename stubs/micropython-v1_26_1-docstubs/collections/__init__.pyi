@@ -13,18 +13,18 @@ hold/accumulate various objects.
 # origin module:: repos/micropython/docs/library/collections.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Dict, Generic, Any, Tuple
+from typing import Dict, Generic, TypeVar, Any
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from collections.abc import Iterable
 
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
 _T = TypeVar("_T")
-class deque():
+class deque(Generic[_T]):
     """
     Minimal implementation of a deque that implements a FIFO buffer.
     """
-    def __init__(self, iterable: tuple[Any], maxlen: int, flags: int = 0, /) -> None:
+    def __init__(self, iterable: Iterable[_T], maxlen: int, flags: int = 0, /) -> None:
         """
         Deques (double-ended queues) are a list-like container that support O(1)
         appends and pops from either side of the deque.  New deques are created
@@ -46,26 +46,26 @@ class deque():
                 no more room in the queue.
         """
         ...
-    def appendleft(self, x: _T, /) -> Incomplete:
+    def appendleft(self, x: _T, /) -> None:
         """
                 Add *x* to the left side of the deque.
                 Raises ``IndexError`` if overflow checking is enabled and there is
                 no more room in the queue.
         """
         ...
-    def pop(self) -> Incomplete:
+    def pop(self) -> _T:
         """
                 Remove and return an item from the right side of the deque.
                 Raises ``IndexError`` if no items are present.
         """
         ...
-    def popleft(self) -> Any:
+    def popleft(self) -> _T:
         """
                 Remove and return an item from the left side of the deque.
                 Raises ``IndexError`` if no items are present.
         """
         ...
-    def extend(self, iterable: Iterable[_T], /) -> Incomplete:
+    def extend(self, iterable: Iterable[_T], /) -> None:
         """
                 Extend the deque by appending all the items from *iterable* to
                 the right of the deque.
@@ -99,7 +99,7 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
     """
     def __init__(self, *args, **kwargs) -> None:
         ...
-def namedtuple(name: str, fields: str | Iterable[str]) -> type[Tuple[Any, ...]]:
+def namedtuple(name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
     """
         This is factory function to create a new namedtuple type with a specific
         name and set of fields. A namedtuple is a subclass of tuple which allows

@@ -23,8 +23,8 @@ from machine.ADC import ADC
 from machine.ADCBlock import ADCBlock
 from machine.PWM import PWM
 from machine.UART import UART
-from machine.SPI import SPI
-from machine.I2C import I2C
+from machine.SPI import SoftSPI, SPI
+from machine.I2C import SoftI2C, I2C
 from machine.I2CTarget import I2CTarget
 from machine.I2S import I2S
 from machine.RTC import RTC
@@ -36,6 +36,7 @@ from machine.SD import SD
 from machine.SDCard import SDCard
 from machine.USBDevice import USBDevice
 from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
+from machine.CAN import CAN
 from _mpy_shed import _IRQ
 
 mem8: Incomplete
@@ -131,26 +132,6 @@ def freq() -> int:
 
 @overload
 def freq(hz: int, /) -> None:
-    """
-        Returns the CPU frequency in hertz.
-    
-        On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-@overload
-def freq(self) -> int:
-    """
-        Returns the CPU frequency in hertz.
-    
-        On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-@overload
-def freq(
-    self,
-    value: int,
-    /,
-) -> None:
     """
         Returns the CPU frequency in hertz.
     

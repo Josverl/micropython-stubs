@@ -14,8 +14,12 @@ class TimerWiPy:
     ONE_SHOT: Incomplete
     PERIODIC: Incomplete
     """Timer operating mode."""
-    def __init__(self, id, *args, **kwargs) -> None: ...
-    def init(self, mode, *, width=16) -> None:
+    PWM: int
+    TIMEOUT: int
+    MATCH: int
+    POSITIVE: int
+    def __init__(self, id: int, *args, **kwargs) -> None: ...
+    def init(self, mode: int, *, width: int = 16) -> None:
         """
         Initialise the timer. Example::
 
@@ -44,13 +48,13 @@ class TimerWiPy:
         ...
     def channel(
         self,
-        channel,
+        channel: int,
         *,
-        freq: int,
-        period: int,
-        polarity: Incomplete,
+        freq: int | None = None,
+        period: int | None = None,
+        polarity: int = POSITIVE,
         duty_cycle: int = 0,
-    ) -> Incomplete:
+    ) -> timerchannel | None:
         """
         If only a channel identifier passed, then a previously initialized channel
         object is returned (or ``None`` if there is no previous channel).
@@ -93,7 +97,7 @@ class TimerWiPy:
 
 class timerchannel:
     """ """
-    def irq(self, *, trigger, priority=1, handler=None) -> Callable[..., Incomplete]:
+    def irq(self, *, trigger: int, priority: int = 1, handler: Callable[..., Any] | None = None) -> Callable[..., Any]:
         """
         The behaviour of this callback is heavily dependent on the operating
         mode of the timer channel:
@@ -117,17 +121,17 @@ class timerchannel:
         Returns a callback object.
         """
         ...
-    def freq(self, value: Any | None = None) -> Incomplete:
+    def freq(self, value: Any | None = None) -> int | None:
         """
         Get or set the timer channel frequency (in Hz).
         """
         ...
-    def period(self, value: Any | None = None) -> Incomplete:
+    def period(self, value: Any | None = None) -> int | None:
         """
         Get or set the timer channel period (in microseconds).
         """
         ...
-    def duty_cycle(self, value: Any | None = None) -> Incomplete:
+    def duty_cycle(self, value: Any | None = None) -> int | None:
         """
         Get or set the duty cycle of the PWM signal. It's a percentage (0.00-100.00). Since the WiPy
         doesn't support floating point numbers the duty cycle must be specified in the range 0-10000,
