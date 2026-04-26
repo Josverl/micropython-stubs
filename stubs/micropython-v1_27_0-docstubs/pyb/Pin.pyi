@@ -95,6 +95,11 @@ class Pin:
     """don't enable any pull up or down resistors on the pin"""
     PULL_UP: Incomplete
     """enable the pull-up resistor on the pin"""
+    OPEN_DRAIN: int
+    OUT: int
+    ALT_OPEN_DRAIN: int
+    IRQ_RISING: int
+    IRQ_FALLING: int
     def __init__(
         self,
         id: Pin | str | int,
@@ -225,7 +230,7 @@ class Pin:
         argument to the init function.
         """
         ...
-    def af_list(self) -> List:
+    def af_list(self) -> List[pinaf]:
         """
         Returns an array of alternate functions available for this pin.
         """
@@ -247,7 +252,7 @@ class Pin:
         Get the pin name.
         """
         ...
-    def names(self) -> str:
+    def names(self) -> List[str]:
         """
         Returns the cpu and board names for this pin.
         """
@@ -285,6 +290,11 @@ class Pin:
         and get the value of the pin.  It is equivalent to Pin.value([x]).
         See :meth:`Pin.value` for more details.
         """
+
+    @overload
+    def irq(self) -> None: ...
+    @overload
+    def irq(self, *, handler: Callable[[Pin], None] | None = None, trigger: int = IRQ_RISING | IRQ_FALLING, hard: bool = False) -> None: ...
 
 class pinaf:
     """ """

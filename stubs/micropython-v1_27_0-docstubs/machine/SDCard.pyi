@@ -4,7 +4,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from .Pin import Pin
-from machine.Pin import Pin, PinLike
+from machine.Pin import PinLike
 from typing import overload
 from vfs import AbstractBlockDev
 

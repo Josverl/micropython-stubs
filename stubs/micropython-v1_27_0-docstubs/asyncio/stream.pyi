@@ -9,7 +9,7 @@ from __future__ import annotations
 import socket
 import ssl
 from collections.abc import Generator
-from typing import Any, Coroutine, Dict, Union
+from typing import Any, Dict, Union
 
 from _typeshed import Incomplete
 from typing_extensions import TypeAlias
@@ -33,7 +33,7 @@ class Stream:
         this class.
         """
 
-    def get_extra_info(self, v) -> str:
+    def get_extra_info(self, v) -> Any:
         """
         Get extra information about the stream, given by *v*.  The valid values for *v* are:
         ``peername``.
@@ -130,7 +130,7 @@ class StreamWriter(Stream):
         this class.
         """
 
-    def get_extra_info(self, v) -> str:
+    def get_extra_info(self, v) -> Any:
         """
         Get extra information about the stream, given by *v*.  The valid values for *v* are:
         ``peername``.
@@ -222,7 +222,7 @@ class StreamReader(Stream):
         this class.
         """
 
-    def get_extra_info(self, v) -> str:
+    def get_extra_info(self, v) -> Any:
         """
         Get extra information about the stream, given by *v*.  The valid values for *v* are:
         ``peername``.
@@ -299,7 +299,7 @@ class StreamReader(Stream):
 
 def open_connection(
     host, port, ssl: Incomplete | None = None, server_hostname: Incomplete | None = None
-) -> Generator[Incomplete, None, Incomplete]:
+) -> Generator[Incomplete, None, tuple[Stream, Stream]]:
     """
     Open a TCP connection to the given *host* and *port*.  The *host* address will be
     resolved using `socket.getaddrinfo`, which is currently a blocking call.
@@ -337,9 +337,9 @@ class Server:
         """
         ...
 
-    async def _serve(self, s, cb, ssl) -> Generator[Incomplete]: ...
+    async def _serve(self, s, cb, ssl) -> None: ...
 
-async def start_server(cb, host, port, backlog: int = 5, ssl: Incomplete | None = None) -> Coroutine[Server, Any, Any]:
+async def start_server(cb, host, port, backlog: int = 5, ssl: Incomplete | None = None) -> Server:
     """
     Start a TCP server on the given *host* and *port*.  The *callback* will be
     called with incoming, accepted connections, and be passed 2 arguments: reader

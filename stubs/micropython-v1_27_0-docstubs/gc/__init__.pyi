@@ -23,7 +23,7 @@ def disable() -> None:
        and garbage collection can still be initiated manually using :meth:`gc.collect`.
     """
     ...
-def collect() -> None:
+def collect() -> int | None:
     """
        Run a garbage collection.
     """

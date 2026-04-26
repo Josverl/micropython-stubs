@@ -35,7 +35,7 @@ This module allows compression and decompression of binary data with the
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-def decompress(data: bytes, wbits: int = 0, bufsize: int = 0, /) -> bytes:
+def decompress(data: bytes, wbits: int = 15, /) -> bytes:
     """
        Decompresses *data* into a bytes object.
     
@@ -56,7 +56,7 @@ def decompress(data: bytes, wbits: int = 0, bufsize: int = 0, /) -> bytes:
        fail during decompression.
     """
     ...
-def compress(data, wbits=15, /) -> Incomplete:
+def compress(data: bytes, wbits: int = 15, /) -> bytes:
     """
        Compresses *data* into a bytes object.
     

@@ -10,7 +10,7 @@ The ``zsensor`` module contains a class for using sensors with Zephyr.
 # origin module:: repos/micropython/docs/library/zephyr.zsensor.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Any, Optional
+from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 ACCEL_X: Incomplete
@@ -94,14 +94,50 @@ ATTR_BATCH_DURATION: Incomplete
 """Hardware batch duration in ticks."""
 ATTR_GAIN: Incomplete
 ATTR_RESOLUTION: Incomplete
+MAGN_XYZ: int
+"""Pseudo-channel representing all three magnetic axes."""
+AMBIENT_TEMP: int
+"""Ambient temperature in degrees Celsius."""
+IR: int
+"""Infrared channel."""
+RED: int
+"""Red channel."""
+GREEN: int
+"""Green channel."""
+BLUE: int
+"""Blue channel."""
+PM_1_0: int
+"""Particulate matter concentration for 1.0um."""
+PM_2_5: int
+"""Particulate matter concentration for 2.5um."""
+PM_10: int
+"""Particulate matter concentration for 10um."""
+DISTANCE: int
+"""Distance channel."""
+CO2: int
+"""CO2 concentration channel."""
+VOC: int
+"""Volatile organic compound channel."""
+GAS_RES: int
+"""Gas resistance channel."""
+VOLTAGE: int
+"""Voltage channel."""
+VSHUNT: int
+"""Shunt voltage channel."""
+CURRENT: int
+"""Current channel."""
+POWER: int
+"""Power channel."""
+RESISTANCE: int
+"""Resistance channel."""
 
 class Sensor:
     """
     Device names are defined in the devicetree for your board.
     For example, the device name for the accelerometer in the FRDM-k64f board is "FXOS8700".
     """
-    def __init__(self, device_name) -> None: ...
-    def measure(self) -> Incomplete:
+    def __init__(self, device_name: str) -> None: ...
+    def measure(self) -> None:
         """
         Obtains a measurement sample from the sensor device using Zephyr sensor_sample_fetch and
         stores it in an internal driver buffer as a useful value, a pair of (integer part of value,
@@ -109,59 +145,54 @@ class Sensor:
         Returns none if successful or OSError value if failure.
         """
         ...
-    def get_float(self, sensor_channel) -> float:
+    def get_float(self, sensor_channel: int) -> float:
         """
         Returns the value of the sensor measurement sample as a float.
         """
         ...
-    def get_micros(self, sensor_channel) -> Incomplete:
+    def get_micros(self, sensor_channel: int) -> int:
         """
         Returns the value of the sensor measurement sample in millionths.
         (Ex. value of ``(1, 500000)`` returns as ``1500000``)
         """
         ...
-    def get_millis(self, sensor_channel) -> Incomplete:
+    def get_millis(self, sensor_channel: int) -> int:
         """
         Returns the value of sensor measurement sample in thousandths.
         (Ex. value of ``(1, 500000)`` returns as ``1500``)
         """
         ...
-    def get_int(self, sensor_channel) -> int:
+    def get_int(self, sensor_channel: int) -> int:
         """
         Returns only the integer value of the measurement sample.
         (Ex. value of ``(1, 500000)`` returns as ``1``)
         """
         ...
-    def attr_set(self, sensor_channel, channel_attribute, val1, val2: Optional[Any] = None) -> None:
-        """
-        Set the given channel's attribute to the given value.
-        ``val1`` may be a float, in which case ``val2`` is not given, or
-        ``val1`` can be used for the value's
-        integer part and ``val2`` for the value's fractional part in millionths.
 
-        Returns ``None`` if successful, or raises ``OSError``.
-        """
-        ...
-    def attr_get_float(self, sensor_channel, channel_attribute) -> float:
+    @overload
+    def attr_set(self, sensor_channel: int, channel_attribute: int, val1: float, /) -> None: ...
+    @overload
+    def attr_set(self, sensor_channel: int, channel_attribute: int, val1: int, val2: int, /) -> None: ...
+    def attr_get_float(self, sensor_channel: int, channel_attribute: int) -> float:
         """
         Returns the value of the sensor channel's attribute as a float.
 
         Many sensors do not support this or any other of the ``attr_get`` methods.
         """
         ...
-    def attr_get_micros(self, sensor_channel, channel_attribute) -> Incomplete:
+    def attr_get_micros(self, sensor_channel: int, channel_attribute: int) -> int:
         """
         Returns the value of the sensor channel's attribute in millionths.
         (Ex. value of ``(1, 500000)`` returns as ``1500000``)
         """
         ...
-    def attr_get_millis(self, sensor_channel, channel_attribute) -> Incomplete:
+    def attr_get_millis(self, sensor_channel: int, channel_attribute: int) -> int:
         """
         Returns the value of the sensor channel's attribute in thousandths.
         (Ex. value of ``(1, 500000)`` returns as ``1500``)
         """
         ...
-    def attr_get_int(self, sensor_channel, channel_attribute) -> int:
+    def attr_get_int(self, sensor_channel: int, channel_attribute: int) -> int:
         """
         Returns only the integer value of the channel's attribute.
         (Ex. value of ``(1, 500000)`` returns as ``1``)

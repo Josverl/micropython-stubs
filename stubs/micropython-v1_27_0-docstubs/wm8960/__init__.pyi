@@ -4,6 +4,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from micropython import const
+from typing import overload
 
 WM8960_I2C_ADDR = const(0x1A)
 """Default I2C address"""
@@ -127,8 +128,7 @@ class WM8960():
     """
     def __init__(self,
         i2c,
-        sample_rate,
-        *,
+        sample_rate=16000,
         bits=16,
         swap=SWAP_NONE,
         route=ROUTE_PLAYBACK_RECORD,
@@ -152,7 +152,9 @@ class WM8960():
             Specify the source for the right input.  The input source names are listed above.
         """
         ...
-    def volume(self, module, volume_l=None, volume_r=None) -> None:
+
+    @overload
+    def volume(self, module, volume_l: None = None, volume_r: None = None) -> tuple[int, int]:
         """
             Sets or gets the volume of a certain module.
         
@@ -167,7 +169,24 @@ class WM8960():
             For a list of suitable modules and db/step, see the table below.
         """
         ...
-    def mute(self, module, mute, soft=True, ramp=MUTE_FAST) -> None:
+
+    @overload
+    def volume(self, module, volume_l, volume_r=None) -> None:
+        """
+            Sets or gets the volume of a certain module.
+        
+            If no volume values are supplied, the actual volume tuple is returned.
+        
+            If one or two values are supplied, it sets the volume of a certain module.
+            If two values are provided, the first one is used for the left channel,
+            the second for the right channel.  If only one value is supplied, it is used
+            for both channels.  The value range is normalized to 0.0-100.0 with a
+            logarithmic scale.
+        
+            For a list of suitable modules and db/step, see the table below.
+        """
+        ...
+    def mute(self, enable, soft=True, ramp=MUTE_FAST) -> None:
         """
             Mute or unmute the output. If *mute* is True, the output is muted, if ``False``
             it is unmuted.

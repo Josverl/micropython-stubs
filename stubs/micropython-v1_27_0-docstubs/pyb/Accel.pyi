@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class Accel:
@@ -19,7 +18,7 @@ class Accel:
         """
         Create and return an accelerometer object.
         """
-    def filtered_xyz(self) -> Tuple:
+    def filtered_xyz(self) -> tuple[int, int, int]:
         """
         Get a 3-tuple of filtered x, y and z values.
 

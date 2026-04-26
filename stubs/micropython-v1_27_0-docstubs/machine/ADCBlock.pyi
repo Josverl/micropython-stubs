@@ -16,8 +16,8 @@ class ADCBlock:
     conversion process.  If not specified then the previous or default
     resolution is used.
     """
-    def __init__(self, id: int, *, bits: int) -> None: ...
-    def init(self, *, bits: int) -> None:
+    def __init__(self, id: int, *, bits: int = ...) -> None: ...
+    def init(self, *, bits: int = ...) -> None:
         """
         Configure the ADC peripheral.  *bits* will set the resolution of the
         conversion process.

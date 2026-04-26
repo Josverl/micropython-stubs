@@ -95,6 +95,14 @@ or ``ARRAY`` flags is a structure.
 """
 _property: TypeAlias = Incomplete
 _descriptor: TypeAlias = Tuple | Dict
+BFUINT8: int
+BFINT8: int
+BFUINT16: int
+BFINT16: int
+BFUINT32: int
+BFINT32: int
+BF_POS: int
+BF_LEN: int
 class struct():
     """
     Module contents

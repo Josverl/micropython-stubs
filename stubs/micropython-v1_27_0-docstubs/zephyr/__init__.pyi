@@ -17,7 +17,7 @@ from zephyr.zsensor import zsensor
 from DiskAccess import *
 from FlashArea import *
 
-def is_preempt_thread() -> Incomplete:
+def is_preempt_thread() -> bool:
     """
        Returns true if the current thread is a preemptible thread.
     
@@ -25,12 +25,12 @@ def is_preempt_thread() -> Incomplete:
        can be supplanted as soon as a higher or equal priority thread becomes ready.
     """
     ...
-def current_tid() -> Incomplete:
+def current_tid() -> int:
     """
        Returns the thread id of the current thread, which is used to reference the thread.
     """
     ...
-def thread_analyze() -> Incomplete:
+def thread_analyze(cpu: int) -> None:
     """
        Runs the Zephyr debug thread analyzer on the current thread on the given cpu
        and prints stack size statistics in the format:
@@ -48,7 +48,7 @@ def thread_analyze() -> Incomplete:
        newer and ignored otherwise.
     """
     ...
-def shell_exec(cmd_in) -> Incomplete:
+def shell_exec(cmd_in: str) -> None:
     """
        Executes the given command on an UART backend. This function can only be accessed if ``CONFIG_SHELL_BACKEND_SERIAL``
        is configured for the port in ``zephyr/prj.conf``.

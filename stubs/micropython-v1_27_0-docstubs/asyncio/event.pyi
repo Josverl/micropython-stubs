@@ -7,16 +7,14 @@ Eventfunctions
 from __future__ import annotations
 
 from collections.abc import Generator
-from typing import Any, Coroutine
 
 from _mpy_shed import AnyReadableBuf
 from _typeshed import Incomplete
-from typing_extensions import Awaitable, TypeAlias, TypeVar  # noqa: UP035
+from typing_extensions import TypeVar  # noqa: UP035
 
 from . import core as core
 
 _T = TypeVar("_T")
-_C: TypeAlias = Coroutine[Any, None, _T] | Awaitable[_T]
 
 class Event:
     """
@@ -53,7 +51,7 @@ class Event:
         """
         ...
 
-    def wait(self) -> Generator[None, None, Incomplete]:
+    def wait(self) -> Generator[None, None, bool]:
         """
         Wait for the event to be set.  If the event is already set then it returns
         immediately.
@@ -91,7 +89,7 @@ class ThreadSafeFlag:
         """
         ...
 
-    async def wait(self) -> Generator[Incomplete]:
+    async def wait(self) -> None:
         """
         Wait for the flag to be set.  If the flag is already set then it returns
         immediately.  The flag is automatically reset upon return from ``wait``.

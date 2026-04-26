@@ -1,7 +1,7 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
+from _typeshed import ReadableBuffer, WriteableBuffer, Incomplete
 from typing import Callable, Union, overload, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
@@ -20,9 +20,9 @@ class StateMachine:
     def __init__(
         self,
         id: int,
-        program: _PIO_ASM_Program,
+        program: _PIO_ASM_Program | None = None,
         *,
-        freq: int = 1,
+        freq: int = -1,
         in_base: Pin | None = None,
         out_base: Pin | None = None,
         set_base: Pin | None = None,
@@ -38,7 +38,7 @@ class StateMachine:
         self,
         program: _PIO_ASM_Program,
         *,
-        freq: int = 1,
+        freq: int = -1,
         in_base: Pin | None = None,
         out_base: Pin | None = None,
         set_base: Pin | None = None,
@@ -89,9 +89,9 @@ class StateMachine:
         ...
 
     @overload
-    def active(self, value: None) -> bool: ...
+    def active(self) -> bool: ...
     @overload
-    def active(self, value: Union[bool, int]) -> None:
+    def active(self, value: Union[bool, int]) -> bool:
         """
         Gets or sets whether the state machine is currently running.
 
@@ -130,18 +130,12 @@ class StateMachine:
         >>> sm.exec(rp2.asm_pio_encode("out(y, 8)", 0))
         """
         ...
-    def get(self, buf: Optional[bytearray] = None, shift: int = 0) -> Union[int, None]:
-        """
-        Pull a word from the state machine's RX FIFO.
 
-        If the FIFO is empty, it blocks until data arrives (i.e. the state machine
-        pushes a word).
-
-        The value is shifted right by *shift* bits before returning, i.e. the
-        return value is ``word >> shift``.
-        """
-        ...
-    def put(self, value: Union[int, bytes, bytearray], shift: int = 0):
+    @overload
+    def get(self, buf: None = None, shift: int = 0) -> int: ...
+    @overload
+    def get(self, buf: WriteableBuffer, shift: int = 0) -> WriteableBuffer: ...
+    def put(self, value: int | ReadableBuffer, shift: int = 0) -> None:
         """
         Push words onto the state machine's TX FIFO.
 
@@ -174,7 +168,7 @@ class StateMachine:
         `StateMachine.put()`.
         """
         ...
-    def irq(self, handler: Optional[Callable] = None, trigger: int = 0 | 1, hard: bool = False) -> _IRQ:
+    def irq(self, handler: Optional[Callable] = None, trigger: int = 1, hard: bool = False) -> _IRQ:
         """
         Returns the IRQ object for the given StateMachine.
 
