@@ -23,20 +23,21 @@ stdlib:
 stdlib_publish:
     # /// script
     # requires-python = ">=3.9"
-    # dependencies=["keyring"]
+    # dependencies = ["keyring"]
     # ///
     import keyring
     import subprocess
-    # Get the token from the keyring
-    pypi_token = keyring.get_password("pypi", "uv_publish")
-    # TODO: now run "uv publish" using the retrieved tokens
-    # subprocess.run(
-    #     ["uv", "publish", "--repository", "pypi", "--token", pypi_token], 
-    #     check=True, 
-    #     cwd="publish/micropython-stdlib-stubs"
-    #     )
+    import sys
+    print(f"Publishing micropython-stdlib-stubs to pypi")
+    token = keyring.get_password("pypi", "uv_publish")
+    if not token:
+        sys.exit(f"No pypi token found in keyring")
 
-
+    subprocess.run(
+        ["uv", "publish", "--token", token, ],
+        check=True,
+        cwd="publish/micropython-stdlib-stubs",
+    )
 
 
 frozen v="stable":
