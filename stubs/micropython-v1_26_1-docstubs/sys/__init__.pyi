@@ -10,9 +10,9 @@ CPython module: :mod:`python:sys` https://docs.python.org/3/library/sys.html .
 # origin module:: repos/micropython/docs/library/sys.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import Callable, NoReturn, overload, Dict, List, Tuple
+from typing import Callable, NoReturn, Dict, List, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-from _mpy_shed import IOBase_mp, _mp_implementation
+from _mpy_shed import IOBase_mp, _mp_implementation, mp_available
 
 argv: List
 """A mutable list of arguments the current program was started with."""
@@ -145,7 +145,7 @@ Only the first three version numbers (major, minor, micro) are supported and
 they can be referenced only by index, not by name.
 """
 
-@overload
+@mp_available()
 def exit(retval: object = 0, /) -> NoReturn:
     """
        Terminate current program with a given exit code. Underlyingly, this
@@ -157,7 +157,7 @@ def exit(retval: object = 0, /) -> NoReturn:
     """
     ...
 
-@overload
+@mp_available()
 def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
        Register *func* to be called upon termination.  *func* must be a callable
@@ -173,7 +173,7 @@ def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
     ...
 
-@overload
+@mp_available
 def print_exception(exc: Exception | BaseException, file: IOBase_mp = stdout, /) -> None:
     """
        Print exception with a traceback to a file-like object *file* (or
@@ -191,7 +191,7 @@ def print_exception(exc: Exception | BaseException, file: IOBase_mp = stdout, /)
     """
     ...
 
-@overload
+@mp_available
 def settrace(tracefunc) -> None:
     """
        Enable tracing of bytecode execution.  For details see the `CPython

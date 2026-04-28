@@ -38,6 +38,7 @@ behave not as expected.
 # origin module:: repos/micropython/docs/library/time.rst
 from __future__ import annotations
 from _typeshed import Incomplete
+from typing import Literal, overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from typing_extensions import TypeAlias, TypeVar
 from _mpy_shed import _TimeTuple, mp_available, _Ticks, _TicksMs, _TicksUs, _TicksCPU
@@ -190,6 +191,8 @@ def ticks_add(ticks: _Ticks, delta: int, /) -> _Ticks:
             print(ticks_add(0, -1))
     """
     ...
+
+@overload
 def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     """
        Measure ticks difference between values returned from `ticks_ms()`, `ticks_us()`,
@@ -255,6 +258,10 @@ def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
        also overflow. This is known as https://en.wikipedia.org/wiki/Year_2038_problem .
     """
     ...
+
+@overload
+# 2nd overload to satisfy mypy when using literal 0 as argument
+def ticks_diff(ticks1: _Ticks | Literal[0]|int, ticks2: _Ticks | Literal[0]|int, /) -> int: ...
 def time() -> int:
     """
        Returns the number of seconds, as an integer, since the Epoch, assuming that
