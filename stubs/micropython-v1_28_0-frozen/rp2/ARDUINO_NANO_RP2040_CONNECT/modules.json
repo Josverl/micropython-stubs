@@ -13,7 +13,7 @@
         "board": "ARDUINO_NANO_RP2040_CONNECT"
     },
     "stubber": {
-        "version": "1.28.2",
+        "version": "1.28.3",
         "stubtype": "frozen"
     },
     "modules": [

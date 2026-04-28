@@ -55,5 +55,6 @@ publish_all v="stable":
 # build stubs for a specific port
 port p="rp2" v="stable" b="all":
     stubber docstubs --version {{v}}
+    stubber get-frozen --version {{v}}
     stubber merge --port {{p}} --board {{b}} --version {{v}}
     stubber build --port {{p}} --board {{b}} --version {{v}}

@@ -69,7 +69,7 @@ class LCD160CR:
     buf1: Incomplete
     array4: Incomplete
     @overload
-    def __init__(self, connect: str, /):
+    def __init__(self, connect: str | None = None, /):
         """
         Construct an LCD160CR object.  The parameters are:
 
