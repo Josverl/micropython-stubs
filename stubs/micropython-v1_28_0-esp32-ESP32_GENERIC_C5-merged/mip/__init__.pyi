@@ -1,0 +1,36 @@
+"""
+Module: 'mip.__init__' on micropython-v1.28.0-esp32-ESP32_GENERIC_C5
+"""
+# MCU: {'variant': '', 'build': '', 'arch': 'rv32imc', 'port': 'esp32', 'board': 'ESP32_GENERIC_C5', 'board_id': 'ESP32_GENERIC_C5', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32C5', 'version': '1.28.0'}
+# Stubber: v1.28.3
+from __future__ import annotations
+from _typeshed import Incomplete
+
+allowed_mip_url_prefixes: tuple = ()
+def _ensure_path_exists(*args, **kwargs) -> Incomplete:
+    ...
+
+def _install_json(*args, **kwargs) -> Incomplete:
+    ...
+
+def _install_package(*args, **kwargs) -> Incomplete:
+    ...
+
+def _rewrite_url(*args, **kwargs) -> Incomplete:
+    ...
+
+def const(*args, **kwargs) -> Incomplete:
+    ...
+
+def _download_file(*args, **kwargs) -> Incomplete:
+    ...
+
+def install(*args, **kwargs) -> Incomplete:
+    ...
+
+def _check_exists(*args, **kwargs) -> Incomplete:
+    ...
+
+def _chunk(*args, **kwargs) -> Incomplete:
+    ...
+
