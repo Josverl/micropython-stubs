@@ -1,17 +1,29 @@
 import json
 import logging
-import platform
 import re
-import subprocess
 import sys
+import time
 from pathlib import Path
-from typing import Dict, List
 
 import fasteners
 import pytest
 from mpflash.versions import micropython_versions
 from packaging.version import Version
 from typecheck import copy_config_files, port_and_board, run_typechecker
+
+# Fallback version list used when the GitHub API is unreachable.
+# Keep in sync with the most recent stable + preview release.
+_FALLBACK_VERSIONS = ["v1.26.1", "v1.27.0", "v1.28.0", "v1.29.0-preview"]
+
+# Cache file for the resolved VERSIONS list. Required for pytest-xdist: every
+# worker process imports this module and must compute the *same* parametrization
+# matrix. micropython_versions() hits the GitHub API and can return different
+# results across workers (network flakiness, transient rate-limiting), causing
+# xdist to abort with "Different tests were collected between gw0 and gwN".
+# The first process populates the file under an inter-process lock; later
+# processes read it. 24h TTL matches the stub-install cache.
+_VERSIONS_CACHE_FILE = Path(__file__).parent / ".versions_cache.json"
+_VERSIONS_CACHE_TTL = 24 * 60 * 60
 
 
 def major_minor(versions):
@@ -90,13 +102,58 @@ PORTBOARD_FEATURES = {
 
 SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 
-
-
 HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
-# only the recent versions
-VERSIONS = sorted(major_minor(micropython_versions(minver="v1.24.0")), reverse=True)[:3]
+
+def _resolve_versions() -> list:
+    """Return the (top-3 major.minor) VERSIONS list, deterministic across workers.
+
+    Uses a JSON file with a 24h TTL, protected by an inter-process lock, so
+    every pytest-xdist worker collects the *same* parametrization. Falls back
+    to ``_FALLBACK_VERSIONS`` if the network call fails.
+    """
+    # Fast path: cache file is fresh.
+    try:
+        if _VERSIONS_CACHE_FILE.exists():
+            data = json.loads(_VERSIONS_CACHE_FILE.read_text())
+            if time.time() - float(data.get("ts", 0)) < _VERSIONS_CACHE_TTL:
+                versions = data.get("versions")
+                if isinstance(versions, list) and versions:
+                    return versions
+    except Exception:
+        pass  # fall through to refresh
+
+    # Slow path: serialize population across workers.
+    lock = fasteners.InterProcessLock(str(_VERSIONS_CACHE_FILE) + ".lock")
+    with lock:
+        # Double-check after acquiring the lock.
+        try:
+            if _VERSIONS_CACHE_FILE.exists():
+                data = json.loads(_VERSIONS_CACHE_FILE.read_text())
+                if time.time() - float(data.get("ts", 0)) < _VERSIONS_CACHE_TTL:
+                    versions = data.get("versions")
+                    if isinstance(versions, list) and versions:
+                        return versions
+        except Exception:
+            pass
+
+        try:
+            all_versions = micropython_versions(minver="v1.24.0")
+        except Exception:
+            all_versions = _FALLBACK_VERSIONS
+        versions = sorted(major_minor(all_versions), reverse=True)[:3]
+
+        try:
+            _VERSIONS_CACHE_FILE.write_text(
+                json.dumps({"ts": time.time(), "versions": versions})
+            )
+        except Exception:
+            pass  # best-effort; workers will still agree this run if call is stable
+        return versions
+
+
+VERSIONS = _resolve_versions()
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
@@ -139,27 +196,6 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
                     feature = feature.strip()
                     args_lst.append([src, version, portboard, feature])
     metafunc.parametrize(argnames, args_lst, scope="session")
-
-
-
-
-
-def filter_issues(issues: List[Dict], version: str, portboard: str = ""):
-    port, board = portboard.split("-") if "-" in portboard else (portboard, "")
-    for issue in issues:
-        try:
-            filename = Path(issue["file"])
-            with open(filename, "r") as f:
-                lines = f.readlines()
-            line = issue["range"]["start"]["line"]
-            if len(lines) > line:
-                theline: str = lines[line]
-                # check if the line contains a stubs-ignore comment
-                if stub_ignore(theline, version, port, board):
-                    issue["severity"] = "information"
-        except KeyError as e:
-            log.warning(f"Could not process issue: {e} \n{json.dumps(issues, indent=4)}")
-    return issues
 
 
 def stub_ignore(line, version, port, board, linter="pyright", is_source=True) -> bool:
@@ -208,69 +244,6 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
     return bool(result)
 
 
-def run_pyright(snip_path, version, portboard, pytestconfig):
-    """
-    Run Pyright static type checker a path with validation code
-
-    Args:
-        snip_path (Path): The path to the project.
-        version (str): The version of the stubs .
-        portboard (str): The portboard of the project.
-        pytestconfig: The pytest configuration object.
-
-    Returns:
-        tuple: A tuple containing the information message and the number of errors found.
-    """
-
-    cmd = f"pyright --project {snip_path.as_posix()} --outputjson"
-    typecheck_lock = fasteners.InterProcessLock(snip_path / "typecheck_lock.file")
-
-    use_shell = platform.system() != "Windows"
-    results = {}
-    with typecheck_lock:
-        try:
-            # run pyright in the folder with the check_scripts to allow modules to import each other.
-            result = subprocess.run(
-                cmd, shell=use_shell, capture_output=True, cwd=snip_path.as_posix()
-            )
-        except OSError as e:
-            raise e
-        if result.returncode >= 2:
-            assert (
-                0
-            ), f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
-        try:
-            results = json.loads(result.stdout)
-        except Exception:
-            assert 0, "Could not load pyright's JSON output..."
-
-    issues: List[Dict] = results["generalDiagnostics"]
-    # for each of the issues - retrieve the line in the source file to inspect if has a trailing comment
-    issues = filter_issues(issues, version, portboard)
-
-    # log the errors  in the issues list so that pytest will capture the output
-    for issue in issues:
-        # log file:line:column?: message
-        try:
-            relative = Path(issue["file"]).relative_to(pytestconfig.rootpath).as_posix()
-        except Exception:
-            relative = issue["file"]
-        msg = f"{relative}:{issue['range']['start']['line']+1}:{issue['range']['start']['character']} {issue['message']}"
-        # caplog.messages.append(msg)
-        if issue["severity"] == "error":
-            log.error(msg)
-        elif issue["severity"] == "warning":
-            log.warning(msg)
-        else:
-            log.info(msg)
-
-    info_msg = f"Pyright found {results['summary']['errorCount']} errors and {results['summary']['warningCount']} warnings in {results['summary']['filesAnalyzed']} files."
-    errorcount = len([i for i in issues if i["severity"] == "error"])
-    return info_msg, errorcount
-
-    # return issues
-
-
 @pytest.mark.parametrize(
     "linter",
     ["pyright", "mypy", "ruff"],
@@ -287,7 +260,7 @@ def test_typecheck(
     pytestconfig: pytest.Config,
 ):
     if not snip_path_fx or not snip_path_fx.exists():
-        FileNotFoundError(f"no feature folder for {feature}")
+        pytest.skip(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
 
     log.info(f"Typecheck {linter} on {portboard}, {feature} {version} from {stub_source}")

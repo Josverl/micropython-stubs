@@ -43,8 +43,10 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import _TimeTuple, mp_available
 from _mpy_shed.time_mp import _Ticks, _TicksCPU, _TicksMs, _TicksUs
+from typing import Literal, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
+@overload
 def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     """
     Measure ticks difference between values returned from `ticks_ms()`, `ticks_us()`,
@@ -110,6 +112,10 @@ def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     also overflow. This is known as https://en.wikipedia.org/wiki/Year_2038_problem .
     """
     ...
+
+@overload
+# 2nd overload to satisfy mypy when using literal 0 as argument
+def ticks_diff(ticks1: _Ticks | Literal[0] | int, ticks2: _Ticks | Literal[0] | int, /) -> int: ...
 
 # override the type of ticks_ms()  as it is discovered as `int` in docstubs.
 @mp_available

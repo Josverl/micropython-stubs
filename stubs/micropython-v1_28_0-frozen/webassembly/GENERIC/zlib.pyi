@@ -38,7 +38,7 @@ from typing_extensions import Awaitable, TypeAlias, TypeVar
 _MAX_WBITS: int
 
 def _decode_wbits(wbits, decompress): ...
-def compress(data, wbits=...) -> Incomplete:
+def compress(data, wbits=...) -> bytes:
     """
     Compresses *data* into a bytes object.
 

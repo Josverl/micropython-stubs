@@ -153,16 +153,6 @@ CHANGE_LINES = [
             ("if sys.version_info < (3, 12):", "if True:"),  # force def wrap_socket to be seen.
         ],
     ),
-    (
-        "sys",
-        [
-            ("def atexit(", "def __mpy_has_no_atexit("),
-            (
-                "implementation: _implementation",
-                "implementation: _mp_implementation",
-            ),  # TODO : simplify by merging attribute types.
-        ],
-    ),
 ]
 
 

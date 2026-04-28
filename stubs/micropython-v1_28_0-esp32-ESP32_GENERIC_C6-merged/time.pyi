@@ -43,8 +43,10 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from _mpy_shed import _TimeTuple, mp_available
 from _mpy_shed.time_mp import _Ticks, _TicksCPU, _TicksMs, _TicksUs
+from typing import Literal, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
+@overload
 def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     """
     Measure ticks difference between values returned from `ticks_ms()`, `ticks_us()`,
@@ -111,6 +113,9 @@ def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     """
     ...
 
+@overload
+# 2nd overload to satisfy mypy when using literal 0 as argument
+def ticks_diff(ticks1: _Ticks | Literal[0] | int, ticks2: _Ticks | Literal[0] | int, /) -> int: ...
 def ticks_add(ticks: _Ticks, delta: int, /) -> _Ticks:
     """
     Offset ticks value by a given number, which can be either positive or negative.

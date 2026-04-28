@@ -7,3 +7,9 @@ feat_*/pyproject.toml
 feat_*/mypy.ini
 feat_*/pyrightconfig.json
 
+# Per-worker cache populated by test_snippets.py to keep the parametrization
+# matrix stable across pytest-xdist workers.
+.versions_cache.json
+.versions_cache.json.lock
+.docker_tags_cache.json
+.docker_tags_cache.json.lock

@@ -13,7 +13,7 @@
         "board": "UM_TINYS2"
     },
     "stubber": {
-        "version": "1.28.2",
+        "version": "1.28.3",
         "stubtype": "frozen"
     },
     "modules": [

@@ -13,7 +13,7 @@
         "board": "XIAO_BLE_NRF52840_SENSE"
     },
     "stubber": {
-        "version": "1.28.2",
+        "version": "1.28.3",
         "stubtype": "frozen"
     },
     "modules": [

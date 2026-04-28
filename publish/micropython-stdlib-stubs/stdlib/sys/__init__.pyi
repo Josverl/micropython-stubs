@@ -13,9 +13,9 @@ from builtins import object as _object
 from collections.abc import AsyncGenerator, Callable
 from io import TextIOWrapper
 from types import FrameType, ModuleType, TracebackType
-from typing import Callable, overload, Any, Final, Literal, NoReturn, Protocol, TextIO, TypeVar, final
+from typing import Callable, Any, Final, Literal, NoReturn, Protocol, TextIO, TypeVar, final
 from typing_extensions import Awaitable, TypeVar, TypeAlias
-from _mpy_shed import IOBase_mp, _mp_implementation
+from _mpy_shed import IOBase_mp, _mp_implementation, mp_available
 
 _T = TypeVar("_T")
 
@@ -255,7 +255,7 @@ class _hash_info(structseq[Any | int], tuple[int, int, int, int, int, str, int, 
     @property
     def cutoff(self) -> int: ...  # undocumented
 
-implementation: _mp_implementation
+implementation: _implementation
 """\
 Object with information about the current Python implementation. For
 MicroPython, it has following attributes:
@@ -375,7 +375,7 @@ def exc_info() -> OptExcInfo: ...
 if sys.version_info >= (3, 11):
     def exception() -> BaseException | None: ...
 
-@overload
+@mp_available()
 def exit(retval: object = 0, /) -> NoReturn:
     """
        Terminate current program with a given exit code. Underlyingly, this
@@ -402,7 +402,7 @@ def getprofile() -> ProfileFunction | None: ...
 def setprofile(function: ProfileFunction | None, /) -> None: ...
 def gettrace() -> TraceFunction | None: ...
 
-@overload
+@mp_available
 def settrace(tracefunc) -> None:
     """
        Enable tracing of bytecode execution.  For details see the `CPython
@@ -517,8 +517,8 @@ if sys.version_info >= (3, 12):
 
     monitoring = _monitoring
 
-@overload
-def __mpy_has_no_atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
+@mp_available()
+def atexit(func: Callable[[], None] | None, /) -> Callable[[], None] | None:
     """
        Register *func* to be called upon termination.  *func* must be a callable
        that takes no arguments, or ``None`` to disable the call.  The ``atexit``
@@ -533,7 +533,7 @@ def __mpy_has_no_atexit(func: Callable[[], None] | None, /) -> Callable[[], None
     """
     ...
 
-@overload
+@mp_available
 def print_exception(exc: Exception | BaseException, file: IOBase_mp = stdout, /) -> None:
     """
        Print exception with a traceback to a file-like object *file* (or

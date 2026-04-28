@@ -1,17 +1,21 @@
 """Pytest configuration file for snippets tests.
 
 - snip_path_fx
-  returns the path to the feature folder (feat_xxxx) or check folder (check_xxxx)
+  Creates an isolated per-test workspace by *copying* the feature folder files.
+  Source files are copied (not symlinked) so that pyright's project-root discovery
+  always resolves relative to the workspace rather than the original folder.
+  Only ``typings/`` remains a symlink to the shared stub cache.
 
-- type_stub_cache_path
-  Is used to install the type stubs for the given portboard and version and cache it for 24 hours to speed up tests
-  Returns the path to the cache folder
+- type_stub_cache_path_fx
+  Session-scoped fixture that installs type stubs once per (version, portboard, stub_source)
+  and caches them for 24 hours.  An inter-process lock prevents simultaneous installations
+  from parallel workers.
 
 - install_stubs
   is the function that does the actual pip install to a folder
 
 - copy_type_stubs_fx
-  copies the type stubs from the cache to the feature folder
+  Links the cached type stubs into the isolated workspace for each test.
 
 - pytest_runtest_makereport 
   is used to add the caplog to the test report to make it avaialble to VSCode test explorer
@@ -31,6 +35,21 @@ from mpflash.versions import get_preview_mp_version, get_stable_mp_version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
 MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
+
+# Fallback version strings used when the GitHub API is unreachable.
+# Keep in sync with the most recent stable + preview release.
+_FALLBACK_STABLE_VERSION = "v1.28.0"
+_FALLBACK_PREVIEW_VERSION = "v1.29.0-preview"
+
+
+def pytest_addoption(parser: pytest.Parser):
+    """Register extra command-line options for the quality-test suite."""
+    parser.addoption(
+        "--no-cache",
+        action="store_true",
+        default=False,
+        help="Disable the 24-hour stub-installation cache and always reinstall stubs.",
+    )
 
 
 def flat_version(version):
@@ -73,54 +92,57 @@ def pytest_runtest_makereport(item, call):
         return report
 
 
-# @pytest.fixture(scope="session")
-# def type_stub_cache_path_fx(
-#     portboard: str,
-#     version: str,
-#     stub_source: str,
-#     pytestconfig: pytest.Config,
-#     request: pytest.FixtureRequest,
-# ) -> Path:
-#     """
-#     Installs a copy of the type stubs for the given portboard and version. Returns the path to the cache folder.
+@pytest.fixture(scope="session")
+def type_stub_cache_path_fx(
+    portboard: str,
+    version: str,
+    stub_source: str,
+    pytestconfig: pytest.Config,
+    request: pytest.FixtureRequest,
+) -> Path:
+    """
+    Installs type stubs for the given portboard and version to a persistent cache.
+    Returns the path to the cache folder.
 
-#     Args:
-#         portboard: The portboard.
-#         version: The version.
-#         stub_source: The stub source.
-#         pytestconfig: The pytest Config object.
-#         request: The pytest FixtureRequest object.
+    The cache is valid for MAX_CACHE_AGE seconds (24 hours).
+    An inter-process lock ensures that parallel test workers do not install the
+    same stubs simultaneously.
 
-#     Returns:
-#         Path: The path to the cache folder.
-#     """
+    Args:
+        portboard: The portboard.
+        version: The version.
+        stub_source: The stub source.
+        pytestconfig: The pytest Config object.
+        request: The pytest FixtureRequest object.
 
-#     log.debug(f"setup install type_stubs to cache: {stub_source}, {version}, {portboard}")
-#     cache_key = f"stubber/{stub_source}/{version}/{portboard}"
-#     flatversion = flat_version(version)
-#     tsc_path = Path(
-#         request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}") # type: ignore
-#     )
-#     # prevent simultaneous updates to the cache
-#     cache_lock = fasteners.InterProcessLock(tsc_path.parent / f"{tsc_path.name}.lock")
-#     # check if stubs are already installed to the cache
-#     with cache_lock:
-#         if (tsc_path / "micropython.pyi").exists():
-#             # check if stubs are in the cache
-#             timestamp = request.config.cache.get(cache_key, None)
-#             # if timestamp is not older than 24 hours, use cache
+    Returns:
+        Path: The path to the cache folder.
+    """
+    log.debug(f"setup install type_stubs to cache: {stub_source}, {version}, {portboard}")
+    cache_key = f"stubber/{stub_source}/{version}/{portboard}"
+    flatversion = flat_version(version)
+    tsc_path = Path(
+        request.config.cache.makedir(f"typings_{flatversion}_{portboard}_stub_{stub_source}")  # type: ignore
+    )
+    # prevent simultaneous updates to the cache across parallel workers
+    cache_lock = fasteners.InterProcessLock(tsc_path.parent / f"{tsc_path.name}.lock")
+    with cache_lock:
+        if (tsc_path / "micropython.pyi").exists():
+            # stubs appear to be installed – check the freshness timestamp
+            # (skipped when --no-cache is passed on the command line)
+            no_cache = request.config.getoption("--no-cache", default=False)
+            timestamp = request.config.cache.get(cache_key, None)
+            if not no_cache and timestamp and timestamp > (time.time() - MAX_CACHE_AGE):
+                log.debug(f"Using cached type stubs for {portboard} {version}")
+                return tsc_path
 
-#             if timestamp and timestamp > (time.time() - MAX_CACHE_AGE):
-#                 log.debug(f"Using cached type stubs for {portboard} {version}")
-#                 return tsc_path
+        ok = install_stubs(portboard, version, stub_source, pytestconfig, tsc_path)
+        if not ok:
+            pytest.skip(f"Could not install stubs for {portboard} {version}")
+        # record the installation timestamp
+        request.config.cache.set(cache_key, time.time())
 
-#         ok = install_stubs(portboard, version, stub_source, pytestconfig, tsc_path)
-#         if not ok:
-#             pytest.skip(f"Could not install stubs for {portboard} {version}")
-#         # add the timestamp to the cache
-#         request.config.cache.set(cache_key, time.time())
-
-#     return tsc_path
+    return tsc_path
 
 
 def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path) -> bool:
@@ -140,13 +162,20 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
         bool: True if the installation was successful, False otherwise.
     """
     if version == "preview":
-        # use the latest preview version
-        version = get_preview_mp_version()
+        # use the latest preview version; fall back to the hardcoded constant
+        # when the GitHub API is unreachable (no network / sandboxed environment).
+        try:
+            version = get_preview_mp_version()
+        except Exception:
+            version = _FALLBACK_PREVIEW_VERSION
         if not version.endswith("-preview"):
             raise ValueError(f"Expected preview version, got {version}")
     elif version == "latest":
-        # use the latest release version
-        version = get_stable_mp_version()
+        # use the latest stable release; same offline fallback logic.
+        try:
+            version = get_stable_mp_version()
+        except Exception:
+            version = _FALLBACK_STABLE_VERSION
 
     flatversion = flat_version(version)
     # clean up prior install to avoid stale files
@@ -185,67 +214,128 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
         print(f"{e.stderr}")
         pytest.skip(f"{e.stderr}")
         return False
+
+    # _mpy_shed is gitignored inside publish/micropython-stdlib-stubs/ (generated
+    # from reference/ by build.py) so it is absent in a fresh clone.  Copy it from
+    # the reference folder when it is missing so that type stubs that import from
+    # _mpy_shed (e.g. stdlib/sys/__init__.pyi) can be resolved correctly.
+    _mpy_shed_src = pytestconfig.inipath.parent / "reference" / "_mpy_shed"
+    _mpy_shed_dst = tsc_path / "_mpy_shed"
+    if _mpy_shed_src.exists() and not _mpy_shed_dst.exists():
+        shutil.copytree(_mpy_shed_src, _mpy_shed_dst)
+
     return True
 
 
 @pytest.fixture(scope="function")
-def snip_path_fx(feature: str, pytestconfig) -> Path:
+def snip_path_fx(feature: str, tmp_path: Path, pytestconfig: pytest.Config) -> Path:
     """
-    Get the path to the feat_ or check_ folder.
+    Create an isolated per-test workspace based on the feat_<feature> or check_<feature> folder.
+
+    Each test receives a unique temporary directory that contains:
+    - real copies of all source files from the original feature folder, and
+    - config files copied from _configs/ (pyproject.toml, etc.).
+
+    The ``typings/`` sub-directory is intentionally omitted here; it is added by
+    ``copy_type_stubs_fx`` from the shared stub cache.
+
+    Using an isolated workspace per test means that parallel test workers never
+    write to the same directory at the same time, eliminating the need for the
+    per-folder ``typecheck_lock``.
 
     Args:
-        feature: The feature.
+        feature: The feature name (used to locate feat_<feature> / check_<feature>).
+        tmp_path: pytest's built-in per-test temporary directory.
         pytestconfig: The pytest Config object.
 
     Returns:
-        Path: The path to the feature folder.
+        Path: The path to the isolated workspace, or the (non-existing) feature
+        folder when no matching directory was found.
     """
     my_path = Path(__file__).parent.absolute()
-    # snip_path = pytestconfig.inipath.parent / "tests/quality_tests" / f"feat_{feature}"
-    snip_path = my_path / f"feat_{feature}"
-    if not snip_path.exists():
-        snip_path = my_path / f"check_{feature}"
-    return snip_path
+    source_path = my_path / f"feat_{feature}"
+    if not source_path.exists():
+        source_path = my_path / f"check_{feature}"
+    if not source_path.exists():
+        # Return the (non-existing) path so that the test can skip cleanly.
+        return source_path
+
+    workspace = tmp_path
+
+    # Copy all files / sub-directories from the feature folder into the workspace
+    # as REAL filesystem entries (not symlinks).
+    #
+    # Why not symlinks?  Pyright resolves symlinked directories to their real paths
+    # before performing project-root discovery, so it would end up looking for
+    # ``typings/`` next to the *original* feature folder rather than in the
+    # workspace.  Copying the source files avoids that resolution entirely.
+    _SKIP_NAMES = {"typings", "typecheck_lock.file"}
+    for item in source_path.iterdir():
+        if item.name in _SKIP_NAMES:
+            continue
+        dest = workspace / item.name
+        if item.is_dir():
+            shutil.copytree(item, dest)
+        else:
+            shutil.copy2(item, dest)
+
+    # Copy per-folder type-checker config files from _configs/ so that each
+    # workspace is self-contained and can be used directly from the command line.
+    config_path = my_path / "_configs"
+    for file in config_path.glob("*.*"):
+        if file.name == "readme.md":
+            continue
+        try:
+            shutil.copy(file, workspace)
+        except Exception as e:
+            log.warning(f"Could not copy {file} to {workspace}: {e}")
+
+    return workspace
 
 
 @pytest.fixture(scope="function")
 def copy_type_stubs_fx(
-    portboard: str, 
-    version: str, 
-    feature: str, 
-    # type_stub_cache_path_fx: Path,
+    portboard: str,
+    version: str,
+    feature: str,
+    type_stub_cache_path_fx: Path,
     snip_path_fx: Path,
     stub_source: str,
-    pytestconfig: pytest.Config
+    pytestconfig: pytest.Config,
 ):
     """
-    Copies installed/cached type stubs from the cache to the feature folder.
+    Links the cached type stubs into the isolated workspace for this test.
+
+    Because each test already has its own isolated workspace (provided by
+    ``snip_path_fx``), there is no need for a per-folder lock here – multiple
+    tests can safely prepare their workspaces simultaneously.
 
     Args:
         portboard: The portboard.
         version: The version.
-        feature: The feature.
-        type_stub_cache_path: The path to the cache folder.
-        snip_path: The path to the feature folder.
+        feature: The feature name.
+        type_stub_cache_path_fx: Path to the shared stub cache for this (version, portboard).
+        snip_path_fx: Path to the isolated workspace for this test.
+        stub_source: The stub source.
+        pytestconfig: The pytest Config object.
     """
-    # cache_lock = fasteners.InterProcessLock(
-    #     type_stub_cache_path_fx.parent / f"{type_stub_cache_path_fx.name}.lock"
-    # )
-    # with cache_lock:
-    typecheck_lock = fasteners.InterProcessLock(snip_path_fx / "typecheck_lock.file")
-    with typecheck_lock:
-        log.trace(f"- copy_type_stubs: {version}, {portboard} to {feature}")
-        # print(f"\n - copy_type_stubs : {version}, {portboard} to {feature}")
-        if not snip_path_fx or not snip_path_fx.exists():
-            # skip if no feature folder
-            pytest.skip(f"no feature folder for {feature}")
-        typings_path = snip_path_fx / "typings"
-        if typings_path.exists():
-            shutil.rmtree(typings_path, ignore_errors=True)
+    log.trace(f"- copy_type_stubs: {version}, {portboard} to {feature}")
+    if not snip_path_fx or not snip_path_fx.exists():
+        pytest.skip(f"no feature folder for {feature}")
 
-        ok = install_stubs(portboard, version, stub_source, pytestconfig, typings_path)
-        if not ok:
-            pytest.skip(f"Could not install stubs for {portboard} {version}")
+    typings_path = snip_path_fx / "typings"
+    # Remove any pre-existing typings artefact (symlink or real directory).
+    if typings_path.is_symlink():
+        typings_path.unlink()
+    elif typings_path.exists():
+        shutil.rmtree(typings_path, ignore_errors=True)
+
+    # Point the workspace's typings/ at the shared stub cache via a symlink.
+    # Falling back to a full copy on platforms that do not support symlinks.
+    try:
+        typings_path.symlink_to(type_stub_cache_path_fx)
+    except (OSError, NotImplementedError):
+        shutil.copytree(type_stub_cache_path_fx, typings_path)
 
 
 def pytest_terminal_summary(terminalreporter, exitstatus, config: pytest.Config):
