@@ -430,8 +430,7 @@ class SDCard:
     def deinit(self, *args, **kwargs) -> Any:
         ...
 
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
+    def __init__(self, slot: int = 1, width: int = 1, cd=None, wp=None, sck=None, miso=None, mosi=None, cs=None, freq: int = 20000000) -> None: ...
 
 
 class SPI:

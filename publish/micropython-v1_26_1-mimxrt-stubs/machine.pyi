@@ -2992,7 +2992,19 @@ class SDCard(AbstractBlockDev):
     def deinit(self, *args, **kwargs) -> Incomplete: ...
     def init(self, *args, **kwargs) -> Incomplete: ...
     def info(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    def __init__(
+        self,
+        slot: int = 1,
+        width: int = 1,
+        *,
+        cd: PinLike | None = None,
+        wp: PinLike | None = None,
+        sck: PinLike | None = None,
+        miso: PinLike | None = None,
+        mosi: PinLike | None = None,
+        cs: PinLike | None = None,
+        freq: int = 20000000,
+    ) -> None: ...
 
 class SPI:
     """
