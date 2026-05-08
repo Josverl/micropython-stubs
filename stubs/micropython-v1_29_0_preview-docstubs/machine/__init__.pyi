@@ -15,7 +15,7 @@ damage.
 # origin module:: repos/micropython/docs/library/machine.rst
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, NoReturn, Optional
+from typing import overload, Any, NoReturn, Optional, Tuple
 from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
 from machine.Pin import Pin
 from machine.Signal import Signal
@@ -258,6 +258,14 @@ def wake_reason() -> int:
        Get the wake reason. See :ref:`constants <machine_constants>` for the possible return values.
     
        Availability: ESP32, WiPy.
+    """
+    ...
+def wake_pins() -> Tuple:
+    """
+       Returns the GPIO pin numbers of those pins which caused wakeup from deep sleep as a
+       tuple of integers.
+    
+       Availability: ESP32.
     """
     ...
 def unique_id() -> bytes:

@@ -125,8 +125,6 @@ class I2C:
     def deinit(self) -> None:
         """
         Turn off the I2C bus.
-
-        Availability: WiPy.
         """
         ...
     def scan(self) -> list[int]:
