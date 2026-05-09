@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
     inputs:
       issue_number:
-        description: 'Issue number to triage (optional, only applicable if triggered manually)'
-        required: true
+        description: 'Issue number to triage when run manually'
+        required: false
         default: ''
 
 permissions:
@@ -37,6 +37,14 @@ safe-outputs:
 Triage quality issues for MicroPython type stubs in this repository.
 
 ## Instructions
+
+First resolve the target issue number:
+
+1. If `${{ github.event.issue.number }}` is present, use that value.
+2. Otherwise, read `${{ github.event.inputs.issue_number }}` and treat it as the target issue number.
+3. If neither value is present, empty, or not a positive integer, call `missing_data` with a short message explaining that `workflow_dispatch` requires `issue_number`, then stop.
+
+After resolving the target issue number, fetch that issue via GitHub tools and use it as the single source of truth for title, body, labels, and URL in all steps below.
 
 When triggered by `issues`:
 
@@ -93,7 +101,8 @@ When triggered by `issues`:
 
 When triggered manually (`workflow_dispatch`):
 
-- Do nothing unless an issue number is present in available context. If no issue context is available, add a short log-style response and exit safely.
+- Use `${{ github.event.inputs.issue_number }}` as described above.
+- Apply the exact same triage behavior as the `issues` trigger path (including label checks, scope routing, and optional sub-issue creation) to the fetched issue.
 
 ## Notes
 
