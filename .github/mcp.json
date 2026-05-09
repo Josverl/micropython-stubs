@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "github-agentic-workflows": {
+      "command": "gh",
+      "args": [
+        "aw",
+        "mcp-server"
+      ]
+    },
+    "pyright-mcp": {
+      "command": "pyright-mcp-server"
+    }
+  }
+}

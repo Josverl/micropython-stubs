@@ -1,2 +1,4 @@
 # These are binary so should never be modified by git.
 *.mpy binary
+
+.github/workflows/*.lock.yml linguist-generated=true merge=ours
