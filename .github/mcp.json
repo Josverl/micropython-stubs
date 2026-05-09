@@ -6,9 +6,6 @@
         "aw",
         "mcp-server"
       ]
-    },
-    "pyright-mcp": {
-      "command": "pyright-mcp-server"
     }
   }
 }

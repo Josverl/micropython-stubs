@@ -36,10 +36,9 @@ jobs:
         run: |
           uv python install
 
-      - name: uv Install stubber, poetry, pyright, and pyright-mcp
+      - name: uv Install stubber, poetry, pyright
         run: |
           uv tool install -U micropython-stubber
           uv tool install -U poetry
           uv tool install -U pyright
-          uv tool install -U pyright-mcp
     
