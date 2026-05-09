@@ -32,11 +32,11 @@ jobs:
           # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
           activate-environment: true
 
-      - name: uv: Install Python
+      - name: uv Install Python
         run: |
           uv python install
 
-      - name: uv: Install stubber, poetry, pyright, and pyright-mcp
+      - name: uv Install stubber, poetry, pyright, and pyright-mcp
         run: |
           uv tool install -U micropython-stubber
           uv tool install -U poetry
