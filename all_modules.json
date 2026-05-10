@@ -33311,6 +33311,596 @@
     },
     {
         "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "__builtins__",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "66e54f2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "_thread",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "4d6dba13"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "argparse",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "585e24b8"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "binascii",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "8a72b131"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "btree",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "4d2ff777"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "cmath",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "e12adc24"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "cryptolib",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "f4f5f899"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "datetime",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "2cc22361"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "deflate",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "e3969c8e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "errno",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "d4d5a1fe"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ffi",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "e8054e05"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "framebuf",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "be25f1f6"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "functools",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "a10af516"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "gc",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "a5970d7b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "hashlib",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "3ed1cd58"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "heapq",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "b23e3273"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "logging",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "1af64ead"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "machine",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "d8debfb3"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "math",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "1c667d3d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "micropython",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "478087cd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "mip/__init__",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "6209327b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "mip/__main__",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "74176b70"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "pathlib",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "cedf47f8"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "platform",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "fe8cc6de"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "random",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "3b5e161f"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "requests/__init__",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "fdb02bb2"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "select",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "b7bbdd4e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "socket",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "80d8daf0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "termios",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "9ce07a8c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "time",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "25aa8baf"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "tls",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "4e4e4eb9"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uarray",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "78a669c8"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uasyncio",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "9cd8b296"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ubinascii",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "025f57a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ubluetooth",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "12d64209"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ucollections",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "ddddde41"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ucryptolib",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "dca2c3c2"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uctypes",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "f88ef742"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uerrno",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "24d7de79"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uhashlib",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "3e186ffd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uheapq",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "93deaa80"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uio",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "d796c49d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ujson",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "3b5d030c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "umachine",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "ed4ec2c8"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "unittest/__init__",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "7106144c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uos",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "a5f9f9da"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uplatform",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "f8be989a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "urandom",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "0c12f153"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ure",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "d0df8a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uselect",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "39f34ad4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "usocket",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "ba4c7431"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ussl",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "2e832392"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ustruct",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "b4bad502"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "usys",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "db6d394d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "utime",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "6c27f811"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uwebsocket",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "3019f61b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uzlib",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "2e869bff"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "vfs",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "eb8358a7"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "websocket",
+        "port": "unix",
+        "board": "GENERIC",
+        "package": "micropython-unix-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "31f2c94d"
+    },
+    {
+        "family": "micropython",
         "version": "1.17.0",
         "mod_name": "_onewire",
         "port": "esp32",
@@ -54838,6 +55428,396 @@
         "package": "micropython-esp8266-esp8266_generic-stubs",
         "pkg_version": "1.24.1.post1",
         "hash": "7c9c50e2"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "__builtins__",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "66e54f2a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "binascii",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "8a72b131"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "cmath",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "e12adc24"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "deflate",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "74214183"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "errno",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "228b8beb"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "gc",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "a5970d7b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "hashlib",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "845421fd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "heapq",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "b23e3273"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "machine",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "01749af9"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "math",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "869203db"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "micropython",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "b7a82f1e"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "random",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "cc31b666"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "time",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "25aa8baf"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uarray",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "78a669c8"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uasyncio",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "9cd8b296"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ubinascii",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "025f57a0"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ubluetooth",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "12d64209"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ucollections",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "ddddde41"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ucryptolib",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "dca2c3c2"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uctypes",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "f8136368"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uerrno",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "24d7de79"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uhashlib",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "3e186ffd"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uheapq",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "93deaa80"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uio",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "d796c49d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ujson",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "3b5d030c"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "umachine",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "ed4ec2c8"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uos",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "a5f9f9da"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uplatform",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "f8be989a"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "urandom",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "0c12f153"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ure",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "d0df8a59"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uselect",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "39f34ad4"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "usocket",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "ba4c7431"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ussl",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "2e832392"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "ustruct",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "b4bad502"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "usys",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "db6d394d"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "utime",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "6c27f811"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uwebsocket",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "3019f61b"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "uzlib",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "2e869bff"
+    },
+    {
+        "family": "micropython",
+        "version": "1.28.0",
+        "mod_name": "vfs",
+        "port": "windows",
+        "board": "GENERIC",
+        "package": "micropython-windows-stubs",
+        "pkg_version": "1.28.0.post1",
+        "hash": "9c1139e1"
     },
     {
         "family": "micropython",
