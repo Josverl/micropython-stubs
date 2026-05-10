@@ -40,7 +40,7 @@ Installing: /lib/__future__.mpy
 Done
 ```
 
-*Note:* The .mpy modules are cross compiled for MicroPython v1.25.0 ; mpy-cross emitting mpy v6.3.
+*Note:* The .mpy modules are cross compiled for a recent stable version of MicroPython.
 *Note that by default mip will install the modules in the `/lib` folder of the MCU.*
 
 ## Add to your project source
