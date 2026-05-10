@@ -17,6 +17,7 @@ permissions:
 tools:
   github:
     toolsets: [default]
+    min-integrity: unapproved # | merged | approved | unapproved | none
 
 network: defaults
 
