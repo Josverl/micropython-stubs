@@ -10,7 +10,7 @@ MicroPython module: https://docs.micropython.org/en/v1.26.0/library/aioespnow.ht
 # origin module:: repos/micropython/docs/library/espnow.rst
 from __future__ import annotations
 from _typeshed import TypeAlias, Incomplete
-from typing import Literal, Callable, Final, overload, Any, Dict, Iterator, List, Optional, Tuple, Union
+from typing import Callable, Final, Literal, overload, Any, Dict, Iterator, List, Optional, Tuple, Union
 from typing_extensions import Buffer, TypeVar, TypeAlias, Awaitable
 from _espnow import ESPNowBase  # type: ignore
 from _mpy_shed import mp_available
@@ -20,8 +20,6 @@ KEY_LEN: Incomplete = 16
 ADDR_LEN: Incomplete = 6
 MAX_TOTAL_PEER_NUM: Incomplete = 20
 MAX_ENCRYPT_PEER_NUM: Incomplete = 6
-_MACAddress: TypeAlias = bytes
-_PeerInfo: TypeAlias = Tuple[_MACAddress, bytes, int, int, bool]
 RATE_1M: Final[int]
 RATE_2M: Final[int]
 RATE_5M: Final[int]
@@ -32,6 +30,8 @@ RATE_24M: Final[int]
 RATE_54M: Final[int]
 RATE_LORA_250K: Final[int]
 RATE_LORA_500K: Final[int]
+_MACAddress: TypeAlias = bytes
+_PeerInfo: TypeAlias = Tuple[_MACAddress, bytes, int, int, bool]
 class ESPNow(ESPNowBase, Iterator):
     """
     Returns the singleton ESPNow object. As this is a singleton, all calls to

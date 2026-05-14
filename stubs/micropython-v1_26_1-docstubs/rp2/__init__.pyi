@@ -24,15 +24,16 @@ from rp2.DMA import DMA
 from rp2.Flash import Flash
 from rp2.PIO import PIO
 from rp2.StateMachine import StateMachine
+from rp2.asm_pio_rp2040 import *
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from machine import Pin
 from micropython import const
 from typing import Callable, List, Literal, Union, overload
 from vfs import AbstractBlockDev
-from rp2.asm_pio_rp2040 import *
-from rp2 import bootsel_button, PIOASMEmit, _PIO_ASM_Program
+from rp2 import PIOASMEmit, _PIO_ASM_Program
 
 _IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
+
 class PIOASMError(Exception):
     """
         This exception is raised from `asm_pio()` or `asm_pio_encode()` if there is
