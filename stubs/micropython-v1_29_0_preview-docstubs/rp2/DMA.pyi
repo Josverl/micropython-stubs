@@ -98,7 +98,8 @@ class DMA:
           disables chaining (this is the default).
 
         - *treq_sel*: ``int`` Select a Transfer Request signal. See section 2.5.3 in the RP2040
-          datasheet for details.
+          datasheet for details. You may also pass a :class:`DMATimer` instance to use that timer
+          for pacing the transfer.
 
         - *irq_quiet*: ``bool`` Do not generate interrupt at the end of each transfer. Interrupts
           will instead be generated when a zero value is written to the trigger
@@ -108,7 +109,7 @@ class DMA:
         - *bswap*: ``bool`` If set to true, bytes in words or half-words will be reversed before
           writing (default: ``True``).
 
-        - *sniff_en*: ``bool`` Set to ``True`` to allow data to be accessed by the chips sniff
+        - *sniff_en*: ``bool`` Set to ``True`` to allow data to be accessed by the chip's sniff
           hardware (default: ``False``).
 
         - *write_err*: ``bool`` Setting this to ``True`` will clear a previously reported write
@@ -144,5 +145,22 @@ class DMA:
         0
         >>> sm.active(1)
         >>> while sm.active():
+        """
+        ...
+
+class DMATimer:
+    """
+    Claim one of the DMA pacing timers for exclusive use and optionally set the frequency or ratio.
+
+    - *timer_id*: Which timer to use. Leave empty to select any unclaimed timer.
+    - *freq*: The optional value to assign to the :attr:`freq` attribute.
+    - *ratio*: The optional value to assign to the :attr:`ratio` attribute.
+
+    If both ``freq`` and ``ratio`` are provided then ``ratio`` is used.
+    """
+    def __init__(self, timer_id=None, *, freq=None, ratio=None) -> None: ...
+    def close(self) -> Incomplete:
+        """
+        Release the exclusive claim on the underlying timer.
         """
         ...
