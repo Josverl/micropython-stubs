@@ -7,7 +7,7 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
 
 __CANFilter: TypeAlias = tuple[int, int, int] | list[int]
-__CANRecvResult: TypeAlias = list[int | memoryview]
+__CANRecvResult: TypeAlias = tuple[int, memoryview, int, int]
 __CANCounters: TypeAlias = list[int | None]
 __CANTimings: TypeAlias = list[int | list[int] | None]
 

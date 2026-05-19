@@ -7,9 +7,6 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import _IRQ
 from machine import Pin
 from rp2.StateMachine import StateMachine
-from rp2 import bootsel_button
-from rp2.DMA import DMA
-from rp2.Flash import Flash
 
 _PIO_ASM_Program: TypeAlias = Callable
 _IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]

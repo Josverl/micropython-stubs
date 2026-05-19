@@ -27,7 +27,7 @@ from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, _BlockDeviceProtocol
 from abc import ABC, abstractmethod
 
-class VfsFat():
+class VfsFat(AbstractBlockDev):
     """
     Create a filesystem object that uses the FAT filesystem format.  Storage of
     the FAT filesystem is provided by *block_dev*.
@@ -41,7 +41,7 @@ class VfsFat():
                 Build a FAT filesystem on *block_dev*.
         """
         ...
-class VfsLfs1():
+class VfsLfs1(AbstractBlockDev):
     """
     Create a filesystem object that uses the `littlefs v1 filesystem format`_.
     Storage of the littlefs filesystem is provided by *block_dev*, which must
@@ -62,7 +62,7 @@ class VfsLfs1():
                       for details see `littlefs issue 347`_.
         """
         ...
-class VfsLfs2():
+class VfsLfs2(AbstractBlockDev):
     """
     Create a filesystem object that uses the `littlefs v2 filesystem format`_.
     Storage of the littlefs filesystem is provided by *block_dev*, which must
@@ -91,7 +91,7 @@ class VfsLfs2():
                       for details see `littlefs issue 295`_.
         """
         ...
-class VfsPosix():
+class VfsPosix(AbstractBlockDev):
     """
     Create a filesystem object that accesses the host POSIX filesystem.
     If *root* is specified then it should be a path in the host filesystem to use

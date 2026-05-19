@@ -15,12 +15,12 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Dict, Generic, TypeVar, Any
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-from collections.abc import Iterable
+from collections.abc import Iterable, MutableSequence
 
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
 _T = TypeVar("_T")
-class deque(Generic[_T]):
+class deque(MutableSequence[_T]):
     """
     Minimal implementation of a deque that implements a FIFO buffer.
     """
