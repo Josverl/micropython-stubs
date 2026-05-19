@@ -14,7 +14,7 @@ from _collections_abc import dict_items, dict_keys, dict_values
 from _typeshed import Incomplete, SupportsItems, SupportsKeysAndGetItem, SupportsRichComparison, SupportsRichComparisonT
 from typing import Dict, Any, Generic, NoReturn, SupportsIndex, TypeVar, final, overload
 from typing_extensions import Awaitable, TypeAlias, TypeVar, Self
-from collections.abc import Iterable
+from collections.abc import Iterable, MutableSequence
 
 if sys.version_info >= (3, 9):
     from types import GenericAlias
@@ -257,7 +257,7 @@ class UserString(Sequence[UserString]):
     def upper(self) -> Self: ...
     def zfill(self, width: int) -> Self: ...
 
-class deque(Generic[_T]):
+class deque(MutableSequence[_T]):
     """
     Minimal implementation of a deque that implements a FIFO buffer.
     """
