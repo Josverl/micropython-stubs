@@ -19,18 +19,18 @@ for example code.
 # origin module:: repos/micropython/docs/library/rp2.rst
 from __future__ import annotations
 from _typeshed import ReadableBuffer, WriteableBuffer, Incomplete
-from typing_extensions import Protocol, Self, TYPE_CHECKING, TypeVar, TypeAlias, Awaitable
+from typing_extensions import Self, Protocol, TYPE_CHECKING, TypeVar, TypeAlias, Awaitable
 from rp2.DMA import DMA
 from rp2.Flash import Flash
 from rp2.PIO import PIO
 from rp2.StateMachine import StateMachine
 from rp2.asm_pio_rp2040 import *
-from micropython import const
-from rp2 import PIOASMEmit, _PIO_ASM_Program
-from typing import Callable, Literal, Union, overload, List
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from machine import Pin
+from micropython import const
+from typing import Callable, List, Literal, Union, overload
 from vfs import AbstractBlockDev
+from rp2 import PIOASMEmit, _PIO_ASM_Program
 
 _IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 
