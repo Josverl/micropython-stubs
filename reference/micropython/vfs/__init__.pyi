@@ -30,7 +30,7 @@ from _mpy_shed import AnyReadableBuf, _BlockDeviceProtocol
 
 from abc import ABC, abstractmethod
 
-class VfsFat:
+class VfsFat(AbstractBlockDev):
     """
     Create a filesystem object that uses the FAT filesystem format.  Storage of
     the FAT filesystem is provided by *block_dev*.
@@ -45,7 +45,7 @@ class VfsFat:
         """
         ...
 
-class VfsLfs1:
+class VfsLfs1(AbstractBlockDev):
     """
     Create a filesystem object that uses the `littlefs v1 filesystem format`_.
     Storage of the littlefs filesystem is provided by *block_dev*, which must
@@ -68,7 +68,7 @@ class VfsLfs1:
         """
         ...
 
-class VfsLfs2:
+class VfsLfs2(AbstractBlockDev):
     """
     Create a filesystem object that uses the `littlefs v2 filesystem format`_.
     Storage of the littlefs filesystem is provided by *block_dev*, which must
@@ -99,7 +99,7 @@ class VfsLfs2:
         """
         ...
 
-class VfsPosix:
+class VfsPosix(AbstractBlockDev):
     """
     Create a filesystem object that accesses the host POSIX filesystem.
     If *root* is specified then it should be a path in the host filesystem to use
@@ -110,7 +110,7 @@ class VfsPosix:
     def __init__(self, root: str | None = None) -> None: ...
 
 
-class VfsRom:
+class VfsRom(AbstractBlockDev):
     """
     Create a filesystem object that accesses a ROMFS image from a readable buffer.
     """
