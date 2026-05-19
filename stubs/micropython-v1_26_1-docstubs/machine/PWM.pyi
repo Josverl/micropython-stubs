@@ -6,7 +6,7 @@ from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin
-from machine.Pin import PinLike
+from machine.Pin import _PinLike
 
 class PWM:
     """
@@ -60,7 +60,7 @@ class PWM:
     """
     def __init__(
         self,
-        dest: PinLike,
+        dest: _PinLike,
         /,
         *,
         freq: int = ...,
