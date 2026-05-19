@@ -64,7 +64,7 @@ def umount(mount_point: Incomplete) -> None:
     """
     ...
 
-class VfsPosix:
+class VfsPosix(AbstractBlockDev):
     """
     Create a filesystem object that accesses the host POSIX filesystem.
     If *root* is specified then it should be a path in the host filesystem to use

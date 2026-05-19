@@ -73,7 +73,7 @@ def rom_ioctl(op: int, arg: int, length: int, /) -> Incomplete: ...
 @overload
 def rom_ioctl(op: int, arg: int, offset: int, buf: AnyReadableBuf, /) -> Incomplete: ...
 
-class VfsFat:
+class VfsFat(AbstractBlockDev):
     """
     Create a filesystem object that uses the FAT filesystem format.  Storage of
     the FAT filesystem is provided by *block_dev*.
@@ -110,7 +110,7 @@ class VfsRom:
     def getcwd(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class VfsLfs2:
+class VfsLfs2(AbstractBlockDev):
     """
     Create a filesystem object that uses the `littlefs v2 filesystem format`_.
     Storage of the littlefs filesystem is provided by *block_dev*, which must

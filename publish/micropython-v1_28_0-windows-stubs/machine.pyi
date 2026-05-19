@@ -26,11 +26,11 @@ from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 
 ATTN_0DB: int = ...
 __CANFilter: TypeAlias = tuple[int, int, int] | list[int]
-__CANRecvResult: TypeAlias = list[int | memoryview]
+__CANRecvResult: TypeAlias = tuple[int, memoryview, int, int]
 __CANCounters: TypeAlias = list[int | None]
 __CANTimings: TypeAlias = list[int | list[int] | None]
 ID_T: TypeAlias = int | str
-PinLike: TypeAlias = Pin | int | str
+_PinLike: TypeAlias = Pin | int | str
 IDLE: Incomplete
 """IRQ wake values."""
 SLEEP: Incomplete
@@ -223,7 +223,7 @@ class Signal(Pin):
         """
 
     @overload
-    def __init__(self, pin_obj: PinLike, invert: bool = False, /) -> None:
+    def __init__(self, pin_obj: _PinLike, invert: bool = False, /) -> None:
         """
         Create a Signal object. There're two ways to create it:
 
@@ -245,7 +245,7 @@ class Signal(Pin):
     @overload
     def __init__(
         self,
-        id: PinLike,
+        id: _PinLike,
         /,
         mode: int = -1,
         pull: int = -1,
@@ -341,9 +341,9 @@ class ADCBlock:
     @overload
     def connect(self, channel: int, **kwargs) -> ADC: ...
     @overload
-    def connect(self, source: PinLike, **kwargs) -> ADC: ...
+    def connect(self, source: _PinLike, **kwargs) -> ADC: ...
     @overload
-    def connect(self, channel: int, source: PinLike, **kwargs) -> ADC:
+    def connect(self, channel: int, source: _PinLike, **kwargs) -> ADC:
         """
         Connect up a channel on the ADC peripheral so it is ready for sampling,
         and return an :ref:`ADC <machine.ADC>` object that represents that connection.
@@ -402,7 +402,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000, timeout: int = 50_000):
+    def __init__(self, id: ID_T, /, *, scl: _PinLike, sda: _PinLike, freq: int = 400_000, timeout: int = 50_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -419,7 +419,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+    def __init__(self, *, scl: _PinLike, sda: _PinLike, freq: int = 400_000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 
@@ -447,7 +447,7 @@ class I2C:
         """
 
     @overload
-    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+    def init(self, *, scl: _PinLike, sda: _PinLike, freq: int = 400_000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 
@@ -978,6 +978,53 @@ class SDCard:
         argument is specified, even if it is zero.
         """
 
+class SDCard:
+    @mp_available()  # force merge
+    def __init__(
+        self,
+        slot: int = 1,
+        width: int = 1,
+        *,
+        cd: _PinLike | None = None,
+        wp: _PinLike | None = None,
+        sck: _PinLike | None = None,
+        cmd: _PinLike | None = None,
+        data: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
+        miso: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        cs: _PinLike | None = None,
+        freq: int = 20000000,
+    ) -> None:
+        """
+        This class provides access to SD or MMC storage cards using either
+        a dedicated SD/MMC interface hardware or through an SPI channel.
+        The class implements the block protocol defined by :class:`os.AbstractBlockDev`.
+        This allows the mounting of an SD card to be as simple as::
+
+          os.mount(machine.SDCard(), "/sd")
+
+        The constructor takes the following parameters:
+
+         - *slot* selects which of the available interfaces to use. Leaving this
+           unset will select the default interface.
+
+         - *width* selects the bus width for the SD/MMC interface.
+
+         - *cd* can be used to specify a card-detect pin.
+
+         - *wp* can be used to specify a write-protect pin.
+
+         - *sck* can be used to specify an SPI clock pin.
+
+         - *miso* can be used to specify an SPI miso pin.
+
+         - *mosi* can be used to specify an SPI mosi pin.
+
+         - *cs* can be used to specify an SPI chip select pin.
+
+         - *freq* selects the SD/MMC interface frequency in Hz (only supported on the ESP32).
+        """
+
 class SPI:
     @overload
     def __init__(self, id: int, /):
@@ -1003,9 +1050,9 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        sck: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        miso: _PinLike | None = None,
     ):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -1029,7 +1076,7 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike] | None = None,
     ):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -1051,9 +1098,9 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        sck: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        miso: _PinLike | None = None,
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -1086,7 +1133,7 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike] | None = None,
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -1268,19 +1315,44 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        tx: PinLike | None = None,
-        rx: PinLike | None = None,
+        tx: _PinLike | None = None,
+        rx: _PinLike | None = None,
         txbuf: int | None = None,
         rxbuf: int | None = None,
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
         flow: int | None = None,
-        rts: PinLike | None = None,
-        cts: PinLike | None = None,
+        rts: _PinLike | None = None,
+        cts: _PinLike | None = None,
     ):
         """
         Construct a UART object of the given id.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: ID_T = ...,
+        /,
+        baudrate: int = 9600,
+        bits: int = 8,
+        parity: int | None = None,
+        stop: int = 1,
+        *,
+        tx: _PinLike | None = None,
+        rx: _PinLike | None = None,
+        txbuf: int | None = None,
+        rxbuf: int | None = None,
+        timeout: int | None = None,
+        timeout_char: int | None = None,
+        invert: int | None = None,
+        flow: int | None = None,
+        rts: _PinLike | None = None,
+        cts: _PinLike | None = None,
+    ):
+        """
+        Construct a UART object for the default ID.
         """
 
     @overload
@@ -1293,7 +1365,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike] | None = None,
     ):
         """
         Construct a UART object of the given id from a tuple of two pins.
@@ -1309,7 +1381,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
     ):
         """
         Construct a UART object of the given id from a tuple of four pins.
@@ -1324,16 +1396,16 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        tx: PinLike | None = None,
-        rx: PinLike | None = None,
+        tx: _PinLike | None = None,
+        rx: _PinLike | None = None,
         txbuf: int | None = None,
         rxbuf: int | None = None,
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
         flow: int | None = None,
-        rts: PinLike | None = None,
-        cts: PinLike | None = None,
+        rts: _PinLike | None = None,
+        cts: _PinLike | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -1396,7 +1468,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike] | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -1459,7 +1531,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:

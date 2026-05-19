@@ -64,7 +64,7 @@ def mount() -> List[tuple[Incomplete, str]]:
     """
     ...
 
-class VfsLfs2:
+class VfsLfs2(AbstractBlockDev):
     """
     Create a filesystem object that uses the `littlefs v2 filesystem format`_.
     Storage of the littlefs filesystem is provided by *block_dev*, which must
@@ -104,7 +104,7 @@ class VfsLfs2:
     def getcwd(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
 
-class VfsFat:
+class VfsFat(AbstractBlockDev):
     """
     Create a filesystem object that uses the FAT filesystem format.  Storage of
     the FAT filesystem is provided by *block_dev*.

@@ -17,7 +17,7 @@ Module: 'ucollections' on micropython-v1.28.0-rp2-ARDUINO_NANO_RP2040_CONNECT
 from __future__ import annotations
 from typing import Dict, Generic, Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
-from collections.abc import Iterable
+from collections.abc import Iterable, MutableSequence
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _KT = TypeVar("_KT")
@@ -98,7 +98,7 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
     def fromkeys(cls, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *args, **kwargs) -> None: ...
 
-class deque(Generic[_T]):
+class deque(MutableSequence[_T]):
     """
     Minimal implementation of a deque that implements a FIFO buffer.
     """
