@@ -8,7 +8,7 @@ from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from machine import IDLE
 from .Pin import Pin
 from _mpy_shed import _IRQ
-from machine.Pin import PinLike
+from machine.Pin import _PinLike
 
 ID_T: TypeAlias = int | str
 
@@ -93,19 +93,44 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        tx: PinLike | None = None,
-        rx: PinLike | None = None,
+        tx: _PinLike | None = None,
+        rx: _PinLike | None = None,
         txbuf: int | None = None,
         rxbuf: int | None = None,
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
         flow: int | None = None,
-        rts: PinLike | None = None,
-        cts: PinLike | None = None,
+        rts: _PinLike | None = None,
+        cts: _PinLike | None = None,
     ):
         """
         Construct a UART object of the given id.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: ID_T = ...,
+        /,
+        baudrate: int = 9600,
+        bits: int = 8,
+        parity: int | None = None,
+        stop: int = 1,
+        *,
+        tx: _PinLike | None = None,
+        rx: _PinLike | None = None,
+        txbuf: int | None = None,
+        rxbuf: int | None = None,
+        timeout: int | None = None,
+        timeout_char: int | None = None,
+        invert: int | None = None,
+        flow: int | None = None,
+        rts: _PinLike | None = None,
+        cts: _PinLike | None = None,
+    ):
+        """
+        Construct a UART object for the default ID.
         """
 
     @overload
@@ -118,7 +143,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike] | None = None,
     ):
         """
         Construct a UART object of the given id from a tuple of two pins.
@@ -134,7 +159,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
     ):
         """
         Construct a UART object of the given id from a tuple of four pins.
@@ -149,16 +174,16 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        tx: PinLike | None = None,
-        rx: PinLike | None = None,
+        tx: _PinLike | None = None,
+        rx: _PinLike | None = None,
         txbuf: int | None = None,
         rxbuf: int | None = None,
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
         flow: int | None = None,
-        rts: PinLike | None = None,
-        cts: PinLike | None = None,
+        rts: _PinLike | None = None,
+        cts: _PinLike | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -221,7 +246,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike] | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -284,7 +309,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:

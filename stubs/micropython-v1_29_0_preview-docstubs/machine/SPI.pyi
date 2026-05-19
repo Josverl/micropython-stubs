@@ -6,7 +6,7 @@ from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin
-from machine.Pin import PinLike
+from machine.Pin import _PinLike
 
 class SPI:
     """
@@ -92,9 +92,9 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        sck: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        miso: _PinLike | None = None,
     ):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -118,7 +118,7 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike] | None = None,
     ):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -140,9 +140,9 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        sck: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        miso: _PinLike | None = None,
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -175,7 +175,7 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike] | None = None,
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -257,7 +257,7 @@ class SoftSPI(SPI):
         phase=0,
         bits=8,
         firstbit=MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        sck: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        miso: _PinLike | None = None,
     ) -> None: ...
