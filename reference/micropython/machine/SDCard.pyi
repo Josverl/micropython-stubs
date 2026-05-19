@@ -6,7 +6,7 @@ from typing import overload
 from vfs import AbstractBlockDev
 
 from _mpy_shed import mp_available
-from machine.Pin import PinLike
+from machine.Pin import _PinLike
 
 class SDCard(AbstractBlockDev):
     """
@@ -106,14 +106,14 @@ class SDCard(AbstractBlockDev):
         slot: int = 1,
         width: int = 1,
         *,
-        cd: PinLike | None = None,
-        wp: PinLike | None = None,
-        sck: PinLike | None = None,
-        cmd: PinLike | None = None,
-        data: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
-        miso: PinLike | None = None,
-        mosi: PinLike | None = None,
-        cs: PinLike | None = None,
+        cd: _PinLike | None = None,
+        wp: _PinLike | None = None,
+        sck: _PinLike | None = None,
+        cmd: _PinLike | None = None,
+        data: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
+        miso: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        cs: _PinLike | None = None,
         freq: int = 20000000,
     ) -> None:
         """

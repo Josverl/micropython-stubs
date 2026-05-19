@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from typing import overload
-from machine.Pin import PinLike
+from machine.Pin import _PinLike
 
 class PWM:
     """
@@ -58,7 +58,7 @@ class PWM:
 
     def __init__(
         self,
-        dest: PinLike,
+        dest: _PinLike,
         /,
         *,
         freq: int = ...,

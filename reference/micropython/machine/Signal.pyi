@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Any, overload
 
-from machine.Pin import Pin, PinLike
+from machine.Pin import Pin, _PinLike
 
 class Signal(Pin):
     """
@@ -77,7 +77,7 @@ class Signal(Pin):
     """
 
     @overload
-    def __init__(self, pin_obj: PinLike, invert: bool = False, /) -> None:
+    def __init__(self, pin_obj: _PinLike, invert: bool = False, /) -> None:
         """
         Create a Signal object. There're two ways to create it:
 
@@ -99,7 +99,7 @@ class Signal(Pin):
     @overload
     def __init__(
         self,
-        id: PinLike,
+        id: _PinLike,
         /,
         mode: int = -1,
         pull: int = -1,

@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any, Callable
 
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from machine.Pin import PinLike
+from machine.Pin import _PinLike
 from typing_extensions import TypeAlias
 
 ID_T: TypeAlias = int | str
@@ -94,10 +94,10 @@ class I2S:
         id: ID_T,
         /,
         *,
-        sck: PinLike,
-        ws: PinLike,
-        sd: PinLike,
-        mck: PinLike | None = None,
+        sck: _PinLike,
+        ws: _PinLike,
+        sd: _PinLike,
+        mck: _PinLike | None = None,
         mode: int,
         bits: int,
         format: int,
@@ -135,10 +135,10 @@ class I2S:
     def init(
         self,
         *,
-        sck: PinLike,
-        ws: PinLike,
-        sd: PinLike,
-        mck: PinLike | None = None,
+        sck: _PinLike,
+        ws: _PinLike,
+        sd: _PinLike,
+        mck: _PinLike | None = None,
         mode: int,
         bits: int,
         format: int,

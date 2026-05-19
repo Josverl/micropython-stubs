@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import overload
 
 from machine.ADC import ADC
-from machine.Pin import PinLike
+from machine.Pin import _PinLike
 
 class ADCBlock:
     """
@@ -28,9 +28,9 @@ class ADCBlock:
     @overload
     def connect(self, channel: int, **kwargs) -> ADC: ...
     @overload
-    def connect(self, source: PinLike, **kwargs) -> ADC: ...
+    def connect(self, source: _PinLike, **kwargs) -> ADC: ...
     @overload
-    def connect(self, channel: int, source: PinLike, **kwargs) -> ADC:
+    def connect(self, channel: int, source: _PinLike, **kwargs) -> ADC:
         """
         Connect up a channel on the ADC peripheral so it is ready for sampling,
         and return an :ref:`ADC <machine.ADC>` object that represents that connection.

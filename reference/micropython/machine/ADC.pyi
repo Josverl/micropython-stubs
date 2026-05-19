@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from _mpy_shed import mp_available
-from machine.Pin import Pin, PinLike
+from machine.Pin import Pin, _PinLike
 from typing_extensions import deprecated
 
 class ADC:
@@ -37,7 +37,7 @@ class ADC:
     WIDTH_12BIT: int = 12  # esp32
     WIDTH_13BIT: int = 13  # esp32 on selected targets
 
-    def __init__(self, id: int | PinLike, *, sample_ns: int = ..., atten: int = ...) -> None:
+    def __init__(self, id: int | _PinLike, *, sample_ns: int = ..., atten: int = ...) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a

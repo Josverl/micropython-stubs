@@ -7,7 +7,7 @@ from typing_extensions import TypeAlias
 
 from _mpy_shed import _IRQ
 
-PinLike: TypeAlias = Pin | int | str
+_PinLike: TypeAlias = Pin | int | str
 
 class Pin:
     """
