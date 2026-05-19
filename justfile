@@ -58,3 +58,7 @@ port p="rp2" v="stable" b="all":
     stubber get-frozen --version {{v}}
     stubber merge --port {{p}} --board {{b}} --version {{v}}
     stubber build --port {{p}} --board {{b}} --version {{v}}
+
+all v="stable":
+    @just port all {{v}} all
+    @just stdlib
