@@ -13,7 +13,7 @@ hold/accumulate various objects.
 # origin module:: repos/micropython/docs/library/collections.rst
 from __future__ import annotations
 
-from collections.abc import Iterable, Iterator
+from collections.abc import Iterable, Iterator, MutableSequence
 from typing import Any, Dict, Generic, SupportsIndex, TypeVar
 
 _T = TypeVar("_T")
@@ -21,7 +21,7 @@ _T = TypeVar("_T")
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
 
-class deque(Generic[_T]):
+class deque(MutableSequence[_T]):
     """
     Minimal implementation of a deque that implements a FIFO buffer.
     """
