@@ -18,7 +18,10 @@ from typing_extensions import ParamSpec
 
 _T = TypeVar("_T")
 _F = TypeVar("_F", bound=Callable[..., Any])
-Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple)
+
+# type for micropython.const expressions
+Const_T = TypeVar("Const_T", int, float, str, bytes, Tuple, bool)
+
 # used in the `viper` decorator
 _Param = ParamSpec("_Param")
 _Ret = TypeVar("_Ret")
