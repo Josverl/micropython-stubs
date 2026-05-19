@@ -110,6 +110,31 @@ class UART:
     @overload
     def __init__(
         self,
+        id: ID_T = ...,
+        /,
+        baudrate: int = 9600,
+        bits: int = 8,
+        parity: int | None = None,
+        stop: int = 1,
+        *,
+        tx: PinLike | None = None,
+        rx: PinLike | None = None,
+        txbuf: int | None = None,
+        rxbuf: int | None = None,
+        timeout: int | None = None,
+        timeout_char: int | None = None,
+        invert: int | None = None,
+        flow: int | None = None,
+        rts: PinLike | None = None,
+        cts: PinLike | None = None,
+    ):
+        """
+        Construct a UART object for the default ID.
+        """
+
+    @overload
+    def __init__(
+        self,
         id: ID_T,
         /,
         baudrate: int = 9600,
