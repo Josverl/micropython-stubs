@@ -68,30 +68,53 @@ docs =[
 # New config
 "mpy-stubs-path" = "."
 
+#-----------------
+# < v1.18 config
+# stub-path = "./stubs"
+# publish-path = "./publish"
+# template-path = "./publish/template"
+#-----------------
 
 # pyright options:
 
 [tool.pyright]
-include = ["reference"]
+include = ["scratch"]
 ignore = ["**/typings"]
 exclude = [".*", "__*", "**/typings", "repos", "stubs", "publish", "tests", "docs", "data", "statistics", "scripts"]
 
 typeCheckingMode = "basic"
 stubPath = "typings"
 typeshedPath = "typings"
-extraPaths = ["reference"]
+extraPaths = ["scratch"]
 pythonPlatform = "Linux"
 
 reportMissingModuleSource = "none"
 reportUnnecessaryTypeIgnoreComment = "error"
 
+# ###################################################################
+# mypy global options:
+[tool.mypy]
+platform = "linux"
+mypy_path = "typings"
+custom_typeshed_dir = "typings" # allow mypy to use micropython-stdlib
+files = "*.py"
+exclude = [
+    "typings[\\/].*", # TOML basic string 
+]
 
-#-----------------
-# < v1.18 config
-stub-path = "./stubs"
-publish-path = "./publish"
-template-path = "./publish/template"
-#-----------------
+follow_imports = "silent"
+follow_imports_for_stubs = true
+no_site_packages = true
+check_untyped_defs = true
+disable_error_code = ["no-redef", "assignment", "var-annotated"]
+
+# snippets may re-use the same variable names
+allow_redefinition = true
+
+# other optional settings
+warn_unused_ignores = true  # allows to verify the absense of methods/classes in stubs 
+# warn_unused_configs = true
+# show_error_context = true
 
 
 
