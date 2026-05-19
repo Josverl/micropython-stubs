@@ -6,7 +6,7 @@ from typing import Sequence, overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from .Pin import Pin
-from machine.Pin import Pin, PinLike
+from machine.Pin import Pin, _PinLike
 
 ID_T: TypeAlias = int | str
 
@@ -65,7 +65,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000, timeout: int = 50_000):
+    def __init__(self, id: ID_T, /, *, scl: _PinLike, sda: _PinLike, freq: int = 400_000, timeout: int = 50_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -82,7 +82,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+    def __init__(self, *, scl: _PinLike, sda: _PinLike, freq: int = 400_000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 
@@ -110,7 +110,7 @@ class I2C:
         """
 
     @overload
-    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+    def init(self, *, scl: _PinLike, sda: _PinLike, freq: int = 400_000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 
@@ -244,4 +244,4 @@ class SoftI2C(I2C):
          stretching (SCL held low by another device on the bus), after
          which an ``OSError(ETIMEDOUT)`` exception is raised.
     """
-    def __init__(self, scl: PinLike, sda: PinLike, *, freq: int = 400_000, timeout: int = 50_000) -> None: ...
+    def __init__(self, scl: _PinLike, sda: _PinLike, *, freq: int = 400_000, timeout: int = 50_000) -> None: ...

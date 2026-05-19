@@ -5,7 +5,7 @@ from _typeshed import Incomplete
 from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
 from .Pin import Pin
 from _mpy_shed import mp_available
-from machine.Pin import Pin, PinLike
+from machine.Pin import Pin, _PinLike
 
 ATTN_0DB: int = ...
 
@@ -36,7 +36,7 @@ class ADC:
     WIDTH_11BIT: int = 11
     WIDTH_12BIT: int = 12
     WIDTH_13BIT: int = 13
-    def __init__(self, id: int | PinLike, *, sample_ns: int = ..., atten: int = ...) -> None:
+    def __init__(self, id: int | _PinLike, *, sample_ns: int = ..., atten: int = ...) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
