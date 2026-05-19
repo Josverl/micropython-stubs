@@ -5,6 +5,7 @@ from typing import overload
 
 from vfs import AbstractBlockDev
 
+from _mpy_shed import mp_available
 from machine.Pin import PinLike
 
 class SDCard(AbstractBlockDev):
@@ -99,7 +100,7 @@ class SDCard(AbstractBlockDev):
     *Note:* The current cc3200 SD card implementation names the this class
     :class:`machine.SD` rather than :class:`machine.SDCard` .
     """
-
+    @mp_available() # force merge
     def __init__(
         self,
         slot: int = 1,
