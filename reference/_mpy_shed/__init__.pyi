@@ -34,6 +34,36 @@ from .io_mp import _RawIOBase as _RawIOBase
 from .io_mp import _TextIOBase as _TextIOBase
 from .io_mp import open as open
 from .IRQs import _IRQ
+from .neopixelbase import _NeoPixelBase as _NeoPixelBase
+from .blockdevice import (
+    _BlockDeviceProtocol as _BlockDeviceProtocol,
+    _OldAbstractBlockDev,
+    _OldAbstractReadOnlyBlockDev,
+)
+from .buffer_mp import (
+    AnyReadableBuf as AnyReadableBuf,
+    AnyWritableBuf as AnyWritableBuf,
+    _WriteStream as _WriteStream,
+)
+
+from .io_mp import (
+    BytesIO as BytesIO,
+    FileIO as FileIO,
+    IncrementalNewlineDecoder as IncrementalNewlineDecoder,
+    StringIO as StringIO,
+    TextIOWrapper as TextIOWrapper,
+    IOBase_mp as IOBase_mp,
+    _BufferedIOBase,
+    _IOBase,
+    _RawIOBase,
+    _TextIOBase,
+    open as open,
+)
+
+from .time_mp import _TimeTuple as _TimeTuple
+from .pathlike import PathLike as PathLike
+
+from .mp_implementation import _mp_implementation as _mp_implementation
 from .mp_available import mp_available as mp_available
 from .mp_implementation import _mp_implementation as _mp_implementation
 from .neopixelbase import _NeoPixelBase as _NeoPixelBase
