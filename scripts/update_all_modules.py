@@ -1,3 +1,11 @@
+#!/usr/bin/env python
+# /// script
+# dependencies = [
+#   "jsons",
+#   "packaging",
+#   "tomli",
+# ]
+# ///
 """
 Creates a all_modules.json file containing a list of all modules across all micropython boards and ports
 this is build by running this script from the root of the micropython-stubs repository
@@ -95,7 +103,7 @@ def add_package(pkg_path: Path, all_modules, port="", board="", pkg_version=""):
                     add_package(dep_pkg_path, all_modules, port, board, pkg_version)
 
 
-def main(output_file="all_modules.json", input_dir="publish"):
+def main(output_file="./all_modules.json", input_dir="./publish"):
     all_modules = []
     for pkg_path in Path(input_dir).rglob("pyproject.toml"):
         if "stdlib" in str(pkg_path):

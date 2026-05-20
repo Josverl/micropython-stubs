@@ -47,21 +47,6 @@
                 "cwd": "${workspaceFolder}/docs"
             },
             "command": "${workspaceFolder}/.venv/Scripts/Activate.ps1;python -m sphinx.ext.intersphinx _build/html/objects.inv"
-        },
-        {
-            "label": "act: publish-stubs",
-            "detail": "act: build and then publish-stubs",
-            "type": "shell",
-            "command": "act",
-            "args": [
-                "--job",
-                "publish-stubs"
-            ],
-            "options": {
-                "cwd": "${workspaceFolder}"
-            },
-            "problemMatcher": [],
-            "group": "build"
         }
     ]
 }

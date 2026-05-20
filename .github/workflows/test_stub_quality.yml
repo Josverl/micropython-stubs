@@ -22,6 +22,9 @@ jobs:
         # with:
         #   activate-environment: true
 
+      - name: Install just
+        uses: extractions/setup-just@v4
+
       - name: Install poetry # poetry is not in the default image
         run: uv tool install poetry
 
@@ -29,7 +32,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11" # Replace with the Python version you're using
-
 
       - name: Install Python dependencies
         working-directory: ${{github.workspace}}
@@ -45,13 +47,6 @@ jobs:
       - name: stubber clone
         run: | 
           uv run stubber clone
-
-
-    #   - name: update the stubs (not pushed) 
-    #     continue-on-error: true
-    #     run: |
-    #       source .venv/bin/activate
-    #       pwsh -file ./update-stubs.ps1
 
       - name: Test the snippets 
         continue-on-error: true

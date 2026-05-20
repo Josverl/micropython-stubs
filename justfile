@@ -59,6 +59,6 @@ port p="rp2" v="stable" b="all":
     stubber merge --port {{p}} --board {{b}} --version {{v}}
     stubber build --port {{p}} --board {{b}} --version {{v}}
 
-all v="stable":
+update_stubs v="stable":
     @just port all {{v}} all
     @just stdlib

@@ -40,6 +40,9 @@ jobs:
         with:
           activate-environment: true
 
+      - name: Install just
+        uses: extractions/setup-just@v4
+
       - name: Install Python dependencies
         working-directory: ${{github.workspace}}
         run: |
@@ -52,8 +55,7 @@ jobs:
       - name: Update all_modules.json
         working-directory: ${{github.workspace}}
         run: |
-          echo "Updating all_modules.json"
-          python update_all_modules.py
+          uv run scripts/update_all_modules.py
 
       - name: Update Documentation
         working-directory: ${{github.workspace}}/docs

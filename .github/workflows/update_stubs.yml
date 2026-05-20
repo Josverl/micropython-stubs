@@ -24,28 +24,38 @@ jobs:
     steps:
       - name: Checkout stubs repo
         uses: actions/checkout@v4
+
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+        # with:
+        #   # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
+        #   activate-environment: true
+
+      - name: Install just
+        uses: extractions/setup-just@v4
+
       - name: Install Poetry
-        run: pipx install poetry==1.3.1
+        run: uv tool install poetry==1.3.1
+
       - run: |
           poetry config repositories.test-pypi https://test.pypi.org/legacy/
           poetry config --list
       - run: |
           pip install wheel
           pip install -U micropython-stubber --pre
+
       - run: |
-          echo Running in folder $(pwd)
           stubber --version
           stubber clone --no-stubs
 
-      - name: Run update-stubs.ps1
+      - name: Update stubs (stable, preview)
         run: |
-          pwsh -File update-stubs.ps1
+          just update_stubs stable
+          just update_stubs preview
 
       - name: update all_modules.json
         run: |
-          echo "Updating all_modules.json"
-          # pip install tomli
-          python3 update_all_modules.py
+          uv run scripts/update_all_modules.py
 
       - name: commit
         uses: ./.github/actions/commit

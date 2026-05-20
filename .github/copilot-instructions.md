@@ -113,8 +113,8 @@ VSCode tasks (`.vscode/tasks.json`):
 
 4. **Update documentation**:
    ```bash
-   python docs/update_docs.py
-   python update_all_modules.py
+   uv run docs/update_docs.py
+   uv run scripts/update_all_modules.py
    ```
 
 5. **Build docs**:

@@ -61,6 +61,15 @@ jobs:
       - name: Checkout stubs repo
         uses: actions/checkout@v4
 
+      # - name: Install the latest version of uv
+      #   uses: astral-sh/setup-uv@v6
+      #   with:
+      #     # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
+      #     activate-environment: true
+
+      - name: Install just
+        uses: extractions/setup-just@v4
+
       # make Python work
       - name: Set up Python
         uses: actions/setup-python@v5

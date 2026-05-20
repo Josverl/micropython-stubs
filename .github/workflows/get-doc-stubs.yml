@@ -70,6 +70,9 @@ jobs:
           # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
           activate-environment: true
 
+      - name: Install just
+        uses: extractions/setup-just@v4
+
       - name: Install Python dependencies (doc only)
         working-directory: ${{github.workspace}}
         run: |
