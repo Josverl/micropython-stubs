@@ -20,7 +20,7 @@ stdlib:
     python publish/micropython-stdlib-stubs/build.py
 
 [script]
-stdlib_publish:
+publish_stdlib:
     # /// script
     # requires-python = ">=3.9"
     # dependencies = ["keyring"]
@@ -62,3 +62,8 @@ port p="rp2" v="stable" b="all":
 update_stubs v="stable":
     @just port all {{v}} all
     @just stdlib
+
+release version commit :
+    git tag {{version}} {{commit}}
+    git push origin {{version}}
+    gh release create {{version}} --title "MicroPython Stubs {{version}}" --draft --generate-notes
