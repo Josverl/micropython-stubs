@@ -1027,6 +1027,7 @@
 |micropython |v1.27   |board   |rp2|generic|66|v1.26.4|[stubs/micropython-v1_27_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-rp2-RPI_PICO)
 |micropython |v1.27   |board   |rp2|generic|66|v1.26.4|[stubs/micropython-v1_27_0-rp2-RPI_PICO2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-rp2-RPI_PICO2)
 |micropython |v1.27   |board   |rp2|generic|91|v1.26.4|[stubs/micropython-v1_27_0-rp2-RPI_PICO2_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-rp2-RPI_PICO2_W)
+|micropython |v1.27   |board   |rp2|generic|91|v1.26.5|[stubs/micropython-v1_27_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-rp2-RPI_PICO_W)
 |micropython |v1.27   |frozen  |samd|GENERIC|4|1.28.2|[stubs/micropython-v1_27_0-frozen/samd/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-frozen/samd/GENERIC)
 |micropython |v1.27   |board   |samd|generic|59|v1.26.4|[stubs/micropython-v1_27_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-samd-SEEED_WIO_TERMINAL)
 |micropython |v1.27   |frozen  |stm32|ARDUINO_GIGA|30|1.28.2|[stubs/micropython-v1_27_0-frozen/stm32/ARDUINO_GIGA](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-frozen/stm32/ARDUINO_GIGA)
@@ -1308,4 +1309,4 @@
 
 ## Metrics
 
-Total stub modules:  31388
+Total stub modules:  31479

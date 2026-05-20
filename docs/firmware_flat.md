@@ -154,6 +154,7 @@ This page provides an overview of all collected and generated module stubs by ty
 |board| micropython| v1.27| rp2| generic| 66| v1.26.4|[stubs/micropython-v1_27_0-rp2-RPI_PICO](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-rp2-RPI_PICO)
 |board| micropython| v1.27| rp2| generic| 66| v1.26.4|[stubs/micropython-v1_27_0-rp2-RPI_PICO2](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-rp2-RPI_PICO2)
 |board| micropython| v1.27| rp2| generic| 91| v1.26.4|[stubs/micropython-v1_27_0-rp2-RPI_PICO2_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-rp2-RPI_PICO2_W)
+|board| micropython| v1.27| rp2| generic| 91| v1.26.5|[stubs/micropython-v1_27_0-rp2-RPI_PICO_W](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-rp2-RPI_PICO_W)
 |board| micropython| v1.27| samd| generic| 59| v1.26.4|[stubs/micropython-v1_27_0-samd-SEEED_WIO_TERMINAL](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-samd-SEEED_WIO_TERMINAL)
 |board| micropython| v1.27| stm32| generic| 64| v1.26.4|[stubs/micropython-v1_27_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_27_0-stm32-PYBV11)
 |board| micropython| v1.28| esp32| generic| 89| v1.28.0|[stubs/micropython-v1_28_0-esp32-ESP32_GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-esp32-ESP32_GENERIC)
@@ -1272,4 +1273,4 @@ This page provides an overview of all collected and generated module stubs by ty
 |library| ulab| -| -| generic| 9| 1.3.7|[stubs/micropython-ulab](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-ulab)
 
 
-Total modules  31388
+Total modules  31479
