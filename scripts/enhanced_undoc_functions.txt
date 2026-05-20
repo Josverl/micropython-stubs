@@ -1,7 +1,7 @@
 FUNCTIONS AND METHODS WITH *ARGS, **KWARGS
 ==================================================
 
-MODULE: _espnow (68 functions/methods)
+MODULE: _espnow (98 functions/methods)
 ---------------------------
   • METHOD: ESPNowBase.__init__(self, *argv, **kwargs)
     Location: _espnow.pyi:0
@@ -23,6 +23,26 @@ MODULE: _espnow (68 functions/methods)
     Location: _espnow.pyi:0
     Parameters: **kwargs
 
+  • METHOD: ESPNowBase.__init__(self, *argv, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ESPNowBase.__init__(self, *argv, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ESPNowBase.active(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.active(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.active(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: ESPNowBase.active(self, *args, **kwargs)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
@@ -39,7 +59,11 @@ MODULE: _espnow (68 functions/methods)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.active(self, *args, **kwargs)
+  • METHOD: ESPNowBase.add_peer(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.add_peer(self, *args, **kwargs)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -79,7 +103,11 @@ MODULE: _espnow (68 functions/methods)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.config(self, *args, **kwargs)
+  • METHOD: ESPNowBase.any(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.any(self, *args, **kwargs)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -96,6 +124,26 @@ MODULE: _espnow (68 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: ESPNowBase.config(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.config(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.config(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.config(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.del_peer(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.del_peer(self, *args, **kwargs)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -135,6 +183,22 @@ MODULE: _espnow (68 functions/methods)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: ESPNowBase.get_peer(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.get_peer(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.get_peers(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.get_peers(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: ESPNowBase.get_peers(self, *args, **kwargs)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
@@ -148,6 +212,14 @@ MODULE: _espnow (68 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: ESPNowBase.get_peers(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.irq(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.irq(self, *args, **kwargs)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -183,7 +255,11 @@ MODULE: _espnow (68 functions/methods)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.peer_count(self, *args, **kwargs)
+  • METHOD: ESPNowBase.mod_peer(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.mod_peer(self, *args, **kwargs)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -199,6 +275,26 @@ MODULE: _espnow (68 functions/methods)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: ESPNowBase.peer_count(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.peer_count(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.peer_count(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.recvinto(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.recvinto(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: ESPNowBase.recvinto(self, *args, **kwargs)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
@@ -236,6 +332,22 @@ MODULE: _espnow (68 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: ESPNowBase.send(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.send(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.send(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.set_pmk(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.set_pmk(self, *args, **kwargs)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -275,8 +387,16 @@ MODULE: _espnow (68 functions/methods)
     Location: _espnow.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: ESPNowBase.stats(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: _onewire (72 functions/methods)
+  • METHOD: ESPNowBase.stats(self, *args, **kwargs)
+    Location: _espnow.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: _onewire (78 functions/methods)
 ----------------------------
   • FUNCTION: crc8(*args, **kwargs)
     Location: _onewire.pyi:0
@@ -326,7 +446,7 @@ MODULE: _onewire (72 functions/methods)
     Location: _onewire.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: readbit(*args, **kwargs)
+  • FUNCTION: crc8(*args, **kwargs)
     Location: _onewire.pyi:0
     Parameters: *args, **kwargs
 
@@ -371,6 +491,18 @@ MODULE: _onewire (72 functions/methods)
     Parameters: *args, **kwargs
 
   • FUNCTION: readbit(*args, **kwargs)
+    Location: _onewire.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: readbit(*args, **kwargs)
+    Location: _onewire.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: readbit(*args, **kwargs)
+    Location: _onewire.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: readbyte(*args, **kwargs)
     Location: _onewire.pyi:0
     Parameters: *args, **kwargs
 
@@ -470,6 +602,14 @@ MODULE: _onewire (72 functions/methods)
     Location: _onewire.pyi:0
     Parameters: *args, **kwargs
 
+  • FUNCTION: reset(*args, **kwargs)
+    Location: _onewire.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: writebit(*args, **kwargs)
+    Location: _onewire.pyi:0
+    Parameters: *args, **kwargs
+
   • FUNCTION: writebit(*args, **kwargs)
     Location: _onewire.pyi:0
     Parameters: *args, **kwargs
@@ -566,8 +706,12 @@ MODULE: _onewire (72 functions/methods)
     Location: _onewire.pyi:0
     Parameters: *args, **kwargs
 
+  • FUNCTION: writebyte(*args, **kwargs)
+    Location: _onewire.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: _thread (81 functions/methods)
+
+MODULE: _thread (98 functions/methods)
 ---------------------------
   • FUNCTION: allocate_lock(*args, **kwargs)
     Location: _thread.pyi:0
@@ -605,6 +749,22 @@ MODULE: _thread (81 functions/methods)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
 
+  • FUNCTION: allocate_lock(*args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: allocate_lock(*args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: exit(*args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: exit(*args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
   • FUNCTION: exit(*args, **kwargs)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
@@ -677,39 +837,27 @@ MODULE: _thread (81 functions/methods)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: stack_size(*args, **kwargs)
+  • FUNCTION: get_ident(*args, **kwargs)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: stack_size(*args, **kwargs)
+  • FUNCTION: get_ident(*args, **kwargs)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: stack_size(*args, **kwargs)
+  • FUNCTION: start_new_thread(*args, **kwargs)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: stack_size(*args, **kwargs)
+  • FUNCTION: start_new_thread(*args, **kwargs)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: stack_size(*args, **kwargs)
+  • FUNCTION: start_new_thread(*args, **kwargs)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: stack_size(*args, **kwargs)
-    Location: _thread.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: stack_size(*args, **kwargs)
-    Location: _thread.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: stack_size(*args, **kwargs)
-    Location: _thread.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: stack_size(*args, **kwargs)
+  • FUNCTION: start_new_thread(*args, **kwargs)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
 
@@ -785,9 +933,21 @@ MODULE: _thread (81 functions/methods)
     Location: _thread.pyi:0
     Parameters: **kwargs
 
-  • METHOD: LockType.acquire(self, *args, **kwargs)
+  • METHOD: LockType.__init__(self, *argv, **kwargs)
     Location: _thread.pyi:0
-    Parameters: *args, **kwargs
+    Parameters: **kwargs
+
+  • METHOD: LockType.__init__(self, *argv, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: LockType.__init__(self, *argv, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: LockType.__init__(self, *argv, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: **kwargs
 
   • METHOD: LockType.acquire(self, *args, **kwargs)
     Location: _thread.pyi:0
@@ -818,6 +978,42 @@ MODULE: _thread (81 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: LockType.acquire(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.acquire(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.acquire(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.acquire(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.acquire(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.acquire(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.locked(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.locked(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.locked(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.locked(self, *args, **kwargs)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
 
@@ -893,8 +1089,24 @@ MODULE: _thread (81 functions/methods)
     Location: _thread.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: LockType.release(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: aioespnow (80 functions/methods)
+  • METHOD: LockType.release(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.release(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LockType.release(self, *args, **kwargs)
+    Location: _thread.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: aioespnow (94 functions/methods)
 -----------------------------
   • METHOD: AIOESPNow.__init__(self, *argv, **kwargs)
     Location: aioespnow.pyi:0
@@ -912,6 +1124,22 @@ MODULE: aioespnow (80 functions/methods)
     Location: aioespnow.pyi:0
     Parameters: **kwargs
 
+  • METHOD: AIOESPNow.__init__(self, *argv, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AIOESPNow.__init__(self, *argv, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AIOESPNow.active(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: AIOESPNow.active(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: AIOESPNow.active(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
@@ -944,19 +1172,31 @@ MODULE: aioespnow (80 functions/methods)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.airecv(*args, **kwargs)
+  • METHOD: AIOESPNow.add_peer(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.airecv(*args, **kwargs)
+  • METHOD: AIOESPNow.add_peer(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.airecv(*args, **kwargs)
+  • METHOD: AIOESPNow.airecv(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.airecv(*args, **kwargs)
+  • METHOD: AIOESPNow.airecv(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: AIOESPNow.airecv(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: AIOESPNow.airecv(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: AIOESPNow.any(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -972,39 +1212,43 @@ MODULE: aioespnow (80 functions/methods)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.any(self, *args, **kwargs)
+  • METHOD: AIOESPNow.arecv(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.arecv(*args, **kwargs)
+  • METHOD: AIOESPNow.arecv(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.arecv(*args, **kwargs)
+  • METHOD: AIOESPNow.arecv(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.arecv(*args, **kwargs)
+  • METHOD: AIOESPNow.arecv(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.arecv(*args, **kwargs)
+  • METHOD: AIOESPNow.asend(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.asend(*args, **kwargs)
+  • METHOD: AIOESPNow.asend(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.asend(*args, **kwargs)
+  • METHOD: AIOESPNow.asend(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.asend(*args, **kwargs)
+  • METHOD: AIOESPNow.asend(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AIOESPNow.asend(*args, **kwargs)
+  • METHOD: AIOESPNow.config(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: AIOESPNow.config(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -1120,6 +1364,14 @@ MODULE: aioespnow (80 functions/methods)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: AIOESPNow.mod_peer(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: AIOESPNow.mod_peer(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: AIOESPNow.peer_count(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
@@ -1165,6 +1417,22 @@ MODULE: aioespnow (80 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: AIOESPNow.recvinto(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: AIOESPNow.recvinto(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: AIOESPNow.recvinto(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: AIOESPNow.send(self, *args, **kwargs)
+    Location: aioespnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: AIOESPNow.send(self, *args, **kwargs)
     Location: aioespnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -1248,7 +1516,7 @@ MODULE: apa102 (7 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: apa106 (24 functions/methods)
+MODULE: apa106 (28 functions/methods)
 --------------------------
   • METHOD: APA106.__init__(self, *argv, **kwargs)
     Location: apa106.pyi:0
@@ -1266,6 +1534,14 @@ MODULE: apa106 (24 functions/methods)
     Location: apa106.pyi:0
     Parameters: **kwargs
 
+  • METHOD: APA106.__init__(self, *argv, **kwargs)
+    Location: apa106.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: APA106.__init__(self, *argv, **kwargs)
+    Location: apa106.pyi:0
+    Parameters: **kwargs
+
   • METHOD: APA106.fill(self, *args, **kwargs)
     Location: apa106.pyi:0
     Parameters: *args, **kwargs
@@ -1297,6 +1573,14 @@ MODULE: apa106 (24 functions/methods)
   • METHOD: APA106.write(self, *args, **kwargs)
     Location: apa106.pyi:0
     Parameters: *args, **kwargs
+
+  • METHOD: NeoPixel.__init__(self, *argv, **kwargs)
+    Location: apa106.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: NeoPixel.__init__(self, *argv, **kwargs)
+    Location: apa106.pyi:0
+    Parameters: **kwargs
 
   • METHOD: NeoPixel.__init__(self, *argv, **kwargs)
     Location: apa106.pyi:0
@@ -1347,7 +1631,7 @@ MODULE: apa106 (24 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: argparse (11 functions/methods)
+MODULE: argparse (12 functions/methods)
 ----------------------------
   • FUNCTION: _dest_from_optnames(*args, **kwargs)
     Location: argparse.pyi:0
@@ -1389,12 +1673,16 @@ MODULE: argparse (11 functions/methods)
     Location: argparse.pyi:0
     Parameters: **kwargs
 
+  • METHOD: _Arg._apply(self, *args, **kwargs)
+    Location: argparse.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: _Arg.parse(self, *args, **kwargs)
     Location: argparse.pyi:0
     Parameters: *args, **kwargs
 
 
-MODULE: bluetooth (10 functions/methods)
+MODULE: bluetooth (16 functions/methods)
 -----------------------------
   • METHOD: BLE.config(self, *, **kwargs)
     Location: bluetooth.pyi:0
@@ -1436,8 +1724,327 @@ MODULE: bluetooth (10 functions/methods)
     Location: bluetooth.pyi:0
     Parameters: **kwargs
 
+  • METHOD: BLE.config(self, *, **kwargs)
+    Location: bluetooth.pyi:0
+    Parameters: **kwargs
 
-MODULE: deflate (49 functions/methods)
+  • METHOD: BLE.config(self, *, **kwargs)
+    Location: bluetooth.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: BLE.config(self, *, **kwargs)
+    Location: bluetooth.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: BLE.config(self, *, **kwargs)
+    Location: bluetooth.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: BLE.config(self, *, **kwargs)
+    Location: bluetooth.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: BLE.config(self, *, **kwargs)
+    Location: bluetooth.pyi:0
+    Parameters: **kwargs
+
+
+MODULE: datetime (73 functions/methods)
+----------------------------
+  • FUNCTION: _d2iso(*args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: _date(*args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: _dbm(*args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: _dim(*args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: _iso2d(*args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: _iso2t(*args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: _leap(*args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: _o2ymd(*args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: _t2iso(*args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: _time(*args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.__init__(self, *argv, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: date.fromisoformat(cls, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.fromordinal(cls, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.fromtimestamp(cls, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.isoformat(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.isoweekday(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.replace(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.timetuple(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.today(cls, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.toordinal(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.tuple(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: date.weekday(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.__init__(self, *argv, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: datetime._cmp(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime._mktime(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime._sub(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.astimezone(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.combine(cls, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.date(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.dst(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.fromisoformat(cls, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.fromordinal(cls, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.fromtimestamp(cls, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.isoformat(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.isoweekday(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.now(cls, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.replace(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.time(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.timestamp(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.timetuple(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.timetz(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.toordinal(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.tuple(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.tzname(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.utcoffset(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: datetime.weekday(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: time.__init__(self, *argv, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: time._sub(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: time.dst(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: time.fromisoformat(cls, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: time.isoformat(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: time.replace(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: time.tuple(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: time.tzname(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: time.utcoffset(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: timedelta.__init__(self, *argv, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: timedelta._fmt(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: timedelta._tuple(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: timedelta.isoformat(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: timedelta.total_seconds(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: timedelta.tuple(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: timezone.__init__(self, *argv, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: timezone.dst(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: timezone.fromutc(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: timezone.isoformat(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: timezone.tzname(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: timezone.utcoffset(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: tzinfo.__init__(self, *argv, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: tzinfo.dst(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: tzinfo.fromutc(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: tzinfo.isoformat(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: tzinfo.tzname(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: tzinfo.utcoffset(self, *args, **kwargs)
+    Location: datetime.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: deflate (70 functions/methods)
 ---------------------------
   • METHOD: DeflateIO.close(self, *args, **kwargs)
     Location: deflate.pyi:0
@@ -1487,6 +2094,46 @@ MODULE: deflate (49 functions/methods)
     Location: deflate.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: DeflateIO.close(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.close(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.close(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.close(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.close(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.read(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.read(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.read(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.read(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.read(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: DeflateIO.read(self, *args, **kwargs)
     Location: deflate.pyi:0
     Parameters: *args, **kwargs
@@ -1580,6 +2227,46 @@ MODULE: deflate (49 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: DeflateIO.readinto(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.readinto(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.readinto(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.readinto(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.readinto(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.readinto(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.readline(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.readline(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.readline(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.readline(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: DeflateIO.readline(self, *args, **kwargs)
     Location: deflate.pyi:0
     Parameters: *args, **kwargs
 
@@ -1635,8 +2322,12 @@ MODULE: deflate (49 functions/methods)
     Location: deflate.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: DeflateIO.write(self, *args, **kwargs)
+    Location: deflate.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: dht (132 functions/methods)
+
+MODULE: dht (138 functions/methods)
 -----------------------
   • FUNCTION: dht_readinto(*args, **kwargs)
     Location: dht.pyi:0
@@ -1734,6 +2425,14 @@ MODULE: dht (132 functions/methods)
     Location: dht.pyi:0
     Parameters: **kwargs
 
+  • METHOD: DHT11.__init__(self, *argv, **kwargs)
+    Location: dht.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: DHT11.__init__(self, *argv, **kwargs)
+    Location: dht.pyi:0
+    Parameters: **kwargs
+
   • METHOD: DHT11.humidity(self, *args, **kwargs)
     Location: dht.pyi:0
     Parameters: *args, **kwargs
@@ -1877,6 +2576,14 @@ MODULE: dht (132 functions/methods)
   • METHOD: DHT11.temperature(self, *args, **kwargs)
     Location: dht.pyi:0
     Parameters: *args, **kwargs
+
+  • METHOD: DHT22.__init__(self, *argv, **kwargs)
+    Location: dht.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: DHT22.__init__(self, *argv, **kwargs)
+    Location: dht.pyi:0
+    Parameters: **kwargs
 
   • METHOD: DHT22.__init__(self, *argv, **kwargs)
     Location: dht.pyi:0
@@ -2118,6 +2825,14 @@ MODULE: dht (132 functions/methods)
     Location: dht.pyi:0
     Parameters: **kwargs
 
+  • METHOD: DHTBase.__init__(self, *argv, **kwargs)
+    Location: dht.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: DHTBase.__init__(self, *argv, **kwargs)
+    Location: dht.pyi:0
+    Parameters: **kwargs
+
   • METHOD: DHTBase.measure(self, *args, **kwargs)
     Location: dht.pyi:0
     Parameters: *args, **kwargs
@@ -2167,7 +2882,7 @@ MODULE: dht (132 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: ds18x20 (77 functions/methods)
+MODULE: ds18x20 (79 functions/methods)
 ---------------------------
   • FUNCTION: const(*args, **kwargs)
     Location: ds18x20.pyi:0
@@ -2257,6 +2972,14 @@ MODULE: ds18x20 (77 functions/methods)
     Location: ds18x20.pyi:0
     Parameters: **kwargs
 
+  • METHOD: DS18X20.__init__(self, *argv, **kwargs)
+    Location: ds18x20.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: DS18X20.__init__(self, *argv, **kwargs)
+    Location: ds18x20.pyi:0
+    Parameters: **kwargs
+
   • METHOD: DS18X20.convert_temp(self, *args, **kwargs)
     Location: ds18x20.pyi:0
     Parameters: *args, **kwargs
@@ -2478,7 +3201,7 @@ MODULE: ds18x20 (77 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: esp (15 functions/methods)
+MODULE: esp (17 functions/methods)
 -----------------------
   • FUNCTION: apa102_write(*args, **kwargs)
     Location: esp.pyi:0
@@ -2532,6 +3255,14 @@ MODULE: esp (15 functions/methods)
     Location: esp.pyi:0
     Parameters: *args, **kwargs
 
+  • FUNCTION: gpio_matrix_out(*args, **kwargs)
+    Location: esp.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: gpio_matrix_out(*args, **kwargs)
+    Location: esp.pyi:0
+    Parameters: *args, **kwargs
+
   • FUNCTION: malloc(*args, **kwargs)
     Location: esp.pyi:0
     Parameters: *args, **kwargs
@@ -2541,7 +3272,7 @@ MODULE: esp (15 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: esp32 (27 functions/methods)
+MODULE: esp32 (28 functions/methods)
 -------------------------
   • FUNCTION: mcu_temperature(*args, **kwargs)
     Location: esp32.pyi:0
@@ -2555,19 +3286,31 @@ MODULE: esp32 (27 functions/methods)
     Location: esp32.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: PCNT.__init__(self, id, *args, **kwargs)
+  • METHOD: PCNT.__init__(*, **kwargs)
+    Location: esp32.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: PCNT.__init__(*, **kwargs)
+    Location: esp32.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: PCNT.__init__(*, **kwargs)
+    Location: esp32.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: PCNT.__init__(*, **kwargs)
+    Location: esp32.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: PCNT.__init__(*, **kwargs)
+    Location: esp32.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: PCNT.deinit(self, *args, **kwargs)
     Location: esp32.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: PCNT.__init__(self, id, *args, **kwargs)
-    Location: esp32.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: PCNT.__init__(self, id, *args, **kwargs)
-    Location: esp32.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: PCNT.__init__(self, id, *args, **kwargs)
+  • METHOD: PCNT.deinit(self, *args, **kwargs)
     Location: esp32.pyi:0
     Parameters: *args, **kwargs
 
@@ -2583,23 +3326,27 @@ MODULE: esp32 (27 functions/methods)
     Location: esp32.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: PCNT.deinit(self, *args, **kwargs)
+  • METHOD: PCNT.init(*, **kwargs)
     Location: esp32.pyi:0
-    Parameters: *args, **kwargs
+    Parameters: **kwargs
 
-  • METHOD: PCNT.init(self, *args, **kwargs)
+  • METHOD: PCNT.init(*, **kwargs)
     Location: esp32.pyi:0
-    Parameters: *args, **kwargs
+    Parameters: **kwargs
 
-  • METHOD: PCNT.init(self, *args, **kwargs)
+  • METHOD: PCNT.init(*, **kwargs)
     Location: esp32.pyi:0
-    Parameters: *args, **kwargs
+    Parameters: **kwargs
 
-  • METHOD: PCNT.init(self, *args, **kwargs)
+  • METHOD: PCNT.init(*, **kwargs)
     Location: esp32.pyi:0
-    Parameters: *args, **kwargs
+    Parameters: **kwargs
 
-  • METHOD: PCNT.init(self, *args, **kwargs)
+  • METHOD: PCNT.init(*, **kwargs)
+    Location: esp32.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: PCNT.start(self, *args, **kwargs)
     Location: esp32.pyi:0
     Parameters: *args, **kwargs
 
@@ -2635,24 +3382,12 @@ MODULE: esp32 (27 functions/methods)
     Location: esp32.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: RMT.deinit(self, *args, **kwargs)
-    Location: esp32.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: RMT.deinit(self, *args, **kwargs)
-    Location: esp32.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: RMT.deinit(self, *args, **kwargs)
-    Location: esp32.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: RMT.deinit(self, *args, **kwargs)
+  • METHOD: PCNT.stop(self, *args, **kwargs)
     Location: esp32.pyi:0
     Parameters: *args, **kwargs
 
 
-MODULE: espnow (69 functions/methods)
+MODULE: espnow (85 functions/methods)
 --------------------------
   • FUNCTION: poll(*args, **kwargs)
     Location: espnow.pyi:0
@@ -2678,6 +3413,26 @@ MODULE: espnow (69 functions/methods)
     Location: espnow.pyi:0
     Parameters: **kwargs
 
+  • METHOD: ESPNowBase.__init__(self, *argv, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ESPNowBase.__init__(self, *argv, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ESPNowBase.active(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.active(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.active(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: ESPNowBase.active(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
@@ -2694,7 +3449,11 @@ MODULE: espnow (69 functions/methods)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.active(self, *args, **kwargs)
+  • METHOD: ESPNowBase.add_peer(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.add_peer(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -2734,23 +3493,19 @@ MODULE: espnow (69 functions/methods)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.config(self, *args, **kwargs)
+  • METHOD: ESPNowBase.any(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.config(self, *args, **kwargs)
+  • METHOD: ESPNowBase.any(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.config(self, *args, **kwargs)
+  • METHOD: ESPNowBase.del_peer(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.config(self, *args, **kwargs)
-    Location: espnow.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: ESPNowBase.config(self, *args, **kwargs)
+  • METHOD: ESPNowBase.del_peer(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -2790,6 +3545,22 @@ MODULE: espnow (69 functions/methods)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: ESPNowBase.get_peer(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.get_peer(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.get_peers(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.get_peers(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: ESPNowBase.get_peers(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
@@ -2803,6 +3574,14 @@ MODULE: espnow (69 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: ESPNowBase.get_peers(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.irq(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.irq(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -2838,7 +3617,11 @@ MODULE: espnow (69 functions/methods)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.peer_count(self, *args, **kwargs)
+  • METHOD: ESPNowBase.mod_peer(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.mod_peer(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -2854,7 +3637,15 @@ MODULE: espnow (69 functions/methods)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.recvinto(self, *args, **kwargs)
+  • METHOD: ESPNowBase.peer_count(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.peer_count(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: ESPNowBase.peer_count(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -2874,23 +3665,23 @@ MODULE: espnow (69 functions/methods)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.send(self, *args, **kwargs)
+  • METHOD: ESPNowBase.recvinto(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.send(self, *args, **kwargs)
+  • METHOD: ESPNowBase.recvinto(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.send(self, *args, **kwargs)
+  • METHOD: ESPNowBase.recvinto(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.send(self, *args, **kwargs)
+  • METHOD: ESPNowBase.set_pmk(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ESPNowBase.send(self, *args, **kwargs)
+  • METHOD: ESPNowBase.set_pmk(self, *args, **kwargs)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
@@ -2930,8 +3721,35 @@ MODULE: espnow (69 functions/methods)
     Location: espnow.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: ESPNowBase.stats(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: flashbdev (40 functions/methods)
+  • METHOD: ESPNowBase.stats(self, *args, **kwargs)
+    Location: espnow.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: ffi (4 functions/methods)
+-----------------------
+  • FUNCTION: as_bytearray(*args, **kwargs)
+    Location: ffi.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: callback(*args, **kwargs)
+    Location: ffi.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: func(*args, **kwargs)
+    Location: ffi.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: open(*args, **kwargs)
+    Location: ffi.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: flashbdev (58 functions/methods)
 -----------------------------
   • METHOD: FlashBdev.__init__(self, *argv, **kwargs)
     Location: flashbdev.pyi:0
@@ -2965,6 +3783,22 @@ MODULE: flashbdev (40 functions/methods)
     Location: flashbdev.pyi:0
     Parameters: **kwargs
 
+  • METHOD: Partition.__init__(self, *argv, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Partition.__init__(self, *argv, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Partition.find(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.find(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: Partition.find(self, *args, **kwargs)
     Location: flashbdev.pyi:0
     Parameters: *args, **kwargs
@@ -2978,6 +3812,14 @@ MODULE: flashbdev (40 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: Partition.find(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.get_next_update(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.get_next_update(self, *args, **kwargs)
     Location: flashbdev.pyi:0
     Parameters: *args, **kwargs
 
@@ -3013,6 +3855,22 @@ MODULE: flashbdev (40 functions/methods)
     Location: flashbdev.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: Partition.info(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.info(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.ioctl(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.ioctl(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: Partition.ioctl(self, *args, **kwargs)
     Location: flashbdev.pyi:0
     Parameters: *args, **kwargs
@@ -3026,6 +3884,14 @@ MODULE: flashbdev (40 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: Partition.ioctl(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.mark_app_valid_cancel_rollback(cls, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.mark_app_valid_cancel_rollback(cls, *args, **kwargs)
     Location: flashbdev.pyi:0
     Parameters: *args, **kwargs
 
@@ -3061,6 +3927,22 @@ MODULE: flashbdev (40 functions/methods)
     Location: flashbdev.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: Partition.readblocks(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.readblocks(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.set_boot(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Partition.set_boot(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: Partition.set_boot(self, *args, **kwargs)
     Location: flashbdev.pyi:0
     Parameters: *args, **kwargs
@@ -3093,8 +3975,16 @@ MODULE: flashbdev (40 functions/methods)
     Location: flashbdev.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: Partition.writeblocks(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: framebuf (24 functions/methods)
+  • METHOD: Partition.writeblocks(self, *args, **kwargs)
+    Location: flashbdev.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: framebuf (32 functions/methods)
 ----------------------------
   • FUNCTION: FrameBuffer1(*args, **kwargs)
     Location: framebuf.pyi:0
@@ -3144,7 +4034,19 @@ MODULE: framebuf (24 functions/methods)
     Location: framebuf.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: FrameBuffer.fill_rect(self, *args, **kwargs)
+  • FUNCTION: FrameBuffer1(*args, **kwargs)
+    Location: framebuf.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: FrameBuffer1(*args, **kwargs)
+    Location: framebuf.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: FrameBuffer1(*args, **kwargs)
+    Location: framebuf.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: FrameBuffer1(*args, **kwargs)
     Location: framebuf.pyi:0
     Parameters: *args, **kwargs
 
@@ -3192,8 +4094,47 @@ MODULE: framebuf (24 functions/methods)
     Location: framebuf.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: FrameBuffer.fill_rect(self, *args, **kwargs)
+    Location: framebuf.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: gc (12 functions/methods)
+  • METHOD: FrameBuffer.fill_rect(self, *args, **kwargs)
+    Location: framebuf.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FrameBuffer.fill_rect(self, *args, **kwargs)
+    Location: framebuf.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FrameBuffer.fill_rect(self, *args, **kwargs)
+    Location: framebuf.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FrameBuffer.fill_rect(self, *args, **kwargs)
+    Location: framebuf.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: functools (4 functions/methods)
+-----------------------------
+  • FUNCTION: partial(*args, **kwargs)
+    Location: functools.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: reduce(*args, **kwargs)
+    Location: functools.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: update_wrapper(*args, **kwargs)
+    Location: functools.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: wraps(*args, **kwargs)
+    Location: functools.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: gc (15 functions/methods)
 ----------------------
   • FUNCTION: isenabled(*args, **kwargs)
     Location: gc.pyi:0
@@ -3243,8 +4184,20 @@ MODULE: gc (12 functions/methods)
     Location: gc.pyi:0
     Parameters: *args, **kwargs
 
+  • FUNCTION: isenabled(*args, **kwargs)
+    Location: gc.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: hashlib (52 functions/methods)
+  • FUNCTION: isenabled(*args, **kwargs)
+    Location: gc.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: isenabled(*args, **kwargs)
+    Location: gc.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: hashlib (88 functions/methods)
 ---------------------------
   • METHOD: md5.digest(self, *args, **kwargs)
     Location: hashlib.pyi:0
@@ -3262,6 +4215,54 @@ MODULE: hashlib (52 functions/methods)
     Location: hashlib.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: md5.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: md5.update(self, *args, **kwargs)
     Location: hashlib.pyi:0
     Parameters: *args, **kwargs
@@ -3278,6 +4279,46 @@ MODULE: hashlib (52 functions/methods)
     Location: hashlib.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: md5.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: md5.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha1.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha1.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha1.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha1.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: sha1.digest(self, *args, **kwargs)
     Location: hashlib.pyi:0
     Parameters: *args, **kwargs
@@ -3358,7 +4399,19 @@ MODULE: hashlib (52 functions/methods)
     Location: hashlib.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: sha256.digest(self, *args, **kwargs)
+  • METHOD: sha1.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha1.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha1.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha1.update(self, *args, **kwargs)
     Location: hashlib.pyi:0
     Parameters: *args, **kwargs
 
@@ -3403,6 +4456,50 @@ MODULE: hashlib (52 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: sha256.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.digest(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.update(self, *args, **kwargs)
+    Location: hashlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: sha256.update(self, *args, **kwargs)
     Location: hashlib.pyi:0
     Parameters: *args, **kwargs
 
@@ -3522,6 +4619,33 @@ MODULE: inisetup (16 functions/methods)
     Parameters: *args, **kwargs
 
 
+MODULE: inspect (6 functions/methods)
+---------------------------
+  • METHOD: Signature.__init__(self, *argv, **kwargs)
+    Location: inspect.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Signature.__init__(self, *argv, **kwargs)
+    Location: inspect.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: _Class.__init__(self, *argv, **kwargs)
+    Location: inspect.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: _Class.__init__(self, *argv, **kwargs)
+    Location: inspect.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: _ct.__init__(self, *argv, **kwargs)
+    Location: inspect.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: _ct.__init__(self, *argv, **kwargs)
+    Location: inspect.pyi:0
+    Parameters: **kwargs
+
+
 MODULE: lcd160cr (10 functions/methods)
 ----------------------------
   • FUNCTION: calcsize(*args, **kwargs)
@@ -3562,6 +4686,464 @@ MODULE: lcd160cr (10 functions/methods)
 
   • METHOD: LCD160CR.oflush(self, *args, **kwargs)
     Location: lcd160cr.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: logging (96 functions/methods)
+---------------------------
+  • FUNCTION: addLevelName(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: addLevelName(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: basicConfig(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: basicConfig(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: const(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: const(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: critical(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: critical(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: debug(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: debug(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: error(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: error(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: exception(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: exception(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: getLogger(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: getLogger(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: info(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: info(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: log(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: log(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: shutdown(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: shutdown(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: warning(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: warning(*args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FileHandler.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: FileHandler.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: FileHandler.close(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FileHandler.close(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FileHandler.emit(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FileHandler.emit(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FileHandler.format(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FileHandler.format(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FileHandler.setFormatter(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FileHandler.setFormatter(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FileHandler.setLevel(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: FileHandler.setLevel(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Formatter.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Formatter.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Formatter.format(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Formatter.format(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Formatter.formatTime(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Formatter.formatTime(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Formatter.usesTime(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Formatter.usesTime(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Handler.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Handler.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Handler.close(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Handler.close(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Handler.format(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Handler.format(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Handler.setFormatter(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Handler.setFormatter(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Handler.setLevel(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Handler.setLevel(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LogRecord.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: LogRecord.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: LogRecord.set(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LogRecord.set(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Logger.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Logger.addHandler(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.addHandler(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.critical(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.critical(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.debug(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.debug(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.error(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.error(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.exception(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.exception(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.getEffectiveLevel(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.getEffectiveLevel(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.hasHandlers(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.hasHandlers(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.info(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.info(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.isEnabledFor(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.isEnabledFor(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.log(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.log(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.setLevel(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.setLevel(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.warning(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Logger.warning(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: StreamHandler.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: StreamHandler.__init__(self, *argv, **kwargs)
+    Location: logging.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: StreamHandler.close(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: StreamHandler.close(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: StreamHandler.emit(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: StreamHandler.emit(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: StreamHandler.format(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: StreamHandler.format(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: StreamHandler.setFormatter(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: StreamHandler.setFormatter(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: StreamHandler.setLevel(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: StreamHandler.setLevel(self, *args, **kwargs)
+    Location: logging.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: lsm6dsox (17 functions/methods)
+----------------------------
+  • FUNCTION: const(*args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.__init__(self, *argv, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: LSM6DSOX._modify_bits(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX._read_reg(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX._read_reg_into(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX._select_page(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX._write_reg(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.accel(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.gyro(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.load_mlc(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.mlc_output(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.pedometer_config(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.pedometer_reset(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.reset(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.set_embedded_functions(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.set_mem_bank(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: LSM6DSOX.steps(self, *args, **kwargs)
+    Location: lsm6dsox.pyi:0
     Parameters: *args, **kwargs
 
 
@@ -3844,7 +5426,7 @@ MODULE: lwip (69 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: machine (478 functions/methods)
+MODULE: machine (577 functions/methods)
 ---------------------------
   • FUNCTION: const(*args, **kwargs)
     Location: machine.pyi:0
@@ -3859,6 +5441,10 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • FUNCTION: const(*args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: dht_readinto(*args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -3934,17 +5520,13 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: ADCBlock.connect(self, channel, *, **kwargs)
+  • METHOD: ADC.deinit(self, *args, **kwargs)
     Location: machine.pyi:0
-    Parameters: **kwargs
+    Parameters: *args, **kwargs
 
-  • METHOD: ADCBlock.connect(self, source, *, **kwargs)
+  • METHOD: ADC.deinit(self, *args, **kwargs)
     Location: machine.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: ADCBlock.connect(self, channel, source, *, **kwargs)
-    Location: machine.pyi:0
-    Parameters: **kwargs
+    Parameters: *args, **kwargs
 
   • METHOD: ADCBlock.connect(self, channel, *, **kwargs)
     Location: machine.pyi:0
@@ -4077,6 +5659,90 @@ MODULE: machine (478 functions/methods)
   • METHOD: ADCBlock.connect(self, channel, source, *, **kwargs)
     Location: machine.pyi:0
     Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: ADCBlock.connect(self, channel, source, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: CAN.__init__(self, id, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: CAN.init(self, bitrate, mode, sample_point, sjw, tseg1, tseg2, *, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Counter.__init__(self, id, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
 
   • METHOD: Counter.__init__(self, id, *args, **kwargs)
     Location: machine.pyi:0
@@ -4106,10 +5772,6 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: Counter._configure(self, *args, **kwargs)
-    Location: machine.pyi:0
-    Parameters: *args, **kwargs
-
   • METHOD: Counter._overflow(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
@@ -4122,7 +5784,7 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: Counter._overflow(self, *args, **kwargs)
+  • METHOD: Counter.init(self, src, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4158,6 +5820,18 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: **kwargs
 
+  • METHOD: Counter._PCNT.__init__(self, *argv, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Counter._PCNT.deinit(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Counter._PCNT.deinit(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: Counter._PCNT.deinit(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
@@ -4170,7 +5844,7 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: Counter._PCNT.deinit(self, *args, **kwargs)
+  • METHOD: Counter._PCNT.init(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4206,7 +5880,7 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: Counter._PCNT.start(self, *args, **kwargs)
+  • METHOD: Counter._PCNT.irq(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4219,6 +5893,18 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: Counter._PCNT.start(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Counter._PCNT.start(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Counter._PCNT.start(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Counter._PCNT.stop(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4254,27 +5940,11 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: DAC.__init__(self, *argv, **kwargs)
-    Location: machine.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: DAC.__init__(self, *argv, **kwargs)
-    Location: machine.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: DAC.__init__(self, *argv, **kwargs)
-    Location: machine.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: DAC.write(self, *args, **kwargs)
+  • METHOD: Counter._PCNT.value(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: DAC.write(self, *args, **kwargs)
-    Location: machine.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: DAC.write(self, *args, **kwargs)
+  • METHOD: Encoder.__init__(self, id, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4306,10 +5976,6 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: Encoder._configure(self, *args, **kwargs)
-    Location: machine.pyi:0
-    Parameters: *args, **kwargs
-
   • METHOD: Encoder._overflow(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
@@ -4322,7 +5988,7 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: Encoder._overflow(self, *args, **kwargs)
+  • METHOD: Encoder.init(self, phase_a, phase_b, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4354,9 +6020,9 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: Encoder.phases(self, *args, **kwargs)
+  • METHOD: Encoder._PCNT.__init__(self, *argv, **kwargs)
     Location: machine.pyi:0
-    Parameters: *args, **kwargs
+    Parameters: **kwargs
 
   • METHOD: Encoder._PCNT.__init__(self, *argv, **kwargs)
     Location: machine.pyi:0
@@ -4387,6 +6053,14 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: Encoder._PCNT.deinit(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Encoder._PCNT.deinit(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Encoder._PCNT.init(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4422,6 +6096,14 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: Encoder._PCNT.irq(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Encoder._PCNT.start(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: Encoder._PCNT.start(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
@@ -4454,7 +6136,7 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: Encoder._PCNT.value(self, *args, **kwargs)
+  • METHOD: Encoder._PCNT.stop(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4467,6 +6149,22 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: Encoder._PCNT.value(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Encoder._PCNT.value(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Encoder._PCNT.value(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: PWM.duty(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: PWM.duty(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4578,7 +6276,15 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: **kwargs
 
-  • METHOD: Pin.cpu.__init__(self, *argv, **kwargs)
+  • METHOD: Pin.board.__init__(self, *argv, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Pin.board.__init__(self, *argv, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Pin.board.__init__(self, *argv, **kwargs)
     Location: machine.pyi:0
     Parameters: **kwargs
 
@@ -4603,6 +6309,22 @@ MODULE: machine (478 functions/methods)
     Parameters: **kwargs
 
   • METHOD: Pin.cpu.__init__(self, *argv, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Pin.cpu.__init__(self, *argv, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Pin.cpu.__init__(self, *argv, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: PinBase.__init__(self, *argv, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: PinBase.__init__(self, *argv, **kwargs)
     Location: machine.pyi:0
     Parameters: **kwargs
 
@@ -4622,21 +6344,9 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: SDCard.__init__(self, *argv, **kwargs)
+  • METHOD: SDCard.deinit(self, *args, **kwargs)
     Location: machine.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: SDCard.__init__(self, *argv, **kwargs)
-    Location: machine.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: SDCard.__init__(self, *argv, **kwargs)
-    Location: machine.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: SDCard.__init__(self, *argv, **kwargs)
-    Location: machine.pyi:0
-    Parameters: **kwargs
+    Parameters: *args, **kwargs
 
   • METHOD: SDCard.deinit(self, *args, **kwargs)
     Location: machine.pyi:0
@@ -4651,6 +6361,18 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: SDCard.deinit(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SDCard.deinit(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SDCard.info(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SDCard.info(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4686,7 +6408,11 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: SoftI2C.init(self, *args, **kwargs)
+  • METHOD: SDCard.ioctl(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SDCard.ioctl(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4731,6 +6457,34 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: SoftI2C.init(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.init(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.init(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.init(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.init(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4830,7 +6584,15 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: SoftI2C.readfrom_mem(self, *args, **kwargs)
+  • METHOD: SoftI2C.readfrom_into(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom_into(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom_into(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4875,6 +6637,34 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: SoftI2C.readfrom_mem(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom_mem(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom_mem(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom_mem(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom_mem(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom_mem_into(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom_mem_into(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readfrom_mem_into(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -4974,7 +6764,15 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: SoftI2C.scan(self, *args, **kwargs)
+  • METHOD: SoftI2C.readinto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readinto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.readinto(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -5019,6 +6817,34 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: SoftI2C.scan(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.scan(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.scan(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.scan(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.scan(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.start(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.start(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.start(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -5118,7 +6944,15 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: SoftI2C.write(self, *args, **kwargs)
+  • METHOD: SoftI2C.stop(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.stop(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.stop(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -5163,6 +6997,34 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: SoftI2C.write(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.write(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.write(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.write(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.write(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.writeto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.writeto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.writeto(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -5262,7 +7124,15 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: SoftI2C.writevto(self, *args, **kwargs)
+  • METHOD: SoftI2C.writeto_mem(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.writeto_mem(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.writeto_mem(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -5307,6 +7177,34 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: SoftI2C.writevto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.writevto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.writevto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.writevto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftI2C.writevto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.deinit(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.deinit(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.deinit(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -5406,7 +7304,15 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: SoftSPI.read(self, *args, **kwargs)
+  • METHOD: SoftSPI.init(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.init(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.init(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -5451,6 +7357,34 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: SoftSPI.read(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.read(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.read(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.read(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.read(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.readinto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.readinto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.readinto(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -5550,7 +7484,15 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: SoftSPI.write_readinto(self, *args, **kwargs)
+  • METHOD: SoftSPI.write(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.write(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.write(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -5595,6 +7537,30 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: SoftSPI.write_readinto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.write_readinto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.write_readinto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.write_readinto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SoftSPI.write_readinto(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Timer.value(self, *args, **kwargs)
+    Location: machine.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Timer.value(self, *args, **kwargs)
     Location: machine.pyi:0
     Parameters: *args, **kwargs
 
@@ -5690,7 +7656,7 @@ MODULE: machine (478 functions/methods)
     Location: machine.pyi:0
     Parameters: **kwargs
 
-  • METHOD: USBDevice.BUILTIN_DEFAULT.__init__(self, *argv, **kwargs)
+  • METHOD: USBDevice.BUILTIN_CDC_MSC.__init__(self, *argv, **kwargs)
     Location: machine.pyi:0
     Parameters: **kwargs
 
@@ -5719,6 +7685,18 @@ MODULE: machine (478 functions/methods)
     Parameters: **kwargs
 
   • METHOD: USBDevice.BUILTIN_DEFAULT.__init__(self, *argv, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: USBDevice.BUILTIN_DEFAULT.__init__(self, *argv, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: USBDevice.BUILTIN_DEFAULT.__init__(self, *argv, **kwargs)
+    Location: machine.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: USBDevice.BUILTIN_NONE.__init__(self, *argv, **kwargs)
     Location: machine.pyi:0
     Parameters: **kwargs
 
@@ -5759,7 +7737,7 @@ MODULE: machine (478 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: math (22 functions/methods)
+MODULE: math (29 functions/methods)
 ------------------------
   • FUNCTION: factorial(*args, **kwargs)
     Location: math.pyi:0
@@ -5805,7 +7783,11 @@ MODULE: math (22 functions/methods)
     Location: math.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: isclose(*args, **kwargs)
+  • FUNCTION: factorial(*args, **kwargs)
+    Location: math.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: factorial(*args, **kwargs)
     Location: math.pyi:0
     Parameters: *args, **kwargs
 
@@ -5849,8 +7831,63 @@ MODULE: math (22 functions/methods)
     Location: math.pyi:0
     Parameters: *args, **kwargs
 
+  • FUNCTION: isclose(*args, **kwargs)
+    Location: math.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: neopixel (10 functions/methods)
+  • FUNCTION: isclose(*args, **kwargs)
+    Location: math.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: isclose(*args, **kwargs)
+    Location: math.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: isclose(*args, **kwargs)
+    Location: math.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: isclose(*args, **kwargs)
+    Location: math.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: isclose(*args, **kwargs)
+    Location: math.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: micropython (7 functions/methods)
+-------------------------------
+  • FUNCTION: mem_current(*args, **kwargs)
+    Location: micropython.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: mem_current(*args, **kwargs)
+    Location: micropython.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: mem_peak(*args, **kwargs)
+    Location: micropython.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: mem_peak(*args, **kwargs)
+    Location: micropython.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: mem_total(*args, **kwargs)
+    Location: micropython.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: mem_total(*args, **kwargs)
+    Location: micropython.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: pystack_use(*args, **kwargs)
+    Location: micropython.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: neopixel (13 functions/methods)
 ----------------------------
   • FUNCTION: bitstream(*args, **kwargs)
     Location: neopixel.pyi:0
@@ -5892,34 +7929,58 @@ MODULE: neopixel (10 functions/methods)
     Location: neopixel.pyi:0
     Parameters: *args, **kwargs
 
+  • FUNCTION: bitstream(*args, **kwargs)
+    Location: neopixel.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: network (64 functions/methods)
+  • FUNCTION: bitstream(*args, **kwargs)
+    Location: neopixel.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: bitstream(*args, **kwargs)
+    Location: neopixel.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: network (86 functions/methods)
 ---------------------------
-  • FUNCTION: ipconfig(param, *args, **kwargs)
+  • FUNCTION: ipconfig(*args, **kwargs)
     Location: network.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: ipconfig(param, *args, **kwargs)
+  • FUNCTION: ipconfig(*args, **kwargs)
     Location: network.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: ipconfig(param, *args, **kwargs)
+  • FUNCTION: ipconfig(*args, **kwargs)
     Location: network.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: ipconfig(param, *args, **kwargs)
+  • FUNCTION: ipconfig(*args, **kwargs)
     Location: network.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: ipconfig(param, *args, **kwargs)
+  • FUNCTION: ipconfig(*args, **kwargs)
     Location: network.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: ipconfig(param, *args, **kwargs)
+  • FUNCTION: ipconfig(*args, **kwargs)
     Location: network.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: ipconfig(param, *args, **kwargs)
+  • FUNCTION: ipconfig(*args, **kwargs)
+    Location: network.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: ipconfig(*args, **kwargs)
+    Location: network.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: ipconfig(*args, **kwargs)
+    Location: network.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: ipconfig(*args, **kwargs)
     Location: network.pyi:0
     Parameters: *args, **kwargs
 
@@ -5935,9 +7996,9 @@ MODULE: network (64 functions/methods)
     Location: network.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: AbstractNIC.config(self, *, **kwargs)
+  • FUNCTION: route(*args, **kwargs)
     Location: network.pyi:0
-    Parameters: **kwargs
+    Parameters: *args, **kwargs
 
   • METHOD: AbstractNIC.config(self, *, **kwargs)
     Location: network.pyi:0
@@ -5967,7 +8028,19 @@ MODULE: network (64 functions/methods)
     Location: network.pyi:0
     Parameters: **kwargs
 
-  • METHOD: AbstractNIC.connect(*, **kwargs)
+  • METHOD: AbstractNIC.config(self, *, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AbstractNIC.config(self, *, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AbstractNIC.config(self, *, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AbstractNIC.config(self, *, **kwargs)
     Location: network.pyi:0
     Parameters: **kwargs
 
@@ -6030,6 +8103,42 @@ MODULE: network (64 functions/methods)
   • METHOD: AbstractNIC.connect(*, **kwargs)
     Location: network.pyi:0
     Parameters: **kwargs
+
+  • METHOD: AbstractNIC.connect(*, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AbstractNIC.connect(*, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AbstractNIC.connect(*, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AbstractNIC.connect(*, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AbstractNIC.connect(*, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AbstractNIC.connect(*, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: AbstractNIC.connect(*, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: PPP.active(self, *args, **kwargs)
+    Location: network.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: PPP.active(self, *args, **kwargs)
+    Location: network.pyi:0
+    Parameters: *args, **kwargs
 
   • METHOD: PPP.active(self, *args, **kwargs)
     Location: network.pyi:0
@@ -6099,6 +8208,18 @@ MODULE: network (64 functions/methods)
     Location: network.pyi:0
     Parameters: **kwargs
 
+  • METHOD: WLAN.config(self, *, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: WLAN.config(self, *, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: WLAN.config(self, *, **kwargs)
+    Location: network.pyi:0
+    Parameters: **kwargs
+
   • METHOD: WLAN.deinit(self, *args, **kwargs)
     Location: network.pyi:0
     Parameters: *args, **kwargs
@@ -6112,6 +8233,22 @@ MODULE: network (64 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: WLAN.ioctl(self, *args, **kwargs)
+    Location: network.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: WLAN.ioctl(self, *args, **kwargs)
+    Location: network.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: WLAN.ipconfig(self, *args, **kwargs)
+    Location: network.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: WLAN.ipconfig(self, *args, **kwargs)
+    Location: network.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: WLAN.ipconfig(self, *args, **kwargs)
     Location: network.pyi:0
     Parameters: *args, **kwargs
 
@@ -6152,7 +8289,7 @@ MODULE: network (64 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: ntptime (21 functions/methods)
+MODULE: ntptime (26 functions/methods)
 ---------------------------
   • FUNCTION: gmtime(*args, **kwargs)
     Location: ntptime.pyi:0
@@ -6182,6 +8319,22 @@ MODULE: ntptime (21 functions/methods)
     Location: ntptime.pyi:0
     Parameters: *args, **kwargs
 
+  • FUNCTION: gmtime(*args, **kwargs)
+    Location: ntptime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: gmtime(*args, **kwargs)
+    Location: ntptime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: gmtime(*args, **kwargs)
+    Location: ntptime.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: settime(*args, **kwargs)
+    Location: ntptime.pyi:0
+    Parameters: *args, **kwargs
+
   • FUNCTION: settime(*args, **kwargs)
     Location: ntptime.pyi:0
     Parameters: *args, **kwargs
@@ -6238,8 +8391,12 @@ MODULE: ntptime (21 functions/methods)
     Location: ntptime.pyi:0
     Parameters: *args, **kwargs
 
+  • FUNCTION: time(*args, **kwargs)
+    Location: ntptime.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: onewire (144 functions/methods)
+
+MODULE: onewire (146 functions/methods)
 ---------------------------
   • METHOD: OneWire.__init__(self, *argv, **kwargs)
     Location: onewire.pyi:0
@@ -6289,6 +8446,14 @@ MODULE: onewire (144 functions/methods)
     Location: onewire.pyi:0
     Parameters: **kwargs
 
+  • METHOD: OneWire.__init__(self, *argv, **kwargs)
+    Location: onewire.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: OneWire.__init__(self, *argv, **kwargs)
+    Location: onewire.pyi:0
+    Parameters: **kwargs
+
   • METHOD: OneWire._search_rom(self, *args, **kwargs)
     Location: onewire.pyi:0
     Parameters: *args, **kwargs
@@ -6818,12 +8983,107 @@ MODULE: onewire (144 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: pyb (36 functions/methods)
+MODULE: pathlib (24 functions/methods)
+---------------------------
+  • FUNCTION: _clean_segment(*args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: _mode_if_exists(*args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: const(*args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.__init__(self, *argv, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Path._glob(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.absolute(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.exists(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.glob(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.is_dir(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.is_file(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.mkdir(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.open(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.read_bytes(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.read_text(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.rename(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.resolve(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.rglob(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.rmdir(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.stat(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.touch(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.unlink(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.with_suffix(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.write_bytes(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: Path.write_text(self, *args, **kwargs)
+    Location: pathlib.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: pyb (34 functions/methods)
 -----------------------
-  • FUNCTION: country(*args, **kwargs)
-    Location: pyb.pyi:0
-    Parameters: *args, **kwargs
-
   • FUNCTION: pwm(*args, **kwargs)
     Location: pyb.pyi:0
     Parameters: *args, **kwargs
@@ -6869,10 +9129,6 @@ MODULE: pyb (36 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: Pin.high(self, *args, **kwargs)
-    Location: pyb.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: Pin.irq(self, *args, **kwargs)
     Location: pyb.pyi:0
     Parameters: *args, **kwargs
 
@@ -6988,7 +9244,7 @@ MODULE: samd (5 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: socket (13 functions/methods)
+MODULE: socket (17 functions/methods)
 --------------------------
   • FUNCTION: callback(*args, **kwargs)
     Location: socket.pyi:0
@@ -7023,6 +9279,22 @@ MODULE: socket (13 functions/methods)
     Parameters: *args, **kwargs
 
   • FUNCTION: reset(*args, **kwargs)
+    Location: socket.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: sockaddr(*args, **kwargs)
+    Location: socket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: socket.fileno(self, *args, **kwargs)
+    Location: socket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: socket.fileno(self, *args, **kwargs)
+    Location: socket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: socket.fileno(self, *args, **kwargs)
     Location: socket.pyi:0
     Parameters: *args, **kwargs
 
@@ -7306,7 +9578,41 @@ MODULE: ssd1306 (65 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: tls (39 functions/methods)
+MODULE: termios (3 functions/methods)
+---------------------------
+  • FUNCTION: setraw(*args, **kwargs)
+    Location: termios.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: tcgetattr(*args, **kwargs)
+    Location: termios.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: tcsetattr(*args, **kwargs)
+    Location: termios.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: time (4 functions/methods)
+------------------------
+  • FUNCTION: clock(*args, **kwargs)
+    Location: time.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: clock(*args, **kwargs)
+    Location: time.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: const(*args, **kwargs)
+    Location: time.pyi:0
+    Parameters: *args, **kwargs
+
+  • FUNCTION: strftime(*args, **kwargs)
+    Location: time.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: tls (63 functions/methods)
 -----------------------
   • METHOD: SSLContext.__init__(self, *argv, **kwargs)
     Location: tls.pyi:0
@@ -7336,6 +9642,38 @@ MODULE: tls (39 functions/methods)
     Location: tls.pyi:0
     Parameters: **kwargs
 
+  • METHOD: SSLContext.__init__(self, *argv, **kwargs)
+    Location: tls.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: SSLContext.__init__(self, *argv, **kwargs)
+    Location: tls.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: SSLContext.__init__(self, *argv, **kwargs)
+    Location: tls.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: SSLContext.__init__(self, *argv, **kwargs)
+    Location: tls.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: SSLContext.get_ciphers(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.get_ciphers(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.get_ciphers(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.get_ciphers(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: SSLContext.get_ciphers(self, *args, **kwargs)
     Location: tls.pyi:0
     Parameters: *args, **kwargs
@@ -7357,6 +9695,22 @@ MODULE: tls (39 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: SSLContext.get_ciphers(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.load_cert_chain(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.load_cert_chain(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.load_cert_chain(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.load_cert_chain(self, *args, **kwargs)
     Location: tls.pyi:0
     Parameters: *args, **kwargs
 
@@ -7412,7 +9766,19 @@ MODULE: tls (39 functions/methods)
     Location: tls.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: SSLContext.set_ciphers(self, *args, **kwargs)
+  • METHOD: SSLContext.load_verify_locations(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.load_verify_locations(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.load_verify_locations(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.load_verify_locations(self, *args, **kwargs)
     Location: tls.pyi:0
     Parameters: *args, **kwargs
 
@@ -7436,7 +9802,23 @@ MODULE: tls (39 functions/methods)
     Location: tls.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: SSLContext.wrap_socket(self, *args, **kwargs)
+  • METHOD: SSLContext.set_ciphers(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.set_ciphers(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.set_ciphers(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.set_ciphers(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.set_ciphers(self, *args, **kwargs)
     Location: tls.pyi:0
     Parameters: *args, **kwargs
 
@@ -7464,8 +9846,28 @@ MODULE: tls (39 functions/methods)
     Location: tls.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: SSLContext.wrap_socket(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: ucollections (144 functions/methods)
+  • METHOD: SSLContext.wrap_socket(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.wrap_socket(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.wrap_socket(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: SSLContext.wrap_socket(self, *args, **kwargs)
+    Location: tls.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: ucollections (187 functions/methods)
 --------------------------------
   • METHOD: OrderedDict.__init__(self, *args, **kwargs)
     Location: ucollections.pyi:0
@@ -7515,7 +9917,23 @@ MODULE: ucollections (144 functions/methods)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.clear(self, *args, **kwargs)
+  • METHOD: OrderedDict.__init__(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.__init__(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.__init__(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.__init__(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.__init__(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
@@ -7560,6 +9978,50 @@ MODULE: ucollections (144 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: OrderedDict.clear(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.clear(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.clear(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.clear(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.clear(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.clear(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.clear(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.copy(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.copy(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.copy(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.copy(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.copy(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
@@ -7659,7 +10121,23 @@ MODULE: ucollections (144 functions/methods)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.get(self, *args, **kwargs)
+  • METHOD: OrderedDict.fromkeys(cls, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.fromkeys(cls, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.fromkeys(cls, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.fromkeys(cls, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.fromkeys(cls, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
@@ -7704,6 +10182,50 @@ MODULE: ucollections (144 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: OrderedDict.get(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.get(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.get(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.get(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.get(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.get(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.get(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.items(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.items(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.items(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.items(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.items(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
@@ -7803,7 +10325,23 @@ MODULE: ucollections (144 functions/methods)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.pop(self, *args, **kwargs)
+  • METHOD: OrderedDict.keys(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.keys(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.keys(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.keys(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.keys(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
@@ -7851,51 +10389,47 @@ MODULE: ucollections (144 functions/methods)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.pop(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.pop(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.pop(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.pop(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.pop(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.pop(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.setdefault(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.setdefault(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.setdefault(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.setdefault(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
-    Location: ucollections.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: OrderedDict.popitem(self, *args, **kwargs)
+  • METHOD: OrderedDict.setdefault(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
@@ -7995,7 +10529,23 @@ MODULE: ucollections (144 functions/methods)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: OrderedDict.values(self, *args, **kwargs)
+  • METHOD: OrderedDict.update(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.update(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.update(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.update(self, *args, **kwargs)
+    Location: ucollections.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: OrderedDict.update(self, *args, **kwargs)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
@@ -8043,1083 +10593,32 @@ MODULE: ucollections (144 functions/methods)
     Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-
-MODULE: ucryptolib (30 functions/methods)
-------------------------------
-  • METHOD: aes.__init__(self, *argv, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: aes.__init__(self, *argv, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: aes.__init__(self, *argv, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: aes.__init__(self, *argv, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: aes.__init__(self, *argv, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: aes.__init__(self, *argv, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: aes.__init__(self, *argv, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: aes.__init__(self, *argv, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: aes.__init__(self, *argv, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: aes.__init__(self, *argv, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: aes.decrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.decrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.decrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.decrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.decrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.decrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.decrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.decrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.decrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.decrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.encrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.encrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.encrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.encrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.encrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.encrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.encrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.encrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.encrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: aes.encrypt(self, *args, **kwargs)
-    Location: ucryptolib.pyi:0
-    Parameters: *args, **kwargs
-
-
-MODULE: uhashlib (78 functions/methods)
-----------------------------
-  • METHOD: md5.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: md5.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: md5.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: md5.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: md5.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: md5.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: md5.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: md5.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: md5.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: md5.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: md5.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: md5.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha1.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha1.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha1.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha1.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha1.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha1.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha1.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha1.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha1.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha1.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha1.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.__init__(self, *argv, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.digest(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: sha256.update(self, *args, **kwargs)
-    Location: uhashlib.pyi:0
-    Parameters: *args, **kwargs
-
-
-MODULE: uheapq (36 functions/methods)
---------------------------
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heapify(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappop(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: heappush(*args, **kwargs)
-    Location: uheapq.pyi:0
-    Parameters: *args, **kwargs
-
-
-MODULE: urandom (77 functions/methods)
----------------------------
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: choice(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: getrandbits(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randint(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: random(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: randrange(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: seed(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: uniform(*args, **kwargs)
-    Location: urandom.pyi:0
-    Parameters: *args, **kwargs
-
-
-MODULE: ure (44 functions/methods)
------------------------
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: compile(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: match(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: search(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
-    Parameters: *args, **kwargs
-
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
+  • METHOD: OrderedDict.values(self, *args, **kwargs)
+    Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
+  • METHOD: OrderedDict.values(self, *args, **kwargs)
+    Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
+  • METHOD: OrderedDict.values(self, *args, **kwargs)
+    Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
+  • METHOD: OrderedDict.values(self, *args, **kwargs)
+    Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
+  • METHOD: OrderedDict.values(self, *args, **kwargs)
+    Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
-  • FUNCTION: sub(*args, **kwargs)
-    Location: ure.pyi:0
+  • METHOD: OrderedDict.values(self, *args, **kwargs)
+    Location: ucollections.pyi:0
     Parameters: *args, **kwargs
 
 
-MODULE: urequests (60 functions/methods)
+MODULE: urequests (62 functions/methods)
 -----------------------------
   • FUNCTION: delete(*args, **kwargs)
     Location: urequests.pyi:0
@@ -9313,6 +10812,14 @@ MODULE: urequests (60 functions/methods)
     Location: urequests.pyi:0
     Parameters: **kwargs
 
+  • METHOD: Response.__init__(self, *argv, **kwargs)
+    Location: urequests.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: Response.__init__(self, *argv, **kwargs)
+    Location: urequests.pyi:0
+    Parameters: **kwargs
+
   • METHOD: Response.close(self, *args, **kwargs)
     Location: urequests.pyi:0
     Parameters: *args, **kwargs
@@ -9362,178 +10869,7 @@ MODULE: urequests (60 functions/methods)
     Parameters: *args, **kwargs
 
 
-MODULE: uwebsocket (42 functions/methods)
-------------------------------
-  • METHOD: websocket.__init__(self, *argv, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: websocket.__init__(self, *argv, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: websocket.__init__(self, *argv, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: websocket.__init__(self, *argv, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: websocket.__init__(self, *argv, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: websocket.__init__(self, *argv, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: **kwargs
-
-  • METHOD: websocket.close(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.close(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.close(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.close(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.close(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.close(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.ioctl(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.ioctl(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.ioctl(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.ioctl(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.ioctl(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.ioctl(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.read(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.read(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.read(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.read(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.read(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.read(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readinto(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readinto(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readinto(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readinto(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readinto(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readinto(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readline(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readline(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readline(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readline(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readline(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.readline(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.write(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.write(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.write(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.write(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.write(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-  • METHOD: websocket.write(self, *args, **kwargs)
-    Location: uwebsocket.pyi:0
-    Parameters: *args, **kwargs
-
-
-MODULE: vfs (264 functions/methods)
+MODULE: vfs (389 functions/methods)
 -----------------------
   • METHOD: VfsFat.chdir(self, *args, **kwargs)
     Location: vfs.pyi:0
@@ -9579,7 +10915,15 @@ MODULE: vfs (264 functions/methods)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: VfsFat.getcwd(self, *args, **kwargs)
+  • METHOD: VfsFat.chdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.chdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.chdir(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -9620,6 +10964,34 @@ MODULE: vfs (264 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: VfsFat.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.ilistdir(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -9711,7 +11083,15 @@ MODULE: vfs (264 functions/methods)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: VfsFat.mount(self, *args, **kwargs)
+  • METHOD: VfsFat.mkdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.mkdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.mkdir(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -9752,6 +11132,34 @@ MODULE: vfs (264 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: VfsFat.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.open(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -9843,7 +11251,15 @@ MODULE: vfs (264 functions/methods)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: VfsFat.rename(self, *args, **kwargs)
+  • METHOD: VfsFat.remove(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.remove(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.remove(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -9884,6 +11300,34 @@ MODULE: vfs (264 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: VfsFat.rename(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.rename(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.rename(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.rename(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.rename(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.rmdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.rmdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.rmdir(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -9975,6 +11419,30 @@ MODULE: vfs (264 functions/methods)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: VfsFat.stat(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.stat(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.stat(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.statvfs(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.statvfs(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.statvfs(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: VfsFat.statvfs(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
@@ -10060,6 +11528,78 @@ MODULE: vfs (264 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: VfsFat.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsFat.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.chdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.mkdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.remove(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.rename(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.rmdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.stat(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.statvfs(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs1.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.chdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.chdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.chdir(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -10151,7 +11691,15 @@ MODULE: vfs (264 functions/methods)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: VfsLfs2.ilistdir(self, *args, **kwargs)
+  • METHOD: VfsLfs2.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.getcwd(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -10192,6 +11740,34 @@ MODULE: vfs (264 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: VfsLfs2.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.mkdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.mkdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.mkdir(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -10283,7 +11859,15 @@ MODULE: vfs (264 functions/methods)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: VfsLfs2.open(self, *args, **kwargs)
+  • METHOD: VfsLfs2.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.mount(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -10324,6 +11908,34 @@ MODULE: vfs (264 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: VfsLfs2.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.remove(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.remove(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.remove(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -10415,7 +12027,15 @@ MODULE: vfs (264 functions/methods)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: VfsLfs2.rmdir(self, *args, **kwargs)
+  • METHOD: VfsLfs2.rename(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.rename(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.rename(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -10456,6 +12076,34 @@ MODULE: vfs (264 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: VfsLfs2.rmdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.rmdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.rmdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.rmdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.rmdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.stat(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.stat(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.stat(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -10547,7 +12195,15 @@ MODULE: vfs (264 functions/methods)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: VfsLfs2.umount(self, *args, **kwargs)
+  • METHOD: VfsLfs2.statvfs(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.statvfs(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.statvfs(self, *args, **kwargs)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
@@ -10591,8 +12247,188 @@ MODULE: vfs (264 functions/methods)
     Location: vfs.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: VfsLfs2.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
 
-MODULE: websocket (42 functions/methods)
+  • METHOD: VfsLfs2.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsLfs2.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.chdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.chdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.mkdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.mkdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.remove(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.remove(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.rename(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.rename(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.rmdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.rmdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.stat(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.stat(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.statvfs(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsPosix.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.__init__(self, *argv, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: VfsRom.__init__(self, *argv, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: VfsRom.chdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.chdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.getcwd(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.ilistdir(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.mount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.open(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.stat(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.stat(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.statvfs(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.statvfs(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: VfsRom.umount(self, *args, **kwargs)
+    Location: vfs.pyi:0
+    Parameters: *args, **kwargs
+
+
+MODULE: websocket (63 functions/methods)
 -----------------------------
   • METHOD: websocket.__init__(self, *argv, **kwargs)
     Location: websocket.pyi:0
@@ -10618,6 +12454,34 @@ MODULE: websocket (42 functions/methods)
     Location: websocket.pyi:0
     Parameters: **kwargs
 
+  • METHOD: websocket.__init__(self, *argv, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: websocket.__init__(self, *argv, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: websocket.__init__(self, *argv, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: **kwargs
+
+  • METHOD: websocket.close(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.close(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.close(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.close(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: websocket.close(self, *args, **kwargs)
     Location: websocket.pyi:0
     Parameters: *args, **kwargs
@@ -10638,7 +12502,15 @@ MODULE: websocket (42 functions/methods)
     Location: websocket.pyi:0
     Parameters: *args, **kwargs
 
-  • METHOD: websocket.close(self, *args, **kwargs)
+  • METHOD: websocket.ioctl(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.ioctl(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.ioctl(self, *args, **kwargs)
     Location: websocket.pyi:0
     Parameters: *args, **kwargs
 
@@ -10690,6 +12562,30 @@ MODULE: websocket (42 functions/methods)
     Location: websocket.pyi:0
     Parameters: *args, **kwargs
 
+  • METHOD: websocket.read(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.read(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.read(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.readinto(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.readinto(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.readinto(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
   • METHOD: websocket.readinto(self, *args, **kwargs)
     Location: websocket.pyi:0
     Parameters: *args, **kwargs
@@ -10735,6 +12631,30 @@ MODULE: websocket (42 functions/methods)
     Parameters: *args, **kwargs
 
   • METHOD: websocket.readline(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.readline(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.readline(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.readline(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.write(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.write(self, *args, **kwargs)
+    Location: websocket.pyi:0
+    Parameters: *args, **kwargs
+
+  • METHOD: websocket.write(self, *args, **kwargs)
     Location: websocket.pyi:0
     Parameters: *args, **kwargs
 
