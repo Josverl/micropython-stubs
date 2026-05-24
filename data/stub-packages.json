@@ -142,6 +142,20 @@
             ""
         ],
         [
+            "micropython-unix-stubs",
+            "1.28.0",
+            "unix",
+            "GENERIC",
+            ""
+        ],
+        [
+            "micropython-windows-stubs",
+            "1.28.0",
+            "windows",
+            "GENERIC",
+            ""
+        ],
+        [
             "micropython-esp32-esp32_generic-stubs",
             "1.27.0",
             "esp32",
