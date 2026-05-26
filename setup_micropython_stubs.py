@@ -22,7 +22,7 @@ from questionary import Style
 from questionary import print as qprint
 
 __version__ = "0.1.28"
-BRANCH_NAME = "copilot/create-micropython-stubs-script"
+BRANCH_NAME = "main"
 REPO_ROOT_URL = f"https://raw.githubusercontent.com/Josverl/micropython-stubs/{BRANCH_NAME}"
 DEFAULT_STUB_PACKAGES_URL = f"{REPO_ROOT_URL}/data/stub-packages.json"
 PYPROJECT_TEMPLATE_URL = f"{REPO_ROOT_URL}/examples/src/pyproject.toml"
