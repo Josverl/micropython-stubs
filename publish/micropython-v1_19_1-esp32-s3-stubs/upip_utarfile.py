@@ -76,7 +76,10 @@ class TarFile:
             return None
 
         d = TarInfo()
-        d.name = str(h.name, "utf-8").rstrip("\0")
+        name = str(h.name, "utf-8").rstrip("\0")
+        if name.startswith("/") or ".." in name.split("/"):
+            raise ValueError("unsafe tar entry")
+        d.name = name
         d.size = int(bytes(h.size), 8)
         d.type = [REGTYPE, DIRTYPE][d.name[-1] == "/"]
         self.subf = d.subf = FileSection(self.f, d.size, roundup(d.size, 512))
