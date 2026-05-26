@@ -482,15 +482,47 @@ def install_stubs(package: StubPackage, target: Path) -> None:
     version_specifier = _stub_version_specifier(package.version)
 
     target.mkdir(parents=True, exist_ok=True)
-    cmd = [
-        "uv",
-        "pip",
-        "install",
-        "-U",
-        f"{package.package}{version_specifier}",
-        "--target",
-        str(target),
-    ]
+    requirement = f"{package.package}{version_specifier}"
+
+    if shutil.which("uv"):
+        cmd = [
+            "uv",
+            "pip",
+            "install",
+            "-U",
+            requirement,
+            "--target",
+            str(target),
+        ]
+    elif shutil.which("pipx"):
+        cmd = [
+            "pipx",
+            "run",
+            "--spec",
+            "pip",
+            "pip",
+            "install",
+            "-U",
+            requirement,
+            "--target",
+            str(target),
+        ]
+    elif shutil.which("pip"):
+        cmd = [
+            "pip",
+            "install",
+            "-U",
+            "--no-user",
+            requirement,
+            "--target",
+            str(target),
+        ]
+    else:
+        raise RuntimeError(
+            "Could not install stubs: none of 'uv', 'pipx', or 'pip' is available. "
+            "Install uv, or install pipx/pip and retry."
+        )
+
     qprint(f"Install command: {' '.join(cmd)}", style=STYLE_NORMAL)
     result = subprocess.run(cmd, check=False, capture_output=True, text=True)
     if result.stdout:

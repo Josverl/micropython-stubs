@@ -47,7 +47,7 @@ This will create or update a pyproject.toml file , with the settings for your pr
 
 No need to wade through pages of documentation to get started, just run the script and you are good to go!
 
-**Note:** The setup script is in early beta, so expect some rough edges and please share your feedback and suggestions for improvement. Currently astral/uv is required, but support for pipx and other runners may be added in the future.
+**Note:** The setup script is in early beta, so expect some rough edges and please share your feedback and suggestions for improvement. `uv` is still the recommended runner for the one-line setup command above. For package installation, the script now auto-falls back to `pipx run --spec pip pip install ... --target ...` when `uv` is not available.
 
 #### Installation
 
