@@ -24,9 +24,30 @@ Stubs are like cheat sheets for your code. They provide hints, auto-completion, 
 
 <!-- ![demo](docs/img/demo.gif) -->
 
-#### Try it online
+#### One Click test in your bowser
 Try the stubs with your own code in your browser in the [Stubs Playground](https://josverl.github.io/stubs_playground/)
 
+#### One CLI install on your machine.
+
+Use the setup script to create a `pyproject.toml` using the test template and install stubs into `typings`:
+
+```bash
+uv run https://raw.githubusercontent.com/Josverl/micropython-stubs/refs/heads/main/setup_micropython_stubs.py
+```
+
+Allows you to select :
+- your project folder
+- the source layout of your project (src/flat) 
+- the static type checker you use (pyright, mypy, ty, none)
+- Select the stubs package you want to use
+
+![Screenshot of the setup script](docs/img/setup-stubs.png)
+
+This will create or update a pyproject.toml file , with the settings for your preferred type cheker or IDE  and install the stubs into a `typings` folder in your project folder.
+
+No need to wade through pages of documentation to get started, just run the script and you are good to go!
+
+**Note:** The setup script is in early beta, so expect some rough edges and please share your feedback and suggestions for improvement. Currently astral/uv is required, but support for pipx and other runners may be added in the future.
 
 #### Installation
 

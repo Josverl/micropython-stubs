@@ -3,6 +3,14 @@
 
 There are two main ways to install the stubs into your environment:
 
+## Quick setup script (`uv run`)
+
+Use the repository setup script to create a `pyproject.toml` using the test template and install stubs into `typings`:
+
+```bash
+uv run https://raw.githubusercontent.com/Josverl/micropython-stubs/refs/heads/main/setup_micropython_stubs.py
+```
+
 
 ## 1: Install to `typings` folder
 
@@ -81,5 +89,4 @@ micropython-esp32-stubs~=1.23.0
 Then install the stubs with `pip install -r requirements-dev.txt --target typings`.	
 
 :::
-
 

@@ -1,32 +1,50 @@
+# folder structure:
+# .
+# ├── pyproject.toml
+# └── src
+#   ├── main.py
+#   └── lib
+#     └── helper.py
 
 # ###################################################################
 # pyright options:
 
 [tool.pyright]
-include = ["."]
+include = ["src"]
+extraPaths = ["src/lib"]
 ignore = ["**/typings"]
 exclude = [
     ".*",
     "__*",
-    "**/typings",
+    "**/typings", 
+    "**/node_modules", 
+    "**/__pycache__", 
+    ".venv",
 ]
 
-typeCheckingMode = "basic"
+typeCheckingMode = "standard"
 stubPath = "typings"
 typeshedPath = "typings"
 pythonPlatform = "Linux"
 
 reportMissingModuleSource = "none"
-reportUnnecessaryTypeIgnoreComment = "error"
 
 # ###################################################################
-# mypy global options:
+# mypy options:
 [tool.mypy]
+# places to check
+files = "src/*.py"
+mypy_path = "src/lib,typings"
+
 platform = "linux"
-mypy_path = "typings"
-files = "*.py"
+custom_typeshed_dir = "typings" # allow mypy to use micropython-stdlib
 exclude = [
-    "typings[\\/].*",  # TOML basic string 
+    "typings[\\/].*",  # TOML basic string
+    ".*",
+    "__*",
+    "**/node_modules", 
+    "**/__pycache__", 
+    ".venv",
 ]
 
 follow_imports = "silent"
@@ -35,12 +53,28 @@ no_site_packages = true
 check_untyped_defs = true
 disable_error_code = ["no-redef","assignment"] 
 
-# snippets may re-use the same variable names
-allow_redefinition = true
 
-# other optional settings
-# warn-unused-ignores = true
-# warn_unused_configs = true
-# show_error_context = true
+# ###################################################################
+# ty options:
+
+[tool.ty.environment]
+python-platform = "linux"
+extra-paths = ["typings"]
+typeshed = "./typings-stdlib"  # This is a workaround for: https://github.com/astral-sh/ty/issues/523
+
+[tool.ty.src]
+include = ["src"]
+exclude = [
+    ".*",
+    "__*",
+    "typings/**",
+]
+
+[tool.ty.analysis]
+respect-type-ignore-comments = true
+
+[tool.ty.terminal]
+output-format = "full"
+error-on-warning = false
 
 # ###################################################################
