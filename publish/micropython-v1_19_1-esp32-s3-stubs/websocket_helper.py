@@ -33,15 +33,15 @@ def server_handshake(sock):
         if DEBUG:
             print((h, v))
         if h == b"Sec-WebSocket-Key":
-            webkey = v
+            webkey = v.strip()
 
-    if not webkey:
+    if not webkey or len(binascii.a2b_base64(webkey)) != 16:
         raise OSError("Not a websocket request")
 
     if DEBUG:
         print("Sec-WebSocket-Key:", webkey, len(webkey))
 
-    d = hashlib.sha1(webkey)
+    d = hashlib.sha1(binascii.a2b_base64(webkey))
     d.update(b"258EAFA5-E914-47DA-95CA-C5AB0DC85B11")
     respkey = d.digest()
     respkey = binascii.b2a_base64(respkey)[:-1]
