@@ -323,6 +323,20 @@ def _get_toml_section(existing_text: str, section_header: str) -> str | None:
     return match.group(0).rstrip() + "\n"
 
 
+def _toml_escape(value: str) -> str:
+    return value.replace("\\", "\\\\").replace('"', '\\"')
+
+
+def _initial_project_section(project_dir: Path) -> str:
+    project_name = _toml_escape(project_dir.resolve().name)
+    return (
+        "[project]\n"
+        f'name = "{project_name}"\n'
+        'version = "0.1.0"\n'
+        'description = "A MicroPython project"\n'
+    )
+
+
 def _render_optional_dependencies_body(existing_body: str, requirement: str, target: str) -> str:
     lines = existing_body.splitlines()
     cleaned: list[str] = []
@@ -368,6 +382,10 @@ def write_optional_dependencies(pyproject_path: Path, package: StubPackage, targ
     requirement = _stub_requirement(package)
     section_header = "project.optional-dependencies"
     existing_text = pyproject_path.read_text(encoding="utf-8") if pyproject_path.exists() else ""
+
+    if not existing_text.strip():
+        existing_text = _initial_project_section(pyproject_path.parent)
+
     current = _get_toml_section(existing_text, section_header=section_header)
 
     if current is None:
@@ -422,9 +440,13 @@ def ensure_gitignore_typings_with_mode(project_dir: Path, mode: str) -> None:
 def update_pyproject(pyproject_path: Path, section_header: str, section_text: str, force: bool = False) -> None:
     pyproject_path.parent.mkdir(parents=True, exist_ok=True)
     recommended = section_text.rstrip() + "\n"
+    initial_project = _initial_project_section(pyproject_path.parent)
 
     if pyproject_path.exists():
         existing = pyproject_path.read_text(encoding="utf-8")
+        if not existing.strip():
+            existing = initial_project
+
         existing_section = _get_toml_section(existing, section_header=section_header)
         if existing_section is None:
             merged = _upsert_toml_section(existing, section_header=section_header, section_text=section_text)
@@ -449,7 +471,10 @@ def update_pyproject(pyproject_path: Path, section_header: str, section_text: st
         qprint(f"Updated configuration section [{section_header}] in: {pyproject_path}", style=STYLE_NORMAL)
         return
 
-    pyproject_path.write_text(recommended, encoding="utf-8")
+    if section_header == "project":
+        pyproject_path.write_text(recommended, encoding="utf-8")
+    else:
+        pyproject_path.write_text(f"{initial_project}\n{recommended}", encoding="utf-8")
     qprint(f"Created configuration with section [{section_header}] in: {pyproject_path}", style=STYLE_NORMAL)
 
 
