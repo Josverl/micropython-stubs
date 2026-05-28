@@ -4,6 +4,10 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing import overload
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+from rp2 import bootsel_button
+from rp2.DMA import DMA
+from rp2.PIO import PIO
+from rp2.StateMachine import StateMachine
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from vfs import AbstractBlockDev
 
