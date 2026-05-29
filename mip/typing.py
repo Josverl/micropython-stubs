@@ -1,15 +1,14 @@
-__version__ = "1.27.0"
+__version__ = "1.28.0"
 
 
-def cast(type, val):
+def cast(_, val):
     return val
 
-
-def get_origin(type):
+def get_origin(_):
     return None
 
 
-def get_args(type):
+def get_args(_):
     return ()
 
 
@@ -17,7 +16,7 @@ def no_type_check(func):
     return func
 
 
-def overload(func):
+def overload(_):
     return None
 
 
@@ -26,13 +25,13 @@ def override(func):
 
 
 class _AnyCall:
-    def __init__(*args, **kwargs):
+    def __init__(*args, **_):
         pass
 
-    def __call__(*args, **kwargs):
+    def __call__(*args, **_):
         pass
 
-    def __getitem__(self, arg):
+    def __getitem__(self, _):
         return _anyCall
 
 
@@ -40,18 +39,18 @@ _anyCall = _AnyCall()
 
 
 class _SubscriptableType:
-    def __getitem__(self, arg):
+    def __getitem__(self, _):
         return _anyCall
 
 
 _Subscriptable = _SubscriptableType()
 
 
-def TypeVar(name, *types, bound: Any | None = None, covariant=False, contravariant=False, infer_variance=False):
+def TypeVar(_, *types, bound = None, covariant=False, contravariant=False, infer_variance=False):
     return None
 
 
-def NewType(name, type):
+def NewType(_, type):
     return type
 
 
@@ -125,7 +124,7 @@ class Protocol:
 
 AnyStr = str
 TypedDict = dict
-
+TypeAlias = object
 # Deprecated
 # Text = str
 # Pattern = str
@@ -154,13 +153,17 @@ Iterable = _Subscriptable
 Iterator = _Subscriptable
 List = _Subscriptable
 Literal = _Subscriptable
+LiteralString = _Subscriptable
 Mapping = _Subscriptable
 MutableMapping = _Subscriptable
 MutableSequence = _Subscriptable
 MutableSet = _Subscriptable
 NamedTuple = _Subscriptable
+NotRequired = _Subscriptable
 Optional = _Subscriptable
 OrderedDict = _Subscriptable
+ReadOnly = _Subscriptable
+Required = _Subscriptable
 Self = _Subscriptable
 Sequence = _Subscriptable
 Set = _Subscriptable
@@ -169,3 +172,8 @@ Type = _Subscriptable
 Union = _Subscriptable
 
 TYPE_CHECKING = False
+
+# snarky way to alias typing_extensions to typing ( saving 59 bytes)
+import sys
+sys.modules["typing_extensions"] = sys.modules["typing"]
+del sys
