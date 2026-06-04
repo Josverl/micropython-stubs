@@ -237,7 +237,7 @@ class ESPNow(ESPNowBase, Iterator):
                 `active()<network.WLAN.active>`.
               - ``OSError(num, "ESP_ERR_ESPNOW_NO_MEM")`` internal ESP-NOW buffers are
                 full.
-              - ``ValueError()`` on invalid values for the parameters.
+              - ``ValueError()`` or ``TypeError()`` on invalid values or types for the parameters.
         
             **Note**: A peer will respond with success if its wifi interface is
             `active()<network.WLAN.active>` and set to the same channel as the sender,
@@ -469,7 +469,7 @@ class ESPNow(ESPNowBase, Iterator):
                 - ``OSError(num, "ESP_ERR_ESPNOW_CHAN")`` if a channel value was
                   set that doesn't match the channel currently configured for this
                   interface.
-                - ``ValueError()`` on invalid keyword args or values.
+                - ``ValueError()`` or ``TypeError()`` on invalid keyword args or values.
         """
         ...
     def del_peer(self, mac) -> Incomplete:
@@ -485,7 +485,7 @@ class ESPNow(ESPNowBase, Iterator):
                 - ``OSError(num, "ESP_ERR_ESPNOW_NOT_INIT")`` if not initialised.
                 - ``OSError(num, "ESP_ERR_ESPNOW_NOT_FOUND")`` if *mac* is not
                   registered.
-                - ``ValueError()`` on invalid *mac* values.
+                - ``ValueError()`` or ``TypeError()`` on invalid *mac* values.
         """
         ...
     def get_peer(self, mac) -> Incomplete:
@@ -502,7 +502,7 @@ class ESPNow(ESPNowBase, Iterator):
                 - ``OSError(num, "ESP_ERR_ESPNOW_NOT_INIT")`` if not initialised.
                 - ``OSError(num, "ESP_ERR_ESPNOW_NOT_FOUND")`` if *mac* is not
                   registered.
-                - ``ValueError()`` on invalid *mac* values.
+                - ``ValueError()`` or ``TypeError()`` on invalid *mac* values.
         """
         ...
     def peer_count(self) -> int:
