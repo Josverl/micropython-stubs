@@ -24,10 +24,10 @@ from rp2.DMA import DMA
 from rp2.Flash import Flash
 from rp2.PIO import PIO
 from rp2.StateMachine import StateMachine
-from typing import Callable, Literal, Union, overload, List
+from rp2.asm_pio_rp2040 import *
 from micropython import const
 from rp2 import PIOASMEmit, _PIO_ASM_Program
-from rp2.asm_pio_rp2040 import *
+from typing import Callable, Literal, Union, overload, List
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from machine import Pin
 from vfs import AbstractBlockDev
