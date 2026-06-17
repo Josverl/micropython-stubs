@@ -256,7 +256,7 @@ def promote_mp_available_from_conditionals(folder: Path):
         while i < len(lines):
             line = lines[i]
             # Detect a top-level (unindented) platform conditional
-            if re.match(r"^if sys\.platform.*:$", line.rstrip()):
+            if re.match(r"^if sys\.platform.*:", line):
                 # Collect all lines that belong to this block (indented or blank)
                 j = i + 1
                 block: list[str] = []
@@ -269,8 +269,8 @@ def promote_mp_available_from_conditionals(folder: Path):
                         break
 
                 block_text = "".join(block)
-                has_mp_available = "@mp_available()  # force merge" in block_text
-                # Only promote blocks where every def is preceded by @mp_available()
+                has_mp_available = "@mp_available()" in block_text
+                # Only promote blocks where every def is immediately preceded by @mp_available()
                 non_blank = [bl for bl in block if bl.rstrip()]
                 has_undecorated_def = any(
                     bl.lstrip().startswith("def ")
