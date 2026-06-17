@@ -881,44 +881,44 @@ def stat(path:str|bytes) -> stat_result:
     """
     ...
 
-if sys.platform != "win32":
-    
-    @mp_available()  # force merge
-    def statvfs(path) -> Tuple:
-        """
-       Get the status of a filesystem.
-    
-       Returns a tuple with the filesystem information in the following order:
-    
-            * ``f_bsize`` -- file system block size
-            * ``f_frsize`` -- fragment size
-            * ``f_blocks`` -- size of fs in f_frsize units
-            * ``f_bfree`` -- number of free blocks
-            * ``f_bavail`` -- number of free blocks for unprivileged users
-            * ``f_files`` -- number of inodes
-            * ``f_ffree`` -- number of free inodes
-            * ``f_favail`` -- number of free inodes for unprivileged users
-            * ``f_flag`` -- mount flags
-            * ``f_namemax`` -- maximum filename length
-    
-       Parameters related to inodes: ``f_files``, ``f_ffree``, ``f_avail``
-       and the ``f_flags`` parameter may return ``0`` as they can be unavailable
-       in a port-specific implementation.
+# if sys.platform != "win32":
+
+@mp_available()  # force merge
+def statvfs(path) -> Tuple:
     """
-        ...
+   Get the status of a filesystem.
+
+   Returns a tuple with the filesystem information in the following order:
+
+        * ``f_bsize`` -- file system block size
+        * ``f_frsize`` -- fragment size
+        * ``f_blocks`` -- size of fs in f_frsize units
+        * ``f_bfree`` -- number of free blocks
+        * ``f_bavail`` -- number of free blocks for unprivileged users
+        * ``f_files`` -- number of inodes
+        * ``f_ffree`` -- number of free inodes
+        * ``f_favail`` -- number of free inodes for unprivileged users
+        * ``f_flag`` -- mount flags
+        * ``f_namemax`` -- maximum filename length
+
+   Parameters related to inodes: ``f_files``, ``f_ffree``, ``f_avail``
+   and the ``f_flags`` parameter may return ``0`` as they can be unavailable
+   in a port-specific implementation.
+"""
+    ...
 
 def symlink(
     src: StrOrBytesPath, dst: StrOrBytesPath, target_is_directory: bool = False, *, dir_fd: int | None = None
 ) -> None: ...
 
-if sys.platform != "win32":
-    
-    @mp_available()  # force merge
-    def sync() -> None:
-        """
-       Sync all filesystems.
+# if sys.platform != "win32":
+
+@mp_available()  # force merge
+def sync() -> None:
     """
-        ...
+   Sync all filesystems.
+"""
+    ...
 
 def truncate(path: FileDescriptorOrPath, length: int) -> None: ...  # Unix only up to version 3.4
 def unlink(path: StrOrBytesPath, *, dir_fd: int | None = None) -> None: ...

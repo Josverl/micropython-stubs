@@ -225,6 +225,81 @@ def update_module_vars(module: Path, keep: set):
                 f.write(line)
 
 
+def promote_mp_available_from_conditionals(folder: Path):
+    """
+    Promote ``@mp_available()  # force merge`` functions out of platform conditionals.
+
+    In typeshed some MicroPython functions (e.g. ``os.statvfs``, ``os.sync``) are only
+    defined inside ``if sys.platform != "win32":`` blocks.  On Windows, type-checkers
+    evaluate that condition as ``False`` and hide those functions, so
+    ``from os import statvfs`` reports an unknown import symbol.
+
+    This step comments out the conditional header and de-indents the function body so
+    the function is available unconditionally at module level — matching MicroPython's
+    behaviour where these functions exist on all supported platforms.
+
+    Only blocks whose entire non-blank content consists of ``@mp_available()``-decorated
+    functions are promoted; other platform-conditional blocks are left untouched.
+    """
+    for module in ["os"]:
+        file_path = folder / module / "__init__.pyi"
+        if not file_path.exists():
+            file_path = folder / f"{module}.pyi"
+            if not file_path.exists():
+                continue
+
+        lines = file_path.read_text(encoding="utf-8").splitlines(keepends=True)
+        new_lines: list[str] = []
+        i = 0
+        n_promoted = 0
+
+        while i < len(lines):
+            line = lines[i]
+            # Detect a top-level (unindented) platform conditional
+            if re.match(r"^if sys\.platform.*:$", line.rstrip()):
+                # Collect all lines that belong to this block (indented or blank)
+                j = i + 1
+                block: list[str] = []
+                while j < len(lines):
+                    bl = lines[j]
+                    if bl.rstrip() == "" or bl.startswith("    "):
+                        block.append(bl)
+                        j += 1
+                    else:
+                        break
+
+                block_text = "".join(block)
+                has_mp_available = "@mp_available()  # force merge" in block_text
+                # Only promote blocks where every def is preceded by @mp_available()
+                non_blank = [bl for bl in block if bl.rstrip()]
+                has_undecorated_def = any(
+                    bl.lstrip().startswith("def ")
+                    and (k == 0 or not non_blank[k - 1].lstrip().startswith("@mp_available()"))
+                    for k, bl in enumerate(non_blank)
+                )
+                if has_mp_available and not has_undecorated_def:
+                    # Comment out the conditional header and de-indent the block
+                    new_lines.append(f"# {line}")
+                    for bl in block:
+                        if bl.startswith("    "):
+                            new_lines.append(bl[4:])  # remove one level of indentation
+                        else:
+                            new_lines.append(bl)
+                    n_promoted += 1
+                    i = j
+                else:
+                    new_lines.append(line)
+                    new_lines.extend(block)
+                    i = j
+            else:
+                new_lines.append(line)
+                i += 1
+
+        if n_promoted:
+            file_path.write_text("".join(new_lines), encoding="utf-8")
+            log.info(f"Promoted {n_promoted} @mp_available() block(s) from platform conditionals in {module}")
+
+
 def add_type_ignore(folder: Path):
     """Add type ignores to some of the lines in the _typeshed stubs."""
     n = 0
@@ -579,6 +654,9 @@ def update(
             docstubs_path=docstubs_path,
             boardstub_path=boardstub_path,
         )
+
+    # promote @mp_available() functions trapped inside platform conditionals
+    promote_mp_available_from_conditionals(dist_stdlib_path / "stdlib")
 
     # tidy up the stubs
     do_post_processing([dist_stdlib_path / "stdlib"], stubgen=False, format=True, autoflake=True)
