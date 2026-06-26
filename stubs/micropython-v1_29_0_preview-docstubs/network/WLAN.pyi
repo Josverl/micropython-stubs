@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, List, Tuple
+from typing import overload, Any, List, Optional, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class WLAN:
@@ -308,3 +308,92 @@ class WLAN:
         bandwidth      (ESP32 Only.) WiFi channel bandwidth. See `WLAN.BANDWIDTH_20` and others.
         =============  ===========
         """
+    def csi_enable(self, buffer_size=16) -> None:
+        """
+        Enable CSI capture and allocate a circular buffer for received frames.
+
+        The optional ``buffer_size`` argument sets the number of frames stored before
+        new incoming frames are dropped. Larger values reduce drops at the cost of RAM. The
+        exact maximum depends on the build, but it is limited by the underlying
+        ringbuffer implementation to roughly 100 frames.
+
+        Raises ``OSError`` if CSI cannot be enabled, for example if Wi-Fi is not
+        active or the ESP-IDF rejects the configuration.
+
+        Example::
+
+           import network
+           import time
+
+           wlan = network.WLAN(network.WLAN.IF_STA)
+           wlan.active(True)
+           wlan.config(protocol=network.MODE_11B | network.MODE_11G | network.MODE_11N)
+           wlan.config(pm=wlan.PM_NONE)
+           wlan.connect("SSID", "password")
+
+           while not wlan.isconnected():
+               time.sleep_ms(100)
+
+           wlan.csi_enable(buffer_size=32)
+        """
+        ...
+    def csi_disable(self) -> None:
+        """
+        Disable CSI capture and clean up resources.
+        """
+        ...
+    def csi_read(self, result: Optional[Any] = None) -> Incomplete:
+        """
+        Read a CSI frame from the buffer.
+
+        **Returns:** A list containing CSI frame data, or ``None`` if no frames are
+        available.
+
+        If the optional ``result`` argument is provided, it must be a previous list
+        returned by `WLAN.csi_read()`. The list will be updated in place and
+        returned again. This reduces heap churn in busy read loops by reusing the
+        existing list object and, when the captured frame fits, the existing CSI
+        data ``bytearray``.
+
+        **Frame list fields (in order):**
+
+        * **0 - rssi** (int): Received signal strength in dBm
+        * **1 - channel** (int): Wi-Fi channel number
+        * **2 - mac** (bytes): Source MAC address (6 bytes)
+        * **3 - timestamp** (int): Timestamp in microseconds
+        * **4 - local_timestamp** (int): Local timestamp from Wi-Fi hardware
+        * **5 - data** (bytearray): CSI raw data (I/Q components as int8_t values)
+        * **6 - rate** (int): Data rate
+        * **7 - sig_mode** (int): Signal mode (legacy, HT, VHT)
+        * **8 - mcs** (int): Modulation and Coding Scheme index
+        * **9 - cwb** (int): Channel bandwidth
+        * **10 - smoothing** (int): Smoothing applied
+        * **11 - not_sounding** (int): Not sounding frame
+        * **12 - aggregation** (int): Aggregation
+        * **13 - stbc** (int): STBC
+        * **14 - fec_coding** (int): FEC coding
+        * **15 - sgi** (int): Short GI
+        * **16 - noise_floor** (int): Background noise level in dBm
+        * **17 - ampdu_cnt** (int): AMPDU count
+        * **18 - secondary_channel** (int): Secondary channel
+        * **19 - ant** (int): Antenna
+        * **20 - sig_len** (int): Signal length
+        * **21 - rx_state** (int): RX state
+
+        Some metadata fields may be ``0`` on targets where ESP-IDF does not provide
+        the corresponding value in the public CSI receive structure.
+        """
+        ...
+    def csi_available(self) -> int:
+        """
+        Get the number of CSI frames available in the buffer.
+        """
+        ...
+    def csi_dropped(self) -> int:
+        """
+        Get the number of CSI frames dropped due to buffer overflow.
+        Frames are dropped when the buffer is full and new frames arrive faster than
+        they can be read. Increase ``buffer_size`` in ``csi_enable()`` to reduce
+        drops.
+        """
+        ...
