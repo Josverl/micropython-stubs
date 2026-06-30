@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any
+from typing import overload, Any, Optional
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 from .Pin import Pin
 from machine.Pin import Pin, _PinLike
@@ -167,6 +167,13 @@ class Signal(Pin):
         to logical 0. For inverted/active-low signal, active status corresponds
         to logical 0, while inactive - to logical 1.
         """
+    def __call__(self, x: Optional[Any] = None) -> Incomplete:
+        """
+        Signal objects are callable.  The call method provides a (fast) shortcut to set
+        and get the value of the pin.  It is equivalent to Signal.value([x]).
+        See :meth:`Signal.value` for more details.
+        """
+        ...
     def on(self) -> None:
         """
         Activate signal.
