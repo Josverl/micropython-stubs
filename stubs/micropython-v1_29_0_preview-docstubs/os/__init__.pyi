@@ -174,6 +174,7 @@ def statvfs(path) -> Tuple:
 def sync() -> None:
     """
        Sync all filesystems.
+       On some ports this function isn't present because it isn't necessary to sync after writes to the file-system.
     """
     ...
 
