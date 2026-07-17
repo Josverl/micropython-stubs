@@ -312,6 +312,11 @@ class RTC:
         and 492 bytes on esp8266.
 
         Availability: esp32, esp8266 ports.
+
+        .. note::
+
+           For cross-port persistent storage, see :func:`machine.mem_backup`
+           which is available on more ports and provides direct memoryview access.
         """
         ...
 
@@ -330,5 +335,10 @@ class RTC:
         and 492 bytes on esp8266.
 
         Availability: esp32, esp8266 ports.
+
+        .. note::
+
+           For cross-port persistent storage, see :func:`machine.mem_backup`
+           which is available on more ports and provides direct memoryview access.
         """
         ...

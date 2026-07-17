@@ -282,6 +282,9 @@ class CAN:
 
         ``Note:`` This intentionally low-level implementation is designed so the
            caller can establish a software queue of outgoing messages.
+
+        ``Note:`` The **Alif** port always returns 0, since the transmit buffer index is not reported by
+            the CAN controller.
         """
         ...
     def recv(self, arg: list[Any] | None = None) -> __CANRecvResult | None:
@@ -396,6 +399,9 @@ class CAN:
         was definitely sent or not, but note there are potential race conditions if a
         transmission is cancelled and then the same buffer is used to send another
         message (especially if the CAN controller IRQ is not "hard").
+
+        ``Note:`` The **Alif** port cannot address a specific message to be cancelled.
+           Instead all messages in the TX queue will be cancelled.
         """
         ...
     def state(self) -> int:
@@ -430,6 +436,9 @@ class CAN:
 
         ``Note:`` If a controller doesn't support a particular counter, it will return
                   ``None`` for that list element.
+
+        ``Note:`` The **Alif** port cannot report the exact number of pending RX or TX messages. It
+                  will report a number > 0, if messages are pending.
         """
         ...
     def get_timings(self, list: __CANTimings | None = None, /) -> __CANTimings:
