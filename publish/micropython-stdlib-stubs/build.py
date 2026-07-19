@@ -171,7 +171,7 @@ class Boost:
     stub_name: str
     source: str = ""
     target: Union[Path, str] = ""
-    all: List[str] = field(default_factory=list)
+    all: List[str] = field(default_factory=list)  # type: ignore
 
     def __post_init__(self):
         self.source = self.source or self.stub_name
@@ -477,8 +477,11 @@ def update_asyncio_manual(reference_path: Path, dist_stdlib_path: Path):
     src_asyncio = reference_path / "stdlib/asyncio"
     dst_asyncio = dist_stdlib_path / "stdlib/asyncio"
     assert src_asyncio.exists(), f"src_asyncio {src_asyncio} does not exist"
+    # copy the asyncio module
     shutil.rmtree(dst_asyncio, ignore_errors=True)
     shutil.copytree(src_asyncio, dst_asyncio, dirs_exist_ok=True)
+    # copy _asyncio.pyi
+    shutil.copyfile(reference_path / "stdlib" / "_asyncio.pyi", dist_stdlib_path / "stdlib" / "_asyncio.pyi")
 
 
 @click.command()
