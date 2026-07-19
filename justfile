@@ -2,7 +2,7 @@
 
 # Set shell for Windows OSs:
 set windows-shell := ["pwsh.exe", "-NoLogo", "-Command"]
-# use uv
+# use uv for [script] tasks:
 set script-interpreter := ['uv', 'run', '--script']
 
 default:
