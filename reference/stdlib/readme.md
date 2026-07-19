@@ -24,3 +24,8 @@ Rather than try and rebuild the work that has been done in typeshed, I took the 
 - add asyncio.asyncio.wait_for_ms() - Not part of the .patch file
 
 See the [changes.patch](./changes.patch) file for a summary of all changes made to the original stubs.
+
+
+### Additiopnal changes  : 
+ - _asyncio .pyi added - minimal stub for the _asyncio module that closely follows MicroPython implementation.
+ - Adjusted asyncio.tasks.pyi and asyncio.event.pyi accordingly

@@ -1,11 +1,5 @@
 import ssl
 import sys
-from _asyncio import (
-    _get_running_loop as _get_running_loop,
-    _set_running_loop as _set_running_loop,
-    get_event_loop as get_event_loop,
-    get_running_loop as get_running_loop,
-)
 from _typeshed import FileDescriptorLike, ReadableBuffer, StrPath, Unused, WriteableBuffer
 from abc import ABCMeta, abstractmethod
 from collections.abc import Callable, Sequence
@@ -34,9 +28,6 @@ if sys.version_info >= (3, 14):
         "get_event_loop",
         "set_event_loop",
         "new_event_loop",
-        "_set_running_loop",
-        "get_running_loop",
-        "_get_running_loop",
     )
 else:
     __all__ = (
@@ -52,9 +43,6 @@ else:
         "new_event_loop",
         "get_child_watcher",
         "set_child_watcher",
-        "_set_running_loop",
-        "get_running_loop",
-        "_get_running_loop",
     )
 
 _T = TypeVar("_T")
@@ -72,7 +60,11 @@ class Handle:
     _cancelled: bool
     _args: Sequence[Any]
     def __init__(
-        self, callback: Callable[..., object], args: Sequence[Any], loop: AbstractEventLoop, context: Context | None = None  # type: ignore
+        self,
+        callback: Callable[..., object],
+        args: Sequence[Any],
+        loop: AbstractEventLoop,
+        context: Context | None = None,  # type: ignore
     ) -> None: ...
     def cancel(self) -> None: ...
     def _run(self) -> None: ...
@@ -141,11 +133,19 @@ class AbstractEventLoop:
         def call_soon(self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None) -> Handle: ...  # type: ignore
         @abstractmethod
         def call_later(
-            self, delay: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None  # type: ignore
+            self,
+            delay: float,
+            callback: Callable[[Unpack[_Ts]], object],
+            *args: Unpack[_Ts],
+            context: Context | None = None,  # type: ignore
         ) -> TimerHandle: ...
         @abstractmethod
         def call_at(
-            self, when: float, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None  # type: ignore
+            self,
+            when: float,
+            callback: Callable[[Unpack[_Ts]], object],
+            *args: Unpack[_Ts],
+            context: Context | None = None,  # type: ignore
         ) -> TimerHandle: ...
     else:
         @abstractmethod
@@ -176,7 +176,10 @@ class AbstractEventLoop:
     if sys.version_info >= (3, 9):  # "context" added in 3.9.10/3.10.2
         @abstractmethod
         def call_soon_threadsafe(
-            self, callback: Callable[[Unpack[_Ts]], object], *args: Unpack[_Ts], context: Context | None = None  # type: ignore
+            self,
+            callback: Callable[[Unpack[_Ts]], object],
+            *args: Unpack[_Ts],
+            context: Context | None = None,  # type: ignore
         ) -> Handle: ...
     else:
         @abstractmethod
@@ -632,6 +635,10 @@ def get_event_loop_policy() -> AbstractEventLoopPolicy: ...
 def set_event_loop_policy(policy: AbstractEventLoopPolicy | None) -> None: ...
 def set_event_loop(loop: AbstractEventLoop | None) -> None: ...
 def new_event_loop() -> AbstractEventLoop: ...
+
+# MicroPython: `get_event_loop` lives in `asyncio.core` (not `_asyncio`) and
+# accepts optional run/wait queue lengths.
+def get_event_loop(runq_len: int = 0, waitq_len: int = 0) -> AbstractEventLoop: ...
 
 if sys.version_info < (3, 14):
     if sys.version_info >= (3, 12):
