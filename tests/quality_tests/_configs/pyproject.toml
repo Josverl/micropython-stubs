@@ -10,7 +10,9 @@ exclude = [".*", "__*", "**/typings"]
 typeCheckingMode = "basic"
 stubPath = "typings"
 typeshedPath = "typings"
+pythonVersion = "3.9"
 pythonPlatform = "Linux"
+useLibraryCodeForTypes = false
 
 reportMissingModuleSource = "none"
 reportUnnecessaryTypeIgnoreComment = "error"
