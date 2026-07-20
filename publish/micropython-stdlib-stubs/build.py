@@ -296,6 +296,74 @@ def change_lines(folder: Path):
                 f.write(line)
 
 
+def patch_sys_implementation(dist_stdlib_path: Path):
+    """Patch sys.implementation typing to align with MicroPython runtime behavior."""
+    sys_stub = dist_stdlib_path / "stdlib/sys/__init__.pyi"
+    if not sys_stub.exists():
+        log.warning(f"Could not patch sys.implementation, file not found: {sys_stub}")
+        return
+
+    content = sys_stub.read_text(encoding="utf-8")
+    replacement = (
+        "class _implementation:\n"
+        "    name: str\n"
+        "    version: tuple[int, int, int, str]\n"
+        "    _machine: str\n"
+        "    _mpy: int\n"
+        "    _build: str\n"
+        "    _thread: str\n"
+        "    hexversion: int\n"
+        "    cache_tag: str\n"
+        "    # Define __getattr__, as the documentation states:\n"
+        "    # > sys.implementation may contain additional attributes specific to the Python implementation.\n"
+        "    # > These non-standard attributes must start with an underscore, and are not described here.\n"
+        "    def __getattr__(self, name: str) -> Any: ..."
+    )
+    patched, n = re.subn(
+        r"class _implementation:\n(?:    .*\n)+?    def __getattr__\(self, name: str\) -> Any: \.\.\.",
+        replacement,
+        content,
+        count=1,
+        flags=re.MULTILINE,
+    )
+
+    if n:
+        sys_stub.write_text(patched, encoding="utf-8")
+        log.info("Patched stdlib/sys/__init__.pyi for MicroPython sys.implementation")
+
+
+def patch_asyncio_support(reference_path: Path, dist_stdlib_path: Path):
+    """Ensure asyncio resolves Task/Future from MicroPython's private _asyncio module."""
+    stdlib_path = dist_stdlib_path / "stdlib"
+    asyncio_init = stdlib_path / "asyncio/__init__.pyi"
+    private_asyncio = stdlib_path / "_asyncio.pyi"
+    reference_asyncio = reference_path / "micropython/_asyncio/__init__.pyi"
+
+    if reference_asyncio.exists():
+        private_asyncio.write_text(reference_asyncio.read_text(encoding="utf-8"), encoding="utf-8")
+        log.info("Wrote stdlib/_asyncio.pyi from reference/micropython/_asyncio/__init__.pyi")
+    else:
+        log.warning("reference/micropython/_asyncio/__init__.pyi not found; skipped _asyncio overlay")
+
+    if not asyncio_init.exists():
+        log.warning(f"Could not patch asyncio __init__, file not found: {asyncio_init}")
+        return
+
+    init_content = asyncio_init.read_text(encoding="utf-8")
+    marker = "from .tasks import *"
+    task_alias = "from .tasks import Task as Task"
+    if marker in init_content and task_alias not in init_content:
+        init_content = init_content.replace(marker, f"{marker}\n{task_alias}", 1)
+        asyncio_init.write_text(init_content, encoding="utf-8")
+        log.info("Patched stdlib/asyncio/__init__.pyi to re-export Task")
+
+
+def apply_micropython_patches(reference_path: Path, dist_stdlib_path: Path):
+    """Apply deterministic MicroPython-specific patches after stdlib generation."""
+    patch_sys_implementation(dist_stdlib_path)
+    patch_asyncio_support(reference_path, dist_stdlib_path)
+
+
 def update_typing_pyi(
     rootpath: Path,
     dist_stdlib_path: Path,
@@ -595,6 +663,10 @@ def update(
 
     # hide cpython APIs by renaming defs in the stdlib stubs
     change_lines(dist_stdlib_path / "stdlib")
+
+    # Apply MicroPython-specific runtime compatibility patches that are not
+    # represented by upstream typeshed or docstub merges.
+    apply_micropython_patches(reference_path, dist_stdlib_path)
 
     # update the last changed date-time so uv can detect the update
     Path(dist_stdlib_path / "pyproject.toml").touch()
