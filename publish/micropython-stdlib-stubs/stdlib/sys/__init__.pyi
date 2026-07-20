@@ -42,7 +42,11 @@ if sys.platform == "win32":
 # exec_prefix: str
 # executable: str
 # float_repr_style: Literal["short", "legacy"]
-# hexversion: int
+# _machine: str
+    _mpy: int
+    _build: str
+    _thread: str
+    hexversion: int
 # last_type: type[BaseException] | None
 # last_value: BaseException | None
 # last_traceback: TracebackType | None
@@ -303,7 +307,11 @@ bare minimum is implemented in MicroPython.
 
 class _implementation:
     name: str
-    version: _version_info
+    version: tuple[int, int, int, str]
+    _machine: str
+    _mpy: int
+    _build: str
+    _thread: str
     hexversion: int
     cache_tag: str
     # Define __getattr__, as the documentation states:
