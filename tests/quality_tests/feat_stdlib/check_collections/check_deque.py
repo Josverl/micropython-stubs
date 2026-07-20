@@ -22,4 +22,4 @@ print(queue)  # Output: deque(['name', 'age', 'DOB', 'address', 'phone'])
 queue.remove("age")
 
 # Reversing deque
-queue.reverse()  # type: ignore
+queue.reverse()
