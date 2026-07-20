@@ -227,7 +227,7 @@ def update_module_vars(module: Path, keep: set):
 
 def promote_mp_available_from_conditionals(folder: Path):
     """
-    Promote ``@mp_available()  # force merge`` functions out of platform conditionals.
+    Promote ``@mp_available``-decorated functions out of platform conditionals.
 
     In typeshed some MicroPython functions (e.g. ``os.statvfs``, ``os.sync``) are only
     defined inside ``if sys.platform != "win32":`` blocks.  On Windows, type-checkers
@@ -238,15 +238,18 @@ def promote_mp_available_from_conditionals(folder: Path):
     the function is available unconditionally at module level — matching MicroPython's
     behaviour where these functions exist on all supported platforms.
 
-    Only blocks whose entire non-blank content consists of ``@mp_available()``-decorated
+    Only blocks whose entire non-blank content consists of ``@mp_available``-decorated
     functions are promoted; other platform-conditional blocks are left untouched.
     """
     for module in ["os"]:
-        file_path = folder / module / "__init__.pyi"
-        if not file_path.exists():
-            file_path = folder / f"{module}.pyi"
-            if not file_path.exists():
-                continue
+        candidates = [
+            folder / module / "__init__.pyi",
+            folder / module / f"{module}.pyi",
+            folder / f"{module}.pyi",
+        ]
+        file_path = next((p for p in candidates if p.exists()), None)
+        if file_path is None:
+            continue
 
         lines = file_path.read_text(encoding="utf-8").splitlines(keepends=True)
         new_lines: list[str] = []
@@ -269,12 +272,12 @@ def promote_mp_available_from_conditionals(folder: Path):
                         break
 
                 block_text = "".join(block)
-                has_mp_available = "@mp_available()" in block_text
-                # Only promote blocks where every def is immediately preceded by @mp_available()
+                has_mp_available = "@mp_available" in block_text
+                # Only promote blocks where every def is immediately preceded by @mp_available
                 non_blank = [bl for bl in block if bl.rstrip()]
                 has_undecorated_def = any(
                     bl.lstrip().startswith("def ")
-                    and (k == 0 or not non_blank[k - 1].lstrip().startswith("@mp_available()"))
+                    and (k == 0 or not non_blank[k - 1].lstrip().startswith("@mp_available"))
                     for k, bl in enumerate(non_blank)
                 )
                 if has_mp_available and not has_undecorated_def:
@@ -297,7 +300,7 @@ def promote_mp_available_from_conditionals(folder: Path):
 
         if n_promoted:
             file_path.write_text("".join(new_lines), encoding="utf-8")
-            log.info(f"Promoted {n_promoted} @mp_available() block(s) from platform conditionals in {module}")
+            log.info(f"Promoted {n_promoted} @mp_available block(s) from platform conditionals in {module}")
 
 
 def add_type_ignore(folder: Path):
