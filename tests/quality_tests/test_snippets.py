@@ -238,7 +238,12 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
 
 @pytest.mark.parametrize(
     "linter",
-    ["pyright", "mypy", "ruff", "basilisk"],
+    [
+        "pyright",
+        "mypy",
+        "ruff",
+        # "basilisk",  # TODO https://github.com/Nimblesite/Basilisk/issues/312
+    ],
 )
 def test_typecheck(
     linter: str,
