@@ -93,7 +93,7 @@ PORTBOARD_FEATURES = {
         "networking",
         "bluetooth:skip version",
         "aioble:skip version",
-    ],    
+    ],
     # "rp2-pimoroni_picolipo_16mb": CORE,
     "webassembly:skip version<1.23.0": CORE,
     "windows": CORE,
@@ -145,9 +145,7 @@ def _resolve_versions() -> list:
         versions = sorted(major_minor(all_versions), reverse=True)[:3]
 
         try:
-            _VERSIONS_CACHE_FILE.write_text(
-                json.dumps({"ts": time.time(), "versions": versions})
-            )
+            _VERSIONS_CACHE_FILE.write_text(json.dumps({"ts": time.time(), "versions": versions}))
         except Exception:
             pass  # best-effort; workers will still agree this run if call is stable
         return versions
@@ -176,9 +174,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
                 if ":" in portboard:
                     portboard, condition = portboard.split(":", 1)
                     port, board = port_and_board(portboard)
-                    if stub_ignore(
-                        condition, version, port, board, linter="pytest", is_source=False
-                    ):
+                    if stub_ignore(condition, version, port, board, linter="pytest", is_source=False):
                         continue
                 else:
                     port, board = port_and_board(portboard)
@@ -189,9 +185,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
                     if ":" in feature:
                         # Check version for features, split feature in name and version
                         feature, condition = feature.split(":", 1)
-                        if stub_ignore(
-                            condition, version, port, board, linter="pytest", is_source=False
-                        ):
+                        if stub_ignore(condition, version, port, board, linter="pytest", is_source=False):
                             continue
                     feature = feature.strip()
                     args_lst.append([src, version, portboard, feature])
@@ -225,9 +219,7 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         condition = condition[4:].strip()
     context = {}
     context["Version"] = Version
-    context["version"] = (
-        Version(version) if not version in ("latest", "-", "preview") else Version("9999.99.99")
-    )
+    context["version"] = Version(version) if not version in ("latest", "-", "preview") else Version("9999.99.99")
     context["port"] = port
     context["board"] = board
     context["linter"] = linter
@@ -236,7 +228,7 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         # transform : version>=1.20.1 to version>=Version('1.20.1') using a regular expression
         condition = re.sub(r"(\d+\.\d+\.\d+)", r"Version('\1')", condition.strip())
         result = eval(condition, context)
-        log.debug(f'stubs-ignore: {condition} -> {"Skip" if result else "Process"}')
+        log.debug(f"stubs-ignore: {condition} -> {'Skip' if result else 'Process'}")
     except Exception as e:
         log.warning(f"Incorrect stubs-ignore condition: `{condition}`\ncaused: {e}")
         result = False
@@ -246,7 +238,7 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
 
 @pytest.mark.parametrize(
     "linter",
-    ["pyright", "mypy", "ruff"],
+    ["pyright", "mypy", "ruff", "basilisk"],
 )
 def test_typecheck(
     linter: str,
@@ -265,7 +257,5 @@ def test_typecheck(
 
     log.info(f"Typecheck {linter} on {portboard}, {feature} {version} from {stub_source}")
 
-    info_msg, errorcount = run_typechecker(
-        snip_path_fx, version, portboard, pytestconfig, linter=linter
-    )
+    info_msg, errorcount = run_typechecker(snip_path_fx, version, portboard, pytestconfig, linter=linter)
     assert errorcount == 0, info_msg

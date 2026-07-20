@@ -19,7 +19,7 @@ HERE = Path(__file__).parent.absolute()
 @pytest.mark.parametrize("snip_path", [HERE / "feat_stdlib_only"], scope="session")
 @pytest.mark.parametrize(
     "linter",
-    ["pyright", "mypy"],
+    ["pyright", "mypy", "basilisk"],
 )
 def test_typecheck_stdlib_only(
     stub_source: str,

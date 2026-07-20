@@ -135,7 +135,7 @@ def run_typechecker(
         version (str): The version of the stubs.
         portboard (str): The portboard of the project.
         pytestconfig: The pytest configuration object.
-        linter (str): The type-checker to use ("pyright", "mypy", or "ruff").
+        linter (str): The type-checker to use ("pyright", "mypy", "ruff", or "basilisk").
 
     Returns:
         tuple: A tuple containing the information message and the number of errors found.
@@ -144,6 +144,8 @@ def run_typechecker(
     results = {}
     if linter == "pyright":
         results = check_with_pyright(snip_path)
+    elif linter == "basilisk":
+        results = check_with_basilisk(snip_path)
     elif linter == "mypy":
         patch = False
         try:
@@ -218,3 +220,77 @@ def check_with_pyright(snip_path: Path):
     except Exception:
         assert 0, "Could not load pyright's JSON output..."
     return results
+
+
+def check_with_basilisk(snip_path: Path):
+    cmd = ["basilisk", "check", "--output", "json", "."]
+    results = {}
+
+    cwd = Path.cwd()
+    os.chdir(snip_path)
+    try:
+        result = subprocess.run(cmd, capture_output=True, cwd=str(snip_path), encoding="utf-8")
+    except OSError as e:
+        raise e
+    finally:
+        os.chdir(cwd)
+
+    # basilisk returns 1 when diagnostics are found and >1 for operational failures.
+    if result.returncode > 1:
+        assert (
+            0
+        ), f"Basilisk failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
+
+    try:
+        basilisk_issues = json.loads(result.stdout or "[]")
+    except Exception:
+        assert 0, "Could not load basilisk JSON output..."
+
+    pyright_report = {
+        "generalDiagnostics": [],
+        "summary": {
+            "errorCount": 0,
+            "warningCount": 0,
+            "informationCount": 0,
+            "timeInSec": 0,
+            "filesAnalyzed": 0,
+        },
+    }
+
+    files_analyzed = set()
+    for issue in basilisk_issues:
+        rel_path = issue.get("path", "")
+        if rel_path:
+            file_path = str((snip_path / rel_path).resolve())
+            files_analyzed.add(file_path)
+        else:
+            file_path = str(snip_path)
+
+        severity = issue.get("severity", "error")
+        if severity not in {"error", "warning", "information"}:
+            severity = "error"
+
+        line = max(0, int(issue.get("line", 1)) - 1)
+        col = max(0, int(issue.get("col", 1)) - 1)
+        end_line = max(line, int(issue.get("end_line", line + 1)) - 1)
+        end_col = max(col, int(issue.get("end_col", col + 1)) - 1)
+
+        pyright_report["generalDiagnostics"].append(
+            {
+                "file": file_path,
+                "severity": severity,
+                "message": issue.get("message", ""),
+                "range": {
+                    "start": {"line": line, "character": col},
+                    "end": {"line": end_line, "character": end_col},
+                },
+                "rule": issue.get("code", ""),
+            }
+        )
+
+    for sev in ["error", "warning", "information"]:
+        count = len([d for d in pyright_report["generalDiagnostics"] if d["severity"] == sev])
+        pyright_report["summary"][f"{sev}Count"] = count
+    pyright_report["summary"]["filesAnalyzed"] = len(files_analyzed)
+
+    return pyright_report
