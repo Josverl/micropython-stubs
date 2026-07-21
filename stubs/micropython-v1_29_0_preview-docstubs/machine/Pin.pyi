@@ -397,14 +397,14 @@ class Pin:
         """
         Set pin to "0" output level.
 
-        Availability: mimxrt, nrf, renesas-ra, rp2, samd, stm32 ports.
+        Availability: mimxrt, nrf, psoc-edge, renesas-ra, rp2, samd, stm32 ports.
         """
         ...
     def high(self) -> None:
         """
         Set pin to "1" output level.
 
-        Availability: mimxrt, nrf, renesas-ra, rp2, samd, stm32 ports.
+        Availability: mimxrt, nrf, psoc-edge, renesas-ra, rp2, samd, stm32 ports.
         """
         ...
 
@@ -414,7 +414,7 @@ class Pin:
         Get or set the pin mode.
         See the constructor documentation for details of the ``mode`` argument.
 
-        Availability: cc3200, stm32 ports.
+        Availability: cc3200, psoc-edge, stm32 ports.
         """
 
     @overload
@@ -423,7 +423,7 @@ class Pin:
         Get or set the pin mode.
         See the constructor documentation for details of the ``mode`` argument.
 
-        Availability: cc3200, stm32 ports.
+        Availability: cc3200, psoc-edge, stm32 ports.
         """
 
     @overload
@@ -432,7 +432,7 @@ class Pin:
         Get or set the pin pull state.
         See the constructor documentation for details of the ``pull`` argument.
 
-        Availability: cc3200, stm32 ports.
+        Availability: cc3200, psoc-edge, stm32 ports.
         """
 
     @overload
@@ -441,7 +441,7 @@ class Pin:
         Get or set the pin pull state.
         See the constructor documentation for details of the ``pull`` argument.
 
-        Availability: cc3200, stm32 ports.
+        Availability: cc3200, psoc-edge, stm32 ports.
         """
 
     @overload
@@ -450,7 +450,7 @@ class Pin:
         Get or set the pin drive strength.
         See the constructor documentation for details of the ``drive`` argument.
 
-        Availability: cc3200 port.
+        Availability: cc3200, psoc-edge ports.
         """
         ...
 
@@ -460,12 +460,12 @@ class Pin:
         Get or set the pin drive strength.
         See the constructor documentation for details of the ``drive`` argument.
 
-        Availability: cc3200 port.
+        Availability: cc3200, psoc-edge ports.
         """
     def toggle(self) -> None:
         """
         Toggle output pin from "0" to "1" or vice-versa.
 
-        Availability: cc3200, esp32, esp8266, mimxrt, rp2, samd ports.
+        Availability: cc3200, esp32, esp8266, mimxrt, psoc-edge, rp2, samd ports.
         """
         ...

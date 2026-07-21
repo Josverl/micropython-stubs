@@ -60,25 +60,25 @@ class UART:
     """\
     IRQ trigger sources.
     
-    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
+    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200, psoc-edge.
     """
     IRQ_RX: Incomplete
     """\
     IRQ trigger sources.
     
-    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
+    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200, psoc-edge.
     """
     IRQ_TXIDLE: Incomplete
     """\
     IRQ trigger sources.
     
-    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
+    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200, psoc-edge.
     """
     IRQ_BREAK: Incomplete
     """\
     IRQ trigger sources.
     
-    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
+    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200, psoc-edge.
     """
     IDLE: int = ...
     INV_TX: int = ...
@@ -461,7 +461,7 @@ class UART:
             For the esp8266 and nrf ports the call returns while the last byte is sent.
             If required, a one character wait time has to be added in the calling script.
 
-        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, psoc-edge, renesas-ra
         """
         ...
     def txdone(self) -> bool:
@@ -475,7 +475,7 @@ class UART:
             of a transfer is still being sent. If required, a one character wait time has to be
             added in the calling script.
 
-        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, psoc-edge, renesas-ra
         """
         ...
     def irq(
