@@ -1,9 +1,9 @@
 from typing import Tuple
 from typing_extensions import TypeAlias
 
-# TODO ? Move into OS or vfs module ?
 
-StatResult: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int, int]
+
+MP_StatResult: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int, int]
 """A 10-tuple containing the result of an os.stat() call.
 The tuple contains the following values:
 - 0 st_mode: File mode (permissions and type)
@@ -20,7 +20,7 @@ The tuple contains the following values:
 https://docs.micropython.org/en/latest/library/os.html#os.stat
 https://docs.python.org/3/library/os.html#os.stat_result
 """
-StatVfsResult: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int, int]
+MP_StatVfsResult: TypeAlias = Tuple[int, int, int, int, int, int, int, int, int, int]
 """A 10-tuple containing the result of an os.statvfs() call.
 The tuple contains the following values:
 f_bsize – file system block size
@@ -39,7 +39,7 @@ https://docs.python.org/3/library/os.html#os.statvfs
 """
 
 
-def stat(path: str) -> StatResult:
+def stat(path: str) -> MP_StatResult:
     """
     Get the status of a file or directory.
 
@@ -49,7 +49,7 @@ def stat(path: str) -> StatResult:
     ...
 
 
-def statvfs(path: str) -> StatVfsResult:
+def statvfs(path: str) -> MP_StatVfsResult:
     """
     Get the status of a filesystem.
 

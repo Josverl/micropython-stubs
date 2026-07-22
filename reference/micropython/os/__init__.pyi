@@ -13,6 +13,7 @@ functions.
 from __future__ import annotations
 
 from _mpy_shed import mp_available
+from _mpy_shed.os_vfs import MP_StatResult, MP_StatVfsResult
 from typing import Any, Iterator, Optional, Tuple, Union, overload, IO
 from typing_extensions import deprecated
 
@@ -117,14 +118,15 @@ def rename(old_path, new_path) -> None:
     """
     ...
 
-def stat(path:str|bytes) -> Tuple:
+@mp_available()  # force merge
+def stat(path:str|bytes) -> MP_StatResult:
     """
     Get the status of a file or directory.
     """
     ...
 
 @mp_available()  # force merge
-def statvfs(path) -> Tuple:
+def statvfs(path) -> MP_StatVfsResult:
     """
     Get the status of a filesystem.
 
