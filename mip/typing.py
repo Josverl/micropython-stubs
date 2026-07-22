@@ -1,15 +1,14 @@
-__version__ = "1.27.0"
+__version__ = "1.28.0"
 
 
-def cast(type, val):
+def cast(_, val):
     return val
 
-
-def get_origin(type):
+def get_origin(_):
     return None
 
 
-def get_args(type):
+def get_args(_):
     return ()
 
 
@@ -17,41 +16,38 @@ def no_type_check(func):
     return func
 
 
-def overload(func):
+def overload(_):
     return None
 
 
 def override(func):
     return func
 
+def reveal_type(key):
+    return key
+
 
 class _AnyCall:
-    def __init__(*args, **kwargs):
+    def __init__(*args, **_):
         pass
 
-    def __call__(*args, **kwargs):
+    def __call__(*args, **_):
         pass
 
-    def __getitem__(self, arg):
+    def __getitem__(self, _):
         return _anyCall
 
 
 _anyCall = _AnyCall()
 
 
-class _SubscriptableType:
-    def __getitem__(self, arg):
-        return _anyCall
+def TypeVar(key, *types, bound = None, covariant=False, contravariant=False, infer_variance=False):
+    return key
 
+def TypeVarTuple(key):
+    return key
 
-_Subscriptable = _SubscriptableType()
-
-
-def TypeVar(name, *types, bound: Any | None = None, covariant=False, contravariant=False, infer_variance=False):
-    return None
-
-
-def NewType(name, type):
+def NewType(_, type):
     return type
 
 
@@ -125,47 +121,57 @@ class Protocol:
 
 AnyStr = str
 TypedDict = dict
-
+TypeAlias = object
 # Deprecated
 # Text = str
 # Pattern = str
 # Match = str
 
-AbstractSet = _Subscriptable
-AsyncContextManager = _Subscriptable
-AsyncGenerator = _Subscriptable
-AsyncIterable = _Subscriptable
-AsyncIterator = _Subscriptable
-Awaitable = _Subscriptable
-Callable = _Subscriptable
-ChainMap = _Subscriptable
-Collection = _Subscriptable
-Container = _Subscriptable
-ContextManager = _Subscriptable
-Coroutine = _Subscriptable
-Counter = _Subscriptable
-DefaultDict = _Subscriptable
-Deque = _Subscriptable
-Dict = _Subscriptable
-FrozenSet = _Subscriptable
-Generator = _Subscriptable
-Generic = _Subscriptable
-Iterable = _Subscriptable
-Iterator = _Subscriptable
-List = _Subscriptable
-Literal = _Subscriptable
-Mapping = _Subscriptable
-MutableMapping = _Subscriptable
-MutableSequence = _Subscriptable
-MutableSet = _Subscriptable
-NamedTuple = _Subscriptable
-Optional = _Subscriptable
-OrderedDict = _Subscriptable
-Self = _Subscriptable
-Sequence = _Subscriptable
-Set = _Subscriptable
-Tuple = _Subscriptable
-Type = _Subscriptable
-Union = _Subscriptable
+AbstractSet = _anyCall
+AsyncContextManager = _anyCall
+AsyncGenerator = _anyCall
+AsyncIterable = _anyCall
+AsyncIterator = _anyCall
+Awaitable = _anyCall
+Callable = _anyCall
+ChainMap = _anyCall
+Collection = _anyCall
+Container = _anyCall
+ContextManager = _anyCall
+Coroutine = _anyCall
+Counter = _anyCall
+DefaultDict = _anyCall
+Deque = _anyCall
+Dict = _anyCall
+FrozenSet = _anyCall
+Generator = _anyCall
+Generic = _anyCall
+Iterable = _anyCall
+Iterator = _anyCall
+List = _anyCall
+Literal = _anyCall
+LiteralString = _anyCall
+Mapping = _anyCall
+MutableMapping = _anyCall
+MutableSequence = _anyCall
+MutableSet = _anyCall
+NamedTuple = _anyCall
+NotRequired = _anyCall
+Optional = _anyCall
+OrderedDict = _anyCall
+ReadOnly = _anyCall
+Required = _anyCall
+Self = _anyCall
+Sequence = _anyCall
+Set = _anyCall
+Tuple = _anyCall
+Type = _anyCall
+Union = _anyCall
+Unpack = _anyCall
 
 TYPE_CHECKING = False
+
+# snarky way to alias typing_extensions to typing ( saving 59 bytes)
+import sys
+sys.modules["typing_extensions"] = sys.modules["typing"]
+del sys

@@ -41,7 +41,7 @@ _KNOWN_UNIX_VERSIONS = [
 
 
 @functools.lru_cache()
-def get_unix_docker_versions(minver: str = "v1.20.0") -> list:
+def get_unix_docker_versions(minver: str = "v1.20.0", max: int = 3) -> list:
     """
     Retrieve available version tags for the micropython/unix Docker image from Docker Hub.
 
@@ -55,6 +55,8 @@ def get_unix_docker_versions(minver: str = "v1.20.0") -> list:
 
     Args:
         minver: The minimum version to include (default: v1.20.0, when typing module support was added).
+        max: The maximum number of versions to return, keeping the most recent/highest ones
+            (default: 99). Use 0 for no limit.
 
     Returns:
         list: Sorted list of version strings (e.g. ["v1.20.0", "v1.21.0", ...]).
@@ -65,19 +67,16 @@ def get_unix_docker_versions(minver: str = "v1.20.0") -> list:
     version_pattern = re.compile(r"^v\d+\.\d+(\.\d+)?$")
 
     def _filter_and_sort(tags):
-        versions = [
-            t for t in tags if version_pattern.match(t) and Version(t.lstrip("v")) >= min_version
-        ]
-        return sorted(versions, key=lambda v: Version(v.lstrip("v")))
+        versions = [t for t in tags if version_pattern.match(t) and Version(t.lstrip("v")) >= min_version]
+        ordered = sorted(versions, key=lambda v: Version(v.lstrip("v")))
+        # Keep only the most recent (highest) `max` versions
+        return ordered[-max:] if max else ordered
 
     # Fast path: file cache fresh.
     try:
         if _DOCKER_TAGS_CACHE_FILE.exists():
             data = json.loads(_DOCKER_TAGS_CACHE_FILE.read_text())
-            if (
-                time.time() - float(data.get("ts", 0)) < _DOCKER_TAGS_CACHE_TTL
-                and data.get("minver") == minver
-            ):
+            if time.time() - float(data.get("ts", 0)) < _DOCKER_TAGS_CACHE_TTL and data.get("minver") == minver:
                 tags = data.get("tags")
                 if isinstance(tags, list) and tags:
                     return _filter_and_sort(tags)
@@ -90,10 +89,7 @@ def get_unix_docker_versions(minver: str = "v1.20.0") -> list:
         try:
             if _DOCKER_TAGS_CACHE_FILE.exists():
                 data = json.loads(_DOCKER_TAGS_CACHE_FILE.read_text())
-                if (
-                    time.time() - float(data.get("ts", 0)) < _DOCKER_TAGS_CACHE_TTL
-                    and data.get("minver") == minver
-                ):
+                if time.time() - float(data.get("ts", 0)) < _DOCKER_TAGS_CACHE_TTL and data.get("minver") == minver:
                     tags = data.get("tags")
                     if isinstance(tags, list) and tags:
                         return _filter_and_sort(tags)
@@ -113,9 +109,7 @@ def get_unix_docker_versions(minver: str = "v1.20.0") -> list:
             tags = list(_KNOWN_UNIX_VERSIONS)
 
         try:
-            _DOCKER_TAGS_CACHE_FILE.write_text(
-                json.dumps({"ts": time.time(), "minver": minver, "tags": tags})
-            )
+            _DOCKER_TAGS_CACHE_FILE.write_text(json.dumps({"ts": time.time(), "minver": minver, "tags": tags}))
         except Exception:
             pass
 
