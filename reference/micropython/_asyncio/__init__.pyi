@@ -1,14 +1,35 @@
 """
-Module: '_asyncio' on micropython-v1.28.0
-"""
+MicroPython's `_asyncio` C module.
 
-# MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv6m', 'version': '1.28.0', 'port': 'rp2', 'board': 'RPI_PICO', 'family': 'micropython', 'board_id': 'RPI_PICO', 'variant': '', 'cpu': 'RP2040'}
-# Stubber: v1.28.0
+Mirrors the C module in `extmod/modasyncio.c`, whose module globals table
+exports exactly `Task` and `TaskQueue` (plus `__name__`). `Future` is kept as a
+minimal generic base so the typeshed-derived `asyncio.futures` stub can still
+re-export `asyncio.Future` and so `Task` stays awaitable and typed.
+
+Types follow typeshed (so `asyncio.create_task(coro)` still infers
+`Task[<coro return type>]`), but the interface is trimmed to MicroPython's
+actual surface: no `result()` / `add_done_callback()` / `get_stack()`, no
+`contextvars`, and no CPython `sys.version_info` guards.
+
+The loop/task helper functions (`get_event_loop`, `current_task`,
+`_register_task`, ...) are NOT part of MicroPython's `_asyncio`: the real ones
+live in the `asyncio` package (`asyncio/core.py`) and the CPython-only internals
+do not exist in MicroPython at all. They are therefore defined in the `asyncio`
+package stubs (or omitted), not here.
+
+MicroPython docs: https://docs.micropython.org/en/latest/library/asyncio.html
+"""
 from __future__ import annotations
+
+from collections.abc import Awaitable, Coroutine, Generator
 
 from typing import Any, Callable, Coroutine, Generator, Generic, Iterator, Optional, TypeVar, Union
 
+from _typeshed import Incomplete
+
 _T = TypeVar("_T")
+_T_co = TypeVar("_T_co", covariant=True)
+
 
 class TaskQueue:
     """
@@ -67,7 +88,18 @@ class TaskQueue:
         ...
 
 
-class Task(Generic[_T]):
+# Micropython's `_asyncio` C module does not expose a `Future` class, 
+# but we define a minimal generic base so that `Task` can be awaitable and typed, 
+
+class _Future(Awaitable[_T]):
+    def __await__(self) -> Generator[Any, None, _T]: ...
+    def __iter__(self) -> Generator[Any, None, _T]: ...
+
+# `Task` is a covariant subclass of the (invariant) `Future`, mirroring typeshed.
+# That is sound here because MicroPython's `Task` has no `set_result()` (the only
+# reason `Future` would otherwise need to stay invariant).
+
+class Task(_Future[_T_co]):  # type: ignore[type-var]
     """
     A C implementation of an asyncio Task.
 
@@ -76,7 +108,7 @@ class Task(Generic[_T]):
     """
 
     # Attributes (accessible via attribute access)
-    coro: Coroutine[Any, Any, _T]
+    coro: Coroutine[Any, Any, _T_co]
     """The underlying coroutine"""
     data: Any
     """Task-specific data (used for queuing, cancellation, etc.)"""
@@ -96,13 +128,13 @@ class Task(Generic[_T]):
     ph_key: int
     """Priority heap key (typically a timestamp)"""
 
-    def __init__(self, coro: Coroutine[Any, Any, _T], context: Optional[Any] = None) -> None:
+    def __init__(self, coro: Coroutine[Any, Any, _T_co] | Generator[Any, None, _T_co], globals=None, /) -> None:
         """
         Create a new Task from a coroutine.
 
         Args:
             coro: The coroutine to wrap in a Task.
-            context: Optional asyncio context dictionary.
+            globals: Optional asyncio context dictionary (ignored).
         """
         ...
 
@@ -127,29 +159,12 @@ class Task(Generic[_T]):
         """
         ...
 
-    def __iter__(self) -> Iterator[Any]:
-        """
-        Make the task awaitable by implementing the iterator protocol.
-
-        This allows the task to be used with 'await' syntax.
-        """
-        ...
-
     def __next__(self) -> Any:
         """
         Implementation of the iterator protocol for awaitable tasks.
 
         Raises:
             StopIteration: When the task completes, with the result as the value.
-        """
-        ...
-
-    def __await__(self) -> Generator[Any, None, _T]:
-        """
-        Return an iterator used by ``await`` expressions.
-
-        Provided explicitly for static type checkers that require the
-        Awaitable protocol's ``__await__`` method.
         """
         ...
 

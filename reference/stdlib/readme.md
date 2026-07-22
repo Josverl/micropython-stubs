@@ -29,3 +29,4 @@ See the [changes.patch](./changes.patch) file for a summary of all changes made 
 ### Additiopnal changes  : 
  - _asyncio .pyi added - minimal stub for the _asyncio module that closely follows MicroPython implementation.
  - Adjusted asyncio.tasks.pyi and asyncio.event.pyi accordingly
+ - removed asyncio.futures.pyi
