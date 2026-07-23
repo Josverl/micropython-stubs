@@ -38,12 +38,12 @@ class _AnyCall:
 _anyCall = _AnyCall()
 
 
-class _SubscriptableType:
-    def __getitem__(self, _):
-        return _anyCall
+# class _anyCallType:
+#     def __getitem__(self, _):
+#         return _anyCall
 
 
-_Subscriptable = _SubscriptableType()
+# _anyCall = _anyCall
 
 
 def TypeVar(_, *types, bound = None, covariant=False, contravariant=False, infer_variance=False):
@@ -130,46 +130,46 @@ TypeAlias = object
 # Pattern = str
 # Match = str
 
-AbstractSet = _Subscriptable
-AsyncContextManager = _Subscriptable
-AsyncGenerator = _Subscriptable
-AsyncIterable = _Subscriptable
-AsyncIterator = _Subscriptable
-Awaitable = _Subscriptable
-Callable = _Subscriptable
-ChainMap = _Subscriptable
-Collection = _Subscriptable
-Container = _Subscriptable
-ContextManager = _Subscriptable
-Coroutine = _Subscriptable
-Counter = _Subscriptable
-DefaultDict = _Subscriptable
-Deque = _Subscriptable
-Dict = _Subscriptable
-FrozenSet = _Subscriptable
-Generator = _Subscriptable
-Generic = _Subscriptable
-Iterable = _Subscriptable
-Iterator = _Subscriptable
-List = _Subscriptable
-Literal = _Subscriptable
-LiteralString = _Subscriptable
-Mapping = _Subscriptable
-MutableMapping = _Subscriptable
-MutableSequence = _Subscriptable
-MutableSet = _Subscriptable
-NamedTuple = _Subscriptable
-NotRequired = _Subscriptable
-Optional = _Subscriptable
-OrderedDict = _Subscriptable
-ReadOnly = _Subscriptable
-Required = _Subscriptable
-Self = _Subscriptable
-Sequence = _Subscriptable
-Set = _Subscriptable
-Tuple = _Subscriptable
-Type = _Subscriptable
-Union = _Subscriptable
+AbstractSet = _anyCall
+AsyncContextManager = _anyCall
+AsyncGenerator = _anyCall
+AsyncIterable = _anyCall
+AsyncIterator = _anyCall
+Awaitable = _anyCall
+Callable = _anyCall
+ChainMap = _anyCall
+Collection = _anyCall
+Container = _anyCall
+ContextManager = _anyCall
+Coroutine = _anyCall
+Counter = _anyCall
+DefaultDict = _anyCall
+Deque = _anyCall
+Dict = _anyCall
+FrozenSet = _anyCall
+Generator = _anyCall
+Generic = _anyCall
+Iterable = _anyCall
+Iterator = _anyCall
+List = _anyCall
+Literal = _anyCall
+LiteralString = _anyCall
+Mapping = _anyCall
+MutableMapping = _anyCall
+MutableSequence = _anyCall
+MutableSet = _anyCall
+NamedTuple = _anyCall
+NotRequired = _anyCall
+Optional = _anyCall
+OrderedDict = _anyCall
+ReadOnly = _anyCall
+Required = _anyCall
+Self = _anyCall
+Sequence = _anyCall
+Set = _anyCall
+Tuple = _anyCall
+Type = _anyCall
+Union = _anyCall
 
 TYPE_CHECKING = False
 
