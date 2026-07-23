@@ -10,6 +10,7 @@ classifiers = [
 ]
 readme = "README.md"
 license = "MIT"
+requires-python = ">=3.10"
 dependencies = []
 
 [build-system]
@@ -32,15 +33,17 @@ test = [
 # for quality reporting
 "pytest",
 "pytest-xdist",
-"pyright>=1.1.341",
-"mypy",
-"ruff",
 "fasteners",
 "python-dotenv",
 "pydocstyle",
 "loguru",
 "mypy_gitlab_code_quality",
 "requests",
+# typecheckers
+"pyright>=1.1.341",
+"mypy",
+"ruff",
+"basilisk-python",
 ]
 
 stats = [

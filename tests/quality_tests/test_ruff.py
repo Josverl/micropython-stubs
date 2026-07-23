@@ -37,7 +37,6 @@ def test_ruff(
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
 ):
-
     if not snip_path_fx or not snip_path_fx.exists():
         pytest.skip(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)

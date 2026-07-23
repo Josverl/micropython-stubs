@@ -103,7 +103,7 @@ def filter_issues(issues: List[Dict], version: str, *, linter: str, portboard: s
         try:
             filename = Path(issue["file"])
             if filename.exists() and filename.is_file():
-                with open(filename, "r") as f:
+                with open(filename, "r", encoding="utf-8") as f:
                     lines = f.readlines()
                 line = issue["range"]["start"]["line"]
                 if len(lines) > line:

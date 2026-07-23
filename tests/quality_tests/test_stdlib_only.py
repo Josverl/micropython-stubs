@@ -19,7 +19,17 @@ HERE = Path(__file__).parent.absolute()
 @pytest.mark.parametrize("snip_path", [HERE / "feat_stdlib_only"], scope="session")
 @pytest.mark.parametrize(
     "linter",
-    ["pyright", "mypy", "basilisk"],
+    [
+        "pyright",
+        "mypy",
+        pytest.param(
+            "basilisk",
+            marks=pytest.mark.xfail(
+                reason="Basilisk support is experimental - https://github.com/Nimblesite/Basilisk/issues/312",
+                strict=False,
+            ),
+        ),
+    ],
 )
 def test_typecheck_stdlib_only(
     stub_source: str,

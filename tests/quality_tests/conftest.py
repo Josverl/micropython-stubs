@@ -17,7 +17,7 @@
 - copy_type_stubs_fx
   Links the cached type stubs into the isolated workspace for each test.
 
-- pytest_runtest_makereport 
+- pytest_runtest_makereport
   is used to add the caplog to the test report to make it avaialble to VSCode test explorer
 
 """
@@ -207,12 +207,7 @@ def pytest_runtest_makereport(item, call):
         if not "caplog" in item.funcargs:
             return
         caplog = item.funcargs["caplog"]
-        report_txt = (
-            "\n"
-            + "\n".join([r.message for r in caplog.records])
-            + "\n\n"
-            + str(report.longreprtext)
-        )
+        report_txt = "\n" + "\n".join([r.message for r in caplog.records]) + "\n\n" + str(report.longreprtext)
         report.longrepr = report_txt
 
         return report
@@ -505,6 +500,4 @@ def snipcount(terminalreporter, status: str):
     # Count the number of test snippets that have a given status
     if not terminalreporter.stats.get(status, []):
         return 0
-    return len(
-        [rep for rep in terminalreporter.stats[status] if rep.nodeid.startswith(SNIPPETS_PREFIX)]
-    )
+    return len([rep for rep in terminalreporter.stats[status] if rep.nodeid.startswith(SNIPPETS_PREFIX)])

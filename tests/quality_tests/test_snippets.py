@@ -163,7 +163,13 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         "pyright",
         "mypy",
         "ruff",
-        # "basilisk",  # TODO https://github.com/Nimblesite/Basilisk/issues/312
+        pytest.param(
+            "basilisk",
+            marks=pytest.mark.xfail(
+                reason="Basilisk support is experimental - https://github.com/Nimblesite/Basilisk/issues/312",
+                strict=False,
+            ),
+        ),
     ],
 )
 def test_typecheck(
