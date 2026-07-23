@@ -57,6 +57,7 @@ from typing_extensions import Awaitable, TypeVar, Self, TypeAlias, Unpack, depre
 
 # from . import path as _path
 from _mpy_shed import mp_available, uname_result
+from _mpy_shed.os_vfs import MP_StatResult, MP_StatVfsResult
 
 if sys.version_info >= (3, 9):
     from types import GenericAlias
@@ -875,7 +876,9 @@ def scandir(path: None = None) -> _ScandirIterator[str]: ...
 def scandir(path: int) -> _ScandirIterator[str]: ...
 @overload
 def scandir(path: GenericPath[AnyStr]) -> _ScandirIterator[AnyStr]: ...
-def stat(path:str|bytes) -> stat_result:
+
+@mp_available()  # force merge
+def stat(path:str|bytes) -> MP_StatResult:
     """
        Get the status of a file or directory.
     """
@@ -884,7 +887,7 @@ def stat(path:str|bytes) -> stat_result:
 if sys.platform != "win32":
     
     @mp_available()  # force merge
-    def statvfs(path) -> Tuple:
+    def statvfs(path) -> MP_StatVfsResult:
         """
        Get the status of a filesystem.
     

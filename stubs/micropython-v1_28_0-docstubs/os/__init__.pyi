@@ -17,6 +17,8 @@ from _typeshed import Incomplete
 from typing import Union, overload, IO, Any, Iterator, Optional, Tuple
 from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
 from _mpy_shed import mp_available, uname_result
+from _mpy_shed.os_vfs import MP_StatResult, MP_StatVfsResult
+
 @deprecated("The `VfsFat` class is deprecated, use `vfs.VfsFat` instead.")
 class VfsFat():
     """
@@ -140,14 +142,16 @@ def rename(old_path, new_path) -> None:
        Rename a file.
     """
     ...
-def stat(path:str|bytes) -> Tuple:
+
+@mp_available()  # force merge
+def stat(path:str|bytes) -> MP_StatResult:
     """
        Get the status of a file or directory.
     """
     ...
 
 @mp_available()  # force merge
-def statvfs(path) -> Tuple:
+def statvfs(path) -> MP_StatVfsResult:
     """
        Get the status of a filesystem.
     
