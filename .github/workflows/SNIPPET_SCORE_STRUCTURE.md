@@ -127,7 +127,7 @@ VERSION_TYPE: recent_majors
 
 ### Comparison Logic
 
-The `compare_score_v2.py` script:
+The `compare_score.py` script:
 
 1. Loads baseline from `$SNIPPET_SCORE` environment variable
 2. Loads new results from `results/snippet_score.json`
@@ -178,7 +178,7 @@ export TEST_VERSION=v1.27.0
 export SNIPPET_SCORE='{"stable": {"v1.27.0": {"pass_rate": 0.95, ...}}, ...}'
 
 # Run comparison
-python .github/workflows/compare_score_v2.py
+python .github/workflows/compare_score.py
 ```
 
 ## Migration from Old Format
