@@ -1,5 +1,5 @@
 name: test_stub_quality
-on: [ pull_request, workflow_dispatch] # Not on push to avoid wasting 15 mins CPU 
+on: [pull_request, workflow_dispatch] # Not on push to avoid wasting 15 mins CPU
 
 env:
   # Setting an environment variable with the value of a configuration variable
@@ -7,7 +7,6 @@ env:
   GH_TOKEN_VARS: ${{ secrets.GH_TOKEN_VARS }}
   # fix:  DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs
   JUPYTER_PLATFORM_DIRS: "1"
-
 
 jobs:
   # Test with --stable-only: current stable release (BLOCKING - will fail workflow)
@@ -18,7 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       #----------------------------------------------
-
       - name: Install the latest version of uv
         uses: astral-sh/setup-uv@v6
         # Note: https://github.com/marketplace/actions/astral-sh-setup-uv#activate-environment
@@ -42,13 +40,12 @@ jobs:
           uv venv
           uv pip install -U -r pyproject.toml --extra stubber --extra test
 
-
       #----------------------------------------------
       # stubber clone
       # repos needed for tests
       #----------------------------------------------
       - name: stubber clone
-        run: | 
+        run: |
           uv run stubber clone
 
       - name: Get stable version
@@ -62,7 +59,6 @@ jobs:
         continue-on-error: true
         run: |
           uv run pytest -m 'snippets' --stable-only --cache-clear --junitxml=./results/results.xml
-
 
       - name: Compare and update (stable - will fail on drop)
         env:
@@ -183,4 +179,3 @@ jobs:
         with:
           name: snippet-results-recent-${{ github.run_id }}
           path: results/
-
