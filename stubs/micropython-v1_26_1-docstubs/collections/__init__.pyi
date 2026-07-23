@@ -20,6 +20,7 @@ from collections.abc import Iterable, MutableSequence
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
 _T = TypeVar("_T")
+
 class deque(MutableSequence[_T]):
     """
     Minimal implementation of a deque that implements a FIFO buffer.
@@ -38,41 +39,41 @@ class deque(MutableSequence[_T]):
 
             - The optional *flags* can be 1 to check for overflow when adding items.
         """
-        ...
     def append(self, x: _T, /) -> None:
         """
-                Add *x* to the right side of the deque.
-                Raises ``IndexError`` if overflow checking is enabled and there is
-                no more room in the queue.
+        Add *x* to the right side of the deque.
+        Raises ``IndexError`` if overflow checking is enabled and there is
+        no more room in the queue.
         """
         ...
     def appendleft(self, x: _T, /) -> None:
         """
-                Add *x* to the left side of the deque.
-                Raises ``IndexError`` if overflow checking is enabled and there is
-                no more room in the queue.
+        Add *x* to the left side of the deque.
+        Raises ``IndexError`` if overflow checking is enabled and there is
+        no more room in the queue.
         """
         ...
     def pop(self) -> _T:
         """
-                Remove and return an item from the right side of the deque.
-                Raises ``IndexError`` if no items are present.
+        Remove and return an item from the right side of the deque.
+        Raises ``IndexError`` if no items are present.
         """
         ...
     def popleft(self) -> _T:
         """
-                Remove and return an item from the left side of the deque.
-                Raises ``IndexError`` if no items are present.
+        Remove and return an item from the left side of the deque.
+        Raises ``IndexError`` if no items are present.
         """
         ...
     def extend(self, iterable: Iterable[_T], /) -> None:
         """
-                Extend the deque by appending all the items from *iterable* to
-                the right of the deque.
-                Raises ``IndexError`` if overflow checking is enabled and there is
-                no more room in the deque.
+        Extend the deque by appending all the items from *iterable* to
+        the right of the deque.
+        Raises ``IndexError`` if overflow checking is enabled and there is
+        no more room in the deque.
         """
         ...
+
 class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
     """
     ``dict`` type subclass which remembers and preserves the order of keys
@@ -97,24 +98,24 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
         w 5
         b 3
     """
-    def __init__(self, *args, **kwargs) -> None:
-        ...
+    def __init__(self, *args, **kwargs) -> None: ...
+
 def namedtuple(name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
     """
-        This is factory function to create a new namedtuple type with a specific
-        name and set of fields. A namedtuple is a subclass of tuple which allows
-        to access its fields not just by numeric index, but also with an attribute
-        access syntax using symbolic field names. Fields is a sequence of strings
-        specifying field names. For compatibility with CPython it can also be a
-        a string with space-separated field named (but this is less efficient).
-        Example of use::
-    
-            from collections import namedtuple
-    
-            MyTuple = namedtuple("MyTuple", ("id", "name"))
-            t1 = MyTuple(1, "foo")
-            t2 = MyTuple(2, "bar")
-            print(t1.name)
-            assert t2.name == t2[1]
+    This is factory function to create a new namedtuple type with a specific
+    name and set of fields. A namedtuple is a subclass of tuple which allows
+    to access its fields not just by numeric index, but also with an attribute
+    access syntax using symbolic field names. Fields is a sequence of strings
+    specifying field names. For compatibility with CPython it can also be a
+    a string with space-separated field named (but this is less efficient).
+    Example of use::
+
+        from collections import namedtuple
+
+        MyTuple = namedtuple("MyTuple", ("id", "name"))
+        t1 = MyTuple(1, "foo")
+        t2 = MyTuple(2, "bar")
+        print(t1.name)
+        assert t2.name == t2[1]
     """
     ...
