@@ -42,7 +42,6 @@ def test_typecheck_stdlib_only(
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
 ):
-
     if not snip_path or not snip_path.exists():
         FileNotFoundError(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)
