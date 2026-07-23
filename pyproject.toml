@@ -10,6 +10,7 @@ classifiers = [
 ]
 readme = "README.md"
 license = "MIT"
+requires-python = ">=3.10"
 dependencies = []
 
 [build-system]
@@ -32,15 +33,17 @@ test = [
 # for quality reporting
 "pytest",
 "pytest-xdist",
-"pyright>=1.1.341",
-"mypy",
-"ruff",
 "fasteners",
 "python-dotenv",
 "pydocstyle",
 "loguru",
 "mypy_gitlab_code_quality",
 "requests",
+# typecheckers
+"pyright>=1.1.341",
+"mypy",
+"ruff",
+"basilisk-python",
 ]
 
 stats = [
@@ -159,6 +162,37 @@ markers = ["snippets: test snippets to check the stub quality"]
 
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
+exclude = [
+    "dist", 
+    "repos",
+    # defaults 
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+    ]
 
 # Same as Black.
 line-length = 140
@@ -170,7 +204,6 @@ target-version = "py39"
 [tool.ruff.format]
 # Like Black, use double quotes for strings.
 quote-style = "double"
-exclude = [".*", "__*", "dist", "repos"]
 
 # Like Black, indent with spaces, rather than tabs.
 indent-style = "space"

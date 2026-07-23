@@ -3,6 +3,7 @@ from pathlib import Path
 
 import pytest
 from typecheck import run_typechecker
+from conftest import get_test_versions
 
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
@@ -13,15 +14,18 @@ HERE = Path(__file__).parent.absolute()
 
 SOURCES = ["local"]
 
-# running test for all issues , so need to test with boards that have as much functionality as possible
-@pytest.mark.parametrize("portboard", ["esp32","rp2-rpi_pico_w"], scope="session")
-@pytest.mark.parametrize("version", ["v1.24.1", "v1.25.0", "v1.26.0", "v1.28.0"], scope="session")
-@pytest.mark.parametrize("feature", ["mypy"], scope="session")
-@pytest.mark.parametrize("stub_source", SOURCES, scope="session")
-@pytest.mark.parametrize(
-    "linter",
-    ["mypy"],
-)
+
+def pytest_generate_tests(metafunc: pytest.Metafunc):
+    """Generate test parameters dynamically, respecting --stable-only flag."""
+    if "test_mypy" in metafunc.function.__name__:
+        versions = get_test_versions(metafunc.config)
+        metafunc.parametrize("portboard", ["esp32", "rp2-rpi_pico_w"], scope="session")
+        metafunc.parametrize("version", versions, scope="session")
+        metafunc.parametrize("feature", ["mypy"], scope="session")
+        metafunc.parametrize("stub_source", SOURCES, scope="session")
+        metafunc.parametrize("linter", ["mypy"])
+
+
 def test_mypy(
     stub_source: str,
     portboard: str,
@@ -33,7 +37,6 @@ def test_mypy(
     caplog: pytest.LogCaptureFixture,
     pytestconfig: pytest.Config,
 ):
-
     if not snip_path_fx or not snip_path_fx.exists():
         pytest.skip(f"no feature folder for {feature}")
     caplog.set_level(logging.INFO)

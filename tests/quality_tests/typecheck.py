@@ -78,9 +78,7 @@ def stub_ignore(line, version, port, board, linter, is_source=True) -> bool:
         condition = condition[4:].strip()
     context = {}
     context["Version"] = Version
-    context["version"] = (
-        Version(version) if not version in {"preview", "latest", "-"} else Version("9999.99.99")
-    )
+    context["version"] = Version(version) if not version in {"preview", "latest", "-"} else Version("9999.99.99")
     context["port"] = port
     context["board"] = board
     context["linter"] = linter
@@ -103,7 +101,7 @@ def filter_issues(issues: List[Dict], version: str, *, linter: str, portboard: s
         try:
             filename = Path(issue["file"])
             if filename.exists() and filename.is_file():
-                with open(filename, "r") as f:
+                with open(filename, "r", encoding="utf-8") as f:
                     lines = f.readlines()
                 line = issue["range"]["start"]["line"]
                 if len(lines) > line:
@@ -178,7 +176,7 @@ def run_typechecker(
         # try to make a VSCode clickable link in the pytest output
         # Python style links: From "<path>", line <line>
         # <path>(<line>,<column>):<message>
-        msg = f"\"{relative}\"({issue['range']['start']['line']+1},{issue['range']['start']['character']}): {issue['message']}"
+        msg = f'"{relative}"({issue["range"]["start"]["line"] + 1},{issue["range"]["start"]["character"]}): {issue["message"]}'
         # caplog.messages.append(msg)
         if issue["severity"] == "error":
             log.error(msg)
@@ -212,9 +210,7 @@ def check_with_pyright(snip_path: Path):
     finally:
         os.chdir(cwd)
     if result.returncode >= 2:
-        assert (
-            0
-        ), f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
+        assert 0, f"Pyright failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
     try:
         results = json.loads(result.stdout)
     except Exception:
@@ -237,9 +233,7 @@ def check_with_basilisk(snip_path: Path):
 
     # basilisk returns 1 when diagnostics are found and >1 for operational failures.
     if result.returncode > 1:
-        assert (
-            0
-        ), f"Basilisk failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
+        assert 0, f"Basilisk failed with returncode {result.returncode}: {result.stdout}\n{result.stderr}"
 
     try:
         basilisk_issues = json.loads(result.stdout or "[]")

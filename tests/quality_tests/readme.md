@@ -12,46 +12,127 @@ Please read : https://typing.readthedocs.io/en/latest/source/quality.html#testin
 Note: In order to get the correct typechecking for each of the folders/mcu architectures,  
 you should open/add this folder to a VSCode workspace workspace or open it in a seperate VSCode window
 
-You can update / install the type-stubs in the various typings folders by running the following command:
+You can update / install the type-stubs in the various `typings` folders using the [`just`](https://just.systems) recipes from the repo root (these run on both Windows and Ubuntu):
 
-```powershell
-# Update the type stubs
-# , "v1.18.0", "v1.17.0"
-foreach ($version in @( "latest","v1.21.0", "v1.20.0", "v1.19.1" )) {
-    stubber get-docstubs --version $version
-    stubber get-frozen --version $version
-    stubber merge --version $version --port auto --board auto
-    stubber build --version $version --port auto --board auto
-}
+```console
+# build all stubs (doc + frozen + merge + build, all ports) + stdlib for one version
+just update_stubs v1.28.0
 
+# or build stubs for a single port only (default port is rp2)
+just port rp2 v1.28.0
 
-```	
-
-stubber switch latest
-stubber get-docstubs 
-stubber merge --version latest
-stubber build --version latest
-
-.\snippets\install-stubs.ps1
+# repeat for each version you want available in the typings folders
+just update_stubs v1.27.0
+just update_stubs v1.26.1
 ```
+
+> Note: when running the snippet tests with pytest, the required stubs are installed
+> automatically (see [Test with pytest](#test-with-pytest) below), so you normally
+> don't need to build them by hand.
+
 ## Test with pytest
 
-There is a custom pytest configuration in `conftests.py` that will automatically download and copy the relevant stubs to the `typings` folder in the various `check_xxxx` and  `feat_yyyy` folders.
+There is a custom pytest configuration in `conftest.py` that will automatically download and copy the relevant stubs to the `typings` folder in the various `check_xxxx` and  `feat_yyyy` folders.
 
-The configuration of these test is part of the `test_snippets.py` file in the `snippets` folder.
+The tests themselves live in `test_snippets.py` (pyright, mypy and ruff), with `test_mypy.py` and `test_ruff.py` covering their dedicated feature folders. All snippet tests are marked with the `snippets` marker.
+
+### Using `just`
+
+The most common test runs are available as [`just`](https://just.systems) recipes (see the `justfile` in the repo root). Each recipe accepts extra pytest arguments (e.g. `--cache-clear`, `-x`, `-k ...`):
+
+| Recipe | Runs |
+| --- | --- |
+| `just test` | all snippet tests (default versions) |
+| `just test-stable` | current stable release only (`--stable-only`) |
+| `just test-preview` | most recent preview build (`--preview-only`) |
+| `just test-recent` | last 3 stable `major.minor` releases (`--recent-majors`) |
+| `just test-linter [pyright\|mypy\|ruff]` | a single linter on the stable release (default: `pyright`) |
+| `just test-version [v1.28.0]` | a specific version (default: `v1.28.0`) |
+
+```powershell
+# examples
+just test --cache-clear
+just test-stable -k mypy
+just test-linter mypy -x
+just test-version v1.27.0
+
+# run a single test file with all its linters, stable release only
+# (the file path is passed straight through to pytest)
+just test-stable tests/quality_tests/test_stdlib_only.py
+```
+
+The sections below document the underlying pytest options in case you need finer control.
+
+### Running with pytest directly
 
 Example of running the tests:
-- run all tests (using any cached stubs - Max lifetime = 24 Hr) :  
-  `pytest ./snippets`
+- run all snippet tests (using any cached stubs - Max lifetime = 24 Hr) :  
+  `pytest -m snippets`
 
-- run all tests - but clear the cache first : :  
-  `pytest ./snippets --cache-clear`
+- run all snippet tests - but clear the cache first :  
+  `pytest -m snippets --cache-clear`
 
-- run a single test :  
-  `pytest snippets\test_snippets.py::test_pyright[local-v1.20.0-stm32-stdlib]`
+- run a single test (node id format is `test_typecheck[<stub_source>-<version>-<portboard>-<feature>-<linter>]`) :  
+  `pytest "test_snippets.py::test_typecheck[local-v1.28.0-stm32-stdlib-pyright]"`
 
-- run a single test but clear the cache first : :  
-  `pytest --cache-clear snippets\test_snippets.py::test_pyright[local-v1.20.0-stm32-stdlib]`
+- run a single test but clear the cache first :  
+  `pytest --cache-clear "test_snippets.py::test_typecheck[local-v1.28.0-stm32-stdlib-pyright]"`
+
+## Command-line options
+
+The suite adds a few custom options (see `conftest.py`):
+
+| Option | Description |
+| --- | --- |
+| `--no-cache` | Disable the 24-hour stub-installation cache and always reinstall the stubs. |
+| `--stable-only` | Only run tests for the current **stable** MicroPython release. |
+| `--preview-only` | Only run tests for the most recent **preview** MicroPython version. |
+| `--recent-majors` | Only run tests for the last 3 stable `major.minor` releases (excludes preview). |
+
+## Version selection
+
+By default the tests run against the last 3 stable `major.minor` releases. The resolved
+version list is cached for 24h in `.versions_cache.json` so that all `pytest-xdist`
+workers agree on the same parametrization matrix. Use the options above to narrow the set:
+
+```powershell
+# only the current stable release (fastest)
+pytest -m snippets --stable-only
+
+# only the most recent preview build
+pytest -m snippets --preview-only
+
+# the last 3 stable major.minor releases (default behaviour, made explicit)
+pytest -m snippets --recent-majors
+```
+
+To target one specific version, filter the parametrized version id with `-k`:
+
+```powershell
+# run every linter, but only for v1.28.0
+pytest -m snippets -k "v1.28.0"
+```
+
+## Running specific linter(s)
+
+Each snippet is checked by `pyright`, `mypy` and `ruff`. Because the linter name is part of
+the test node id, you can select linters with `-k` or by running the dedicated test files:
+
+```powershell
+# only pyright
+pytest -m snippets -k "pyright"
+
+# only mypy and ruff
+pytest -m snippets -k "mypy or ruff"
+
+# a specific version with a single linter
+pytest -m snippets --stable-only -k "pyright"
+pytest -m snippets -k "v1.28.0 and mypy"
+
+# run the dedicated mypy / ruff feature suites
+pytest tests/quality_tests/test_mypy.py -m snippets
+pytest tests/quality_tests/test_ruff.py -m snippets
+```
 
 ## Test with pyright (used by the Pylance VSCode extension)
 

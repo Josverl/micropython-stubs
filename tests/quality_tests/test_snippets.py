@@ -1,44 +1,12 @@
-import json
 import logging
 import re
 import sys
-import time
 from pathlib import Path
 
-import fasteners
 import pytest
-from mpflash.versions import micropython_versions
+from conftest import get_test_versions
 from packaging.version import Version
 from typecheck import copy_config_files, port_and_board, run_typechecker
-
-# Fallback version list used when the GitHub API is unreachable.
-# Keep in sync with the most recent stable + preview release.
-_FALLBACK_VERSIONS = ["v1.26.1", "v1.27.0", "v1.28.0", "v1.29.0-preview"]
-
-# Cache file for the resolved VERSIONS list. Required for pytest-xdist: every
-# worker process imports this module and must compute the *same* parametrization
-# matrix. micropython_versions() hits the GitHub API and can return different
-# results across workers (network flakiness, transient rate-limiting), causing
-# xdist to abort with "Different tests were collected between gw0 and gwN".
-# The first process populates the file under an inter-process lock; later
-# processes read it. 24h TTL matches the stub-install cache.
-_VERSIONS_CACHE_FILE = Path(__file__).parent / ".versions_cache.json"
-_VERSIONS_CACHE_TTL = 24 * 60 * 60
-
-
-def major_minor(versions):
-    """create a list of the most recent version for each major.minor"""
-    mm_groups = {}
-    for v in versions:
-        if v.endswith("-preview"):
-            mm_groups["preview"] = [v]
-            continue
-        major_minor = f"{Version(v).major}.{Version(v).minor}"
-        if major_minor not in mm_groups or "-preview" in v:
-            mm_groups[major_minor] = [v]
-        else:
-            mm_groups[major_minor].append(v)
-    return [max(v) for v in mm_groups.values()]
 
 
 # only snippets tests
@@ -106,66 +74,19 @@ HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
 
-def _resolve_versions() -> list:
-    """Return the (top-3 major.minor) VERSIONS list, deterministic across workers.
-
-    Uses a JSON file with a 24h TTL, protected by an inter-process lock, so
-    every pytest-xdist worker collects the *same* parametrization. Falls back
-    to ``_FALLBACK_VERSIONS`` if the network call fails.
-    """
-    # Fast path: cache file is fresh.
-    try:
-        if _VERSIONS_CACHE_FILE.exists():
-            data = json.loads(_VERSIONS_CACHE_FILE.read_text())
-            if time.time() - float(data.get("ts", 0)) < _VERSIONS_CACHE_TTL:
-                versions = data.get("versions")
-                if isinstance(versions, list) and versions:
-                    return versions
-    except Exception:
-        pass  # fall through to refresh
-
-    # Slow path: serialize population across workers.
-    lock = fasteners.InterProcessLock(str(_VERSIONS_CACHE_FILE) + ".lock")
-    with lock:
-        # Double-check after acquiring the lock.
-        try:
-            if _VERSIONS_CACHE_FILE.exists():
-                data = json.loads(_VERSIONS_CACHE_FILE.read_text())
-                if time.time() - float(data.get("ts", 0)) < _VERSIONS_CACHE_TTL:
-                    versions = data.get("versions")
-                    if isinstance(versions, list) and versions:
-                        return versions
-        except Exception:
-            pass
-
-        try:
-            all_versions = micropython_versions(minver="v1.24.0")
-        except Exception:
-            all_versions = _FALLBACK_VERSIONS
-        versions = sorted(major_minor(all_versions), reverse=True)[:3]
-
-        try:
-            _VERSIONS_CACHE_FILE.write_text(json.dumps({"ts": time.time(), "versions": versions}))
-        except Exception:
-            pass  # best-effort; workers will still agree this run if call is stable
-        return versions
-
-
-VERSIONS = _resolve_versions()
-
-
 def pytest_generate_tests(metafunc: pytest.Metafunc):
     """
     Generates a test parameterization for each portboard, version and feature defined in:
     - SOURCES
-    - VERSIONS
+    - VERSIONS (filtered by --stable-only if requested)
     - PORTBOARD_FEATURES
     """
+    versions = get_test_versions(metafunc.config)
     argnames = "stub_source, version, portboard, feature"
     args_lst = []
     copy_config_files()
     for src in SOURCES:
-        for version in VERSIONS:
+        for version in versions:
             # skip latest for pypi
             if src == "pypi" and version in {"preview", "latest"}:
                 continue
@@ -242,7 +163,13 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         "pyright",
         "mypy",
         "ruff",
-        # "basilisk",  # TODO https://github.com/Nimblesite/Basilisk/issues/312
+        pytest.param(
+            "basilisk",
+            marks=pytest.mark.xfail(
+                reason="Basilisk support is experimental - https://github.com/Nimblesite/Basilisk/issues/312",
+                strict=False,
+            ),
+        ),
     ],
 )
 def test_typecheck(
