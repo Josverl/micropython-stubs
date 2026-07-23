@@ -105,67 +105,25 @@ SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
-
-def _resolve_versions() -> list:
-    """Return the (top-3 major.minor) VERSIONS list, deterministic across workers.
-
-    Uses a JSON file with a 24h TTL, protected by an inter-process lock, so
-    every pytest-xdist worker collects the *same* parametrization. Falls back
-    to ``_FALLBACK_VERSIONS`` if the network call fails.
-    """
-    # Fast path: cache file is fresh.
-    try:
-        if _VERSIONS_CACHE_FILE.exists():
-            data = json.loads(_VERSIONS_CACHE_FILE.read_text())
-            if time.time() - float(data.get("ts", 0)) < _VERSIONS_CACHE_TTL:
-                versions = data.get("versions")
-                if isinstance(versions, list) and versions:
-                    return versions
-    except Exception:
-        pass  # fall through to refresh
-
-    # Slow path: serialize population across workers.
-    lock = fasteners.InterProcessLock(str(_VERSIONS_CACHE_FILE) + ".lock")
-    with lock:
-        # Double-check after acquiring the lock.
-        try:
-            if _VERSIONS_CACHE_FILE.exists():
-                data = json.loads(_VERSIONS_CACHE_FILE.read_text())
-                if time.time() - float(data.get("ts", 0)) < _VERSIONS_CACHE_TTL:
-                    versions = data.get("versions")
-                    if isinstance(versions, list) and versions:
-                        return versions
-        except Exception:
-            pass
-
-        try:
-            all_versions = micropython_versions(minver="v1.24.0")
-        except Exception:
-            all_versions = _FALLBACK_VERSIONS
-        versions = sorted(major_minor(all_versions), reverse=True)[:3]
-
-        try:
-            _VERSIONS_CACHE_FILE.write_text(json.dumps({"ts": time.time(), "versions": versions}))
-        except Exception:
-            pass  # best-effort; workers will still agree this run if call is stable
-        return versions
-
-
 VERSIONS = _resolve_versions()
+# alias used by the --stable-only parametrization below
+ALL_VERSIONS = VERSIONS
 
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
     """
     Generates a test parameterization for each portboard, version and feature defined in:
     - SOURCES
-    - VERSIONS
+    - VERSIONS (filtered by --stable-only if requested)
     - PORTBOARD_FEATURES
     """
+    stable_only = metafunc.config.getoption("--stable-only", default=False)
+    versions = [v for v in ALL_VERSIONS if not v.endswith("-preview")] if stable_only else ALL_VERSIONS
     argnames = "stub_source, version, portboard, feature"
     args_lst = []
     copy_config_files()
     for src in SOURCES:
-        for version in VERSIONS:
+        for version in versions:
             # skip latest for pypi
             if src == "pypi" and version in {"preview", "latest"}:
                 continue
