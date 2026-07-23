@@ -23,6 +23,9 @@ def overload(_):
 def override(func):
     return func
 
+def reveal_type(key):
+    return key
+
 
 class _AnyCall:
     def __init__(*args, **_):
@@ -38,17 +41,11 @@ class _AnyCall:
 _anyCall = _AnyCall()
 
 
-# class _anyCallType:
-#     def __getitem__(self, _):
-#         return _anyCall
+def TypeVar(key, *types, bound = None, covariant=False, contravariant=False, infer_variance=False):
+    return key
 
-
-# _anyCall = _anyCall
-
-
-def TypeVar(_, *types, bound = None, covariant=False, contravariant=False, infer_variance=False):
-    return None
-
+def TypeVarTuple(key):
+    return key
 
 def NewType(_, type):
     return type
@@ -170,6 +167,7 @@ Set = _anyCall
 Tuple = _anyCall
 Type = _anyCall
 Union = _anyCall
+Unpack = _anyCall
 
 TYPE_CHECKING = False
 
