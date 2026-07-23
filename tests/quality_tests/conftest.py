@@ -31,7 +31,8 @@ from pathlib import Path
 import fasteners
 import pytest
 from loguru import logger as log
-from mpflash.versions import get_preview_mp_version, get_stable_mp_version
+from mpflash.versions import get_preview_mp_version, get_stable_mp_version, micropython_versions
+from packaging.version import Version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
 MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
@@ -40,6 +41,12 @@ MAX_CACHE_AGE = 24 * 60 * 60  # 24 hours
 # Keep in sync with the most recent stable + preview release.
 _FALLBACK_STABLE_VERSION = "v1.28.0"
 _FALLBACK_PREVIEW_VERSION = "v1.29.0-preview"
+_FALLBACK_VERSIONS = ["v1.26.1", "v1.27.0", "v1.28.0"]
+
+# Cache file for the resolved test-version list. Required for pytest-xdist so
+# every worker computes the same parametrization matrix. 24h TTL.
+_VERSIONS_CACHE_FILE = Path(__file__).parent / ".versions_cache.json"
+_VERSIONS_CACHE_TTL = 24 * 60 * 60
 
 
 def pytest_addoption(parser: pytest.Parser):
@@ -50,15 +57,92 @@ def pytest_addoption(parser: pytest.Parser):
         default=False,
         help="Disable the 24-hour stub-installation cache and always reinstall stubs.",
     )
-
-
-def pytest_addoption(parser: pytest.Parser):
     parser.addoption(
         "--stable-only",
         action="store_true",
         default=False,
         help="Only run tests for the current stable MicroPython release, skipping preview versions.",
     )
+
+
+def major_minor(versions):
+    """Create a list of the most recent version for each major.minor."""
+    mm_groups = {}
+    for v in versions:
+        if v.endswith("-preview"):
+            mm_groups["preview"] = [v]
+            continue
+        major_minor = f"{Version(v).major}.{Version(v).minor}"
+        if major_minor not in mm_groups or "-preview" in v:
+            mm_groups[major_minor] = [v]
+        else:
+            mm_groups[major_minor].append(v)
+    return [max(v) for v in mm_groups.values()]
+
+
+def get_test_versions(config: pytest.Config) -> list[str]:
+    """Get the list of MicroPython versions to test based on --stable-only flag.
+
+    The resolved list is cached in a JSON file (24h TTL) protected by an
+    inter-process lock. This is required for pytest-xdist: every worker must
+    compute the *same* parametrization matrix. micropython_versions() hits the
+    GitHub API and can return different results across workers (network
+    flakiness, transient rate-limiting), which would otherwise cause xdist to
+    abort with "Different tests were collected between gw0 and gwN".
+
+    Args:
+        config: The pytest Config object.
+
+    Returns:
+        List of version strings to test (e.g., ['v1.27.0'] or ['v1.27.0', 'v1.26.0', 'v1.25.0']).
+    """
+    stable_only = config.getoption("--stable-only", default=False)
+    cache_key = "stable" if stable_only else "recent"
+
+    def _read_cache() -> list[str] | None:
+        try:
+            if _VERSIONS_CACHE_FILE.exists():
+                data = json.loads(_VERSIONS_CACHE_FILE.read_text())
+                entry = data.get(cache_key)
+                if entry and time.time() - float(entry.get("ts", 0)) < _VERSIONS_CACHE_TTL:
+                    versions = entry.get("versions")
+                    if isinstance(versions, list) and versions:
+                        return versions
+        except Exception:
+            pass
+        return None
+
+    # Fast path: cache is fresh.
+    cached = _read_cache()
+    if cached:
+        return cached
+
+    # Slow path: serialize population across workers.
+    lock = fasteners.InterProcessLock(str(_VERSIONS_CACHE_FILE) + ".lock")
+    with lock:
+        # Double-check after acquiring the lock.
+        cached = _read_cache()
+        if cached:
+            return cached
+
+        try:
+            if stable_only:
+                versions = [get_stable_mp_version()]
+            else:
+                # Only the recent versions (last 3 major.minor releases)
+                versions = sorted(major_minor(micropython_versions(minver="v1.24.0")), reverse=True)[:3]
+        except Exception:
+            versions = [_FALLBACK_STABLE_VERSION] if stable_only else _FALLBACK_VERSIONS
+
+        try:
+            data = {}
+            if _VERSIONS_CACHE_FILE.exists():
+                data = json.loads(_VERSIONS_CACHE_FILE.read_text())
+            data[cache_key] = {"ts": time.time(), "versions": versions}
+            _VERSIONS_CACHE_FILE.write_text(json.dumps(data))
+        except Exception:
+            pass  # best-effort; workers still agree this run if the API call is stable
+        return versions
 
 
 def flat_version(version):

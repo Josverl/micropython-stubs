@@ -1,44 +1,12 @@
-import json
 import logging
 import re
 import sys
-import time
 from pathlib import Path
 
-import fasteners
 import pytest
-from mpflash.versions import micropython_versions
+from conftest import get_test_versions
 from packaging.version import Version
 from typecheck import copy_config_files, port_and_board, run_typechecker
-
-# Fallback version list used when the GitHub API is unreachable.
-# Keep in sync with the most recent stable + preview release.
-_FALLBACK_VERSIONS = ["v1.26.1", "v1.27.0", "v1.28.0", "v1.29.0-preview"]
-
-# Cache file for the resolved VERSIONS list. Required for pytest-xdist: every
-# worker process imports this module and must compute the *same* parametrization
-# matrix. micropython_versions() hits the GitHub API and can return different
-# results across workers (network flakiness, transient rate-limiting), causing
-# xdist to abort with "Different tests were collected between gw0 and gwN".
-# The first process populates the file under an inter-process lock; later
-# processes read it. 24h TTL matches the stub-install cache.
-_VERSIONS_CACHE_FILE = Path(__file__).parent / ".versions_cache.json"
-_VERSIONS_CACHE_TTL = 24 * 60 * 60
-
-
-def major_minor(versions):
-    """create a list of the most recent version for each major.minor"""
-    mm_groups = {}
-    for v in versions:
-        if v.endswith("-preview"):
-            mm_groups["preview"] = [v]
-            continue
-        major_minor = f"{Version(v).major}.{Version(v).minor}"
-        if major_minor not in mm_groups or "-preview" in v:
-            mm_groups[major_minor] = [v]
-        else:
-            mm_groups[major_minor].append(v)
-    return [max(v) for v in mm_groups.values()]
 
 
 # only snippets tests
@@ -105,10 +73,6 @@ SOURCES = ["local"]  # , "pypi"] # do not pull from PyPI all the time
 HERE = (Path(__file__).parent).resolve()
 sys.path.append(str(HERE.parent.parent / ".github/workflows"))
 
-VERSIONS = _resolve_versions()
-# alias used by the --stable-only parametrization below
-ALL_VERSIONS = VERSIONS
-
 
 def pytest_generate_tests(metafunc: pytest.Metafunc):
     """
@@ -117,8 +81,7 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
     - VERSIONS (filtered by --stable-only if requested)
     - PORTBOARD_FEATURES
     """
-    stable_only = metafunc.config.getoption("--stable-only", default=False)
-    versions = [v for v in ALL_VERSIONS if not v.endswith("-preview")] if stable_only else ALL_VERSIONS
+    versions = get_test_versions(metafunc.config)
     argnames = "stub_source, version, portboard, feature"
     args_lst = []
     copy_config_files()
