@@ -42,11 +42,7 @@ if sys.platform == "win32":
 # exec_prefix: str
 # executable: str
 # float_repr_style: Literal["short", "legacy"]
-# _machine: str
-    _mpy: int
-    _build: str
-    _thread: str
-    hexversion: int
+# hexversion: int
 # last_type: type[BaseException] | None
 # last_value: BaseException | None
 # last_traceback: TracebackType | None
