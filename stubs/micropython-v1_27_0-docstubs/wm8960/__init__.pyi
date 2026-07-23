@@ -81,7 +81,8 @@ SYSCLK_MCLK = const(0)
 """sysclk source from external MCLK"""
 SYSCLK_PLL = const(1)
 """sysclk source from internal PLL"""
-class WM8960():
+
+class WM8960:
     """
     Create a WM8960 driver object, initialize the device with default settings and return the
     WM8960 object.
@@ -126,7 +127,8 @@ class WM8960():
     If the MCLK signal is applied using, for example,. a separate oscillator,
     it must be specified for proper operation.
     """
-    def __init__(self,
+    def __init__(
+        self,
         i2c,
         sample_rate=16000,
         bits=16,
@@ -140,152 +142,151 @@ class WM8960():
         adc_sync=SYNC_DAC,
         protocol=BUS_I2S,
         i2c_address=WM8960_I2C_ADDR,
-    ) -> None:
-        ...
+    ) -> None: ...
     def set_left_input(self, input_source) -> None:
         """
-            Specify the source for the left input.  The input source names are listed above.
+        Specify the source for the left input.  The input source names are listed above.
         """
         ...
     def set_right_input(self, input_source) -> None:
         """
-            Specify the source for the right input.  The input source names are listed above.
+        Specify the source for the right input.  The input source names are listed above.
         """
         ...
 
     @overload
     def volume(self, module, volume_l: None = None, volume_r: None = None) -> tuple[int, int]:
         """
-            Sets or gets the volume of a certain module.
-        
-            If no volume values are supplied, the actual volume tuple is returned.
-        
-            If one or two values are supplied, it sets the volume of a certain module.
-            If two values are provided, the first one is used for the left channel,
-            the second for the right channel.  If only one value is supplied, it is used
-            for both channels.  The value range is normalized to 0.0-100.0 with a
-            logarithmic scale.
-        
-            For a list of suitable modules and db/step, see the table below.
+        Sets or gets the volume of a certain module.
+
+        If no volume values are supplied, the actual volume tuple is returned.
+
+        If one or two values are supplied, it sets the volume of a certain module.
+        If two values are provided, the first one is used for the left channel,
+        the second for the right channel.  If only one value is supplied, it is used
+        for both channels.  The value range is normalized to 0.0-100.0 with a
+        logarithmic scale.
+
+        For a list of suitable modules and db/step, see the table below.
         """
         ...
 
     @overload
     def volume(self, module, volume_l, volume_r=None) -> None:
         """
-            Sets or gets the volume of a certain module.
-        
-            If no volume values are supplied, the actual volume tuple is returned.
-        
-            If one or two values are supplied, it sets the volume of a certain module.
-            If two values are provided, the first one is used for the left channel,
-            the second for the right channel.  If only one value is supplied, it is used
-            for both channels.  The value range is normalized to 0.0-100.0 with a
-            logarithmic scale.
-        
-            For a list of suitable modules and db/step, see the table below.
+        Sets or gets the volume of a certain module.
+
+        If no volume values are supplied, the actual volume tuple is returned.
+
+        If one or two values are supplied, it sets the volume of a certain module.
+        If two values are provided, the first one is used for the left channel,
+        the second for the right channel.  If only one value is supplied, it is used
+        for both channels.  The value range is normalized to 0.0-100.0 with a
+        logarithmic scale.
+
+        For a list of suitable modules and db/step, see the table below.
         """
         ...
     def mute(self, enable, soft=True, ramp=MUTE_FAST) -> None:
         """
-            Mute or unmute the output. If *mute* is True, the output is muted, if ``False``
-            it is unmuted.
-        
-            If *soft* is set as True, muting will happen as a soft transition.  The time for
-            the transition is defined by *ramp*, which is either ``MUTE_FAST`` or ``MUTE_SLOW``.
+        Mute or unmute the output. If *mute* is True, the output is muted, if ``False``
+        it is unmuted.
+
+        If *soft* is set as True, muting will happen as a soft transition.  The time for
+        the transition is defined by *ramp*, which is either ``MUTE_FAST`` or ``MUTE_SLOW``.
         """
         ...
     def set_data_route(self, route) -> None:
         """
-            Set the audio data route.  For the parameter value/names, see the table above.
+        Set the audio data route.  For the parameter value/names, see the table above.
         """
         ...
     def set_module(self, module, active) -> None:
         """
-            Enable or disable a module, with *active* being ``False`` or ``True``.  For
-            the list of module names, see the table above.
-        
-            Note that enabling ``MODULE_MONO_OUT`` is different from the `WM8960.mono`
-            method.  The first enables output 3, while the `WM8960.mono` method sends a
-            mono mix to the left and right output.
+        Enable or disable a module, with *active* being ``False`` or ``True``.  For
+        the list of module names, see the table above.
+
+        Note that enabling ``MODULE_MONO_OUT`` is different from the `WM8960.mono`
+        method.  The first enables output 3, while the `WM8960.mono` method sends a
+        mono mix to the left and right output.
         """
         ...
     def enable_module(self, module) -> None:
         """
-            Enable a module.  For the list of module names, see the table above.
+        Enable a module.  For the list of module names, see the table above.
         """
         ...
     def disable_module(self, module) -> None:
         """
-            Disable a module.  For the list of module names, see the table above.
+        Disable a module.  For the list of module names, see the table above.
         """
         ...
     def expand_3d(self, level) -> None:
         """
-            Enable Stereo 3D expansion.  *level* is a number between 0 and 15.
-            A value of 0 disables the expansion.
+        Enable Stereo 3D expansion.  *level* is a number between 0 and 15.
+        A value of 0 disables the expansion.
         """
         ...
     def mono(self, active) -> None:
         """
-            If *active* is ``True``, a Mono mix is sent to the left and right output
-            channel.  This is different from enabling the ``MODULE_MONO_MIX``, which
-            enables output 3.
+        If *active* is ``True``, a Mono mix is sent to the left and right output
+        channel.  This is different from enabling the ``MODULE_MONO_MIX``, which
+        enables output 3.
         """
         ...
     def alc_mode(self, channel, mode: int = ALC_MODE) -> None:
         """
-            Enables or disables ALC mode.  Parameters are:
-        
-            - *channel* enables and sets the channel for ALC. The parameter values are:
-        
-                - ALC_OFF:   Switch ALC off
-                - ALS_RIGHT:  Use the right input channel
-                - ALC_LEFT:   Use the left input channel
-                - ALC_STEREO: Use both input channels.
-        
-            - *mode* sets the ALC mode. Input values are:
-        
-                - ALC_MODE:   act as ALC
-                - ALC_LIMITER: act as limiter.
+        Enables or disables ALC mode.  Parameters are:
+
+        - *channel* enables and sets the channel for ALC. The parameter values are:
+
+            - ALC_OFF:   Switch ALC off
+            - ALS_RIGHT:  Use the right input channel
+            - ALC_LEFT:   Use the left input channel
+            - ALC_STEREO: Use both input channels.
+
+        - *mode* sets the ALC mode. Input values are:
+
+            - ALC_MODE:   act as ALC
+            - ALC_LIMITER: act as limiter.
         """
         ...
     def alc_gain(self, target=-12, max_gain=30, min_gain=-17.25, noise_gate=-78) -> None:
         """
-            Set the target level, highest and lowest gain levels and the noise gate as dB level.
-            Permitted ranges are:
-        
-            - *target*: -22.5 to -1.5 dB
-            - *max_gain*: -12 to 30 dB
-            - *min_gain*: -17 to 25 dB
-            - *noise_gate*: -78 to -30 dB
-        
-            Excess values are limited to the permitted ranges.  A value of -78 or less
-            for *noise_gate* disables the noise gate function.
+        Set the target level, highest and lowest gain levels and the noise gate as dB level.
+        Permitted ranges are:
+
+        - *target*: -22.5 to -1.5 dB
+        - *max_gain*: -12 to 30 dB
+        - *min_gain*: -17 to 25 dB
+        - *noise_gate*: -78 to -30 dB
+
+        Excess values are limited to the permitted ranges.  A value of -78 or less
+        for *noise_gate* disables the noise gate function.
         """
         ...
     def alc_time(self, attack=24, decay=192, hold=0) -> None:
         """
-            Set the dynamic characteristic of ALC.  The times are given as millisecond
-            values.  Permitted ranges are:
-        
-            - *attack*: 6 to 6140
-            - *decay*: 24 to 24580
-            - *hold*: 0 to 43000
-        
-            Excess values are limited within the permitted ranges.
+        Set the dynamic characteristic of ALC.  The times are given as millisecond
+        values.  Permitted ranges are:
+
+        - *attack*: 6 to 6140
+        - *decay*: 24 to 24580
+        - *hold*: 0 to 43000
+
+        Excess values are limited within the permitted ranges.
         """
         ...
     def deemphasis(self, active) -> None:
         """
-            Enables or disables a deemphasis filter for playback, with *active* being
-            ``False`` or ``True``.  This filter is applied only for sample rates of
-            32000, 44100 and 48000.  For other sample rates, the filter setting
-            is silently ignored.
+        Enables or disables a deemphasis filter for playback, with *active* being
+        ``False`` or ``True``.  This filter is applied only for sample rates of
+        32000, 44100 and 48000.  For other sample rates, the filter setting
+        is silently ignored.
         """
         ...
     def deinit(self) -> None:
         """
-            Disable all modules.
+        Disable all modules.
         """
         ...
