@@ -33,24 +33,27 @@ file format.
 from __future__ import annotations
 from _typeshed import Incomplete
 from typing_extensions import TypeVar, TypeAlias, Awaitable
-class GzipFile():
+
+class GzipFile:
     """
-  Wrap a stream-like object with gzip decompression/compression support.
-  """
-    def __init__(self, *, fileobj, mode) -> None:
-        ...
+    Wrap a stream-like object with gzip decompression/compression support.
+    """
+    def __init__(self, *, fileobj, mode) -> None: ...
+
 def open(filename, mode: str = "rb", /) -> Incomplete:
     """
-       Wrapper around built-in :func:`open` returning a GzipFile instance.
+    Wrapper around built-in :func:`open` returning a GzipFile instance.
     """
     ...
+
 def decompress(data: bytes, /) -> bytes:
     """
-       Decompresses *data* into a bytes object.
+    Decompresses *data* into a bytes object.
     """
     ...
+
 def compress(data: bytes, /) -> bytes:
     """
-       Compresses *data* into a bytes object.
+    Compresses *data* into a bytes object.
     """
     ...

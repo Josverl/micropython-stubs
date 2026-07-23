@@ -90,6 +90,7 @@ AnyStr_co = TypeVar("AnyStr_co", str, bytes, covariant=True)
 StrOrBytesPath = TypeVar("StrOrBytesPath", str, bytes, PathLike[str], PathLike[bytes])
 _OpenFile = TypeVar("_OpenFile", str, bytes, PathLike[str], PathLike[bytes], int)
 _Self = TypeVar("_Self")
+
 class StringIO(IOBase_mp):
     """
     Str stream from a str (wrapper).
@@ -136,6 +137,7 @@ class StringIO(IOBase_mp):
 
              This constructor is a MicroPython extension.
         """
+
 class BytesIO(IOBase_mp):
     """
     Bytes stream from a bytes array (wrapper).
@@ -196,30 +198,30 @@ class BytesIO(IOBase_mp):
         """
     def getvalue(self) -> bytes:
         """
-                Get the current contents of the underlying buffer which holds data.
+        Get the current contents of the underlying buffer which holds data.
         """
         ...
 
 @overload
 def open(name: _OpenFile, /, **kwargs) -> TextIOWrapper:
     """
-        Open a file. Builtin ``open()`` function is aliased to this function.
-        All ports (which provide access to file system) are required to support
-        *mode* parameter, but support for other arguments vary by port.
+    Open a file. Builtin ``open()`` function is aliased to this function.
+    All ports (which provide access to file system) are required to support
+    *mode* parameter, but support for other arguments vary by port.
     """
 
 @overload
 def open(name: _OpenFile, mode: _OpenTextModeWriting = ..., /, **kwargs) -> TextIOWrapper:
     """
-        Open a file. Builtin ``open()`` function is aliased to this function.
-        All ports (which provide access to file system) are required to support
-        *mode* parameter, but support for other arguments vary by port.
+    Open a file. Builtin ``open()`` function is aliased to this function.
+    All ports (which provide access to file system) are required to support
+    *mode* parameter, but support for other arguments vary by port.
     """
 
 @overload
 def open(name: _OpenFile, mode: _OpenBinaryMode = ..., /, **kwargs) -> FileIO:
     """
-        Open a file. Builtin ``open()`` function is aliased to this function.
-        All ports (which provide access to file system) are required to support
-        *mode* parameter, but support for other arguments vary by port.
+    Open a file. Builtin ``open()`` function is aliased to this function.
+    All ports (which provide access to file system) are required to support
+    *mode* parameter, but support for other arguments vary by port.
     """

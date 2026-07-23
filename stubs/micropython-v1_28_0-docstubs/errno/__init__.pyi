@@ -15,6 +15,7 @@ from __future__ import annotations
 from _typeshed import Incomplete
 from typing import Final, Dict
 from typing_extensions import TypeVar, TypeAlias, Awaitable
+
 EEXIST: Incomplete
 """\
 Error codes, based on ANSI C/POSIX standard. All error codes start with
@@ -89,5 +90,5 @@ EALREADY: Final[int] = 114
 """Operation already in progress"""
 EINPROGRESS: Final[int] = 115
 """Operation now in progress"""
-ENOTSUP : Final[int] = ...
+ENOTSUP: Final[int] = ...
 """Operation not supported"""
