@@ -8,7 +8,6 @@ from conftest import get_test_versions
 from packaging.version import Version
 from typecheck import copy_config_files, port_and_board, run_typechecker
 
-
 # only snippets tests
 pytestmark = [pytest.mark.snippets]
 
@@ -140,7 +139,7 @@ def stub_ignore(line, version, port, board, linter="pyright", is_source=True) ->
         condition = condition[4:].strip()
     context = {}
     context["Version"] = Version
-    context["version"] = Version(version) if not version in ("latest", "-", "preview") else Version("9999.99.99")
+    context["version"] = Version(version) if version not in ("latest", "-", "preview") else Version("9999.99.99")
     context["port"] = port
     context["board"] = board
     context["linter"] = linter

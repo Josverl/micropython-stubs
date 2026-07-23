@@ -68,3 +68,7 @@ tests/doc_test/micropython/
 
 # No coverage reports
 .coverage
+
+# typings runtime checking lib folder
+tests/quality_tests/feat_typing/lib
+tests/quality_tests/feat_typing/lib_*

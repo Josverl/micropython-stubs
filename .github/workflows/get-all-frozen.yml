@@ -14,6 +14,8 @@ name: get-all-frozen
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - ".github/workflows/get-all-frozen.yml"
   schedule:
@@ -101,7 +103,6 @@ jobs:
         with:
           message: "Update frozen stubs for ${{ matrix.version }}"
 
-
   # ########################################################################################################################################
   # get-core-cpython-stubs:
   #   # The type of runner that the job will run on
@@ -138,8 +139,7 @@ jobs:
   #       run: |
   #         stubber get-core --black
 
-      # - name: commit
-      #   uses: ./.github/actions/commit
-      #   with:
-      #     message: "Update core stubs for ${{ matrix.version }}"
-
+  # - name: commit
+  #   uses: ./.github/actions/commit
+  #   with:
+  #     message: "Update core stubs for ${{ matrix.version }}"

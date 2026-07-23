@@ -31,7 +31,7 @@ from pathlib import Path
 import fasteners
 import pytest
 from loguru import logger as log
-from mpflash.versions import get_preview_mp_version, get_stable_mp_version, micropython_versions
+from mpflash.versions import clean_version, get_preview_mp_version, get_stable_mp_version, micropython_versions
 from packaging.version import Version
 
 SNIPPETS_PREFIX = "tests/quality_tests/"
@@ -179,8 +179,8 @@ def get_test_versions(config: pytest.Config) -> list[str]:
 
 
 def flat_version(version):
-    """Converts a version string to a flat version string. (simplified)"""
-    return version.replace(".", "_").replace("-", "_")
+    """Converts a version string to a flat version string."""
+    return clean_version(version, flat=True)
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
@@ -204,7 +204,7 @@ def pytest_runtest_makereport(item, call):
     # we only look at actual failing test calls, not setup/teardown
     if report.when == "call" and report.failed:
         # add the caplog errors and warnings to the report
-        if not "caplog" in item.funcargs:
+        if "caplog" not in item.funcargs:
             return
         caplog = item.funcargs["caplog"]
         report_txt = "\n" + "\n".join([r.message for r in caplog.records]) + "\n\n" + str(report.longreprtext)
@@ -319,7 +319,7 @@ def install_stubs(portboard, version, stub_source, pytestconfig, tsc_path: Path)
             foldername = f"micropython-{flatversion}-{portboard}-stubs"
         # stubsource = pytestconfig.inipath.parent / f"repos/micropython-stubs/publish/{foldername}"
         stubs_source = pytestconfig.inipath.parent / f"publish/{foldername}"
-        stdlib_source = pytestconfig.inipath.parent / f"publish/micropython-stdlib-stubs"
+        stdlib_source = pytestconfig.inipath.parent / "publish/micropython-stdlib-stubs"
         if not stubs_source.exists():
             pytest.skip(f"Could not find stubs for {portboard} {version} at {stubs_source}")
         # --no-deps - avoids mixing different versions of stdlib

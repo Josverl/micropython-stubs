@@ -16,10 +16,10 @@ on:
   schedule:
     - cron: "0 22 * * *" # Run every day at 22:00
   push:
-    # branches:
-    #     - main
+    branches:
+      - main
     paths:
-    - .github/workflows/get-doc-stubs.yml
+      - .github/workflows/get-doc-stubs.yml
 
 env:
   PIP_DISABLE_PIP_VERSION_CHECK: 1
@@ -47,7 +47,7 @@ jobs:
     strategy:
       matrix: ${{ fromJSON(needs.list-versions-doc.outputs.versions) }}
       max-parallel: 1
-    
+
     # Most scripts will be run from the stubber, set that as default
     defaults:
       run:
@@ -91,7 +91,7 @@ jobs:
       - name: Generate document stubs for ${{ matrix.version }}
         run: |
           # get any recent updates first
-          git pull origin main --force
+          git pull origin main --rebase --autostash
           # get the latest docs, and enrich from the reference-stubs
           stubber get-docstubs --enrich
 
