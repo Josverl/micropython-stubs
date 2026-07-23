@@ -67,6 +67,10 @@ update_stubs v="stable":
 install-linters:
     uv pip install pyright mypy ruff basilisk-python
 
+# clear the pytest cache
+clear-cache:
+    pytest -m snippets --cache-clear
+
 # run all snippet quality tests (pass extra pytest args, e.g. `just test --cache-clear`)
 test *args="":
     pytest -m snippets {{args}}
@@ -89,7 +93,7 @@ test-linter linter="pyright" *args="":
 
 # run snippet tests for a basilisk and show the xfail output (basilisk is experimental and may fail on some stubs)
 test-basilisk *args="":
-    pytest -m snippets --stable-only -k "basilisk"  --runxfail -rA {{args}}
+    pytest -m snippets --stable-only --no-cache -k "basilisk"  --runxfail -rA {{args}}
 
 # run snippet tests for a specific version (e.g. `just test-version v1.28.0`)
 test-version version="v1.28.0" *args="":
