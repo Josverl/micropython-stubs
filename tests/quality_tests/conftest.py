@@ -177,6 +177,8 @@ def get_test_versions(config: pytest.Config) -> list[str]:
             pass  # best-effort; workers still agree this run if the API call is stable
         return versions
 
+
+def flat_version(version):
     """Converts a version string to a flat version string. (simplified)"""
     return version.replace(".", "_").replace("-", "_")
 

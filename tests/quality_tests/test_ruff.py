@@ -21,9 +21,8 @@ def pytest_generate_tests(metafunc: pytest.Metafunc):
         versions = get_test_versions(metafunc.config)
         metafunc.parametrize("portboard", ["esp32", "rp2-rpi_pico_w"], scope="session")
         metafunc.parametrize("version", versions, scope="session")
-        metafunc.parametrize("feature", ["stdlib"], scope="session")
+        metafunc.parametrize("feature", ["ruff"], scope="session")
         metafunc.parametrize("stub_source", SOURCES, scope="session")
-        metafunc.parametrize("snip_path", [HERE / "feat_ruff"], scope="session")
         metafunc.parametrize("linter", ["ruff"])
 
 
