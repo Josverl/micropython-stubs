@@ -1,6 +1,7 @@
 import functools
 import json
 import logging
+import os
 import re
 import shutil
 import subprocess
@@ -128,21 +129,25 @@ def is_docker_running():
     return _docker
 
 
-
 @pytest.fixture(scope="session")
 def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Config):
     """
-    Copy the typings.py(i) and the typings_extension.py(i) files to  snip_path
+    Copy the typings.py(i) and the typings_extension.py(i) files to snip_path.
+
+    Each pytest-xdist worker and each file extension (.py/.mpy) get an isolated
+    ``lib_<worker>_<ext>`` folder so parallel workers never unlink/copy the same
+    files concurrently (which raises PermissionError on Windows).
     """
-    lib_path = snip_path_fx / "lib"
+    worker = os.environ.get("PYTEST_XDIST_WORKER", "master")
+    lib_path = snip_path_fx / f"lib_{worker}_{ext.lstrip('.')}"
     lib_path.mkdir(exist_ok=True)
     specs = ["typing*", "abc"]
     for spec in specs:
         for file in lib_path.glob(f"{spec}.*"):
-            file.unlink()
+            file.unlink(missing_ok=True)
         for file in (pytestconfig.rootpath / "mip").glob(f"{spec}{ext}"):
             shutil.copy(file, lib_path)
-    return True
+    return lib_path
 
 
 @pytest.mark.parametrize("ext", [".py", ".mpy"], scope="session")
@@ -171,14 +176,11 @@ def test_typing_runtime(
     caplog.set_level(logging.INFO)
     # log.info(f"Typechecker {linter} : {portboard}, {feature} from {stub_source}")
 
-    cmd = f"docker run -u 1000 -v {snip_path_fx}:/code -v {snip_path_fx}/lib:/usr/lib/micropython --rm micropython/unix:{mp_version} micropython /code/{check_file}"
+    lib_path = copy_mpy_typings_fx
+    cmd = f"docker run -u 1000 -v {snip_path_fx}:/code -v {lib_path}:/usr/lib/micropython --rm micropython/unix:{mp_version} micropython /code/{check_file}"
     log.info(f"Running {cmd}")
     result = subprocess.run(cmd, shell=True, cwd=snip_path_fx, text=True, capture_output=True)
-    error = [
-        line
-        for line in result.stderr.split("\n") + result.stdout.split("\n")
-        if "Traceback" not in line
-    ]
+    error = [line for line in result.stderr.split("\n") + result.stdout.split("\n") if "Traceback" not in line]
     if error and "Unable to find image 'micropython/unix:" in error[0]:
         pytest.skip(error[0])
     assert result.returncode == 0, error

@@ -71,3 +71,4 @@ tests/doc_test/micropython/
 
 # typings runtime checking lib folder
 tests/quality_tests/feat_typing/lib
+tests/quality_tests/feat_typing/lib_*
