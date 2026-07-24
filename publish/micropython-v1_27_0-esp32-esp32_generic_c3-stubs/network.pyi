@@ -394,13 +394,21 @@ class WLAN:
         Disconnect from the currently connected wireless network.
         """
         ...
-    def active(self, is_active: Optional[Any] = None) -> None:
+    @overload
+    def active(self, /) -> bool:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
         argument is passed. Otherwise, query current state if no argument is
         provided. Most other methods require active interface.
         """
-        ...
+
+    @overload
+    def active(self, is_active: bool | int, /) -> None:
+        """
+        Activate ("up") or deactivate ("down") network interface, if boolean
+        argument is passed. Otherwise, query current state if no argument is
+        provided. Most other methods require active interface.
+        """
     def config(self, *args, **kwargs) -> Incomplete:
         """
         Get or set general network interface parameters. These methods allow to work

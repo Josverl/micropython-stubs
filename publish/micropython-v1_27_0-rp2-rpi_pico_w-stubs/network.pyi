@@ -262,13 +262,21 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
         ...
-    def active(self, is_active: Optional[Any] = None) -> None:
+    @overload
+    def active(self, /) -> bool:
         """
         Activate ("up") or deactivate ("down") network interface, if boolean
         argument is passed. Otherwise, query current state if no argument is
         provided. Most other methods require active interface.
         """
-        ...
+
+    @overload
+    def active(self, is_active: bool | int, /) -> None:
+        """
+        Activate ("up") or deactivate ("down") network interface, if boolean
+        argument is passed. Otherwise, query current state if no argument is
+        provided. Most other methods require active interface.
+        """
     def disconnect(self) -> None:
         """
         Disconnect from the currently connected wireless network.

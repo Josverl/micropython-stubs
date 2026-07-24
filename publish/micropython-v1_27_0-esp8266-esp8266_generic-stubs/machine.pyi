@@ -1952,7 +1952,7 @@ class UART:
         Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
         """
         ...
-    def readline(self) -> Union[str, None]:
+    def readline(self) -> Union[bytes, None]:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
