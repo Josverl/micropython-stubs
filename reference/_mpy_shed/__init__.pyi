@@ -34,7 +34,7 @@ from .io_mp import _RawIOBase as _RawIOBase
 from .io_mp import _TextIOBase as _TextIOBase
 from .io_mp import open as open
 from .IRQs import _IRQ
-from .mp_available import mp_available as mp_available
+from ._mp_available import mp_available as mp_available
 from .mp_implementation import _mp_implementation as _mp_implementation
 from .neopixelbase import _NeoPixelBase as _NeoPixelBase
 from .pathlike import PathLike as PathLike
@@ -107,7 +107,6 @@ class _Hash(abc.ABC):
         to achieve a similar effect.
         """
 
-
 __all__ = [
     # defined in this module
     "GenericAlias",
@@ -139,7 +138,7 @@ __all__ = [
     "open",
     # re-exported from .IRQs
     "_IRQ",
-    # re-exported from .mp_available
+    # re-exported from ._mp_available
     "mp_available",
     # re-exported from .mp_implementation
     "_mp_implementation",
