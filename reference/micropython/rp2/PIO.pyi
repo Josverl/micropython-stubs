@@ -8,10 +8,10 @@ from typing import Callable, Final, Literal, Optional
 
 from _mpy_shed import _IRQ
 from machine import Pin
+from rp2 import _PIO_ASM_Program
 from rp2.StateMachine import StateMachine
 from typing_extensions import TypeAlias
 
-_PIO_ASM_Program: TypeAlias = Callable
 _IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 
 class PIO:
@@ -63,16 +63,14 @@ class PIO:
     to `asm_pio` or `StateMachine.init`.
     """
 
-    # IRQ constants 
+    # IRQ constants
     # TODO: Add to MP Docs (https://docs.micropython.org/en/latest/library/rp2.html#rp2.PIO)
     IRQ_SM0: int = 0x100
     IRQ_SM1: int = 0x200
     IRQ_SM2: int = 0x400
     IRQ_SM3: int = 0x800
 
-
     def __init__(self, id: int) -> None: ...
-
     def gpio_base(self, base: int | Pin | None = None) -> Pin:
         """
         Query and optionally set the current GPIO base for this PIO instance.
