@@ -10,7 +10,6 @@ default:
 
 init:
     stubber clone
-    git clone https://github.com/python/typeshed.git repos/typeshed
 
 alias docs := docstubs
 docstubs v="stable":

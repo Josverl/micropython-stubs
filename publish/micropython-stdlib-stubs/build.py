@@ -460,6 +460,25 @@ def update_typing_pyi(
     next(tsk)
 
 
+def find_boardstub_path(stubs_path: Path, flat_version: str) -> Optional[Path]:
+    """
+    Find a firmware board stub folder for the given version.
+
+    Looks for any ``micropython-{flat_version}-{port}-{board}`` folder in the stubs
+    directory, skipping the ``-docstubs``, ``-frozen`` and ``-merged`` variants.
+    An ``ESP32_GENERIC`` board is preferred for stability, otherwise the first match
+    (sorted) is returned.
+    """
+    skip_suffixes = ("-docstubs", "-frozen", "-merged")
+    candidates = sorted(
+        folder for folder in stubs_path.glob(f"micropython-{flat_version}-*") if folder.is_dir() and not folder.name.endswith(skip_suffixes)
+    )
+    if not candidates:
+        return None
+    preferred = next((c for c in candidates if c.name.endswith("esp32-ESP32_GENERIC")), None)
+    return preferred or candidates[0]
+
+
 def read_expected_typeshed_commit(dist_stdlib_path: Path) -> Optional[str]:
     """Read the pinned typeshed commit hash from typeshed_commit.txt, if present."""
     commit_file = dist_stdlib_path / "typeshed_commit.txt"
@@ -483,21 +502,32 @@ def ensure_typeshed_commit(typeshed_path: Path, expected_commit: Optional[str]):
     if not expected_commit:
         log.warning("No pinned typeshed commit hash found; using the current checkout")
         return
-    current_commit = subprocess.check_output(
-        ["git", "rev-parse", "HEAD"], cwd=typeshed_path, text=True
-    ).strip()
+    current_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=typeshed_path, text=True).strip()
     if current_commit == expected_commit:
         log.info(f"typeshed repo is at the expected commit {expected_commit}")
         return
-    log.warning(
-        f"typeshed repo is at {current_commit}, expected {expected_commit}; checking out expected commit"
-    )
+    log.warning(f"typeshed repo is at {current_commit}, expected {expected_commit}; checking out expected commit")
     try:
         subprocess.check_call(["git", "checkout", expected_commit], cwd=typeshed_path)
     except subprocess.CalledProcessError:
         log.info("Expected commit not found locally; fetching from origin")
         subprocess.check_call(["git", "fetch", "origin"], cwd=typeshed_path)
         subprocess.check_call(["git", "checkout", expected_commit], cwd=typeshed_path)
+
+
+def clone_typeshed(typeshed_path: Path, expected_commit: Optional[str]):
+    """
+    Clone the typeshed repo if it is not already present and check out the expected commit.
+
+    If the repo already exists, only the commit is verified/checked out.
+    """
+    if typeshed_path.exists():
+        log.info(f"typeshed repo already present at {typeshed_path}")
+    else:
+        log.info(f"Cloning typeshed into {typeshed_path}")
+        typeshed_path.parent.mkdir(parents=True, exist_ok=True)
+        subprocess.check_call(["git", "clone", "https://github.com/python/typeshed.git", str(typeshed_path)])
+    ensure_typeshed_commit(typeshed_path, expected_commit)
 
 
 def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
@@ -671,7 +701,7 @@ def update_asyncio_manual(reference_path: Path, dist_stdlib_path: Path):
 
 @click.command()
 # Boolean flags: use dual-form (--flag/--no-flag) so users can explicitly enable/disable
-@click.option("--clone/--no-clone", help="Clone the typeshed repo.", default=False, show_default=True)
+@click.option("--clone/--no-clone", help="Clone the typeshed repo.", default=True, show_default=True)
 @click.option(
     "--version",
     "-v",
@@ -728,8 +758,8 @@ def update(
 
     dist_stdlib_path = rootpath / "publish/micropython-stdlib-stubs"
     docstubs_path = rootpath / f"stubs/micropython-{flat_version}-docstubs"
-    # TODO: make the boardstub path more generic by looking for any firmware folder in the stubs directory instead of hardcoding the name
-    boardstub_path = rootpath / f"stubs/micropython-{flat_version}-esp32-ESP32_GENERIC"
+    # find any firmware board stub folder for this version instead of hardcoding a board name
+    boardstub_path = find_boardstub_path(rootpath / "stubs", flat_version)
     typeshed_path = rootpath / "repos/typeshed"
     reference_path = rootpath / "reference"
 
@@ -737,15 +767,15 @@ def update(
     assert rootpath.exists(), f"rootpath {rootpath} does not exist"
     assert dist_stdlib_path.exists(), f"dist_stdlib_path {dist_stdlib_path} does not exist"
     assert docstubs_path.exists(), f"docstubs_path {docstubs_path} does not exist"
-    assert boardstub_path.exists(), f"boardstub_path {boardstub_path} does not exist"
-    assert typeshed_path.exists(), f"typeshed_path {typeshed_path} does not exist"
+    assert boardstub_path is not None and boardstub_path.exists(), (
+        f"No firmware board stub folder found for version {flat_version} in {rootpath / 'stubs'}"
+    )
 
     if clone:
-        # TODO
-        # clone typeshed if needed and switch to the correct hash
-        print("in the repos folder run:")
-        print("git clone https://github.com/python/typeshed.git\ncd typeshed\ngit checkout <commit-hash>")
-        log.warning("Not implemented yet")
+        # clone typeshed if needed and switch to the pinned commit hash
+        clone_typeshed(typeshed_path, read_expected_typeshed_commit(dist_stdlib_path))
+
+    assert typeshed_path.exists(), f"typeshed_path {typeshed_path} does not exist"
 
     if clean:
         # remove and recreate these folders
