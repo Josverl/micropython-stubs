@@ -483,11 +483,15 @@ def ensure_typeshed_commit(typeshed_path: Path, expected_commit: Optional[str]):
     if not expected_commit:
         log.warning("No pinned typeshed commit hash found; using the current checkout")
         return
-    current_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=typeshed_path, text=True).strip()
+    current_commit = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=typeshed_path, text=True
+    ).strip()
     if current_commit == expected_commit:
         log.info(f"typeshed repo is at the expected commit {expected_commit}")
         return
-    log.warning(f"typeshed repo is at {current_commit}, expected {expected_commit}; checking out expected commit")
+    log.warning(
+        f"typeshed repo is at {current_commit}, expected {expected_commit}; checking out expected commit"
+    )
     try:
         subprocess.check_call(["git", "checkout", expected_commit], cwd=typeshed_path)
     except subprocess.CalledProcessError:
