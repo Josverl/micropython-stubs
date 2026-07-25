@@ -19,6 +19,7 @@ package stubs (or omitted), not here.
 
 MicroPython docs: https://docs.micropython.org/en/latest/library/asyncio.html
 """
+
 from __future__ import annotations
 
 from collections.abc import Awaitable, Coroutine, Generator
@@ -29,7 +30,6 @@ from _typeshed import Incomplete
 
 _T = TypeVar("_T")
 _T_co = TypeVar("_T_co", covariant=True)
-
 
 class TaskQueue:
     """
@@ -87,9 +87,8 @@ class TaskQueue:
         """
         ...
 
-
-# Micropython's `_asyncio` C module does not expose a `Future` class, 
-# but we define a minimal generic base so that `Task` can be awaitable and typed, 
+# Micropython's `_asyncio` C module does not expose a `Future` class,
+# but we define a minimal generic base so that `Task` can be awaitable and typed,
 
 class _Future(Awaitable[_T]):
     def __await__(self) -> Generator[Any, None, _T]: ...
@@ -167,4 +166,3 @@ class Task(_Future[_T_co]):  # type: ignore[type-var]
             StopIteration: When the task completes, with the result as the value.
         """
         ...
-

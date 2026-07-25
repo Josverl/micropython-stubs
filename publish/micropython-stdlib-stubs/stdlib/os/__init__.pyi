@@ -9,10 +9,12 @@ The ``os`` module contains functions for filesystem access and mounting,
 terminal redirection and duplication, and the ``uname`` and ``urandom``
 functions.
 """
+
 from __future__ import annotations
 import sys
 from _typeshed import (
-    Incomplete, AnyStr_co,
+    Incomplete,
+    AnyStr_co,
     BytesPath,
     FileDescriptor,
     FileDescriptorLike,
@@ -39,7 +41,11 @@ from io import BufferedRandom, BufferedReader, BufferedWriter, FileIO, TextIOWra
 from subprocess import Popen
 from types import TracebackType
 from typing import (
-    Iterator, Optional, Tuple, Union, IO,
+    Iterator,
+    Optional,
+    Tuple,
+    Union,
+    IO,
     Any,
     AnyStr,
     BinaryIO,
@@ -438,13 +444,10 @@ def listdir(path: StrPath | None = None) -> list[str]: ...
 def listdir(path: BytesPath) -> list[bytes]: ...
 @overload
 def listdir(path: int) -> list[str]: ...
-
-
-
 @mp_available()  # force merge
 def listdir(dir: Optional[Any] = None) -> Incomplete:
     """
-       With no argument, list the current directory.  Otherwise list the given directory.
+    With no argument, list the current directory.  Otherwise list the given directory.
     """
     ...
 @final
@@ -571,16 +574,16 @@ if sys.platform != "win32":
     def setuid(uid: int, /) -> None: ...
     def uname() -> uname_result:
         """
-       Return a tuple (possibly a named tuple) containing information about the
-       underlying machine and/or its operating system.  The tuple has five fields
-       in the following order, each of them being a string:
-    
-            * ``sysname`` -- the name of the underlying system
-            * ``nodename`` -- the network name (can be the same as ``sysname``)
-            * ``release`` -- the version of the underlying system
-            * ``version`` -- the MicroPython version and build date
-            * ``machine`` -- an identifier for the underlying hardware (eg board, CPU)
-    """
+        Return a tuple (possibly a named tuple) containing information about the
+        underlying machine and/or its operating system.  The tuple has five fields
+        in the following order, each of them being a string:
+
+             * ``sysname`` -- the name of the underlying system
+             * ``nodename`` -- the network name (can be the same as ``sysname``)
+             * ``release`` -- the version of the underlying system
+             * ``version`` -- the MicroPython version and build date
+             * ``machine`` -- an identifier for the underlying hardware (eg board, CPU)
+        """
         ...
 
 @overload
@@ -777,11 +780,10 @@ def write(fd: int, data: ReadableBuffer, /) -> int: ...
 def access(
     path: FileDescriptorOrPath, mode: int, *, dir_fd: int | None = None, effective_ids: bool = False, follow_symlinks: bool = True
 ) -> bool: ...
-
 @mp_available()  # force merge
 def chdir(path) -> Incomplete:
     """
-       Change current directory.
+    Change current directory.
     """
     ...
 
@@ -791,9 +793,10 @@ if sys.platform != "win32":
 @mp_available()  # force merge
 def getcwd() -> Incomplete:
     """
-       Get the current directory.
+    Get the current directory.
     """
     ...
+
 def getcwdb() -> bytes: ...
 def chmod(path: FileDescriptorOrPath, mode: int, *, dir_fd: int | None = None, follow_symlinks: bool = ...) -> None: ...
 
@@ -803,9 +806,7 @@ if sys.platform != "win32" and sys.platform != "linux":
 
 if sys.platform != "win32":
     def chroot(path: StrOrBytesPath) -> None: ...
-    def chown(
-        path: FileDescriptorOrPath, uid: int, gid: int, *, dir_fd: int | None = None, follow_symlinks: bool = True
-    ) -> None: ...
+    def chown(path: FileDescriptorOrPath, uid: int, gid: int, *, dir_fd: int | None = None, follow_symlinks: bool = True) -> None: ...
     def lchown(path: StrOrBytesPath, uid: int, gid: int) -> None: ...
 
 def link(
@@ -817,11 +818,10 @@ def link(
     follow_symlinks: bool = True,
 ) -> None: ...
 def lstat(path: StrOrBytesPath, *, dir_fd: int | None = None) -> stat_result: ...
-
 @mp_available()  # force merge
 def mkdir(path) -> Incomplete:
     """
-       Create a new directory.
+    Create a new directory.
     """
     ...
 
@@ -838,30 +838,27 @@ if sys.platform != "win32":
     def pathconf(path: FileDescriptorOrPath, name: str | int) -> int: ...  # Unix only
 
 def readlink(path: GenericPath[AnyStr], *, dir_fd: int | None = None) -> AnyStr: ...
-
 @mp_available()  # force merge
 def remove(path) -> None:
     """
-       Remove a file.
+    Remove a file.
     """
     ...
-def removedirs(name: StrOrBytesPath) -> None: ...
 
+def removedirs(name: StrOrBytesPath) -> None: ...
 @mp_available()  # force merge
 def rename(old_path, new_path) -> None:
     """
-       Rename a file.
+    Rename a file.
     """
     ...
-def renames(old: StrOrBytesPath, new: StrOrBytesPath) -> None: ...
-def replace(
-    src: StrOrBytesPath, dst: StrOrBytesPath, *, src_dir_fd: int | None = None, dst_dir_fd: int | None = None
-) -> None: ...
 
+def renames(old: StrOrBytesPath, new: StrOrBytesPath) -> None: ...
+def replace(src: StrOrBytesPath, dst: StrOrBytesPath, *, src_dir_fd: int | None = None, dst_dir_fd: int | None = None) -> None: ...
 @mp_available()  # force merge
 def rmdir(path) -> None:
     """
-       Remove a directory.
+    Remove a directory.
     """
     ...
 
@@ -876,51 +873,46 @@ def scandir(path: None = None) -> _ScandirIterator[str]: ...
 def scandir(path: int) -> _ScandirIterator[str]: ...
 @overload
 def scandir(path: GenericPath[AnyStr]) -> _ScandirIterator[AnyStr]: ...
-
 @mp_available()  # force merge
-def stat(path:str|bytes) -> MP_StatResult:
+def stat(path: str | bytes) -> MP_StatResult:
     """
-       Get the status of a file or directory.
+    Get the status of a file or directory.
     """
     ...
 
 # if sys.platform != "win32":
-
 @mp_available()  # force merge
 def statvfs(path) -> MP_StatVfsResult:
     """
-   Get the status of a filesystem.
+    Get the status of a filesystem.
 
-   Returns a tuple with the filesystem information in the following order:
+    Returns a tuple with the filesystem information in the following order:
 
-        * ``f_bsize`` -- file system block size
-        * ``f_frsize`` -- fragment size
-        * ``f_blocks`` -- size of fs in f_frsize units
-        * ``f_bfree`` -- number of free blocks
-        * ``f_bavail`` -- number of free blocks for unprivileged users
-        * ``f_files`` -- number of inodes
-        * ``f_ffree`` -- number of free inodes
-        * ``f_favail`` -- number of free inodes for unprivileged users
-        * ``f_flag`` -- mount flags
-        * ``f_namemax`` -- maximum filename length
+         * ``f_bsize`` -- file system block size
+         * ``f_frsize`` -- fragment size
+         * ``f_blocks`` -- size of fs in f_frsize units
+         * ``f_bfree`` -- number of free blocks
+         * ``f_bavail`` -- number of free blocks for unprivileged users
+         * ``f_files`` -- number of inodes
+         * ``f_ffree`` -- number of free inodes
+         * ``f_favail`` -- number of free inodes for unprivileged users
+         * ``f_flag`` -- mount flags
+         * ``f_namemax`` -- maximum filename length
 
-   Parameters related to inodes: ``f_files``, ``f_ffree``, ``f_avail``
-   and the ``f_flags`` parameter may return ``0`` as they can be unavailable
-   in a port-specific implementation.
-"""
+    Parameters related to inodes: ``f_files``, ``f_ffree``, ``f_avail``
+    and the ``f_flags`` parameter may return ``0`` as they can be unavailable
+    in a port-specific implementation.
+    """
     ...
 
-def symlink(
-    src: StrOrBytesPath, dst: StrOrBytesPath, target_is_directory: bool = False, *, dir_fd: int | None = None
-) -> None: ...
+def symlink(src: StrOrBytesPath, dst: StrOrBytesPath, target_is_directory: bool = False, *, dir_fd: int | None = None) -> None: ...
 
 # if sys.platform != "win32":
-
 @mp_available()  # force merge
 def sync() -> None:
     """
-   Sync all filesystems.
-"""
+    Sync all filesystems.
+    """
     ...
 
 def truncate(path: FileDescriptorOrPath, length: int) -> None: ...  # Unix only up to version 3.4
@@ -979,12 +971,8 @@ def execl(file: StrOrBytesPath, *args: Unpack[tuple[StrOrBytesPath, Unpack[tuple
 def execlp(file: StrOrBytesPath, *args: Unpack[tuple[StrOrBytesPath, Unpack[tuple[StrOrBytesPath, ...]]]]) -> NoReturn: ...
 
 # These are: execle(file, *args, env) but env is pulled from the last element of the args.
-def execle(
-    file: StrOrBytesPath, *args: Unpack[tuple[StrOrBytesPath, Unpack[tuple[StrOrBytesPath, ...]], _ExecEnv]]
-) -> NoReturn: ...
-def execlpe(
-    file: StrOrBytesPath, *args: Unpack[tuple[StrOrBytesPath, Unpack[tuple[StrOrBytesPath, ...]], _ExecEnv]]
-) -> NoReturn: ...
+def execle(file: StrOrBytesPath, *args: Unpack[tuple[StrOrBytesPath, Unpack[tuple[StrOrBytesPath, ...]], _ExecEnv]]) -> NoReturn: ...
+def execlpe(file: StrOrBytesPath, *args: Unpack[tuple[StrOrBytesPath, Unpack[tuple[StrOrBytesPath, ...]], _ExecEnv]]) -> NoReturn: ...
 
 # The docs say `args: tuple or list of strings`
 # The implementation enforces tuple or list so we can't use Sequence.
@@ -1011,6 +999,7 @@ def execv(path: StrOrBytesPath, argv: _ExecVArgs, /) -> NoReturn: ...
 def execve(path: FileDescriptorOrPath, argv: _ExecVArgs, env: _ExecEnv) -> NoReturn: ...
 def execvp(file: StrOrBytesPath, args: _ExecVArgs) -> NoReturn: ...
 def execvpe(file: StrOrBytesPath, args: _ExecVArgs, env: _ExecEnv) -> NoReturn: ...
+
 # def _exit(status: int) -> NoReturn: ...
 def kill(pid: int, signal: int, /) -> None: ...
 
@@ -1027,9 +1016,7 @@ class _wrap_close:
     def __init__(self, stream: TextIOWrapper, proc: Popen[str]) -> None: ...
     def close(self) -> int | None: ...
     def __enter__(self) -> Self: ...
-    def __exit__(
-        self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: TracebackType | None
-    ) -> None: ...
+    def __exit__(self, exc_type: type[BaseException] | None, exc_val: BaseException | None, exc_tb: TracebackType | None) -> None: ...
     def __iter__(self) -> Iterator[str]: ...
     # Methods below here don't exist directly on the _wrap_close object, but
     # are copied from the wrapped TextIOWrapper object via __getattr__.
@@ -1199,10 +1186,10 @@ if sys.platform == "linux":
     def getrandom(size: int, flags: int = 0) -> bytes: ...
 
 @mp_available()  # force merge
-def urandom(n:int) -> bytes:
+def urandom(n: int) -> bytes:
     """
-       Return a bytes object with *n* random bytes. Whenever possible, it is
-       generated by the hardware random number generator.
+    Return a bytes object with *n* random bytes. Whenever possible, it is
+    generated by the hardware random number generator.
     """
     ...
 
@@ -1307,9 +1294,7 @@ if sys.version_info >= (3, 13) and sys.platform == "linux":
     POSIX_SPAWN_CLOSEFROM: Final[int]
 
     def timerfd_create(clockid: int, /, *, flags: int = 0) -> int: ...
-    def timerfd_settime(
-        fd: FileDescriptor, /, *, flags: int = 0, initial: float = 0.0, interval: float = 0.0
-    ) -> tuple[float, float]: ...
+    def timerfd_settime(fd: FileDescriptor, /, *, flags: int = 0, initial: float = 0.0, interval: float = 0.0) -> tuple[float, float]: ...
     def timerfd_settime_ns(fd: FileDescriptor, /, *, flags: int = 0, initial: int = 0, interval: int = 0) -> tuple[int, int]: ...
     def timerfd_gettime(fd: FileDescriptor, /) -> tuple[float, float]: ...
     def timerfd_gettime_ns(fd: FileDescriptor, /) -> tuple[int, int]: ...
@@ -1324,87 +1309,86 @@ if sys.platform != "linux":
         def lchmod(path: StrOrBytesPath, mode: int) -> None: ...
 
 @overload
-def ilistdir(dir: Union[str,bytes]) -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]:
+def ilistdir(dir: Union[str, bytes]) -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]:
     """
-       This function returns an iterator which then yields tuples corresponding to
-       the entries in the directory that it is listing.  With no argument it lists the
-       current directory, otherwise it lists the directory given by *dir*.
-    
-       The tuples have the form *(name, type, inode[, size])*:
-    
-        - *name* is a string (or bytes if *dir* is a bytes object) and is the name of
-          the entry;
-        - *type* is an integer that specifies the type of the entry, with 0x4000 for
-          directories and 0x8000 for regular files;
-        - *inode* is an integer corresponding to the inode of the file, and may be 0
-          for filesystems that don't have such a notion.
-        - *size* is an integer that may be included depending on the filesystem type.
-          For file entries, *size* represents the size of the file or -1 if unknown.
-          Its meaning is currently undefined for directory entries.
+    This function returns an iterator which then yields tuples corresponding to
+    the entries in the directory that it is listing.  With no argument it lists the
+    current directory, otherwise it lists the directory given by *dir*.
+
+    The tuples have the form *(name, type, inode[, size])*:
+
+     - *name* is a string (or bytes if *dir* is a bytes object) and is the name of
+       the entry;
+     - *type* is an integer that specifies the type of the entry, with 0x4000 for
+       directories and 0x8000 for regular files;
+     - *inode* is an integer corresponding to the inode of the file, and may be 0
+       for filesystems that don't have such a notion.
+     - *size* is an integer that may be included depending on the filesystem type.
+       For file entries, *size* represents the size of the file or -1 if unknown.
+       Its meaning is currently undefined for directory entries.
     """
     ...
+
 @overload
 def ilistdir() -> Iterator[Union[Tuple[str, int, int], Tuple[str, int, int, int]]]: ...
-
 @mp_available()  # force merge
 def dupterm(stream_object, index=0, /) -> IO:
     """
-       Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
-       object. The *stream_object* argument must be a native stream object, or derive
-       from ``io.IOBase`` and implement the ``readinto()`` and
-       ``write()`` methods.  The stream should be in non-blocking mode and
-       ``readinto()`` should return ``None`` if there is no data available for reading.
-    
-       After calling this function all terminal output is repeated on this stream,
-       and any input that is available on the stream is passed on to the terminal input.
-    
-       The *index* parameter should be a non-negative integer and specifies which
-       duplication slot is set.  A given port may implement more than one slot (slot 0
-       will always be available) and in that case terminal input and output is
-       duplicated on all the slots that are set.
-    
-       If ``None`` is passed as the *stream_object* then duplication is cancelled on
-       the slot given by *index*.
-    
-       The function returns the previous stream-like object in the given slot.
+    Duplicate or switch the MicroPython terminal (the REPL) on the given `stream`-like
+    object. The *stream_object* argument must be a native stream object, or derive
+    from ``io.IOBase`` and implement the ``readinto()`` and
+    ``write()`` methods.  The stream should be in non-blocking mode and
+    ``readinto()`` should return ``None`` if there is no data available for reading.
+
+    After calling this function all terminal output is repeated on this stream,
+    and any input that is available on the stream is passed on to the terminal input.
+
+    The *index* parameter should be a non-negative integer and specifies which
+    duplication slot is set.  A given port may implement more than one slot (slot 0
+    will always be available) and in that case terminal input and output is
+    duplicated on all the slots that are set.
+
+    If ``None`` is passed as the *stream_object* then duplication is cancelled on
+    the slot given by *index*.
+
+    The function returns the previous stream-like object in the given slot.
     """
     ...
 
 @mp_available()  # force merge
 def dupterm_notify(obj_in: Any, /) -> None:
     """
-        Notify the MicroPython REPL that input is available on a stream-like object
-        previously registered via `os.dupterm()`.
-    
-        This function should be called by custom stream implementations (e.g., UART,
-        Bluetooth, or other non-USB REPL streams) to inform the REPL that input is
-        ready to be read. Proper use ensures that special characters such as
-        Ctrl+C (used to trigger KeyboardInterrupt) are processed promptly by the
-        REPL, enabling expected interruption behavior for user code.
-    
-        The *obj_in* parameter is ignored by `os.dupterm_notify()`, but is required to allow calling
-        dupterm_notify from an interrupt handler such as `UART.irq()`.
-    
-        Example:
+    Notify the MicroPython REPL that input is available on a stream-like object
+    previously registered via `os.dupterm()`.
+
+    This function should be called by custom stream implementations (e.g., UART,
+    Bluetooth, or other non-USB REPL streams) to inform the REPL that input is
+    ready to be read. Proper use ensures that special characters such as
+    Ctrl+C (used to trigger KeyboardInterrupt) are processed promptly by the
+    REPL, enabling expected interruption behavior for user code.
+
+    The *obj_in* parameter is ignored by `os.dupterm_notify()`, but is required to allow calling
+    dupterm_notify from an interrupt handler such as `UART.irq()`.
+
+    Example:
     """
     ...
 
-
-# Deprecated functions and classes 
-# The following functions and classes have been moved to the vfs module. 
+# Deprecated functions and classes
+# The following functions and classes have been moved to the vfs module.
 
 @mp_available()  # force merge
-@deprecated(   "The `mount` function is deprecated, use `vfs.mount` instead.")
+@deprecated("The `mount` function is deprecated, use `vfs.mount` instead.")
 def mount(fsobj, mount_point, *, readonly=False) -> Incomplete:
     """
-        See `vfs.mount`.
+    See `vfs.mount`.
     """
     ...
 
 @mp_available()  # force merge
-@deprecated(   "The `umount` function is deprecated, use `vfs.umount` instead.")
+@deprecated("The `umount` function is deprecated, use `vfs.umount` instead.")
 def umount(mount_point) -> Incomplete:
     """
-        See `vfs.umount`.
+    See `vfs.umount`.
     """
     ...

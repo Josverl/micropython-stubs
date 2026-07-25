@@ -8,6 +8,7 @@ CPython module: :mod:`python:collections` https://docs.python.org/3/library/coll
 This module implements advanced collection and container types to
 hold/accumulate various objects.
 """
+
 from __future__ import annotations
 import sys
 from _collections_abc import dict_items, dict_keys, dict_values
@@ -35,7 +36,7 @@ if sys.version_info >= (3, 10):
 else:
     from _collections_abc import *
 
-__all__ = ['OrderedDict', 'defaultdict', 'deque', 'namedtuple']
+__all__ = ["OrderedDict", "defaultdict", "deque", "namedtuple"]
 
 _S = TypeVar("_S")
 _T = TypeVar("_T")
@@ -47,24 +48,23 @@ _KT_co = TypeVar("_KT_co", covariant=True)
 _VT_co = TypeVar("_VT_co", covariant=True)
 
 # namedtuple is special-cased in the type checker; the initializer is ignored.
-def namedtuple(
-    name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
+def namedtuple(name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
     """
-        This is factory function to create a new namedtuple type with a specific
-        name and set of fields. A namedtuple is a subclass of tuple which allows
-        to access its fields not just by numeric index, but also with an attribute
-        access syntax using symbolic field names. Fields is a sequence of strings
-        specifying field names. For compatibility with CPython it can also be a
-        a string with space-separated field named (but this is less efficient).
-        Example of use::
-    
-            from collections import namedtuple
-    
-            MyTuple = namedtuple("MyTuple", ("id", "name"))
-            t1 = MyTuple(1, "foo")
-            t2 = MyTuple(2, "bar")
-            print(t1.name)
-            assert t2.name == t2[1]
+    This is factory function to create a new namedtuple type with a specific
+    name and set of fields. A namedtuple is a subclass of tuple which allows
+    to access its fields not just by numeric index, but also with an attribute
+    access syntax using symbolic field names. Fields is a sequence of strings
+    specifying field names. For compatibility with CPython it can also be a
+    a string with space-separated field named (but this is less efficient).
+    Example of use::
+
+        from collections import namedtuple
+
+        MyTuple = namedtuple("MyTuple", ("id", "name"))
+        t1 = MyTuple(1, "foo")
+        t2 = MyTuple(2, "bar")
+        print(t1.name)
+        assert t2.name == t2[1]
     """
     ...
 
@@ -75,7 +75,10 @@ class UserDict(MutableMapping[_KT, _VT]):  # type: ignore
     def __init__(self, dict: None = None, /) -> None: ...
     @overload
     def __init__(
-        self: UserDict[str, _VT], dict: None = None, /, **kwargs: _VT  # pyright: ignore[reportInvalidTypeVarUse]  #11780
+        self: UserDict[str, _VT],
+        dict: None = None,
+        /,
+        **kwargs: _VT,  # pyright: ignore[reportInvalidTypeVarUse]  #11780  # type: ignore
     ) -> None: ...
     @overload
     def __init__(self, dict: SupportsKeysAndGetItem[_KT, _VT], /) -> None: ...  # type: ignore
@@ -269,26 +272,26 @@ class deque(MutableSequence[_T]):
     def __init__(self, iterable: Iterable[_T], maxlen: int | None = None) -> None: ...
     def append(self, x: _T, /) -> None:  # type: ignore
         """
-                Add *x* to the right side of the deque.
-                Raises ``IndexError`` if overflow checking is enabled and there is
-                no more room in the queue.
+        Add *x* to the right side of the deque.
+        Raises ``IndexError`` if overflow checking is enabled and there is
+        no more room in the queue.
         """
         ...
     def appendleft(self, x: _T, /) -> None:  # type: ignore
         """
-                Add *x* to the left side of the deque.
-                Raises ``IndexError`` if overflow checking is enabled and there is
-                no more room in the queue.
+        Add *x* to the left side of the deque.
+        Raises ``IndexError`` if overflow checking is enabled and there is
+        no more room in the queue.
         """
         ...
     def copy(self) -> Self: ...
     def count(self, x: _T, /) -> int: ...  # type: ignore
     def extend(self, iterable: Iterable[_T], /) -> None:
         """
-                Extend the deque by appending all the items from *iterable* to
-                the right of the deque.
-                Raises ``IndexError`` if overflow checking is enabled and there is
-                no more room in the deque.
+        Extend the deque by appending all the items from *iterable* to
+        the right of the deque.
+        Raises ``IndexError`` if overflow checking is enabled and there is
+        no more room in the deque.
         """
         ...
     def extendleft(self, iterable: Iterable[_T], /) -> None: ...
@@ -296,14 +299,14 @@ class deque(MutableSequence[_T]):
     def index(self, x: _T, start: int = 0, stop: int = ..., /) -> int: ...  # type: ignore
     def pop(self) -> _T:  # type: ignore
         """
-                Remove and return an item from the right side of the deque.
-                Raises ``IndexError`` if no items are present.
+        Remove and return an item from the right side of the deque.
+        Raises ``IndexError`` if no items are present.
         """
         ...
     def popleft(self) -> _T:  # type: ignore
         """
-                Remove and return an item from the left side of the deque.
-                Raises ``IndexError`` if no items are present.
+        Remove and return an item from the left side of the deque.
+        Raises ``IndexError`` if no items are present.
         """
         ...
     def remove(self, value: _T, /) -> None: ...  # type: ignore
@@ -437,19 +440,19 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):  # type: ignore
     """
     def popitem(self) -> tuple[_KT, _VT]:  # type: ignore
         """
-                Remove and return a (key, value) pair from the dictionary.
-                Pairs are returned in LIFO order.
-        
-                Admonition:Difference to CPython
-                    :class: attention
-        
-                    ``OrderedDict.popitem()`` does not support the ``last=False`` argument and
-                    will always remove and return the last item if present.
-        
-                    A workaround for this is to use ``pop(<first_key>)`` to remove the first item::
-        
-                        first_key = next(iter(d))
-                        d.pop(first_key)
+        Remove and return a (key, value) pair from the dictionary.
+        Pairs are returned in LIFO order.
+
+        Admonition:Difference to CPython
+            :class: attention
+
+            ``OrderedDict.popitem()`` does not support the ``last=False`` argument and
+            will always remove and return the last item if present.
+
+            A workaround for this is to use ``pop(<first_key>)`` to remove the first item::
+
+                first_key = next(iter(d))
+                d.pop(first_key)
         """
         ...
     def move_to_end(self, key: _KT, last: bool = True) -> None: ...  # type: ignore
