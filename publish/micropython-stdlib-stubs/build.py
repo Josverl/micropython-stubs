@@ -461,6 +461,46 @@ def update_typing_pyi(
     next(tsk)
 
 
+def read_expected_typeshed_commit(dist_stdlib_path: Path) -> Optional[str]:
+    """Read the pinned typeshed commit hash from typeshed_commit.txt, if present."""
+    commit_file = dist_stdlib_path / "typeshed_commit.txt"
+    if not commit_file.exists():
+        return None
+    for line in commit_file.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if line and not line.startswith("#"):
+            return line
+    return None
+
+
+def ensure_typeshed_commit(typeshed_path: Path, expected_commit: Optional[str]):
+    """
+    Ensure the typeshed repo is checked out at the expected commit hash.
+
+    If no expected commit is known, nothing is changed. If the current HEAD does
+    not match the expected commit, the expected commit is checked out (fetching
+    from origin first if it is not available locally).
+    """
+    if not expected_commit:
+        log.warning("No pinned typeshed commit hash found; using the current checkout")
+        return
+    current_commit = subprocess.check_output(
+        ["git", "rev-parse", "HEAD"], cwd=typeshed_path, text=True
+    ).strip()
+    if current_commit == expected_commit:
+        log.info(f"typeshed repo is at the expected commit {expected_commit}")
+        return
+    log.warning(
+        f"typeshed repo is at {current_commit}, expected {expected_commit}; checking out expected commit"
+    )
+    try:
+        subprocess.check_call(["git", "checkout", expected_commit], cwd=typeshed_path)
+    except subprocess.CalledProcessError:
+        log.info("Expected commit not found locally; fetching from origin")
+        subprocess.check_call(["git", "fetch", "origin"], cwd=typeshed_path)
+        subprocess.check_call(["git", "checkout", expected_commit], cwd=typeshed_path)
+
+
 def update_stdlib_from_typeshed(dist_stdlib_path: Path, typeshed_path: Path):
     """
     Update the standard library from the typeshed folder.
@@ -715,6 +755,8 @@ def update(
             folder.mkdir(parents=True, exist_ok=True)
 
     if typeshed:
+        # check if the typeshed repo is at the correct commit hash, if not then check it out
+        ensure_typeshed_commit(typeshed_path, read_expected_typeshed_commit(dist_stdlib_path))
         update_stdlib_from_typeshed(dist_stdlib_path, typeshed_path)
 
     ## always update the _mpy_shed
