@@ -46,7 +46,7 @@ class TestSuite():
         ...
 
 
-class AssertRaisesContext():
+class _UnexpectedSuccess():
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
@@ -81,17 +81,12 @@ class TestResult():
         ...
 
 
-class SkipTest():
+class SubtestContext():
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
 
 class NullContext():
-    def __init__(self, *argv, **kwargs) -> None:
-        ...
-
-
-class SubtestContext():
     def __init__(self, *argv, **kwargs) -> None:
         ...
 
@@ -160,6 +155,21 @@ class TestCase():
     def assertEqual(self, *args, **kwargs) -> Incomplete:
         ...
 
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class AssertRaisesContext():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class _ExpectedFailure():
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class SkipTest():
     def __init__(self, *argv, **kwargs) -> None:
         ...
 

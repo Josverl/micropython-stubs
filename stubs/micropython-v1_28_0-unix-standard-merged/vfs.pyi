@@ -75,7 +75,7 @@ class VfsRom:
     def getcwd(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-class VfsFat:
+class VfsFat(AbstractBlockDev):
     """
     Create a filesystem object that uses the FAT filesystem format.  Storage of
     the FAT filesystem is provided by *block_dev*.
@@ -102,7 +102,7 @@ class VfsFat:
     def getcwd(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, block_dev: AbstractBlockDev) -> None: ...
 
-class VfsLfs1:
+class VfsLfs1(AbstractBlockDev):
     """
     Create a filesystem object that uses the `littlefs v1 filesystem format`_.
     Storage of the littlefs filesystem is provided by *block_dev*, which must
@@ -135,7 +135,7 @@ class VfsLfs1:
     def getcwd(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32) -> None: ...
 
-class VfsPosix:
+class VfsPosix(AbstractBlockDev):
     """
     Create a filesystem object that accesses the host POSIX filesystem.
     If *root* is specified then it should be a path in the host filesystem to use
@@ -156,7 +156,7 @@ class VfsPosix:
     def getcwd(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, root: str | None = None) -> None: ...
 
-class VfsLfs2:
+class VfsLfs2(AbstractBlockDev):
     """
     Create a filesystem object that uses the `littlefs v2 filesystem format`_.
     Storage of the littlefs filesystem is provided by *block_dev*, which must

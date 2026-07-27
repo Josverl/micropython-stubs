@@ -1,0 +1,30 @@
+"""
+Module: 'fnmatch' on micropython-v1.28.0-unix-standard
+"""
+# MCU: {'family': 'micropython', 'version': '1.28.0', 'build': '', 'ver': '1.28.0', 'port': 'unix', 'board': 'standard', 'board_id': 'standard', 'variant': '', 'cpu': 'linux [GCC 12.5.0] version', 'mpy': 'v6.3', 'arch': 'x64'}
+# Stubber: v1.28.3
+from __future__ import annotations
+from typing import Any, Final, Generator, AsyncGenerator
+from _typeshed import Incomplete
+
+def re_escape(*args, **kwargs) -> Incomplete:
+    ...
+
+def translate(*args, **kwargs) -> Incomplete:
+    ...
+
+def fnmatchcase(*args, **kwargs) -> Incomplete:
+    ...
+
+def _compile_pattern(*args, **kwargs) -> Incomplete:
+    ...
+
+def normcase(*args, **kwargs) -> Incomplete:
+    ...
+
+def filter(*args, **kwargs) -> Incomplete:
+    ...
+
+def fnmatch(*args, **kwargs) -> Incomplete:
+    ...
+

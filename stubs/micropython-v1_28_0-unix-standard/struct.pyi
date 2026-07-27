@@ -1,14 +1,24 @@
 """
-Module: 'functools' on micropython-v1.28.0-unix-standard
+Module: 'struct' on micropython-v1.28.0-unix-standard
 """
-
 # MCU: {'family': 'micropython', 'version': '1.28.0', 'build': '', 'ver': '1.28.0', 'port': 'unix', 'board': 'standard', 'board_id': 'standard', 'variant': '', 'cpu': 'linux [GCC 12.5.0] version', 'mpy': 'v6.3', 'arch': 'x64'}
 # Stubber: v1.28.3
 from __future__ import annotations
 from typing import Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 
-def reduce(*args, **kwargs) -> Incomplete: ...
-def wraps(*args, **kwargs) -> Incomplete: ...
-def update_wrapper(*args, **kwargs) -> Incomplete: ...
-def partial(*args, **kwargs) -> Incomplete: ...
+def pack_into(*args, **kwargs) -> Incomplete:
+    ...
+
+def unpack(*args, **kwargs) -> Incomplete:
+    ...
+
+def unpack_from(*args, **kwargs) -> Incomplete:
+    ...
+
+def pack(*args, **kwargs) -> Incomplete:
+    ...
+
+def calcsize(*args, **kwargs) -> Incomplete:
+    ...
+
