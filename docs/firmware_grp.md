@@ -1159,6 +1159,7 @@
 |micropython |v1.28   |frozen  |stm32|WEACTSTUDIO_MINI_STM32H743|2|1.28.3|[stubs/micropython-v1_28_0-frozen/stm32/WEACTSTUDIO_MINI_STM32H743](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-frozen/stm32/WEACTSTUDIO_MINI_STM32H743)
 |micropython |v1.28   |board   |stm32|generic|64|v1.28.0|[stubs/micropython-v1_28_0-stm32-PYBV11](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-stm32-PYBV11)
 |micropython |v1.28   |frozen  |unix|GENERIC|5|1.28.3|[stubs/micropython-v1_28_0-frozen/unix/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-frozen/unix/GENERIC)
+|micropython |v1.28   |board   |unix|generic|75|v1.28.3|[stubs/micropython-v1_28_0-unix-standard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-unix-standard)
 |micropython |v1.28   |frozen  |webassembly|GENERIC|31|1.28.3|[stubs/micropython-v1_28_0-frozen/webassembly/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-frozen/webassembly/GENERIC)
 |micropython |v1.28   |frozen  |windows|GENERIC|1|1.28.3|[stubs/micropython-v1_28_0-frozen/windows/GENERIC](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-frozen/windows/GENERIC)
 |micropython |v1.28   |board   |windows|generic|37|v1.28.3|[stubs/micropython-v1_28_0-windows-standard](https://github.com/Josverl/micropython-stubs/tree/main/stubs/micropython-v1_28_0-windows-standard)
@@ -1309,4 +1310,4 @@
 
 ## Metrics
 
-Total stub modules:  31479
+Total stub modules:  31554
