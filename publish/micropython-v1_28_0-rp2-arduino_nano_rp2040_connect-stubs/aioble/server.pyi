@@ -1,16 +1,16 @@
 # Micropython v1.28.0 frozen stubs
-from .core import (
-    GattError as GattError,
-    ble as ble,
-    ensure_active as ensure_active,
-    log_error as log_error,
-    log_info as log_info,
-    log_warn as log_warn,
-    register_irq_handler as register_irq_handler,
-)
-from .device import DeviceConnection as DeviceConnection, DeviceTimeout as DeviceTimeout
 from _typeshed import Incomplete
 from micropython import const as const
+
+from .core import GattError as GattError
+from .core import ble as ble
+from .core import ensure_active as ensure_active
+from .core import log_error as log_error
+from .core import log_info as log_info
+from .core import log_warn as log_warn
+from .core import register_irq_handler as register_irq_handler
+from .device import DeviceConnection as DeviceConnection
+from .device import DeviceTimeout as DeviceTimeout
 
 _registered_characteristics: Incomplete
 _IRQ_GATTS_WRITE: int

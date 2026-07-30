@@ -30,10 +30,7 @@ For example::
     s = socket.socket()
     s.connect(addr)
     s.send(b'GET / HTTP/1.1
-
 Host: micropython.org
-
-
 
 ')
     data = s.recv(1000)
@@ -46,11 +43,13 @@ Module: 'network' on micropython-v1.28.0-rp2-RPI_PICO2_W
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv7emsp', 'version': '1.28.0', 'port': 'rp2', 'board': 'RPI_PICO2_W', 'family': 'micropython', 'board_id': 'RPI_PICO2_W', 'variant': '', 'cpu': 'RP2350'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import Optional, Protocol, Callable, List, Any, Tuple, overload, Final
-from _typeshed import Incomplete
-from typing_extensions import Awaitable, TypeAlias, TypeVar
-from machine import Pin, SPI
+
 from abc import abstractmethod
+from typing import Any, Callable, Final, List, Optional, Protocol, Tuple, overload
+
+from _typeshed import Incomplete
+from machine import SPI, Pin
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 STA_IF: Final[int] = 0
 STAT_IDLE: Final[int] = 0

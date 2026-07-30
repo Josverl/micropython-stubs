@@ -14,9 +14,11 @@ Module: 'esp' on micropython-v1.28.0-esp32-ESP32_GENERIC_S2
 # MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC_S2', 'board_id': 'ESP32_GENERIC_S2', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32S2', 'version': '1.28.0'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import overload, Final
-from _typeshed import Incomplete
+
+from typing import Final, overload
+
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 LOG_NONE: Final[int] = 0
@@ -118,7 +120,6 @@ def flash_write(byte_offset: int, bytes: AnyReadableBuf, /) -> None:
     """
     Writes given bytes buffer to the flash memory starting at the given byte offset.
     """
-    ...
 
 def gpio_matrix_in(x0, x1, x2) -> Incomplete: ...
 def gpio_matrix_out(*args, **kwargs) -> Incomplete: ...
@@ -132,7 +133,6 @@ def flash_erase(sector_no: int, /) -> None:
     """
     Erases the given *sector* of flash memory.
     """
-    ...
 
 # flash_read has a port-specific signature difference:
 # - ESP8266 supports reading by explicit length and returns bytes.

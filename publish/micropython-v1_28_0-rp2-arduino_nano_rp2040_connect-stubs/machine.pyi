@@ -17,12 +17,14 @@ Module: 'machine' on micropython-v1.28.0-rp2-ARDUINO_NANO_RP2040_CONNECT
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv6m', 'version': '1.28.0', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'family': 'micropython', 'board_id': 'ARDUINO_NANO_RP2040_CONNECT', 'variant': '', 'cpu': 'RP2040'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import NoReturn, Tuple, Sequence, Optional, Any, Callable, Iterable, overload, Final
+
+from typing import Any, Callable, Final, Iterable, NoReturn, Optional, Sequence, Tuple, overload
+
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf, mp_available
+from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 from _typeshed import Incomplete
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ, mp_available
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 from vfs import AbstractBlockDev
-from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 
 PWRON_RESET: Final[int] = 1
 """Reset causes."""

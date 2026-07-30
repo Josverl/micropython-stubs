@@ -30,9 +30,11 @@ Module: 'hashlib' on micropython-v1.28.0-samd-SEEED_WIO_TERMINAL
 # MCU: {'variant': '', 'build': '', 'arch': 'armv7emsp', 'port': 'samd', 'board': 'SEEED_WIO_TERMINAL', 'board_id': 'SEEED_WIO_TERMINAL', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'SAMD51P19A', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from _typeshed import Incomplete
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _Hash
+
 from typing import NoReturn, overload
+
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _Hash
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 
 class sha256(_Hash):

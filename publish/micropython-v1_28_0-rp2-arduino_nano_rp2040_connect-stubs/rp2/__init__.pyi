@@ -1,23 +1,6 @@
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv6m', 'version': '1.28.0', 'port': 'rp2', 'board': 'RPI_PICO_W', 'family': 'micropython', 'board_id': 'RPI_PICO_W', 'variant': '', 'cpu': 'RP2040'}
 # Stubber: v1.28.0
 """
-Functionality specific to the RP2.
-
-MicroPython module: https://docs.micropython.org/en/v1.28.0/library/rp2.html
-
-The ``rp2`` module contains functions and classes specific to the RP2040, as
-used in the Raspberry Pi Pico.
-
-See the `RP2040 Python datasheet
-<https://datasheets.raspberrypi.com/pico/raspberry-pi-pico-python-sdk.pdf>`_
-for more information, and `pico-micropython-examples
-<https://github.com/raspberrypi/pico-micropython-examples/tree/master/pio>`_
-for example code.
-
----
-Module: 'rp2.PIOASMEmit'
-
----
 Type hints for the ``rp2.asm_pio`` DSL **as exposed on RP2350** (PIO version 1).
 
 This stub is a thin **overlay** on top of :mod:`rp2.asm_pio_rp2040` (the
@@ -61,97 +44,23 @@ single ``from rp2.asm_pio_rp2350 import *`` is sufficient — there is no
 need to also import the baseline.
 
 ---
-Type hints for the ``rp2.asm_pio`` DSL **as exposed on RP2040** (PIO version 0).
-
-This is the canonical, full declaration of the PIO assembler DSL. Two sibling
-modules exist:
-
-* :mod:`rp2.asm_pio_rp2040` — *this module* — RP2040 / PIO v0 (the baseline).
-* :mod:`rp2.asm_pio_rp2350` — RP2350 / PIO v1 overlay (re-exports this module
-  and adds ``prev``, ``next``, ``jmppin``, ``irq_prev``, ``irq_next``).
-* :mod:`rp2.asm_pio` — thin default that simply re-exports this module
-  (``from rp2.asm_pio_rp2040 import *``), kept for backward compatibility
-  with the historical ``from rp2.asm_pio import *`` idiom.
-
-In a PIO program file, pick *one* of the three imports below — they cannot
-be combined:
-
-```py
-# -----------------------------------------------
-# add type hints for the rp2.PIO Instructions
-try:
-    from typing_extensions import TYPE_CHECKING  # type: ignore
-except ImportError:
-    TYPE_CHECKING = False
-if TYPE_CHECKING:
-    # Default (RP2040 / PIO v0) — same as importing rp2.asm_pio_rp2040:
-    from rp2.asm_pio import *
-
-    # Explicit RP2040 / PIO v0:
-    # from rp2.asm_pio_rp2040 import *
-
-    # RP2350 / PIO v1:
-    # from rp2.asm_pio_rp2350 import *
-# -----------------------------------------------
-```
-
-For more information on PIO assembly programming and the Raspberry Pi Pico
-Python SDK, refer to:
-
-- raspberry-pi-pico-python-sdk.pdf: https://datasheets.raspberrypi.org/pico/raspberry-pi-pico-python-sdk.pdf
-- raspberry-pi-pico-c-sdk.pdf: https://datasheets.raspberrypi.org/pico/raspberry-pi-pico-c-sdk.pdf
-- Beginner-friendly reference: https://dernulleffekt.de/doku.php?id=raspberrypipico:pico_pio
-
----
-Default PIO assembler typing surface — re-exports :mod:`rp2.asm_pio_rp2040`.
-
-This module exists for backward compatibility with the historical idiom
-
-.. code-block:: python
-
-    if TYPE_CHECKING:
-        from rp2.asm_pio import *
-
-…which has always meant *"give me the RP2040 / PIO v0 DSL"*. The actual
-declarations now live in :mod:`rp2.asm_pio_rp2040`; this stub simply
-re-exports them so existing PIO programs keep type-checking unchanged.
-
-PIO target selection
---------------------
-
-Pick *one* of the three imports below in your PIO program file — they
-cannot be combined:
-
-.. code-block:: python
-
-    if TYPE_CHECKING:
-        # Default (RP2040 / PIO v0) — equivalent to importing rp2.asm_pio_rp2040:
-        from rp2.asm_pio import *
-
-        # Explicit RP2040 / PIO v0:
-        # from rp2.asm_pio_rp2040 import *
-
-        # RP2350 / PIO v1 (adds prev, next, jmppin, irq_prev, irq_next):
-        # from rp2.asm_pio_rp2350 import *
-
-See https://github.com/micropython/micropython/pull/18975 for the RP2350
-PIO v1 additions.
-
----
 Module: 'rp2' on micropython-v1.28.0-rp2-ARDUINO_NANO_RP2040_CONNECT
 """
 
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv6m', 'version': '1.28.0', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'family': 'micropython', 'board_id': 'ARDUINO_NANO_RP2040_CONNECT', 'variant': '', 'cpu': 'RP2040'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Union, List, Literal, overload, Any, Callable, Optional, Final
-from _typeshed import ReadableBuffer, WriteableBuffer, Incomplete
-from rp2.asm_pio_rp2040 import *
-from micropython import const
-from typing_extensions import Awaitable, TypeAlias, TypeVar, Protocol, Self, TYPE_CHECKING
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
-from vfs import AbstractBlockDev
+
+from typing import Any, Callable, Final, List, Literal, Optional, Union, overload
+
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete, ReadableBuffer, WriteableBuffer
 from machine import Pin
+from micropython import const
+from rp2.asm_pio_rp2040 import *
+from typing_extensions import TYPE_CHECKING, Awaitable, Protocol, Self, TypeAlias, TypeVar
+from vfs import AbstractBlockDev
+
 _IRQ_TRIGGERS: TypeAlias = Literal[256, 512, 1024, 2048]
 
 _pio_funcs: dict = {}
@@ -236,28 +145,6 @@ def asm_pio(
 def const(*args, **kwargs) -> Incomplete: ...
 
 class Flash:
-    """
-    Gets the singleton object for accessing the SPI flash memory.
-    """
-    @overload
-    def readblocks(self, block_num: int, buf: AnyWritableBuf) -> None:
-        """
-        The first form reads aligned, multiples of blocks.
-        Starting at the block given by the index *block_num*, read blocks from
-        the device into *buf* (an array of bytes).
-        The number of blocks to read is given by the length of *buf*,
-        which will be a multiple of the block size.
-        """
-
-    @overload
-    def readblocks(self, block_num: int, buf: AnyWritableBuf, offset: int) -> None:
-        """
-        The second form allows reading at arbitrary locations within a block,
-        and arbitrary lengths.
-        Starting at block index *block_num*, and byte offset within that block
-        of *offset*, read bytes from the device into *buf* (an array of bytes).
-        The number of bytes to read is given by the length of *buf*.
-        """
     @overload
     def readblocks(self, block_num: int, buf: AnyWritableBuf) -> None:
         """
@@ -302,43 +189,6 @@ class Flash:
 
         Note that implementations must never implicitly erase blocks if the offset
         argument is specified, even if it is zero.
-        """
-
-    @overload
-    def writeblocks(self, block_num: int, buf: AnyReadableBuf) -> None:
-        """
-        The first form writes aligned, multiples of blocks, and requires that the
-        blocks that are written to be first erased (if necessary) by this method.
-        Starting at the block given by the index *block_num*, write blocks from
-        *buf* (an array of bytes) to the device.
-        The number of blocks to write is given by the length of *buf*,
-        which will be a multiple of the block size.
-        """
-
-    @overload
-    def writeblocks(self, block_num: int, buf: AnyReadableBuf, offset: int) -> None:
-        """
-        The second form allows writing at arbitrary locations within a block,
-        and arbitrary lengths.  Only the bytes being written should be changed,
-        and the caller of this method must ensure that the relevant blocks are
-        erased via a prior ``ioctl`` call.
-        Starting at block index *block_num*, and byte offset within that block
-        of *offset*, write bytes from *buf* (an array of bytes) to the device.
-        The number of bytes to write is given by the length of *buf*.
-
-        Note that implementations must never implicitly erase blocks if the offset
-        argument is specified, even if it is zero.
-        """
-
-    @overload
-    def ioctl(self, op: int, arg: int) -> int | None: ...
-    #
-    @overload
-    def ioctl(self, op: int) -> int | None:
-        """
-        These methods implement the simple and extended
-        :ref:`block protocol <block-device-interface>` defined by
-        :class:`vfs.AbstractBlockDev`.
         """
 
     @overload
@@ -495,14 +345,6 @@ class DMA:
     def __init__(self) -> None: ...
 
 class StateMachine:
-    """
-    Get the state machine numbered *id*. The RP2040 has two identical PIO
-    instances, each with 4 state machines: so there are 8 state machines in
-    total, numbered 0 to 7.
-
-    Optionally initialize it with the given program *program*: see
-    `StateMachine.init`.
-    """
     def irq(self, handler: Optional[Callable] = None, trigger: int = 1, hard: bool = False) -> _IRQ:
         """
         Returns the IRQ object for the given StateMachine.
@@ -625,28 +467,10 @@ class StateMachine:
         >>> sm.exec(rp2.asm_pio_encode("out(y, 8)", 0))
         """
         ...
-
     @overload
     def get(self, buf: None = None, shift: int = 0) -> int: ...
     @overload
     def get(self, buf: WriteableBuffer, shift: int = 0) -> WriteableBuffer: ...
-    @overload
-    def get(self, buf: None = None, shift: int = 0) -> int: ...
-    @overload
-    def get(self, buf: WriteableBuffer, shift: int = 0) -> WriteableBuffer: ...
-    @overload
-    def active(self) -> bool: ...
-    @overload
-    def active(self, value: Union[bool, int]) -> bool:
-        """
-        Gets or sets whether the state machine is currently running.
-
-        >>> sm.active()
-        True
-        >>> sm.active(0)
-        False
-        """
-        ...
     @overload
     def active(self) -> bool: ...
     @overload

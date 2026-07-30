@@ -79,9 +79,11 @@ Module: 'btree' on micropython-v1.28.0-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import Iterable, Final
-from _typeshed import Incomplete
+
+from typing import Final, Iterable
+
 from _mpy_shed import IOBase_mp
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 DESC: Final[int] = 2

@@ -1,7 +1,7 @@
 [project]
 name = "micropython-windows-stubs"
 description = "MicroPython stubs"
-version = "1.28.0.post1"
+version = "1.28.0.post2"
 readme = "README.md"
 license = "MIT"
 authors = [
@@ -30,61 +30,26 @@ homepage = "https://github.com/josverl/micropython-stubs#micropython-stubs"
 documentation = "https://micropython-stubs.readthedocs.io/"
 repository = "https://github.com/josverl/micropython-stubs"
 
-[tool.poetry]
-exclude = [
-    "*.ps1",
-    "*.py",
-    "**/__pycache__",
-    "**/dist",
-]
+[tool.hatch.build.targets.wheel]
 include = [
-    "**/*.py",
+    "*.pyi",
     "**/*.pyi",
+    "README.md",
+    "LICENSE.md",
+    "pyproject.toml",
 ]
-packages = [
-    { include = "__builtins__.pyi" },
-    { include = "binascii.pyi" },
-    { include = "cmath.pyi" },
-    { include = "deflate.pyi" },
-    { include = "errno.pyi" },
-    { include = "gc.pyi" },
-    { include = "hashlib.pyi" },
-    { include = "heapq.pyi" },
-    { include = "machine.pyi" },
-    { include = "math.pyi" },
-    { include = "micropython.pyi" },
-    { include = "random.pyi" },
-    { include = "time.pyi" },
-    { include = "uarray.pyi" },
-    { include = "uasyncio.pyi" },
-    { include = "ubinascii.pyi" },
-    { include = "ubluetooth.pyi" },
-    { include = "ucollections.pyi" },
-    { include = "ucryptolib.pyi" },
-    { include = "uctypes.pyi" },
-    { include = "uerrno.pyi" },
-    { include = "uhashlib.pyi" },
-    { include = "uheapq.pyi" },
-    { include = "uio.pyi" },
-    { include = "ujson.pyi" },
-    { include = "umachine.pyi" },
-    { include = "uos.pyi" },
-    { include = "uplatform.pyi" },
-    { include = "urandom.pyi" },
-    { include = "ure.pyi" },
-    { include = "uselect.pyi" },
-    { include = "usocket.pyi" },
-    { include = "ussl.pyi" },
-    { include = "ustruct.pyi" },
-    { include = "usys.pyi" },
-    { include = "utime.pyi" },
-    { include = "uwebsocket.pyi" },
-    { include = "uzlib.pyi" },
-    { include = "vfs.pyi" },
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "*.pyi",
+    "**/*.pyi",
+    "README.md",
+    "LICENSE.md",
+    "pyproject.toml",
 ]
 
 [build-system]
 requires = [
-    "poetry-core>=1.0.0",
+    "hatchling",
 ]
-build-backend = "poetry.core.masonry.api"
+build-backend = "hatchling.build"

@@ -12,14 +12,16 @@ Module: 'pyb' on micropython-v1.28.0-stm32-PYBV11-NETWORK
 # MCU: {'variant': 'NETWORK', 'build': '', 'arch': 'armv7emsp', 'port': 'stm32', 'board': 'PYBV11', 'board_id': 'PYBV11-NETWORK', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'STM32F405RG', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import NoReturn, TypeVar, Any, Dict, List, Callable, overload, Final
-from _typeshed import Incomplete
-from typing_extensions import deprecated, Awaitable, TypeAlias, TypeVar
-from _mpy_shed import HID_Tuple, _OldAbstractBlockDev, _OldAbstractReadOnlyBlockDev, AnyReadableBuf, AnyWritableBuf
-from collections.abc import Sequence
-from vfs import AbstractBlockDev
+
 from abc import ABC, abstractmethod
 from array import array
+from collections.abc import Sequence
+from typing import Any, Callable, Dict, Final, List, NoReturn, overload
+
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, HID_Tuple, _OldAbstractBlockDev, _OldAbstractReadOnlyBlockDev
+from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
+from vfs import AbstractBlockDev
 
 hid_mouse: tuple = ()
 """\

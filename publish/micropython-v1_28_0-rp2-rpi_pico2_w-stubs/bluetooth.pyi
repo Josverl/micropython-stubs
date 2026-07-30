@@ -25,9 +25,11 @@ Module: 'bluetooth' on micropython-v1.28.0-rp2-RPI_PICO2_W
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv7emsp', 'version': '1.28.0', 'port': 'rp2', 'board': 'RPI_PICO2_W', 'family': 'micropython', 'board_id': 'RPI_PICO2_W', 'variant': '', 'cpu': 'RP2350'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import Any, Callable, overload, Final
+
+from typing import Any, Callable, Final, overload
+
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 FLAG_NOTIFY: Final[int] = 16
@@ -54,7 +56,6 @@ class UUID:
         - A 16-bit integer. e.g. ``0x2908``.
         - A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``.
         """
-        ...
 
 class BLE:
     """
@@ -868,4 +869,3 @@ class BLE:
         """
         Returns the singleton BLE object.
         """
-        ...

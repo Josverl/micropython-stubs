@@ -1,8 +1,12 @@
 # Micropython v1.28.0 frozen stubs
 import types
-from .core import ble as ble, log_error as log_error, register_irq_handler as register_irq_handler
+
 from _typeshed import Incomplete
 from micropython import const as const
+
+from .core import ble as ble
+from .core import log_error as log_error
+from .core import register_irq_handler as register_irq_handler
 
 _IRQ_MTU_EXCHANGED: int
 

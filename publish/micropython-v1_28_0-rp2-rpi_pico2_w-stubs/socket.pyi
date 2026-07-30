@@ -68,9 +68,11 @@ Module: 'socket' on micropython-v1.28.0-rp2-RPI_PICO2_W
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv7emsp', 'version': '1.28.0', 'port': 'rp2', 'board': 'RPI_PICO2_W', 'family': 'micropython', 'board_id': 'RPI_PICO2_W', 'variant': '', 'cpu': 'RP2350'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import Literal, Tuple, overload, Final
-from _typeshed import Incomplete
+
+from typing import Final, Literal, Tuple, overload
+
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 SOCK_RAW: Final[int] = 3
@@ -423,4 +425,3 @@ class socket:
                 # Create DGRAM UDP socket
                 socket(AF_INET, SOCK_DGRAM)
         """
-        ...
