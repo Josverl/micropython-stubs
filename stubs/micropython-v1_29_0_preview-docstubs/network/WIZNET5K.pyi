@@ -1,10 +1,12 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
-from typing_extensions import TypeVar, TypeAlias, Awaitable
-from machine import Pin, SPI
+
 from typing import Any
+
+from _typeshed import Incomplete
+from machine import SPI, Pin
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class WIZNET5K:
     """

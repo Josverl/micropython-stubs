@@ -1,0 +1,42 @@
+"""
+Module: 'requests.__init__' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC_C6
+"""
+# MCU: {'variant': '', 'build': 'preview.657.gf013bb5195', 'arch': 'rv32imc', 'port': 'esp32', 'board': 'ESP32_GENERIC_C6', 'board_id': 'ESP32_GENERIC_C6', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.657.gf013bb5195', 'family': 'micropython', 'cpu': 'ESP32-C6', 'version': '1.29.0-preview'}
+# Stubber: v1.28.3
+from __future__ import annotations
+from _typeshed import Incomplete
+
+def delete(*args, **kwargs) -> Incomplete:
+    ...
+
+def head(*args, **kwargs) -> Incomplete:
+    ...
+
+def patch(*args, **kwargs) -> Incomplete:
+    ...
+
+def post(*args, **kwargs) -> Incomplete:
+    ...
+
+def request(*args, **kwargs) -> Incomplete:
+    ...
+
+def put(*args, **kwargs) -> Incomplete:
+    ...
+
+def get(*args, **kwargs) -> Incomplete:
+    ...
+
+
+class Response():
+    def json(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def close(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    content: Incomplete ## <class 'property'> = <property>
+    text: Incomplete ## <class 'property'> = <property>
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+

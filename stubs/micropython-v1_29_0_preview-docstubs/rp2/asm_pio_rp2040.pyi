@@ -42,9 +42,8 @@ Python SDK, refer to:
 """
 
 from _typeshed import Incomplete
-from typing_extensions import TYPE_CHECKING, Protocol, Self
-
 from micropython import const  # type: ignore
+from typing_extensions import TYPE_CHECKING, Protocol, Self
 
 #  ref: https://github.com/Josverl/PIO_ASM_typing
 
