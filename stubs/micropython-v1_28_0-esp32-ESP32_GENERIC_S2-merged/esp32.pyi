@@ -13,9 +13,11 @@ Module: 'esp32' on micropython-v1.28.0-esp32-ESP32_GENERIC_S2
 # MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC_S2', 'board_id': 'ESP32_GENERIC_S2', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32S2', 'version': '1.28.0'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Any, List, Sequence, Tuple, overload, Final
-from _typeshed import Incomplete
+
+from typing import Any, Final, List, Sequence, Tuple, overload
+
 from _mpy_shed import AnyReadableBuf
+from _typeshed import Incomplete
 from machine import Pin
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 from vfs import AbstractBlockDev
@@ -350,7 +352,6 @@ class NVS:
         Create an object providing access to a namespace (which is automatically created if not
         present).
         """
-        ...
 
 class ULP:
     """
@@ -377,7 +378,6 @@ class ULP:
         """
         This class provides access to the Ultra-Low-Power co-processor.
         """
-        ...
 
 class Partition(AbstractBlockDev):
     """
@@ -524,7 +524,6 @@ class Partition(AbstractBlockDev):
         Create an object representing a partition.
 
         """
-        ...
 
 class RMT:
     """
@@ -801,4 +800,3 @@ class RMT:
         ``100``) and the output level to apply the carrier to (a boolean as per
         *idle_level*).
         """
-        ...

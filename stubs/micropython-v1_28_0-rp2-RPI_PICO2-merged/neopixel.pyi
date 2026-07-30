@@ -17,10 +17,12 @@ Module: 'neopixel' on micropython-v1.28.0-rp2-RPI_PICO2
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv7emsp', 'version': '1.28.0', 'port': 'rp2', 'board': 'RPI_PICO2', 'family': 'micropython', 'board_id': 'RPI_PICO2', 'variant': '', 'cpu': 'RP2350'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from _typeshed import Incomplete
-from _mpy_shed import _NeoPixelBase
-from machine import Pin
+
 from typing import Tuple
+
+from _mpy_shed import _NeoPixelBase
+from _typeshed import Incomplete
+from machine import Pin
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _Color: TypeAlias = tuple[int, int, int] | tuple[int, int, int, int]
@@ -70,4 +72,3 @@ class NeoPixel(_NeoPixelBase):
             - *bpp* is 3 for RGB LEDs, and 4 for RGBW LEDs.
             - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
         """
-        ...

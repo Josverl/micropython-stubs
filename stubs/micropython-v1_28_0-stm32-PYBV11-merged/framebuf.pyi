@@ -13,9 +13,11 @@ Module: 'framebuf' on micropython-v1.28.0-stm32-PYBV11-NETWORK
 # MCU: {'variant': 'NETWORK', 'build': '', 'arch': 'armv7emsp', 'port': 'stm32', 'board': 'PYBV11', 'board_id': 'PYBV11-NETWORK', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'STM32F405RG', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import Optional, Union, overload, Final
-from _typeshed import Incomplete
+
+from typing import Final, Optional, Union, overload
+
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 MONO_HMSB: Final[int] = 4
@@ -94,7 +96,6 @@ class FrameBuffer:
         methods draw horizontal and vertical lines respectively up to
         a given length.
         """
-        ...
 
     @overload
     def pixel(self, x: int, y: int, /) -> int:
@@ -204,7 +205,6 @@ class FrameBuffer:
         methods draw horizontal and vertical lines respectively up to
         a given length.
         """
-        ...
     def fill(self, c: int, /) -> None:
         """
         Fill the entire FrameBuffer with the specified color.
@@ -244,4 +244,3 @@ class FrameBuffer:
         optionally *stride*.  Invalid *buffer* size or dimensions may lead to
         unexpected errors.
         """
-        ...

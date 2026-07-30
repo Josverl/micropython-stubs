@@ -18,8 +18,10 @@ Module: 'cmath' on micropython-v1.28.0-rp2-RPI_PICO
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv6m', 'version': '1.28.0', 'port': 'rp2', 'board': 'RPI_PICO', 'family': 'micropython', 'board_id': 'RPI_PICO', 'variant': '', 'cpu': 'RP2040'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from _typeshed import Incomplete
+
 from typing import SupportsComplex, SupportsFloat, SupportsIndex
+
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _C: TypeAlias = SupportsFloat | SupportsComplex | SupportsIndex | complex

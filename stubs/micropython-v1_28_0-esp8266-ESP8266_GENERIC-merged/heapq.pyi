@@ -18,8 +18,10 @@ Module: 'heapq' on micropython-v1.28.0-esp8266-ESP8266_GENERIC
 # MCU: {'variant': '', 'build': '', 'arch': 'xtensa', 'port': 'esp8266', 'board': 'ESP8266_GENERIC', 'board_id': 'ESP8266_GENERIC', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP8266', 'version': '1.28.0'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from _typeshed import Incomplete
+
 from typing import Any
+
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _T = TypeVar("_T")

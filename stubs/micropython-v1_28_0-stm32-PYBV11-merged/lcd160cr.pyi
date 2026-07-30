@@ -12,10 +12,12 @@ Module: 'lcd160cr' on micropython-v1.28.0-stm32-PYBV11-NETWORK
 # MCU: {'variant': 'NETWORK', 'build': '', 'arch': 'armv7emsp', 'port': 'stm32', 'board': 'PYBV11', 'board_id': 'PYBV11-NETWORK', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'STM32F405RG', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from typing import Any, Tuple, overload, Final
-from _typeshed import Incomplete
+
+from typing import Any, Final, Tuple, overload
+
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from pyb import I2C, Pin, SPI
+from _typeshed import Incomplete
+from pyb import I2C, SPI, Pin
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 PORTRAIT: Final[int] = 0
@@ -148,7 +150,6 @@ class LCD160CR:
         coordinates.  They are faster than the clipping versions and can be
         used when you know that the coordinates are within the display.
         """
-        ...
     def save_to_flash(self) -> None:
         """
         Save the following parameters to flash so they persist on restart and power up:
@@ -161,7 +162,6 @@ class LCD160CR:
         coordinates.  They are faster than the clipping versions and can be
         used when you know that the coordinates are within the display.
         """
-        ...
     @staticmethod
     def rgb(r: int, g: int, b: int, /) -> int:
         """
@@ -178,14 +178,12 @@ class LCD160CR:
         The `rect` method draws the outline and interior, while the other methods
         just draw one or the other.
         """
-        ...
     def rect_outline_no_clip(self, x: int, y: int, w: int, h: int, /) -> None:
         """
         These methods are as above but don't do any clipping on the input
         coordinates.  They are faster than the clipping versions and can be
         used when you know that the coordinates are within the display.
         """
-        ...
     def set_startup_deco(self, value: int, /) -> None:
         """
         Set the start-up decoration of the display.  The *value* parameter can be a
@@ -331,7 +329,6 @@ class LCD160CR:
         coordinates.  They are faster than the clipping versions and can be
         used when you know that the coordinates are within the display.
         """
-        ...
     def poly_line(self, data: AnyReadableBuf, /) -> None:
         """
         Similar to :meth:`LCD160CR.poly_dot` but draws lines between the dots.
@@ -358,7 +355,6 @@ class LCD160CR:
         The `rect` method draws the outline and interior, while the other methods
         just draw one or the other.
         """
-        ...
     def reset(self) -> None:
         """
         Reset the display.
@@ -371,7 +367,6 @@ class LCD160CR:
         bytes in the JPEG.  Then this number of bytes must be transferred to the
         display using one or more calls to the `jpeg_data` command.
         """
-        ...
     def jpeg(self, buf: AnyReadableBuf, /) -> None:
         """
         Display a JPEG.  *buf* should contain the entire JPEG data. JPEG data should

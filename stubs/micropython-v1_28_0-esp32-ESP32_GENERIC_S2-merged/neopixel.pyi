@@ -17,10 +17,12 @@ Module: 'neopixel' on micropython-v1.28.0-esp32-ESP32_GENERIC_S2
 # MCU: {'variant': '', 'build': '', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC_S2', 'board_id': 'ESP32_GENERIC_S2', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32S2', 'version': '1.28.0'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from _typeshed import Incomplete
-from _mpy_shed import _NeoPixelBase
-from machine import Pin
+
 from typing import Tuple
+
+from _mpy_shed import _NeoPixelBase
+from _typeshed import Incomplete
+from machine import Pin
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _Color: TypeAlias = tuple[int, int, int] | tuple[int, int, int, int]
@@ -70,4 +72,3 @@ class NeoPixel(_NeoPixelBase):
             - *bpp* is 3 for RGB LEDs, and 4 for RGBW LEDs.
             - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
         """
-        ...

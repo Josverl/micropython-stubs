@@ -15,9 +15,11 @@ Module: 'ucollections' on micropython-v1.28.0-rp2-ARDUINO_NANO_RP2040_CONNECT
 # MCU: {'mpy': 'v6.3', 'build': '', 'ver': '1.28.0', 'arch': 'armv6m', 'version': '1.28.0', 'port': 'rp2', 'board': 'ARDUINO_NANO_RP2040_CONNECT', 'family': 'micropython', 'board_id': 'ARDUINO_NANO_RP2040_CONNECT', 'variant': '', 'cpu': 'RP2040'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Dict, Generic, Any, Final, Generator, AsyncGenerator
-from _typeshed import Incomplete
+
 from collections.abc import Iterable, MutableSequence
+from typing import Any, AsyncGenerator, Dict, Final, Generator, Generic
+
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _KT = TypeVar("_KT")
@@ -150,4 +152,3 @@ class deque(MutableSequence[_T]):
 
             - The optional *flags* can be 1 to check for overflow when adding items.
         """
-        ...

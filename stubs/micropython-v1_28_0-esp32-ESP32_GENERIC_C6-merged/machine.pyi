@@ -17,12 +17,14 @@ Module: 'machine' on micropython-v1.28.0-esp32-ESP32_GENERIC_C6
 # MCU: {'variant': '', 'build': '', 'arch': 'rv32imc', 'port': 'esp32', 'board': 'ESP32_GENERIC_C6', 'board_id': 'ESP32_GENERIC_C6', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32C6', 'version': '1.28.0'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import NoReturn, Tuple, Sequence, Optional, Any, Callable, Iterable, overload, Final
+
+from typing import Any, Callable, Final, Iterable, NoReturn, Optional, Sequence, Tuple, overload
+
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf, mp_available
+from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 from _typeshed import Incomplete
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ, mp_available
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 from vfs import AbstractBlockDev
-from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 
 SLEEP: Final[int] = 2
 """IRQ wake values."""

@@ -10,9 +10,11 @@ Module: 'cryptolib' on micropython-v1.28.0-esp32-ESP32_GENERIC_C3
 # MCU: {'variant': '', 'build': '', 'arch': 'rv32imc', 'port': 'esp32', 'board': 'ESP32_GENERIC_C3', 'board_id': 'ESP32_GENERIC_C3', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32C3', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from _typeshed import Incomplete
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+
 from typing import overload
+
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _WB = TypeVar("_WB", bound=AnyWritableBuf)

@@ -10,9 +10,11 @@ Module: 'micropython' on micropython-v1.28.0-esp32-ESP32_GENERIC_C3
 # MCU: {'variant': '', 'build': '', 'arch': 'rv32imc', 'port': 'esp32', 'board': 'ESP32_GENERIC_C3', 'board_id': 'ESP32_GENERIC_C3', 'mpy': 'v6.3', 'ver': '1.28.0', 'family': 'micropython', 'cpu': 'ESP32C3', 'version': '1.28.0'}
 # Stubber: v1.28.0
 from __future__ import annotations
-from _typeshed import Incomplete
-from _mpy_shed import mp_available
+
 from typing import Any, Callable, Optional, Tuple, overload
+
+from _mpy_shed import mp_available
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, ParamSpec, TypeAlias, TypeVar
 
 _T = TypeVar("_T")
@@ -196,7 +198,6 @@ def heap_unlock() -> int:
     Note: `heap_locked()` is not enabled on most ports by default,
     requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
     """
-    ...
 
 def const(expr: Const_T, /) -> Const_T:
     """
@@ -240,7 +241,6 @@ def heap_lock() -> int:
     Note: `heap_locked()` is not enabled on most ports by default,
     requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
     """
-    ...
 
 def alloc_emergency_exception_buf(size: int, /) -> None:
     """
