@@ -11,8 +11,8 @@ finally:
     del sys
 
 
-from micropython import const
 import esp32
+from micropython import const
 
 if hasattr(esp32, "PCNT"):
     _PCNT_RANGE = 32000

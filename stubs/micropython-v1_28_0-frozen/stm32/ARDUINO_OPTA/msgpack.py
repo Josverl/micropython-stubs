@@ -45,10 +45,10 @@ types.
 License: MIT
 """
 
-import struct
 import collections
-import sys
 import io
+import struct
+import sys
 
 __version__ = "2.8.0"
 "Module version string"

@@ -4,8 +4,9 @@
 #
 # LoRa is a registered trademark or service mark of Semtech Corporation or its affiliates.
 
-import machine
 import time
+
+import machine
 
 
 class SyncModem:

@@ -1,7 +1,8 @@
 # Micropython v1.28.0 frozen stubs
 from time import sleep_ms
-from ssd1306 import SSD1306_I2C
+
 import network
+from ssd1306 import SSD1306_I2C
 
 
 class OLED(SSD1306_I2C):

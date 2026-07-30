@@ -12,10 +12,12 @@ facilities for network sockets, both client-side and server-side.
 """
 
 from __future__ import annotations
-from tls import *
-from _typeshed import Incomplete
+
 import socket
+
 from _mpy_shed import StrOrBytesPath, mp_available
+from _typeshed import Incomplete
+from tls import *
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 PROTOCOL_TLS_CLIENT: Incomplete

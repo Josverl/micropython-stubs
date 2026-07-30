@@ -1,7 +1,7 @@
 # Micropython v1.28.0 frozen stubs
+import os
 import sys
 
-import os
 import machine
 
 RC = "./boot.py"

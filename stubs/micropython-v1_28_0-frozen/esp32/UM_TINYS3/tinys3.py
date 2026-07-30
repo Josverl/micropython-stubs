@@ -6,8 +6,9 @@
 #   https://tinys3.io
 
 # Import required libraries
+
+from machine import ADC, Pin
 from micropython import const
-from machine import Pin, ADC
 
 # TinyS3 Hardware Pin Assignments
 

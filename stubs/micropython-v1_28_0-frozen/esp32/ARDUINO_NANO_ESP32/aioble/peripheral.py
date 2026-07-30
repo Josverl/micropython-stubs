@@ -2,23 +2,21 @@
 # MicroPython aioble module
 # MIT license; Copyright (c) 2021 Jim Mussared
 
-from micropython import const
-
-import bluetooth
+import asyncio
 import struct
 
-import asyncio
+import bluetooth
+from micropython import const
 
 from .core import (
-    ensure_active,
     ble,
-    log_info,
+    ensure_active,
     log_error,
+    log_info,
     log_warn,
     register_irq_handler,
 )
 from .device import Device, DeviceConnection, DeviceTimeout
-
 
 _IRQ_CENTRAL_CONNECT = 1
 _IRQ_CENTRAL_DISCONNECT = 2

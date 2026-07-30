@@ -7,8 +7,10 @@
 # In comments, abbreviation "DS" = Semtech SX1261/62 Datasheet Rev 2.1 (December 2021)
 import struct
 import time
-from micropython import const
+
 from machine import Pin
+from micropython import const
+
 from .modem import BaseModem, ConfigError, RxPacket, _clamp, _flag
 
 # Set _DEBUG to True to print all SPI commands sent to the device, and all responses,

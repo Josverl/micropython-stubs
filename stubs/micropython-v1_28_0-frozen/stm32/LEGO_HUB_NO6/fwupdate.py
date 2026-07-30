@@ -2,9 +2,13 @@
 # Update Mboot or MicroPython from a .dfu.gz file on the board's filesystem
 # MIT license; Copyright (c) 2019-2022 Damien P. George
 
+import struct
+import time
+
+import deflate
+import machine
+import stm
 from micropython import const
-import struct, time
-import deflate, machine, stm
 
 # Constants to be used with update_mpy
 VFS_FAT = 1
@@ -91,7 +95,9 @@ class Flash:
     _FLASH_KEY2 = 0xCDEF89AB
 
     def __init__(self):
-        import os, uctypes
+        import os
+
+        import uctypes
 
         self.addressof = uctypes.addressof
 

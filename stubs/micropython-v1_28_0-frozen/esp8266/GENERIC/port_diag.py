@@ -1,8 +1,8 @@
 # Micropython v1.28.0 frozen stubs
 import esp
-import uctypes
-import network
 import lwip
+import network
+import uctypes
 
 
 def main():

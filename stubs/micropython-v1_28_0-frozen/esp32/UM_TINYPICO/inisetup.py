@@ -18,6 +18,7 @@ def check_bootsec():
 
 def fs_corrupted():
     import time
+
     import micropython
 
     # Allow this loop to be stopped via Ctrl-C.

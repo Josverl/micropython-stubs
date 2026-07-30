@@ -42,6 +42,7 @@ Basic example usage::
 
 import array
 import time
+
 from micropython import const
 
 _DEFAULT_ADDR = 0x10

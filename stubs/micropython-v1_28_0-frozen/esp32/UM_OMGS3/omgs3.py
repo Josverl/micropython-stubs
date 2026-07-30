@@ -6,9 +6,10 @@
 #   https://omgs3.io
 
 # Import required libraries
-from micropython import const
-from machine import Pin, I2C
+
+from machine import I2C, Pin
 from max17048 import MAX17048
+from micropython import const
 
 # Initialize I2C bus
 fg_i2c = I2C(0, scl=Pin.board.I2C_SCL, sda=Pin.board.I2C_SDA)

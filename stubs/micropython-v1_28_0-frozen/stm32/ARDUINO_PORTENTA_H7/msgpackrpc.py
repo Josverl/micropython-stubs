@@ -9,11 +9,12 @@
 # https://github.com/msgpack-rpc/msgpack-rpc/blob/master/spec.md
 
 import logging
-import openamp
-import msgpack
-from micropython import const
 from io import BytesIO
-from time import sleep_ms, ticks_ms, ticks_diff
+from time import sleep_ms, ticks_diff, ticks_ms
+
+import msgpack
+import openamp
+from micropython import const
 
 _MSG_TYPE_REQUEST = 0
 _MSG_TYPE_RESPONSE = 1

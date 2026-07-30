@@ -1,6 +1,6 @@
 # Micropython v1.28.0 frozen stubs
-import vfs
 import network
+import vfs
 from flashbdev import bdev
 
 
@@ -27,6 +27,7 @@ def check_bootsec():
 
 def fs_corrupted():
     import time
+
     import micropython
 
     # Allow this loop to be stopped via Ctrl-C.

@@ -1,10 +1,11 @@
 # Micropython v1.28.0 frozen stubs
 # ruff: noqa: F821
-import sys
 import os
-from micropython import const
+import sys
+
 import vfs  # vfs is always available
 import zephyr
+from micropython import const
 
 # FlashArea depends on CONFIG_FLASH_MAP
 FlashArea = getattr(zephyr, "FlashArea", None)

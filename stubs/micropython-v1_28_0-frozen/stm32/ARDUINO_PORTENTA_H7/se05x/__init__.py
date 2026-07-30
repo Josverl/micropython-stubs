@@ -1,6 +1,6 @@
 # Micropython v1.28.0 frozen stubs
-from .se05x import SE05X # noqa
-from .iso7816 import SmartCard # noqa
+from .se05x import SE05X  # noqa
+from .iso7816 import SmartCard  # noqa
 from micropython import const
 
 # Secure Object Types.

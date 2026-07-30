@@ -1,8 +1,8 @@
 # Micropython v1.28.0 frozen stubs
 # LOLIN C3 MINI MicroPython Helper Library
 
-from micropython import const
 from machine import Pin
+from micropython import const
 
 # Pin Assignments
 

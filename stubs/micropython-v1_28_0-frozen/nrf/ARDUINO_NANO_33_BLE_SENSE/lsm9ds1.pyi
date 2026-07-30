@@ -1,6 +1,7 @@
 # Micropython v1.28.0 frozen stubs
-from _typeshed import Incomplete
 from collections.abc import Generator
+
+from _typeshed import Incomplete
 from micropython import const as const
 
 _WHO_AM_I: int

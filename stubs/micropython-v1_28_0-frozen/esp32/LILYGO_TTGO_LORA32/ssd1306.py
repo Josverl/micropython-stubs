@@ -1,9 +1,8 @@
 # Micropython v1.28.0 frozen stubs
 # MicroPython SSD1306 OLED driver, I2C and SPI interfaces
 
-from micropython import const
 import framebuf
-
+from micropython import const
 
 # register definitions
 SET_CONTRAST = 0x81

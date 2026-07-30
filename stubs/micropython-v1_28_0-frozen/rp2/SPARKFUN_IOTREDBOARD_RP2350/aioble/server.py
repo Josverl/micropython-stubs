@@ -2,19 +2,20 @@
 # MicroPython aioble module
 # MIT license; Copyright (c) 2021 Jim Mussared
 
-from micropython import const
-from collections import deque
-import bluetooth
 import asyncio
+from collections import deque
+
+import bluetooth
+from micropython import const
 
 from .core import (
-    ensure_active,
+    GattError,
     ble,
-    log_info,
+    ensure_active,
     log_error,
+    log_info,
     log_warn,
     register_irq_handler,
-    GattError,
 )
 from .device import DeviceConnection, DeviceTimeout
 

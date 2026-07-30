@@ -1,8 +1,7 @@
 # Micropython v1.28.0 frozen stubs
-import vfs
 import machine
 import rp2
-
+import vfs
 
 # Try to mount the filesystem, and format the flash if it doesn't exist.
 # Note: the flash requires the programming size to be aligned to 256 bytes.

@@ -1,6 +1,8 @@
 # Micropython v1.28.0 frozen stubs
-import sys, os, alif
+import os
+import sys
 
+import alif
 
 bdev = alif.Flash()
 if hasattr(alif, "usb_msc"):

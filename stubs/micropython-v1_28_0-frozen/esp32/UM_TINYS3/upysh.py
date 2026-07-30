@@ -1,6 +1,6 @@
 # Micropython v1.28.0 frozen stubs
-import sys
 import os
+import sys
 
 
 class LS:

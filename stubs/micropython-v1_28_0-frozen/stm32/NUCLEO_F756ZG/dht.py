@@ -3,6 +3,7 @@
 # MIT license; Copyright (c) 2016 Damien P. George
 
 import sys
+
 import machine
 
 if hasattr(machine, "dht_readinto"):

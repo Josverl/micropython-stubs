@@ -1,6 +1,6 @@
 # Micropython v1.28.0 frozen stubs
-from utime import *
 from micropython import const
+from utime import *
 
 _TS_YEAR = 0
 _TS_MON = 1

@@ -1,8 +1,8 @@
 # Micropython v1.28.0 frozen stubs
 # LOLIN S2 PICO MicroPython Helper Library
 
+from machine import I2C, Pin, Signal
 from micropython import const
-from machine import Pin, I2C, Signal
 from s2pico_oled import OLED
 
 # Pin Assignments

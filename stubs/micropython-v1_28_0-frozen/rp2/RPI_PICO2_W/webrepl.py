@@ -2,13 +2,14 @@
 # This module should be imported from REPL, not run from command line.
 import binascii
 import hashlib
-from micropython import const
-import network
 import os
 import socket
 import sys
-import websocket
+
 import _webrepl
+import network
+import websocket
+from micropython import const
 
 listen_s = None
 client_s = None

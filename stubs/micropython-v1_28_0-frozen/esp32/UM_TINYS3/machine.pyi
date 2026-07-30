@@ -13,13 +13,15 @@ damage.
 """
 
 from __future__ import annotations
+
+from typing import Any, Callable, NoReturn, overload
+
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf, mp_available
+from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 from _typeshed import Incomplete
 from micropython import const as const
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ, mp_available
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
-from typing import NoReturn, Any, Callable, overload
 from vfs import AbstractBlockDev
-from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 
 _path: Incomplete
 _PCNT_RANGE: int
@@ -117,57 +119,6 @@ class Encoder:
     def phases(self): ...
 
 def __getattr__(attr): ...
-
-class ADC:
-    # ESP32 specific
-    @mp_available(port="esp32")
-    @deprecated("Use ADC.block().init(bits=bits) instead.")
-    def width(self, bits: int) -> None:
-        """
-        Equivalent to ADC.block().init(bits=bits).
-        The only chip that can switch resolution to a lower one is the normal esp32. The C2 & S3 are stuck at 12 bits, while the S2 is at 13 bits.
-
-        For compatibility, the ADC object also provides constants matching the supported ADC resolutions, per chip:
-
-        ESP32:
-            ADC.WIDTH_9BIT = 9
-            ADC.WIDTH_10BIT = 10
-            ADC.WIDTH_11BIT = 11
-            ADC.WIDTH_12BIT = 12
-
-        ESP32 C3 & S3:
-            ADC.WIDTH_12BIT = 12
-
-        ESP32 S2:
-            ADC.WIDTH_13BIT = 13
-
-        Available : ESP32
-        """
-        ...
-
-    @mp_available(port="esp32")
-    @deprecated("Use read_u16() instead.")
-    def read(self) -> int:
-        """
-        Take an analog reading and return an integer in the range 0-4095.
-        The return value represents the raw reading taken by the ADC, scaled
-        such that the minimum value is 0 and the maximum value is 4095.
-
-        This method is deprecated, use `read_u16()` instead.
-
-        Available : ESP32
-        """
-        ...
-
-    @mp_available(port="esp32")
-    @deprecated("Use ADC.init(atten=atten) instead.")
-    def atten(self, atten: int) -> None:
-        """
-        Set the attenuation level for the ADC input.
-
-        Available : ESP32
-        """
-        ...
 
 class ADCBlock:
     @overload
@@ -290,6 +241,85 @@ class I2C:
          In the case of hardware I2C the actual clock frequency may be lower than the
          requested frequency. This is dependent on the platform hardware. The actual
          rate may be determined by printing the I2C object.
+        """
+
+class PWM:
+    @overload
+    def freq(self) -> int:
+        """
+        Get or set the current frequency of the PWM output.
+
+        With no arguments the frequency in Hz is returned.
+
+        With a single *value* argument the frequency is set to that value in Hz.  The
+        method may raise a ``ValueError`` if the frequency is outside the valid range.
+        """
+
+    @overload
+    def freq(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current frequency of the PWM output.
+
+        With no arguments the frequency in Hz is returned.
+
+        With a single *value* argument the frequency is set to that value in Hz.  The
+        method may raise a ``ValueError`` if the frequency is outside the valid range.
+        """
+
+    @overload
+    def duty_u16(self) -> int:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+
+    @overload
+    def duty_u16(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
+        value in the range 0 to 65535 inclusive.
+
+        With no arguments the duty cycle is returned.
+
+        With a single *value* argument the duty cycle is set to that value, measured
+        as the ratio ``value / 65535``.
+        """
+
+    @overload
+    def duty_ns(self) -> int:
+        """
+        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
+
+        With no arguments the pulse width in nanoseconds is returned.
+
+        With a single *value* argument the pulse width is set to that value.
+        """
+
+    @overload
+    def duty_ns(
+        self,
+        value: int,
+        /,
+    ) -> None:
+        """
+        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
+
+        With no arguments the pulse width in nanoseconds is returned.
+
+        With a single *value* argument the pulse width is set to that value.
         """
 
 class Pin:
@@ -430,85 +460,6 @@ class Pin:
         See the constructor documentation for details of the ``drive`` argument.
 
         Availability: cc3200 port.
-        """
-
-class PWM:
-    @overload
-    def freq(self) -> int:
-        """
-        Get or set the current frequency of the PWM output.
-
-        With no arguments the frequency in Hz is returned.
-
-        With a single *value* argument the frequency is set to that value in Hz.  The
-        method may raise a ``ValueError`` if the frequency is outside the valid range.
-        """
-
-    @overload
-    def freq(
-        self,
-        value: int,
-        /,
-    ) -> None:
-        """
-        Get or set the current frequency of the PWM output.
-
-        With no arguments the frequency in Hz is returned.
-
-        With a single *value* argument the frequency is set to that value in Hz.  The
-        method may raise a ``ValueError`` if the frequency is outside the valid range.
-        """
-
-    @overload
-    def duty_u16(self) -> int:
-        """
-        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
-        value in the range 0 to 65535 inclusive.
-
-        With no arguments the duty cycle is returned.
-
-        With a single *value* argument the duty cycle is set to that value, measured
-        as the ratio ``value / 65535``.
-        """
-
-    @overload
-    def duty_u16(
-        self,
-        value: int,
-        /,
-    ) -> None:
-        """
-        Get or set the current duty cycle of the PWM output, as an unsigned 16-bit
-        value in the range 0 to 65535 inclusive.
-
-        With no arguments the duty cycle is returned.
-
-        With a single *value* argument the duty cycle is set to that value, measured
-        as the ratio ``value / 65535``.
-        """
-
-    @overload
-    def duty_ns(self) -> int:
-        """
-        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
-
-        With no arguments the pulse width in nanoseconds is returned.
-
-        With a single *value* argument the pulse width is set to that value.
-        """
-
-    @overload
-    def duty_ns(
-        self,
-        value: int,
-        /,
-    ) -> None:
-        """
-        Get or set the current pulse width of the PWM output, as a value in nanoseconds.
-
-        With no arguments the pulse width in nanoseconds is returned.
-
-        With a single *value* argument the pulse width is set to that value.
         """
 
 class RTC:
@@ -810,145 +761,6 @@ class SDCard:
         argument is specified, even if it is zero.
         """
 
-class SDCard:
-    @mp_available()  # force merge
-    def __init__(
-        self,
-        slot: int = 1,
-        width: int = 1,
-        *,
-        cd: _PinLike | None = None,
-        wp: _PinLike | None = None,
-        sck: _PinLike | None = None,
-        cmd: _PinLike | None = None,
-        data: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
-        miso: _PinLike | None = None,
-        mosi: _PinLike | None = None,
-        cs: _PinLike | None = None,
-        freq: int = 20000000,
-    ) -> None:
-        """
-        This class provides access to SD or MMC storage cards using either
-        a dedicated SD/MMC interface hardware or through an SPI channel.
-        The class implements the block protocol defined by :class:`os.AbstractBlockDev`.
-        This allows the mounting of an SD card to be as simple as::
-
-          os.mount(machine.SDCard(), "/sd")
-
-        The constructor takes the following parameters:
-
-         - *slot* selects which of the available interfaces to use. Leaving this
-           unset will select the default interface.
-
-         - *width* selects the bus width for the SD/MMC interface.
-
-         - *cd* can be used to specify a card-detect pin.
-
-         - *wp* can be used to specify a write-protect pin.
-
-         - *sck* can be used to specify an SPI clock pin.
-
-         - *miso* can be used to specify an SPI miso pin.
-
-         - *mosi* can be used to specify an SPI mosi pin.
-
-         - *cs* can be used to specify an SPI chip select pin.
-
-         - *freq* selects the SD/MMC interface frequency in Hz (only supported on the ESP32).
-        """
-
-class Signal:
-    @overload
-    def __init__(self, pin_obj: _PinLike, invert: bool = False, /) -> None:
-        """
-        Create a Signal object. There're two ways to create it:
-
-        * By wrapping existing Pin object - universal method which works for
-          any board.
-        * By passing required Pin parameters directly to Signal constructor,
-          skipping the need to create intermediate Pin object. Available on
-          many, but not all boards.
-
-        The arguments are:
-
-          - ``pin_obj`` is existing Pin object.
-
-          - ``pin_arguments`` are the same arguments as can be passed to Pin constructor.
-
-          - ``invert`` - if True, the signal will be inverted (active low).
-        """
-
-    @overload
-    def __init__(
-        self,
-        id: _PinLike,
-        /,
-        mode: int = -1,
-        pull: int = -1,
-        *,
-        value: Any = None,
-        drive: int | None = None,
-        alt: int | None = None,
-        invert: bool = False,
-    ) -> None:
-        """
-        Create a Signal object. There're two ways to create it:
-
-        * By wrapping existing Pin object - universal method which works for
-          any board.
-        * By passing required Pin parameters directly to Signal constructor,
-          skipping the need to create intermediate Pin object. Available on
-          many, but not all boards.
-
-        The arguments are:
-
-          - ``pin_obj`` is existing Pin object.
-
-          - ``pin_arguments`` are the same arguments as can be passed to Pin constructor.
-
-          - ``invert`` - if True, the signal will be inverted (active low).
-        """
-
-    @overload
-    def value(self) -> int:
-        """
-        This method allows to set and get the value of the signal, depending on whether
-        the argument ``x`` is supplied or not.
-
-        If the argument is omitted then this method gets the signal level, 1 meaning
-        signal is asserted (active) and 0 - signal inactive.
-
-        If the argument is supplied then this method sets the signal level. The
-        argument ``x`` can be anything that converts to a boolean. If it converts
-        to ``True``, the signal is active, otherwise it is inactive.
-
-        Correspondence between signal being active and actual logic level on the
-        underlying pin depends on whether signal is inverted (active-low) or not.
-        For non-inverted signal, active status corresponds to logical 1, inactive -
-        to logical 0. For inverted/active-low signal, active status corresponds
-        to logical 0, while inactive - to logical 1.
-        """
-
-    @overload
-    def value(self, x: Any, /) -> None:
-        """
-        This method allows to set and get the value of the signal, depending on whether
-        the argument ``x`` is supplied or not.
-
-        If the argument is omitted then this method gets the signal level, 1 meaning
-        signal is asserted (active) and 0 - signal inactive.
-
-        If the argument is supplied then this method sets the signal level. The
-        argument ``x`` can be anything that converts to a boolean. If it converts
-        to ``True``, the signal is active, otherwise it is inactive.
-
-        Correspondence between signal being active and actual logic level on the
-        underlying pin depends on whether signal is inverted (active-low) or not.
-        For non-inverted signal, active status corresponds to logical 1, inactive -
-        to logical 0. For inverted/active-low signal, active status corresponds
-        to logical 0, while inactive - to logical 1.
-        """
-
 class SPI:
     @overload
     def __init__(self, id: int, /):
@@ -1079,6 +891,98 @@ class SPI:
         In the case of hardware SPI the actual clock frequency may be lower than the
         requested baudrate. This is dependent on the platform hardware. The actual
         rate may be determined by printing the SPI object.
+        """
+
+class Signal:
+    @overload
+    def __init__(self, pin_obj: _PinLike, invert: bool = False, /) -> None:
+        """
+        Create a Signal object. There're two ways to create it:
+
+        * By wrapping existing Pin object - universal method which works for
+          any board.
+        * By passing required Pin parameters directly to Signal constructor,
+          skipping the need to create intermediate Pin object. Available on
+          many, but not all boards.
+
+        The arguments are:
+
+          - ``pin_obj`` is existing Pin object.
+
+          - ``pin_arguments`` are the same arguments as can be passed to Pin constructor.
+
+          - ``invert`` - if True, the signal will be inverted (active low).
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: _PinLike,
+        /,
+        mode: int = -1,
+        pull: int = -1,
+        *,
+        value: Any = None,
+        drive: int | None = None,
+        alt: int | None = None,
+        invert: bool = False,
+    ) -> None:
+        """
+        Create a Signal object. There're two ways to create it:
+
+        * By wrapping existing Pin object - universal method which works for
+          any board.
+        * By passing required Pin parameters directly to Signal constructor,
+          skipping the need to create intermediate Pin object. Available on
+          many, but not all boards.
+
+        The arguments are:
+
+          - ``pin_obj`` is existing Pin object.
+
+          - ``pin_arguments`` are the same arguments as can be passed to Pin constructor.
+
+          - ``invert`` - if True, the signal will be inverted (active low).
+        """
+
+    @overload
+    def value(self) -> int:
+        """
+        This method allows to set and get the value of the signal, depending on whether
+        the argument ``x`` is supplied or not.
+
+        If the argument is omitted then this method gets the signal level, 1 meaning
+        signal is asserted (active) and 0 - signal inactive.
+
+        If the argument is supplied then this method sets the signal level. The
+        argument ``x`` can be anything that converts to a boolean. If it converts
+        to ``True``, the signal is active, otherwise it is inactive.
+
+        Correspondence between signal being active and actual logic level on the
+        underlying pin depends on whether signal is inverted (active-low) or not.
+        For non-inverted signal, active status corresponds to logical 1, inactive -
+        to logical 0. For inverted/active-low signal, active status corresponds
+        to logical 0, while inactive - to logical 1.
+        """
+
+    @overload
+    def value(self, x: Any, /) -> None:
+        """
+        This method allows to set and get the value of the signal, depending on whether
+        the argument ``x`` is supplied or not.
+
+        If the argument is omitted then this method gets the signal level, 1 meaning
+        signal is asserted (active) and 0 - signal inactive.
+
+        If the argument is supplied then this method sets the signal level. The
+        argument ``x`` can be anything that converts to a boolean. If it converts
+        to ``True``, the signal is active, otherwise it is inactive.
+
+        Correspondence between signal being active and actual logic level on the
+        underlying pin depends on whether signal is inverted (active-low) or not.
+        For non-inverted signal, active status corresponds to logical 1, inactive -
+        to logical 0. For inverted/active-low signal, active status corresponds
+        to logical 0, while inactive - to logical 1.
         """
 
 class Timer:
@@ -1668,3 +1572,101 @@ def deepsleep(time_ms: int, /) -> NoReturn:
       return `machine.DEEPSLEEP` and this can be used to distinguish a deepsleep wake
       from other resets.
     """
+
+class ADC:
+    # ESP32 specific
+    @mp_available(port="esp32")
+    @deprecated("Use ADC.block().init(bits=bits) instead.")
+    def width(self, bits: int) -> None:
+        """
+        Equivalent to ADC.block().init(bits=bits).
+        The only chip that can switch resolution to a lower one is the normal esp32. The C2 & S3 are stuck at 12 bits, while the S2 is at 13 bits.
+
+        For compatibility, the ADC object also provides constants matching the supported ADC resolutions, per chip:
+
+        ESP32:
+            ADC.WIDTH_9BIT = 9
+            ADC.WIDTH_10BIT = 10
+            ADC.WIDTH_11BIT = 11
+            ADC.WIDTH_12BIT = 12
+
+        ESP32 C3 & S3:
+            ADC.WIDTH_12BIT = 12
+
+        ESP32 S2:
+            ADC.WIDTH_13BIT = 13
+
+        Available : ESP32
+        """
+        ...
+
+    @mp_available(port="esp32")
+    @deprecated("Use read_u16() instead.")
+    def read(self) -> int:
+        """
+        Take an analog reading and return an integer in the range 0-4095.
+        The return value represents the raw reading taken by the ADC, scaled
+        such that the minimum value is 0 and the maximum value is 4095.
+
+        This method is deprecated, use `read_u16()` instead.
+
+        Available : ESP32
+        """
+        ...
+
+    @mp_available(port="esp32")
+    @deprecated("Use ADC.init(atten=atten) instead.")
+    def atten(self, atten: int) -> None:
+        """
+        Set the attenuation level for the ADC input.
+
+        Available : ESP32
+        """
+        ...
+
+class SDCard:
+    @mp_available()  # force merge
+    def __init__(
+        self,
+        slot: int = 1,
+        width: int = 1,
+        *,
+        cd: _PinLike | None = None,
+        wp: _PinLike | None = None,
+        sck: _PinLike | None = None,
+        cmd: _PinLike | None = None,
+        data: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
+        miso: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        cs: _PinLike | None = None,
+        freq: int = 20000000,
+    ) -> None:
+        """
+        This class provides access to SD or MMC storage cards using either
+        a dedicated SD/MMC interface hardware or through an SPI channel.
+        The class implements the block protocol defined by :class:`os.AbstractBlockDev`.
+        This allows the mounting of an SD card to be as simple as::
+
+          os.mount(machine.SDCard(), "/sd")
+
+        The constructor takes the following parameters:
+
+         - *slot* selects which of the available interfaces to use. Leaving this
+           unset will select the default interface.
+
+         - *width* selects the bus width for the SD/MMC interface.
+
+         - *cd* can be used to specify a card-detect pin.
+
+         - *wp* can be used to specify a write-protect pin.
+
+         - *sck* can be used to specify an SPI clock pin.
+
+         - *miso* can be used to specify an SPI miso pin.
+
+         - *mosi* can be used to specify an SPI mosi pin.
+
+         - *cs* can be used to specify an SPI chip select pin.
+
+         - *freq* selects the SD/MMC interface frequency in Hz (only supported on the ESP32).
+        """

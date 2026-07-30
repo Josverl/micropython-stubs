@@ -8,11 +8,13 @@ This module provides control of the MicroPython LCD160CR display.
 """
 
 from __future__ import annotations
+
+from typing import Tuple, overload
+
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
 from micropython import const as const
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf
-from pyb import I2C, Pin, SPI
-from typing import Tuple, overload
+from pyb import I2C, SPI, Pin
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 PORTRAIT: int
@@ -303,7 +305,6 @@ class LCD160CR:
         The `rect` method draws the outline and interior, while the other methods
         just draw one or the other.
         """
-        ...
     def rect_outline(self, x, y, w, h) -> None:
         """
         Draw a rectangle at the given location and size using the pen line
@@ -311,7 +312,6 @@ class LCD160CR:
         The `rect` method draws the outline and interior, while the other methods
         just draw one or the other.
         """
-        ...
     def rect_interior(self, x, y, w, h) -> None:
         """
         Draw a rectangle at the given location and size using the pen line
@@ -331,28 +331,24 @@ class LCD160CR:
         coordinates.  They are faster than the clipping versions and can be
         used when you know that the coordinates are within the display.
         """
-        ...
     def rect_no_clip(self, x, y, w, h) -> None:
         """
         These methods are as above but don't do any clipping on the input
         coordinates.  They are faster than the clipping versions and can be
         used when you know that the coordinates are within the display.
         """
-        ...
     def rect_outline_no_clip(self, x, y, w, h) -> None:
         """
         These methods are as above but don't do any clipping on the input
         coordinates.  They are faster than the clipping versions and can be
         used when you know that the coordinates are within the display.
         """
-        ...
     def rect_interior_no_clip(self, x, y, w, h) -> None:
         """
         These methods are as above but don't do any clipping on the input
         coordinates.  They are faster than the clipping versions and can be
         used when you know that the coordinates are within the display.
         """
-        ...
     def line_no_clip(self, x1, y1, x2, y2) -> None:
         """
         These methods are as above but don't do any clipping on the input
@@ -477,7 +473,6 @@ class LCD160CR:
         bytes in the JPEG.  Then this number of bytes must be transferred to the
         display using one or more calls to the `jpeg_data` command.
         """
-        ...
     def jpeg_data(self, buf) -> None:
         """
         Display a JPEG with the data split across multiple buffers.  There must be

@@ -2,13 +2,12 @@
 # MicroPython aioble module
 # MIT license; Copyright (c) 2021 Jim Mussared
 
-from micropython import const
-
 import asyncio
 import binascii
 
-from .core import ble, register_irq_handler, log_error
+from micropython import const
 
+from .core import ble, log_error, register_irq_handler
 
 _IRQ_MTU_EXCHANGED = 21
 

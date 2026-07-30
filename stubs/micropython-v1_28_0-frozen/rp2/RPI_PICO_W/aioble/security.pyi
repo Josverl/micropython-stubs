@@ -1,8 +1,12 @@
 # Micropython v1.28.0 frozen stubs
-from .core import ble as ble, log_info as log_info, log_warn as log_warn, register_irq_handler as register_irq_handler
-from .device import DeviceConnection as DeviceConnection
 from _typeshed import Incomplete
 from micropython import const as const
+
+from .core import ble as ble
+from .core import log_info as log_info
+from .core import log_warn as log_warn
+from .core import register_irq_handler as register_irq_handler
+from .device import DeviceConnection as DeviceConnection
 
 _IRQ_ENCRYPTION_UPDATE: int
 _IRQ_GET_SECRET: int

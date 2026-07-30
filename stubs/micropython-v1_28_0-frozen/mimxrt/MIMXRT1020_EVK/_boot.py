@@ -4,9 +4,10 @@
 # Note: the flash requires the programming size to be aligned to 256 bytes.
 
 import os
-import vfs
 import sys
+
 import mimxrt
+import vfs
 from machine import Pin
 
 bdev = mimxrt.Flash()

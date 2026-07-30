@@ -24,10 +24,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
-from senml.senml_record import SenmlRecord
-from senml.senml_base import SenmlBase
 import json
+
 import cbor2
+
+from senml.senml_base import SenmlBase
+from senml.senml_record import SenmlRecord
 
 
 class SenmlPackIterator:

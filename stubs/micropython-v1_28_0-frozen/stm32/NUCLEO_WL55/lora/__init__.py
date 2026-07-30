@@ -40,8 +40,6 @@ except ImportError as e:
 
 
 if not ok:
-    raise ImportError(
-        "Incomplete lora installation. Need at least one of lora-sync, lora-async and one of lora-sx126x, lora-sx127x"
-    )
+    raise ImportError("Incomplete lora installation. Need at least one of lora-sync, lora-async and one of lora-sx126x, lora-sx127x")
 
 del ok

@@ -1,6 +1,7 @@
 # Micropython v1.28.0 frozen stubs
-from .iso7816 import SmartCard as SmartCard
 from _typeshed import Incomplete
+
+from .iso7816 import SmartCard as SmartCard
 
 _RESULT_OK: int
 _APPLET_NAD: int

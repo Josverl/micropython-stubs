@@ -2,8 +2,9 @@
 # espnow module for MicroPython on ESP8266
 # MIT license; Copyright (c) 2022 Glenn Moloney @glenn20
 
+from select import POLLIN, poll
+
 from _espnow import *
-from select import poll, POLLIN
 
 
 class ESPNow(ESPNowBase):

@@ -1,8 +1,7 @@
 # Micropython v1.28.0 frozen stubs
-import vfs
 import machine
 import rp2
-
+import vfs
 
 # Try to mount the filesystem, and format the flash if it doesn't exist.
 bdev = rp2.Flash()

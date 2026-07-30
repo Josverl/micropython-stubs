@@ -2,16 +2,15 @@
 # MicroPython aioble module
 # MIT license; Copyright (c) 2021 Jim Mussared
 
-from micropython import const
-from collections import deque
 import asyncio
 import struct
+from collections import deque
 
 import bluetooth
+from micropython import const
 
-from .core import ble, GattError, register_irq_handler
+from .core import GattError, ble, register_irq_handler
 from .device import DeviceConnection
-
 
 _IRQ_GATTC_SERVICE_RESULT = 9
 _IRQ_GATTC_SERVICE_DONE = 10

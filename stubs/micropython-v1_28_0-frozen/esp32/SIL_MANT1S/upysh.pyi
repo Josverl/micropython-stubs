@@ -1,5 +1,6 @@
 # Micropython v1.28.0 frozen stubs
 import os
+
 from _typeshed import Incomplete
 
 class LS:

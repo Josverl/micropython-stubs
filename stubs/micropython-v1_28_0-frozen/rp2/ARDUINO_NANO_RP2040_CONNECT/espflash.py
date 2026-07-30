@@ -27,11 +27,12 @@
 # Note this tool does Not support advanced features, other ESP chips or stub loading.
 # This is only meant to be used for updating the U-blox Nina module firmware.
 
+import binascii
 import os
 import struct
-from micropython import const
 from time import sleep
-import binascii
+
+from micropython import const
 
 _CMD_SYNC = 0x08
 _CMD_CHANGE_BAUDRATE = 0x0F

@@ -1,8 +1,9 @@
 # Micropython v1.28.0 frozen stubs
 import gc
-import vfs
-import samd
 import sys
+
+import samd
+import vfs
 
 bdev = samd.Flash()
 

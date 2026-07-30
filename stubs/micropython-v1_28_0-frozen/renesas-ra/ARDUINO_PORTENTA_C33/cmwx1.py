@@ -10,10 +10,9 @@
 # CMWX1ZZABZ-093 driver for Arduino boards.
 # Note this module runs a stock or a custom Arduino firmware.
 
-from time import sleep_ms
-from time import ticks_ms
-from machine import UART
-from machine import Pin
+from time import sleep_ms, ticks_ms
+
+from machine import UART, Pin
 from micropython import const
 
 

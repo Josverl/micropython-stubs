@@ -67,28 +67,10 @@ def _rewrite_url(url, branch=None):
         branch = "HEAD"
     if url.startswith("github:"):
         url = url[7:].split("/")
-        url = (
-            "https://raw.githubusercontent.com/"
-            + url[0]
-            + "/"
-            + url[1]
-            + "/"
-            + branch
-            + "/"
-            + "/".join(url[2:])
-        )
+        url = "https://raw.githubusercontent.com/" + url[0] + "/" + url[1] + "/" + branch + "/" + "/".join(url[2:])
     elif url.startswith("gitlab:"):
         url = url[7:].split("/")
-        url = (
-            "https://gitlab.com/"
-            + url[0]
-            + "/"
-            + url[1]
-            + "/-/raw/"
-            + branch
-            + "/"
-            + "/".join(url[2:])
-        )
+        url = "https://gitlab.com/" + url[0] + "/" + url[1] + "/-/raw/" + branch + "/" + "/".join(url[2:])
     return url
 
 
@@ -147,9 +129,7 @@ def _install_package(package, index, target, version, mpy):
     if any(package.startswith(p) for p in allowed_mip_url_prefixes):
         if package.endswith(".py") or package.endswith(".mpy"):
             print("Downloading {} to {}".format(package, target))
-            return _download_file(
-                _rewrite_url(package, version), target + "/" + package.rsplit("/")[-1]
-            )
+            return _download_file(_rewrite_url(package, version), target + "/" + package.rsplit("/")[-1])
         else:
             if not package.endswith(".json"):
                 if not package.endswith("/"):
@@ -161,9 +141,7 @@ def _install_package(package, index, target, version, mpy):
             version = "latest"
         print("Installing {} ({}) from {} to {}".format(package, version, index, target))
 
-        mpy_version = (
-            sys.implementation._mpy & 0xFF if mpy and hasattr(sys.implementation, "_mpy") else "py"
-        )
+        mpy_version = sys.implementation._mpy & 0xFF if mpy and hasattr(sys.implementation, "_mpy") else "py"
 
         package = "{}/package/{}/{}/{}.json".format(index, mpy_version, package, version)
 
