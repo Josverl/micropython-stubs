@@ -1,0 +1,176 @@
+"""
+Module: 'logging' on micropython-v1.28.0-webassembly-pyscript
+"""
+# MCU: {'family': 'micropython', 'version': '1.28.0', 'build': '', 'ver': '1.28.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
+# Stubber: v1.28.3
+from __future__ import annotations
+from typing import Any, Final, Generator, AsyncGenerator
+from _typeshed import Incomplete
+
+_loggers: dict = {}
+NOTSET: Final[int] = 0
+INFO: Final[int] = 20
+ERROR: Final[int] = 40
+_default_datefmt: str = '%Y-%m-%d %H:%M:%S'
+_level_dict: dict = {}
+WARNING: Final[int] = 30
+_default_fmt: str = '%(levelname)s:%(name)s:%(message)s'
+DEBUG: Final[int] = 10
+CRITICAL: Final[int] = 50
+def exception(x0, x1) -> Incomplete:
+    ...
+
+def getLogger(x0) -> Incomplete:
+    ...
+
+def info(x0) -> Incomplete:
+    ...
+
+def shutdown() -> Incomplete:
+    ...
+
+def critical(x0) -> Incomplete:
+    ...
+
+def error(x0) -> Incomplete:
+    ...
+
+def basicConfig(x0, x1, x2, x3) -> Incomplete:
+    ...
+
+def debug(x0) -> Incomplete:
+    ...
+
+def addLevelName(x0, x1) -> Incomplete:
+    ...
+
+def warning(x0) -> Incomplete:
+    ...
+
+def log(x0, x1) -> Incomplete:
+    ...
+
+def const(x0) -> Incomplete:
+    ...
+
+
+class StreamHandler():
+    def emit(self, x1) -> Incomplete:
+        ...
+
+    def setFormatter(self, x1) -> Incomplete:
+        ...
+
+    def setLevel(self, x1) -> Incomplete:
+        ...
+
+    def format(self, x1) -> Incomplete:
+        ...
+
+    def close(self) -> Incomplete:
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+_stream: Incomplete ## <class 'TextIOWrapper'> = <io.TextIOWrapper 2>
+
+class FileHandler():
+    def emit(self, x1) -> Incomplete:
+        ...
+
+    def setFormatter(self, x1) -> Incomplete:
+        ...
+
+    def setLevel(self, x1) -> Incomplete:
+        ...
+
+    def format(self, x1) -> Incomplete:
+        ...
+
+    def close(self) -> Incomplete:
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class Logger():
+    def hasHandlers(self) -> Incomplete:
+        ...
+
+    def warning(self, x1) -> Incomplete:
+        ...
+
+    def getEffectiveLevel(self) -> Incomplete:
+        ...
+
+    def setLevel(self, x1) -> Incomplete:
+        ...
+
+    def info(self, x1) -> Incomplete:
+        ...
+
+    def isEnabledFor(self, x1) -> Incomplete:
+        ...
+
+    def addHandler(self, x1) -> Incomplete:
+        ...
+
+    def exception(self, x1, x2) -> Incomplete:
+        ...
+
+    def log(self, x1, x2) -> Incomplete:
+        ...
+
+    def error(self, x1) -> Incomplete:
+        ...
+
+    def critical(self, x1) -> Incomplete:
+        ...
+
+    def debug(self, x1) -> Incomplete:
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class Formatter():
+    def formatTime(self, x1, x2) -> Incomplete:
+        ...
+
+    def usesTime(self) -> Incomplete:
+        ...
+
+    def format(self, x1) -> Incomplete:
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class LogRecord():
+    def set(self, x1, x2, x3) -> Incomplete:
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class Handler():
+    def setLevel(self, x1) -> Incomplete:
+        ...
+
+    def setFormatter(self, x1) -> Incomplete:
+        ...
+
+    def format(self, x1) -> Incomplete:
+        ...
+
+    def close(self) -> Incomplete:
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+

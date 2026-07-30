@@ -1,0 +1,39 @@
+"""
+Module: 'operator' on micropython-v1.28.0-webassembly-pyscript
+"""
+# MCU: {'family': 'micropython', 'version': '1.28.0', 'build': '', 'ver': '1.28.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
+# Stubber: v1.28.3
+from __future__ import annotations
+from typing import Any, Final, Generator, AsyncGenerator
+from _typeshed import Incomplete
+
+def lt(x0, x1) -> Incomplete:
+    ...
+
+def le(x0, x1) -> Incomplete:
+    ...
+
+def truediv(x0, x1) -> Incomplete:
+    ...
+
+def mod(x0, x1) -> Incomplete:
+    ...
+
+def ne(x0, x1) -> Incomplete:
+    ...
+
+def eq(x0, x1) -> Incomplete:
+    ...
+
+def attrgetter(x0) -> Incomplete:
+    ...
+
+def gt(x0, x1) -> Incomplete:
+    ...
+
+def floordiv(x0, x1) -> Incomplete:
+    ...
+
+def ge(x0, x1) -> Incomplete:
+    ...
+

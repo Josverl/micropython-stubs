@@ -1,0 +1,54 @@
+"""
+Module: 'time' on micropython-v1.28.0-webassembly-pyscript
+"""
+# MCU: {'family': 'micropython', 'version': '1.28.0', 'build': '', 'ver': '1.28.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
+# Stubber: v1.28.3
+from __future__ import annotations
+from typing import Any, Final, Generator, AsyncGenerator
+from _typeshed import Incomplete
+
+def ticks_diff(x0, x1) -> Incomplete:
+    ...
+
+def ticks_ms() -> Incomplete:
+    ...
+
+def ticks_cpu() -> Incomplete:
+    ...
+
+def ticks_add(x0, x1) -> Incomplete:
+    ...
+
+def time_ns() -> Incomplete:
+    ...
+
+def ticks_us() -> Incomplete:
+    ...
+
+def time() -> Incomplete:
+    ...
+
+def strftime(x0, x1) -> Incomplete:
+    ...
+
+def gmtime(*args, **kwargs) -> Incomplete:
+    ...
+
+def localtime(*args, **kwargs) -> Incomplete:
+    ...
+
+def const(x0) -> Incomplete:
+    ...
+
+def sleep_us(x0) -> Incomplete:
+    ...
+
+def sleep_ms(x0) -> Incomplete:
+    ...
+
+def mktime(x0) -> Incomplete:
+    ...
+
+def sleep(x0) -> Incomplete:
+    ...
+

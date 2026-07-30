@@ -69,6 +69,9 @@ tests/doc_test/micropython/
 # No coverage reports
 .coverage
 
+# Windows download metadata must never be committed as files.
+*:Zone.Identifier
+
 # typings runtime checking lib folder
 tests/quality_tests/feat_typing/lib
 tests/quality_tests/feat_typing/lib_*
