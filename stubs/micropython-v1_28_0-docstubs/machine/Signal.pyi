@@ -1,11 +1,14 @@
 """ """
 
 from __future__ import annotations
+
+from typing import Any, overload
+
 from _typeshed import Incomplete
-from typing import overload, Any
-from typing_extensions import TypeVar, TypeAlias, Awaitable
-from .Pin import Pin
 from machine.Pin import Pin, _PinLike
+from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+from .Pin import Pin
 
 class Signal(Pin):
     """

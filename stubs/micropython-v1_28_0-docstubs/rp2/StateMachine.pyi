@@ -1,12 +1,14 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import ReadableBuffer, WriteableBuffer, Incomplete
-from typing import Callable, Union, overload, Optional
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+
+from typing import Callable, Optional, Union, overload
+
 from _mpy_shed import _IRQ
+from _typeshed import Incomplete, ReadableBuffer, WriteableBuffer
 from machine import Pin
 from rp2 import _PIO_ASM_Program
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class StateMachine:
     """

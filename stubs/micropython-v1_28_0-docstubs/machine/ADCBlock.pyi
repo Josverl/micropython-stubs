@@ -1,11 +1,13 @@
 """ """
 
 from __future__ import annotations
+
+from typing import overload
+
 from _typeshed import Incomplete
-from typing_extensions import TypeVar, TypeAlias, Awaitable
 from machine.ADC import ADC
 from machine.Pin import _PinLike
-from typing import overload
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class ADCBlock:
     """

@@ -1,11 +1,13 @@
 """ """
 
 from __future__ import annotations
+
+from typing import Any, Callable, Tuple, overload
+
+from _mpy_shed import _IRQ, AnyReadableBuf
 from _typeshed import Incomplete
-from typing import Callable, overload, Any, Tuple
-from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
 from machine import IDLE
-from _mpy_shed import AnyReadableBuf, _IRQ
+from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 
 class RTC:
     """
