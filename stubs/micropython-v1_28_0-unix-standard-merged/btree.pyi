@@ -79,9 +79,11 @@ Module: 'btree' on micropython-v1.28.0-unix-standard
 # MCU: {'family': 'micropython', 'version': '1.28.0', 'build': '', 'ver': '1.28.0', 'port': 'unix', 'board': 'standard', 'board_id': 'standard', 'variant': '', 'cpu': 'linux [GCC 12.5.0] version', 'mpy': 'v6.3', 'arch': 'x64'}
 # Stubber: v1.28.3
 from __future__ import annotations
-from typing import Iterable, Any, Final, Generator, AsyncGenerator
-from _typeshed import Incomplete
+
+from typing import Any, AsyncGenerator, Final, Generator, Iterable
+
 from _mpy_shed import IOBase_mp
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 DESC: Final[int] = 2

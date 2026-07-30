@@ -30,7 +30,6 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_28_0-unix-standard-merged`
-* Frozen stubs from `stubs/micropython-v1_28_0-frozen/unix/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 
