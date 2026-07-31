@@ -8,12 +8,12 @@ MicroPython module: https://docs.micropython.org/en/latest/library/espnow.html#a
 # origin module:: repos/micropython/lib/micropython-lib/micropython/aioespnow/aioespnow.py
 from __future__ import annotations
 
-from typing import overload
+from _mpy_shed import mp_available
+from typing import TypeAlias, overload
 
 from espnow import ESPNow
 
-_MACAddress = bytes
-
+_MACAddress: TypeAlias = bytes
 
 class AIOESPNow(ESPNow):
     """
@@ -35,13 +35,9 @@ class AIOESPNow(ESPNow):
         ...
 
     @overload
-    async def asend(self, mac: _MACAddress, msg: str | bytes, sync: bool | None = True) -> bool:
-        ...
-
+    async def asend(self, mac: _MACAddress, msg: str | bytes, sync: bool | None = True) -> bool: ...
     @overload
-    async def asend(self, msg: str | bytes) -> bool:
-        ...
-
+    async def asend(self, msg: str | bytes) -> bool: ...
     async def asend(self, mac: _MACAddress | str | bytes, msg: str | bytes | None = None, sync: bool | None = True) -> bool:
         """
         Asyncio support for `ESPNow.send()`.
@@ -51,8 +47,7 @@ class AIOESPNow(ESPNow):
         """
         ...
 
-    def __aiter__(self) -> AIOESPNow:
-        ...
-
-    async def __anext__(self) -> tuple[_MACAddress | bytearray | None, bytearray | None]:
-        ...
+    @mp_available()
+    def __aiter__(self) -> AIOESPNow: ...
+    @mp_available()
+    async def __anext__(self) -> tuple[_MACAddress | bytearray | None, bytearray | None]: ...
