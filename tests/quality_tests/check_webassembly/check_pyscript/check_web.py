@@ -9,11 +9,15 @@ from pyscript.web import page
 print(page.head.children)
 # Find all the paragraphs in the DOM.
 paragraphs = page.find("p")
-# Or use square brackets.
-paragraphs = page["p"]
+# Square brackets look up an element by id.
+paragraph = page["paragraph-id"]
+if paragraph is not None:
+    print(paragraph.children)
+
+paragraphs.update_all(classes="checked", style={"color": "green"})
 
 
-from pyscript.web import page, div, select, option, button, span, br 
+from pyscript.web import page, div, select, option, button, span, br
 
 
 page.append(
@@ -29,27 +33,21 @@ page.append(
             br(),
             button("Click me!"),
             classes=["css-class1", "css-class2"],
-            style={"background-color": "red"}
+            style={"background-color": "red"},
         ),
         div(
             children=[
-                button(
-                    children=[
-                        span("Hello! "),
-                        span("Again!")
-                    ],
-                    id="another-button"
-                ),
+                button(children=[span("Hello! "), span("Again!")], id="another-button"),
                 br(),
                 button("b"),
             ],
-            classes=["css-class1", "css-class2"]
-        )
+            classes=["css-class1", "css-class2"],
+        ),
     )
 )
 
 
-from pyscript.web import page, div, p 
+from pyscript.web import page, div, p
 
 
 my_div = div()
@@ -61,3 +59,6 @@ my_p.content = "This is a paragraph."
 
 my_div.append(my_p)
 
+first_child = my_div[0]
+child_slice = my_div[:1]
+found_child = my_div["paragraph-id"]
