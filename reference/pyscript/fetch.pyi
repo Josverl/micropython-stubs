@@ -5,7 +5,7 @@ see: https://docs.pyscript.net/2025.10.1/api/
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
-from typing import Any, Awaitable
+from typing import Any, Generator
 
 class _Response:
     """
@@ -24,9 +24,7 @@ class _Response:
         """
         ...
 
-    def __getattr__(self, attr: str) -> Any:
-        ...
-
+    def __getattr__(self, attr: str) -> Any: ...
     async def arrayBuffer(self) -> memoryview:
         """
         Read the response body as an ArrayBuffer.
@@ -102,6 +100,7 @@ class _DirectResponse:
         """
         ...
 
+    def __await__(self) -> Generator[Any, None, _Response]: ...
     async def arrayBuffer(self) -> memoryview:
         """
         Read the response body as an ArrayBuffer.
@@ -147,7 +146,7 @@ class _DirectResponse:
         """
         ...
 
-def fetch(url: str, **kw: Any) -> Awaitable[_Response]:
+def fetch(url: str, **kw: Any) -> _DirectResponse:
     """
     Fetch a resource from the network.
 

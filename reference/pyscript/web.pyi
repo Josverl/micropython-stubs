@@ -3,19 +3,18 @@ Lightweight interface to the DOM and HTML elements.
 
 As a convenience, and to ensure backwards compatibility, PyScript allows the use of inline event handlers via custom HTML attributes.
 
-Warning: 
+Warning:
     This classic pattern of coding (inline event handlers) is no longer considered good practice in web development circles.
 
 We include this behaviour for historic reasons, but the folks at Mozilla have a good explanation of why this is currently considered bad practice.
 
-These attributes, expressed as py-* or mpy-* attributes of an HTML element, reference the name of a Python function to run when the event is fired. 
-You should replace the * with the actual name of an event (e.g. py-click or mpy-click). This is similar to how all event handlers on elements start 
+These attributes, expressed as py-* or mpy-* attributes of an HTML element, reference the name of a Python function to run when the event is fired.
+You should replace the * with the actual name of an event (e.g. py-click or mpy-click). This is similar to how all event handlers on elements start
 with on in standard HTML (e.g. onclick). The rule of thumb is to simply replace on with py- or mpy- and then reference the name of a Python function.
 """
 
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
-
 
 from __future__ import annotations
 
@@ -27,8 +26,8 @@ from pyscript import when as when
 from pyscript.ffi import create_proxy
 from typing_extensions import Self
 
-ELEMENT_CLASSES :ElementCollection = ...
-page :Page = ...
+ELEMENT_CLASSES: ElementCollection = ...
+page: Page = ...
 
 def wrap_dom_element(dom_element):
     """Wrap an existing DOM element in an instance of a subclass of `Element`.
@@ -247,9 +246,7 @@ class Style:
 class ContainerElement(Element):
     """Base class for elements that can contain other elements."""
 
-    def __init__(
-        self, *args, children=..., dom_element=..., style=..., classes=..., **kwargs
-    ) -> None: ...
+    def __init__(self, *args, children=..., dom_element=..., style=..., classes=..., **kwargs) -> None: ...
     def __iter__(self) -> Generator[Any, Any, None]: ...
 
 class ClassesCollection:
@@ -869,9 +866,7 @@ class var(ContainerElement):
 class video(ContainerElement):
     """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"""
 
-    def snap(
-        self, to: Element | str = ..., width: int | None = ..., height: int | None = ...
-    ) -> canvas | Element:
+    def snap(self, to: Element | str = ..., width: int | None = ..., height: int | None = ...) -> canvas | Element:
         """
         Capture a snapshot (i.e. a single frame) of a video to a canvas.
 
@@ -891,11 +886,14 @@ class wbr(Element):
 
     ...
 
-
 class Page:
     """Represents the whole page."""
 
     def __init__(self) -> None: ...
+    @property
+    def head(self) -> Element: ...
+    @property
+    def body(self) -> Element: ...
     def __getitem__(self, selector) -> ElementCollection:
         """Get an item on the page.
 
@@ -925,5 +923,3 @@ class Page:
         Return the results as a (possibly empty) `ElementCollection`.
         """
         ...
-
-

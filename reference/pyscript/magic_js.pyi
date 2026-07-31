@@ -48,7 +48,7 @@ class JSModule:
 PyWorker: None
 """Not available in worker context (None)."""
 
-window: Incomplete 
+window: Incomplete
 """
 The browser's window object.
 
@@ -58,7 +58,7 @@ and methods when running in the main thread.
 Not available in worker context (None).
 """
 
-document: Incomplete 
+document: Incomplete
 """
 The browser's document object.
 
@@ -67,9 +67,7 @@ HTML elements when running in the main thread.
 
 Not available in worker context (None)."""
 
-
-
-sync: Callable[[Any], Any]
+sync: Any
 """
 A function used to pass serializable data from workers to the main thread.
 
@@ -88,4 +86,3 @@ def current_target() -> Any:
     rRef: https://docs.pyscript.net/2025.10.1/api/#pyscriptcurrent_target
     """
     ...
-

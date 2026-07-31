@@ -69,6 +69,11 @@ class WebSocket:
     CLOSED: Literal[3]
     """WebSocket is closed (readyState = 3)."""
 
+    onopen: Any
+    onmessage: Any
+    onerror: Any
+    onclose: Any
+
     def __init__(
         self,
         url: str | None = None,
@@ -92,12 +97,8 @@ class WebSocket:
         """
         ...
 
-    def __getattr__(self, attr: str) -> Any:
-        ...
-
-    def __setattr__(self, attr: str, value: Any) -> None:
-        ...
-
+    def __getattr__(self, attr: str) -> Any: ...
+    def __setattr__(self, attr: str, value: Any) -> None: ...
     def close(self, code: int = 1000, reason: str = "") -> None:
         """
         Close the WebSocket connection.
