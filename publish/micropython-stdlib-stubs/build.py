@@ -409,6 +409,31 @@ def patch_sys_implementation(dist_stdlib_path: Path):
         log.info("Patched stdlib/sys/__init__.pyi for MicroPython sys.implementation")
 
 
+def patch_micropython_builtins(reference_path: Path, dist_stdlib_path: Path):
+    """Expose compiler-provided names through the custom stdlib builtins module."""
+    builtins_stub = dist_stdlib_path / "stdlib/builtins.pyi"
+    source_stub = reference_path / "_mpy_shed/_mpy_builtins.pyi"
+    if not builtins_stub.exists():
+        log.warning(f"Could not patch MicroPython builtins, file not found: {builtins_stub}")
+        return
+    if not source_stub.exists():
+        raise FileNotFoundError(f"MicroPython builtins source not found: {source_stub}")
+
+    content = builtins_stub.read_text(encoding="utf-8")
+    source = source_stub.read_text(encoding="utf-8")
+    match = re.search(r"# BEGIN: BUILTINS\n(?P<declarations>.*?)# END: BUILTINS", source, flags=re.DOTALL)
+    if match is None:
+        raise RuntimeError(f"MicroPython builtins declaration block not found: {source_stub}")
+
+    declarations = match.group("declarations").rstrip()
+    if declarations not in content:
+        marker = "class object:"
+        if marker not in content:
+            raise RuntimeError("Could not locate object class in stdlib/builtins.pyi")
+        builtins_stub.write_text(content.replace(marker, f"{declarations}\n\n{marker}", 1), encoding="utf-8")
+        log.info("Patched stdlib/builtins.pyi for MicroPython compiler-provided builtins")
+
+
 def patch_asyncio_support(reference_path: Path, dist_stdlib_path: Path):
     """Ensure asyncio resolves Task/Future from MicroPython's private _asyncio module."""
     stdlib_path = dist_stdlib_path / "stdlib"
@@ -437,6 +462,7 @@ def patch_asyncio_support(reference_path: Path, dist_stdlib_path: Path):
 
 def apply_micropython_patches(reference_path: Path, dist_stdlib_path: Path):
     """Apply deterministic MicroPython-specific patches after stdlib generation."""
+    patch_micropython_builtins(reference_path, dist_stdlib_path)
     patch_sys_implementation(dist_stdlib_path)
     patch_asyncio_support(reference_path, dist_stdlib_path)
 
