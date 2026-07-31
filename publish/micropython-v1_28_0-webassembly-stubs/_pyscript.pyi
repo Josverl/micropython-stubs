@@ -1,6 +1,7 @@
 """
-Pyscript 2025.2.3 type-stub.
-see: https://docs.pyscript.net/2025.10.1/api/
+Basic typing for polyscript
+
+https://pyscript.github.io/polyscript/#the-polyscript-module
 
 ---
 Module: '_pyscript' on micropython-v1.28.0-webassembly-pyscript
@@ -10,25 +11,13 @@ Module: '_pyscript' on micropython-v1.28.0-webassembly-pyscript
 # Stubber: v1.28.3
 from __future__ import annotations
 
-import sys
-from typing import Any, AsyncGenerator, Awaitable, Callable, Final, Generator, Iterable, List, Literal, Mapping, Tuple, Type
+from typing import Any, AsyncGenerator, Callable, Final, Generator, Tuple
 
 import storage as _storage
 from _typeshed import Incomplete
-from libcst import Not
-from pyscript import Event, document
-from pyscript import when as when
-from pyscript.ffi import create_proxy
-from typing_extensions import Self
-
-_MIME_METHODS = ...
-_MIME_RENDERERS = ...
-RUNNING_IN_WORKER: bool
-ELEMENT_CLASSES: ElementCollection = ...
 
 target: str = "mpy-0"
 
-@classmethod
 def js_import(name: str) -> JSModule:
     """Module level __getattr__ that returns an JSModule object for any requested attribute."""
     ...
@@ -37,7 +26,7 @@ fs: Incomplete  ## <class 'JsProxy'> = <JsProxy nn>
 interpreter: Incomplete  ## <class 'JsProxy'> = <JsProxy nn>
 
 class PyWorker(XWorker):
-    def __init__(self, name) -> None: ...
+    pass
 
 @classmethod
 def new(*args, **kwargs) -> Incomplete: ...
