@@ -78,3 +78,14 @@ output-format = "full"
 error-on-warning = false
 
 # ###################################################################
+# ruff options:
+
+[tool.ruff]
+line-length = 140
+target-version = "py39"
+builtins = ["ptr", "ptr8", "ptr16", "ptr32", "uint", "micropython", "const"]
+
+[tool.ruff.lint]
+extend-select = ["PYI"]
+
+# ###################################################################
