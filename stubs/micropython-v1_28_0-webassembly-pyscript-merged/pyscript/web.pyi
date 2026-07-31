@@ -18,7 +18,7 @@ with on in standard HTML (e.g. onclick). The rule of thumb is to simply replace 
 
 from __future__ import annotations
 
-from typing import Any, Generator, List
+from typing import Any, Generator, List, overload
 
 from _typeshed import Incomplete
 from pyscript import Event, document
@@ -81,7 +81,12 @@ class Element:
         """Check for equality by comparing the underlying DOM element."""
         ...
 
-    def __getitem__(self, key) -> ElementCollection:
+    @overload
+    def __getitem__(self, key: int) -> Element: ...
+    @overload
+    def __getitem__(self, key: slice) -> ElementCollection: ...
+    @overload
+    def __getitem__(self, key: str) -> Element | None:
         """Get an item within the element's children.
 
         If `key` is an integer or a slice we use it to index/slice the element's
@@ -301,7 +306,12 @@ class ElementCollection:
         """Check for equality by comparing the underlying DOM elements."""
         ...
 
-    def __getitem__(self, key) -> ElementCollection:
+    @overload
+    def __getitem__(self, key: int) -> Element: ...
+    @overload
+    def __getitem__(self, key: slice) -> ElementCollection: ...
+    @overload
+    def __getitem__(self, key: str) -> Element | None:
         """Get an item in the collection.
 
         If `key` is an integer or a slice we use it to index/slice the collection.
@@ -335,6 +345,8 @@ class ElementCollection:
         Return the results as a (possibly empty) `ElementCollection`.
         """
         ...
+
+    def update_all(self, classes=None, style=None, **kwargs) -> None: ...
 
 class a(ContainerElement):
     """Ref: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"""
@@ -891,10 +903,12 @@ class Page:
 
     def __init__(self) -> None: ...
     @property
+    def html(self) -> Element: ...
+    @property
     def head(self) -> Element: ...
     @property
     def body(self) -> Element: ...
-    def __getitem__(self, selector) -> ElementCollection:
+    def __getitem__(self, key: str) -> Element | None:
         """Get an item on the page.
 
         We don't index/slice the page like we do with `Element` and `ElementCollection`

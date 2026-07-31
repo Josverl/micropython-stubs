@@ -7,7 +7,7 @@ see: https://docs.pyscript.net/2025.10.1/api/
 
 from typing import Any, Generator
 
-class _Response:
+class _FetchResponse:
     """
     Response wrapper class for fetch API responses.
 
@@ -70,7 +70,7 @@ class _Response:
         """
         ...
 
-class _DirectResponse:
+class _FetchPromise:
     """
     Direct response wrapper for immediate fetch responses.
 
@@ -78,7 +78,7 @@ class _DirectResponse:
     """
 
     @staticmethod
-    def setup(promise: Any, response: Any) -> _Response:
+    def setup(promise: Any, response: Any) -> _FetchResponse:
         """
         Setup a response wrapper from a promise and response object.
 
@@ -100,7 +100,7 @@ class _DirectResponse:
         """
         ...
 
-    def __await__(self) -> Generator[Any, None, _Response]: ...
+    def __await__(self) -> Generator[Any, None, _FetchResponse]: ...
     async def arrayBuffer(self) -> memoryview:
         """
         Read the response body as an ArrayBuffer.
@@ -146,7 +146,10 @@ class _DirectResponse:
         """
         ...
 
-def fetch(url: str, **kw: Any) -> _DirectResponse:
+_Response = _FetchResponse
+_DirectResponse = _FetchPromise
+
+def fetch(url: str, **kw: Any) -> _FetchPromise:
     """
     Fetch a resource from the network.
 

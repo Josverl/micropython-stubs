@@ -5,26 +5,7 @@ see: https://docs.pyscript.net/2025.10.1/api/
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
-from typing import Any, Callable, Iterable, Mapping
-
-def from_entries(iterable: Iterable[tuple[str, Any]]) -> Any:
-    """
-    Create a JavaScript object from an iterable of key-value pairs.
-
-    This function converts a Python iterable of (key, value) tuples into
-    a JavaScript object, similar to JavaScript's Object.fromEntries().
-
-    Args:
-        iterable: An iterable of (key, value) tuples where keys are strings
-
-    Returns:
-        A JavaScript object containing the key-value pairs
-
-    Example:
-        obj = from_entries([("name", "Alice"), ("age", 30)])
-        # Creates JS object: {name: "Alice", age: 30}
-    """
-    ...
+from typing import Any, Callable
 
 def create_proxy(obj: Any) -> Any:
     """
@@ -50,14 +31,7 @@ def create_proxy(obj: Any) -> Any:
     """
     ...
 
-def to_js(
-    obj: Any,
-    *,
-    depth: int = -1,
-    default_converter: Callable[[Any], Any] | None = None,
-    dict_converter: Callable[[Mapping[str, Any]], Any] | None = None,
-    create_proxies: bool = True,
-) -> Any:
+def to_js(obj: Any, **kw: Any) -> Any:
     """
     Convert a Python object to its JavaScript equivalent.
 
@@ -89,3 +63,10 @@ def to_js(
         js_shallow = to_js(nested, depth=1)
     """
     ...
+
+def is_none(value: Any) -> bool: ...
+def assign(source: Any, *args: Any) -> Any: ...
+def direct(source: Any) -> Any: ...
+
+gather: Callable[..., Any]
+query: Callable[..., Any]

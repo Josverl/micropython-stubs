@@ -13,7 +13,7 @@ Module: 'pyscript.fs' on micropython-v1.28.0-webassembly-pyscript
 # Stubber: v1.28.3
 from __future__ import annotations
 
-from typing import Any, AsyncGenerator, Dict, Final, Generator, Literal
+from typing import Any, AsyncGenerator, Final, Generator, Literal
 
 from _typeshed import Incomplete
 
@@ -39,7 +39,7 @@ async def unmount(path: str) -> None:
     """
     ...
 
-async def revoke(x0, x1) -> Incomplete: ...
+async def revoke(path: str, id: str = "pyscript") -> bool: ...
 async def _check_permission(x0) -> Incomplete: ...
 async def mount(
     path: str,

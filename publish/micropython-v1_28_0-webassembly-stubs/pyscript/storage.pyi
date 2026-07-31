@@ -50,7 +50,7 @@ class Storage(dict[str, Any]):
         ...
 
 async def storage(
-    name: str = "pyscript",
+    name: str = "",
     storage_class: Type[Storage] = Storage,
 ) -> Storage:
     """
@@ -60,8 +60,8 @@ async def storage(
     that can be consumed synchronously after initial async setup.
 
     Args:
-        name: The name of the storage instance. Different names create
-              separate storage namespaces. Default is "pyscript".
+          name: The required non-empty storage name. Different names create
+              separate storage namespaces.
         storage_class: The Storage class to instantiate. Default is Storage.
                       Can be a custom subclass for specialized behavior.
 

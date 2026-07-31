@@ -7,19 +7,7 @@ see: https://docs.pyscript.net/2025.10.1/api/
 
 from typing import Any, Literal
 
-code: dict[str, int]
-"""Dictionary of WebSocket close codes (e.g., NORMAL_CLOSURE, GOING_AWAY)."""
-
-protocols: list[str]
-"""List of supported WebSocket sub-protocols."""
-
-reason: dict[str, str]
-"""Dictionary mapping close codes to reason strings."""
-
-methods: dict[str, str]
-"""Dictionary of WebSocket method names."""
-
-class EventMessage:
+class WebSocketEvent:
     """
     Wrapper for WebSocket event messages.
 
@@ -49,6 +37,8 @@ class EventMessage:
         """
         ...
 
+EventMessage = WebSocketEvent
+
 class WebSocket:
     """
     PyScript WebSocket client for bidirectional communication.
@@ -76,7 +66,7 @@ class WebSocket:
 
     def __init__(
         self,
-        url: str | None = None,
+        url: str,
         protocols: str | list[str] | None = None,
         **kw: Any,
     ) -> None:
@@ -99,7 +89,7 @@ class WebSocket:
 
     def __getattr__(self, attr: str) -> Any: ...
     def __setattr__(self, attr: str, value: Any) -> None: ...
-    def close(self, code: int = 1000, reason: str = "") -> None:
+    def close(self, code: int | None = None, reason: str | None = None) -> None:
         """
         Close the WebSocket connection.
 

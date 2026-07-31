@@ -19,7 +19,7 @@ Module: 'pyscript.__init__' on micropython-v1.28.0-webassembly-pyscript
 # MCU: {'family': 'micropython', 'version': '1.28.0', 'build': '', 'ver': '1.28.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
 # Stubber: v1.28.3
 from __future__ import annotations
-from typing import Any, Final, Generator, AsyncGenerator
+from typing import Literal, Any, Final, Generator, AsyncGenerator
 from _typeshed import Incomplete
 from pyscript.events import Event as Event
 from pyscript.magic_js import (
@@ -31,26 +31,19 @@ from pyscript.magic_js import (
     sync as sync,
     window as window,
 )
-from pyscript.storage import Storage as Storage, storage as storage
+from pyscript.storage import Storage as _Storage
 from pyscript.websocket import WebSocket as _WebSocket
-from pyscript.workers import create_named_worker as create_named_worker, workers as workers
-from pyscript.fetch import _DirectResponse
+from pyscript.workers import workers as workers
+from pyscript.fetch import _FetchPromise
 
 config: dict = {}
 RUNNING_IN_WORKER: Final[bool] = False
 
 def display(*values: Any, target: Any = None, append: bool = True) -> None: ...
 def current_target() -> Incomplete: ...
-def fetch(url: str, **kw: Any) -> _DirectResponse: ...
+def fetch(url: str, **kw: Any) -> _FetchPromise: ...
 def when(target: Any, *args: Any, **kwargs: Any) -> Any: ...
-def PyWorker(
-    file: str,
-    a_sync: bool = True,
-    config: str = "",
-    type: str = "pyodide",
-    version: str = ...,
-    serviceWorker: str = ...,
-) -> Any: ...
+def PyWorker(url: str, **options: Any) -> Any: ...
 
 workers: Incomplete  ## <class '_ReadOnlyWorkersProxy'> = <_ReadOnlyWorkersProxy object at ...>
 
@@ -64,10 +57,10 @@ class WebSocket(_WebSocket):
     CLOSING: Final[int] = 2
     CONNECTING: Final[int] = 0
     def send(self, data: str | bytes | bytearray | memoryview) -> None: ...
-    def close(self, code: int = 1000, reason: str = "") -> None: ...
-    def __init__(self, url: str | None = None, protocols: str | list[str] | None = None, **kw: Any) -> None: ...
+    def close(self, code: int | None = None, reason: str | None = None) -> None: ...
+    def __init__(self, url: str, protocols: str | list[str] | None = None, **kw: Any) -> None: ...
 
-async def storage(x0, x1) -> Incomplete: ...
+async def storage(name: str = "", storage_class: type[_Storage] = _Storage) -> _Storage: ...
 
 class Storage:
     def popitem(self) -> Incomplete: ...
@@ -85,7 +78,12 @@ class Storage:
     def clear(self) -> Incomplete: ...
     def __init__(self, *argv, **kwargs) -> None: ...
 
-async def create_named_worker(x0, x1, x2, x3) -> Incomplete: ...
+async def create_named_worker(
+    src: str,
+    name: str,
+    config: dict[str, Any] | str | None = None,
+    type: Literal["py", "mpy"] = "py",
+) -> Any: ...
 
 class Event:
     def add_listener(self, x1) -> Incomplete: ...
