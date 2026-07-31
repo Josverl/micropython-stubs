@@ -447,17 +447,28 @@ def update_typing_pyi(
 ):
     """
     patch updates into typing.pyi
-    - allow IO.write(bytes) overload
+    - allow MicroPython IO.readinto and IO.write overloads
     """
+    typing_stub = dist_stdlib_path / "stdlib/typing.pyi"
     tsk = enrich_file(
         rootpath / "reference/stdlib/typing.pyi",
-        dist_stdlib_path / "stdlib/typing.pyi",
+        typing_stub,
         diff=True,
         write_back=True,
         copy_params=True,
         copy_docstr=True,
     )
     next(tsk)
+
+    content = typing_stub.read_text(encoding="utf-8")
+    readinto = "    def readinto(self: IO[bytes], buffer: WriteableBuffer, max_len: int = ..., /) -> int | None: ..."
+    if readinto not in content:
+        marker = "    @abstractmethod\n    def readable(self) -> bool: ..."
+        replacement = f"    @abstractmethod\n{readinto}\n{marker}"
+        if marker not in content:
+            raise RuntimeError("Could not add MicroPython IO.readinto overload to typing.pyi")
+        typing_stub.write_text(content.replace(marker, replacement, 1), encoding="utf-8")
+        log.info("Patched stdlib/typing.pyi for MicroPython IO.readinto")
 
 
 def find_boardstub_path(stubs_path: Path, flat_version: str) -> Optional[Path]:
