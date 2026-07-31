@@ -1,6 +1,3 @@
+import code  # stubs-ignore: version > 1.24.1
 
-
-
-import code
-
-code.interact()
+code.interact()  # stubs-ignore: version > 1.24.1
