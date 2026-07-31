@@ -1,12 +1,13 @@
 # samples from: https://docs.pyscript.net/2025.2.3/api/#pyscriptwhen
 
-# pyscript.when 
+# pyscript.when
 
 from pyscript import when
-from pyscript.web import page 
+from pyscript.web import page
 
 
 btn = page["#my-button"]
+
 
 @when("click", btn)
 def my_button_click_handler(event):
@@ -24,5 +25,6 @@ def click_handler(event):
     """
     display("I've been clicked!")
 
+
 ### Or manually setting handler without a decorator
-when("click", "#my-button", handler=click_handler)
+when("click", "#my-button")(click_handler)
