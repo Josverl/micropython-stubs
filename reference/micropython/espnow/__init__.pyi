@@ -47,6 +47,7 @@ class ESPNow(ESPNowBase, Iterator):
     """
 
     # ESP32-only when MICROPY_PY_ESPNOW_RSSI is enabled.
+    # mp_available
     peers_table: Dict[bytes, List[int]] = ...
     """\
     A reference to the **peer device table**: a dict of known peer devices
@@ -297,9 +298,7 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
-    def irecv(
-        self, timeout_ms: Optional[int] = None
-    ) -> Tuple[_MACAddress | bytearray | None, bytearray | None]:
+    def irecv(self, timeout_ms: Optional[int] = None) -> Tuple[_MACAddress | bytearray | None, bytearray | None]:
         """
         Works like `ESPNow.recv()` but will reuse internal bytearrays to store the
         return values: ``[mac, msg]``, so that no new memory is allocated on each
@@ -432,13 +431,11 @@ class ESPNow(ESPNowBase, Iterator):
 
     @overload
     def add_peer(
-      self,
-      mac: _MACAddress,
-      lmk: bytes | bytearray | str | None = None,
-      channel: int | None = None,
-    ) -> None:
-      ...
-
+        self,
+        mac: _MACAddress,
+        lmk: bytes | bytearray | str | None = None,
+        channel: int | None = None,
+    ) -> None: ...
     @overload
     def add_peer(
         self,
