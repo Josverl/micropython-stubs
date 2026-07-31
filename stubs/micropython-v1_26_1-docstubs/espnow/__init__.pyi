@@ -426,66 +426,7 @@ class ESPNow(ESPNowBase, Iterator):
         mac: _MACAddress,
         lmk: bytes | bytearray | str | None = None,
         channel: int | None = None,
-    ) -> None:
-        """
-        Add/register the provided *mac* address as a peer. Additional parameters may
-        also be specified as positional or keyword arguments (any parameter set to
-        ``None`` will be set to it's default value):
-
-        Arguments:
-
-            - *mac*: The MAC address of the peer (as a 6-byte byte-string).
-
-            - *lmk*: The Local Master Key (LMK) key used to encrypt data
-              transfers with this peer (unless the *encrypt* parameter is set to
-              ``False``). Must be:
-
-              - a byte-string or bytearray or string of length ``espnow.KEY_LEN``
-                (16 bytes), or
-
-              - any non ``True`` python value (default= ``b''``), signifying an
-                *empty* key which will disable encryption.
-
-            - *channel*: The wifi channel (2.4GHz) to communicate with this peer.
-              Must be an integer from 0 to 14. If channel is set to 0 the current
-              channel of the wifi device will be used, if channel is set to another
-              value then this must match the channel currently configured on the
-              interface (see :func:`WLAN.config`). (default=0)
-
-            - *ifidx*: (ESP32 only) Index of the wifi interface which will be
-              used to send data to this peer. Must be an integer set to
-              ``network.WLAN.IF_STA`` (=0) or ``network.WLAN.IF_AP`` (=1).
-              (default=0/``network.WLAN.IF_STA``). See `ESPNow and Wifi Operation`_
-              below for more information.
-
-            - *encrypt*: (ESP32 only) If set to ``True`` data exchanged with
-              this peer will be encrypted with the PMK and LMK. (default =
-              ``True`` if *lmk* is set to a valid key, else ``False``)
-
-            **ESP8266**: Keyword args may not be used on the ESP8266.
-
-            **Note:** The maximum number of peers which may be registered is 20
-            (`espnow.MAX_TOTAL_PEER_NUM`), with a maximum of 6
-            (`espnow.MAX_ENCRYPT_PEER_NUM`) of those peers with encryption enabled
-            (see `ESP_NOW_MAX_ENCRYPT_PEER_NUM <https://docs.espressif.com/
-            projects/esp-idf/en/latest/esp32/api-reference/network/
-            esp_now.html#c.ESP_NOW_MAX_ENCRYPT_PEER_NUM>`_ in the Espressif API
-            docs).
-
-        Raises:
-
-            - ``OSError(num, "ESP_ERR_ESPNOW_NOT_INIT")`` if not initialised.
-            - ``OSError(num, "ESP_ERR_ESPNOW_EXIST")`` if *mac* is already
-              registered.
-            - ``OSError(num, "ESP_ERR_ESPNOW_FULL")`` if too many peers are
-              already registered.
-            - ``OSError(num, "ESP_ERR_ESPNOW_CHAN")`` if a channel value was
-              set that doesn't match the channel currently configured for this
-              interface.
-            - ``ValueError()`` on invalid keyword args or values.
-        """
-        ...
-
+    ) -> None: ...
     @overload
     def add_peer(
         self,
