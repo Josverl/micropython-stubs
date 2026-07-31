@@ -67,13 +67,18 @@ class Device:
         ...
 
     def __getitem__(self, key: str) -> Any: ...
-
+    @classmethod
+    async def request_stream(
+        cls,
+        audio: bool | dict[str, Any] = False,
+        video: bool | dict[str, Any] = True,
+    ) -> Any: ...
     @classmethod
     async def load(
         cls,
         audio: bool | dict[str, Any] = False,
-        video: bool | dict[str, Any] = False,
-    ) -> "Device":
+        video: bool | dict[str, Any] = True,
+    ) -> Any:
         """
         Load a device and request access to its stream.
 
@@ -114,7 +119,7 @@ class Device:
         """
         ...
 
-async def list_devices() -> list[dict[str, str]]:
+async def list_devices() -> list[Device]:
     """
     List all available media input and output devices.
 

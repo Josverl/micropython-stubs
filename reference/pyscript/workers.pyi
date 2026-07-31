@@ -5,7 +5,7 @@ see: https://docs.pyscript.net/2025.10.1/api/
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
-from typing import Any
+from typing import Any, Awaitable, Literal
 
 def _get(name: str) -> Any:
     """
@@ -19,7 +19,7 @@ def _get(name: str) -> Any:
     """
     ...
 
-class _ReadOnlyProxy:
+class _ReadOnlyWorkersProxy:
     """
     Read-only proxy wrapper for worker objects.
 
@@ -27,11 +27,11 @@ class _ReadOnlyProxy:
     and attribute access.
     """
 
-    def __getitem__(self, name: str) -> Any: ...
+    def __getitem__(self, name: str) -> Awaitable[Any]: ...
+    def __getattr__(self, name: str) -> Awaitable[Any]: ...
 
-    def __getattr__(self, name: str) -> Any: ...
-
-workers: _ReadOnlyProxy
+_ReadOnlyProxy = _ReadOnlyWorkersProxy
+workers: _ReadOnlyWorkersProxy
 """
 Read-only proxy to access named workers.
 
@@ -39,10 +39,10 @@ Provides access to workers created with create_named_worker() by their names.
 """
 
 async def create_named_worker(
-    src: str = "",
-    name: str = "",
-    config: dict[str, Any] | None = None,
-    type: str = "micropython",
+    src: str,
+    name: str,
+    config: dict[str, Any] | str | None = None,
+    type: Literal["py", "mpy"] = "py",
 ) -> Any:
     """
     Create a named web worker for parallel execution.
@@ -58,8 +58,7 @@ async def create_named_worker(
               the workers proxy.
         config: Optional configuration dictionary for the worker.
                 Can include interpreter settings and other options.
-        type: The worker type/interpreter. Default is "micropython".
-              Other options include "pyodide" or "python".
+          type: The worker interpreter: "py" (default) or "mpy".
 
     Returns:
         A worker object that can be used to communicate with the worker

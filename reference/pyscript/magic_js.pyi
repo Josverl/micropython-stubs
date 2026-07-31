@@ -7,19 +7,17 @@ see: https://docs.pyscript.net/2025.10.1/api/
 
 from __future__ import annotations
 
-import sys
-from typing import Any, Callable
+from typing import Any
 
-from _pyscript import PyWorker as PyWorker
-from _pyscript import js_import as js_import
-from libcst import Not
-from typing_extensions import Incomplete
+from _typeshed import Incomplete
 
 RUNNING_IN_WORKER: bool
 """True if code is running in a web worker, False if in main thread."""
 
 config: dict[str, Any]
 """PyScript configuration object containing runtime settings."""
+
+js_modules: Any
 
 # generate N modules in the system that will proxy the real value
 # for name in globalThis.Reflect.ownKeys(js_modules):
@@ -45,8 +43,7 @@ class JSModule:
 
     def __getattr__(self, field: str) -> Any | None: ...
 
-PyWorker: None
-"""Not available in worker context (None)."""
+PyWorker: Any
 
 window: Incomplete
 """
@@ -76,6 +73,7 @@ Convert async operations to synchronous calls when running in a worker.
 ref: https://docs.pyscript.net/latest/api/#pyscriptsync
 """
 
+def js_import(name: str) -> Any: ...
 def current_target() -> Any:
     """
     Get the current execution target in worker context.
