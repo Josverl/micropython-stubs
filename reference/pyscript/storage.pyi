@@ -5,7 +5,6 @@ see: https://docs.pyscript.net/2025.10.1/api/
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
-
 from typing import Any, Type
 
 class Storage(dict[str, Any]):
@@ -27,9 +26,7 @@ class Storage(dict[str, Any]):
         ...
 
     def __delitem__(self, attr: str) -> None: ...
-
     def __setitem__(self, attr: str, value: Any) -> None: ...
-
     def clear(self) -> None:
         """
         Remove all items from storage.
@@ -53,7 +50,7 @@ class Storage(dict[str, Any]):
         ...
 
 async def storage(
-    name: str = "pyscript",
+    name: str = "",
     storage_class: Type[Storage] = Storage,
 ) -> Storage:
     """
@@ -63,8 +60,8 @@ async def storage(
     that can be consumed synchronously after initial async setup.
 
     Args:
-        name: The name of the storage instance. Different names create
-              separate storage namespaces. Default is "pyscript".
+          name: The required non-empty storage name. Different names create
+              separate storage namespaces.
         storage_class: The Storage class to instantiate. Default is Storage.
                       Can be a custom subclass for specialized behavior.
 

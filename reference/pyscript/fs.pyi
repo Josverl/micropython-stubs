@@ -8,9 +8,9 @@ allowing mounting, syncing, and unmounting of virtual filesystems.
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
-from typing import Any, Dict, Literal
+from typing import Any, Literal
 
-mounted: Dict[str, Dict[str, Any]]
+mounted: dict[str, Any]
 """Dictionary mapping mount points to filesystem information"""
 
 async def mount(
@@ -59,3 +59,5 @@ async def unmount(path: str) -> None:
         ValueError: If no filesystem is mounted at the specified path
     """
     ...
+
+async def revoke(path: str, id: str = "pyscript") -> bool: ...

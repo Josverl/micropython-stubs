@@ -16,7 +16,7 @@ he following three categories of API functionality explain features that are com
 # Copyright (c) 2020-2025 Jos Verlinde
 # MIT Licensed
 
-from typing import Any
+from typing import Any, Literal
 
 __all__ = [
     "PyWorker",
@@ -49,9 +49,9 @@ from pyscript.events import Event as Event
 
 def when(target: Any, *args: Any, **kwargs: Any) -> Any: ...
 
-from pyscript.fetch import _DirectResponse
+from pyscript.fetch import _FetchPromise
 
-def fetch(url: str, **kw: Any) -> _DirectResponse: ...
+def fetch(url: str, **kw: Any) -> _FetchPromise: ...
 
 from pyscript.magic_js import (
     RUNNING_IN_WORKER as RUNNING_IN_WORKER,
@@ -63,17 +63,13 @@ from pyscript.magic_js import (
     js_modules as js_modules,
 )
 
-def PyWorker(
-    file: str,
-    a_sync: bool = True,
-    config: str = "",
-    type: str = "pyodide",
-    version: str = ...,
-    serviceWorker: str = ...,
-) -> Any: ...
+def PyWorker(url: str, **options: Any) -> Any: ...
 def js_import(name: str) -> Any: ...
 
-from pyscript.storage import Storage as Storage, storage as storage
+from pyscript.storage import Storage as _Storage
+
+async def storage(name: str = "", storage_class: type[_Storage] = _Storage) -> _Storage: ...
+
 from pyscript.websocket import WebSocket as _WebSocket
 
 class WebSocket(_WebSocket):
@@ -81,12 +77,19 @@ class WebSocket(_WebSocket):
     onmessage: Any
     onerror: Any
     onclose: Any
-    def __init__(self, url: str | None = None, protocols: str | list[str] | None = None, **kw: Any) -> None: ...
+    def __init__(self, url: str, protocols: str | list[str] | None = None, **kw: Any) -> None: ...
     def __getattr__(self, attr: str) -> Any: ...
     def __setattr__(self, attr: str, value: Any) -> None: ...
-    def close(self, code: int = 1000, reason: str = "") -> None: ...
+    def close(self, code: int | None = None, reason: str | None = None) -> None: ...
     def send(self, data: str | bytes | bytearray | memoryview) -> None: ...
 
-from pyscript.workers import create_named_worker as create_named_worker, workers as workers
+from pyscript.workers import workers as workers
+
+async def create_named_worker(
+    src: str,
+    name: str,
+    config: dict[str, Any] | str | None = None,
+    type: Literal["py", "mpy"] = "py",
+) -> Any: ...
 
 if not RUNNING_IN_WORKER: ...
