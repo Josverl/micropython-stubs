@@ -25,6 +25,25 @@ When MicroPython code is compiled to .mpy or frozen into a firmware, the microco
    - Collaboration: When working in teams, type hints enhance collaboration and reduce misunderstandings.
    - Critical Code Paths: Use static type checking for critical parts of your application to prevent subtle bugs.
 
+## MicroPython compiler builtins
+
+MicroPython recognizes `const`, `ptr`, `ptr8`, `ptr16`, `ptr32`, and `uint` as compiler-provided names. The pointer types and `uint` are primarily used with the `@micropython.viper` emitter:
+
+```python
+import micropython
+
+@micropython.viper
+def read_byte(buffer: bytearray, offset: int) -> uint:
+    data = ptr8(buffer)
+    return uint(data[offset])
+```
+
+The stdlib stub package declares these names in its custom `builtins.pyi`. Pyright and Pylance additionally receive them through the MicroPython core `__builtins__.pyi` overlay. Mypy resolves them when `custom_typeshed_dir` points to the installed MicroPython stdlib stubs. Basilisk resolves them when `typeshed-path` points to those stubs.
+
+Ty has an equivalent `[tool.ty.environment] typeshed` setting, which the setup script configures. Ty 0.0.65 currently crashes while loading this custom stdlib, so support cannot yet be validated. Ruff does not load type stubs; configure its `builtins` setting as described in {ref}`ruff_config`.
+
+Type checkers and linters expose these names globally. They cannot enforce MicroPython's rule that pointer operations are valid only in native/Viper code, so code outside those functions may still pass static checks and fail when compiled or run.
+
 ## Alternative Method: Static Type Checking without a Typing Module
 
 In some cases, you may want to perform static type checking without using a typing module. This can be achieved using the `TYPE_CHECKING` constant and conditional imports. This method allows you to include type hints and imports only when performing static type checking, without affecting the runtime behavior of your code.
