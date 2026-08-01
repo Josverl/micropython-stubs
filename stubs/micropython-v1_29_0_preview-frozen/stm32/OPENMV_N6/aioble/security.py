@@ -2,12 +2,13 @@
 # MicroPython aioble module
 # MIT license; Copyright (c) 2021 Jim Mussared
 
-from micropython import const, schedule
 import asyncio
 import binascii
 import json
 
-from .core import log_info, log_warn, ble, register_irq_handler
+from micropython import const, schedule
+
+from .core import ble, log_info, log_warn, register_irq_handler
 from .device import DeviceConnection
 
 _IRQ_ENCRYPTION_UPDATE = 28

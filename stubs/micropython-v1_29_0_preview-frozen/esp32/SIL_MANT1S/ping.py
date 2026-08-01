@@ -8,12 +8,12 @@
 # https://github.com/olavmrk/python-ping/blob/master/ping.py
 # Adjusted for ruff formatting to include in ManT1S MicroPython
 
-import utime
-import uselect
 import uctypes
+import urandom
+import uselect
 import usocket
 import ustruct
-import urandom
+import utime
 
 
 # @data: bytes

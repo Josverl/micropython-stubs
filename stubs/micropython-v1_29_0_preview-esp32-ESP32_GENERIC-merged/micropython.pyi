@@ -10,9 +10,11 @@ Module: 'micropython' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from _typeshed import Incomplete
-from _mpy_shed import mp_available
+
 from typing import Any, Callable, Optional, Tuple, overload
+
+from _mpy_shed import mp_available
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, ParamSpec, TypeAlias, TypeVar
 
 _T = TypeVar("_T")
@@ -68,8 +70,32 @@ def mem_info() -> None:
     is given then extra information is printed.
 
     The information that is printed is implementation dependent, but currently
-    includes the amount of stack and heap used.  In verbose mode it prints out
-    the entire heap indicating which blocks are used and which are free.
+    includes the amount of stack and heap used. In verbose mode it prints out a
+    summary of the entire heap indicating which blocks are used and which are
+    free.
+
+    The exact output of verbose mode varies between ports, but in general each
+    letter represents a single 16 byte block of memory. Each line of
+    output represents 0x400 bytes or 1KiB of RAM.
+
+    The meaning of each letter:
+
+    ====== =================
+    Symbol Meaning
+    ====== =================
+        .   free block
+        h   head block
+        =   tail block
+        m   marked head block
+        T   tuple
+        L   list
+        D   dict
+        F   float
+        B   byte code
+        M   module
+        S   string or bytes
+        A   bytearray
+    ====== =================
     """
 
 @overload
@@ -79,8 +105,32 @@ def mem_info(verbose: Any, /) -> None:
     is given then extra information is printed.
 
     The information that is printed is implementation dependent, but currently
-    includes the amount of stack and heap used.  In verbose mode it prints out
-    the entire heap indicating which blocks are used and which are free.
+    includes the amount of stack and heap used. In verbose mode it prints out a
+    summary of the entire heap indicating which blocks are used and which are
+    free.
+
+    The exact output of verbose mode varies between ports, but in general each
+    letter represents a single 16 byte block of memory. Each line of
+    output represents 0x400 bytes or 1KiB of RAM.
+
+    The meaning of each letter:
+
+    ====== =================
+    Symbol Meaning
+    ====== =================
+        .   free block
+        h   head block
+        =   tail block
+        m   marked head block
+        T   tuple
+        L   list
+        D   dict
+        F   float
+        B   byte code
+        M   module
+        S   string or bytes
+        A   bytearray
+    ====== =================
     """
 
 def kbd_intr(chr: int) -> None:
@@ -196,7 +246,6 @@ def heap_unlock() -> int:
     Note: `heap_locked()` is not enabled on most ports by default,
     requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
     """
-    ...
 
 def const(expr: Const_T, /) -> Const_T:
     """
@@ -240,7 +289,6 @@ def heap_lock() -> int:
     Note: `heap_locked()` is not enabled on most ports by default,
     requires ``MICROPY_PY_MICROPYTHON_HEAP_LOCKED``.
     """
-    ...
 
 def alloc_emergency_exception_buf(size: int, /) -> None:
     """

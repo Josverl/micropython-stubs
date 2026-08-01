@@ -10,11 +10,12 @@
 # 2019-Oct-23 - v1.1 - Removed temp sensor code, prep for frozen modules
 
 # Import required libraries
-from micropython import const
-from machine import Pin, SPI, ADC
-import machine
 import time
+
 import esp32
+import machine
+from machine import ADC, SPI, Pin
+from micropython import const
 
 # TinyPICO Hardware Pin Assignments
 

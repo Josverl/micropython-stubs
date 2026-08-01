@@ -15,16 +15,18 @@ Module: 'ucollections' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Dict, Generic, Tuple, Any, Final, Generator, AsyncGenerator
+
+from collections.abc import Iterable, MutableSequence
+from typing import Any, AsyncGenerator, Dict, Final, Generator, Generic
+
 from _typeshed import Incomplete
-from collections.abc import Iterable
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _KT = TypeVar("_KT")
 _VT = TypeVar("_VT")
 _T = TypeVar("_T")
 
-def namedtuple(name: str, fields: str | Iterable[str]) -> type[Tuple[Any, ...]]:
+def namedtuple(name: str, fields: str | Iterable[str]) -> type[tuple[Any, ...]]:
     """
     This is factory function to create a new namedtuple type with a specific
     name and set of fields. A namedtuple is a subclass of tuple which allows
@@ -98,30 +100,30 @@ class OrderedDict(Dict[_KT, _VT], Generic[_KT, _VT]):
     def fromkeys(cls, *args, **kwargs) -> Incomplete: ...
     def __init__(self, *args, **kwargs) -> None: ...
 
-class deque:
+class deque(MutableSequence[_T]):
     """
     Minimal implementation of a deque that implements a FIFO buffer.
     """
-    def pop(self) -> Incomplete:
+    def pop(self) -> _T:
         """
         Remove and return an item from the right side of the deque.
         Raises ``IndexError`` if no items are present.
         """
         ...
-    def appendleft(self, x: _T, /) -> Incomplete:
+    def appendleft(self, x: _T, /) -> None:
         """
         Add *x* to the left side of the deque.
         Raises ``IndexError`` if overflow checking is enabled and there is
         no more room in the queue.
         """
         ...
-    def popleft(self) -> Any:
+    def popleft(self) -> _T:
         """
         Remove and return an item from the left side of the deque.
         Raises ``IndexError`` if no items are present.
         """
         ...
-    def extend(self, iterable: Iterable[_T], /) -> Incomplete:
+    def extend(self, iterable: Iterable[_T], /) -> None:
         """
         Extend the deque by appending all the items from *iterable* to
         the right of the deque.
@@ -136,7 +138,7 @@ class deque:
         no more room in the queue.
         """
         ...
-    def __init__(self, iterable: tuple[Any], maxlen: int, flags: int = 0, /) -> None:
+    def __init__(self, iterable: Iterable[_T], maxlen: int, flags: int = 0, /) -> None:
         """
         Deques (double-ended queues) are a list-like container that support O(1)
         appends and pops from either side of the deque.  New deques are created
@@ -150,4 +152,3 @@ class deque:
 
             - The optional *flags* can be 1 to check for overflow when adding items.
         """
-        ...

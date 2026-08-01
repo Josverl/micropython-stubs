@@ -1,8 +1,13 @@
 # Micropython v1.29.0-preview frozen stubs
-from .async_modem import AsyncModem as AsyncModem
-from .modem import BaseModem as BaseModem, ConfigError as ConfigError, RxPacket as RxPacket, _clamp as _clamp, _flag as _flag
-from .sync_modem import SyncModem as SyncModem
 from _typeshed import Incomplete
+
+from .async_modem import AsyncModem as AsyncModem
+from .modem import BaseModem as BaseModem
+from .modem import ConfigError as ConfigError
+from .modem import RxPacket as RxPacket
+from .modem import _clamp as _clamp
+from .modem import _flag as _flag
+from .sync_modem import SyncModem as SyncModem
 
 _DEBUG: bool
 _REG_RXGAINCR: int

@@ -30,9 +30,11 @@ Module: 'hashlib' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from _typeshed import Incomplete
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _Hash
+
 from typing import NoReturn, overload
+
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _Hash
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 
 class sha1(_Hash):
@@ -44,18 +46,6 @@ class sha1(_Hash):
     """
     def digest(self, *args, **kwargs) -> Incomplete: ...
     def update(self, *args, **kwargs) -> Incomplete: ...
-    @overload
-    def __init__(self):
-        """
-        Create an SHA1 hasher object and optionally feed ``data`` into it.
-        """
-
-    @overload
-    def __init__(self, data: AnyReadableBuf):
-        """
-        Create an SHA1 hasher object and optionally feed ``data`` into it.
-        """
-
     @overload
     def __init__(self):
         """
@@ -89,18 +79,6 @@ class sha256(_Hash):
         Create an SHA256 hasher object and optionally feed ``data`` into it.
         """
 
-    @overload
-    def __init__(self):
-        """
-        Create an SHA256 hasher object and optionally feed ``data`` into it.
-        """
-
-    @overload
-    def __init__(self, data: AnyReadableBuf):
-        """
-        Create an SHA256 hasher object and optionally feed ``data`` into it.
-        """
-
 class md5(_Hash):
     """
     A legacy algorithm, not considered cryptographically secure. Only
@@ -113,4 +91,3 @@ class md5(_Hash):
         """
         Create an MD5 hasher object and optionally feed ``data`` into it.
         """
-        ...

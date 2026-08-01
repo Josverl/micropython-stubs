@@ -57,10 +57,12 @@ The following data types are supported:
 """
 
 from __future__ import annotations
-from _typeshed import Incomplete, ReadableBuffer, WriteableBuffer
+
 from collections.abc import Iterator
 from typing import Any
+
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete, ReadableBuffer, WriteableBuffer
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 __all__ = ["calcsize", "pack", "pack_into", "unpack", "unpack_from", "iter_unpack", "Struct", "error"]

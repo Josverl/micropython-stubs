@@ -1,5 +1,6 @@
 # Micropython v1.29.0-preview frozen stubs
 import types
+
 from _typeshed import Incomplete
 
 START_HEADER_SIZE: int

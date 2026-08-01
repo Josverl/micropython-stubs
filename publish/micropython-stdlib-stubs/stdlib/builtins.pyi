@@ -1,37 +1,10 @@
 # ruff: noqa: PYI036 # This is the module declaring BaseException
 import _ast
-import _typeshed
 import sys
 import types
 from _collections_abc import dict_items, dict_keys, dict_values
-from _typeshed import (
-    AnyStr_co,
-    ConvertibleToFloat,
-    ConvertibleToInt,
-    FileDescriptorOrPath,
-    MaybeNone,
-    OpenBinaryMode,
-    OpenBinaryModeReading,
-    OpenBinaryModeUpdating,
-    OpenBinaryModeWriting,
-    OpenTextMode,
-    ReadableBuffer,
-    SupportsAdd,
-    SupportsAiter,
-    SupportsAnext,
-    SupportsDivMod,
-    SupportsFlush,
-    SupportsIter,
-    SupportsKeysAndGetItem,
-    SupportsLenAndGetItem,
-    SupportsNext,
-    SupportsRAdd,
-    SupportsRDivMod,
-    SupportsRichComparison,
-    SupportsRichComparisonT,
-    SupportsWrite,
-)
-from collections.abc import Awaitable, Callable, Iterable, Iterator, MutableSet, Reversible, Set as AbstractSet, Sized
+from collections.abc import Awaitable, Callable, Iterable, Iterator, MutableSet, Reversible, Sized
+from collections.abc import Set as AbstractSet
 from io import BufferedRandom, BufferedReader, BufferedWriter, FileIO, TextIOWrapper
 from types import CellType, CodeType, TracebackType
 
@@ -58,6 +31,35 @@ from typing import (  # noqa: Y022
     final,
     overload,
     type_check_only,
+)
+
+import _typeshed
+from _typeshed import (
+    AnyStr_co,
+    ConvertibleToFloat,
+    ConvertibleToInt,
+    FileDescriptorOrPath,
+    MaybeNone,
+    OpenBinaryMode,
+    OpenBinaryModeReading,
+    OpenBinaryModeUpdating,
+    OpenBinaryModeWriting,
+    OpenTextMode,
+    ReadableBuffer,
+    SupportsAdd,
+    SupportsAiter,
+    SupportsAnext,
+    SupportsDivMod,
+    SupportsFlush,
+    SupportsIter,
+    SupportsKeysAndGetItem,
+    SupportsLenAndGetItem,
+    SupportsNext,
+    SupportsRAdd,
+    SupportsRDivMod,
+    SupportsRichComparison,
+    SupportsRichComparisonT,
+    SupportsWrite,
 )
 
 # we can't import `Literal` from typing or mypy crashes: see #11247
@@ -98,6 +100,63 @@ _P = ParamSpec("_P")
 _StartT = TypeVar("_StartT", covariant=True, default=Any)
 _StopT = TypeVar("_StopT", covariant=True, default=Any)
 _StepT = TypeVar("_StepT", covariant=True, default=Any)
+
+Const_T = TypeVar("Const_T", int, float, str, bytes, tuple)
+
+#: Unsigned machine-word integer used by the Viper emitter. This type is
+#: primarily useful as a Viper function return annotation. It makes MicroPython
+#: interpret ``0xffffffff`` as ``2**32 - 1`` rather than ``-1``.
+uint: TypeAlias = int
+
+class ptr(int):
+    """Viper pointer to an object or memory address.
+
+    Create a pointer from an integer address or an object supporting the buffer
+    protocol. Plain ``ptr`` values are not subscriptable; use a sized pointer
+    type for direct memory access.
+
+    Pointer operations are only valid in native/Viper code and do not perform
+    bounds checks. Invalid addresses or indexes can corrupt memory or crash the
+    device.
+    """
+
+    def __new__(cls, value: int | ReadableBuffer, /) -> Self: ...
+
+class ptr8(ptr):
+    """Viper pointer providing indexed access to unsigned 8-bit bytes.
+
+    Indexes address individual bytes. Slices and bounds checks are not supported.
+    """
+
+    def __getitem__(self, index: int, /) -> int: ...
+    def __setitem__(self, index: int, value: int, /) -> None: ...
+
+class ptr16(ptr):
+    """Viper pointer providing indexed access to unsigned 16-bit half-words.
+
+    Indexes are scaled by two bytes. Slices and bounds checks are not supported.
+    """
+
+    def __getitem__(self, index: int, /) -> int: ...
+    def __setitem__(self, index: int, value: int, /) -> None: ...
+
+class ptr32(ptr):
+    """Viper pointer providing indexed access to unsigned 32-bit machine words.
+
+    Indexes are scaled by four bytes. Slices and bounds checks are not supported.
+    """
+
+    def __getitem__(self, index: int, /) -> int: ...
+    def __setitem__(self, index: int, value: int, /) -> None: ...
+
+def const(expr: Const_T, /) -> Const_T:
+    """Declare an expression as a compile-time constant.
+
+    MicroPython may substitute the value during compilation. A name beginning
+    with an underscore is hidden from module globals and consumes no runtime
+    storage.
+    """
+    ...
 
 class object:
     __doc__: str | None

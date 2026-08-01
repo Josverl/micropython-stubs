@@ -17,12 +17,14 @@ Module: 'machine' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import NoReturn, Union, Tuple, Callable, Sequence, Any, Optional, List, overload, Final
-from _typeshed import Incomplete
+
+from typing import Any, Callable, Final, Iterable, NoReturn, Optional, Sequence, Tuple, overload
+
 from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf, mp_available
+from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 from vfs import AbstractBlockDev
-from _mpy_shed.mp_mem import _MemoryObject as _MemoryObject
 
 HARD_RESET: Final[int] = 2
 """Reset causes."""
@@ -46,8 +48,12 @@ DEEPSLEEP_RESET: Final[int] = 4
 DEEPSLEEP: Final[int] = 4
 """IRQ wake values."""
 ATTN_0DB: int = ...
+__CANFilter: TypeAlias = tuple[int, int, int] | list[int]
+__CANRecvResult: TypeAlias = tuple[int, memoryview, int, int]
+__CANCounters: TypeAlias = list[int | None]
+__CANTimings: TypeAlias = list[int | list[int] | None]
 ID_T: TypeAlias = int | str
-PinLike: TypeAlias = Pin | int | str
+_PinLike: TypeAlias = Pin | int | str
 IDLE: Incomplete
 """IRQ wake values."""
 WLAN_WAKE: Incomplete
@@ -206,26 +212,6 @@ def freq() -> int:
 
 @overload
 def freq(hz: int, /) -> None:
-    """
-    Returns the CPU frequency in hertz.
-
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-@overload
-def freq(self) -> int:
-    """
-    Returns the CPU frequency in hertz.
-
-    On some ports this can also be used to set the CPU frequency by passing in *hz*.
-    """
-
-@overload
-def freq(
-    self,
-    value: int,
-    /,
-) -> None:
     """
     Returns the CPU frequency in hertz.
 
@@ -704,7 +690,9 @@ class RTC:
         the stm32 and renesas-ra ports just (re-)starts the RTC and does not
         accept arguments.
         """
-    def memory(self, data: Any | None = None) -> bytes:
+
+    @overload
+    def memory(self) -> bytes:
         """
         ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any
         object which supports the buffer protocol (including `bytes`, `bytearray`,
@@ -718,6 +706,34 @@ class RTC:
         and 492 bytes on esp8266.
 
         Availability: esp32, esp8266 ports.
+
+        .. note::
+
+           For cross-port persistent storage, see :func:`machine.mem_backup`
+           which is available on more ports and provides direct memoryview access.
+        """
+        ...
+
+    @overload
+    def memory(self, data: AnyReadableBuf, /) -> None:
+        """
+        ``RTC.memory(data)`` will write *data* to the RTC memory, where *data* is any
+        object which supports the buffer protocol (including `bytes`, `bytearray`,
+        `memoryview` and `array.array`). ``RTC.memory()`` reads RTC memory and returns
+        a `bytes` object.
+
+        Data written to RTC user memory is persistent across restarts, including
+        :ref:`soft_reset` and `machine.deepsleep()`.
+
+        The maximum length of RTC user memory is 2048 bytes by default on esp32,
+        and 492 bytes on esp8266.
+
+        Availability: esp32, esp8266 ports.
+
+        .. note::
+
+           For cross-port persistent storage, see :func:`machine.mem_backup`
+           which is available on more ports and provides direct memoryview access.
         """
         ...
     def datetime(self, datetimetuple: Any | None = None) -> Tuple:
@@ -926,10 +942,10 @@ class I2S:
     """for initialising the I2S bus ``mode`` to transmit"""
     @staticmethod
     def shift(
+        *,
         buf: AnyWritableBuf,
         bits: int,
         shift: int,
-        /,
     ) -> None:
         """
         bitwise shift of all samples contained in ``buf``. ``bits`` specifies sample size in bits. ``shift`` specifies the number of bits to shift each sample.
@@ -940,9 +956,10 @@ class I2S:
     def init(
         self,
         *,
-        sck: PinLike,
-        ws: PinLike,
-        sd: PinLike,
+        sck: _PinLike,
+        ws: _PinLike,
+        sd: _PinLike,
+        mck: _PinLike | None = None,
         mode: int,
         bits: int,
         format: int,
@@ -998,9 +1015,10 @@ class I2S:
         id: ID_T,
         /,
         *,
-        sck: PinLike,
-        ws: PinLike,
-        sd: PinLike,
+        sck: _PinLike,
+        ws: _PinLike,
+        sd: _PinLike,
+        mck: _PinLike | None = None,
         mode: int,
         bits: int,
         format: int,
@@ -1113,7 +1131,7 @@ class PWM:
         With a single *value* argument the duty cycle is set to that value, measured
         as the ratio ``value / 65535``.
         """
-    def init(self, *, freq: int = ..., duty_u16: int = ..., duty_ns: int = ...) -> None:
+    def init(self, *, freq: int = ..., duty_u16: int = ..., duty_ns: int = ..., invert: bool = ...) -> None:
         """
         Modify settings for the PWM object.  See the above constructor for details
         about the parameters.
@@ -1177,12 +1195,13 @@ class PWM:
     def duty(self, *args, **kwargs) -> Incomplete: ...
     def __init__(
         self,
-        dest: PinLike,
+        dest: _PinLike,
         /,
         *,
         freq: int = ...,
         duty_u16: int = ...,
         duty_ns: int = ...,
+        invert: bool = ...,
     ) -> None:
         """
         Construct and return a new PWM object using the following parameters:
@@ -1250,11 +1269,35 @@ class Pin:
     """\
     Selects whether there is a pull up/down resistor.  Use the value
     ``None`` for no pull.
+    
+    Some ports have a different constants set that can be used to select
+    hardware-specific behaviour:
+    
+    - The esp8266 port does not have pull-down resistors on GPIO pins, hence
+    ``Pin.PULL_DOWN`` is not supported.
+    - The mimxrt port has several extra constants to enable different pull
+    modes: ``Pin.PULL_UP_22K`` enables a 22KΩ pull-up on the pin,
+    ``Pin.PULL_UP_47K`` enables a 47KΩ pull-up on the pin, and
+    ``Pin.PULL_HOLD`` that puts the pin into high-impedance mode.  The
+    ``Pin.PULL_UP`` and ``Pin.PULL_DOWN`` constants will use a 100KΩ internal
+    resistor.
     """
     PULL_UP: Final[int] = 2
     """\
     Selects whether there is a pull up/down resistor.  Use the value
     ``None`` for no pull.
+    
+    Some ports have a different constants set that can be used to select
+    hardware-specific behaviour:
+    
+    - The esp8266 port does not have pull-down resistors on GPIO pins, hence
+    ``Pin.PULL_DOWN`` is not supported.
+    - The mimxrt port has several extra constants to enable different pull
+    modes: ``Pin.PULL_UP_22K`` enables a 22KΩ pull-up on the pin,
+    ``Pin.PULL_UP_47K`` enables a 47KΩ pull-up on the pin, and
+    ``Pin.PULL_HOLD`` that puts the pin into high-impedance mode.  The
+    ``Pin.PULL_UP`` and ``Pin.PULL_DOWN`` constants will use a 100KΩ internal
+    resistor.
     """
     DRIVE_1: Final[int] = 1
     """\
@@ -1282,9 +1325,9 @@ class Pin:
     ALT: Incomplete
     ALT_OPEN_DRAIN: Incomplete
     ANALOG: Incomplete
-    PULL_HOLD: Incomplete
     IRQ_LOW_LEVEL: Incomplete
     IRQ_HIGH_LEVEL: Incomplete
+    PULL_HOLD: int
     def off(self) -> None:
         """
         Set pin to "0" output level.
@@ -1299,7 +1342,7 @@ class Pin:
         priority: int = 1,
         wake: int | None = None,
         hard: bool = False,
-    ) -> Callable[..., Incomplete]:
+    ) -> _IRQ:
         """
            Configure an interrupt handler to be called when the trigger source of the
            pin is active.  If the pin mode is ``Pin.IN`` then the trigger source is
@@ -1348,11 +1391,11 @@ class Pin:
         Set pin to "1" output level.
         """
         ...
-    def toggle(self) -> Incomplete:
+    def toggle(self) -> None:
         """
         Toggle output pin from "0" to "1" or vice-versa.
 
-        Availability: cc3200, esp32, esp8266, mimxrt, rp2, samd ports.
+        Availability: cc3200, esp32, esp8266, mimxrt, psoc-edge, rp2, samd ports.
         """
         ...
 
@@ -1540,7 +1583,7 @@ class Pin:
         Get or set the pin mode.
         See the constructor documentation for details of the ``mode`` argument.
 
-        Availability: cc3200, stm32 ports.
+        Availability: cc3200, psoc-edge, stm32 ports.
         """
 
     @overload
@@ -1549,7 +1592,7 @@ class Pin:
         Get or set the pin mode.
         See the constructor documentation for details of the ``mode`` argument.
 
-        Availability: cc3200, stm32 ports.
+        Availability: cc3200, psoc-edge, stm32 ports.
         """
 
     @overload
@@ -1558,7 +1601,7 @@ class Pin:
         Get or set the pin pull state.
         See the constructor documentation for details of the ``pull`` argument.
 
-        Availability: cc3200, stm32 ports.
+        Availability: cc3200, psoc-edge, stm32 ports.
         """
 
     @overload
@@ -1567,7 +1610,7 @@ class Pin:
         Get or set the pin pull state.
         See the constructor documentation for details of the ``pull`` argument.
 
-        Availability: cc3200, stm32 ports.
+        Availability: cc3200, psoc-edge, stm32 ports.
         """
 
     @overload
@@ -1576,7 +1619,7 @@ class Pin:
         Get or set the pin drive strength.
         See the constructor documentation for details of the ``drive`` argument.
 
-        Availability: cc3200 port.
+        Availability: cc3200, psoc-edge ports.
         """
         ...
 
@@ -1586,7 +1629,7 @@ class Pin:
         Get or set the pin drive strength.
         See the constructor documentation for details of the ``drive`` argument.
 
-        Availability: cc3200 port.
+        Availability: cc3200, psoc-edge ports.
         """
 
 class I2C:
@@ -1663,7 +1706,7 @@ class I2C:
         The method returns ``None``.
         """
         ...
-    def scan(self) -> List:
+    def scan(self) -> list[int]:
         """
         Scan all I2C addresses between 0x08 and 0x77 inclusive and return a list of
         those that respond.  A device responds if it pulls the SDA line low after
@@ -1731,7 +1774,7 @@ class I2C:
         """
 
     @overload
-    def init(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+    def init(self, *, scl: _PinLike, sda: _PinLike, freq: int = 400_000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 
@@ -1757,7 +1800,7 @@ class I2C:
         ...
 
     @overload
-    def __init__(self, id: ID_T, /, *, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, freq: int = 400_000, timeout: int = 50_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -1774,7 +1817,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, id: ID_T, /, *, scl: PinLike, sda: PinLike, freq: int = 400_000):
+    def __init__(self, id: ID_T, /, *, scl: _PinLike, sda: _PinLike, freq: int = 400_000, timeout: int = 50_000):
         """
         Construct and return a new I2C object using the following parameters:
 
@@ -1791,7 +1834,7 @@ class I2C:
         """
 
     @overload
-    def __init__(self, *, scl: PinLike, sda: PinLike, freq: int = 400_000) -> None:
+    def __init__(self, *, scl: _PinLike, sda: _PinLike, freq: int = 400_000) -> None:
         """
         Initialise the I2C bus with the given arguments:
 
@@ -1830,6 +1873,7 @@ class ADC:
     CORE_VREF: int = ...
     CORE_VBAT: int = ...
     CORE_TEMP: int = ...
+    WIDTH_13BIT: int = 13
 
     # ESP32 specific
     @mp_available(port="esp32")
@@ -1856,7 +1900,7 @@ class ADC:
         Available : ESP32
         """
         ...
-    def init(self, *, sample_ns: int | None = None, atten=ATTN_0DB) -> Incomplete:
+    def init(self, *, sample_ns: int = ..., atten: int = ...) -> None:
         """
         Apply the given settings to the ADC.  Only those arguments that are
         specified will be changed.  See the ADC constructor above for what the
@@ -1901,7 +1945,7 @@ class ADC:
         Available : ESP32
         """
         ...
-    def block(self) -> Incomplete:
+    def block(self) -> ADCBlock:
         """
         Return the :ref:`ADCBlock <machine.ADCBlock>` instance associated with
         this ADC object.
@@ -1910,7 +1954,7 @@ class ADC:
         :ref:`ADCBlock <machine.ADCBlock>` class.
         """
         ...
-    def __init__(self, pin: PinLike, *, sample_ns: int | None = None, atten=ATTN_0DB) -> None:
+    def __init__(self, id: int | _PinLike, *, sample_ns: int = ..., atten: int = ...) -> None:
         """
         Access the ADC associated with a source identified by *id*.  This
         *id* may be an integer (usually specifying a channel number), a
@@ -1932,7 +1976,7 @@ class ADCBlock:
     conversion process.  If not specified then the previous or default
     resolution is used.
     """
-    def init(self, *, bits: int) -> None:
+    def init(self, *, bits: int = ...) -> None:
         """
         Configure the ADC peripheral.  *bits* will set the resolution of the
         conversion process.
@@ -1942,9 +1986,9 @@ class ADCBlock:
     @overload
     def connect(self, channel: int, **kwargs) -> ADC: ...
     @overload
-    def connect(self, source: PinLike, **kwargs) -> ADC: ...
+    def connect(self, source: _PinLike, **kwargs) -> ADC: ...
     @overload
-    def connect(self, channel: int, source: PinLike, **kwargs) -> ADC:
+    def connect(self, channel: int, source: _PinLike, **kwargs) -> ADC:
         """
         Connect up a channel on the ADC peripheral so it is ready for sampling,
         and return an :ref:`ADC <machine.ADC>` object that represents that connection.
@@ -1964,7 +2008,7 @@ class ADCBlock:
         via its :meth:`init <machine.ADC.init>` method.
         """
         ...
-    def __init__(self, id: int, *, bits: int) -> None: ...
+    def __init__(self, id: int, *, bits: int = ...) -> None: ...
 
 class DAC:
     """
@@ -2174,7 +2218,51 @@ class SDCard(AbstractBlockDev):
         """
     def info(self, *args, **kwargs) -> Incomplete: ...
     def deinit(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, *argv, **kwargs) -> None: ...
+    @mp_available()  # force merge
+    def __init__(
+        self,
+        slot: int = 1,
+        width: int = 1,
+        *,
+        cd: _PinLike | None = None,
+        wp: _PinLike | None = None,
+        sck: _PinLike | None = None,
+        cmd: _PinLike | None = None,
+        data: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
+        miso: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        cs: _PinLike | None = None,
+        freq: int = 20000000,
+    ) -> None:
+        """
+        This class provides access to SD or MMC storage cards using either
+        a dedicated SD/MMC interface hardware or through an SPI channel.
+        The class implements the block protocol defined by :class:`os.AbstractBlockDev`.
+        This allows the mounting of an SD card to be as simple as::
+
+          os.mount(machine.SDCard(), "/sd")
+
+        The constructor takes the following parameters:
+
+         - *slot* selects which of the available interfaces to use. Leaving this
+           unset will select the default interface.
+
+         - *width* selects the bus width for the SD/MMC interface.
+
+         - *cd* can be used to specify a card-detect pin.
+
+         - *wp* can be used to specify a write-protect pin.
+
+         - *sck* can be used to specify an SPI clock pin.
+
+         - *miso* can be used to specify an SPI miso pin.
+
+         - *mosi* can be used to specify an SPI mosi pin.
+
+         - *cs* can be used to specify an SPI chip select pin.
+
+         - *freq* selects the SD/MMC interface frequency in Hz (only supported on the ESP32).
+        """
 
 class Timer:
     """
@@ -2405,19 +2493,19 @@ class UART:
     """\
     IRQ trigger sources.
     
-    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
+    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200, psoc-edge.
     """
     IRQ_BREAK: Final[int] = 2
     """\
     IRQ trigger sources.
     
-    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
+    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200, psoc-edge.
     """
     IRQ_RX: Final[int] = 1
     """\
     IRQ trigger sources.
     
-    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200.
+    Availability: renesas-ra, stm32, esp32, rp2040, mimxrt, samd, cc3200, psoc-edge.
     """
     INV_CTS: Final[int] = 8
     CTS: Final[int] = 2
@@ -2488,13 +2576,16 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        tx: PinLike | None = None,
-        rx: PinLike | None = None,
+        tx: _PinLike | None = None,
+        rx: _PinLike | None = None,
         txbuf: int | None = None,
         rxbuf: int | None = None,
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
+        flow: int | None = None,
+        rts: _PinLike | None = None,
+        cts: _PinLike | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -2557,7 +2648,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike] | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -2620,7 +2711,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
     ) -> None:
         """
         Initialise the UART bus with the given parameters:
@@ -2673,7 +2764,7 @@ class UART:
           Also do not call ``deinit()`` as it will prevent calling ``init()``
           again.
         """
-    def flush(self) -> Incomplete:
+    def flush(self) -> None:
         """
         Waits until all data has been sent. In case of a timeout, an exception is raised. The timeout
         duration depends on the tx buffer size and the baud rate. Unless flow control is enabled, a timeout
@@ -2684,7 +2775,7 @@ class UART:
             For the esp8266 and nrf ports the call returns while the last byte is sent.
             If required, a one character wait time has to be added in the calling script.
 
-        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, psoc-edge, renesas-ra
         """
         ...
     def txdone(self) -> bool:
@@ -2698,7 +2789,7 @@ class UART:
             of a transfer is still being sent. If required, a one character wait time has to be
             added in the calling script.
 
-        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, renesas-ra
+        Availability: rp2, esp32, esp8266, mimxrt, cc3200, stm32, nrf ports, psoc-edge, renesas-ra
         """
         ...
 
@@ -2737,7 +2828,7 @@ class UART:
          poll.poll(timeout)
         """
         ...
-    def write(self, buf: AnyReadableBuf, /) -> Union[int, None]:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the buffer of bytes to the bus.
 
@@ -2766,7 +2857,7 @@ class UART:
         Return value: number of bytes read and stored into ``buf`` or ``None`` on
         timeout.
         """
-    def readline(self) -> Union[str, None]:
+    def readline(self) -> bytes | None:
         """
         Read a line, ending in a newline character. It may return sooner if a timeout
         is reached. The timeout is configurable in the constructor.
@@ -2784,16 +2875,44 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        tx: PinLike | None = None,
-        rx: PinLike | None = None,
+        tx: _PinLike | None = None,
+        rx: _PinLike | None = None,
         txbuf: int | None = None,
         rxbuf: int | None = None,
         timeout: int | None = None,
         timeout_char: int | None = None,
         invert: int | None = None,
+        flow: int | None = None,
+        rts: _PinLike | None = None,
+        cts: _PinLike | None = None,
     ):
         """
         Construct a UART object of the given id.
+        """
+
+    @overload
+    def __init__(
+        self,
+        id: ID_T = ...,
+        /,
+        baudrate: int = 9600,
+        bits: int = 8,
+        parity: int | None = None,
+        stop: int = 1,
+        *,
+        tx: _PinLike | None = None,
+        rx: _PinLike | None = None,
+        txbuf: int | None = None,
+        rxbuf: int | None = None,
+        timeout: int | None = None,
+        timeout_char: int | None = None,
+        invert: int | None = None,
+        flow: int | None = None,
+        rts: _PinLike | None = None,
+        cts: _PinLike | None = None,
+    ):
+        """
+        Construct a UART object for the default ID.
         """
 
     @overload
@@ -2806,7 +2925,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike] | None = None,
     ):
         """
         Construct a UART object of the given id from a tuple of two pins.
@@ -2822,7 +2941,7 @@ class UART:
         parity: int | None = None,
         stop: int = 1,
         *,
-        pins: tuple[PinLike, PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike, _PinLike] | None = None,
     ):
         """
         Construct a UART object of the given id from a tuple of four pins.
@@ -2853,9 +2972,9 @@ class SoftSPI(SPI):
         phase=0,
         bits=8,
         firstbit=MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        sck: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        miso: _PinLike | None = None,
     ) -> None: ...
 
 class SPI:
@@ -2932,9 +3051,9 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        sck: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        miso: _PinLike | None = None,
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -2967,7 +3086,7 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike] | None = None,
     ) -> None:
         """
         Initialise the SPI bus with the given parameters:
@@ -2990,7 +3109,7 @@ class SPI:
         requested baudrate. This is dependent on the platform hardware. The actual
         rate may be determined by printing the SPI object.
         """
-    def write_readinto(self, write_buf: AnyReadableBuf, read_buf: AnyWritableBuf, /) -> int:
+    def write_readinto(self, write_buf: AnyReadableBuf, read_buf: AnyWritableBuf, /) -> int | None:
         """
         Write the bytes from ``write_buf`` while reading into ``read_buf``.  The
         buffers can be the same or different, but both buffers must have the
@@ -3007,7 +3126,7 @@ class SPI:
         Returns a ``bytes`` object with the data that was read.
         """
         ...
-    def write(self, buf: AnyReadableBuf, /) -> int:
+    def write(self, buf: AnyReadableBuf, /) -> int | None:
         """
         Write the bytes contained in ``buf``.
         Returns ``None``.
@@ -3015,7 +3134,7 @@ class SPI:
         Note: on WiPy this function returns the number of bytes written.
         """
         ...
-    def readinto(self, buf: AnyWritableBuf, write: int = 0x00, /) -> int:
+    def readinto(self, buf: AnyWritableBuf, write: int = 0x00, /) -> int | None:
         """
         Read into the buffer specified by ``buf`` while continuously writing the
         single byte given by ``write``.
@@ -3048,9 +3167,9 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        sck: PinLike | None = None,
-        mosi: PinLike | None = None,
-        miso: PinLike | None = None,
+        sck: _PinLike | None = None,
+        mosi: _PinLike | None = None,
+        miso: _PinLike | None = None,
     ):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -3074,7 +3193,7 @@ class SPI:
         phase: int = 0,
         bits: int = 8,
         firstbit: int = MSB,
-        pins: tuple[PinLike, PinLike, PinLike] | None = None,
+        pins: tuple[_PinLike, _PinLike, _PinLike] | None = None,
     ):
         """
         Construct an SPI object on the given bus, *id*. Values of *id* depend
@@ -3208,7 +3327,7 @@ class Signal(Pin):
         """
 
     @overload
-    def __init__(self, pin_obj: PinLike, invert: bool = False, /):
+    def __init__(self, pin_obj: _PinLike, invert: bool = False, /) -> None:
         """
         Create a Signal object. There're two ways to create it:
 
@@ -3230,7 +3349,7 @@ class Signal(Pin):
     @overload
     def __init__(
         self,
-        id: PinLike,
+        id: _PinLike,
         /,
         mode: int = -1,
         pull: int = -1,
@@ -3239,7 +3358,7 @@ class Signal(Pin):
         drive: int | None = None,
         alt: int | None = None,
         invert: bool = False,
-    ):
+    ) -> None:
         """
         Create a Signal object. There're two ways to create it:
 
@@ -3283,4 +3402,23 @@ class SoftI2C(I2C):
     def init(self, *args, **kwargs) -> Incomplete: ...
     def stop(self, *args, **kwargs) -> Incomplete: ...
     def write(self, *args, **kwargs) -> Incomplete: ...
-    def __init__(self, scl, sda, *, freq=400000, timeout=50000) -> None: ...
+    def __init__(self, scl: _PinLike, sda: _PinLike, *, freq: int = 400_000, timeout: int = 50_000) -> None: ...
+
+class ADCWiPy:
+    @overload
+    def channel(self, id: int, *, pin=None) -> adcchannel: ...
+    @overload
+    def channel(self, *, pin) -> adcchannel: ...
+    @overload
+    def channel(self, id: int, *, pin) -> adcchannel:
+        """
+        Create an analog pin. If only channel ID is given, the correct pin will
+        be selected. Alternatively, only the pin can be passed and the correct
+        channel will be selected. Examples::
+
+           # all of these are equivalent and enable ADC channel 1 on GP3
+           apin = adc.channel(1)
+           apin = adc.channel(pin='GP3')
+           apin = adc.channel(id=1, pin='GP3')
+        """
+        ...

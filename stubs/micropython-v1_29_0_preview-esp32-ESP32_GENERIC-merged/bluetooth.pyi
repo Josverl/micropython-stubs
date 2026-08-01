@@ -25,9 +25,11 @@ Module: 'bluetooth' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Any, Callable, overload, Final
+
+from typing import Any, Callable, Final, overload
+
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 FLAG_NOTIFY: Final[int] = 16
@@ -54,7 +56,6 @@ class UUID:
         - A 16-bit integer. e.g. ``0x2908``.
         - A 128-bit UUID string. e.g. ``'6E400001-B5A3-F393-E0A9-E50E24DCCA9E'``.
         """
-        ...
 
 class BLE:
     """
@@ -895,4 +896,3 @@ class BLE:
         """
         Returns the singleton BLE object.
         """
-        ...

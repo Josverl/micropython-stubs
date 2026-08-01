@@ -2,71 +2,191 @@ import abc
 import sys
 import typing
 from _collections_abc import dict_items, dict_keys, dict_values
-from _typeshed import IdentityFunction
-from contextlib import AbstractAsyncContextManager as AsyncContextManager, AbstractContextManager as ContextManager
+from contextlib import AbstractAsyncContextManager as AsyncContextManager
+from contextlib import AbstractContextManager as ContextManager
 from typing import (  # noqa: Y022,Y037,Y038,Y039
     IO as IO,
+)
+from typing import (
     TYPE_CHECKING as TYPE_CHECKING,
+)
+from typing import (
     AbstractSet as AbstractSet,
+)
+from typing import (
     Any as Any,
+)
+from typing import (
     AnyStr as AnyStr,
+)
+from typing import (
     AsyncGenerator as AsyncGenerator,
+)
+from typing import (
     AsyncIterable as AsyncIterable,
+)
+from typing import (
     AsyncIterator as AsyncIterator,
+)
+from typing import (
     Awaitable as Awaitable,
+)
+from typing import (
     BinaryIO as BinaryIO,
+)
+from typing import (
     Callable as Callable,
+)
+from typing import (
     ChainMap as ChainMap,
+)
+from typing import (
     ClassVar as ClassVar,
+)
+from typing import (
     Collection as Collection,
+)
+from typing import (
     Container as Container,
+)
+from typing import (
     Coroutine as Coroutine,
+)
+from typing import (
     Counter as Counter,
+)
+from typing import (
     DefaultDict as DefaultDict,
+)
+from typing import (
     Deque as Deque,
+)
+from typing import (
     Dict as Dict,
+)
+from typing import (
     ForwardRef as ForwardRef,
+)
+from typing import (
     FrozenSet as FrozenSet,
+)
+from typing import (
     Generator as Generator,
+)
+from typing import (
     Generic as Generic,
+)
+from typing import (
     Hashable as Hashable,
+)
+from typing import (
     ItemsView as ItemsView,
+)
+from typing import (
     Iterable as Iterable,
+)
+from typing import (
     Iterator as Iterator,
+)
+from typing import (
     KeysView as KeysView,
+)
+from typing import (
     List as List,
+)
+from typing import (
     Mapping as Mapping,
+)
+from typing import (
     MappingView as MappingView,
+)
+from typing import (
     Match as Match,
+)
+from typing import (
     MutableMapping as MutableMapping,
+)
+from typing import (
     MutableSequence as MutableSequence,
+)
+from typing import (
     MutableSet as MutableSet,
+)
+from typing import (
     NoReturn as NoReturn,
+)
+from typing import (
     Optional as Optional,
+)
+from typing import (
     Pattern as Pattern,
+)
+from typing import (
     Reversible as Reversible,
+)
+from typing import (
     Sequence as Sequence,
+)
+from typing import (
     Set as Set,
+)
+from typing import (
     Sized as Sized,
+)
+from typing import (
     SupportsAbs as SupportsAbs,
+)
+from typing import (
     SupportsBytes as SupportsBytes,
+)
+from typing import (
     SupportsComplex as SupportsComplex,
+)
+from typing import (
     SupportsFloat as SupportsFloat,
+)
+from typing import (
     SupportsInt as SupportsInt,
+)
+from typing import (
     SupportsRound as SupportsRound,
+)
+from typing import (
     Text as Text,
+)
+from typing import (
     TextIO as TextIO,
+)
+from typing import (
     Tuple as Tuple,
+)
+from typing import (
     Type as Type,
+)
+from typing import (
     Union as Union,
+)
+from typing import (
     ValuesView as ValuesView,
+)
+from typing import (
     _Alias,
-    cast as cast,
-    no_type_check as no_type_check,
-    no_type_check_decorator as no_type_check_decorator,
-    overload as overload,
     type_check_only,
 )
+from typing import (
+    cast as cast,
+)
+from typing import (
+    no_type_check as no_type_check,
+)
+from typing import (
+    no_type_check_decorator as no_type_check_decorator,
+)
+from typing import (
+    overload as overload,
+)
+
+from _typeshed import IdentityFunction
 
 if sys.version_info >= (3, 10):
     from types import UnionType
@@ -291,10 +411,20 @@ class SupportsIndex(Protocol, metaclass=abc.ABCMeta):
 if sys.version_info >= (3, 10):
     from typing import (
         Concatenate as Concatenate,
+    )
+    from typing import (
         ParamSpecArgs as ParamSpecArgs,
+    )
+    from typing import (
         ParamSpecKwargs as ParamSpecKwargs,
+    )
+    from typing import (
         TypeAlias as TypeAlias,
+    )
+    from typing import (
         TypeGuard as TypeGuard,
+    )
+    from typing import (
         is_typeddict as is_typeddict,
     )
 else:
@@ -319,18 +449,44 @@ else:
 if sys.version_info >= (3, 11):
     from typing import (
         LiteralString as LiteralString,
+    )
+    from typing import (
         NamedTuple as NamedTuple,
+    )
+    from typing import (
         Never as Never,
+    )
+    from typing import (
         NewType as NewType,
+    )
+    from typing import (
         NotRequired as NotRequired,
+    )
+    from typing import (
         Required as Required,
+    )
+    from typing import (
         Self as Self,
+    )
+    from typing import (
         Unpack as Unpack,
+    )
+    from typing import (
         assert_never as assert_never,
+    )
+    from typing import (
         assert_type as assert_type,
+    )
+    from typing import (
         clear_overloads as clear_overloads,
+    )
+    from typing import (
         dataclass_transform as dataclass_transform,
+    )
+    from typing import (
         get_overloads as get_overloads,
+    )
+    from typing import (
         reveal_type as reveal_type,
     )
 else:
@@ -383,7 +539,8 @@ else:
 if sys.version_info >= (3, 12):
     from collections.abc import Buffer as Buffer
     from types import get_original_bases as get_original_bases
-    from typing import TypeAliasType as TypeAliasType, override as override
+    from typing import TypeAliasType as TypeAliasType
+    from typing import override as override
 else:
     def override(arg: _F, /) -> _F: ...
     def get_original_bases(cls: type, /) -> tuple[Any, ...]: ...
@@ -417,12 +574,26 @@ if sys.version_info >= (3, 13):
     from types import CapsuleType as CapsuleType
     from typing import (
         NoDefault as NoDefault,
+    )
+    from typing import (
         ParamSpec as ParamSpec,
+    )
+    from typing import (
         ReadOnly as ReadOnly,
+    )
+    from typing import (
         TypeIs as TypeIs,
+    )
+    from typing import (
         TypeVar as TypeVar,
+    )
+    from typing import (
         TypeVarTuple as TypeVarTuple,
+    )
+    from typing import (
         get_protocol_members as get_protocol_members,
+    )
+    from typing import (
         is_protocol as is_protocol,
     )
     from warnings import deprecated as deprecated

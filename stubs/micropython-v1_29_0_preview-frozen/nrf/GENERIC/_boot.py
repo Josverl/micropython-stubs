@@ -1,10 +1,11 @@
 # Micropython v1.29.0-preview frozen stubs
 def setup_fs():
     import gc
-    import vfs
-    import sys
-    import nrf
     import os
+    import sys
+
+    import nrf
+    import vfs
 
     fs_type = getattr(vfs, "VfsLfs2", getattr(vfs, "VfsLfs1", getattr(vfs, "VfsFat", None)))
     try:

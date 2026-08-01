@@ -1,8 +1,11 @@
 # Micropython v1.29.0-preview frozen stubs
-from .core import GattError as GattError, ble as ble, register_irq_handler as register_irq_handler
-from .device import DeviceConnection as DeviceConnection
 from _typeshed import Incomplete
 from micropython import const as const
+
+from .core import GattError as GattError
+from .core import ble as ble
+from .core import register_irq_handler as register_irq_handler
+from .device import DeviceConnection as DeviceConnection
 
 _IRQ_GATTC_SERVICE_RESULT: int
 _IRQ_GATTC_SERVICE_DONE: int

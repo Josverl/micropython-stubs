@@ -7,8 +7,10 @@
 # In comments, abbreviation "DS" = Semtech SX1261/62 Datasheet Rev 2.1 (December 2021)
 import struct
 import time
-from micropython import const
+
 from machine import Pin
+from micropython import const
+
 from .modem import BaseModem, ConfigError, RxPacket, _clamp, _flag
 
 # Set _DEBUG to True to print all SPI commands sent to the device, and all responses,
@@ -219,16 +221,13 @@ class _SX126x(BaseModem):
 
         # If DIO1 is set, mask in just the IRQs that the driver may need to be
         # interrupted by. This is important because otherwise an unrelated IRQ
-        # can trigger the ISR and may not be reset by the driver, leaving DIO1 high.
-        #
-        # If DIO1 is not set, all IRQs can stay masked which is the power-on state.
+        # can trigger the ISR and may not be reset by the driver, leaving DIO1
+        # high.
         if dio1:
-            # Note: we set both Irq mask and DIO1 mask to the same value, which is redundant
-            # (one could be 0xFFFF) but may save a few bytes of bytecode.
             self._cmd(
                 ">BHHHH",
                 _CMD_CFG_DIO_IRQ,
-                (_IRQ_RX_DONE | _IRQ_TX_DONE | _IRQ_TIMEOUT),  # IRQ mask
+                (_IRQ_RX_DONE | _IRQ_TX_DONE | _IRQ_TIMEOUT | _IRQ_CRC_ERR),  # IRQ mask
                 (_IRQ_RX_DONE | _IRQ_TX_DONE | _IRQ_TIMEOUT),  # DIO1 mask
                 0x0,  # DIO2Mask, not used
                 0x0,  # DIO3Mask, not used

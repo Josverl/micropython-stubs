@@ -11,7 +11,19 @@ from micropython import const
 _PACKAGE_INDEX = "https://micropython.org/pi/v2"
 _CHUNK_SIZE = 128
 
-allowed_mip_url_prefixes = ("http://", "https://", "github:", "gitlab:")
+# Since all URLs are accessed via HTTPS, the URL scheme is added by _rewrite_url.
+# The first three format parameters are assumed to be the organisation, the
+# repository names, and the branch/tag name, in this order.
+_HOSTS = {
+    # https://codeberg.org/api/v1/repos/{org}/{repo}/raw/{path}?ref={branch}
+    "codeberg:": "codeberg.org/api/v1/repos/{}/{}/raw/{p}?ref={}",
+    # https://raw.githubusercontent.com/{org}/{repo}/{branch}/{path}
+    "github:": "raw.githubusercontent.com/{}/{}/{}/{p}",
+    # https://gitlab.com/{org}/{repo}/-/raw/{branch}/{path}
+    "gitlab:": "gitlab.com/{}/{}/-/raw/{}/{p}",
+}
+
+_ALLOWED_MIP_URL_PREFIXES = ("http://", "https://", "codeberg:", "github:", "gitlab:")
 
 
 # This implements os.makedirs(os.dirname(path))
@@ -63,32 +75,12 @@ def _check_exists(path, short_hash):
 
 
 def _rewrite_url(url, branch=None):
-    if not branch:
-        branch = "HEAD"
-    if url.startswith("github:"):
-        url = url[7:].split("/")
-        url = (
-            "https://raw.githubusercontent.com/"
-            + url[0]
-            + "/"
-            + url[1]
-            + "/"
-            + branch
-            + "/"
-            + "/".join(url[2:])
-        )
-    elif url.startswith("gitlab:"):
-        url = url[7:].split("/")
-        url = (
-            "https://gitlab.com/"
-            + url[0]
-            + "/"
-            + url[1]
-            + "/-/raw/"
-            + branch
-            + "/"
-            + "/".join(url[2:])
-        )
+    for provider, url_format in _HOSTS.items():
+        if not url.startswith(provider):
+            continue
+        components = url[len(provider) :].split("/")
+        # Add https:// prefix to final URL.
+        return _ALLOWED_MIP_URL_PREFIXES[1] + url_format.format(components[0], components[1], branch or "HEAD", p="/".join(components[2:]))
     return url
 
 
@@ -131,7 +123,7 @@ def _install_json(package_json_url, index, target, version, mpy):
     base_url = package_json_url.rpartition("/")[0]
     for target_path, url in package_json.get("urls", ()):
         fs_target_path = target + "/" + target_path
-        is_full_url = any(url.startswith(p) for p in allowed_mip_url_prefixes)
+        is_full_url = any(url.startswith(p) for p in _ALLOWED_MIP_URL_PREFIXES)
         if base_url and not is_full_url:
             url = f"{base_url}/{url}"  # Relative URLs
         if not _download_file(_rewrite_url(url, version), fs_target_path):
@@ -144,12 +136,10 @@ def _install_json(package_json_url, index, target, version, mpy):
 
 
 def _install_package(package, index, target, version, mpy):
-    if any(package.startswith(p) for p in allowed_mip_url_prefixes):
+    if any(package.startswith(p) for p in _ALLOWED_MIP_URL_PREFIXES):
         if package.endswith(".py") or package.endswith(".mpy"):
             print("Downloading {} to {}".format(package, target))
-            return _download_file(
-                _rewrite_url(package, version), target + "/" + package.rsplit("/")[-1]
-            )
+            return _download_file(_rewrite_url(package, version), target + "/" + package.rsplit("/")[-1])
         else:
             if not package.endswith(".json"):
                 if not package.endswith("/"):
@@ -161,9 +151,7 @@ def _install_package(package, index, target, version, mpy):
             version = "latest"
         print("Installing {} ({}) from {} to {}".format(package, version, index, target))
 
-        mpy_version = (
-            sys.implementation._mpy & 0xFF if mpy and hasattr(sys.implementation, "_mpy") else "py"
-        )
+        mpy_version = sys.implementation._mpy & 0xFF if mpy and hasattr(sys.implementation, "_mpy") else "py"
 
         package = "{}/package/{}/{}/{}.json".format(index, mpy_version, package, version)
 

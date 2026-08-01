@@ -4,7 +4,8 @@ from micropython import const as const
 
 _PACKAGE_INDEX: str
 _CHUNK_SIZE: int
-allowed_mip_url_prefixes: Incomplete
+_HOSTS: Incomplete
+_ALLOWED_MIP_URL_PREFIXES: Incomplete
 
 def _ensure_path_exists(path) -> None: ...
 def _chunk(src, dest) -> None: ...

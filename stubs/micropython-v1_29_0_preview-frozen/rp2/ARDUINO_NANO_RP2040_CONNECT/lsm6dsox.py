@@ -47,8 +47,9 @@ Basic example usage::
 """
 
 import array
-from micropython import const
 import time
+
+from micropython import const
 
 _CTRL3_C = 0x12
 _CTRL1_XL = 0x10

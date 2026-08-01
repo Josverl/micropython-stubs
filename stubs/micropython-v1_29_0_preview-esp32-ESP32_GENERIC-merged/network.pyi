@@ -30,10 +30,7 @@ For example::
     s = socket.socket()
     s.connect(addr)
     s.send(b'GET / HTTP/1.1
-
 Host: micropython.org
-
-
 
 ')
     data = s.recv(1000)
@@ -46,11 +43,13 @@ Module: 'network' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Optional, Protocol, Callable, List, Any, Tuple, overload, Final
-from _typeshed import Incomplete
-from typing_extensions import Awaitable, TypeAlias, TypeVar
-from machine import Pin, SPI
+
 from abc import abstractmethod
+from typing import Any, Callable, Final, List, Optional, Protocol, Tuple, overload
+
+from _typeshed import Incomplete
+from machine import SPI, Pin
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 PHY_KSZ8851SNL: Final[int] = 100
 PHY_RTL8201: Final[int] = 3
@@ -103,48 +102,15 @@ ETH_GOT_IP: Final[int] = 5
 ETH_CONNECTED: Final[int] = 3
 ETH_DISCONNECTED: Final[int] = 4
 
-def country(code: Optional[Any] = None) -> Incomplete:
-    """
-    Get or set the two-letter ISO 3166-1 Alpha-2 country code to be used for
-    radio compliance.
-
-    If the *code* parameter is provided, the country will be set to this value.
-    If the function is called without parameters, it returns the current
-    country.
-
-    The default code ``"XX"`` represents the "worldwide" region.
-    """
-    ...
-
-def hostname(name: Optional[Any] = None) -> Incomplete:
-    """
-    Get or set the hostname that will identify this device on the network. It will
-    be used by all interfaces.
-
-    This hostname is used for:
-     * Sending to the DHCP server in the client request. (If using DHCP)
-     * Broadcasting via mDNS. (If enabled)
-
-    If the *name* parameter is provided, the hostname will be set to this value.
-    If the function is called without parameters, it returns the current
-    hostname.
-
-    A change in hostname is typically only applied during connection. For DHCP
-    this is because the hostname is part of the DHCP client request, and the
-    implementation of mDNS in most ports only initialises the hostname once
-    during connection. For this reason, you must set the hostname before
-    activating/connecting your network interfaces.
-
-    The length of the hostname is limited to 32 characters.
-    :term:`MicroPython ports <MicroPython port>` may choose to set a lower
-    limit for memory reasons. If the given name does not fit, a `ValueError`
-    is raised.
-
-    The default hostname is typically the name of the board.
-    """
-    ...
-
-def ipconfig(param: Optional[str] = None, *args, **kwargs) -> str:
+@overload
+def country() -> str: ...
+@overload
+def country(code: str, /) -> None: ...
+@overload
+def hostname() -> str: ...
+@overload
+def hostname(name: str, /) -> None: ...
+def ipconfig(*args: Any, **kwargs: Any) -> Any:
     """
     Get or set global IP-configuration parameters.
     Supported parameters are the following (availability of a particular
@@ -322,6 +288,7 @@ class WLAN:
     """
     SEC_OPEN: Final[int] = 0
     SEC_DPP: Final[int] = 13
+    BANDWIDTH_20: Incomplete
 
     @overload
     def ifconfig(self) -> tuple[str, str, str, str]:
@@ -495,6 +462,7 @@ class WLAN:
         txpower        Maximum transmit power in dBm (integer or float)
         pm             WiFi Power Management setting (see below for allowed values)
         protocol       (ESP32 Only.) WiFi Low level 802.11 protocol. See `WLAN.PROTOCOL_DEFAULT`.
+        bandwidth      (ESP32 Only.) WiFi channel bandwidth. See `WLAN.BANDWIDTH_20` and others.
         =============  ===========
         """
 
@@ -531,6 +499,7 @@ class WLAN:
         txpower        Maximum transmit power in dBm (integer or float)
         pm             WiFi Power Management setting (see below for allowed values)
         protocol       (ESP32 Only.) WiFi Low level 802.11 protocol. See `WLAN.PROTOCOL_DEFAULT`.
+        bandwidth      (ESP32 Only.) WiFi channel bandwidth. See `WLAN.BANDWIDTH_20` and others.
         =============  ===========
         """
     def connect(

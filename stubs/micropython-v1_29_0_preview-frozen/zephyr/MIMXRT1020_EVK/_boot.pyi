@@ -8,6 +8,7 @@ _FLASH: str
 _FLASH_LIB: str
 _STORAGE_KEY: str
 _FLASH_EXISTS: bool
+_FS_EXISTS: bool
 
 def mount_filesystem_flash():
     """Create a filesystem if needed on the FS partition "/flash"
@@ -18,6 +19,11 @@ def mount_filesystem_flash():
 def create_flash_partition():
     """Create an LFS2 filesystem on the partition labeled storage
     and mount it on /flash.
+    Return True if successful, False otherwise.
+    """
+
+def mount_all_filesystems():
+    """Mount all filesystems excluding "/flash"
     Return True if successful, False otherwise.
     """
 

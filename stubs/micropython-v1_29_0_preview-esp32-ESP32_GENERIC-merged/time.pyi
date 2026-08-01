@@ -40,16 +40,15 @@ Module: 'time' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
+
+from typing import Literal, overload
+
+from _mpy_shed import _TimeTuple, mp_available
+from _mpy_shed.time_mp import _Ticks, _TicksCPU, _TicksMs, _TicksUs
 from _typeshed import Incomplete
-from _mpy_shed import _TimeTuple
-from typing import Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-_TicksMs: TypeAlias = int
-_TicksUs: TypeAlias = int
-_TicksCPU: TypeAlias = int
-_Ticks = TypeVar("_Ticks", _TicksMs, _TicksUs, _TicksCPU, int)
-
+@overload
 def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     """
     Measure ticks difference between values returned from `ticks_ms()`, `ticks_us()`,
@@ -116,6 +115,9 @@ def ticks_diff(ticks1: _Ticks, ticks2: _Ticks, /) -> int:
     """
     ...
 
+@overload
+# 2nd overload to satisfy mypy when using literal 0 as argument
+def ticks_diff(ticks1: _Ticks | Literal[0] | int, ticks2: _Ticks | Literal[0] | int, /) -> int: ...
 def ticks_add(ticks: _Ticks, delta: int, /) -> _Ticks:
     """
     Offset ticks value by a given number, which can be either positive or negative.
@@ -186,7 +188,9 @@ def time() -> int:
     """
     ...
 
-def ticks_ms() -> int:
+# override the type of ticks_ms()  as it is discovered as `int` in docstubs.
+@mp_available
+def ticks_ms() -> _TicksMs:
     """
     Returns an increasing millisecond counter with an arbitrary reference point, that
     wraps around after some value.
@@ -223,7 +227,7 @@ def time_ns() -> int:
     """
     ...
 
-def localtime(secs: int | None = None, /) -> Tuple:
+def localtime(secs: int | None = None, /) -> _TimeTuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
     8-tuple which contains: ``(year, month, mday, hour, minute, second, weekday, yearday)``
@@ -255,7 +259,7 @@ def sleep_us(us: int, /) -> None:
     """
     ...
 
-def gmtime(secs: int | None = None, /) -> Tuple:
+def gmtime(secs: int | None = None, /) -> _TimeTuple:
     """
     Convert the time *secs* expressed in seconds since the Epoch (see above) into an
     8-tuple which contains: ``(year, month, mday, hour, minute, second, weekday, yearday)``

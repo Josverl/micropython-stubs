@@ -1,8 +1,9 @@
-import _typeshed
 import sys
-from _typeshed import SupportsWrite
 from collections.abc import Callable
 from typing import Any, Literal, TypeVar
+
+import _typeshed
+from _typeshed import SupportsWrite
 from typing_extensions import Concatenate, ParamSpec, deprecated
 
 _T = TypeVar("_T")

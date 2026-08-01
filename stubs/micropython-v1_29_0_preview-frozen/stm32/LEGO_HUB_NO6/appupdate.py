@@ -2,12 +2,13 @@
 # Application firmware update function for LEGO_HUB_NO6.
 # MIT license; Copyright (c) 2022-2024 Damien P. George
 
-from micropython import const
 import random
-import machine
+
 import fwupdate
-import spiflash
+import machine
 import pyb
+import spiflash
+from micropython import const
 
 _IOCTL_BLOCK_COUNT = 4
 _IOCTL_BLOCK_SIZE = 5

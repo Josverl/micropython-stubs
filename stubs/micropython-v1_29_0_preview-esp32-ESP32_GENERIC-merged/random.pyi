@@ -33,9 +33,11 @@ Module: 'random' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from _typeshed import Incomplete
-from _mpy_shed import Subscriptable
+
 from typing import overload
+
+from _mpy_shed import Subscriptable
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _T = TypeVar("_T")
@@ -70,7 +72,7 @@ def randrange(start: int, stop: int, step: int, /) -> int:
     return odd numbers between 1 and 9 inclusive.
     """
 
-def random() -> int:
+def random() -> float:
     """
     Return a random floating point number in the range [0.0, 1.0).
     """
@@ -88,14 +90,14 @@ def seed(n: int | None = None, /) -> None:
     """
     ...
 
-def uniform(a: float, b: float) -> int:
+def uniform(a: float, b: float) -> float:
     """
     Return a random floating point number N such that *a* <= N <= *b* for *a* <= *b*,
     and *b* <= N <= *a* for *b* < *a*.
     """
     ...
 
-def choice(sequence: Subscriptable, /) -> None:
+def choice(sequence: Subscriptable[_T], /) -> _T:
     """
     Chooses and returns one item at random from *sequence* (tuple, list or
     any object that supports the subscript operation).

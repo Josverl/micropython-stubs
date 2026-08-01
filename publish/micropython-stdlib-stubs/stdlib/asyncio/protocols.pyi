@@ -1,6 +1,7 @@
-from _typeshed import ReadableBuffer
 from asyncio import transports
 from typing import Any
+
+from _typeshed import ReadableBuffer
 
 __all__ = ("BaseProtocol", "Protocol", "DatagramProtocol", "SubprocessProtocol", "BufferedProtocol")
 

@@ -24,13 +24,15 @@ Module: 'vfs' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from _typeshed import Incomplete
-from _mpy_shed import _BlockDeviceProtocol
+
 from abc import ABC, abstractmethod
 from typing import List, overload
+
+from _mpy_shed import AnyReadableBuf, _BlockDeviceProtocol
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
-def umount(mount_point: Incomplete) -> Incomplete:
+def umount(mount_point: Incomplete) -> None:
     """
     Unmount a filesystem. *mount_point* can be a string naming the mount location,
     or a previously-mounted filesystem object.  During the unmount process the
@@ -64,7 +66,7 @@ def mount() -> List[tuple[Incomplete, str]]:
     """
     ...
 
-class VfsLfs2:
+class VfsLfs2(AbstractBlockDev):
     """
     Create a filesystem object that uses the `littlefs v2 filesystem format`_.
     Storage of the littlefs filesystem is provided by *block_dev*, which must
@@ -104,7 +106,7 @@ class VfsLfs2:
     def getcwd(self, *args, **kwargs) -> Incomplete: ...
     def __init__(self, block_dev: AbstractBlockDev, readsize=32, progsize=32, lookahead=32, mtime=True) -> None: ...
 
-class VfsFat:
+class VfsFat(AbstractBlockDev):
     """
     Create a filesystem object that uses the FAT filesystem format.  Storage of
     the FAT filesystem is provided by *block_dev*.
@@ -150,6 +152,9 @@ class AbstractBlockDev:
         Starting at block index *block_num*, and byte offset within that block
         of *offset*, read bytes from the device into *buf* (an array of bytes).
         The number of bytes to read is given by the length of *buf*.
+
+        Upon success the method should return ``None`` or 0.  Upon failure it should
+        return a negative integer corresponding to an ``OSError`` errno code.
         """
         ...
 
@@ -174,6 +179,9 @@ class AbstractBlockDev:
 
         Note that implementations must never implicitly erase blocks if the offset
         argument is specified, even if it is zero.
+
+        Upon success the method should return ``None`` or 0.  Upon failure it should
+        return a negative integer corresponding to an ``OSError`` errno code.
         """
 
     @abstractmethod
@@ -197,6 +205,9 @@ class AbstractBlockDev:
 
         Note that implementations must never implicitly erase blocks if the offset
         argument is specified, even if it is zero.
+
+        Upon success the method should return ``None`` or 0.  Upon failure it should
+        return a negative integer corresponding to an ``OSError`` errno code.
         """
         ...
 
@@ -238,3 +249,12 @@ class AbstractBlockDev:
         for failure, with the value returned being an ``OSError`` errno code.
         """
         ...
+
+@overload
+def rom_ioctl(op: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, length: int, /) -> Incomplete: ...
+@overload
+def rom_ioctl(op: int, arg: int, offset: int, buf: AnyReadableBuf, /) -> Incomplete: ...

@@ -8,9 +8,10 @@
 # 2021-Apr-10 - v0.1 - Initial implementation
 
 # Import required libraries
-from micropython import const
-from machine import Pin, SPI, ADC
+
 import machine
+from machine import ADC, SPI, Pin
+from micropython import const
 
 # TinyS2 Hardware Pin Assignments
 

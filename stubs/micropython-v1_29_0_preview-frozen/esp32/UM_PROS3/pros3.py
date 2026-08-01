@@ -6,8 +6,9 @@
 # http://pros3.io
 
 # Import required libraries
+
+from machine import ADC, Pin
 from micropython import const
-from machine import Pin, ADC
 
 # ProS3 Hardware Pin Assignments
 

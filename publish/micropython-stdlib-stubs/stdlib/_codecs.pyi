@@ -1,8 +1,9 @@
 import codecs
 import sys
-from _typeshed import ReadableBuffer
 from collections.abc import Callable
 from typing import Literal, overload
+
+from _typeshed import ReadableBuffer
 from typing_extensions import TypeAlias
 
 # This type is not exposed; it is defined in unicodeobject.c

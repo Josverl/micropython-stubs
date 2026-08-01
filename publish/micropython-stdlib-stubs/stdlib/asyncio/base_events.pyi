@@ -1,6 +1,5 @@
 import ssl
 import sys
-from _typeshed import FileDescriptorLike, ReadableBuffer, WriteableBuffer
 from asyncio import _AwaitableLike, _CoroutineLike
 from asyncio.events import AbstractEventLoop, AbstractServer, Handle, TimerHandle, _TaskFactory
 from asyncio.futures import Future
@@ -11,6 +10,8 @@ from collections.abc import Callable, Iterable, Sequence
 from contextvars import Context  # type: ignore
 from socket import AddressFamily, SocketKind, _Address, _RetAddress, socket
 from typing import IO, Any, Literal, TypeVar, overload
+
+from _typeshed import FileDescriptorLike, ReadableBuffer, WriteableBuffer
 from typing_extensions import TypeAlias, TypeVarTuple, Unpack
 
 if sys.version_info >= (3, 9):

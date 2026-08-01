@@ -25,6 +25,7 @@ THE SOFTWARE.
 """
 
 import binascii
+
 from senml.senml_base import SenmlBase
 
 

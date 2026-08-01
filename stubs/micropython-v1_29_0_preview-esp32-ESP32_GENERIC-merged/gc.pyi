@@ -1,7 +1,8 @@
 """
-Control the garbage collector.
+Control the garbage collector which automatically frees.
 
 MicroPython module: https://docs.micropython.org/en/v1.29.0/library/gc.html
+              :ref:`heap memory <heap>`
 
 CPython module: :mod:`python:gc` https://docs.python.org/3/library/gc.html .
 
@@ -12,8 +13,10 @@ Module: 'gc' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from _typeshed import Incomplete
+
 from typing import overload
+
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 def mem_alloc() -> int:
@@ -27,7 +30,12 @@ def mem_alloc() -> int:
     """
     ...
 
-def isenabled(*args, **kwargs) -> Incomplete: ...
+def isenabled() -> bool:
+    """
+    Returns True if automatic garbage collection is enabled, and False otherwise.
+    """
+    ...
+
 def mem_free() -> int:
     """
     Return the number of bytes of heap RAM that is available for Python
@@ -64,6 +72,17 @@ def threshold() -> int:
        This function is a MicroPython extension. CPython has a similar
        function - ``set_threshold()``, but due to different GC
        implementations, its signature and semantics are different.
+
+    Examples
+    ^^^^^^^^
+
+    To trigger a garbage collection each time 32768 bytes of RAM have been allocated in total::
+
+        gc.threshold(32768)
+
+    To restore the default behaviour, only triggering garbage collection when out of memory::
+
+        gc.threshold(-1)
     """
 
 @overload
@@ -90,9 +109,20 @@ def threshold(amount: int) -> None:
        This function is a MicroPython extension. CPython has a similar
        function - ``set_threshold()``, but due to different GC
        implementations, its signature and semantics are different.
+
+    Examples
+    ^^^^^^^^
+
+    To trigger a garbage collection each time 32768 bytes of RAM have been allocated in total::
+
+        gc.threshold(32768)
+
+    To restore the default behaviour, only triggering garbage collection when out of memory::
+
+        gc.threshold(-1)
     """
 
-def collect() -> None:
+def collect() -> int | None:
     """
     Run a garbage collection.
     """

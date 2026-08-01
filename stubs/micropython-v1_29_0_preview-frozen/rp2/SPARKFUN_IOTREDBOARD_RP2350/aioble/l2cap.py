@@ -2,13 +2,12 @@
 # MicroPython aioble module
 # MIT license; Copyright (c) 2021 Jim Mussared
 
-from micropython import const
-
 import asyncio
+
+from micropython import const
 
 from .core import ble, log_error, register_irq_handler
 from .device import DeviceConnection
-
 
 _IRQ_L2CAP_ACCEPT = 22
 _IRQ_L2CAP_CONNECT = 23

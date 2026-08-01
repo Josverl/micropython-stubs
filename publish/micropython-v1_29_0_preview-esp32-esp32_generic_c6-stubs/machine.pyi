@@ -3609,8 +3609,6 @@ _path: Incomplete
 
 _PCNT_RANGE: int
 
-PinLike: TypeAlias = Pin | int | str
-
 
 class _CounterBase:
     _PCNT: Incomplete

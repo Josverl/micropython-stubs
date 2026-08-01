@@ -68,9 +68,11 @@ Module: 'socket' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Literal, Tuple, overload, Final
-from _typeshed import Incomplete
+
+from typing import Final, Literal, Tuple, overload
+
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 TCP_NODELAY: Final[int] = 1
@@ -268,7 +270,7 @@ class socket:
         * ``sock.setblocking(False)`` is equivalent to ``sock.settimeout(0)``
         """
         ...
-    def sendto(self, bytes: AnyReadableBuf, address: _Address, /) -> None:
+    def sendto(self, bytes: AnyReadableBuf, address: _Address, /) -> int:
         """
         Send data to the socket. The socket should not be connected to a remote socket, since the
         destination socket is specified by *address*.
@@ -420,4 +422,3 @@ class socket:
                 # Create DGRAM UDP socket
                 socket(AF_INET, SOCK_DGRAM)
         """
-        ...

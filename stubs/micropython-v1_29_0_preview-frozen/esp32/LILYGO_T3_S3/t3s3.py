@@ -38,8 +38,8 @@ def get_button():
 
 def get_oled():
     """Create and return an SSD1306 128x64 OLED display instance."""
-    from machine import I2C
     import ssd1306
+    from machine import I2C
 
     i2c = I2C(0, scl=_pins.OLED_SCL, sda=_pins.OLED_SDA, freq=400000)
     return ssd1306.SSD1306_I2C(128, 64, i2c, addr=_OLED_ADDR)
@@ -51,8 +51,8 @@ def get_lora(lora_cfg=None):
     Optional lora_cfg dict, e.g.:
         {"freq_khz": 869500, "sf": 7, "bw": "125", "coding_rate": 5, "output_power": 14}
     """
-    from machine import SPI
     from lora import SX1262
+    from machine import SPI
 
     spi = SPI(
         1,

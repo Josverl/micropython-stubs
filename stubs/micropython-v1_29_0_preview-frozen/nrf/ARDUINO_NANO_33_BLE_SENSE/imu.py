@@ -24,8 +24,8 @@ class IMU:
     def __init__(self, bus):
         """Initializes Gyro, Accelerometer and Magnetometer using default values."""
         if 0x68 in bus.scan():
-            from bmm150 import BMM150
             from bmi270 import BMI270
+            from bmm150 import BMM150
 
             magnet = BMM150(bus)
             self.imu = BMI270(bus, bmm_magnet=magnet)

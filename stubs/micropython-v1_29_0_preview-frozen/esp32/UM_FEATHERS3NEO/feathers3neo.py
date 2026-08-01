@@ -6,8 +6,9 @@
 # http://esp32s3.com
 
 # Import required libraries
+
+from machine import ADC, Pin
 from micropython import const
-from machine import Pin, ADC
 
 # FeatherS3 Hardware Pin Assignments
 

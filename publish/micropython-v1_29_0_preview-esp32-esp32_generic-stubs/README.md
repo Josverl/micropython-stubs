@@ -30,6 +30,7 @@ For an overview of  Micropython Stubs please see: https://micropython-stubs.read
 
 Included stubs:
 * Merged stubs from `stubs/micropython-v1_29_0_preview-esp32-ESP32_GENERIC-merged`
+* Frozen stubs from `stubs/micropython-v1_29_0_preview-frozen/esp32/GENERIC`
 * Core stubs from `stubs/micropython-core`
 
 

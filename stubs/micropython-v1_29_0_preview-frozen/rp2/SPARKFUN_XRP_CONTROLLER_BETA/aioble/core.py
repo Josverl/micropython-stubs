@@ -4,7 +4,6 @@
 
 import bluetooth
 
-
 log_level = 1
 
 

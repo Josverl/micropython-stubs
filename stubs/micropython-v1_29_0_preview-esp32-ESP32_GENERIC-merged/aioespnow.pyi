@@ -1,14 +1,31 @@
 """
+ESP-NOW asyncio support.
+
+MicroPython module: https://docs.micropython.org/en/latest/library/espnow.html#aioespnow
+
+---
 Module: 'aioespnow' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 """
 
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Generator
-from _typeshed import Incomplete
 
-class AIOESPNow:
+from typing import Generator, TypeAlias, overload
+
+from _mpy_shed import mp_available
+from _typeshed import Incomplete
+from espnow import ESPNow
+
+_MACAddress: TypeAlias = bytes
+
+class AIOESPNow(ESPNow):
+    """
+    Async wrapper around `espnow.ESPNow`.
+
+    This class extends `ESPNow` with async methods and async iteration support.
+    """
+
     _data: list = []
     _none_tuple: tuple = ()
     def peer_count(self, *args, **kwargs) -> Incomplete: ...
@@ -27,10 +44,22 @@ class AIOESPNow:
     def get_peer(self, *args, **kwargs) -> Incomplete: ...
     def del_peer(self, *args, **kwargs) -> Incomplete: ...
     def irq(self, *args, **kwargs) -> Incomplete: ...
-    def asend(self, *args, **kwargs) -> Generator:  ## = <generator>
+    @overload
+    async def asend(self, mac: _MACAddress, msg: str | bytes, sync: bool | None = True) -> bool: ...
+    @overload
+    async def asend(self, msg: str | bytes) -> bool: ...
+    async def arecv(self) -> Generator:  ## = <generator>
+        """
+        Asyncio support for `ESPNow.recv()`.
+        """
         ...
-    def arecv(self, *args, **kwargs) -> Generator:  ## = <generator>
-        ...
-    def airecv(self, *args, **kwargs) -> Generator:  ## = <generator>
+    async def airecv(self) -> Generator:  ## = <generator>
+        """
+        Asyncio support for `ESPNow.irecv()`.
+        """
         ...
     def __init__(self, *argv, **kwargs) -> None: ...
+    @mp_available()
+    def __aiter__(self) -> AIOESPNow: ...
+    @mp_available()
+    async def __anext__(self) -> tuple[_MACAddress | bytearray | None, bytearray | None]: ...

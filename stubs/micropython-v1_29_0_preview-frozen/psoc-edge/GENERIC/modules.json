@@ -1,0 +1,25 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Josverl/micropython-stubber/main/data/schema/stubber-v1_4_0.json",
+    "firmware": {
+        "family": "micropython",
+        "port": "psoc-edge",
+        "platform": "psoc-edge",
+        "machine": "GENERIC",
+        "firmware": "micropython-psoc-edge-GENERIC-v1_29_0_preview",
+        "nodename": "micropython",
+        "version": "v1.29.0-preview",
+        "release": "v1.29.0-preview",
+        "sysname": "micropython",
+        "board": "GENERIC"
+    },
+    "stubber": {
+        "version": "1.28.3",
+        "stubtype": "frozen"
+    },
+    "modules": [
+        {
+            "file": "_boot.py",
+            "module": "_boot"
+        }
+    ]
+}

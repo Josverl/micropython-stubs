@@ -2,6 +2,37 @@
 import socket
 
 
+class BodyStream:
+    def __init__(self, sock, remaining):
+        self._sock = sock
+        self._remaining = remaining
+
+    def read(self, n=-1):
+        if self._remaining == 0:
+            return b""
+        if n < 0 or n > self._remaining:
+            n = self._remaining
+        data = self._sock.read(n)
+        self._remaining -= len(data)
+        if not data:
+            raise ValueError("Connection closed before Content-Length satisfied")
+        return data
+
+    def readinto(self, buf):
+        if self._remaining == 0:
+            return 0
+        if len(buf) > self._remaining:
+            buf = memoryview(buf)[: self._remaining]
+        got = self._sock.readinto(buf)
+        self._remaining -= got
+        if not got:
+            raise ValueError("Connection closed before Content-Length satisfied")
+        return got
+
+    def close(self):
+        self._sock.close()
+
+
 class Response:
     def __init__(self, f):
         self.raw = f
@@ -32,6 +63,12 @@ class Response:
         import json
 
         return json.loads(self.content)
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.close()
 
 
 def request(
@@ -99,7 +136,7 @@ def request(
             context = tls.SSLContext(tls.PROTOCOL_TLS_CLIENT)
             context.verify_mode = tls.CERT_NONE
             s = context.wrap_socket(s, server_hostname=host)
-        s.write(b"%s /%s HTTP/1.0\r\n" % (method, path))
+        s.write(b"%s /%s HTTP/1.1\r\n" % (method, path))
 
         if "Host" not in headers:
             headers["Host"] = host
@@ -117,8 +154,11 @@ def request(
             if chunked_data:
                 if "Transfer-Encoding" not in headers and "Content-Length" not in headers:
                     headers["Transfer-Encoding"] = "chunked"
-            elif "Content-Length" not in headers:
-                headers["Content-Length"] = str(len(data))
+            else:
+                if isinstance(data, str):
+                    data = bytes(data, "utf-8")
+                if "Content-Length" not in headers:
+                    headers["Content-Length"] = str(len(data))
 
         if "Connection" not in headers:
             headers["Connection"] = "close"
@@ -156,6 +196,7 @@ def request(
         reason = ""
         if len(l) > 2:
             reason = l[2].rstrip()
+        remaining = None
         while True:
             l = s.readline()
             if not l or l == b"\r\n":
@@ -167,6 +208,8 @@ def request(
             elif l.startswith(b"Location:") and not 200 <= status <= 299:
                 if status in [301, 302, 303, 307, 308]:
                     redirect = str(l[10:-2], "utf-8")
+                    if redirect.startswith("/"):
+                        redirect = proto + "//" + host + ":" + str(port) + redirect
                 else:
                     raise NotImplementedError("Redirect %d not yet supported" % status)
             if parse_headers is False:
@@ -174,7 +217,10 @@ def request(
             elif parse_headers is True:
                 l = str(l, "utf-8")
                 k, v = l.split(":", 1)
-                resp_d[k] = v.strip()
+                v = v.strip()
+                resp_d[k] = v
+                if k.lower() == "content-length":
+                    remaining = int(v)
             else:
                 parse_headers(l, resp_d)
     except OSError:
@@ -190,7 +236,10 @@ def request(
         else:
             return request(method, redirect, data, json, headers, stream)
     else:
-        resp = Response(s)
+        if remaining is not None:
+            resp = Response(BodyStream(s, remaining))
+        else:
+            resp = Response(s)
         resp.status_code = status
         resp.reason = reason
         if resp_d is not None:

@@ -13,10 +13,12 @@ This module provides a driver for WS2818 / NeoPixel LEDs.
 """
 
 from __future__ import annotations
-from _typeshed import Incomplete
-from _mpy_shed import _NeoPixelBase
-from machine import Pin
+
 from typing import Tuple
+
+from _mpy_shed import _NeoPixelBase
+from _typeshed import Incomplete
+from machine import Pin
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _Color: TypeAlias = tuple[int, int, int] | tuple[int, int, int, int]
@@ -58,7 +60,6 @@ class NeoPixel(_NeoPixelBase):
             - *bpp* is 3 for RGB LEDs, and 4 for RGBW LEDs.
             - *timing* is 0 for 400KHz, and 1 for 800kHz LEDs (most are 800kHz).
         """
-        ...
     def __len__(self) -> int:
         """
         Returns the number of LEDs in the strip.

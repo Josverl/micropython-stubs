@@ -7,13 +7,14 @@
 #
 # NXP SE05x EdgeLock device driver.
 
-import struct
 import logging
+import struct
 from time import sleep_ms
-from machine import I2C
-from machine import Pin
-from .iso7816 import SmartCard
+
+from machine import I2C, Pin
 from micropython import const
+
+from .iso7816 import SmartCard
 
 _RESULT_OK = 1
 _APPLET_NAD = 0x5A

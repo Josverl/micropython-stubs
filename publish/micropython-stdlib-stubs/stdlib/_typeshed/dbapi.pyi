@@ -3,6 +3,7 @@
 
 from collections.abc import Mapping, Sequence
 from typing import Any, Protocol
+
 from typing_extensions import TypeAlias
 
 DBAPITypeCode: TypeAlias = Any | None

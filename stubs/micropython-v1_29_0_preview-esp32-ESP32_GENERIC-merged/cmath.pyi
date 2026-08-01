@@ -18,8 +18,10 @@ Module: 'cmath' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
+
+from typing import SupportsComplex, SupportsFloat, SupportsIndex
+
 from _typeshed import Incomplete
-from typing import SupportsComplex, SupportsFloat, SupportsIndex, Tuple
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _C: TypeAlias = SupportsFloat | SupportsComplex | SupportsIndex | complex
@@ -29,7 +31,7 @@ e: float = 2.7182818
 pi: float = 3.1415928
 """the ratio of a circle's circumference to its diameter"""
 
-def polar(z: _C, /) -> Tuple:
+def polar(z: _C, /) -> tuple[float, float]:
     """
     Returns, as a tuple, the polar form of ``z``.
     """
@@ -41,25 +43,25 @@ def sqrt(z: _C, /) -> complex:
     """
     ...
 
-def rect(r: float, phi: float, /) -> float:
+def rect(r: float, phi: float, /) -> complex:
     """
     Returns the complex number with modulus ``r`` and phase ``phi``.
     """
     ...
 
-def sin(z: _C, /) -> float:
+def sin(z: _C, /) -> complex:
     """
     Return the sine of ``z``.
     """
     ...
 
-def exp(z: _C, /) -> float:
+def exp(z: _C, /) -> complex:
     """
     Return the exponential of ``z``.
     """
     ...
 
-def cos(z: _C, /) -> float:
+def cos(z: _C, /) -> complex:
     """
     Return the cosine of ``z``.
     """
@@ -71,13 +73,13 @@ def phase(z: _C, /) -> float:
     """
     ...
 
-def log(z: _C, /) -> float:
+def log(z: _C, /) -> complex:
     """
     Return the natural logarithm of ``z``.  The branch cut is along the negative real axis.
     """
     ...
 
-def log10(z: _C, /) -> float:
+def log10(z: _C, /) -> complex:
     """
     Return the base-10 logarithm of ``z``.  The branch cut is along the negative real axis.
     """

@@ -6,10 +6,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #
 # An implementation of ISO7816-3/4 standards.
-import struct
 import logging
-from micropython import const
+import struct
 from time import sleep
+
+from micropython import const
 
 # PCB bits
 _NAD_OFFSET = 0

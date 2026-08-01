@@ -1,8 +1,9 @@
 # Micropython v1.29.0-preview frozen stubs
-from micropython import const
 import io
 import sys
 import time
+
+from micropython import const
 
 CRITICAL = 50
 ERROR = 40

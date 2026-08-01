@@ -1,5 +1,6 @@
 import sys
 from typing import Any
+
 from typing_extensions import Self
 
 MAXGROUPS: int

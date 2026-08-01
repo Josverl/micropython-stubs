@@ -11,13 +11,15 @@ floating-point support).
 """
 
 from __future__ import annotations
+
 import sys
-from _typeshed import Incomplete, ReadableBuffer, SupportsRead, SupportsWrite
-from collections.abc import MutableSequence, Sequence, Iterable
+from collections.abc import Iterable, MutableSequence, Sequence
 
 # pytype crashes if array inherits from collections.abc.MutableSequence instead of typing.MutableSequence
-from typing import Generic, Any, Literal, MutableSequence, SupportsIndex, TypeVar, overload  # noqa: Y022
-from typing_extensions import Awaitable, TypeVar, Self, TypeAlias
+from typing import Any, Generic, Literal, MutableSequence, SupportsIndex, TypeVar, overload  # noqa: Y022
+
+from _typeshed import Incomplete, ReadableBuffer, SupportsRead, SupportsWrite
+from typing_extensions import Awaitable, Self, TypeAlias, TypeVar
 
 if sys.version_info >= (3, 12):
     from types import GenericAlias

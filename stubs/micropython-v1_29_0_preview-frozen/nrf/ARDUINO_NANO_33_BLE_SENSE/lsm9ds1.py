@@ -46,8 +46,8 @@ Example usage::
 """
 
 import array
-from micropython import const
 
+from micropython import const
 
 _WHO_AM_I = 0xF
 _CTRL_REG1_G = 0x10

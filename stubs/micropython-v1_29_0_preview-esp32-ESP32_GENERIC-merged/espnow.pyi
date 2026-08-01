@@ -10,10 +10,12 @@ Module: 'espnow' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Any, Callable, Dict, Iterator, List, Optional, Tuple, Union, overload, Final
-from _typeshed import Incomplete
+
+from typing import Any, Callable, Dict, Final, Iterator, List, Literal, Optional, Tuple, Union, overload
+
 from _espnow import ESPNowBase
 from _mpy_shed import mp_available
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, Buffer, TypeAlias, TypeVar
 
 RATE_24M: Final[int] = 9
@@ -98,9 +100,37 @@ class ESPNow(ESPNowBase, Iterator):
       restrictions on the ESP8266 and differences in the Espressif API.
     """
 
+    # mp_available
+    peers_table: Dict
+    """\
+    A reference to the **peer device table**: a dict of known peer devices
+    and rssi values::
+    
+    {peer: [rssi, time_ms], ...}
+    
+    where:
+    
+    - ``peer`` is the peer MAC address (as `bytes`);
+    - ``rssi`` is the wifi signal strength in dBm (-127 to 0) of the last
+    message received from the peer; and
+    - ``time_ms`` is the time the message was received (in milliseconds since
+    system boot - wraps every 12 days).
+    
+    Example::
+    
+    >>> e.peers_table
+    {b'\xaa\xaa\xaa\xaa\xaa\xaa': [-31, 18372],
+    b'\xbb\xbb\xbb\xbb\xbb\xbb': [-43, 12541]}
+    
+    **Note**: the ``mac`` addresses returned by `recv()` are references to
+    the ``peer`` key values in the **peer device table**.
+    
+    **Note**: RSSI and timestamp values in the device table are updated only
+    when the message is read by the application.
+    """
     _data: list = []
     _none_tuple: tuple = ()
-    def peer_count(self) -> int:
+    def peer_count(self) -> Tuple[int, int]:
         """
         Return the number of registered peers:
 
@@ -110,7 +140,7 @@ class ESPNow(ESPNowBase, Iterator):
           - ``encrypt_num`` is the number of encrypted peers.
         """
         ...
-    def recv(self, timeout_ms: Optional[Any] = None) -> Union[List, Tuple[None, None]]:
+    def recv(self, timeout_ms: Optional[Any] = None) -> Tuple[_MACAddress | None, bytes | None]:
         """
         Wait for an incoming message and return the ``mac`` address of the peer and
         the message. **Note**: It is **not** necessary to register a peer (using
@@ -219,10 +249,10 @@ class ESPNow(ESPNowBase, Iterator):
         Arguments:
 
             *data*: A list of at least two elements, ``[peer, msg]``. ``msg`` must
-            be a bytearray large enough to hold the message (250 bytes). On the
-            ESP8266, ``peer`` should be a bytearray of 6 bytes. The MAC address of
-            the sender and the message will be stored in these bytearrays (see Note
-            on ESP32 below).
+            be a bytearray large enough to hold the received message (recommended at
+            least `espnow.MAX_DATA_LEN`). On the ESP8266, ``peer`` should be a
+            bytearray of 6 bytes. The MAC address of the sender and the message will
+            be stored in these bytearrays (see Note on ESP32 below).
 
             *timeout_ms*: (Optional) Timeout in milliseconds (see `ESPNow.recv()`).
 
@@ -234,6 +264,10 @@ class ESPNow(ESPNowBase, Iterator):
         Raises:
 
           - See `ESPNow.recv()`.
+
+          - This function will also raise a ``ValueError`` if the received message
+            is too large for the provided buffer. If this error is raised, received
+            message(s) will be lost.
 
         **Note:** On the ESP32:
 
@@ -289,6 +323,15 @@ class ESPNow(ESPNowBase, Iterator):
            ``True`` if data is available to be read, else ``False``.
         """
         ...
+
+    @overload
+    def add_peer(
+        self,
+        mac: _MACAddress,
+        lmk: bytes | bytearray | str | None = None,
+        channel: int | None = None,
+    ) -> None: ...
+    @overload
     def add_peer(
         self,
         mac: _MACAddress,
@@ -296,7 +339,7 @@ class ESPNow(ESPNowBase, Iterator):
         channel: Optional[int] = None,
         ifidx: Optional[int] = None,
         encrypt: Optional[bool] = True,
-    ) -> Incomplete:
+    ) -> None:
         """
         Add/register the provided *mac* address as a peer. Additional parameters may
         also be specified as positional or keyword arguments (any parameter set to
@@ -352,10 +395,10 @@ class ESPNow(ESPNowBase, Iterator):
             - ``OSError(num, "ESP_ERR_ESPNOW_CHAN")`` if a channel value was
               set that doesn't match the channel currently configured for this
               interface.
-            - ``ValueError()`` on invalid keyword args or values.
+            - ``ValueError()`` or ``TypeError()`` on invalid keyword args or values.
         """
         ...
-    def active(self, flag: Optional[Any] = None) -> Incomplete:
+    def active(self, flag: Any | None = None) -> bool:
         """
         Initialise or de-initialise the ESP-NOW communication protocol depending on
         the value of the ``flag`` optional argument.
@@ -385,6 +428,8 @@ class ESPNow(ESPNowBase, Iterator):
         """
         ...
 
+    # Port note: on ESP8266 this form requires `mac` and supports only
+    # positional peer settings in `add_peer`; `sync` is still available.
     @overload
     def send(
         self,
@@ -400,12 +445,12 @@ class ESPNow(ESPNowBase, Iterator):
 
         Arguments:
 
-          - *mac*: byte string exactly ``espnow.ADDR_LEN`` (6 bytes) long or
+          - *mac*: byte string exactly `espnow.ADDR_LEN` (6 bytes) long or
             ``None``. If *mac* is ``None`` (ESP32 only) the message will be sent
             to all registered peers, except any broadcast or multicast MAC
             addresses.
 
-          - *msg*: string or byte-string up to ``espnow.MAX_DATA_LEN`` (250)
+          - *msg*: string or byte-string up to `espnow.MAX_DATA_LEN` (250 or 1470)
             bytes long.
 
           - *sync*:
@@ -429,7 +474,7 @@ class ESPNow(ESPNowBase, Iterator):
             `active()<network.WLAN.active>`.
           - ``OSError(num, "ESP_ERR_ESPNOW_NO_MEM")`` internal ESP-NOW buffers are
             full.
-          - ``ValueError()`` on invalid values for the parameters.
+          - ``ValueError()`` or ``TypeError()`` on invalid values or types for the parameters.
 
         **Note**: A peer will respond with success if its wifi interface is
         `active()<network.WLAN.active>` and set to the same channel as the sender,
@@ -437,6 +482,7 @@ class ESPNow(ESPNowBase, Iterator):
         actively listening for ESP-NOW traffic (see the Espressif ESP-NOW docs).
         """
 
+    # Port note: this broadcast-style shorthand exists only on ESP32.
     @overload
     def send(
         self,
@@ -450,12 +496,12 @@ class ESPNow(ESPNowBase, Iterator):
 
         Arguments:
 
-          - *mac*: byte string exactly ``espnow.ADDR_LEN`` (6 bytes) long or
+          - *mac*: byte string exactly `espnow.ADDR_LEN` (6 bytes) long or
             ``None``. If *mac* is ``None`` (ESP32 only) the message will be sent
             to all registered peers, except any broadcast or multicast MAC
             addresses.
 
-          - *msg*: string or byte-string up to ``espnow.MAX_DATA_LEN`` (250)
+          - *msg*: string or byte-string up to `espnow.MAX_DATA_LEN` (250 or 1470)
             bytes long.
 
           - *sync*:
@@ -479,7 +525,7 @@ class ESPNow(ESPNowBase, Iterator):
             `active()<network.WLAN.active>`.
           - ``OSError(num, "ESP_ERR_ESPNOW_NO_MEM")`` internal ESP-NOW buffers are
             full.
-          - ``ValueError()`` on invalid values for the parameters.
+          - ``ValueError()`` or ``TypeError()`` on invalid values or types for the parameters.
 
         **Note**: A peer will respond with success if its wifi interface is
         `active()<network.WLAN.active>` and set to the same channel as the sender,
@@ -489,13 +535,9 @@ class ESPNow(ESPNowBase, Iterator):
         ...
 
     @overload
-    def config(self, rxbuf: int) -> None: ...
+    def config(self, /, *, rxbuf: int = ..., timeout_ms: int = ..., rate: int = ...) -> None: ...
     @overload
-    def config(self, timeout_ms: int) -> None: ...
-    @overload
-    def config(self, rate: int) -> None: ...
-    @overload
-    def config(self, param: str) -> int:
+    def config(self, param: str, /) -> int:
         """
         Set or get configuration values of the ESPNow interface. To set values, use
         the keyword syntax, and one or more parameters can be set at a time. To get
@@ -506,23 +548,26 @@ class ESPNow(ESPNowBase, Iterator):
 
         Options:
 
-            *rxbuf*: (default=526) Get/set the size in bytes of the internal
-            buffer used to store incoming ESPNow packet data. The default size is
-            selected to fit two max-sized ESPNow packets (250 bytes) with associated
-            mac_address (6 bytes), a message byte count (1 byte) and RSSI data plus
+            *rxbuf*: (default=528 or 2972) Get/set the size in bytes of the internal
+            buffer used to store incoming ESP-NOW packet data. The default size is
+            selected to fit two max-sized ESP-NOW packets (250 or 1470 bytes) with associated
+            mac_address (6 bytes), a message byte count (2 byte) and RSSI data plus
             buffer overhead. Increase this if you expect to receive a lot of large
             packets or expect bursty incoming traffic.
 
-            **Note:** The recv buffer is allocated by `ESPNow.active()`. Changing
-            this value will have no effect until the next call of
-            `ESPNow.active(True)<ESPNow.active()>`.
+            ``Note:`` If only using ESP-NOW V1 packets and low throughput, recommend
+                      setting ``rxbuf=528`` here to reduce memory overhead.
 
-            *timeout_ms*: (default=300,000) Default timeout (in milliseconds)
-            for receiving ESPNow messages. If *timeout_ms* is less than zero, then
+            ``Note:`` The recv buffer is allocated by `ESPNow.active()`. Changing
+                      this value will have no effect until the next call of
+                      `ESPNow.active(True)<ESPNow.active()>`.
+
+            *timeout_ms*: (default=300_000) Default timeout (in milliseconds)
+            for receiving ESP-NOW messages. If *timeout_ms* is less than zero, then
             wait forever. The timeout can also be provided as arg to
             `recv()`/`irecv()`/`recvinto()`.
 
-            *rate*: (ESP32 only) Set the transmission data rate for ESPNow packets.
+            *rate*: (ESP32 only) Set the transmission data rate for ESP-NOW packets.
             The default setting is `espnow.RATE_1M`. It's recommended to use one of
             the other ``espnow.RATE_nnn`` constants to set this, but it's also
             possible to pass an integer corresponding to the `enum wifi_phy_rate_t
@@ -542,7 +587,7 @@ class ESPNow(ESPNowBase, Iterator):
             - ``ValueError()`` on invalid configuration options or values.
         """
         ...
-    def get_peers(self) -> Tuple:
+    def get_peers(self) -> Tuple[_PeerInfo, ...]:
         """
         Return the "peer info" parameters for all the registered peers (as a tuple
         of tuples).
@@ -562,7 +607,7 @@ class ESPNow(ESPNowBase, Iterator):
             - ``OSError(num, "ESP_ERR_ESPNOW_NOT_INIT")`` if not initialised.
             - ``OSError(num, "ESP_ERR_ESPNOW_NOT_FOUND")`` if *mac* is not
               registered.
-            - ``ValueError()`` on invalid *mac* values.
+            - ``ValueError()`` or ``TypeError()`` on invalid *mac* values.
         """
         ...
     def del_peer(self, mac: _MACAddress) -> None:
@@ -578,10 +623,10 @@ class ESPNow(ESPNowBase, Iterator):
             - ``OSError(num, "ESP_ERR_ESPNOW_NOT_INIT")`` if not initialised.
             - ``OSError(num, "ESP_ERR_ESPNOW_NOT_FOUND")`` if *mac* is not
               registered.
-            - ``ValueError()`` on invalid *mac* values.
+            - ``ValueError()`` or ``TypeError()`` on invalid *mac* values.
         """
         ...
-    def irq(self, callback: Callable) -> Incomplete:
+    def irq(self, callback: Callable[[ESPNow], Any]) -> None:
         """
         Set a callback function to be called *as soon as possible* after a message has
         been received from another ESPNow device. The callback function will be called
@@ -627,11 +672,19 @@ class ESPNowBase:
     def set_pmk(self, *args, **kwargs) -> Incomplete: ...
     def peer_count(self, *args, **kwargs) -> Incomplete: ...
     def recvinto(self, *args, **kwargs) -> Incomplete: ...
-    def send(self, *args, **kwargs) -> Incomplete: ...
+    @overload
+    def send(self, msg: Union[str, bytes, bytearray, Buffer], /) -> bool: ...
+    @overload
+    def send(
+        self, peer_addr: Optional[Union[bytes, bytearray]], msg: Union[str, bytes, bytearray, Buffer], sync: bool = True, /
+    ) -> bool: ...
     def active(self, *args, **kwargs) -> Incomplete: ...
     def any(self, *args, **kwargs) -> Incomplete: ...
     def get_peer(self, *args, **kwargs) -> Incomplete: ...
     def del_peer(self, *args, **kwargs) -> Incomplete: ...
     def add_peer(self, *args, **kwargs) -> Incomplete: ...
-    def config(self, *args, **kwargs) -> Incomplete: ...
+    @overload
+    def config(self, /, *, rxbuf: int = ..., timeout_ms: int = ..., rate: int = ...) -> None: ...
+    @overload
+    def config(self, param: Literal["rxbuf", "timeout_ms"], /) -> int: ...
     def __init__(self, *argv, **kwargs) -> None: ...

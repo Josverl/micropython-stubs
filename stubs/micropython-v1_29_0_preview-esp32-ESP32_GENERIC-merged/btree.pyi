@@ -79,9 +79,11 @@ Module: 'btree' on micropython-v1.29.0-preview-esp32-ESP32_GENERIC
 # MCU: {'variant': '', 'build': 'preview.381.g50348ce0eb.dirty', 'arch': 'xtensawin', 'port': 'esp32', 'board': 'ESP32_GENERIC', 'board_id': 'ESP32_GENERIC', 'mpy': 'v6.3', 'ver': '1.29.0-preview-preview.381.g50348ce0eb.dirty', 'family': 'micropython', 'cpu': 'ESP32', 'version': '1.29.0-preview'}
 # Stubber: v1.28.1
 from __future__ import annotations
-from typing import Dict, Iterable, Final
-from _typeshed import Incomplete
+
+from typing import Final, Iterable
+
 from _mpy_shed import IOBase_mp
+from _typeshed import Incomplete
 from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 DESC: Final[int] = 2
@@ -103,7 +105,7 @@ def open(
     pagesize: int = 0,
     cachesize: int = 0,
     minkeypage: int = 0,
-) -> Dict:
+) -> btree:
     """
     Open a database from a random-access `stream` (like an open file). All
     other parameters are optional and keyword-only, and allow to tweak advanced

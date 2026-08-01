@@ -6,10 +6,11 @@
 # Requires the stm module in MicroPython to be compiled with STM32WL5 subghz radio support.
 #
 # LoRa is a registered trademark or service mark of Semtech Corporation or its affiliates.
-from machine import Pin, SPI
 import stm
-from . import sx126x
+from machine import SPI, Pin
 from micropython import const
+
+from . import sx126x
 
 _CMD_CLR_ERRORS = 0x07
 

@@ -4,6 +4,7 @@
 #
 # LoRa is a registered trademark or service mark of Semtech Corporation or its affiliates.
 import time
+
 from micropython import const, schedule
 
 # Set to True to get some additional printed debug output.
