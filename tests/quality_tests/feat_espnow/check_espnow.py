@@ -49,9 +49,8 @@ for mac, msg in e:
     if mac is None:  # mac, msg will equal (None, None) on timeout
         break
 
-# Documented , but not detected by createstubs.py
-print(e.peers_table)  # type: ignore #801
-# TODO: espnow ESPNow.peers_table - deal with undetectable attributes
+# Documented, but not detected by createstubs.py, handeled by mp_available marker
+print(e.peers_table)
 # List of peers (MAC addresses) that have been added
 # A reference to the peer device table: a dict of known peer devices and rssi values:
 
@@ -62,5 +61,3 @@ e.add_peer(bcast)
 e.send(bcast, "Hello World!")
 e.send("Hello World!")
 e.send(b"Hello World!")
-
-
