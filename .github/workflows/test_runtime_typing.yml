@@ -1,11 +1,13 @@
 name: test_runtime_typing
-on: 
+on:
   pull_request:
   workflow_dispatch:
   push:
     paths:
-      - 'mip/**/*.py'
-
+      - "mip/**"
+      - "tests/quality_tests/feat_typing/**"
+      - "tests/quality_tests/test_typings.py"
+      - "tests/quality_tests/test_mip_modules.py"
 
 env:
   # Setting an environment variable with the value of a configuration variable
@@ -13,7 +15,6 @@ env:
   GH_TOKEN_VARS: ${{ secrets.GH_TOKEN_VARS }}
   # fix:  DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs
   JUPYTER_PLATFORM_DIRS: "1"
-
 
 jobs:
   test_typings_docker:
@@ -36,10 +37,6 @@ jobs:
         run: |
           uv pip install -U -r pyproject.toml --extra test
 
-
-      - name: Test the snippets 
-        continue-on-error: true
+      - name: Test the snippets
         run: |
-          pytest tests/quality_tests/test_typings.py 
-
-
+          pytest tests/quality_tests/test_typings.py tests/quality_tests/test_mip_modules.py
