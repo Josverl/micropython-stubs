@@ -1,11 +1,13 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
-from typing import Callable, overload
-from typing_extensions import TypeVar, TypeAlias, Awaitable
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+
 from collections.abc import Sequence
+from typing import Callable, overload
+
+from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class CAN:
     """

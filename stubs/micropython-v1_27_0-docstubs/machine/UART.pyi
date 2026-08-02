@@ -1,14 +1,16 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
+
 from typing import Callable, overload
-from typing_extensions import TypeVar, TypeAlias, Awaitable
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete
 from machine import IDLE
-from .Pin import Pin
-from _mpy_shed import _IRQ
 from machine.Pin import _PinLike
+from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+from .Pin import Pin
 
 ID_T: TypeAlias = int | str
 
