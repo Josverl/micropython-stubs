@@ -1,10 +1,12 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
+
 from typing import Any, Callable, Iterable
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+
 from _mpy_shed import _IRQ
+from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 __CANFilter: TypeAlias = tuple[int, int, int] | list[int]
 __CANRecvResult: TypeAlias = tuple[int, memoryview, int, int]

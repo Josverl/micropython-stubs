@@ -43,12 +43,12 @@ need to also import the baseline.
 """
 
 from typing import Final
-from typing_extensions import TYPE_CHECKING
 
 # Re-export the RP2040 baseline (constants, helpers, instruction functions,
 # directives). All of those remain valid on RP2350.
 from rp2.asm_pio_rp2040 import *  # noqa: F401,F403
 from rp2.asm_pio_rp2040 import _PIOInstr  # re-export the chainable instruction Protocol
+from typing_extensions import TYPE_CHECKING
 
 if TYPE_CHECKING:
     # ------------------------------------------------------------------

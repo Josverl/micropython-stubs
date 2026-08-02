@@ -1,10 +1,13 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
-from typing_extensions import TypeVar, TypeAlias, Awaitable
-from .Pin import Pin
+
 from typing import Callable, overload
+
+from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+from .Pin import Pin
 
 class Switch:
     """

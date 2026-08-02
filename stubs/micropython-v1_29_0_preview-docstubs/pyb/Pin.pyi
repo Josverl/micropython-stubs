@@ -1,9 +1,11 @@
 """ """
 
 from __future__ import annotations
+
+from typing import Any, Callable, Dict, List, overload
+
 from _typeshed import Incomplete
-from typing import Callable, Dict, overload, Any, List
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class Pin:
     """

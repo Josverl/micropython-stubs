@@ -1,9 +1,11 @@
 """ """
 
 from __future__ import annotations
+
+from typing import Any, List, Optional, Tuple, overload
+
 from _typeshed import Incomplete
-from typing import overload, Any, List, Optional, Tuple
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class WLAN:
     """

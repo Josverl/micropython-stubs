@@ -1,10 +1,12 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
-from typing import overload, Any, Callable
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+
+from typing import Any, Callable, overload
+
 from _mpy_shed import _IRQ
+from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 _PinLike: TypeAlias = Pin | int | str
 
