@@ -147,6 +147,13 @@ def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Confi
             file.unlink(missing_ok=True)
         for file in (pytestconfig.rootpath / "mip").glob(f"{spec}{ext}"):
             shutil.copy(file, lib_path)
+    # vendored MicroPython packages (unittest) required by the ported runtime tests
+    for pkg in (snip_path_fx / "mpy_lib").iterdir():
+        if pkg.is_dir():
+            shutil.rmtree(lib_path / pkg.name, ignore_errors=True)
+            shutil.copytree(pkg, lib_path / pkg.name)
+        elif pkg.suffix == ".py":
+            shutil.copy(pkg, lib_path)
     return lib_path
 
 
@@ -155,7 +162,7 @@ def copy_mpy_typings_fx(snip_path_fx: Path, ext: str, pytestconfig: pytest.Confi
 @pytest.mark.parametrize("feature", ["stdlib"], scope="session")
 @pytest.mark.parametrize(
     "check_file",
-    sorted({f.name for f in (HERE / "feat_typing").glob("check_*.py")}),
+    sorted({f.name for f in (HERE / "feat_typing").glob("check_*.py")} | {f.name for f in (HERE / "feat_typing").glob("typing_pep_*.py")}),
     scope="session",
 )
 @pytest.mark.parametrize("snip_path_fx", [HERE / "feat_typing"], scope="session")
@@ -180,7 +187,12 @@ def test_typing_runtime(
     cmd = f"docker run -u 1000 -v {snip_path_fx}:/code -v {lib_path}:/usr/lib/micropython --rm micropython/unix:{mp_version} micropython /code/{check_file}"
     log.info(f"Running {cmd}")
     result = subprocess.run(cmd, shell=True, cwd=snip_path_fx, text=True, capture_output=True)
+    output = result.stdout + result.stderr
     error = [line for line in result.stderr.split("\n") + result.stdout.split("\n") if "Traceback" not in line]
     if error and "Unable to find image 'micropython/unix:" in error[0]:
         pytest.skip(error[0])
+    if re.search(r"^SKIP$", output, re.MULTILINE):
+        pytest.skip(f"{check_file} is not supported on micropython {mp_version}")
     assert result.returncode == 0, error
+    # micropython-lib's unittest.main() does not set the exit code, so also check its report
+    assert "FAILED" not in output, output
