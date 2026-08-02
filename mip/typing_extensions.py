@@ -1,7 +1,9 @@
 """
-This module provides runtime support for type hints.	
+This module provides runtime support for type hints.
 based on : https://github.com/micropython/micropython-lib/pull/584
 """
+
+__version__ = "1.28.0"
 
 
 def cast(type, val):

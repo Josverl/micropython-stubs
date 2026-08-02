@@ -9,11 +9,11 @@
     ],
     [
       "typing_extensions.py",
-      "github:josverl/micropython-stubs/mip/typing.py"
+      "github:josverl/micropython-stubs/mip/typing_extensions.py"
     ]
   ],
   "deps": [
     ["__future__", "latest"]
   ],
-"version": "1.25.1"
+"version": "1.28.0"
 }
