@@ -43,6 +43,7 @@ class ESPNow(ESPNowBase, Iterator):
       restrictions on the ESP8266 and differences in the Espressif API.
     """
 
+    # mp_available
     peers_table: Dict
     """\
     A reference to the **peer device table**: a dict of known peer devices

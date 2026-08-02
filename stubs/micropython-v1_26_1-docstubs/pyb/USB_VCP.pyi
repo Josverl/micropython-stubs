@@ -1,10 +1,12 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
-from typing import overload, List
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+
+from typing import List, overload
+
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class USB_VCP:
     """

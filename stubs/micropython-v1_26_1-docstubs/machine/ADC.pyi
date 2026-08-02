@@ -1,11 +1,13 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
-from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
-from .Pin import Pin
+
 from _mpy_shed import mp_available
+from _typeshed import Incomplete
 from machine.Pin import Pin, _PinLike
+from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
+
+from .Pin import Pin
 
 ATTN_0DB: int = ...
 

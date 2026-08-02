@@ -1,9 +1,11 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
+
 from typing import Any, Optional
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+
+from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class Encoder:
     """

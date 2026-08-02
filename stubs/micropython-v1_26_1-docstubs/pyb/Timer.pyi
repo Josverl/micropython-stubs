@@ -1,11 +1,14 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
-from typing import Callable, overload
-from typing_extensions import TypeVar, TypeAlias, Awaitable
-from .Pin import Pin
+
 from abc import ABC, abstractmethod
+from typing import Callable, overload
+
+from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
+
+from .Pin import Pin
 
 class Timer:
     """

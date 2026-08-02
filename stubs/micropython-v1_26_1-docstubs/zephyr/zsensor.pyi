@@ -9,9 +9,11 @@ The ``zsensor`` module contains a class for using sensors with Zephyr.
 # source version: v1.26.1
 # origin module:: repos/micropython/docs/library/zephyr.zsensor.rst
 from __future__ import annotations
-from _typeshed import Incomplete
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+
 from typing import overload
+
+from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 ACCEL_X: Incomplete
 """Acceleration on the X axis, in m/s^2."""
