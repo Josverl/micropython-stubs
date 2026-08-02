@@ -11,6 +11,9 @@ default:
 init:
     stubber clone
 
+sync:
+    uv sync --extra test 
+
 alias docs := docstubs
 docstubs v="stable":
     stubber docstubs --version {{v}}
