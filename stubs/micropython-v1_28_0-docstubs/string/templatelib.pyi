@@ -17,8 +17,9 @@ and the webassembly pyscript variant.
 # source version: v1.28.0
 # origin module:: repos/micropython/docs/library/string.templatelib.rst
 from __future__ import annotations
+
 from _typeshed import Incomplete
-from typing_extensions import TypeVar, TypeAlias, Awaitable
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class Template:
     """

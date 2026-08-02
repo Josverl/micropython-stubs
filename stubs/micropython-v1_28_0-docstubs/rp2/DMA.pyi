@@ -1,10 +1,12 @@
 """ """
 
 from __future__ import annotations
+
+from typing import Any, Callable, Optional
+
+from _mpy_shed import _IRQ, AnyReadableBuf, AnyWritableBuf
 from _typeshed import Incomplete
-from typing import Callable, Any, Optional
-from typing_extensions import TypeVar, TypeAlias, Awaitable
-from _mpy_shed import AnyReadableBuf, AnyWritableBuf, _IRQ
+from typing_extensions import Awaitable, TypeAlias, TypeVar
 
 class DMA:
     """

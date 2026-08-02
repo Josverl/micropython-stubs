@@ -1,10 +1,12 @@
 """ """
 
 from __future__ import annotations
-from _typeshed import Incomplete
+
 from typing import overload
-from typing_extensions import deprecated, TypeVar, TypeAlias, Awaitable
+
 from _mpy_shed import AnyReadableBuf, AnyWritableBuf
+from _typeshed import Incomplete
+from typing_extensions import Awaitable, TypeAlias, TypeVar, deprecated
 from vfs import AbstractBlockDev
 
 class Flash(AbstractBlockDev):
