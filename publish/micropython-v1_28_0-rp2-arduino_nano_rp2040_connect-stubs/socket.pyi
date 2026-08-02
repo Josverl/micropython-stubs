@@ -167,7 +167,7 @@ class socket:
     The reason for this difference is that the runtime uses `socket` as both a class name and as a method name and
     this is not possible within code written entirely in Python and therefore not possible within typing code.
     """
-    def recvfrom(self, bufsize: int, /) -> Tuple:
+    def recvfrom(self, bufsize: int, /) -> tuple[bytes, _Address]:
         """
         Receive data from the socket. The return value is a pair *(bytes, address)* where *bytes* is a
         bytes object representing the data received and *address* is the address of the socket sending
