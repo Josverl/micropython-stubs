@@ -4,6 +4,7 @@ __version__ = "1.28.0"
 def cast(_, val):
     return val
 
+
 def get_origin(_):
     return None
 
@@ -23,6 +24,7 @@ def overload(_):
 def override(func):
     return func
 
+
 def reveal_type(key):
     return key
 
@@ -35,17 +37,19 @@ class _AnyCall:
         pass
 
     def __getitem__(self, _):
-        return _anyCall
+        return _any_call
 
 
-_anyCall = _AnyCall()
+_any_call = _AnyCall()
 
 
-def TypeVar(key, *types, bound = None, covariant=False, contravariant=False, infer_variance=False):
+def TypeVar(key, *types, bound=None, covariant=False, contravariant=False, infer_variance=False):
     return key
+
 
 def TypeVarTuple(key):
     return key
+
 
 def NewType(_, type):
     return type
@@ -115,6 +119,7 @@ class TextIO:
     pass
 
 
+# must be a real class to allow `class Foo(Protocol):`
 class Protocol:
     pass
 
@@ -127,51 +132,53 @@ TypeAlias = object
 # Pattern = str
 # Match = str
 
-AbstractSet = _anyCall
-AsyncContextManager = _anyCall
-AsyncGenerator = _anyCall
-AsyncIterable = _anyCall
-AsyncIterator = _anyCall
-Awaitable = _anyCall
-Callable = _anyCall
-ChainMap = _anyCall
-Collection = _anyCall
-Container = _anyCall
-ContextManager = _anyCall
-Coroutine = _anyCall
-Counter = _anyCall
-DefaultDict = _anyCall
-Deque = _anyCall
-Dict = _anyCall
-FrozenSet = _anyCall
-Generator = _anyCall
-Generic = _anyCall
-Iterable = _anyCall
-Iterator = _anyCall
-List = _anyCall
-Literal = _anyCall
-LiteralString = _anyCall
-Mapping = _anyCall
-MutableMapping = _anyCall
-MutableSequence = _anyCall
-MutableSet = _anyCall
-NamedTuple = _anyCall
-NotRequired = _anyCall
-Optional = _anyCall
-OrderedDict = _anyCall
-ReadOnly = _anyCall
-Required = _anyCall
-Self = _anyCall
-Sequence = _anyCall
-Set = _anyCall
-Tuple = _anyCall
-Type = _anyCall
-Union = _anyCall
-Unpack = _anyCall
+AbstractSet = _any_call
+AsyncContextManager = _any_call
+AsyncGenerator = _any_call
+AsyncIterable = _any_call
+AsyncIterator = _any_call
+Awaitable = _any_call
+Callable = _any_call
+ChainMap = _any_call
+Collection = _any_call
+Container = _any_call
+ContextManager = _any_call
+Coroutine = _any_call
+Counter = _any_call
+DefaultDict = _any_call
+Deque = _any_call
+Dict = _any_call
+FrozenSet = _any_call
+Generator = _any_call
+Generic = _any_call
+Iterable = _any_call
+Iterator = _any_call
+List = _any_call
+Literal = _any_call
+LiteralString = _any_call
+Mapping = _any_call
+MutableMapping = _any_call
+MutableSequence = _any_call
+MutableSet = _any_call
+NamedTuple = _any_call
+NotRequired = _any_call
+Optional = _any_call
+OrderedDict = _any_call
+ReadOnly = _any_call
+Required = _any_call
+Reversible = _any_call
+Self = _any_call
+Sequence = _any_call
+Set = _any_call
+Tuple = _any_call
+Type = _any_call
+Union = _any_call
+Unpack = _any_call
 
 TYPE_CHECKING = False
 
 # snarky way to alias typing_extensions to typing ( saving 59 bytes)
 import sys
+
 sys.modules["typing_extensions"] = sys.modules["typing"]
 del sys
