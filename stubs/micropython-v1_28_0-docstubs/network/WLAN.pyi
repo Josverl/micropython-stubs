@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from _typeshed import Incomplete
-from typing import overload, Any, List, Tuple
+from typing import overload, Any, List, Literal, Tuple
 from typing_extensions import TypeVar, TypeAlias, Awaitable
 
 class WLAN:
@@ -214,6 +214,10 @@ class WLAN:
          nic.ifconfig(('192.168.0.4', '255.255.255.0', '192.168.0.1', '8.8.8.8'))
         """
 
+    @overload
+    def config(self, param: Literal["mac"], /) -> bytes: ...
+    @overload
+    def config(self, param: Literal["ssid"], /) -> str: ...
     @overload
     def config(self, param: str, /) -> Any:
         """

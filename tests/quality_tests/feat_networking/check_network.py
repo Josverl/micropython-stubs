@@ -4,13 +4,15 @@
 # The network module:
 
 import network
+from typing_extensions import assert_type
 
 wlan = network.WLAN(network.STA_IF)  # create station interface
 wlan.active(True)  # activate the interface
 wlan.scan()  # scan for access points
 wlan.isconnected()  # check if the station is connected to an AP
 wlan.connect("essid", "password")  # connect to an AP
-wlan.config("mac")  # get the interface's MAC address
+assert_type(wlan.config("mac"), bytes)
+assert_type(wlan.config("ssid"), str)
 wlan.ifconfig()  # get the interface's IP/netmask/gw/DNS addresses
 
 ap = network.WLAN(network.AP_IF)  # create access-point interface
