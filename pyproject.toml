@@ -44,6 +44,9 @@ test = [
 "mypy",
 "ruff",
 "basilisk-python",
+# pinned: mip/*.mpy are byte-compared against a rebuild in tests/quality_tests/test_mip_modules.py
+# when bumping, re-run mip/x-compile.sh and commit the regenerated .mpy files
+"mpy-cross==1.27.0.post2",
 ]
 
 stats = [
