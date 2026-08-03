@@ -41,17 +41,24 @@ publish_stdlib:
         cwd="publish/micropython-stdlib-stubs",
     )
 
+# do all steps to build stubs for all ports and boards for a specific version (default: stable)
+do-all v="stable":
+    @just docstubs {{v}}
+    @just stdlib
+    @just frozen {{v}}
+    @just merge-all {{v}}
+    @just build-all {{v}}
 
 frozen v="stable":
     stubber frozen --version {{v}}
 
-merge_all v="stable":
+merge-all v="stable":
     stubber merge --port all --board all --version {{v}}
  
-build_all v="stable":
+build-all v="stable":
     stubber build --port all --board all --version {{v}}
 
-publish_all v="stable":
+publish-all v="stable":
     stubber publish --port all --board all --version {{v}}
 
 # build stubs for a specific port
@@ -61,7 +68,7 @@ port p="rp2" v="stable" b="all":
     stubber merge --port {{p}} --board {{b}} --version {{v}}
     stubber build --port {{p}} --board {{b}} --version {{v}}
 
-update_stubs v="stable":
+update-stubs v="stable":
     @just port all {{v}} all
     @just stdlib
 
