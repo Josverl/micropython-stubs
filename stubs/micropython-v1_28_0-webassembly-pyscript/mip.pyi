@@ -1,0 +1,92 @@
+"""
+Module: 'mip' on micropython-v1.28.0-webassembly-pyscript
+"""
+# MCU: {'family': 'micropython', 'version': '1.28.0', 'build': '', 'ver': '1.28.0', 'port': 'webassembly', 'board': 'pyscript', 'board_id': 'pyscript', 'variant': '', 'cpu': 'Emscripten', 'mpy': 'v6.3', 'arch': ''}
+# Stubber: v1.28.3
+from __future__ import annotations
+from typing import Any, Final, Generator, AsyncGenerator
+from _typeshed import Incomplete
+
+_D: Final[bool] = True
+_E: Final[str] = 'user-agent'
+_F: Final[str] = 'github:'
+_B: Final[str] = '/'
+HEADERS_TO_IGNORE: tuple = ()
+_CHUNK_SIZE: Final[int] = 128
+_C: Final[bool] = False
+def _install_package(x0, x1, x2, x3, x4) -> Incomplete:
+    ...
+
+def _chunk(x0, x1) -> Incomplete:
+    ...
+
+def _ensure_path_exists(x0) -> Incomplete:
+    ...
+
+def _rewrite_url(x0, x1) -> Incomplete:
+    ...
+
+def _download_file(x0, x1) -> Incomplete:
+    ...
+
+def _check_exists(x0, x1) -> Incomplete:
+    ...
+
+def _install_json(x0, x1, x2, x3, x4) -> Incomplete:
+    ...
+
+def install(x0, x1, x2, x3, x4) -> Incomplete:
+    ...
+
+def request(x0, x1, x2, x3, x4) -> Incomplete:
+    ...
+
+def get(x0) -> Incomplete:
+    ...
+
+
+class StringIO():
+    def write(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def flush(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def getvalue(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def seek(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def tell(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def readline(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def close(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def read(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def readinto(self, *args, **kwargs) -> Incomplete:
+        ...
+
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+
+class Response():
+    def json(self) -> Incomplete:
+        ...
+
+    def close(self) -> Incomplete:
+        ...
+
+    content: Incomplete ## <class 'property'> = <property>
+    text: Incomplete ## <class 'property'> = <property>
+    def __init__(self, *argv, **kwargs) -> None:
+        ...
+
+_A: Incomplete ## <class 'NoneType'> = None
