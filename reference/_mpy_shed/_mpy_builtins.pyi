@@ -1,16 +1,16 @@
 """MicroPython compiler-provided builtins for static type checkers."""
 
 from _typeshed import ReadableBuffer
-from typing import TypeVar
+from typing import Any, Mapping, TypeVar
 from typing_extensions import Self, TypeAlias
 
 # BEGIN: BUILTINS
-Const_T = TypeVar("Const_T", int, float, str, bytes, tuple)
+Const_T = TypeVar("Const_T", int, float, str, bytes, tuple)  # noqa: PYI001
 
 #: Unsigned machine-word integer used by the Viper emitter. This type is
 #: primarily useful as a Viper function return annotation. It makes MicroPython
 #: interpret ``0xffffffff`` as ``2**32 - 1`` rather than ``-1``.
-uint: TypeAlias = int
+uint: TypeAlias = int  # noqa: PYI042
 
 class ptr(int):
     """Viper pointer to an object or memory address.
@@ -59,6 +59,15 @@ def const(expr: Const_T, /) -> Const_T:
     MicroPython may substitute the value during compilation. A name beginning
     with an underscore is hidden from module globals and consumes no runtime
     storage.
+    """
+    ...
+
+def execfile(filename: str, globals: dict[str, Any] | None = None, locals: Mapping[str, object] | None = None, /) -> None:
+    """Execute the file *filename* with semantics equivalent to Python 2's ``execfile``.
+
+    Only available on ports/builds with ``MICROPY_PY_BUILTINS_EXECFILE`` enabled
+    (disabled by default on most embedded ports). Unlike `exec`, *filename* must
+    be a `str`; passing anything else (including `bytes`) raises `TypeError`.
     """
     ...
 
